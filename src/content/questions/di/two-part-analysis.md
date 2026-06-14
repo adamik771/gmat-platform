@@ -2997,3 +2997,1049 @@ From the list {5, 6, 7, 700, 800, 900, 1,000}, the value 6 corresponds to H and 
 
 The correct answers are H (hours >= 50%) = 6 and T (total units) = 900.
 **related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q53
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — System of Equations
+
+A bakery sells croissants for $3 each and muffins for $2 each. On a particular morning it sold 50 items in total and collected $130 in revenue. Determine the number of croissants sold (row 1) and the number of muffins sold (row 2).
+
+|     | Croissants | Muffins |
+|-----|------------|---------|
+| 20  |            |         |
+| 25  |            |         |
+| 30  |            |         |
+| 35  |            |         |
+| 40  |            |         |
+
+**answer:** Croissants = 30, Muffins = 20
+**explanation:** **Governing principle.** A system of two linear equations in two unknowns is solved by substitution: one variable is expressed in terms of the other using the first equation, and the result is substituted into the second.
+
+**Define variables.** Let c be the number of croissants sold and m be the number of muffins sold.
+
+**Translate the problem into equations.**
+
+The total number of items sold is 50:
+
+c + m = 50   ... (1)
+
+The total revenue is $130, with croissants priced at $3 each and muffins at $2 each:
+
+3c + 2m = 130   ... (2)
+
+**Solve by substitution.** From equation (1), m = 50 - c. Substituting into equation (2):
+
+3c + 2(50 - c) = 130
+
+3c + 100 - 2c = 130
+
+c + 100 = 130
+
+c = 30
+
+**Find m.** Substituting c = 30 into equation (1): 30 + m = 50, so m = 20.
+
+**Verification.** Item count: 30 + 20 = 50. Revenue: 3(30) + 2(20) = 90 + 40 = 130. Both conditions hold.
+
+**Eliminating distractors.** The candidate values are 20, 25, 30, 35, and 40. Selecting c = 25 would give m = 25 and revenue 3(25) + 2(25) = 125, which falls short of $130. Selecting c = 35 would give m = 15 (not a candidate) and revenue 3(35) + 2(15) = 135, which exceeds $130. Only c = 30 with m = 20 satisfies both equations and appears among the candidates.
+
+The correct answers are Croissants = 30 and Muffins = 20.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q54
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Percentages
+
+A retailer marks up a jacket by 40% above its cost to set the list price, then offers a 25% discount off the list price at checkout. The customer pays $84 for the jacket. Determine the cost the retailer paid for the jacket (row 1) and the list price before discount (row 2).
+
+|       | Cost | List Price |
+|-------|------|------------|
+| $70   |      |            |
+| $80   |      |            |
+| $84   |      |            |
+| $100  |      |            |
+| $112  |      |            |
+
+**answer:** Cost = $80, List Price = $112
+**explanation:** **Governing principle.** Successive percentage operations are applied multiplicatively. A 40% markup multiplies the cost by 1.40 to produce the list price; a 25% discount multiplies the list price by (1 - 0.25) = 0.75 to produce the price paid.
+
+**Define variables.** Let C be the cost the retailer paid and L be the list price.
+
+**Translate into equations.**
+
+The markup gives:
+
+L = 1.40 * C   ... (1)
+
+The discount gives the final price paid:
+
+0.75 * L = 84   ... (2)
+
+**Solve for L.** From equation (2):
+
+L = 84 / 0.75 = 112
+
+**Solve for C.** Substituting L = 112 into equation (1):
+
+112 = 1.40 * C
+
+C = 112 / 1.40 = 80
+
+**Verification.** Markup: 1.40 * 80 = 112, matching the list price. Discount: 0.75 * 112 = 84, matching the price paid. Both steps are consistent.
+
+**Matching candidate values.** The candidate list is $70, $80, $84, $100, and $112. C = 80 and L = 112 both appear. The value $84 is the price paid, which is a deliberate distractor for the cost; it does not equal the cost because two separate percentage operations separate the cost from the final price.
+
+The correct answers are Cost = $80 and List Price = $112.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q55
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Distance/Rate
+
+A cyclist rides from home to a lake at 15 km/h and returns along the same road at 10 km/h. The entire round trip takes 5 hours. Determine the one-way distance from home to the lake (row 1) and the total distance traveled on the round trip (row 2).
+
+|        | One-way Distance | Round-trip Distance |
+|--------|------------------|---------------------|
+| 24 km  |                  |                     |
+| 30 km  |                  |                     |
+| 36 km  |                  |                     |
+| 60 km  |                  |                     |
+| 75 km  |                  |                     |
+
+**answer:** One-way Distance = 30 km, Round-trip Distance = 60 km
+**explanation:** **Governing principle.** For a fixed distance traveled at a known speed, time = distance / rate. When the same distance is covered at two different speeds, the total time is the sum of the two individual times.
+
+**Define variables.** Let d be the one-way distance (in kilometers) from home to the lake.
+
+**Translate into an equation.** The outbound leg at 15 km/h takes d/15 hours; the return leg at 10 km/h takes d/10 hours. The total time is 5 hours:
+
+d/15 + d/10 = 5
+
+**Solve for d.** The least common denominator of 15 and 10 is 30:
+
+d/15 = 2d/30 and d/10 = 3d/30
+
+So 2d/30 + 3d/30 = 5d/30 = 5.
+
+Multiplying both sides by 30: 5d = 150, therefore d = 30 km.
+
+**Solve for the round-trip distance.** The round trip covers the one-way distance twice:
+
+2 * 30 = 60 km
+
+**Verification.** Outbound time: 30/15 = 2 hours. Return time: 30/10 = 3 hours. Total: 2 + 3 = 5 hours, matching the prompt.
+
+**Matching candidate values.** The candidates are 24, 30, 36, 60, and 75 km. The one-way distance d = 30 km and the round-trip distance 60 km both appear. The value 75 km is a trap obtained by incorrectly multiplying the average of the speeds by the time; it does not satisfy the time equation.
+
+The correct answers are One-way Distance = 30 km and Round-trip Distance = 60 km.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q56
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Compound Interest
+
+A principal of $5,000 is deposited in an account earning interest compounded annually at a fixed annual rate. After 2 years the balance is $5,832. Determine the annual interest rate (row 1) and the account balance after 3 years (row 2).
+
+|         | Annual Rate | Balance after 3 years |
+|---------|-------------|-----------------------|
+| 6%      |             |                       |
+| 8%      |             |                       |
+| 10%     |             |                       |
+| $6,000  |             |                       |
+| $6,298.56 |           |                       |
+| $6,860  |             |                       |
+
+**answer:** Annual Rate = 8%, Balance after 3 years = $6,298.56
+**explanation:** **Governing principle.** Under annual compounding, a balance grows by a factor of (1 + r) each year, where r is the decimal annual rate. After t years, the balance is Principal * (1 + r)^t.
+
+**Define variables.** Let r be the decimal annual interest rate.
+
+**Solve for r using the 2-year balance.** The 2-year compounding relationship is:
+
+5000 * (1 + r)^2 = 5832
+
+Dividing both sides by 5000:
+
+(1 + r)^2 = 5832 / 5000 = 1.1664
+
+Taking the positive square root:
+
+1 + r = sqrt(1.1664) = 1.08
+
+Therefore r = 0.08, an annual rate of 8%.
+
+**Verification of the rate.** At 8%, the balance after 1 year is 5000 * 1.08 = 5400, and after 2 years 5400 * 1.08 = 5832, which matches the given balance. Checking the distractors: at 6%, the 2-year balance would be 5000 * 1.06^2 = 5618, and at 10% it would be 5000 * 1.10^2 = 6050 — neither equals 5832, so only 8% is consistent.
+
+**Solve for the 3-year balance.** Applying one more year of growth at 8%:
+
+5832 * 1.08 = 6298.56
+
+Equivalently, 5000 * 1.08^3 = 5000 * 1.259712 = 6298.56.
+
+**Matching candidate values.** The candidate list contains the rates 6%, 8%, 10% and the balances $6,000, $6,298.56, and $6,860. The rate 8% and the balance $6,298.56 are the unique consistent pair. The value $6,860 corresponds to a 3-year balance at 11.2% growth and does not arise from the verified 8% rate.
+
+The correct answers are Annual Rate = 8% and Balance after 3 years = $6,298.56.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q57
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Ages
+
+A father is currently three times as old as his daughter. In 10 years, the father will be twice as old as his daughter. Determine the daughter's current age (row 1) and the father's current age (row 2).
+
+|     | Daughter's Age | Father's Age |
+|-----|----------------|--------------|
+| 8   |                |              |
+| 10  |                |              |
+| 12  |                |              |
+| 30  |                |              |
+| 36  |                |              |
+
+**answer:** Daughter's Age = 10, Father's Age = 30
+**explanation:** **Governing principle.** Age problems are modeled by writing each person's age as a variable now and adding the same number of years to every person's age for any future point in time.
+
+**Define variables.** Let d be the daughter's current age and f be the father's current age.
+
+**Translate into equations.**
+
+The father is currently three times as old as the daughter:
+
+f = 3d   ... (1)
+
+In 10 years, the father (f + 10) will be twice the daughter's age (d + 10):
+
+f + 10 = 2(d + 10)   ... (2)
+
+**Solve the system.** Substituting equation (1) into equation (2):
+
+3d + 10 = 2(d + 10)
+
+3d + 10 = 2d + 20
+
+3d - 2d = 20 - 10
+
+d = 10
+
+**Find f.** From equation (1): f = 3 * 10 = 30.
+
+**Verification.** Currently the father (30) is three times the daughter (10): 30 = 3 * 10. In 10 years the father is 40 and the daughter is 20, and 40 = 2 * 20. Both conditions are satisfied.
+
+**Matching candidate values.** The candidates are 8, 10, 12, 30, and 36. The daughter's age d = 10 and the father's age f = 30 both appear. Selecting d = 12 would give f = 36, but in 10 years the father would be 46 and the daughter 22, and 46 is not twice 22, so that pair fails the second condition.
+
+The correct answers are Daughter's Age = 10 and Father's Age = 30.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q58
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Number Properties
+
+A two-digit positive integer has digits whose sum is 12. When the digits are reversed, the new number is 18 greater than the original. Determine the tens digit of the original number (row 1) and the original number itself (row 2).
+
+|     | Tens Digit | Original Number |
+|-----|------------|-----------------|
+| 3   |            |                 |
+| 5   |            |                 |
+| 7   |            |                 |
+| 57  |            |                 |
+| 75  |            |                 |
+
+**answer:** Tens Digit = 5, Original Number = 57
+**explanation:** **Governing principle.** A two-digit number with tens digit t and units digit u has value 10t + u. Reversing the digits produces 10u + t. Digit-based problems are solved by translating each verbal condition into an equation in t and u, with the constraint that both are integers from 0 to 9 (and t >= 1).
+
+**Define variables.** Let t be the tens digit and u be the units digit of the original number.
+
+**Translate into equations.**
+
+The digit sum is 12:
+
+t + u = 12   ... (1)
+
+Reversing the digits increases the value by 18:
+
+(10u + t) - (10t + u) = 18   ... (2)
+
+**Simplify equation (2).**
+
+10u + t - 10t - u = 18
+
+9u - 9t = 18
+
+Dividing by 9:
+
+u - t = 2   ... (2')
+
+**Solve the system.** Adding equations (1) and (2'):
+
+(t + u) + (u - t) = 12 + 2
+
+2u = 14
+
+u = 7
+
+Substituting into equation (1): t + 7 = 12, so t = 5.
+
+**Form the original number.** The original number is 10t + u = 10(5) + 7 = 57.
+
+**Verification.** Digit sum: 5 + 7 = 12. Reversed number: 75, and 75 - 57 = 18. Both conditions hold.
+
+**Matching candidate values.** The candidates are 3, 5, 7, 57, and 75. The tens digit t = 5 and the original number 57 both appear. The value 75 is the reversed number (the trap for "original number"), and 7 is the units digit (the trap for "tens digit"); neither satisfies the role asked.
+
+The correct answers are Tens Digit = 5 and Original Number = 57.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q59
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Logic — Argument Structure
+
+Consider the following argument: "Sales of our flagship product fell 20% last quarter. During the same quarter, we cut the advertising budget for that product by half. Therefore, the reduced advertising caused the drop in sales."
+
+From the statements below, identify the conclusion of the argument (row 1) and the central unstated assumption required for the argument to hold (row 2).
+
+| Statement                                                                              | Conclusion | Assumption |
+|----------------------------------------------------------------------------------------|------------|------------|
+| The reduced advertising caused the drop in sales                                        |            |            |
+| No other factor materially contributed to the decline in sales                          |            |            |
+| Sales of the flagship product fell 20% last quarter                                     |            |            |
+| The advertising budget was cut by half last quarter                                     |            |            |
+| Advertising is the only driver of sales for every product                               |            |            |
+
+**answer:** Conclusion = "The reduced advertising caused the drop in sales", Assumption = "No other factor materially contributed to the decline in sales"
+**explanation:** A Two-Part Analysis question of this type asks the solver to isolate the conclusion of the argument and to identify the central unstated assumption — the suppressed premise without which the link from evidence to conclusion fails.
+
+**Identifying the conclusion.** The conclusion is the claim the argument is designed to establish; it is supported by the premises and does not itself serve as support for another claim. The argument offers two explicit evidence statements: sales fell 20%, and the advertising budget was cut in half. Both are presented in support of the claim introduced by "Therefore": the reduced advertising caused the drop in sales. That causal statement is what the arguer is trying to prove, so it is the conclusion.
+
+**Identifying the central unstated assumption.** The inference follows a post hoc pattern: two events coincided in the same quarter, so one is claimed to have caused the other. For that causal leap to hold, the argument must assume that no other factor — such as a new competitor, a price increase, a supply shortage, or a broader market downturn — materially contributed to the 20% decline. The statement "No other factor materially contributed to the decline in sales" is therefore the load-bearing assumption.
+
+**Confirming by negation.** If one negates the assumption — suppose some other factor did materially contribute to the decline — the conclusion collapses, because the drop could then be explained without reference to advertising. A negation that destroys the argument confirms the statement is the necessary assumption.
+
+**Evaluating the remaining candidates.** "Sales of the flagship product fell 20% last quarter" and "The advertising budget was cut by half last quarter" are explicit premises, not the conclusion and not unstated. "Advertising is the only driver of sales for every product" is a universal generalization far stronger than the argument needs; the argument makes only a local causal claim about one product in one quarter, so this sweeping principle is not the minimal assumption doing the work.
+
+The correct answers are Conclusion = The reduced advertising caused the drop in sales and Assumption = No other factor materially contributed to the decline in sales.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q60
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Strengthening and Weakening
+
+A nutrition company argues: "People who drank our protein shake daily for three months lost an average of 6 pounds. Therefore, our protein shake is an effective weight-loss product."
+
+From the statements below, identify one that would most strengthen the argument (row 1) and one that would most weaken it (row 2).
+
+| Statement                                                                                       | Strengthens | Weakens |
+|-------------------------------------------------------------------------------------------------|-------------|---------|
+| In a randomized trial, those given the shake lost 5 pounds while an identical group given a placebo shake lost none |             |         |
+| Participants who drank the shake daily also began exercising five times a week during the study  |             |         |
+| The shake is sold in three flavors                                                              |             |         |
+| The shake contains 25 grams of protein per serving                                              |             |         |
+| Many customers report enjoying the taste of the shake                                            |             |         |
+
+**answer:** Strengthens = "In a randomized trial, those given the shake lost 5 pounds while an identical group given a placebo shake lost none", Weakens = "Participants who drank the shake daily also began exercising five times a week during the study"
+**explanation:** **Governing principle.** A statement strengthens a causal argument when it provides evidence of a genuine causal link and rules out competing explanations; it weakens the argument when it introduces an alternative cause that could independently produce the observed effect. Each column is evaluated as an independent sub-question.
+
+**The argument.** The company observes that daily shake drinkers lost an average of 6 pounds and concludes that the shake is causally effective for weight loss. The logical gap is the leap from correlation to causation: other factors changing alongside shake consumption could account for the loss.
+
+**Evaluating the candidates for Strengthens.** The randomized-trial statement is decisive. Random assignment neutralizes pre-existing differences between groups in expectation, and a placebo control isolates the effect of the shake itself. Because the shake group lost 5 pounds while an otherwise identical placebo group lost none, the difference is attributable to the shake rather than to dieting trends, seasonal behavior, or self-selection. This closes the correlation-to-causation gap and is the strongest available support. The other candidates — the shake's flavor count, its protein content, and customer taste preferences — speak to product features or satisfaction, not to whether the shake causes weight loss, so none strengthens the causal claim.
+
+**Evaluating the candidates for Weakens.** The exercise statement introduces a plausible simultaneous alternative cause. If the same people who drank the shake daily also started exercising five times a week during the study, then the 6-pound average loss could be attributable to the new exercise regimen rather than to the shake. Because both behaviors varied together in the observational data, the argument cannot separate the two, and the causal attribution to the shake is undermined. This is a textbook alternative cause: it does not deny that weight was lost, only that the shake is the cause. The remaining candidates provide no alternative causal mechanism and are irrelevant to the inference.
+
+The correct answers are Strengthens = In a randomized trial, those given the shake lost 5 pounds while an identical group given a placebo shake lost none and Weakens = Participants who drank the shake daily also began exercising five times a week during the study.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q61
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Work Rate
+
+A printing job can be completed by Machine P alone in 12 hours or by Machine Q alone in 8 hours. The two machines start together but, after working together for some hours, Machine P breaks down and Machine Q finishes the remaining job alone. The entire job takes 6 hours in total. Determine the number of hours the two machines worked together (row 1) and the fraction of the job completed by Machine Q alone after P broke down (row 2).
+
+|       | Hours Together | Fraction by Q Alone |
+|-------|----------------|---------------------|
+| 2.4   |                |                     |
+| 3     |                |                     |
+| 4.8   |                |                     |
+| 1/8   |                |                     |
+| 3/8   |                |                     |
+| 1/2   |                |                     |
+
+**answer:** Hours Together = 3, Fraction by Q Alone = 3/8
+**explanation:** **Governing principle.** Each machine's rate is the reciprocal of its solo completion time, and rates add when machines work simultaneously. The job total of 1 is split between a "together" phase and a "Q-alone" phase, and the durations of the two phases must sum to the total elapsed time.
+
+**Setting up rates.** Let the full job equal 1 unit. Machine P's rate is 1/12 job per hour and Machine Q's rate is 1/8 job per hour. Their combined rate is:
+
+1/12 + 1/8
+
+Using the least common denominator 24: 1/12 = 2/24 and 1/8 = 3/24, so the combined rate is 5/24 job per hour.
+
+**Defining the phases.** Let h be the number of hours both machines work together. After P breaks down, Q works alone for the remaining (6 - h) hours at rate 1/8 job per hour. The total work done across both phases equals 1:
+
+(5/24) * h + (1/8) * (6 - h) = 1
+
+**Solving for h.** Multiply every term by 24 to clear denominators (note 24 * 1/8 = 3):
+
+5h + 3(6 - h) = 24
+
+5h + 18 - 3h = 24
+
+2h = 6
+
+h = 3
+
+So the machines worked together for 3 hours.
+
+**Solving for the fraction completed by Q alone.** After P breaks down, Q works alone for 6 - 3 = 3 hours at rate 1/8 job per hour, completing:
+
+(1/8) * 3 = 3/8
+
+So Q alone completes 3/8 of the job after P breaks down.
+
+**Verification.** Together for 3 hours produces (5/24)(3) = 15/24 = 5/8 of the job; Q alone for the remaining 3 hours produces 3/8; the two sum to 5/8 + 3/8 = 1, the full job, and the total elapsed time is 3 + 3 = 6 hours, matching the prompt.
+
+**Matching candidate values.** The candidate durations are 2.4, 3, and 4.8 hours, and the candidate fractions are 1/8, 3/8, and 1/2. The duration h = 3 satisfies the work equation, and the fraction 3/8 matches Q's solo contribution. The value 2.4 (which is 12/5, the time for P and Q to finish a whole job together) does not satisfy the broken-down scenario, and the fraction 1/2 would require Q to work alone for 4 hours, contradicting the 6-hour total.
+
+The correct answers are Hours Together = 3 and Fraction by Q Alone = 3/8.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q62
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Mixture by Replacement
+
+A 40-liter container is full of pure antifreeze. Some amount is drained off and replaced with water; the mixture is stirred. The resulting solution is 75% antifreeze. Determine the volume drained and replaced with water (row 1) and the volume of antifreeze remaining in the container (row 2).
+
+|        | Volume Replaced | Antifreeze Remaining |
+|--------|-----------------|----------------------|
+| 5 L    |                 |                      |
+| 10 L   |                 |                      |
+| 15 L   |                 |                      |
+| 30 L   |                 |                      |
+| 35 L   |                 |                      |
+
+**answer:** Volume Replaced = 10 L, Antifreeze Remaining = 30 L
+**explanation:** **Governing principle.** When a volume is drained from a uniform solution and replaced with water, only the drained portion removes the active substance; the water adds none. The container stays at its original total volume, so the final concentration equals (antifreeze remaining) divided by (total volume).
+
+**Define variables.** Let v be the volume (in liters) drained off and replaced with water. The container holds 40 liters of pure antifreeze before draining.
+
+**Translate into an equation.** Draining v liters of pure antifreeze removes v liters of antifreeze, leaving (40 - v) liters of antifreeze. Replacing with v liters of water restores the total to 40 liters but adds no antifreeze. The final solution is 75% antifreeze:
+
+(40 - v) / 40 = 0.75
+
+**Solve for v.** Multiply both sides by 40:
+
+40 - v = 30
+
+v = 10
+
+So 10 liters were drained and replaced with water.
+
+**Solve for antifreeze remaining.** The antifreeze remaining is 40 - v = 40 - 10 = 30 liters.
+
+**Verification.** After draining 10 liters of pure antifreeze, 30 liters of antifreeze remain; adding 10 liters of water brings the total back to 40 liters. The concentration is 30/40 = 0.75 = 75%, matching the prompt.
+
+**Matching candidate values.** The candidates are 5, 10, 15, 30, and 35 liters. The volume replaced v = 10 L and the antifreeze remaining 30 L both appear. Selecting 15 L replaced would leave 25 L of antifreeze, giving 25/40 = 62.5%, which is not 75%; only v = 10 produces the required concentration.
+
+The correct answers are Volume Replaced = 10 L and Antifreeze Remaining = 30 L.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q63
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Geometry
+
+A rectangle has a perimeter of 34 cm and a diagonal of 13 cm. Determine the length of the longer side (row 1) and the area of the rectangle (row 2).
+
+|         | Longer Side | Area |
+|---------|-------------|------|
+| 5 cm    |             |      |
+| 12 cm   |             |      |
+| 13 cm   |             |      |
+| 60 cm²  |             |      |
+| 72 cm²  |             |      |
+
+**answer:** Longer Side = 12 cm, Area = 60 cm²
+**explanation:** **Governing principle.** For a rectangle with sides L and W, the perimeter is 2(L + W) and, by the Pythagorean theorem, the diagonal satisfies L² + W² = (diagonal)². These two relationships determine both sides.
+
+**Define variables.** Let L and W be the two side lengths, with L the longer side.
+
+**Translate into equations.**
+
+Perimeter: 2(L + W) = 34, so L + W = 17   ... (1)
+
+Diagonal: L² + W² = 13² = 169   ... (2)
+
+**Solve the system.** Square equation (1):
+
+(L + W)² = 17² = 289
+
+Expanding: L² + 2LW + W² = 289. Substituting L² + W² = 169 from equation (2):
+
+169 + 2LW = 289
+
+2LW = 120
+
+LW = 60
+
+So the product of the sides — which is exactly the area — is 60. To find the individual sides, use L + W = 17 and LW = 60. These are the sum and product of the roots of the quadratic:
+
+x² - 17x + 60 = 0
+
+Factoring: (x - 5)(x - 12) = 0, giving x = 5 or x = 12.
+
+**Identify the longer side.** The two sides are 5 cm and 12 cm; the longer side is L = 12 cm.
+
+**State the area.** The area is L * W = 12 * 5 = 60 cm², consistent with LW = 60 derived above.
+
+**Verification.** Perimeter: 2(12 + 5) = 2(17) = 34 cm. Diagonal: sqrt(12² + 5²) = sqrt(144 + 25) = sqrt(169) = 13 cm. Both conditions hold.
+
+**Matching candidate values.** The candidates are 5 cm, 12 cm, 13 cm, 60 cm², and 72 cm². The longer side 12 cm and the area 60 cm² both appear. The value 5 cm is the shorter side (a trap), and 13 cm is the diagonal (another trap); neither is the longer side.
+
+The correct answers are Longer Side = 12 cm and Area = 60 cm².
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q64
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Cause and Effect
+
+A regional manager concludes: "Stores that adopted the new self-checkout kiosks processed customers 15% faster on average than stores without them. Therefore, the kiosks are the reason for the faster checkout times, and we should install them chainwide."
+
+From the options below, identify a statement that, if true, would provide an alternative explanation for the faster times (row 1), and a statement that, if true, would most directly support the conclusion (row 2).
+
+| Statement                                                                                  | Alt Explanation | Support |
+|--------------------------------------------------------------------------------------------|-----------------|---------|
+| The stores that adopted the kiosks are mostly in low-traffic suburbs with shorter lines    |                 |         |
+| When ten matched stores added kiosks, their checkout times dropped 14% the following month  |                 |         |
+| The kiosks display advertisements while customers scan items                               |                 |         |
+| The chain employs the same number of cashiers at every store                               |                 |         |
+| Self-checkout kiosks are popular with younger shoppers                                      |                 |         |
+
+**answer:** Alt Explanation = "The stores that adopted the kiosks are mostly in low-traffic suburbs with shorter lines", Support = "When ten matched stores added kiosks, their checkout times dropped 14% the following month"
+**explanation:** **Governing principle.** This cause-and-effect Two-Part Analysis requires distinguishing an alternative explanation — a statement that accounts for the observed difference through a mechanism other than the one the author assumes — from a support statement that directly strengthens the author's causal conclusion. Each column is evaluated independently.
+
+**The argument.** The manager observes that kiosk-equipped stores process customers 15% faster and concludes that the kiosks cause the speedup, recommending a chainwide rollout. The vulnerability is the leap from a between-store correlation to causation: a confounding difference between the two sets of stores could explain the gap without the kiosks doing any work.
+
+**Column 1 — Alternative Explanation.** The statement that kiosk-adopting stores are mostly in low-traffic suburbs with shorter lines introduces a confounding variable. If those stores already had shorter lines because of lower customer traffic, then their faster checkout times could reflect light demand rather than the kiosks. This common difference between the two store groups accounts for the 15% gap without requiring the kiosks to be the cause, making it a direct alternative explanation. The other options do not supply a competing cause: kiosk advertisements, identical cashier counts, and popularity with younger shoppers do not explain why checkout would be faster independent of the kiosks.
+
+**Column 2 — Support.** The statement that ten matched stores saw checkout times drop 14% the month after adding kiosks is a before-and-after comparison within the same stores. Because the stores are matched and serve as their own baseline, the comparison controls for the location and traffic differences that plague the cross-store correlation. An observed drop of about 14%, close to the cited 15% gap, provides direct evidence that introducing the kiosks produces the effect, which is the strongest available support for the rollout recommendation. The advertising, cashier-count, and demographic-popularity statements describe features or preferences but offer no evidence that the kiosks cause faster checkout.
+
+The correct answers are Alt Explanation = The stores that adopted the kiosks are mostly in low-traffic suburbs with shorter lines and Support = When ten matched stores added kiosks, their checkout times dropped 14% the following month.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q65
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — System of Equations
+
+A school fundraiser sold notebooks at $4 each and pens at $1.50 each. The fundraiser sold 90 items in total and collected $260 in revenue. Determine the number of notebooks sold (row 1) and the number of pens sold (row 2).
+
+|     | Notebooks | Pens |
+|-----|-----------|------|
+| 30  |           |      |
+| 40  |           |      |
+| 50  |           |      |
+| 60  |           |      |
+| 70  |           |      |
+
+**answer:** Notebooks = 50, Pens = 40
+**explanation:** **Governing principle.** A system of two linear equations in two unknowns is solved by expressing one variable in terms of the other and substituting.
+
+**Define variables.** Let n be the number of notebooks sold and p be the number of pens sold.
+
+**Translate into equations.**
+
+Total items sold is 90:
+
+n + p = 90   ... (1)
+
+Total revenue is $260, with notebooks at $4 and pens at $1.50:
+
+4n + 1.5p = 260   ... (2)
+
+**Solve by substitution.** From equation (1), p = 90 - n. Substitute into equation (2):
+
+4n + 1.5(90 - n) = 260
+
+4n + 135 - 1.5n = 260
+
+2.5n = 260 - 135
+
+2.5n = 125
+
+n = 125 / 2.5 = 50
+
+**Back-substitute.** p = 90 - 50 = 40.
+
+**Verification.** Item count: 50 + 40 = 90. Revenue: 4(50) + 1.5(40) = 200 + 60 = 260. Both conditions hold.
+
+**Matching candidate values.** The candidates are 30, 40, 50, 60, and 70. The solution n = 50 and p = 40 both appear among them. Checking a distractor: if notebooks = 60, then pens = 30 and revenue = 4(60) + 1.5(30) = 240 + 45 = 285, which exceeds the target; if notebooks = 40, then pens = 50 and revenue = 4(40) + 1.5(50) = 160 + 75 = 235, which falls short. Only n = 50 works.
+
+The correct answers are Notebooks = 50 and Pens = 40.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q66
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Mixture
+
+A nut vendor blends cashews costing $12 per pound with peanuts costing $4 per pound to make 40 pounds of a mix that costs $7 per pound. Determine the pounds of cashews (row 1) and the pounds of peanuts (row 2) required.
+
+|        | Cashews | Peanuts |
+|--------|---------|---------|
+| 10 lb  |         |         |
+| 15 lb  |         |         |
+| 20 lb  |         |         |
+| 25 lb  |         |         |
+| 30 lb  |         |         |
+
+**answer:** Cashews = 15 lb, Peanuts = 25 lb
+**explanation:** **Governing principle.** In a mixture problem, two constraints must hold simultaneously: the component weights sum to the total weight, and the dollar cost contributed by each component sums to the blend's total cost.
+
+**Define variables.** Let c = pounds of cashews and p = pounds of peanuts.
+
+**Translate into equations.**
+
+Total weight: c + p = 40.
+
+The blend's total cost is 7 * 40 = $280, so the cost equation is 12c + 4p = 280.
+
+**Solve the system.** From the weight equation, p = 40 - c. Substitute into the cost equation:
+
+12c + 4(40 - c) = 280
+
+12c + 160 - 4c = 280
+
+8c = 120
+
+c = 15
+
+Then p = 40 - 15 = 25.
+
+**Verification.** Weight: 15 + 25 = 40. Cost: 12(15) + 4(25) = 180 + 100 = 280, and 280 / 40 = $7 per pound. Both conditions are satisfied.
+
+**Matching candidate values.** The candidates are 10, 15, 20, 25, and 30 lb. The solution c = 15 and p = 25 both appear. Any other pairing fails the cost equation: for instance, c = 20 with p = 20 gives 12(20) + 4(20) = 240 + 80 = 320, which is too high.
+
+The correct answers are Cashews = 15 lb and Peanuts = 25 lb.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q67
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Rate Problem
+
+A landscaping crew has two mowers. Mower A can cut a field in 3 hours. Mower B can cut the same field in 6 hours. If both mowers work together on a single field, the total time is T hours. If only Mower B works, the time is S hours.
+
+Select the value of T (row 1) and the value of S (row 2).
+
+|        | T (both) | S (B only) |
+|--------|----------|------------|
+| 1.5 hrs |         |            |
+| 2.0 hrs |         |            |
+| 2.5 hrs |         |            |
+| 4.5 hrs |         |            |
+| 6.0 hrs |         |            |
+
+**answer:** T = 2.0 hrs, S = 6.0 hrs
+**explanation:** **The combined-work principle.** When two agents work simultaneously on the same task, their rates add. The time to finish equals the total work divided by the combined rate.
+
+**Setting up the rates.** Let one field equal 1 unit of work.
+
+- Mower A cuts the field in 3 hours, so its rate is 1/3 field per hour.
+- Mower B cuts the field in 6 hours, so its rate is 1/6 field per hour.
+
+**Solving for T (both mowers).** The combined rate is 1/3 + 1/6. Using a common denominator of 6: 1/3 = 2/6, so 2/6 + 1/6 = 3/6 = 1/2 field per hour. Therefore:
+
+T = 1 / (1/2) = 2 hours
+
+**Solving for S (Mower B alone).** Mower B's rate is 1/6 field per hour, so:
+
+S = 1 / (1/6) = 6 hours
+
+This matches the prompt's direct statement that Mower B alone takes 6 hours.
+
+**Matching candidate values.** The candidates are 1.5, 2.0, 2.5, 4.5, and 6.0 hours. T = 2.0 and S = 6.0 both appear. No other candidate satisfies either equation: 1.5 hrs would imply a combined rate of 2/3, which exceeds 1/2.
+
+The correct answers are T (both) = 2.0 hrs and S (B only) = 6.0 hrs.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q68
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Distance/Rate
+
+A cyclist and a runner start at the same point and travel in opposite directions along a straight path. The cyclist rides at 18 km/h and the runner moves at 6 km/h. They start at the same time. Determine the distance the cyclist has traveled when they are 72 km apart (row 1), and the time elapsed at that moment (row 2).
+
+|         | Cyclist Distance | Time Apart |
+|---------|------------------|------------|
+| 18 km   |                  |            |
+| 36 km   |                  |            |
+| 54 km   |                  |            |
+| 3 hours |                  |            |
+| 4 hours |                  |            |
+| 6 hours |                  |            |
+
+**answer:** Cyclist Distance = 54 km, Time Apart = 3 hours
+**explanation:** **Governing principle.** When two objects move in opposite directions from the same starting point, the distance between them grows at a rate equal to the sum of their speeds. The time to reach a given separation equals that separation divided by the combined speed.
+
+**Variable definitions.** Let t be the time (in hours) elapsed when the two are 72 km apart, and let d_c be the distance the cyclist has covered at that moment.
+
+**Setting up the equation.** The combined separation speed is 18 + 6 = 24 km/h. The gap reaches 72 km when:
+
+24 * t = 72
+
+**Solving for t.**
+
+t = 72 / 24 = 3 hours
+
+**Solving for d_c.** Using distance = rate * time:
+
+d_c = 18 * 3 = 54 km
+
+**Verification.** In 3 hours the runner covers 6 * 3 = 18 km. The total separation is 54 + 18 = 72 km, matching the target.
+
+**Matching candidate values.** The "Cyclist Distance" candidates are 18, 36, and 54 km. Only 54 km equals 18 * 3. The value 18 km is the runner's distance (a trap). The "Time Apart" candidates are 3, 4, and 6 hours; only 3 hours satisfies 24t = 72. At t = 4, the gap would be 96 km, exceeding 72.
+
+The correct answers are Cyclist Distance = 54 km and Time Apart = 3 hours.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q69
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Capacity Constraint
+
+A workshop builds two items. A chair sells for $40 and requires 1.5 labor-hours; a table sells for $90 and requires 4 labor-hours. The workshop operates daily at exactly 200 labor-hours of capacity and earns exactly $5,000 in daily revenue. Determine the daily output of chairs (row 1) and tables (row 2).
+
+|     | Chairs | Tables |
+|-----|--------|--------|
+| 20  |        |        |
+| 30  |        |        |
+| 40  |        |        |
+| 50  |        |        |
+| 80  |        |        |
+
+**answer:** Chairs = 80, Tables = 20
+**explanation:** **Setup.** This is a system of two simultaneous linear equations. Let x denote daily chairs and y denote daily tables.
+
+**Translate the constraints.**
+
+Labor-hours: 1.5x + 4y = 200   ... (1)
+
+Revenue: 40x + 90y = 5000   ... (2)
+
+**Solve the system.** Multiply equation (1) by 2 to clear the decimal:
+
+3x + 8y = 400   ... (1')
+
+Divide equation (2) by 10:
+
+4x + 9y = 500   ... (2')
+
+Eliminate x. Multiply (1') by 4 and (2') by 3:
+
+12x + 32y = 1600   ... (1'')
+
+12x + 27y = 1500   ... (2'')
+
+Subtract (2'') from (1''):
+
+5y = 100
+
+y = 20
+
+Substitute y = 20 into (2'): 4x + 9(20) = 500, so 4x + 180 = 500, giving 4x = 320 and x = 80.
+
+**Verification.** Labor: 1.5(80) + 4(20) = 120 + 80 = 200. Revenue: 40(80) + 90(20) = 3200 + 1800 = 5000. Both constraints hold exactly.
+
+**Matching candidate values.** The candidates are 20, 30, 40, 50, and 80. The solution x = 80 (chairs) and y = 20 (tables) both appear. No other combination of listed values satisfies both equations.
+
+The correct answers are Chairs = 80 and Tables = 20.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q70
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Linear Pricing
+
+A car rental company charges a flat daily fee F plus a per-mile charge M. A customer who drove 100 miles in one day paid $85; a customer who drove 250 miles in one day paid $130. Determine the daily fee F (row 1) and the per-mile charge M (row 2).
+
+|        | Daily fee F | Per-mile charge M |
+|--------|-------------|-------------------|
+| $0.30  |             |                   |
+| $0.45  |             |                   |
+| $40    |             |                   |
+| $55    |             |                   |
+| $70    |             |                   |
+
+**answer:** Daily fee F = $55, Per-mile charge M = $0.30
+**explanation:** **Setup.** Each bill equals a flat daily fee F plus a per-mile charge M times the miles driven. Translating the two records:
+
+- Customer 1: F + 100M = 85
+- Customer 2: F + 250M = 130
+
+**Solve for M.** Subtract the first equation from the second to eliminate F:
+
+(F + 250M) - (F + 100M) = 130 - 85
+
+150M = 45
+
+M = 45 / 150 = 0.30
+
+**Solve for F.** Substitute M = 0.30 into the first equation:
+
+F + 100(0.30) = 85
+
+F + 30 = 85
+
+F = 55
+
+**Verification.** Customer 2: 55 + 250(0.30) = 55 + 75 = 130. Both records are satisfied.
+
+**Matching candidate values.** The candidate list mixes both columns: $0.30, $0.45, $40, $55, and $70. F = $55 and M = $0.30 both appear. No other pairing satisfies both equations.
+
+The correct answers are Daily fee F = $55 and Per-mile charge M = $0.30.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q71
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Rate Problem
+
+A reservoir is fed by two inlet pipes and drained by one outlet. Inlet A alone fills it in 5 hours. Inlet B alone fills it in 10 hours. The outlet, when open, empties a full reservoir in 20 hours. If all three are opened on an empty reservoir, the time to fill is T hours. If only Inlet B and the outlet are open on an empty reservoir, the time to fill is U hours.
+
+Select the value of T (row 1) and the value of U (row 2).
+
+|          | T (all three) | U (B + outlet) |
+|----------|---------------|----------------|
+| 2.0 hrs  |               |                |
+| 4.0 hrs  |               |                |
+| 5.0 hrs  |               |                |
+| 10.0 hrs |               |                |
+| 20.0 hrs |               |                |
+
+**answer:** T = 4.0 hrs, U = 20.0 hrs
+**explanation:** **Work-rate method.** A pipe that fills a full reservoir in n hours has rate 1/n per hour; an outlet that empties a full reservoir in n hours contributes -1/n per hour. The net rate is the algebraic sum of the individual rates, and the fill time equals 1 divided by the net rate.
+
+**Setting up rates.** Let one full reservoir equal 1.
+
+- Inlet A: 1/5 per hour.
+- Inlet B: 1/10 per hour.
+- Outlet: -1/20 per hour.
+
+**Finding T (all three open).** The net rate is:
+
+1/5 + 1/10 - 1/20
+
+Use a common denominator of 20: 1/5 = 4/20, 1/10 = 2/20, 1/20 = 1/20.
+
+Net rate = 4/20 + 2/20 - 1/20 = 5/20 = 1/4 per hour.
+
+T = 1 / (1/4) = 4 hours.
+
+**Finding U (Inlet B and outlet only).** With Inlet A closed:
+
+1/10 - 1/20 = 2/20 - 1/20 = 1/20 per hour.
+
+U = 1 / (1/20) = 20 hours.
+
+This has an intuitive reading: Inlet B fills at twice the rate the outlet empties (1/10 vs 1/20), so the effective fill rate equals exactly the outlet's standalone rate, giving a fill time equal to the outlet's 20-hour emptying time.
+
+**Matching candidate values.** The candidates are 2.0, 4.0, 5.0, 10.0, and 20.0 hours. T = 4.0 and U = 20.0 both appear. The value 5.0 hrs corresponds to Inlet A alone, and 10.0 hrs to Inlet B alone — neither matches the combined scenarios.
+
+The correct answers are T (all three) = 4.0 hrs and U (B + outlet) = 20.0 hrs.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q72
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Argument Structure
+
+Consider the following argument: "Our company switched to a four-day work week in January. By December, employee turnover had fallen by 20%. Therefore, the four-day week reduced turnover at our company."
+
+From the statements below, identify the conclusion of the argument (row 1) and the central unstated assumption required for the argument to hold (row 2).
+
+| Statement                                                                          | Conclusion | Assumption |
+|------------------------------------------------------------------------------------|------------|------------|
+| The four-day work week reduced turnover at our company                              |            |            |
+| No other factor materially contributed to the observed drop in turnover            |            |            |
+| Employee turnover fell by 20% over the year                                         |            |            |
+| The company switched to a four-day work week in January                            |            |            |
+| A four-day work week always reduces turnover at every company                       |            |            |
+
+**answer:** Conclusion = "The four-day work week reduced turnover at our company", Assumption = "No other factor materially contributed to the observed drop in turnover"
+**explanation:** In this Two-Part Analysis question the two tasks are to isolate the conclusion of the argument and to identify the central unstated assumption — the suppressed premise without which the inference from evidence to conclusion collapses.
+
+**Identifying the conclusion.** The conclusion is the claim the argument is designed to establish; it is supported by the premises and does not itself support another claim in the argument. The argument offers two explicit evidence statements — the company switched to a four-day week in January, and turnover fell 20% by December — both introduced in support of the claim signaled by "Therefore": the four-day work week reduced turnover at the company. That final claim is what the arguer seeks to prove, so it is the conclusion.
+
+**Identifying the central unstated assumption.** The inference is causal and built on temporal succession: the policy preceded the drop, therefore the policy caused the drop. This post hoc structure requires assuming the observed effect was not produced by some independent cause. If another factor — a hiring freeze elsewhere in the industry, a pay raise, a softening labor market that reduced outside offers, or new management — could account for the 20% drop, then the mere fact that the four-day week preceded the decline is insufficient. The argument silently relies on the premise that no other factor materially contributed to the drop. Negation confirms it is load-bearing: if some other factor did materially contribute, the conclusion is immediately undermined.
+
+**Evaluating the remaining candidates.** "Employee turnover fell by 20% over the year" and "The company switched to a four-day work week in January" are explicit premises, not the conclusion or an unstated assumption. "A four-day work week always reduces turnover at every company" is a universal generalization far stronger than the local causal claim the argument needs; it would suffice but is not the minimal assumption actually doing the work.
+
+The correct answers are Conclusion = The four-day work week reduced turnover at our company and Assumption = No other factor materially contributed to the observed drop in turnover.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q73
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Strengthening and Weakening
+
+A nutritionist argues: "People who drink green tea daily have lower rates of heart disease than people who do not. Therefore, drinking green tea daily lowers the risk of heart disease."
+
+From the statements below, identify one that would most strengthen the argument (row 1) and one that would most weaken it by offering an alternative explanation (row 2).
+
+| Statement                                                                                              | Strengthens | Weakens (alt cause) |
+|--------------------------------------------------------------------------------------------------------|-------------|---------------------|
+| In a randomized trial, participants assigned to drink green tea daily had 18% fewer cardiac events than the control group |             |                     |
+| People who drink green tea daily also tend to exercise more and eat more vegetables                     |             |                     |
+| Green tea has a pleasant taste preferred by many consumers                                              |             |                     |
+| Green tea is sold in most grocery stores                                                                |             |                     |
+| Heart disease rates have declined nationwide over the past decade                                       |             |                     |
+
+**answer:** Strengthens = "In a randomized trial, participants assigned to drink green tea daily had 18% fewer cardiac events than the control group", Weakens = "People who drink green tea daily also tend to exercise more and eat more vegetables"
+**explanation:** **The logical task.** This Strengthen/Weaken Two-Part Analysis asks for the statement that best supports the causal claim and the statement that best undermines it by offering an alternative explanation. Each column is an independent sub-question.
+
+**The argument.** The nutritionist observes that daily green-tea drinkers have lower heart-disease rates and concludes that green tea causes the lower risk. This is a causal conclusion from observational, correlational data; the central gap is the possibility of confounding variables that move together with green-tea drinking and could themselves explain the lower rates.
+
+**Evaluating the strengthener.** "In a randomized trial, participants assigned to drink green tea daily had 18% fewer cardiac events than the control group." Random assignment is the gold standard for establishing causation: it neutralizes pre-existing differences between groups in expectation, so a measured 18% reduction in the assigned group isolates the effect of green tea itself. This directly closes the correlation-to-causation gap and is the strongest available support. The taste, retail availability, and nationwide-decline statements provide no evidence that green tea causes lower risk; the lifestyle statement weakens rather than strengthens.
+
+**Evaluating the weakener (alternative cause).** "People who drink green tea daily also tend to exercise more and eat more vegetables." This identifies a distinct variable — a healthier overall lifestyle — that plausibly accompanies green-tea drinking and could independently produce lower heart-disease rates. The observational data cannot separate the tea from the lifestyle because they vary together, so this is a textbook alternative cause: it does not deny the lower rates but denies that green tea is the cause. The nationwide-decline statement is at best a weak ambient-trend point that applies to everyone equally and does not explain the gap between tea drinkers and non-drinkers; taste and availability are irrelevant to causation.
+
+The correct answers are Strengthens = In a randomized trial, participants assigned to drink green tea daily had 18% fewer cardiac events than the control group and Weakens (alt cause) = People who drink green tea daily also tend to exercise more and eat more vegetables.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q74
+**difficulty:** Easy
+**type:** Two-Part Analysis
+**topic:** Quantitative — Investment
+
+An investor splits $40,000 between two accounts. The Growth account earns 9% annually and the Stable account earns 4% annually. The total annual interest earned is $2,600. Determine the amount in the Growth account (row 1) and the amount in the Stable account (row 2).
+
+|         | Growth | Stable |
+|---------|--------|--------|
+| $10,000 |        |        |
+| $15,000 |        |        |
+| $20,000 |        |        |
+| $25,000 |        |        |
+| $30,000 |        |        |
+
+**answer:** Growth = $20,000, Stable = $20,000
+**explanation:** **Setup.** Let x be the amount in the Growth account; then 40,000 - x is the amount in the Stable account. Two conditions must hold: the allocations sum to $40,000 (true by construction) and the interest equation must hold.
+
+**Interest constraint.**
+
+0.09x + 0.04(40,000 - x) = 2,600
+
+**Solve.** Expand the left side:
+
+0.09x + 1,600 - 0.04x = 2,600
+
+0.05x + 1,600 = 2,600
+
+0.05x = 1,000
+
+x = 1,000 / 0.05 = 20,000
+
+**Find the Stable amount.** 40,000 - 20,000 = 20,000.
+
+**Verification.** 0.09(20,000) + 0.04(20,000) = 1,800 + 800 = 2,600. Correct.
+
+**Matching candidate values.** The candidates are $10,000, $15,000, $20,000, $25,000, and $30,000. Growth = $20,000 and Stable = $20,000 both appear. Checking a distractor: if Growth = $30,000, then Stable = $10,000 and interest = 0.09(30,000) + 0.04(10,000) = 2,700 + 400 = 3,100, which exceeds the target.
+
+The correct answers are Growth = $20,000 and Stable = $20,000.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q75
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Geometry
+
+A rectangle has a perimeter of 46 cm and an area of 120 cm². Determine the length of the longer side (row 1) and the length of the shorter side (row 2).
+
+|       | Longer Side | Shorter Side |
+|-------|-------------|--------------|
+| 6 cm  |             |              |
+| 8 cm  |             |              |
+| 12 cm |             |              |
+| 15 cm |             |              |
+| 20 cm |             |              |
+
+**answer:** Longer Side = 15 cm, Shorter Side = 8 cm
+**explanation:** **Governing principle.** For a rectangle with sides L and W, the perimeter is 2(L + W) and the area is LW. Knowing the sum and product of the two sides determines them as the roots of a quadratic.
+
+**Define variables.** Let L be the longer side and W the shorter side.
+
+**Translate into equations.**
+
+Perimeter: 2(L + W) = 46, so L + W = 23.
+
+Area: LW = 120.
+
+**Solve the system.** L and W are the roots of the quadratic with sum 23 and product 120:
+
+x² - 23x + 120 = 0
+
+Factor: we need two numbers that multiply to 120 and add to 23. Those are 8 and 15, since 8 * 15 = 120 and 8 + 15 = 23. So:
+
+(x - 8)(x - 15) = 0
+
+giving x = 8 or x = 15.
+
+**Identify the sides.** The longer side is L = 15 cm and the shorter side is W = 8 cm.
+
+**Verification.** Perimeter: 2(15 + 8) = 2(23) = 46 cm. Area: 15 * 8 = 120 cm². Both conditions hold.
+
+**Matching candidate values.** The candidates are 6, 8, 12, 15, and 20 cm. The longer side 15 cm and the shorter side 8 cm both appear. The pair (12, 20) multiplies to 240 and sums to 32 — neither matches; the pair (6, 20) fails as well. Only (15, 8) satisfies both constraints.
+
+The correct answers are Longer Side = 15 cm and Shorter Side = 8 cm.
+**related_reading:** reading-di-06-two-part-analysis

@@ -1757,3 +1757,477 @@ What is the greatest power of 2 that divides the product 2 · 4 · 6 · 8 · 10?
 **answer:** E
 **explanation:** We factor out a 2 from each of the five even factors: 2 · 4 · 6 · 8 · 10 = 2^5 · (1 · 2 · 3 · 4 · 5) = 2^5 · 120. Now 120 = 2^3 · 15, contributing three more factors of 2. The total power of 2 is therefore 2^(5+3) = 2^8, since 15 is odd and contributes no additional factor of 2. The distractor 2^5 comes from counting only the explicit factor from each even number while forgetting the extra factors of 2 hidden inside 4, 8, and 10. The correct answer is E.
 **related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q61
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Remainder
+
+What is the units digit of 7⁴⁵ + 4²²?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 7
+- E) 9
+
+**answer:** C
+**explanation:** The units digit of a power depends only on the units digit of its base, and the units digits of successive powers repeat in a fixed cycle. To find the units digit of a sum, we find the units digit of each term and then add those, keeping only the units digit of the total. The units digits of successive powers of 7 form the repeating cycle 7, 9, 3, 1, which has length 4; the position of an exponent within this cycle is the remainder when the exponent is divided by 4, with a remainder of 0 corresponding to the fourth entry. Since 45 = 4 × 11 + 1, the remainder is 1, so 7⁴⁵ has the same units digit as the first cycle entry, which is 7. The units digits of successive powers of 4 form the shorter cycle 4, 6 of length 2: odd exponents give 4 and even exponents give 6, so because 22 is even, 4²² has units digit 6. Adding the two units digits gives 7 + 6 = 13, whose units digit is 3, so the units digit of the entire sum is 3. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q62
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Primes
+
+How many prime numbers are there between 50 and 70?
+
+- A) 4
+- B) 3
+- C) 5
+- D) 6
+- E) 7
+
+**answer:** A
+**explanation:** A prime number is an integer greater than 1 whose only positive divisors are 1 and itself, so to count the primes strictly between 50 and 70 we test each candidate integer against this definition. Every even integer greater than 2 is divisible by 2 and is therefore not prime, so we need only consider the odd integers 51, 53, 55, 57, 59, 61, 63, 65, 67, and 69. We eliminate the composites: 51 = 3 × 17, 55 = 5 × 11, 57 = 3 × 19, 63 = 3 × 21, 65 = 5 × 13, and 69 = 3 × 23. The remaining odd integers are 53, 59, 61, and 67, and each is divisible by none of 2, 3, 5, or 7; since any composite number below 71 must have a prime factor of at most 7 (a factor exceeding 7 would force a cofactor of at least 9, giving a product of at least 81), each of these four integers is prime. Thus the primes between 50 and 70 are 53, 59, 61, and 67, for a total of 4. The correct answer is A.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q63
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Factors
+
+How many positive even factors does 96 have?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) 10
+
+**answer:** E
+**explanation:** A factor of an integer is even precisely when it contains at least one factor of 2, so the cleanest count comes from the prime factorization. We have 96 = 2⁵ × 3, so any positive factor of 96 can be written as 2ᵃ × 3ᵇ, where the exponent a ranges over 0 through 5 and the exponent b ranges over 0 through 1. A factor is even exactly when a is at least 1, so the admissible values of a are 1, 2, 3, 4, and 5, giving 5 choices, while b may be 0 or 1, giving 2 choices. Because the two exponents are chosen independently, the number of even factors is the product 5 × 2 = 10. As a check, the total number of factors is (5 + 1)(1 + 1) = 12, and exactly two of them are odd (namely 1 and 3, where a = 0), so the even factors number 12 − 2 = 10, confirming the result. The correct answer is E.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q64
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Remainder
+
+When the positive integer n is divided by 6, the remainder is 4. What is the remainder when 5n + 3 is divided by 6?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 5
+- E) 0
+
+**answer:** D
+**explanation:** Any integer that leaves a fixed remainder upon division by a divisor can be written as (divisor times an integer) plus that remainder, and remainders are preserved under the arithmetic performed on such expressions. Since dividing n by 6 leaves a remainder of 4, we may write n = 6k + 4 for some non-negative integer k. Substituting into the target expression gives 5n + 3 = 5(6k + 4) + 3 = 30k + 20 + 3 = 30k + 23. The term 30k is a multiple of 6, so we separate the largest multiple of 6 not exceeding 23, writing 23 = 18 + 5, which gives 30k + 23 = 6(5k + 3) + 5. Since 6(5k + 3) is a multiple of 6 and 0 ≤ 5 < 6, the remainder when 5n + 3 is divided by 6 is 5. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q65
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Perfect Square
+
+Which of the following is a perfect square?
+
+- A) 196
+- B) 150
+- C) 200
+- D) 250
+- E) 120
+
+**answer:** A
+**explanation:** A perfect square is an integer equal to the square of an integer, so we test each option by checking whether it is the square of a whole number. We have 14² = 196, so 196 is a perfect square. The remaining values are not: 150 lies strictly between 12² = 144 and 13² = 169, so it is not a square; 200 lies between 14² = 196 and 15² = 225, so it is not a square; 250 lies between 15² = 225 and 16² = 256, so it is not a square; and 120 lies between 10² = 100 and 11² = 121, so it is not a square. Only 196 is the square of an integer. The correct answer is A.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q66
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Perfect Square
+
+What is the smallest positive integer m such that 540m is a perfect square?
+
+- A) 5
+- B) 15
+- C) 30
+- D) 45
+- E) 60
+
+**answer:** B
+**explanation:** An integer is a perfect square if and only if every prime in its factorization appears to an even power, so to make 540m a perfect square we must supply exactly the prime factors needed to raise every odd exponent up to the next even number. First we factor the given number: 540 = 2² × 3³ × 5¹. The exponent of 2 is 2, which is already even and needs no adjustment. The exponent of 3 is 3, which is odd, so we need one more factor of 3 to make it 3⁴. The exponent of 5 is 1, which is odd, so we need one more factor of 5 to make it 5². Therefore the smallest multiplier is m = 3 × 5 = 15, and no smaller positive integer can correct both odd exponents. As a check, 540 × 15 = 8100 = 90², confirming that the product is a perfect square. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q67
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Factors
+
+What is the greatest common factor of 144 and 360?
+
+- A) 12
+- B) 24
+- C) 36
+- D) 48
+- E) 72
+
+**answer:** E
+**explanation:** The greatest common factor of two integers is found by writing each as a product of primes, then taking each shared prime raised to the smaller of its two exponents and multiplying these together. We have 144 = 2⁴ × 3², since 144 = 16 × 9, and 360 = 2³ × 3² × 5, since 360 = 8 × 45 = 8 × 9 × 5. The primes common to both factorizations are 2 and 3. For the prime 2, the smaller exponent is 3 (it appears as 2⁴ in 144 and 2³ in 360), so we take 2³. For the prime 3, the exponent is 2 in both, so we take 3². The prime 5 appears only in 360, so it is excluded. The greatest common factor is therefore 2³ × 3² = 8 × 9 = 72. The correct answer is E.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q68
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Divisibility
+
+Is the positive integer x divisible by 12?
+
+(1) x is divisible by 6.
+(2) x is divisible by 4.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Because 12 = 2² × 3, a positive integer is divisible by 12 if and only if it contains at least two factors of 2 and at least one factor of 3, and in a yes/no data sufficiency question a statement is sufficient only when it forces a single, consistent answer. Consider statement (1): x is divisible by 6 = 2 × 3, which guarantees one factor of 2 and one factor of 3 but not the second factor of 2. Testing values, x = 6 is divisible by 6 yet not by 12 (answer no), while x = 12 is divisible by 6 and by 12 (answer yes), so statement (1) alone is not sufficient. Consider statement (2): x is divisible by 4 = 2², which guarantees two factors of 2 but says nothing about a factor of 3; here x = 4 is divisible by 4 yet not by 12 (answer no), while x = 12 is divisible by 4 and by 12 (answer yes), so statement (2) alone is not sufficient. Taking the statements together, x carries the factor of 3 from statement (1) and the factor 2² from statement (2), so x is divisible by 2² × 3 = 12, which gives a definite yes; the two statements together are sufficient while neither alone is. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q69
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Multiples
+
+What is the sum of the first 10 positive multiples of 4?
+
+- A) 200
+- B) 220
+- C) 240
+- D) 180
+- E) 260
+
+**answer:** B
+**explanation:** The first 10 positive multiples of 4 are 4, 8, 12, and so on up to 40, and each can be written as 4 times one of the integers from 1 to 10. Factoring the common 4 out of the sum gives 4 × (1 + 2 + 3 + ... + 10). The sum of the first 10 positive integers is found from the formula for the sum of consecutive integers, n(n + 1)/2, which gives 10 × 11 / 2 = 55. Therefore the total is 4 × 55 = 220. As a check, the multiples form an arithmetic sequence with 10 terms whose average is the mean of the first and last terms, (4 + 40)/2 = 22, so the sum equals 10 × 22 = 220, confirming the result. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q70
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Factors
+
+If n = 2⁴ × 3² × 7, how many positive factors of n are odd?
+
+- A) 6
+- B) 5
+- C) 8
+- D) 10
+- E) 12
+
+**answer:** A
+**explanation:** A factor of n is odd precisely when it contains no factor of 2, so the odd factors of n are exactly the factors built from the odd prime parts of n while the power of 2 is fixed at 2⁰. Writing any factor as 2ᵃ × 3ᵇ × 7ᶜ with 0 ≤ a ≤ 4, 0 ≤ b ≤ 2, and 0 ≤ c ≤ 1, oddness forces a = 0, leaving the exponents b and c free. The exponent b may be 0, 1, or 2, giving 3 choices, and the exponent c may be 0 or 1, giving 2 choices. Since the two exponents are chosen independently, the number of odd factors is 3 × 2 = 6. Equivalently, the odd part of n is 3² × 7, whose factor count is (2 + 1)(1 + 1) = 6, which matches. The correct answer is A.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q71
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Even Odd Parity
+
+If n is a positive integer, is n even?
+
+(1) n² is even.
+(2) 3n is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The governing parity rules are that a product of integers is odd only when every factor is odd, and consequently a product is even exactly when at least one factor is even; in particular, the square of an odd integer is odd and the square of an even integer is even. Consider statement (1): n² is even. If n were odd, then n² = n × n would be a product of two odd integers and would be odd, contradicting the statement, so n must be even. This forces a definite yes, so statement (1) alone is sufficient. Consider statement (2): 3n is even. Since 3 is odd, the product 3n is even only when n is even, because if n were odd the product of two odd integers would be odd. This also forces a definite yes, so statement (2) alone is sufficient. Because each statement independently determines that n is even, each statement alone is sufficient. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q72
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Remainder
+
+If n is an integer with 10 < n < 30, what is the value of n?
+
+(1) When n is divided by 4, the remainder is 1.
+(2) When n is divided by 7, the remainder is 6.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Each division condition restricts n to a list of values inside the range 10 < n < 30, and a statement is sufficient only when it narrows that list to a single value. Statement (1) says n leaves a remainder of 1 when divided by 4, so n is of the form 4k + 1; within the range these values are 13, 17, 21, 25, and 29, which is more than one possibility, so statement (1) alone is not sufficient. Statement (2) says n leaves a remainder of 6 when divided by 7, so n is of the form 7m + 6; within the range these values are 13, 20, and 27, again more than one possibility, so statement (2) alone is not sufficient. Taking the statements together, n must appear in both lists, and the only value common to {13, 17, 21, 25, 29} and {13, 20, 27} is 13. The two statements together pin down n = 13 uniquely, so they are sufficient while neither alone is. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q73
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Primes
+
+What is the sum of the two smallest prime numbers that are greater than 30?
+
+- A) 64
+- B) 66
+- C) 68
+- D) 70
+- E) 72
+
+**answer:** C
+**explanation:** A prime number is an integer greater than 1 whose only positive divisors are 1 and itself, so we identify the two smallest primes that exceed 30 by testing the integers above 30 in increasing order. The integer 31 is not divisible by any of 2, 3, or 5, and since any composite number less than 49 must have a prime factor of at most 5 (a factor of at least 7 would require a cofactor of at least 7, giving a product of at least 49), 31 is prime. The next integer, 32, is even and therefore composite; 33 = 3 times 11 is composite; 34 and 36 are even; 35 = 5 times 7 is composite; but 37 is divisible by none of 2, 3, or 5, so 37 is prime. Thus the two smallest primes greater than 30 are 31 and 37, and their sum is 31 + 37 = 68. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q74
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Multiples
+
+What is the smallest positive integer that is a multiple of both 8 and 10?
+
+- A) 18
+- B) 40
+- C) 80
+- D) 20
+- E) 16
+
+**answer:** B
+**explanation:** The smallest positive integer that is a multiple of two given numbers is their least common multiple, which is found by writing each number as a product of primes and then taking the highest power of each prime that appears in either factorization. We have 8 = 2 cubed and 10 = 2 times 5, so the distinct primes are 2 and 5. The highest power of 2 appearing is 2 cubed (from 8), and the highest power of 5 appearing is 5 to the first power (from 10), so the least common multiple is 2 cubed times 5 = 8 times 5 = 40. The distractor 80 is a common multiple of 8 and 10 but not the smallest, while 20 is a multiple of 10 yet not of 8. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q75
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Even Odd Parity
+
+If p is an odd integer and q is an even integer, which of the following must be even?
+
+- A) 2p + q + 1
+- B) pq + 1
+- C) p + q
+- D) 3p + q
+- E) p² + q − 1
+
+**answer:** E
+**explanation:** The parity of each expression is determined by the rules that the square of an odd integer is odd, the product of any integer with an even integer is even, and a sum or difference is even only when it combines an even number of odd terms. Since p is odd, p² is odd; since q is even, q is even; and subtracting the odd integer 1 from the sum p² + q gives odd + even − odd = even, so option E is always even. Each of the others is always odd: in A, 2p and q are even while +1 is odd, giving odd; in B, pq is even so pq + 1 is odd; in C, odd + even is odd; and in D, 3p is odd and q is even, giving odd. A check with p = 3 and q = 4 confirms E: 9 + 4 − 1 = 12, which is even. The correct answer is E.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q76
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Factors
+
+How many positive factors does the number 50 have?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 6
+- E) 8
+
+**answer:** D
+**explanation:** The number of positive factors of an integer is found from its prime factorization: if the integer is written as a product of prime powers, the total number of positive factors equals the product of one more than each exponent. We factor 50 = 2 times 25 = 2 times 5², so the prime factorization is 2¹ times 5², with exponents 1 and 2. Applying the counting principle gives (1 + 1)(2 + 1) = 2 times 3 = 6. This is confirmed by listing every factor of 50: 1, 2, 5, 10, 25, and 50, which is exactly 6 factors. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q77
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Remainder
+
+When the positive integer n is divided by 9, the remainder is 5. What is the remainder when 4n + 7 is divided by 9?
+
+- A) 0
+- B) 2
+- C) 4
+- D) 6
+- E) 7
+
+**answer:** A
+**explanation:** Any integer that leaves a fixed remainder upon division by a divisor can be written as (divisor times an integer) plus that remainder, and remainders are preserved through the arithmetic performed on such an expression. Since dividing n by 9 leaves a remainder of 5, we may write n = 9k + 5 for some non-negative integer k. Substituting into the target expression gives 4n + 7 = 4(9k + 5) + 7 = 36k + 20 + 7 = 36k + 27. Both 36k and 27 are multiples of 9, since 36k = 9(4k) and 27 = 9 times 3, so we can write 4n + 7 = 9(4k + 3), which is exactly divisible by 9. Therefore the remainder when 4n + 7 is divided by 9 is 0. The correct answer is A.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q78
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Perfect Square
+
+What is the smallest positive integer n such that 75n is a perfect square?
+
+- A) 15
+- B) 2
+- C) 5
+- D) 3
+- E) 6
+
+**answer:** D
+**explanation:** An integer is a perfect square if and only if every prime in its factorization appears to an even power, so to turn 75n into a perfect square we must supply exactly the prime factors needed to raise each odd exponent to the next even value. We first factor the given number: 75 = 3 times 25 = 3¹ times 5². The exponent of 5 is 2, which is already even and needs no adjustment, but the exponent of 3 is 1, which is odd, so we need one additional factor of 3 to make it 3². The smallest such multiplier is therefore n = 3, giving 75 times 3 = 225 = 3² times 5² = 15², a perfect square. No smaller positive integer corrects the odd exponent of 3, so 3 is minimal. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q79
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Divisibility
+
+The three-digit number 5A4, where A represents a single digit, is divisible by 6. How many values of A are possible?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 6
+
+**answer:** C
+**explanation:** A positive integer is divisible by 6 exactly when it is divisible by both 2 and 3, since 6 = 2 times 3 and 2 and 3 share no common factor. The number 5A4 ends in the digit 4, which is even, so the number is divisible by 2 for every choice of A; the requirement therefore reduces to divisibility by 3. An integer is divisible by 3 if and only if the sum of its digits is divisible by 3, and the digit sum here is 5 + A + 4 = 9 + A. Because 9 is already a multiple of 3, the quantity 9 + A is a multiple of 3 precisely when A itself is a multiple of 3, and the single digits satisfying this are A = 0, 3, 6, and 9. That gives 4 possible values of A. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q80
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Even Odd Parity
+
+If n is an integer, is n even?
+
+(1) n + 5 is odd.
+(2) n² + n is divisible by 4.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** The question asks for a definite yes-or-no answer to whether the integer n is even, so a statement is sufficient only when it forces a single parity for n. Consider statement (1): n + 5 is odd. Since 5 is odd, and a sum is odd only when it combines one even and one odd term, n + 5 can be odd only if n is even; if n were odd, then n + 5 would be the sum of two odd integers and hence even. Thus statement (1) forces n to be even, giving a definite yes, and statement (1) alone is sufficient. Consider statement (2): n² + n = n(n + 1) is divisible by 4. The product of two consecutive integers is always even, but its divisibility by 4 does not fix the parity of n: for n = 4 the product is 4 times 5 = 20, which is divisible by 4 and n is even, whereas for n = 3 the product is 3 times 4 = 12, which is also divisible by 4 yet n is odd. Because statement (2) permits both an even and an odd value of n, it does not determine the answer and is not sufficient. The correct answer is A.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q81
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Multiples
+
+How many multiples of 6 are there from 50 to 200, inclusive?
+
+- A) 24
+- B) 23
+- C) 26
+- D) 27
+- E) 25
+
+**answer:** E
+**explanation:** To count the multiples of a fixed integer within a range, we identify the smallest and largest multiples that fall inside the range and then count how many multiples lie between them inclusive; because the multiples are evenly spaced, this count equals the difference of their position indices plus one. The smallest multiple of 6 that is at least 50 is found by noting that 6 times 8 = 48 falls short while 6 times 9 = 54 qualifies, so the first multiple corresponds to the index 9. The largest multiple of 6 that is at most 200 is found by noting that 6 times 33 = 198 qualifies while 6 times 34 = 204 exceeds 200, so the last multiple corresponds to the index 33. The number of integer indices from 9 to 33 inclusive is 33 − 9 + 1 = 25, so there are 25 multiples of 6 in the range. The correct answer is E.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q82
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Factors
+
+How many positive factors of 1,800 are perfect squares?
+
+- A) 6
+- B) 8
+- C) 4
+- D) 9
+- E) 12
+
+**answer:** B
+**explanation:** A positive integer is a perfect square if and only if every prime in its factorization appears to an even power, and since every factor of 1,800 is built only from the primes that appear in 1,800, we may count the perfect-square factors prime by prime. First we factor the number: 1,800 = 8 times 225 = 2³ times 3² times 5². Any factor has the form 2^a times 3^b times 5^c, where 0 ≤ a ≤ 3, 0 ≤ b ≤ 2, and 0 ≤ c ≤ 2, and the factor is a perfect square exactly when a, b, and c are all even. The even values of a within 0 to 3 are 0 and 2, giving 2 choices; the even values of b within 0 to 2 are 0 and 2, giving 2 choices; and the even values of c within 0 to 2 are 0 and 2, giving 2 choices. Because the exponents are chosen independently, the number of perfect-square factors is 2 times 2 times 2 = 8. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q83
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Divisibility
+
+Is the positive integer n divisible by 15?
+
+(1) n is divisible by 10.
+(2) n² is divisible by 225.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** Because 15 = 3 times 5, a positive integer is divisible by 15 if and only if it contains at least one factor of 3 and at least one factor of 5; the question is therefore whether each statement forces both of these factors to be present. A key fact for the second statement is that the exponent of any prime in n² is exactly twice its exponent in n, so that exponent is always even. Consider statement (1): n is divisible by 10 = 2 times 5. This guarantees a factor of 5 but says nothing about a factor of 3, so the answer can vary; for instance n = 10 is not divisible by 15 (answer no), while n = 30 is divisible by 15 (answer yes). Statement (1) alone is therefore not sufficient. Consider statement (2): n² is divisible by 225 = 3² times 5². Thus the exponent of 3 in n² is at least 2, which forces the exponent of 3 in n to be at least 1, and likewise the exponent of 5 in n² is at least 2, which forces the exponent of 5 in n to be at least 1. Hence n contains both a factor of 3 and a factor of 5, so n is divisible by 15, giving a definite yes. Statement (2) alone is sufficient. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q84
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Remainder
+
+When the positive integer n is divided by 12, what is the remainder?
+
+(1) When n is divided by 6, the remainder is 5.
+(2) When n is divided by 4, the remainder is 3.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Each division condition restricts the remainder of n upon division by 12 to a short list of possibilities, and a statement is sufficient only when it narrows that list to a single value; this works because 12 is a common multiple of both 6 and 4, so a remainder modulo 12 is consistent with at most one or two remainders modulo each smaller divisor. Consider statement (1): n leaves remainder 5 when divided by 6, so n has the form 6k + 5; reducing such values modulo 12 yields 5 when k is even and 11 when k is odd, so n modulo 12 is either 5 or 11, which is not unique, and statement (1) alone is not sufficient. Consider statement (2): n leaves remainder 3 when divided by 4, so n has the form 4m + 3; reducing modulo 12 yields the three values 3, 7, and 11, which is not unique, and statement (2) alone is not sufficient. Taking the statements together, the remainder modulo 12 must lie in both lists, and the only value common to {5, 11} and {3, 7, 11} is 11. The two statements together fix the remainder at 11, so they are sufficient while neither alone is. A check confirms this: 11 leaves remainder 5 when divided by 6 and remainder 3 when divided by 4. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties

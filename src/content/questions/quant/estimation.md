@@ -374,3 +374,458 @@ The correct answer is E.
 **hint_nudge:** Every choice is close to one particular benchmark fraction. Which one?
 **hint_strategy:** For each fraction, ask: is the numerator more or less than half the denominator? Only one answer differs from the rest.
 **related_reading:** quant-03-estimation
+
+---
+
+## Q12
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Estimation
+
+A television regularly priced at $2,540 is on sale at 18% off. The sale price is closest to:
+
+- A) $460
+- B) $1,270
+- C) $2,083
+- D) $2,290
+- E) $2,540
+
+**answer:** C
+**explanation:** The phrase "closest to" plus widely spaced choices signal estimation rather than exact multiplication. After an 18% discount you pay 100% − 18% = 82% of the sticker price, so round 82% to about four-fifths (0.8) and 18% to 20%: paying 80% of $2,540 is about $2,032, and since you actually pay a hair more than 80%, the true value sits a little above $2,000. Only $2,083 lives in that neighborhood (the exact value is 0.82 × 2,540 = $2,082.80). Note that $460 is roughly the discount itself, $2,290 is the price after only a 10% markdown, and $1,270 is half price — all answers to questions that were not asked.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q13
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Estimation
+
+Five crates weigh 64, 71, 58, 67, and 75 kilograms. The average (arithmetic mean) weight of the crates, in kilograms, is closest to:
+
+- A) 60
+- B) 67
+- C) 70
+- D) 73
+- E) 80
+
+**answer:** B
+**explanation:** Rather than summing five two-digit numbers raw, anchor at a central guess of 65 and total each value's signed deviation: 64 → −1, 71 → +6, 58 → −7, 67 → +2, 75 → +10, which sum to +10. Spread over the five crates that is +2 from the anchor, putting the mean at about 67. As a check, the raw total is 64 + 71 + 58 + 67 + 75 = 335, and 335 ÷ 5 = 67 exactly. The deviations are small numbers that partly cancel, which is why anchoring beats carrying a three-digit running sum.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q14
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Estimation
+
+A warehouse must ship 60,400 identical units, packed 29.8 units per box. Approximately how many boxes are required?
+
+- A) 2
+- B) 20
+- C) 200
+- D) 2,000
+- E) 20,000
+
+**answer:** D
+**explanation:** The stem says "approximately" and the choices are spaced by factors of ten, so only the order of magnitude matters. Round 60,400 down to 60,000 and 29.8 up to 30, then divide: 60,000 ÷ 30 = 2,000 boxes. The exact quotient is about 2,027, which falls squarely in the 2,000 bucket and nowhere near any neighbor. Treating 29.8 as about 3 (giving 20,000) or as about 300 (giving 200) are the classic decimal-place slips this kind of problem is built to punish, so fix the power of ten before computing any digits.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q15
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Estimation
+
+The sum 24/25 + 49/50 is closest to which of the following?
+
+- A) 1
+- B) 3/2
+- C) 7/4
+- D) 9/5
+- E) 2
+
+**answer:** E
+**explanation:** Read each fraction against the benchmark 1, rather than finding a common denominator: 24/25 is just 1/25 short of 1 (about 0.96), and 49/50 is just 1/50 short of 1 (about 0.98). Two values that are each a whisper below 1 sum to a whisper below 2, about 1.94. That is closer to 2 (a gap of 0.06) than to 9/5 = 1.8 (a gap of 0.14), so the answer is 2. Choice A (1) would be the result of mistakenly averaging the two fractions instead of adding them.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q16
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+After a 35% discount, Marco paid $52 for a backpack. The original price of the backpack was closest to:
+
+- A) $80
+- B) $70
+- C) $74
+- D) $87
+- E) $104
+
+**answer:** A
+**explanation:** This is a reverse-percent problem: $52 is what remains after the discount, so it equals 65% of the original price, and the original is 52 ÷ 0.65, not 52 times anything. Estimate by rounding 0.65 down to about 0.65 and noting that two-thirds of the answer is 52, so the original is roughly 52 × (100/65) = $80, which is in fact exact (52 ÷ 0.65 = 80). Choice B ($70) comes from multiplying by 1.35 — but percent increase and percent decrease act on different bases, so you must divide by 0.65 to undo "× 0.65," and choice D ($87) comes from over-rounding 65% all the way down to 60%.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q17
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+On a map drawn to a scale of 1 centimeter to 4.7 kilometers, two cities are 18.3 centimeters apart. The actual distance between the cities, in kilometers, is closest to:
+
+- A) 4
+- B) 86
+- C) 230
+- D) 430
+- E) 860
+
+**answer:** B
+**explanation:** Each map centimeter represents 4.7 real kilometers, so the actual distance is 18.3 × 4.7. Round 4.7 up to 5 and 18.3 down to 18 for a quick product of 90, then note the upward rounding on the larger factor leans the estimate high, so the true value sits a bit below 90 — the exact product is 18.3 × 4.7 = 86.01. The only choice in that neighborhood is 86. Dividing instead of multiplying gives about 4 (choice A), which is backward because a map is a shrunk picture of reality, so real distances exceed map distances.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q18
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+Which of the following is closest to (62.3% of 4,810) divided by 14.8?
+
+- A) 20
+- B) 50
+- C) 100
+- D) 200
+- E) 400
+
+**answer:** D
+**explanation:** With three messy numbers and choices spread far apart, snap each to a landmark: 62.3% → 60%, 4,810 → 4,800, and 14.8 → 15. Then 60% of 4,800 is 2,880, and 2,880 ÷ 15 = 192, which is essentially 200. Both roundings of the percent and the divisor leaned slightly downward, so the true value sits a touch above 192 — the exact result is about 202.5 — confirming 200 over any drift toward 100. Choice E (400) would require rounding 62.3% all the way up past 50% of a doubled base, a fudge far larger than the gaps between choices.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q19
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+Which of the following is closest to (0.0382 × 815) / 0.0206 ?
+
+- A) 15
+- B) 150
+- C) 1,500
+- D) 15,000
+- E) 150,000
+
+**answer:** C
+**explanation:** The choices differ by factors of ten, so only the order of magnitude matters and exact arithmetic is wasted effort. Snap each number to a clean landmark: 0.0382 → 0.04, 815 → 800, and 0.0206 → 0.02. The numerator is 0.04 × 800 = 32, and dividing by 0.02 is the same as multiplying by 50, giving 32 × 50 = 1,600 — right in the 1,500 bucket (the exact value is about 1,511). The most error-prone step is the decimal shift in the divisor: treating 0.0206 as about 0.2 would cost a full factor of ten and land you at 150 instead.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q20
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Estimation
+
+A rectangular plot of land has an area of A square meters. Is A greater than 2,000?
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+(1) The length of the plot is between 38 and 44 meters.
+(2) The width of the plot is between 45 and 52 meters.
+
+**answer:** E
+**explanation:** Each statement alone fixes only one dimension within a range and says nothing about the other, so neither is sufficient on its own. Combining them, the area can be as small as 38 × 45 = 1,710 (which is not greater than 2,000) or as large as 44 × 52 = 2,288 (which is greater than 2,000). Because the possible area straddles 2,000, the two statements together still do not settle the yes/no question, so the answer is E.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q21
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Estimation
+
+The value of (2.02)^6 is closest to which of the following?
+
+- A) 64
+- B) 68
+- C) 72
+- D) 128
+- E) 256
+
+**answer:** B
+**explanation:** Rounding 2.02 to 2 gives 2^6 = 64, which is sitting right there as choice A — a signal that the leftover 0.02 is the whole question. The base 2.02 is 1% above 2, and raising it to the sixth power compounds that excess roughly six times, so the result is about 6 × 1% = 6% above 64: that is 64 × 1.06 ≈ 67.8, pointing to 68. (Exact: 2.02^6 ≈ 67.9.) Choices D (128 = 2^7) and E (256 = 2^8) are off-by-one and off-by-two errors in the exponent, and choice A is the engineered trap of treating "round the base to 2" as free when rounding the base of an exponential never is.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q22
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Estimation
+
+Is the product mn greater than 600?
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+(1) m is between 24 and 26, and n is between 31 and 33.
+(2) m + n is between 50 and 60.
+
+**answer:** A
+**explanation:** From statement (1) the product is at minimum 24 × 31 = 744, which already exceeds 600 for every allowed pair, so the answer is a definite "yes" and statement (1) alone is sufficient. Statement (2) fixes only the sum: m = 5 and n = 50 give a sum of 55 with product 250 (not greater than 600), while m = 27 and n = 28 give a sum of 55 with product 756 (greater than 600), so it yields both answers and is insufficient. Since one statement alone settles the question and the other does not, the answer is A.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q23
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Estimation
+
+A contractor placed a single order for identical floor tiles. Was the total cost of the order greater than $1,000?
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+(1) The order contained between 350 and 360 tiles.
+(2) Each tile cost between $3.00 and $3.10.
+
+**answer:** C
+**explanation:** Statement (1) gives the tile count but not the price, so the cost is unknown, and statement (2) gives the price but not the count, so neither alone is sufficient. Together, the smallest possible total is 350 × $3.00 = $1,050, and even this minimum already exceeds $1,000, so the total cost is greater than $1,000 for every allowed combination. Because the combined information forces a definite "yes" while neither statement alone can, the answer is C.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q24
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Estimation
+
+A refrigerator regularly priced at $3,120 is on sale at 23% off. The sale price is closest to:
+
+- A) $2,400
+- B) $720
+- C) $1,560
+- D) $2,808
+- E) $3,120
+
+**answer:** A
+**explanation:** The phrase "closest to" together with widely spaced choices signals estimation rather than exact multiplication. After a 23% discount you pay 100% − 23% = 77% of the sticker price, so round 77% to about three-quarters (0.75) and find three-quarters of $3,120, which is $2,340; since you actually pay a hair more than 75%, the true value sits a little above $2,340, and the exact figure is 0.77 × 3,120 = $2,402.40. Only $2,400 lives in that neighborhood. Note that $720 is roughly the discount itself (23% of 3,120 ≈ 718), $1,560 is half price, and $2,808 is the price after only a 10% markdown — all answers to questions that were not asked.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q25
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Estimation
+
+Five shipments weigh 83, 91, 78, 96, and 87 kilograms. The average (arithmetic mean) weight of the shipments, in kilograms, is closest to:
+
+- A) 80
+- B) 84
+- C) 85
+- D) 87
+- E) 96
+
+**answer:** D
+**explanation:** Rather than summing five two-digit numbers raw, anchor at a central guess of 85 and total each value's signed deviation: 83 → −2, 91 → +6, 78 → −7, 96 → +11, 87 → +2, which sum to +10. Spread over the five shipments that is +2 from the anchor, putting the mean at about 87. As a check, the raw total is 83 + 91 + 78 + 96 + 87 = 435, and 435 ÷ 5 = 87 exactly. The deviations are small numbers that partly cancel, which is why anchoring beats carrying a three-digit running sum.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q26
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Estimation
+
+The sum 4/9 + 6/11 is closest to which of the following?
+
+- A) 1/2
+- B) 3/4
+- C) 1
+- D) 5/4
+- E) 3/2
+
+**answer:** C
+**explanation:** Read each fraction against the benchmark 1/2 rather than finding a common denominator: 4/9 is just under half (half of 9 is 4.5, and the numerator 4 falls short, so about 0.44), while 6/11 is just over half (half of 11 is 5.5, and the numerator 6 exceeds it, so about 0.55). A shade below half plus a shade above half nearly cancel, so the sum is almost exactly 1 — the exact value is 0.444 + 0.545 ≈ 0.99. Choice A (1/2) would be the result of mistakenly combining the fractions by adding numerators and denominators (10/20), and choice E (3/2) over-rounds at least one fraction toward 1 when neither is close to a whole.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q27
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Estimation
+
+A bottling line must fill 40,300 identical containers, packed 19.6 containers per tray. Approximately how many trays are required?
+
+- A) 200
+- B) 2,000
+- C) 20,000
+- D) 200,000
+- E) 2
+
+**answer:** B
+**explanation:** The stem says "approximately" and the choices are spaced by factors of ten, so only the order of magnitude matters. Round 40,300 down to 40,000 and 19.6 up to 20, then divide: 40,000 ÷ 20 = 2,000 trays. The exact quotient is about 2,056, which falls squarely in the 2,000 bucket and nowhere near any neighbor. Treating 19.6 as about 2 (giving 20,000) or as about 200 (giving 200) are the classic decimal-place slips this kind of problem is built to punish, so fix the power of ten before computing any digits.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q28
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+After a 30% discount, Priya paid $84 for a pair of boots. The original price of the boots was closest to:
+
+- A) $100
+- B) $109
+- C) $112
+- D) $117
+- E) $120
+
+**answer:** E
+**explanation:** This is a reverse-percent problem: $84 is what remains after the discount, so it equals 70% of the original price, and the original is 84 ÷ 0.70, not 84 times anything. Since 70% is 7/10, dividing by 0.70 is the same as multiplying by 10/7, so 84 × 10/7 = 840/7 = $120 exactly. The distractors all reflect failing to reverse the discount correctly: $109 is 84 × 1.30 (multiplying by 1.30 instead of dividing by 0.70, which is wrong because percent increase and percent decrease act on different bases), $112 is 84 ÷ 0.75 (over-rounding the 70% factor up to 75%), and $117 is 84 ÷ 0.72 (over-rounding 70% up to 72%). The price after a discount is the output of the discount, so you reverse it by dividing by 0.70.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q29
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+On a map drawn to a scale of 1 centimeter to 6.2 kilometers, two villages are 27.4 centimeters apart. The actual distance between the villages, in kilometers, is closest to:
+
+- A) 4
+- B) 34
+- C) 170
+- D) 340
+- E) 1,700
+
+**answer:** C
+**explanation:** Each map centimeter represents 6.2 real kilometers, so the actual distance is 27.4 × 6.2. Round 6.2 down to 6 and 27.4 up to 27 for a quick product of about 162, then note that both factors were trimmed only slightly, so the true value sits a bit above 162 — the exact product is 27.4 × 6.2 = 169.88. The only choice in that neighborhood is 170. Dividing instead of multiplying gives about 4 (choice A), which is backward because a map is a shrunk picture of reality, so real distances exceed map distances, and choice B (34) ignores the scale factor by treating it as roughly 1.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q30
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+Which of the following is closest to (48.7% of 6,090) divided by 9.7?
+
+- A) 300
+- B) 60
+- C) 150
+- D) 600
+- E) 1,500
+
+**answer:** A
+**explanation:** With three messy numbers and choices spread far apart, snap each to a landmark: 48.7% → 50% (one half), 6,090 → 6,000, and 9.7 → 10. Then half of 6,000 is 3,000, and 3,000 ÷ 10 = 300, which is essentially the answer. Because 48.7% is a touch below 50% while 9.7 is a touch below 10, the two small roundings roughly offset, leaving the true value near 300 — the exact result is about 305.8. Choice D (600) would require dividing by about 5 instead of 10 (a misread of 9.7), and choice C (150) would require using about 25% instead of 50% as the landmark.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q31
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Estimation
+
+Which of the following is closest to (0.0594 × 1,980) / 0.0289 ?
+
+- A) 40
+- B) 400
+- C) 40,000
+- D) 4,000
+- E) 400,000
+
+**answer:** D
+**explanation:** The choices differ by factors of ten, so only the order of magnitude matters and exact arithmetic is wasted effort. Snap each number to a clean landmark: 0.0594 → 0.06, 1,980 → 2,000, and 0.0289 → 0.03. The numerator is 0.06 × 2,000 = 120, and dividing by 0.03 is the same as multiplying by 100/3, giving 120 × 100/3 = 4,000 — right in that bucket (the exact value is about 4,070). The most error-prone step is the decimal shift in the divisor: treating 0.0289 as about 0.3 would cost a full factor of ten and land you at 400 instead.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Estimation
+
+A rectangular courtyard has an area of A square meters. Is A greater than 5,000?
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+(1) The length of the courtyard is between 60 and 66 meters.
+(2) The width of the courtyard is between 72 and 80 meters.
+
+**answer:** E
+**explanation:** Each statement alone fixes only one dimension within a range and says nothing about the other, so neither is sufficient on its own. Combining them, the area can be as small as 60 × 72 = 4,320 (which is not greater than 5,000) or as large as 66 × 80 = 5,280 (which is greater than 5,000). Because the possible area straddles 5,000, the two statements together still do not settle the yes/no question, so the answer is E.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Estimation
+
+A landscaper placed a single order for identical paving stones. Was the total cost of the order greater than $2,000?
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+(1) The order contained between 490 and 500 stones.
+(2) Each stone cost between $4.20 and $4.40.
+
+**answer:** C
+**explanation:** Statement (1) gives the stone count but not the price, so the cost is unknown, and statement (2) gives the price but not the count, so neither alone is sufficient. Together, the smallest possible total is 490 × $4.20 = $2,058, and even this minimum already exceeds $2,000, so the total cost is greater than $2,000 for every allowed combination. Because the combined information forces a definite "yes" while neither statement alone can, the answer is C.
+**related_reading:** quant-03-estimation
+
+---
+
+## Q35
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Estimation
+
+Is the product pq greater than 800?
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+(1) p is between 28 and 30, and q is between 31 and 33.
+(2) p + q is between 60 and 70.
+
+**answer:** A
+**explanation:** From statement (1) the product is at minimum 28 × 31 = 868, which already exceeds 800 for every allowed pair, so the answer is a definite "yes" and statement (1) alone is sufficient. Statement (2) fixes only the sum: p = 10 and q = 55 give a sum of 65 with product 550 (not greater than 800), while p = 33 and q = 33 give a sum of 66 with product 1,089 (greater than 800), so it yields both answers and is insufficient. Since one statement alone settles the question and the other does not, the answer is A.
+**related_reading:** quant-03-estimation

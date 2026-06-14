@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle, ShieldCheck, KeyRound } from "lucide-react"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
+import { trackEvent } from "@/lib/analytics"
 
 /**
  * Valid redirect paths after signup. A bare allow-list is safer than
@@ -122,6 +123,7 @@ function SignupForm() {
         return
       }
 
+      trackEvent("signup", { gated: true })
       router.push(redirectTarget)
       router.refresh()
       return
@@ -143,6 +145,7 @@ function SignupForm() {
       return
     }
 
+    trackEvent("signup", { gated: false })
     router.push(redirectTarget)
     router.refresh()
   }

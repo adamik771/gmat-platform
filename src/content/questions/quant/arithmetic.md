@@ -2159,3 +2159,474 @@ A recipe uses 3/4 cup of sugar for every 12 cookies. At the same rate, how many 
 **answer:** C
 **explanation:** Making 30 cookies instead of 12 scales the recipe by a factor of 30/12 = 5/2. The sugar required is therefore (3/4) × (5/2) = 15/8 cups. A common error is to add the quantities rather than multiply, or to invert the scaling factor. The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q79
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Decimals
+
+What is the value of 0.6 × 0.05 + 0.07?
+
+- A) 1.0
+- B) 0.37
+- C) 0.013
+- D) 0.1
+- E) 0.043
+
+**answer:** D
+**explanation:** By the order of operations, multiplication is performed before addition, so we first evaluate the product 0.6 × 0.05 and then add 0.07. To multiply the decimals, we multiply the nonzero digits, computing 6 × 5 = 30, and then count decimal places: 0.6 has one decimal place and 0.05 has two, so the product must have three decimal places, giving 0.030, or simply 0.03. Adding the second term gives 0.03 + 0.07 = 0.10, which is 0.1. A common error is to add before multiplying, treating the expression as 0.6 × 0.12, which would give the incorrect 0.072. The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q80
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Signed Numbers
+
+What is the value of −8 + 12 − (−5) − 3?
+
+- A) −4
+- B) 6
+- C) 16
+- D) 2
+- E) −6
+
+**answer:** B
+**explanation:** Subtracting a negative number is equivalent to adding its opposite, so we first rewrite −(−5) as +5, giving the expression −8 + 12 + 5 − 3. We then combine the terms, grouping the positives and negatives for clarity: the positive terms sum to 12 + 5 = 17, and the negative terms sum to −8 − 3 = −11. Adding these results gives 17 + (−11) = 6. A frequent error is to treat −(−5) as −5, which would lead to the incorrect value −4. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q81
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Order of Operations
+
+What is the value of 24 ÷ 6 + 2 × (7 − 4)?
+
+- A) 13
+- B) 5
+- C) 18
+- D) 8
+- E) 10
+
+**answer:** E
+**explanation:** The conventional order of operations directs us to resolve grouping symbols first, then to perform multiplication and division from left to right, and finally addition. We begin inside the parentheses: 7 − 4 = 3. The expression becomes 24 ÷ 6 + 2 × 3. We next carry out the division and multiplication: 24 ÷ 6 = 4 and 2 × 3 = 6. Substituting these results gives 4 + 6 = 10. A common mistake is to add 6 + 2 before multiplying, which would wrongly yield 24 ÷ 8 × 3 = 9 or other incorrect values. The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q82
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Units Digit
+
+What is the units digit of 4^2025?
+
+- A) 4
+- B) 6
+- C) 2
+- D) 8
+- E) 0
+
+**answer:** A
+**explanation:** The units digit of a power depends only on the units digit of the base, and the units digits of successive powers of 4 follow a repeating cycle. Computing the first few powers, 4^1 ends in 4, 4^2 = 16 ends in 6, 4^3 = 64 ends in 4, and 4^4 = 256 ends in 6, so the units digit alternates with period 2: odd exponents end in 4 and even exponents end in 6. Because 2025 is odd, the units digit of 4^2025 is 4. A common error is to assume the units digit is fixed at the base value without checking that it could change; here the alternation makes the parity of the exponent decisive. The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q83
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percent
+
+When a certain number is increased by 25%, the result is 60. What is 40% of the original number?
+
+- A) 15
+- B) 18
+- C) 19.2
+- D) 24
+- E) 30
+
+**answer:** C
+**explanation:** Increasing a number by 25% multiplies it by 1.25, so if x is the original number, then 1.25x = 60. Solving for x, we divide both sides by 1.25 to obtain x = 60 / 1.25 = 48. The question asks for 40% of this original number, which is 0.40 × 48 = 19.2. A common error is to compute 40% of the increased value 60, giving 24, or to take 40% of an incorrectly determined original; the key is to first recover x = 48 before applying the final percentage. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q84
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratio
+
+Three partners divide a year's profit in the ratio 2 : 3 : 7. The largest share exceeds the smallest share by $4,000. What is the total profit?
+
+- A) $4,000
+- B) $6,400
+- C) $7,200
+- D) $8,000
+- E) $9,600
+
+**answer:** E
+**explanation:** When quantities are given as a ratio, each can be written as a common multiple of a single positive constant, so we let one part equal k dollars. The three shares are then 2k, 3k, and 7k, with 7k being the largest and 2k the smallest. The condition that the largest exceeds the smallest by $4,000 gives 7k − 2k = 4,000, which simplifies to 5k = 4,000, so k = 800. The total profit is the sum of all parts, 2k + 3k + 7k = 12k, which equals 12 × 800 = 9,600. A common error is to compute the total as 5k from the difference equation rather than summing all twelve parts. The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q85
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rate
+
+A delivery van drives 120 miles from a warehouse to a depot at an average speed of 40 miles per hour, then returns along the same 120-mile route at an average speed of 60 miles per hour. What is the van's average speed, in miles per hour, for the entire round trip?
+
+- A) 50
+- B) 48
+- C) 45
+- D) 52
+- E) 46
+
+**answer:** B
+**explanation:** Average speed over a journey equals the total distance traveled divided by the total time elapsed, not the simple average of the two speeds. The round trip covers 120 + 120 = 240 miles. The outbound leg takes 120 / 40 = 3 hours, and the return leg takes 120 / 60 = 2 hours, for a total time of 3 + 2 = 5 hours. The average speed is therefore 240 / 5 = 48 miles per hour. A common error is to average the two speeds directly as (40 + 60) / 2 = 50, which is incorrect because the van spends more time at the slower speed, pulling the true average below 50. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q86
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Remainder
+
+If n is a positive integer, what is the remainder when n is divided by 5?
+
+(1) n + 1 is divisible by 5.
+(2) n is divisible by 10.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The question asks for a single fixed value: the remainder when the positive integer n is divided by 5. The governing principle is that two integers leave the same remainder upon division by 5 if and only if their difference is a multiple of 5, so any statement that pins n to a fixed residue class modulo 5 is sufficient. Consider statement (1), which says n + 1 is divisible by 5. Then n + 1 = 5k for some integer k, so n = 5k − 1 = 5(k − 1) + 4, which always leaves a remainder of 4 when divided by 5; statement (1) alone gives a unique remainder and is therefore sufficient. Consider statement (2), which says n is divisible by 10. Any multiple of 10 is also a multiple of 5, so n leaves a remainder of 0 when divided by 5; statement (2) alone also gives a unique remainder and is sufficient. Because each statement independently determines the remainder, each alone is sufficient. The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q87
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+A class of 30 students has an overall average test score of 78. The boys in the class average 72, and the girls average 84. How many girls are in the class?
+
+- A) 15
+- B) 12
+- C) 18
+- D) 20
+- E) 10
+
+**answer:** A
+**explanation:** The overall class average is a weighted average of the two group averages, where each group is weighted by its number of students, so the total points scored by all students equals the sum of the points scored by each group. Let g be the number of girls; then the number of boys is 30 − g. The total points scored equal 72(30 − g) from the boys plus 84g from the girls, and this must equal the class total of 78 × 30 = 2,340. Setting up the equation gives 72(30 − g) + 84g = 2,340, which expands to 2,160 − 72g + 84g = 2,340, or 2,160 + 12g = 2,340. Subtracting 2,160 gives 12g = 180, so g = 15. As a check, 15 girls and 15 boys give a class average exactly midway between 72 and 84, namely 78, consistent with equal group sizes. The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q88
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture
+
+A laboratory has 12 liters of a solution that is 50% acid by volume. How many liters of pure water must be added so that the resulting mixture is 30% acid by volume?
+
+- A) 4
+- B) 6
+- C) 7
+- D) 8
+- E) 10
+
+**answer:** D
+**explanation:** In a dilution problem in which only pure water is added, the volume of acid does not change; the added water increases only the total volume, thereby lowering the concentration. The original solution contains 0.50 × 12 = 6 liters of acid, and this amount remains fixed because pure water contains no acid. Let x be the number of liters of water added; the new total volume is 12 + x, and the new concentration must equal 30%, giving the equation 6 / (12 + x) = 0.30. Multiplying both sides by (12 + x) yields 6 = 0.30(12 + x), and dividing both sides by 0.30 gives 12 + x = 20, so x = 8. A common error is to apply the percentage to the wrong quantity or to forget that the acid volume stays constant; tracking the fixed 6 liters of acid is the key step. The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q89
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Percent
+
+A company's revenue in March was what percent greater than its revenue in February?
+
+(1) The company's revenue increased by $4,000 from February to March.
+(2) The company's revenue in February was $20,000.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** A percent increase is computed as the dollar amount of the increase divided by the original (February) value, then multiplied by 100, so determining the percent requires knowing both the size of the increase and the base from which it is measured. Consider statement (1) alone, which gives the increase as $4,000 but says nothing about February's revenue; a $4,000 rise from a $20,000 base is 20%, while the same rise from a $40,000 base is only 10%, so statement (1) alone is not sufficient. Consider statement (2) alone, which gives the February revenue as $20,000 but says nothing about the size of the increase, so the percent change cannot be determined and statement (2) alone is not sufficient. Taking the statements together, the increase is $4,000 and the base is $20,000, so the percent increase is 4,000 / 20,000 = 0.20 = 20%, a single determined value. Both statements together are sufficient, though neither alone is. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q90
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** GCF and LCM
+
+If x and y are positive integers, what is the least common multiple of x and y?
+
+(1) The greatest common factor of x and y is 8.
+(2) The product xy equals 384.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** For any two positive integers, the product of their greatest common factor and their least common multiple equals the product of the two integers; that is, GCF(x, y) × LCM(x, y) = xy. The least common multiple can therefore be found as soon as both the product xy and the greatest common factor are known. Consider statement (1) alone, which gives GCF(x, y) = 8 but provides no information about the product xy, so the LCM cannot be determined and statement (1) alone is not sufficient. Consider statement (2) alone, which gives xy = 384 but provides no value for the GCF; since LCM = xy / GCF, the LCM cannot be found without the GCF, so statement (2) alone is not sufficient. Taking the statements together, we have LCM(x, y) = xy / GCF(x, y) = 384 / 8 = 48, a single determined value. Both statements together are sufficient, though neither alone is. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q91
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Decimals
+
+What is the value of 0.25 × 0.08 + 0.4?
+
+- A) 0.024
+- B) 0.42
+- C) 0.402
+- D) 0.66
+- E) 0.06
+
+**answer:** B
+**explanation:** By the order of operations, multiplication is performed before addition, so we first evaluate the product 0.25 × 0.08 and then add 0.4. To multiply the decimals, we multiply the nonzero digits, computing 25 × 8 = 200, and then count decimal places: 0.25 has two decimal places and 0.08 has two, so the product must have four decimal places, giving 0.0200, which is 0.02. Adding the second term gives 0.02 + 0.4 = 0.42. A common error is to add before multiplying, treating the expression as 0.25 × 0.48, which would give the incorrect 0.12. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q92
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Signed Numbers
+
+What is the value of −6 − (−9) + (−4) − 2?
+
+- A) −3
+- B) 3
+- C) −9
+- D) 9
+- E) −21
+
+**answer:** A
+**explanation:** Subtracting a negative number is equivalent to adding its opposite, so we first rewrite −(−9) as +9, and we treat +(−4) as −4. The expression becomes −6 + 9 − 4 − 2. We then combine the terms, grouping the positives and negatives for clarity: the positive terms sum to 9, and the negative terms sum to −6 − 4 − 2 = −12. Adding these results gives 9 + (−12) = −3. A frequent error is to treat −(−9) as −9, which would lead to the incorrect value −21. The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q93
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Order of Operations
+
+What is the value of 36 ÷ (3 + 6) + 4 × 5 − 7?
+
+- A) 9
+- B) 11
+- C) 13
+- D) 17
+- E) 20
+
+**answer:** D
+**explanation:** The conventional order of operations directs us to resolve grouping symbols first, then to perform multiplication and division from left to right, and finally addition and subtraction from left to right. We begin inside the parentheses: 3 + 6 = 9. The expression becomes 36 ÷ 9 + 4 × 5 − 7. We next carry out the division and multiplication: 36 ÷ 9 = 4 and 4 × 5 = 20. Substituting these results gives 4 + 20 − 7, which we evaluate left to right as 24 − 7 = 17. A common mistake is to divide 36 by 9 + 4 by first adding 9 + 4, which violates the order of operations and yields an incorrect value. The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q94
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Units Digit
+
+What is the units digit of 7^123?
+
+- A) 1
+- B) 3
+- C) 7
+- D) 9
+- E) 6
+
+**answer:** B
+**explanation:** The units digit of a power depends only on the units digit of the base, and the units digits of successive powers of 7 follow a repeating cycle of length 4: 7^1 ends in 7, 7^2 = 49 ends in 9, 7^3 = 343 ends in 3, and 7^4 = 2401 ends in 1, after which the pattern 7, 9, 3, 1 repeats. To locate the position of the 123rd power within this cycle, we divide the exponent by 4 and examine the remainder: 123 = 4 × 30 + 3, so the remainder is 3. A remainder of 3 corresponds to the third entry in the cycle, which is 3. A common error is to use the fourth entry, treating 123 as if it were a multiple of 4. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q95
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percent
+
+When a certain number is decreased by 30%, the result is 84. What is 45% of the original number?
+
+- A) 25.2
+- B) 37.8
+- C) 46.2
+- D) 50.4
+- E) 54
+
+**answer:** E
+**explanation:** Decreasing a number by 30% leaves 70% of it, so multiplying the original number by 0.70 gives the result. If x is the original number, then 0.70x = 84, and solving by dividing both sides by 0.70 gives x = 84 / 0.70 = 120. The question asks for 45% of this original number, which is 0.45 × 120 = 54. A common error is to compute 45% of the decreased value 84, giving 37.8, or to take 45% of an incorrectly recovered original; the key is to first restore x = 120 before applying the final percentage. The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q96
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratio
+
+Three departments split a budget in the ratio 3 : 4 : 5. The middle share exceeds the smallest share by $8,000. What is the total budget?
+
+- A) $48,000
+- B) $64,000
+- C) $96,000
+- D) $120,000
+- E) $144,000
+
+**answer:** C
+**explanation:** When quantities are given as a ratio, each can be written as a common multiple of a single positive constant, so we let one part equal k dollars. The three shares are then 3k, 4k, and 5k, with 5k being the largest, 4k the middle, and 3k the smallest. The condition that the middle share exceeds the smallest by $8,000 gives 4k − 3k = 8,000, which simplifies to k = 8,000. The total budget is the sum of all parts, 3k + 4k + 5k = 12k, which equals 12 × 8,000 = 96,000. A common error is to report the difference 8,000 or a single share rather than summing all twelve parts. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q97
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rate
+
+Pipe X alone fills an empty tank in 3 hours, and pipe Y alone fills the same tank in 6 hours. If both pipes are opened simultaneously with the tank empty, how long does it take to fill the tank?
+
+- A) 2 hours
+- B) 2.5 hours
+- C) 3 hours
+- D) 4.5 hours
+- E) 9 hours
+
+**answer:** A
+**explanation:** Combined-work problems are solved by adding rates of work, not times. Each pipe contributes a fraction of the tank per hour, and the combined rate of the two pipes working together is the sum of their individual rates. Pipe X fills the tank in 3 hours, so its rate is 1/3 tank per hour, and pipe Y fills the tank in 6 hours, so its rate is 1/6 tank per hour. Adding these over a common denominator gives 1/3 + 1/6 = 2/6 + 1/6 = 3/6 = 1/2 tank per hour. The time required to fill one full tank is the reciprocal of the combined rate, namely 1 ÷ (1/2) = 2 hours. A common error is to average the two times to get 4.5 hours, which ignores that two pipes working together must finish faster than either alone. The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q98
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+A group of 50 employees has an overall average productivity score of 80. The employees in Division A average 74, and the employees in Division B average 86. How many employees are in Division A?
+
+- A) 15
+- B) 20
+- C) 25
+- D) 30
+- E) 35
+
+**answer:** C
+**explanation:** The overall average is a weighted average of the two division averages, where each division is weighted by its number of employees, so the total of all scores equals the sum of the totals from each division. Let a be the number of employees in Division A; then Division B has 50 − a employees. The total score equals 74a from Division A plus 86(50 − a) from Division B, and this must equal the group total of 80 × 50 = 4,000. Setting up the equation gives 74a + 86(50 − a) = 4,000, which expands to 74a + 4,300 − 86a = 4,000, or 4,300 − 12a = 4,000. Subtracting 4,300 gives −12a = −300, so a = 25. As a check, 25 employees in each division give an overall average exactly midway between 74 and 86, namely 80, consistent with equal group sizes. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q99
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Remainder
+
+If k is a positive integer, what is the remainder when k is divided by 4?
+
+(1) k is odd.
+(2) k + 2 is divisible by 4.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The question asks for a single fixed value: the remainder when the positive integer k is divided by 4. The governing principle is that any statement which pins k to a single residue class modulo 4 is sufficient, whereas a statement consistent with more than one residue is not. Consider statement (1), which says k is odd. An odd integer divided by 4 can leave a remainder of either 1 or 3; for instance, 5 leaves remainder 1 while 7 leaves remainder 3. Because more than one remainder is possible, statement (1) alone is not sufficient. Consider statement (2), which says k + 2 is divisible by 4. Then k + 2 = 4m for some integer m, so k = 4m − 2 = 4(m − 1) + 2, which always leaves a remainder of 2 when divided by 4; testing k = 2, 6, 10 confirms each leaves remainder 2. Statement (2) alone determines a unique remainder and is therefore sufficient. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q100
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture
+
+A tank holds 50 liters of a solution that is 40% acid by volume. Some of the solution is drained and replaced with the same volume of pure water, resulting in a mixture that is 24% acid by volume. How many liters were drained and replaced?
+
+- A) 8
+- B) 10
+- C) 12
+- D) 16
+- E) 20
+
+**answer:** E
+**explanation:** When a portion of a uniform mixture is drained, the drained portion has the same concentration as the whole, so it removes acid in proportion to that concentration; replacing it with pure water adds no acid and restores the original total volume. The original solution contains 0.40 × 50 = 20 liters of acid. Let x be the number of liters drained and replaced. Draining x liters removes 0.40x liters of acid, leaving 20 − 0.40x liters of acid in the same total of 50 liters, and this must give a 24% concentration: (20 − 0.40x) / 50 = 0.24. Multiplying both sides by 50 gives 20 − 0.40x = 12, so 0.40x = 8 and x = 20. A common error is to forget that the replacement water restores the volume to 50 liters, or to apply the new concentration to the drained amount rather than to the full tank. The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q101
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** GCF and LCM
+
+Two positive integers have a greatest common factor of 6, and their sum is 84. How many unordered pairs of such integers are possible?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 6
+- E) 7
+
+**answer:** B
+**explanation:** If the greatest common factor of the two integers is 6, we may write them as 6m and 6n, where m and n are positive integers with no common factor greater than 1, that is, gcd(m, n) = 1. Their sum gives 6m + 6n = 84, so m + n = 14. We count unordered pairs with m < n, m + n = 14, and gcd(m, n) = 1. The candidate pairs (m, n) summing to 14 with m < n are (1, 13), (2, 12), (3, 11), (4, 10), (5, 9), and (6, 8); of these, only (1, 13), (3, 11), and (5, 9) are coprime, since the others share a factor of 2. That gives 3 valid pairs, corresponding to the integer pairs (6, 78), (18, 66), and (30, 54). A common error is to skip the coprimality requirement, which would wrongly admit pairs whose actual GCF exceeds 6. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q102
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Fractions
+
+If a and b are integers and b is not zero, is a/b greater than 2/3?
+
+(1) a + b = 15
+(2) b = 3a − 9
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The question asks for a definite yes-or-no answer to whether a/b > 2/3, so a statement is sufficient only if it forces a single answer for every case it permits. Consider statement (1) alone, a + b = 15. If a = 10 and b = 5, then a/b = 2, which is greater than 2/3, giving Yes; but if a = 1 and b = 14, then a/b = 1/14, which is less than 2/3, giving No. Two permitted cases give opposite answers, so statement (1) alone is not sufficient. Consider statement (2) alone, b = 3a − 9. If a = 4, then b = 3, so a/b = 4/3, which is greater than 2/3, giving Yes; but if a = 1, then b = −6, so a/b = −1/6, which is less than 2/3, giving No. Again two cases conflict, so statement (2) alone is not sufficient. Taking the statements together, substitute b = 3a − 9 into a + b = 15: a + (3a − 9) = 15, so 4a = 24 and a = 6, giving b = 9. Then a/b = 6/9 = 2/3, which is not greater than 2/3, so the answer is a definite No. The two statements together fix unique values and yield one consistent answer, so they are sufficient together though neither is sufficient alone. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations

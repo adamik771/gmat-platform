@@ -1594,3 +1594,628 @@ A direct check confirms this. After cycle 1, draining 20 liters removes 14 liter
 The minimum number of complete cycles required is therefore 2.
 
 The correct answer is B.
+
+---
+
+## Q51
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent
+
+A quiz had 24 questions, and Maria answered 18 of them correctly. What percent of the questions did Maria answer correctly?
+
+- A) 60%
+- B) 75%
+- C) 78%
+- D) 80%
+- E) 82%
+
+**answer:** B
+**explanation:** To express one quantity as a percent of another, we divide the part by the whole and then convert the resulting value to a percent by multiplying by 100. Here the part is the number of questions answered correctly and the whole is the total number of questions on the quiz.
+
+The part is 18 correct answers and the whole is 24 questions, so the required percent is (18 / 24) times 100. We first reduce the fraction by dividing the numerator and denominator by their common factor of 6, which gives 18 / 24 = 3 / 4.
+
+Converting 3 / 4 to a percent, we scale the fraction to a denominator of 100 by multiplying both terms by 25: (3 / 4) times (25 / 25) = 75 / 100, which is 75 percent. Equivalently, 18 / 24 = 0.75, and 0.75 times 100 = 75 percent.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q52
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratio
+
+An animal shelter houses only cats and dogs in the ratio of 5 cats to 8 dogs. If the shelter houses 65 animals in total, how many dogs are there?
+
+- A) 40
+- B) 35
+- C) 32
+- D) 25
+- E) 24
+
+**answer:** A
+**explanation:** A ratio divides a total into equal-sized parts, so the standard approach is to find the value of one part and then multiply by the number of parts assigned to the quantity in question. Let the common multiplier be x, so that the number of cats is 5x and the number of dogs is 8x. Because the shelter houses only cats and dogs, the total is the sum of these two quantities.
+
+Translating the total into an equation gives 5x + 8x = 65, which simplifies to 13x = 65. Dividing both sides by 13 yields x = 5, so each part of the ratio represents 5 animals.
+
+The number of dogs corresponds to 8 parts, so the number of dogs is 8x = 8 times 5 = 40. As a check, the number of cats is 5 times 5 = 25, and 25 + 40 = 65, which matches the stated total.
+
+The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q53
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Discount
+
+A sweater is listed at $45. A store applies a 20% discount, and then takes an additional 10% off the already-reduced price. What is the final price?
+
+- A) $27.00
+- B) $29.70
+- C) $30.60
+- D) $31.50
+- E) $32.40
+
+**answer:** E
+**explanation:** Successive discounts are applied multiplicatively, each to the price that results from the previous discount, rather than added together. A discount of d percent corresponds to multiplying the relevant price by (1 - d/100).
+
+Let the list price be $45. The first discount of 20% multiplies the price by 1 - 0.20 = 0.80, giving 45 times 0.80 = 36 dollars. The second discount of 10% is then taken on this reduced amount, which multiplies it by 1 - 0.10 = 0.90, giving 36 times 0.90 = 32.40 dollars.
+
+Equivalently, the two discounts may be combined into a single net multiplier of 0.80 times 0.90 = 0.72, so the final price is 45 times 0.72 = 32.40 dollars. Note that this is not the same as a single 30% discount, which would have given 45 times 0.70 = 31.50 dollars.
+
+The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q54
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Proportion
+
+Three identical printers working together print 1,800 pages in 12 minutes. Working at the same constant rate, how many pages can 5 such printers print in 20 minutes?
+
+- A) 2,500
+- B) 3,000
+- C) 5,000
+- D) 6,000
+- E) 7,500
+
+**answer:** C
+**explanation:** The number of pages printed is directly proportional both to the number of printers and to the time they run, so the cleanest method is to find the rate of a single printer per minute and then scale by the new number of printers and the new time. The per-printer rate is constant, which is what makes the scaling valid.
+
+From the given information, 3 printers print 1,800 pages in 12 minutes, so the combined rate is 1,800 / 12 = 150 pages per minute for the 3 printers together. Dividing by 3 gives a single printer's rate of 150 / 3 = 50 pages per minute.
+
+For 5 printers running for 20 minutes, the total output is the per-printer rate times the number of printers times the time: 50 times 5 times 20 = 5,000 pages.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q55
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Markup
+
+A retailer buys a lamp for $60 and sells it for $84. The selling price represents what percent markup over the cost?
+
+- A) 24%
+- B) 28%
+- C) 30%
+- D) 36%
+- E) 40%
+
+**answer:** E
+**explanation:** A markup is a percent increase computed on the cost, so the markup percent equals the dollar amount of the markup divided by the cost, expressed as a percent. The phrase "markup over the cost" identifies the cost as the base, so the cost must serve as the denominator.
+
+Let the cost be C = 60 and the selling price be S = 84. The dollar amount of the markup is the difference between the selling price and the cost: S - C = 84 - 60 = 24.
+
+The markup percent is therefore (markup / cost) times 100 = (24 / 60) times 100. We reduce 24 / 60 by dividing both terms by 12 to obtain 2 / 5, and 2 / 5 = 0.40, so the markup is 0.40 times 100 = 40 percent. As a check, increasing $60 by 40% adds 0.40 times 60 = 24 dollars, giving 60 + 24 = 84, the stated selling price.
+
+The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q56
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mixture
+
+A container holds 40 liters of a solution that is 25% acid. How many liters of pure acid must be added so that the resulting solution is 40% acid?
+
+- A) 10
+- B) 12
+- C) 15
+- D) 16
+- E) 20
+
+**answer:** A
+**explanation:** When pure acid is added to a solution, both the amount of acid and the total volume increase by the amount added, while the non-acid portion stays fixed. The governing relationship is that the final amount of acid equals the final concentration times the final total volume.
+
+The original solution contains 0.25 times 40 = 10 liters of acid. Let x denote the liters of pure acid added. After the addition, the amount of acid is 10 + x and the total volume is 40 + x, and this resulting solution must be 40% acid.
+
+Translating this into an equation gives (10 + x) / (40 + x) = 0.40. Multiplying both sides by (40 + x) gives 10 + x = 0.40(40 + x) = 16 + 0.40x. Subtracting 0.40x and 10 from both sides gives 0.60x = 6, so x = 10. As a check, adding 10 liters of acid gives 20 liters of acid in 50 liters of solution, and 20 / 50 = 0.40, or 40 percent.
+
+The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q57
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+A chemist combines 15 liters of a 30% salt solution with 10 liters of a 50% salt solution. What is the salt concentration of the resulting mixture?
+
+- A) 35%
+- B) 36%
+- C) 38%
+- D) 40%
+- E) 42%
+
+**answer:** C
+**explanation:** The concentration of a blended solution is the weighted average of the component concentrations, weighted by the volume of each component. It is found by computing the total amount of salt across both components and dividing by the total volume; averaging the two percents directly would be valid only if the volumes were equal.
+
+The first component contributes 0.30 times 15 = 4.5 liters of salt, and the second component contributes 0.50 times 10 = 5 liters of salt. The total amount of salt is therefore 4.5 + 5 = 9.5 liters.
+
+The total volume of the mixture is 15 + 10 = 25 liters. The resulting concentration is 9.5 / 25 = 0.38, which is 38 percent. Because the larger volume is the weaker 30% solution, the blend sits closer to 30% than to 50%, consistent with the result of 38%.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q58
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Ratio
+
+A garden contains only rose bushes and tulip beds in the ratio of 4 rose bushes to 5 tulip beds. How many rose bushes are in the garden?
+
+(1) There are 12 more tulip beds than rose bushes.
+(2) There are 90 plantings in the garden in total.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** This is a data sufficiency problem governed by the principle that a ratio fixes only the relative sizes of two quantities; a single scalar anchor, such as a difference between the parts or the total, is enough to convert that ratio into actual counts. Because the ratio of rose bushes to tulip beds is 4 to 5, we may write the number of rose bushes as 4k and the number of tulip beds as 5k for some positive value k, so determining the rose bushes reduces to determining k.
+
+Statement (1): There are 12 more tulip beds than rose bushes, so 5k - 4k = k = 12. This gives k = 12 directly, so the number of rose bushes is 4k = 48. The value is uniquely determined, so statement (1) alone is sufficient.
+
+Statement (2): There are 90 plantings in total, so 4k + 5k = 9k = 90, which gives k = 10. The number of rose bushes is 4k = 40. The value is uniquely determined, so statement (2) alone is sufficient.
+
+Since each statement alone fixes k and therefore the number of rose bushes, each statement alone is sufficient.
+
+The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q59
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Profit
+
+A merchant buys 80 identical mugs for a total of $640 and then sells all of them at $11 each. What is the merchant's profit as a percent of total cost?
+
+- A) 35%
+- B) 37.5%
+- C) 40%
+- D) 42.5%
+- E) 45%
+
+**answer:** B
+**explanation:** Profit as a percent of cost equals the total profit divided by the total cost, expressed as a percent, where the total profit is the difference between total revenue and total cost. We therefore compute revenue and cost across all units rather than working per unit.
+
+The total cost is given as $640. The total revenue from selling 80 mugs at $11 each is 80 times 11 = 880 dollars. The total profit is the revenue minus the cost: 880 - 640 = 240 dollars.
+
+The profit as a percent of cost is (240 / 640) times 100. Reducing 240 / 640 by dividing both terms by 80 gives 3 / 8, and 3 / 8 = 0.375, so the profit is 0.375 times 100 = 37.5 percent.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q60
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture
+
+A 12-liter solution that is 40% alcohol is combined with an 18-liter solution that is 65% alcohol. From the combined solution, 6 liters are drained off and replaced with 6 liters of pure water. What percent of the final mixture is alcohol?
+
+- A) 38%
+- B) 40%
+- C) 42%
+- D) 44%
+- E) 46%
+
+**answer:** D
+**explanation:** This problem has two stages: first a blend of two solutions, then a drain-and-replace step. In the blend, the total alcohol is the sum of the alcohol from each component; in the drain step, draining a fraction of a uniform mixture removes that same fraction of the alcohol, while adding pure water contributes none.
+
+In the first stage, the 12-liter solution contributes 0.40 times 12 = 4.8 liters of alcohol, and the 18-liter solution contributes 0.65 times 18 = 11.7 liters of alcohol. The combined solution therefore contains 4.8 + 11.7 = 16.5 liters of alcohol in a total of 12 + 18 = 30 liters.
+
+In the second stage, 6 of the 30 liters are drained, which is a fraction of 6 / 30 = 1/5, so one-fifth of the alcohol is removed and four-fifths is retained: 16.5 times 4/5 = 13.2 liters of alcohol remain. The 6 liters of pure water added afterward contain no alcohol and restore the total to 30 liters. The final concentration is therefore 13.2 / 30 = 0.44, which is 44 percent.
+
+The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q61
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Percent
+
+At a company, every employee either received a year-end bonus or did not. What percent of the employees received a bonus?
+
+(1) The number of employees who received a bonus is 5/8 of the number who did not receive a bonus.
+(2) If 12 more employees had received a bonus, then exactly half of all employees would have received a bonus.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** This problem asks for a percent, which is a ratio of a part to a whole and therefore depends only on the relative sizes of the groups, not on their absolute counts. Let b denote the number who received a bonus and n the number who did not; the quantity sought is b / (b + n) expressed as a percent.
+
+Statement (1) states that b = (5/8)n, which fixes the proportional relationship between the two groups. The fraction who received a bonus is b / (b + n) = (5/8)n / ((5/8)n + n) = (5/8) / (13/8) = 5/13. Because the n in the numerator and denominator cancels, this fraction is determined regardless of the actual head count, so statement (1) alone is sufficient.
+
+Statement (2) states that b + 12 = (1/2)(b + n), one equation in the two unknowns b and n. This relates an absolute count to the total but does not fix the proportion b / (b + n). For example, b = 8 with n = 32 gives a total of 40 and satisfies 8 + 12 = 20 = 40/2, yielding 8/40 = 20%, whereas b = 38 with n = 62 gives a total of 100 and satisfies 38 + 12 = 50 = 100/2, yielding 38/100 = 38%. Different percents are possible, so statement (2) alone is not sufficient.
+
+The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q62
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Profit
+
+A retailer sold a single item. What was the retailer's profit as a percent of the item's cost?
+
+(1) The item was sold for $90, and the retailer's profit on the item was $18.
+(2) The item was sold for 25% more than its cost.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** Profit as a percent of cost equals profit divided by cost, so the question is answerable whenever the available information fixes the ratio of profit to cost, even if it does not reveal the individual dollar figures. Let C denote the cost and P the profit, so the desired quantity is P / C as a percent.
+
+Statement (1) gives the selling price as $90 and the profit as $18. Since cost equals selling price minus profit, C = 90 - 18 = 72. The profit as a percent of cost is then 18 / 72 = 1/4 = 25 percent. This is a single determined value, so statement (1) alone is sufficient.
+
+Statement (2) states that the item was sold for 25% more than its cost, meaning the selling price is 1.25C. The profit is the selling price minus the cost, namely 1.25C - C = 0.25C, so the profit as a percent of cost is 0.25C / C = 0.25 = 25 percent. The cost cancels, leaving a single determined value, so statement (2) alone is sufficient.
+
+Since each statement alone determines the profit as a percent of cost, each statement alone is sufficient.
+
+The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q63
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Percent
+
+A laboratory ordered 240 test tubes, and 35% of them were made of borosilicate glass. How many of the test tubes were made of borosilicate glass?
+
+- A) 72
+- B) 80
+- C) 84
+- D) 96
+- E) 102
+
+**answer:** C
+**explanation:** To find a given percent of a quantity, we convert the percent to a decimal and multiply it by the quantity, because a percent is simply a number of hundredths. Here the quantity is the total order of 240 test tubes and the percent is 35%, which as a decimal is 35/100 = 0.35.
+
+We multiply the total by this decimal to obtain the number of borosilicate test tubes:
+
+0.35 × 240 = 84.
+
+Equivalently, we may compute 10% of 240, which is 24, and then scale: 35% is three and a half times 10%, so 3.5 × 24 = 84. Both methods agree, so 84 of the test tubes were made of borosilicate glass.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q64
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Ratio
+
+A startup is owned by investors and founders in the ratio of 5 investors' shares to 3 founders' shares. If the company has issued 96 shares in total, how many shares are held by founders?
+
+- A) 16
+- B) 24
+- C) 36
+- D) 40
+- E) 60
+
+**answer:** C
+**explanation:** A ratio divides a total into equal-sized parts, so the method is to find the value of one part and then multiply by the number of parts assigned to the desired quantity. Let the common multiplier be x, so that investors hold 5x shares and founders hold 3x shares. Since the company has issued only these shares, the total is the sum of the two quantities.
+
+Translating the total into an equation gives 5x + 3x = 96, which simplifies to 8x = 96. Dividing both sides by 8 yields x = 12, so each part of the ratio represents 12 shares.
+
+The founders correspond to 3 parts, so the number of founder shares is 3x = 3 × 12 = 36. As a check, investors hold 5 × 12 = 60 shares, and 60 + 36 = 96, which matches the stated total.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q65
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Discount
+
+A desk chair is listed at $250. A retailer marks it down by 12%. What is the marked-down price of the chair?
+
+- A) $200
+- B) $210
+- C) $215
+- D) $220
+- E) $230
+
+**answer:** D
+**explanation:** A markdown of a given percent reduces a price to the complementary percent of the original, because the remaining price is what is left after the discount is subtracted. A markdown of 12% leaves 100% − 12% = 88% of the original price, so the sale price equals 0.88 times the list price.
+
+Let the list price be P = 250. The marked-down price is therefore (1 − 0.12)(250) = (0.88)(250).
+
+Computing this product gives 0.88 × 250 = 220. Equivalently, we may find the dollar amount of the discount first: 12% of 250 is 0.12 × 250 = 30, and subtracting this from the list price gives 250 − 30 = 220. Both methods agree, so the marked-down price is $220.
+
+The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q66
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Proportion
+
+Six identical machines, all running at the same constant rate, together produce 480 parts in 4 hours. At that same rate, how many parts would 9 such machines produce in 4 hours?
+
+- A) 720
+- B) 640
+- C) 600
+- D) 540
+- E) 480
+
+**answer:** A
+**explanation:** When machines run at a common constant rate for a fixed time, the number of parts produced is directly proportional to the number of machines, so the output per machine over the given period is constant. The cleanest approach is to find the output of a single machine over the 4-hour span and then scale by the new number of machines.
+
+From the given information, 6 machines produce 480 parts in 4 hours, so a single machine produces 480 ÷ 6 = 80 parts in 4 hours.
+
+Holding the time fixed at 4 hours, 9 machines produce 9 times the single-machine output: 9 × 80 = 720 parts. Equivalently, increasing the count from 6 to 9 machines scales the output by the factor 9/6 = 1.5, and 480 × 1.5 = 720 parts.
+
+The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q67
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Markup
+
+A boutique buys a handbag for $75 and marks it up 60% above cost to set the retail price. What is the retail price of the handbag?
+
+- A) $90
+- B) $105
+- C) $112.50
+- D) $115
+- E) $120
+
+**answer:** E
+**explanation:** A markup of a given percent over cost increases the price to the cost plus that percent of the cost, which is equivalent to multiplying the cost by one plus the markup rate. A markup of 60% therefore multiplies the cost by 1 + 0.60 = 1.60.
+
+Let the cost be C = 75. The retail price is (1 + 0.60)(75) = 1.60 × 75.
+
+Computing this product gives 1.60 × 75 = 120. Equivalently, the dollar amount of the markup is 60% of 75, which is 0.60 × 75 = 45, and adding this to the cost gives 75 + 45 = 120. Both methods agree, so the retail price is $120.
+
+The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q68
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+In a seminar, 25 students scored an average of 78 on a quiz and a separate group of 15 students scored an average of 90 on the same quiz. What was the average score of all 40 students combined?
+
+- A) 82
+- B) 82.5
+- C) 83
+- D) 84
+- E) 85
+
+**answer:** B
+**explanation:** The combined average of two groups is a weighted average, in which each group's mean is weighted by the number of members in that group; the simple average of the two means applies only when the groups are equal in size. The combined average equals the total of all scores divided by the total number of students.
+
+The first group of 25 students averaging 78 contributes 25 × 78 = 1,950 points, and the second group of 15 students averaging 90 contributes 15 × 90 = 1,350 points. The total of all scores is therefore 1,950 + 1,350 = 3,300 points.
+
+The combined number of students is 25 + 15 = 40, so the overall average is 3,300 ÷ 40 = 82.5. Because the larger group is the lower-scoring one, the blended average sits below the midpoint of 78 and 90, consistent with the result of 82.5.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q69
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Profit
+
+A vendor buys a phone case for $48 and sells it for $60. The vendor's profit is what percent of the cost?
+
+- A) 15%
+- B) 20%
+- C) 25%
+- D) 30%
+- E) 33%
+
+**answer:** C
+**explanation:** Profit as a percent of cost equals the dollar amount of the profit divided by the cost, expressed as a percent. The phrase "percent of the cost" identifies the cost as the base of the comparison, so the cost must serve as the denominator.
+
+Let the cost be C = 48 and the selling price be S = 60. The dollar profit is the selling price minus the cost: S − C = 60 − 48 = 12.
+
+The profit as a percent of cost is therefore (profit ÷ cost) × 100 = (12 ÷ 48) × 100. We reduce 12/48 by dividing both terms by 12 to obtain 1/4, and 1/4 = 0.25, so the profit is 0.25 × 100 = 25 percent. As a check, increasing $48 by 25% adds 0.25 × 48 = 12 dollars, giving 48 + 12 = 60, the stated selling price.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q70
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Percent
+
+This year's revenue at a firm was what percent of last year's revenue?
+
+(1) This year's revenue was $50,000 greater than last year's revenue.
+(2) Last year's revenue was more than $200,000.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** The governing principle is that a percent comparison between two amounts is determined only when their ratio is fixed; a dollar difference alone, or a one-sided bound on the base, does not pin down a ratio. Let L denote last year's revenue and T this year's revenue; the question asks for T/L expressed as a percent.
+
+Statement (1) states that T = L + 50,000. This fixes the dollar difference but not the ratio T/L, because the ratio depends on the size of L. For example, L = 100,000 gives T/L = 150,000/100,000 = 150%, while L = 200,000 gives T/L = 250,000/200,000 = 125%. Different values arise, so statement (1) alone is not sufficient.
+
+Statement (2) states only that L > 200,000. This gives no information about T at all, so the ratio T/L cannot be determined. Statement (2) alone is not sufficient.
+
+Taking the two statements together, we know T = L + 50,000 and L > 200,000, but L is still not a single value. For example, L = 250,000 gives T/L = 300,000/250,000 = 120%, while L = 500,000 gives T/L = 550,000/500,000 = 110%. Because different admissible values of L yield different percents, the two statements together are not sufficient.
+
+The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q71
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mixture
+
+A container holds 60 liters of a solution that is 30% acid. How many liters of pure water must be added so that the resulting solution is 20% acid?
+
+- A) 30
+- B) 24
+- C) 20
+- D) 18
+- E) 15
+
+**answer:** A
+**explanation:** When pure water is added to a solution, the amount of the dissolved substance is unchanged; only the total volume, and therefore the concentration, changes. We anchor the solution to the conserved quantity of acid.
+
+The original 60-liter solution is 30% acid, so it contains 0.30 × 60 = 18 liters of acid. Adding pure water introduces no acid, so the amount of acid remains 18 liters.
+
+Let x denote the liters of water added. The new total volume is 60 + x liters, and this solution is to be 20% acid, so the acid equals 20% of the new total: 18 = 0.20(60 + x). Since 0.20 = 1/5, we have 60 + x = 18 ÷ (1/5) = 18 × 5 = 90. Subtracting 60 from both sides gives x = 30. As a check, 18 liters of acid in 90 liters of solution is 18/90 = 0.20, or 20%.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q72
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture
+
+A 10-liter solution that is 50% alcohol is combined with a 30-liter solution that is 20% alcohol. From the combined solution, 8 liters are drained off and replaced with 8 liters of pure water. What percent of the final mixture is alcohol?
+
+- A) 18%
+- B) 20%
+- C) 21%
+- D) 22%
+- E) 27.5%
+
+**answer:** D
+**explanation:** This problem has two stages: first a blend of two solutions, then a drain-and-replace step. In the blend, the total alcohol is the sum of the alcohol contributed by each component; in the drain step, removing a fraction of a uniform mixture removes that same fraction of the alcohol, while the added pure water contributes none.
+
+In the first stage, the 10-liter solution contributes 0.50 × 10 = 5 liters of alcohol, and the 30-liter solution contributes 0.20 × 30 = 6 liters of alcohol. The combined solution therefore contains 5 + 6 = 11 liters of alcohol in a total of 10 + 30 = 40 liters.
+
+In the second stage, 8 of the 40 liters are drained, a fraction of 8/40 = 1/5, so one-fifth of the alcohol is removed and four-fifths is retained: 11 × 4/5 = 8.8 liters of alcohol remain. The 8 liters of pure water added afterward contain no alcohol and restore the total to 40 liters. The final concentration is therefore 8.8 ÷ 40 = 0.22, which is 22 percent.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q73
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Proportion
+
+A crew of 8 workers can pave a stretch of road in 15 days while working 6 hours per day. Working at the same constant rate, how many days will a crew of 9 workers require to pave the same stretch of road if they work 5 hours per day?
+
+- A) 12
+- B) 14
+- C) 15
+- D) 16
+- E) 18
+
+**answer:** D
+**explanation:** A fixed job requires a fixed total amount of labor, which can be measured in worker-hours, the product of the number of workers, the number of days, and the hours worked each day. Because this total is constant, changes in the crew size and the daily hours are absorbed by a compensating change in the number of days.
+
+First we compute the total labor required. The original crew of 8 workers works 15 days at 6 hours per day, so the job requires 8 × 15 × 6 = 720 worker-hours.
+
+Now let d denote the number of days the new crew needs. The new crew of 9 workers working 5 hours per day supplies 9 × 5 = 45 worker-hours each day, so over d days it supplies 45d worker-hours. Setting this equal to the fixed total gives 45d = 720, so d = 720 ÷ 45 = 16. Thus the new crew requires 16 days.
+
+The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q74
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Weighted Average
+
+Two classes, A and B, took the same exam. What was the average score of all the students in the two classes combined?
+
+(1) Class A has twice as many students as Class B.
+(2) Class A averaged 75 and Class B averaged 90.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The combined average of two groups is a weighted average, so it is determined only when both the relative sizes of the groups and each group's average are known; the relative sizes serve as the weights and the group averages as the values. Let the number of students in Class B be n, so the combined average depends on the group sizes and the two means.
+
+Statement (1) gives only the relationship between the class sizes, that Class A has twice as many students as Class B; it says nothing about any scores, so the combined average cannot be found. Statement (1) alone is not sufficient.
+
+Statement (2) gives the two group averages, 75 and 90, but says nothing about how many students are in each class. Without the weights, the combined average could lie anywhere between 75 and 90 depending on the sizes, so statement (2) alone is not sufficient.
+
+Taking the two statements together, let Class B have n students and Class A have 2n students. The combined average is (2n × 75 + n × 90) ÷ (2n + n) = (150n + 90n) ÷ (3n) = 240n ÷ 3n = 80. The factor n cancels, leaving a single value of 80 regardless of the actual class sizes. Both statements together are therefore sufficient, while neither alone is sufficient.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations

@@ -1,3 +1,6 @@
+// Build-time guard: importing this module from a Client Component fails the
+// build, so the service-role key path can never be bundled for the browser.
+import "server-only"
 import { createClient, type SupabaseClient } from "@supabase/supabase-js"
 
 /**

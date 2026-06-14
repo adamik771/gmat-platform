@@ -21,9 +21,11 @@ import type { Section } from "@/types"
  */
 
 /** Max questions per test, by section. The number of tests per chapter grows with the bank.
- * Kept small deliberately: 6-9 question tests are one focused sitting and yield more
- * tests per chapter. */
-export const TEST_CAPS: Record<Section, number> = { Quant: 9, Verbal: 8, DI: 8 }
+ * Quant runs longer 10-15 question tests dealt as a difficulty LADDER (Test 1 = the
+ * chapter's easiest questions ... last test = the hardest); Verbal/DI stay short
+ * 6-8 question tests dealt round-robin so each is a balanced easy->hard mix. See
+ * the dealing logic in content.ts `getPracticeChapterGroups`. */
+export const TEST_CAPS: Record<Section, number> = { Quant: 15, Verbal: 8, DI: 8 }
 
 /** Banks that are 1:1 with a chapter — file slug equals chapter slug, subtopic ignored (DI). */
 export const DIRECT_BANK_CHAPTER: Record<string, string> = {

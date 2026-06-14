@@ -90,6 +90,14 @@ export async function POST(request: Request) {
   // to deploy beforehand; flip the env once Stripe Tax is live.
   const automaticTax = process.env.STRIPE_AUTOMATIC_TAX === "true"
 
+  // Terms-of-service acceptance at checkout. Stripe records the consent on the
+  // session (a stronger legal record than a client-side checkbox we don't
+  // persist), but it requires a Terms of Service URL configured in the Stripe
+  // Dashboard (Settings -> Checkout and Payment Links) first — without it,
+  // session creation errors. Gate behind STRIPE_TOS_CONSENT so this is safe to
+  // deploy beforehand; flip the env once the ToS URL is set.
+  const tosConsent = process.env.STRIPE_TOS_CONSENT === "true"
+
   try {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -111,6 +119,10 @@ export async function POST(request: Request) {
       invoice_creation: { enabled: true },
       // VAT calculation — only when Stripe Tax is configured (see above).
       ...(automaticTax ? { automatic_tax: { enabled: true } } : {}),
+      // ToS acceptance — only when a ToS URL is set in the dashboard (see above).
+      ...(tosConsent
+        ? { consent_collection: { terms_of_service: "required" as const } }
+        : {}),
       success_url: `${origin}/dashboard?purchase=success&plan=${planId}`,
       cancel_url: `${origin}/pricing?purchase=cancelled`,
     })

@@ -2310,3 +2310,661 @@ When the sum of four consecutive positive integers is divided by the smallest of
 **answer:** D
 **explanation:** Let the four consecutive integers be n, n+1, n+2, and n+3, so their sum is 4n + 6. The condition states (4n + 6) / n = 5, which gives 4n + 6 = 5n, so n = 6. The integers are 6, 7, 8, 9, and the largest is 9. As a check, (6 + 7 + 8 + 9) / 6 = 30 / 6 = 5. (A solver who stops at the smallest integer n = 6 would choose that value instead.) The correct answer is D.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q70
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Rate Distance
+
+A delivery van travels 165 miles in 3 hours at a constant speed. At this same speed, how many miles will the van travel in 5 hours?
+
+- A) 275
+- B) 280
+- C) 300
+- D) 320
+- E) 330
+
+**answer:** A
+**explanation:** Because the van moves at a constant speed, this is a uniform-rate problem in which distance equals rate multiplied by time. The governing approach is to determine the constant speed from the information given and then apply that speed to the new time.
+
+Let r represent the van's speed in miles per hour. The van covers 165 miles in 3 hours, so r = 165 / 3 = 55 miles per hour.
+
+We now apply this constant speed to a time of 5 hours. The distance covered is r multiplied by the time, which is 55 x 5 = 275 miles. Thus the van travels 275 miles in 5 hours.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q71
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Profit
+
+A shopkeeper buys a clock for $60 and sells it for $75. What is the shopkeeper's profit expressed as a percentage of the cost?
+
+- A) 15%
+- B) 18%
+- C) 20%
+- D) 25%
+- E) 30%
+
+**answer:** D
+**explanation:** Profit as a percentage of cost equals the profit divided by the cost, multiplied by 100. The base of this percentage is the cost, not the selling price.
+
+The cost is $60 and the selling price is $75, so the profit is the selling price minus the cost: 75 - 60 = 15 dollars.
+
+Dividing the profit by the cost and converting to a percentage gives (15 / 60) x 100 = 0.25 x 100 = 25 percent. Therefore the shopkeeper's profit, measured as a percentage of the cost, is 25 percent.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q72
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Work Rate
+
+Hose A can fill a pool in 5 hours, and Hose B can fill the same pool in 20 hours. If both hoses run together, how many hours will it take to fill the empty pool?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 8
+- E) 10
+
+**answer:** B
+**explanation:** When two hoses fill the same pool together, their individual rates of filling add. A rate is the fraction of the pool filled in one unit of time, and it is the reciprocal of the time required to fill the whole pool alone.
+
+Let the entire pool equal 1. Hose A fills the pool in 5 hours, so its rate is 1/5 of the pool per hour. Hose B fills the pool in 20 hours, so its rate is 1/20 of the pool per hour.
+
+Working together, the combined rate is the sum of the two rates: 1/5 + 1/20 = 4/20 + 1/20 = 5/20 = 1/4 of the pool per hour.
+
+Let T be the number of hours needed to fill the pool together. Since rate multiplied by time equals the work done, and the work done is one full pool, we have (1/4)(T) = 1, so T = 4.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q73
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Interest
+
+A deposit of $2,500 earns simple interest at an annual rate of 6%. How much interest will the deposit earn over 4 years?
+
+- A) $400
+- B) $500
+- C) $600
+- D) $660
+- E) $720
+
+**answer:** C
+**explanation:** This problem is governed by the simple interest relationship, in which interest is computed only on the original principal and does not compound. The amount of interest is I = P r t, where P is the principal, r is the annual rate expressed as a decimal, and t is the time in years.
+
+Let P = 2,500, let r = 0.06 (corresponding to 6%), and let t = 4. Substituting these values gives I = 2,500 x 0.06 x 4.
+
+We first compute the interest in a single year: 2,500 x 0.06 = 150. Because the interest is simple, the same amount is earned each year, so over four years the total interest is 150 x 4 = 600.
+
+Thus the deposit earns $600 in interest over the four-year period.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q74
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mixture
+
+A tank holds 24 liters of a solution that is 25% salt by volume. How many liters of pure water must be added to dilute the solution to 15% salt?
+
+- A) 6
+- B) 8
+- C) 10
+- D) 14
+- E) 16
+
+**answer:** E
+**explanation:** This is a dilution problem in which only water is added, so the amount of salt remains constant while the total volume increases. The governing principle is that the concentration equals the fixed amount of salt divided by the new total volume.
+
+Let x represent the number of liters of pure water that must be added. The original solution holds 24 liters at 25% salt, so the amount of salt is 0.25 x 24 = 6 liters. Adding water does not change the amount of salt, so the solution still contains 6 liters of salt. The new total volume is 24 + x liters.
+
+For the resulting solution to be 15% salt, the ratio of salt to total volume must equal 0.15:
+
+6 / (24 + x) = 0.15
+
+Multiplying both sides by (24 + x) gives 6 = 0.15(24 + x), which expands to 6 = 3.6 + 0.15x. Subtracting 3.6 from both sides yields 0.15x = 2.4, and dividing by 0.15 gives x = 16.
+
+As a check, adding 16 liters yields a total volume of 40 liters, and 6 / 40 = 0.15, confirming the 15% concentration. Thus 16 liters of pure water must be added.
+
+The correct answer is E.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q75
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Overlapping Sets
+
+In a group of 60 people, 35 like jazz, 28 like rock, and 9 like neither genre. How many people like both jazz and rock?
+
+- A) 9
+- B) 12
+- C) 14
+- D) 16
+- E) 21
+
+**answer:** B
+**explanation:** This problem concerns two overlapping groups within a finite population, so it is governed by the inclusion-exclusion principle: the number of people who like at least one genre equals the number who like jazz plus the number who like rock minus the number who like both. We must first separate out the people who like neither genre.
+
+The total number of people is 60, and 9 of them like neither genre, so the number who like at least one genre is 60 - 9 = 51.
+
+Let x denote the number who like both jazz and rock. By inclusion-exclusion, (number who like jazz) + (number who like rock) - (number who like both) = (number who like at least one), which gives 35 + 28 - x = 51. The left side simplifies to 63 - x = 51, so x = 63 - 51 = 12.
+
+As a check, the number who like only jazz is 35 - 12 = 23, the number who like only rock is 28 - 12 = 16, the number who like both is 12, and the number who like neither is 9; these sum to 23 + 16 + 12 + 9 = 60, matching the total.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q76
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Rate Distance
+
+A car travels at a constant speed along a straight road from Town X to Town Y. What is the distance, in miles, from Town X to Town Y?
+
+(1) The car travels at 50 miles per hour and completes the trip in 3 hours.
+(2) The car travels at 60 miles per hour; had it instead traveled at 70 miles per hour, the trip would have taken 30 minutes less.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The governing relationship is that distance equals rate multiplied by time, so a distance is determined whenever the rate and the corresponding time are both fixed, or whenever an equation in the distance can be solved uniquely. The task is to test each statement for sufficiency on its own.
+
+Consider statement (1). The car travels at 50 miles per hour for 3 hours, so the distance is 50 x 3 = 150 miles. This is a single determined value, so statement (1) alone is sufficient.
+
+Consider statement (2). Let d be the distance. At 60 miles per hour the time is d/60 hours, and at 70 miles per hour the time would be d/70 hours, which is 30 minutes, or 0.5 hour, less. This gives the equation d/60 - d/70 = 0.5. Combining the left side over the common denominator 4,200 yields d(70 - 60)/4,200 = 0.5, that is, 10d/4,200 = 0.5, so d = 0.5 x 4,200 / 10 = 210 miles. This is a single determined value, so statement (2) alone is also sufficient.
+
+Because each statement alone yields a unique distance, each statement alone is sufficient.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q77
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Classic Word Problem
+
+A jar contains only nickels and quarters. There are 30 coins in the jar with a total value of $4.90. How many quarters are in the jar?
+
+- A) 17
+- B) 18
+- C) 19
+- D) 20
+- E) 22
+
+**answer:** A
+**explanation:** This is a classic two-variable word problem solved with a system of two linear equations: one for the total number of coins and one for the total value. To avoid decimal errors, we measure all values in cents.
+
+Let n represent the number of nickels and let q represent the number of quarters. Because the jar contains 30 coins, the count equation is n + q = 30. A nickel is worth 5 cents and a quarter is worth 25 cents, and the total value of $4.90 equals 490 cents, so the value equation is 5n + 25q = 490.
+
+Solving the count equation for n gives n = 30 - q. Substituting into the value equation yields 5(30 - q) + 25q = 490, which expands to 150 - 5q + 25q = 490, that is, 150 + 20q = 490. Subtracting 150 gives 20q = 340, and dividing by 20 gives q = 17.
+
+As a check, this leaves 30 - 17 = 13 nickels, and the total value is 17(25) + 13(5) = 425 + 65 = 490 cents, or $4.90, as required. Thus the jar contains 17 quarters.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q78
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Work Rate
+
+Machines A and B, each working at its own constant rate, work together to fill a single order. How many hours does it take the two machines, working together, to fill the order?
+
+(1) Machine A, working alone, can fill the order in 6 hours.
+(2) Machine B works twice as fast as Machine A.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The time for two machines working together depends on the sum of their individual rates, where each rate is the reciprocal of the time that machine needs alone. To compute the combined time we must know both machines' actual rates, not merely one rate or merely their ratio.
+
+Consider statement (1). It gives Machine A's alone time as 6 hours, so A's rate is 1/6 of the order per hour. However, nothing is known about Machine B's rate, so the combined rate cannot be determined. Statement (1) alone is not sufficient.
+
+Consider statement (2). It states that B works twice as fast as A, fixing the ratio of their rates but giving no actual rate for either machine. The pair could be fast or slow, so the combined time is not determined. Statement (2) alone is not sufficient.
+
+Taking the statements together, A's rate is 1/6 per hour, and because B works twice as fast, B's rate is 2 x (1/6) = 1/3 per hour. The combined rate is 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 of the order per hour, so the combined time is 1 / (1/2) = 2 hours, a single determined value. The two statements together are sufficient, while neither alone is sufficient.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q79
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Rate Distance
+
+A commuter drives from home to the office at an average speed of 40 miles per hour and returns home along the same route at an average speed of 60 miles per hour. What is the commuter's average speed, in miles per hour, for the entire round trip?
+
+- A) 45
+- B) 46
+- C) 47
+- D) 48
+- E) 50
+
+**answer:** D
+**explanation:** Average speed is total distance divided by total time, not the arithmetic mean of the two speeds. Because the same route is driven in each direction, the two legs are equal in distance but unequal in time, so the total time must be computed directly.
+
+Let d represent the one-way distance, in miles, between home and the office. The round trip covers a total distance of 2d miles.
+
+The outbound leg at 40 miles per hour takes d/40 hours, and the return leg at 60 miles per hour takes d/60 hours. The total time is d/40 + d/60. Expressing both terms over the common denominator 120 gives 3d/120 + 2d/120 = 5d/120 = d/24 hours.
+
+The average speed for the round trip is the total distance divided by the total time: (2d) / (d/24) = 2d x (24/d) = 48. The variable d cancels, so the result does not depend on the actual route length. The average speed is 48 miles per hour.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q80
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture
+
+A coffee roaster blends a premium bean costing $15 per pound with a standard bean costing $9 per pound to produce 30 pounds of a blend that costs $11 per pound. How many pounds of the premium bean are used in the blend?
+
+- A) 6
+- B) 8
+- C) 10
+- D) 12
+- E) 15
+
+**answer:** C
+**explanation:** This is a mixture problem in which the total cost of the blend equals the sum of the costs of its two components. The governing relationship is that price per pound multiplied by pounds gives total cost, and the combined cost of the two beans must equal the cost of the finished blend.
+
+Let a represent the pounds of premium bean and let b represent the pounds of standard bean. Because the blend weighs 30 pounds, a + b = 30. The premium bean costs $15 per pound and the standard bean costs $9 per pound, so their combined cost is 15a + 9b dollars. The 30 pounds of blend cost $11 per pound, for a total of 11 x 30 = 330 dollars. Setting the combined cost equal to the blend's cost gives 15a + 9b = 330.
+
+From the first equation, b = 30 - a. Substituting into the second equation yields 15a + 9(30 - a) = 330, which expands to 15a + 270 - 9a = 330, that is, 6a + 270 = 330. Subtracting 270 gives 6a = 60, and dividing by 6 gives a = 10.
+
+As a check, the blend would then use 10 pounds of premium bean and 20 pounds of standard bean, for a cost of 15(10) + 9(20) = 150 + 180 = 330 dollars, matching the blend's total value. Thus 10 pounds of the premium bean are used.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q81
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Interest
+
+A savings account earns simple interest at a fixed annual rate. How much interest, in dollars, does the account earn in one year?
+
+(1) The account's annual interest rate is 5%.
+(2) The account holds a principal of $8,000, and after exactly one year the balance has grown to $8,400.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The simple interest earned in one year equals the principal multiplied by the annual rate, so the one-year interest is also simply the increase in the balance over the year. Determining the dollar interest requires either both the principal and the rate, or a direct measurement of how much the balance grew.
+
+Consider statement (1). It gives the rate as 5% but provides no principal. The interest in one year is 0.05 multiplied by the principal, which could be any amount, so the dollar interest is not determined. Statement (1) alone is not sufficient.
+
+Consider statement (2). It gives a principal of $8,000 and a year-end balance of $8,400. The interest earned in one year is the balance minus the principal: 8,400 - 8,000 = 400 dollars, a single determined value. Statement (2) alone is sufficient.
+
+Because statement (2) alone determines the interest while statement (1) alone does not, statement (2) alone is sufficient but statement (1) alone is not.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q82
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Rate Distance
+
+A delivery van covers 252 miles in 4.5 hours, traveling at a constant speed the entire time. What is the van's speed, in miles per hour?
+
+- A) 50
+- B) 52
+- C) 54
+- D) 55
+- E) 56
+
+**answer:** E
+**explanation:** This is a uniform-rate problem governed by the relationship distance = rate x time, which can be rearranged to give rate = distance / time. Because the van travels at a constant speed, its speed is simply the total distance divided by the total time.
+
+The van covers a distance of 252 miles in a time of 4.5 hours. Substituting these values into rate = distance / time gives rate = 252 / 4.5.
+
+Dividing 252 by 4.5 yields 56, so the van travels at 56 miles per hour. As a check, multiplying the rate by the time returns the distance: 56 x 4.5 = 252 miles, which matches the given distance.
+
+The correct answer is E.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q83
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Work Rate
+
+A worker assembles 84 identical components in 6 hours, working at a constant rate. At this rate, how many components will the worker assemble in 9 hours?
+
+- A) 108
+- B) 112
+- C) 120
+- D) 126
+- E) 132
+
+**answer:** D
+**explanation:** Because the worker assembles components at a constant rate, this is a uniform-rate problem in which the number of components produced equals the rate of assembly multiplied by the time worked. The governing relation is components = rate x time, so we first find the rate and then apply it to the new time.
+
+Let r be the assembly rate in components per hour. The worker assembles 84 components in 6 hours, so r = 84 / 6 = 14 components per hour.
+
+Applying this constant rate to a time of 9 hours, the number of components assembled is 14 x 9 = 126. Thus the worker assembles 126 components in 9 hours.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q84
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Profit
+
+A shopkeeper buys an item for $48 and sells it for $60. What is the shopkeeper's profit as a percentage of the cost?
+
+- A) 20%
+- B) 25%
+- C) 30%
+- D) 33%
+- E) 40%
+
+**answer:** B
+**explanation:** Profit expressed as a percentage of cost equals the profit divided by the cost, then multiplied by 100. The base of this percentage is the cost, not the selling price.
+
+The cost is $48 and the selling price is $60, so the profit is the selling price minus the cost: 60 - 48 = 12 dollars.
+
+Dividing the profit by the cost and converting to a percentage gives (12 / 48) x 100 = 0.25 x 100 = 25 percent. Therefore the shopkeeper's profit, measured as a percentage of the cost, is 25 percent.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q85
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Overlapping Sets
+
+In a group of 60 people, 38 own a laptop, 27 own a tablet, and 9 own neither device. How many people own both a laptop and a tablet?
+
+- A) 5
+- B) 9
+- C) 11
+- D) 14
+- E) 16
+
+**answer:** D
+**explanation:** This problem concerns two overlapping groups within a finite population, so it is governed by the inclusion-exclusion principle: the number of people who own at least one device equals the number who own a laptop plus the number who own a tablet minus the number who own both. We must first remove the people who own neither device.
+
+Of the 60 people, 9 own neither device, so the number who own at least one device is 60 - 9 = 51.
+
+Let x denote the number who own both devices. By inclusion-exclusion, (laptop owners) + (tablet owners) - (both) equals the number who own at least one device, which gives 38 + 27 - x = 51. The left side simplifies to 65 - x = 51, so x = 65 - 51 = 14.
+
+As a check, the people split into 38 - 14 = 24 who own only a laptop, 27 - 14 = 13 who own only a tablet, 14 who own both, and 9 who own neither, and 24 + 13 + 14 + 9 = 60, matching the total. Thus 14 people own both devices.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q86
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mixture
+
+A laboratory has 15 liters of a saline solution that is 20% salt by volume. How many liters of pure water must be added to dilute the solution to 12% salt by volume?
+
+- A) 10
+- B) 12
+- C) 15
+- D) 18
+- E) 20
+
+**answer:** A
+**explanation:** This is a dilution problem in which a solvent that contains none of the dissolved substance is added to a solution. The governing principle is that adding pure water increases the total volume while leaving the amount of salt unchanged, and the concentration is the amount of salt divided by the total volume.
+
+The original solution contains 15 liters at 20% salt, so the amount of salt is 0.20 x 15 = 3 liters, and this amount does not change when water is added.
+
+Let x be the number of liters of pure water added. The total volume becomes 15 + x liters, while the salt remains 3 liters. We require the new concentration to equal 12%, so 3 / (15 + x) = 0.12.
+
+Multiplying both sides by (15 + x) gives 3 = 0.12(15 + x) = 1.8 + 0.12x. Subtracting 1.8 gives 1.2 = 0.12x, so x = 1.2 / 0.12 = 10. Thus 10 liters of pure water must be added.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q87
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Interest
+
+A principal of $1,200 is deposited in an account that pays simple interest at an annual rate of 6%. How much interest, in dollars, does the deposit earn over 3 years?
+
+- A) $120
+- B) $150
+- C) $180
+- D) $200
+- E) $216
+
+**answer:** E
+**explanation:** Simple interest is computed only on the original principal and does not compound, so the interest earned equals the principal multiplied by the annual rate multiplied by the number of years. The governing formula is I = P x r x t.
+
+Here the principal P is $1,200, the annual rate r is 6%, which is 0.06 in decimal form, and the time t is 3 years.
+
+Substituting these values gives I = 1,200 x 0.06 x 3. First, 1,200 x 0.06 = 72, which is the interest earned in a single year. Multiplying by 3 years gives 72 x 3 = 216. Thus the deposit earns $216 in interest over 3 years.
+
+The correct answer is E.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q88
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Rate Distance
+
+A car travels at a constant speed along a straight road from point P to point Q. What is the distance, in miles, from P to Q?
+
+(1) The car travels at a constant speed of 50 miles per hour.
+(2) The trip from P to Q takes 3 hours.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The governing relationship is distance = rate x time, so determining the distance requires knowing both the constant speed and the elapsed time. Knowing only one of the two factors leaves the distance undetermined.
+
+Consider statement (1). It gives the speed as 50 miles per hour but says nothing about how long the trip takes. The distance is 50 multiplied by an unknown time, so it could be any value. Statement (1) alone is not sufficient.
+
+Consider statement (2). It gives the travel time as 3 hours but says nothing about the speed. The distance is an unknown speed multiplied by 3, so it could be any value. Statement (2) alone is not sufficient.
+
+Taking the statements together, the speed is 50 miles per hour and the time is 3 hours, so the distance is 50 x 3 = 150 miles, a single determined value. Both statements together are sufficient, while neither alone is sufficient.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q89
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work Rate
+
+Working alone, Pump A can drain a reservoir in 10 hours, and Pump B can drain the same reservoir in 15 hours. If both pumps operate at the same time, how many hours will it take them to drain the full reservoir?
+
+- A) 5
+- B) 6
+- C) 7.5
+- D) 9
+- E) 12.5
+
+**answer:** B
+**explanation:** When two pumps operate simultaneously on the same job, their individual rates of work add. A rate of work is the fraction of the job completed in one unit of time and is the reciprocal of the time required to finish the whole job alone.
+
+Let the full reservoir equal 1 job. Pump A drains it in 10 hours, so its rate is 1/10 of the reservoir per hour. Pump B drains it in 15 hours, so its rate is 1/15 of the reservoir per hour.
+
+Working together, the combined rate is 1/10 + 1/15. Using the common denominator 30 gives 3/30 + 2/30 = 5/30 = 1/6 of the reservoir per hour.
+
+Let T be the number of hours needed to drain the reservoir together. Since rate x time = work done, and the work done is 1 full reservoir, we have (1/6)(T) = 1, so T = 6 hours.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q90
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Overlapping Sets
+
+In a group of 50 students, each student may study physics, chemistry, both subjects, or neither subject. How many students study both physics and chemistry?
+
+(1) 30 students study physics, 25 students study chemistry, and 5 students study neither subject.
+(2) 18 students study only physics and 7 students study only chemistry.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** This is an overlapping-sets question governed by the inclusion-exclusion principle: among the students, the number who study at least one subject equals the number who study physics plus the number who study chemistry minus the number who study both. The total of 50 students and the count studying neither subject together fix the number who study at least one subject.
+
+Consider statement (1). Since 5 of the 50 students study neither subject, the number who study at least one subject is 50 - 5 = 45. Letting b denote the number who study both, inclusion-exclusion gives 30 + 25 - b = 45, so 55 - b = 45 and b = 10. The value is uniquely determined, so statement (1) alone is sufficient.
+
+Consider statement (2). It tells us that 18 students study only physics and 7 study only chemistry, but it gives no information about how many study both subjects or how many study neither. The number who study both could be any nonnegative value consistent with the total of 50, so statement (2) alone is not sufficient.
+
+Because statement (1) alone determines the number who study both while statement (2) alone does not, statement (1) alone is sufficient but statement (2) alone is not.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q91
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture
+
+A chemist combines a 30% acid solution with an 80% acid solution to produce 50 liters of a solution that is 60% acid. How many liters of the 30% solution are used?
+
+- A) 12
+- B) 15
+- C) 18
+- D) 20
+- E) 24
+
+**answer:** D
+**explanation:** This is a two-solution mixture problem in which the total amount of pure acid in the components must equal the amount of pure acid in the final mixture. The governing relationship is that the acid contributed by each solution equals its concentration multiplied by its volume, and these contributions sum to the acid in the blend.
+
+Let x be the number of liters of the 30% solution. Because the total blend is 50 liters, the volume of the 80% solution is 50 - x liters.
+
+The acid from the 30% solution is 0.30x, and the acid from the 80% solution is 0.80(50 - x). The finished 50-liter blend is 60% acid, so it contains 0.60 x 50 = 30 liters of acid. Setting the sum of the contributions equal to 30 gives 0.30x + 0.80(50 - x) = 30.
+
+Expanding the left side gives 0.30x + 40 - 0.80x = 30, which simplifies to 40 - 0.50x = 30. Subtracting 40 gives -0.50x = -10, so x = 20. As a check, 0.30(20) + 0.80(30) = 6 + 24 = 30 liters of acid, matching the blend. Thus 20 liters of the 30% solution are used.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q92
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Rate Distance
+
+A cyclist rides from a campsite to a lookout point at an average speed of 30 miles per hour and returns along the same route at an average speed of 45 miles per hour. What is the cyclist's average speed, in miles per hour, for the entire round trip?
+
+- A) 35
+- B) 36
+- C) 37.5
+- D) 40
+- E) 42
+
+**answer:** B
+**explanation:** Average speed is total distance divided by total time, not the arithmetic mean of the two speeds. Because the same route is ridden in each direction, the two legs are equal in distance but unequal in time, so the total time must be computed directly.
+
+Let d represent the one-way distance, in miles, between the campsite and the lookout point. The round trip covers a total distance of 2d miles.
+
+The outbound leg at 30 miles per hour takes d/30 hours, and the return leg at 45 miles per hour takes d/45 hours. The total time is d/30 + d/45. Using the common denominator 90 gives 3d/90 + 2d/90 = 5d/90 = d/18 hours.
+
+The average speed for the round trip is the total distance divided by the total time: (2d) / (d/18) = 2d x (18/d) = 36. The variable d cancels, so the result does not depend on the route length. The average speed is 36 miles per hour.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q93
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Classic Word Problem
+
+A theater sold only adult tickets and child tickets for a single performance. How many adult tickets did the theater sell?
+
+(1) The theater sold a total of 200 tickets.
+(2) Adult tickets cost $12 each and child tickets cost $7 each, and the total revenue from all tickets was $1,990.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Let a be the number of adult tickets and c the number of child tickets. The question asks for a, and because there are two unknowns, two independent equations are generally needed to pin down a single value.
+
+Consider statement (1). It gives a + c = 200, a single equation in two unknowns. Many pairs satisfy it, for example 100 adult and 100 child tickets, or 150 adult and 50 child tickets, so a is not determined. Statement (1) alone is not sufficient.
+
+Consider statement (2). It gives the value equation 12a + 7c = 1,990. This single equation has more than one nonnegative integer solution, for example a = 118 and c = 82, or a = 111 and c = 94 (since 12(111) + 7(94) = 1,332 + 658 = 1,990). Because more than one value of a is possible, statement (2) alone is not sufficient.
+
+Taking the statements together gives the system a + c = 200 and 12a + 7c = 1,990. Substituting c = 200 - a into the second equation gives 12a + 7(200 - a) = 1,990, that is, 12a + 1,400 - 7a = 1,990, so 5a = 590 and a = 118. The value is uniquely determined, so both statements together are sufficient while neither alone is sufficient.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems

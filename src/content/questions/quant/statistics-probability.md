@@ -1580,3 +1580,687 @@ The result can be confirmed independently. Because every draw produces a red bal
 
 The correct answer is D.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q46
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Mean Median Mode
+
+What is the mode of the set {3, 8, 8, 11, 15, 8, 3}?
+
+- A) 3
+- B) 7
+- C) 8
+- D) 11
+- E) 15
+
+**answer:** C
+**explanation:** The mode of a set of numbers is the value that occurs most frequently. To find it, count how many times each distinct value appears and select the value with the greatest count; the mode is unrelated to the mean or the median, which describe the center of the data in different ways.
+
+Let the set be {3, 8, 8, 11, 15, 8, 3}. Tallying the occurrences of each distinct value, the value 3 appears twice, the value 8 appears three times, and the values 11 and 15 each appear once.
+
+Since 8 occurs three times, which is more often than any other value, the mode of the set is 8.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q47
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Probability
+
+A bag contains 5 red marbles, 7 green marbles, and 8 blue marbles. If one marble is drawn at random, what is the probability that it is blue?
+
+- A) 1/5
+- B) 7/20
+- C) 3/10
+- D) 2/5
+- E) 3/5
+
+**answer:** D
+**explanation:** The probability of an event with equally likely outcomes equals the number of favorable outcomes divided by the total number of outcomes. Because each marble is equally likely to be drawn, the probability of drawing a blue marble is the number of blue marbles divided by the total number of marbles.
+
+Let the total number of marbles be the sum of the marbles of each color: 5 + 7 + 8 = 20. The number of favorable outcomes is the number of blue marbles, which is 8.
+
+The probability of drawing a blue marble is therefore 8/20. Reducing this fraction by dividing the numerator and denominator by 4 gives 8/20 = 2/5.
+
+The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q48
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Sets
+
+In a group of 60 people, 38 like coffee and 27 like tea. If 12 people like both coffee and tea, how many people in the group like neither beverage?
+
+- A) 7
+- B) 12
+- C) 15
+- D) 19
+- E) 23
+
+**answer:** A
+**explanation:** This problem applies the inclusion-exclusion principle: the number of people who like at least one of the two beverages equals the number who like coffee plus the number who like tea minus the number who like both, since those who like both would otherwise be counted twice. The number who like neither is then the total minus the number who like at least one.
+
+Let the total number of people be T = 60. The number who like coffee is 38 and the number who like tea is 27, while the number who like both is 12. The number who like at least one beverage is the size of the union:
+
+38 + 27 − 12 = 65 − 12 = 53.
+
+The number who like neither beverage is the total minus those who like at least one:
+
+60 − 53 = 7.
+
+The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q49
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Expected Value
+
+A game uses a spinner that is equally likely to land on "win" or "lose." If it lands on "win," the player receives $4; if it lands on "lose," the player pays $2. What is the expected net gain from one spin?
+
+- A) $0.00
+- B) $1.00
+- C) $1.50
+- D) $2.00
+- E) $3.00
+
+**answer:** B
+**explanation:** The expected value of a single spin is the sum, over all possible outcomes, of each outcome's net value multiplied by its probability. Because the spinner is equally likely to land on either region, each outcome has probability 1/2.
+
+The two outcomes are landing on "win," which has a net value of +$4, and landing on "lose," which has a net value of −$2. Weighting each net value by its probability gives
+
+EV = (1/2)(4) + (1/2)(−2).
+
+Evaluating the terms, (1/2)(4) = 2 and (1/2)(−2) = −1, so
+
+EV = 2 + (−1) = 1.
+
+Thus the expected net gain from one spin is $1.00.
+
+The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q50
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mean Median Mode
+
+In a class of 30 students, 18 students scored an average of 80 on a test and the remaining 12 students scored an average of 90. What was the average score of all 30 students?
+
+- A) 82
+- B) 83
+- C) 85
+- D) 86
+- E) 84
+
+**answer:** E
+**explanation:** This is a weighted-average problem. The overall mean of a combined group equals the total of all the scores divided by the total number of students, and the total of all the scores is found by converting each subgroup's average into a sum using the relationship sum = average × count.
+
+The first subgroup has 18 students averaging 80, so its total is 18 × 80 = 1,440. The second subgroup has 12 students averaging 90, so its total is 12 × 90 = 1,080. The combined total of all scores is therefore 1,440 + 1,080 = 2,520.
+
+Dividing the combined total by the total number of students gives the overall average:
+
+2,520 ÷ 30 = 84.
+
+Note that the result is not the simple average of 80 and 90, which would be 85, because the two subgroups contain different numbers of students; the larger subgroup (the 18 students scoring 80) pulls the combined average below the midpoint.
+
+The correct answer is E.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q51
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability
+
+Two fair six-sided dice are rolled. What is the probability that the sum of the numbers shown is at least 10?
+
+- A) 1/12
+- B) 1/6
+- C) 5/36
+- D) 7/36
+- E) 1/4
+
+**answer:** B
+**explanation:** The probability of an event equals the number of favorable outcomes divided by the total number of equally likely outcomes. Because the two dice are distinguishable, each roll is an ordered pair, and there are 6 × 6 = 36 equally likely ordered outcomes in total.
+
+The event "the sum is at least 10" includes the sums 10, 11, and 12. We count the ordered pairs (a, b) that produce each of these sums. A sum of 10 is achieved by (4, 6), (5, 5), and (6, 4), which is 3 outcomes. A sum of 11 is achieved by (5, 6) and (6, 5), which is 2 outcomes. A sum of 12 is achieved by (6, 6), which is 1 outcome.
+
+Adding these gives 3 + 2 + 1 = 6 favorable outcomes. The probability is therefore
+
+6/36 = 1/6.
+
+The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q52
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Standard Deviation
+
+A data set of 9 numbers has a standard deviation of 6. If every number in the set is multiplied by 0.5, what is the standard deviation of the resulting data set?
+
+- A) 1.5
+- B) 4.5
+- C) 3
+- D) 6
+- E) 9
+
+**answer:** C
+**explanation:** When every value in a data set is multiplied by a constant, the standard deviation is multiplied by the absolute value of that constant. The governing rule is SD(ax) = |a| · SD(x); multiplying scales the distances between values, and hence the spread, by the same factor.
+
+Here every value is multiplied by 0.5, so the scaling constant is a = 0.5, and its absolute value is 0.5. The original standard deviation is 6.
+
+Applying the rule, the standard deviation of the new set is
+
+|0.5| × 6 = 0.5 × 6 = 3.
+
+The number of values in the set, 9, plays no role in this transformation, since multiplying by a constant affects only the spread, scaling the standard deviation directly by |a|.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q53
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Sets
+
+In a group of 50 students, each student studies French, Spanish, or both. How many students study both French and Spanish?
+
+(1) 30 students study French.
+(2) 35 students study Spanish.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** This is a two-set inclusion-exclusion problem. Because every student studies French, Spanish, or both, no student studies neither, so the number who study at least one subject equals the full group of 50. The inclusion-exclusion principle then gives |F ∪ S| = |F| + |S| − |F ∩ S|, where |F ∩ S| is the number who study both. The question is answerable precisely when this relationship can be solved for |F ∩ S|.
+
+Consider Statement (1). Knowing that 30 students study French gives |F| = 30, but with |S| unknown the equation 50 = 30 + |S| − |F ∩ S| contains two unknowns and cannot be solved. Statement (1) alone is not sufficient.
+
+Consider Statement (2). Knowing that 35 students study Spanish gives |S| = 35, but with |F| unknown the equation 50 = |F| + 35 − |F ∩ S| again contains two unknowns. Statement (2) alone is not sufficient.
+
+Taking both statements together, |F| = 30 and |S| = 35, and since |F ∪ S| = 50 the equation becomes 50 = 30 + 35 − |F ∩ S|. Solving gives |F ∩ S| = 65 − 50 = 15, a single determined value. Both statements together are sufficient, but neither alone is.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q54
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Mean Median Mode
+
+A set consists of 6 numbers. Is the average (arithmetic mean) of the set greater than 10?
+
+(1) The median of the set is 12.
+(2) The sum of the numbers in the set is 72.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The mean of the set equals the sum of its numbers divided by 6, so the question "Is the mean greater than 10?" is equivalent to asking whether the sum is greater than 60. A statement is sufficient only if it forces a single yes-or-no answer.
+
+Consider Statement (1). The median of six numbers is the average of the third and fourth values when the numbers are listed in increasing order, and the median places no firm constraint on the mean. For the set {1, 2, 11, 13, 14, 15}, the median is (11 + 13)/2 = 12 and the mean is (1 + 2 + 11 + 13 + 14 + 15)/6 = 56/6 ≈ 9.3, which is not greater than 10. For the set {12, 12, 12, 12, 12, 12}, the median is 12 and the mean is 12, which is greater than 10. Because both answers occur, Statement (1) alone is not sufficient.
+
+Consider Statement (2). The sum of the numbers is 72, so the mean is exactly 72/6 = 12 regardless of the individual values. Since 12 is greater than 10, the answer is a definite YES. Statement (2) alone is sufficient.
+
+The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q55
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability
+
+A box contains 4 defective items and 6 non-defective items. If 3 items are drawn at random without replacement, what is the probability that exactly 1 of the drawn items is defective?
+
+- A) 1/2
+- B) 3/10
+- C) 2/5
+- D) 3/5
+- E) 2/3
+
+**answer:** A
+**explanation:** Because the items are drawn without replacement and order does not matter, the probability equals the number of favorable combinations divided by the total number of combinations. The number of ways to choose r items from n is C(n, r) = n! / [r!(n − r)!].
+
+The box holds 10 items in all, so the total number of ways to choose 3 items is C(10, 3) = (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120.
+
+A favorable outcome contains exactly 1 defective item and 2 non-defective items. The number of ways to choose 1 of the 4 defective items is C(4, 1) = 4, and the number of ways to choose 2 of the 6 non-defective items is C(6, 2) = (6 × 5) / (2 × 1) = 15. By the multiplication principle, the number of favorable combinations is 4 × 15 = 60.
+
+The probability is therefore the favorable count divided by the total count:
+
+60 / 120 = 1/2.
+
+The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q56
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Expected Value
+
+A player rolls one fair six-sided die. If the result is an even number, the player wins a number of dollars equal to the number rolled. If the result is an odd number, the player pays $3. What is the expected net gain from one roll?
+
+- A) -$0.50
+- B) $0.00
+- C) $0.25
+- D) $0.33
+- E) $0.50
+
+**answer:** E
+**explanation:** The expected net gain of one roll is the sum, over all six equally likely faces, of each face's net value multiplied by its probability of 1/6. The faces split into the even outcomes, which pay the player, and the odd outcomes, which cost the player $3.
+
+For the even faces, the player wins the face value: 2 on a roll of 2, 4 on a roll of 4, and 6 on a roll of 6. Their combined contribution is (1/6)(2) + (1/6)(4) + (1/6)(6) = (2 + 4 + 6)/6 = 12/6 = 2.
+
+For the odd faces (1, 3, and 5), the player pays $3 on each, so the net value is −3 for each of these three faces. Their combined contribution is (1/6)(−3) + (1/6)(−3) + (1/6)(−3) = (−9)/6 = −1.5.
+
+Adding the two parts gives the expected net gain:
+
+2 + (−1.5) = 0.5.
+
+Thus the expected net gain from one roll is $0.50.
+
+The correct answer is E.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q57
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Standard Deviation
+
+List K consists of the four numbers 2, 5, 8, and x. What is the standard deviation of list K?
+
+(1) x = 11.
+(2) The mean of list K is 6.5.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The standard deviation of a list is fully determined once every value in the list is known, because it depends only on the deviations of the values from their mean. List K already contains the three known values 2, 5, and 8, so the standard deviation is determined precisely when the fourth value x can be pinned down to a single number.
+
+Consider Statement (1). It states directly that x = 11, so the complete list is {2, 5, 8, 11}. With all four values known, the mean and hence the standard deviation can be computed to a single value. Statement (1) alone is sufficient.
+
+Consider Statement (2). The mean of the four numbers is 6.5, so their sum is 6.5 × 4 = 26. The three known numbers sum to 2 + 5 + 8 = 15, so x = 26 − 15 = 11. This again fixes the complete list as {2, 5, 8, 11}, from which the standard deviation can be computed to a single value. Statement (2) alone is sufficient.
+
+Because each statement alone determines the full list and therefore the standard deviation, each statement alone is sufficient. Note that the actual numerical value of the standard deviation need not be computed in a data sufficiency problem; it is enough to establish that the value is uniquely determined.
+
+The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q58
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Mean Median Mode
+
+What is the mode of the set {6, 9, 9, 12, 15, 9, 6, 20}?
+
+- A) 6
+- B) 9
+- C) 12
+- D) 15
+- E) 20
+
+**answer:** B
+**explanation:** The mode of a set of numbers is the value that occurs most frequently. To find it, count how many times each distinct value appears and select the value with the greatest number of occurrences; the mode has nothing to do with the size of a value, only with how often it appears.
+
+Let the set be {6, 9, 9, 12, 15, 9, 6, 20}. Tallying the occurrences of each distinct value, the value 6 appears twice, the value 9 appears three times, and each of the values 12, 15, and 20 appears exactly once.
+
+Because 9 occurs three times, which is more often than any other value, the mode of the set is 9.
+
+The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q59
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Probability
+
+A bag contains 7 white marbles, 5 black marbles, and 4 blue marbles. If one marble is drawn at random, what is the probability that it is NOT blue?
+
+- A) 1/4
+- B) 5/16
+- C) 7/16
+- D) 2/3
+- E) 3/4
+
+**answer:** E
+**explanation:** The probability of an event with equally likely outcomes equals the number of favorable outcomes divided by the total number of outcomes, and the complement rule states that the probability that an event does not occur equals 1 minus the probability that it does occur. Because the question asks for the probability that the marble is NOT blue, the complement rule is the efficient tool.
+
+Let the total number of marbles be the sum of the marbles of each color: 7 + 5 + 4 = 16. The number of blue marbles is 4, so the probability of drawing a blue marble is 4/16 = 1/4.
+
+Applying the complement rule, the probability that the marble drawn is not blue is 1 − 1/4 = 3/4. Equivalently, the marbles that are not blue are the 7 white and 5 black marbles, a total of 12, so the probability is 12/16 = 3/4 directly.
+
+The correct answer is E.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q60
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Sets
+
+In a group of 90 people, 50 play a musical instrument and 48 play a sport. If 18 people do both, how many people in the group do neither?
+
+- A) 10
+- B) 18
+- C) 20
+- D) 28
+- E) 32
+
+**answer:** A
+**explanation:** This problem applies the inclusion-exclusion principle: the number of people who do at least one of the two activities equals the number who play an instrument plus the number who play a sport minus the number who do both, since those who do both would otherwise be counted twice. The number who do neither is then the total minus the number who do at least one.
+
+Let the total number of people be T = 90. The number who play an instrument is 50 and the number who play a sport is 48, while the number who do both is 18. The number who do at least one activity is the size of the union:
+
+50 + 48 − 18 = 98 − 18 = 80.
+
+The number who do neither activity is the total minus those who do at least one:
+
+90 − 80 = 10.
+
+The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q61
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Expected Value
+
+A box holds 5 tickets that are equally likely to be drawn. Two of the tickets are worth $0, one is worth $3, one is worth $6, and one is worth $15. What is the expected value of a single ticket drawn at random?
+
+- A) $3.00
+- B) $4.00
+- C) $4.50
+- D) $4.80
+- E) $6.00
+
+**answer:** D
+**explanation:** The expected value of a single draw is the sum, over all possible outcomes, of each outcome's value multiplied by its probability. Because the five tickets are equally likely, each is drawn with probability 1/5, so the expected value is simply the average of the five ticket values.
+
+The five ticket values are $0, $0, $3, $6, and $15. Summing these values gives 0 + 0 + 3 + 6 + 15 = 24.
+
+Dividing the total by the number of equally likely tickets gives the expected value:
+
+24 ÷ 5 = 4.80.
+
+Thus the expected value of a single ticket is $4.80.
+
+The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q62
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mean Median Mode
+
+At a company, 24 employees received an average bonus of $5,000 and 16 employees received an average bonus of $7,500. What was the average bonus across all 40 employees?
+
+- A) $5,500
+- B) $5,800
+- C) $6,000
+- D) $6,250
+- E) $6,500
+
+**answer:** C
+**explanation:** This is a weighted-average problem. The overall mean of a combined group equals the total of all the values divided by the total number of members, and each subgroup's total is found from the relationship sum = average × count.
+
+The first subgroup has 24 employees averaging $5,000, so its total is 24 × 5,000 = 120,000. The second subgroup has 16 employees averaging $7,500, so its total is 16 × 7,500 = 120,000. The combined total across all employees is therefore 120,000 + 120,000 = 240,000.
+
+Dividing the combined total by the total number of employees gives the overall average:
+
+240,000 ÷ 40 = 6,000.
+
+Note that the answer is not the simple midpoint of $5,000 and $7,500, which would be $6,250; because the larger subgroup is the one with the smaller average, the combined average is pulled below that midpoint.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q63
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability
+
+Two fair six-sided dice are rolled. What is the probability that the sum of the numbers shown is a multiple of 4?
+
+- A) 1/9
+- B) 1/4
+- C) 7/36
+- D) 5/18
+- E) 1/3
+
+**answer:** B
+**explanation:** The probability of an event equals the number of favorable outcomes divided by the total number of equally likely outcomes. Because the two dice are distinguishable, each roll is an ordered pair, and there are 6 × 6 = 36 equally likely ordered outcomes in total.
+
+The sums that are multiples of 4 and achievable with two dice are 4, 8, and 12. A sum of 4 occurs with (1,3), (2,2), and (3,1), which is 3 outcomes. A sum of 8 occurs with (2,6), (3,5), (4,4), (5,3), and (6,2), which is 5 outcomes. A sum of 12 occurs only with (6,6), which is 1 outcome.
+
+Adding these gives 3 + 5 + 1 = 9 favorable outcomes, so the probability is
+
+9/36 = 1/4.
+
+The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q64
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Standard Deviation
+
+A data set of 12 numbers has a standard deviation of 8. If every number in the set is first multiplied by 0.25 and then increased by 10, what is the standard deviation of the resulting data set?
+
+- A) 2
+- B) 4
+- C) 8
+- D) 10
+- E) 12
+
+**answer:** A
+**explanation:** When every value in a data set undergoes a linear transformation of the form y = ax + b, the standard deviation is affected only by the multiplicative constant: SD(y) = |a| · SD(x). The additive constant b shifts every value by the same amount and therefore leaves the spread, and hence the standard deviation, unchanged.
+
+Here every value is multiplied by 0.25 and then increased by 10, so the multiplicative constant is a = 0.25 and the additive constant is b = 10. The original standard deviation is 8.
+
+Applying the rule, the standard deviation of the new set is
+
+|0.25| × 8 = 0.25 × 8 = 2.
+
+The addition of 10 does not enter the computation, and the count of 12 values is irrelevant to how the standard deviation scales.
+
+The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q65
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Expected Value
+
+A charity raffle sells 1,000 tickets at $2 each. One grand-prize ticket is drawn and wins $500, and ten other tickets are each drawn to win $50. What is the expected net gain for a person who buys one ticket?
+
+- A) -$2.00
+- B) -$1.50
+- C) -$1.00
+- D) -$0.50
+- E) $0.00
+
+**answer:** C
+**explanation:** The expected net gain is the sum, over all possible outcomes, of each outcome's net value weighted by its probability. The net value of any outcome is the prize received minus the $2 cost of the ticket.
+
+The probability that a given ticket wins the grand prize is 1/1,000, and the probability that it wins one of the ten $50 prizes is 10/1,000. It is simplest to compute the expected winnings first and then subtract the cost. The expected winnings are
+
+(1/1,000)(500) + (10/1,000)(50) = 0.50 + 0.50 = 1.00.
+
+So a ticket is expected to return $1.00 in prizes. Since each ticket costs $2, the expected net gain is
+
+1.00 − 2.00 = −1.00.
+
+Thus the expected net gain for a person who buys one ticket is −$1.00.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q66
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Sets
+
+In a group of 80 students, each student studies physics, chemistry, or both. How many students study both physics and chemistry?
+
+(1) 50 students study physics.
+(2) 45 students study chemistry.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** This is a two-set inclusion-exclusion problem. Because every student studies physics, chemistry, or both, no student studies neither, so the number who study at least one subject equals the full group of 80. The inclusion-exclusion principle gives |P ∪ C| = |P| + |C| − |P ∩ C|, where |P ∩ C| is the number who study both. The question is answerable precisely when this relationship can be solved for |P ∩ C|.
+
+Consider Statement (1). Knowing that 50 students study physics gives |P| = 50, but with |C| unknown the equation 80 = 50 + |C| − |P ∩ C| contains two unknowns and cannot be solved. Statement (1) alone is not sufficient.
+
+Consider Statement (2). Knowing that 45 students study chemistry gives |C| = 45, but with |P| unknown the equation 80 = |P| + 45 − |P ∩ C| again contains two unknowns. Statement (2) alone is not sufficient.
+
+Taking both statements together, |P| = 50 and |C| = 45, and since |P ∪ C| = 80 the equation becomes 80 = 50 + 45 − |P ∩ C|. Solving gives |P ∩ C| = 95 − 80 = 15, a single determined value. Both statements together are sufficient, but neither alone is.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q67
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Mean Median Mode
+
+A set S consists of 5 positive numbers whose average (arithmetic mean) is 12. Is the median of S less than 12?
+
+(1) The largest number in S is 40.
+(2) The smallest number in S is 2.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** Since the average of the 5 positive numbers is 12, their sum is 5 × 12 = 60. Listing the numbers in increasing order as a ≤ b ≤ c ≤ d ≤ e, the median is the middle value c. The question is whether c < 12 must hold.
+
+Consider Statement (1). The largest number is e = 40, so the four smaller numbers satisfy a + b + c + d = 60 − 40 = 20. Suppose, for contradiction, that the median were at least 12, that is c ≥ 12. Then d ≥ c ≥ 12, so c + d ≥ 24. Because the numbers are positive, a + b > 0, which would force a + b + c + d > 24, contradicting a + b + c + d = 20. Therefore c must be less than 12, and the answer is a definite YES. Statement (1) alone is sufficient.
+
+Consider Statement (2). The smallest number is a = 2, so b + c + d + e = 58. This leaves the median free to fall on either side of 12. For the set {2, 2, 2, 2, 52}, the median is 2, which is less than 12 (YES), while for the set {2, 3, 14, 20, 21}, which sums to 60, the median is 14, which is not less than 12 (NO). Because both answers occur, Statement (2) alone is not sufficient.
+
+The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q68
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability
+
+A box contains 5 red chips and 3 green chips. If 3 chips are drawn at random without replacement, what is the probability that exactly 2 of the drawn chips are red?
+
+- A) 15/56
+- B) 5/14
+- C) 1/2
+- D) 15/28
+- E) 9/14
+
+**answer:** D
+**explanation:** Because the chips are drawn without replacement and order does not matter, the probability equals the number of favorable combinations divided by the total number of combinations, where the number of ways to choose r items from n is C(n, r) = n! / [r!(n − r)!].
+
+The box holds 8 chips in all, so the total number of ways to choose 3 chips is C(8, 3) = (8 × 7 × 6) / (3 × 2 × 1) = 336 / 6 = 56.
+
+A favorable outcome contains exactly 2 red chips and 1 green chip. The number of ways to choose 2 of the 5 red chips is C(5, 2) = (5 × 4) / (2 × 1) = 10, and the number of ways to choose 1 of the 3 green chips is C(3, 1) = 3. By the multiplication principle, the number of favorable combinations is 10 × 3 = 30.
+
+The probability is therefore the favorable count divided by the total count:
+
+30 / 56 = 15/28.
+
+The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q69
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Standard Deviation
+
+Sets A and B each consist of 5 numbers. Is the standard deviation of A greater than the standard deviation of B?
+
+(1) Every number in A is greater than every number in B.
+(2) The range of A equals the range of B.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** The standard deviation measures the typical distance of a set's values from its own mean, so it is unaffected by how high or low the values sit overall and is not determined by the range alone. A statement is sufficient only if every configuration consistent with it forces the same yes-or-no answer.
+
+Consider Statement (1). Saying that every number in A exceeds every number in B compares the locations of the two sets but says nothing about their internal spreads; a high-valued set can be tightly clustered or widely spread. For example, A could be the tight set {100, 100, 100, 100, 100} (standard deviation 0) while B is the spread set {0, 0, 0, 0, 10}, giving a NO, or A could be a spread set while B is tightly clustered, giving a YES. Statement (1) alone is not sufficient.
+
+Consider Statement (2). Equal ranges fix only the gap between each set's largest and smallest values, not how the remaining values are distributed. The set {0, 0, 0, 0, 10} and the set {0, 5, 5, 5, 10} both have range 10 yet different standard deviations, so equal ranges permit either answer. Statement (2) alone is not sufficient.
+
+Taking both statements together, A can be shifted entirely above B while preserving any chosen spreads and ranges, so the two sets can still be arranged to make the standard deviation of A larger, smaller, or equal to that of B. For instance, with A = {20, 20, 20, 20, 30} (range 10) and B = {0, 5, 5, 5, 10} (range 10), every number in A exceeds every number in B and the ranges match, yet here A has the larger standard deviation; replacing B with {0, 0, 0, 0, 10} keeps both conditions but reverses the comparison. Because opposite answers remain possible, the two statements together are not sufficient.
+
+The correct answer is E.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics

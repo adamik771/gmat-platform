@@ -2022,3 +2022,853 @@ Both approaches yield the same result; therefore, the projected number of custom
 
 The correct answer is D.
 **related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q51 (Set 28 — Coffee Shop Daily Transactions by Location)
+
+```chart
+{"type":"line","title":"Daily transactions by location","x":{"label":"Day"},"y":{"label":"Transactions","min":0,"max":700},"series":[{"key":"downtown","name":"Downtown"},{"key":"airport","name":"Airport"}],"data":[{"x":"Mon","downtown":320,"airport":480},{"x":"Tue","downtown":350,"airport":460},{"x":"Wed","downtown":410,"airport":500},{"x":"Thu","downtown":380,"airport":520},{"x":"Fri","downtown":520,"airport":610},{"x":"Sat","downtown":600,"airport":540},{"x":"Sun","downtown":450,"airport":400}]}
+```
+
+**difficulty:** Easy
+**type:** Graphics Interpretation
+**topic:** Trend Identification
+
+Based on the graph, the day with the highest combined transactions across both locations was ______.
+
+- A) Wednesday
+- B) Thursday
+- C) Friday
+- D) Saturday
+- E) Sunday
+
+**answer:** D
+**explanation:** The combined transaction total for a given day is the sum of that day's Downtown value and Airport value, read directly from the two lines. To find the busiest day overall, this sum is computed for each of the seven days and the maximum identified.
+
+Reading both series from the graph:
+
+- Mon: 320 + 480 = 800
+- Tue: 350 + 460 = 810
+- Wed: 410 + 500 = 910
+- Thu: 380 + 520 = 900
+- Fri: 520 + 610 = 1,130
+- Sat: 600 + 540 = 1,140
+- Sun: 450 + 400 = 850
+
+Ranking the daily totals in descending order: 1,140 (Sat) > 1,130 (Fri) > 910 (Wed) > 900 (Thu) > 850 (Sun) > 810 (Tue) > 800 (Mon). Saturday produces the largest combined total at 1,140 transactions, edging out Friday by 10. Although the Airport line peaks on Friday (610) and the Downtown line peaks on Saturday (600), the combined total is what the question asks for, and the strong Downtown showing on Saturday is enough to make Saturday the overall busiest day.
+
+The correct answer is D.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q52 (Set 28 — Coffee Shop Daily Transactions, continued)
+
+```chart
+{"type":"line","title":"Daily transactions by location","x":{"label":"Day"},"y":{"label":"Transactions","min":0,"max":700},"series":[{"key":"downtown","name":"Downtown"},{"key":"airport","name":"Airport"}],"data":[{"x":"Mon","downtown":320,"airport":480},{"x":"Tue","downtown":350,"airport":460},{"x":"Wed","downtown":410,"airport":500},{"x":"Thu","downtown":380,"airport":520},{"x":"Fri","downtown":520,"airport":610},{"x":"Sat","downtown":600,"airport":540},{"x":"Sun","downtown":450,"airport":400}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Averages
+
+Based on the graph, the average daily number of Downtown transactions over the seven-day week was closest to ______.
+
+- A) 410
+- B) 433
+- C) 450
+- D) 470
+- E) 500
+
+**answer:** B
+**explanation:** The average of a data set is the sum of its values divided by the count. Here the relevant values are the seven Downtown readings, one per day, and the count is 7.
+
+Reading the Downtown series from the graph: Mon 320, Tue 350, Wed 410, Thu 380, Fri 520, Sat 600, Sun 450.
+
+Summing in stages: 320 + 350 = 670; 670 + 410 = 1,080; 1,080 + 380 = 1,460; 1,460 + 520 = 1,980; 1,980 + 600 = 2,580; 2,580 + 450 = 3,030.
+
+Dividing by the seven days: 3,030 / 7 = 432.86, which rounds to approximately 433.
+
+Among the answer choices — 410, 433, 450, 470, 500 — the value 433 is the closest, matching the computed mean to within 0.2. The other choices are off by 17 or more. Note that 450 is the Sunday data point itself and 410 is the Wednesday point; neither equals the seven-day average, which lies between them.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q53 (Set 28 — Coffee Shop Daily Transactions, continued)
+
+```chart
+{"type":"line","title":"Daily transactions by location","x":{"label":"Day"},"y":{"label":"Transactions","min":0,"max":700},"series":[{"key":"downtown","name":"Downtown"},{"key":"airport","name":"Airport"}],"data":[{"x":"Mon","downtown":320,"airport":480},{"x":"Tue","downtown":350,"airport":460},{"x":"Wed","downtown":410,"airport":500},{"x":"Thu","downtown":380,"airport":520},{"x":"Fri","downtown":520,"airport":610},{"x":"Sat","downtown":600,"airport":540},{"x":"Sun","downtown":450,"airport":400}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Comparison
+
+Based on the graph, the number of days on which Downtown transactions exceeded Airport transactions was ______.
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**explanation:** Downtown exceeds Airport on a given day when the Downtown value is strictly greater than the Airport value for that day. We test each day by comparing the two series readings directly.
+
+| Day | Downtown | Airport | Downtown > Airport? |
+|-----|----------|---------|---------------------|
+| Mon | 320 | 480 | No (320 < 480) |
+| Tue | 350 | 460 | No (350 < 460) |
+| Wed | 410 | 500 | No (410 < 500) |
+| Thu | 380 | 520 | No (380 < 520) |
+| Fri | 520 | 610 | No (520 < 610) |
+| Sat | 600 | 540 | Yes (600 > 540) |
+| Sun | 450 | 400 | Yes (450 > 400) |
+
+The Airport location records more transactions on every weekday (Monday through Friday), reflecting steady travel traffic. Only on the weekend does Downtown pull ahead: Saturday (600 vs. 540) and Sunday (450 vs. 400). That is exactly two days on which Downtown transactions exceeded Airport transactions.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q54 (Set 28 — Coffee Shop Daily Transactions, continued)
+
+```chart
+{"type":"line","title":"Daily transactions by location","x":{"label":"Day"},"y":{"label":"Transactions","min":0,"max":700},"series":[{"key":"downtown","name":"Downtown"},{"key":"airport","name":"Airport"}],"data":[{"x":"Mon","downtown":320,"airport":480},{"x":"Tue","downtown":350,"airport":460},{"x":"Wed","downtown":410,"airport":500},{"x":"Thu","downtown":380,"airport":520},{"x":"Fri","downtown":520,"airport":610},{"x":"Sat","downtown":600,"airport":540},{"x":"Sun","downtown":450,"airport":400}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Percent Change
+
+Based on the graph, the largest single-day percentage increase in Airport transactions relative to the immediately previous day occurred on ______.
+
+- A) Wednesday
+- B) Thursday
+- C) Friday
+- D) Saturday
+- E) Sunday
+
+**answer:** C
+**explanation:** The day-over-day percentage change in Airport transactions is ((current day − previous day) / previous day) × 100. We compute this for each day from Tuesday through Sunday and identify the largest positive value.
+
+Reading the Airport series: Mon 480, Tue 460, Wed 500, Thu 520, Fri 610, Sat 540, Sun 400.
+
+- Tue: (460 − 480) / 480 × 100 = −20/480 × 100 ≈ −4.2% (decrease)
+- Wed: (500 − 460) / 460 × 100 = 40/460 × 100 ≈ +8.7%
+- Thu: (520 − 500) / 500 × 100 = 20/500 × 100 = +4.0%
+- Fri: (610 − 520) / 520 × 100 = 90/520 × 100 ≈ +17.3%
+- Sat: (540 − 610) / 610 × 100 = −70/610 × 100 ≈ −11.5% (decrease)
+- Sun: (400 − 540) / 540 × 100 = −140/540 × 100 ≈ −25.9% (decrease)
+
+Only Wednesday, Thursday, and Friday show increases. The positive values are Wednesday +8.7%, Thursday +4.0%, and Friday +17.3%. The maximum among these is Friday's +17.3%, driven by a jump of 90 transactions on a base of 520. Although Wednesday adds 40 on a smaller base of 460, its 8.7% increase still falls well short of Friday's. Saturday and Sunday both decline and are excluded.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q55 (Set 29 — Renewable Energy Capacity by Region)
+
+```chart
+{"type":"bar","title":"Renewable energy capacity by region (GW), 2021 vs 2024","x":{"label":"Region"},"y":{"label":"Capacity (GW)","min":0,"max":100},"series":[{"key":"y2021","name":"2021"},{"key":"y2024","name":"2024"}],"data":[{"x":"North","y2021":40,"y2024":70},{"x":"South","y2021":60,"y2024":75},{"x":"East","y2021":25,"y2024":50},{"x":"West","y2021":80,"y2024":88},{"x":"Central","y2021":30,"y2024":54}]}
+```
+
+**difficulty:** Easy
+**type:** Graphics Interpretation
+**topic:** Absolute Change
+
+Based on the chart, the region with the largest absolute increase in capacity from 2021 to 2024 was ______.
+
+- A) North
+- B) South
+- C) East
+- D) West
+- E) Central
+
+**answer:** A
+**explanation:** The absolute increase in capacity for a region is its 2024 value minus its 2021 value, both read directly from the paired bars. We compute this difference for each region and select the largest.
+
+- North: 70 − 40 = +30 GW
+- South: 75 − 60 = +15 GW
+- East: 50 − 25 = +25 GW
+- West: 88 − 80 = +8 GW
+- Central: 54 − 30 = +24 GW
+
+Ranking the increases in descending order: 30 (North) > 25 (East) > 24 (Central) > 15 (South) > 8 (West). North posted the largest absolute gain at 30 GW. Note that West, despite having the highest capacity in both years (80 then 88), added the least in absolute terms (only 8 GW), because its starting base was already high and its growth modest.
+
+The correct answer is A.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q56 (Set 29 — Renewable Energy Capacity, continued)
+
+```chart
+{"type":"bar","title":"Renewable energy capacity by region (GW), 2021 vs 2024","x":{"label":"Region"},"y":{"label":"Capacity (GW)","min":0,"max":100},"series":[{"key":"y2021","name":"2021"},{"key":"y2024","name":"2024"}],"data":[{"x":"North","y2021":40,"y2024":70},{"x":"South","y2021":60,"y2024":75},{"x":"East","y2021":25,"y2024":50},{"x":"West","y2021":80,"y2024":88},{"x":"Central","y2021":30,"y2024":54}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Percent Change
+
+Based on the chart, the region with the highest percentage growth in capacity from 2021 to 2024 was ______.
+
+- A) North
+- B) South
+- C) East
+- D) West
+- E) Central
+
+**answer:** C
+**explanation:** Percentage growth is defined as ((2024 value − 2021 value) / 2021 value) × 100. Unlike absolute change, this measure scales the gain against each region's own starting base, so a smaller absolute gain on a small base can outrank a larger gain on a large base.
+
+Applying the formula to the values read from the chart:
+
+- North: (70 − 40) / 40 × 100 = 30/40 × 100 = 75.0%
+- South: (75 − 60) / 60 × 100 = 15/60 × 100 = 25.0%
+- East: (50 − 25) / 25 × 100 = 25/25 × 100 = 100.0%
+- West: (88 − 80) / 80 × 100 = 8/80 × 100 = 10.0%
+- Central: (54 − 30) / 30 × 100 = 24/30 × 100 = 80.0%
+
+Ranking in descending order: East (100.0%) > Central (80.0%) > North (75.0%) > South (25.0%) > West (10.0%). East exactly doubled its capacity, from 25 GW to 50 GW, giving the highest percentage growth of any region. Although North added the most absolute capacity (+30 GW, from Q55), East's smaller base of 25 GW means its +25 GW gain represents a larger proportional increase.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q57 (Set 29 — Renewable Energy Capacity, continued)
+
+```chart
+{"type":"bar","title":"Renewable energy capacity by region (GW), 2021 vs 2024","x":{"label":"Region"},"y":{"label":"Capacity (GW)","min":0,"max":100},"series":[{"key":"y2021","name":"2021"},{"key":"y2024","name":"2024"}],"data":[{"x":"North","y2021":40,"y2024":70},{"x":"South","y2021":60,"y2024":75},{"x":"East","y2021":25,"y2024":50},{"x":"West","y2021":80,"y2024":88},{"x":"Central","y2021":30,"y2024":54}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Totals
+
+Based on the chart, the combined 2024 capacity across all five regions was ______ GW.
+
+- A) 235
+- B) 305
+- C) 337
+- D) 360
+- E) 412
+
+**answer:** C
+**explanation:** The combined capacity is the sum of the 2024 bar values across all five regions. Each value is read directly from the 2024 series of the grouped bar chart.
+
+The 2024 capacities are: North 70, South 75, East 50, West 88, Central 54.
+
+Summing in stages: 70 + 75 = 145; 145 + 50 = 195; 195 + 88 = 283; 283 + 54 = 337.
+
+Therefore the combined 2024 capacity is 337 GW, which matches choice C exactly. A useful cross-check distinguishes this from the 2021 total: the 2021 values sum to 40 + 60 + 25 + 80 + 30 = 235 GW (choice A), which is the prior-year figure and a common trap for a reader who sums the wrong series. The total grew from 235 GW to 337 GW over the period.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q58 (Set 29 — Renewable Energy Capacity, continued)
+
+```chart
+{"type":"bar","title":"Renewable energy capacity by region (GW), 2021 vs 2024","x":{"label":"Region"},"y":{"label":"Capacity (GW)","min":0,"max":100},"series":[{"key":"y2021","name":"2021"},{"key":"y2024","name":"2024"}],"data":[{"x":"North","y2021":40,"y2024":70},{"x":"South","y2021":60,"y2024":75},{"x":"East","y2021":25,"y2024":50},{"x":"West","y2021":80,"y2024":88},{"x":"Central","y2021":30,"y2024":54}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Share Change
+
+Based on the chart, East's share of total capacity changed from 2021 to 2024 by approximately ______ percentage points.
+
+- A) +1
+- B) +4
+- C) +8
+- D) +12
+- E) +25
+
+**answer:** B
+**explanation:** A region's share of total capacity in a given year is its capacity divided by the sum of all regions' capacities that year, expressed as a percentage. The percentage-point change is the later share minus the earlier share — an arithmetic difference of two percentages, not a relative change.
+
+First, the yearly totals. The 2021 capacities (North 40, South 60, East 25, West 80, Central 30) sum to 40 + 60 + 25 + 80 + 30 = 235 GW. The 2024 capacities (North 70, South 75, East 50, West 88, Central 54) sum to 70 + 75 + 50 + 88 + 54 = 337 GW.
+
+East's share in each year:
+
+- 2021: 25 / 235 = 0.10638, or about 10.64%.
+- 2024: 50 / 337 = 0.14837, or about 14.84%.
+
+The percentage-point change is 14.84% − 10.64% = 4.20 pp. Among the answer choices, +4 pp is the closest value. The increase reflects East's capacity doubling (a 100% increase, the fastest of any region) outpacing the overall total's growth from 235 to 337 GW (about 43%), so East's slice of the pie expanded by roughly four percentage points. Choice E (+25) is a trap that confuses the absolute GW gain (+25 GW) with the percentage-point share change.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q59 (Set 30 — Average Monthly Temperature in Two Cities)
+
+```chart
+{"type":"line","title":"Average monthly temperature (deg C)","x":{"label":"Month"},"y":{"label":"Temperature (deg C)","min":-10,"max":30},"series":[{"key":"oslo","name":"Oslo"},{"key":"lisbon","name":"Lisbon"}],"data":[{"x":"Jan","oslo":-4,"lisbon":11},{"x":"Mar","oslo":2,"lisbon":14},{"x":"May","oslo":12,"lisbon":18},{"x":"Jul","oslo":18,"lisbon":24},{"x":"Sep","oslo":11,"lisbon":22},{"x":"Nov","oslo":1,"lisbon":14}]}
+```
+
+**difficulty:** Easy
+**type:** Graphics Interpretation
+**topic:** Comparison
+
+Based on the graph, the month with the largest temperature gap between the two cities was ______.
+
+- A) January
+- B) March
+- C) July
+- D) September
+- E) November
+
+**answer:** A
+**explanation:** The temperature gap for a given month is the absolute difference between Lisbon's reading and Oslo's reading, both taken directly from the two lines. We compute this gap for each plotted month and find the maximum.
+
+| Month | Oslo | Lisbon | Gap |
+|-------|------|--------|-----|
+| Jan | −4 | 11 | 15 |
+| Mar | 2 | 14 | 12 |
+| May | 12 | 18 | 6 |
+| Jul | 18 | 24 | 6 |
+| Sep | 11 | 22 | 11 |
+| Nov | 1 | 14 | 13 |
+
+Ranking the gaps in descending order: 15 (Jan) > 13 (Nov) > 12 (Mar) > 11 (Sep) > 6 (May) = 6 (Jul). January shows the largest gap at 15 degrees, because Oslo is at its coldest (−4) while Lisbon remains mild (11). The two cities are closest in the summer months (May and July), when both are warm and the gap shrinks to just 6 degrees.
+
+The correct answer is A.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q60 (Set 30 — Average Monthly Temperature, continued)
+
+```chart
+{"type":"line","title":"Average monthly temperature (deg C)","x":{"label":"Month"},"y":{"label":"Temperature (deg C)","min":-10,"max":30},"series":[{"key":"oslo","name":"Oslo"},{"key":"lisbon","name":"Lisbon"}],"data":[{"x":"Jan","oslo":-4,"lisbon":11},{"x":"Mar","oslo":2,"lisbon":14},{"x":"May","oslo":12,"lisbon":18},{"x":"Jul","oslo":18,"lisbon":24},{"x":"Sep","oslo":11,"lisbon":22},{"x":"Nov","oslo":1,"lisbon":14}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Averages
+
+Based on the graph, Oslo's average temperature across the six readings was closest to ______ degrees Celsius.
+
+- A) 5.0
+- B) 6.7
+- C) 8.0
+- D) 9.5
+- E) 11.0
+
+**answer:** B
+**explanation:** The average is the sum of the six Oslo readings divided by 6. Care is required because one of the values is negative.
+
+Reading the Oslo series: Jan −4, Mar 2, May 12, Jul 18, Sep 11, Nov 1.
+
+Summing, with attention to the negative term: −4 + 2 = −2; −2 + 12 = 10; 10 + 18 = 28; 28 + 11 = 39; 39 + 1 = 40.
+
+Dividing by the six readings: 40 / 6 = 6.667, which rounds to approximately 6.7.
+
+Among the answer choices — 5.0, 6.7, 8.0, 9.5, 11.0 — the value 6.7 is the exact match. A common error is to overlook the −4 January reading or to treat it as +4; doing so would inflate the sum to 48 and yield an average of 8.0 (choice C), which is why that distractor is present.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q61 (Set 30 — Average Monthly Temperature, continued)
+
+```chart
+{"type":"line","title":"Average monthly temperature (deg C)","x":{"label":"Month"},"y":{"label":"Temperature (deg C)","min":-10,"max":30},"series":[{"key":"oslo","name":"Oslo"},{"key":"lisbon","name":"Lisbon"}],"data":[{"x":"Jan","oslo":-4,"lisbon":11},{"x":"Mar","oslo":2,"lisbon":14},{"x":"May","oslo":12,"lisbon":18},{"x":"Jul","oslo":18,"lisbon":24},{"x":"Sep","oslo":11,"lisbon":22},{"x":"Nov","oslo":1,"lisbon":14}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Range
+
+Based on the graph, the range of Lisbon's temperatures across the six readings was ______ degrees Celsius.
+
+- A) 6
+- B) 11
+- C) 13
+- D) 18
+- E) 24
+
+**answer:** C
+**explanation:** The range of a data set is the maximum value minus the minimum value. Here the relevant data set is Lisbon's six temperature readings.
+
+Reading the Lisbon series from the graph: Jan 11, Mar 14, May 18, Jul 24, Sep 22, Nov 14.
+
+The maximum is 24 degrees (July) and the minimum is 11 degrees (January). The range is therefore:
+
+Range = 24 − 11 = 13 degrees Celsius.
+
+Among the answer choices, 13 matches choice C exactly. The distractor 24 (choice E) is the maximum value itself, a common error of reporting the highest reading rather than the spread; and 18 (choice D) is the May data point. The true range, capturing the full spread of Lisbon's seasonal swing, is 13 degrees.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q62 (Set 30 — Average Monthly Temperature, continued)
+
+```chart
+{"type":"line","title":"Average monthly temperature (deg C)","x":{"label":"Month"},"y":{"label":"Temperature (deg C)","min":-10,"max":30},"series":[{"key":"oslo","name":"Oslo"},{"key":"lisbon","name":"Lisbon"}],"data":[{"x":"Jan","oslo":-4,"lisbon":11},{"x":"Mar","oslo":2,"lisbon":14},{"x":"May","oslo":12,"lisbon":18},{"x":"Jul","oslo":18,"lisbon":24},{"x":"Sep","oslo":11,"lisbon":22},{"x":"Nov","oslo":1,"lisbon":14}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Change Between Readings
+
+Based on the graph, the largest increase in Oslo's temperature between consecutive readings occurred between ______.
+
+- A) January and March
+- B) March and May
+- C) May and July
+- D) July and September
+- E) September and November
+
+**answer:** B
+**explanation:** The change between consecutive readings is the later reading minus the earlier reading. We compute this for each adjacent pair in the Oslo series and identify the largest positive value.
+
+Reading the Oslo series: Jan −4, Mar 2, May 12, Jul 18, Sep 11, Nov 1.
+
+- Jan to Mar: 2 − (−4) = +6
+- Mar to May: 12 − 2 = +10
+- May to Jul: 18 − 12 = +6
+- Jul to Sep: 11 − 18 = −7 (a decrease)
+- Sep to Nov: 1 − 11 = −10 (a decrease)
+
+The two positive intervals besides Mar-to-May are each +6 (Jan-to-Mar and May-to-Jul). The Mar-to-May interval, at +10, is the largest single increase: Oslo warms from 2 degrees in March to 12 degrees in May as spring arrives. The intervals after July are both negative as the city cools toward winter, so they cannot be the largest increase. Note that the Jan-to-Mar change requires careful handling of the negative starting value: 2 − (−4) = +6, not +2.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q63 (Set 31 — Public EV Charging Stations by Quarter)
+
+```chart
+{"type":"line","title":"Public EV charging stations installed (cumulative)","x":{"label":"Quarter"},"y":{"label":"Stations","min":0,"max":4500},"series":[{"key":"stations","name":"Stations"}],"data":[{"x":"Q1","stations":1200},{"x":"Q2","stations":1450},{"x":"Q3","stations":1700},{"x":"Q4","stations":2100},{"x":"Q5","stations":2500},{"x":"Q6","stations":2750},{"x":"Q7","stations":3300},{"x":"Q8","stations":3900}]}
+```
+
+**difficulty:** Easy
+**type:** Graphics Interpretation
+**topic:** Trend Identification
+
+Based on the graph, the largest quarter-over-quarter absolute increase in the number of stations occurred between ______.
+
+- A) Q3 and Q4
+- B) Q4 and Q5
+- C) Q5 and Q6
+- D) Q6 and Q7
+- E) Q7 and Q8
+
+**answer:** E
+**explanation:** The quarter-over-quarter absolute increase is the later quarter's value minus the immediately preceding quarter's value. We compute this difference for each consecutive pair and identify the maximum.
+
+Reading the cumulative station counts from the graph: Q1 1,200, Q2 1,450, Q3 1,700, Q4 2,100, Q5 2,500, Q6 2,750, Q7 3,300, Q8 3,900.
+
+The seven consecutive differences are:
+
+- Q1 to Q2: 1,450 − 1,200 = +250
+- Q2 to Q3: 1,700 − 1,450 = +250
+- Q3 to Q4: 2,100 − 1,700 = +400
+- Q4 to Q5: 2,500 − 2,100 = +400
+- Q5 to Q6: 2,750 − 2,500 = +250
+- Q6 to Q7: 3,300 − 2,750 = +550
+- Q7 to Q8: 3,900 − 3,300 = +600
+
+Ranking in descending order: 600 (Q7 to Q8) > 550 (Q6 to Q7) > 400 (Q3 to Q4) = 400 (Q4 to Q5) > 250 (the three remaining intervals). The maximum absolute increase of 600 stations occurs between Q7 and Q8. Although the Q3-to-Q4 and Q4-to-Q5 intervals each add a respectable 400 stations, and Q6-to-Q7 adds 550, none matches the final-quarter jump of 600.
+
+The correct answer is E.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q64 (Set 31 — Public EV Charging Stations, continued)
+
+```chart
+{"type":"line","title":"Public EV charging stations installed (cumulative)","x":{"label":"Quarter"},"y":{"label":"Stations","min":0,"max":4500},"series":[{"key":"stations","name":"Stations"}],"data":[{"x":"Q1","stations":1200},{"x":"Q2","stations":1450},{"x":"Q3","stations":1700},{"x":"Q4","stations":2100},{"x":"Q5","stations":2500},{"x":"Q6","stations":2750},{"x":"Q7","stations":3300},{"x":"Q8","stations":3900}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Averages
+
+Based on the graph, the average number of stations across the final four quarters (Q5 through Q8) was closest to ______.
+
+- A) 2,750
+- B) 2,900
+- C) 3,113
+- D) 3,300
+- E) 3,450
+
+**answer:** C
+**explanation:** The average of a data set is the sum of its values divided by the count. Here the relevant values are the four station counts for Q5 through Q8, and the count is 4.
+
+Reading those four values from the graph: Q5 2,500, Q6 2,750, Q7 3,300, Q8 3,900.
+
+Summing in stages: 2,500 + 2,750 = 5,250; 5,250 + 3,300 = 8,550; 8,550 + 3,900 = 12,450.
+
+Dividing by the four quarters: 12,450 / 4 = 3,112.5, which rounds to approximately 3,113.
+
+Among the answer choices — 2,750, 2,900, 3,113, 3,300, and 3,450 — the value 3,113 is the closest, matching the computed mean to within 0.5. Note that 2,750 is the Q6 data point and 3,300 is the Q7 data point; neither equals the four-quarter average, which lies between them. Selecting one of those individual readings rather than computing the mean is a common error.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q65 (Set 31 — Public EV Charging Stations, continued)
+
+```chart
+{"type":"line","title":"Public EV charging stations installed (cumulative)","x":{"label":"Quarter"},"y":{"label":"Stations","min":0,"max":4500},"series":[{"key":"stations","name":"Stations"}],"data":[{"x":"Q1","stations":1200},{"x":"Q2","stations":1450},{"x":"Q3","stations":1700},{"x":"Q4","stations":2100},{"x":"Q5","stations":2500},{"x":"Q6","stations":2750},{"x":"Q7","stations":3300},{"x":"Q8","stations":3900}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Percent Change
+
+Based on the graph, the largest quarter-over-quarter percentage increase occurred between ______.
+
+- A) Q1 and Q2
+- B) Q3 and Q4
+- C) Q4 and Q5
+- D) Q6 and Q7
+- E) Q7 and Q8
+
+**answer:** B
+**explanation:** The quarter-over-quarter percentage increase is ((current − previous) / previous) × 100. Because percentage change scales the absolute gain against the base, a smaller absolute gain on a small base can outrank a larger gain on a large base. We compute the percentage for each consecutive pair and identify the maximum.
+
+Reading the station counts from the graph: Q1 1,200, Q2 1,450, Q3 1,700, Q4 2,100, Q5 2,500, Q6 2,750, Q7 3,300, Q8 3,900.
+
+- Q1 to Q2: 250 / 1,200 × 100 ≈ 20.83%
+- Q2 to Q3: 250 / 1,450 × 100 ≈ 17.24%
+- Q3 to Q4: 400 / 1,700 × 100 ≈ 23.53%
+- Q4 to Q5: 400 / 2,100 × 100 ≈ 19.05%
+- Q5 to Q6: 250 / 2,500 × 100 = 10.00%
+- Q6 to Q7: 550 / 2,750 × 100 = 20.00%
+- Q7 to Q8: 600 / 3,300 × 100 ≈ 18.18%
+
+Ranking in descending order: Q3 to Q4 (23.53%) > Q1 to Q2 (20.83%) > Q6 to Q7 (20.00%) > Q4 to Q5 (19.05%) > Q7 to Q8 (18.18%) > Q2 to Q3 (17.24%) > Q5 to Q6 (10.00%). The maximum percentage increase of about 23.53% occurs between Q3 and Q4. Notably, although Q7-to-Q8 has the largest absolute increase (600 stations, from the previous question), its base of 3,300 is so large that the percentage gain falls to only about 18.18% — well behind the Q3-to-Q4 jump of 400 on a base of just 1,700.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q66 (Set 31 — Public EV Charging Stations, continued)
+
+```chart
+{"type":"line","title":"Public EV charging stations installed (cumulative)","x":{"label":"Quarter"},"y":{"label":"Stations","min":0,"max":4500},"series":[{"key":"stations","name":"Stations"}],"data":[{"x":"Q1","stations":1200},{"x":"Q2","stations":1450},{"x":"Q3","stations":1700},{"x":"Q4","stations":2100},{"x":"Q5","stations":2500},{"x":"Q6","stations":2750},{"x":"Q7","stations":3300},{"x":"Q8","stations":3900}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Percent Change
+
+Based on the graph, the total percentage increase in the number of stations from Q1 to Q8 was ______.
+
+- A) 125%
+- B) 175%
+- C) 200%
+- D) 225%
+- E) 325%
+
+**answer:** D
+**explanation:** The total percentage increase over a span is ((ending value − starting value) / starting value) × 100. Only the two endpoints enter this calculation; the intermediate quarterly values are not needed.
+
+Reading the endpoints from the graph: the Q1 value is 1,200 stations and the Q8 value is 3,900 stations.
+
+The absolute increase is 3,900 − 1,200 = 2,700 stations. Expressing this as a percentage of the starting value:
+
+2,700 / 1,200 × 100 = 2.25 × 100 = 225%.
+
+Therefore the number of stations grew by 225% from Q1 to Q8, which corresponds to choice D exactly. A common error is to compute the ratio 3,900 / 1,200 = 3.25 and report 325% (choice E); that figure is the ending value as a percentage of the starting value, not the increase. The increase itself is the ratio minus 1, that is, 3.25 − 1 = 2.25, or 225%. Equivalently, the stations grew to 3.25 times their original count, which is an increase of 2.25 times, or 225%.
+
+The correct answer is D.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q67 (Set 32 — Smartphone Shipments by Brand)
+
+```chart
+{"type":"bar","title":"Smartphone shipments by brand (millions), 2022 vs 2025","x":{"label":"Brand"},"y":{"label":"Shipments (M)","min":0,"max":70},"series":[{"key":"y2022","name":"2022"},{"key":"y2025","name":"2025"}],"data":[{"x":"Brand W","y2022":30,"y2025":54},{"x":"Brand X","y2022":45,"y2025":60},{"x":"Brand Y","y2022":20,"y2025":50},{"x":"Brand Z","y2022":25,"y2025":40},{"x":"Brand V","y2022":50,"y2025":55}]}
+```
+
+**difficulty:** Easy
+**type:** Graphics Interpretation
+**topic:** Absolute Change
+
+Based on the chart, the brand with the largest absolute increase in shipments from 2022 to 2025 was ______.
+
+- A) Brand W
+- B) Brand X
+- C) Brand Y
+- D) Brand Z
+- E) Brand V
+
+**answer:** C
+**explanation:** The absolute increase for a brand is its 2025 shipment value minus its 2022 shipment value, both read directly from the paired bars. We compute this difference for each brand and select the largest.
+
+- Brand W: 54 − 30 = +24 million
+- Brand X: 60 − 45 = +15 million
+- Brand Y: 50 − 20 = +30 million
+- Brand Z: 40 − 25 = +15 million
+- Brand V: 55 − 50 = +5 million
+
+Ranking the increases in descending order: 30 (Brand Y) > 24 (Brand W) > 15 (Brand X) = 15 (Brand Z) > 5 (Brand V). Brand Y posted the largest absolute gain at 30 million units. Note that Brand V, despite shipping the most units in 2022 (50 million), added the least in absolute terms (only 5 million), because it was already near the top of the range and grew only modestly.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q68 (Set 32 — Smartphone Shipments, continued)
+
+```chart
+{"type":"bar","title":"Smartphone shipments by brand (millions), 2022 vs 2025","x":{"label":"Brand"},"y":{"label":"Shipments (M)","min":0,"max":70},"series":[{"key":"y2022","name":"2022"},{"key":"y2025","name":"2025"}],"data":[{"x":"Brand W","y2022":30,"y2025":54},{"x":"Brand X","y2022":45,"y2025":60},{"x":"Brand Y","y2022":20,"y2025":50},{"x":"Brand Z","y2022":25,"y2025":40},{"x":"Brand V","y2022":50,"y2025":55}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Percent Change
+
+Based on the chart, the brand with the highest percentage growth in shipments from 2022 to 2025 was ______.
+
+- A) Brand W
+- B) Brand X
+- C) Brand Y
+- D) Brand Z
+- E) Brand V
+
+**answer:** C
+**explanation:** Percentage growth is defined as ((2025 value − 2022 value) / 2022 value) × 100. Unlike absolute change, this measure scales each brand's gain against its own starting base, so a brand starting from a small base can show high percentage growth even with a modest absolute gain.
+
+Applying the formula to the values read from the chart:
+
+- Brand W: (54 − 30) / 30 × 100 = 24/30 × 100 = 80.0%
+- Brand X: (60 − 45) / 45 × 100 = 15/45 × 100 ≈ 33.3%
+- Brand Y: (50 − 20) / 20 × 100 = 30/20 × 100 = 150.0%
+- Brand Z: (40 − 25) / 25 × 100 = 15/25 × 100 = 60.0%
+- Brand V: (55 − 50) / 50 × 100 = 5/50 × 100 = 10.0%
+
+Ranking in descending order: Brand Y (150.0%) > Brand W (80.0%) > Brand Z (60.0%) > Brand X (33.3%) > Brand V (10.0%). Brand Y's shipments grew the fastest, increasing by 150% from a base of 20 million to 50 million. Brand Y also recorded the largest absolute gain (+30 million, from the previous question), so here both the absolute and the percentage measures point to the same brand — but the percentage figure is what distinguishes it most sharply, because its small 2022 base of 20 million amplifies the proportional growth.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q69 (Set 32 — Smartphone Shipments, continued)
+
+```chart
+{"type":"bar","title":"Smartphone shipments by brand (millions), 2022 vs 2025","x":{"label":"Brand"},"y":{"label":"Shipments (M)","min":0,"max":70},"series":[{"key":"y2022","name":"2022"},{"key":"y2025","name":"2025"}],"data":[{"x":"Brand W","y2022":30,"y2025":54},{"x":"Brand X","y2022":45,"y2025":60},{"x":"Brand Y","y2022":20,"y2025":50},{"x":"Brand Z","y2022":25,"y2025":40},{"x":"Brand V","y2022":50,"y2025":55}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Totals
+
+Based on the chart, the combined 2025 shipments across all five brands was ______ million units.
+
+- A) 170
+- B) 215
+- C) 245
+- D) 259
+- E) 275
+
+**answer:** D
+**explanation:** The combined shipments figure is the sum of the 2025 bar values across all five brands. Each value is read directly from the 2025 series of the grouped bar chart.
+
+The 2025 shipments are: Brand W 54, Brand X 60, Brand Y 50, Brand Z 40, Brand V 55.
+
+Summing in stages: 54 + 60 = 114; 114 + 50 = 164; 164 + 40 = 204; 204 + 55 = 259.
+
+Therefore the combined 2025 shipments total 259 million units, which matches choice D exactly. A useful cross-check distinguishes this from the prior-year total: the 2022 values sum to 30 + 45 + 20 + 25 + 50 = 170 million units (choice A), which is the 2022 figure and a common trap for a reader who sums the wrong series. Total shipments across the five brands grew from 170 million in 2022 to 259 million in 2025.
+
+The correct answer is D.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q70 (Set 32 — Smartphone Shipments, continued)
+
+```chart
+{"type":"bar","title":"Smartphone shipments by brand (millions), 2022 vs 2025","x":{"label":"Brand"},"y":{"label":"Shipments (M)","min":0,"max":70},"series":[{"key":"y2022","name":"2022"},{"key":"y2025","name":"2025"}],"data":[{"x":"Brand W","y2022":30,"y2025":54},{"x":"Brand X","y2022":45,"y2025":60},{"x":"Brand Y","y2022":20,"y2025":50},{"x":"Brand Z","y2022":25,"y2025":40},{"x":"Brand V","y2022":50,"y2025":55}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Share Change
+
+Based on the chart, Brand W's share of total shipments changed from 2022 to 2025 by approximately ______ percentage points.
+
+- A) +1
+- B) +3
+- C) +8
+- D) +18
+- E) +24
+
+**answer:** B
+**explanation:** A brand's share of total shipments in a given year is its shipments divided by the sum of all five brands' shipments that year, expressed as a percentage. The percentage-point change is the later share minus the earlier share — an arithmetic difference of two percentages, not a relative change.
+
+First, the yearly totals. The 2022 shipments (Brand W 30, X 45, Y 20, Z 25, V 50) sum to 30 + 45 + 20 + 25 + 50 = 170 million. The 2025 shipments (W 54, X 60, Y 50, Z 40, V 55) sum to 54 + 60 + 50 + 40 + 55 = 259 million.
+
+Brand W's share in each year:
+
+- 2022: 30 / 170 = 0.17647, or about 17.65%.
+- 2025: 54 / 259 = 0.20849, or about 20.85%.
+
+The percentage-point change is 20.85% − 17.65% = 3.20 pp. Among the answer choices, +3 pp is the closest value. Brand W's share rose modestly because its own shipments grew by 80% (from 30 to 54) while the overall market grew by about 52% (from 170 to 259); growing faster than the market lifts a brand's slice of the total. Choice E (+24) is a trap that confuses Brand W's absolute gain (+24 million units) with the percentage-point change in its share.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q71 (Set 33 — App Daily Active Users by Tier)
+
+```chart
+{"type":"line","title":"Daily active users by tier (thousands)","x":{"label":"Month"},"y":{"label":"Users (K)","min":0,"max":1500},"series":[{"key":"free","name":"Free"},{"key":"premium","name":"Premium"}],"data":[{"x":"Jan","free":800,"premium":120},{"x":"Feb","free":920,"premium":150},{"x":"Mar","free":1050,"premium":200},{"x":"Apr","free":1100,"premium":260},{"x":"May","free":1240,"premium":300},{"x":"Jun","free":1300,"premium":380}]}
+```
+
+**difficulty:** Easy
+**type:** Graphics Interpretation
+**topic:** Comparison
+
+Based on the graph, the month with the largest gap between Free and Premium users was ______.
+
+- A) February
+- B) March
+- C) April
+- D) May
+- E) June
+
+**answer:** D
+**explanation:** The gap for a given month is the Free value minus the Premium value, both read directly from the two lines. We compute this gap for each month and find the maximum.
+
+| Month | Free | Premium | Gap |
+|-------|------|---------|-----|
+| Jan | 800 | 120 | 680 |
+| Feb | 920 | 150 | 770 |
+| Mar | 1,050 | 200 | 850 |
+| Apr | 1,100 | 260 | 840 |
+| May | 1,240 | 300 | 940 |
+| Jun | 1,300 | 380 | 920 |
+
+Ranking the gaps in descending order: 940 (May) > 920 (Jun) > 850 (Mar) > 840 (Apr) > 770 (Feb) > 680 (Jan). May shows the largest gap at 940 thousand users: Free users reach 1,240 thousand while Premium users stand at only 300 thousand. Although both tiers grow over the period, the gap peaks in May and then narrows slightly in June, because Premium grows faster than Free in that final month (Premium jumps 80, Free adds only 60), shrinking the gap from 940 to 920.
+
+The correct answer is D.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q72 (Set 33 — App Daily Active Users, continued)
+
+```chart
+{"type":"line","title":"Daily active users by tier (thousands)","x":{"label":"Month"},"y":{"label":"Users (K)","min":0,"max":1500},"series":[{"key":"free","name":"Free"},{"key":"premium","name":"Premium"}],"data":[{"x":"Jan","free":800,"premium":120},{"x":"Feb","free":920,"premium":150},{"x":"Mar","free":1050,"premium":200},{"x":"Apr","free":1100,"premium":260},{"x":"May","free":1240,"premium":300},{"x":"Jun","free":1300,"premium":380}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Averages
+
+Based on the graph, the average number of Premium users across the six months was ______ thousand.
+
+- A) 210
+- B) 235
+- C) 260
+- D) 285
+- E) 300
+
+**answer:** B
+**explanation:** The average of a data set is the sum of its values divided by the count. Here the relevant values are the six monthly Premium readings, and the count is 6.
+
+Reading the Premium series from the graph: Jan 120, Feb 150, Mar 200, Apr 260, May 300, Jun 380.
+
+Summing in stages: 120 + 150 = 270; 270 + 200 = 470; 470 + 260 = 730; 730 + 300 = 1,030; 1,030 + 380 = 1,410.
+
+Dividing by the six months: 1,410 / 6 = 235.
+
+Therefore the average number of Premium users was exactly 235 thousand, which matches choice B precisely. Among the answer choices — 210, 235, 260, 285, 300 — the value 235 is not merely the closest but the exact result. Note that 260 is the April data point and 300 is the May data point; selecting an individual reading rather than computing the mean is a common error.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q73 (Set 33 — App Daily Active Users, continued)
+
+```chart
+{"type":"line","title":"Daily active users by tier (thousands)","x":{"label":"Month"},"y":{"label":"Users (K)","min":0,"max":1500},"series":[{"key":"free","name":"Free"},{"key":"premium","name":"Premium"}],"data":[{"x":"Jan","free":800,"premium":120},{"x":"Feb","free":920,"premium":150},{"x":"Mar","free":1050,"premium":200},{"x":"Apr","free":1100,"premium":260},{"x":"May","free":1240,"premium":300},{"x":"Jun","free":1300,"premium":380}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Percent Change
+
+Based on the graph, the largest month-over-month percentage increase in Premium users occurred in ______.
+
+- A) February
+- B) March
+- C) April
+- D) May
+- E) June
+
+**answer:** B
+**explanation:** The month-over-month percentage increase in Premium users is ((current month − previous month) / previous month) × 100. We compute this for each month from February through June and identify the largest value.
+
+Reading the Premium series: Jan 120, Feb 150, Mar 200, Apr 260, May 300, Jun 380.
+
+- February: (150 − 120) / 120 × 100 = 30/120 × 100 = 25.00%
+- March: (200 − 150) / 150 × 100 = 50/150 × 100 ≈ 33.33%
+- April: (260 − 200) / 200 × 100 = 60/200 × 100 = 30.00%
+- May: (300 − 260) / 260 × 100 = 40/260 × 100 ≈ 15.38%
+- June: (380 − 300) / 300 × 100 = 80/300 × 100 ≈ 26.67%
+
+Ranking in descending order: March (33.33%) > April (30.00%) > June (26.67%) > February (25.00%) > May (15.38%). The largest month-over-month percentage increase of about 33.33% occurs in March, when Premium users rose from 150 thousand to 200 thousand. Although June adds the most absolute users (+80 thousand), its larger base of 300 dilutes the percentage to about 26.67%, behind March's gain of 50 on a smaller base of 150.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q74 (Set 33 — App Daily Active Users, continued)
+
+```chart
+{"type":"line","title":"Daily active users by tier (thousands)","x":{"label":"Month"},"y":{"label":"Users (K)","min":0,"max":1500},"series":[{"key":"free","name":"Free"},{"key":"premium","name":"Premium"}],"data":[{"x":"Jan","free":800,"premium":120},{"x":"Feb","free":920,"premium":150},{"x":"Mar","free":1050,"premium":200},{"x":"Apr","free":1100,"premium":260},{"x":"May","free":1240,"premium":300},{"x":"Jun","free":1300,"premium":380}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Share Change
+
+Based on the graph, Premium users as a share of total daily active users changed from January to June by approximately ______ percentage points.
+
+- A) +2
+- B) +5
+- C) +10
+- D) +16
+- E) +22
+
+**answer:** C
+**explanation:** Premium's share of total daily active users in a given month is the Premium count divided by the sum of Free and Premium counts that month, expressed as a percentage. The percentage-point change is the June share minus the January share — an arithmetic difference of two percentages, not a relative change.
+
+First, the monthly totals for the two endpoints. In January, total = Free + Premium = 800 + 120 = 920 thousand. In June, total = 1,300 + 380 = 1,680 thousand.
+
+Premium's share in each month:
+
+- January: 120 / 920 = 0.13043, or about 13.04%.
+- June: 380 / 1,680 = 0.22619, or about 22.62%.
+
+The percentage-point change is 22.62% − 13.04% = 9.58 pp. Among the answer choices, +10 pp is the closest value. Premium's share of the user base rose because Premium grew much faster over the period (from 120 to 380, a 217% increase) than Free did (from 800 to 1,300, a 63% increase); the faster-growing tier captures a larger slice of the total. Choice E (+22) is a trap that mistakes June's Premium share (about 22.6%) for the change in share, ignoring the January starting point of about 13%.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation

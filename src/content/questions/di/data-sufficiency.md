@@ -1693,3 +1693,675 @@ Taking the two statements together, the total of all seven numbers is 140 and th
 
 The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q57
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Arithmetic
+
+What is the value of the integer w?
+
+(1) 5w = 215
+(2) w is a two-digit multiple of 7.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** The question asks for the single value of the integer w. A statement is sufficient only if it restricts w to exactly one number; a statement that permits more than one value of w is not sufficient.
+
+Statement (1) gives 5w = 215. Dividing both sides by 5 yields w = 43, a single determined value. One linear equation in one unknown fixes that unknown, so Statement (1) alone is sufficient.
+
+Statement (2) says w is a two-digit multiple of 7, that is, one of 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, or 98. For instance, w could be 21 or 70; these are different values, so Statement (2) alone is not sufficient.
+
+Since Statement (1) alone is sufficient and Statement (2) alone is not, there is no need to consider the statements together. The correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q58
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is an integer, is n even?
+
+(1) n² − 1 is odd.
+(2) 3n is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** We are told that n is an integer, and we must determine whether n is even. This is a yes/no question, so a statement is sufficient if it forces a single, definite answer (always even or always odd) and insufficient if it permits both parities of n.
+
+Consider Statement (1) alone: n² − 1 is odd. Adding 1 to an odd number gives an even number, so n² is even. Because n² = n · n and 2 is prime, if 2 divides n · n then 2 must divide n itself; hence n is even. The answer is a definite "yes," so Statement (1) alone is sufficient.
+
+Consider Statement (2) alone: 3n is even. The factor 3 is odd, and a product of two integers is even only if at least one factor is even; since 3 is odd, the factor n must be even. Therefore n is even, and the answer is again a definite "yes," so Statement (2) alone is sufficient.
+
+Because each statement alone establishes that n is even, there is no need to combine them. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q59
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Word Problems
+
+A theater sold adult tickets at $12 each and child tickets at $8 each for a single show. What was the total revenue from ticket sales for that show?
+
+(1) The theater sold 40 adult tickets for the show.
+(2) The theater sold 25 child tickets for the show.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Total revenue equals the revenue from adult tickets plus the revenue from child tickets, that is, 12 times the number of adult tickets plus 8 times the number of child tickets. Determining the total therefore requires knowing both the number of adult tickets and the number of child tickets sold.
+
+Statement (1) tells us that 40 adult tickets were sold, contributing 12 × 40 = $480 in adult revenue, but it provides no count of child tickets. If 10 child tickets were sold, child revenue would be $80 and the total $560; if 25 child tickets were sold, child revenue would be $200 and the total $680. Because two different totals are possible, Statement (1) alone is not sufficient.
+
+Statement (2) tells us that 25 child tickets were sold, contributing 8 × 25 = $200 in child revenue, but it provides no count of adult tickets. If 20 adult tickets were sold, adult revenue would be $240 and the total $440; if 40 adult tickets were sold, adult revenue would be $480 and the total $680. Because two different totals are possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, 40 adult tickets and 25 child tickets were sold, so the total revenue is 12 × 40 + 8 × 25 = 480 + 200 = $680, a single determined value. The two statements together are sufficient. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q60
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Statistics
+
+What is the average (arithmetic mean) of a list of five numbers?
+
+(1) The five numbers are five consecutive even integers.
+(2) The sum of the five numbers is 85.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The average of five numbers equals their sum divided by 5, so the average is uniquely determined precisely when the sum is determined. We test each statement against this requirement.
+
+Statement (1) says the five numbers are five consecutive even integers, but it does not say which ones. The list 2, 4, 6, 8, 10 has sum 30 and average 6, while the list 10, 12, 14, 16, 18 has sum 70 and average 14. Because two different averages are possible, Statement (1) alone is not sufficient.
+
+Statement (2) says the sum of the five numbers is 85. The average is then simply 85 ÷ 5 = 17, regardless of what the individual numbers are. The value is uniquely determined, so Statement (2) alone is sufficient.
+
+Since Statement (2) alone settles the question while Statement (1) alone does not, there is no need to combine the statements. The correct answer is B.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q61
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Algebra
+
+If x and y are positive numbers, what is the value of x?
+
+(1) x² − y² = 24
+(2) x − y = 4
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** We are asked to determine the value of x, where x and y are positive numbers. A statement is sufficient only if it forces x to a single value.
+
+Statement (1) gives x² − y² = 24, a single equation in two unknowns. For example, x = 5 and y = 1 give 25 − 1 = 24, while x = 7 and y = 5 give 49 − 25 = 24. Two different values of x satisfy the equation, so Statement (1) alone is not sufficient.
+
+Statement (2) gives x − y = 4, again one equation in two unknowns. For example, x = 5 and y = 1 satisfy it, as do x = 10 and y = 6. Two different values of x are possible, so Statement (2) alone is not sufficient.
+
+Taking the two statements together, factor the left side of Statement (1): x² − y² = (x − y)(x + y) = 24. Substituting x − y = 4 from Statement (2) gives 4(x + y) = 24, so x + y = 6. We now have the system x − y = 4 and x + y = 6; adding the equations gives 2x = 10, so x = 5 (and y = 1, which is positive as required). The value of x is uniquely determined, so the two statements together are sufficient. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q62
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If p is a positive integer, is p divisible by 8?
+
+(1) p is divisible by 4.
+(2) p/2 is an even integer.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** We are asked whether the positive integer p is divisible by 8. This is a yes/no question, so a statement is sufficient only if every value of p it permits gives the same answer.
+
+Statement (1) says p is divisible by 4. If p = 4, then p is not divisible by 8, giving "no"; if p = 8, then p is divisible by 8, giving "yes." Because both outcomes are possible, Statement (1) alone is not sufficient.
+
+Statement (2) says p/2 is an even integer. Writing p/2 = 2k for some integer k gives p = 4k, so p is a multiple of 4. If k = 1, then p = 4, which is not divisible by 8, giving "no"; if k = 2, then p = 8, which is divisible by 8, giving "yes." Because both outcomes are possible, Statement (2) alone is not sufficient.
+
+Taking the statements together, note that Statement (2) already implies Statement (1), since p/2 being even forces p = 4k, a multiple of 4; thus the two statements together provide no more than Statement (2) alone. The value p = 4 satisfies both statements yet is not divisible by 8, while p = 8 satisfies both and is divisible by 8. Because both outcomes remain possible, the statements together are not sufficient. The correct answer is E.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q63
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Word Problems
+
+During one shift, a worker is paid a fixed hourly wage for each hour worked plus a fixed bonus for each unit completed. How much did the worker earn during the shift?
+
+(1) The worker was paid $15 per hour and worked 8 hours, and was paid $4 per completed unit and completed 10 units.
+(2) The worker completed 10 units during the shift.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** Total earnings equal the hourly wage multiplied by the hours worked plus the per-unit bonus multiplied by the number of units completed. To determine the total, we must know all four of these quantities, or enough to compute the two products.
+
+Statement (1) supplies every required value: an hourly wage of $15, 8 hours worked, a bonus of $4 per unit, and 10 units completed. The earnings are therefore 15 × 8 + 4 × 10 = 120 + 40 = $160, a single determined value. Statement (1) alone is sufficient.
+
+Statement (2) gives only the number of units completed, 10. It supplies neither the hourly wage, nor the hours worked, nor the per-unit bonus, so the total earnings cannot be computed. For instance, with a $10 hourly wage over 5 hours and a $5 bonus the total would be 10 × 5 + 5 × 10 = $100, whereas with a $20 hourly wage over 8 hours and a $4 bonus the total would be 20 × 8 + 4 × 10 = $200. Because two different totals are possible, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone determines the earnings while Statement (2) alone does not, the correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q64
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Statistics
+
+Set T consists of six distinct integers. What is the range of set T?
+
+(1) The largest integer in T is 30.
+(2) The smallest integer in T is −5.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The range of a set is the difference between its largest and smallest elements: range = maximum − minimum. Determining it therefore requires both endpoints. That T contains six distinct integers describes only the interior of the set and never enters the range calculation; it is a distractor.
+
+Statement (1) gives the maximum, 30, but says nothing about the minimum. If the smallest element is 0, the range is 30 − 0 = 30; if it is −20, the range is 30 − (−20) = 50. Two different ranges are possible, so Statement (1) alone is not sufficient.
+
+Statement (2) gives the minimum, −5, but says nothing about the maximum. If the largest element is 10, the range is 10 − (−5) = 15; if it is 100, the range is 100 − (−5) = 105. Two different ranges are possible, so Statement (2) alone is not sufficient.
+
+Taking the statements together, the maximum is 30 and the minimum is −5, so the range is 30 − (−5) = 35, a single value. Both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q65
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Arithmetic
+
+A shirt's price was reduced once and then reduced again. The final price is what fraction of the original price?
+
+(1) The first reduction lowered the price by 20 percent.
+(2) After both reductions, the final price was 60 percent of the original price.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** We seek the final price expressed as a fraction of the original price. This fraction equals the product of the two surviving fractions after each reduction, so it is determined only when the combined effect of both reductions is known.
+
+Statement (1) gives only the first reduction, 20 percent, which leaves 80 percent, or a factor of 0.8, after the first markdown. Without knowing the second reduction, the final fraction is undetermined. For example, a second 10 percent reduction yields 0.8 × 0.9 = 0.72, while a second 25 percent reduction yields 0.8 × 0.75 = 0.6. Because two different fractions are possible, Statement (1) alone is not sufficient.
+
+Statement (2) states directly that the final price was 60 percent of the original price, so the required fraction is 0.60, or 3/5. This is exactly the quantity asked for, fully determined regardless of how the two individual reductions were apportioned. Statement (2) alone is sufficient.
+
+Since Statement (2) alone answers the question while Statement (1) alone does not, the correct answer is B.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q66
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is a positive integer, what is the units digit of n?
+
+(1) n is a multiple of 5.
+(2) n is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The question asks for the units digit of the positive integer n, a single digit from 0 to 9. A statement is sufficient only if it forces that digit to one value.
+
+Statement (1) says n is a multiple of 5. Every multiple of 5 ends in either 0 or 5, for example 10 ends in 0 while 15 ends in 5. Because two different units digits are possible, Statement (1) alone is not sufficient.
+
+Statement (2) says n is even, which means its units digit is one of 0, 2, 4, 6, or 8. For example, 12 ends in 2 while 14 ends in 4. Because more than one units digit is possible, Statement (2) alone is not sufficient.
+
+Taking the two statements together, n is a multiple of 5 and is also even, so n is divisible by both 5 and 2 and hence by their least common multiple, 10. Every multiple of 10 ends in 0, so the units digit of n must be 0. This value is uniquely determined, so the two statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q67
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Algebra
+
+If x is a real number, is x > 2?
+
+(1) x² > 2x
+(2) x⁴ > 16
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** The question asks whether x is greater than 2. This is a yes/no question, so a statement is sufficient only if it forces a single answer for every value of x it permits.
+
+Statement (1) says x² > 2x. Subtracting 2x gives x² − 2x > 0, which factors as x(x − 2) > 0. A sign analysis shows this product is positive precisely when x < 0 or x > 2. For example, x = 3 gives "yes," while x = −1 gives "no." Because both answers are possible, Statement (1) alone is not sufficient.
+
+Statement (2) says x⁴ > 16. Since x⁴ = (x²)², this is equivalent to x² > 4, which holds precisely when x > 2 or x < −2. For example, x = 3 gives "yes," while x = −3 gives "no." Because both answers are possible, Statement (2) alone is not sufficient.
+
+Taking the statements together, x must satisfy both (x < 0 or x > 2) and (x > 2 or x < −2). The intersection of these conditions is x < −2 or x > 2. This combined region still contains values on both sides: x = 3 lies in it and gives "yes," while x = −3 lies in it and gives "no." Because both answers remain possible, the two statements together are not sufficient. The correct answer is E.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q68
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Statistics
+
+What is the standard deviation of the five numbers in list L?
+
+(1) Each of the five numbers in list L is equal to 3.
+(2) The range of the five numbers in list L is 0.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** Standard deviation measures how far the values in a list spread from their mean; it is determined whenever the spread of the list is fixed, even if the actual values are not all individually known. We test each statement for whether it pins the standard deviation to one number.
+
+Statement (1) says each of the five numbers equals 3, so the list is 3, 3, 3, 3, 3. Every value equals the mean, so each deviation from the mean is 0, and the standard deviation is 0. The value is uniquely determined, so Statement (1) alone is sufficient.
+
+Statement (2) says the range is 0, which means the largest value equals the smallest value. When the maximum and minimum coincide, every value in between must equal that common number, so all five numbers are identical. Identical numbers have zero spread, so each deviation from the mean is 0 and the standard deviation is 0, regardless of what the common value happens to be. The value is uniquely determined, so Statement (2) alone is sufficient.
+
+Because each statement alone forces the standard deviation to be 0, there is no need to combine them. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q69
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Word Problems
+
+At a stationery shop, Tom bought some pens and some notebooks. How many notebooks did Tom buy?
+
+(1) Tom bought twice as many pens as notebooks.
+(2) Tom bought 7 notebooks.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The question asks for the number of notebooks Tom bought, a single count. A statement is sufficient only if it pins that count to exactly one value.
+
+Statement (1) says Tom bought twice as many pens as notebooks. If we let the number of notebooks be n, the number of pens is 2n, but n itself is left free. Tom could have bought 3 notebooks and 6 pens, or 5 notebooks and 10 pens, so the number of notebooks is not determined. Statement (1) alone is not sufficient.
+
+Statement (2) states directly that Tom bought 7 notebooks. This is exactly the quantity requested, so it is fully determined regardless of how many pens were bought. Statement (2) alone is sufficient.
+
+Since Statement (2) alone answers the question while Statement (1) alone does not, the correct answer is B.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q70
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Arithmetic
+
+If x and y are nonzero numbers, what is the value of 1/x + 1/y?
+
+(1) x = 2 and y = 4
+(2) x + y = 6
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** We are asked for the value of the expression 1/x + 1/y, where x and y are nonzero. A statement is sufficient only if it forces this expression to a single value.
+
+Statement (1) gives x = 2 and y = 4. Substituting directly, 1/x + 1/y = 1/2 + 1/4 = 2/4 + 1/4 = 3/4, a single determined value. Statement (1) alone is sufficient.
+
+Statement (2) gives only x + y = 6. This fixes the sum of x and y but not the individual values, and the expression 1/x + 1/y depends on those individual values. For example, x = 2 and y = 4 give 1/2 + 1/4 = 3/4, whereas x = 3 and y = 3 give 1/3 + 1/3 = 2/3. Because two different values of the expression are possible, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone determines the value while Statement (2) alone does not, the correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q71
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If m is an integer, is m even?
+
+(1) m² is divisible by 4.
+(2) m + 2 is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** We are given that m is an integer and must determine whether m is even. This is a yes/no question, so a statement is sufficient if it forces a single, definite answer.
+
+Consider Statement (1): m² is divisible by 4. If m were odd, then m² would be odd and therefore not divisible by 4; for instance, 3² = 9 and 5² = 25 are both odd. So whenever m² is divisible by 4, m cannot be odd and must be even. The answer is a definite "yes," and Statement (1) alone is sufficient.
+
+Consider Statement (2): m + 2 is even. Adding the even number 2 does not change parity, so m + 2 and m have the same parity. Therefore m + 2 is even precisely when m is even, giving a definite "yes." Statement (2) alone is sufficient.
+
+Because each statement alone establishes that m is even, there is no need to combine them. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q72
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Statistics
+
+What is the average (arithmetic mean) of four numbers?
+
+(1) The sum of three of the numbers is 30.
+(2) The fourth number is 10.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The average of four numbers equals their total sum divided by 4, so determining the average requires knowing the sum of all four numbers.
+
+Statement (1) gives the sum of three of the numbers as 30 but says nothing about the fourth. If the fourth number is 6, the total is 36 and the average is 9; if the fourth number is 14, the total is 44 and the average is 11. Because two different averages are possible, Statement (1) alone is not sufficient.
+
+Statement (2) gives only the fourth number, 10, with no information about the other three. The other three could sum to 20, giving a total of 30 and an average of 7.5, or they could sum to 50, giving a total of 60 and an average of 15. Because two different averages are possible, Statement (2) alone is not sufficient.
+
+Taking the statements together, the three numbers sum to 30 and the fourth is 10, so the total of all four is 30 + 10 = 40, and the average is 40/4 = 10, a single determined value. Both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q73
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Algebra
+
+If x and y are nonzero numbers, is xy > 0?
+
+(1) x + y > 0
+(2) x − y < 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** The product xy is positive precisely when x and y share the same sign, so the question is equivalent to asking whether x and y have the same sign. This is a yes/no question, so a statement is sufficient only if it forces a single answer.
+
+Statement (1) says x + y > 0. Let x = 1 and y = 1; then x + y = 2 > 0 and xy = 1 > 0, giving "yes." Let x = 3 and y = −1; then x + y = 2 > 0 but xy = −3 < 0, giving "no." Because both outcomes occur, Statement (1) alone is not sufficient.
+
+Statement (2) says x − y < 0, that is, y > x. Let x = 1 and y = 3; then x − y = −2 < 0 and xy = 3 > 0, giving "yes." Let x = −2 and y = 1; then x − y = −3 < 0 but xy = −2 < 0, giving "no." Because both outcomes occur, Statement (2) alone is not sufficient.
+
+Taking the statements together, we require x + y > 0 and y > x. The pair x = 1, y = 3 satisfies both (sum 4 > 0, y > x) and gives xy = 3 > 0, a "yes." The pair x = −1, y = 3 also satisfies both (sum 2 > 0, y > x) but gives xy = −3 < 0, a "no." Because both answers remain possible, the two statements together are not sufficient. The correct answer is E.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q74
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is a positive integer, what is the remainder when n is divided by 6?
+
+(1) The remainder when n is divided by 12 is 8.
+(2) n is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** We must determine the remainder when the positive integer n is divided by 6, a single value from 0 through 5.
+
+Statement (1) says the remainder when n is divided by 12 is 8, so n = 12k + 8 for some nonnegative integer k. Because 12 = 6 × 2 and 8 = 6 + 2, we can write n = 6(2k) + 6 + 2 = 6(2k + 1) + 2, in which 6(2k + 1) is a multiple of 6 and 2 is the remainder, where 0 ≤ 2 < 6. Thus the remainder when n is divided by 6 is always 2, regardless of k. Statement (1) alone is sufficient.
+
+Statement (2) says n is even. An even number can leave remainder 0, 2, or 4 upon division by 6; for example, n = 6 leaves remainder 0, while n = 8 leaves remainder 2. Because more than one remainder is possible, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone determines the remainder while Statement (2) alone does not, the correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q75
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Word Problems
+
+A train travels at a constant speed along a straight track. How many miles does the train travel during a certain trip?
+
+(1) The trip lasts 3 hours.
+(2) The train's constant speed is 50 miles per hour.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** For motion at constant speed, distance equals speed multiplied by time. To determine the distance traveled, we therefore need both the speed and the duration of the trip.
+
+Statement (1) gives the duration as 3 hours but provides no speed. At 40 miles per hour the distance would be 120 miles, while at 60 miles per hour it would be 180 miles. Because two different distances are possible, Statement (1) alone is not sufficient.
+
+Statement (2) gives the speed as 50 miles per hour but provides no duration. Over 2 hours the distance would be 100 miles, while over 4 hours it would be 200 miles. Because two different distances are possible, Statement (2) alone is not sufficient.
+
+Taking the statements together, the speed is 50 miles per hour and the duration is 3 hours, so the distance is 50 × 3 = 150 miles, a single determined value. Both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q76
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Arithmetic
+
+A shirt was sold for $40 after a single discount off its original price. What was the original price of the shirt?
+
+(1) The discount was 20 percent of the original price.
+(2) The discount was $10.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The selling price equals the original price minus the discount, and we are told the selling price is $40. Determining the original price therefore requires enough information to relate the discount back to the original price.
+
+Statement (1) says the discount was 20 percent of the original price, so the $40 selling price represents the remaining 80 percent of the original price. If P is the original price, then 0.80P = 40, which gives P = 40 / 0.80 = $50. This determines the original price uniquely, so Statement (1) alone is sufficient.
+
+Statement (2) says the discount was $10. Since the selling price of $40 equals the original price minus the discount, we have P − 10 = 40, which gives P = $50. This also determines the original price uniquely, so Statement (2) alone is sufficient.
+
+Because each statement alone determines the original price, there is no need to combine them; we note that the two statements happen to be consistent, but that consistency is incidental. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q77
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Statistics
+
+A set consists of five numbers. Is the average (arithmetic mean) of the set greater than 10?
+
+(1) The median of the set is 10.
+(2) Each of the five numbers is greater than 10.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** We must determine whether the average of the five numbers exceeds 10. This is a yes/no question, so a statement is sufficient only if it forces a single answer.
+
+Statement (1) says the median is 10, which fixes only the middle value when the numbers are arranged in order and tells us nothing definite about the average. Consider the set {2, 4, 10, 12, 14}, whose median is 10 and whose average is 42/5 = 8.4, not greater than 10, giving "no." Now consider {2, 4, 10, 20, 30}, whose median is also 10 but whose average is 66/5 = 13.2, greater than 10, giving "yes." Because both outcomes are possible, Statement (1) alone is not sufficient.
+
+Statement (2) says every one of the five numbers is greater than 10. The average of a set always lies between its smallest and largest values, and since the smallest value here exceeds 10, the average must also exceed 10. The answer is a definite "yes," so Statement (2) alone is sufficient.
+
+Since Statement (2) alone settles the question while Statement (1) alone does not, the correct answer is B.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q78
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is a positive integer, is n divisible by 12?
+
+(1) n is divisible by 6.
+(2) n is divisible by 4.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** We are asked whether the positive integer n is divisible by 12. Since 12 = 4 × 3, an integer is divisible by 12 exactly when it is divisible by both 4 and 3. This is a yes/no question, so a statement is sufficient only if every value of n it permits gives the same answer.
+
+Statement (1) says n is divisible by 6. If n = 6, then n is not divisible by 12, giving "no"; if n = 12, then n is divisible by 12, giving "yes." Because both outcomes are possible, Statement (1) alone is not sufficient.
+
+Statement (2) says n is divisible by 4. If n = 4, then n is not divisible by 12, giving "no"; if n = 12, then n is divisible by 12, giving "yes." Because both outcomes are possible, Statement (2) alone is not sufficient.
+
+Taking the statements together, n is divisible by 6 and by 4. Divisibility by 6 supplies a factor of 3, and divisibility by 4 supplies the factor 4, so n is divisible by the least common multiple of 6 and 4, which is 12. Therefore n must be divisible by 12, a definite "yes." Both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q79
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Algebra
+
+If x and y are numbers, is |x| > |y|?
+
+(1) x > y
+(2) x > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** The question asks whether the absolute value of x exceeds the absolute value of y, that is, whether x is farther from zero than y is. This compares magnitudes, not signed values, so a statement is sufficient only if it forces a single answer about those magnitudes.
+
+Statement (1) says x > y, an ordering that ignores magnitude. Let x = 3 and y = 1; then x > y and |3| > |1|, giving "yes." Let x = 1 and y = −5; then x > y still holds, but |1| > |−5| is false since 1 < 5, giving "no." Because both outcomes occur, Statement (1) alone is not sufficient.
+
+Statement (2) says x > 0, which fixes the sign of x but says nothing about y. Let x = 5 and y = 1; then |5| > |1|, giving "yes." Let x = 1 and y = −5; then x > 0 holds, but |1| > |−5| is false, giving "no." Because both outcomes occur, Statement (2) alone is not sufficient.
+
+Taking the statements together, we require x > y and x > 0. The pair x = 3, y = 1 satisfies both and gives |3| > |1|, a "yes." The pair x = 1, y = −5 also satisfies both, since 1 > −5 and 1 > 0, yet gives |1| > |−5| false, a "no." Because both answers remain possible, the two statements together are not sufficient. The correct answer is E.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q80
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Statistics
+
+Set V consists of seven distinct integers. Is the median of set V greater than 20?
+
+(1) Exactly four of the seven integers are greater than 20.
+(2) The largest integer in V is 100.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** Arrange the seven distinct integers in increasing order as a₁ < a₂ < a₃ < a₄ < a₅ < a₆ < a₇. Because there are seven values, the median is the fourth value, a₄. The question asks whether a₄ > 20.
+
+Statement (1) says exactly four of the seven integers are greater than 20. The four integers greater than 20 must be the four largest, namely a₄, a₅, a₆, and a₇, since any value greater than 20 cannot fall below a value that is 20 or less. Therefore a₄ is one of the integers greater than 20, so a₄ > 20 and the median is greater than 20. The answer is a definite "yes," and Statement (1) alone is sufficient.
+
+Statement (2) says the largest integer is 100, but this fixes only a₇ and says nothing about the fourth value. The set {1, 2, 3, 4, 5, 6, 100} has largest element 100 and median 4, giving "no," while the set {25, 26, 27, 28, 29, 30, 100} has largest element 100 and median 28, giving "yes." Because both outcomes are possible, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone settles the question while Statement (2) alone does not, the correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic

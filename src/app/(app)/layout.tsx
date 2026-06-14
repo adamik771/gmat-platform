@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import {
@@ -28,6 +28,7 @@ import StudyTimer from "@/components/shared/StudyTimer"
 import ServiceWorkerRegistrar from "@/components/offline/ServiceWorkerRegistrar"
 import OfflineBanner from "@/components/offline/OfflineBanner"
 import OfflineSyncTrigger from "@/components/offline/OfflineSyncTrigger"
+import ConversionTracker from "@/components/analytics/ConversionTracker"
 import { clearReviewCache } from "@/lib/offline/review-cache"
 import { clearPendingAttempts } from "@/lib/offline/pending-attempts"
 import { drainPendingAttempts } from "@/lib/offline/sync"
@@ -367,6 +368,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           every authenticated page. The widget is fixed-position so it
           doesn't disrupt the layout. */}
       <FeedbackWidget />
+      {/* Fires purchase_completed on the Stripe success redirect
+          (?purchase=success). Renders null; Suspense-wrapped for
+          useSearchParams. */}
+      <Suspense fallback={null}>
+        <ConversionTracker />
+      </Suspense>
       {/* Offline plumbing — all three render null in the common path.
           The registrar attaches /sw.js on mount (production only); the
           sync trigger drains queued offline drills when online; the
