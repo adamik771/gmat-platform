@@ -21,6 +21,10 @@ sections:
     title: "RC: Main Idea"
     check_question_ids:
       - reading-comprehension-q3
+  - id: main-idea-from-the-map
+    type: reading
+    title: "Main idea falls out of your map"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -160,3 +164,19 @@ Because you predicted, B leapt out and A's bait lost its pull. That is the entir
 - **Verb-match** the answer's opening verb to the author's stance before committing.
 - On two-part passages, the correct answer covers **both halves** and their relationship — never just the louder one.
 - **Predict before you read the choices** — a one-sentence prediction turns the question into a matching task and disarms the "true but narrow" bait.
+
+## @main-idea-from-the-map
+
+Everything above describes *what* a correct main-idea answer looks like. This section is about *where it comes from* — and the answer is the same place every other RC question gets answered: the **skeleton** you built on the first read. Reading for **function** and keeping a **one-line-per-paragraph** map isn't a separate skill you switch on for structure questions. The main idea is what you get when you read the whole skeleton back to yourself in one breath, weighted by the author's overall stance. You do not hunt for it in a single sentence — you assemble it from the map you already have.
+
+**Mental model.** Stack your paragraph tags in a column and read straight down. P1 introduces, P2 pivots, P3 supports, P4 resolves — that vertical read *is* the main idea in rough form. A correct answer paraphrases the **arc**, not any one line in it. This is also why **efficiency beats speed**: a clean map costs you a few extra seconds on the read and hands you the main idea for free, while a rushed skim leaves you re-reading paragraphs hunting for a thesis sentence that may not even exist on the page.
+
+The trick that makes this reliable is the same point-of-view discipline from the reading process: **track whose voice each line belongs to.** A line in your skeleton that reads "critics contend X" or "the old consensus held Y" is *not* a candidate for the main idea, no matter how much space it occupies. The main idea is the **author's** through-line — what the author is doing with all those reported voices. If your stance read is "author surveys three explanations and backs none," then the main idea is *about the survey*, not about any one explanation the author merely hosted.
+
+**Worked example.** Here is a four-line skeleton, already built: P1 — long-standing view holds that the city's harbor drove its wealth. P2 — "However," the author notes the harbor silted up decades before the boom. P3 — the author credits a new rail link instead, citing freight growth. P4 — concludes the harbor's reputation "outlived its usefulness." Read the column down and the main idea writes itself: *the author corrects a popular harbor-based explanation, arguing rail, not the harbor, drove the later boom.* You never reread a sentence — you read your map. An answer that says "explains how the harbor made the city wealthy" is P1's reported view, not the author's point.
+
+**Trap to watch.** Mistaking one strong line of the skeleton for the whole column. The three named traps are just three ways of misreading the map: **too narrow** is grabbing a single paragraph's tag and calling it the thesis; **too broad** is restating the scope label from P1 without the claim the rest of the map earns; and the most seductive, a **reported view mistaken for the author's**, is lifting an attributed line ("proponents argue…") that your point-of-view tags already flagged as *not the author's voice*. Don't obsess over which paragraph sounds most quotable — obsess over which sentence the *entire column* exists to support.
+
+> **Recall check.** Without looking up: where does the main idea come from, and which kind of skeleton line can never be it? (It's read off the whole one-line-per-paragraph map plus the author's overall stance — assembled, never hunted in one sentence; and a line tagged as a *reported* view, "critics/proponents/the consensus," can't be the author's main idea.) Retrieve this now so the map-first reflex fires before you start reading answer choices.
+
+Then close it the way you close every RC question: by **elimination.** With the arc fixed in one sentence, run each choice against the map and kill the four that don't fit the whole column — the narrow ones covering a single tag, the broad ones naming only the scope, the off-voice ones lifted from a reported speaker. Find the four wrong; don't fall in love with the one that merely echoes the passage's words. The survivor is the line your whole skeleton was built to support.

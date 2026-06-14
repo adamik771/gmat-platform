@@ -21,6 +21,10 @@ sections:
     title: "RC: Application"
     check_question_ids:
       - reading-comprehension-q27
+  - id: application-extends-the-logic
+    type: reading
+    title: "Application = extend the author's logic to a new case"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -145,3 +149,25 @@ Answer: **C.** Three choices were on-topic (education, motivation) and all three
 - For endorsement questions, **settle the author's stance first**; a choice backing something the author criticizes is dead on arrival.
 - Kill the **off-principle** (topical-but-silent), **overextended** (scope/quantifier inflated), and **contradicted** choices; keep the one where the mechanism fires with the same prediction.
 - It's the **strengthen template in RC clothing** — find the new confirming case the author's rule already covers.
+
+## @application-extends-the-logic
+
+Application is where the core reading method earns its keep. You are not asked to retrieve a sentence; you are handed a fresh scenario and asked which one the author's logic would bless. Everything you need to answer was already built on the first read — the **skeleton**, the **author's stance**, and, above all, **whose voice** owns each claim. The mistake that sinks this question type is importing your own opinion or grabbing a principle off the page without first checking *whose* principle it is. Run the method, not your instincts.
+
+**Mental model.** Read the passage the way the **Reading Process** chapter trains: one line per paragraph for **function**, a fixed read on the **author's stance**, and a tag on every claim for **point of view** — author, or a reported scholar / "critics" / the old consensus. Then application becomes mechanical: pin down *whose* principle the stem is testing and what it actually claims, then test each new case against *that* principle alone. The principle is fixed; only the scenario is new. Don't obsess over the passage's details — you need the rule's trigger and its scope, not its examples.
+
+**Worked example.** *Three-line skeleton.* P1: a long-standing view holds that small firms innovate faster simply because they are small. P2: the author counters that size is not the driver — what matters is whether decisions sit close to the customer, so a large firm with autonomous local teams can out-innovate a small but centralized one. P3: "Some analysts insist headcount is still the real constraint." Stance tag: the author **rejects** the size rule and owns the *decision-proximity* principle; the headcount claim belongs to **the analysts**, not the author.
+
+Stem: "Which case is most consistent with the author's reasoning?" Run each through the author's actual rule — *innovation tracks decision-proximity, not size.*
+
+- A) "A tiny startup innovates faster than a corporate giant." — This fits the **rejected** size view, not the author's. Out.
+- B) "A large retailer pushes pricing authority down to store managers and out-innovates a centralized rival." — Decisions near the customer; the author's principle fires and predicts exactly this. **Keep.**
+- C) "A firm with fewer than 50 employees will always out-innovate larger ones." — Headcount-as-constraint; that's the *analysts'* claim, and it also overextends to "always." Out.
+
+Answer: **B.** Notice the method did the work: tagging point of view on the first read is what exposes A as the rejected consensus and C as a different speaker's view wearing the author's coat.
+
+**Trap to watch.** Two traps recur, and both are caught upstream. First, the **wrong-voice** trap: a choice that fits a view the author *reported or rejected* rather than the author's own — which is why you tag whose principle it is *before* you score anything. Second, the **out-of-scope** trap: a choice that pushes the principle past its stated boundary ("always," "any firm," a domain the rule never covered). Match the author's scope and quantifier; a case the principle never reaches is silent, not supported. If you skipped the stance and voice tags on the read, both traps look identical to the credited answer.
+
+> **Recall check.** Before testing any scenario against a passage's principle, what two things must you settle first — and where do they come from? (Whose principle it is and what it actually claims, including its scope; both come from the point-of-view and stance tags you made on the first read. Get the owner wrong and you'll reward a case that fits a rejected or reported view; get the scope wrong and you'll reward a case the rule never reached.)
+
+**Close with elimination.** Don't fall in love with the choice that *sounds* most like the passage — that's the bait. Hunt the four you can kill: the rejected-view case, the wrong-voice case, the out-of-scope case, the off-principle case. The one left standing is a *new* situation the author's own rule actively predicts. Find the four wrong; take what remains.

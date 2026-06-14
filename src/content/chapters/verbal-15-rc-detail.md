@@ -21,6 +21,10 @@ sections:
     title: "RC: Specific Detail"
     check_question_ids:
       - reading-comprehension-q11
+  - id: detail-is-a-lookup
+    type: reading
+    title: "Detail questions are lookups, not memory tests"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -119,3 +123,17 @@ The first three rows are detail questions and behave identically. The last two a
 - Run the procedure: extract the noun phrase, scan, re-read the lines carefully, predict, match the light paraphrase, verify.
 - The right answer usually *paraphrases*; verbatim echoes, plausible-but-unstated claims, partial matches, and distorted qualifiers are the standard traps.
 - Ignore outside knowledge entirely — the passage's number wins even when it's wrong about the real world.
+
+## @detail-is-a-lookup
+
+Everything above tells you what to do *at* the line. This section tells you how the detail question fits the one reading method you run on every passage. Your first read was never supposed to memorize the facts a detail question asks about — that read existed to build the **skeleton**: one line per paragraph, each tagged with its **function** (introduces, supports, objects, qualifies, concludes) and labeled with **whose voice** it carries (the author, or a reported scholar / "critics" / the consensus). A detail question, then, is not a recall test you failed to study for. It is a **lookup against the map you already built.**
+
+**Mental model.** Think of the skeleton as an index, not a transcript. When the stem hands you a topic, you don't search your memory and you don't reread all five paragraphs — you ask, "Which paragraph's *function* would house this fact?" The answer about the rival's counter-evidence lives in the paragraph you tagged *objects to the thesis*; the figure the author endorses lives in the *supports* paragraph. The skeleton converts a five-paragraph hunt into a one-paragraph read. This is exactly why the chapter on the reading process insists you **don't obsess** over details on the first pass: detail is cheap to retrieve later because the passage stays on screen, while structure is expensive — so you spend the first read buying the structure and let the details wait until a stem actually pays for one.
+
+**Worked example.** Suppose your skeleton for a passage on early printing reads: *P1 — introduces the old view that movable type spread mainly through trade fairs; P2 — author objects, crediting monastic copyists' networks; P3 — reports critics who tie the spread to falling paper prices.* Now the stem: "According to the passage, critics attribute the spread of movable type primarily to which factor?" You do not reread P1 or P2. The verb *attribute* and the owner *critics* point straight to P3 — the paragraph you already tagged as the critics' voice — where you read only those lines and find "falling paper prices." One tag, one jump, one line. That is the whole move: match the stem's function and voice to a paragraph, then read just that paragraph.
+
+**Trap to watch.** Two traps live in this gap between map and line. The first is **true-but-not-what-was-asked**: P2's claim about monastic copyists is genuinely stated in the passage, so a choice repeating it feels safe — but the stem asked what *critics* said, and that is P3. A fact can be perfectly accurate and still answer a question you weren't asked. The second is the **distorted paraphrase**, where a choice keeps the right paragraph but swaps a single load-bearing word — "falling paper prices" quietly becomes "falling labor costs," or "critics suggest" hardens into "the author shows." Because your map told you the right neighborhood, you relax and skim the choice; that is precisely when the one swapped word slips past. The map gets you to the paragraph. Only reading the actual line catches the swap.
+
+> **Self-explanation prompt.** Why does building a function-and-voice skeleton on the first read make detail questions *faster*, even though you deliberately didn't memorize the detail it asks about? (Because the skeleton turns "search the whole passage from memory" into "jump to the one paragraph whose function and voice match the stem, then read those lines" — you trade memory you'd get wrong for an index that sends you to the exact spot, where the on-screen text is still there to confirm.)
+
+Close the question the same way you close every RC question: by **elimination**, not attraction. Once you've matched the stem to a paragraph and read its lines, don't fall in love with the first choice that echoes the passage's words — that echo is usually the bait. Find the four you can rule out: the one that answers a different question (true-but-not-asked), the one that swaps a word (distorted paraphrase), the one that's merely compatible but unstated, the partial that captures half. The choice anchored to the line you just read is the one left standing. Efficiency, not speed: the time you saved by not rereading the passage is the time you now spend verifying the survivor against its sentence.
