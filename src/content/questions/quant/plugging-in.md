@@ -308,3 +308,401 @@ The correct answer is B.
 **takeaway:** Choose a number that actually satisfies the constraint, then let the arithmetic reveal behavior you might misremember — like powers shrinking when 0 < x < 1.
 **hint_nudge:** Try x = 1/2 and compute x, x^2, and x^3.
 **related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q12
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+The price of a book is first raised by 10 percent, and then the new price is lowered by 10 percent. The final price is what percent of the original price?
+
+- A) 90%
+- B) 98%
+- C) 99%
+- D) 100%
+- E) 101%
+
+**answer:** C
+**explanation:** Plugging in 100 for the original price turns the percent changes into plain arithmetic. A 10 percent increase on 100 gives 110, and then a 10 percent decrease removes 10 percent of 110, which is 11, leaving 99. The final price is 99, so it is 99 percent of the original. The two changes do not cancel because the 10 percent decrease is taken from the larger base of 110, not from the original 100.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q13
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+At a gym, 60 percent of the members are women, and 25 percent of those women joined this year. Women who joined this year are what percent of all members?
+
+- A) 12%
+- B) 15%
+- C) 25%
+- D) 35%
+- E) 85%
+
+**answer:** B
+**explanation:** Letting the gym have 100 members makes every percentage a head count. Of the 100 members, 60 are women, and 25 percent of those 60 women joined this year: 25 percent of 60 is 15. So 15 members out of 100 are women who joined this year, which is 15 percent of all members. The trap of subtracting the percents (60 minus 25) fails because the second percentage is taken of the women, not of everyone.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q14
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+A lamp costs c dollars. During a sale it is marked 15 percent off. What is the sale price, in dollars?
+
+- A) c - 15
+- B) 0.15c
+- C) c/15
+- D) 0.85c
+- E) 1.15c
+
+**answer:** D
+**explanation:** Set c = 100, so the lamp costs 100 dollars and 15 percent off means you pay 85 percent, giving a sale price of 85. Testing the choices at c = 100, only 0.85c equals 85; choice A (c minus 15) also gives 85 here, so plug a second value to break the tie. At c = 200 the true sale price is 170, and 0.85(200) = 170 while 200 minus 15 = 185, so only choice D survives. A percent discount scales with the price and is never a fixed dollar amount.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q15
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+A machine fills b bottles every t minutes. At this rate, how many bottles does it fill in h hours?
+
+- A) bh/t
+- B) bht/60
+- C) 60bt/h
+- D) bh/(60t)
+- E) 60bh/t
+
+**answer:** E
+**explanation:** Choose clean numbers such as b = 6, t = 2, and h = 1. The machine fills 6 bottles every 2 minutes, so 3 bottles per minute, and one hour is 60 minutes, so it fills 3 times 60 = 180 bottles. Plugging b = 6, t = 2, h = 1 into the choices, only 60bh/t gives 60(6)(1)/2 = 360/2 = 180; the others give 3, 0.2, 720, and 0.05 respectively. The factor of 60 must appear because the rate is per minute while the time is given in hours.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q16
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+If n is an integer, which of the following must be odd?
+
+- A) 2n
+- B) n^2 + n
+- C) 2n^2 + 3
+- D) n^2 + 1
+- E) 4n - 2
+
+**answer:** C
+**explanation:** "Must be odd" means the expression has to be odd for every integer n, so test both an even and an odd value. Try n = 2 and n = 3 for choice C: 2(4) + 3 = 11 and 2(9) + 3 = 21, both odd, and indeed 2n^2 is always even so 2n^2 + 3 is always odd. The others fail a test: 2n and 4n - 2 are always even, n^2 + n = n(n + 1) is a product of consecutive integers and so always even, and n^2 + 1 is 5 at n = 2 but 10 at n = 3.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q17
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+A quantity increases by 20 percent, and then that result increases by 30 percent. The final value is what percent of the original?
+
+- A) 110%
+- B) 125%
+- C) 150%
+- D) 156%
+- E) 160%
+
+**answer:** D
+**explanation:** Anchor the original at 100 and apply each change to the running total. A 20 percent increase on 100 gives 120, and then a 30 percent increase adds 30 percent of 120, which is 36, producing 156. So the final value is 156 percent of the original. Adding the percents to get 150 percent is the trap, because the second increase is taken on the larger base of 120, contributing the extra 6 percentage points.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q18
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+The average (arithmetic mean) of x, x + 2, and x + 4 is m. In terms of m, what is x?
+
+- A) m - 2
+- B) m - 1
+- C) m
+- D) m + 1
+- E) m + 2
+
+**answer:** A
+**explanation:** Pick concrete numbers for the three terms, such as 3, 5, and 7, which corresponds to x = 3. Their average is (3 + 5 + 7)/3 = 15/3 = 5, so m = 5, and you need the choice that returns x = 3 when m = 5. Only m - 2 gives 5 - 2 = 3; the others give 4, 5, 6, and 7. Algebraically the three terms average to x + 2 = m, so x = m - 2, matching the plug-in result.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q19
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Plugging In Numbers
+
+If x and y are integers, is the product xy even?
+
+(1) x is even.
+(2) x + y is odd.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** A product of integers is even exactly when at least one factor is even, so test parities. From statement (1), x is even, and an even factor makes xy even no matter what y is (try x = 2, y = 3 giving 6, and x = 2, y = 4 giving 8), so (1) alone is sufficient. From statement (2), x + y is odd, which forces one of x and y to be even and the other odd, so again xy is even (try x = 1, y = 2 giving 2, and x = 4, y = 3 giving 12), so (2) alone is sufficient. Since each statement alone answers the question, the answer is D.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q20
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Plugging In Numbers
+
+Is x > y?
+
+(1) x^2 > y^2
+(2) x > 0 > y
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** Plug in numbers to test each statement. For statement (1), x = 3 and y = 2 give 9 > 4 with x > y true, but x = -3 and y = 2 also give 9 > 4 while x > y is false, so (1) alone is not sufficient. For statement (2), x is positive and y is negative, so x > y must be true for every such pair, since any positive number exceeds any negative number; testing x = 1, y = -5 and x = 4, y = -1 both confirm x > y. Since statement (2) settles the question and statement (1) does not, the answer is B.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q21
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+If x < 0, which of the following must be true?
+
+- A) x^2 > x
+- B) x^3 < x
+- C) x^2 < 1
+- D) 1/x < -1
+- E) x^3 < x^2 - 8
+
+**answer:** A
+**explanation:** "Must be true for every negative x" requires probing both a fraction near zero and a number below negative one, so test x = -1/2 and x = -2. For choice A, x^2 is nonnegative while x is negative, so x^2 > x holds in every case: at x = -1/2 it is 0.25 > -0.5, and at x = -2 it is 4 > -2. The others each break on at least one test: B fails at x = -1/2 since x^3 = -0.125 is greater than -0.5, C fails at x = -2 since 4 is not less than 1, D fails at x = -2 since 1/x = -0.5 is not less than -1, and E fails at x = -1/2 since x^3 = -0.125 is not less than x^2 - 8 = -7.75. Only A survives every test.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q22
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Plugging In Numbers
+
+What is the value of x?
+
+(1) x^2 = 4x
+(2) x > 2
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Statement (1) rearranges to x^2 - 4x = 0, so x(x - 4) = 0, giving x = 0 or x = 4; plugging in both shows two valid values, so (1) alone is not sufficient. Statement (2) only says x > 2, which allows infinitely many values, so it is not sufficient alone. Combining them, x must be 0 or 4 from (1) and greater than 2 from (2), which forces x = 4 uniquely, so both together are sufficient and the answer is C.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q23
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+The price of a chair is first raised by 30 percent, and then the new price is lowered by 10 percent. The final price is what percent of the original price?
+
+- A) 100%
+- B) 110%
+- C) 115%
+- D) 117%
+- E) 120%
+
+**answer:** D
+**explanation:** Plugging in 100 for the original price turns the percent changes into plain arithmetic. A 30 percent increase on 100 gives 130, and then a 10 percent decrease removes 10 percent of 130, which is 13, leaving 117. The final price is 117, so it is 117 percent of the original. The two changes do not net to plus 20 percent because the 10 percent decrease is taken from the larger base of 130, not from the original 100.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q24
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+At a company, 70 percent of the employees are full-time, and 40 percent of those full-time employees work remotely. Full-time employees who work remotely are what percent of all employees?
+
+- A) 21%
+- B) 28%
+- C) 30%
+- D) 40%
+- E) 56%
+
+**answer:** B
+**explanation:** Letting the company have 100 employees makes every percentage a head count. Of the 100 employees, 70 are full-time, and 40 percent of those 70 full-time employees work remotely: 40 percent of 70 is 28. So 28 employees out of 100 are full-time remote workers, which is 28 percent of all employees. Subtracting the percents (70 minus 40) fails because the second percentage is taken of the full-time employees, not of everyone.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q25
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+A desk costs k dollars. During a sale it is marked 25 percent off. What is the sale price, in dollars?
+
+- A) k - 25
+- B) 0.25k
+- C) k/25
+- D) 1.25k
+- E) 0.75k
+
+**answer:** E
+**explanation:** Set k = 100, so the desk costs 100 dollars and 25 percent off means you pay 75 percent, giving a sale price of 75. Testing the choices at k = 100, only 0.75k equals 75; choice A (k minus 25) also gives 75 here, so plug a second value to break the tie. At k = 200 the true sale price is 150, and 0.75(200) = 150 while 200 minus 25 = 175, so only choice E survives. A percent discount scales with the price and is never a fixed dollar amount.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q27
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+A typist types w words every r seconds. At this rate, how many words does the typist type in h hours?
+
+- A) wh/r
+- B) 60wh/r
+- C) 3600wh/r
+- D) wh/(3600r)
+- E) 3600wr/h
+
+**answer:** C
+**explanation:** Choose clean numbers such as w = 10, r = 2, and h = 1. The typist types 10 words every 2 seconds, so 5 words per second, and one hour is 3600 seconds, so the typist types 5 times 3600 = 18,000 words. Plugging w = 10, r = 2, h = 1 into the choices, only 3600wh/r gives 3600(10)(1)/2 = 36,000/2 = 18,000; the wrong choices give A = 5, B = 300, D = about 0.0014, and E = 3600(10)(2)/1 = 72,000. The factor of 3600 must appear because the rate is per second while the time is given in hours.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q28
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+A quantity increases by 25 percent, and then that result increases by 40 percent. The final value is what percent of the original?
+
+- A) 65%
+- B) 140%
+- C) 150%
+- D) 165%
+- E) 175%
+
+**answer:** E
+**explanation:** Anchor the original at 100 and apply each change to the running total. A 25 percent increase on 100 gives 125, and then a 40 percent increase adds 40 percent of 125, which is 50, producing 175. So the final value is 175 percent of the original. Adding the percents to get 165 percent is the trap, because the second increase is taken on the larger base of 125, contributing an extra 10 percentage points beyond the naive sum.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q29
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Plugging In Numbers
+
+The average (arithmetic mean) of x, x + 3, and x + 6 is m. In terms of m, what is x?
+
+- A) m - 6
+- B) m - 3
+- C) m
+- D) m + 3
+- E) m + 6
+
+**answer:** B
+**explanation:** Pick concrete numbers for the three terms, such as 2, 5, and 8, which corresponds to x = 2. Their average is (2 + 5 + 8)/3 = 15/3 = 5, so m = 5, and you need the choice that returns x = 2 when m = 5. Only m - 3 gives 5 - 3 = 2; the others give -1, 5, 8, and 11. Algebraically the three terms average to x + 3 = m, so x = m - 3, matching the plug-in result.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q32
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Plugging In Numbers
+
+If x and y are integers, is the product xy odd?
+
+(1) x is odd.
+(2) x + y is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** A product of integers is odd exactly when both factors are odd, so test parities. From statement (1), x is odd, but y is unknown: x = 3, y = 2 gives xy = 6 (even) while x = 3, y = 5 gives xy = 15 (odd), so (1) alone is not sufficient. From statement (2), x + y is even, which means x and y are both even or both odd: x = 2, y = 4 gives xy = 8 (even) while x = 3, y = 5 gives xy = 15 (odd), so (2) alone is not sufficient. Combining them, x is odd and x + y is even forces y to be odd, so both factors are odd and xy is odd, making the two statements together sufficient and the answer C.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Plugging In Numbers
+
+Is x > y?
+
+(1) x^3 > y^3
+(2) x^2 > y^2
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** Plug in numbers to test each statement. For statement (1), cubing preserves order for all real numbers, so x^3 > y^3 forces x > y in every case: x = 2, y = 1 gives 8 > 1 with x > y, and x = 1, y = -3 gives 1 > -27 with x > y, so (1) alone is sufficient. For statement (2), x = 3, y = 2 gives 9 > 4 with x > y true, but x = -3, y = 2 also gives 9 > 4 while x > y is false, so (2) alone is not sufficient. Since statement (1) settles the question and statement (2) does not, the answer is A.
+**related_reading:** quant-02-plugging-in-numbers
+
+---
+
+## Q34
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Plugging In Numbers
+
+What is the value of x?
+
+(1) x^2 = 9
+(2) x^3 = 27
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** Statement (1) says x^2 = 9, which has two solutions, x = 3 and x = -3, since squaring loses sign information, so plugging in both shows two valid values and (1) alone is not sufficient. Statement (2) says x^3 = 27, and because cubing preserves sign there is exactly one real solution, x = 3, so (2) alone is sufficient. Since statement (2) pins down a unique value while statement (1) does not, the answer is B.
+**related_reading:** quant-02-plugging-in-numbers

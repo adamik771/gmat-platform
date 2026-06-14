@@ -2,6 +2,100 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-13 (deferred-code cleanup shipped + paste-ready GO-LIVE RUNBOOK below)
+
+Branch `claude/handoff-2026-06-13` (off main). Shipped the four explicitly-deferred code items from the go-live audit, then wrote the runbook. Gate green: `npm run check` = validate:content 0 errors + tsc + **225** vitest tests (was 204); `next build` clean. NOT committed (Adam reviews/commits). Two small deps added with Adam's explicit approval: `server-only@^0.0.1`, `@vercel/analytics@^2.0.1` (`npm audit` shows 9 pre-existing transitive vulns, unrelated to these two — left alone; `audit fix --force` could break the build).
+
+### Shipped this session (deferred-code items)
+1. **Webhook unit tests** — extracted the webhook's pure decision logic to `src/lib/stripe-webhook.ts` (`resolveWebhookEvent(event) -> WebhookAction` discriminated union + `normalizePaymentIntentId`; type-only Stripe import, no DB/env/clock). `app/api/stripe/webhook/route.ts` now consumes it — **behaviour-identical** (same response shapes, logs, service-init ordering; timestamps/DB stay in the route). New `tests/stripe-webhook.test.ts` — 21 tests covering every branch (ignore / record / skip-missing-metadata / full-refund-revoke / partial-refund-noop / dispute-revoke, PI normalization for string|object|null, client_reference_id-vs-metadata precedence, amount/currency defaults). Matches the "pure evaluator" test idiom (signup-gate, tutor-rate-limit).
+2. **ToS-consent at checkout** — `app/api/checkout/route.ts` now adds `consent_collection: { terms_of_service: "required" }` to the Checkout Session, **gated behind `STRIPE_TOS_CONSENT === "true"`** (mirrors the existing `STRIPE_AUTOMATIC_TAX` gate). Safe to deploy now; enabling needs a ToS URL set in the Stripe Dashboard first (see runbook E12) or session creation errors.
+3. **server-only guard** — `import "server-only"` added to `src/lib/supabase/service.ts`. Build-time guard: any Client Component that imports the service-role client now fails the build. Verified safe — its only importers are route handlers + one server component (`admin/feedback/page.tsx`); no test imports it (the new webhook tests import the pure lib, not the route). `next build` passed.
+4. **Basic conversion analytics** — `@vercel/analytics`. `<Analytics/>` (from `@vercel/analytics/next`) mounted in `src/app/layout.tsx` (auto page-views). New `src/lib/analytics.ts` `trackEvent(name, props)` wrapper (never throws, no-op until live on Vercel). Funnel events wired: `checkout_initiated` (+plan) in `CheckoutButton.tsx`, `signup` (+gated) at both signup success paths, `purchase_completed` (+plan) via new `src/components/analytics/ConversionTracker.tsx` (reads `?purchase=success`, Suspense-mounted in the `(app)` layout). **No env var needed** — just turn on Web Analytics in the Vercel project (runbook C5). Authoritative completed-purchase/revenue data still lives in the `purchases` table.
+
+### Adversarial review (multi-agent, post-implementation)
+Ran a 3-lens review (webhook behavior-preservation / payment-security / analytics-integration) with per-finding adversarial verification: 5 raw findings → **2 confirmed, both low**. Webhook refactor certified **exactly behavior-preserving** (0 behavior changes). Confirmed findings:
+- **(fixed) ConversionTracker re-fire** — `purchase_completed` could double-fire on reload/reshare of `?purchase=success` (inflates a non-authoritative Vercel metric only). Fixed: strip the params via `window.history.replaceState` after firing.
+- **(deferred, pre-existing) null-PI revoke gap** — a refund/dispute with a null `payment_intent` can't be mapped to revoke, so access would persist. NOT reachable via the app today (no $0/promo checkout path; all 4 prices are real paid prices, promo codes off) — latent only. Proper fix needs a `stripe_charge_id` column + migration; spawned as a follow-up task, not done here (would expand the just-certified webhook). Reviewer's cheapest fix: add `stripe_charge_id` to `purchases`, populate in the record branch, revoke by charge id when PI is null; escalate the no-match `console.warn` to `console.error`.
+
+### Quant practice tests: bigger + difficulty ladder (Adam request)
+`TEST_CAPS.Quant` 9 -> **15** (Verbal/DI unchanged at 8). `getPracticeChapterGroups` (content.ts) now deals **Quant** pools as **contiguous slices** of the easy->hard-sorted pool, so a chapter's tests form a difficulty **ladder** (Test 1 = easiest questions, last = hardest; each test still ascends inside). Verbal/DI keep the round-robin balanced-mix deal. Verified via a throwaway dump: 25 quant chapters now yield **53 tests, sizes 8-15 (avg 10.8)**, each chapter a clean ladder (e.g. quant-11: T1 e10/m2 -> T2 all-medium -> T3 e0/m2/h10). Tests: TEST_CAPS assertion updated to 15; +2 regression tests in practice-routing.test.ts (quant cap <=15; multi-test quant chapters are a non-decreasing difficulty ladder via difficultyMix buckets). Suite 227.
+
+### Question-bank expansion: +223 ORIGINAL questions (Adam request)
+Adam asked to grow the bank "more and more" and pointed at two PDFs (Manhattan Review Quant bank; "501 GMAT Questions"). Those are **copyrighted commercial banks** — copying them into the paid product would be infringement and breaks the "authored all content" positioning, so they were NOT used or fed to any agent. Instead, authored **223 entirely original** questions across standard GMAT topics, in the existing file formats.
+
+- **Method:** two author->verify workflows + one independent audit. Each file: an author drafts originals mirroring the file's exact format -> an independent verifier re-solves every question from scratch, overrides the key with its own derivation, drops anything ambiguous, and appends (append-only Edit, never Write) -> then a third independent audit re-solved a sample (221 questions, full coverage on all computational quant/DS) and found **0 mismatches**. 3 answer keys were corrected during generation (e.g. table-analysis Q61 D->C, where the draft's own explanation already concluded C).
+- **Wave 1 (standalone, 167):** 12 quant files (PS+DS), critical-reasoning, data-sufficiency.
+- **Wave 2 (set-based, 56):** reading-comprehension (3 new original passages, Q110-121), graphics-interpretation (chart-JSON, Q51-62), table-analysis (Q50-61), multi-source-reasoning (Q54-61), two-part-analysis (Q53-64; answer values string-match row labels so the parser sets twoPartCorrectAnswers).
+- **Bank now:** Quant **772** (was 629), Verbal **320**, DI **316** — ~**1,408** total. New quant questions use routing-aware `**topic:**` tags so they flow into the difficulty-laddered practice tests; quant practice now 56 tests / 679 questions.
+- **Verified:** `validate:content` 0 errors; `tsc` clean; **232** vitest tests pass; `next build` clean; every file grew (append-only, no content lost). NOT committed (Adam reviews).
+
+---
+
+## GO-LIVE RUNBOOK (Adam-only config — paste-ready, in order)
+
+All code is merged/ready; the steps below are dashboard/env work only. Do them top to bottom. **Flip `PAYWALL_ENABLED=true` LAST.**
+
+### Phase A — stop the bleeding (do first, ~2 min)
+- Disable the **claude.ai/code scheduled routines** in the web UI (they generate the `claude/*` PR backlog — there are 500+ stale remote branches).
+- Optionally disable the 4 **local** scheduled tasks (`gmat-site-health-check`, `gmat-seo-report`, `gmat-marketing-post`, `gmat-qa-audit`) in the app's Scheduled sidebar if you don't want them running/opening PRs during launch.
+
+### Phase B — env vars (set in Vercel → Project → Settings → Environment Variables, Production)
+Reference table — every env the code reads, grouped by what it unlocks. `NEXT_PUBLIC_*` are build-time inlined → **redeploy after changing them**.
+
+| Env var | Needed for | Notes |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Auth/DB (whole app) | Must be present + untruncated or the proxy fails open = no auth. |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Auth/DB (whole app) | Same. |
+| `SUPABASE_SERVICE_ROLE_KEY` | webhook, signup gate, account delete, cron, admin | Server-only secret. Never prefix `NEXT_PUBLIC`. |
+| `NEXT_PUBLIC_SITE_URL` | metadata / OG image absolute URLs | e.g. `https://www.zakariangmat.com` (no trailing slash). |
+| `STRIPE_SECRET_KEY` | charging | Live key. |
+| `STRIPE_PRICE_SELF_STUDY` | charging | Real Stripe price id. |
+| `STRIPE_PRICE_SELF_STUDY_GUARANTEED` | charging | Canonical name (legacy `STRIPE_PRICE_SELF_STUDY_PLUS` also accepted). |
+| `STRIPE_PRICE_COACHING` | charging | Real price id. |
+| `STRIPE_PRICE_INTENSIVE` | charging | Real price id. |
+| `STRIPE_WEBHOOK_SECRET` | charging | From the webhook endpoint you create (E10). |
+| `STRIPE_AUTOMATIC_TAX` | VAT | Set `true` ONLY after Stripe Tax is enabled (E11) — else checkout errors. |
+| `STRIPE_TOS_CONSENT` | ToS at checkout | Set `true` ONLY after a ToS URL is set in Stripe (E12) — else checkout errors. |
+| `RESEND_API_KEY` | reminder emails | Inert without it. |
+| `EMAIL_FROM` | reminder emails | `Zakarian GMAT <noreply@zakariangmat.com>` (space, not underscore). |
+| `CRON_SECRET` | reminder cron | `/api/cron/reminders` 503s without it. Cron runs daily 13:00 UTC (vercel.json). |
+| `SENTRY_DSN` | error monitoring (server) | No-op until set. |
+| `NEXT_PUBLIC_SENTRY_DSN` | error monitoring (client) | No-op until set. |
+| `SENTRY_TRACES_SAMPLE_RATE` / `NEXT_PUBLIC_SENTRY_TRACES_SAMPLE_RATE` | perf traces | Optional. |
+| `NEXT_PUBLIC_SIGNUP_GATED` | invite-only signup | `true` to require an access code. |
+| `SIGNUP_ACCESS_CODE` | invite-only signup | The server-checked code (gated path auto-confirms email). |
+| `PAYWALL_ENABLED` | paid gating | **Flip `true` LAST**, after Stripe works. Default off = everything free. |
+| `ANTHROPIC_API_KEY` | AI tutor | Tutor 503s without it. |
+| `ANTHROPIC_MODEL` | AI tutor | Optional model override. |
+| `ADMIN_EMAILS` | /admin + qa pages | Optional, comma-separated. |
+| `NEXT_PUBLIC_COMMUNITY_URL` | community link | Optional. |
+
+Note: the checkout flow is Stripe **hosted** (redirect), so **no** `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is required.
+
+### Phase C — DB + monitoring (before any public traffic)
+1. Apply 3 migrations in the Supabase SQL editor (idempotent; safe on the existing hand-applied `purchases` table):
+   `supabase/migrations/20260612000000_tutor_usage.sql`, `20260613000000_purchases.sql`, `20260613000100_lead_captures_sources.sql`.
+2. Verify the `purchases.plan_id` CHECK admits `self_study_guaranteed` (the migration adds it `not valid`, so a stray legacy constraint could still block inserts):
+   `select conname, pg_get_constraintdef(oid) from pg_constraint where conrelid='public.purchases'::regclass and contype='c';`
+3. Supabase → Auth → Policies/Settings: set **minimum password length = 8** (server backstop for the client check).
+4. Create a Sentry project → set `SENTRY_DSN` + `NEXT_PUBLIC_SENTRY_DSN` in Vercel.
+5. Vercel → Project → **Analytics tab → enable Web Analytics** (lights up page views + the `checkout_initiated` / `signup` / `purchase_completed` events; no env var). Completed-purchase counts/revenue are also queryable from the `purchases` table.
+
+### Phase D — free launch
+6. Pick access model. Invite-only ⇒ set `SIGNUP_ACCESS_CODE` + `NEXT_PUBLIC_SIGNUP_GATED=true` in Vercel **and disable public sign-ups in Supabase** (the airtight half). The gated path **auto-confirms** (skips email verification).
+7. EU-legal: add legal-entity identity + postal address to `/terms` + `/privacy`; disclose the Formspree (US) sub-processor in `/privacy`; add a brief cookie note.
+8. Resend: verify domain DNS (SPF/DKIM/DMARC) + set `RESEND_API_KEY` / `EMAIL_FROM` / `CRON_SECRET`.
+
+### Phase E — charge money
+9. Stripe: create 4 products/prices → set `STRIPE_SECRET_KEY` + the 4 `STRIPE_PRICE_*` envs.
+10. Stripe → Developers → Webhooks → add endpoint `/api/stripe/webhook`; subscribe to `checkout.session.completed`, `charge.refunded`, `charge.dispute.created`; set `STRIPE_WEBHOOK_SECRET`.
+11. (Optional) Enable **Stripe Tax** in the dashboard, then set `STRIPE_AUTOMATIC_TAX=true`.
+12. (Optional) Set a **Terms of Service URL** in Stripe Dashboard → Settings → Checkout and Payment Links, then set `STRIPE_TOS_CONSENT=true` (records ToS acceptance on each Checkout Session).
+13. Test end-to-end: purchase → access granted; refund → access revoked; chargeback → revoked; invoice/receipt arrives.
+14. Flip `PAYWALL_ENABLED=true`, redeploy, watch Sentry + Stripe + Vercel Analytics.
+
+---
+
 ## CONTEXT SWITCH — 2026-06-13 (go-live readiness audit + all code fixes — EVERYTHING MERGED to main; what's left is Adam-only config)
 
 Session goal: "what are we missing to fully go live." Ran an exhaustive 15-dimension go-live audit (123 findings), then wrote + adversarially-reviewed + shipped every CODE fix. **All of it is MERGED to main** (PRs #442–#448). Main is green: `npm run check` (validate:content 0 errors + tsc + **204** vitest tests) + `next build` clean (138 routes). **The entire code backlog from the audit is done — what remains to go live is purely Adam's config/dashboard work (below).**

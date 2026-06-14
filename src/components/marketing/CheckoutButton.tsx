@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { trackEvent } from "@/lib/analytics"
 
 interface Props {
   planId: "self_study" | "self_study_guaranteed" | "coaching" | "intensive"
@@ -33,6 +34,9 @@ export default function CheckoutButton({
   async function buy() {
     setError(null)
     setLoading(true)
+    // Top-of-funnel conversion signal: the intent to buy this tier, fired
+    // before the network call so it captures clicks that 401 to /signup too.
+    trackEvent("checkout_initiated", { plan: planId })
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",

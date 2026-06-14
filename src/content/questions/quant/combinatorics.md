@@ -2223,3 +2223,491 @@ Six distinct speakers are to be arranged in a single row of six chairs for a pan
 **answer:** B
 **explanation:** We first place A in one of the two end chairs, giving 2 choices. The remaining five speakers, including B and C, fill the five remaining chairs, which form a contiguous block of five seats. Arranging 5 distinct people in those seats gives 5! = 120 ways, of which the arrangements with B and C adjacent number 4! x 2! = 24 x 2 = 48. Hence the arrangements of the five with B and C not adjacent number 120 - 48 = 72. Multiplying by the 2 choices for A yields 2 x 72 = 144. The choice 240 forgets the non-adjacency condition, while 96 counts the cases where B and C are adjacent. The correct answer is B.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q73
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Counting
+
+A coffee bar lets a customer build one drink by choosing exactly one cup size from 4 sizes, one flavor syrup from 5 syrups, and one topping from 3 toppings. How many different drinks can be built?
+
+- A) 12
+- B) 20
+- C) 32
+- D) 45
+- E) 60
+
+**answer:** E
+**explanation:** By the fundamental counting principle, when independent choices are made in sequence the total number of outcomes equals the product of the number of options at each stage. Here the three choices are independent: 4 cup sizes, 5 syrups, and 3 toppings, so the number of distinct drinks is 4 x 5 x 3 = 60. Adding the options instead of multiplying (4 + 5 + 3 = 12) is the common error that produces choice (A). The correct answer is E.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q74
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combinations
+
+A school must select 2 students from a class of 9 to attend a conference. The two students play identical roles, so the order of selection does not matter. In how many ways can the pair be selected?
+
+- A) 36
+- B) 72
+- C) 81
+- D) 126
+- E) 252
+
+**answer:** A
+**explanation:** Because the two chosen students fill interchangeable roles, the order of selection is irrelevant, so this is a combination rather than a permutation. The number of ways to choose 2 from 9 is C(9, 2) = (9 x 8) / (2 x 1) = 72 / 2 = 36. Treating the selection as ordered gives P(9, 2) = 9 x 8 = 72, the trap in choice (B), and 81 = 9^2 would allow a student to be picked twice. The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q75
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Permutations
+
+Four distinct framed paintings are to be hung in a single row along a hallway. In how many different orders can they be hung?
+
+- A) 4
+- B) 12
+- C) 16
+- D) 24
+- E) 256
+
+**answer:** D
+**explanation:** Arranging 4 distinct objects in a row is a straightforward permutation of all 4 items, so the number of orders is 4! = 4 x 3 x 2 x 1 = 24. The value 16 = 4^2 and 256 = 4^4 would arise only if a painting could occupy more than one position, which is impossible in a single row of four distinct paintings. The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q76
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Probability
+
+A spinner is divided into 8 regions of equal area. Exactly 3 of the regions are colored gold and the rest are colored silver. If the spinner is spun once and is equally likely to stop on any region, what is the probability that it stops on a gold region?
+
+- A) 1/8
+- B) 1/4
+- C) 3/8
+- D) 1/2
+- E) 5/8
+
+**answer:** C
+**explanation:** Because the 8 regions have equal area, each region is equally likely, so the probability of a gold result is simply the number of gold regions divided by the total number of regions. With 3 gold regions out of 8, the probability is 3/8. The value 5/8 is the probability of landing on silver (the 5 non-gold regions), which answers a different question. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q77
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations
+
+How many distinct arrangements can be formed using all of the letters of the word PROGRAM?
+
+- A) 1,260
+- B) 2,520
+- C) 3,780
+- D) 5,040
+- E) 10,080
+
+**answer:** B
+**explanation:** The word PROGRAM has 7 letters, and the letter R appears twice while P, O, G, A, and M each appear once. The number of distinct arrangements of a multiset is n! divided by the product of the factorials of the repeated-letter counts, so the count is 7! / 2! = 5,040 / 2 = 2,520. The value 5,040 = 7! ignores the repeated R and counts indistinguishable arrangements as different. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q78
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations
+
+A catering manager must choose 3 hot dishes from a menu of 7 hot dishes and 2 salads from a menu of 4 salads. The dishes within each course are interchangeable, so order does not matter. In how many ways can the selection be made?
+
+- A) 35
+- B) 70
+- C) 126
+- D) 210
+- E) 420
+
+**answer:** D
+**explanation:** The two selections are made from separate menus and are independent, so by the multiplication principle the totals are multiplied. The hot dishes are an unordered choice of 3 from 7, namely C(7, 3) = (7 x 6 x 5) / (3 x 2 x 1) = 35, and the salads are an unordered choice of 2 from 4, namely C(4, 2) = (4 x 3) / (2 x 1) = 6. Multiplying gives 35 x 6 = 210. Choice (A) counts only the hot dishes and forgets the salads, while choice (E) doubles the count by treating one of the courses as ordered. The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q79
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability
+
+A bag contains 7 green chips and 5 yellow chips. Two chips are drawn one at a time at random, without replacement. What is the probability that both chips drawn are yellow?
+
+- A) 5/33
+- B) 5/22
+- C) 1/4
+- D) 7/22
+- E) 5/12
+
+**answer:** A
+**explanation:** Because the draws are made without replacement, the two events are dependent, and the probability that both occur equals the probability of the first event times the conditional probability of the second given the first. The bag holds 12 chips, of which 5 are yellow, so the probability the first chip is yellow is 5/12. After removing one yellow chip, 4 yellow chips remain among 11 total, so the conditional probability the second is yellow is 4/11. Multiplying gives (5/12)(4/11) = 20/132 = 5/33. Treating the problem as with replacement would instead give (5/12)^2 = 25/144, a different value. The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q80
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Overlapping Sets
+
+In a certain group, every person plays chess, checkers, or both; no one plays neither game. Exactly 20 people play chess. How many people are in the group?
+
+(1) Exactly 18 people play checkers.
+(2) Every person who plays chess also plays checkers, and exactly 25 people play checkers.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** Because no one plays neither game, the total number of people equals the size of the union of the chess-players and the checkers-players, given by inclusion-exclusion as Total = (chess) + (checkers) - (both) = 20 + (checkers) - (both). The total is therefore determined only once both the checkers count and the overlap are known.
+
+Statement (1) gives checkers = 18 but says nothing about the overlap. The number who play both can be any integer from 2 to 18 (the overlap is at most the smaller group, 18, and at least 20 + 18 - Total forces it to be positive), so the total ranges over several values. Statement (1) alone is not sufficient.
+
+Statement (2) says every chess player also plays checkers, so the chess set is entirely contained in the checkers set; this makes the union equal to the checkers set alone. Since exactly 25 people play checkers, the union, and hence the total, is 25. Statement (2) alone is sufficient. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q81
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Combinations
+
+A team of 3 is to be chosen from a group of m men and w women. How many different teams consist of exactly 2 men and 1 woman?
+
+(1) m = 6.
+(2) w = 5.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** A team with exactly 2 men and 1 woman is built by an unordered choice of 2 men from the m available and 1 woman from the w available, so the number of such teams is C(m, 2) x C(w, 1). This requires knowing both m and w.
+
+Statement (1) gives m = 6, so the men can be chosen in C(6, 2) = 15 ways, but the number of women w is unknown, leaving the count 15w undetermined. Statement (1) alone is not sufficient.
+
+Statement (2) gives w = 5, so the woman can be chosen in C(5, 1) = 5 ways, but the number of men m is unknown, leaving the count 5 x C(m, 2) undetermined. Statement (2) alone is not sufficient.
+
+Taking the statements together, m = 6 and w = 5, so the number of teams is C(6, 2) x C(5, 1) = 15 x 5 = 75, a single determined value. Both statements together are sufficient, but neither alone is. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q82
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+Eight distinct people are to be seated in a single row of eight chairs. Three of them — A, B, and C — must sit together as a consecutive group, and two others — D and E — must also sit together as a consecutive group. In how many different orders can the eight people be seated?
+
+- A) 720
+- B) 960
+- C) 1,200
+- D) 1,440
+- E) 2,880
+
+**answer:** D
+**explanation:** When specified people must stay together, the block method applies: glue each required group into a single unit, arrange the resulting units, and then multiply by the internal orderings within each block. Treating A, B, C as one block and D, E as another block leaves these 2 blocks plus the 3 remaining individuals, for 5 units in all. The 5 units can be arranged in 5! = 120 ways. Within the first block, A, B, C can be ordered in 3! = 6 ways, and within the second block, D, E can be ordered in 2! = 2 ways. By the multiplication principle the total is 120 x 6 x 2 = 1,440. Forgetting the internal ordering of the three-person block gives 120 x 2 = 240, and forgetting the two-person block's swap gives 120 x 6 = 720 (choice A). The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q83
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability
+
+A jar contains 5 red marbles and 4 blue marbles. Four marbles are drawn at random, all at once. What is the probability that at least one of the four marbles drawn is blue?
+
+- A) 5/126
+- B) 1/2
+- C) 5/9
+- D) 5/6
+- E) 121/126
+
+**answer:** E
+**explanation:** For an "at least one" probability, the efficient route is the complement: the probability of at least one blue equals 1 minus the probability of no blue. The total number of ways to choose 4 marbles from the 9 in the jar is C(9, 4) = (9 x 8 x 7 x 6) / (4 x 3 x 2 x 1) = 126. The number of ways to choose 4 marbles with no blue is the number of ways to choose all 4 from the 5 red marbles, namely C(5, 4) = 5. So the probability of no blue is 5/126, and the probability of at least one blue is 1 - 5/126 = 121/126. Reporting 5/126 (choice A) gives the complement itself rather than the required probability. The correct answer is E.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q84
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Permutations
+
+The letters of a certain word are to be rearranged into a row. How many distinct arrangements of all of its letters are possible?
+
+(1) The word has 5 letters, exactly two of which are identical to each other, and the remaining three letters are all different from one another and from the repeated letter.
+(2) The word has 5 letters.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** The number of distinct arrangements of a 5-letter word depends on how many letters are repeated, since identical letters reduce the count by the factorial of each repeat group.
+
+Statement (1) specifies the exact repetition structure: 5 letters with exactly one pair of identical letters and the other three letters all distinct. The number of distinct arrangements is therefore 5! / 2! = 120 / 2 = 60, regardless of which specific letters are involved. Statement (1) alone is sufficient.
+
+Statement (2) gives only that the word has 5 letters but not how many repeat. If all five letters were distinct the count would be 5! = 120; if two were identical it would be 60; other repetition patterns give still other values. Because the count is not pinned down, statement (2) alone is not sufficient. The correct answer is A.
+
+---
+
+## Q85
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Counting
+
+A build-your-own salad bar lets a customer choose exactly one base from 3 bases, one protein from 6 proteins, and one dressing from 2 dressings. How many different salads can be built?
+
+- A) 11
+- B) 12
+- C) 18
+- D) 22
+- E) 36
+
+**answer:** E
+**explanation:** By the fundamental counting principle, when independent choices are made in sequence the total number of outcomes is the product of the number of options available at each stage. Here the three choices are independent: 3 bases, 6 proteins, and 2 dressings, so the number of distinct salads is 3 x 6 x 2 = 36. Adding the options instead of multiplying (3 + 6 + 2 = 11) is the common error that produces choice (A), and using only the base and protein (3 x 6 = 18) gives choice (C). The correct answer is E.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q86
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combinations
+
+A book club must choose 2 of its 7 members to attend a publishing fair. The two attendees play identical roles, so the order of selection does not matter. In how many ways can the pair be chosen?
+
+- A) 21
+- B) 14
+- C) 28
+- D) 35
+- E) 42
+
+**answer:** A
+**explanation:** Because the two chosen members fill interchangeable roles, the order of selection is irrelevant, so this is a combination rather than a permutation. The number of ways to choose 2 from 7 is C(7, 2) = (7 x 6) / (2 x 1) = 42 / 2 = 21. Treating the selection as ordered gives P(7, 2) = 7 x 6 = 42, the trap in choice (E), and choosing 3 instead of 2 gives C(7, 3) = 35, the value in choice (D). The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q87
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Permutations
+
+A gallery assistant must hang 5 distinct photographs in a single row along a wall. In how many different orders can the photographs be hung?
+
+- A) 20
+- B) 25
+- C) 60
+- D) 120
+- E) 720
+
+**answer:** D
+**explanation:** Arranging 5 distinct objects in a row is a straightforward permutation of all 5 items, so the number of orders is 5! = 5 x 4 x 3 x 2 x 1 = 120. The value 20 = 5 x 4 counts only the first two positions, and 720 = 6! corresponds to arranging six items rather than five. The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q88
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Probability
+
+A bag contains 3 red marbles and 5 green marbles and nothing else. If one marble is drawn at random and each marble is equally likely to be drawn, what is the probability that the marble is red?
+
+- A) 1/4
+- B) 3/8
+- C) 1/2
+- D) 5/8
+- E) 3/5
+
+**answer:** B
+**explanation:** Because each of the marbles is equally likely to be drawn, the probability of a red result is simply the number of red marbles divided by the total number of marbles. There are 3 red marbles out of 3 + 5 = 8 marbles in all, so the probability is 3/8. The value 5/8 is the probability of drawing green (the 5 non-red marbles), which answers a different question, and 3/5 incorrectly uses the count of green marbles as the denominator. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q89
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Restrictions
+
+How many distinct arrangements can be formed using all of the letters of the word BALLOON?
+
+- A) 630
+- B) 840
+- C) 1,260
+- D) 2,520
+- E) 5,040
+
+**answer:** C
+**explanation:** The word BALLOON has 7 letters, with the letter L appearing twice and the letter O appearing twice, while B, A, and N each appear once. The number of distinct arrangements of a multiset is n! divided by the product of the factorials of the repeated-letter counts, so the count is 7! / (2! x 2!) = 5,040 / 4 = 1,260. The value 5,040 = 7! ignores both repeated pairs, and 2,520 = 7! / 2! divides for only one of the two repeated letters. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q90
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations
+
+How many distinct arrangements can be formed using all of the letters of the word LEVEL?
+
+- A) 20
+- B) 30
+- C) 60
+- D) 120
+- E) 240
+
+**answer:** B
+**explanation:** The word LEVEL has 5 letters, with the letter L appearing twice and the letter E appearing twice, while V appears once. The number of distinct arrangements of a multiset is n! divided by the product of the factorials of the repeated-letter counts, so the count is 5! / (2! x 2!) = 120 / 4 = 30. The value 120 = 5! ignores both repeated pairs, and 60 = 5! / 2! divides for only one of the two repeated letters. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q91
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations
+
+A coach must build a relay squad by choosing 2 captains from a group of 4 eligible captains and 3 runners from a separate group of 6 eligible runners. The members within each group are interchangeable, so order does not matter. In how many ways can the squad be chosen?
+
+- A) 26
+- B) 60
+- C) 84
+- D) 120
+- E) 240
+
+**answer:** D
+**explanation:** The two selections are made from separate groups and are independent, so by the multiplication principle the totals are multiplied. The captains are an unordered choice of 2 from 4, namely C(4, 2) = (4 x 3) / (2 x 1) = 6, and the runners are an unordered choice of 3 from 6, namely C(6, 3) = (6 x 5 x 4) / (3 x 2 x 1) = 20. Multiplying gives 6 x 20 = 120. Adding the two combinations instead of multiplying (6 + 20 = 26) gives choice (A), and choice (E) doubles the count by treating one of the groups as ordered. The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q92
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Overlapping Sets
+
+In a language program, every student studies Spanish, French, or both, and no student studies neither. Exactly 24 students study Spanish and exactly 19 study French. How many students are in the program?
+
+(1) Exactly 7 students study both Spanish and French.
+(2) The number of students who study only Spanish is twice the number who study only French.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** Because no student studies neither subject, the total number of students equals the size of the union of the two groups, given by inclusion-exclusion as Total = (Spanish) + (French) - (both) = 24 + 19 - (both) = 43 - (both). The total is therefore completely determined once the overlap, the number who study both, is known, so the question reduces to whether each statement pins down that overlap. Statement (1) states that exactly 7 students study both, so Total = 43 - 7 = 36; this is sufficient. Statement (2) lets x denote the number who study both, so the number who study only Spanish is 24 - x and the number who study only French is 19 - x; translating "only Spanish is twice only French" gives 24 - x = 2(19 - x), which expands to 24 - x = 38 - 2x, so x = 14, and Total = 43 - 14 = 29; this is sufficient. Since each statement alone determines the overlap and hence the total, each statement alone is sufficient. The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q93
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Permutations
+
+From a group of n people, a president and a vice-president are to be chosen, and no person may hold both offices. In how many different ways can the two offices be filled?
+
+(1) The group contains more than 6 people.
+(2) There are exactly 28 ways to choose an unordered pair of two people from the group.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** Because the two offices are distinct, the number of ways to fill them is the ordered count P(n, 2) = n(n - 1), so the question is answerable exactly when n is determined. Statement (1) says only that n is greater than 6, which allows n = 7, 8, 9, and many other values, each giving a different count; this is not sufficient. Statement (2) says the number of unordered pairs is C(n, 2) = n(n - 1) / 2 = 28, so n(n - 1) = 56, which has the unique positive-integer solution n = 8; then P(8, 2) = 8 x 7 = 56, a single determined value, so statement (2) alone is sufficient. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q94
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+Six friends are to be seated around a circular table with six chairs. Two of the friends, Priya and Quinn, refuse to sit immediately next to each other. How many distinct seating arrangements are possible? (Arrangements that differ only by a rotation are considered the same.)
+
+- A) 48
+- B) 60
+- C) 72
+- D) 96
+- E) 120
+
+**answer:** C
+**explanation:** We use complementary counting. The total number of distinct circular arrangements of 6 distinct people, where rotations are regarded as identical, is (6 - 1)! = 5! = 120. We then subtract the arrangements in which Priya and Quinn do sit next to each other. Binding that pair into a single block leaves 5 units to arrange around the circle, which can be done in (5 - 1)! = 4! = 24 distinct circular ways, and within the block the two can be ordered in 2! = 2 ways, giving 24 x 2 = 48 adjacent arrangements. Subtracting gives 120 - 48 = 72. The value 48 counts the forbidden (adjacent) arrangements instead of the acceptable ones, and 120 ignores the restriction entirely. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q95
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability
+
+A jar contains 4 white, 3 black, and 2 red marbles. Three marbles are drawn at random, all at once. What is the probability that at least one of the three marbles drawn is white?
+
+- A) 5/42
+- B) 1/3
+- C) 1/2
+- D) 5/6
+- E) 37/42
+
+**answer:** E
+**explanation:** For an "at least one" probability, the efficient route is the complement: the probability of at least one white equals 1 minus the probability of no white. The total number of ways to choose 3 marbles from the 4 + 3 + 2 = 9 in the jar is C(9, 3) = (9 x 8 x 7) / (3 x 2 x 1) = 84. The number of ways to choose 3 marbles with no white is the number of ways to choose all 3 from the 5 non-white marbles (3 black and 2 red), namely C(5, 3) = 10. So the probability of no white is 10/84 = 5/42, and the probability of at least one white is 1 - 5/42 = 37/42. Reporting 5/42 (choice A) gives the complement itself rather than the required probability. The correct answer is E.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q96
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Combinations
+
+A jar contains r red marbles and b blue marbles and no others. If 2 marbles are to be drawn from the jar, how many different pairs of 2 marbles are both red?
+
+(1) r = 6.
+(2) b = 5.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** A pair of 2 marbles that are both red is an unordered choice of 2 of the red marbles, so the number of such pairs is C(r, 2) and depends only on r, not on b. Statement (1) gives r = 6, so the number of all-red pairs is C(6, 2) = (6 x 5) / (2 x 1) = 15, a single determined value; this is sufficient. Statement (2) gives only b = 5, which says nothing about how many red marbles are available and therefore leaves C(r, 2) undetermined; this is not sufficient. Since the count depends solely on r, statement (1) alone suffices while statement (2) alone does not. The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+**related_reading:** reading-quant-06-statistics-probability-combinatorics

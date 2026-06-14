@@ -1735,3 +1735,683 @@ Therefore x + y = 7 + 14 = 21.
 
 The correct answer is D.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q45
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Rate Time Distance
+
+A cyclist rides at a constant speed of 24 kilometers per hour. How far will the cyclist travel in 25 minutes?
+
+- A) 8 km
+- B) 10 km
+- C) 12 km
+- D) 14 km
+- E) 15 km
+
+**answer:** B
+**explanation:** This problem is governed by the relationship distance equals rate multiplied by time, which applies whenever motion occurs at a constant speed. A necessary condition for using this relationship is that the units of rate and time be consistent, so the time must be converted from minutes to hours before it is combined with a speed measured in kilometers per hour.
+
+Let d represent the distance traveled, in kilometers. The given rate is 24 kilometers per hour, so the time of 25 minutes must be rewritten in hours: 25 minutes = 25/60 hour = 5/12 hour.
+
+Applying the distance relationship gives d = rate × time = 24 × (5/12) = 120/12 = 10. Therefore the cyclist travels 10 kilometers.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q46
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work Rate
+
+Pipe A can fill a tank in 3 hours, and pipe B can fill the same tank in 6 hours. If both pipes are opened together, how long will it take to fill the tank?
+
+- A) 2 hours
+- B) 2.5 hours
+- C) 3 hours
+- D) 4 hours
+- E) 4.5 hours
+
+**answer:** A
+**explanation:** This is a combined-work problem, governed by the principle that when several agents work together their individual rates of work add, whereas their times do not. Each agent's rate is the reciprocal of the time it requires to complete the job alone.
+
+Let the task be filling one full tank. Pipe A fills the tank in 3 hours, so its rate is 1/3 of the tank per hour, and pipe B fills it in 6 hours, so its rate is 1/6 of the tank per hour. When both pipes are opened together, the combined rate is the sum of the individual rates: 1/3 + 1/6 = 2/6 + 1/6 = 3/6 = 1/2 of the tank per hour.
+
+Let T be the time, in hours, required to fill one tank at the combined rate. Since rate multiplied by time equals the work, and the work is one full tank, (1/2) × T = 1, so T = 2 hours.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q47
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Machine
+
+A machine produces 150 components every 4 hours at a constant rate. At this rate, how many components will the machine produce in 10 hours?
+
+- A) 300
+- B) 325
+- C) 350
+- D) 360
+- E) 375
+
+**answer:** E
+**explanation:** This problem applies the principle of a constant rate of production, under which output is directly proportional to elapsed time. The governing relationship is that output equals rate multiplied by time, where the rate, expressed in components per hour, remains fixed.
+
+Let r represent the constant rate of production, in components per hour. Because the machine produces 150 components every 4 hours, the rate is the quotient of components and hours: r = 150 / 4 = 37.5 components per hour.
+
+Let W represent the number of components produced in 10 hours. Since the rate is constant, W = r × 10 = 37.5 × 10 = 375 components.
+
+The correct answer is E.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q48
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Work
+
+A worker can complete a job in 9 hours. After working alone for 6 hours, what fraction of the job has the worker completed?
+
+- A) 1/3
+- B) 1/2
+- C) 2/3
+- D) 3/4
+- E) 5/6
+
+**answer:** C
+**explanation:** This problem is governed by the principle that a worker who completes a job in a fixed time works at a constant rate equal to the reciprocal of that time, and that the fraction of the job completed equals the rate multiplied by the time worked.
+
+Let the entire job be represented by 1. The worker completes the job in 9 hours, so the rate of work is 1/9 of the job per hour. Working alone for 6 hours, the worker completes 6 × (1/9) = 6/9 of the job.
+
+Reducing the fraction gives 6/9 = 2/3. Therefore the worker has completed 2/3 of the job.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q49
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Work Rate
+
+Worker A can complete a job alone in 15 hours. When A and B work together, they finish the same job in 6 hours. How long would B take working alone?
+
+- A) 6 hours
+- B) 7.5 hours
+- C) 9 hours
+- D) 10 hours
+- E) 12 hours
+
+**answer:** D
+**explanation:** This is a combined-work problem, and the governing principle is that rates of work add, whereas times do not. If a worker completes a job in t hours, that worker's rate is 1/t of the job per hour, and the rates of workers laboring together sum to the combined rate.
+
+Let b denote the number of hours B requires to complete the job alone. Worker A finishes the job in 15 hours, so A's rate is 1/15 of the job per hour, and B's rate is 1/b of the job per hour. Working together, A and B finish the job in 6 hours, so their combined rate is 1/6 of the job per hour. Because the rates add, 1/15 + 1/b = 1/6.
+
+Isolating 1/b gives 1/b = 1/6 − 1/15. Using the common denominator 30, this is 1/b = 5/30 − 2/30 = 3/30 = 1/10. Taking the reciprocal gives b = 10. Thus B, working alone, requires 10 hours.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q50
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rate Time Distance
+
+A driver covers the first 120 miles of a trip at 60 mph and the next 120 miles at 40 mph. What is the driver's average speed for the entire trip, in miles per hour?
+
+- A) 45
+- B) 48
+- C) 50
+- D) 52
+- E) 55
+
+**answer:** B
+**explanation:** Average speed is defined as total distance divided by total time, not as the simple average of the individual speeds. Because the two legs cover equal distances at different speeds, more time is spent on the slower leg, so the speeds cannot be averaged directly; the total distance and total time must be computed separately.
+
+The first leg covers 120 miles at 60 mph, requiring 120/60 = 2 hours. The second leg covers 120 miles at 40 mph, requiring 120/40 = 3 hours. The total distance is 120 + 120 = 240 miles, and the total time is 2 + 3 = 5 hours.
+
+Applying the definition of average speed gives total distance divided by total time = 240 / 5 = 48 miles per hour.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q51
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Machine
+
+Machine R operates at a constant rate. How many hours does it take machine R to produce 90 units?
+
+(1) Machine R produces 30 units per hour.
+(2) Machine R produces twice as many units per hour as machine S.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** The time required to produce a fixed quantity of output equals that quantity divided by the rate of production, so determining a single value for the time requires a single numerical value for machine R's rate. We test each statement against this requirement.
+
+Statement (1) states that machine R produces 30 units per hour. The time to produce 90 units is therefore 90 / 30 = 3 hours, a single determined value. Statement (1) alone is sufficient.
+
+Statement (2) states only that machine R's rate is twice machine S's rate. This fixes the ratio of the two rates but provides no numerical value for either rate, since machine S's rate is unknown. The time to produce 90 units cannot be determined. Statement (2) alone is not sufficient.
+
+Because statement (1) alone is sufficient and statement (2) alone is not, the correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q52
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work
+
+Pipe X can fill a tank alone in 12 hours. Pipe X works alone for 4 hours, then pipe Y is opened and together they fill the remaining portion of the tank in exactly 4 hours. How long would pipe Y take to fill the tank alone?
+
+- A) 6 hours
+- B) 8 hours
+- C) 12 hours
+- D) 15 hours
+- E) 18 hours
+
+**answer:** C
+**explanation:** This problem is governed by the principle that rates of work are additive: when two pipes operate simultaneously, their combined rate equals the sum of the individual rates, and the fraction of a task completed equals rate multiplied by time. The work is tracked in two phases, and the unknown rate is then isolated.
+
+Let the entire tank equal 1. Pipe X fills the tank in 12 hours, so its rate is 1/12 of the tank per hour. In the first phase, X works alone for 4 hours, filling 4 × (1/12) = 4/12 = 1/3 of the tank. The portion remaining is 1 − 1/3 = 2/3.
+
+In the second phase, X and Y together fill the remaining 2/3 of the tank in 4 hours, so the combined rate is (2/3) / 4 = 2/12 = 1/6 of the tank per hour. Because rates add, 1/12 + 1/y = 1/6, so 1/y = 1/6 − 1/12 = 2/12 − 1/12 = 1/12. Taking the reciprocal gives y = 12. Pipe Y would take 12 hours alone.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q53
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Rate Time Distance
+
+A car traveled from town M to town N at a constant speed. What was the car's speed, in miles per hour?
+
+(1) The distance from M to N is 120 miles.
+(2) The trip took 30 minutes less than it would have taken at 40 miles per hour.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Speed is governed by the relationship speed = distance / time, so determining a single value for the speed requires knowing, or being able to derive, both the distance and the time. We evaluate each statement against this requirement.
+
+Statement (1) gives the distance as 120 miles but provides no information about the time, so the speed cannot be determined. Statement (1) alone is not sufficient.
+
+Statement (2) states that the trip took 30 minutes (1/2 hour) less than it would have taken at 40 mph, but it supplies no anchor for the actual distance. Letting d be the distance, the actual time is d/40 − 1/2 and the speed is d / (d/40 − 1/2), which depends on the unknown d. Statement (2) alone is not sufficient.
+
+Taking the statements together, the distance is 120 miles. At 40 mph the time would be 120/40 = 3 hours, so the actual time is 3 − 1/2 = 5/2 hours. The speed is therefore 120 / (5/2) = 120 × 2/5 = 48 mph, a single determined value. Both statements together are sufficient.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q54
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Combined Work Rate
+
+An inlet pipe can fill an empty tank in 6 hours. After the inlet pipe has run alone for 2 hours, a drain is opened that alone would empty a full tank in 8 hours. With both the inlet pipe and the drain open from that moment on, how many additional hours are needed to fill the tank?
+
+- A) 8
+- B) 10
+- C) 12
+- D) 14
+- E) 16
+
+**answer:** E
+**explanation:** This is a combined-work problem in which two agents act in opposing directions, so simultaneous rates are additive when given consistent signs: the net rate at which the tank fills equals the inlet rate minus the drain rate. Because the agents operate over different intervals, the process is split into phases.
+
+Let the tank equal 1. The inlet fills the tank in 6 hours, so its rate is 1/6 of the tank per hour. In the first phase, the inlet runs alone for 2 hours, filling 2 × (1/6) = 1/3 of the tank. The portion remaining is 1 − 1/3 = 2/3.
+
+In the second phase, the drain is opened; it empties a full tank in 8 hours, so it removes 1/8 of the tank per hour. The net filling rate is 1/6 − 1/8 = 4/24 − 3/24 = 1/24 of the tank per hour. The time to fill the remaining 2/3 is (2/3) / (1/24) = (2/3) × 24 = 16 hours.
+
+The correct answer is E.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q55
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Rate Time Distance
+
+A boat travels 45 miles downstream along a river and then returns the same 45 miles upstream. The boat's downstream speed is 6 miles per hour greater than its upstream speed. If the total time for the round trip is 8 hours, what is the boat's upstream speed, in miles per hour?
+
+- A) 7.5
+- B) 9
+- C) 10
+- D) 12
+- E) 15
+
+**answer:** B
+**explanation:** This is a uniform-rate problem in which a single distance is covered at two different speeds, so the governing relationship is time = distance / rate, and the total time is the sum of the two leg times.
+
+Let u be the upstream speed in miles per hour. The downstream speed is 6 mph greater, so it equals u + 6. Each leg covers 45 miles, so the upstream time is 45/u and the downstream time is 45/(u + 6). Because the round trip takes 8 hours, 45/u + 45/(u + 6) = 8.
+
+With clean answer choices available, the fastest route is to test them. The value u = 9 gives downstream speed u + 6 = 15, so the times are 45/9 = 5 hours and 45/15 = 3 hours, totaling exactly 8 hours, as required. Algebraically, multiplying through by u(u + 6) gives 45(u + 6) + 45u = 8u(u + 6), which simplifies to 8u² − 42u − 270 = 0, or 4u² − 21u − 135 = 0; this factors as (u − 9)(4u + 15) = 0, and discarding the negative root leaves u = 9.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q56
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Combined Work Rate
+
+Workers A and B each work at a constant rate. Working together, how many hours do A and B take to complete one job?
+
+(1) Working alone, A completes the job in 12 hours and B completes the job in 24 hours.
+(2) B completes the job alone in 24 hours, and A works at twice B's rate.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** In combined-work problems, individual rates add to give a combined rate, and the time required to finish one job together is the reciprocal of that combined rate. A statement is sufficient when it determines a single numerical value for the combined rate.
+
+Statement (1) gives A's solo time as 12 hours and B's as 24 hours, so A's rate is 1/12 and B's rate is 1/24 of the job per hour. The combined rate is 1/12 + 1/24 = 2/24 + 1/24 = 3/24 = 1/8 of the job per hour, giving a time of 8 hours. Statement (1) is sufficient.
+
+Statement (2) gives B's solo time as 24 hours, so B's rate is 1/24, and A works at twice B's rate, so A's rate is 2 × (1/24) = 1/12. The combined rate is 1/12 + 1/24 = 1/8, again giving a time of 8 hours. Statement (2) is sufficient.
+
+Because each statement alone determines the combined time, each statement alone is sufficient. The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q57
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Rate Time Distance
+
+A runner moves at a constant speed of 15 feet per second. How many feet will the runner cover in 12 seconds?
+
+- A) 150
+- B) 160
+- C) 170
+- D) 180
+- E) 200
+
+**answer:** D
+**explanation:** This problem is governed by the relationship distance = rate × time, which holds whenever an object moves at a constant speed. Because the rate is already given in feet per second and the time is given in seconds, the units are consistent and no conversion is needed.
+
+Let d represent the distance covered, in feet. The rate is 15 feet per second and the elapsed time is 12 seconds, so substituting these values gives
+
+d = 15 × 12 = 180.
+
+Therefore the runner covers 180 feet in 12 seconds.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q58
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Work
+
+A machine produces 60 parts every 1.5 hours at a constant rate. At this rate, how many parts will the machine produce in 7 hours?
+
+- A) 280
+- B) 300
+- C) 320
+- D) 340
+- E) 360
+
+**answer:** A
+**explanation:** When output is produced at a constant rate, the total number of items made is the product of the rate and the elapsed time, where the rate is the number of items produced per unit of time. We first find the hourly rate, then multiply by the new time.
+
+Let r be the machine's rate in parts per hour. Since the machine produces 60 parts in 1.5 hours,
+
+r = 60 / 1.5 = 40 parts per hour.
+
+Let P be the number of parts produced in 7 hours. Because the rate is constant, total output equals rate multiplied by time:
+
+P = 40 × 7 = 280.
+
+Therefore the machine produces 280 parts in 7 hours.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q59
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work Rate
+
+Hose A can fill a barrel in 6 hours, and hose B can fill the same barrel in 12 hours. If both hoses are opened together, how long will it take to fill the barrel?
+
+- A) 3 hours
+- B) 4 hours
+- C) 5 hours
+- D) 6 hours
+- E) 8 hours
+
+**answer:** B
+**explanation:** In a combined-work problem, the individual rates of the agents add together, whereas their times do not. Each agent's rate is the reciprocal of the time it needs to complete the job alone, and the total time to finish together is the reciprocal of the combined rate.
+
+Let the task be filling one barrel. Hose A fills it in 6 hours, so its rate is 1/6 of the barrel per hour. Hose B fills it in 12 hours, so its rate is 1/12 of the barrel per hour. Working together, their combined rate is the sum of the two rates. Using a common denominator of 12,
+
+1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 of the barrel per hour.
+
+Let T be the time, in hours, to fill the barrel together. Since rate multiplied by time equals one full barrel, (1/4)(T) = 1, so
+
+T = 1 / (1/4) = 4 hours.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q60
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Machine
+
+Five identical machines, working together at a constant rate, produce 600 widgets in 3 hours. At the same rate, how long will it take the five machines to produce 1,000 widgets?
+
+- A) 2 hours
+- B) 3 hours
+- C) 4 hours
+- D) 4.5 hours
+- E) 5 hours
+
+**answer:** E
+**explanation:** This problem is governed by the principle of a constant production rate, under which the number of widgets produced equals the combined rate of the machines multiplied by the time. Because the five machines always work together at the same rate, we can treat them as a single producing unit.
+
+Let R be the combined rate of the five machines, in widgets per hour. The machines produce 600 widgets in 3 hours, so
+
+R = 600 / 3 = 200 widgets per hour.
+
+Let T be the time, in hours, needed to produce 1,000 widgets at this combined rate. Since output equals rate multiplied by time,
+
+200 × T = 1,000,
+
+so
+
+T = 1,000 / 200 = 5 hours.
+
+The correct answer is E.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q61
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Work Rate
+
+Worker A can complete a job alone in 12 hours. When A and B work together, they finish the same job in 4 hours. How long would B take to complete the job working alone?
+
+- A) 5 hours
+- B) 6 hours
+- C) 7.5 hours
+- D) 8 hours
+- E) 10 hours
+
+**answer:** B
+**explanation:** This is a combined-work problem, governed by the principle that rates of work add while times do not. A worker who finishes a job in t hours works at a rate of 1/t of the job per hour, and the combined rate of two workers is the sum of their individual rates.
+
+Let b be the number of hours B needs to complete the job alone, so B's rate is 1/b of the job per hour. Worker A finishes in 12 hours, so A's rate is 1/12 of the job per hour. Together they finish in 4 hours, so their combined rate is 1/4 of the job per hour. Because rates add,
+
+1/12 + 1/b = 1/4.
+
+Isolating 1/b gives
+
+1/b = 1/4 − 1/12.
+
+Using the common denominator 12, this is 3/12 − 1/12 = 2/12 = 1/6, so
+
+1/b = 1/6,
+
+and taking reciprocals gives b = 6. Therefore B alone would take 6 hours.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q62
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Rate Time Distance
+
+A driver made a round trip between town J and town K, traveling along the same road in each direction. What was the driver's average speed for the entire round trip?
+
+(1) The driver's speed from J to K was 40 miles per hour.
+(2) The driver's speed from K to J was 60 miles per hour.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Average speed is defined as total distance divided by total time, so it is not the simple average of the two leg speeds; for a round trip over equal distances, the average speed depends on both leg speeds. We must determine whether the statements fix a single value for that average.
+
+Statement (1) gives only the outbound speed, 40 miles per hour, and says nothing about the return speed, so the round-trip average speed cannot be determined. Statement (1) alone is not sufficient. Statement (2) gives only the return speed, 60 miles per hour, and says nothing about the outbound speed, so it too is insufficient on its own. Statement (2) alone is not sufficient.
+
+Taken together, the statements give both leg speeds, and the two legs cover equal distances. Letting the one-way distance be d, the total distance is 2d and the total time is d/40 + d/60 = 3d/120 + 2d/120 = 5d/120 = d/24. The average speed is 2d ÷ (d/24) = 48 miles per hour, a single value independent of d. Both statements together are sufficient.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q63
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Machine
+
+Three identical machines, working together, can complete a production run in 5 days. How many days would it take five such machines, working together at the same individual rate, to complete the same run?
+
+- A) 2
+- B) 2.5
+- C) 3
+- D) 3.5
+- E) 4
+
+**answer:** C
+**explanation:** This problem relies on the principle that, for a fixed job, the total amount of work is constant and can be measured in machine-days, the product of the number of machines and the number of days they operate. Because the machines are identical, the number of machines and the time required are inversely proportional.
+
+The total work equals 3 machines × 5 days = 15 machine-days, and this quantity does not change with the number of machines used. Let d be the number of days required for 5 such machines to perform the same 15 machine-days of work. Then
+
+5 × d = 15,
+
+so
+
+d = 15 / 5 = 3.
+
+Therefore five machines would complete the run in 3 days.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q64
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rate Time Distance
+
+A delivery van leaves a depot traveling at 50 miles per hour. One hour later, a car leaves the same depot along the same road, traveling in the same direction at 75 miles per hour. How many hours after the car departs will it catch up to the van?
+
+- A) 1.5
+- B) 2
+- C) 2.5
+- D) 3
+- E) 3.5
+
+**answer:** B
+**explanation:** Because both vehicles travel in the same direction along the same road, this is a catch-up problem, and the rate at which the faster vehicle closes the gap equals the difference of the two speeds. We first find the van's head start, then divide it by the closing rate.
+
+Let t be the number of hours after the car departs at which it overtakes the van. The van travels at 50 miles per hour for 1 hour before the car leaves, so it begins with a head start of 50 × 1 = 50 miles. The car gains on the van at a closing rate of 75 − 50 = 25 miles per hour. The car catches the van when it has erased the 50-mile head start:
+
+25t = 50,
+
+so
+
+t = 50 / 25 = 2.
+
+Therefore the car catches the van 2 hours after it departs.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q65
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work
+
+Working at a constant rate, a painter completes 3/8 of a fence in 3 hours. At this rate, how many hours will it take the painter to complete the entire fence?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) 9
+
+**answer:** D
+**explanation:** When work is done at a constant rate, the rate equals the amount of work completed divided by the time spent, and the total time to finish one whole job is the reciprocal of that rate. The whole job is taken to be one fence.
+
+The painter completes 3/8 of the fence in 3 hours, so the rate is
+
+(3/8) ÷ 3 = 3/8 × 1/3 = 1/8 of the fence per hour.
+
+Let T be the number of hours needed to complete one whole fence. Since rate multiplied by time equals one fence,
+
+(1/8) × T = 1,
+
+so
+
+T = 8 hours.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q66
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Combined Work Rate
+
+Pumps A and B each work at a constant rate. Working together, how many hours do A and B take to fill one pool?
+
+(1) Working alone, A fills the pool in 10 hours and B fills the pool in 15 hours.
+(2) A fills the pool alone in 10 hours, and A works at 1.5 times B's rate.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** In combined-work problems, individual rates add to give a combined rate, and the time to fill the pool together is the reciprocal of that combined rate. A statement is sufficient when it fixes a single numerical value for the combined rate.
+
+Statement (1) gives A's solo time as 10 hours and B's as 15 hours, so A's rate is 1/10 and B's rate is 1/15 of the pool per hour. The combined rate is 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 of the pool per hour, giving a time of 6 hours. Statement (1) is sufficient.
+
+Statement (2) gives A's solo time as 10 hours, so A's rate is 1/10, and states that A works at 1.5 times B's rate. Thus B's rate is (1/10) ÷ 1.5 = 1/15 of the pool per hour. The combined rate is again 1/10 + 1/15 = 1/6, giving a time of 6 hours. Statement (2) is sufficient.
+
+Because each statement alone determines the combined time, each statement alone is sufficient.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q67
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Rate Time Distance
+
+Two stations are 540 miles apart. A train leaves station A traveling toward station B at 50 miles per hour, and at the same moment a train leaves station B traveling toward station A at 70 miles per hour, along parallel tracks. How many miles from station A will the two trains meet?
+
+- A) 225
+- B) 240
+- C) 250
+- D) 270
+- E) 300
+
+**answer:** A
+**explanation:** When two objects move directly toward each other, their separation decreases at a rate equal to the sum of their speeds. We first use this closing rate to find when the trains meet, then convert that time into the distance traveled by the train from station A.
+
+Let t be the number of hours until the trains meet. Because they start simultaneously and move toward each other, they close the 540-mile gap at the combined rate of 50 + 70 = 120 miles per hour, so
+
+120t = 540,
+
+which gives
+
+t = 540 / 120 = 4.5 hours.
+
+The distance from station A to the meeting point is the distance traveled by the train from A, which moves at 50 miles per hour for 4.5 hours:
+
+50 × 4.5 = 225 miles.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q68
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Machine
+
+Several identical machines, each working at the same constant rate, are used to complete a single production run. How many hours would 8 such machines, working together, take to complete the run?
+
+(1) Six such machines, working together, complete the run in 10 hours.
+(2) Each machine produces 25 units per hour.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** For a fixed job done by identical machines, the total work is constant and can be measured in machine-hours, the product of the number of machines and the hours they operate. To find the time for 8 machines, we must be able to determine the total work in machine-hours.
+
+Statement (1) says that 6 machines complete the run in 10 hours, so the total work is 6 × 10 = 60 machine-hours. This total is fixed, so for 8 machines the time is 60 ÷ 8 = 7.5 hours, a single value. Statement (1) is sufficient.
+
+Statement (2) gives each machine's rate as 25 units per hour, but it provides no information about the size of the run, that is, the total number of units required. Without the total size, the time to complete the run cannot be determined; for example, a 1,000-unit run and a 2,000-unit run would take different times. Statement (2) alone is not sufficient.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems

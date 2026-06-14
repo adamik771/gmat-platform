@@ -2274,3 +2274,1098 @@ Because the table provides a clear counterexample, the statement cannot be deter
 
 The correct answer is B.
 **related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q50 (Set 6 — Airline Route Performance)
+
+The following table shows monthly operating data for five airline routes:
+
+| Route    | Flights | Passengers | Revenue ($K) | On-Time (%) |
+|----------|---------|------------|--------------|-------------|
+| BlueJet  | 480     | 62,400     | 5,616        | 88          |
+| SkyArc   | 360     | 50,400     | 4,032        | 92          |
+| AeroLink | 600     | 69,000     | 6,210        | 79          |
+| Nimbus   | 420     | 54,600     | 4,914        | 85          |
+| Zephyr   | 300     | 39,000     | 3,900        | 95          |
+
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** Direct Comparison
+
+Which route carried the most passengers in total during the month?
+
+- A) BlueJet
+- B) SkyArc
+- C) AeroLink
+- D) Nimbus
+- E) Zephyr
+
+**answer:** C
+**explanation:** The total number of passengers carried by each route is read directly from the Passengers column; no derived computation is required, only a comparison of the five stated values.
+
+The Passengers column records:
+
+- BlueJet: 62,400
+- SkyArc: 50,400
+- AeroLink: 69,000
+- Nimbus: 54,600
+- Zephyr: 39,000
+
+Ordering these five totals from greatest to least: 69,000 > 62,400 > 54,600 > 50,400 > 39,000, which corresponds to AeroLink > BlueJet > Nimbus > SkyArc > Zephyr.
+
+AeroLink's total of 69,000 passengers is strictly greater than that of every other route, exceeding the next-highest route (BlueJet, at 62,400) by 6,600 passengers. Note that AeroLink also operates the most flights (600), which is consistent with its leading passenger total, though the question concerns total passengers carried rather than flights operated.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q51 (Set 6 — Airline Route Performance, continued)
+
+The following table shows monthly operating data for five airline routes:
+
+| Route    | Flights | Passengers | Revenue ($K) | On-Time (%) |
+|----------|---------|------------|--------------|-------------|
+| BlueJet  | 480     | 62,400     | 5,616        | 88          |
+| SkyArc   | 360     | 50,400     | 4,032        | 92          |
+| AeroLink | 600     | 69,000     | 6,210        | 79          |
+| Nimbus   | 420     | 54,600     | 4,914        | 85          |
+| Zephyr   | 300     | 39,000     | 3,900        | 95          |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Derived-Metric Ranking
+
+Which route carried the most passengers per flight?
+
+- A) BlueJet
+- B) SkyArc
+- C) AeroLink
+- D) Nimbus
+- E) Zephyr
+
+**answer:** B
+**explanation:** Passengers per flight is a derived load metric defined as total passengers divided by the number of flights operated: load = Passengers / Flights. Because AeroLink carries the most passengers in absolute terms but also operates the most flights, the per-flight figure must be computed individually for each route rather than inferred from totals.
+
+Let L denote passengers per flight for each route.
+
+- BlueJet: L = 62,400 / 480 = 130
+- SkyArc: L = 50,400 / 360 = 140
+- AeroLink: L = 69,000 / 600 = 115
+- Nimbus: L = 54,600 / 420 = 130
+- Zephyr: L = 39,000 / 300 = 130
+
+Ranking these values: SkyArc (140) > BlueJet (130) = Nimbus (130) = Zephyr (130) > AeroLink (115).
+
+SkyArc's load of 140 passengers per flight is strictly the highest. This illustrates that the route with the largest absolute passenger count is not necessarily the most efficiently loaded: AeroLink leads in total passengers (69,000) yet posts the lowest load factor (115) because its 600 flights spread those passengers across more departures than any other route. SkyArc, by contrast, concentrates 50,400 passengers into only 360 flights, producing the highest passengers-per-flight figure in the table.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q52 (Set 6 — Airline Route Performance, continued)
+
+The following table shows monthly operating data for five airline routes:
+
+| Route    | Flights | Passengers | Revenue ($K) | On-Time (%) |
+|----------|---------|------------|--------------|-------------|
+| BlueJet  | 480     | 62,400     | 5,616        | 88          |
+| SkyArc   | 360     | 50,400     | 4,032        | 92          |
+| AeroLink | 600     | 69,000     | 6,210        | 79          |
+| Nimbus   | 420     | 54,600     | 4,914        | 85          |
+| Zephyr   | 300     | 39,000     | 3,900        | 95          |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Unit-Consistent Ratio
+
+Which route generated the highest revenue per passenger?
+
+- A) BlueJet
+- B) SkyArc
+- C) AeroLink
+- D) Nimbus
+- E) Zephyr
+
+**answer:** E
+**explanation:** Revenue per passenger is defined as total revenue divided by the number of passengers carried. Because revenue is reported in thousands of dollars ($K) while passenger counts are stated as plain integers, each revenue figure must be multiplied by 1,000 to convert it to dollars before dividing, so that the result is expressed in dollars per passenger.
+
+For each route, let RPP = (Revenue ($K) x 1,000) / Passengers.
+
+- BlueJet: (5,616 x 1,000) / 62,400 = 5,616,000 / 62,400 = 90
+- SkyArc: (4,032 x 1,000) / 50,400 = 4,032,000 / 50,400 = 80
+- AeroLink: (6,210 x 1,000) / 69,000 = 6,210,000 / 69,000 = 90
+- Nimbus: (4,914 x 1,000) / 54,600 = 4,914,000 / 54,600 = 90
+- Zephyr: (3,900 x 1,000) / 39,000 = 3,900,000 / 39,000 = 100
+
+Ranking these values: Zephyr ($100) > BlueJet ($90) = AeroLink ($90) = Nimbus ($90) > SkyArc ($80).
+
+Zephyr's revenue per passenger of $100 is strictly the highest. Notably, Zephyr records both the smallest absolute revenue ($3,900K) and the fewest passengers (39,000) in the table, yet because its revenue is high relative to its modest passenger base, its per-passenger figure exceeds that of every other route. Three routes — BlueJet, AeroLink, and Nimbus — tie at exactly $90, and SkyArc trails at $80, but none reaches Zephyr's $100.
+
+The correct answer is E.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q53 (Set 6 — Airline Route Performance, continued)
+
+The following table shows monthly operating data for five airline routes:
+
+| Route    | Flights | Passengers | Revenue ($K) | On-Time (%) |
+|----------|---------|------------|--------------|-------------|
+| BlueJet  | 480     | 62,400     | 5,616        | 88          |
+| SkyArc   | 360     | 50,400     | 4,032        | 92          |
+| AeroLink | 600     | 69,000     | 6,210        | 79          |
+| Nimbus   | 420     | 54,600     | 4,914        | 85          |
+| Zephyr   | 300     | 39,000     | 3,900        | 95          |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Multi-Criterion Filtering
+
+How many routes have BOTH a revenue per passenger of at least $90 AND an on-time rate above 85%?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**explanation:** The question imposes two simultaneous conditions: revenue per passenger >= $90 AND on-time rate > 85%. A route qualifies only if both inequalities hold; failure on either condition disqualifies it. Note that the first condition is inclusive (at least $90, so exactly $90 counts), while the second is strict (above 85%, so exactly 85% does not count).
+
+Revenue per passenger is computed as (Revenue ($K) x 1,000) / Passengers, with revenue converted from thousands to dollars:
+
+- BlueJet: 5,616,000 / 62,400 = $90
+- SkyArc: 4,032,000 / 50,400 = $80
+- AeroLink: 6,210,000 / 69,000 = $90
+- Nimbus: 4,914,000 / 54,600 = $90
+- Zephyr: 3,900,000 / 39,000 = $100
+
+Applying the first condition (RPP >= $90): BlueJet ($90), AeroLink ($90), Nimbus ($90), and Zephyr ($100) all qualify; SkyArc ($80) is eliminated.
+
+Now applying the second condition (on-time rate > 85%) to the four survivors, reading the On-Time column directly:
+
+- BlueJet: 88% > 85% — satisfied. Both conditions hold; BlueJet qualifies.
+- AeroLink: 79% > 85% is false — fails the on-time condition. AeroLink does not qualify.
+- Nimbus: 85% > 85% is false — the rate equals but does not exceed the threshold under the strict inequality. Nimbus does not qualify.
+- Zephyr: 95% > 85% — satisfied. Both conditions hold; Zephyr qualifies.
+
+Exactly two routes — BlueJet and Zephyr — satisfy both conditions simultaneously. The critical case is Nimbus, whose revenue per passenger of $90 clears the first hurdle but whose on-time rate of exactly 85% fails the strict "above 85%" requirement, so it is correctly excluded.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q54 (Set 7 — Coffee Shop Daily Operations)
+
+The following table shows one day of operating data for five coffee shops:
+
+| Shop    | Cups Sold | Revenue ($) | Labor Hours | Rating |
+|---------|-----------|-------------|-------------|--------|
+| Roasted | 540       | 2,160       | 36          | 4.6    |
+| Grind   | 420       | 1,890       | 30          | 4.8    |
+| Steam   | 600       | 2,100       | 40          | 4.2    |
+| Bean    | 480       | 2,400       | 32          | 4.5    |
+| Brew    | 360       | 1,620       | 24          | 4.7    |
+
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** Direct Comparison
+
+Which shop sold the most cups during the day?
+
+- A) Roasted
+- B) Grind
+- C) Steam
+- D) Bean
+- E) Brew
+
+**answer:** C
+**explanation:** The number of cups sold by each shop is read directly from the Cups Sold column, and the largest value is identified by comparison; no derived calculation is required.
+
+The Cups Sold column records:
+
+- Roasted: 540
+- Grind: 420
+- Steam: 600
+- Bean: 480
+- Brew: 360
+
+Ordering these five values from greatest to least: 600 > 540 > 480 > 420 > 360, corresponding to Steam > Roasted > Bean > Grind > Brew.
+
+Steam's total of 600 cups is strictly greater than that of every other shop, exceeding the next-highest shop (Roasted, at 540) by 60 cups. It is worth observing that Steam does not lead in revenue — its $2,100 in sales is lower than Bean's $2,400 despite Steam selling more cups — but the question asks only about cups sold, for which Steam is unambiguously the leader.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q55 (Set 7 — Coffee Shop Daily Operations, continued)
+
+The following table shows one day of operating data for five coffee shops:
+
+| Shop    | Cups Sold | Revenue ($) | Labor Hours | Rating |
+|---------|-----------|-------------|-------------|--------|
+| Roasted | 540       | 2,160       | 36          | 4.6    |
+| Grind   | 420       | 1,890       | 30          | 4.8    |
+| Steam   | 600       | 2,100       | 40          | 4.2    |
+| Bean    | 480       | 2,400       | 32          | 4.5    |
+| Brew    | 360       | 1,620       | 24          | 4.7    |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Derived-Metric Ranking
+
+Which shop earned the highest revenue per cup sold?
+
+- A) Roasted
+- B) Grind
+- C) Steam
+- D) Bean
+- E) Brew
+
+**answer:** D
+**explanation:** Revenue per cup is defined as total revenue divided by cups sold: RPC = Revenue ($) / Cups Sold. Both quantities are already in compatible units (dollars and cups), so the ratio yields dollars per cup directly. This derived metric must be computed for each shop because the shop selling the most cups need not be the one earning the most per cup.
+
+Computing RPC for each shop:
+
+- Roasted: 2,160 / 540 = $4.00
+- Grind: 1,890 / 420 = $4.50
+- Steam: 2,100 / 600 = $3.50
+- Bean: 2,400 / 480 = $5.00
+- Brew: 1,620 / 360 = $4.50
+
+Ranking these values: Bean ($5.00) > Grind ($4.50) = Brew ($4.50) > Roasted ($4.00) > Steam ($3.50).
+
+Bean's revenue per cup of $5.00 is strictly the highest. The contrast with Steam is instructive: Steam sells the most cups (600) yet has the lowest revenue per cup ($3.50), because its total revenue of $2,100 is spread across the largest volume. Bean, despite selling fewer cups (480), commands the highest price per cup, giving it the top revenue-per-cup figure even though its total revenue of $2,400 leads the table as well.
+
+The correct answer is D.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q56 (Set 7 — Coffee Shop Daily Operations, continued)
+
+The following table shows one day of operating data for five coffee shops:
+
+| Shop    | Cups Sold | Revenue ($) | Labor Hours | Rating |
+|---------|-----------|-------------|-------------|--------|
+| Roasted | 540       | 2,160       | 36          | 4.6    |
+| Grind   | 420       | 1,890       | 30          | 4.8    |
+| Steam   | 600       | 2,100       | 40          | 4.2    |
+| Bean    | 480       | 2,400       | 32          | 4.5    |
+| Brew    | 360       | 1,620       | 24          | 4.7    |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Labor Productivity
+
+Which shop generated the most revenue per labor hour?
+
+- A) Roasted
+- B) Grind
+- C) Steam
+- D) Bean
+- E) Brew
+
+**answer:** D
+**explanation:** Revenue per labor hour is a productivity metric defined as total revenue divided by labor hours worked: RPL = Revenue ($) / Labor Hours. It measures how much sales each hour of staffed labor produces, and must be computed individually for each shop.
+
+Computing RPL for each shop:
+
+- Roasted: 2,160 / 36 = $60.00
+- Grind: 1,890 / 30 = $63.00
+- Steam: 2,100 / 40 = $52.50
+- Bean: 2,400 / 32 = $75.00
+- Brew: 1,620 / 24 = $67.50
+
+Ranking these values: Bean ($75.00) > Brew ($67.50) > Grind ($63.00) > Roasted ($60.00) > Steam ($52.50).
+
+Bean's revenue per labor hour of $75.00 is strictly the highest. Bean combines the table's highest total revenue ($2,400) with a relatively lean staffing level of 32 labor hours, producing the top productivity figure. Steam, in contrast, posts the lowest productivity ($52.50) because it deploys the most labor hours (40) while generating only $2,100 in revenue. The ranking by productivity differs from the ranking by total revenue alone, confirming that the per-hour figure must be calculated rather than inferred from revenue.
+
+The correct answer is D.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q57 (Set 7 — Coffee Shop Daily Operations, continued)
+
+The following table shows one day of operating data for five coffee shops:
+
+| Shop    | Cups Sold | Revenue ($) | Labor Hours | Rating |
+|---------|-----------|-------------|-------------|--------|
+| Roasted | 540       | 2,160       | 36          | 4.6    |
+| Grind   | 420       | 1,890       | 30          | 4.8    |
+| Steam   | 600       | 2,100       | 40          | 4.2    |
+| Bean    | 480       | 2,400       | 32          | 4.5    |
+| Brew    | 360       | 1,620       | 24          | 4.7    |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Multi-Criterion Filtering
+
+How many shops have BOTH a revenue per cup of at least $4.50 AND a customer rating above 4.5?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**explanation:** Two conditions must hold simultaneously: revenue per cup >= $4.50 AND rating > 4.5. A shop qualifies only when both inequalities are satisfied. The first condition is inclusive (at least $4.50, so exactly $4.50 counts), while the second is strict (above 4.5, so exactly 4.5 does not count).
+
+Revenue per cup is computed as Revenue ($) / Cups Sold:
+
+- Roasted: 2,160 / 540 = $4.00
+- Grind: 1,890 / 420 = $4.50
+- Steam: 2,100 / 600 = $3.50
+- Bean: 2,400 / 480 = $5.00
+- Brew: 1,620 / 360 = $4.50
+
+Applying the first condition (RPC >= $4.50): Grind ($4.50), Bean ($5.00), and Brew ($4.50) qualify; Roasted ($4.00) and Steam ($3.50) are eliminated.
+
+Now applying the second condition (rating > 4.5) to the three survivors, reading the Rating column directly:
+
+- Grind: 4.8 > 4.5 — satisfied. Both conditions hold; Grind qualifies.
+- Bean: 4.5 > 4.5 is false — the rating equals but does not exceed the threshold under the strict inequality. Bean does not qualify.
+- Brew: 4.7 > 4.5 — satisfied. Both conditions hold; Brew qualifies.
+
+Exactly two shops — Grind and Brew — satisfy both conditions. The decisive case is Bean: although it has the highest revenue per cup in the table ($5.00), its rating of exactly 4.5 fails the strict "above 4.5" requirement, so it is correctly excluded despite clearing the first hurdle by the largest margin.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q58 (Set 8 — Warehouse Inventory)
+
+The following table shows monthly data for five distribution warehouses:
+
+| Warehouse | Units Stored | Capacity | Monthly Cost ($K) | Defect Rate (%) |
+|-----------|--------------|----------|-------------------|-----------------|
+| Harbor    | 8,400        | 12,000   | 42                | 2.0             |
+| Ridge     | 6,300        | 9,000    | 36                | 1.5             |
+| Vale      | 9,600        | 10,000   | 60                | 3.0             |
+| Crest     | 5,400        | 6,000    | 30                | 1.2             |
+| Glen      | 7,200        | 12,000   | 48                | 2.5             |
+
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** Direct Comparison
+
+Which warehouse currently stores the most units?
+
+- A) Harbor
+- B) Ridge
+- C) Vale
+- D) Crest
+- E) Glen
+
+**answer:** C
+**explanation:** The number of units currently stored in each warehouse is read directly from the Units Stored column, and the maximum is identified by comparison; no derived computation is needed.
+
+The Units Stored column records:
+
+- Harbor: 8,400
+- Ridge: 6,300
+- Vale: 9,600
+- Crest: 5,400
+- Glen: 7,200
+
+Ordering these five values from greatest to least: 9,600 > 8,400 > 7,200 > 6,300 > 5,400, corresponding to Vale > Harbor > Glen > Ridge > Crest.
+
+Vale's total of 9,600 units stored is strictly greater than that of every other warehouse, exceeding the next-highest warehouse (Harbor, at 8,400) by 1,200 units. Vale achieves this despite not having the largest capacity in the table — both Harbor and Glen list a capacity of 12,000 — because Vale fills a far greater share of its 10,000-unit capacity, but the question concerns absolute units stored, for which Vale leads.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q59 (Set 8 — Warehouse Inventory, continued)
+
+The following table shows monthly data for five distribution warehouses:
+
+| Warehouse | Units Stored | Capacity | Monthly Cost ($K) | Defect Rate (%) |
+|-----------|--------------|----------|-------------------|-----------------|
+| Harbor    | 8,400        | 12,000   | 42                | 2.0             |
+| Ridge     | 6,300        | 9,000    | 36                | 1.5             |
+| Vale      | 9,600        | 10,000   | 60                | 3.0             |
+| Crest     | 5,400        | 6,000    | 30                | 1.2             |
+| Glen      | 7,200        | 12,000   | 48                | 2.5             |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Utilization Ratio
+
+Which warehouse has the highest utilization rate (units stored divided by capacity)?
+
+- A) Harbor
+- B) Ridge
+- C) Vale
+- D) Crest
+- E) Glen
+
+**answer:** C
+**explanation:** Utilization rate is defined as units stored divided by total capacity, expressed as a percentage: utilization = (Units Stored / Capacity) x 100. This derived metric measures how much of each warehouse's available space is in use, and must be computed for every warehouse because the warehouse storing the most units is not necessarily the one filling the largest share of its capacity.
+
+Computing the utilization rate for each warehouse:
+
+- Harbor: 8,400 / 12,000 = 0.700 = 70%
+- Ridge: 6,300 / 9,000 = 0.700 = 70%
+- Vale: 9,600 / 10,000 = 0.960 = 96%
+- Crest: 5,400 / 6,000 = 0.900 = 90%
+- Glen: 7,200 / 12,000 = 0.600 = 60%
+
+Ranking these values: Vale (96%) > Crest (90%) > Harbor (70%) = Ridge (70%) > Glen (60%).
+
+Vale's utilization rate of 96% is strictly the highest. Vale combines the largest absolute holdings (9,600 units) with the second-smallest capacity (10,000), so nearly all of its space is occupied. Glen, by contrast, posts the lowest utilization (60%) despite a large 12,000-unit capacity, because it stores only 7,200 units. The ranking by utilization differs from the ranking by absolute units stored only at the margins, but Vale leads on both measures here.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q60 (Set 8 — Warehouse Inventory, continued)
+
+The following table shows monthly data for five distribution warehouses:
+
+| Warehouse | Units Stored | Capacity | Monthly Cost ($K) | Defect Rate (%) |
+|-----------|--------------|----------|-------------------|-----------------|
+| Harbor    | 8,400        | 12,000   | 42                | 2.0             |
+| Ridge     | 6,300        | 9,000    | 36                | 1.5             |
+| Vale      | 9,600        | 10,000   | 60                | 3.0             |
+| Crest     | 5,400        | 6,000    | 30                | 1.2             |
+| Glen      | 7,200        | 12,000   | 48                | 2.5             |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Unit-Consistent Cost Ratio
+
+Which warehouse has the lowest monthly cost per unit stored?
+
+- A) Harbor
+- B) Ridge
+- C) Vale
+- D) Crest
+- E) Glen
+
+**answer:** A
+**explanation:** Cost per unit stored is defined as monthly cost divided by units stored. Because monthly cost is reported in thousands of dollars ($K) while units are stated as plain integers, each cost figure must be multiplied by 1,000 to convert it to dollars before dividing, so that the result is expressed in dollars per unit. The lowest value is sought.
+
+For each warehouse, let CPU = (Monthly Cost ($K) x 1,000) / Units Stored.
+
+- Harbor: (42 x 1,000) / 8,400 = 42,000 / 8,400 = $5.000
+- Ridge: (36 x 1,000) / 6,300 = 36,000 / 6,300 = $5.714
+- Vale: (60 x 1,000) / 9,600 = 60,000 / 9,600 = $6.250
+- Crest: (30 x 1,000) / 5,400 = 30,000 / 5,400 = $5.556
+- Glen: (48 x 1,000) / 7,200 = 48,000 / 7,200 = $6.667
+
+Ranking these values from lowest to highest: Harbor ($5.000) < Crest ($5.556) < Ridge ($5.714) < Vale ($6.250) < Glen ($6.667).
+
+Harbor's cost per unit stored of $5.000 is strictly the lowest. A common error would be to select the warehouse with the smallest absolute monthly cost (Crest, at $30K) or the one storing the most units (Vale); but the relevant figure is the ratio of cost to units. Harbor's $42K cost is spread over a large base of 8,400 units, yielding the lowest per-unit cost, whereas Vale's high cost of $60K and Glen's $48K, divided over smaller stored quantities, produce the two highest per-unit figures.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q61 (Set 8 — Warehouse Inventory, continued)
+
+The following table shows monthly data for five distribution warehouses:
+
+| Warehouse | Units Stored | Capacity | Monthly Cost ($K) | Defect Rate (%) |
+|-----------|--------------|----------|-------------------|-----------------|
+| Harbor    | 8,400        | 12,000   | 42                | 2.0             |
+| Ridge     | 6,300        | 9,000    | 36                | 1.5             |
+| Vale      | 9,600        | 10,000   | 60                | 3.0             |
+| Crest     | 5,400        | 6,000    | 30                | 1.2             |
+| Glen      | 7,200        | 12,000   | 48                | 2.5             |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Multi-Criterion Filtering
+
+How many warehouses have BOTH a utilization rate above 65% AND a defect rate below 2.5%?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** C
+**explanation:** Two conditions must hold simultaneously: utilization rate > 65% AND defect rate < 2.5%. A warehouse qualifies only when both strict inequalities are satisfied; a value of exactly 65% utilization or exactly 2.5% defect rate fails the corresponding condition.
+
+Utilization rate is computed as (Units Stored / Capacity) x 100:
+
+- Harbor: 8,400 / 12,000 = 70%
+- Ridge: 6,300 / 9,000 = 70%
+- Vale: 9,600 / 10,000 = 96%
+- Crest: 5,400 / 6,000 = 90%
+- Glen: 7,200 / 12,000 = 60%
+
+Applying the first condition (utilization > 65%): Harbor (70%), Ridge (70%), Vale (96%), and Crest (90%) qualify; Glen (60%) is eliminated because 60% is not greater than 65%.
+
+Now applying the second condition (defect rate < 2.5%) to the four survivors, reading the Defect Rate column directly:
+
+- Harbor: 2.0 < 2.5 — satisfied. Both conditions hold; Harbor qualifies.
+- Ridge: 1.5 < 2.5 — satisfied. Both conditions hold; Ridge qualifies.
+- Vale: 3.0 < 2.5 is false — fails the defect condition. Vale does not qualify.
+- Crest: 1.2 < 2.5 — satisfied. Both conditions hold; Crest qualifies.
+
+Three warehouses — Harbor, Ridge, and Crest — satisfy both conditions simultaneously. Vale, despite the table's highest utilization rate (96%), is disqualified by its defect rate of 3.0%, which exceeds the 2.5% ceiling. Glen fails the utilization screen at 60% (and would also fail the defect screen, since its 2.5% rate is not strictly below 2.5%). The total count of qualifying warehouses is therefore 3.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q62 (Set 9 — Electric Vehicle Models)
+
+The following table shows specifications for five electric vehicle models:
+
+| Model  | Range (mi) | Battery (kWh) | Base Price ($K) | 0-60 (s) |
+|--------|------------|---------------|-----------------|----------|
+| Volt-X | 320        | 80            | 48              | 4.5      |
+| Aero   | 280        | 75            | 44              | 5.2      |
+| Pulse  | 360        | 100           | 60              | 3.8      |
+| Nimbus | 240        | 64            | 35              | 6.0      |
+| Surge  | 300        | 90            | 54              | 4.0      |
+
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** Direct Comparison
+
+Which model has the longest driving range?
+
+- A) Volt-X
+- B) Aero
+- C) Pulse
+- D) Nimbus
+- E) Surge
+
+**answer:** C
+**explanation:** The driving range of each model is read directly from the Range (mi) column, and the maximum is identified by comparison; no derived computation is required.
+
+The Range (mi) column records:
+
+- Volt-X: 320
+- Aero: 280
+- Pulse: 360
+- Nimbus: 240
+- Surge: 300
+
+Ordering these five values from greatest to least: 360 > 320 > 300 > 280 > 240, corresponding to Pulse > Volt-X > Surge > Aero > Nimbus.
+
+Pulse's range of 360 miles is strictly greater than that of every other model, exceeding the next-longest range (Volt-X, at 320) by 40 miles. Pulse also carries the largest battery in the table (100 kWh), which is consistent with its leading range, though the question concerns range itself, for which Pulse leads outright.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q63 (Set 9 — Electric Vehicle Models, continued)
+
+The following table shows specifications for five electric vehicle models:
+
+| Model  | Range (mi) | Battery (kWh) | Base Price ($K) | 0-60 (s) |
+|--------|------------|---------------|-----------------|----------|
+| Volt-X | 320        | 80            | 48              | 4.5      |
+| Aero   | 280        | 75            | 44              | 5.2      |
+| Pulse  | 360        | 100           | 60              | 3.8      |
+| Nimbus | 240        | 64            | 35              | 6.0      |
+| Surge  | 300        | 90            | 54              | 4.0      |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Efficiency Ratio
+
+Which model is the most energy-efficient, measured as range per unit of battery capacity (miles per kWh)?
+
+- A) Volt-X
+- B) Aero
+- C) Pulse
+- D) Nimbus
+- E) Surge
+
+**answer:** A
+**explanation:** Energy efficiency is defined as range divided by battery capacity: efficiency = Range (mi) / Battery (kWh), expressed in miles per kWh. This derived metric must be computed for every model, because the model with the longest range is not necessarily the one that travels the most distance per unit of stored energy.
+
+Computing the efficiency for each model:
+
+- Volt-X: 320 / 80 = 4.000 mi/kWh
+- Aero: 280 / 75 ≈ 3.733 mi/kWh
+- Pulse: 360 / 100 = 3.600 mi/kWh
+- Nimbus: 240 / 64 = 3.750 mi/kWh
+- Surge: 300 / 90 ≈ 3.333 mi/kWh
+
+Ranking these values from highest to lowest: Volt-X (4.000) > Nimbus (3.750) > Aero (3.733) > Pulse (3.600) > Surge (3.333).
+
+Volt-X's efficiency of exactly 4.000 mi/kWh is strictly the highest. A common error would be to select Pulse, which posts both the longest range (360 mi) and the largest battery (100 kWh); but its large battery dilutes its efficiency to 3.600 mi/kWh, the second-lowest in the table. Volt-X achieves the leading efficiency by pairing a substantial 320-mile range with a moderate 80 kWh battery.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q64 (Set 9 — Electric Vehicle Models, continued)
+
+The following table shows specifications for five electric vehicle models:
+
+| Model  | Range (mi) | Battery (kWh) | Base Price ($K) | 0-60 (s) |
+|--------|------------|---------------|-----------------|----------|
+| Volt-X | 320        | 80            | 48              | 4.5      |
+| Aero   | 280        | 75            | 44              | 5.2      |
+| Pulse  | 360        | 100           | 60              | 3.8      |
+| Nimbus | 240        | 64            | 35              | 6.0      |
+| Surge  | 300        | 90            | 54              | 4.0      |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Unit-Consistent Cost Ratio
+
+Which model has the lowest base price per mile of range?
+
+- A) Volt-X
+- B) Aero
+- C) Pulse
+- D) Nimbus
+- E) Surge
+
+**answer:** D
+**explanation:** Base price per mile of range is defined as base price divided by range. Because base price is reported in thousands of dollars ($K) while range is stated in plain miles, each price figure must be multiplied by 1,000 to convert it to dollars before dividing, so that the result is expressed in dollars per mile. The lowest value is sought.
+
+For each model, let PPM = (Base Price ($K) x 1,000) / Range (mi).
+
+- Volt-X: (48 x 1,000) / 320 = 48,000 / 320 = $150.00
+- Aero: (44 x 1,000) / 280 = 44,000 / 280 ≈ $157.14
+- Pulse: (60 x 1,000) / 360 = 60,000 / 360 ≈ $166.67
+- Nimbus: (35 x 1,000) / 240 = 35,000 / 240 ≈ $145.83
+- Surge: (54 x 1,000) / 300 = 54,000 / 300 = $180.00
+
+Ranking these values from lowest to highest: Nimbus ($145.83) < Volt-X ($150.00) < Aero ($157.14) < Pulse ($166.67) < Surge ($180.00).
+
+Nimbus's price per mile of range of approximately $145.83 is strictly the lowest. A common error would be to select the model with the smallest absolute base price (Nimbus, at $35K) by assuming the lowest sticker price automatically yields the lowest cost per mile — here that intuition happens to point to the right model, but the reasoning must rest on the ratio. Nimbus's $35K price spread over a modest 240-mile range still produces the smallest per-mile figure, while Surge's $54K price over 300 miles yields the highest, at $180.00.
+
+The correct answer is D.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q65 (Set 9 — Electric Vehicle Models, continued)
+
+The following table shows specifications for five electric vehicle models:
+
+| Model  | Range (mi) | Battery (kWh) | Base Price ($K) | 0-60 (s) |
+|--------|------------|---------------|-----------------|----------|
+| Volt-X | 320        | 80            | 48              | 4.5      |
+| Aero   | 280        | 75            | 44              | 5.2      |
+| Pulse  | 360        | 100           | 60              | 3.8      |
+| Nimbus | 240        | 64            | 35              | 6.0      |
+| Surge  | 300        | 90            | 54              | 4.0      |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Multi-Criterion Filtering
+
+How many models have BOTH a range of at least 300 miles AND a 0-60 time below 4.5 seconds?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**explanation:** Two conditions must hold simultaneously: range >= 300 miles AND 0-60 time < 4.5 seconds. A model qualifies only when both inequalities are satisfied. The first condition is inclusive (at least 300 miles, so exactly 300 counts), while the second is strict (below 4.5 seconds, so exactly 4.5 does not count).
+
+Applying the first condition (range >= 300) by reading the Range (mi) column:
+
+- Volt-X: 320 >= 300 — qualifies.
+- Aero: 280 >= 300 is false — eliminated.
+- Pulse: 360 >= 300 — qualifies.
+- Nimbus: 240 >= 300 is false — eliminated.
+- Surge: 300 >= 300 — qualifies (exactly 300 satisfies the inclusive threshold).
+
+The survivors of the first screen are Volt-X, Pulse, and Surge.
+
+Now applying the second condition (0-60 < 4.5) to the three survivors, reading the 0-60 (s) column directly:
+
+- Volt-X: 4.5 < 4.5 is false — the time equals but does not fall below the threshold under the strict inequality. Volt-X does not qualify.
+- Pulse: 3.8 < 4.5 — satisfied. Both conditions hold; Pulse qualifies.
+- Surge: 4.0 < 4.5 — satisfied. Both conditions hold; Surge qualifies.
+
+Exactly two models — Pulse and Surge — satisfy both conditions simultaneously. The decisive case is Volt-X: although it clears the range screen at 320 miles, its 0-60 time of exactly 4.5 seconds fails the strict "below 4.5" requirement, so it is correctly excluded. The total count of qualifying models is therefore 2.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q66 (Set 10 — National Park Visitation)
+
+The following table shows visitation and operational data for six national parks.
+
+| Park    | 2023 Visitors (M) | 2024 Visitors (M) | Avg Stay (days) | Trails (mi) |
+|---------|-------------------|-------------------|-----------------|-------------|
+| Cascade | 4.2               | 4.8               | 2.5             | 320         |
+| Granite | 3.0               | 3.3               | 1.8             | 210         |
+| Marsh   | 1.5               | 1.4               | 1.2             | 95          |
+| Summit  | 6.0               | 7.2               | 3.0             | 450         |
+| Canyon  | 2.4               | 2.7               | 2.0             | 180         |
+| Dune    | 0.9               | 1.1               | 1.5             | 60          |
+
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** Comparisons
+
+For each statement, select Yes if the statement can be determined to be true based on the data in the table. Otherwise, select No.
+
+Statement: More than half of the parks had higher visitation in 2024 than in 2023.
+
+- A) Yes
+- B) No
+
+**answer:** A
+**explanation:** **Condition and threshold.** A park meets the stated condition if its 2024 visitation strictly exceeds its 2023 visitation, that is, (2024 Visitors) - (2023 Visitors) > 0. With six parks in the table, "more than half" requires that at least 4 parks satisfy the condition.
+
+**Park-by-park evaluation.** We compare the 2024 figure against the 2023 figure for each park:
+
+- Cascade: 4.8 versus 4.2; change = +0.6 > 0. Condition satisfied.
+- Granite: 3.3 versus 3.0; change = +0.3 > 0. Condition satisfied.
+- Marsh: 1.4 versus 1.5; change = -0.1 < 0. Condition not satisfied (visitation declined).
+- Summit: 7.2 versus 6.0; change = +1.2 > 0. Condition satisfied.
+- Canyon: 2.7 versus 2.4; change = +0.3 > 0. Condition satisfied.
+- Dune: 1.1 versus 0.9; change = +0.2 > 0. Condition satisfied.
+
+**Count and conclusion.** Five parks — Cascade, Granite, Summit, Canyon, and Dune — recorded a strictly higher 2024 visitation than 2023. Only Marsh declined. Five out of six is approximately 83.3%, which is greater than 50%, and therefore more than half. We can determine from the table that the statement is true.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q67 (Set 10 — National Park Visitation, continued)
+
+The following table shows visitation and operational data for six national parks.
+
+| Park    | 2023 Visitors (M) | 2024 Visitors (M) | Avg Stay (days) | Trails (mi) |
+|---------|-------------------|-------------------|-----------------|-------------|
+| Cascade | 4.2               | 4.8               | 2.5             | 320         |
+| Granite | 3.0               | 3.3               | 1.8             | 210         |
+| Marsh   | 1.5               | 1.4               | 1.2             | 95          |
+| Summit  | 6.0               | 7.2               | 3.0             | 450         |
+| Canyon  | 2.4               | 2.7               | 2.0             | 180         |
+| Dune    | 0.9               | 1.1               | 1.5             | 60          |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Percentage Growth Comparison
+
+Statement: Summit had the highest percentage increase in visitors from 2023 to 2024.
+
+- A) Yes
+- B) No
+
+**answer:** B
+**explanation:** The percentage increase in visitors for a park from 2023 to 2024 is computed as (2024 Visitors - 2023 Visitors) / 2023 Visitors * 100. To evaluate the statement, this quantity is calculated for the parks that grew and the maximum is identified. Marsh declined and therefore has a negative percentage change, so it cannot be the maximum.
+
+Let v23 denote 2023 visitors and v24 denote 2024 visitors (in millions).
+
+- Cascade: (4.8 - 4.2) / 4.2 * 100 = 0.6 / 4.2 * 100 ≈ 14.29%
+- Granite: (3.3 - 3.0) / 3.0 * 100 = 0.3 / 3.0 * 100 = 10.00%
+- Marsh: (1.4 - 1.5) / 1.5 * 100 = -0.1 / 1.5 * 100 ≈ -6.67%
+- Summit: (7.2 - 6.0) / 6.0 * 100 = 1.2 / 6.0 * 100 = 20.00%
+- Canyon: (2.7 - 2.4) / 2.4 * 100 = 0.3 / 2.4 * 100 = 12.50%
+- Dune: (1.1 - 0.9) / 0.9 * 100 = 0.2 / 0.9 * 100 ≈ 22.22%
+
+Ranking the results from highest to lowest: Dune (22.22%) > Summit (20.00%) > Cascade (14.29%) > Canyon (12.50%) > Granite (10.00%) > Marsh (-6.67%).
+
+A common error is to compare absolute visitor gains rather than percentage gains. Summit added 1.2 million visitors, by far the largest raw increase of any park, which makes it tempting to assume Summit also leads in percentage terms. But percentage growth weights the gain relative to the starting value: Summit's gain of 1.2 sits on a large 2023 base of 6.0, yielding 20.00%, whereas Dune's modest gain of 0.2 on a small base of 0.9 produces 22.22%. Because 22.22% > 20.00%, Dune, not Summit, had the highest percentage increase. The statement is therefore false.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q68 (Set 10 — National Park Visitation, continued)
+
+The following table shows visitation and operational data for six national parks.
+
+| Park    | 2023 Visitors (M) | 2024 Visitors (M) | Avg Stay (days) | Trails (mi) |
+|---------|-------------------|-------------------|-----------------|-------------|
+| Cascade | 4.2               | 4.8               | 2.5             | 320         |
+| Granite | 3.0               | 3.3               | 1.8             | 210         |
+| Marsh   | 1.5               | 1.4               | 1.2             | 95          |
+| Summit  | 6.0               | 7.2               | 3.0             | 450         |
+| Canyon  | 2.4               | 2.7               | 2.0             | 180         |
+| Dune    | 0.9               | 1.1               | 1.5             | 60          |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Conditional Aggregation
+
+Statement: Among parks with more than 200 miles of trails, the average 2024 visitation exceeds 5 million.
+
+- A) Yes
+- B) No
+
+**answer:** A
+**explanation:** Conditional aggregation requires isolating the rows that satisfy a filter condition and then computing a summary statistic — here, the arithmetic mean of 2024 Visitors (M) — over only the qualifying subset.
+
+**Identifying the relevant rows.** Scanning the Trails (mi) column for values strictly greater than 200:
+
+- Cascade: 320 > 200 — qualifies.
+- Granite: 210 > 200 — qualifies.
+- Marsh: 95 > 200 is false — excluded.
+- Summit: 450 > 200 — qualifies.
+- Canyon: 180 > 200 is false — excluded.
+- Dune: 60 > 200 is false — excluded.
+
+The qualifying set is {Cascade, Granite, Summit}.
+
+**Computing the average 2024 visitation for the qualifying subset.** Reading the 2024 Visitors (M) column for these three parks: Cascade 4.8, Granite 3.3, Summit 7.2.
+
+Sum = 4.8 + 3.3 + 7.2 = 15.3
+
+Average = 15.3 / 3 = 5.1 million
+
+**Evaluating the inequality.** The statement asserts that this average exceeds 5 million. Since 5.1 > 5.0, the condition holds. Note that the inclusion of Granite, whose 2024 visitation of 3.3 million is well below the 5-million mark, pulls the average down toward the threshold; even so, the average remains above 5 million because Summit's 7.2 million is sufficiently large. The statement is therefore true.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q69 (Set 10 — National Park Visitation, continued)
+
+The following table shows visitation and operational data for six national parks.
+
+| Park    | 2023 Visitors (M) | 2024 Visitors (M) | Avg Stay (days) | Trails (mi) |
+|---------|-------------------|-------------------|-----------------|-------------|
+| Cascade | 4.2               | 4.8               | 2.5             | 320         |
+| Granite | 3.0               | 3.3               | 1.8             | 210         |
+| Marsh   | 1.5               | 1.4               | 1.2             | 95          |
+| Summit  | 6.0               | 7.2               | 3.0             | 450         |
+| Canyon  | 2.4               | 2.7               | 2.0             | 180         |
+| Dune    | 0.9               | 1.1               | 1.5             | 60          |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Conditional Statements
+
+Statement: Every park with more than 3 million visitors in 2024 has an average stay of at least 2.5 days.
+
+- A) Yes
+- B) No
+
+**answer:** B
+**explanation:** **Governing principle.** A universal conditional statement of the form "every X with property P has property Q" is true if and only if no counterexample exists — that is, no row satisfying P while failing Q. The task is to identify every park whose 2024 visitation exceeds 3 million (the antecedent), then verify that each such park also has an average stay of at least 2.5 days (the consequent). A single counterexample falsifies the statement.
+
+**Identifying the relevant rows.** Scanning the 2024 Visitors (M) column for values strictly greater than 3:
+
+- Cascade: 4.8 > 3 — qualifies.
+- Granite: 3.3 > 3 — qualifies.
+- Marsh: 1.4 > 3 is false — does not qualify.
+- Summit: 7.2 > 3 — qualifies.
+- Canyon: 2.7 > 3 is false — does not qualify.
+- Dune: 1.1 > 3 is false — does not qualify.
+
+The qualifying set is {Cascade, Granite, Summit}.
+
+**Checking the consequent (average stay >= 2.5 days) for each qualifying park.** Reading the Avg Stay (days) column:
+
+- Cascade: 2.5 >= 2.5 — satisfied (the inclusive threshold is met exactly).
+- Granite: 1.8 >= 2.5 is false — Granite fails the consequent.
+- Summit: 3.0 >= 2.5 — satisfied.
+
+Granite is a counterexample: it has 3.3 million 2024 visitors, which exceeds the 3-million antecedent, yet its average stay of 1.8 days falls short of the 2.5-day requirement. Because at least one park satisfies the antecedent while failing the consequent, the universal conditional does not hold. The statement is therefore false.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q70 (Set 11 — Restaurant Chain Performance)
+
+The following table shows daily operating data for five restaurant locations:
+
+| Location  | Daily Covers | Revenue ($) | Staff | Food Cost (%) |
+|-----------|--------------|-------------|-------|---------------|
+| Downtown  | 320          | 9,600       | 24    | 30            |
+| Uptown    | 280          | 9,800       | 20    | 28            |
+| Riverside | 200          | 7,200       | 16    | 32            |
+| Airport   | 400          | 10,000      | 25    | 35            |
+| Suburb    | 240          | 6,000       | 15    | 27            |
+
+**difficulty:** Easy
+**type:** Table Analysis
+**topic:** Direct Comparison
+
+Which location served the most daily covers?
+
+- A) Downtown
+- B) Uptown
+- C) Riverside
+- D) Airport
+- E) Suburb
+
+**answer:** D
+**explanation:** The number of daily covers served by each location is read directly from the Daily Covers column, and the maximum is identified by comparison; no derived computation is required.
+
+The Daily Covers column records:
+
+- Downtown: 320
+- Uptown: 280
+- Riverside: 200
+- Airport: 400
+- Suburb: 240
+
+Ordering these five values from greatest to least: 400 > 320 > 280 > 240 > 200, corresponding to Airport > Downtown > Uptown > Suburb > Riverside.
+
+Airport's total of 400 daily covers is strictly greater than that of every other location, exceeding the next-highest location (Downtown, at 320) by 80 covers. Airport leads in covers despite not posting the highest revenue per cover, but the question concerns absolute covers served, for which Airport leads outright.
+
+The correct answer is D.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q71 (Set 11 — Restaurant Chain Performance, continued)
+
+The following table shows daily operating data for five restaurant locations:
+
+| Location  | Daily Covers | Revenue ($) | Staff | Food Cost (%) |
+|-----------|--------------|-------------|-------|---------------|
+| Downtown  | 320          | 9,600       | 24    | 30            |
+| Uptown    | 280          | 9,800       | 20    | 28            |
+| Riverside | 200          | 7,200       | 16    | 32            |
+| Airport   | 400          | 10,000      | 25    | 35            |
+| Suburb    | 240          | 6,000       | 15    | 27            |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Derived Metrics
+
+Which location has the highest average revenue per cover?
+
+- A) Downtown
+- B) Uptown
+- C) Riverside
+- D) Airport
+- E) Suburb
+
+**answer:** C
+**explanation:** Average revenue per cover is defined as total revenue divided by the number of daily covers: revenue per cover = Revenue ($) / Daily Covers. This derived metric must be computed for every location, because the location serving the most covers is not necessarily the one extracting the most revenue from each guest.
+
+Computing the revenue per cover for each location:
+
+- Downtown: 9,600 / 320 = $30.00
+- Uptown: 9,800 / 280 = $35.00
+- Riverside: 7,200 / 200 = $36.00
+- Airport: 10,000 / 400 = $25.00
+- Suburb: 6,000 / 240 = $25.00
+
+Ranking these values from highest to lowest: Riverside ($36.00) > Uptown ($35.00) > Downtown ($30.00) > Airport ($25.00) = Suburb ($25.00).
+
+Riverside's revenue per cover of $36.00 is strictly the highest. A common error would be to select Airport, which posts the highest absolute revenue ($10,000) and the most covers (400); but spreading that revenue over 400 covers yields only $25.00 per cover, tied for the lowest in the table. Riverside, by contrast, generates $7,200 from just 200 covers, producing the largest per-cover figure.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q72 (Set 11 — Restaurant Chain Performance, continued)
+
+The following table shows daily operating data for five restaurant locations:
+
+| Location  | Daily Covers | Revenue ($) | Staff | Food Cost (%) |
+|-----------|--------------|-------------|-------|---------------|
+| Downtown  | 320          | 9,600       | 24    | 30            |
+| Uptown    | 280          | 9,800       | 20    | 28            |
+| Riverside | 200          | 7,200       | 16    | 32            |
+| Airport   | 400          | 10,000      | 25    | 35            |
+| Suburb    | 240          | 6,000       | 15    | 27            |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Productivity Ratio
+
+Which location has the highest revenue per staff member?
+
+- A) Downtown
+- B) Uptown
+- C) Riverside
+- D) Airport
+- E) Suburb
+
+**answer:** B
+**explanation:** Revenue per staff member is defined as total revenue divided by the number of staff: revenue per staff = Revenue ($) / Staff. This derived metric measures labor productivity and must be computed for every location, because the location with the highest total revenue is not necessarily the one generating the most revenue per worker.
+
+Computing the revenue per staff member for each location:
+
+- Downtown: 9,600 / 24 = $400.00
+- Uptown: 9,800 / 20 = $490.00
+- Riverside: 7,200 / 16 = $450.00
+- Airport: 10,000 / 25 = $400.00
+- Suburb: 6,000 / 15 = $400.00
+
+Ranking these values from highest to lowest: Uptown ($490.00) > Riverside ($450.00) > Downtown ($400.00) = Airport ($400.00) = Suburb ($400.00).
+
+Uptown's revenue per staff member of $490.00 is strictly the highest. A common error would be to select Airport, which posts the highest absolute revenue ($10,000); but Airport's larger staff of 25 dilutes its productivity to $400.00 per worker, tied for the lowest. Uptown achieves the leading figure by pairing strong revenue of $9,800 with the second-smallest staff of 20.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q73 (Set 11 — Restaurant Chain Performance, continued)
+
+The following table shows daily operating data for five restaurant locations:
+
+| Location  | Daily Covers | Revenue ($) | Staff | Food Cost (%) |
+|-----------|--------------|-------------|-------|---------------|
+| Downtown  | 320          | 9,600       | 24    | 30            |
+| Uptown    | 280          | 9,800       | 20    | 28            |
+| Riverside | 200          | 7,200       | 16    | 32            |
+| Airport   | 400          | 10,000      | 25    | 35            |
+| Suburb    | 240          | 6,000       | 15    | 27            |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Multi-Criterion Filtering
+
+How many locations have BOTH a revenue per cover above $30 AND a food cost percentage below 32%?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** A
+**explanation:** Two conditions must hold simultaneously: revenue per cover > $30 AND food cost percentage < 32%. A location qualifies only when both strict inequalities are satisfied; a value of exactly $30 per cover or exactly 32% food cost fails the corresponding condition.
+
+Revenue per cover is computed as Revenue ($) / Daily Covers:
+
+- Downtown: 9,600 / 320 = $30.00
+- Uptown: 9,800 / 280 = $35.00
+- Riverside: 7,200 / 200 = $36.00
+- Airport: 10,000 / 400 = $25.00
+- Suburb: 6,000 / 240 = $25.00
+
+Applying the first condition (revenue per cover > $30): Uptown ($35.00) and Riverside ($36.00) qualify. Downtown is eliminated because $30.00 is not strictly greater than $30, and Airport ($25.00) and Suburb ($25.00) fall below the threshold.
+
+Now applying the second condition (food cost < 32%) to the two survivors, reading the Food Cost (%) column directly:
+
+- Uptown: 28 < 32 — satisfied. Both conditions hold; Uptown qualifies.
+- Riverside: 32 < 32 is false — the food cost equals but does not fall below the threshold under the strict inequality. Riverside does not qualify.
+
+Exactly one location — Uptown — satisfies both conditions simultaneously. The decisive case is Riverside: although it posts the highest revenue per cover in the table ($36.00), its food cost of exactly 32% fails the strict "below 32%" requirement, so it is correctly excluded despite clearing the first hurdle. Downtown is a second trap, failing the revenue screen by landing on exactly $30.00. The total count of qualifying locations is therefore 1.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis

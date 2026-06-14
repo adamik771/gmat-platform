@@ -1,5 +1,6 @@
 import { getStripe } from "@/lib/stripe"
 import { getSupabaseService } from "@/lib/supabase/service"
+import { normalizeChargeId, resolveWebhookEvent } from "@/lib/stripe-webhook"
 import type Stripe from "stripe"
 
 // Opt-out of Next.js's Edge runtime — Stripe's signature verification
@@ -46,15 +47,11 @@ export async function POST(request: Request) {
     )
   }
 
-  // Only these three move money/access. Everything else is acknowledged so
-  // Stripe stops retrying.
-  const HANDLED = new Set([
-    "checkout.session.completed",
-    "charge.refunded",
-    "charge.dispute.created",
-  ])
-  if (!HANDLED.has(event.type)) {
-    return Response.json({ ok: true, ignored: event.type })
+  // Decide what to do (pure, exhaustively tested in tests/stripe-webhook.test.ts).
+  // Unhandled types are acknowledged and ignored so Stripe stops retrying.
+  const action = resolveWebhookEvent(event)
+  if (action.kind === "ignore") {
+    return Response.json({ ok: true, ignored: action.eventType })
   }
 
   let service
@@ -69,34 +66,45 @@ export async function POST(request: Request) {
   }
 
   try {
-    if (event.type === "checkout.session.completed") {
-      const session = event.data.object as Stripe.Checkout.Session
-      const userId =
-        (session.client_reference_id as string | null) ??
-        (session.metadata?.user_id as string | undefined) ??
-        null
-      const planId = (session.metadata?.plan_id as string | undefined) ?? null
-
-      if (!userId || !planId) {
-        // Nothing we can do without the user — log and accept so Stripe
-        // doesn't retry forever.
-        console.warn(
-          "[stripe/webhook] checkout.session.completed missing user_id or plan_id",
-          { sessionId: session.id }
-        )
-        return Response.json({ ok: true, skipped: "missing_metadata" })
+    if (action.kind === "skip_missing_metadata") {
+      // Nothing we can do without the user — log and accept so Stripe
+      // doesn't retry forever.
+      console.warn(
+        "[stripe/webhook] checkout.session.completed missing user_id or plan_id",
+        { sessionId: action.sessionId }
+      )
+      return Response.json({ ok: true, skipped: "missing_metadata" })
+    } else if (action.kind === "record") {
+      // Resolve the Charge id from the PaymentIntent. The checkout.session.completed
+      // payload carries no charge, but a later refund/dispute can arrive with a
+      // null payment_intent while still carrying the Charge id — storing it here
+      // gives revokePurchase a fallback match key for that case. Best-effort: a
+      // paid purchase must still be recorded even if this lookup fails, so we log
+      // and fall back to a null charge id.
+      let chargeId: string | null = null
+      if (action.paymentIntent) {
+        try {
+          const pi = await getStripe().paymentIntents.retrieve(action.paymentIntent)
+          chargeId = normalizeChargeId(pi.latest_charge)
+        } catch (err) {
+          console.error(
+            "[stripe/webhook] could not resolve charge id for purchase — refund-by-charge fallback won't apply",
+            { sessionId: action.sessionId, paymentIntent: action.paymentIntent, err }
+          )
+        }
       }
-
       const { error } = await service.from("purchases").upsert(
         {
-          user_id: userId,
-          plan_id: planId,
-          stripe_session_id: session.id,
+          user_id: action.userId,
+          plan_id: action.planId,
+          stripe_session_id: action.sessionId,
           // Stored so a later refund/dispute (which carries the PI, not the
           // session) can be mapped back to this row to revoke access.
-          stripe_payment_intent: piId(session.payment_intent),
-          amount_cents: session.amount_total ?? 0,
-          currency: session.currency ?? "usd",
+          stripe_payment_intent: action.paymentIntent,
+          // Second match key — used when the refund/dispute event has no PI.
+          stripe_charge_id: chargeId,
+          amount_cents: action.amountCents,
+          currency: action.currency,
           paid_at: new Date().toISOString(),
         },
         { onConflict: "stripe_session_id" }
@@ -105,21 +113,12 @@ export async function POST(request: Request) {
         console.error("[stripe/webhook] purchases insert failed", error)
         return Response.json({ error: error.message }, { status: 500 })
       }
-    } else if (event.type === "charge.refunded") {
-      // `refunded` is true only on a FULL refund; partial refunds leave it
-      // false (and access intact). A full refund revokes the entitlement.
-      const charge = event.data.object as Stripe.Charge
-      if (!charge.refunded) {
-        return Response.json({ ok: true, note: "partial_refund_no_revoke" })
-      }
-      const revoked = await revokeByPaymentIntent(service, piId(charge.payment_intent))
-      if (revoked && "error" in revoked) {
-        return Response.json({ error: revoked.error }, { status: 500 })
-      }
-    } else if (event.type === "charge.dispute.created") {
-      // Chargeback opened — revoke access immediately; the funds are held.
-      const dispute = event.data.object as Stripe.Dispute
-      const revoked = await revokeByPaymentIntent(service, piId(dispute.payment_intent))
+    } else if (action.kind === "partial_refund_noop") {
+      // Partial refund — `charge.refunded` was false; access stays intact.
+      return Response.json({ ok: true, note: "partial_refund_no_revoke" })
+    } else if (action.kind === "revoke") {
+      // Full refund or chargeback — revoke the matching purchase immediately.
+      const revoked = await revokePurchase(service, action.paymentIntent, action.charge)
       if (revoked && "error" in revoked) {
         return Response.json({ error: revoked.error }, { status: 500 })
       }
@@ -135,36 +134,41 @@ export async function POST(request: Request) {
   return Response.json({ ok: true, received: event.type })
 }
 
-/** Normalize a Stripe expandable PaymentIntent field to its id string. */
-function piId(
-  value: string | Stripe.PaymentIntent | null | undefined
-): string | null {
-  if (!value) return null
-  return typeof value === "string" ? value : value.id
-}
-
 /**
- * Stamp revoked_at on the purchase matching this PaymentIntent (idempotent —
- * the `revoked_at is null` guard makes a re-delivered event a no-op). Returns
+ * Stamp revoked_at on the purchase matching this refund/dispute (idempotent —
+ * the `revoked_at is null` guard makes a re-delivered event a no-op). Matches by
+ * PaymentIntent on the normal path; falls back to the Charge id when the event
+ * carries no PI (so a null-PI refund/dispute still revokes access). Returns
  * { error } on a DB failure so the caller can 500 and let Stripe retry.
  */
-async function revokeByPaymentIntent(
+async function revokePurchase(
   service: ReturnType<typeof getSupabaseService>,
-  paymentIntent: string | null
+  paymentIntent: string | null,
+  charge: string | null
 ): Promise<{ error: string } | null> {
-  if (!paymentIntent) {
-    // The original session stored a null PaymentIntent (e.g. $0/promotional),
-    // so a refund/dispute can't be mapped by PI. Surface it — a real refund
-    // that revokes nothing should never be silent.
-    console.warn(
-      "[stripe/webhook] refund/dispute has no payment_intent — cannot map to a purchase to revoke"
+  // Prefer the PaymentIntent (the normal path, unchanged). Only when the event
+  // has no PI do we fall back to the Charge id — refund/dispute events always
+  // carry the charge even when payment_intent is null.
+  const matchedBy = paymentIntent
+    ? { column: "stripe_payment_intent" as const, value: paymentIntent }
+    : charge
+      ? { column: "stripe_charge_id" as const, value: charge }
+      : null
+
+  if (!matchedBy) {
+    // Neither key present: a real refund/dispute we cannot map to any purchase,
+    // so access is NOT revoked. Escalate to error — an unrevokable refund must
+    // be alertable in monitoring, never silent.
+    console.error(
+      "[stripe/webhook] refund/dispute has no payment_intent or charge — cannot map to a purchase to revoke"
     )
     return null
   }
+
   const { data, error } = await service
     .from("purchases")
     .update({ revoked_at: new Date().toISOString() })
-    .eq("stripe_payment_intent", paymentIntent)
+    .eq(matchedBy.column, matchedBy.value)
     .is("revoked_at", null)
     .select("id")
   if (error) {
@@ -172,11 +176,13 @@ async function revokeByPaymentIntent(
     return { error: error.message }
   }
   if (!data || data.length === 0) {
-    // No active purchase matched: PI never stored, the completion event hasn't
-    // landed yet (out-of-order delivery), or it's already revoked. Not fatal,
-    // but a refund/dispute that touches no row is worth seeing in the logs.
-    console.warn("[stripe/webhook] refund/dispute matched no active purchase", {
-      paymentIntent,
+    // No active purchase matched: keys never stored, the completion event hasn't
+    // landed yet (out-of-order delivery), or it's already revoked. A refund or
+    // dispute that revokes nothing is a money/access discrepancy — escalate to
+    // error so monitoring can alert on it, not bury it as a warning.
+    console.error("[stripe/webhook] refund/dispute matched no active purchase", {
+      matchedBy: matchedBy.column,
+      value: matchedBy.value,
     })
   }
   return null

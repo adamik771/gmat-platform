@@ -2615,3 +2615,477 @@ A theater sold adult tickets for $12 each and student tickets for $8 each. It so
 **answer:** B
 **explanation:** Let a be the number of adult tickets and s the number of student tickets. We are given a + s = 40 and 12a + 8s = 416. Substituting a = 40 − s into the revenue equation gives 12(40 − s) + 8s = 416, which simplifies to 480 − 4s = 416, so 4s = 64 and s = 16. As a check, 16 student and 24 adult tickets give 24(12) + 16(8) = 288 + 128 = 416. The correct answer is B.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q98
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Linear Equations
+
+If 5(x - 2) = 3x + 4, what is the value of x?
+
+- A) 3
+- B) 5
+- C) 7
+- D) 9
+- E) 11
+
+**answer:** C
+**explanation:** We first expand the left side of the equation, distributing the 5 across the parentheses: 5(x - 2) = 5x - 10. The equation becomes 5x - 10 = 3x + 4. Subtracting 3x from both sides gives 2x - 10 = 4, and adding 10 to both sides gives 2x = 14, so x = 7. As a check, 5(7 - 2) = 5(5) = 25 and 3(7) + 4 = 21 + 4 = 25, confirming both sides are equal. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q99
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Word Problem Translation
+
+When 3 times a certain number is decreased by 7, the result is 20. What is the number?
+
+- A) 4
+- B) 5
+- C) 7
+- D) 9
+- E) 11
+
+**answer:** D
+**explanation:** We let n represent the certain number. The phrase "3 times a certain number" translates to 3n, and "decreased by 7" means we subtract 7, giving 3n - 7. Setting this equal to the stated result yields the equation 3n - 7 = 20. Adding 7 to both sides gives 3n = 27, and dividing by 3 gives n = 9. As a check, 3(9) - 7 = 27 - 7 = 20, which matches the stated result. The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q100
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Factoring
+
+What is the larger of the two solutions to x² - 9x + 20 = 0?
+
+- A) 4
+- B) 5
+- C) 9
+- D) 10
+- E) 20
+
+**answer:** B
+**explanation:** To factor the quadratic x² - 9x + 20, we seek two numbers whose product is the constant term 20 and whose sum is the coefficient of x, namely -9. The numbers -4 and -5 satisfy both conditions, since (-4)(-5) = 20 and (-4) + (-5) = -9. The equation factors as (x - 4)(x - 5) = 0, so the solutions are x = 4 and x = 5. The larger of these is 5. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q101
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Sequences
+
+In an arithmetic sequence, the first term is 5 and each term after the first is 4 greater than the term before it. What is the 12th term?
+
+- A) 44
+- B) 45
+- C) 47
+- D) 48
+- E) 49
+
+**answer:** E
+**explanation:** In an arithmetic sequence the nth term is given by aₙ = a₁ + (n - 1)d, where a₁ is the first term and d is the common difference. Here a₁ = 5 and d = 4, and we want the 12th term, so n = 12. Substituting gives a₁₂ = 5 + (12 - 1)(4) = 5 + 11(4) = 5 + 44 = 49. The correct answer is E.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q102
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inequalities
+
+What is the least integer value of x for which 4 - 3x ≤ 19?
+
+- A) -5
+- B) -4
+- C) -3
+- D) 4
+- E) 5
+
+**answer:** A
+**explanation:** We solve the inequality 4 - 3x ≤ 19 for x. Subtracting 4 from both sides gives -3x ≤ 15. We now divide both sides by -3; because we are dividing by a negative number, the direction of the inequality reverses, giving x ≥ -5. The values of x satisfying the inequality are all numbers at least -5, so the least integer value is -5. As a check, 4 - 3(-5) = 4 + 15 = 19, which satisfies 19 ≤ 19. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q103
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Functions
+
+If g(x) = 2x² - 3, what is the value of g(-3)?
+
+- A) -39
+- B) -15
+- C) 9
+- D) 15
+- E) 33
+
+**answer:** D
+**explanation:** To evaluate g(-3), we substitute -3 for x in the rule g(x) = 2x² - 3. Because the exponent applies to the input before multiplication, we first compute (-3)² = 9, which is positive since squaring a negative number gives a positive result. Then 2(9) - 3 = 18 - 3 = 15. A common error is to compute -3² as -9 by squaring before applying the negative sign, which would give 2(-9) - 3 = -21; here the entire value -3 is squared, so the result is +9. The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q104
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Systems of Equations
+
+What is the value of x?
+
+(1) x + 2y = 8
+(2) 3x + 6y = 24
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** A single linear equation in two unknowns does not determine a unique value for either variable, so we must check whether the statements provide two independent equations. Statement (1) gives x + 2y = 8, one equation in two unknowns; for y = 0 we get x = 8, while for y = 1 we get x = 6, so x is not determined and statement (1) alone is insufficient. Statement (2) gives 3x + 6y = 24; dividing both sides by 3 yields x + 2y = 8, which is identical to statement (1), so statement (2) alone is likewise insufficient. Taking both together, statement (2) is exactly 3 times statement (1) and represents the same line, contributing no new information, so the system remains one equation in two unknowns with infinitely many solutions for x. The correct answer is E.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q105
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Functions
+
+If f(x) = x² + bx + c, where b and c are constants, what is the value of f(2)?
+
+(1) f(0) = 3
+(2) f(1) = 6
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Since f(2) = 4 + 2b + c, finding f(2) requires knowing both constants b and c. Statement (1) gives f(0) = 0 + 0 + c = c = 3, which fixes c but leaves b unknown, so f(2) = 4 + 2b + 3 cannot be determined; statement (1) alone is insufficient. Statement (2) gives f(1) = 1 + b + c = 6, that is, b + c = 5, a single equation in two unknowns, so it alone is insufficient. Taking both together, c = 3 from statement (1) and substituting into b + c = 5 gives b = 2; therefore f(2) = 4 + 2(2) + 3 = 11, a unique value, so both statements together are sufficient. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q106
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value
+
+If |2x - 6| = 8, what is the sum of all possible values of x?
+
+- A) -1
+- B) 1
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** C
+**explanation:** An equation of the form |expression| = b, where b is positive, splits into two cases: expression = b or expression = -b. Applying this to |2x - 6| = 8 gives 2x - 6 = 8 or 2x - 6 = -8. From the first case, 2x = 14, so x = 7. From the second case, 2x = -2, so x = -1. The two possible values of x are 7 and -1, and their sum is 7 + (-1) = 6. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q107
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Sequences
+
+In a geometric sequence, the first term is 3 and each term after the first is twice the term before it. What is the sum of the first 5 terms?
+
+- A) 48
+- B) 93
+- C) 96
+- D) 189
+- E) 192
+
+**answer:** B
+**explanation:** A geometric sequence with first term a and common ratio r has terms a, ar, ar², and so on. Here a = 3 and r = 2, so the first five terms are 3, 6, 12, 24, and 48. Adding them directly gives 3 + 6 + 12 + 24 + 48 = 93. Equivalently, the sum of the first n terms is a(rⁿ - 1)/(r - 1) = 3(2⁵ - 1)/(2 - 1) = 3(31)/1 = 93. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q108
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratics
+
+If r and s are the two solutions of x² - 7x + 10 = 0, what is the value of 1/r + 1/s?
+
+- A) 7/10
+- B) 10/7
+- C) 7/2
+- D) 5
+- E) 7
+
+**answer:** A
+**explanation:** Rather than solving for the individual roots, we use the relationships between coefficients and roots: for x² + bx + c = 0, the sum of the roots is -b and the product of the roots is c. Here the sum r + s = 7 and the product rs = 10. We combine the requested fractions over a common denominator: 1/r + 1/s = (s + r)/(rs) = (r + s)/(rs). Substituting the known sum and product gives 7/10. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q109
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Inequalities
+
+Is x > 0?
+
+(1) x² > 4
+(2) x³ > 0
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The question asks whether x is positive, so each statement is sufficient only if it forces a definite Yes or a definite No. Statement (1) says x² > 4, which means x > 2 or x < -2; for example x = 3 gives Yes but x = -3 gives No, so statement (1) alone is not sufficient. Statement (2) says x³ > 0, and because an odd power preserves the sign of its base, x³ > 0 holds if and only if x > 0; this gives a definite Yes, so statement (2) alone is sufficient. The correct answer is B.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q110
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Linear Equations
+
+If 5x - 8 = 27, what is the value of 2x + 3?
+
+- A) 11
+- B) 13
+- C) 15
+- D) 17
+- E) 19
+
+**answer:** D
+**explanation:** We first solve the given equation for x and then evaluate the requested expression. Starting from 5x - 8 = 27, we add 8 to both sides to obtain 5x = 35, and dividing both sides by 5 gives x = 7. Substituting x = 7 into 2x + 3 yields 2(7) + 3 = 14 + 3 = 17. The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q111
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Factoring
+
+If x = 13, what is the value of x² - 9?
+
+- A) 150
+- B) 160
+- C) 169
+- D) 178
+- E) 190
+
+**answer:** B
+**explanation:** The expression x² - 9 is a difference of squares, since 9 = 3², so it factors as x² - 9 = (x - 3)(x + 3). Substituting x = 13 gives (13 - 3)(13 + 3) = (10)(16) = 160. We may verify directly: 13² - 9 = 169 - 9 = 160, which confirms the factored result. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q112
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Word Problem Translation
+
+A certain number increased by 7 is equal to three times the number decreased by 5. What is the number?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** C
+**explanation:** We translate the verbal statement into an equation. Let n represent the number. The phrase "the number increased by 7" is n + 7, and "three times the number decreased by 5" is 3n - 5, so the condition becomes n + 7 = 3n - 5. Subtracting n from both sides gives 7 = 2n - 5, and adding 5 to both sides gives 12 = 2n, so n = 6. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q113
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Sequences
+
+In an arithmetic sequence, the first term is 4 and each term after the first is 5 greater than the term before it. What is the 10th term?
+
+- A) 45
+- B) 49
+- C) 50
+- D) 54
+- E) 55
+
+**answer:** B
+**explanation:** In an arithmetic sequence with first term a and common difference d, the nth term is given by a + (n - 1)d. Here a = 4 and d = 5, and we want the 10th term, so we substitute n = 10 to obtain 4 + (10 - 1)(5) = 4 + 9(5) = 4 + 45 = 49. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q114
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics
+
+If x² + 3x - 28 = 0 and x < 0, what is the value of x?
+
+- A) -7
+- B) -4
+- C) 4
+- D) 7
+- E) 28
+
+**answer:** A
+**explanation:** To solve the quadratic, we seek two numbers whose product is -28 and whose sum is 3; these numbers are 7 and -4, so x² + 3x - 28 = (x + 7)(x - 4) = 0. Setting each factor equal to zero gives the two solutions x = -7 and x = 4. The condition x < 0 selects the negative root, so x = -7. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q115
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Systems of Equations
+
+What is the value of x + y?
+
+(1) 2x + y = 9
+(2) x + 2y = 9
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The question asks for the value of x + y. Statement (1) gives 2x + y = 9, a single linear equation in two unknowns, which has infinitely many solution pairs and therefore does not fix x + y; for example (x, y) = (4, 1) gives x + y = 5, while (x, y) = (3, 3) gives x + y = 6, so statement (1) alone is not sufficient. By the same reasoning, statement (2) gives x + 2y = 9 alone, which likewise does not determine x + y and is not sufficient. Taking both statements together and adding them gives (2x + y) + (x + 2y) = 9 + 9, that is, 3x + 3y = 18, so x + y = 6, a single determinate value. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q116
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Functions
+
+If f(x) = 2x - 1, for what value of x does f(f(x)) = 29?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** E
+**explanation:** We first build the composite function f(f(x)) by substituting f(x) into the rule for f. Since f(x) = 2x - 1, we have f(f(x)) = 2(2x - 1) - 1 = 4x - 2 - 1 = 4x - 3. Setting this equal to 29 gives 4x - 3 = 29, so 4x = 32 and x = 8. As a check, f(8) = 15 and f(15) = 29, confirming the result. The correct answer is E.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q117
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Linear Equations
+
+What is the value of x?
+
+(1) 3x + 2 = 2x + 9
+(2) x² = 49
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** The question asks for a single value of x. Statement (1) is the linear equation 3x + 2 = 2x + 9; subtracting 2x from both sides gives x + 2 = 9, so x = 7, a unique value, and statement (1) alone is sufficient. Statement (2) gives x² = 49, which has two solutions, x = 7 and x = -7, so it does not determine a single value of x and is not sufficient alone. Since statement (1) alone suffices but statement (2) alone does not, the correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q118
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Word Problem Translation
+
+Maria's age is 4 years more than twice Lena's age. If the sum of their ages is 34 years, how old is Maria?
+
+- A) 10
+- B) 14
+- C) 20
+- D) 22
+- E) 24
+
+**answer:** E
+**explanation:** We translate the conditions into equations. Let L be Lena's age; then Maria's age is 2L + 4. The sum of their ages is 34, so L + (2L + 4) = 34, which simplifies to 3L + 4 = 34. Subtracting 4 gives 3L = 30, so L = 10, and Maria's age is 2(10) + 4 = 24. As a check, 10 + 24 = 34, confirming the total. The correct answer is E.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q119
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratics
+
+If r and s are the two solutions of x² - 8x + 12 = 0, what is the value of r² + s²?
+
+- A) 28
+- B) 32
+- C) 36
+- D) 40
+- E) 52
+
+**answer:** D
+**explanation:** Rather than solving for the individual roots, we use the relationships between coefficients and roots: for x² + bx + c = 0, the sum of the roots is -b and the product is c. Here r + s = 8 and rs = 12. We then use the identity r² + s² = (r + s)² - 2rs, which gives r² + s² = 8² - 2(12) = 64 - 24 = 40. The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q120
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Inequalities
+
+Is x > 3?
+
+(1) x² > 9
+(2) x³ > 27
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The question asks whether x > 3, so each statement is sufficient only if it forces a definite Yes or a definite No. Statement (1) says x² > 9, which means x > 3 or x < -3; for example x = 4 gives Yes but x = -4 gives No, so statement (1) alone is not sufficient. Statement (2) says x³ > 27, and because cubing preserves the order of real numbers, x³ > 27 holds if and only if x > 3; this yields a definite Yes, so statement (2) alone is sufficient. The correct answer is B.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q121
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value
+
+If |x - 5| = |x + 1|, what is the value of x?
+
+- A) -2
+- B) 0
+- C) 1
+- D) 2
+- E) 3
+
+**answer:** D
+**explanation:** The equation |x - 5| = |x + 1| states that x is equidistant from 5 and from -1 on the number line, so x must be the midpoint of 5 and -1, namely (5 + (-1))/2 = 2. Algebraically, squaring both sides gives (x - 5)² = (x + 1)², which expands to x² - 10x + 25 = x² + 2x + 1; the x² terms cancel, leaving -10x + 25 = 2x + 1, so 24 = 12x and x = 2. As a check, |2 - 5| = 3 and |2 + 1| = 3, which are equal. The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations

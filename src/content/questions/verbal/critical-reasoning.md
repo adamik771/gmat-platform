@@ -4828,3 +4828,507 @@ In the official's argument, the statement that the great majority of new express
 **answer:** B
 **explanation:** Structure: The official rejects the view that the express line failed (because highway congestion did not fall), and supports that rejection with two facts: new riders came from rail rather than cars, and the suburb's population grew sharply, so the line very likely prevented congestion the growing population would have caused. The quoted statement about riders previously using regional rail is one of the two pieces of evidence the official offers to defend the conclusion that the line has not failed. Choice B captures exactly this supporting-evidence role and is correct. Choice A is wrong because the main conclusion is that the failure claim is unwarranted (the line has not failed), not the fact about riders' prior commuting mode. Choice C is wrong because the quoted statement is the official's own supporting evidence, not an objection conceded as valid; the objection the official addresses is that congestion did not decrease. Choice D is wrong because the line's original purpose is stated in the first sentence (reducing highway congestion), whereas the quoted statement concerns where riders came from, not the line's purpose. Choice E is wrong because the quoted statement is a premise, not an intermediate conclusion, and the official affirms rather than rejects the suburban population's growth, using it as further support. The correct answer is B.
 **related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q188
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Weaken
+
+Owner of a coffee roastery: Last month we began printing the farm of origin on every bag of beans we sell. Since then, our monthly bean sales have risen by 18 percent. Clearly, customers are buying more of our beans because the new origin labels make them feel more confident about the quality of what they are purchasing.
+
+Which of the following, if true, most weakens the owner's argument?
+
+- A) A competing roastery across town also prints farm-of-origin information on its bags.
+- B) The roastery began the origin-labeling program at the start of the month in which it also cut its bean prices by 20 percent.
+- C) Some customers say they do not read the information printed on the bags.
+- D) The farms named on the labels have all been verified by an independent certification body.
+- E) The roastery's sales of brewing equipment did not change over the same period.
+
+**answer:** B
+**explanation:** The owner concludes that origin labeling caused the 18 percent sales increase. To weaken a causal claim, find an alternative explanation for the same effect. Choice B supplies one: a simultaneous 20 percent price cut could easily account for higher bean sales, so the rise need not be due to the labels at all. Choice A is irrelevant to whether the labels caused this roastery's increase. Choice C is too weak; that some customers ignore the labels does not show the labels failed to drive overall sales. Choice D, by lending the labels credibility, mildly strengthens rather than weakens the claim. Choice E concerns a different product line and does nothing to explain the bean-sales jump. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q189
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A regional hospital introduced a checklist that surgical teams must complete aloud before every operation. In the year after the checklist was introduced, the rate of post-surgical infections at the hospital fell by nearly a third. Hospital administrators concluded that the checklist was responsible for the decline in infections.
+
+Which of the following, if true, most strengthens the administrators' conclusion?
+
+- A) The checklist takes surgical teams only about three minutes to complete.
+- B) Most members of the surgical teams said they found the checklist easy to follow.
+- C) Several neighboring hospitals that did not adopt any such checklist saw no change in their post-surgical infection rates over the same year.
+- D) The hospital's overall number of surgeries increased slightly during the year the checklist was used.
+- E) The checklist includes a step in which the team confirms the patient's identity.
+
+**answer:** C
+**explanation:** The administrators claim the checklist caused the drop in infections. A causal claim is strengthened by ruling out alternative causes and by showing the effect tracks the cause. Choice C does both: comparable neighboring hospitals without the checklist showed no decline over the same period, which makes it more likely the checklist, rather than some broader regional trend, produced the improvement. Choice A (time required) and Choice B (ease of use) speak to convenience, not to whether the checklist reduced infections. Choice D, if anything, raises an unrelated variable and does not support causation. Choice E describes a checklist step about patient identity, which is unrelated to infection control. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q190
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Paradox
+
+The town of Brightwater added a second lane to its main commuter bridge, doubling the bridge's vehicle capacity. Traffic engineers had predicted that the wider bridge would substantially reduce the time drivers spend waiting to cross during the morning rush. Yet in the months after the expansion, average morning crossing times were no shorter than before.
+
+Which of the following, if true, most helps to explain the unexpected result?
+
+- A) The construction work on the bridge was completed ahead of schedule and under budget.
+- B) The wider bridge is repainted on the same maintenance schedule as before the expansion.
+- C) Word that the bridge was now faster drew many commuters who had previously used a distant alternate route, raising the number of cars crossing each morning.
+- D) The town council financed the expansion partly through a temporary increase in property taxes.
+- E) Crossing times in the evening rush were measured separately from those in the morning rush.
+
+**answer:** C
+**explanation:** The paradox is that doubling capacity did not shorten morning crossing times. To resolve it, find something that increased demand to fill the added capacity. Choice C does exactly this: the reputation of a faster bridge attracted commuters who used to take another route, so the larger flow of cars consumed the new capacity and kept crossing times flat. This is the classic "induced demand" mechanism. Choice A (schedule and budget) and Choice D (financing) concern the project's cost, not crossing times. Choice B (repainting schedule) is irrelevant to congestion. Choice E describes a measurement detail that does not explain why morning times failed to improve. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q191
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Assumption
+
+Marketing director: Our company should sponsor the city marathon this year. Last year a rival firm sponsored the marathon, and in the following quarter that firm's brand-recognition scores rose sharply. If we sponsor this year's race, our brand-recognition scores will rise just as much.
+
+The director's argument depends on assuming which of the following?
+
+- A) The city marathon attracts more spectators than any other local sporting event.
+- B) Sponsoring the marathon will cost the company less than other forms of advertising.
+- C) The rival firm did not also launch a major television advertising campaign that drove its rise in brand recognition.
+- D) The company's current brand-recognition scores are lower than the rival firm's were last year.
+- E) The company has enough budget to sponsor the marathon for several consecutive years.
+
+**answer:** C
+**explanation:** The director reasons that because the rival's brand recognition rose after it sponsored the marathon, the company's will rise similarly if it sponsors. This assumes the sponsorship, not some other factor, caused the rival's rise. Choice C states the needed assumption: if the rival's gain actually came from a separate television campaign, the marathon sponsorship would not reliably produce the same effect, and the argument collapses; so the argument must assume no such alternative cause was at work. Negating C breaks the argument, confirming it is required. Choices A, B, D, and E concern spectator counts, cost, relative starting scores, and multi-year budgets, none of which the inference from the rival's experience to the company's depends on. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q192
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Weaken
+
+Editor: Our magazine moved its entire archive behind a paywall six months ago. Since then, the number of new paid subscriptions has increased by 25 percent compared with the previous six months. The paywall is therefore clearly the most effective tool we have for converting casual readers into paying subscribers.
+
+Which of the following, if true, most seriously undermines the editor's conclusion?
+
+- A) Several other magazines have placed their archives behind paywalls in recent years.
+- B) During the same six months, the magazine ran an aggressive discount promotion that offered first-year subscriptions at half price, an offer it had never run before.
+- C) The magazine's archive contains articles dating back more than forty years.
+- D) A small number of longtime subscribers canceled in protest when the paywall was introduced.
+- E) The magazine's editorial staff supported the decision to introduce the paywall.
+
+**answer:** B
+**explanation:** The editor concludes the paywall is the most effective subscription-conversion tool, inferring this from a 25 percent rise in new paid subscriptions after the paywall went up. To weaken, introduce another cause that could explain the same rise. Choice B does this powerfully: an unprecedented half-price first-year promotion ran during exactly the same period and is a strong independent driver of new subscriptions, so the increase cannot be confidently credited to the paywall. Choice A is irrelevant to this magazine's results. Choice C (archive depth) does not address what caused the subscription rise. Choice D mentions a few cancellations, which does not undercut the net 25 percent gain or its attribution. Choice E (staff support) is about internal opinion, not causation. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q193
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+Agronomist: Fields planted with our new drought-resistant wheat variety yielded 15 percent more grain last season than fields planted with the standard variety. Because last season was unusually dry, this result shows that the new variety's superior tolerance of dry conditions is what allowed it to outproduce the standard variety.
+
+Which of the following, if true, most strengthens the agronomist's argument?
+
+- A) The new wheat variety was developed over more than a decade of selective breeding.
+- B) In a previous season with normal rainfall, the new variety and the standard variety produced nearly identical yields.
+- C) The new variety is slightly more expensive for farmers to plant than the standard variety.
+- D) Some farmers prefer the standard variety because they are familiar with its growing requirements.
+- E) The fields planted with the new variety were, on average, larger than those planted with the standard variety.
+
+**answer:** B
+**explanation:** The agronomist attributes the new variety's yield advantage specifically to its drought tolerance, citing that last season was unusually dry. Strengthening this means showing the advantage appears under dry conditions but not otherwise. Choice B does precisely that: when rainfall was normal, the two varieties yielded almost the same amount, so the gap emerged only in the dry season, pointing to drought tolerance as the cause. Choice A (development history) does not connect the advantage to dryness. Choice C (cost) and Choice D (farmer familiarity) are irrelevant to the cause of the yield difference. Choice E actually weakens the argument by suggesting larger fields, not drought tolerance, may explain the higher total. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q194
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Inference
+
+A survey of office workers found that those who took a 20-minute walk during their lunch break reported higher afternoon productivity than those who ate at their desks. The same survey also found that the lunchtime walkers were, on average, no more physically fit than the desk eaters, and that the two groups slept the same number of hours per night.
+
+If the statements above are true, which of the following must also be true?
+
+- A) Taking a lunchtime walk causes office workers to be more productive in the afternoon.
+- B) Office workers who are more physically fit are not necessarily more productive than those who are less fit.
+- C) The difference in reported afternoon productivity between the two groups cannot be explained by differences in physical fitness or in nightly sleep duration.
+- D) Most office workers would become more productive if they began walking during lunch.
+- E) Eating lunch at one's desk reduces an office worker's afternoon productivity.
+
+**answer:** C
+**explanation:** This is an inference question, so the answer must follow strictly from the stated facts: the walkers reported higher productivity, yet the groups were equal in physical fitness and in nightly sleep. From this, it follows that whatever explains the productivity gap, it is not a difference in fitness or sleep, since the groups did not differ on those measures, exactly what Choice C states. Choice A overreaches: the survey shows an association, not that walking causes productivity. Choice B makes an unsupported general claim comparing fit and unfit workers. Choice D predicts results for "most office workers," which the data on these two groups do not establish. Choice E asserts a causal effect of desk eating that the survey does not demonstrate. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q195
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Evaluate
+
+City transit board: To raise revenue, we should increase the fare on our subway system from $2.50 to $3.00 per ride. A 20 percent fare increase will, we expect, raise the system's total fare revenue by roughly 20 percent.
+
+The answer to which of the following questions would be most useful in evaluating the transit board's prediction?
+
+- A) What fraction of the subway system's operating costs is currently covered by fare revenue?
+- B) How much will the number of rides taken change in response to the higher fare?
+- C) When was the last time the subway fare was increased?
+- D) Do neighboring cities charge more or less than $2.50 for a comparable subway ride?
+- E) What proportion of subway riders also use the city's bus system?
+
+**answer:** B
+**explanation:** The board predicts that a 20 percent fare increase will raise total revenue by about 20 percent, which holds only if the number of rides stays roughly constant. Total revenue equals fare per ride times number of rides, so the prediction hinges on how ridership responds to the higher price. Choice B targets exactly this: if many riders stop using the subway at the higher fare, revenue could rise far less than 20 percent or even fall, so the answer is decisive for evaluation. Choice A (cost coverage) concerns the system's finances but not the revenue change from the increase. Choice C (timing of the last increase) and Choice D (neighboring fares) are background, not determinants of the revenue effect. Choice E (overlap with bus riders) does not tell us how subway ridership will change. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q196
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Complete the Argument
+
+Bookstore manager: Many customers browse our shelves, photograph the covers of books they like, and then order those same books from cheaper online retailers. To recover these lost sales, we plan to begin offering free in-store coffee and comfortable seating, encouraging customers to linger. This strategy will increase our revenue only if __________.
+
+Which of the following most logically completes the manager's argument?
+
+- A) the cost of providing free coffee and seating is lower than the revenue from a single book sale
+- B) customers who linger longer in the store become more likely to buy books there rather than ordering them elsewhere
+- C) online retailers do not respond by lowering their prices even further
+- D) the store has enough floor space to install comfortable seating without removing any shelves
+- E) most customers who photograph book covers are aware that the same books are available online
+
+**answer:** B
+**explanation:** The manager's plan is to provide coffee and seating so customers linger, with the goal of recovering sales lost to online retailers. For the plan to actually increase revenue, the lingering must translate into more in-store purchases rather than continued showrooming. Choice B supplies exactly this missing link: revenue rises only if lingering customers become more likely to buy from the store instead of ordering online. Choice A addresses cost and thus profit margins, but the claim is about increasing revenue, not net cost; even so, the plan could fail to raise revenue at all without B. Choice C and Choice E describe conditions that do not guarantee the lingering converts to sales. Choice D (floor space) is a feasibility detail, not the condition that makes the strategy succeed in raising revenue. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q197
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface
+
+Energy analyst: The provincial government argues that **building a new natural-gas power plant is the cheapest way to meet rising electricity demand**, and on a pure construction-cost basis that is true. But this comparison ignores the carbon fees the plant will incur over its operating life, which are projected to rise steadily. Once those fees are included, a solar-and-storage facility of equal capacity would cost the province less over thirty years. **The government should therefore build the solar facility, not the gas plant.**
+
+In the analyst's argument, the two portions in boldface play which of the following roles?
+
+- A) The first is a conclusion the analyst endorses; the second is evidence offered against that conclusion.
+- B) The first is a claim the analyst concedes is correct as far as it goes; the second is the analyst's main conclusion.
+- C) The first is the position the analyst's argument as a whole opposes; the second is an objection that the analyst rejects.
+- D) The first states the government's overall goal; the second is the analyst's prediction about how that goal will be achieved.
+- E) Both portions are intermediate conclusions that jointly support the government's recommendation.
+
+**answer:** B
+**explanation:** Locate each boldface portion and its function. The first boldface, that the gas plant is the cheapest way to meet demand, is something the analyst explicitly grants ("on a pure construction-cost basis that is true") before arguing it is incomplete; it is a conceded claim, true as far as it goes. The second boldface, that the province should build the solar facility rather than the gas plant, is the recommendation the entire argument drives toward, the analyst's main conclusion. Choice B matches both roles precisely. Choice A is wrong because the analyst does not endorse the first as a conclusion of his own argument and the second is not evidence against it. Choice C mislabels the second boldface as a rejected objection when it is in fact the conclusion the analyst affirms. Choice D wrongly casts the second as a prediction rather than a recommendation. Choice E is wrong because the boldface portions do not support the government's recommendation; the second one opposes it. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q198
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw
+
+Columnist: A recent poll conducted by mailing questionnaires to subscribers of a popular gardening magazine found that 78 percent of respondents spend more than ten hours a week tending their gardens. This shows that most adults in the country spend more than ten hours a week gardening.
+
+The columnist's reasoning is most vulnerable to criticism on the grounds that it
+
+- A) relies on a sample of people who are unrepresentative of adults in the country as a whole
+- B) confuses a cause with an effect
+- C) assumes that what is true of a group must be true of each of its members
+- D) draws a conclusion about the past from evidence about the present
+- E) fails to define precisely what counts as "tending" a garden
+
+**answer:** A
+**explanation:** The columnist generalizes from subscribers of a gardening magazine to all adults in the country. Gardening-magazine subscribers are far more likely than the general public to be avid gardeners, so the sample is not representative of the broader population, which is the central flaw, captured by Choice A. Choice B (cause and effect) does not fit, because the argument makes no causal claim. Choice C describes a division fallacy from group to member, but here the error runs from an unrepresentative sample to a population, not from whole to part. Choice D is wrong because the argument is not about past versus present. Choice E raises a definitional quibble that is not the reasoning's principal weakness; even with "tending" precisely defined, the unrepresentative sample would still doom the inference. The correct answer is A.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q199
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Answer Traps
+
+Researcher: We compared two groups of employees at our firm. Those who participated in the company's voluntary financial-wellness workshops reported significantly less money-related stress one year later than those who did not participate. We conclude that the workshops reduce employees' financial stress, so the company should make the workshops mandatory for all staff.
+
+Which of the following, if true, most calls into question the researcher's conclusion?
+
+- A) Some employees who attended the workshops said they would have preferred online materials to in-person sessions.
+- B) Employees who chose to attend the workshops were, before attending, already managing their finances more carefully and feeling less financial stress than those who did not attend.
+- C) The financial-wellness workshops covered budgeting, debt management, and retirement saving.
+- D) A few employees who did not attend the workshops nonetheless reported low levels of financial stress one year later.
+- E) The firm spent a considerable sum developing and running the workshops.
+
+**answer:** B
+**explanation:** The researcher infers that the workshops reduced stress from a comparison of self-selected attendees with non-attendees, then recommends making the workshops mandatory. The hidden danger is self-selection: if attendees differed from non-attendees before the workshops, the later difference may reflect that pre-existing gap rather than any effect of the workshops. Choice B exposes exactly this confounder, attendees were already more careful with money and less stressed, so the later difference need not be caused by the workshops, and forcing them on everyone may not help. The other choices are classic traps: Choice A (delivery-format preference) and Choice C (workshop topics) are irrelevant to causation; Choice D notes a few low-stress non-attendees, which does not overturn the group average; Choice E (cost) speaks to expense, not to whether the workshops actually reduce stress. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q200
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Weaken
+
+Café owner: Since we replaced our paper cups with reusable ceramic mugs for customers who drink their coffee in the store, our monthly waste-disposal costs have fallen by 30 percent. Switching the remaining to-go customers to returnable steel tumblers will surely cut our disposal costs by a similar amount again.
+
+Which of the following, if true, most weakens the owner's argument?
+
+- A) The ceramic mugs must be washed after each use, which has slightly raised the café's water bill.
+- B) Several nearby cafés have also begun offering reusable containers to their customers.
+- C) Nearly all of the café's customers take their coffee to go rather than drinking it in the store.
+- D) The reusable steel tumblers cost more to purchase than the paper cups they would replace.
+- E) Most of the café's customers say they support efforts to reduce single-use waste.
+
+**answer:** C
+**explanation:** The owner reasons that because switching in-store customers to ceramic mugs cut disposal costs by 30 percent, switching to-go customers to steel tumblers will cut costs by a similar amount. This assumes the two groups generate comparable amounts of disposable waste. Choice C undercuts that assumption directly: if nearly all customers already take their coffee to go, then the in-store group that switched to mugs was small, so the 30 percent reduction came from a minor source, and the much larger to-go group's switch is not parallel in the way the owner claims, making a "similar" second cut implausible. Choice A (water bill) and Choice D (tumbler cost) raise costs but do not bear on whether disposal costs will fall. Choice B (competitors) and Choice E (customer attitudes) are irrelevant to the size of the disposal-cost reduction. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q201
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+Health columnist: People who eat breakfast within an hour of waking tend to consume fewer total calories during the day than people who skip breakfast. Therefore, eating breakfast soon after waking helps people control their overall calorie intake.
+
+Which of the following, if true, most strengthens the columnist's argument?
+
+- A) Many people who skip breakfast do so because they are trying to lose weight.
+- B) The calories in a typical breakfast are roughly equal to the calories in a typical lunch.
+- C) People who eat breakfast report feeling more alert in the morning than people who skip it.
+- D) When habitual breakfast-skippers were assigned to start eating breakfast soon after waking, their total daily calorie intake decreased.
+- E) Some foods commonly eaten at breakfast are high in sugar and fat.
+
+**answer:** D
+**explanation:** The columnist moves from a correlation, breakfast-eaters consume fewer total calories, to a causal claim, eating breakfast helps control intake. To strengthen a causal conclusion drawn from a correlation, the best evidence shows that introducing the cause produces the effect. Choice D does exactly this: when breakfast-skippers were made to eat breakfast, their daily calorie intake fell, supporting the causal direction the columnist asserts. Choice A actually suggests reverse causation or a confounder (dieters skip breakfast), which would weaken the argument. Choice B (calorie comparison) and Choice E (some breakfast foods are unhealthy) cut against or are neutral to the conclusion. Choice C (alertness) concerns a different benefit, not calorie control. The correct answer is D.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q202
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Assumption
+
+Manager: Our software team consistently misses deadlines. To fix this, we will switch from monthly project reviews to weekly ones. With more frequent reviews, the team will catch delays sooner and therefore deliver projects on time.
+
+The manager's argument depends on which of the following assumptions?
+
+- A) The team has never used weekly reviews in the past.
+- B) Catching delays sooner makes it possible to correct them in time to meet deadlines.
+- C) Weekly reviews take less total time to conduct than monthly reviews.
+- D) The software team is larger than other teams at the company.
+- E) Missed deadlines are the most serious problem the company faces.
+
+**answer:** B
+**explanation:** The manager concludes that weekly reviews will lead to on-time delivery because delays will be caught sooner. This reasoning quietly assumes that catching a delay earlier actually allows the team to correct it in time, not merely to notice it earlier. Choice B states precisely this bridging assumption; negate it (catching delays sooner does not help meet deadlines) and the argument collapses, confirming it is required. Choice A (never used weekly reviews) is unnecessary history. Choice C (review duration) concerns efficiency, not whether deadlines are met. Choice D (team size) and Choice E (most serious problem) are irrelevant to whether more frequent reviews produce on-time delivery. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q203
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Inference
+
+Every employee at Brightline Logistics who completed the advanced safety certification received a pay raise this year. No employee in the warehouse division completed the advanced safety certification. Marcus is an employee in the warehouse division.
+
+If the statements above are true, which of the following must also be true?
+
+- A) Marcus did not receive a pay raise this year.
+- B) Some employees outside the warehouse division did not receive a pay raise.
+- C) No one in the warehouse division received a pay raise this year.
+- D) Everyone who received a pay raise completed the advanced safety certification.
+- E) Marcus did not complete the advanced safety certification.
+
+**answer:** E
+**explanation:** We know all certification-completers got a raise, no one in the warehouse division completed the certification, and Marcus is in the warehouse division. From the second and third statements it follows directly that Marcus did not complete the certification, which is Choice E and must be true. Choice A overreaches: the premises say nothing barring a warehouse employee from getting a raise for some other reason, so we cannot conclude Marcus got no raise. Choice C fails for the same reason, raises could come from other sources. Choice B is unsupported, we are told nothing requiring that some outsiders lacked raises. Choice D reverses the conditional, completing the certification guarantees a raise but a raise does not require the certification. The correct answer is E.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q204
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Paradox
+
+After a coastal town installed bright new streetlights along its beachfront to improve nighttime safety, the number of sea turtle hatchlings that successfully reached the ocean rose sharply the following season, even though hatchlings are known to crawl toward the brightest light they can see and the ocean is normally the brightest direction at night.
+
+Which of the following, if true, most helps to resolve the apparent discrepancy described above?
+
+- A) The new streetlights were equipped with sensors that switched them off automatically during the hours when hatchlings typically emerge.
+- B) Sea turtles return to the same beaches where they themselves hatched in order to lay their eggs.
+- C) The streetlights were considerably brighter than the lights they replaced.
+- D) Conservation groups had opposed the installation of the streetlights before construction began.
+- E) The number of nests laid on the beach was higher that season than in the previous season.
+
+**answer:** A
+**explanation:** The puzzle is that hatchlings crawl toward the brightest light and bright beachfront streetlights would be expected to lure them inland away from the ocean, yet more hatchlings reached the sea after the lights went in. Choice A dissolves the paradox: if the lights automatically shut off during the hours hatchlings emerge, then they were dark when it mattered, so they did not misdirect the hatchlings, and some other improvement (or simply the absence of the old harmful lights) let more reach the water. Choice C deepens the paradox by making the misdirecting light stronger. Choice E would raise nest numbers but not the success rate of reaching the ocean and does not explain why bright lights failed to mislead. Choice B (nesting site fidelity) and Choice D (group opposition) are background facts that do nothing to reconcile the outcome. The correct answer is A.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q205
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Flaw
+
+Consultant: Companies that offer their employees unlimited paid vacation report higher average employee satisfaction than companies that cap vacation days. Clearly, then, adopting an unlimited-vacation policy is what raises employee satisfaction, so any company wishing to improve satisfaction should adopt such a policy.
+
+The consultant's reasoning is most vulnerable to criticism on the grounds that it
+
+- A) treats a correlation between two factors as though it established that one of them causes the other
+- B) relies on a sample of companies that is too small to support a general conclusion
+- C) assumes without warrant that employee satisfaction can be measured accurately
+- D) takes for granted that all employees value vacation time equally
+- E) overlooks the possibility that satisfied employees are more productive
+
+**answer:** A
+**explanation:** The consultant observes a correlation, firms with unlimited vacation have higher satisfaction, and leaps to the causal claim that the policy raises satisfaction, then recommends the policy on that basis. The core flaw is treating correlation as causation: the firms that adopt unlimited vacation might already be more generous or better-managed in ways that drive satisfaction, so the policy may be a marker rather than a cause. Choice A names this error exactly. Choice B (sample size) is not the stated weakness; no claim about sample size appears. Choice C (measurement accuracy) and Choice D (employees value vacation equally) are peripheral assumptions that are not the principal flaw, since even granting them the causal leap remains unjustified. Choice E (productivity) introduces an unrelated benefit. The correct answer is A.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q206
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Evaluate
+
+Regional hospital administrator: To shorten emergency-room wait times, we will add a fast-track lane staffed by a nurse practitioner to handle minor injuries and illnesses. By diverting these simpler cases out of the main queue, the fast-track lane will reduce the average wait time for all patients in the emergency room.
+
+The answer to which of the following questions would be most useful in evaluating the administrator's plan?
+
+- A) How much will it cost to hire and train the nurse practitioner who will staff the fast-track lane?
+- B) Do patients with minor injuries currently wait longer on average than patients with serious conditions?
+- C) Will staffing the fast-track lane draw clinical staff away from the main emergency-room queue?
+- D) How do this hospital's wait times compare with those at other hospitals in the region?
+- E) What proportion of emergency-room visits occur during overnight hours?
+
+**answer:** C
+**explanation:** The plan assumes that creating a fast-track lane will reduce average wait times by removing minor cases from the main queue. This holds only if the lane does not degrade service to the remaining patients. Choice C is decisive: if staffing the fast-track lane pulls clinicians away from the main queue, the patients left there could wait longer, potentially canceling or reversing the intended improvement, so knowing the answer is essential to evaluating the plan. Choice A (cost) bears on affordability, not on whether wait times fall. Choice B (which patients currently wait longer) is background that does not determine the net effect of diversion. Choice D (comparison with other hospitals) and Choice E (overnight share) are context, not tests of whether the plan works. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q207
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Weaken
+
+Editor: Our magazine should stop publishing a print edition and go entirely digital. Last year we surveyed our subscribers, and 62 percent said they read most of our articles on their phones or tablets rather than in print. Clearly, the majority of our readers no longer need the print edition.
+
+Which of the following, if true, most seriously weakens the editor's argument?
+
+- A) Producing the print edition accounts for a substantial share of the magazine's annual expenses.
+- B) The survey was sent only by email, and print-only subscribers, who rarely check the email account tied to their subscription, were far less likely to respond.
+- C) Several competing magazines have recently launched digital-only editions of their own.
+- D) Some subscribers who read articles digitally also keep their print copies for archival purposes.
+- E) The magazine's digital articles are formatted to display well on both phones and tablets.
+
+**answer:** B
+**explanation:** The editor concludes that most readers no longer need print because 62 percent of survey respondents read mostly on devices. This inference is sound only if the respondents fairly represent the full subscriber base. Choice B breaks that link: if the survey reached only email users and print-only subscribers were systematically underrepresented among respondents, then the 62 percent figure is biased toward digital readers and cannot support a claim about the majority of all readers, so dropping print could abandon a large, unmeasured print-dependent group. Choice A (print cost) actually supports going digital. Choice C (competitors) is irrelevant to this magazine's reader needs. Choice D (some keep print copies) is a minor point that does not overturn a 62 percent majority. Choice E (formatting) supports the digital plan rather than weakening it. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q208
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Complete the Argument
+
+Agronomist: A new strain of wheat has been engineered to survive with 40 percent less irrigation than conventional wheat. Farmers in the drought-prone valley should therefore plant the new strain, because doing so will reduce the total amount of water they draw from the valley's overstressed aquifer, provided that __________.
+
+Which of the following most logically completes the agronomist's argument?
+
+- A) the new strain of wheat sells for a higher price than conventional wheat does
+- B) the new strain is no more susceptible to common wheat diseases than conventional wheat is
+- C) farmers in the valley are willing to learn new cultivation techniques
+- D) the valley's aquifer is the only source of irrigation water available to the farmers
+- E) farmers do not respond to the lower water requirement by planting enough additional wheat to use as much water as before
+
+**answer:** E
+**explanation:** The agronomist concludes that planting the water-thrifty strain will reduce total water drawn from the aquifer. Lower water use per plant cuts total water use only if farmers do not expand their planted acreage enough to consume the water they saved. Choice E supplies exactly this condition: if farmers respond to the lower per-plant requirement by planting more wheat until they use just as much water as before, total draw would not fall, so the argument needs E to hold. Choice A (price) concerns profitability, not water totals. Choice B (disease resistance) and Choice C (willingness to learn) affect adoption or yield but not the logic linking lower per-plant use to lower total use. Choice D (aquifer is the only source) is not required; the conclusion is about reducing draw from the aquifer regardless of whether other sources exist. The correct answer is E.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q209
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface
+
+Transportation planner: Critics insist that **adding a third lane to the congested coastal highway will permanently relieve the traffic jams that plague it during rush hour**. But experience elsewhere shows that expanding a highway draws additional drivers who previously avoided the route, so the new capacity fills up within a few years. **The proposed lane expansion will not provide lasting relief from congestion on the coastal highway.**
+
+In the planner's argument, the two portions in boldface play which of the following roles?
+
+- A) The first is a claim the planner argues against; the second is the conclusion of the planner's argument.
+- B) The first is the conclusion of the planner's argument; the second is evidence supporting that conclusion.
+- C) The first is evidence the planner uses to support the conclusion; the second is that conclusion.
+- D) Both portions are claims that the planner accepts as true.
+- E) The first is the planner's conclusion; the second is a claim that opposes that conclusion.
+
+**answer:** A
+**explanation:** Identify each boldface and the planner's overall position. The first boldface, that the third lane will permanently relieve traffic jams, is attributed to "critics" and is the very view the planner sets out to refute using the induced-demand evidence. The second boldface, that the expansion will not provide lasting relief, is the planner's own main conclusion. Choice A captures both roles: a claim argued against, then the conclusion. Choice B and Choice C misidentify which boldface is the conclusion. Choice D is wrong because the planner rejects, rather than accepts, the first claim. Choice E inverts the structure by calling the first the conclusion and the second an opposing claim. The correct answer is A.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q210
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+Archaeologist: Pottery shards found at the ancient settlement of Kelara bear decorative patterns nearly identical to those on pottery from the distant city of Morath. Some researchers conclude that Kelara's potters learned their techniques through trade contact with Morath. But I contend instead that both populations inherited the patterns from a common ancestral culture that predated either settlement.
+
+Which of the following, if true, most strengthens the archaeologist's hypothesis over the trade-contact explanation?
+
+- A) Pottery bearing the same decorative patterns has been found at several older sites located between, and predating, both Kelara and Morath.
+- B) The clay used in Kelara's pottery came from local deposits rather than from the region around Morath.
+- C) Trade routes connecting Kelara and Morath were in regular use during the period when both settlements flourished.
+- D) The decorative patterns required considerable skill to produce and were applied before the pottery was fired.
+- E) Morath was a substantially larger settlement than Kelara during the period in question.
+
+**answer:** A
+**explanation:** The archaeologist argues that the shared patterns came from a common ancestral culture predating both settlements, rather than from trade between them. To favor the ancestral-inheritance hypothesis over trade contact, the strongest support is evidence that the patterns existed earlier than either site and in places that could have been a shared source. Choice A provides this: the same patterns appear at older sites situated between and predating both settlements, exactly what a common-ancestor explanation predicts and what mere trade between Kelara and Morath would not require. Choice B (local clay) shows the pots were made locally but is consistent with either hypothesis, since trade transfers techniques, not necessarily clay. Choice C (active trade routes) supports the rival trade explanation. Choice D (skill and timing of application) and Choice E (relative size) do not distinguish between the two hypotheses. The correct answer is A.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q211
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Answer Traps
+
+Nutrition official: A study tracked two groups of adults over five years. Those who drank at least three cups of green tea daily had a 25 percent lower rate of heart disease than those who drank none. We therefore recommend that all adults drink at least three cups of green tea daily to lower their risk of heart disease.
+
+Which of the following is an assumption on which the official's recommendation depends?
+
+- A) Green tea is more effective at preventing heart disease than any other beverage.
+- B) The adults who drank green tea did not also follow other habits, common among them but rare among non-drinkers, that independently lower heart-disease risk.
+- C) Heart disease is the leading cause of death among adults in the population studied.
+- D) Drinking more than three cups of green tea daily would lower heart-disease risk even further.
+- E) The adults in the study who drank no green tea were aware that green tea might benefit their health.
+
+**answer:** B
+**explanation:** The official recommends green tea for everyone based on an observed association between heavy green-tea drinking and lower heart-disease rates. For that recommendation to follow, the lower rate must be attributable to the tea itself rather than to confounding habits that happen to accompany tea drinking. Choice B is the required assumption: if green-tea drinkers also shared other risk-lowering habits uncommon among non-drinkers, the 25 percent difference could stem from those habits, and the tea recommendation would not be supported; negating B destroys the argument, the hallmark of a necessary assumption. The trap answers fail standard tests: Choice A (more effective than any other beverage) is far stronger than needed, the argument never claims superiority. Choice C (leading cause of death) overstates what is required, the recommendation needs only that tea lowers risk. Choice D (even more benefit beyond three cups) is unnecessary to a three-cup recommendation. Choice E (non-drinkers' awareness) is irrelevant to whether the tea caused the effect. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types

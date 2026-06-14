@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter, Fraunces } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import JsonLd from "@/components/seo/JsonLd"
 import { organizationLd, websiteLd } from "@/lib/structured-data"
@@ -100,6 +101,9 @@ export default function RootLayout({
             (Article on blog posts, SoftwareApplication on tools, etc.). */}
         <JsonLd data={[organizationLd(), websiteLd()]} />
         {children}
+        {/* Vercel Web Analytics — page views + custom conversion events
+            (see lib/analytics.ts). No-op until enabled on Vercel. */}
+        <Analytics />
       </body>
     </html>
   )

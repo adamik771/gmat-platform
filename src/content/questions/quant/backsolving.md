@@ -917,3 +917,477 @@ The correct answer is C.
 **related_reading:** quant-01-backsolving
 
 ---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+If 7x + 5 = 47, what is the value of x?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) 10
+
+**answer:** A
+**explanation:** Backsolving treats each choice as a candidate value of x and checks which one satisfies the equation, so you never have to isolate x. Start at choice A, x = 6: 7(6) + 5 = 42 + 5 = 47, which matches the right-hand side exactly. Because the equation holds on the first test, x = 6 is the answer, and no algebraic manipulation of the constant 5 is needed.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+If 4(x - 3) = 24, what is the value of x?
+
+- A) 8
+- B) 9
+- C) 10
+- D) 11
+- E) 12
+
+**answer:** B
+**explanation:** Rather than distributing the 4 or dividing both sides, substitute each candidate directly into 4(x - 3) and look for 24. Testing choice B, x = 9: 4(9 - 3) = 4(6) = 24, an exact match. Substituting a concrete number sidesteps the common slip of reading 4(x - 3) as 4x - 3, so x = 9 is confirmed on the first successful test.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+The sum of three consecutive even integers is 78. What is the largest of the three integers?
+
+- A) 24
+- B) 26
+- C) 28
+- D) 30
+- E) 32
+
+**answer:** C
+**explanation:** Each choice is a candidate for the largest integer, so the three numbers are that choice and the two even integers below it. Test the median choice (C), largest = 28: the integers are 24, 26, 28, which sum to 78, an exact match. Had the sum come out too small you would move to D or E, and too large to A or B, but the median lands it here directly.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+A pen costs 4 dollars more than a pencil. Together, one pen and one pencil cost 20 dollars. How much does the pen cost, in dollars?
+
+- A) 9
+- B) 10
+- C) 11
+- D) 12
+- E) 13
+
+**answer:** D
+**explanation:** Let each choice be the pen price; the pencil is then 4 dollars cheaper, so the check is one subtraction and one addition. Testing choice D, pen = 12: the pencil is 12 - 4 = 8, and 12 + 8 = 20, satisfying the total. Both stated conditions hold, so the pen costs 12 dollars, while the smaller value 8 (the pencil) is deliberately not among the asked-for choices here.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+Pipe A can fill a tank in 6 hours. With pipe B also open, the tank fills in 4 hours. How many hours would pipe B take to fill the tank alone?
+
+- A) 8
+- B) 9
+- C) 10
+- D) 11
+- E) 12
+
+**answer:** E
+**explanation:** The algebraic relationship is 1/6 + 1/B = 1/4, but backsolving lets each choice stand in for B's solo time and checks the combined rate directly. Test choice E, B = 12: the combined rate is 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 tank per hour, which fills the tank in exactly 4 hours. Since rates add while times do not, substituting a candidate into the rate sum exposes any shortcut that subtracts or averages the times, confirming B = 12.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+A father is currently five times as old as his son. In 6 years, the father will be three times as old as his son will be then. How old is the father now?
+
+- A) 30
+- B) 33
+- C) 36
+- D) 39
+- E) 42
+
+**answer:** A
+**explanation:** Each choice is the father's current age, and since he is five times his son's age, the son's age is that choice divided by 5. Test choice A, father = 30: the son is 6 now, so in 6 years the father is 36 and the son is 12, and 36 is exactly three times 12. Both conditions hold, and checking the plain-English future condition against concrete ages avoids the classic mistranslation of "in 6 years" that ignores the son aging too.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+A jar contains 20 coins, all of which are dimes (10 cents) and quarters (25 cents), with a total value of 3.80 dollars. How many quarters are in the jar?
+
+- A) 10
+- B) 12
+- C) 14
+- D) 16
+- E) 18
+
+**answer:** B
+**explanation:** Each choice is a candidate count of quarters; the dimes are then 20 minus that count, and the total value in cents must reach 380. Test choice B, 12 quarters: there are 8 dimes, giving 12(25) + 8(10) = 300 + 80 = 380 cents, an exact match. Letting one choice fix the quarter count and deriving the dimes turns the two-variable system into a single substitution to verify.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+Service X charges a one-time setup fee of 48 dollars plus 3 dollars per month. Service Y charges no setup fee and 9 dollars per month. After how many months is the total amount paid to Service X equal to the total amount paid to Service Y?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) 10
+
+**answer:** C
+**explanation:** Each choice is a candidate number of months; Service X's total is the flat 48 plus 3 per month, and Service Y's total is 9 per month, so compute both and compare. Test choice C, m = 8: Service X costs 48 + 3(8) = 72, and Service Y costs 9(8) = 72, so the totals are equal. The key is that the setup fee is paid once rather than monthly, and the gap between the two totals shrinks by 6 dollars each month, so exactly one month count balances them.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q37
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Backsolving
+
+A 40-liter solution is 25 percent salt. How many liters of pure salt must be added so that the resulting solution is 50 percent salt?
+
+- A) 5
+- B) 10
+- C) 15
+- D) 20
+- E) 25
+
+**answer:** D
+**explanation:** The starting solution holds 25 percent of 40 = 10 liters of salt, and adding x liters of pure salt raises both the salt to 10 + x and the total volume to 40 + x. Test choice D, x = 20: the mixture is (10 + 20)/(40 + 20) = 30/60 = 50 percent, an exact match. The trap is freezing the denominator at 40, but every liter of salt added lands in both the salt total and the overall volume, so rebuilding the full fraction for each candidate keeps the check honest.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q38
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Backsolving
+
+If x is a positive integer, what is the value of x?
+
+(1) x^2 - 7x + 12 = 0
+(2) x < 4
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The question asks for a single value of x, so a statement is sufficient only if it pins x to exactly one number. Statement (1) factors as (x - 3)(x - 4) = 0, allowing x = 3 or x = 4, two values, so it is not sufficient alone. Statement (2) says x < 4, which leaves the positive integers 1, 2, and 3, also not sufficient alone. Combining them, x must be a root of the quadratic and less than 4, which uniquely forces x = 3 because x = 4 is excluded, so both statements together are sufficient and the answer is C.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Backsolving
+
+A jar contains only nickels (5 cents) and dimes (10 cents), and there are 24 coins in total. How many dimes are in the jar?
+
+(1) The total value of the coins is 1.95 dollars.
+(2) There are twice as many nickels as dimes.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** With n nickels and d dimes and the stem giving n + d = 24, each statement need only produce one more independent equation to determine d. Statement (1) gives 5n + 10d = 195; substituting n = 24 - d yields 5(24 - d) + 10d = 120 + 5d = 195, so 5d = 75 and d = 15, a unique value, so statement (1) is sufficient. Statement (2) gives n = 2d, so n + d = 3d = 24 and d = 8, also a unique value, so statement (2) is sufficient on its own. Since each statement alone determines the number of dimes, the answer is D.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Backsolving
+
+If n is a positive integer, what is the value of n?
+
+(1) n is a factor of 12.
+(2) n is a prime number that is greater than 10 and less than 13.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The question asks for one specific value of n, so each statement must be checked against the full set of candidates it permits. Statement (1) lists the factors of 12 as 1, 2, 3, 4, 6, and 12, which is six possible values, so it is not sufficient alone. Statement (2) requires a prime strictly between 10 and 13, and the only integer in that range that is prime is 11 (12 is not prime), so it pins n to a single value and is sufficient alone. Because statement (2) by itself determines n while statement (1) does not, the answer is B.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q41
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+If 9x - 4 = 41, what is the value of x?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 6
+- E) 7
+
+**answer:** C
+**explanation:** Backsolving treats each choice as a candidate value of x and checks which one satisfies the equation, so no algebra is required. Start at the median choice (C), x = 5: 9(5) - 4 = 45 - 4 = 41, which matches the right-hand side exactly. Because the equation holds on the first test, x = 5 is the answer, and substituting a concrete number avoids any slip in isolating the variable.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q42
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+40% of what number is equal to 30?
+
+- A) 60
+- B) 65
+- C) 70
+- D) 75
+- E) 80
+
+**answer:** D
+**explanation:** Each choice is a candidate for "what number," so take 40 percent of it and compare to 30. Testing the median choice (C), 40 percent of 70 = 28, which is too small, so the number must be larger and choices A, B, and C are eliminated at once. Testing D, 40 percent of 75 = 30, an exact match, so the number is 75; plugging each choice in as the unknown total keeps the percent relationship modeled correctly.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q43
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+A notebook costs 5 dollars more than a pen. Together, one notebook and one pen cost 23 dollars. How much does the notebook cost, in dollars?
+
+- A) 11
+- B) 12
+- C) 13
+- D) 14
+- E) 15
+
+**answer:** D
+**explanation:** Let each choice be the notebook price; the pen is then 5 dollars cheaper, so the check is one subtraction and one addition. Testing choice D, notebook = 14: the pen is 14 - 5 = 9, and 14 + 9 = 23, which satisfies the total. Both stated conditions hold, so the notebook costs 14 dollars, while the smaller value 9 (the pen) is deliberately the partner quantity the question does not ask for.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q44
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Backsolving
+
+After a 20 percent discount, a backpack sells for 60 dollars. What was the original price of the backpack, in dollars?
+
+- A) 70
+- B) 72
+- C) 75
+- D) 78
+- E) 80
+
+**answer:** C
+**explanation:** Each choice is a candidate original price, and a 20 percent discount means the sale price is 80 percent of the original, so the check is a single multiplication. Testing choice C, original = 75: 80 percent of 75 = 0.8 times 75 = 60, an exact match. Running the discount forward from each candidate avoids the wrong-base trap of adding 20 percent of the sale price back, since the discount was taken on the larger original amount.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+A rectangular field is 5 meters longer than it is wide, and its area is 126 square meters. What is the width of the field, in meters?
+
+- A) 9
+- B) 10
+- C) 11
+- D) 12
+- E) 13
+
+**answer:** A
+**explanation:** The algebraic route is w(w + 5) = 126, a quadratic, but backsolving skips it: each choice is a candidate width and the length is just width + 5, so you only multiply. Testing choice A, width = 9: the length is 9 + 5 = 14, and 9 times 14 = 126, an exact match. Had A come out too small you would move up the list, but the median is not always the answer, and here the smallest choice lands it directly because the product grows quickly with width.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+Pipe A can fill a tank in 4 hours. With pipe B also open, the tank fills in 2.4 hours. How many hours would pipe B take to fill the tank alone?
+
+- A) 5
+- B) 6
+- C) 7
+- D) 8
+- E) 9
+
+**answer:** B
+**explanation:** The algebraic relationship is 1/4 + 1/B = 1/2.4, but backsolving lets each choice stand in for B's solo time and checks the combined rate directly. Testing choice B, B = 6: the combined rate is 1/4 + 1/6 = 3/12 + 2/12 = 5/12 tank per hour, and 1 divided by 5/12 is 12/5 = 2.4 hours, matching the stated together-time exactly. Because rates add while times do not, substituting a candidate into the rate sum exposes any shortcut that subtracts or averages the times, confirming B = 6.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q47
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+A jar contains 30 coins, all of which are dimes (10 cents) and quarters (25 cents), with a total value of 5.40 dollars. How many quarters are in the jar?
+
+- A) 12
+- B) 14
+- C) 16
+- D) 18
+- E) 20
+
+**answer:** C
+**explanation:** Each choice is a candidate count of quarters; the dimes are then 30 minus that count, and the total value in cents must reach 540. Testing the median choice (C), 16 quarters: there are 14 dimes, giving 16(25) + 14(10) = 400 + 140 = 540 cents, an exact match. Letting one choice fix the quarter count and deriving the dimes turns the two-variable system into a single substitution to verify, with no equations to solve.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q48
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+A mother is currently five times as old as her daughter. In 6 years, the mother will be three times as old as her daughter will be then. How old is the mother now?
+
+- A) 25
+- B) 30
+- C) 35
+- D) 40
+- E) 45
+
+**answer:** B
+**explanation:** Each choice is the mother's current age, and since she is five times her daughter's age, the daughter's age is that choice divided by 5. Testing choice B, mother = 30: the daughter is 6 now, so in 6 years the mother is 36 and the daughter is 12, and 36 is exactly three times 12. Both conditions hold, and checking the plain-English future condition against concrete ages avoids the classic mistranslation that forgets the daughter also ages six years.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q49
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Backsolving
+
+Service X charges a one-time setup fee of 36 dollars plus 3 dollars per month. Service Y charges no setup fee and 9 dollars per month. After how many months is the total amount paid to Service X equal to the total amount paid to Service Y?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 6
+
+**answer:** E
+**explanation:** Each choice is a candidate number of months; Service X's total is the flat 36 plus 3 per month, and Service Y's total is 9 per month, so compute both and compare. Testing choice E, m = 6: Service X costs 36 + 3(6) = 54, and Service Y costs 9(6) = 54, so the totals are equal. The setup fee is paid once rather than monthly, and the gap between the two totals shrinks by 6 dollars each month, so exactly one month count balances them.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Backsolving
+
+If x is a positive integer, what is the value of x?
+
+(1) x^2 = 49
+(2) x is a multiple of 7 that is less than 10
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The question asks for one specific value of x, and the stem already restricts x to positive integers. Statement (1) gives x^2 = 49, whose solutions are 7 and -7, but only x = 7 is a positive integer, so it pins x to a single value and is sufficient alone. Statement (2) requires a positive multiple of 7 less than 10, and the only such value is 7 itself, so it is also sufficient alone. Because each statement independently determines x = 7, the answer is D.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Backsolving
+
+A jar contains only dimes (10 cents) and quarters (25 cents), and there are 18 coins in total. How many quarters are in the jar?
+
+(1) The total value of the coins is 3.30 dollars.
+(2) There are more dimes than quarters.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** With q quarters and 18 - q dimes, each statement must determine q uniquely to be sufficient. Statement (1) gives 25q + 10(18 - q) = 330, which simplifies to 15q + 180 = 330, so 15q = 150 and q = 10, a single value, making statement (1) sufficient. Statement (2) only says dimes exceed quarters, meaning 18 - q > q, so q < 9, which allows q to be 0 through 8, many possible values, so it is not sufficient alone. Because statement (1) alone determines q while statement (2) does not, the answer is A.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q52
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Backsolving
+
+If n is a positive integer, what is the value of n?
+
+(1) n^2 - 5n + 6 = 0
+(2) n is even
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The question asks for a single value of n, so a statement is sufficient only if it isolates exactly one value. Statement (1) factors as (n - 2)(n - 3) = 0, allowing n = 2 or n = 3, two values, so it is not sufficient alone. Statement (2) says n is even, which permits infinitely many positive integers, so it is not sufficient alone. Combining them, n must be a root of the quadratic and even, which leaves only n = 2 since 3 is odd, so both statements together are sufficient and the answer is C.
+**related_reading:** quant-01-backsolving
+
+---

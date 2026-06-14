@@ -3380,3 +3380,651 @@ The correct answer is A.
 **mistake_d:** The author is not indifferent or merely surveying; the passage explicitly judges one reading 'the more defensible,' which is an endorsement, not balanced neutrality.
 **mistake_e:** Far too negative. The author largely accepts the revisionist refinement and only criticizes those who overextend it in the opposite direction, so 'dismissive' with 'little merit' misreads the tone entirely.
 **related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 27: The Limits of the Learning Curve
+
+Manufacturers have long observed that the cost of producing a unit tends to fall as cumulative output rises, a regularity codified in the so-called learning curve. The standard formulation holds that each doubling of total units produced yields a roughly constant percentage reduction in unit cost, as workers grow more dexterous, supervisors refine routines, and engineers redesign components for easier assembly. For decades this relationship served not merely as a description but as a planning tool: firms entering a new market would price below current cost, confident that accumulated volume would eventually drive cost beneath price. The curve, in this usage, became a justification for aggressive expansion.
+
+The economist Priya Nandakumar has argued that this planning use rests on a subtle confusion. The learning curve, she notes, is an observed correlation between cumulative volume and falling cost, not a mechanism that guarantees the fall. Cost declines because people and processes improve, and volume is merely the occasion on which that improvement is measured; it is not the cause. Where a firm expands output without the organizational conditions that permit genuine learning, stable teams, time to reflect on errors, channels for sharing what is discovered, the cost reduction the curve predicts simply fails to materialize. Nandakumar documents several firms that doubled output repeatedly while unit costs stagnated, precisely because rapid hiring and turnover destroyed the continuity on which improvement depends.
+
+Her argument does not discard the learning curve so much as relocate its source. The curve remains a useful summary of what tends to happen, and Nandakumar concedes that in many settings the conditions for learning and the act of producing more arrive together, so the correlation holds up well. What she rejects is the inference from correlation to entitlement, the assumption that a firm may treat future cost reductions as automatic returns on volume. A manager who internalizes her point will not stop expanding, but will treat the curve as a forecast contingent on investments in learning rather than as a promise redeemed by scale alone. The distinction is easy to state and, she suggests, surprisingly often ignored in practice.
+
+### Q110
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+Which of the following best expresses the main point of the passage?
+
+- A) The learning curve has been disproven by firms whose unit costs rose even as their cumulative output increased.
+- B) Falling unit costs result from organizational improvement rather than from volume itself, so the learning curve should be treated as a forecast contingent on investments in learning, not as a guaranteed return on scale.
+- C) Firms that expand output aggressively will almost always see their unit costs decline by a constant percentage with each doubling of production.
+- D) The chief value of the learning curve lies in its use as a justification for pricing new products below their current cost.
+- E) Rapid hiring and high employee turnover are the principal causes of stagnant unit costs in manufacturing.
+
+**answer:** B
+**explanation:** The passage opens by describing the learning curve and its use as a planning tool, then presents Nandakumar's central claim that volume is 'merely the occasion on which improvement is measured; it is not the cause,' and closes by saying she rejects 'the inference from correlation to entitlement' and would have managers treat the curve 'as a forecast contingent on investments in learning rather than as a promise redeemed by scale alone.' Option B captures both halves: the source of cost reduction (organizational improvement) and the corrected use of the curve (a contingent forecast).
+
+The correct answer is B.
+**mistake_a:** Overstated. Nandakumar 'does not discard the learning curve' and concedes the correlation 'holds up well' in many settings; the stagnant-cost firms are counterexamples to an inference, not a disproof of the curve.
+**mistake_c:** This restates the older planning assumption the passage criticizes, presenting as the main point the very view Nandakumar argues against.
+**mistake_d:** Too narrow. Pricing below cost is mentioned as one historical use of the curve, not the passage's overall point about the source and proper interpretation of cost declines.
+**mistake_e:** Too narrow and overstated. Turnover is one illustrative cause of failed learning, not the passage's thesis, and the passage does not call it the 'principal' cause across manufacturing.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q111
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+It can be inferred from the passage that Nandakumar would most likely regard a firm's repeated doubling of output as
+
+- A) a sufficient condition for the unit-cost reductions described by the learning curve
+- B) an event that reduces unit costs only when accompanied by conditions that allow genuine learning
+- C) the underlying cause of the organizational improvements that lower unit costs
+- D) irrelevant to unit costs, since cost depends entirely on factors unrelated to volume
+- E) a reliable guarantee of returns provided the firm prices its products below current cost
+
+**answer:** B
+**explanation:** Nandakumar argues that 'cost declines because people and processes improve, and volume is merely the occasion on which that improvement is measured.' She documents firms that 'doubled output repeatedly while unit costs stagnated' because turnover 'destroyed the continuity on which improvement depends.' The clear inference is that doubling output lowers cost only when the conditions for genuine learning are present, exactly option B.
+
+The correct answer is B.
+**mistake_a:** Direct contradiction. The stagnant-cost firms doubled output without lower costs, so volume is not sufficient on its own; that is the precise claim Nandakumar rejects.
+**mistake_c:** This reverses her causal account. She says improvement causes the cost fall and volume is only 'the occasion on which that improvement is measured,' not the cause of the improvement.
+**mistake_d:** Too extreme. She does not say volume is irrelevant; she concedes that in many settings the conditions for learning and producing more 'arrive together,' so volume often coincides with cost reduction.
+**mistake_e:** This blends in the discarded planning view (pricing below cost as a guarantee). Nandakumar explicitly rejects treating future reductions as 'automatic returns on volume.'
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q112
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, the standard formulation of the learning curve holds that each doubling of cumulative output yields
+
+- A) a steadily increasing percentage reduction in unit cost
+- B) a roughly constant percentage reduction in unit cost
+- C) a one-time fixed-dollar reduction in unit cost
+- D) a reduction in unit cost only after employee turnover has stabilized
+- E) no predictable change in unit cost
+
+**answer:** B
+**explanation:** The first paragraph states that the standard formulation 'holds that each doubling of total units produced yields a roughly constant percentage reduction in unit cost.' Option B is a direct restatement of that sentence.
+
+The correct answer is B.
+**mistake_a:** The passage specifies a 'constant,' not 'increasing,' percentage reduction per doubling.
+**mistake_c:** The reduction is described as a percentage tied to doublings, not a one-time fixed-dollar amount.
+**mistake_d:** Turnover appears later as a reason learning can fail; it is not part of the standard formulation of the curve.
+**mistake_e:** The standard formulation predicts a specific reduction; 'no predictable change' contradicts the first paragraph.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q113
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Function
+
+In the third paragraph, the statement that Nandakumar's argument 'does not discard the learning curve so much as relocate its source' serves primarily to
+
+- A) concede that the learning curve has no practical use for managers
+- B) clarify that her critique targets a mistaken interpretation of the curve rather than the curve's descriptive validity
+- C) introduce a new body of evidence that contradicts the firms discussed in the second paragraph
+- D) signal that the author disagrees with Nandakumar's conclusions
+- E) summarize the planning use of the curve before endorsing it
+
+**answer:** B
+**explanation:** The sentence sets up the paragraph's qualification: the curve 'remains a useful summary of what tends to happen,' and what Nandakumar rejects is 'the inference from correlation to entitlement.' So 'relocate its source' signals that she keeps the curve as a description but reassigns the cause of cost reduction from volume to learning, attacking an interpretation, not the curve's validity. That is option B.
+
+The correct answer is B.
+**mistake_a:** Contradicts the text, which says the curve 'remains a useful summary' and would still guide a manager's expansion decisions; it is not stripped of practical use.
+**mistake_c:** No new evidence is introduced here; the sentence makes an interpretive point, and the paragraph actually concedes the correlation often holds.
+**mistake_d:** The passage presents Nandakumar's view approvingly and offers no statement of the author's disagreement.
+**mistake_e:** The sentence does not endorse the planning use; the planning use is the very thing her argument warns against treating as a 'promise redeemed by scale alone.'
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 28: Reading the Chemistry of Ancient Teeth
+
+For most of the twentieth century, archaeologists reconstructed the diets of past populations chiefly from what people left behind: animal bones at a settlement, charred seeds in a hearth, the residues clinging to a cooking pot. Such evidence is suggestive but indirect, for refuse records what was discarded, not what was consumed, and it favors foods that leave durable traces over those that decay without a mark. A community that lived largely on tubers and leafy plants might appear, in the archaeological record, to have subsisted on the few animals whose bones survived. The gap between what was eaten and what endured has long troubled efforts to describe ancient nutrition with any confidence.
+
+The analysis of stable isotopes preserved in tooth enamel has narrowed that gap considerably. As enamel forms in childhood, it incorporates carbon and nitrogen in ratios that vary with the kinds of plants and animals a person consumed, and once formed, enamel does not remodel, so it locks in a chemical signature of early diet that persists for millennia. By measuring these ratios, researchers can distinguish, for instance, populations reliant on certain grasses from those eating other plant types, or estimate how much of a diet came from animal versus plant sources. The method speaks directly to consumption rather than to refuse, and it reports on the individual whose tooth is sampled rather than on a settlement's aggregate leavings.
+
+Yet the technique carries its own constraints, and responsible practitioners are candid about them. Enamel records the diet of the years in which it formed, so it describes childhood, not the whole of a life, and a person's later eating may have differed sharply. The isotope ratios reflect broad categories of food rather than specific dishes, so they cannot identify a particular plant or recipe. And because enamel can be altered by the chemistry of the soil in which a body lay, samples must be screened for such contamination before their signals can be trusted. None of these limits is fatal; each simply marks the boundary of what the chemistry can responsibly be asked to show. Used within those bounds, isotope analysis has become not a replacement for older evidence but a corrective to its silences.
+
+### Q114
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) argue that traditional archaeological evidence should be abandoned in favor of isotope analysis
+- B) describe how isotope analysis of tooth enamel addresses a known weakness of older dietary evidence while noting the new method's own limitations
+- C) demonstrate that ancient populations ate far more plant food than archaeologists had assumed
+- D) explain the chemical process by which carbon and nitrogen are incorporated into tooth enamel
+- E) compare the diets of several ancient communities reconstructed from tooth enamel
+
+**answer:** B
+**explanation:** The passage first identifies a weakness of refuse-based evidence ('refuse records what was discarded, not what was consumed'), then shows how enamel isotope analysis 'narrowed that gap' by speaking 'directly to consumption,' and finally catalogs the method's own constraints, concluding it is 'not a replacement for older evidence but a corrective to its silences.' Option B captures this purpose: presenting the method as a remedy for the old gap, with limits acknowledged.
+
+The correct answer is B.
+**mistake_a:** Direct contradiction of the conclusion, which calls the method 'not a replacement for older evidence but a corrective.'
+**mistake_c:** Too narrow and overstated. Distinguishing plant-reliant populations is an example of what the method can do, not the passage's purpose, and no general claim that populations ate 'far more' plant food is made.
+**mistake_d:** Too narrow. The enamel-formation chemistry is described briefly to support the method's value, but explaining that process is not the passage's overall purpose.
+**mistake_e:** The passage does not actually reconstruct or compare specific communities' diets; it discusses the method in general terms.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q115
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+The passage suggests that refuse-based evidence is especially likely to misrepresent the diet of a community that
+
+- A) relied heavily on foods that decay without leaving durable traces
+- B) consumed animals whose bones survive well in the archaeological record
+- C) cooked its food in durable pottery vessels
+- D) left abundant charred seeds in its hearths
+- E) occupied a single settlement for many generations
+
+**answer:** A
+**explanation:** The first paragraph states refuse evidence 'favors foods that leave durable traces over those that decay without a mark' and gives the example of a community living 'largely on tubers and leafy plants' that 'might appear... to have subsisted on the few animals whose bones survived.' The inference is that refuse most distorts the picture for communities relying on perishable foods, option A.
+
+The correct answer is A.
+**mistake_b:** This describes a food that survives well and so would be over-represented but accurately recorded as present; the distortion the passage stresses is the under-recording of perishable foods.
+**mistake_c:** Durable vessels would leave residues that aid reconstruction; this is not the case the passage identifies as most misleading.
+**mistake_d:** Charred seeds are exactly the durable trace that survives, so such a community's plant diet would be relatively well recorded, not misrepresented.
+**mistake_e:** Length of occupation concerns how much refuse accumulates, not whether the foods eaten leave durable traces; the passage ties distortion to perishability, not duration of settlement.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q116
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, which of the following is a stated limitation of isotope analysis of tooth enamel?
+
+- A) It cannot be performed on individuals and reports only on settlement-wide averages.
+- B) It records the diet of the years in which the enamel formed, and thus reflects childhood rather than the whole of a life.
+- C) It is more easily distorted by discarded refuse than traditional methods are.
+- D) It can identify specific dishes and recipes but not broad food categories.
+- E) It produces signals that no amount of screening can ever be trusted to interpret.
+
+**answer:** B
+**explanation:** The third paragraph states: 'Enamel records the diet of the years in which it formed, so it describes childhood, not the whole of a life.' Option B is a direct restatement of this acknowledged limitation.
+
+The correct answer is B.
+**mistake_a:** The opposite of the text: the method 'reports on the individual whose tooth is sampled rather than on a settlement's aggregate leavings.'
+**mistake_c:** Refuse distortion is a problem of the older methods; isotope analysis 'speaks directly to consumption rather than to refuse.'
+**mistake_d:** Reversed. The passage says the ratios 'reflect broad categories of food' and 'cannot identify a particular plant or recipe.'
+**mistake_e:** Overstated. The passage says samples 'must be screened for such contamination before their signals can be trusted,' implying screening can render them trustworthy, and calls none of the limits 'fatal.'
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q117
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward isotope analysis of tooth enamel can best be described as
+
+- A) enthusiastic endorsement that treats the method as free of meaningful limitations
+- B) measured approval that values the method's contribution while acknowledging its boundaries
+- C) skepticism that regards the method as adding little to traditional evidence
+- D) neutrality that withholds any judgment of the method's usefulness
+- E) wariness that views the method as too unreliable for serious use
+
+**answer:** B
+**explanation:** The author credits the method with having 'narrowed that gap considerably' and being a 'corrective' to the silences of older evidence, but devotes the final paragraph to its constraints, noting that 'responsible practitioners are candid about them' and that each limit 'marks the boundary of what the chemistry can responsibly be asked to show.' This combination of genuine credit and careful acknowledgment of limits is measured approval, option B.
+
+The correct answer is B.
+**mistake_a:** Overstated positivity. The author explicitly details several limitations, so the method is not treated as free of them.
+**mistake_c:** Contradicts the text, which says the method 'narrowed that gap considerably' and serves as a valuable corrective, not a negligible addition.
+**mistake_d:** The author does render a judgment, praising the method as a corrective; the stance is not withheld neutrality.
+**mistake_e:** Too negative. The author says 'None of these limits is fatal' and endorses the method used 'within those bounds,' so 'too unreliable for serious use' misreads the tone.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 29: The Politics of the Standard Gauge
+
+When railways began to spread in the early nineteenth century, no single width separated the rails. Engineers chose gauges to suit local terrain, the loads they expected, and sometimes mere personal preference, and the result was a patchwork in which a traveler or a shipment might have to change trains wherever one company's track met another's. The inconvenience was not trivial: at break-of-gauge points, freight had to be unloaded from one set of cars and reloaded onto another, adding cost and delay to every long journey that crossed a boundary. Yet for decades the patchwork persisted, and understanding why it persisted, and how it eventually gave way, reveals something about how technical standards are actually settled.
+
+The familiar explanation credits engineering merit: one gauge, it is said, proved technically superior and so prevailed. The historian Tomas Eklund disputes this. Examining the consolidation of gauges in several regions, he finds that the width that ultimately dominated was rarely the one engineers judged best on technical grounds; instead, it was the one already laid across the largest share of existing track. Once a substantial network had committed to a given width, every new line had reason to match it, since conformity opened access to the widest market of connecting traffic. The advantage compounded: the more track shared a gauge, the stronger the incentive for the next builder to adopt it, regardless of whether a rival width handled curves or heavy loads more gracefully.
+
+Eklund is careful not to overstate his case. He does not claim that engineering considerations were irrelevant; a gauge wildly unsuited to its task would not have survived, whatever its incumbency. His point is narrower and, he argues, more accurate: among the several workable widths, the choice among them was governed less by their relative technical merits than by the accumulated weight of prior commitments. A standard, on this view, is not the verdict of disinterested engineering but the trace of a history, and the gauge that won did so not because it was the best that could be built but because it was the one most trains already ran on. To read the outcome as proof of superiority, Eklund warns, is to mistake the consequence of standardization for its cause.
+
+### Q118
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) A historical puzzle is posed, a conventional explanation is challenged by an alternative account, and that account is then qualified to state its precise claim.
+- B) Two engineers' competing gauge designs are compared, and the technically superior one is shown to have prevailed.
+- C) A chronological narrative of railway construction is given, followed by predictions about future transportation standards.
+- D) A standard is defended against critics who deny that it was the best available option.
+- E) An economic theory is stated in the abstract and then illustrated with a single extended example.
+
+**answer:** A
+**explanation:** The first paragraph poses the puzzle of why the gauge patchwork persisted and how it resolved. The second presents the conventional 'engineering merit' explanation and then Eklund's challenge (the dominant gauge was the one already most widely laid, advantaged by compounding network effects). The third qualifies Eklund's claim, noting he 'does not claim that engineering considerations were irrelevant' and stating his 'narrower' point precisely. That puzzle-challenge-qualification movement is option A.
+
+The correct answer is A.
+**mistake_b:** The passage's core claim is that the prevailing gauge was 'rarely the one engineers judged best,' so a structure built on the superior design winning misdescribes it.
+**mistake_c:** The passage is analytical rather than a chronological narrative, and it offers no predictions about future standards.
+**mistake_d:** Reversed. Eklund argues the winning gauge was not necessarily the best; the passage does not defend it as the best available option.
+**mistake_e:** Eklund draws on 'several regions,' not a single extended example, and the passage centers on a historical dispute rather than an abstract theory illustrated once.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q119
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+It can be inferred from the passage that Eklund would most likely agree that, among several technically workable gauges, a new railway builder's choice of width was driven primarily by
+
+- A) which gauge handled tight curves and heavy loads most gracefully
+- B) the desire to connect with the largest existing network of track sharing that width
+- C) the personal preferences of the line's chief engineer
+- D) the verdict of disinterested engineering analysis
+- E) the terrain the new line would have to cross
+
+**answer:** B
+**explanation:** Eklund holds that 'once a substantial network had committed to a given width, every new line had reason to match it, since conformity opened access to the widest market of connecting traffic,' and that the choice 'was governed less by their relative technical merits than by the accumulated weight of prior commitments.' Among workable gauges, then, the driving factor was connecting to the largest existing network, option B.
+
+The correct answer is B.
+**mistake_a:** This is the technical-merit explanation Eklund downgrades; he says the choice was governed 'less by their relative technical merits.'
+**mistake_c:** Personal preference is mentioned only for the early patchwork era, not as the driver Eklund identifies for the consolidation phase among workable widths.
+**mistake_d:** Eklund explicitly denies the standard was 'the verdict of disinterested engineering,' calling it instead 'the trace of a history.'
+**mistake_e:** Terrain is cited among the early reasons gauges varied, not as the primary driver of conformity once a dominant network existed.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q120
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Function
+
+The final sentence of the passage, that to read the outcome as proof of superiority 'is to mistake the consequence of standardization for its cause,' functions primarily to
+
+- A) concede that the winning gauge was, after all, technically the best
+- B) restate Eklund's central warning by naming the specific error his account is meant to prevent
+- C) introduce a new historical case that the rest of the passage had not addressed
+- D) soften Eklund's position by granting equal weight to engineering merit
+- E) shift the discussion from railways to standards in general without further support
+
+**answer:** B
+**explanation:** Eklund's account holds that a gauge won 'not because it was the best that could be built but because it was the one most trains already ran on.' The final sentence names the error of reasoning his argument guards against: treating a gauge's dominance (the consequence of standardizing on it) as evidence that it was superior (a supposed cause). It thus restates his central warning by pinpointing the specific mistake, option B.
+
+The correct answer is B.
+**mistake_a:** This contradicts Eklund, who argues the winner was 'not... the best that could be built'; the sentence warns against, rather than concedes, the superiority reading.
+**mistake_c:** No new historical case is introduced; the sentence is a summarizing caution, not fresh evidence.
+**mistake_d:** The sentence sharpens, rather than softens, Eklund's point; it does not grant engineering merit equal weight.
+**mistake_e:** While 'a standard' is mentioned generally, the sentence reinforces the railway argument already made rather than shifting to an unsupported general topic.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q121
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following present-day situations most closely parallels the process by which a gauge came to dominate, as Eklund describes it?
+
+- A) A regulatory agency tests several competing electrical-plug designs and mandates the one that performs best in safety trials.
+- B) A messaging app becomes the default in a country because so many users already use it that each new user gains the most value by joining it, even though rival apps have comparable features.
+- C) An inventor patents a superior battery chemistry that displaces all earlier designs within a year of its release.
+- D) A government bans an outdated industrial process, causing firms to switch to a cleaner alternative.
+- E) A company discontinues a product line after discovering a fatal design flaw that no competitor shares.
+
+**answer:** B
+**explanation:** Eklund's mechanism is that the gauge already laid across the most track attracted each new builder because conformity 'opened access to the widest market of connecting traffic,' so the advantage 'compounded' independent of relative technical merit. The messaging app in option B dominates for the same reason: prior adoption makes joining the largest network most valuable to each new user, even though rivals have 'comparable features.' That compounding network advantage among technically similar options is the precise parallel.
+
+The correct answer is B.
+**mistake_a:** This depicts a deliberate test selecting the best performer on the merits, which is the engineering-superiority explanation Eklund rejects, not his network-driven account.
+**mistake_c:** This is a case of genuine technical superiority displacing rivals, the opposite of Eklund's point that the winner need not be the best.
+**mistake_d:** This involves a mandated switch driven by regulation, not the self-reinforcing pull of an already-dominant network.
+**mistake_e:** This concerns a product failing on a unique technical flaw, which turns on merit rather than on accumulated prior commitments.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 30: The Two Costs of Holding Inventory
+
+When a retailer decides how much stock to keep on its shelves, it confronts a tension that no single rule can resolve. Holding inventory is expensive in obvious ways: goods tie up cash that might earn a return elsewhere, occupy warehouse space that must be rented and insured, and risk spoilage or obsolescence before they sell. These carrying costs argue for keeping inventory as lean as possible, ordering little and often, and letting the shelves run nearly bare between deliveries. For much of the late twentieth century, this logic dominated management thinking, and "just-in-time" replenishment, in which parts and goods arrive only as they are needed, was treated as the mark of an efficient operation.
+
+Yet leanness carries a cost of its own, one that does not appear on any single invoice and is therefore easy to discount. When demand spikes unexpectedly, or a supplier is delayed, a firm that holds little stock cannot serve its customers, and a stockout is not merely a deferred sale. The customer who finds an empty shelf may buy from a rival and not return, so the loss compounds beyond the one transaction. The analyst Reuben Castellano has argued that managers systematically underweight this second cost precisely because it is invisible in the way carrying costs are not: a warehouse full of unsold goods is a reproach one can see and measure, whereas the sales never made leave no trace in the ledger. The asymmetry of visibility, he contends, biases firms toward leanness beyond the point that prudence would recommend.
+
+Castellano is careful to deny that he is calling for large inventories as such. The right level of stock, on his account, depends on how variable demand is, how reliable suppliers are, and how costly a lost customer proves to be, quantities that differ across firms and seasons. His claim is narrower: that because one cost is conspicuous and the other hidden, decisions drift in a predictable direction, and a manager who wishes to choose well must consciously correct for that drift. To run lean is not in itself a virtue; it is a bet that the hidden cost will stay small, and bets, he reminds his readers, should be examined rather than assumed.
+
+### Q122
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) recommend that retailers abandon just-in-time replenishment in favor of consistently large inventories
+- B) explain why holding inventory ties up cash and warehouse space that could be used more profitably
+- C) present an argument that firms tend to hold too little inventory because one cost of stocking decisions is visible while the other is hidden
+- D) compare the inventory practices of several firms operating in different seasons
+- E) prove that every stockout permanently drives a customer to a competitor
+
+**answer:** C
+**explanation:** The passage describes the visible carrying costs that favor leanness, then introduces Castellano's argument that the cost of stockouts is "invisible," producing an "asymmetry of visibility" that "biases firms toward leanness beyond the point that prudence would recommend." The final paragraph confirms his claim is that decisions "drift in a predictable direction" and must be corrected. Option C captures this purpose.
+
+The correct answer is C.
+**mistake_a:** Overstated. Castellano "is careful to deny that he is calling for large inventories as such"; he says the right level depends on circumstances.
+**mistake_b:** Too narrow. The carrying costs are described early to set up the contrast, but explaining them is not the passage's overall purpose.
+**mistake_d:** The passage mentions that variability "differ[s] across firms and seasons" but does not actually compare specific firms' practices.
+**mistake_e:** Overstated. The passage says a customer "may buy from a rival and not return," a possibility, not a claim that every stockout permanently loses a customer.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q123
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, which of the following is one of the carrying costs of holding inventory?
+
+- A) the sales lost when a customer finds an empty shelf and buys from a rival
+- B) the cash that is tied up in goods and could earn a return elsewhere
+- C) the bias that leads managers to underweight hidden costs
+- D) the variability of demand across firms and seasons
+- E) the reproach that a manager feels upon seeing unsold goods
+
+**answer:** B
+**explanation:** The first paragraph lists carrying costs: goods "tie up cash that might earn a return elsewhere, occupy warehouse space that must be rented and insured, and risk spoilage or obsolescence." Option B directly restates the first of these.
+
+The correct answer is B.
+**mistake_a:** This is the stockout cost, the "second cost" Castellano says is hidden, not one of the carrying costs of holding stock.
+**mistake_c:** The bias is Castellano's diagnosis of managerial behavior, not a carrying cost of inventory.
+**mistake_d:** Demand variability is a factor that determines the right level of stock, not itself a carrying cost.
+**mistake_e:** The reproach is a psychological reaction the passage uses to explain why carrying costs feel salient; it is not itself a carrying cost.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q124
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+It can be inferred that Castellano regards running a lean inventory as
+
+- A) always imprudent, since the hidden cost of stockouts invariably exceeds carrying costs
+- B) a choice that is justified only when demand is highly variable
+- C) a defensible decision whose wisdom depends on whether the unmeasured cost of stockouts will in fact remain small
+- D) the surest sign of an efficiently managed operation
+- E) irrelevant to a firm's profitability, since the two costs always cancel out
+
+**answer:** C
+**explanation:** Castellano writes that "to run lean is not in itself a virtue; it is a bet that the hidden cost will stay small," and that such bets "should be examined rather than assumed." Leanness is therefore neither always wrong nor always right; its wisdom turns on whether the hidden stockout cost stays small, which is option C.
+
+The correct answer is C.
+**mistake_a:** Too extreme. He denies "calling for large inventories as such" and says the right level depends on circumstances, so leanness is not always imprudent.
+**mistake_b:** High demand variability is one factor among several (supplier reliability, cost of a lost customer); the passage does not single it out as the sole justification.
+**mistake_d:** This restates the late-twentieth-century view the passage attributes to others and that Castellano critiques, not his own conclusion.
+**mistake_e:** Contradicts the passage, which treats the costs as a genuine tradeoff that biases decisions, not as quantities that cancel.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q125
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Function
+
+The author's statement that the cost of a stockout "leave[s] no trace in the ledger" serves primarily to
+
+- A) prove that stockouts have no real financial consequences for a firm
+- B) explain why managers tend to underweight the cost of holding too little inventory
+- C) concede that carrying costs are easier to reduce than stockout costs
+- D) introduce a new accounting method for recording lost sales
+- E) suggest that the author doubts Castellano's argument
+
+**answer:** B
+**explanation:** The phrase appears in support of Castellano's claim that managers "systematically underweight this second cost precisely because it is invisible." A warehouse of unsold goods "is a reproach one can see and measure," whereas lost sales leave "no trace in the ledger." The point of the phrase is to explain the asymmetry of visibility that biases decisions, option B.
+
+The correct answer is B.
+**mistake_a:** The opposite of the passage's point: the cost is real and possibly large; it is merely unrecorded, which is why it is underweighted.
+**mistake_c:** The passage makes no comparison about which cost is easier to reduce; the contrast is about visibility, not reducibility.
+**mistake_d:** No accounting method is proposed; the phrase diagnoses a perceptual bias rather than offering a bookkeeping fix.
+**mistake_e:** The author presents Castellano's view approvingly and uses the phrase to develop, not undercut, his argument.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 31: How a Swarm Chooses a Home
+
+When a honeybee colony grows too large for its hive, roughly half the bees depart with the old queen and gather as a swarm on a nearby branch, where they must somehow agree on a new home before the cluster starves or is caught by bad weather. The decision is consequential and irreversible, and no single bee inspects more than a handful of the available cavities, yet swarms reliably settle on one of the best sites in the surrounding landscape. For a long time this competence was a puzzle, since it seemed to require a kind of comparison and judgment that no individual bee could plausibly perform.
+
+The biologist Wenshu Adeyemi has described the mechanism that resolves the puzzle, and its logic is worth following closely. A few hundred scouts fan out and locate candidate cavities. A scout returning from a site performs a waggle dance whose duration advertises the site's quality, longer for a better cavity, and the dance recruits other scouts to go and assess that same site for themselves. Crucially, a scout does not dance indefinitely; the vigor of her dancing decays over repeated trips, so a mediocre site, which earns only brief dances to begin with, loses its advocates quickly, while an excellent site keeps drawing fresh recruits faster than its supporters drop away. Support thus accumulates at the best site and ebbs from the rest, until the number of scouts committed to one cavity crosses a threshold and the swarm lifts off toward it.
+
+What Adeyemi stresses is that nowhere in this process does any bee weigh the candidate sites against one another. No individual holds the comparison; the comparison is performed by the population, through the differing rates at which support for each site grows and fades. The colony's apparent wisdom is not housed in any of its members but emerges from the simple rule each scout follows: dance in proportion to what you found, and dance a little less each time. A capacity that looks like deliberation, she observes, turns out to be the visible sum of many individually modest acts, and to seek the decision inside any one bee is to look in the wrong place entirely.
+
+### Q126
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+Which of the following best states the main idea of the passage?
+
+- A) Honeybee swarms choose new homes poorly because no individual bee can compare the available sites.
+- B) A swarm's ability to select an excellent nest site emerges from a population-level process rather than from comparison performed by any individual bee.
+- C) The waggle dance is the most sophisticated form of communication known among insects.
+- D) Scout bees deliberately rank candidate cavities before recruiting other scouts to inspect them.
+- E) Bad weather is the chief danger facing a swarm that has left its overcrowded hive.
+
+**answer:** B
+**explanation:** The passage poses the puzzle of how swarms pick good sites though "no single bee inspects more than a handful," then explains Adeyemi's mechanism, and concludes that "nowhere in this process does any bee weigh the candidate sites against one another"; the comparison "is performed by the population." Option B captures this emergent, population-level account.
+
+The correct answer is B.
+**mistake_a:** Contradicts the passage, which says swarms "reliably settle on one of the best sites"; the choosing is good, not poor.
+**mistake_c:** The passage describes the waggle dance functionally but never ranks it against other insects' communication.
+**mistake_d:** The opposite of the passage's point: no bee performs the comparison or ranks the sites; the decision emerges from population dynamics.
+**mistake_e:** Bad weather is mentioned only as one pressure to decide quickly, not as the passage's main idea.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q127
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+It can be inferred from the passage that if the vigor of every scout's dancing did NOT decay over repeated trips, the swarm would be
+
+- A) more likely to settle quickly on the single best available site
+- B) less able to let support for mediocre sites fade, and so worse at converging on the best site
+- C) unable to locate any candidate cavities at all
+- D) forced to rely entirely on a single scout's judgment
+- E) certain to choose a site at random regardless of its quality
+
+**answer:** B
+**explanation:** The passage states that "a mediocre site... loses its advocates quickly" precisely because dancing "decays over repeated trips," while an excellent site "keeps drawing fresh recruits faster than its supporters drop away." If dancing did not decay, support for mediocre sites would not fade, so the differential that lets the best site pull ahead would weaken, making convergence on the best site harder, option B.
+
+The correct answer is B.
+**mistake_a:** Reversed. The decay is what allows mediocre sites to shed support; without it, convergence on the best site would be impaired, not improved.
+**mistake_c:** Locating cavities is the scouts' fanning-out step, which is independent of whether dance vigor decays.
+**mistake_d:** The passage emphasizes that no single scout's judgment governs the outcome; removing decay would not transfer the decision to one bee.
+**mistake_e:** The dance duration still tracks site quality regardless of decay, so the choice would not become purely random.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q128
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, a returning scout's waggle dance advertises a site's quality through the dance's
+
+- A) location on the branch where the swarm has gathered
+- B) duration, which is longer for a better cavity
+- C) volume, which is louder for a better cavity
+- D) speed, which is faster for a worse cavity
+- E) repetition across multiple consecutive seasons
+
+**answer:** B
+**explanation:** The second paragraph states that a scout "performs a waggle dance whose duration advertises the site's quality, longer for a better cavity." Option B restates this directly.
+
+The correct answer is B.
+**mistake_a:** The passage ties quality to the dance's duration, not to where on the branch it is performed.
+**mistake_c:** Volume is not mentioned; the cue described is duration.
+**mistake_d:** Speed is not the cue, and the passage links a better, not worse, cavity to longer dancing.
+**mistake_e:** The decision happens within a single swarm episode before the cluster starves; seasonal repetition is not described.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q129
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following situations is most analogous to the swarm's decision-making process as Adeyemi describes it?
+
+- A) A committee chair reviews every proposal in detail and personally selects the strongest one.
+- B) A search engine ranks web pages partly by how many other pages link to them, so that pages drawing steadily more links rise to the top without any single editor judging them.
+- C) A judge weighs the evidence on both sides of a case before issuing a verdict.
+- D) A factory installs sensors that alert a supervisor whenever a machine exceeds a fixed temperature.
+- E) A shopper compares the prices of two products and buys the cheaper one.
+
+**answer:** B
+**explanation:** Adeyemi's mechanism has no individual performing the comparison; the outcome emerges from the differing rates at which support accumulates across options. A search engine that elevates pages by accumulating links, "without any single editor judging them," reproduces this emergent, population-level selection, making option B the closest parallel.
+
+The correct answer is B.
+**mistake_a:** A chair who reviews everything and personally selects is exactly the centralized comparison the passage says does not occur.
+**mistake_c:** A judge weighing both sides is a single individual performing the comparison, the opposite of the emergent process.
+**mistake_d:** A fixed-threshold alert to a supervisor is centralized monitoring, not distributed competition among options for accumulating support.
+**mistake_e:** A shopper directly comparing two prices is an individual making the comparison, unlike the population-level mechanism.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 32: The Myth of the Sudden City
+
+Histories of industrial growth often present the great manufacturing cities of the nineteenth century as if they sprang up where coal and ore happened to lie, summoned into being by the factories that the resources made possible. On this familiar telling, geology wrote the script: a seam of coal appeared, mills followed, workers gathered, and a city materialized almost overnight around the new industry. The story is tidy, and it flatters the machinery of industrialization by making the city its direct and immediate product.
+
+The economic historian Idris Bramwell has assembled evidence that complicates this account. Studying the rise of several manufacturing centers, he finds that the places that grew fastest were rarely the ones nearest the richest mineral deposits. They were, instead, the towns that already possessed something less dramatic: a navigable river or an established market, a cluster of skilled tradespeople, a body of merchants accustomed to extending credit, and local courts willing to enforce contracts. Where these were present, industry took root and the town swelled; where they were absent, even abundant coal often yielded little more than a mine and a few cottages. The resource, Bramwell argues, was an opportunity, but an opportunity that only certain places were equipped to seize.
+
+Bramwell does not deny that resources mattered; a region with no coal at all was unlikely to host coal-fired industry. His revision is one of emphasis and sequence. The dramatic ingredient, the mineral, was widely distributed and by itself inert; what concentrated growth in particular places was the unglamorous infrastructure of commerce that had been accumulating, often for generations, before the first factory was built. To credit the resource with the city, he suggests, is to mistake the spark for the fuel, and to overlook the long, quiet preparation without which the spark would have flickered and died. The industrial city, on his account, was less a sudden creation than the visible flowering of advantages that had been slowly laid down beforehand.
+
+### Q130
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) A conventional explanation is presented, an alternative account that revises it is offered, and that alternative is then qualified to state its precise claim.
+- B) Two historians' competing theories are compared, and the more popular one is endorsed.
+- C) A chronological narrative of one city's growth is given, followed by predictions about future cities.
+- D) A claim about geology is defended against critics who say minerals were irrelevant.
+- E) A general economic law is stated and then illustrated with statistics from many regions.
+
+**answer:** A
+**explanation:** The first paragraph lays out the familiar "geology wrote the script" account. The second presents Bramwell's revision, that commercial infrastructure, not proximity to the richest deposits, concentrated growth. The third qualifies that revision: he "does not deny that resources mattered," and his point is "one of emphasis and sequence." This convention-revision-qualification movement is option A.
+
+The correct answer is A.
+**mistake_b:** Only Bramwell's view is developed against an unattributed "familiar telling"; two named historians' theories are not compared, and the popular view is the one being revised.
+**mistake_c:** The passage is analytical and treats several centers, not a chronological narrative of one city, and offers no predictions.
+**mistake_d:** Reversed. Bramwell downgrades, rather than defends, the centrality of geology, and the critics in the passage are not said to call minerals irrelevant.
+**mistake_e:** No formal economic law is stated, and the passage cites no statistics; it advances a historical reinterpretation.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q131
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+The passage suggests that a town possessing abundant coal but lacking established markets, skilled tradespeople, and contract-enforcing courts would most likely have
+
+- A) grown into one of the fastest-expanding manufacturing centers
+- B) attracted merchants willing to extend credit despite the missing institutions
+- C) failed to develop much beyond a mine and a few cottages
+- D) become a major center of commerce without any manufacturing
+- E) been the first place in its region to build a factory
+
+**answer:** C
+**explanation:** The second paragraph states that "where these were absent, even abundant coal often yielded little more than a mine and a few cottages." A town rich in coal but lacking the commercial and legal prerequisites is exactly such a place, so option C follows directly.
+
+The correct answer is C.
+**mistake_a:** The fastest-growing places "already possessed" the commercial infrastructure; a town lacking it would not be among them.
+**mistake_b:** The passage treats credit-extending merchants as part of the missing infrastructure, not as a force that appears despite its absence.
+**mistake_d:** Without markets, tradespeople, and courts, the town lacks precisely the commercial foundation a center of commerce would require.
+**mistake_e:** The passage gives no basis for claiming such a town would be first to build a factory; abundance of coal alone did not produce industry.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q132
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Function
+
+In the final paragraph, the phrase "to mistake the spark for the fuel" serves primarily to
+
+- A) concede that minerals were ultimately the decisive cause of industrial cities
+- B) capture Bramwell's claim that resources triggered growth but the accumulated commercial infrastructure sustained and concentrated it
+- C) introduce a new region that the passage had not previously discussed
+- D) argue that neither resources nor infrastructure mattered to a city's rise
+- E) signal that the author rejects Bramwell's reinterpretation
+
+**answer:** B
+**explanation:** Bramwell calls the mineral "the dramatic ingredient... by itself inert," while "the unglamorous infrastructure of commerce" is what "concentrated growth." Casting the resource as the "spark" and the infrastructure as the "fuel" figuratively restates this: the resource may ignite, but the prior commercial advantages are what feed and localize the growth, option B.
+
+The correct answer is B.
+**mistake_a:** The metaphor downgrades the mineral to a mere spark; it does not concede that minerals were the decisive cause.
+**mistake_c:** No new region is introduced; the phrase is a summarizing image, not fresh evidence.
+**mistake_d:** Bramwell affirms that both mattered, with infrastructure as the fuel; he does not say neither mattered.
+**mistake_e:** The author presents the metaphor as a clarifying restatement of Bramwell's view, signaling agreement rather than rejection.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q133
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward Bramwell's account can best be described as
+
+- A) open hostility, treating the account as a distortion of the historical record
+- B) favorable, presenting the account as a persuasive correction to the conventional story
+- C) strict neutrality, reporting the account while withholding any evaluation
+- D) reluctant acceptance, endorsing the account only after exposing serious flaws in it
+- E) indifference, regarding the dispute as unimportant to understanding industrial cities
+
+**answer:** B
+**explanation:** The author calls the conventional account "tidy" in a faintly critical way, says Bramwell "has assembled evidence that complicates this account," and develops his revision approvingly, restating his metaphor as a clarifying truth ("to mistake the spark for the fuel"). The tone is favorable toward the account as a sound correction, option B.
+
+The correct answer is B.
+**mistake_a:** Nothing in the passage attacks Bramwell; the conventional view, not Bramwell's, is the one gently criticized as merely "tidy."
+**mistake_c:** The author does evaluate, framing Bramwell's view as a "revision" that "complicates" a flattering myth, so the stance is not withheld neutrality.
+**mistake_d:** The author exposes no flaws in Bramwell's account; the qualifications are Bramwell's own, presented sympathetically.
+**mistake_e:** The author treats the reinterpretation as significant, devoting most of the passage to developing it, not as unimportant.
+**related_reading:** reading-verbal-06-rc-question-types

@@ -2254,3 +2254,678 @@ The procurement committee proposes a hybrid approach: purchase 60% of the annual
 **common_trap:** Two traps in one question. First, students who only calculate the Meridian purchase premium ($14,400) and ignore rework savings choose C. Second, students who compute the correct full-switch savings ($18,000 from Q52) and apply them to the hybrid proposal choose D. The hybrid problem requires computing each supplier's portion costs separately — there is no shortcut that uses the full-switch numbers directly.
 **takeaway:** Hybrid-split problems: always compute each portion's full cost (purchase + rework) separately, then sum. You cannot apply a full-population rate to a partial volume — doing so is the definition of the misleading distractor.
 **related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 17: Halvorsen Retail — Store Expansion Review
+
+### Tab 1: Internal Memo
+
+**From:** Greta Halvorsen, Director of Retail Strategy
+**To:** Regional Operations Leads
+**Re:** Annual Store Performance and Expansion Screen
+
+Ahead of next year's capital-allocation meeting, I want to flag where our four flagship stores stand. Total chain revenue across these four stores reached $20.0 million this year.
+
+The Dunmore store remains our standout performer, posting both the strongest year-over-year revenue growth and the highest sales productivity per square foot in the portfolio. The Cresthill store is the only location to see revenue decline this year, and its rent burden relative to revenue is the heaviest in the group — a combination that excludes it from any near-term expansion consideration.
+
+Please review each store against the board's expansion-screen criteria (Tab 3) before we meet. Only stores that clear all three criteria will be considered for square-footage expansion.
+
+### Tab 2: Store Performance Summary
+
+| Store     | Annual Revenue ($M) | Selling Area (sq ft) | Annual Rent ($M) | YoY Revenue Growth |
+|-----------|---------------------|----------------------|------------------|--------------------|
+| Aspen     | 4.2                 | 12,000               | 0.48             | +6%                |
+| Brixton   | 5.6                 | 20,000               | 0.84             | +3%                |
+| Cresthill | 3.0                 | 10,000               | 0.50             | -2%                |
+| Dunmore   | 7.2                 | 18,000               | 0.90             | +11%               |
+
+### Tab 3: Expansion-Screen Criteria (Board-Approved)
+
+A store qualifies as an expansion candidate only if it meets ALL of the following:
+
+1. Revenue per square foot of at least $320.
+2. Rent-to-revenue ratio (annual rent divided by annual revenue) of no more than 13%.
+3. Positive year-over-year revenue growth.
+
+### Q54
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Based on Tab 2, which store had the highest revenue per square foot this year?
+
+- A) Aspen
+- B) Brixton
+- C) Cresthill
+- D) Dunmore
+- E) Cannot be determined
+
+**answer:** D
+**explanation:** Revenue per square foot equals annual revenue divided by selling area. All figures needed come from Tab 2 (Store Performance Summary); Tabs 1 and 3 are not required, though the memo's claim that Dunmore leads on "sales productivity per square foot" provides a useful cross-check.
+
+Computing the ratio for each store (revenue converted to dollars):
+
+- Aspen: 4,200,000 / 12,000 = $350
+- Brixton: 5,600,000 / 20,000 = $280
+- Cresthill: 3,000,000 / 10,000 = $300
+- Dunmore: 7,200,000 / 18,000 = $400
+
+Ranking in descending order: $400 > $350 > $300 > $280, which corresponds to Dunmore > Aspen > Cresthill > Brixton. Dunmore, at $400 per square foot, is the maximum. Brixton carries the largest selling area (20,000 sq ft) and might appear productive, but its revenue base of $5.6M spread over that area yields only $280 per square foot, the lowest in the portfolio. Choice E is eliminated because every figure required is explicitly given in Tab 2, making the ratio fully determinable.
+
+The correct answer is D.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q55
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Applying the board-approved expansion-screen criteria in Tab 3 to the data in Tab 2, which store or stores qualify as expansion candidates?
+
+- A) Dunmore only
+- B) Aspen and Dunmore
+- C) Aspen, Dunmore, and Brixton
+- D) Brixton and Dunmore
+- E) All four stores
+
+**answer:** B
+**explanation:** Tab 3 establishes a three-part conjunctive screen: a store qualifies only if it satisfies all three criteria simultaneously — revenue per square foot of at least $320, rent-to-revenue ratio of no more than 13%, and positive year-over-year revenue growth. Each store is tested using the figures in Tab 2.
+
+Revenue per square foot (computed in Q54): Aspen $350, Brixton $280, Cresthill $300, Dunmore $400.
+
+Rent-to-revenue ratio (annual rent divided by annual revenue, from Tab 2):
+
+- Aspen: 0.48 / 4.2 = 0.1143, or approximately 11.4%
+- Brixton: 0.84 / 5.6 = 0.1500, or 15.0%
+- Cresthill: 0.50 / 3.0 = 0.1667, or approximately 16.7%
+- Dunmore: 0.90 / 7.2 = 0.1250, or 12.5%
+
+Year-over-year growth (Tab 2): Aspen +6%, Brixton +3%, Cresthill -2%, Dunmore +11%.
+
+Applying all three criteria:
+
+- Aspen: $350 (>= 320, pass); 11.4% (<= 13%, pass); +6% (positive, pass). Qualifies.
+- Brixton: $280 (< 320, fail). Disqualified on criterion 1 regardless of its other figures.
+- Cresthill: $300 (< 320, fail); also 16.7% rent ratio and -2% growth fail. Disqualified.
+- Dunmore: $400 (pass); 12.5% (pass); +11% (pass). Qualifies.
+
+Only Aspen and Dunmore clear all three criteria. Choice A omits Aspen, which passes every criterion. Choice C wrongly includes Brixton, which fails on revenue per square foot ($280 < $320). Choice D wrongly includes Brixton and omits Aspen. Choice E includes Cresthill, the only store to decline year-over-year and the one with the heaviest rent burden, as the memo notes.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q56
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Based on Tab 2, which store has the highest rent-to-revenue ratio?
+
+- A) Aspen
+- B) Brixton
+- C) Cresthill
+- D) Dunmore
+- E) They are approximately equal
+
+**answer:** C
+**explanation:** The rent-to-revenue ratio is defined in Tab 3 as annual rent divided by annual revenue. The relevant figures are in Tab 2; the question asks which store carries the largest value of that ratio. The memo (Tab 1) states that Cresthill's "rent burden relative to revenue is the heaviest in the group," which the computation confirms directly.
+
+Computing each ratio from Tab 2:
+
+- Aspen: 0.48 / 4.2 = approximately 11.4%
+- Brixton: 0.84 / 5.6 = 15.0%
+- Cresthill: 0.50 / 3.0 = approximately 16.7%
+- Dunmore: 0.90 / 7.2 = 12.5%
+
+Ranking in descending order: 16.7% > 15.0% > 12.5% > 11.4%, which corresponds to Cresthill > Brixton > Dunmore > Aspen. Cresthill carries the highest ratio at approximately 16.7%. A solver might be tempted by Brixton, which has the largest absolute rent figure ($0.84M), but its larger revenue base ($5.6M) holds its ratio to 15.0%, below Cresthill's. Cresthill pairs a modest rent of $0.50M with the smallest revenue base ($3.0M), producing the highest ratio. The three figures are not close, so choice E is eliminated.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q57
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+A board member asks for the chain-wide revenue per square foot across all four stores combined. Based on Tab 2, approximately what is it?
+
+- A) $300
+- B) $320
+- C) $333
+- D) $350
+- E) $358
+
+**answer:** C
+**explanation:** **Governing principle.** A chain-wide (aggregate) revenue-per-square-foot figure is computed by dividing total revenue across all stores by total selling area across all stores. It is not the simple average of the individual per-store ratios, because the stores differ in size — a size-weighted aggregate is required.
+
+**Identifying the source.** All figures come from Tab 2. The memo (Tab 1) confirms total chain revenue of $20.0 million, which serves as a cross-check on the numerator.
+
+**Step 1: Total revenue.**
+
+4.2 + 5.6 + 3.0 + 7.2 = 20.0 ($M)
+
+This matches the $20.0 million stated in the memo, confirming the figures are internally consistent.
+
+**Step 2: Total selling area.**
+
+12,000 + 20,000 + 10,000 + 18,000 = 60,000 sq ft
+
+**Step 3: Chain-wide revenue per square foot.**
+
+20,000,000 / 60,000 = 333.33, or approximately $333 per square foot.
+
+**Ruling out the alternatives.** Choice D ($350) and choice E ($358) reflect a common error: averaging the four individual per-store ratios ($350, $280, $300, $400) without weighting by area. The simple average of those four is (350 + 280 + 300 + 400) / 4 = 1330 / 4 = $332.50, which happens to land near the correct weighted figure here but is the wrong method and would diverge in other cases; choices D and E overstate this. Choice A ($300) and choice B ($320) understate the aggregate. Only the size-weighted computation — total revenue divided by total area — yields $333.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 18: Calderon Energy — Solar Project Bid Evaluation
+
+### Tab 1: Procurement Memo
+
+**From:** Diego Calderon, VP Project Development
+**To:** Bid Review Committee
+**Re:** Utility-Scale Solar Bid Evaluation
+
+We received three vendor bids for our next utility-scale solar build. The committee should evaluate each bid on cost efficiency (capital cost per megawatt of capacity), schedule (months to completion), and equipment warranty before applying the formal shortlisting framework in Tab 3.
+
+A few notes from my initial read. Verde Power offers the largest nameplate capacity of the three bids but also the shortest warranty. Helios Grid is the fastest to deliver and carries the longest warranty, but its cost per megawatt is the highest of the three. Only bids that clear every criterion in the shortlisting framework will advance to final negotiation.
+
+### Tab 2: Bid Summary
+
+| Bidder      | Capacity (MW) | Capital Cost ($M) | Completion (months) | Warranty (years) |
+|-------------|---------------|-------------------|---------------------|------------------|
+| SunPeak     | 50            | 60                | 14                  | 20               |
+| Helios Grid | 40            | 52                | 12                  | 25               |
+| Verde Power | 60            | 66                | 18                  | 15               |
+
+### Tab 3: Shortlisting Framework
+
+A bid is shortlisted for final negotiation only if it meets ALL of the following:
+
+1. Capital cost per megawatt of no more than $1.25 million.
+2. Completion within 16 months.
+3. Equipment warranty of at least 18 years.
+
+### Q58
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Operations Analysis
+
+Based on Tab 2, which bid offers the lowest capital cost per megawatt of capacity?
+
+- A) SunPeak
+- B) Helios Grid
+- C) Verde Power
+- D) SunPeak and Verde Power are tied
+- E) Cannot be determined
+
+**answer:** C
+**explanation:** Capital cost per megawatt equals total capital cost divided by capacity. All figures come from Tab 2; the memo (Tab 1) notes that Helios Grid has "the highest" cost per megawatt, which serves as a cross-check.
+
+Computing the ratio for each bid:
+
+- SunPeak: 60 / 50 = $1.20 million per MW
+- Helios Grid: 52 / 40 = $1.30 million per MW
+- Verde Power: 66 / 60 = $1.10 million per MW
+
+Ranking in ascending order: $1.10M < $1.20M < $1.30M, which corresponds to Verde Power < SunPeak < Helios Grid. Verde Power, at $1.10 million per MW, is the lowest. This is also consistent with the memo's observation that Helios Grid is the most expensive per MW. Choice D is eliminated because SunPeak ($1.20M) and Verde Power ($1.10M) are not equal. Choice E is eliminated because both capacity and capital cost are explicitly given for every bidder, making the ratio fully determinable.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q59
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Operations Analysis
+
+Applying the shortlisting framework in Tab 3 to the data in Tab 2, which bid or bids advance to final negotiation?
+
+- A) SunPeak only
+- B) Helios Grid only
+- C) SunPeak and Helios Grid
+- D) SunPeak and Verde Power
+- E) All three bids
+
+**answer:** A
+**explanation:** Tab 3 establishes a three-part conjunctive framework: a bid advances only if it satisfies all three criteria — capital cost of no more than $1.25 million per MW, completion within 16 months, and warranty of at least 18 years. Each bid is tested using Tab 2.
+
+Capital cost per MW (computed in Q58): SunPeak $1.20M, Helios Grid $1.30M, Verde Power $1.10M.
+
+Applying all three criteria:
+
+- SunPeak: $1.20M (<= $1.25M, pass); 14 months (<= 16, pass); 20 years (>= 18, pass). Advances.
+- Helios Grid: $1.30M (> $1.25M, fail). Disqualified on criterion 1, despite its 12-month schedule and 25-year warranty.
+- Verde Power: $1.10M (pass); 18 months (> 16, fail). Disqualified on criterion 2, despite its low cost per MW.
+
+Only SunPeak clears all three criteria. Choice B is wrong because Helios Grid fails the cost-per-MW ceiling. Choice C wrongly includes Helios Grid. Choice D wrongly includes Verde Power, which exceeds the 16-month completion limit. Choice E includes all three, but two bids each fail a distinct criterion. Each rejected bid is strong on the criteria where the other is weak — Helios Grid on schedule and warranty, Verde Power on cost — which is precisely why a conjunctive screen, requiring all three at once, leaves only SunPeak.
+
+The correct answer is A.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q60
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Cross-Tab Inference
+
+Based on the information across the three tabs, which of the following must be true?
+
+- A) Verde Power offers the most total capacity of the three bids.
+- B) Verde Power offers both the most total capacity and the longest warranty.
+- C) Every bid meets the warranty minimum in the shortlisting framework.
+- D) Helios Grid offers the lowest capital cost per megawatt.
+- E) SunPeak's capital cost is the highest of the three bids.
+
+**answer:** A
+**explanation:** A "must be true" question requires that the credited statement follow necessarily from the data, while every other choice is contradicted by, or unsupported by, the exhibits.
+
+Choice A. Tab 2 lists capacity as SunPeak 50 MW, Helios Grid 40 MW, Verde Power 60 MW. Ranking: 60 > 50 > 40, so Verde Power offers the most total capacity. The memo (Tab 1) corroborates this directly, stating Verde Power "offers the largest nameplate capacity of the three bids." This follows necessarily from the data and must be true.
+
+Choice B. Verde Power does offer the most capacity (60 MW), but its warranty of 15 years is the shortest of the three (versus SunPeak 20 and Helios Grid 25), not the longest. The memo explicitly notes Verde Power has "the shortest warranty." Choice B is false.
+
+Choice C. The framework's warranty minimum (Tab 3) is 18 years. Verde Power's warranty is 15 years, which is below 18. Therefore not every bid meets the minimum. Choice C is false.
+
+Choice D. Cost per MW (Q58) is SunPeak $1.20M, Helios Grid $1.30M, Verde Power $1.10M. The lowest is Verde Power, not Helios Grid; in fact Helios Grid is the highest, as the memo notes. Choice D is false.
+
+Choice E. Capital costs from Tab 2 are SunPeak $60M, Helios Grid $52M, Verde Power $66M. The highest is Verde Power ($66M), not SunPeak. Choice E is false.
+
+Only choice A is directly and necessarily supported by the data: Verde Power's 60 MW exceeds both other bids.
+
+The correct answer is A.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q61
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Cost Projection
+
+Suppose Calderon Energy needs 100 MW of total capacity. It awards Verde Power's full 60 MW bid and contracts SunPeak for the additional capacity needed to reach 100 MW, with SunPeak charging its stated cost per megawatt for that incremental capacity. Based on Tab 2, what is the approximate total capital cost?
+
+- A) $108M
+- B) $114M
+- C) $120M
+- D) $126M
+- E) $132M
+
+**answer:** B
+**explanation:** **Governing principle.** Total capital cost is the sum of the cost of each awarded component. Verde Power's portion is its full bid as stated; SunPeak's portion is its per-megawatt rate applied to the incremental capacity required to close the gap to 100 MW.
+
+**Identifying the data.** From Tab 2: Verde Power offers 60 MW for a capital cost of $66M. SunPeak's capital cost is $60M for 50 MW, which gives a cost per megawatt of 60 / 50 = $1.20 million per MW (the same figure computed in Q58). The 100 MW target is given in the question stem.
+
+**Step 1: Verde Power's contribution.**
+
+Verde Power supplies its full bid: 60 MW at a capital cost of $66M.
+
+**Step 2: Incremental capacity required from SunPeak.**
+
+100 MW (target) - 60 MW (Verde Power) = 40 MW must come from SunPeak.
+
+**Step 3: SunPeak's cost for 40 MW.**
+
+At $1.20 million per MW: 40 x 1.20 = $48M.
+
+**Step 4: Total capital cost.**
+
+66 + 48 = $114M.
+
+**Ruling out the alternatives.** Choice C ($120M) results from applying SunPeak's $1.20M-per-MW rate to the entire 100 MW (100 x 1.20 = 120), ignoring that Verde Power's 60 MW comes at Verde Power's own bid price. Choice D ($126M) results from adding SunPeak's full bid of $60M (for 50 MW) to Verde Power's $66M, rather than charging SunPeak only for the 40 MW actually needed (66 + 60 = 126). Choices A ($108M) and E ($132M) do not follow from any correct combination of the stated figures. Only $66M (Verde Power full bid) plus $48M (40 MW from SunPeak at $1.20M/MW) yields the consistent total.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 19: Aldridge Foods — Plant Efficiency Review
+
+### Tab 1: Operations Memo
+
+**From:** Rosa Aldridge, VP Manufacturing
+**To:** Plant Performance Committee
+**Re:** Annual Plant Efficiency Screen
+
+Ahead of next quarter's capacity-planning review, I want the committee to evaluate our four packaged-goods plants. Combined annual output across the four sites reached 1.98 million units this year.
+
+A few observations from my initial read. Caldwell is our most labor-efficient site, producing more units per labor hour than any other plant. Eastvale, by contrast, carries the heaviest quality burden, with the highest defective-unit rate in the group — a problem that, together with its weak labor productivity, keeps it off our investment shortlist this year.
+
+Please screen each plant against the board-approved efficiency criteria in Tab 3 before we meet. Only plants that clear all three criteria will be considered for capacity expansion.
+
+### Tab 2: Plant Performance Summary
+
+| Plant      | Annual Output (000 units) | Labor Hours (000) | Operating Cost ($M) | Defective-Unit Rate |
+|------------|---------------------------|-------------------|---------------------|---------------------|
+| Brookfield | 480                       | 240               | 7.2                 | 1.8%                |
+| Caldwell   | 600                       | 250               | 9.0                 | 2.5%                |
+| Dunbar     | 360                       | 200               | 6.3                 | 1.2%                |
+| Eastvale   | 540                       | 300               | 8.1                 | 3.1%                |
+
+### Tab 3: Efficiency-Screen Criteria (Board-Approved)
+
+A plant qualifies as an expansion candidate only if it meets ALL of the following:
+
+1. Output of at least 2.0 units per labor hour.
+2. Operating cost per unit of no more than $16.00.
+3. Defective-unit rate of no more than 2.5%.
+
+### Q62
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Operations Analysis
+
+Based on Tab 2, which plant produced the most units per labor hour this year?
+
+- A) Brookfield
+- B) Caldwell
+- C) Dunbar
+- D) Eastvale
+- E) Cannot be determined
+
+**answer:** B
+**explanation:** Output per labor hour equals annual output divided by labor hours. Both quantities in Tab 2 are expressed in thousands, so the thousands cancel and the ratio is directly comparable across plants. Tabs 1 and 3 are not required for the computation, though the memo's claim that Caldwell is "our most labor-efficient site" provides a useful cross-check.
+
+Computing the ratio for each plant:
+
+- Brookfield: 480 / 240 = 2.00 units per labor hour
+- Caldwell: 600 / 250 = 2.40 units per labor hour
+- Dunbar: 360 / 200 = 1.80 units per labor hour
+- Eastvale: 540 / 300 = 1.80 units per labor hour
+
+Ranking in descending order: 2.40 > 2.00 > 1.80 = 1.80, which corresponds to Caldwell first, Brookfield second, then Dunbar and Eastvale tied at the bottom. Caldwell, at 2.40 units per labor hour, is the maximum, consistent with the memo. Eastvale carries the largest labor base (300,000 hours) and might appear productive, but its output of 540,000 units spread over that base yields only 1.80 units per labor hour, tied for the lowest. Choice E is eliminated because both output and labor hours are explicitly given for every plant, making the ratio fully determinable.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q63
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Operations Analysis
+
+Applying the efficiency-screen criteria in Tab 3 to the data in Tab 2, which plant or plants qualify as expansion candidates?
+
+- A) Caldwell only
+- B) Brookfield and Caldwell
+- C) Brookfield, Caldwell, and Eastvale
+- D) Caldwell and Dunbar
+- E) All four plants
+
+**answer:** B
+**explanation:** Tab 3 establishes a three-part conjunctive screen: a plant qualifies only if it satisfies all three criteria simultaneously — at least 2.0 units per labor hour, operating cost per unit of no more than $16.00, and a defective-unit rate of no more than 2.5%. Each plant is tested using the figures in Tab 2.
+
+Output per labor hour (computed in Q62): Brookfield 2.00, Caldwell 2.40, Dunbar 1.80, Eastvale 1.80.
+
+Operating cost per unit (operating cost divided by output; with cost in millions of dollars and output in thousands of units, cost per unit = cost in $M times 1,000,000, divided by output times 1,000):
+
+- Brookfield: 7.2 / 480 (in thousands) = $15.00 per unit
+- Caldwell: 9.0 / 600 = $15.00 per unit
+- Dunbar: 6.3 / 360 = $17.50 per unit
+- Eastvale: 8.1 / 540 = $15.00 per unit
+
+Defective-unit rate (Tab 2): Brookfield 1.8%, Caldwell 2.5%, Dunbar 1.2%, Eastvale 3.1%.
+
+Applying all three criteria:
+
+- Brookfield: 2.00 (>= 2.0, pass); $15.00 (<= $16.00, pass); 1.8% (<= 2.5%, pass). Qualifies.
+- Caldwell: 2.40 (pass); $15.00 (pass); 2.5% (<= 2.5%, pass — the threshold is inclusive). Qualifies.
+- Dunbar: 1.80 (< 2.0, fail); also $17.50 cost per unit fails. Disqualified.
+- Eastvale: 1.80 (< 2.0, fail); also 3.1% defect rate fails. Disqualified.
+
+Only Brookfield and Caldwell clear all three criteria. Brookfield passes the labor-productivity criterion exactly at the 2.00 threshold, and Caldwell passes the defect criterion exactly at the 2.5% threshold; because both criteria are stated as "at least" and "no more than" respectively, the boundary cases qualify. Choice A omits Brookfield, which passes every criterion. Choice C wrongly includes Eastvale, which fails on both labor productivity (1.80 < 2.0) and defect rate (3.1% > 2.5%). Choice D includes Dunbar, which fails on labor productivity and cost per unit. Choice E includes both disqualified plants.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q64
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Cross-Tab Inference
+
+Based on the information across the three tabs, which of the following must be true?
+
+- A) The plant with the highest output also has the highest operating cost per unit.
+- B) Eastvale has both the highest defective-unit rate and the lowest output per labor hour among the four plants.
+- C) Dunbar qualifies as an expansion candidate under the criteria in Tab 3.
+- D) Every plant produces at least 2.0 units per labor hour.
+- E) Brookfield has a higher operating cost per unit than Caldwell.
+
+**answer:** B
+**explanation:** A "must be true" question requires the credited statement to follow necessarily from the data, while every other choice is contradicted by, or unsupported by, the exhibits.
+
+Choice A. The plant with the highest output is Caldwell (600,000 units, Tab 2). Caldwell's operating cost per unit is $15.00 (Q63), tied for the lowest, not the highest — Dunbar's $17.50 is the highest. Choice A is false.
+
+Choice B. From Tab 2, Eastvale's defective-unit rate is 3.1%, the highest of the four (versus Brookfield 1.8%, Caldwell 2.5%, Dunbar 1.2%). From Q62, Eastvale's output per labor hour is 1.80, tied with Dunbar for the lowest; no plant produces fewer units per labor hour than Eastvale, so Eastvale holds the lowest position (a tie still satisfies "lowest"). The memo (Tab 1) corroborates both facts, noting Eastvale carries "the highest defective-unit rate" together with "weak labor productivity." Both halves of the statement hold, so choice B must be true.
+
+Choice C. Dunbar fails two of the three criteria in Tab 3 — output per labor hour of 1.80 (< 2.0) and operating cost per unit of $17.50 (> $16.00) — as shown in Q63. Dunbar does not qualify. Choice C is false.
+
+Choice D. Dunbar and Eastvale each produce 1.80 units per labor hour, below the 2.0 threshold. Therefore not every plant reaches 2.0. Choice D is false.
+
+Choice E. Brookfield's operating cost per unit is $15.00 and Caldwell's is also $15.00 (Q63). They are equal, not higher for Brookfield. Choice E is false.
+
+Only choice B is directly and necessarily supported by the data across the tabs.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q65
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Cost Projection
+
+Suppose Aldridge Foods needs 720,000 units of additional output for a new contract. It assigns Caldwell its full annual output of 600,000 units and assigns Brookfield the remaining units needed, with Brookfield charged at its stated operating cost per unit for that incremental output. Based on Tab 2, what is the approximate total operating cost of fulfilling this 720,000-unit order?
+
+- A) $9.0M
+- B) $9.8M
+- C) $10.8M
+- D) $11.0M
+- E) $12.0M
+
+**answer:** C
+**explanation:** **Governing principle.** Total operating cost is the sum of the cost of each assigned source. Caldwell's portion is its full annual operating cost as stated; Brookfield's portion is its per-unit operating cost applied to the incremental output required to close the gap to 720,000 units.
+
+**Identifying the data.** From Tab 2: Caldwell produces 600,000 units at an annual operating cost of $9.0M. Brookfield's operating cost is $7.2M for 480,000 units, which gives a cost per unit of 7.2 / 480 (in thousands) = $15.00 per unit (the same figure computed in Q63). The 720,000-unit target is given in the question stem.
+
+**Step 1: Caldwell's contribution.**
+
+Caldwell supplies its full annual output of 600,000 units at an operating cost of $9.0M.
+
+**Step 2: Incremental output required from Brookfield.**
+
+720,000 (target) - 600,000 (Caldwell) = 120,000 units must come from Brookfield.
+
+**Step 3: Brookfield's cost for 120,000 units.**
+
+At $15.00 per unit: 120,000 x 15.00 = $1,800,000, or $1.8M.
+
+**Step 4: Total operating cost.**
+
+9.0 + 1.8 = $10.8M.
+
+**Ruling out the alternatives.** Choice A ($9.0M) counts only Caldwell's cost and ignores the 120,000 units that must come from Brookfield. Choice E ($12.0M) results from charging all 800,000 units of the two plants' combined annual capacity at Brookfield's $15.00-per-unit rate (800,000 x 15.00 = $12.0M), which overshoots the 720,000-unit order. Choices B ($9.8M) and D ($11.0M) do not follow from any correct combination of the stated figures. Only $9.0M (Caldwell's full output) plus $1.8M (120,000 units from Brookfield at $15.00 per unit) yields the consistent total of $10.8M.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 20: Pinewood University — Scholarship Fund Allocation
+
+### Tab 1: Allocation Memo
+
+**From:** Marcus Vale, Director of Financial Aid
+**To:** Scholarship Allocation Board
+**Re:** Annual Scholarship Fund Distribution
+
+This year's total scholarship fund reached $1,200,000, up from $1,000,000 last year. The increase let us raise every program's award pool above last year's level, and I want the board to confirm that the proposed distribution honors the trustees' allocation rules before we publish it.
+
+For context, our two STEM programs — Engineering and Computer Science — continue to draw the largest applicant pools, and the trustees have asked that STEM remain the priority of the fund. The non-STEM programs, Business and Humanities, also grew this year. Please review the proposed distribution in Tab 2 against the rules in Tab 3.
+
+### Tab 2: Proposed Distribution
+
+| Program          | Applicants | Funded Last Year ($) | Funded This Year ($) | Awards Granted |
+|------------------|------------|----------------------|----------------------|----------------|
+| Engineering      | 320        | 360,000              | 420,000              | 120            |
+| Computer Science | 280        | 300,000              | 360,000              | 90             |
+| Business         | 240        | 200,000              | 240,000              | 80             |
+| Humanities       | 160        | 140,000              | 180,000              | 60             |
+
+Note: "Awards Granted" is the number of students funded this year. Engineering and Computer Science are STEM programs; Business and Humanities are non-STEM.
+
+### Tab 3: Trustee Allocation Rules
+
+A distribution is approved only if it satisfies ALL of the following:
+
+1. No single program may receive more than 40% of the total fund.
+2. Every program must receive at least as much as it received last year.
+3. STEM programs combined must receive at least 50% of the total fund.
+
+### Q66
+**difficulty:** Easy
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Based on Tab 2, which program had the largest applicant pool this year?
+
+- A) Engineering
+- B) Computer Science
+- C) Business
+- D) Humanities
+- E) Cannot be determined
+
+**answer:** A
+**explanation:** This question is a direct lookup in Tab 2 (Proposed Distribution); no computation across tabs is required. The memo (Tab 1) provides supporting context, noting that the two STEM programs "continue to draw the largest applicant pools," but the exact figures come from the Applicants column of Tab 2.
+
+The applicant counts are:
+
+- Engineering: 320
+- Computer Science: 280
+- Business: 240
+- Humanities: 160
+
+Ranking in descending order: 320 > 280 > 240 > 160, which corresponds to Engineering > Computer Science > Business > Humanities. Engineering, with 320 applicants, has the largest pool. Computer Science is second at 280 and may attract attention as the other STEM program, but 280 < 320, so it does not hold the maximum. Choice E is eliminated because the applicant count is explicitly given for every program.
+
+The correct answer is A.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q67
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Cross-Tab Inference
+
+Based on the information across the three tabs, which of the following must be true?
+
+- A) Every program received more funding this year than it did last year.
+- B) Computer Science received the most total funding of any program this year.
+- C) The program with the fewest applicants received the highest average award per student.
+- D) Business received a larger share of the fund this year than Engineering did.
+- E) The combined funding for the non-STEM programs exceeded the combined funding for the STEM programs.
+
+**answer:** A
+**explanation:** A "must be true" question requires the credited statement to follow necessarily from the data, while every other choice is contradicted by the exhibits.
+
+Choice A. Comparing the "Funded This Year" and "Funded Last Year" columns in Tab 2 for each program: Engineering 420,000 vs 360,000; Computer Science 360,000 vs 300,000; Business 240,000 vs 200,000; Humanities 180,000 vs 140,000. In every case this year's figure strictly exceeds last year's. The memo (Tab 1) corroborates this, stating the increase "let us raise every program's award pool above last year's level." Choice A must be true.
+
+Choice B. From Tab 2, this-year funding is Engineering 420,000, Computer Science 360,000, Business 240,000, Humanities 180,000. The most-funded program is Engineering (420,000), not Computer Science. Choice B is false.
+
+Choice C. Average award per student equals funding this year divided by awards granted: Engineering 420,000 / 120 = $3,500; Computer Science 360,000 / 90 = $4,000; Business 240,000 / 80 = $3,000; Humanities 180,000 / 60 = $3,000. The program with the fewest applicants is Humanities (160), whose average award is $3,000 — the lowest, tied with Business, not the highest. The highest average award belongs to Computer Science ($4,000). Choice C is false.
+
+Choice D. Business received $240,000 and Engineering received $420,000 (Tab 2). Because 240,000 < 420,000, Business's share is smaller than Engineering's, not larger. Choice D is false.
+
+Choice E. Non-STEM (Business + Humanities) = 240,000 + 180,000 = $420,000. STEM (Engineering + Computer Science) = 420,000 + 360,000 = $780,000. Since 420,000 < 780,000, non-STEM funding did not exceed STEM funding. Choice E is false.
+
+Only choice A is necessarily supported by the data.
+
+The correct answer is A.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q68
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Policy Analysis
+
+A trustee proposes an alternative distribution of the $1,200,000 fund: Engineering $520,000, Computer Science $300,000, Business $220,000, and Humanities $160,000. Applying the rules in Tab 3, how many of the three rules does this alternative distribution satisfy?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) Cannot be determined
+
+**answer:** C
+**explanation:** The three rules in Tab 3 must each be tested against the trustee's proposed figures, using the total fund of $1,200,000 (Tab 1) and last year's amounts from Tab 2. The proposal sums to 520,000 + 300,000 + 220,000 + 160,000 = $1,200,000, so it allocates the full fund.
+
+**Rule 1: No single program may receive more than 40% of the total fund.**
+
+The 40% cap is 0.40 x 1,200,000 = $480,000. Testing each program: Engineering 520,000 (> 480,000, violates); Computer Science 300,000 (25.0%, within cap); Business 220,000 (18.3%, within cap); Humanities 160,000 (13.3%, within cap). Engineering's $520,000 represents 520,000 / 1,200,000 = 43.3% of the fund, exceeding the 40% ceiling. Rule 1 is violated.
+
+**Rule 2: Every program must receive at least as much as it received last year.**
+
+Last year's amounts (Tab 2): Engineering 360,000, Computer Science 300,000, Business 200,000, Humanities 140,000. Testing: Engineering 520,000 >= 360,000 (pass); Computer Science 300,000 >= 300,000 (pass, equal satisfies "at least"); Business 220,000 >= 200,000 (pass); Humanities 160,000 >= 140,000 (pass). Rule 2 is satisfied.
+
+**Rule 3: STEM programs combined must receive at least 50% of the total fund.**
+
+The 50% threshold is 0.50 x 1,200,000 = $600,000. STEM combined = Engineering 520,000 + Computer Science 300,000 = $820,000, which is 820,000 / 1,200,000 = 68.3% of the fund. Since 820,000 >= 600,000, Rule 3 is satisfied.
+
+**Summary.** Rule 1 is violated (Engineering exceeds the 40% cap); Rules 2 and 3 are satisfied. Exactly two of the three rules are met. Choice D is wrong because Rule 1 fails. Choices A and B understate the count. Choice E is wrong because every figure needed is provided.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q69
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Funding Projection
+
+The Humanities department wants to fund every one of its applicants this year while keeping its average award per student unchanged from the level implied by Tab 2. Based on the data, approximately how much ADDITIONAL funding beyond its current this-year allocation would Humanities need?
+
+- A) $120,000
+- B) $180,000
+- C) $300,000
+- D) $360,000
+- E) $480,000
+
+**answer:** C
+**explanation:** **Governing principle.** To fund every applicant at an unchanged average award, the required total equals the number of applicants multiplied by the current average award per student. The additional funding needed is that required total minus the current allocation.
+
+**Identifying the data.** All figures come from Tab 2. Humanities has 160 applicants, a current this-year allocation of $180,000, and 60 awards granted this year.
+
+**Step 1: Current average award per student.**
+
+Average award = funding this year / awards granted = 180,000 / 60 = $3,000 per student.
+
+**Step 2: Total required to fund all 160 applicants at $3,000 each.**
+
+160 x 3,000 = $480,000.
+
+**Step 3: Additional funding needed beyond the current allocation.**
+
+480,000 (required) - 180,000 (current) = $300,000.
+
+**Ruling out the alternatives.** Choice E ($480,000) is the total funding required to cover all 160 applicants, not the additional amount beyond the current allocation — it omits the subtraction of the $180,000 already allocated. Choice A ($120,000) corresponds to funding only the increase in award count (160 - 60 = 100 additional students) but miscomputes the dollar figure. Choice B ($180,000) merely restates the current allocation. Choice D ($360,000) does not follow from any correct combination of the figures. Only the full computation — 160 applicants at $3,000 each, less the $180,000 already provided — yields the additional requirement of $300,000.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning

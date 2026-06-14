@@ -1821,3 +1821,495 @@ Which of the following has the greatest value?
 **answer:** C
 **explanation:** To compare these expressions we square the square-root terms, ranking them as integers (all values are positive, so squaring preserves order): (3√2)² = 18, (2√5)² = 20, (√19)² = 19, and 4² = 16. Among these four, 2√5 is largest, with square 20. The remaining candidate ∛80 cannot be cleared by squaring, so compare it with the leader 2√5 by raising both to the 6th power, which eliminates every radical at once (again, both are positive, so order is preserved): (∛80)⁶ = 80² = 6,400, while (2√5)⁶ = 2⁶ × (√5)⁶ = 64 × 5³ = 64 × 125 = 8 × 8 × 125 = 8 × 1,000 = 8,000. Because 6,400 < 8,000, ∛80 does not exceed 2√5. A common error is to assume the cube root is largest because 80 is the biggest radicand, or to stop after comparing only the square roots. The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q57
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Powers
+
+What is the value of 4³?
+
+- A) 12
+- B) 16
+- C) 48
+- D) 64
+- E) 81
+
+**answer:** D
+**explanation:** An exponent indicates repeated multiplication of the base by itself, so 4³ means the base 4 used as a factor three times. We therefore compute 4 × 4 × 4. Multiplying the first two factors gives 4 × 4 = 16, and multiplying that result by the remaining factor gives 16 × 4 = 64. The exponent counts factors, not a multiplier, so the value is 64, not 4 × 3. The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q58
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots
+
+What is the value of √(144/9)?
+
+- A) 2
+- B) 4
+- C) 4√2
+- D) 12
+- E) 16
+
+**answer:** B
+**explanation:** The square root of a quotient equals the quotient of the square roots, so √(144/9) = √144 / √9. Each part is a perfect square: √144 = 12 because 12² = 144, and √9 = 3 because 3² = 9. Dividing gives 12 / 3 = 4. As a check, 4² = 16 = 144/9, confirming the result. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q59
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of 10⁶ / 10²?
+
+- A) 10²
+- B) 10³
+- C) 10⁴
+- D) 10⁸
+- E) 10¹²
+
+**answer:** C
+**explanation:** When two powers share a common base, the quotient is found by subtracting the exponent in the denominator from the exponent in the numerator: a^m / a^n = a^(m−n). Here the base is 10, so we keep that base and subtract the exponents: 10⁶ / 10² = 10^(6−2) = 10⁴. The base is never changed and the exponents are subtracted, not divided, so the answer is 10⁴. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q60
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Radicals
+
+Simplify √98.
+
+- A) 7√2
+- B) 2√7
+- C) 49√2
+- D) 7√14
+- E) 14√2
+
+**answer:** A
+**explanation:** To simplify a square root we factor the radicand so that one factor is the largest possible perfect square, then apply the rule √(ab) = √a · √b. The largest perfect square dividing 98 is 49, since 98 = 49 × 2. Therefore √98 = √(49 × 2) = √49 · √2 = 7√2. The factor 49 exits the radical as its square root, 7, while the 2 remains inside. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q61
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (2³ × 2⁴) / 2²?
+
+- A) 8
+- B) 16
+- C) 32
+- D) 64
+- E) 128
+
+**answer:** C
+**explanation:** Because every factor shares the base 2, we combine the exponents using the product and quotient rules. In the numerator, multiplying like bases adds the exponents: 2³ × 2⁴ = 2^(3+4) = 2⁷. Dividing by 2² then subtracts exponents: 2⁷ / 2² = 2^(7−2) = 2⁵. Finally, 2⁵ = 32. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q62
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Powers
+
+If 5^x = 125, what is the value of 5^(x+1)?
+
+- A) 125
+- B) 130
+- C) 375
+- D) 625
+- E) 3125
+
+**answer:** D
+**explanation:** First find x by writing 125 as a power of 5: since 5³ = 125, the equation 5^x = 125 gives x = 3. The quantity requested is 5^(x+1). Using the product rule 5^(x+1) = 5^x · 5^1, and substituting 5^x = 125, we get 5^(x+1) = 125 × 5 = 625. Equivalently, 5^(3+1) = 5⁴ = 625. Note that 5^(x+1) is five times 5^x, not 5^x plus 5, so adding 5 to get 130 is incorrect. The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q63
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots
+
+What is the value of √75 − √12?
+
+- A) 3√3
+- B) √3
+- C) 7√3
+- D) √63
+- E) 3√63
+
+**answer:** A
+**explanation:** Two radical terms can be combined only after each is simplified to reveal a common radicand. We factor out the largest perfect square from each: √75 = √(25 × 3) = 5√3 and √12 = √(4 × 3) = 2√3. Both terms now share the radicand 3, so they are like terms and we subtract their coefficients: 5√3 − 2√3 = (5 − 2)√3 = 3√3. The radicands are never subtracted under a single root, so √75 − √12 is not √63. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q64
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Radicals
+
+Rationalize the denominator: 10 / √5.
+
+- A) √5
+- B) 2√5
+- C) 5√5
+- D) 10√5
+- E) 2
+
+**answer:** B
+**explanation:** To remove a single radical from a denominator, multiply both the numerator and the denominator by that radical, which does not change the value because we are multiplying by 1. Here we multiply by √5 / √5: (10 / √5) × (√5 / √5) = 10√5 / 5, since √5 · √5 = 5. Dividing 10 by 5 gives 2, so the expression simplifies to 2√5. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q65
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Exponent Rules
+
+What is the value of 3^x?
+
+(1) 3^(x+2) = 81.
+(2) 9^x = 81.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** This question asks for the single value of 3^x, so a statement is sufficient if it determines x (or 3^x directly). The governing principle is that equal powers of the same base force their exponents to be equal.
+
+Statement (1) gives 3^(x+2) = 81. Writing 81 as 3⁴ gives 3^(x+2) = 3⁴, so x + 2 = 4 and x = 2. Then 3^x = 3² = 9, a single value. Statement (1) is sufficient.
+
+Statement (2) gives 9^x = 81. Since 9 = 3², the left side is (3²)^x = 3^(2x), and 81 = 3⁴, so 3^(2x) = 3⁴, giving 2x = 4 and x = 2. Then 3^x = 9, a single value. Statement (2) is sufficient.
+
+Because each statement alone determines that 3^x = 9, each statement alone is sufficient. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q66
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Powers
+
+If 2^x + 2^x + 2^x + 2^x = 2¹⁰, what is the value of x?
+
+- A) 2
+- B) 2.5
+- C) 5
+- D) 6
+- E) 8
+
+**answer:** E
+**explanation:** The left side is the sum of four identical terms, so it equals 4 × 2^x. Since 4 = 2², we use the product rule to combine: 4 × 2^x = 2² × 2^x = 2^(x+2). The equation becomes 2^(x+2) = 2¹⁰. Because the bases are equal, the exponents must be equal, so x + 2 = 10, which gives x = 8. A common error is to add the exponents of the four like terms or to treat the sum as 2^(4x); instead, repeated addition of a power introduces a coefficient, here 4 = 2². The correct answer is E.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q67
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Roots
+
+If x is a positive integer, is √x an integer?
+
+(1) x = 4^n for some positive integer n.
+(2) x < 100.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** The square root of a positive integer is itself an integer exactly when that integer is a perfect square. We test each statement against this criterion.
+
+Statement (1) gives x = 4^n for some positive integer n. Since 4 = 2², we have x = (2²)^n = 2^(2n) = (2^n)². Because 2^n is a positive integer, x is the square of an integer, so √x = 2^n is an integer. The answer is a definite yes, so Statement (1) is sufficient.
+
+Statement (2) gives only x < 100. This permits x = 4, whose square root 2 is an integer, and also x = 5, whose square root is not an integer. Since the answer can be yes or no, Statement (2) is not sufficient.
+
+Statement (1) alone is sufficient while Statement (2) alone is not. The correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q68
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Radicals
+
+If n is a positive integer, is √n > 5?
+
+(1) n > 24.
+(2) n is a perfect square.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** Since n is positive, the inequality √n > 5 is equivalent to n > 25 (squaring both sides preserves the inequality for positive quantities). The question therefore reduces to whether n > 25.
+
+Statement (1) gives n > 24, so the smallest integer value is n = 25. For n = 25 we have √25 = 5, which is not greater than 5, giving a no; for n = 26 we have √26 > 5, giving a yes. Because both answers occur, Statement (1) is not sufficient.
+
+Statement (2) says n is a perfect square. Then n = 4 gives √4 = 2, a no, while n = 36 gives √36 = 6, a yes. Statement (2) is not sufficient.
+
+Taking both together, n must be a perfect square greater than 24. The smallest such value is n = 25, where √25 = 5 is not greater than 5 (no), but n = 36 gives √36 = 6 (yes). The answer still varies, so the statements together are not sufficient. The correct answer is E.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q69
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Powers
+
+What is the value of 2³ × 5³?
+
+- A) 30
+- B) 150
+- C) 1000
+- D) 1500
+- E) 8000
+
+**answer:** C
+**explanation:** When two powers share the same exponent but have different bases, they can be combined by multiplying the bases and keeping the common exponent, since a^n × b^n = (a × b)^n. Here both factors carry the exponent 3, so we multiply the bases first: 2 × 5 = 10, giving (2 × 5)³ = 10³. Evaluating the result, 10³ = 1000. As a check, computing each power separately gives 2³ = 8 and 5³ = 125, and 8 × 125 = 1000, which agrees. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q70
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Roots
+
+What is the value of √(36 × 49)?
+
+- A) 13
+- B) 42
+- C) 85
+- D) 1764
+- E) 6√49
+
+**answer:** B
+**explanation:** The square root of a product equals the product of the square roots, so √(36 × 49) = √36 × √49. Each factor is a perfect square: √36 = 6 because 6² = 36, and √49 = 7 because 7² = 49. Multiplying these results gives 6 × 7 = 42. Equivalently, one could first multiply 36 × 49 = 1764 and then take √1764 = 42, but splitting the radicand into perfect squares is faster. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q71
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+What is the value of (3²)³?
+
+- A) 3⁵
+- B) 27
+- C) 243
+- D) 81
+- E) 729
+
+**answer:** E
+**explanation:** Raising a power to another power multiplies the exponents, following the rule (a^m)^n = a^(mn). Applying this to (3²)³, we multiply the exponents 2 and 3 to obtain 3^(2×3) = 3⁶, keeping the base 3 unchanged. Evaluating 3⁶ gives 729, since 3⁶ = 729. A common error is to add the exponents and get 3⁵ = 243; exponents add only when like bases are multiplied, not when a power is raised to a power. The correct answer is E.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q72
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Radicals
+
+Simplify √45.
+
+- A) 9√5
+- B) 3√5
+- C) 5√3
+- D) 3√15
+- E) 15√3
+
+**answer:** B
+**explanation:** To simplify a square root, factor the radicand so that one factor is the largest possible perfect square, then apply √(ab) = √a · √b. The largest perfect square dividing 45 is 9, since 45 = 9 × 5. Therefore √45 = √(9 × 5) = √9 · √5 = 3√5, because √9 = 3 while the 5 remains under the radical. As a check, (3√5)² = 9 × 5 = 45, confirming the result. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q73
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Powers
+
+If 3^x = 27, what is the value of 3^(2x)?
+
+- A) 54
+- B) 81
+- C) 243
+- D) 540
+- E) 729
+
+**answer:** E
+**explanation:** The expression 3^(2x) can be rewritten using the power rule as (3^x)², since 3^(2x) = (3^x)^2. We are given that 3^x = 27, so substituting directly gives (3^x)² = 27² = 729. Alternatively, write 27 as 3³ to find x = 3, then 3^(2x) = 3^6 = 729, which agrees. Note that 3^(2x) is the square of 3^x, not twice 3^x, so doubling 27 to get 54 is incorrect. The correct answer is E.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q74
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponent Rules
+
+For nonzero a and b, which of the following equals (a⁵b³)² / (a³b⁴)?
+
+- A) a⁷b²
+- B) a⁷b⁵
+- C) a⁴b²
+- D) a¹³b²
+- E) a⁷b¹⁰
+
+**answer:** A
+**explanation:** First simplify the numerator by raising each factor to the outer power, using (x^m)^n = x^(mn): (a⁵b³)² = a^(5×2) b^(3×2) = a¹⁰b⁶. The expression becomes a¹⁰b⁶ / (a³b⁴). Now apply the quotient rule a^m / a^n = a^(m−n) to each base separately: the a-terms give a^(10−3) = a⁷, and the b-terms give b^(6−4) = b². Combining yields a⁷b². The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q75
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots
+
+What is the value of √45 + √80?
+
+- A) √125
+- B) 5√5
+- C) 7√5
+- D) 12√5
+- E) 25√5
+
+**answer:** C
+**explanation:** Two radicals can be added only after each is simplified to expose a common radicand; radicands themselves are never added under one root. We extract the largest perfect square from each term: √45 = √(9 × 5) = 3√5 and √80 = √(16 × 5) = 4√5. Both terms now share the radicand 5, so they are like terms and we add the coefficients: 3√5 + 4√5 = (3 + 4)√5 = 7√5. Adding the radicands directly to get √125 is invalid, since √a + √b ≠ √(a + b). The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q76
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Radicals
+
+Rationalize the denominator: 8 / (3 − √7).
+
+- A) 4 + 4√7
+- B) 24 + 8√7
+- C) 4 − 4√7
+- D) 12 + 4√7
+- E) 12 − 4√7
+
+**answer:** D
+**explanation:** To rationalize a denominator that is a difference involving a radical, multiply numerator and denominator by the conjugate, since (a − b)(a + b) = a² − b² eliminates the radical. The conjugate of 3 − √7 is 3 + √7, so we multiply by (3 + √7)/(3 + √7), which equals 1. The new denominator is (3 − √7)(3 + √7) = 3² − (√7)² = 9 − 7 = 2. The new numerator is 8(3 + √7) = 24 + 8√7. Dividing each term by 2 gives (24 + 8√7)/2 = 12 + 4√7. The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q77
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Exponent Rules
+
+What is the value of 2^x?
+
+(1) 2^(x−3) = 16.
+(2) 8^x = 2²¹.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** This question asks for the single value of 2^x, so a statement is sufficient if it pins down x (or 2^x directly). The governing principle is that equal powers of the same base force their exponents to be equal. Statement (1) gives 2^(x−3) = 16; writing 16 as 2⁴ gives 2^(x−3) = 2⁴, so x − 3 = 4 and x = 7, which makes 2^x = 2⁷ = 128, a single value, so Statement (1) is sufficient. Statement (2) gives 8^x = 2²¹; since 8 = 2³, the left side is (2³)^x = 2^(3x), so 2^(3x) = 2²¹ gives 3x = 21 and x = 7, again making 2^x = 128, so Statement (2) is sufficient. Because each statement alone determines that 2^x = 128, each statement alone is sufficient. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q78
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Powers
+
+If 3^x + 3^x + 3^x = 3⁹, what is the value of x?
+
+- A) 3
+- B) 8
+- C) 9
+- D) 11
+- E) 27
+
+**answer:** B
+**explanation:** The left side is the sum of three identical terms, so it equals 3 × 3^x. Because the coefficient 3 is itself a power of the base, we use the product rule: 3 × 3^x = 3¹ × 3^x = 3^(x+1). The equation becomes 3^(x+1) = 3⁹, and since the bases are equal the exponents must match, giving x + 1 = 9, so x = 8. A common error is to treat the sum as 3^(3x) or to add the exponents of the three like terms; repeated addition of a power introduces a coefficient, here the factor 3 = 3¹. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q79
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Powers
+
+What is the value of x?
+
+(1) 2^(3x) = 64.
+(2) x² = 4.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** This question asks for a single value of x, so a statement is sufficient only if it determines x uniquely. Statement (1) gives 2^(3x) = 64; writing 64 as 2⁶ gives 2^(3x) = 2⁶, so 3x = 6 and x = 2, a single value, so Statement (1) is sufficient. Statement (2) gives x² = 4, which has two solutions, x = 2 and x = −2, because squaring discards sign information; since x is not determined, Statement (2) is not sufficient. Statement (1) alone is sufficient while Statement (2) alone is not. The correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q80
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Roots
+
+If n is a positive integer, is n a perfect cube?
+
+(1) √n is an integer.
+(2) n < 100.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** E
+**explanation:** A perfect cube is an integer equal to the cube of some integer, and the question asks whether n is one. Statement (1) says √n is an integer, meaning n is a perfect square; but a perfect square may or may not also be a perfect cube. For example, n = 4 is a perfect square that is not a perfect cube (no), whereas n = 64 = 8² is a perfect square that is also a perfect cube, 4³ (yes). Since both answers occur, Statement (1) is not sufficient. Statement (2) gives only n < 100, which allows n = 8 (a perfect cube, yes) and n = 9 (not a perfect cube, no), so Statement (2) is not sufficient. Taking both together, n must be a perfect square less than 100: n = 4 gives no, while n = 64 gives yes, so the answer still varies and the statements together are not sufficient. The correct answer is E.
+**related_reading:** reading-di-02-data-sufficiency-logic
