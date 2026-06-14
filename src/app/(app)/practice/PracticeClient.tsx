@@ -4,13 +4,8 @@ import Link from "next/link"
 import {
   ArrowRight,
   Clock,
-  Compass,
-  Flag,
   Lock,
-  RotateCcw,
-  Sparkles,
   Target,
-  Wrench,
 } from "lucide-react"
 import type { PracticeChapterGroup, PracticeTest } from "@/lib/content"
 
@@ -195,119 +190,6 @@ export default function PracticeClient({
           </div>
         </section>
       )}
-
-      {/* === System-connection strip — addresses the critique that the
-          page never shows how practice connects to the rest of the
-          system. One line, low-key, but visible above the bank. */}
-      <div
-        className="rounded-xl border px-4 py-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-[12px]"
-        style={{
-          borderColor: "rgba(255,255,255,0.05)",
-          backgroundColor: "rgba(255,255,255,0.012)",
-          color: "rgba(192,192,192,0.7)",
-        }}
-      >
-        <span className="font-semibold text-[#888888] uppercase tracking-[0.18em] text-[10px]">
-          After every set
-        </span>
-        <span className="inline-flex items-center gap-1.5">
-          <RotateCcw className="w-3 h-3" style={{ color: "#C9A84C" }} />
-          Misses enter your spaced-review queue
-        </span>
-        <span className="text-[#444444]">·</span>
-        <span className="inline-flex items-center gap-1.5">
-          <Flag className="w-3 h-3" style={{ color: "#C9A84C" }} />
-          Tagged in your error log
-        </span>
-        <span className="text-[#444444]">·</span>
-        <span className="inline-flex items-center gap-1.5">
-          <Sparkles className="w-3 h-3" style={{ color: "#C9A84C" }} />
-          Updates analytics + mastery gates
-        </span>
-      </div>
-
-      {/* === How to practice — modes row. "Start set" was the only CTA
-          on the previous design; now the user can choose intentionally
-          between custom-built sets, mixed retrieval, mistake retries,
-          and a full mock. Each tile routes to an existing surface. */}
-      <section>
-        <div className="flex items-center gap-3 mb-5">
-          <p className={EYEBROW}>How to practice</p>
-          <div
-            className="h-px flex-1"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-            }}
-            aria-hidden
-          />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {[
-            {
-              Icon: Wrench,
-              title: "Custom set",
-              body: "Pick topic, difficulty, count. Built for targeted reps.",
-              href: "/test-builder",
-              cta: "Build set",
-            },
-            {
-              Icon: RotateCcw,
-              title: "Mixed review",
-              body: "Spaced-retrieval queue of past misses, ranked by priority.",
-              href: "/review",
-              cta: "Open queue",
-            },
-            {
-              Icon: Flag,
-              title: "Retry mistakes",
-              body: "Re-attempt tagged misses from your error log.",
-              href: "/error-log",
-              cta: "Open log",
-            },
-            {
-              Icon: Compass,
-              title: "Full mock",
-              body: "Three-section timed simulation. Mock-to-mock trend.",
-              href: "/mock",
-              cta: "Take mock",
-            },
-          ].map(({ Icon, title, body, href, cta }) => (
-            <Link
-              key={title}
-              href={href}
-              className="group p-5 rounded-xl border transition-all duration-300 hover:-translate-y-0.5"
-              style={{
-                borderColor: "rgba(255,255,255,0.06)",
-                backgroundColor: "#0D0D0D",
-              }}
-            >
-              <span
-                className="inline-flex items-center justify-center w-9 h-9 rounded-lg mb-3"
-                style={{ backgroundColor: "rgba(201,168,76,0.10)" }}
-              >
-                <Icon className="w-4 h-4" style={{ color: "#C9A84C" }} />
-              </span>
-              <p className="text-[14px] font-semibold tracking-tight text-[#F0F0F0]">
-                {title}
-              </p>
-              <p
-                className="text-[12px] mt-1 leading-snug"
-                style={{ color: "rgba(192,192,192,0.7)" }}
-              >
-                {body}
-              </p>
-              <span
-                className="inline-flex items-center gap-1 mt-3 text-[11px] uppercase tracking-[0.18em] font-semibold transition-transform group-hover:translate-x-0.5"
-                style={{ color: "#C9A84C" }}
-              >
-                {cta}
-                <ArrowRight className="w-3 h-3" aria-hidden />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
 
       {/* === Goal accuracy strip — translates the student's score goal into
           the per-test accuracy bar they should clear. */}
