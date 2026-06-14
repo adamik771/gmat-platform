@@ -22,6 +22,7 @@ import {
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
+import { selectChapterCoachingState } from "@/lib/chapter-coaching"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
 import ReaderThemeToggle, { useReadingTheme } from "@/components/shared/ReaderThemeToggle"
@@ -1181,18 +1182,26 @@ function ChapterCompletionCard({
 
   const attemptedRows = scoreRows.filter((r) => r.accuracy !== null)
   const belowTargetRows = attemptedRows.filter((r) => r.metTarget === false)
-  const allAboveTarget = attemptedRows.length > 0 && belowTargetRows.length === 0
 
-  // Coaching copy keyed to problem-set performance.
+  // Coaching copy keyed to problem-set performance. The state is chosen by a
+  // pure, tested helper so the "no problem sets / no matching rows" cases resolve
+  // to a safe generic message instead of reducing an empty array — the bug that
+  // crashed the completion card for the welcome + section-intro chapters.
+  const coachingState = selectChapterCoachingState({
+    hasProblemSets,
+    noneAttempted,
+    attemptedCount: attemptedRows.length,
+    belowTargetCount: belowTargetRows.length,
+  })
   let coachingCopy: React.ReactNode
-  if (noneAttempted) {
+  if (coachingState === "none_attempted") {
     coachingCopy = (
       <>
         The reading is the easy part — retrieval is what locks it in.
         Try a graded problem set next.
       </>
     )
-  } else if (allAboveTarget) {
+  } else if (coachingState === "all_above_target") {
     coachingCopy = (
       <>
         Problem set performance is on target. Independent timed practice
@@ -1200,7 +1209,7 @@ function ChapterCompletionCard({
         time pressure, not just in deliberate study.
       </>
     )
-  } else {
+  } else if (coachingState === "has_weakest") {
     const weakest = belowTargetRows.reduce((min, r) =>
       (r.accuracy ?? 100) < (min.accuracy ?? 100) ? r : min
     )
@@ -1210,6 +1219,14 @@ function ChapterCompletionCard({
         The {weakest.difficulty} set is {gap}% below target. One more
         focused session before moving on will compound better than advancing
         with gaps at that difficulty.
+      </>
+    )
+  } else {
+    coachingCopy = (
+      <>
+        Chapter complete. Keep the momentum going — move on to the next
+        chapter in your path, or put these ideas under time pressure with a
+        practice set.
       </>
     )
   }
