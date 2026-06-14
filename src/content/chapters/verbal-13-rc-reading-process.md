@@ -142,6 +142,10 @@ Common paragraph roles:
 
 **Trap to watch.** Don't get sucked into the prose style. GMAT RC passages are written in elevated, academic diction precisely because they intimidate the weak-voiced student into careful word-by-word reading. The passages are rarely as complex as they sound. Skim if you need to, but track structure with discipline.
 
+**Label what you can't pronounce.** Dense passages — science ones especially — throw unfamiliar terms at you: an enzyme, a rival theory, a compound with a ten-letter name. Do not stop to master them. Give each one a one-character handle the moment it appears — call the compound "A," the rival theory "the old view," the protein "P" — and keep tracking what the passage *does* with it. You need the moves ("A blocks B," "the old view is rejected"), not the pronunciation of the players. The test never assumes outside knowledge; every term you need is defined or used right there, so a label is all the grip you require.
+
+**Worked example.** "Researchers found that aminolevulinic synthase suppresses ferrochelatase, which would otherwise trigger the buildup." Read it as: "X suppresses Y; Y would cause the buildup." You now know the relationship — X stops Y, Y is the culprit — which is everything a question can test, and you spent zero seconds memorizing two words you will never need to say aloud. If the passage later adds "a third enzyme reverses this," tag it "Z reverses it" and read on. Structure, not vocabulary, is the thing you are building.
+
 ## @paragraph-function
 
 Every RC passage is built out of moving parts, and the test rewards you for knowing what each part is *doing* — not for memorizing what it says. Your job on the first read is to label each paragraph with its **function** in one phrase, and to lock onto the **thesis** so you know which side every detail is fighting for. Do this and detail questions stop being reading comprehension; they become lookups.
