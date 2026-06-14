@@ -9,6 +9,7 @@ import BlogInlineCTA from "@/components/marketing/BlogInlineCTA"
 
 export const metadata: Metadata = {
   title: "Why Your GMAT Score Is Stuck",
+  alternates: { canonical: "/blog/why-your-gmat-score-is-stuck" },
   description:
     "I went from 565 to 735 in eight months. The single shift that made it possible — and why most prep advice misses it.",
   openGraph: {

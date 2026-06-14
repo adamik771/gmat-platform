@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -18,6 +19,12 @@ import FAQAccordion from "@/components/marketing/FAQAccordion"
 import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
+
+// Self-referencing canonical for the homepage (root layout sets title /
+// description / OG but no canonical; the apex redirects to www).
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+}
 
 // The guided path's five phases — mirrors the /course curriculum section
 // and the real chapter order (CHAPTER_PATH_ORDER).

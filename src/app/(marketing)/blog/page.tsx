@@ -6,6 +6,7 @@ import { POSTS } from "@/lib/blog-posts"
 
 export const metadata: Metadata = {
   title: "Blog",
+  alternates: { canonical: "/blog" },
   description:
     "GMAT prep strategy, mistake patterns, and score-improvement frameworks from the founder of Zakarian GMAT.",
 }
