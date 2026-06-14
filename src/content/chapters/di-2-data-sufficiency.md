@@ -68,6 +68,11 @@ sections:
     title: "The DS decision tree and the five highest-leverage habits"
     check_question_ids: []
 
+  - id: the-ds-method
+    type: reading
+    title: "The data-sufficiency method"
+    check_question_ids: []
+
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -526,3 +531,29 @@ If you're past 2:30 on any DS question, you're almost certainly over-computing. 
 | "Is the triangle right?" with "a² + b² = c²" | Sufficient by converse of Pythagorean |
 
 Drill the 45 questions in this chapter's problem sets with the decision tree at your elbow. By the end, the AD/BCE grid should be unconscious — and your DS questions should average under 90 seconds.
+
+## @the-ds-method
+
+The earlier sections taught you what each answer choice *means* and which traps to dodge. This one is the procedure — the fixed sequence of moves you run on every DS question, in order, before you let yourself touch a statement. The AD/BCE grid, rephrasing, and the C-trap all live inside this method; here they become a single muscle-memory routine.
+
+**Mental model.** Treat a DS question like a courtroom, not a calculator. Each statement is a witness testifying in isolation, and your only verdict is "does this testimony, by itself, settle the question — yes or no?" You never call two witnesses at once until each has been examined alone. The work isn't arithmetic; it's keeping the cases separate and asking a single clean question of each.
+
+**Step 1 — push the question first.** Before you even glance at the statements, restate the prompt and pin down the *exact* fact that would answer it. This is the move most test-takers skip, and it is the one that saves the most time. If the prompt asks for one piece of a known relationship, rewrite it as the piece you actually need. (This is the rephrasing discipline from the rephrasing section, applied as the mandatory first step rather than an optional polish.) Say to yourself: "A statement is sufficient here if and only if it tells me ______." Fill that blank *now*, while the statements are still covered.
+
+**Step 2 — evaluate each statement strictly alone, with AD/BCE.** Read Statement (1) with the stem only — Statement (2) does not exist yet. If (1) is sufficient, the answer is **A or D**, so cross out B, C, and E. If (1) is not sufficient, cross out A and D. Then "wash your brain": deliberately forget everything Statement (1) told you and read Statement (2) completely fresh, again with the stem only. This reset is what the cross-contamination trap warns against; here it is a scheduled step, not an afterthought.
+
+**Step 3 — only combine if both failed alone.** This is the #1 score-killer in DS: reaching for both statements before you have judged each one by itself. If either statement was sufficient alone, "together" is irrelevant and combining can only mislead you toward a wrong C. You earn the right to combine only after you have written down "(1) alone: not sufficient" *and* "(2) alone: not sufficient."
+
+**Step 4 — stop the instant you know you *could* answer.** "Sufficient" means you can reach exactly one definite answer — not that you have computed it. One clean linear equation in one unknown is sufficient; do not solve it. A definite "no" on a yes/no question is sufficient; do not keep hunting for "yes." The moment you can see a unique answer is forced, mark sufficiency and move on. Every second spent finding the actual value is a second stolen from the rest of the section.
+
+**Worked example.** *A charity's annual budget is split among Outreach, Research, and Admin, and the three together make up the entire budget. What fraction of the budget goes to Research? (1) Outreach is 45% of the budget. (2) Admin is one-third of the combined Outreach-and-Research portion.*
+
+Step 1 — push the question. Since Outreach + Research + Admin = 100%, "What fraction is Research?" becomes "What is Outreach + Admin?" — because Research = 100% − (Outreach + Admin). So a statement is sufficient only if it pins down Outreach *and* Admin together.
+
+Step 2 — alone. Statement (1): Outreach = 45%, but Admin is still free, so Research could be anything from just above 0% to 55%. Not sufficient → cross A and D. Wash your brain. Statement (2): Admin = ⅓(Outreach + Research). That is one relationship among three unknown shares with no anchoring percentage, so Research is not pinned down. Not sufficient → cross B.
+
+Step 3 — both failed alone, so combine. Now Outreach = 45% and Admin = ⅓(45% + Research). With Outreach + Research + Admin = 100%, that is one clean equation in the single unknown Research. The moment you see "one equation, one unknown," **stop** — it is sufficient. Answer: **C**. Note what you did *not* do: you never solved for Research. (For the record it works out, but finding the number is wasted motion on the clock.)
+
+**Trap to watch.** The seductive failure is doing Step 3 in your head during Step 2 — reading Statement (1), feeling its gap, and silently letting Statement (2) fill it before you have ruled on (1) alone. That is how a true A or B masquerades as C. If you ever find yourself thinking "well, with the other statement…" while a single statement is still under examination, you have jumped a step. Back up, cover the other statement, and finish the verdict you started.
+
+> **Self-explanation prompt.** Why does pushing the question *before* reading the statements beat rephrasing it afterward? If you can say "because once I've seen the statements, my brain anchors on what they offer instead of what the question needs — pinning down the target fact first keeps me testing each statement against the real requirement rather than against whichever statement I read last," you've internalized why the method is ordered the way it is. The sequence is the skill; the algebra is incidental.

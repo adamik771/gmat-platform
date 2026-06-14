@@ -17,6 +17,10 @@ sections:
     type: reading
     title: "Quant Timing & Pacing"
     check_question_ids: []
+  - id: one-process-every-question
+    type: reading
+    title: "One process, every question"
+    check_question_ids: []
 problem_sets:
 ---
 
@@ -59,3 +63,17 @@ GFE gives you a safety net: you can **bookmark** any question and, at the end of
 > **Recall check.** How many answers can you change during end-of-section review, and how should you choose which ones? (Up to three; pick the bookmarked questions where you were closest to a real answer, not random second-guesses.)
 
 The whole system reduces to three reflexes: **budget the surplus on easy questions, kill time-sinks at the 2:45 ceiling, and let the 30-second checkpoint force the method switch.** Run those three and you reach question 21 with answers on every screen and a couple of bookmarks to upgrade — which is exactly how you finish the Quant track.
+
+## @one-process-every-question
+
+Pacing tells you *how long* to spend; it does not tell you *what to do* in those minutes. The clock work above only pays off if each question runs through the same disciplined loop. Speed is not the lever — **consistency is.** A score is built one question at a time, and the same five moves work on the easiest arithmetic problem and the nastiest rates problem. Run the loop the same way every time and your error rate falls without you having to "try harder."
+
+**Mental model.** Treat every question as a four-beat sequence: **read it twice, plot the path, execute while checking each step, then re-read and sanity-check the answer.** Notice that two of the four beats are not computation at all — they bracket the math. Most missed Quant points are lost in those bracket beats, not in the algebra. **Read twice first:** the cheapest way to miss an easy one is to misread a single modifier — "non-negative" read as "positive," "at most" read as "exactly," "increased *by* 20%" read as "increased *to* 20%." Five seconds on a second read defends two minutes of work. **Then plot the path before you compute:** your first instinct is usually the slow path. Take one breath and ask whether plugging in, backsolving, or estimating gets there faster than the textbook setup. (The 30-second checkpoint from the previous section is your safety net if the path you picked turns out to be wrong — but a deliberate plot up front means you trip that net far less often.)
+
+**Worked example.** *"A printer produces pages at a constant rate. If it prints r pages in m minutes, how many minutes does it take to print 300 pages?"* First read: rate problem, fine. **Second read** catches the structure — the answer must be in *minutes*, and the rate is r/m pages per minute. Now **plot the path.** Instinct says build the proportion and solve symbolically; faster is to reason in units: minutes = pages ÷ (pages per minute) = 300 ÷ (r/m) = **300m / r.** **Check the step as you write it** — dividing by a fraction flips it, so it is 300 × (m/r), not 300 × (r/m); confirm m is on top. Finally, **sanity-check:** if the printer is fast (large r), the time should shrink — and r sitting in the denominator does exactly that. Right ballpark, right structure, move on. The whole thing took 25 seconds *because* the two reading beats stopped you from solving the wrong quantity in the right way.
+
+**Check each step as you go.** Everyone writes 4 × 7 = 32 sometimes; the difference at the top of the scale is that the strong scorer *catches* it. You catch it by checking the line you just wrote before relying on it, not by re-deriving everything at the end. A bad intermediate number poisons every later step silently — there is no error message. One glance per line is cheap insurance against a careless cascade.
+
+**Trap to watch.** Trading the loop for raw speed when the clock feels tight. Skipping the second read and the final sanity-check *feels* faster, but it is the move that converts solvable questions into careless misses — and on an adaptive test the real disaster is missing the **easy** ones, not the hard ones. A hard question you were always likely to miss costs the same single point as an easy question you fumbled by misreading. The fumbled easy one is pure self-inflicted damage, and rushing manufactures exactly those. Speeding up usually produces more misses *and* a lower score, which makes it slower overall once you count the points you gave back. Efficiency — the right method, run cleanly once — beats hurry every time. And when no path appears after a fair, honest look, that is not the moment to grind: make an **educated guess, bookmark it, and move on**, exactly as the triage rules above prescribe.
+
+> **Self-explanation prompt.** Why do "read twice" and "sanity-check the answer" matter *more* than computing faster? (Because most lost points come from misreading the question or accepting a wrong-ballpark answer, not from slow arithmetic — those two beats catch the errors that speed can never fix, and on an adaptive test the careless miss of an easy question is the costliest, most avoidable kind.)
