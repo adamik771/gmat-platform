@@ -1074,12 +1074,12 @@ export function getPracticeChapterGroups(): PracticeChapterGroup[] {
     while (Math.ceil(sorted.length / n) > cap) n++
 
     // Deal the difficulty-sorted pool into the n tests. Two strategies:
-    //   - Quant: contiguous slices, so the tests form a difficulty LADDER —
+    //   - Quant & DI: contiguous slices, so the tests form a difficulty LADDER —
     //     Test 1 holds the chapter's easiest questions, the last test the
     //     hardest, and each test still ascends easy->hard inside.
-    //   - Verbal/DI: round-robin, so every test is a balanced easy->hard mix.
+    //   - Verbal: round-robin, so every test is a balanced easy->hard mix.
     const buckets: ParsedQuestion[][] = Array.from({ length: n }, () => [])
-    if (ch.section === "Quant") {
+    if (ch.section !== "Verbal") {
       // Even contiguous chunking: the first (length % n) chunks get one extra,
       // so sizes differ by at most 1 and none exceeds the cap.
       const base = Math.floor(sorted.length / n)
