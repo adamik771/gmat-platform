@@ -41,10 +41,10 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q6
-      - critical-reasoning-q7
-      - reading-comprehension-q2
-      - reading-comprehension-q3
+      - verbal-foundations-q1
+      - verbal-foundations-q2
+      - verbal-foundations-q3
+      - verbal-foundations-q4
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -52,8 +52,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q11
-      - reading-comprehension-q6
+      - verbal-foundations-q6
+      - verbal-foundations-q7
 ---
 
 ## @how-verbal-works

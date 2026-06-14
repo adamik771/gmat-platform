@@ -45,7 +45,6 @@ describe("chapter -> practice routing (regression guard for the bare-section 404
   it("method/foundations/timing chapters have no bank -> null -> /practice fallback", () => {
     for (const noBank of [
       "quant-01-backsolving",
-      "verbal-01-foundations",
       "di-foundations",
       "quant-30-timing",
     ]) {
