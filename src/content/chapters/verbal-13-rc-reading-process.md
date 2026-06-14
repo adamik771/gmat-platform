@@ -16,6 +16,10 @@ sections:
     pretest_question_ids:
       - reading-comprehension-q1
       - reading-comprehension-q2
+  - id: one-process
+    type: reading
+    title: "One process, every passage — the RC mindset"
+    check_question_ids: []
   - id: how-to-read-an-rc-passage
     type: reading
     title: "How to read an RC passage — the three-pass active-reading protocol"
@@ -67,6 +71,26 @@ problem_sets:
       - reading-comprehension-q11
       - reading-comprehension-q15
 ---
+
+## @one-process
+
+The single biggest jump most students make on Reading Comprehension has nothing to do with reading faster. It comes from reading every passage **the same way, every time.** The score-killer on RC is variance — a 90% day followed by a 50% day — and variance comes from reading by feel: careful here, rushed there, notes one day, none the next. A fixed process removes the guesswork. You stop deciding *how* to read each passage and just run the routine.
+
+**Mental model.** Treat RC like a checklist a pilot runs before every flight, not a performance you improvise. The routine is always the same: name the scope, tag what each paragraph *does*, fix the author's stance, and keep a one-line-per-paragraph skeleton. Same four moves whether the passage is about black holes or medieval trade. When the process is automatic, accuracy and timing both stabilize — because you're no longer spending energy deciding what to do.
+
+**Drop the gimmicks.** There is a lot of RC folklore: read only the first sentence of each paragraph, skim the middle, run a fixed "two minutes to read, one minute per question" stopwatch. Ignore all of it. Skimming feels fast but is the slowest thing you can do, because you reach the questions with no map and have to dive back into the passage on every single one. There is no shortcut for building the structure — and the structure is exactly what the questions test.
+
+**No topic is harder than another.** GMAT passages assume zero outside knowledge. A molecular-biology passage and an art-history passage are the same task, because everything you need to answer is printed on the screen. "I'm bad at science passages" is self-fulfilling: the moment you brace for a hard topic, you abandon your process and start reading word by word. Run the identical routine regardless of subject and the intimidation has nothing to feed on.
+
+**Aim for efficiency, not speed.** Over-reading (trying to absorb every detail) and under-reading (skimming) both blow up your time — just at different stages. Over-reading burns the clock on the passage; under-reading burns it on the questions. The right pace is the one that builds an accurate map in a single read, so you go back only for a specific fact. If you are behind on time, the fix is *never* to read faster — that only makes the questions slower. Tighten the process, not the throttle.
+
+It is also fine not to fully understand a dense sentence. Get the paragraph's *job*, note where the hard sentence sits, and move on — you can return if a question actually asks about it. Understanding every clause is not the goal; a reliable map is.
+
+**Trap to watch.** Panicking on the clock and speeding up the read. It feels productive and does the opposite: a rushed read produces a blurry map, which turns every question into a re-read, which costs more time than you "saved." When you feel behind, slow the read slightly and trust the routine — the time comes back on the questions.
+
+> **Self-explanation prompt.** Why does reading *faster* often make you *slower* overall on an RC question set? (Because the questions are answered from your structural map, not from the page; a faster, shallower read produces a worse map, so you re-read the passage on nearly every question — moving the time you "saved," and more, into the question phase.)
+
+When you reach the questions, the same discipline applies: choose by **elimination**, not attraction. Hunt for the four answers you can rule out instead of grabbing the first one that sounds right — on hard questions, the most tempting wrong answer is the one that most *sounds* like the passage. The specific traps that exploit that instinct get their own treatment in the **RC Answer Traps** chapter; for now, hold the habit: find four wrong, then take the one that's left.
 
 ## @how-to-read-an-rc-passage
 
