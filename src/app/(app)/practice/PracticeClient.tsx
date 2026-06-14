@@ -26,16 +26,6 @@ export interface PracticeRecommendation {
 
 const EYEBROW = "text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A84C]"
 
-const SECTION_ORDER: Section[] = ["Quant", "Verbal", "DI"]
-
-const SECTION_BLURB: Record<Section, string> = {
-  Quant:
-    "Algebra, arithmetic, number properties, rates, ratios, probability, word translation — chapter by chapter.",
-  Verbal:
-    "Critical Reasoning, one chapter per question type. Tight logic, steady pacing.",
-  DI: "Data sufficiency, table analysis, graphics interpretation, two-part analysis. One strategy per format.",
-}
-
 const SECTION_ACCENT: Record<Section, string> = {
   Quant: "#5FA8FF",
   Verbal: "#B088FF",
@@ -55,10 +45,17 @@ export default function PracticeClient({
    *  accounts when the paywall is on). null = no locking. */
   lockTestsBeyond?: number | null
 }) {
-  // Accuracy the score formula (205 + accuracy x 600) demands for the goal.
+  // Accuracy the score formula (205 + accuracy x 600) implies for the goal,
+  // softened to 0.9x. A raw per-set bar at the literal score-accuracy is too
+  // harsh: practice drills include hard items and the real exam is
+  // adaptive/scaled, so you don't need your target-percentile raw accuracy on
+  // every set. The gentler aim keeps goal sensitivity without demanding
+  // near-perfection (e.g. an 805 goal now asks for ~90%, not 100%). Drives both
+  // the goal "%+" label and the per-test "aim X/Y" chip.
+  const AIM_SOFTENING = 0.9
   const requiredAccuracy =
     targetScore !== null
-      ? Math.min(1, Math.max(0, (targetScore - 205) / 600))
+      ? Math.min(1, Math.max(0, ((targetScore - 205) / 600) * AIM_SOFTENING))
       : null
   const requiredPercent =
     requiredAccuracy !== null ? Math.ceil(requiredAccuracy * 100) : null
@@ -355,56 +352,45 @@ export default function PracticeClient({
         </div>
       )}
 
-      {/* === Chapter bank — section by section, chapter by chapter. Each
-          chapter heading is followed by its short tests; the next chapter
-          starts below. Tests are count-up timed with no auto-submit. */}
-      {SECTION_ORDER.map((section) => {
-        const groups = chapterGroups.filter((g) => g.section === section)
-        if (groups.length === 0) return null
-        const accent = SECTION_ACCENT[section]
-        const withTests = groups.filter((g) => !g.comingSoon)
-        const sectionTests = withTests.reduce((s, g) => s + g.tests.length, 0)
-        const sectionQs = withTests.reduce(
+      {/* === Chapter bank — ONE interleaved list in the same guided-path order
+          as the reading chapters (/chapters), NOT split into per-section blocks.
+          getPracticeChapterGroups() already returns groups in CHAPTER_PATH_ORDER;
+          each card carries a section tag. Tests are count-up timed, no auto-submit. */}
+      {chapterGroups.length > 0 && (() => {
+        const withTests = chapterGroups.filter((g) => !g.comingSoon)
+        const totalTests = withTests.reduce((s, g) => s + g.tests.length, 0)
+        const totalQs = withTests.reduce(
           (s, g) => s + g.tests.reduce((t, x) => t + x.count, 0),
           0
         )
         return (
-          <section key={section} className="space-y-6">
+          <section className="space-y-6">
             <div
-              className="rounded-xl border p-5 sm:p-6 flex items-start gap-3"
+              className="rounded-xl border p-5 sm:p-6"
               style={{
                 borderColor: "rgba(255,255,255,0.06)",
                 backgroundColor: "#0D0D0D",
               }}
             >
-              <span
-                className="w-1 h-9 rounded-full flex-shrink-0 mt-1"
-                style={{ backgroundColor: accent }}
-                aria-hidden
-              />
-              <div className="min-w-0">
-                <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-1"
-                  style={{ color: accent }}
-                >
-                  {section === "DI" ? "Data Insights" : section} Practice
-                </p>
-                <p className="text-[13px] text-[#C0C0C0] leading-snug max-w-xl">
-                  {SECTION_BLURB[section]}
-                </p>
-                <p
-                  className="text-[11px] mt-2 tabular-nums"
-                  style={{ color: "rgba(255,255,255,0.45)" }}
-                >
-                  {withTests.length} chapter{withTests.length === 1 ? "" : "s"} ·{" "}
-                  {sectionTests} test{sectionTests === 1 ? "" : "s"} · {sectionQs}{" "}
-                  question{sectionQs === 1 ? "" : "s"}
-                </p>
-              </div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-1 text-[#C9A84C]">
+                Practice by chapter
+              </p>
+              <p className="text-[13px] text-[#C0C0C0] leading-snug max-w-xl">
+                Same order as your reading path — foundations first, then topics in
+                rotation across Quant, Verbal, and Data Insights, hardest last.
+              </p>
+              <p
+                className="text-[11px] mt-2 tabular-nums"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
+                {withTests.length} chapter{withTests.length === 1 ? "" : "s"} ·{" "}
+                {totalTests} test{totalTests === 1 ? "" : "s"} · {totalQs}{" "}
+                question{totalQs === 1 ? "" : "s"}
+              </p>
             </div>
 
             <div className="space-y-7">
-              {groups.map((group) => (
+              {chapterGroups.map((group) => (
                 <ChapterBlock
                   key={group.chapterSlug}
                   group={group}
@@ -415,7 +401,7 @@ export default function PracticeClient({
             </div>
           </section>
         )
-      })}
+      })()}
 
       {chapterGroups.length === 0 && (
         <div className="p-10 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] text-center">
@@ -446,9 +432,17 @@ function ChapterBlock({
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3 pb-2.5 border-b border-white/[0.08]">
-        <h3 className="font-display text-lg sm:text-xl font-semibold text-[#F0F0F0] tracking-tight">
-          {group.chapterTitle}
-        </h3>
+        <div className="min-w-0">
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.18em] mb-0.5"
+            style={{ color: SECTION_ACCENT[group.section] }}
+          >
+            {group.section === "DI" ? "Data Insights" : group.section}
+          </p>
+          <h3 className="font-display text-lg sm:text-xl font-semibold text-[#F0F0F0] tracking-tight">
+            {group.chapterTitle}
+          </h3>
+        </div>
         <span className="text-[12px] text-[#777777] tabular-nums flex-shrink-0">
           {group.comingSoon
             ? "Coming soon"
