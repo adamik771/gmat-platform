@@ -2,6 +2,24 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-15 LATE (guided-path reorder + navigation-performance pass)
+
+All committed + pushed; branch in sync with origin. Three commits on top of the SYNC entry below:
+
+**`fdd7816` — guided-path chapter reorder.** `CHAPTER_PATH_ORDER` (`src/lib/content.ts`) was front-loading Quant and walling ~13 Verbal chapters (all RC + late CR) at the tail once Quant/DI ran out. Re-wove the three streams proportionally (Quant:Verbal:DI ~ 29:20:6) so every section runs the full length; within-section easy→hard order untouched; intros stay adjacent to each section's first chapter; timing trio stays last. **The Practice page already follows this order for free** (`getPracticeChapterGroups` iterates `getAllChapters`; PracticeClient maps it flat) — added a regression test in `tests/chapter-order.test.ts` locking practice order to the chapters order.
+
+**`d53a420` — nav-perf batch 1.** (1) `src/app/(app)/loading.tsx` + `src/components/shared/PageSkeleton.tsx` — instant Suspense skeleton for every (app) route (no more frozen previous page). (2) Memoized `getAllQuestions`/`getAllChapters` with module singletons (content is filesystem-static; **dev needs a server restart to pick up content edits** now, same as `practiceChapterGroupsCache`). (3) `next.config.ts` `experimental`: `staleTimes {dynamic:30,static:180}`, `viewTransition: true`, `optimizePackageImports`. (4) recharts code-split — `QuestionChart` is now a `next/dynamic` wrapper over `QuestionChartInner` (recharts leaves the practice/mock/error-log/drill bundles). (5) `proxy.ts` early-returns on public/marketing routes (skip `getUser()`, CDN-cacheable). (6) dropped framer-motion from `ScoreCalloutNumbers` via shared `src/lib/use-prefers-reduced-motion.ts`; deleted dead `ScoreChart.tsx`.
+
+**`13bdf5e` — nav-perf batch 2 (query batching).** `Promise.all`'d genuinely-independent per-page Supabase reads (study-plan ~5 serial→1; analytics sessions+attempts; error-log attempts+tags). **Dashboard intentionally left as-is** (already batches its 13 reads; folding `computeStudyPlan` in would couple error isolation). Also kept `no-store` on `/auth/*` in the proxy (the `/auth/callback` token-exchange handler must not be cached).
+
+**Verification:** `npm run check` green (241 tests, incl. the new practice-order guard) + `next build` clean on every commit. Behavior-preservation of the risky changes (3 query-batch diffs + proxy + memoization aliasing + recharts split) confirmed by an adversarial 6-agent review — all "behavior-preserving", only low/cosmetic notes.
+
+**Caveats / deferred (offered, not done):** most nav wins are **production-only** (prefetch, staleTimes, View Transitions) — local dev won't show them. View Transitions is experimental + not visually verified here — **eyeball the cross-fade post-deploy; `viewTransition: false` is the one-line kill-switch.** Deferred follow-ups: AnalyticsClient + HeroDashboardCard recharts/framer split (single analytics route + marketing landing); `PulseNumber` framer→CSS; proxy `getUser → getClaims`.
+
+**Still the one open shipping item:** merge branch → `main` + confirm the Vercel deploy. The branch is now several commits ahead of `origin/main`. Compare: https://github.com/adamik771/gmat-platform/compare/main...claude/handoff-2026-06-13?expand=1
+
+---
+
 ## CONTEXT SWITCH — 2026-06-15 EVENING (SYNC: the 4 local commits are now PUSHED; branch in sync with origin)
 
 Branch `claude/handoff-2026-06-13` is now **in sync with its upstream `origin/claude/handoff-2026-06-13` (ahead 0, behind 0; origin tip `7c4eaeb`)**. The four commits the entries below describe as "unpushed" are all on origin now: `f3e3a43` (cleanup batch), `bb00922` (study-plan feature), `7c4eaeb` (practice declutter), `0377d65` (prior-session HANDOFF doc). **The status lines in the next three entries ("ahead by 4/3, all unpushed", "13 changed files, uncommitted") are STALE — superseded by this entry.** Working tree clean.
