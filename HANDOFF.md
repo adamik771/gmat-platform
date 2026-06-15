@@ -2,6 +2,23 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-15 QA (adversarial review of the session's new code; bugs found + fixed)
+
+Committed + pushed; ahead of origin/main (needs merge to deploy). Ran a 4-agent adversarial review + lint/gate/build over the session's new code (calculator, Saved tab, test-builder). Everything green: `npm run check` (**247** tests) + eslint clean + `next build` clean.
+
+**`4e56039`:**
+- **Calculator typing bug (was HIGH):** `ScoreCalculatorClient` controlled number inputs re-clamped on every keystroke, so a section score couldn't be typed ("8"→60) — only the steppers worked. Fixed with a per-field editing buffer (`drafts` string state; clamp + commit on blur/Enter/stepper). **Browser-verified** via a throwaway public route: typing 85 → total 575.
+- NaN guard in `sectionScoresToTotal` + the client `clampSection` (+ regression test).
+- Percentile line capped at the 99th band + proper ordinals ("42nd"); result block wrapped in one `aria-live`.
+- Test-builder manual count input: same editing-buffer fix (couldn't clear/retype).
+- `proxy.ts`: added `/score-calculator` to `APP_ROUTES` — the new route was NOT auth-gated and was CDN-cacheable.
+
+**Follow-up commit (saved-tab + preview polish):**
+- Saved tab: unsave now refreshes the route (new `SavedUnsaveButton` client wrapper + an `onToggle` callback on `SaveForReviewButton`) so the row + header count clear immediately instead of lingering until reload.
+- `preview()` hardened: code-point slice (no emoji surrogate split) + fallback text for image-only prompts.
+
+---
+
 ## CONTEXT SWITCH — 2026-06-15 LATEST (focus-ring polish + test-builder fixes; practice-order verified OK)
 
 Committed + pushed. Branch ahead of origin/main by these (the prior batches merged via #472/#473/#474) — needs a fresh merge to deploy.

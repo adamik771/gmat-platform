@@ -20,10 +20,14 @@ export default function SaveForReviewButton({
   questionId,
   initialSaved,
   variant = "default",
+  onToggle,
 }: {
   questionId: string
   initialSaved: boolean
   variant?: "default" | "compact" | "ghost"
+  /** Fired after a successful add/remove, with the new saved state. Lets a
+   *  parent react (e.g. the Saved tab refreshes so an unsaved row drops out). */
+  onToggle?: (saved: boolean) => void
 }) {
   const [saved, setSaved] = useState(initialSaved)
   const [error, setError] = useState<string | null>(null)
@@ -47,6 +51,8 @@ export default function SaveForReviewButton({
         if (!res.ok || !data.ok) {
           setSaved(!nextSaved) // roll back
           setError(data.error ?? "Failed to save")
+        } else {
+          onToggle?.(nextSaved)
         }
       } catch {
         setSaved(!nextSaved)
