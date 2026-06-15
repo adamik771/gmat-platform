@@ -144,12 +144,24 @@ export default async function AnalyticsPage() {
       // Per-session accuracy is the right unit here; if a user does 3 sessions
       // in a week, the weekly average means "average accuracy across sessions
       // that week", which we then scale to a Focus total.
-      const { data: sessions } = await supabase
-        .from("practice_sessions")
-        .select("accuracy, section, created_at")
-        .eq("user_id", user.id)
-        .gte("created_at", eightWeeksAgo)
-        .order("created_at", { ascending: true })
+      // The score-trajectory sessions read and the per-topic attempts read
+      // (below) are independent — both key only on user.id — so fetch them
+      // concurrently instead of in series. Each block's processing still runs
+      // after its own data resolves, in the same order as before.
+      const [{ data: sessions }, { data: attempts }] = await Promise.all([
+        supabase
+          .from("practice_sessions")
+          .select("accuracy, section, created_at")
+          .eq("user_id", user.id)
+          .gte("created_at", eightWeeksAgo)
+          .order("created_at", { ascending: true }),
+        supabase
+          .from("practice_attempts")
+          .select(
+            "question_id, topic, subtopic, section, difficulty, is_correct, time_spent_ms, confidence, practice_sessions(created_at)"
+          )
+          .eq("user_id", user.id),
+      ])
 
       if (sessions && sessions.length > 0) {
         type Bucket = { overall: number[]; Quant: number[]; Verbal: number[]; DI: number[] }
@@ -202,12 +214,7 @@ export default async function AnalyticsPage() {
       // ---------- Per-topic accuracy ----------
       // Also pulls question_id + session timestamp to feed the repeat-miss
       // aggregation below (chronological order per question_id).
-      const { data: attempts } = await supabase
-        .from("practice_attempts")
-        .select(
-          "question_id, topic, subtopic, section, difficulty, is_correct, time_spent_ms, confidence, practice_sessions(created_at)"
-        )
-        .eq("user_id", user.id)
+      // `attempts` was fetched in the Promise.all above (alongside `sessions`).
 
       // Compute calibration from both sources. Confidence on
       // practice_attempts is null unless the student rated; rows without

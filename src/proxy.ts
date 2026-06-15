@@ -50,11 +50,17 @@ export async function proxy(request: NextRequest) {
   )
 
   // Public / marketing routes need no auth decision. Skip the Supabase
-  // getUser() network round-trip entirely AND don't stamp no-store, so these
-  // pages stay CDN-cacheable and navigating to them isn't gated on an auth
-  // call. Only the gated (app) and (auth) routes run the session check below.
+  // getUser() network round-trip entirely so navigating to them isn't gated on
+  // an auth call. Marketing/public pages are also safe to CDN-cache, so they
+  // get no no-store. The one exception: auth-flow endpoints under /auth/* (e.g.
+  // the /auth/callback code-exchange route handler) must never be cached even
+  // though they aren't redirect-gated — preserve no-store there.
   if (!isAppRoute && !isAuthRoute) {
-    return NextResponse.next()
+    const res = NextResponse.next()
+    if (pathname.startsWith("/auth/")) {
+      res.headers.set("Cache-Control", "private, no-store")
+    }
+    return res
   }
 
   try {
