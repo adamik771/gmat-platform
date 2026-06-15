@@ -41,6 +41,22 @@ export async function proxy(request: NextRequest) {
     return res
   }
 
+  const { pathname } = request.nextUrl
+  const isAppRoute = APP_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(route + "/")
+  )
+  const isAuthRoute = AUTH_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(route + "/")
+  )
+
+  // Public / marketing routes need no auth decision. Skip the Supabase
+  // getUser() network round-trip entirely AND don't stamp no-store, so these
+  // pages stay CDN-cacheable and navigating to them isn't gated on an auth
+  // call. Only the gated (app) and (auth) routes run the session check below.
+  if (!isAppRoute && !isAuthRoute) {
+    return NextResponse.next()
+  }
+
   try {
     const { supabase, response } = createSupabaseProxy(request)
 
@@ -51,12 +67,7 @@ export async function proxy(request: NextRequest) {
       data: { user },
     } = await supabase.auth.getUser()
 
-    const { pathname } = request.nextUrl
-
     // Unauthenticated users trying to access app routes → redirect to login
-    const isAppRoute = APP_ROUTES.some(
-      (route) => pathname === route || pathname.startsWith(route + "/")
-    )
     if (isAppRoute && !user) {
       const url = request.nextUrl.clone()
       url.pathname = "/login"
@@ -66,9 +77,6 @@ export async function proxy(request: NextRequest) {
     }
 
     // Authenticated users on auth routes → redirect to dashboard
-    const isAuthRoute = AUTH_ROUTES.some(
-      (route) => pathname === route || pathname.startsWith(route + "/")
-    )
     if (isAuthRoute && user) {
       const url = request.nextUrl.clone()
       url.pathname = "/dashboard"
@@ -93,6 +101,8 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // Match all routes except static assets, API routes, and metadata files.
+    // The proxy itself early-returns for non-(app)/(auth) routes (above), so
+    // marketing/public pages do no auth work and stay cacheable.
     "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
   ],
 }

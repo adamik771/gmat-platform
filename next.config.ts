@@ -95,6 +95,29 @@ const nextConfig: NextConfig = {
       { source: "/lessons", destination: "/chapters", permanent: true },
     ]
   },
+  // Navigation / runtime performance (2026-06). All keys verified to exist in
+  // the installed next@16.2.3 (see node_modules/next docs/schema):
+  //  - staleTimes: keep recently-fetched dynamic page segments in the client
+  //    Router Cache so quick back/forward + re-navigation reuse them instead of
+  //    re-rendering on the server (the dynamic default is 0s). 30s is short
+  //    enough to keep study-progress data fresh.
+  //  - viewTransition: opt route navigations into React 19.2 / the View
+  //    Transitions API for a smooth cross-fade between pages (reduced-motion
+  //    users are exempted via a globals.css guard).
+  //  - optimizePackageImports: tree-shake heavy barrel-export deps so only used
+  //    modules ship. (lucide-react/recharts are already on Next's default list;
+  //    the markdown + framer entries are the additive wins.)
+  experimental: {
+    staleTimes: { dynamic: 30, static: 180 },
+    viewTransition: true,
+    optimizePackageImports: [
+      "lucide-react",
+      "recharts",
+      "react-markdown",
+      "remark-gfm",
+      "framer-motion",
+    ],
+  },
 };
 
 export default nextConfig;
