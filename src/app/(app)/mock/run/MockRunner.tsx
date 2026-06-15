@@ -294,16 +294,36 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, activeSection, questionIdx, statesBySection])
 
-  const postingRef = useRef(false)
+  // Per-section in-flight guard. A single boolean (the old approach) dropped a
+  // concurrent save for a DIFFERENT section at a section boundary — e.g. the
+  // 3-min review auto-timeout firing while the prior section's POST is still in
+  // flight. Keyed by section: a repeat call for the SAME section dedupes onto
+  // the in-flight promise; a different section is never blocked.
+  const inFlightRef = useRef<Map<Section, Promise<void>>>(new Map())
+  // Per-section measured duration, snapshotted at finalize time so a later
+  // retry (on the done screen) records the section's real elapsed time rather
+  // than `Date.now() - sectionStartMs`, which by then points at a later
+  // section's clock.
+  const sectionDurationsRef = useRef<Map<Section, number>>(new Map())
 
-  async function persistSection(section: Section) {
-    if (postingRef.current) return
-    postingRef.current = true
-    const cfg = sections.find((s) => s.section === section)
-    if (!cfg) {
-      postingRef.current = false
+  async function persistSection(section: Section): Promise<void> {
+    const existing = inFlightRef.current.get(section)
+    if (existing) {
+      await existing
       return
     }
+    const run = persistSectionInner(section)
+    inFlightRef.current.set(section, run)
+    try {
+      await run
+    } finally {
+      inFlightRef.current.delete(section)
+    }
+  }
+
+  async function persistSectionInner(section: Section): Promise<void> {
+    const cfg = sections.find((s) => s.section === section)
+    if (!cfg) return
     const states = statesBySection[section]
     const deviceType = detectMockDeviceType()
     const attempts = cfg.questions.map((q, i) => ({
@@ -367,13 +387,14 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           correctCount: correctTotal,
           accuracy:
             answeredTotal === 0 ? 0 : Math.round((correctTotal / answeredTotal) * 100),
-          totalTimeMs: sectionStartMs ? Date.now() - sectionStartMs : 0,
+          totalTimeMs:
+            sectionDurationsRef.current.get(section) ??
+            (sectionStartMs ? Date.now() - sectionStartMs : 0),
           attempts,
         }),
       })
       if (!sessionRes.ok) {
         recordSaveError(section, sessionRes.status === 401 ? "unauthorized" : "error")
-        postingRef.current = false
         return
       }
       // Flags are saved to user_metadata via a separate endpoint so they
@@ -404,7 +425,6 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
     } catch {
       recordSaveError(section, "error")
     }
-    postingRef.current = false
   }
 
   function recordSaveError(section: Section, reason: "error" | "unauthorized") {
@@ -426,10 +446,17 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
 
   // Moves from review → break (or done if last section). Called both by
   // the "Submit section" button and the 3-min auto-timeout. Guards
-  // against double-invocation via the postingRef already used by
+  // against double-invocation via the per-section in-flight guard in
   // persistSection.
   async function finalizeSectionFromReview() {
     const section = sectionOrder[sectionIdx]
+    // Snapshot the section's elapsed time NOW (before advancing) so a later
+    // retry on the done screen records the right duration (#8) rather than a
+    // subsequent section's clock.
+    sectionDurationsRef.current.set(
+      section,
+      sectionStartMs ? Date.now() - sectionStartMs : 0
+    )
     await persistSection(section)
     const nextIdx = sectionIdx + 1
     if (nextIdx >= sectionOrder.length) {
