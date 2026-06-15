@@ -114,6 +114,10 @@ interface ChapterProgress {
    *  "Resume" widget on the dashboard — picks the chapter with the
    *  highest lastSeenAt across all chapter_progress entries. */
   lastSeenAt?: number
+  /** First time the student touched this chapter (ms epoch), set once. The
+   *  spaced-review engine anchors drill + recall-checkpoint scheduling on this
+   *  "concept install date". */
+  firstSeenAt?: number
 }
 
 const EMPTY_PROGRESS: ChapterProgress = {
@@ -719,6 +723,9 @@ export default function ChapterReader({
           // chapter with the highest lastSeenAt across all chapter_progress
           // entries to surface "continue where you left off."
           lastSeenAt: Date.now(),
+          // Install date — set once on the first write. Anchors the
+          // spaced-review drill/checkpoint schedule.
+          firstSeenAt: prev.firstSeenAt ?? Date.now(),
         }
         saveProgress(slug, next)
         queueServerPush(next)
