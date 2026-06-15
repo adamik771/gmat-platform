@@ -2,6 +2,20 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-15 LATE+ (two features: section→total calculator + Saved-questions tab)
+
+Committed + pushed. NOTE: the earlier work already merged to main via PR #472, so the branch is **again ahead of origin/main** by these two commits — needs a fresh merge to deploy.
+
+**`979999c` — GMAT Focus section→total calculator.** New tab `/score-calculator` (sidebar "Score Calc"). Student enters the three section scores (60–90 each) → estimated total (205–805). **DATA-INTEGRITY:** GMAC publishes NO official section→total formula (verified at mba.com — only states sections are "equally weighted"; algorithm proprietary). Uses the standard equal-weight linear approximation in `sectionScoresToTotal()` (`src/lib/scoring.ts`): `(Q+V+DI−180)×20/3+205`, snapped to the 205-anchored grid — same basis as TTP/Magoosh/e-GMAT/GMAT Club calculators, exact at 205/805. **Labeled an ESTIMATE in the UI with a ±10 band** (TTP/Magoosh document that variance) + a sourced note. +5 unit tests (`tests/section-score-total.test.ts`). Sources verified 2026-06-15: mba.com "Understanding Your Score"; targettestprep.com + magoosh.com calculators.
+
+**`617b028` — Saved-questions tab.** New `/review/saved`, linked from the `/review` landing. Lists every question bookmarked via the EXISTING "Save for review" button (`user_metadata.saved_for_review`), newest-first, with a one-tap unsave (compact `SaveForReviewButton`) + a "Review this question" link to `/review/question/[id]`. Closes the gap where saved questions only appeared mixed into `/review/all`'s spaced queue. Reuses `getQuestionsByIds` + the existing `/api/saved-for-review` endpoint — no new storage. (`mock_flags` not folded in — they have their own mock-report surface; could add later.)
+
+**Verification:** `npm run check` green (**246** tests) + `next build` clean (both routes in the manifest). Auth-gated UI not browser-verified here (needs the temp-public-route workaround) — eyeball post-deploy.
+
+**Open shipping item:** merge branch → `main` again + Vercel deploy (calculator + Saved tab + the nav-perf batch all ride this). Compare: https://github.com/adamik771/gmat-platform/compare/main...claude/handoff-2026-06-13?expand=1
+
+---
+
 ## CONTEXT SWITCH — 2026-06-15 LATE (guided-path reorder + navigation-performance pass)
 
 All committed + pushed; branch in sync with origin. Three commits on top of the SYNC entry below:
