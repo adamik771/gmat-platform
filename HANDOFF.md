@@ -2,6 +2,20 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-15 LATEST (focus-ring polish + test-builder fixes; practice-order verified OK)
+
+Committed + pushed. Branch ahead of origin/main by these (the prior batches merged via #472/#473/#474) — needs a fresh merge to deploy.
+
+**`0062baa` — softer focus ring.** Global `:focus-visible` in `src/app/globals.css` was a loud solid brand-gold box; now `outline: 2px solid rgba(201,168,76,0.45)` + `outline-offset: 1px` (translucent, tighter) — calmer but still WCAG-visible. Verified applied via the dev server's CSSOM. (Adam's separate gripe — the browser's hover URL status-bar — is NOT app-controllable; left as-is.)
+
+**`7831f79` — test-builder fixes (`src/app/(app)/test-builder/TestBuilderClient.tsx`).**
+1. **Section-leak bug:** the Section picker is multi-select but pre-selected "Quant", so tapping "Verbal" silently produced a Quant+Verbal set (reported as "chose Verbal, got Quant/DI too"). Root cause was the default, not the sampler (the round-robin + matchingPool filter are section-correct). Fix: default `sections` to `[]` — every pick is now explicit; Build stays disabled with the existing "pick at least one section" hint until one is chosen.
+2. **Manual question count:** added a number input (1–100) beside the 10/15/20/30/45 preset chips; `numQuestions` is now a free `number`, still clamped to the available pool via `effectiveCount`.
+
+**Practice-vs-chapters order (investigated, NO change made — Adam's call).** Adam reported the practice list order didn't match `/chapters`. Dumped both live sequences: practice is a **strict subsequence** of `getAllChapters()` order — zero reordering. The apparent gap is the 12 `OMITTED_CHAPTERS` (`src/lib/practice-tests-map.ts`: gmat-welcome, 3 section intros, the 4 Quant *method* chapters quant-01..04, di-foundations, quant-30/verbal-21/di-timing) which have no standalone tests. Offered to mirror `/chapters` 1:1 (show them as muted rows); **Adam chose to keep practice tests-only — so no change.** (The `chapter-order.test.ts` regression test already locks practice order to chapter order.)
+
+---
+
 ## CONTEXT SWITCH — 2026-06-15 LATE+ (two features: section→total calculator + Saved-questions tab)
 
 Committed + pushed. NOTE: the earlier work already merged to main via PR #472, so the branch is **again ahead of origin/main** by these two commits — needs a fresh merge to deploy.
