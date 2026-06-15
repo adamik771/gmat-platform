@@ -172,8 +172,12 @@ export function validateFeedbackInput(input: {
       return "rating must be null or an integer 1-5"
     }
   }
-  if (input.tag != null && typeof input.tag !== "string") {
-    return "tag must be a string or null"
+  if (
+    input.tag != null &&
+    (typeof input.tag !== "string" ||
+      !TAG_DEFS.some((d) => d.id === input.tag))
+  ) {
+    return "tag must be a known feedback tag or null"
   }
   // For ratings-only entries, require a non-null rating.
   if (input.kind === "rating" && input.rating == null) {

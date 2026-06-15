@@ -510,7 +510,9 @@ function splitOnQuestionHeaders(text: string): string[] {
 }
 
 function parseQuestionFile(filePath: string): ParsedQuestion[] {
-  const raw = fs.readFileSync(filePath, "utf8")
+  // Normalize CRLF → LF so the `\n---\n` splitter and header regexes work
+  // regardless of how a content file was saved/uploaded.
+  const raw = fs.readFileSync(filePath, "utf8").replace(/\r\n/g, "\n")
   const { frontmatter, body } = parseFrontmatter(raw)
   const section = sectionFromString(frontmatter.section)
   const topic = frontmatter.topic ?? "General"
@@ -545,7 +547,7 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
     // inline (it renders everywhere, including the tutor, which only sees the
     // prompt); each continued question inherits that reference as `context`.
     let contextForBlock = currentContext
-    const flatSetMatch = block.match(/^##\s+Q\d+\s*\(Set\b([^)]*)\)/m)
+    const flatSetMatch = block.match(/^##\s+Q\d+\s*\(Set\b(.*)\)/m)
     if (flatSetMatch) {
       if (/continued/i.test(flatSetMatch[1])) {
         contextForBlock = flatSetReference
