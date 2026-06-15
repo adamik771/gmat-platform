@@ -2415,3 +2415,359 @@ Statement (2) gives each machine's rate as 25 units per hour, but it provides no
 
 The correct answer is A.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q69
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Average Rate / Harmonic Mean
+
+A motorist drives from her home to a lake along a fixed route at 36 kilometers per hour and then returns home along the same route. If her average speed for the entire round trip is 48 kilometers per hour, what is her speed, in kilometers per hour, on the return leg?
+
+- A) 56
+- B) 60
+- C) 64
+- D) 72
+- E) 80
+
+**answer:** D
+**hint_nudge:** Average speed is total distance over total time — back out the return time first, then the return speed.
+**hint_strategy:** Pick a convenient one-way distance, find the total time the 48 km/h average requires, subtract the outbound time, and divide.
+**hint_setup:** Let one-way = 72 km. Outbound time 72/36 = 2 h; round-trip total time = 144/48 = 3 h; return time = 3 - 2 = __ h.
+**explanation:** Average speed is defined as total distance divided by total time, not as the arithmetic mean of the two leg speeds. Here we are given the average speed for the whole trip and one leg speed, and we must recover the other leg speed, so we work backward from the definition.
+
+Because the average speed does not depend on the actual one-way distance, we may choose a convenient value. Let the one-way distance be 72 kilometers, a number divisible by all the speeds that arise. The round-trip distance is then 2 × 72 = 144 kilometers.
+
+The outbound leg is driven at 36 kilometers per hour, so it takes
+
+72 / 36 = 2 hours.
+
+The average speed for the entire round trip is 48 kilometers per hour over the full 144 kilometers, so the total time for the round trip is
+
+144 / 48 = 3 hours.
+
+The return leg therefore takes the total time minus the outbound time:
+
+3 − 2 = 1 hour.
+
+The return leg covers 72 kilometers in 1 hour, so the return speed is
+
+72 / 1 = 72 kilometers per hour.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q70
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined Work
+
+Pumps A and B, working together, can empty a flooded basement in 3 hours and 36 minutes. Pump A, working alone, would empty the basement in 6 hours. How long would pump B take to empty the basement working alone?
+
+- A) 7.5 hours
+- B) 8 hours
+- C) 9 hours
+- D) 10 hours
+- E) 12 hours
+
+**answer:** C
+**hint_nudge:** Convert the joint time to a fraction of an hour first; rates add, so B's rate is the combined rate minus A's.
+**hint_strategy:** Combined rate is the reciprocal of the joint time; subtract A's rate, then invert to get B's solo time.
+**hint_setup:** 3 h 36 min = 18/5 h, so combined rate = 5/18; then 1/b = 5/18 - 1/6 = 5/18 - 3/18.
+**explanation:** This is a combined-work problem, governed by the principle that rates of work add, whereas times do not. A pump that empties the basement in t hours works at a rate of 1/t of the job per hour, and the combined rate of two pumps is the sum of their individual rates.
+
+First we express the joint time as a number of hours. Thirty-six minutes is 36/60 = 3/5 of an hour, so 3 hours and 36 minutes is 3 + 3/5 = 18/5 hours. Working together, A and B empty the basement in 18/5 hours, so their combined rate is the reciprocal of this time:
+
+combined rate = 1 / (18/5) = 5/18 of the job per hour.
+
+Pump A empties the basement alone in 6 hours, so A's rate is 1/6 of the job per hour. Let b denote the number of hours pump B needs alone, so B's rate is 1/b of the job per hour. Because the rates add,
+
+1/6 + 1/b = 5/18.
+
+Isolating 1/b, we subtract 1/6 from both sides. Writing 1/6 over the common denominator 18 gives 1/6 = 3/18, so
+
+1/b = 5/18 − 3/18 = 2/18 = 1/9.
+
+Taking the reciprocal of both sides gives b = 9. Therefore pump B alone would take 9 hours.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q71
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Distance-Rate-Time
+
+A freight train travels 300 miles between two cities at a constant speed. On a later run over the same route, the train averages 10 miles per hour faster and completes the trip in 1 hour less. What was the train's constant speed, in miles per hour, on the slower run?
+
+- A) 40
+- B) 45
+- C) 50
+- D) 55
+- E) 60
+
+**answer:** C
+**hint_nudge:** Same 300-mile distance at two speeds, with the time difference given — this sets up a quadratic, or just test the choices.
+**hint_strategy:** Use time = distance / rate; the slower time minus the faster time equals 1 hour.
+**hint_setup:** 300/r - 300/(r + 10) = 1. Testing r = 50: 300/50 - 300/60 = 6 - 5 = __ (target 1).
+**explanation:** This problem is governed by the relationship distance = rate × time, rearranged as time = distance ÷ rate. The same 300-mile distance is covered at two different speeds, and the faster run takes exactly 1 hour less, so the difference of the two travel times equals 1 hour.
+
+Let r be the train's speed, in miles per hour, on the slower run. The faster run is then at r + 10 miles per hour. The slower run takes 300/r hours, and the faster run takes 300/(r + 10) hours. Because the faster run is 1 hour shorter,
+
+300/r − 300/(r + 10) = 1.
+
+With clean answer choices available, the fastest route is to test them. The value r = 50 gives a faster speed of 60, so the times are 300/50 = 6 hours and 300/60 = 5 hours; the difference is 6 − 5 = 1 hour, exactly as required.
+
+To solve algebraically instead, multiply both sides by r(r + 10) to clear the denominators:
+
+300(r + 10) − 300r = r(r + 10).
+
+Expanding the left side gives 300r + 3000 − 300r = 3000, so
+
+3000 = r² + 10r,
+
+which rearranges to the quadratic equation
+
+r² + 10r − 3000 = 0.
+
+Factoring, we seek two numbers whose product is −3000 and whose sum is 10; these are 60 and −50, giving
+
+(r − 50)(r + 60) = 0.
+
+The roots are r = 50 and r = −60, and the negative root is discarded because a speed must be positive, leaving r = 50.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q72
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work Rates — Changing Team Size
+
+A crew of 5 masons, each working at the same constant rate, can build a wall in 12 days. The 5 masons work together for 4 days, after which 3 additional masons join the crew, and all 8 continue at the same individual rate. How many more days will be needed to finish the wall?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** B
+**hint_nudge:** Count the whole job in mason-days; the total stays fixed no matter how the crew changes.
+**hint_strategy:** Total mason-days from the first scenario, minus the work done in the first phase, divided by the new crew size.
+**hint_setup:** Total = 5 x 12 = 60 mason-days; first phase 5 x 4 = 20; remaining 40 / 8 masons.
+**explanation:** This problem is governed by the principle that, for a fixed job, the total amount of work is constant and may be measured in mason-days, the product of the number of masons and the number of days they labor. Each mason works at the same constant individual rate, so the work completed by any group equals the number of masons multiplied by the number of days worked, and the total is conserved no matter how the crew changes over time.
+
+Let the total work required to build the wall be measured in mason-days. Because 5 masons complete the wall in 12 days, the total work equals
+
+5 × 12 = 60 mason-days.
+
+During the first phase, all 5 masons work for 4 days. The work completed in this phase is
+
+5 × 4 = 20 mason-days.
+
+The work that remains is therefore
+
+60 − 20 = 40 mason-days.
+
+In the final phase, 3 additional masons join, so 8 masons work together at the same individual rate. Let d be the number of additional days needed. The work they complete equals 8 × d, and this must equal the remaining 40 mason-days:
+
+8d = 40,
+
+so
+
+d = 40 / 8 = 5.
+
+The crew of 8 masons therefore needs 5 more days to finish the wall.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q73
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Two Objects Moving
+
+A jogger sets out along a straight path at a constant 9 kilometers per hour. Twenty minutes later, a cyclist starts from the same point along the same path in the same direction at 15 kilometers per hour. How many kilometers from the starting point will the cyclist overtake the jogger?
+
+- A) 5.0
+- B) 6.0
+- C) 7.5
+- D) 9.0
+- E) 10.0
+
+**answer:** C
+**hint_nudge:** Same direction, so the cyclist only needs to erase the jogger's head start; the question wants distance, not time.
+**hint_strategy:** Find the jogger's head-start distance, divide by the closing speed to get the catch-up time, then multiply by the cyclist's speed.
+**hint_setup:** Head start = 9 x (20/60) = 3 km; closing rate = 15 - 9 = 6 km/h; catch-up time = 3/6 h, then distance = 15 x that time.
+**explanation:** Because both travelers move in the same direction along the same path, this is a catch-up problem, and the rate at which the cyclist closes the gap equals the difference of the two speeds. The governing relationship throughout is distance = rate × time.
+
+First we find the jogger's head start. The jogger travels for 20 minutes, which is 20/60 = 1/3 of an hour, before the cyclist starts. At 9 kilometers per hour the jogger covers
+
+9 × (1/3) = 3 kilometers
+
+in that time, so when the cyclist starts, the jogger is 3 kilometers ahead.
+
+The cyclist gains on the jogger at a closing rate equal to the difference of their speeds:
+
+15 − 9 = 6 kilometers per hour.
+
+Let t be the number of hours, measured from the cyclist's start, until the cyclist overtakes the jogger. The cyclist erases the 3-kilometer head start when
+
+6t = 3,
+
+so
+
+t = 3 / 6 = 1/2 hour.
+
+The question asks for the distance from the starting point to the overtaking point, which is the distance the cyclist travels. At 15 kilometers per hour for 1/2 hour, the cyclist covers
+
+15 × (1/2) = 7.5 kilometers.
+
+As a check, in that same 1/2 hour the jogger travels an additional 9 × (1/2) = 4.5 kilometers, for a total of 3 + 4.5 = 7.5 kilometers from the start, which matches.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q74
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Combined-Then-Solo Work Rates
+
+Hose A can fill a reservoir in 4 hours, and hose B can fill the same reservoir in 12 hours. Both hoses are opened together for 1 hour and 30 minutes, after which hose A is shut off and hose B continues alone until the reservoir is full. What is the total time, in hours, from the moment the hoses were first opened until the reservoir is full?
+
+- A) 6.0
+- B) 6.5
+- C) 7.0
+- D) 7.5
+- E) 8.0
+
+**answer:** D
+**hint_nudge:** After hose A is shut off, only B works — finish the leftover at B's solo rate, not the combined rate.
+**hint_strategy:** Find the fraction filled jointly in 1.5 h, subtract from 1, divide the remainder by B's solo rate, then add the 1.5 h back.
+**hint_setup:** Combined 1/4 + 1/12 = 1/3; in 1.5 h that is 1/2; remaining 1/2 at B's rate 1/12 gives (1/2)/(1/12) h, then add 1.5.
+**explanation:** Work-rate problems are governed by the principle that a hose's rate is the reciprocal of the time it needs to fill the reservoir alone, and that rates of hoses running simultaneously add. When the set of running hoses changes partway through, the work done in each phase must be computed with the rate that applies to that phase.
+
+Let the reservoir equal 1 full job. Hose A fills it in 4 hours, so A's rate is 1/4 of the reservoir per hour, and hose B fills it in 12 hours, so B's rate is 1/12 of the reservoir per hour.
+
+During the first phase the hoses run together, so their combined rate is the sum of the individual rates:
+
+1/4 + 1/12 = 3/12 + 1/12 = 4/12 = 1/3 of the reservoir per hour.
+
+The first phase lasts 1 hour and 30 minutes, which is 1.5 hours, so the portion of the reservoir filled is
+
+1.5 × (1/3) = 1/2 of the reservoir.
+
+The portion remaining is therefore
+
+1 − 1/2 = 1/2 of the reservoir.
+
+In the second phase hose A is shut off, so the remaining work is done by hose B alone at its solo rate of 1/12 of the reservoir per hour. Let t be the number of hours hose B needs to finish. Then
+
+(1/12) × t = 1/2,
+
+so
+
+t = (1/2) ÷ (1/12) = (1/2) × 12 = 6 hours.
+
+The total time from the moment the hoses were first opened is the sum of the two phases:
+
+1.5 + 6 = 7.5 hours.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q75
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Average Rate / Harmonic Mean
+
+A cyclist covers a route in three segments of equal length. She rides the first segment at 60 kilometers per hour, the second at 30 kilometers per hour, and the third at 20 kilometers per hour. What is her average speed, in kilometers per hour, for the entire route?
+
+- A) 30
+- B) 33
+- C) 36
+- D) 37.5
+- E) 40
+
+**answer:** A
+**hint_nudge:** Equal distances at three speeds — never average the speeds; the slow segments eat the most time.
+**hint_strategy:** Average speed = total distance / total time; let each segment have a length divisible by all three speeds.
+**hint_setup:** Let each segment = 60 km. Times 60/60 = 1, 60/30 = 2, 60/20 = 3 h; average = total distance 180 km / total time __ h.
+**explanation:** Average speed is defined as total distance divided by total time, not as the arithmetic mean of the segment speeds. Because the three segments are equal in length but ridden at different speeds, more time is spent on the slower segments, so the speeds cannot be averaged directly; the total distance and total time must be computed separately.
+
+The average speed does not depend on the actual segment length, so we may choose a convenient value. Let each segment be 60 kilometers, a number divisible by every speed that arises. The total route length is then 3 × 60 = 180 kilometers.
+
+The time for each segment is its length divided by its speed:
+
+first segment: 60 / 60 = 1 hour,
+second segment: 60 / 30 = 2 hours,
+third segment: 60 / 20 = 3 hours.
+
+The total time is
+
+1 + 2 + 3 = 6 hours.
+
+Applying the definition of average speed gives
+
+average speed = total distance / total time = 180 / 6 = 30 kilometers per hour.
+
+Note that this value lies below the simple mean of the three speeds, (60 + 30 + 20)/3 ≈ 36.7, exactly as expected, because the equal-length segments cause the slower speeds to dominate the total time.
+
+The correct answer is A.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q76
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Two Objects Moving — Circular Track
+
+Two runners start from the same point on a circular track 400 meters long and run in opposite directions around the track. One runs at 5 meters per second and the other at 3 meters per second. How many seconds after they start will they meet for the second time?
+
+- A) 50
+- B) 80
+- C) 100
+- D) 133
+- E) 200
+
+**answer:** C
+**hint_nudge:** Opposite directions, so they close the gap at the SUM of their speeds; each meeting consumes one more full lap of combined distance.
+**hint_strategy:** Combined speed closes one track length per meeting; for the second meeting they must together cover two full track lengths.
+**hint_setup:** Combined speed = 5 + 3 = 8 m/s; second meeting needs 2 x 400 = 800 m together, so t = 800/8.
+**explanation:** When two objects start at the same point on a circular track and run in opposite directions, the distance between them along the track grows from both sides at once, so they approach each other at a rate equal to the sum of their speeds. Because the track is closed, the two runners meet each time the combined distance they have covered increases by one full track length. The governing relationship is distance = rate × time, applied to their combined motion.
+
+The two runners move toward each other around the loop at a combined rate of
+
+5 + 3 = 8 meters per second.
+
+They meet for the first time when their combined distance equals one full track length of 400 meters, and they meet for the second time when their combined distance equals two full track lengths, that is,
+
+2 × 400 = 800 meters.
+
+Let t be the number of seconds until the second meeting. Since the runners together cover 8 meters each second, the combined distance after t seconds is 8t, and we require
+
+8t = 800.
+
+Solving for t gives
+
+t = 800 / 8 = 100.
+
+As a check, in 100 seconds the faster runner covers 5 × 100 = 500 meters and the slower runner covers 3 × 100 = 300 meters, for a combined 800 meters, which is exactly two laps of the 400-meter track. Thus the runners meet for the second time 100 seconds after they start.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems

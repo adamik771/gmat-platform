@@ -2365,3 +2365,284 @@ Statement (2) says the largest integer is 100, but this fixes only a₇ and says
 
 Since Statement (1) alone settles the question while Statement (2) alone does not, the correct answer is A.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+
+---
+
+## Q81
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Arithmetic
+
+A bookstore sold only hardcover and paperback books one day. How many hardcover books did it sell that day?
+
+(1) The store sold 90 books in total that day.
+(2) The number of paperbacks sold was four times the number of hardcovers sold.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** We are asked for the number of hardcover books sold, an absolute count. Let h be the number of hardcovers and p the number of paperbacks. A single value of h is required for sufficiency.
+
+Statement (1) says h + p = 90 but gives no relationship between h and p. The store could have sold 30 hardcovers and 60 paperbacks, or 10 hardcovers and 80 paperbacks; these give different values of h. Statement (1) alone is not sufficient.
+
+Statement (2) says p = 4h, a relationship between the two counts but no total. The store could have sold 10 hardcovers and 40 paperbacks, or 20 hardcovers and 80 paperbacks; these give different values of h. Statement (2) alone is not sufficient.
+
+Taking the statements together, we substitute p = 4h into h + p = 90 to obtain h + 4h = 90, so 5h = 90 and h = 18. The value of h is uniquely determined, so both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q82
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is a positive integer, is n a multiple of 15?
+
+(1) n is a multiple of 5.
+(2) The sum of the digits of n is a multiple of 3.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Since 15 = 3 × 5 and the factors 3 and 5 share no common divisor greater than 1, n is a multiple of 15 exactly when it is a multiple of both 3 and 5. This is a yes/no question, so a statement is sufficient only if every permitted value of n gives the same answer.
+
+Statement (1) says n is a multiple of 5. If n = 10, then n is not a multiple of 15, giving "no"; if n = 15, then n is a multiple of 15, giving "yes." Because both outcomes occur, Statement (1) alone is not sufficient.
+
+Statement (2) says the sum of the digits of n is a multiple of 3, which is precisely the test for divisibility by 3. So this tells us n is divisible by 3. If n = 3, then n is not a multiple of 15, giving "no"; if n = 15, then n is a multiple of 15, giving "yes." Because both outcomes occur, Statement (2) alone is not sufficient.
+
+Taking the statements together, n is divisible by 5 (Statement 1) and divisible by 3 (Statement 2). Because 3 and 5 are coprime, n must be divisible by their product, 15. The answer is a definite "yes," so both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q83
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Algebra
+
+What is the value of the integer x?
+
+(1) x² − 7x + 12 = 0
+(2) x > 3
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** This is a value question: we need a single numerical value of the integer x. A statement is sufficient only if it forces exactly one value.
+
+Statement (1) gives the quadratic x² − 7x + 12 = 0, which factors as (x − 3)(x − 4) = 0, so x = 3 or x = 4. Two distinct values satisfy the equation, so x is not pinned to a single value. Statement (1) alone is not sufficient.
+
+Statement (2) gives x > 3 with no other constraint. The integer x could be 4, 5, 6, and so on, so x is not determined. Statement (2) alone is not sufficient.
+
+Taking the statements together, the candidates from Statement (1) are x = 3 and x = 4, and the condition x > 3 from Statement (2) eliminates x = 3 (since 3 is not greater than 3), leaving x = 4 as the only possibility. The value of x is uniquely determined, so both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q84
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If p and q are positive integers, is the product pq even?
+
+(1) p + q is odd.
+(2) p² + q is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** A product of integers is even when at least one factor is even and odd only when both factors are odd. So the question "Is pq even?" is equivalent to asking whether at least one of p and q is even. This is a yes/no question, so a statement is sufficient only if it forces a single answer.
+
+Statement (1) says p + q is odd. A sum of two integers is odd exactly when one is even and the other is odd. Therefore one of p and q is even, which guarantees that the product pq is even. The answer is a definite "yes," so Statement (1) alone is sufficient.
+
+Statement (2) says p² + q is even. Since p² has the same parity as p, this means p + q is even, which occurs when p and q are both even or both odd. If p = q = 2 (both even), then pq = 4 is even, giving "yes." If p = q = 3 (both odd), then pq = 9 is odd, giving "no." Because both outcomes occur, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone settles the question while Statement (2) alone does not, the correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q85
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Geometry
+
+A right circular cylinder has volume V. What is V?
+
+(1) The radius of the base is 3.
+(2) The height of the cylinder is twice the radius of the base.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** The volume of a right circular cylinder is V = πr²h, where r is the base radius and h is the height. To determine V we need both r and h, or enough information to fix the product r²h.
+
+Statement (1) gives r = 3 but says nothing about h. If h = 1, then V = π(9)(1) = 9π; if h = 2, then V = π(9)(2) = 18π. Two different volumes are possible, so Statement (1) alone is not sufficient.
+
+Statement (2) says h = 2r, a relationship that lets us write V = πr²(2r) = 2πr³, but it provides no value for r. If r = 1, then V = 2π; if r = 2, then V = 16π. Two different volumes are possible, so Statement (2) alone is not sufficient.
+
+Taking the statements together, r = 3 and h = 2r = 6, so V = π(3²)(6) = 54π, a single determined value. Both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q86
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Statistics
+
+A list of six positive integers has an average (arithmetic mean) of 8. Is the largest integer in the list greater than 20?
+
+(1) The mode of the list is 5 and it is the only mode.
+(2) Exactly five of the integers are equal to 5.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The six positive integers have a mean of 8, so their sum is 6 × 8 = 48. The question asks whether the largest integer exceeds 20. This is a yes/no question, so a statement is sufficient only if it forces a single answer.
+
+Statement (1) says 5 is the unique mode, meaning 5 appears more often than any other value and at least twice. Consider {5, 5, 6, 7, 8, 17}: the value 5 appears twice and every other value once, so 5 is the unique mode, the sum is 48, and the largest integer is 17, not greater than 20, giving "no." Now consider {5, 5, 5, 1, 2, 30}: again 5 is the unique mode (three occurrences) and the sum is 48, but the largest integer is 30, greater than 20, giving "yes." Because both outcomes occur, Statement (1) alone is not sufficient.
+
+Statement (2) says exactly five of the integers equal 5. Their contribution to the sum is 5 × 5 = 25, so the sixth integer must equal 48 − 25 = 23. Since 23 is greater than each 5, it is the largest integer, and 23 > 20, giving a definite "yes." Statement (2) alone is sufficient.
+
+Since Statement (2) alone settles the question while Statement (1) alone does not, the correct answer is B.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q87
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Rates
+
+A car travels from town X to town Y along a straight road. What was the car's average speed for the trip?
+
+(1) The distance from X to Y is 180 miles.
+(2) The trip took 3 hours.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Average speed equals total distance divided by total time. To determine it we need both the distance and the time, or enough information to fix their quotient.
+
+Statement (1) gives the distance as 180 miles but provides no time. If the trip took 2 hours, the average speed is 90 miles per hour; if it took 4 hours, the average speed is 45 miles per hour. Two different speeds are possible, so Statement (1) alone is not sufficient.
+
+Statement (2) gives the time as 3 hours but provides no distance. If the distance is 150 miles, the average speed is 50 miles per hour; if it is 240 miles, the average speed is 80 miles per hour. Two different speeds are possible, so Statement (2) alone is not sufficient.
+
+Taking the statements together, the distance is 180 miles and the time is 3 hours, so the average speed is 180 / 3 = 60 miles per hour, a single determined value. Both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q88
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Inequalities
+
+If x and y are nonzero integers, is x + y positive?
+
+(1) x³ + y³ > 0
+(2) x² > y²
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** We must determine whether x + y is positive. This is a yes/no question, so a statement is sufficient only if it forces a single answer.
+
+Statement (1) says x³ + y³ > 0. Factor the sum of cubes: x³ + y³ = (x + y)(x² − xy + y²). The second factor, x² − xy + y², is always positive for nonzero integers, since x² − xy + y² = (x − y/2)² + (3/4)y² is a sum of a square and a positive term whenever y ≠ 0. Therefore the sign of the product equals the sign of (x + y). Since the product is positive, x + y must be positive. The answer is a definite "yes," so Statement (1) alone is sufficient.
+
+Statement (2) says x² > y², equivalently |x| > |y|. This compares magnitudes but not the sign of the sum. Let x = 3 and y = 1; then |3| > |1| and x + y = 4 > 0, giving "yes." Let x = −3 and y = 1; then |−3| > |1| still holds, but x + y = −2 < 0, giving "no." Because both outcomes occur, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone settles the question while Statement (2) alone does not, the correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q89
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Percentages
+
+At a conference, every attendee registered as either a student or a professional. What percent of the attendees were students?
+
+(1) There were 120 students and 80 professionals.
+(2) The number of professionals was two-thirds of the number of students.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The percent of attendees who were students equals the number of students divided by the total number of attendees, expressed as a percentage. Because every attendee is either a student or a professional, the total is the sum of the two groups. This quantity depends only on the relative sizes of the two groups, not on their absolute counts.
+
+Statement (1) gives 120 students and 80 professionals, so the total is 200 and the percent of students is 120 / 200 = 0.60, or 60 percent. This is a single determined value, so Statement (1) alone is sufficient.
+
+Statement (2) says the number of professionals is two-thirds of the number of students. Writing the number of students as s, the number of professionals is (2/3)s, and the total is s + (2/3)s = (5/3)s. The percent of students is s / ((5/3)s) = 3/5 = 0.60, or 60 percent; the factor s cancels, so the percentage is the same regardless of the actual count. This is a single determined value, so Statement (2) alone is sufficient.
+
+Because each statement alone determines the percentage, there is no need to combine them. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q90
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is a positive integer, what is the units digit of n?
+
+(1) The units digit of n² is 6.
+(2) n + 1 is a multiple of 5.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** This is a value question: we need a single units digit for n. The units digit of any quantity built from n depends only on the units digit of n, so we examine which units digits of n satisfy each condition.
+
+Statement (1) says the units digit of n² is 6. Squaring the digits 0 through 9 gives units digits 0, 1, 4, 9, 6, 5, 6, 9, 4, 1 respectively, so n² ends in 6 exactly when n ends in 4 or 6 (for example, 4² = 16 and 6² = 36). Because the units digit of n could be 4 or 6, Statement (1) alone is not sufficient.
+
+Statement (2) says n + 1 is a multiple of 5. A number is a multiple of 5 exactly when it ends in 0 or 5, so n + 1 ends in 0 or 5, which means n ends in 9 or 4 (for example, 9 + 1 = 10 and 14 + 1 = 15). Because the units digit of n could be 9 or 4, Statement (2) alone is not sufficient.
+
+Taking the statements together, Statement (1) restricts the units digit of n to the set {4, 6} and Statement (2) restricts it to the set {4, 9}. The only value common to both sets is 4, so the units digit of n must be 4. For example, n could be 4, 14, 24, and so on; each ends in 4, has a square ending in 6, and has n + 1 ending in 5. The units digit is uniquely determined, so both statements together are sufficient while neither alone suffices. The correct answer is C.
+**related_reading:** reading-di-02-data-sufficiency-logic

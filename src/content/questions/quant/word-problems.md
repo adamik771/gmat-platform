@@ -2968,3 +2968,285 @@ Taking the statements together gives the system a + c = 200 and 12a + 7c = 1,990
 
 The correct answer is C.
 **related_reading:** reading-quant-05-word-problems
+
+
+---
+
+## Q94
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Age Problem — Two Equations
+
+A grandmother's current age is six times her grandson's current age. In 12 years, the grandmother will be three times as old as her grandson. How old is the grandmother now?
+
+- A) 36
+- B) 42
+- C) 48
+- D) 54
+- E) 60
+
+**answer:** C
+**explanation:** This age problem is solved by translating each stated relationship into a linear equation and solving the resulting system. A relationship at the present time and a relationship at a future time give two independent equations, which are enough to determine the two unknown ages.
+
+Let G represent the grandmother's current age and let S represent the grandson's current age.
+
+The present-time condition states that the grandmother is six times as old as her grandson, which gives G = 6S.
+
+The future condition concerns the situation in 12 years, when each person will be 12 years older. The grandmother's age will then be G + 12 and the grandson's age will be S + 12. Since the grandmother will be three times as old as her grandson at that time, we have G + 12 = 3(S + 12).
+
+Substituting G = 6S into the second equation gives 6S + 12 = 3(S + 12). Expanding the right side yields 6S + 12 = 3S + 36. Subtracting 3S and 12 from both sides gives 3S = 24, so S = 8.
+
+Returning to G = 6S, we substitute S = 8 to obtain G = 6(8) = 48.
+
+As a check, in 12 years the grandmother will be 48 + 12 = 60 and the grandson will be 8 + 12 = 20, and 60 = 3(20), which satisfies the future condition. The present condition also holds, since 48 = 6(8).
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q95
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture — Replacement
+
+A radiator holds 30 liters of a coolant mixture that is 60% antifreeze and 40% water. A mechanic drains off some of this mixture and refills the radiator with the same volume of pure water, keeping the total volume at 30 liters. After this single replacement, the radiator contains a mixture that is 40% antifreeze. How many liters of the original mixture were drained off?
+
+- A) 6
+- B) 8
+- C) 10
+- D) 12
+- E) 15
+
+**answer:** C
+**explanation:** This is a replacement mixture problem, in which part of a solution is removed and replaced by a different liquid while the total volume is held constant. The governing principle is to track the amount of the key substance, here antifreeze. Draining a fraction of the well-mixed solution removes that same fraction of every component, and refilling with pure water adds volume but no antifreeze, so the antifreeze level falls.
+
+Let x represent the number of liters drained off and then replaced with pure water.
+
+The radiator initially holds 30 liters that are 60% antifreeze, so the amount of antifreeze present at the start is 0.60 × 30 = 18 liters.
+
+When x liters of the well-mixed solution are drained, the drained portion is also 60% antifreeze, so it removes 0.60x liters of antifreeze. The refill is pure water, which contributes no antifreeze. After the replacement, the amount of antifreeze is therefore 18 − 0.60x liters, while the total volume remains 30 liters.
+
+The resulting mixture is required to be 40% antifreeze, so the amount of antifreeze must equal 0.40 × 30 = 12 liters. Setting the antifreeze amount equal to this target gives
+
+18 − 0.60x = 12.
+
+Subtracting 18 from both sides yields −0.60x = −6, and dividing both sides by −0.60 gives x = 10.
+
+As a check, draining 10 liters of the 60% mixture removes 0.60 × 10 = 6 liters of antifreeze, leaving 18 − 6 = 12 liters of antifreeze in 30 liters of mixture, which is 12 / 30 = 40%, as required.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q96
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The sum of four consecutive even integers is 60 greater than the smallest of the four integers. What is the largest of the four integers?
+
+- A) 16
+- B) 18
+- C) 20
+- D) 22
+- E) 24
+
+**answer:** D
+**explanation:** Consecutive even integers differ by 2, so a set of four consecutive even integers can be expressed in terms of a single variable. We let n represent the smallest of the four integers; the others are then n + 2, n + 4, and n + 6.
+
+The sum of the four integers is
+
+n + (n + 2) + (n + 4) + (n + 6) = 4n + 12.
+
+The condition states that this sum is 60 greater than the smallest integer, which is n. We translate the words "60 greater than the smallest" into the expression n + 60 and set the sum equal to it:
+
+4n + 12 = n + 60.
+
+Subtracting n from both sides gives 3n + 12 = 60. Subtracting 12 from both sides gives 3n = 48, and dividing both sides by 3 gives n = 16.
+
+The four consecutive even integers are therefore 16, 18, 20, and 22, and the largest is 22.
+
+As a check, the sum of the four integers is 16 + 18 + 20 + 22 = 76, and the smallest integer is 16; the difference is 76 − 16 = 60, which matches the stated condition.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q97
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Distribution — Sequential Shares
+
+A sum of money is divided among three people: Priya, Quincy, and Rohan. Priya receives $20 more than one-third of the total. Quincy then receives $30 more than half of the amount that remains after Priya's share is removed. Rohan receives the remaining $70. What was the total sum of money divided?
+
+- A) $300
+- B) $330
+- C) $360
+- D) $390
+- E) $420
+
+**answer:** B
+**explanation:** This is a sequential-distribution problem, in which each share is described in terms of the running remainder of the total. The reliable method is to introduce a single variable for the total, express each share in order, and then use the final fixed remainder to form one equation.
+
+Let T represent the total sum of money to be divided.
+
+Priya receives $20 more than one-third of the total, so Priya's share is (1/3)T + 20. The amount remaining after Priya's share is removed is
+
+T − [(1/3)T + 20] = (2/3)T − 20.
+
+Quincy receives $30 more than half of what remains, so Quincy's share is
+
+(1/2)[(2/3)T − 20] + 30 = (1/3)T − 10 + 30 = (1/3)T + 20.
+
+The amount remaining after Quincy's share is removed is
+
+[(2/3)T − 20] − [(1/3)T + 20] = (1/3)T − 40.
+
+Rohan receives whatever is left, and we are told this remaining amount is $70. Therefore
+
+(1/3)T − 40 = 70.
+
+Adding 40 to both sides gives (1/3)T = 110, and multiplying both sides by 3 gives T = 330.
+
+As a check, with T = 330 Priya receives (1/3)(330) + 20 = 110 + 20 = 130, leaving 330 − 130 = 200. Quincy receives (1/2)(200) + 30 = 100 + 30 = 130, leaving 200 − 130 = 70, which matches Rohan's stated share. The three shares 130 + 130 + 70 sum to 330, confirming the total.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q98
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mixture — Blending Two Solutions
+
+A pharmacist combines a solution that is 15% alcohol with a solution that is 35% alcohol to produce 50 milliliters of a solution that is 27% alcohol. How many milliliters of the 35% solution are used?
+
+- A) 20
+- B) 25
+- C) 30
+- D) 32
+- E) 35
+
+**answer:** C
+**explanation:** This is a mixture problem in which two solutions of different concentrations are blended. The governing principle is that the total amount of the pure substance, here alcohol, is conserved: the alcohol contributed by each component equals the concentration of that component multiplied by its volume, and the sum of these amounts equals the alcohol in the final blend.
+
+Let x represent the number of milliliters of the 35% solution used. Because the two components together make 50 milliliters, the volume of the 15% solution is 50 − x milliliters.
+
+The amount of alcohol from the 35% solution is 0.35x, and the amount of alcohol from the 15% solution is 0.15(50 − x). The final blend of 50 milliliters at 27% alcohol contains 0.27 × 50 = 13.5 milliliters of alcohol. Conservation of alcohol gives
+
+0.35x + 0.15(50 − x) = 13.5.
+
+Expanding the left side yields
+
+0.35x + 7.5 − 0.15x = 13.5,
+
+which simplifies to
+
+0.20x + 7.5 = 13.5.
+
+Subtracting 7.5 from both sides gives 0.20x = 6, and dividing both sides by 0.20 gives x = 30.
+
+As a check, 30 milliliters of the 35% solution contributes 0.35 × 30 = 10.5 milliliters of alcohol, and the remaining 20 milliliters of the 15% solution contributes 0.15 × 20 = 3 milliliters; the total is 10.5 + 3 = 13.5 milliliters of alcohol in 50 milliliters of blend, which is exactly 27%.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q99
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Consecutive Integers
+
+The largest of five consecutive odd integers is 5 less than twice the smallest of the five integers. What is the sum of the five integers?
+
+- A) 65
+- B) 75
+- C) 85
+- D) 95
+- E) 105
+
+**answer:** C
+**explanation:** Consecutive odd integers increase by 2, so a set of five consecutive odd integers can be written in terms of the smallest one. We let s represent the smallest of the five integers; the next four are then s + 2, s + 4, s + 6, and s + 8, so the largest is s + 8.
+
+The condition states that the largest integer is 5 less than twice the smallest. Twice the smallest is 2s, and "5 less than" that quantity is 2s − 5. Setting the largest equal to this expression gives
+
+s + 8 = 2s − 5.
+
+Subtracting s from both sides gives 8 = s − 5, and adding 5 to both sides gives s = 13.
+
+The five consecutive odd integers are therefore 13, 15, 17, 19, and 21. Their sum is
+
+13 + 15 + 17 + 19 + 21 = 85.
+
+As a check, the largest integer is 21, twice the smallest is 2 × 13 = 26, and 26 − 5 = 21, which matches the largest integer. (Equivalently, because the five integers are symmetric about the middle value 17, their sum is 5 × 17 = 85.)
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q100
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Distribution — Linked Shares
+
+A prize of $144 is divided among three contestants: Ana, Bruno, and Cleo. Ana receives twice as much as Bruno, and Cleo receives $24 more than Bruno. How many dollars does Cleo receive?
+
+- A) 30
+- B) 42
+- C) 48
+- D) 54
+- E) 60
+
+**answer:** D
+**explanation:** When several shares are each described in terms of one of them, the most efficient approach is to express every share using a single variable, write an equation for the total, and then solve for the required share.
+
+Let B represent the number of dollars Bruno receives. Ana receives twice as much as Bruno, so Ana's share is 2B. Cleo receives $24 more than Bruno, so Cleo's share is B + 24.
+
+Because the three shares together make up the full prize of $144, we have
+
+2B + B + (B + 24) = 144.
+
+Combining like terms on the left side gives 4B + 24 = 144. Subtracting 24 from both sides yields 4B = 120, and dividing both sides by 4 gives B = 30.
+
+The question asks for Cleo's share, which is B + 24. Substituting B = 30 gives Cleo's share as 30 + 24 = 54 dollars.
+
+As a check, Bruno receives 30, Ana receives 2 × 30 = 60, and Cleo receives 54; these sum to 30 + 60 + 54 = 144, which matches the total prize.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q101
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Age Problem — Two People
+
+Maria is older than her brother Luis. What is Maria's present age, in years?
+
+(1) The sum of Maria's present age and Luis's present age is 40.
+(2) In 5 years, Maria's age will be twice Luis's present age.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** This is a data sufficiency question about two unknown ages, so the task is to decide whether the information pins Maria's present age to a single value, not merely to compute it. Let M be Maria's present age and L be Luis's present age; because there are two unknowns, two independent linear relationships are generally required.
+
+Consider statement (1). It gives M + L = 40, a single equation in two unknowns. Many pairs satisfy it, for example M = 25 and L = 15, or M = 30 and L = 10, both of which respect the condition that Maria is older than Luis. Since more than one value of M is possible, statement (1) alone is not sufficient.
+
+Consider statement (2). It states that in 5 years Maria's age, M + 5, will equal twice Luis's present age, giving M + 5 = 2L. This is again a single equation in two unknowns. For example, M = 25 with L = 15 satisfies it (25 + 5 = 30 = 2 × 15), and so does M = 15 with L = 10 (15 + 5 = 20 = 2 × 10). Since more than one value of M is possible, statement (2) alone is not sufficient.
+
+Now take the two statements together. We have the system M + L = 40 and M + 5 = 2L. From the first equation, M = 40 − L. Substituting into the second gives (40 − L) + 5 = 2L, that is, 45 − L = 2L, so 45 = 3L and L = 15. Then M = 40 − 15 = 25, which is a single determined value and is consistent with Maria being older than Luis. The two statements together are sufficient, while neither alone is sufficient.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems

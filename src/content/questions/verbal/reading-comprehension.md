@@ -4028,3 +4028,590 @@ The correct answer is B.
 **mistake_d:** The author exposes no flaws in Bramwell's account; the qualifications are Bramwell's own, presented sympathetically.
 **mistake_e:** The author treats the reinterpretation as significant, devoting most of the passage to developing it, not as unimportant.
 **related_reading:** reading-verbal-06-rc-question-types
+
+
+---
+
+## Passage 33: The Quiet Economics of Repair
+
+For most of the twentieth century, the relationship between manufacturers and the people who repaired their products was assumed to be adversarial only at the margins. A company sold a machine, and independent technicians, hardware stores, and resourceful owners kept it running for years afterward; the manufacturer's interest ended, more or less, at the point of sale. In recent decades, however, that arrangement has quietly inverted. As products from tractors to insulin pumps have come to depend on proprietary software, manufacturers have gained the technical and legal means to control not only how a device is made but how, and by whom, it may be mended. Diagnostic codes are encrypted, replacement parts are paired electronically to a single unit, and service manuals are withheld from anyone outside an authorized network. The effect is to convert repair from an open activity into a licensed one.
+
+Advocates of the resulting "right to repair" movement frame the issue chiefly in terms of consumer cost and autonomy: a farmer who cannot recalibrate his own equipment must wait days for a dealer's technician and pay a premium for the privilege. Yet the economic historian Pell Vantana has argued that this framing, while accurate, understates the deeper stakes. The capacity to repair, she contends, has historically been a wellspring of incremental innovation. The mechanic who disassembles a balky pump to understand why it failed is performing, in miniature, the same investigative work as a research engineer; many of the most durable improvements in industrial machinery, she notes, originated not in corporate laboratories but in the accumulated tinkering of those who maintained the equipment in the field. To wall off repair, on this view, is not merely to raise prices but to sever a channel through which practical knowledge has long flowed upward.
+
+Manufacturers counter that the consolidation of repair is a necessary consequence of complexity rather than a strategy of control. A modern device, they argue, is a tightly integrated system in which an untrained intervention can compromise safety, void warranties, or expose proprietary designs to imitation; restricting service to qualified technicians protects both the user and the firm's legitimate investment in research. Vantana does not dismiss these concerns outright, but she observes that the same arguments were advanced, and largely discredited, in earlier disputes over automobile servicing, where independent garages ultimately proved both safe and a source of competitive pressure that benefited consumers. The present contest, she concludes, is less a genuine debate about safety than a familiar struggle over who is permitted to learn from a machine.
+
+### Q134
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) trace the historical development of software encryption in consumer products
+- B) advocate for the passage of right-to-repair legislation in every affected industry
+- C) demonstrate that independent repair technicians are as skilled as corporate research engineers
+- D) present a scholar's argument that restrictions on repair carry costs beyond consumer expense, and set it against the manufacturers' defense
+- E) compare the servicing of automobiles with the servicing of agricultural equipment
+
+**answer:** D
+**explanation:** A primary-purpose question asks for the organizing aim that accounts for the whole passage, not for any single paragraph or detail.
+
+Paragraph one describes how the once-open activity of repair has become a "licensed one" through proprietary software and parts-pairing. Paragraph two introduces Vantana's central claim: the standard consumer-cost framing "understates the deeper stakes" because repair has historically been a "wellspring of incremental innovation," a channel "through which practical knowledge has long flowed upward." Paragraph three presents the manufacturers' counterargument (complexity, safety, protection of investment) and then gives Vantana's rebuttal, drawing the parallel to automobile servicing and concluding that the contest concerns "who is permitted to learn from a machine."
+
+The governing movement is therefore: here is how repair became restricted, here is a scholar's argument that the restriction has under-appreciated innovation costs, and here is the manufacturers' defense together with her response to it. Choice D captures exactly this structure, naming both Vantana's enlarged argument and the opposing position the passage sets against it.
+
+The correct answer is D.
+**mistake_a:** Encryption is mentioned in paragraph one only as one mechanism by which repair is restricted; the passage offers no history of its development and does not treat it as the central subject. This choice mistakes a supporting detail for the purpose.
+**mistake_b:** The passage reports Vantana's argument and the manufacturers' reply in an analytical register; it never urges the reader to support legislation, let alone "in every affected industry." This choice converts a balanced exposition into advocacy.
+**mistake_c:** Paragraph two compares the mechanic's investigative work to that of a research engineer to support Vantana's point about innovation, but it does not claim the two are equally skilled, and the comparison is a single step in her argument rather than the aim of the whole passage.
+**mistake_e:** The automobile-servicing comparison appears only in paragraph three as one piece of Vantana's rebuttal. It is an instrument of her argument, not the organizing purpose, and the passage does not develop a systematic comparison of the two industries.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q135
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+Vantana's argument suggests that she would most likely regard the increasing restriction of repair as troubling primarily because it
+
+- A) raises the prices that consumers must pay for routine servicing
+- B) prevents manufacturers from protecting their proprietary designs from imitation
+- C) violates the legal warranties that accompany the sale of complex devices
+- D) interrupts a process by which knowledge gained in maintaining machines has fed back into improving them
+- E) makes modern devices more dangerous for untrained users to operate
+
+**answer:** D
+**explanation:** This is an inference question; the task is to identify which concern Vantana would treat as primary, given her stated position.
+
+Paragraph two is explicit that Vantana accepts the consumer-cost framing as "accurate" but believes it "understates the deeper stakes." Her own emphasis is that "the capacity to repair has historically been a wellspring of incremental innovation" and that walling off repair "sever[s] a channel through which practical knowledge has long flowed upward." Her primary objection, then, is the loss of this upward flow of practical knowledge into improvement of the machines themselves. Choice D restates exactly that: restriction "interrupts a process by which knowledge gained in maintaining machines has fed back into improving them."
+
+The correct answer is D.
+**mistake_a:** Higher consumer prices are the framing Vantana explicitly says is accurate but insufficient; she invokes it only to set up her deeper point. It is therefore not the concern she treats as primary.
+**mistake_b:** Protecting proprietary designs is a manufacturers' justification for restriction, the position Vantana is arguing against. This choice attributes the opposing side's concern to her.
+**mistake_c:** Warranties appear in paragraph three as part of the manufacturers' argument for restricting repair, not as a concern of Vantana's. The passage gives no indication she objects on warranty grounds.
+**mistake_e:** Danger to untrained users is again a manufacturers' argument; Vantana points out that similar safety claims were "largely discredited" in the automobile case. She does not present device danger as a reason restriction is troubling.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q136
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Function
+
+The reference to earlier disputes over automobile servicing functions primarily to
+
+- A) concede that the manufacturers' safety concerns have proven valid over time
+- B) provide a historical precedent suggesting that the manufacturers' present arguments may not withstand scrutiny
+- C) introduce a new industry whose repair practices the passage will go on to analyze in detail
+- D) establish that automobiles are technically more complex than agricultural equipment
+- E) demonstrate that independent garages were ultimately driven out of business
+
+**answer:** B
+**explanation:** This is a function question, asking what role a specific reference plays in the argument.
+
+In paragraph three, Vantana confronts the manufacturers' claims about complexity and safety. She then "observes that the same arguments were advanced, and largely discredited, in earlier disputes over automobile servicing, where independent garages ultimately proved both safe and a source of competitive pressure that benefited consumers." The automobile case is thus offered as a precedent: a prior instance in which identical arguments failed, which she uses to cast doubt on the manufacturers' present claims. Choice B captures this precisely.
+
+The correct answer is B.
+**mistake_a:** The reference does the opposite of conceding the safety concerns; Vantana cites the automobile case precisely because the safety arguments there were "largely discredited."
+**mistake_c:** Automobile servicing is invoked only as a brief analogy within Vantana's rebuttal; the passage does not go on to analyze it in detail, so this misstates the reference's function.
+**mistake_d:** The comparison concerns the structure of the arguments and their outcome, not the relative technical complexity of cars versus farm equipment, which the passage never assesses.
+**mistake_e:** The passage states the opposite: independent garages "proved both safe and a source of competitive pressure that benefited consumers." There is no claim they were driven out of business.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q137
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, manufacturers justify the consolidation of repair on the grounds that all of the following could result from untrained intervention EXCEPT
+
+- A) compromised safety for the user
+- B) the voiding of product warranties
+- C) the exposure of proprietary designs to imitation
+- D) the slowing of incremental innovation in the field
+- E) the undermining of the firm's investment in research
+
+**answer:** D
+**explanation:** This is an EXCEPT detail question; four choices are supported by the passage as manufacturers' justifications, and the credited answer is the one that is not.
+
+Paragraph three states the manufacturers' position: an untrained intervention "can compromise safety, void warranties, or expose proprietary designs to imitation; restricting service to qualified technicians protects both the user and the firm's legitimate investment in research." This directly supports choices A (compromise safety), B (void warranties), C (expose proprietary designs to imitation), and E (protect the firm's investment in research).
+
+Choice D, the slowing of incremental innovation, is not a manufacturers' justification. On the contrary, the loss of incremental innovation is Vantana's objection to restricting repair, advanced in paragraph two. Because the stem asks for the item that is not among the manufacturers' grounds, D is the correct answer.
+
+The correct answer is D.
+**mistake_a:** Compromised safety is explicitly listed among the harms manufacturers attribute to untrained intervention, so it is a stated justification and not the exception.
+**mistake_b:** The voiding of warranties is named directly in paragraph three as a consequence manufacturers cite, so it is a stated justification.
+**mistake_c:** Exposure of proprietary designs to imitation is one of the three harms the passage attributes to manufacturers' reasoning, so it is a stated justification.
+**mistake_e:** Protecting the firm's "legitimate investment in research" is given as a reason for restricting service to qualified technicians, so it is a stated justification.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 34: The Slow Discovery of the Microbiome
+
+When physicians first learned to culture bacteria in the nineteenth century, the discovery reshaped medicine around a single compelling idea: that specific microbes cause specific diseases, and that health is, in large part, the absence of such invaders. This framework, sometimes called the germ theory, was enormously productive. It explained contagion, justified sanitation, and eventually underwrote the development of antibiotics. But it also encouraged a habit of mind that proved difficult to shed, namely the assumption that the proper relationship between the human body and the microbial world is one of exclusion. For nearly a century, the bacteria that live on and within us were studied chiefly when they made us ill.
+
+The reappraisal now underway began, in part, with a technical limitation. The vast majority of microbes that inhabit the human gut cannot be grown in a laboratory dish; they require conditions that culturing methods could not reproduce, and so they remained, in a literal sense, invisible to the discipline that should have studied them. Only when researchers learned to identify organisms directly from their genetic material, without first growing them, did the scale of this hidden population come into view. The human gut, it emerged, hosts a community of microbes whose collective genome dwarfs our own and whose members are overwhelmingly not pathogens but long-standing residents, many of them performing functions, such as the synthesis of certain vitamins and the regulation of immune responses, that the body cannot perform unaided.
+
+This recognition has not so much overturned the germ theory as relocated it within a larger picture. Disease-causing microbes are real, and the achievements built upon their study remain secure. What has changed is the default assumption. Where the older view treated the presence of microbes as a problem to be managed, the emerging view treats their absence, or the disruption of their balance, as itself a source of disorder. Conditions once attributed to causes entirely internal to the body, including certain metabolic and inflammatory disorders, are now being reexamined for their links to the composition of the resident microbial community. The shift is subtle but consequential: it asks medicine to think less about what to eliminate and more about what to cultivate.
+
+### Q138
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+Which of the following best expresses the central idea of the passage?
+
+- A) The germ theory of disease has been shown to be fundamentally mistaken and is being abandoned.
+- B) The human gut contains more bacterial cells than the rest of the body combined.
+- C) Advances in genetic identification have revealed a resident microbial community that is reshaping medicine's assumptions about the body's relationship to microbes.
+- D) Antibiotics have done more harm than good by disrupting the body's natural microbial balance.
+- E) Nineteenth-century physicians were wrong to emphasize sanitation in the control of contagious disease.
+
+**answer:** C
+**explanation:** A central-idea question seeks the single statement that captures the passage as a whole.
+
+Paragraph one establishes the germ-theory framework and the "habit of mind" it encouraged, treating the body's relationship to microbes as "one of exclusion." Paragraph two explains how a technical advance, identifying organisms "directly from their genetic material," revealed a vast resident community that is "overwhelmingly not pathogens." Paragraph three describes the resulting shift in medicine's "default assumption," from managing the presence of microbes to attending to their balance, ending with the formulation that medicine should think "less about what to eliminate and more about what to cultivate."
+
+Choice C unifies these elements: a genetic-identification advance revealed a resident microbial community, and that discovery is reshaping medicine's assumptions about the body's relationship to microbes. This is exactly the arc of the passage.
+
+The correct answer is C.
+**mistake_a:** The passage states explicitly that the new picture "has not so much overturned the germ theory as relocated it within a larger picture" and that the achievements built on it "remain secure." Claiming the theory is mistaken and being abandoned contradicts the text.
+**mistake_b:** The passage says the resident microbes' "collective genome dwarfs our own," which concerns genetic material, not a count of cells. This choice both misstates the detail and elevates a single point to the status of the central idea.
+**mistake_d:** The passage credits antibiotics as an achievement of the germ theory and never claims they have done more harm than good. This is unsupported and contrary to the passage's measured tone.
+**mistake_e:** The passage describes sanitation as something the germ theory "justified" and treats that legacy as secure. It never faults nineteenth-century physicians for emphasizing sanitation.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q139
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, the resident microbes of the human gut remained largely unstudied for so long primarily because
+
+- A) physicians believed that studying them would undermine the germ theory
+- B) most of them could not be grown using the laboratory culturing methods available
+- C) their genetic material was indistinguishable from that of human cells
+- D) they were thought to cause the very diseases that medicine sought to cure
+- E) researchers lacked the funding to investigate organisms that did not cause illness
+
+**answer:** B
+**explanation:** This is a specific-detail question; the answer must rest on explicit passage text.
+
+Paragraph two states that the reappraisal "began, in part, with a technical limitation. The vast majority of microbes that inhabit the human gut cannot be grown in a laboratory dish; they require conditions that culturing methods could not reproduce, and so they remained, in a literal sense, invisible to the discipline that should have studied them." The barrier was therefore the inability to culture these organisms with available methods. Choice B restates this directly.
+
+The correct answer is B.
+**mistake_a:** The passage attributes the neglect to a culturing limitation and to a "habit of mind" of exclusion, not to a deliberate belief that studying the microbes would undermine the germ theory.
+**mistake_c:** The passage says the microbes' collective genome "dwarfs our own"; it never claims their genetic material was indistinguishable from human cells. Genetic identification is in fact what made them visible.
+**mistake_d:** The passage states the resident microbes are "overwhelmingly not pathogens." There is no claim that they were thought to cause the diseases medicine sought to cure.
+**mistake_e:** Funding is never mentioned. The stated reason is technical, the failure of culturing methods, not a shortage of resources.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q140
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+It can be inferred from the passage that the author regards the germ theory as
+
+- A) a discredited framework whose continued influence impedes medical progress
+- B) an idea that applies to contagious diseases but has no bearing on metabolic disorders
+- C) the only sound basis for the diagnosis and treatment of disease
+- D) a theory whose practical achievements have been largely undone by recent research
+- E) a valuable but incomplete account that the new understanding extends rather than refutes
+
+**answer:** E
+**explanation:** This is an inference question; the answer is a conclusion the passage supports without stating outright.
+
+Throughout, the author treats the germ theory with respect while arguing that it is partial. Paragraph one calls it "enormously productive." Paragraph three states that the new recognition "has not so much overturned the germ theory as relocated it within a larger picture," that "disease-causing microbes are real," and that "the achievements built upon their study remain secure." Yet the same paragraph insists the "default assumption" must change. The author thus regards the theory as valuable but incomplete, extended rather than refuted by the new understanding. Choice E captures this balance exactly.
+
+The correct answer is E.
+**mistake_a:** The author calls the theory productive and its achievements secure; nothing suggests its influence impedes progress. The text frames the new view as an extension, not a corrective to a discredited framework.
+**mistake_b:** The passage suggests the new microbial picture is relevant to "certain metabolic and inflammatory disorders," but it does not say the germ theory itself is irrelevant to metabolic disorders, nor does it partition the theory's applicability in this way.
+**mistake_c:** The passage argues precisely that the germ theory is not the whole story, since the absence or imbalance of microbes can itself be "a source of disorder." Calling it the only sound basis contradicts the central argument.
+**mistake_d:** The passage states that the theory's achievements "remain secure." Claiming they have been largely undone reverses the text.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q141
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Function
+
+The final sentence of the passage ("The shift is subtle but consequential...") serves primarily to
+
+- A) introduce a counterargument to the view developed earlier in the paragraph
+- B) summarize the practical reorientation that the new understanding implies for medicine
+- C) qualify the claim that the germ theory remains secure
+- D) raise a question that the passage acknowledges it cannot answer
+- E) cite a specific disorder whose treatment has already changed
+
+**answer:** B
+**explanation:** This is a function question, asking what the closing sentence accomplishes.
+
+The final sentence reads: "The shift is subtle but consequential: it asks medicine to think less about what to eliminate and more about what to cultivate." Coming at the end of a paragraph that contrasts the older view (microbes as "a problem to be managed") with the emerging view (their absence or imbalance as "a source of disorder"), the sentence distills that contrast into a single practical reorientation, what medicine should focus on going forward. Choice B names this summarizing, forward-looking function.
+
+The correct answer is B.
+**mistake_a:** The sentence reinforces the view the paragraph has developed; it introduces no counterargument and the words "less about... more about" continue, rather than oppose, the prior reasoning.
+**mistake_c:** The sentence concerns medicine's change of focus, not the security of the germ theory; it neither mentions nor qualifies that earlier claim.
+**mistake_d:** The sentence states a conclusion, not an open question. It expresses what the new view "asks medicine" to do, presenting a settled reorientation.
+**mistake_e:** No specific disorder is named in the final sentence; metabolic and inflammatory disorders are mentioned earlier and only as conditions "being reexamined," not as cases whose treatment has already changed.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 35: Two Views of the Vanishing Wetland
+
+The drainage of wetlands for agriculture and settlement was long regarded, in the regions that practiced it, as an unambiguous good. Standing water bred disease, the reasoning ran, and land submerged or boggy was land wasted; to ditch a marsh and plant it was to turn a liability into productive ground. By the middle of the twentieth century, vast areas of former wetland had been converted in this spirit, and the practice was so thoroughly woven into the idea of improvement that the losses it entailed were scarcely registered as losses at all.
+
+The ecological reassessment of wetlands that followed did not arise from a single discovery but from the slow convergence of several lines of evidence. Hydrologists found that wetlands act as natural reservoirs, absorbing floodwaters during storms and releasing them gradually, so that their removal tended to make downstream flooding both more frequent and more severe. Water-quality researchers showed that the same waterlogged soils that had been dismissed as useless were in fact filtering pollutants and trapping sediment, functions that engineered substitutes could replicate only at great expense. Ecologists, meanwhile, documented the role of wetlands as nurseries for fish and waterfowl whose value, measured in fisheries and hunting alike, had simply gone uncounted in the older ledger. None of these findings was decisive on its own, but together they reframed the drained marsh not as reclaimed land but as a dismantled system whose services had been quietly subsidizing the activities that replaced it.
+
+This reframing has produced a characteristic disagreement among those who accept it. One camp argues that because wetlands provide measurable services, the most effective way to protect them is to assign those services a monetary value and incorporate that value into the calculations that govern land use; a marsh that is shown to be worth more intact than drained, on this view, will tend to be left intact. A second camp is wary of this strategy. To price a wetland's services, they contend, is to accept the very accounting frame that licensed the original destruction, a frame in which anything not assigned a number is treated as worth nothing. The danger, they argue, is not that wetlands will be undervalued but that some of what they provide, being genuinely difficult to quantify, will once again fall outside the ledger and be lost for precisely the reason it was lost before.
+
+### Q142
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) A long-held practice is described, the evidence that prompted its reassessment is presented, and a disagreement among those who accept that reassessment is laid out.
+- B) Two competing scientific theories are introduced and one is shown to be superior.
+- C) A problem is defined, several solutions are proposed, and the best solution is endorsed.
+- D) A historical narrative of one region's land use is given and then projected into the future.
+- E) A claim is asserted, attacked by critics, and then defended against their objections.
+
+**answer:** A
+**explanation:** This is a passage-structure question, asking for the arrangement of the whole.
+
+Paragraph one describes the long-held practice of draining wetlands and the reasoning that made it seem an "unambiguous good." Paragraph two presents the convergent evidence, hydrological, water-quality, and ecological, that "reframed" the drained marsh as "a dismantled system." Paragraph three lays out "a characteristic disagreement among those who accept" that reframing: one camp favors pricing wetland services, the other warns that pricing reproduces the destructive accounting frame. Choice A names these three movements in order: practice described, reassessing evidence presented, disagreement among those who accept the reassessment.
+
+The correct answer is A.
+**mistake_b:** The passage does not pit two scientific theories against each other; the three lines of evidence in paragraph two are complementary, and the paragraph-three disagreement is about strategy, not about which theory is true.
+**mistake_c:** The passage does not propose solutions and then endorse the best; the two camps in paragraph three are presented without the author declaring a winner.
+**mistake_d:** The passage is analytical and treats wetlands generally rather than narrating one region's land use, and it offers no projection of that narrative into the future.
+**mistake_e:** No single claim is asserted, attacked, and then defended; the structure moves from practice to evidence to an unresolved strategic disagreement.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q143
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+The passage suggests that the members of the "second camp" described in the final paragraph would most likely agree that
+
+- A) wetlands provide no services that can meaningfully be measured
+- B) assigning monetary value to wetland services may protect the services that can be quantified while leaving others vulnerable
+- C) the drainage of wetlands was justified given the agricultural needs of earlier eras
+- D) engineered substitutes for wetland functions are preferable to the wetlands themselves
+- E) the ecological reassessment of wetlands rests on flawed evidence
+
+**answer:** B
+**explanation:** This is an inference question focused on the second camp's likely view.
+
+The final paragraph states that the second camp is "wary" of pricing because it accepts "the very accounting frame that licensed the original destruction... in which anything not assigned a number is treated as worth nothing." Their specific fear is "not that wetlands will be undervalued but that some of what they provide, being genuinely difficult to quantify, will once again fall outside the ledger and be lost." This implies they would accept that quantifiable services might be protected by pricing, while the hard-to-quantify ones remain at risk. Choice B states precisely this divided outcome.
+
+The correct answer is B.
+**mistake_a:** The second camp does not deny that wetlands provide measurable services; their concern is the unmeasurable ones. Paragraph two, which they accept, documents several quantifiable functions, so this overstates their position.
+**mistake_c:** Nothing in the passage attributes to the second camp any approval of past drainage. They critique the accounting frame that "licensed the original destruction," which signals disapproval, not endorsement.
+**mistake_d:** The passage says engineered substitutes can replicate wetland functions "only at great expense," and the second camp values what wetlands provide. There is no basis for attributing to them a preference for substitutes.
+**mistake_e:** The second camp is among "those who accept" the reassessment; they dispute a protection strategy, not the evidence underlying the reassessment.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q144
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, hydrologists contributed to the reassessment of wetlands by establishing that wetlands
+
+- A) filter pollutants and trap sediment in their waterlogged soils
+- B) serve as nurseries for fish and waterfowl
+- C) absorb floodwaters during storms and release them gradually
+- D) can be replaced by engineered substitutes at modest cost
+- E) bred the diseases that earlier generations associated with standing water
+
+**answer:** C
+**explanation:** This is a specific-detail question; each line of evidence in paragraph two is attributed to a particular group, and the stem asks specifically about the hydrologists.
+
+Paragraph two states: "Hydrologists found that wetlands act as natural reservoirs, absorbing floodwaters during storms and releasing them gradually, so that their removal tended to make downstream flooding both more frequent and more severe." Choice C restates the hydrologists' specific finding.
+
+The correct answer is C.
+**mistake_a:** Filtering pollutants and trapping sediment is attributed to "water-quality researchers," not hydrologists. This choice swaps one group's finding for another's.
+**mistake_b:** Serving as nurseries for fish and waterfowl is the contribution of "ecologists," not hydrologists. The choice misassigns the evidence.
+**mistake_d:** The passage says engineered substitutes can replicate wetland functions "only at great expense," the opposite of modest cost, and this is not the hydrologists' finding.
+**mistake_e:** Disease-breeding standing water reflects the old justification for drainage in paragraph one, not a finding of the hydrologists.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q145
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Function
+
+In the second paragraph, the statement that "none of these findings was decisive on its own" serves primarily to
+
+- A) cast doubt on the reliability of the evidence for reassessing wetlands
+- B) emphasize that the reassessment rested on the cumulative weight of several independent lines of evidence rather than a single result
+- C) concede that the older view of wetlands as wasted land may have been correct
+- D) introduce a fourth line of evidence not yet discussed
+- E) explain why the second camp distrusts the strategy of pricing wetland services
+
+**answer:** B
+**explanation:** This is a function question about a specific clause.
+
+Paragraph two opens by saying the reassessment "did not arise from a single discovery but from the slow convergence of several lines of evidence," then describes three. The clause "none of these findings was decisive on its own, but together they reframed the drained marsh" closes the paragraph by underscoring that the case rested on cumulative, mutually reinforcing evidence rather than any one decisive result. Choice B captures this function exactly.
+
+The correct answer is B.
+**mistake_a:** The clause does not undermine the evidence; it strengthens the case by noting that the several lines, taken together, "reframed" the issue. The very next words affirm their combined force.
+**mistake_c:** The clause supports the new view, not the old. The paragraph concludes that the marsh was "a dismantled system," not wasted land, so it concedes nothing to the older view.
+**mistake_d:** The clause refers back to the findings already discussed ("these findings"); it introduces no new line of evidence.
+**mistake_e:** The second camp's distrust is discussed only in paragraph three; this clause, in paragraph two, concerns the strength of the evidence, not the pricing debate.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 36: The Standardization of Time
+
+Before the second half of the nineteenth century, time was, almost everywhere, a local matter. Each town set its clocks by the sun, so that noon arrived a few minutes earlier in one place than in a neighbor to the west, and a traveler crossing a country passed through a continuous gradient of slightly different times. For most purposes this caused no difficulty; a discrepancy of minutes between towns a day's journey apart was of no consequence to people who moved at the pace of a horse. The railway changed this. A train running on a fixed schedule could not accommodate a different local noon at every station along its route, and as rail networks lengthened, the multiplicity of local times became first an inconvenience and then a genuine hazard, since two trains operating on different clocks might be scheduled, in effect, to occupy the same track at the same moment.
+
+The solution, the division of regions into broad zones each keeping a single uniform time, is sometimes presented as a straightforward triumph of efficiency over disorder. The historian Marisol Quint has argued that this account, while not false, omits what was most contested about the change. The adoption of standard time, she shows, was not merely a technical adjustment but a transfer of authority. To set the clock had traditionally been a prerogative of the local community, often the church or the town hall; to accept a time determined elsewhere, and imposed for the convenience of a distant railway company, was to surrender a small but real measure of local self-governance. In a number of towns, Quint documents, residents kept two times for years, the official railway time and the older "sun time," and treated the latter as the true one.
+
+Quint is careful not to romanticize this resistance. The standardization of time delivered genuine benefits, and the local times it displaced were not, she stresses, expressions of any deep cultural value worth preserving for its own sake. Her point is rather that the episode illustrates a pattern that recurs whenever a network, whether of railways, telegraphs, or later technologies, extends across a territory: the network requires uniformity to function, and uniformity, however reasonable, is rarely neutral in its distribution of authority. What looks in retrospect like the obvious correction of an inconvenience was, at the time, also a quiet reallocation of who decided something that communities had always decided for themselves.
+
+### Q146
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) explain the technical reasons that railways could not operate using local times
+- B) demonstrate that standard time produced no genuine benefits for travelers
+- C) argue that towns were right to resist standard time and preserve their local "sun time"
+- D) trace the spread of railway networks across the nineteenth-century landscape
+- E) present a historian's argument that the adoption of standard time involved a contested transfer of authority obscured by the conventional account
+
+**answer:** E
+**explanation:** A primary-purpose question asks for the aim that organizes the whole passage.
+
+Paragraph one explains why local time became untenable once railways demanded fixed schedules. Paragraph two introduces Quint's claim that the conventional "triumph of efficiency" account "omits what was most contested": standardization was "not merely a technical adjustment but a transfer of authority" from local communities to distant companies. Paragraph three refines her point, that she does not romanticize the resistance, and that the episode "illustrates a pattern" in which networks require uniformity that "is rarely neutral in its distribution of authority." The passage thus exists to present and develop Quint's argument that standard time involved a contested transfer of authority hidden by the efficiency narrative. Choice E states this precisely.
+
+The correct answer is E.
+**mistake_a:** The technical reasons appear in paragraph one as background; they set up, but are not the purpose of, Quint's argument about authority, which occupies the bulk of the passage.
+**mistake_b:** Paragraph three states that "the standardization of time delivered genuine benefits." Claiming it produced no benefits contradicts the passage.
+**mistake_c:** The passage explicitly says Quint "is careful not to romanticize this resistance" and that the local times were not "worth preserving for its own sake." It does not argue that towns were right to resist.
+**mistake_d:** The spread of railway networks is mentioned only as the cause that made local time a hazard; the passage does not trace that spread as its subject.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q147
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+It can be inferred from the passage that Quint would most likely regard the practice, in some towns, of keeping both railway time and "sun time" for years as
+
+- A) an expression of communities' reluctance to surrender authority they had long exercised over the setting of time
+- B) evidence that local communities valued their traditional times for their deep cultural significance
+- C) proof that standard time offered no practical advantages over local time
+- D) a sign that residents misunderstood the technical demands of railway scheduling
+- E) the principal cause of the railway accidents that standardization was meant to prevent
+
+**answer:** A
+**explanation:** This is an inference question; the answer must square with Quint's stated position.
+
+Quint's central claim is that accepting an externally determined time meant "to surrender a small but real measure of local self-governance." The dual-time practice she documents, treating the older "sun time" as "the true one," is offered as illustration of communities resisting that surrender. So she would most plausibly read the practice as an expression of reluctance to give up authority they had long held. Choice A matches her framework.
+
+The correct answer is A.
+**mistake_b:** Paragraph three explicitly denies that the local times expressed "any deep cultural value worth preserving for its own sake," so Quint would not read the practice as evidence of deep cultural significance.
+**mistake_c:** Quint acknowledges that standardization "delivered genuine benefits." She would not treat the dual-time practice as proof that standard time had no practical advantages.
+**mistake_d:** Nothing suggests Quint sees the residents as confused about railway scheduling; her account frames their behavior as resistance over authority, not a technical misunderstanding.
+**mistake_e:** The passage presents standardization as the remedy for the accident hazard, with conflicting local times as the danger; it never attributes accidents to the towns' later practice of keeping two times.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q148
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+The passage suggests that Quint regards the standardization of time as significant chiefly because it
+
+- A) was, on balance, a mistake that more careful planning could have avoided
+- B) demonstrates that technical efficiency and local self-governance can never coexist
+- C) was the first instance of a railway company exercising power over a community
+- D) exemplifies a recurring pattern in which networks demanding uniformity also reallocate authority
+- E) shows that the conventional account of the change is entirely false
+
+**answer:** D
+**explanation:** This is an inference question about why Quint treats the episode as important.
+
+Paragraph three is explicit: "Her point is rather that the episode illustrates a pattern that recurs whenever a network... extends across a territory: the network requires uniformity to function, and uniformity, however reasonable, is rarely neutral in its distribution of authority." The significance she attaches to standard time is therefore as an exemplar of this general pattern. Choice D states exactly that.
+
+The correct answer is D.
+**mistake_a:** Quint calls the benefits "genuine" and does not condemn standardization as a mistake; her point is about authority, not that better planning was available.
+**mistake_b:** Quint says uniformity is "rarely neutral" in distributing authority, not that efficiency and self-governance "can never coexist." This overstates her measured claim.
+**mistake_c:** The passage offers no claim that this was the "first instance" of a company exercising power over a community; that superlative is unsupported.
+**mistake_e:** Quint says the conventional account is "not false" but incomplete; calling it "entirely false" contradicts the text.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q149
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Function
+
+The detail in the first paragraph that "a discrepancy of minutes between towns a day's journey apart was of no consequence to people who moved at the pace of a horse" functions primarily to
+
+- A) suggest that local time was more accurate than standard time
+- B) explain why the multiplicity of local times posed no serious problem before the railway
+- C) argue that pre-railway travel was more pleasant than rail travel
+- D) introduce the historian Quint's argument about authority
+- E) provide statistical support for the hazards of conflicting train schedules
+
+**answer:** B
+**explanation:** This is a function question about a specific detail.
+
+Paragraph one establishes that time was local, then notes that "for most purposes this caused no difficulty" and offers the horse-pace detail to show why: when people traveled slowly, a few minutes' difference between distant towns simply did not matter. This sets up the contrast that follows, "The railway changed this." The detail's job is to explain why local-time multiplicity was harmless until rail schedules made it dangerous. Choice B states this.
+
+The correct answer is B.
+**mistake_a:** The detail concerns the practical irrelevance of small time differences at slow travel speeds, not the comparative accuracy of local versus standard time.
+**mistake_c:** The passage makes no claim about the pleasantness of pre-railway travel; the detail is about why time discrepancies did not matter, not about travel quality.
+**mistake_d:** Quint's argument about authority is introduced in paragraph two; this paragraph-one detail provides background, not the entry to her thesis.
+**mistake_e:** The detail offers no statistics, and it explains why local times were harmless before the railway rather than supporting the later point about scheduling hazards.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 37: The Overlooked Engine of the Spice Trade
+
+The European demand for Asian spices in the late medieval and early modern periods is often explained by appeal to the kitchen: pepper, cloves, and nutmeg, the story goes, were prized because they could mask the taste of meat that had begun to spoil in an age without refrigeration. It is a vivid explanation, and it has the appeal of common sense. It is also, the food historian Calder Anseth argues, almost certainly wrong. Spices were extraordinarily expensive, often costing more by weight than the meat they were supposed to disguise; a household that could afford to season its meat lavishly with imported pepper could afford to buy fresh meat in the first place, and would have had little reason to eat spoiled meat at all. The masking theory, Anseth observes, explains the behavior of the poor by attributing to them a luxury only the rich could possess.
+
+If spices were not bought to rescue bad meat, why were they bought? Anseth's answer turns on the social meaning of consumption rather than its practical function. In the societies that drove the spice trade, he argues, the conspicuous use of rare and costly imports was a primary means by which the wealthy displayed and confirmed their status. A heavily spiced dish announced that its host commanded access to goods carried at great risk across half the world; the spice was valued precisely because it was expensive and exotic, not in spite of it. On this account, the engine of the trade was not a culinary problem in search of a solution but a social system in which rare consumption was itself the point.
+
+Anseth is aware that his thesis can be pushed too far. He does not claim that spices were never used for flavor, nor that medicinal beliefs, which held certain spices to balance the body's humors, played no role; both surely mattered. His argument is comparative: among the forces that could sustain a trade lucrative enough to reshape the economies of three continents and motivate perilous voyages of exploration, the desire to disguise rotten meat is implausibly weak, while the imperatives of status display are demonstrably powerful. To understand why Europeans crossed oceans for pepper, he concludes, we should look less at what was happening in the kitchen and more at what was happening at the table.
+
+### Q150
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) present a historian's argument that the demand for spices is better explained by status display than by the need to mask spoiled meat
+- B) describe the routes by which Asian spices reached European markets
+- C) prove that spices were never used to season meat in early modern Europe
+- D) compare the culinary uses of pepper, cloves, and nutmeg
+- E) argue that medicinal beliefs were the decisive force behind the spice trade
+
+**answer:** A
+**explanation:** A primary-purpose question seeks the organizing aim of the whole passage.
+
+Paragraph one presents the popular "masking spoiled meat" explanation and Anseth's objection that it is "almost certainly wrong" because spices cost more than the meat they would disguise. Paragraph two gives his alternative: spices were bought for the "social meaning of consumption," as a means by which "the wealthy displayed and confirmed their status." Paragraph three qualifies the thesis, acknowledging flavor and medicinal uses, and restates the central comparative claim that status display is a far stronger driver than meat-masking. The passage exists to present and develop Anseth's status-display argument against the masking theory. Choice A captures this.
+
+The correct answer is A.
+**mistake_b:** Trade routes are never described; the passage concerns why spices were demanded, not how they physically reached Europe.
+**mistake_c:** Anseth explicitly concedes in paragraph three that he "does not claim that spices were never used for flavor." This choice overstates his position into a claim he disavows.
+**mistake_d:** The passage does not compare the culinary uses of the three spices; pepper, cloves, and nutmeg are named only as examples of prized imports.
+**mistake_e:** Anseth treats medicinal beliefs as a contributing factor, not "the decisive force"; paragraph three names status display as the dominant driver while granting that medicinal beliefs "surely mattered."
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q151
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+Anseth's central objection to the "masking" theory, as presented in the first paragraph, is that
+
+- A) spices were not in fact imported in sufficient quantities to season most meals
+- B) refrigeration was more widely available in the period than the theory assumes
+- C) those who could afford to season meat lavishly with costly spices could also afford fresh meat and had little reason to eat spoiled meat
+- D) the spices commonly cited could not actually mask the taste of spoiled meat
+- E) medicinal uses of spices were far more common than culinary uses
+
+**answer:** C
+**explanation:** This is a specific-detail question; the answer must rest on the explicit objection stated in paragraph one.
+
+Paragraph one states: "Spices were extraordinarily expensive, often costing more by weight than the meat they were supposed to disguise; a household that could afford to season its meat lavishly with imported pepper could afford to buy fresh meat in the first place, and would have had little reason to eat spoiled meat at all." This is the core objection, that the affordability needed to use spices implies the affordability to buy fresh meat, undercutting the premise that spices rescued spoiled meat. Choice C restates this directly.
+
+The correct answer is C.
+**mistake_a:** The passage does not argue about quantities imported; its objection is about cost and the contradiction it creates, not insufficient supply.
+**mistake_b:** The passage describes the era as one "without refrigeration" and does not claim refrigeration was widely available; this contradicts the text.
+**mistake_d:** Anseth does not argue that spices were ineffective at masking taste; he argues that the people supposedly relying on them could have bought fresh meat instead. The choice misstates his objection.
+**mistake_e:** Medicinal versus culinary frequency is not the paragraph-one objection; medicinal beliefs are mentioned only later, as a factor Anseth concedes, not as the basis of his objection.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q152
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Inference
+
+It can be inferred that Anseth considers the desire to disguise spoiled meat an inadequate explanation for the spice trade primarily because that desire
+
+- A) was felt only by the wealthiest households in European society
+- B) was a belief held by physicians rather than by ordinary consumers
+- C) had already been satisfied by the spread of refrigeration technology
+- D) applied only to pepper and not to cloves or nutmeg
+- E) is too weak a motive to sustain a trade large and risky enough to reshape the economies of three continents
+
+**answer:** E
+**explanation:** This is an inference question; the answer follows from Anseth's comparative reasoning.
+
+Paragraph three states his argument is "comparative": "among the forces that could sustain a trade lucrative enough to reshape the economies of three continents and motivate perilous voyages of exploration, the desire to disguise rotten meat is implausibly weak, while the imperatives of status display are demonstrably powerful." The masking motive is inadequate, in his view, because it is too feeble to drive a trade of that scale and risk. Choice E states exactly this inference.
+
+The correct answer is E.
+**mistake_a:** Anseth's point is the reverse, that only the wealthy could afford spices, so the masking motive (a remedy for the poor's spoiled meat) is misattributed. He does not say the desire to disguise meat was felt only by the wealthy.
+**mistake_b:** Medicinal beliefs held by physicians are a separate, conceded factor; the masking motive is about disguising spoiled meat, not a belief held by physicians.
+**mistake_c:** The passage describes the era as one "without refrigeration"; Anseth never claims the masking need had been satisfied by refrigeration technology.
+**mistake_d:** Anseth's argument does not distinguish pepper from cloves or nutmeg in this way; the inadequacy he identifies concerns the strength of the motive, not which spice it applied to.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q153
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Function
+
+In the third paragraph, Anseth's acknowledgment that spices were sometimes used for flavor and that medicinal beliefs also mattered serves primarily to
+
+- A) abandon the status-display thesis in favor of a culinary explanation
+- B) introduce a new theory that the passage will go on to defend
+- C) qualify his thesis by conceding contributing factors while maintaining that status display was the dominant driver
+- D) concede that the masking theory was correct after all
+- E) demonstrate that flavor and medicine were equally important to the trade
+
+**answer:** C
+**explanation:** This is a function question about the concessions in the final paragraph.
+
+Paragraph three opens, "Anseth is aware that his thesis can be pushed too far," then grants that spices were sometimes used for flavor and that medicinal beliefs mattered ("both surely mattered"), before reasserting the comparative claim that status display is "demonstrably powerful" while the masking motive is "implausibly weak." The acknowledgment thus qualifies, without surrendering, his thesis: it admits secondary factors while holding that status display was the dominant force. Choice C describes this function.
+
+The correct answer is C.
+**mistake_a:** Anseth does not abandon his thesis; immediately after the concession he restates that status display is the dominant driver. The concession strengthens his credibility rather than reversing his view.
+**mistake_b:** No new theory is introduced; the paragraph refines the existing status-display thesis and concludes by reaffirming it.
+**mistake_d:** Anseth continues to reject the masking theory, calling that motive "implausibly weak." The concession concerns flavor and medicine, not a vindication of masking.
+**mistake_e:** The passage treats flavor and medicine as contributing factors subordinate to status display, not as equally important; "both surely mattered" does not make them co-equal with the dominant driver.
+**related_reading:** reading-verbal-06-rc-question-types

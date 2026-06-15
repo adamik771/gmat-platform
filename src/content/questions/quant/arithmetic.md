@@ -2630,3 +2630,260 @@ If a and b are integers and b is not zero, is a/b greater than 2/3?
 **answer:** C
 **explanation:** The question asks for a definite yes-or-no answer to whether a/b > 2/3, so a statement is sufficient only if it forces a single answer for every case it permits. Consider statement (1) alone, a + b = 15. If a = 10 and b = 5, then a/b = 2, which is greater than 2/3, giving Yes; but if a = 1 and b = 14, then a/b = 1/14, which is less than 2/3, giving No. Two permitted cases give opposite answers, so statement (1) alone is not sufficient. Consider statement (2) alone, b = 3a − 9. If a = 4, then b = 3, so a/b = 4/3, which is greater than 2/3, giving Yes; but if a = 1, then b = −6, so a/b = −1/6, which is less than 2/3, giving No. Again two cases conflict, so statement (2) alone is not sufficient. Taking the statements together, substitute b = 3a − 9 into a + b = 15: a + (3a − 9) = 15, so 4a = 24 and a = 6, giving b = 9. Then a/b = 6/9 = 2/3, which is not greater than 2/3, so the answer is a definite No. The two statements together fix unique values and yield one consistent answer, so they are sufficient together though neither is sufficient alone. The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+
+---
+
+## Q103
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractions
+
+What is the value of (2/3 ÷ 4/9) − (5/6 × 3/10)?
+
+- A) 1/2
+- B) 5/4
+- C) 7/4
+- D) 9/4
+- E) 11/4
+
+**answer:** B
+**explanation:** The governing principle is the order of operations together with two rules of fraction arithmetic: division by a fraction is performed by multiplying by that fraction's reciprocal, and multiplication of fractions is performed by multiplying numerators and multiplying denominators. We evaluate the two parenthesized expressions first and then subtract.
+
+Consider the first expression, 2/3 ÷ 4/9. Dividing by 4/9 is the same as multiplying by its reciprocal, 9/4, so
+
+2/3 ÷ 4/9 = (2/3)(9/4) = 18/12 = 3/2.
+
+Consider the second expression, 5/6 × 3/10. Multiplying the numerators and the denominators gives
+
+5/6 × 3/10 = 15/60 = 1/4.
+
+We now subtract the second result from the first. Expressing both over the common denominator 4 gives 3/2 = 6/4, so
+
+3/2 − 1/4 = 6/4 − 1/4 = 5/4.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q104
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percentages
+
+A quantity x equals 60% of 250. What percent of 600 is x?
+
+- A) 15%
+- B) 20%
+- C) 25%
+- D) 30%
+- E) 40%
+
+**answer:** C
+**explanation:** This problem combines two ideas. First, a phrase of the form "p percent of a number" is computed by multiplying the decimal equivalent of p by that number. Second, the question "what percent of b is x" is answered by forming the ratio x/b and converting it to a percent. We carry out these two steps in order.
+
+First we determine x. Since x equals 60% of 250, we compute
+
+x = 0.60 × 250 = 150.
+
+Next we express 150 as a percent of 600. We form the ratio of the part to the whole:
+
+x / 600 = 150 / 600 = 1/4.
+
+Converting 1/4 to a percent gives 0.25, or 25%.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q105
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Order of Operations
+
+What is the value of 6 − 2 × (3 − 8)² ÷ 5 + (−4)?
+
+- A) −12
+- B) −8
+- C) −4
+- D) 4
+- E) 8
+
+**answer:** B
+**explanation:** The value is fixed by the conventional order of operations: first resolve grouping symbols, then exponents, then multiplication and division from left to right, and finally addition and subtraction from left to right. We apply these steps to 6 − 2 × (3 − 8)² ÷ 5 + (−4).
+
+First we resolve the quantity inside the parentheses: 3 − 8 = −5.
+
+Next we apply the exponent: (−5)² = 25. The expression now reads 6 − 2 × 25 ÷ 5 + (−4).
+
+We then perform multiplication and division from left to right. The multiplication gives 2 × 25 = 50, and the division gives 50 ÷ 5 = 10. The expression becomes 6 − 10 + (−4).
+
+Finally we perform addition and subtraction from left to right: 6 − 10 = −4, and −4 + (−4) = −8.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q106
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Decimals
+
+What is the value of (0.6 × 0.05) ÷ (0.2 × 0.15)?
+
+- A) 0.1
+- B) 0.5
+- C) 1
+- D) 2
+- E) 10
+
+**answer:** C
+**explanation:** Products and quotients of decimals are often simplest to evaluate by converting each decimal to a fraction, since common factors can then be cancelled before any multiplication is carried out. We rewrite every decimal as a fraction, simplify, and divide.
+
+We first convert the four decimals: 0.6 = 6/10, 0.05 = 5/100, 0.2 = 2/10, and 0.15 = 15/100.
+
+The numerator of the overall expression is
+
+0.6 × 0.05 = (6/10)(5/100) = 30/1000 = 3/100.
+
+The denominator is
+
+0.2 × 0.15 = (2/10)(15/100) = 30/1000 = 3/100.
+
+The overall quotient is therefore (3/100) ÷ (3/100). Dividing a quantity by itself gives 1, so the value of the expression is 1. Equivalently, in decimal form the numerator is 0.03 and the denominator is 0.03, and 0.03 ÷ 0.03 = 1.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q107
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percentages
+
+The price of a stock first decreases by 25% and then increases by 60% from its reduced value. The final price is what percent greater than the original price?
+
+- A) 15%
+- B) 20%
+- C) 25%
+- D) 35%
+- E) 40%
+
+**answer:** B
+**explanation:** Successive percent changes are combined by multiplying their scale factors, not by adding or subtracting the percentages. A decrease of p percent corresponds to multiplication by (1 − p/100), and an increase of p percent corresponds to multiplication by (1 + p/100). After applying both factors, the percent change relative to the original is read off from the overall factor.
+
+Let P represent the original price. The price first decreases by 25 percent, which multiplies it by 1 − 25/100 = 0.75, giving a reduced price of 0.75P.
+
+The price then increases by 60 percent of this reduced value, which multiplies it by 1 + 60/100 = 1.60. The final price is therefore
+
+1.60 (0.75P) = (1.60)(0.75) P = 1.20P.
+
+A final price of 1.20P is 120 percent of the original, which is 20 percent greater than the original price.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q108
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Signed Numbers
+
+What is the value of (−8) − (−3)(−2) + (−12) ÷ 4?
+
+- A) −17
+- B) −11
+- C) −5
+- D) 1
+- E) 7
+
+**answer:** A
+**explanation:** This expression is governed by the order of operations together with the sign rules for multiplication and division: the product or quotient of two numbers with the same sign is positive, and the product or quotient of two numbers with opposite signs is negative. We perform multiplication and division before addition and subtraction.
+
+The expression is (−8) − (−3)(−2) + (−12) ÷ 4.
+
+First we evaluate the multiplication. Because (−3) and (−2) have the same sign, their product is positive: (−3)(−2) = 6.
+
+Next we evaluate the division. Because (−12) and 4 have opposite signs, their quotient is negative: (−12) ÷ 4 = −3.
+
+Substituting these results gives (−8) − 6 + (−3). We now work from left to right: (−8) − 6 = −14, and −14 + (−3) = −17.
+
+The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q109
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractions
+
+A traveler spends 1/3 of her money on lodging, then 2/5 of what remains on food, and then 1/4 of what still remains on transportation. If she has $120 left after these expenses, how much money did she start with?
+
+- A) $300
+- B) $360
+- C) $400
+- D) $450
+- E) $480
+
+**answer:** C
+**explanation:** When successive fractions of a remaining amount are spent, the fraction left after each step is found by multiplying by one minus the fraction spent, and these surviving fractions multiply together. The governing relationship is that the final amount equals the starting amount times the product of the surviving fractions.
+
+Let M denote the starting amount of money. After spending 1/3 on lodging, the fraction remaining is 1 − 1/3 = 2/3, so the amount left is (2/3)M.
+
+She then spends 2/5 of what remains on food, leaving a fraction 1 − 2/5 = 3/5 of that amount. The remaining money is therefore
+
+(3/5)(2/3)M = (6/15)M = (2/5)M.
+
+She then spends 1/4 of what still remains on transportation, leaving a fraction 1 − 1/4 = 3/4. The remaining money is
+
+(3/4)(2/5)M = (6/20)M = (3/10)M.
+
+We are told that this final amount is $120, so
+
+(3/10)M = 120.
+
+Multiplying both sides by 10/3 gives M = 120 × 10/3 = 400.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q110
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Percentages
+
+After a price was increased by 15%, it became $69. What is 80% of the original price?
+
+- A) $44
+- B) $46
+- C) $48
+- D) $52
+- E) $55
+
+**answer:** C
+**explanation:** A percent increase multiplies a quantity by (1 + r), so the original quantity is recovered by dividing the increased value by that same factor. Only after the original price is found can a percent "of" that original be computed. The two steps must be kept distinct, since the percent in the final question is taken of the original price, not of the increased price.
+
+Let P denote the original price. An increase of 15 percent multiplies P by 1 + 15/100 = 1.15, and the result is $69. This gives the equation
+
+1.15 P = 69.
+
+Solving for P, we divide both sides by 1.15:
+
+P = 69 / 1.15 = 60.
+
+The question asks for 80 percent of the original price, which is
+
+0.80 × 60 = 48.
+
+A common error is to apply the 80 percent to the increased price of $69, giving 0.80 × 69 = 55.2; this misreads the question, which specifies the original price.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
