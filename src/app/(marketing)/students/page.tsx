@@ -5,6 +5,7 @@ import SectionWrapper from "@/components/shared/SectionWrapper"
 
 export const metadata: Metadata = {
   title: "Student score lifts",
+  alternates: { canonical: "/students" },
   description:
     "Verified score improvements from Zakarian GMAT beta students.",
 }

@@ -15,6 +15,7 @@ import CurriculumTopics from "./CurriculumTopics"
 
 export const metadata: Metadata = {
   title: "Course",
+  alternates: { canonical: "/course" },
   description:
     "A complete GMAT prep system. One guided path through 50+ chapters.",
 }

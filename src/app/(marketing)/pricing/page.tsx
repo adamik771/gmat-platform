@@ -9,6 +9,7 @@ import { STRIPE_PRICES } from "@/lib/stripe"
 
 export const metadata: Metadata = {
   title: "Pricing",
+  alternates: { canonical: "/pricing" },
   description: "Simple, transparent pricing for GMAT prep that works.",
 }
 

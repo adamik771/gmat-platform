@@ -725,14 +725,6 @@ function H2({ children }: { children: React.ReactNode }) {
   )
 }
 
-function H3({ children }: { children: React.ReactNode }) {
-  return (
-    <h3 className="font-display text-xl font-semibold text-[#F0F0F0] tracking-tight leading-tight mt-8 mb-2">
-      {children}
-    </h3>
-  )
-}
-
 function Strong({ children }: { children: React.ReactNode }) {
   return <strong className="text-[#F0F0F0] font-semibold">{children}</strong>
 }
