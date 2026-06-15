@@ -1,4 +1,5 @@
 import { getQuestionsBySection, type ParsedQuestion } from "./content"
+import { groupByContext } from "./topic-skill"
 import type { Difficulty, Section } from "@/types"
 
 const DIFFICULTY_RANK: Record<Difficulty, number> = {
@@ -196,30 +197,34 @@ export function pickMockQuestions(
  * intermediate body, 25% advanced tail — slightly skewed by the
  * difficulty mix the picker actually returned.
  */
-function orderForMock(questions: ParsedQuestion[]): ParsedQuestion[] {
+export function orderForMock(questions: ParsedQuestion[]): ParsedQuestion[] {
   if (questions.length <= 3) return questions
-  // Stable buckets — keep authored order within each.
-  const easy = questions.filter((q) => q.difficulty === "Beginner")
-  const med = questions.filter((q) => q.difficulty === "Intermediate")
-  const hard = questions.filter((q) => q.difficulty === "Advanced")
+  // Order GROUPS, not individual questions, so a passage/set (RC, MSR) is never
+  // split apart by the difficulty curve. Standalone questions are singleton
+  // groups, so an all-standalone section (e.g. Quant) orders exactly as before.
+  // Each group's tier = its first question's difficulty.
+  const groups = groupByContext(questions)
+  const rep = (g: ParsedQuestion[]) => g[0].difficulty
+  const easy = groups.filter((g) => rep(g) === "Beginner")
+  const med = groups.filter((g) => rep(g) === "Intermediate")
+  const hard = groups.filter((g) => rep(g) === "Advanced")
 
-  const total = questions.length
+  const total = groups.length
   const frontEasySlots = Math.min(easy.length, Math.max(2, Math.round(total * 0.20)))
   const tailHardSlots = Math.min(hard.length, Math.max(2, Math.round(total * 0.20)))
 
   const front = easy.slice(0, frontEasySlots)
   const tail = hard.slice(hard.length - tailHardSlots)
 
-  // Body: remaining easy + all medium + remaining hard, interleaved
-  // with a soft difficulty rise. We sort the body by difficulty rank
-  // ascending so it climbs into the tail.
+  // Body: remaining easy groups + all medium + remaining hard, sorted by tier
+  // ascending so difficulty climbs into the tail.
   const bodyEasy = easy.slice(frontEasySlots)
   const bodyHard = hard.slice(0, hard.length - tailHardSlots)
   const body = [...bodyEasy, ...med, ...bodyHard].sort(
-    (a, b) => DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty]
+    (a, b) => DIFFICULTY_RANK[rep(a)] - DIFFICULTY_RANK[rep(b)]
   )
 
-  return [...front, ...body, ...tail]
+  return [...front, ...body, ...tail].flat()
 }
 
 /** Accuracy → GMAT Focus total. Canonical source: `@/lib/scoring`. */
