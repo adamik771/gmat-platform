@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { AlertCircle, ArrowRight, CheckCircle2, Clock, RotateCcw } from "lucide-react"
+import { AlertCircle, ArrowRight, Bookmark, CheckCircle2, Clock, RotateCcw } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   PAYWALL_ENABLED,
@@ -247,6 +247,37 @@ export default async function ReviewPage() {
               All four item kinds — questions, weak concepts, drills, recall
               checkpoints — interleaved by composite priority. Confidence and
               mistake-type modifiers shift each item up or down.
+            </p>
+          </div>
+        </div>
+        <ArrowRight
+          className="w-4 h-4 flex-shrink-0 text-[#C9A84C] group-hover:translate-x-0.5 transition-transform"
+          aria-hidden
+        />
+      </Link>
+
+      {/* Saved-for-review bookmarks — a dedicated list of questions the
+          student marked to revisit. */}
+      <Link
+        href="/review/saved"
+        className="group flex items-center justify-between gap-3 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
+        style={{
+          borderColor: "rgba(255,255,255,0.08)",
+          backgroundColor: "#0D0D0D",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
+        }}
+      >
+        <div className="flex items-start gap-3">
+          <Bookmark
+            className="w-4 h-4 mt-0.5 flex-shrink-0"
+            style={{ color: "#C9A84C" }}
+          />
+          <div>
+            <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
+              Saved questions
+            </p>
+            <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
+              Everything you bookmarked with “Save for review”, in one place.
             </p>
           </div>
         </div>
