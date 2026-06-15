@@ -16,6 +16,17 @@ export function accuracyToScore(accuracy: number): number {
   return Math.max(205, Math.min(805, snapped))
 }
 
+/**
+ * Snap an arbitrary value (e.g. an average of the three section scores) onto
+ * the valid GMAT Focus total grid: 205-anchored, 10-point steps, so the result
+ * always ends in 5. Plain `Math.round(x / 10) * 10` produces GMAT-impossible
+ * scores like 750.
+ */
+export function snapToValidTotal(raw: number): number {
+  const snapped = 205 + Math.round((raw - 205) / 10) * 10
+  return Math.max(205, Math.min(805, snapped))
+}
+
 /** GMAT Focus per-section scaled-score range (Quant / Verbal / Data Insights). */
 export const SECTION_SCORE_MIN = 60
 export const SECTION_SCORE_MAX = 90

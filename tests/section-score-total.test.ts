@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { sectionScoresToTotal } from "@/lib/scoring"
+import { sectionScoresToTotal, snapToValidTotal } from "@/lib/scoring"
 
 describe("sectionScoresToTotal (GMAT Focus section→total estimate)", () => {
   it("maps the endpoints exactly (3×60 → 205, 3×90 → 805)", () => {
@@ -42,5 +42,22 @@ describe("sectionScoresToTotal (GMAT Focus section→total estimate)", () => {
     expect(Number.isFinite(sectionScoresToTotal(NaN, 75, 75))).toBe(true)
     expect(Number.isFinite(sectionScoresToTotal(75, Infinity, 75))).toBe(true)
     expect(sectionScoresToTotal(NaN, NaN, NaN)).toBe(205) // non-finite → floor (60) → 205
+  })
+})
+
+describe("snapToValidTotal (GMAT total grid)", () => {
+  it("always lands on a valid score ending in 5 (never an impossible 750)", () => {
+    for (let v = 205; v <= 805; v += 1) {
+      const s = snapToValidTotal(v)
+      expect(s % 10).toBe(5)
+      expect(s).toBeGreaterThanOrEqual(205)
+      expect(s).toBeLessThanOrEqual(805)
+    }
+    expect(snapToValidTotal(748)).toBe(745)
+    expect(snapToValidTotal(744)).toBe(745)
+  })
+  it("clamps out-of-range inputs to [205, 805]", () => {
+    expect(snapToValidTotal(100)).toBe(205)
+    expect(snapToValidTotal(900)).toBe(805)
   })
 })

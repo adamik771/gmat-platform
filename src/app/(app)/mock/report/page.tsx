@@ -12,6 +12,7 @@ import {
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { MOCK_SECTIONS, accuracyToScore } from "@/lib/mock"
+import { snapToValidTotal } from "@/lib/scoring"
 import { getAllQuestions, getQuestionsByIds } from "@/lib/content"
 import {
   buildEnhancedReport,
@@ -138,14 +139,20 @@ export default async function MockReportPage() {
     for (const r of rows) {
       const sec = r.section as Section
       if (accBySection[sec] === undefined) {
-        accBySection[sec] = (r.accuracy as number) / 100
+        // Full-set accuracy (correct / total_questions) — matches how the
+        // current mock's total is computed below. The stored `accuracy` column
+        // is answered-only (correct/answered), so mixing the two produced a
+        // bogus current-vs-previous delta.
+        const total = (r.total_questions as number) ?? 0
+        const correct = (r.correct_count as number) ?? 0
+        accBySection[sec] = total === 0 ? 0 : correct / total
       }
     }
     const scores = MOCK_SECTIONS.map((s) => accBySection[s])
       .filter((v): v is number => typeof v === "number")
       .map((a) => accuracyToScore(a))
     if (scores.length === MOCK_SECTIONS.length) {
-      previousTotal = Math.round(scores.reduce((a, b) => a + b, 0) / 3 / 10) * 10
+      previousTotal = snapToValidTotal(scores.reduce((a, b) => a + b, 0) / 3)
       previousDate = date
       break
     }
@@ -226,7 +233,9 @@ export default async function MockReportPage() {
   const enhancedReport = buildEnhancedReport(enhancedAttempts, enhancedQuestions)
 
   const totalScore = reports.length
-    ? Math.round(reports.reduce((acc, r) => acc + r.score, 0) / reports.length / 10) * 10
+    ? snapToValidTotal(
+        reports.reduce((acc, r) => acc + r.score, 0) / reports.length
+      )
     : 205
   const complete = reports.length === MOCK_SECTIONS.length
 

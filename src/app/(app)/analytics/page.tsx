@@ -170,7 +170,11 @@ export default async function AnalyticsPage() {
           const d = new Date(s.created_at as string)
           const weekStart = new Date(d)
           weekStart.setDate(d.getDate() - d.getDay())
-          const key = weekStart.toISOString().slice(0, 10)
+          // Local-date key (NOT toISOString, which is UTC) so a session near
+          // midnight isn't bucketed into the wrong week in non-UTC timezones.
+          const key = `${weekStart.getFullYear()}-${String(
+            weekStart.getMonth() + 1
+          ).padStart(2, "0")}-${String(weekStart.getDate()).padStart(2, "0")}`
           const bucket =
             weeks.get(key) ?? {
               overall: [],
@@ -190,7 +194,8 @@ export default async function AnalyticsPage() {
         scoreTrend = [...weeks.entries()]
           .sort(([a], [b]) => a.localeCompare(b))
           .map(([weekKey, b], i) => {
-            const weekDate = new Date(weekKey)
+            const [wy, wm, wd] = weekKey.split("-").map(Number)
+            const weekDate = new Date(wy, (wm ?? 1) - 1, wd ?? 1)
             const mean = (arr: number[]) =>
               arr.length > 0 ? arr.reduce((x, y) => x + y, 0) / arr.length : null
             const overallAcc = mean(b.overall)
@@ -252,7 +257,12 @@ export default async function AnalyticsPage() {
             const d = new Date(createdAt)
             const ws = new Date(d)
             ws.setDate(d.getDate() - d.getDay())
-            weekKeys.add(ws.toISOString().slice(0, 10))
+            weekKeys.add(
+              `${ws.getFullYear()}-${String(ws.getMonth() + 1).padStart(
+                2,
+                "0"
+              )}-${String(ws.getDate()).padStart(2, "0")}`
+            )
           }
         }
         weeksOfPractice = weekKeys.size
