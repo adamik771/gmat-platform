@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react"
-import { useReducedMotion } from "framer-motion"
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion"
 
 type Props = {
   start: number
@@ -66,7 +66,7 @@ export default function ScoreCalloutNumbers({
   end,
   durationMs = 1200,
 }: Props) {
-  const prefersReducedMotion = useReducedMotion() ?? false
+  const prefersReducedMotion = usePrefersReducedMotion()
   const rootRef = useRef<HTMLDivElement | null>(null)
   const mounted = useHydrated()
   const [fire, setFire] = useState(false)

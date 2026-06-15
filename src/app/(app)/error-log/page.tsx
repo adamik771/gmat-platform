@@ -62,7 +62,18 @@ export default async function ErrorLogPage({
       if (sessionIdFilter) {
         attemptsQuery = attemptsQuery.eq("session_id", sessionIdFilter)
       }
-      const { data: attempts } = await attemptsQuery
+      // The wrong-attempts read and the error-tags read are independent (both
+      // key on user.id) — run them concurrently. The legacy-column fallback
+      // below stays sequential since it only fires on a schema-mismatch error.
+      const [{ data: attempts }, withConfidence] = await Promise.all([
+        attemptsQuery,
+        supabase
+          .from("error_tags")
+          .select(
+            "attempt_id, tag, root_cause, contributing_causes, notes, reviewed, remediation_assigned_at, remediation_completed_at, confidence",
+          )
+          .eq("user_id", user.id),
+      ])
 
       // Pull tags for the same user in a second query and merge by id. Doing
       // this separately (vs an FK join) avoids Supabase relationship-cache
@@ -82,12 +93,6 @@ export default async function ErrorLogPage({
         remediation_completed_at: string | null
         confidence?: string | null
       }
-      const withConfidence = await supabase
-        .from("error_tags")
-        .select(
-          "attempt_id, tag, root_cause, contributing_causes, notes, reviewed, remediation_assigned_at, remediation_completed_at, confidence",
-        )
-        .eq("user_id", user.id)
       let tags: TagRow[]
       if (withConfidence.error) {
         const legacy = await supabase

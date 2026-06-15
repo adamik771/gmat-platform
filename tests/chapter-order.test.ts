@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { getAllChapters } from "@/lib/content"
+import { getAllChapters, getPracticeChapterGroups } from "@/lib/content"
 
 const chapters = getAllChapters()
 const slugs = chapters.map((c) => c.slug)
@@ -62,6 +62,35 @@ describe("chapter guided-path order (CHAPTER_PATH_ORDER)", () => {
       "multi-source-reasoning",
     ]) {
       expect(slugs).toContain(s)
+    }
+  })
+})
+
+describe("practice chapter groups follow the guided-path chapter order", () => {
+  const groups = getPracticeChapterGroups()
+  const chapterRank = new Map(
+    getAllChapters().map((c, i) => [c.slug, i] as const)
+  )
+
+  it("emits at least one practice group", () => {
+    expect(groups.length).toBeGreaterThan(0)
+  })
+
+  it("every practice group maps to a real chapter", () => {
+    for (const g of groups) {
+      expect(chapterRank.has(g.chapterSlug)).toBe(true)
+    }
+  })
+
+  it("renders practice groups in the same order as /chapters (CHAPTER_PATH_ORDER)", () => {
+    // The Practice page maps getPracticeChapterGroups() flat, so the array
+    // order IS the on-screen order. It must match the guided-path chapter
+    // order: both each group's chapter rank and its `order` field strictly
+    // increasing. Guards the practice list against drifting from /chapters.
+    const ranks = groups.map((g) => chapterRank.get(g.chapterSlug)!)
+    expect(ranks).toEqual([...ranks].sort((a, b) => a - b))
+    for (let i = 1; i < groups.length; i++) {
+      expect(groups[i].order).toBeGreaterThan(groups[i - 1].order)
     }
   })
 })

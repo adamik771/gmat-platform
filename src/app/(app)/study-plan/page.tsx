@@ -109,14 +109,51 @@ export default async function StudyPlanPage() {
         >
       }
 
-      // Past-7-day session activity — calendar dots + study hours
+      // Fire the independent reads concurrently rather than in series. Each
+      // only depends on user.id (+ a date window), and computeStudyPlan takes
+      // the synchronous inputs already in scope — so they have no
+      // inter-dependency and resolve in one round-trip's worth of wall-clock
+      // instead of five. reviewedTags is the one genuine dependency (it needs
+      // wrongIds) and stays sequential below. officialExamCount is still 0 here,
+      // exactly as before (it's derived from user_metadata further down, after
+      // this point — preserved deliberately, not "fixed").
       const sevenAgo = new Date(Date.now() - 7 * 86400000).toISOString()
-      const { data: weekSessions } = await supabase
-        .from("practice_sessions")
-        .select("created_at, total_time_ms")
-        .eq("user_id", user.id)
-        .gte("created_at", sevenAgo)
+      const thirtyAgo = new Date(Date.now() - 30 * 86400000).toISOString()
+      const [
+        { data: weekSessions },
+        { data: monthSessions },
+        { data: wrongAttempts },
+        { data: sectionAttempts },
+        planResult,
+      ] = await Promise.all([
+        supabase
+          .from("practice_sessions")
+          .select("created_at, total_time_ms")
+          .eq("user_id", user.id)
+          .gte("created_at", sevenAgo),
+        supabase
+          .from("practice_sessions")
+          .select("created_at")
+          .eq("user_id", user.id)
+          .gte("created_at", thirtyAgo),
+        supabase
+          .from("practice_attempts")
+          .select("id")
+          .eq("user_id", user.id)
+          .eq("is_correct", false),
+        supabase
+          .from("practice_attempts")
+          .select("section, is_correct")
+          .eq("user_id", user.id),
+        computeStudyPlan(supabase, user.id, {
+          targetScore,
+          examDate,
+          flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
+          officialExamCount,
+        }),
+      ])
 
+      // Past-7-day session activity — calendar dots + study hours
       for (const s of weekSessions ?? []) {
         const d = new Date(s.created_at as string)
         activityDays.add(d.toISOString().slice(0, 10))
@@ -124,12 +161,6 @@ export default async function StudyPlanPage() {
       }
 
       // Past-30-day activity days for "days practiced" — streak proxy.
-      const thirtyAgo = new Date(Date.now() - 30 * 86400000).toISOString()
-      const { data: monthSessions } = await supabase
-        .from("practice_sessions")
-        .select("created_at")
-        .eq("user_id", user.id)
-        .gte("created_at", thirtyAgo)
       const monthDays = new Set<string>()
       for (const s of monthSessions ?? []) {
         monthDays.add(
@@ -142,13 +173,7 @@ export default async function StudyPlanPage() {
       // weekly schedule. Counts wrong attempts whose error_tags row either
       // doesn't exist OR has reviewed=false — anything the user hasn't
       // cleared through the error log yet.
-      const { data: wrongAttempts } = await supabase
-        .from("practice_attempts")
-        .select("id")
-        .eq("user_id", user.id)
-        .eq("is_correct", false)
       const wrongIds = (wrongAttempts ?? []).map((a) => a.id as string)
-
       if (wrongIds.length > 0) {
         const { data: reviewedTags } = await supabase
           .from("error_tags")
@@ -164,11 +189,6 @@ export default async function StudyPlanPage() {
 
       // Estimated GMAT total — only if all 3 sections have ≥10 attempts,
       // matching the dashboard's gating exactly.
-      const { data: sectionAttempts } = await supabase
-        .from("practice_attempts")
-        .select("section, is_correct")
-        .eq("user_id", user.id)
-
       const secStats: Record<Section, { total: number; correct: number }> = {
         Quant: { total: 0, correct: 0 },
         Verbal: { total: 0, correct: 0 },
@@ -198,13 +218,9 @@ export default async function StudyPlanPage() {
         void sectionScore
       }
 
-      // Adaptive plan: Today's focus + weak areas + queue counts.
-      plan = await computeStudyPlan(supabase, user.id, {
-        targetScore,
-        examDate,
-        flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
-        officialExamCount,
-      })
+      // Adaptive plan (Today's focus + weak areas + queue counts) — computed
+      // concurrently in the Promise.all above.
+      plan = planResult
 
       // Mastery progress — per-topic gates (Concept / Timed / Mixed) that
       // replace the "completed the lesson = done" heuristic with the

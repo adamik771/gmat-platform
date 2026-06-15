@@ -41,6 +41,28 @@ export async function proxy(request: NextRequest) {
     return res
   }
 
+  const { pathname } = request.nextUrl
+  const isAppRoute = APP_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(route + "/")
+  )
+  const isAuthRoute = AUTH_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(route + "/")
+  )
+
+  // Public / marketing routes need no auth decision. Skip the Supabase
+  // getUser() network round-trip entirely so navigating to them isn't gated on
+  // an auth call. Marketing/public pages are also safe to CDN-cache, so they
+  // get no no-store. The one exception: auth-flow endpoints under /auth/* (e.g.
+  // the /auth/callback code-exchange route handler) must never be cached even
+  // though they aren't redirect-gated — preserve no-store there.
+  if (!isAppRoute && !isAuthRoute) {
+    const res = NextResponse.next()
+    if (pathname.startsWith("/auth/")) {
+      res.headers.set("Cache-Control", "private, no-store")
+    }
+    return res
+  }
+
   try {
     const { supabase, response } = createSupabaseProxy(request)
 
@@ -51,12 +73,7 @@ export async function proxy(request: NextRequest) {
       data: { user },
     } = await supabase.auth.getUser()
 
-    const { pathname } = request.nextUrl
-
     // Unauthenticated users trying to access app routes → redirect to login
-    const isAppRoute = APP_ROUTES.some(
-      (route) => pathname === route || pathname.startsWith(route + "/")
-    )
     if (isAppRoute && !user) {
       const url = request.nextUrl.clone()
       url.pathname = "/login"
@@ -66,9 +83,6 @@ export async function proxy(request: NextRequest) {
     }
 
     // Authenticated users on auth routes → redirect to dashboard
-    const isAuthRoute = AUTH_ROUTES.some(
-      (route) => pathname === route || pathname.startsWith(route + "/")
-    )
     if (isAuthRoute && user) {
       const url = request.nextUrl.clone()
       url.pathname = "/dashboard"
@@ -93,6 +107,8 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // Match all routes except static assets, API routes, and metadata files.
+    // The proxy itself early-returns for non-(app)/(auth) routes (above), so
+    // marketing/public pages do no auth work and stay cacheable.
     "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
   ],
 }

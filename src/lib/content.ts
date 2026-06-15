@@ -544,7 +544,16 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
 
 // ---------- Public loaders ----------
 
+// Module-level memo: the question bank (~1,900 items across the markdown
+// files) is parsed once per process and reused. Several pages and the adaptive
+// engine call getAllQuestions()/getQuestionsByIds() many times per render;
+// without this, each call re-read and re-regex-parsed every file. Content is
+// filesystem-static at runtime (same tradeoff as practiceChapterGroupsCache:
+// editing a question .md in dev needs a server restart to take effect).
+let allQuestionsCache: ParsedQuestion[] | null = null
+
 export function getAllQuestions(): ParsedQuestion[] {
+  if (allQuestionsCache) return allQuestionsCache
   const questionsDir = path.join(CONTENT_ROOT, "questions")
   if (!fs.existsSync(questionsDir)) return []
 
@@ -557,6 +566,7 @@ export function getAllQuestions(): ParsedQuestion[] {
       results.push(...parseQuestionFile(path.join(sectionPath, file)))
     }
   }
+  allQuestionsCache = results
   return results
 }
 
@@ -944,7 +954,13 @@ const CHAPTER_PATH_RANK = new Map(
   CHAPTER_PATH_ORDER.map((slug, i) => [slug, i])
 )
 
+// Module-level memo (see getAllQuestions above for the rationale): the 62
+// chapter files are read + YAML-parsed once per process. getAllChapters() was
+// being called several times per render on pages like the dashboard.
+let allChaptersCache: ParsedChapter[] | null = null
+
 export function getAllChapters(): ParsedChapter[] {
+  if (allChaptersCache) return allChaptersCache
   const chaptersDir = path.join(CONTENT_ROOT, "chapters")
   if (!fs.existsSync(chaptersDir)) return []
   const out: ParsedChapter[] = []
@@ -953,11 +969,13 @@ export function getAllChapters(): ParsedChapter[] {
     const chapter = parseChapterFile(path.join(chaptersDir, file))
     if (chapter) out.push(chapter)
   }
-  return out.sort((a, b) => {
+  const sorted = out.sort((a, b) => {
     const ra = CHAPTER_PATH_RANK.get(a.slug) ?? Number.MAX_SAFE_INTEGER
     const rb = CHAPTER_PATH_RANK.get(b.slug) ?? Number.MAX_SAFE_INTEGER
     return ra !== rb ? ra - rb : a.slug.localeCompare(b.slug)
   })
+  allChaptersCache = sorted
+  return sorted
 }
 
 export function getChapterBySlug(slug: string): ParsedChapter | null {
