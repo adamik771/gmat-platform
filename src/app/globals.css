@@ -215,10 +215,12 @@
 --------------------------------------------------------------- */
 
 /* Visible focus ring on any keyboard-focused interactive element.
-   Uses the brand gold so it reads as intentional, not default. */
+   Softer translucent gold (was solid var(--gmat-primary)) + a tighter offset
+   so it reads as a calm brand accent rather than a loud box — while staying
+   clearly visible for keyboard accessibility / WCAG. */
 :focus-visible {
-  outline: 2px solid var(--gmat-primary);
-  outline-offset: 2px;
+  outline: 2px solid rgba(201, 168, 76, 0.45);
+  outline-offset: 1px;
   border-radius: 4px;
 }
 /* Remove outline on mouse focus to avoid visual noise;
