@@ -3813,3 +3813,433 @@ The exact total is $682,900. Comparing this figure against the answer choices: i
 
 The correct answer is C.
 **related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q84 (Set 14 — Logistics Carrier Performance)
+
+The following table shows one quarter of operating data for five freight carriers:
+
+| Carrier  | On-Time % | Shipments (000s) | Cost/Shipment ($) | Damage Claims | Fuel Surcharge % |
+|----------|-----------|------------------|-------------------|---------------|------------------|
+| Apex     | 92        | 48               | 14.50             | 360           | 8                |
+| Borealis | 88        | 60               | 12.00             | 540           | 11               |
+| Cresco   | 95        | 35               | 18.00             | 175           | 6                |
+| Delphi   | 84        | 72               | 10.50             | 720           | 14               |
+| Equinox  | 90        | 50               | 15.00             | 400           | 9                |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Threshold Counting
+
+For each statement, select Yes if the statement can be determined to be true based on the data in the table. Otherwise, select No.
+
+Statement: More than half of the carriers had an on-time rate of at least 90%.
+
+- A) Yes
+- B) No
+
+**answer:** A
+**explanation:** **Condition and threshold.** A carrier meets the condition if its On-Time % is greater than or equal to 90. With five carriers, "more than half" requires that at least 3 of the 5 satisfy the condition, since 3/5 = 60% exceeds 50% while 2/5 = 40% does not.
+
+**Carrier-by-carrier evaluation.** Reading the On-Time % column and testing each value against the threshold of 90:
+
+- Apex: 92. Is 92 >= 90? Yes.
+- Borealis: 88. Is 88 >= 90? No.
+- Cresco: 95. Is 95 >= 90? Yes.
+- Delphi: 84. Is 84 >= 90? No.
+- Equinox: 90. Is 90 >= 90? Yes (the boundary value of exactly 90 satisfies "at least 90").
+
+**Count and conclusion.** Three carriers — Apex, Cresco, and Equinox — meet the threshold. Three out of five is 60%, which is greater than 50% and therefore "more than half." Note that Equinox is the decisive case: had the statement said "greater than 90%" rather than "at least 90%," Equinox's value of exactly 90 would fail and the count would drop to two, making the statement false. As written with "at least 90%," the statement holds.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q85 (Set 14 — Logistics Carrier Performance, continued)
+
+The following table shows one quarter of operating data for five freight carriers:
+
+| Carrier  | On-Time % | Shipments (000s) | Cost/Shipment ($) | Damage Claims | Fuel Surcharge % |
+|----------|-----------|------------------|-------------------|---------------|------------------|
+| Apex     | 92        | 48               | 14.50             | 360           | 8                |
+| Borealis | 88        | 60               | 12.00             | 540           | 11               |
+| Cresco   | 95        | 35               | 18.00             | 175           | 6                |
+| Delphi   | 84        | 72               | 10.50             | 720           | 14               |
+| Equinox  | 90        | 50               | 15.00             | 400           | 9                |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Derived-Rate Comparison
+
+Statement: The carrier that handled the most shipments also had the lowest number of damage claims per thousand shipments.
+
+- A) Yes
+- B) No
+
+**answer:** B
+**explanation:** **Two quantities to identify.** The statement couples a raw maximum (most shipments) with a derived minimum (lowest damage claims per thousand shipments). Damage claims per thousand shipments is defined as Damage Claims divided by Shipments (000s), since the shipment figures are already expressed in thousands. The statement is true only if a single carrier holds both distinctions.
+
+**Identifying the carrier with the most shipments.** The Shipments (000s) column reads Apex 48, Borealis 60, Cresco 35, Delphi 72, Equinox 50. The maximum is 72, belonging to Delphi.
+
+**Computing damage claims per thousand shipments.** Let c = Damage Claims / Shipments (000s) for each carrier:
+
+- Apex: 360 / 48 = 7.5
+- Borealis: 540 / 60 = 9.0
+- Cresco: 175 / 35 = 5.0
+- Delphi: 720 / 72 = 10.0
+- Equinox: 400 / 50 = 8.0
+
+**Identifying the minimum rate.** Ordering the five rates: 5.0 < 7.5 < 8.0 < 9.0 < 10.0. The lowest damage-claim rate is 5.0 per thousand shipments, belonging to Cresco.
+
+**Evaluating the statement.** The carrier with the most shipments is Delphi, but Delphi's damage-claim rate of 10.0 is in fact the highest of the five, not the lowest. The carrier with the lowest rate is Cresco. Because these are two different carriers, the statement is false. The pairing is, if anything, the reverse of what the statement claims: the highest-volume carrier carries the worst damage rate.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q86 (Set 14 — Logistics Carrier Performance, continued)
+
+The following table shows one quarter of operating data for five freight carriers:
+
+| Carrier  | On-Time % | Shipments (000s) | Cost/Shipment ($) | Damage Claims | Fuel Surcharge % |
+|----------|-----------|------------------|-------------------|---------------|------------------|
+| Apex     | 92        | 48               | 14.50             | 360           | 8                |
+| Borealis | 88        | 60               | 12.00             | 540           | 11               |
+| Cresco   | 95        | 35               | 18.00             | 175           | 6                |
+| Delphi   | 84        | 72               | 10.50             | 720           | 14               |
+| Equinox  | 90        | 50               | 15.00             | 400           | 9                |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Conditional Statements
+
+Statement: Every carrier with an on-time rate below 90% had a fuel surcharge greater than 10%.
+
+- A) Yes
+- B) No
+
+**answer:** A
+**explanation:** **Governing principle.** A universal conditional of the form "every carrier with property P has property Q" is true exactly when no carrier satisfies P while failing Q. Here P is "On-Time % < 90" and Q is "Fuel Surcharge % > 10." We first isolate the carriers satisfying the antecedent, then verify the consequent for each.
+
+**Identifying the antecedent set.** Scanning the On-Time % column for values strictly below 90:
+
+- Apex: 92 — not below 90, excluded.
+- Borealis: 88 — below 90, included.
+- Cresco: 95 — not below 90, excluded.
+- Delphi: 84 — below 90, included.
+- Equinox: 90 — exactly 90, not strictly below 90, excluded.
+
+The qualifying set is {Borealis, Delphi}. Equinox is excluded because 90 is not less than 90.
+
+**Verifying the consequent.** We require Fuel Surcharge % > 10 for each member of the qualifying set:
+
+- Borealis: fuel surcharge = 11, and 11 > 10 — satisfied.
+- Delphi: fuel surcharge = 14, and 14 > 10 — satisfied.
+
+Both carriers in the antecedent set carry a fuel surcharge above 10%. No counterexample exists, so the conditional holds universally. The three excluded carriers — Apex, Cresco, and Equinox — are irrelevant to the truth of the conditional regardless of their fuel surcharges (which are 8, 6, and 9 respectively, all at or below 10), because they fail the antecedent.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q87 (Set 14 — Logistics Carrier Performance, continued)
+
+The following table shows one quarter of operating data for five freight carriers:
+
+| Carrier  | On-Time % | Shipments (000s) | Cost/Shipment ($) | Damage Claims | Fuel Surcharge % |
+|----------|-----------|------------------|-------------------|---------------|------------------|
+| Apex     | 92        | 48               | 14.50             | 360           | 8                |
+| Borealis | 88        | 60               | 12.00             | 540           | 11               |
+| Cresco   | 95        | 35               | 18.00             | 175           | 6                |
+| Delphi   | 84        | 72               | 10.50             | 720           | 14               |
+| Equinox  | 90        | 50               | 15.00             | 400           | 9                |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Conditional Statements
+
+Statement: Every carrier with a fuel surcharge below 10% had an on-time rate of at least 92%.
+
+- A) Yes
+- B) No
+
+**answer:** B
+**explanation:** **Governing principle.** This universal conditional has antecedent P = "Fuel Surcharge % < 10" and consequent Q = "On-Time % >= 92." It is false if even one carrier satisfies P but fails Q. We isolate the antecedent set, then test the consequent.
+
+**Identifying the antecedent set.** Scanning the Fuel Surcharge % column for values strictly below 10:
+
+- Apex: 8 — below 10, included.
+- Borealis: 11 — not below 10, excluded.
+- Cresco: 6 — below 10, included.
+- Delphi: 14 — not below 10, excluded.
+- Equinox: 9 — below 10, included.
+
+The qualifying set is {Apex, Cresco, Equinox}.
+
+**Verifying the consequent.** We require On-Time % >= 92 for each member:
+
+- Apex: on-time = 92, and 92 >= 92 — satisfied.
+- Cresco: on-time = 95, and 95 >= 92 — satisfied.
+- Equinox: on-time = 90, and 90 >= 92? No — 90 is less than 92. Failed.
+
+**Conclusion.** Equinox satisfies the antecedent (fuel surcharge 9% < 10%) but fails the consequent (on-time 90% < 92%). This single counterexample is sufficient to falsify the universal claim. Although two of the three qualifying carriers meet the on-time threshold, the statement asserts that *every* such carrier does, and Equinox breaks that claim. The statement is therefore false.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q88 (Set 15 — Municipal Water Districts)
+
+The following table shows operating data for five water-service districts:
+
+| District  | Population (000s) | Daily Usage (ML) | Pipe Length (km) | Leak Rate % | Annual Budget ($M) |
+|-----------|-------------------|------------------|------------------|-------------|--------------------|
+| Northgate | 120               | 42.0             | 480              | 12          | 18.0               |
+| Eastvale  | 200               | 80.0             | 750              | 8           | 30.0               |
+| Southmoor | 90                | 27.0             | 360              | 15          | 12.0               |
+| Westbrook | 150               | 57.0             | 600              | 10          | 22.5               |
+| Centralia | 160               | 48.0             | 520              | 6           | 24.0               |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Per-Capita Metrics
+
+Which district had the highest daily water usage per thousand residents?
+
+- A) Northgate
+- B) Eastvale
+- C) Southmoor
+- D) Westbrook
+- E) Centralia
+
+**answer:** B
+**explanation:** Daily water usage per thousand residents is defined as Daily Usage (ML) divided by Population (000s); because population is stated in thousands, the quotient is megaliters per thousand people. Because districts differ in both usage and population, this rate must be computed individually rather than read off the raw usage column.
+
+Computing the rate u = Daily Usage / Population for each district:
+
+- Northgate: 42.0 / 120 = 0.350 ML per thousand residents
+- Eastvale: 80.0 / 200 = 0.400 ML per thousand residents
+- Southmoor: 27.0 / 90 = 0.300 ML per thousand residents
+- Westbrook: 57.0 / 150 = 0.380 ML per thousand residents
+- Centralia: 48.0 / 160 = 0.300 ML per thousand residents
+
+Ranking these values: Eastvale (0.400) > Westbrook (0.380) > Northgate (0.350) > Southmoor (0.300) = Centralia (0.300). Eastvale's rate of 0.400 is strictly the highest. Note that Eastvale also has the largest absolute usage (80.0 ML), but that alone does not guarantee the highest per-capita figure — Eastvale also serves the largest population (200 thousand). The per-capita computation confirms Eastvale leads, narrowly ahead of Westbrook.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q89 (Set 15 — Municipal Water Districts, continued)
+
+The following table shows operating data for five water-service districts:
+
+| District  | Population (000s) | Daily Usage (ML) | Pipe Length (km) | Leak Rate % | Annual Budget ($M) |
+|-----------|-------------------|------------------|------------------|-------------|--------------------|
+| Northgate | 120               | 42.0             | 480              | 12          | 18.0               |
+| Eastvale  | 200               | 80.0             | 750              | 8           | 30.0               |
+| Southmoor | 90                | 27.0             | 360              | 15          | 12.0               |
+| Westbrook | 150               | 57.0             | 600              | 10          | 22.5               |
+| Centralia | 160               | 48.0             | 520              | 6           | 24.0               |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Derived Volume
+
+Which district loses the smallest volume of water to leaks each day?
+
+- A) Northgate
+- B) Eastvale
+- C) Southmoor
+- D) Westbrook
+- E) Centralia
+
+**answer:** E
+**explanation:** The daily volume of water lost to leaks is Daily Usage (ML) multiplied by the Leak Rate expressed as a decimal: leak volume = Daily Usage x (Leak Rate % / 100). A district can have a high percentage leak rate yet a modest absolute loss if its total usage is small, and vice versa, so the product must be computed for each district.
+
+Computing leak volume for each district:
+
+- Northgate: 42.0 x 0.12 = 5.04 ML
+- Eastvale: 80.0 x 0.08 = 6.40 ML
+- Southmoor: 27.0 x 0.15 = 4.05 ML
+- Westbrook: 57.0 x 0.10 = 5.70 ML
+- Centralia: 48.0 x 0.06 = 2.88 ML
+
+Ranking from smallest to largest: Centralia (2.88) < Southmoor (4.05) < Northgate (5.04) < Westbrook (5.70) < Eastvale (6.40). Centralia loses the smallest volume, 2.88 ML per day.
+
+Two contrasts illustrate why the absolute volume differs from the percentage rate. Southmoor has the highest leak *rate* (15%) but, because its usage is the lowest in the table (27.0 ML), its absolute loss of 4.05 ML is only the second-smallest. Eastvale has a low leak rate (8%) yet the largest absolute loss (6.40 ML), driven by its enormous usage of 80.0 ML. Centralia combines the lowest leak rate (6%) with mid-range usage, producing the smallest absolute loss of all five districts.
+
+The correct answer is E.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q90 (Set 15 — Municipal Water Districts, continued)
+
+The following table shows operating data for five water-service districts:
+
+| District  | Population (000s) | Daily Usage (ML) | Pipe Length (km) | Leak Rate % | Annual Budget ($M) |
+|-----------|-------------------|------------------|------------------|-------------|--------------------|
+| Northgate | 120               | 42.0             | 480              | 12          | 18.0               |
+| Eastvale  | 200               | 80.0             | 750              | 8           | 30.0               |
+| Southmoor | 90                | 27.0             | 360              | 15          | 12.0               |
+| Westbrook | 150               | 57.0             | 600              | 10          | 22.5               |
+| Centralia | 160               | 48.0             | 520              | 6           | 24.0               |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Per-Capita Cost
+
+Which district had the lowest annual budget per resident?
+
+- A) Northgate
+- B) Eastvale
+- C) Southmoor
+- D) Westbrook
+- E) Centralia
+
+**answer:** C
+**explanation:** Annual budget per resident is the Annual Budget divided by the population. With budget in millions of dollars and population in thousands of residents, the budget per resident in dollars equals (Annual Budget ($M) x 1,000,000) / (Population (000s) x 1,000), which simplifies to (Annual Budget ($M) / Population (000s)) x 1,000.
+
+Computing budget per resident for each district:
+
+- Northgate: (18.0 / 120) x 1,000 = 0.150 x 1,000 = $150.00
+- Eastvale: (30.0 / 200) x 1,000 = 0.150 x 1,000 = $150.00
+- Southmoor: (12.0 / 90) x 1,000 = 0.1333 x 1,000 = $133.33
+- Westbrook: (22.5 / 150) x 1,000 = 0.150 x 1,000 = $150.00
+- Centralia: (24.0 / 160) x 1,000 = 0.150 x 1,000 = $150.00
+
+Four of the five districts — Northgate, Eastvale, Westbrook, and Centralia — share an identical budget-per-resident figure of exactly $150.00, because each maintains the same ratio of budget to population (0.150 $M per thousand residents). Southmoor stands apart at $133.33 per resident, since its budget-to-population ratio of 12.0/90 = 0.1333 is below 0.150. Southmoor's figure is strictly the lowest, so it is the credited district.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q91
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Quality Metrics
+
+The following table shows one month of output data for five manufacturing plants:
+
+| Plant    | Units Produced | Defective Units | Machine Hours | Energy (MWh) |
+|----------|----------------|-----------------|---------------|--------------|
+| Aurora   | 24,000         | 480             | 800           | 372          |
+| Borden   | 18,000         | 270             | 600           | 252          |
+| Calder   | 30,000         | 900             | 1,000         | 510          |
+| Dunmore  | 21,000         | 420             | 700           | 315          |
+| Ellery   | 27,000         | 540             | 900           | 459          |
+
+Which plant had the lowest defect rate (defective units as a percentage of units produced)?
+
+- A) Aurora
+- B) Borden
+- C) Calder
+- D) Dunmore
+- E) Ellery
+
+**answer:** B
+**explanation:** The defect rate is defined as Defective Units divided by Units Produced, expressed as a percentage: defect rate = (Defective Units / Units Produced) x 100. Because both the numerator and denominator vary across plants, the rate must be computed individually; the plant with the most defective units in absolute terms is not necessarily the one with the highest rate.
+
+Computing the defect rate for each plant:
+
+- Aurora: (480 / 24,000) x 100 = 0.020 x 100 = 2.00%
+- Borden: (270 / 18,000) x 100 = 0.015 x 100 = 1.50%
+- Calder: (900 / 30,000) x 100 = 0.030 x 100 = 3.00%
+- Dunmore: (420 / 21,000) x 100 = 0.020 x 100 = 2.00%
+- Ellery: (540 / 27,000) x 100 = 0.020 x 100 = 2.00%
+
+Ranking from lowest to highest: Borden (1.50%) < Aurora = Dunmore = Ellery (2.00%) < Calder (3.00%). Borden's defect rate of 1.50% is strictly the lowest. Three plants — Aurora, Dunmore, and Ellery — tie at exactly 2.00%, and Calder is highest at 3.00% despite also producing the most units overall (30,000). Borden, with both the fewest units and the fewest defects, achieves the best ratio at 1.50%, uniquely the minimum.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q92
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Unit Conversion
+
+The following table shows one month of output data for five manufacturing plants:
+
+| Plant    | Units Produced | Defective Units | Machine Hours | Energy (MWh) |
+|----------|----------------|-----------------|---------------|--------------|
+| Aurora   | 24,000         | 480             | 800           | 372          |
+| Borden   | 18,000         | 270             | 600           | 252          |
+| Calder   | 30,000         | 900             | 1,000         | 510          |
+| Dunmore  | 21,000         | 420             | 700           | 315          |
+| Ellery   | 27,000         | 540             | 900           | 459          |
+
+Which plant's energy consumption per unit produced is closest to 15 kWh?
+
+- A) Aurora
+- B) Borden
+- C) Calder
+- D) Dunmore
+- E) Ellery
+
+**answer:** D
+**explanation:** Energy consumption per unit produced is total energy divided by units produced. Energy is given in megawatt-hours (MWh), and 1 MWh equals 1,000 kWh, so energy per unit in kilowatt-hours equals (Energy (MWh) x 1,000) / Units Produced. The deviation of each plant's figure from the target of 15 kWh is then compared, and the smallest deviation identifies the credited plant.
+
+Computing energy per unit (in kWh) for each plant:
+
+- Aurora: (372 x 1,000) / 24,000 = 372,000 / 24,000 = 15.50 kWh; deviation |15.50 - 15| = 0.50
+- Borden: (252 x 1,000) / 18,000 = 252,000 / 18,000 = 14.00 kWh; deviation |14.00 - 15| = 1.00
+- Calder: (510 x 1,000) / 30,000 = 510,000 / 30,000 = 17.00 kWh; deviation |17.00 - 15| = 2.00
+- Dunmore: (315 x 1,000) / 21,000 = 315,000 / 21,000 = 15.00 kWh; deviation |15.00 - 15| = 0.00
+- Ellery: (459 x 1,000) / 27,000 = 459,000 / 27,000 = 17.00 kWh; deviation |17.00 - 15| = 2.00
+
+Dunmore's energy per unit is exactly 15.00 kWh, a deviation of 0.00 from the target — the minimum possible. Aurora is the next closest at 15.50 kWh (deviation 0.50), but it does not match Dunmore's exact hit. The unit conversion from MWh to kWh is essential: omitting the factor of 1,000 would leave all values near 0.015 and obscure the comparison entirely.
+
+The correct answer is D.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q93
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Multi-Condition Filtering
+
+The following table shows performance data for five investment funds over the past year:
+
+| Fund     | Assets ($M) | 1-Yr Return % | Expense Ratio % | Sharpe Ratio |
+|----------|-------------|---------------|-----------------|--------------|
+| Halcyon  | 250         | 11.2          | 0.85            | 1.10         |
+| Ironwood | 480         | 8.5           | 0.45            | 0.95         |
+| Juniper  | 120         | 14.0          | 1.20            | 1.05         |
+| Kestrel  | 360         | 9.8           | 0.60            | 1.20         |
+| Lattice  | 200         | 12.5          | 0.95            | 0.80         |
+
+How many funds satisfy all three of the following: a 1-year return above 10%, an expense ratio below 1.0%, and a Sharpe ratio of at least 1.0?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** A
+**explanation:** Three conditions must hold simultaneously for a fund to qualify: (1) 1-Yr Return % > 10, (2) Expense Ratio % < 1.0, and (3) Sharpe Ratio >= 1.0. A fund counts only if it passes all three screens; failing any single one disqualifies it. Each fund is tested in turn.
+
+**Halcyon.** Return 11.2 > 10 (pass); expense 0.85 < 1.0 (pass); Sharpe 1.10 >= 1.0 (pass). All three conditions hold — Halcyon qualifies.
+
+**Ironwood.** Return 8.5 > 10? No — fails the return screen immediately. Ironwood does not qualify (its low expense ratio of 0.45 is irrelevant once the return condition fails).
+
+**Juniper.** Return 14.0 > 10 (pass); expense 1.20 < 1.0? No — 1.20 exceeds 1.0, fails the expense screen. Juniper does not qualify despite the table's highest return.
+
+**Kestrel.** Return 9.8 > 10? No — 9.8 is below 10, fails the return screen. Kestrel does not qualify despite the table's highest Sharpe ratio of 1.20.
+
+**Lattice.** Return 12.5 > 10 (pass); expense 0.95 < 1.0 (pass); Sharpe 0.80 >= 1.0? No — 0.80 is below 1.0, fails the Sharpe screen. Lattice does not qualify.
+
+Exactly one fund — Halcyon — clears all three conditions at once. Notably, each of the four near-misses fails on a different criterion: Ironwood and Kestrel on return, Juniper on expense ratio, and Lattice on Sharpe ratio. This underscores that conjunctive filtering requires every condition to be checked; a fund that excels on one or two dimensions can still be eliminated by a single failing screen. The total count of qualifying funds is therefore 1.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis

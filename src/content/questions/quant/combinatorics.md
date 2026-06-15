@@ -2711,3 +2711,236 @@ A jar contains r red marbles and b blue marbles and no others. If 2 marbles are 
 **explanation:** A pair of 2 marbles that are both red is an unordered choice of 2 of the red marbles, so the number of such pairs is C(r, 2) and depends only on r, not on b. Statement (1) gives r = 6, so the number of all-red pairs is C(6, 2) = (6 x 5) / (2 x 1) = 15, a single determined value; this is sufficient. Statement (2) gives only b = 5, which says nothing about how many red marbles are available and therefore leaves C(r, 2) undetermined; this is not sufficient. Since the count depends solely on r, statement (1) alone suffices while statement (2) alone does not. The correct answer is A.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+## Q97
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+How many distinct arrangements of all the letters of the word COMMITTEE have the two E's positioned immediately next to each other?
+
+- A) 5,040
+- B) 10,080
+- C) 20,160
+- D) 22,680
+- E) 45,360
+
+**answer:** B
+**explanation:** The word COMMITTEE has 9 letters in which three letters each appear twice — M, T, and E — while C, O, and I each appear once. When two specified items must be adjacent, the block method applies: glue the required items into a single unit, arrange the resulting units while still accounting for any other repeated letters, and finally multiply by the distinct internal orderings of the block.
+
+Bind the two E's into one block, denoted [EE]. The objects to be arranged are then this block together with the remaining seven letters C, O, M, M, I, T, T — a total of 8 units. Among these 8 units the letter M still appears twice and the letter T still appears twice, so the number of distinct arrangements of the units is 8! divided by the factorials of those repeat counts:
+
+8! / (2! x 2!) = 40,320 / 4 = 10,080.
+
+Because the two letters inside the block are identical E's, swapping them produces no new arrangement, so the block contributes no additional internal orderings (its internal factor is 1, not 2!). Therefore the total number of arrangements with the two E's adjacent is 10,080.
+
+The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q98
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Combinations
+
+A delegation of 5 is to be selected from a department of 6 senior staff and 4 junior staff. To preserve experience, the delegation may include at most 1 junior staff member. How many different delegations satisfy this requirement?
+
+- A) 6
+- B) 60
+- C) 66
+- D) 186
+- E) 252
+
+**answer:** C
+**explanation:** Because a delegation is an unordered selection of people, each selection is counted with combinations, where C(n, r) = n! / [r!(n - r)!]. The phrase "at most 1 junior" means the number of junior members is either 0 or 1, so we partition the count into these two mutually exclusive cases, count each with the multiplication principle, and add.
+
+Case 1: 0 juniors, 5 seniors. All five members are chosen from the 6 seniors, giving C(6, 5) = 6, and the juniors contribute C(4, 0) = 1, so this case yields 6 x 1 = 6.
+
+Case 2: 1 junior, 4 seniors. Choose 1 of the 4 juniors and 4 of the 6 seniors: C(4, 1) x C(6, 4) = 4 x 15 = 60.
+
+Because the two cases are mutually exclusive and together exhaust the "at most 1 junior" condition, the total number of delegations is the sum:
+
+6 + 60 = 66.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q99
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+In how many distinct arrangements of all the letters of the word FAILURE do the four vowels all appear together as one consecutive block (in any order)?
+
+- A) 144
+- B) 288
+- C) 576
+- D) 840
+- E) 5,040
+
+**answer:** C
+**explanation:** The word FAILURE consists of 7 distinct letters: the four vowels A, I, U, E and the three consonants F, L, R. When a designated set of letters must all stay together, the block method applies: treat the set as a single unit, arrange that unit alongside the remaining letters, and then multiply by the number of internal orderings within the block.
+
+First, treat the four vowels as a single block. This block, together with the three consonants F, L, and R, gives 4 units to arrange in a row. Since all four units are distinct, the number of arrangements of the units is 4! = 24.
+
+Next, the four vowels inside the block are themselves distinct and may be ordered among themselves in 4! = 24 ways.
+
+By the multiplication principle, the total number of arrangements in which the four vowels form one consecutive block is the product of the two counts:
+
+4! x 4! = 24 x 24 = 576.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q100
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Counting Principle
+
+How many 4-digit integers are divisible by 5 and have four distinct digits? (A 4-digit integer cannot begin with 0.)
+
+- A) 504
+- B) 952
+- C) 1,008
+- D) 1,800
+- E) 4,536
+
+**answer:** B
+**explanation:** An integer is divisible by 5 exactly when its units digit is 0 or 5, so the units position drives the count. Because the digits must be distinct and the leading digit cannot be 0, we split into two mutually exclusive cases according to the units digit and apply the fundamental counting principle within each.
+
+Case 1: units digit is 0. The thousands, hundreds, and tens digits are then chosen, distinct, from the remaining 9 digits. Since 0 is already used, the thousands digit is automatically nonzero, so there is no extra leading-digit restriction. The counts are 9 choices for the thousands digit, then 8, then 7:
+
+9 x 8 x 7 = 504.
+
+Case 2: units digit is 5. The thousands digit cannot be 0 and cannot be 5, leaving 8 choices. The hundreds digit may be any of the remaining 8 digits (0 is now allowed, and 5 is already used), and the tens digit may be any of the remaining 7. The count is:
+
+8 x 8 x 7 = 448.
+
+Because the two cases are mutually exclusive and exhaust all multiples of 5, the total is the sum:
+
+504 + 448 = 952.
+
+The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q101
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+A planning board of 4 people is to be selected from 5 married couples (10 people in all). To avoid conflicts of interest, no two people who are married to each other may both serve on the board. How many different boards can be formed?
+
+- A) 40
+- B) 80
+- C) 120
+- D) 160
+- E) 210
+
+**answer:** B
+**explanation:** The constraint is that the four chosen people must come from four different couples, since selecting both members of any couple is forbidden. This decomposes naturally into two independent stages: first decide which couples are represented, then decide which member of each represented couple is chosen. The fundamental counting principle lets us multiply the counts of the two stages, and the unordered choice of couples is counted with a combination.
+
+Stage 1: choose which 4 of the 5 couples will be represented on the board. Since the couples are interchangeable for this purpose and order does not matter, the number of ways is C(5, 4) = 5.
+
+Stage 2: from each of the 4 chosen couples, select exactly one of the 2 spouses to serve. Each couple offers 2 independent choices, so across the 4 couples the number of ways is 2 x 2 x 2 x 2 = 2^4 = 16.
+
+By the multiplication principle, the total number of valid boards is the product of the two stages:
+
+C(5, 4) x 2^4 = 5 x 16 = 80.
+
+The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q102
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Restrictions
+
+Six distinct students are to be seated in a single row of six chairs. In how many of the possible arrangements is Sara seated somewhere to the left of Tom (not necessarily immediately next to him)?
+
+- A) 120
+- B) 240
+- C) 360
+- D) 600
+- E) 720
+
+**answer:** C
+**explanation:** This problem is solved by a symmetry argument rather than by direct enumeration. The total number of ways to seat 6 distinct students in a row is 6! = 720, with no restriction on relative position.
+
+Now consider only the relative order of Sara and Tom within any arrangement. In every seating, exactly one of two mutually exclusive situations holds: either Sara is to the left of Tom, or Tom is to the left of Sara (they cannot occupy the same chair, so there is no tie). These two situations are perfectly symmetric, because for every arrangement in which Sara is left of Tom there is a unique matching arrangement, obtained by swapping the two people's seats, in which Tom is left of Sara. This pairing is a one-to-one correspondence between the two groups, so the 720 arrangements split into two equal halves.
+
+Therefore the number of arrangements in which Sara is to the left of Tom is exactly half of the total:
+
+720 / 2 = 360.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q103
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+In how many distinct arrangements of all the letters of the word BANANA do the two N's never appear immediately next to each other?
+
+- A) 16
+- B) 20
+- C) 24
+- D) 40
+- E) 60
+
+**answer:** D
+**explanation:** The word BANANA has 6 letters, with A appearing three times, N appearing twice, and B appearing once. A clean way to enforce a non-adjacency condition is the gap method: first arrange all the other letters, then insert the restricted letters into the gaps between them so that no two restricted letters land in the same gap.
+
+Step 1: arrange the non-N letters, namely B, A, A, A. These four letters include three identical A's, so the number of distinct arrangements is 4! / 3! = 24 / 6 = 4.
+
+Step 2: each such arrangement of four letters creates 5 gaps into which the N's can be placed — one gap before the first letter, one after the last, and three between adjacent letters. To keep the two N's apart, we place them in 2 different gaps. Because the two N's are identical, the choice of gaps is unordered, so the number of ways is C(5, 2) = (5 x 4) / (2 x 1) = 10.
+
+By the multiplication principle, the total number of arrangements with the N's never adjacent is the product:
+
+4 x 10 = 40.
+
+As a check, the total number of distinct arrangements of BANANA is 6! / (3! x 2!) = 720 / 12 = 60, and the number with the two N's together (gluing them into one block of 5 units B, A, A, A, [NN], counted as 5! / 3! = 20) gives 60 - 20 = 40, confirming the result.
+
+The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q104
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Combinations
+
+A relay squad of 3 is to be chosen from a club of g girls and b boys. How many different squads consist of exactly 1 girl and 2 boys?
+
+(1) There are exactly 21 ways to choose an unordered pair of 2 boys from the club.
+(2) g = 5.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** A squad with exactly 1 girl and 2 boys is built by an unordered choice of 1 girl from the g available and 2 boys from the b available, so the number of such squads is C(g, 1) x C(b, 2) = g x C(b, 2). Determining this value requires knowing both g and the number of boys b (or directly the value of C(b, 2)).
+
+Statement (1) says the number of unordered pairs of boys is C(b, 2) = 21, which fixes the boys' factor at 21 and, incidentally, implies b = 7 since C(7, 2) = 21. However, the number of girls g is unknown, so the product g x 21 is undetermined. Statement (1) alone is not sufficient.
+
+Statement (2) gives g = 5, so the girl can be chosen in C(5, 1) = 5 ways, but the number of boys b is unknown, leaving 5 x C(b, 2) undetermined. Statement (2) alone is not sufficient.
+
+Taking the statements together, C(b, 2) = 21 and g = 5, so the number of squads is g x C(b, 2) = 5 x 21 = 105, a single determined value. Both statements together are sufficient, but neither alone is.
+
+The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics

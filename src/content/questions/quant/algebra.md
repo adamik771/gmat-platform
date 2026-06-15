@@ -3242,3 +3242,170 @@ For how many integer values of x is x² - x - 12 < 0?
 **answer:** C
 **explanation:** A quadratic inequality is solved by first finding the roots of the corresponding equation and then determining where the parabola lies below the x-axis. Factoring x² - x - 12 gives (x - 4)(x + 3), so the roots are x = 4 and x = -3. Because the leading coefficient is positive, the parabola opens upward and is negative only between its two roots, so x² - x - 12 < 0 exactly when -3 < x < 4. Since the inequality is strict, the endpoints -3 and 4 are excluded, and the integers strictly between them are -2, -1, 0, 1, 2, and 3, which is 6 integers. The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+
+---
+
+## Q130
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratics
+
+If the equation x² + (k − 3)x + 9 = 0 has two equal real roots and k > 0, what is the value of k?
+
+- A) 3
+- B) 6
+- C) 9
+- D) 12
+- E) 15
+
+**answer:** C
+**explanation:** A quadratic equation ax² + bx + c = 0 has two equal real roots (a single repeated root) exactly when its discriminant b² − 4ac equals zero. Here a = 1, b = k − 3, and c = 9, so we require (k − 3)² − 4(1)(9) = 0, that is (k − 3)² − 36 = 0. Thus (k − 3)² = 36, which gives k − 3 = 6 or k − 3 = −6, so k = 9 or k = −3. Since the problem restricts k > 0, the value k = −3 is rejected and k = 9. As a check, with k = 9 the equation becomes x² + 6x + 9 = 0, which factors as (x + 3)² = 0, confirming the single repeated root x = −3. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q131
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations
+
+At an office supply store, 3 pens and 2 notebooks cost $26, while 2 pens and 5 notebooks cost $32. What is the total cost, in dollars, of 5 pens and 5 notebooks?
+
+- A) 50
+- B) 45
+- C) 55
+- D) 40
+- E) 60
+
+**answer:** A
+**explanation:** Let p be the cost of one pen and n the cost of one notebook, both in dollars. The conditions translate to the system 3p + 2n = 26 and 2p + 5n = 32. To eliminate n, multiply the first equation by 5 and the second by 2: 15p + 10n = 130 and 4p + 10n = 64. Subtracting the second from the first gives 11p = 66, so p = 6. Substituting p = 6 into 3p + 2n = 26 gives 18 + 2n = 26, so 2n = 8 and n = 4. The total cost of 5 pens and 5 notebooks is 5p + 5n = 5(6) + 5(4) = 30 + 20 = 50. As a check, 2(6) + 5(4) = 12 + 20 = 32, confirming the second condition. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q132
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inequalities
+
+For how many integer values of x is (x − 2)(x + 5) < 8?
+
+- A) 6
+- B) 7
+- C) 8
+- D) 9
+- E) 10
+
+**answer:** C
+**explanation:** First bring the inequality into standard quadratic form. Expanding the product gives (x − 2)(x + 5) = x² + 3x − 10, so the inequality (x − 2)(x + 5) < 8 becomes x² + 3x − 10 < 8, that is x² + 3x − 18 < 0. Factoring the left side, we seek two numbers whose product is −18 and whose sum is 3; these are 6 and −3, so x² + 3x − 18 = (x + 6)(x − 3). The inequality (x + 6)(x − 3) < 0 holds when the two factors have opposite signs, which occurs strictly between the roots: −6 < x < 3. Because the inequality is strict, the endpoints −6 and 3 are excluded. The integers strictly between −6 and 3 are −5, −4, −3, −2, −1, 0, 1, and 2, a total of 8 integers. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q133
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Functions
+
+Let f(x) = 2x − 3. If f(f(x)) = x + 3, what is the value of x?
+
+- A) 3
+- B) 4
+- C) 5
+- D) 6
+- E) 8
+
+**answer:** B
+**explanation:** A composite function is built by applying f to its own output. With f(x) = 2x − 3, we first form f(f(x)) by substituting f(x) into the rule for f: f(f(x)) = 2·f(x) − 3 = 2(2x − 3) − 3. Expanding gives 4x − 6 − 3 = 4x − 9. We now set this equal to the given expression: 4x − 9 = x + 3. Subtracting x from both sides gives 3x − 9 = 3, and adding 9 gives 3x = 12, so x = 4. As a check, f(4) = 2(4) − 3 = 5 and f(5) = 2(5) − 3 = 7, while x + 3 = 4 + 3 = 7, confirming f(f(4)) = 7. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q134
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Sequences
+
+In an arithmetic sequence, the 4th term is 14 and the 9th term is 34. What is the sum of the first 10 terms of the sequence?
+
+- A) 200
+- B) 180
+- C) 190
+- D) 210
+- E) 220
+
+**answer:** A
+**explanation:** In an arithmetic sequence the nth term is a + (n − 1)d, where a is the first term and d is the common difference. The 4th term is a + 3d = 14 and the 9th term is a + 8d = 34. Subtracting the first equation from the second eliminates a: (a + 8d) − (a + 3d) = 34 − 14, so 5d = 20 and d = 4. Substituting d = 4 into a + 3d = 14 gives a + 12 = 14, so a = 2. The sum of the first n terms of an arithmetic sequence is (n/2)[2a + (n − 1)d]. For n = 10, this is (10/2)[2(2) + 9(4)] = 5[4 + 36] = 5(40) = 200. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q135
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value
+
+What is the sum of all real values of x that satisfy |x² − 4x| = 3?
+
+- A) 8
+- B) 4
+- C) 6
+- D) 10
+- E) 12
+
+**answer:** A
+**explanation:** An equation of the form |expression| = 3 splits into two cases, since the quantity inside can equal either 3 or −3. We treat each case as a quadratic and use the relationship that, for x² + bx + c = 0, the sum of the roots equals −b.
+
+Case 1: x² − 4x = 3, which rearranges to x² − 4x − 3 = 0. Its discriminant is (−4)² − 4(1)(−3) = 16 + 12 = 28 > 0, so it has two distinct real roots, and their sum is −(−4) = 4.
+
+Case 2: x² − 4x = −3, which rearranges to x² − 4x + 3 = 0. This factors as (x − 1)(x − 3) = 0, giving the real roots x = 1 and x = 3, whose sum is 4.
+
+All four roots are real and each satisfies the original equation by construction. The total sum of all solutions is 4 + 4 = 8. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q136
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations
+
+If x and y are positive numbers such that x − y = 5 and x² − y² = 65, what is the value of x + y?
+
+- A) 11
+- B) 12
+- C) 13
+- D) 15
+- E) 18
+
+**answer:** C
+**explanation:** The key is to recognize the difference-of-squares factorization x² − y² = (x − y)(x + y), which lets us find x + y without solving for x and y individually. Substituting the known value x − y = 5 gives x² − y² = 5(x + y). Since x² − y² = 65, we have 5(x + y) = 65, so x + y = 13. As a check, combining x − y = 5 and x + y = 13 gives x = 9 and y = 4, both positive, and indeed 9² − 4² = 81 − 16 = 65. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q137
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value Inequalities
+
+For how many integer values of x is |x − 2| + |x + 4| ≤ 10?
+
+- A) 11
+- B) 9
+- C) 13
+- D) 7
+- E) 15
+
+**answer:** A
+**explanation:** The expression |x − 2| + |x + 4| represents the total distance from x to the points 2 and −4 on the number line. We analyze it by region, using the distance between 2 and −4, which is 6.
+
+For −4 ≤ x ≤ 2 (between the two points), the total distance is exactly the gap between them: |x − 2| + |x + 4| = 6, which is ≤ 10 for every such x.
+
+For x > 2, both quantities open the same way: |x − 2| + |x + 4| = (x − 2) + (x + 4) = 2x + 2. Setting 2x + 2 ≤ 10 gives x ≤ 4, so 2 < x ≤ 4.
+
+For x < −4, |x − 2| + |x + 4| = (2 − x) + (−4 − x) = −2x − 2. Setting −2x − 2 ≤ 10 gives −2x ≤ 12, so x ≥ −6, that is −6 ≤ x < −4.
+
+Combining all three regions, the inequality holds exactly for −6 ≤ x ≤ 4. The integers in this closed interval are −6, −5, −4, −3, −2, −1, 0, 1, 2, 3, and 4, a total of 4 − (−6) + 1 = 11 integers. The correct answer is A.
+**related_reading:** reading-quant-04-algebra-and-equations

@@ -5543,3 +5543,728 @@ Which of the following, if true, most seriously weakens the owner's reasoning?
 **answer:** B
 **explanation:** The owner infers that the patio caused a net 20 percent revenue gain and is therefore worth expanding. Choice B undercuts this by showing the patio largely shifted existing customers rather than attracting new business: if indoor tables sat empty while patio tables filled, the patio mostly relocated revenue instead of adding it, so the apparent gain may owe little to the patio and further expansion would not pay off. Choice A (seasonal use) is a known limitation but does not explain away the observed gain or argue against expanding the usable-season capacity. Choice C (competitors also added seating) does not directly weaken the claim that this patio drove this restaurant's revenue. Choice D (fast cost recovery) strengthens the investment case. Choice E (patio customers spend more on drinks) also supports, not weakens, the value of the patio. The correct answer is B.
 **related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q222
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Assumption
+
+A municipal transit authority plans to reduce subway delays by replacing its oldest signal equipment, which dates from the 1970s, with a modern digital system. Last year, 62 percent of all delays lasting more than ten minutes were attributed to signal failures. The authority's chief engineer concludes that installing the new system will substantially reduce the total number of long delays the subway experiences each year.
+
+The engineer's conclusion depends on which of the following assumptions?
+
+- A) The new digital signal system will cost less to maintain over its lifetime than the existing system has cost.
+- B) Signal failures will not become more frequent before the new system is fully installed.
+- C) The causes of long delays other than signal failures will not increase enough to offset the reduction in signal-related delays.
+- D) Riders consider long delays to be the most serious deficiency in the subway's service.
+- E) The new digital signal system has already been adopted successfully by transit authorities in other cities.
+
+**answer:** C
+**explanation:** **Situation.** A transit authority will replace 1970s-era signal equipment with a modern digital system. Last year signal failures accounted for 62 percent of long delays, and the chief engineer concludes that the new system will substantially reduce the total number of long delays each year.
+
+**Reasoning.** The task is to find the assumption on which the conclusion depends. The conclusion is about the *total* number of long delays, but the evidence concerns only the signal-related share of them. Eliminating most signal failures lowers the total only if the remaining categories of delay do not grow enough to cancel out that reduction. Choice C states precisely this necessary condition: that non-signal causes of long delays will not increase enough to offset the gains from the new system. If this assumption fails, the total could stay flat or even rise despite fewer signal failures, so the conclusion collapses. The negation test confirms it: if the other causes *did* increase enough to offset the reduction, the total would not fall, and the engineer's conclusion would be unsupported. This is a necessary assumption bridging a scope shift from one category of delays to the total.
+
+The correct answer is C.
+**mistake_a:** Choice A concerns maintenance cost, not the number of delays. Whether the new system is cheaper to maintain has no bearing on whether it reduces long delays, which is the sole claim the conclusion makes.
+**mistake_b:** Choice B addresses the transitional period before installation is complete. The conclusion is about the steady-state effect once the new system is in place, so a temporary rise in failures during installation does not have to be ruled out for the conclusion to hold.
+**mistake_d:** Choice D is about riders' priorities, an evaluative judgment irrelevant to whether the number of long delays will actually fall. The argument is causal, not about user perception.
+**mistake_e:** Choice E offers outside corroboration that the system works elsewhere. While such evidence might strengthen the argument, the conclusion does not *depend* on it; the engineer could be right about this subway even if no other city had adopted the system. A necessary assumption must be required, and this is not.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q223
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Weaken
+
+A pharmaceutical company tested a new drug intended to lower blood pressure. In a clinical trial, patients who took the drug for twelve weeks showed an average reduction in systolic blood pressure of 14 points, while patients who took a placebo showed an average reduction of only 4 points. The company concludes that the drug's active ingredient is effective at lowering blood pressure.
+
+Which of the following, if true, most seriously weakens the company's conclusion?
+
+- A) The patients who received the drug were, on average, slightly older than those who received the placebo.
+- B) A 10-point reduction in systolic blood pressure is generally considered clinically meaningful.
+- C) Patients in the drug group were told to follow a low-sodium diet during the trial, whereas patients in the placebo group received no dietary instructions.
+- D) The drug produced mild side effects in a small number of patients.
+- E) Some patients in the placebo group also experienced reductions in blood pressure greater than 14 points.
+
+**answer:** C
+**explanation:** **Situation.** In a twelve-week trial, the drug group's systolic blood pressure fell by an average of 14 points versus 4 points in the placebo group, and the company concludes that the drug's active ingredient is effective at lowering blood pressure.
+
+**Reasoning.** The task is to weaken the causal conclusion that the active ingredient produced the larger reduction. A controlled trial supports a causal claim only when the two groups differ in nothing but the treatment. Choice C reveals a second, uncontrolled difference: the drug group was instructed to follow a low-sodium diet while the placebo group received no such instruction. Reduced sodium intake is itself known to lower blood pressure, so the extra 10-point drop could be due to diet rather than the active ingredient. This introduces a confounding variable that offers a competing explanation for the observed difference, directly undermining the inference that the active ingredient was responsible. The argument commits the false-cause pattern of attributing an effect to one factor while a correlated factor goes unaccounted for.
+
+The correct answer is C.
+**mistake_a:** Choice A notes a small age difference, but it gives no reason to think the slightly older drug group would respond *more* strongly to treatment; if anything, older patients are often harder to treat, so this does not provide a clean alternative explanation for the larger reduction.
+**mistake_b:** Choice B reports that a 10-point reduction is clinically meaningful. This *supports* the relevance of the observed effect rather than weakening the causal claim, so it works in the wrong direction.
+**mistake_d:** Choice D concerns side effects, which bear on the drug's safety, not on whether its active ingredient lowers blood pressure. Effectiveness and safety are separate questions.
+**mistake_e:** Choice E states that some placebo patients had reductions exceeding 14 points. Individual variation is expected, and the conclusion rests on the *average* difference between groups, which choice E does not contradict; a few large placebo responses are consistent with a lower placebo average.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q224
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw
+
+Columnist: Every successful technology startup I have studied was founded by someone who dropped out of college to pursue the venture full-time. Therefore, anyone who wants to found a successful technology startup should drop out of college.
+
+The columnist's reasoning is most vulnerable to criticism on the grounds that it
+
+- A) relies on a sample of startups that may be too small to support any general conclusion
+- B) takes a condition present in past successes to be something that will produce success, while overlooking the many who dropped out and failed
+- C) assumes without justification that founding a startup is the only worthwhile use of a college education
+- D) fails to define what counts as a "successful" technology startup
+- E) confuses the founding of a startup with its long-term profitability
+
+**answer:** B
+**explanation:** **Situation.** The columnist observes that every successful startup studied was founded by a college dropout and concludes that anyone seeking to found a successful startup should drop out of college.
+
+**Reasoning.** The task is to identify the logical flaw. The columnist examined only *successful* startups and found dropping out common among them, then treated that shared feature as a recipe for success. This reasons from "successes had feature X" to "X produces success," but it ignores the base of people who also dropped out and failed. A feature common among winners tells us nothing about its effect on outcomes unless we also know how often it appears among losers; dropping out could be common among failed founders as well. Choice B captures this exactly: it takes a condition merely *present in* past successes to be something that will *produce* success, while overlooking the many dropouts who failed. This is the selection-of-successes flaw, a form of false-cause reasoning that mistakes a correlate of the observed cases for a cause.
+
+The correct answer is B.
+**mistake_a:** Choice A criticizes sample size, but even a large sample of successes alone would have the same defect; the problem is not how many successes were studied but that *only* successes were studied. Enlarging the sample of successes would not fix the missing comparison with failures.
+**mistake_c:** Choice C attacks a claim the columnist never makes. The argument does not assume that founding a startup is the only worthwhile use of college; it simply gives advice to those who want to found one.
+**mistake_d:** Choice D raises a definitional quibble. Even granting a clear definition of success, the inference from "successes shared dropping out" to "dropping out causes success" remains flawed, so vagueness of "successful" is not the central error.
+**mistake_e:** Choice E alleges a confusion between founding and profitability, but the columnist consistently discusses *successful* startups throughout, never sliding between founding and later profitability, so this misdescribes the reasoning.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q225
+**difficulty:** Medium-Hard
+**type:** Critical Reasoning
+**topic:** Inference
+
+A national parks agency reports that in every park where it has introduced a permit system limiting the number of daily hikers, the population of a threatened ground-nesting bird has stabilized or grown. In parks without a permit system, the bird's population has continued to decline. The agency has not introduced permit systems in any park that lacks ground-nesting birds.
+
+If the statements above are true, which of the following must also be true?
+
+- A) The permit system is the only measure capable of stabilizing the threatened bird's population.
+- B) Every park in which the threatened bird's population has declined lacks a permit system.
+- C) In at least one park, limiting the number of daily hikers caused the bird's population to grow.
+- D) Parks with permit systems attract fewer total visitors per year than parks without them.
+- E) The threatened bird does not nest in trees in any of the parks studied.
+
+**answer:** B
+**explanation:** **Situation.** In every permit-system park, the bird's population stabilized or grew; in non-permit parks, it continued to decline; and the agency introduced permit systems only in parks that have the bird.
+
+**Reasoning.** The task is to find what *must* be true given the statements. The statements establish a clean conditional pattern: permit park implies stabilized or grew; no-permit park implies declined. Choice B follows from the contrapositive of the first relationship combined with the second: if a park's population declined, it cannot be a permit park (since all permit parks stabilized or grew), so it must lack a permit system. Every park where the population declined therefore lacks a permit system. This is a valid deduction by contraposition and the disjunctive structure of the two groups, requiring nothing beyond the stated facts.
+
+The correct answer is B.
+**mistake_a:** Choice A claims the permit system is the *only* measure that could work. The passage shows the permit system is associated with stabilization, not that no other measure could ever achieve it; this overstates the evidence.
+**mistake_c:** Choice C asserts a causal claim, that limiting hikers *caused* growth. The data are correlational across parks; a common cause or selection effect could explain the pattern, so causation is not forced. The question asks what *must* be true, and causation is not entailed.
+**mistake_d:** Choice D introduces total annual visitors. A daily cap does not entail fewer total annual visitors, and the passage says nothing about visitor totals, so this cannot be inferred.
+**mistake_e:** Choice E claims the bird never nests in trees. The bird is described as ground-nesting, but that describes its nesting behavior, not an exclusive claim that it never uses trees; more importantly, nothing in the passage about permits and populations forces a conclusion about tree-nesting, so it is not entailed.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q226
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Paradox
+
+A coastal city installed a network of sensors that automatically alert lifeguards to swimmers in distress. In the two years since the sensors were installed, the annual number of recorded near-drowning incidents at the city's beaches has risen by 35 percent, even though the total number of beachgoers has remained roughly constant and lifeguards report that the sensors work as designed.
+
+Which of the following, if true, most helps to resolve the apparent discrepancy described above?
+
+- A) The sensors occasionally generate false alerts when large schools of fish swim near the shore.
+- B) The sensors are most effective in calm water and less reliable during storms.
+- C) The city increased the number of lifeguards on duty at the same time it installed the sensors.
+- D) Neighboring cities that did not install sensors saw no change in their recorded near-drowning incidents.
+- E) Before the sensors were installed, many near-drowning incidents went unnoticed and therefore unrecorded.
+
+**answer:** E
+**explanation:** **Situation.** After installing distress-detection sensors, the city's recorded near-drowning incidents rose 35 percent even though beachgoer numbers held steady and the sensors function as designed. This is puzzling because effective safety technology might be expected to reduce, not raise, such incidents.
+
+**Reasoning.** The task is to resolve the apparent discrepancy. The key is the word *recorded*. A near-drowning is counted only if it is detected. Choice E explains the rise without contradicting any premise: before the sensors, many near-drownings went unnoticed and so were never recorded. The sensors now catch incidents that previously escaped attention, so the *recorded* count rises even if the *actual* rate of distress is unchanged or falling. The increase reflects improved detection rather than a worsening of safety, which dissolves the paradox. This is the detection-effect resolution: a change in measurement, not in the underlying phenomenon, drives the apparent increase.
+
+The correct answer is E.
+**mistake_a:** Choice A says the sensors sometimes false-alert on fish. False alerts would trigger lifeguard responses to non-incidents, but these would not be logged as *near-drowning incidents*, so this does not explain a rise in the recorded near-drowning count.
+**mistake_b:** Choice B says the sensors are less reliable in storms. Reduced reliability in some conditions would, if anything, cause incidents to be *missed*, which would lower the recorded count, the opposite of what must be explained.
+**mistake_c:** Choice C adds more lifeguards. More lifeguards would tend to *reduce* near-drownings or at least improve rescues; it does not explain why recorded incidents went up, so it deepens rather than resolves the puzzle.
+**mistake_d:** Choice D notes that sensorless neighboring cities saw no change. This sharpens the contrast and ties the rise to the sensors, but it does not explain *why* installing working sensors would coincide with more recorded incidents.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q227
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface
+
+Economist: **Conventional wisdom holds that raising the minimum wage in a region inevitably increases unemployment among low-wage workers, because employers respond to higher labor costs by hiring fewer people.** Yet a recent study of two neighboring counties, one of which raised its minimum wage while the other did not, found no measurable difference in low-wage employment between them a year later. Critics dismiss the study, arguing that one year is too short a period for employment effects to appear. **However, the study also tracked the same counties for an additional two years and found that employment levels remained statistically indistinguishable throughout.**
+
+In the economist's argument, the two portions in boldface play which of the following roles?
+
+- A) The first is a generalization that the economist's argument calls into question; the second is evidence offered to address an objection to the case against that generalization.
+- B) The first is the economist's main conclusion; the second is a premise supporting that conclusion.
+- C) The first is an objection the economist later rebuts; the second is the economist's main conclusion.
+- D) The first is evidence supporting the economist's conclusion; the second is a competing explanation the economist rejects.
+- E) The first is a claim the economist accepts; the second is a consequence predicted from that claim.
+
+**answer:** A
+**explanation:** **Situation.** The economist presents the conventional claim that raising the minimum wage inevitably increases low-wage unemployment, then cites a study of two counties finding no employment difference, notes critics' objection that one year is too short, and finally reports that the no-difference result held over three years.
+
+**Reasoning.** The task is to identify the structural role of each boldface portion. The first boldface states the conventional wisdom, the very view the economist's argument is built to challenge with the county study. So the first is a generalization the argument calls into question. The second boldface reports the three-year tracking result. This is introduced specifically *after* the critics' objection that one year was too short, and it directly answers that objection by showing the result persisted. So the second is evidence used to rebut an objection to the case against the generalization. Choice A captures both roles precisely.
+
+The correct answer is A.
+**mistake_b:** Choice B calls the first boldface the economist's main conclusion. It is the opposite: the conventional wisdom is the position the economist argues *against*, not the conclusion the economist endorses.
+**mistake_c:** Choice C labels the second boldface the main conclusion. The second is supporting evidence that answers the critics' objection; the argument's actual conclusion, that the conventional wisdom is doubtful, is left implicit and is not the second boldface.
+**mistake_d:** Choice D calls the first boldface evidence supporting the economist's conclusion. The first is the targeted generalization, not support for the economist's position, so this misassigns its role.
+**mistake_e:** Choice E says the economist accepts the first claim and the second is a prediction from it. The economist disputes the first claim, and the second is empirical evidence, not a prediction derived from the conventional wisdom.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q228
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Evaluate
+
+A regional airline is deciding whether to add a direct route between two mid-sized cities that currently have no nonstop service. Market researchers estimate that 40,000 passengers per year travel between the two cities by connecting flights. The airline's planners argue that because a direct route would save these travelers time, the new route would attract enough of them to be profitable.
+
+Which of the following would be most useful to know in evaluating the planners' argument?
+
+- A) Whether the two cities are served by any high-speed rail connection
+- B) What the average age of the airline's current fleet is
+- C) Whether other airlines have considered adding a similar direct route in the past
+- D) How many of the 40,000 connecting passengers would switch to the direct route at the fares the airline would need to charge to cover the route's costs
+- E) Whether the airline's frequent-flyer members prefer direct routes to connecting routes in general
+
+**answer:** D
+**explanation:** **Situation.** An airline considers a new nonstop route between two cities. Researchers estimate 40,000 passengers per year currently connect between them, and planners argue the time savings of a direct route would attract enough of these travelers to be profitable.
+
+**Reasoning.** The task is to find the question whose answer would be most useful in evaluating the argument. The conclusion is about *profitability*, which depends on how many travelers actually switch *at the fares the airline must charge to cover costs*. The planners assume time savings alone will draw enough passengers, but a direct route may require higher fares, and travelers may not switch if the price premium outweighs the time benefit. Choice D targets exactly this gap: knowing how many of the 40,000 would switch at the cost-covering fare tests whether revenue would exceed cost. If few would switch at that fare, the route fails; if many would, it succeeds. The answer swings the conclusion either way, which is the hallmark of a good evaluation question.
+
+The correct answer is D.
+**mistake_a:** Choice A asks about high-speed rail. Rail might compete with both connecting and direct flights, but the argument concerns capturing existing *air* travelers; rail availability does not directly resolve whether enough of the 40,000 would switch at the needed fare.
+**mistake_b:** Choice B asks about fleet age, which bears on maintenance and operating cost in general but not on the core question of whether enough passengers would switch to make this specific route profitable.
+**mistake_c:** Choice C asks whether other airlines considered the route. Their past deliberations do not tell us whether *this* route would be profitable now; competitors may have declined for reasons that no longer apply or that do not bind this airline.
+**mistake_e:** Choice E asks about a general preference for direct routes. A stated preference does not reveal how many would actually pay the required fare; people often prefer direct flights yet still choose cheaper connections, so this does not test the profitability claim.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q229
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A vineyard owner noticed that the rows of grapevines planted nearest to a row of tall cypress trees produced grapes with a higher sugar content than vines planted in the open. She hypothesizes that the cypress trees, by blocking the prevailing afternoon wind, create a warmer microclimate that allows the nearby grapes to ripen more fully.
+
+Which of the following, if true, most strengthens the vineyard owner's hypothesis?
+
+- A) Cypress trees are commonly planted as windbreaks in many of the world's wine-growing regions.
+- B) The vines nearest the cypress trees receive the same amount of irrigation as the vines in the open.
+- C) Soil samples taken from beside the cypress trees and from the open rows contain identical concentrations of nutrients, and temperature sensors record afternoon air temperatures several degrees higher among the sheltered vines than among the open vines.
+- D) Grapes with higher sugar content generally produce wine with a higher alcohol level.
+- E) The vineyard's overall grape yield has increased in each of the past three years.
+
+**answer:** C
+**explanation:** **Situation.** Vines nearest a row of cypress trees yield grapes with higher sugar content than vines in the open. The owner hypothesizes that the trees block the afternoon wind, creating a warmer microclimate that ripens those grapes more fully.
+
+**Reasoning.** The task is to strengthen a specific causal mechanism: trees block wind, which raises temperature, which improves ripening and sugar. The hypothesis is strengthened by evidence that confirms the mechanism's temperature link while ruling out a leading alternative. Choice C does both: temperature sensors record afternoon air *several degrees higher* among the sheltered vines, directly supporting the warmer-microclimate step, and identical soil nutrient concentrations rule out the obvious competing explanation that better soil near the trees, rather than warmth, accounts for the higher sugar. By supplying positive evidence for the proposed cause and eliminating a rival, choice C raises the probability of the specific mechanism.
+
+The correct answer is C.
+**mistake_a:** Choice A says cypress trees are commonly used as windbreaks elsewhere. This makes the windbreak function plausible in general but does not establish that, *in this vineyard*, the sheltered vines are actually warmer or that warmth caused the higher sugar.
+**mistake_b:** Choice B equalizes irrigation between the two groups, which removes one alternative explanation (water). That helps modestly, but it provides no positive evidence for the warmer-microclimate mechanism itself, whereas the correct answer both confirms the temperature link and rules out a rival.
+**mistake_d:** Choice D concerns the downstream consequence of higher sugar for wine alcohol content. This is irrelevant to *why* the sheltered grapes have higher sugar, which is what the hypothesis explains.
+**mistake_e:** Choice E reports rising overall yield, a separate quantity from sugar content, and gives no information tying the cypress trees to the sugar difference between sheltered and open vines.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q230
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Weaken
+
+A consumer-electronics manufacturer found that customers who registered their products online reported far higher satisfaction in follow-up surveys than customers who did not register. The marketing director concludes that encouraging more customers to register their products will raise overall customer satisfaction.
+
+Which of the following, if true, most seriously weakens the marketing director's conclusion?
+
+- A) The online registration process takes most customers fewer than five minutes to complete.
+- B) Customers who register are typically those who are already most pleased with the product and most engaged with the brand.
+- C) Some customers who did not register reported that they were unaware registration was available.
+- D) The follow-up surveys were conducted by email, which not all customers regularly check.
+- E) Registered customers are slightly more likely to purchase extended warranties than unregistered customers.
+
+**answer:** B
+**explanation:** **Situation.** Registered customers report much higher satisfaction than unregistered ones, and the marketing director concludes that getting more customers to register will raise overall satisfaction.
+
+**Reasoning.** The task is to weaken the causal conclusion that registration *raises* satisfaction. The director treats a correlation as if registration produces satisfaction, but the causal arrow may run the other way, or both may stem from a common trait. Choice B supplies exactly that: customers who register are typically those *already most pleased* and most engaged. If satisfaction drives registration rather than the reverse, then pushing indifferent customers to register would not make them satisfied; registration is a marker of pre-existing satisfaction, not a cause of it. This is the self-selection confound, a form of reverse causation that severs the basis for the director's intervention. It directly undercuts the conclusion that increasing registration will lift overall satisfaction.
+
+The correct answer is B.
+**mistake_a:** Choice A says registration is quick. Ease of registration might make the intervention feasible, but it does nothing to show that registering *causes* higher satisfaction, so it does not address the flaw.
+**mistake_c:** Choice C notes some non-registrants were unaware of registration. This suggests registration could be increased through awareness, but it does not challenge whether new registrants would actually become more satisfied; it speaks to feasibility, not to the causal claim.
+**mistake_d:** Choice D raises a survey-delivery limitation affecting both groups. A shared methodological quirk does not explain the *difference* between registrants and non-registrants, so it does not specifically weaken the causal claim.
+**mistake_e:** Choice E reports a warranty-purchase difference, a separate behavior that, if anything, is consistent with registrants being more engaged; it does not weaken and may slightly support the engagement story rather than the director's causal claim about satisfaction.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q231
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Assumption
+
+A publishing house is launching a line of audiobooks narrated entirely by synthetic voices generated from text. The director of operations argues that because the synthetic-voice system can produce a finished audiobook in a single day, compared with the several weeks a human narrator requires, the new line will allow the house to bring far more titles to market each year than it does now.
+
+The director's argument relies on which of the following assumptions?
+
+- A) Listeners prefer audiobooks narrated by synthetic voices to those narrated by humans.
+- B) Producing audiobooks with synthetic voices costs less per title than producing them with human narrators.
+- C) The synthetic-voice system can reproduce regional accents as accurately as human narrators can.
+- D) The number of titles the house can bring to market is currently constrained primarily by narration time rather than by some other stage of production.
+- E) The house will discontinue its use of human narrators once the synthetic-voice line is established.
+
+**answer:** D
+**explanation:** **Situation.** The house will use a synthetic-voice system that produces an audiobook in a day rather than the weeks a human narrator needs, and the director concludes this will let the house bring far more titles to market each year.
+
+**Reasoning.** The task is to find the assumption the argument relies on. The director infers that slashing *narration* time will dramatically raise the *number of titles* produced annually. This inference holds only if narration time is actually the binding constraint on output. If some other stage, such as acquiring manuscripts, editing, or distribution, is the true bottleneck, then speeding up narration alone would not increase the number of titles produced. Choice D states this necessary condition: that output is currently limited mainly by narration time rather than by another stage. The negation test confirms it: if narration were *not* the binding constraint, faster narration would not raise total titles, and the conclusion would fail. This is a necessary assumption that the eliminated bottleneck is the actual limiting factor.
+
+The correct answer is D.
+**mistake_a:** Choice A concerns listener preference. The conclusion is about how many titles the house can *bring to market*, a production-capacity claim, not about whether the titles will sell or be preferred, so preference is not required.
+**mistake_b:** Choice B introduces per-title cost. Lower cost would be a separate benefit, but the conclusion is strictly about *quantity* of titles, which does not depend on cost being lower; faster production raises output regardless of cost.
+**mistake_c:** Choice C raises narration quality (accents). Quality affects reception but not the throughput claim; the argument can succeed in raising title counts even if accents are imperfect, so this is not assumed.
+**mistake_e:** Choice E says human narrators will be discontinued. The director need not abandon human narration to add more titles via the faster system; the argument does not require eliminating the old method, so this is not a necessary assumption.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q232
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw
+
+Spokesperson: Our critics claim that our company's new packaging is wasteful. But these critics are funded in part by a rival manufacturer that stands to gain if customers lose confidence in our products. Clearly, then, our packaging is not wasteful, and consumers should disregard the criticism entirely.
+
+The reasoning in the spokesperson's argument is flawed because it
+
+- A) treats the absence of evidence that the packaging is wasteful as proof that it is not
+- B) rejects a claim about the packaging solely by impugning the motives of those who make it, without addressing the claim's merits
+- C) generalizes about all of the company's products from a single instance of packaging
+- D) assumes that what benefits a rival manufacturer must harm consumers
+- E) relies on the testimony of a source whose expertise has not been established
+
+**answer:** B
+**explanation:** **Situation.** Critics call the company's new packaging wasteful. The spokesperson responds that the critics are funded by a rival who would profit if customers lost confidence, and concludes the packaging is not wasteful and the criticism should be disregarded.
+
+**Reasoning.** The task is to identify the flaw. The spokesperson never addresses whether the packaging actually is wasteful; instead, the entire reply attacks the critics' funding and motives. Even if the critics are biased, that does not make their claim false; biased sources can still state truths, and the merits of the wastefulness charge remain unexamined. Choice B names this precisely: the argument rejects the claim *solely by impugning the motives* of those who make it, without addressing whether the claim is correct. This is the ad hominem (personal attack / circumstantial) fallacy, in which the source's character or interest is treated as decisive against the claim itself.
+
+The correct answer is B.
+**mistake_a:** Choice A describes an appeal to ignorance, treating lack of disproof as proof. But the spokesperson does not argue from absence of evidence; the argument turns on the critics' alleged bias, so this misidentifies the error.
+**mistake_c:** Choice C describes a hasty generalization from one instance to all products. The spokesperson draws no such broad conclusion about all products; the dispute is confined to the new packaging, so this does not fit.
+**mistake_d:** Choice D points to an assumption that rival gain implies consumer harm. While the argument mentions the rival's interest, its defect is using that interest to dismiss the claim, not an inference about consumer harm; this misstates the core flaw.
+**mistake_e:** Choice E faults reliance on a source of unestablished expertise. The argument does not rest on any expert testimony; it dismisses the critics on grounds of motive, so unestablished expertise is not the problem.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q233
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Inference
+
+In a certain manufacturing plant, every machine that is serviced on a regular schedule is also equipped with an automatic shutoff. No machine equipped with an automatic shutoff has ever caused a workplace injury. Some of the plant's older machines are not serviced on a regular schedule.
+
+If the statements above are true, which of the following must also be true?
+
+- A) Every machine equipped with an automatic shutoff is serviced on a regular schedule.
+- B) Some of the plant's older machines lack an automatic shutoff.
+- C) No regularly serviced machine has ever caused a workplace injury.
+- D) Any machine without an automatic shutoff is one of the plant's older machines.
+- E) Some machines equipped with automatic shutoffs are not serviced on a regular schedule.
+
+**answer:** C
+**explanation:** **Situation.** Three premises: (1) every regularly serviced machine has an automatic shutoff; (2) no machine with an automatic shutoff has ever caused an injury; (3) some older machines are not regularly serviced.
+
+**Reasoning.** The task is to find what *must* be true. Chain premises (1) and (2): if a machine is regularly serviced, it has an automatic shutoff (premise 1), and if it has an automatic shutoff, it has never caused an injury (premise 2). By transitivity (a valid hypothetical syllogism), every regularly serviced machine has never caused an injury. Choice C states exactly this: no regularly serviced machine has ever caused a workplace injury. The conclusion follows necessarily from chaining the two conditionals.
+
+The correct answer is C.
+**mistake_a:** Choice A reverses premise (1). Premise (1) says regularly serviced implies having a shutoff; choice A asserts the converse, that having a shutoff implies being regularly serviced. The converse of a conditional does not follow from it: a machine could have an automatic shutoff for reasons unrelated to its service schedule, so a shutoff-equipped machine need not be regularly serviced. This choice is therefore not forced.
+**mistake_b:** Choice B claims some older machines lack a shutoff. We know some older machines are not regularly serviced (premise 3), but unserviced machines are not barred from having shutoffs; premise (1) only says serviced machines *have* shutoffs, not that unserviced ones *lack* them. So B is not forced.
+**mistake_d:** Choice D says any machine without a shutoff is older. Nothing links the absence of a shutoff exclusively to older machines; a newer machine could also lack a shutoff for all the premises say, so this is not entailed.
+**mistake_e:** Choice E claims some shutoff-equipped machines are not regularly serviced. The premises allow this but do not require it; all shutoff machines could be regularly serviced, so it is not forced.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q234
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Paradox
+
+A retailer introduced a generous return policy allowing customers to return any item within a year for a full refund, no questions asked. In the year after the policy took effect, the rate at which customers returned items rose sharply, as expected. Surprisingly, however, the retailer's net profit per customer also rose substantially over the same period.
+
+Which of the following, if true, does most to explain the surprising result?
+
+- A) The cost of processing each return increased slightly after the new policy took effect.
+- B) A few competitors adopted similar return policies during the same year.
+- C) Most customers who returned items did so within the first month of purchase rather than later in the year.
+- D) The retailer advertised the new return policy heavily in the months after it took effect.
+- E) The reassurance provided by the lenient return policy led customers to buy considerably more, and more expensive, items than they had before, far outweighing the cost of the additional returns.
+
+**answer:** E
+**explanation:** **Situation.** A no-questions-asked, year-long return policy caused returns to rise sharply, as expected, yet net profit *per customer* also rose substantially. This is surprising because more returns would seem to erode profit.
+
+**Reasoning.** The task is to explain how profit per customer could rise despite more returns. The resolution must show a profit-boosting effect of the policy that exceeds the added return costs. Choice E supplies it: the reassurance of easy returns led customers to buy considerably more, and more expensive, items, and that extra purchasing far outweighed the cost of the additional returns. So although returns went up, total purchasing per customer went up even more, lifting net profit per customer. This reconciles both observed facts, the higher return rate and the higher per-customer profit, by identifying a larger countervailing revenue effect, without contradicting any premise.
+
+The correct answer is E.
+**mistake_a:** Choice A says per-return processing cost rose slightly. That makes higher profit *harder* to explain, deepening the paradox rather than resolving it.
+**mistake_b:** Choice B notes competitors adopted similar policies. Competitor behavior does not explain why *this* retailer's per-customer profit rose; if anything, similar competing policies would erode any advantage.
+**mistake_c:** Choice C says returns clustered in the first month. The timing of returns within the year does not explain how net profit per customer rose; an early return still reduces net revenue just as a later one does.
+**mistake_d:** Choice D says the policy was heavily advertised. Advertising might attract more customers, but it adds cost and does not by itself explain a rise in profit *per customer*; it speaks to customer count, not per-customer profitability.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q235
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A historian argues that the rapid spread of a particular printing technique across European cities in the late fifteenth century was driven mainly by competition among printers, not by the migration of skilled craftsmen. As evidence, the historian notes that the technique appeared in distant cities within months of one another, faster than craftsmen could plausibly have traveled between them at the time.
+
+Which of the following, if true, most strengthens the historian's argument?
+
+- A) Printed manuals describing the technique in detail circulated widely among print shops during the same period.
+- B) Some skilled printers did relocate from one city to another during the late fifteenth century.
+- C) The printing technique required specialized equipment that was expensive to acquire.
+- D) Competition among printers was less intense in cities where the technique appeared latest.
+- E) The technique was eventually replaced by a superior method in the following century.
+
+**answer:** A
+**explanation:** **Situation.** A historian claims a printing technique spread across European cities mainly through competition among printers rather than migration of craftsmen, citing that it appeared in distant cities within months, faster than craftsmen could have traveled.
+
+**Reasoning.** The task is to strengthen the claim that competition, not craftsman migration, drove the spread. The historian's evidence rules out migration on grounds of speed but does not yet supply a *positive* mechanism by which the technique could spread without traveling craftsmen. Choice A provides that mechanism: detailed printed manuals describing the technique circulated widely among shops during the same period. This shows the technique could be transmitted as documented information that printers, eager to keep pace with rivals, could adopt rapidly, without anyone migrating. By making the non-migration channel concrete and consistent with the rapid timing, choice A supports the competition-driven explanation and reinforces the rejection of the migration account.
+
+The correct answer is A.
+**mistake_b:** Choice B concedes that some printers did relocate. This works *against* the historian by lending some credence to the migration explanation the historian rejects, so it does not strengthen the argument.
+**mistake_c:** Choice C says the technique needed expensive specialized equipment. If anything, costly equipment would slow adoption and does not explain how the method spread quickly without migrating craftsmen, so it does not support the competition thesis.
+**mistake_d:** Choice D states competition was *less* intense where the technique appeared latest. This is at best ambiguous and could undercut the claim, since it does not establish that competition drove the early, rapid spread, and it introduces a pattern the historian would need to explain.
+**mistake_e:** Choice E concerns the technique's later replacement, an event in the following century that bears on its longevity, not on what drove its initial rapid spread.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q236
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface
+
+Town planner: **The most effective way to reduce traffic congestion downtown would be to convert two of the main avenues into bus-only corridors.** Some merchants object that doing so would cut off the car access their customers rely on and hurt sales. **But in three comparable downtowns that adopted bus-only corridors, retail sales along the affected streets rose within a year as foot traffic increased.** Therefore, the town should proceed with the conversion despite the merchants' concerns.
+
+In the planner's argument, the two boldface portions play which of the following roles?
+
+- A) The first is the conclusion the argument ultimately defends; the second is evidence offered to rebut an objection to that conclusion.
+- B) The first is a premise; the second is the conclusion drawn from that premise.
+- C) The first is an objection the argument rejects; the second is the consideration on which that rejection rests.
+- D) The first is the conclusion of the argument; the second is an objection that the argument concedes.
+- E) The first is a prediction; the second is the assumption underlying that prediction.
+
+**answer:** A
+**explanation:** **Situation.** The planner proposes converting two avenues into bus-only corridors as the most effective way to cut congestion, notes merchants' objection that this would hurt sales by limiting car access, then cites three comparable downtowns where retail sales rose after such conversions, and concludes the town should proceed.
+
+**Reasoning.** The task is to identify each boldface portion's role. The first boldface states the planner's recommendation, the position the whole argument is built to defend and which the final sentence restates as "the town should proceed." So the first is the conclusion the argument ultimately defends. The second boldface reports the evidence from three comparable downtowns where sales rose; this is introduced specifically to answer the merchants' objection that the conversion would hurt sales. So the second is evidence offered to rebut an objection to the conclusion. Choice A matches both roles.
+
+The correct answer is A.
+**mistake_b:** Choice B calls the first a premise and the second the conclusion. This is backwards: the first is the recommendation the argument defends, and the second is supporting evidence, not the conclusion.
+**mistake_c:** Choice C calls the first an objection the argument rejects. The first is the planner's own recommendation, not an objection; the objection is the merchants' separate, non-boldface statement.
+**mistake_d:** Choice D correctly calls the first the conclusion but mislabels the second as an objection the argument concedes. The second is evidence that *defeats* the objection, not a concession to it.
+**mistake_e:** Choice E describes the first as a prediction and the second as an underlying assumption. The first is a normative recommendation, and the second is empirical evidence, not an assumption, so neither label fits.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q237
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Weaken
+
+A school district replaced its standard textbooks with tablet computers loaded with interactive learning software. On the standardized test administered at the end of that school year, the district's average score rose by 11 points compared with the previous year. District officials concluded that the tablets were responsible for the improvement and recommended expanding the program to neighboring districts.
+
+Which of the following, if true, most seriously weakens the officials' conclusion?
+
+- A) The interactive software on the tablets was developed by a well-regarded educational publisher.
+- B) Students reported that they found the interactive software more engaging than the textbooks.
+- C) Some teachers in the district required additional training to use the tablets effectively.
+- D) The tablets cost the district more per student than the textbooks they replaced.
+- E) The standardized test given at the end of the year was substantially easier than the one given the previous year, and statewide average scores rose by a comparable amount.
+
+**answer:** E
+**explanation:** **Situation.** After replacing textbooks with tablets running interactive software, the district's average standardized-test score rose 11 points, and officials concluded the tablets caused the gain and should be expanded.
+
+**Reasoning.** The task is to weaken the causal claim that the tablets produced the score increase. The strongest weakener identifies an alternative cause that would have raised scores regardless of the tablets. Choice E does this on two fronts: the end-of-year test was substantially *easier* than the prior year's, which would inflate scores independent of any teaching change, and statewide averages rose by a comparable amount, showing that districts *without* the tablet program saw the same gain. Both facts point to a cause shared across the state rather than to the tablets, so the district's 11-point rise is plausibly attributable to the easier test, not the technology. This undercuts the causal inference by supplying a common alternative cause.
+
+The correct answer is E.
+**mistake_a:** Choice A says the software came from a respected publisher. If anything, this lends mild credibility to the tablets' value; it does not weaken the causal claim.
+**mistake_b:** Choice B reports that students found the software more engaging. Greater engagement is consistent with the officials' story and, if anything, mildly supports it; it does not provide an alternative cause for the score increase.
+**mistake_c:** Choice C notes that some teachers needed extra training. This is a cost or implementation detail; it does not show that something *other than* the tablets caused the score rise.
+**mistake_d:** Choice D concerns the higher per-student cost. Cost bears on whether the program is worth expanding financially but not on whether the tablets *caused* the score improvement.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q238
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Assumption
+
+A nonprofit organization that provides free legal aid to low-income tenants reports that 70 percent of the tenants it represented in eviction cases last year were able to remain in their homes. The organization's director argues that this success rate demonstrates that providing free legal representation is an effective way to prevent evictions among low-income tenants generally.
+
+The director's argument assumes which of the following?
+
+- A) The organization's lawyers are more skilled than the lawyers typically available to low-income tenants.
+- B) Without free legal representation, substantially fewer than 70 percent of comparable tenants would have remained in their homes.
+- C) All low-income tenants facing eviction are eligible for the organization's services.
+- D) The organization could represent every low-income tenant facing eviction if its funding were increased.
+- E) Landlords are less likely to pursue eviction against tenants who have legal representation.
+
+**answer:** B
+**explanation:** **Situation.** The nonprofit reports that 70 percent of the tenants it represented in eviction cases stayed in their homes, and the director concludes this shows free legal representation effectively prevents evictions among low-income tenants generally.
+
+**Reasoning.** The task is to find the assumption the argument requires. The director infers *effectiveness* from a 70 percent stay rate, but effectiveness is a *comparative* notion: the representation made a difference only if outcomes were better than they would have been without it. A 70 percent stay rate proves nothing if comparable tenants without representation also stayed at or above that rate. Choice B supplies the necessary comparison: that without representation, substantially fewer than 70 percent of comparable tenants would have remained. The negation test confirms it: if 70 percent or more would have stayed *anyway*, the representation added nothing and the effectiveness claim collapses. This is a necessary assumption establishing a counterfactual baseline against which 70 percent counts as success.
+
+The correct answer is B.
+**mistake_a:** Choice A compares the organization's lawyers to others available to tenants. The argument is about whether representation *as such* helps relative to no representation, not whether these particular lawyers are unusually skilled, so this comparison is not required.
+**mistake_c:** Choice C claims all eligible tenants can access the services. Universal eligibility is irrelevant to whether the representation that *was* provided was effective; the conclusion concerns effectiveness, not coverage.
+**mistake_d:** Choice D concerns scaling the service with more funding. The conclusion is about effectiveness, not capacity to expand, so the ability to represent everyone is not assumed.
+**mistake_e:** Choice E proposes one mechanism (deterring landlords) by which representation might help. The argument does not depend on that specific mechanism; representation could work in other ways, so this particular pathway is not a required assumption.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q239
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw
+
+Critic: The mayor argues that the new stadium will benefit the city because it will create hundreds of construction jobs. But the mayor's brother owns the construction firm that has been chosen to build the stadium. So the mayor's argument that the stadium will benefit the city must be rejected.
+
+The critic's reasoning is most vulnerable to the objection that it
+
+- A) assumes that the only possible benefit of the stadium is job creation
+- B) treats the mayor's argument as unsound merely because the mayor may have a personal interest in the conclusion, without showing that the argument's reasoning is faulty
+- C) overlooks the possibility that the construction firm is well qualified to build the stadium
+- D) fails to consider whether other cities have benefited from building stadiums
+- E) presumes that creating construction jobs cannot benefit a city
+
+**answer:** B
+**explanation:** **Situation.** The mayor argues the stadium will benefit the city by creating construction jobs. The critic responds that the mayor's brother owns the chosen construction firm and concludes the mayor's argument must be rejected.
+
+**Reasoning.** The task is to identify the flaw in the *critic's* reasoning. The critic dismisses the mayor's argument by pointing to the mayor's family connection to the builder, that is, the mayor's personal interest in the outcome. But a person's having an interest in a conclusion does not show that the supporting reasoning is bad; the stadium could genuinely create jobs and benefit the city regardless of who benefits from building it. By rejecting the argument purely on the basis of the arguer's interest rather than evaluating the argument's merits, the critic commits a circumstantial ad hominem. Choice B states this exactly: it treats the mayor's argument as unsound merely because the mayor may have a personal interest, without showing the reasoning is faulty.
+
+The correct answer is B.
+**mistake_a:** Choice A says the critic assumes job creation is the only possible benefit. The critic does not make that assumption; the critic's error is dismissing the argument on grounds of interest, not narrowing the benefits.
+**mistake_c:** Choice C points to the firm's possible qualifications. Whether the firm is qualified is beside the point; the flaw is the critic's use of the conflict of interest to reject the argument, not anything about the firm's competence.
+**mistake_d:** Choice D faults the critic for not considering other cities' experiences. Comparative evidence about other cities is not what the critic's reasoning turns on, so this does not capture the flaw.
+**mistake_e:** Choice E says the critic presumes job creation cannot benefit a city. The critic makes no such presumption; the critic simply rejects the mayor's argument because of the mayor's interest, leaving the job-benefit claim unaddressed rather than denied.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q240
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Evaluate
+
+A city council is considering a proposal to install LED streetlights throughout the city, replacing the current high-pressure sodium lamps. Proponents argue that because LED lamps consume far less electricity per hour than sodium lamps, switching to LEDs will significantly reduce the city's annual spending on street-lighting electricity.
+
+The answer to which of the following questions would be most useful in evaluating the proponents' argument?
+
+- A) Whether residents prefer the color of light produced by LED lamps to that of sodium lamps
+- B) Whether the manufacturer of the LED lamps offers a warranty on its products
+- C) Whether nearby cities have already switched to LED streetlights
+- D) Whether the LED lamps would be left on for substantially more hours per night than the sodium lamps they replace
+- E) Whether the initial cost of purchasing and installing the LED lamps is high
+
+**answer:** D
+**explanation:** **Situation.** Proponents argue that because LED lamps use far less electricity per hour than sodium lamps, switching will significantly cut the city's annual street-lighting electricity *spending*.
+
+**Reasoning.** The task is to find the question most useful for evaluating the argument. Annual electricity spending depends on consumption *per hour multiplied by hours of operation*. The proponents rely only on the per-hour saving, assuming hours stay the same. Choice D targets this hidden variable: if the LED lamps would be left on substantially more hours per night, the increased operating time could erode or even cancel the per-hour savings, so annual spending might not fall as claimed. Knowing whether usage hours would rise sharply tests whether the per-hour advantage translates into an annual reduction. A "no, hours stay similar" answer supports the argument; a "yes, hours rise a lot" answer undermines it, making this the decisive evaluation question.
+
+The correct answer is D.
+**mistake_a:** Choice A asks about light color preference. Aesthetic preference does not bear on whether annual electricity *spending* falls, which is the conclusion at issue.
+**mistake_b:** Choice B asks about a warranty. A warranty concerns repair or replacement risk, not the electricity-spending comparison the argument makes.
+**mistake_c:** Choice C asks whether nearby cities switched. Other cities' choices do not establish whether *this* city's electricity spending would drop; their circumstances may differ.
+**mistake_e:** Choice E asks about initial purchase and installation cost. That is a separate, upfront capital cost; the conclusion is specifically about annual *electricity* spending, which is unaffected by the lamps' purchase price.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q241
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Inference
+
+A logistics firm's records show the following about its delivery drivers: any driver who completes the advanced safety course is assigned to the long-haul routes, and every driver assigned to the long-haul routes receives the higher pay grade. No driver in the lower pay grade has been with the firm for more than five years.
+
+If the statements above are true, which of the following must be true of a driver who has completed the advanced safety course?
+
+- A) The driver has been with the firm for more than five years.
+- B) The driver receives the higher pay grade.
+- C) The driver is the firm's most experienced long-haul driver.
+- D) The driver was assigned to the long-haul routes before completing the course.
+- E) The driver is not eligible for any route other than the long-haul routes.
+
+**answer:** B
+**explanation:** **Situation.** Three conditionals: completing the advanced safety course implies assignment to long-haul routes; long-haul assignment implies the higher pay grade; and no lower-pay-grade driver has more than five years of tenure.
+
+**Reasoning.** The task is to find what must be true of a driver who has completed the advanced safety course. Apply the first two conditionals in sequence (a valid hypothetical syllogism / repeated modus ponens): completed the course implies long-haul, and long-haul implies higher pay grade. Therefore a driver who completed the course must receive the higher pay grade. Choice B states exactly this entailment. The third premise about tenure is not needed for this conclusion and is included as a distractor.
+
+The correct answer is B.
+**mistake_a:** Choice A claims the driver has more than five years of tenure. The tenure premise says lower-pay-grade drivers all have five years or fewer; it does *not* say higher-pay-grade drivers all exceed five years. A higher-pay-grade driver could have any tenure, so this is not forced.
+**mistake_c:** Choice C calls the driver the *most experienced* long-haul driver. Nothing ranks drivers by experience, so a superlative claim about this one driver cannot be derived.
+**mistake_d:** Choice D asserts a sequence, that assignment preceded course completion. The conditional says completing the course leads to assignment, which suggests the reverse order if anything; in any case temporal order is not specified, so this is not entailed.
+**mistake_e:** Choice E says the driver is ineligible for any other route. The premises say course completion leads to long-haul assignment, not that such drivers are barred from all other routes; exclusivity is not stated, so it cannot be inferred.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q242
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Paradox
+
+A government agency offered a tax credit to homeowners who installed rooftop solar panels, expecting that lowering the effective cost would increase the number of installations. In the first year of the credit, the number of new rooftop solar installations in the region actually fell compared with the year before, even though public interest in solar energy, as measured by inquiries to installers, reached an all-time high.
+
+Which of the following, if true, most helps to explain the decline in installations?
+
+- A) The tax credit applied only to homeowners, not to owners of commercial buildings.
+- B) Some homeowners who installed solar panels did so primarily for environmental reasons rather than financial ones.
+- C) The cost of solar panels had been gradually declining for several years before the credit was introduced.
+- D) The agency announced that the tax credit would increase further the following year, leading many homeowners to postpone installation until then.
+- E) Installers in the region reported that demand for their services exceeded their capacity in previous years.
+
+**answer:** D
+**explanation:** **Situation.** A tax credit meant to spur rooftop solar installations coincided with a *fall* in new installations in its first year, even as public interest hit an all-time high. The puzzle is why a cost-lowering credit and surging interest would accompany fewer installations.
+
+**Reasoning.** The task is to explain the decline. The resolution must show why interested homeowners would delay installing despite the new credit. Choice D does this: the agency announced the credit would *increase* the following year, giving homeowners a strong incentive to *postpone* installation to capture the larger future credit. This explains both the high interest (people want solar) and the drop in actual first-year installations (they are waiting for the bigger credit). The anticipated future benefit produces a timing shift that reconciles strong demand with reduced current activity, resolving the paradox without contradicting any premise.
+
+The correct answer is D.
+**mistake_a:** Choice A limits the credit to homeowners. But the puzzle is specifically about *rooftop* (homeowner) installations falling, and the credit applies to exactly those homeowners, so excluding commercial buildings does not explain why homeowner installations dropped.
+**mistake_b:** Choice B notes some installed for environmental reasons. This does not explain a year-over-year *drop*; environmental motivation would tend to sustain or increase installations, not reduce them.
+**mistake_c:** Choice C says panel costs had been declining for years. Falling costs would, if anything, *encourage* installations, deepening rather than resolving the puzzle of a decline.
+**mistake_e:** Choice E says demand exceeded installer capacity in *previous* years. If capacity was a binding constraint before, it does not explain why installations fell in the credit's first year amid record interest; it would predict continued high installations up to capacity.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q243
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A team of biologists observed that a species of cleaner fish removes parasites from the bodies of larger reef fish, which visit the cleaners' territory to be cleaned. The biologists hypothesize that the cleaner fish deliberately provide good service to first-time visitors in order to build a reputation that attracts more clients.
+
+Which of the following, if true, most strengthens the biologists' hypothesis?
+
+- A) Cleaner fish consume the parasites they remove, gaining nutrition from the cleaning.
+- B) Larger reef fish can choose among several cleaner-fish territories within the reef.
+- C) Cleaner fish provide noticeably more careful service when other potential client fish are nearby watching than when no observers are present.
+- D) Parasite loads on reef fish are higher in areas where cleaner fish are scarce.
+- E) Cleaner fish are smaller and more vulnerable to predators than the reef fish they clean.
+
+**answer:** C
+**explanation:** **Situation.** Cleaner fish remove parasites from larger reef fish that visit them. The biologists hypothesize that cleaners deliberately give good service to first-time visitors *to build a reputation that attracts more clients*.
+
+**Reasoning.** The task is to strengthen the reputation-building hypothesis. That hypothesis predicts the cleaner's behavior should depend on whether *potential future clients can observe* the quality of service; reputation can only be built before an audience. Choice C provides exactly this confirming prediction: cleaners give noticeably more careful service *when other potential clients are nearby watching* than when no observers are present. This observer-sensitive behavior is precisely what a reputation-driven strategy would produce, since better service matters for attracting clients only when it is seen. By matching behavior to the audience condition the hypothesis implies, choice C raises the probability that reputation-building, rather than some service-independent factor, drives the cleaners' conduct.
+
+The correct answer is C.
+**mistake_a:** Choice A explains why cleaners clean at all (nutrition) but says nothing about *reputation*. Gaining food from parasites is consistent with cleaning for immediate benefit, not for building a reputation, so it does not support the specific hypothesis.
+**mistake_b:** Choice B establishes that clients have choices among cleaners, which makes reputation *possible* but does not show the cleaners actually behave so as to build one. It sets the stage without confirming the hypothesized strategy.
+**mistake_d:** Choice D reports higher parasite loads where cleaners are scarce, an ecological fact about parasite distribution that is unrelated to whether cleaners cultivate a reputation.
+**mistake_e:** Choice E notes cleaners are smaller and vulnerable to predators. This bears on the cleaners' safety, not on whether they provide service strategically to attract clients, so it does not strengthen the reputation hypothesis.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q244
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Weaken
+
+A wellness company markets a daily herbal supplement that it claims improves memory. In support, it cites a study in which volunteers who took the supplement for six weeks scored, on average, 12 percent higher on a memory test at the end of the study than they had scored on a similar test at the start. The company concludes that the supplement improves memory.
+
+Which of the following, if true, most seriously weakens the company's conclusion?
+
+- A) The volunteers were paid a modest fee for participating in the study.
+- B) A few volunteers dropped out of the study before it was completed.
+- C) The supplement contains several herbs that have been used in traditional remedies for centuries.
+- D) People who take a similar memory test a second time typically score about 12 percent higher than on their first attempt, simply from familiarity with the test format.
+- E) The memory test used at the end of the study was developed by an independent research institute.
+
+**answer:** D
+**explanation:** **Situation.** Volunteers who took the supplement for six weeks scored 12 percent higher on a memory test at the end than at the start, and the company concludes the supplement improves memory.
+
+**Reasoning.** The task is to weaken the causal conclusion that the supplement caused the score gain. The study compares each person's later score to their own earlier score, with no control group, so any factor that would raise second-attempt scores regardless of the supplement undermines the claim. Choice D supplies precisely such a factor: people who retake a similar memory test typically score about 12 percent higher just from familiarity with the format, a practice effect. If the *entire* observed gain matches the expected practice-effect improvement, then the supplement need not have contributed anything; the gain is explained by test familiarity, not the herbs. This offers a complete alternative cause for the result, sharply weakening the conclusion.
+
+The correct answer is D.
+**mistake_a:** Choice A notes volunteers were paid a small fee. A modest participation fee gives no reason to expect higher memory scores and provides no alternative cause for the 12 percent gain.
+**mistake_b:** Choice B mentions a few dropouts. Without information indicating that dropouts were systematically different in a way that inflated the average, a small number of dropouts does not by itself explain the score increase.
+**mistake_c:** Choice C says the herbs have a long traditional history. Traditional use is not evidence of a memory effect and, if anything, is offered in the supplement's favor; it does not weaken the conclusion.
+**mistake_e:** Choice E says the final test came from an independent institute. Independence of the test's source addresses bias in test design and, if anything, lends credibility to the measurement; it does not provide an alternative cause for the gain.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q245
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw
+
+Economist: A country's exports are healthy only if its currency is not overvalued. The data show that our currency is not overvalued. We can therefore be confident that our country's exports are healthy.
+
+The economist's argument is flawed because it
+
+- A) treats a condition required for healthy exports as though that condition by itself guarantees healthy exports
+- B) relies on data about the currency that may be out of date
+- C) assumes that exports are the only measure of economic health
+- D) confuses the value of the currency with the volume of exports
+- E) generalizes about all exports from data about a single industry
+
+**answer:** A
+**explanation:** **Situation.** The economist states that a country's exports are healthy *only if* its currency is not overvalued, observes that the currency is not overvalued, and concludes that exports are healthy.
+
+**Reasoning.** The task is to identify the logical flaw. "Exports are healthy only if the currency is not overvalued" means a non-overvalued currency is a *necessary* condition for healthy exports, not a sufficient one. From "healthy exports require a non-overvalued currency" and "the currency is not overvalued," nothing follows about whether exports are actually healthy, because many other things (demand, productivity, trade policy) could still make exports unhealthy even with a properly valued currency. The economist treats the satisfaction of a necessary condition as if it guaranteed the outcome, confusing necessary with sufficient conditions. Choice A names this exactly: it treats a condition merely *required* for healthy exports as though that condition by itself *guarantees* healthy exports.
+
+The correct answer is A.
+**mistake_b:** Choice B questions whether the currency data are current. Even granting perfectly up-to-date data showing the currency is not overvalued, the inference would still be invalid, so timeliness of the data is not the flaw.
+**mistake_c:** Choice C says the economist assumes exports are the only measure of economic health. The argument never claims that; it draws a conclusion only about exports, so this misstates the reasoning.
+**mistake_d:** Choice D alleges a confusion between currency value and export volume. The economist keeps these distinct, reasoning from currency status to export health; the error is conditional logic, not conflation of the two quantities.
+**mistake_e:** Choice E describes a hasty generalization from one industry. The argument makes no move from a single industry to all exports; it reasons from a currency condition, so this does not fit.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q246
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface
+
+Analyst: A widely held view is that **a company can maximize long-term shareholder value only by minimizing its spending on employee training, since such spending reduces short-term profits.** But consider the case of two competing firms over a decade: the firm that invested heavily in training steadily gained market share and ultimately delivered higher returns than its rival, which had cut training to boost immediate profits. **The most plausible explanation is that well-trained employees produced higher-quality work, which built customer loyalty and drove the long-term gains.** It follows that cutting training spending can actually undermine, rather than enhance, long-term shareholder value.
+
+In the analyst's argument, the two boldface portions play which of the following roles?
+
+- A) The first is a claim the analyst's argument seeks to refute; the second is an explanation that supports the analyst's own contrary conclusion.
+- B) The first is the analyst's conclusion; the second is evidence that supports it.
+- C) The first is evidence for the analyst's conclusion; the second is an objection to that conclusion.
+- D) The first is an assumption the analyst makes; the second is the conclusion drawn from that assumption.
+- E) Both portions are claims the analyst rejects in reaching the conclusion.
+
+**answer:** A
+**explanation:** **Situation.** The analyst cites a widely held view that maximizing shareholder value requires minimizing training spending, then presents a decade-long comparison in which the heavy-training firm outperformed the cost-cutting rival, offers an explanation for that outcome, and concludes that cutting training can actually undermine long-term shareholder value.
+
+**Reasoning.** The task is to identify each boldface portion's role. The first boldface states the widely held view, the position the analyst's argument is built to *refute*, as confirmed by the final sentence reaching the opposite conclusion. So the first is a claim the argument seeks to refute. The second boldface offers the explanation that well-trained employees produced higher-quality work, building loyalty and driving the gains; this explanation *supports the analyst's own contrary conclusion* that cutting training undermines value. Choice A captures both roles: the first is the targeted claim, the second is support for the analyst's opposing position.
+
+The correct answer is A.
+**mistake_b:** Choice B calls the first the analyst's conclusion. It is the opposite: the first is the view the analyst argues *against*, while the analyst's actual conclusion is that cutting training undermines value.
+**mistake_c:** Choice C calls the first evidence for the conclusion and the second an objection. The first is the refuted view, not evidence for the analyst, and the second supports rather than objects to the conclusion, so both labels are wrong.
+**mistake_d:** Choice D calls the first an assumption the analyst makes. The analyst does not adopt the first claim; the analyst disputes it, so it is not an assumption underlying the argument.
+**mistake_e:** Choice E says the analyst rejects both portions. The analyst rejects only the first; the second is the analyst's own supporting explanation, which the analyst endorses, so this mischaracterizes the second.
+**related_reading:** reading-verbal-04-cr-question-types

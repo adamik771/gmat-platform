@@ -2646,3 +2646,281 @@ Statement (2) says n + 1 is a multiple of 5. A number is a multiple of 5 exactly
 
 Taking the statements together, Statement (1) restricts the units digit of n to the set {4, 6} and Statement (2) restricts it to the set {4, 9}. The only value common to both sets is 4, so the units digit of n must be 4. For example, n could be 4, 14, 24, and so on; each ends in 4, has a square ending in 6, and has n + 1 ending in 5. The units digit is uniquely determined, so both statements together are sufficient while neither alone suffices. The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+## Q91
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is a positive integer, what is the units digit of n?
+
+(1) The units digit of n² is 1.
+(2) The units digit of n³ is 9.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** This is a value question: we need a single units digit for n. The units digit of any power of n depends only on the units digit of n, so we determine which units digits of n are consistent with each statement.
+
+Statement (1) says the units digit of n² is 1. Squaring the digits 0 through 9 gives units digits 0, 1, 4, 9, 6, 5, 6, 9, 4, 1, so a square ends in 1 exactly when n ends in 1 or 9 (for example, 1² = 1 and 9² = 81). Because the units digit of n could be 1 or 9, Statement (1) alone is not sufficient.
+
+Statement (2) says the units digit of n³ is 9. Cubing the digits 0 through 9 gives units digits 0, 1, 8, 7, 4, 5, 6, 3, 2, 9, so a cube ends in 9 exactly when n ends in 9 (for example, 9³ = 729). No other digit produces a cube ending in 9, so the units digit of n must be 9. Statement (2) alone is sufficient.
+
+Since Statement (2) alone determines the units digit while Statement (1) alone does not, there is no need to combine the statements. The correct answer is B.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q92
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Inequalities
+
+If a and b are real numbers, is a³ > b³?
+
+(1) a² > b²
+(2) a < b
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** We must determine whether a³ > b³. The cube function is strictly increasing over all real numbers, so a³ > b³ holds if and only if a > b. The question is therefore equivalent to asking whether a > b, and a definite "no" is just as conclusive as a definite "yes."
+
+Statement (1) gives a² > b², which is equivalent to |a| > |b| and compares only magnitudes, not signs. Let a = 3 and b = 1: then a² = 9 > 1 = b², and a³ = 27 > 1 = b³, giving "yes." Now let a = -3 and b = 1: then a² = 9 > 1 = b² still holds, but a³ = -27 < 1 = b³, giving "no." Because both outcomes are possible, Statement (1) alone is not sufficient.
+
+Statement (2) gives a < b. Since the cube function is strictly increasing, a < b implies a³ < b³, so a³ > b³ is false. The answer is a definite "no." Statement (2) alone is sufficient.
+
+Because Statement (2) alone settles the question while Statement (1) alone does not, there is no need to combine the statements. The correct answer is B.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q93
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Statistics
+
+Set S consists of n consecutive integers, where n is a positive integer greater than 1. Is the mean of the integers in S an integer?
+
+(1) n is odd.
+(2) The smallest integer in S is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** For a set of consecutive integers, the values are evenly spaced, so the mean equals the average of the first and last terms, that is, (first + last) / 2. If the first term is f, the last term is f + (n - 1), so the mean equals f + (n - 1)/2. This is an integer precisely when (n - 1)/2 is an integer, which happens exactly when n - 1 is even, that is, when n is odd. Thus the mean is an integer if and only if the count n is odd, regardless of the starting value. This is a yes/no question.
+
+Statement (1) says n is odd. By the analysis above, the mean is then an integer in every case, so the answer is a definite "yes." For example, {4, 5, 6} has mean 5, and {10, 11, 12, 13, 14} has mean 12. Statement (1) alone is sufficient.
+
+Statement (2) says the smallest integer in S is even. The parity of the starting value does not determine whether the mean is an integer; only the count n does. With smallest term 4, the set {4, 5, 6} (n = 3, odd) has mean 5, an integer, while the set {4, 5} (n = 2, even) has mean 4.5, not an integer. Because both outcomes occur, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone settles the question while Statement (2) alone does not, there is no need to combine the statements. The correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q94
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Percentages
+
+The price of a stock changed during a single day. By what percent did the price change from the start of the day to the end of the day?
+
+(1) During the morning the price rose by 20%, and during the afternoon the price fell by 25% from its midday value.
+(2) The price at the end of the day was $90.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** We are asked for the overall percent change in the stock's price from the start to the end of the day. A percent change is a ratio: it equals (ending price − starting price) / starting price, so it depends only on the relative sizes of the prices, not on any absolute dollar amount.
+
+Statement (1) describes two successive percent changes applied to whatever the starting price was. Letting the starting price be P, the midday value is P × 1.20 = 1.2P, and the afternoon decline of 25% from that value gives an ending price of 1.2P × 0.75 = 0.9P. The ending price is therefore 0.9P, which is 90% of the starting price, a decrease of 10%. Because the factor P cancels, this percent change is the same for every starting price. Statement (1) alone is sufficient.
+
+Statement (2) gives only the ending price, $90, with no information about the starting price. If the price began at $100, the change is a 10% decrease; if it began at $90, the change is 0%; if it began at $75, the change is a 20% increase. Because different starting prices yield different percent changes, Statement (2) alone is not sufficient. The specific value $90 is a distractor, since the percent change requires the starting price as well.
+
+Since Statement (1) alone settles the question while Statement (2) alone does not, there is no need to combine the statements. The correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q95
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Overlapping Sets
+
+Each of the 100 guests at a reception drinks coffee, tea, or both. How many guests drink only coffee?
+
+(1) 70 of the guests drink tea.
+(2) 40 of the guests drink both coffee and tea.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** Every guest drinks coffee, tea, or both, so there are exactly three disjoint groups: only coffee, only tea, and both. Their sizes sum to 100. We want the size of the "only coffee" group. Because the three groups partition the 100 guests, the number who drink only coffee equals 100 minus the number who drink tea (whether or not they also drink coffee), since "drinks tea" comprises the only-tea group together with the both group, and the remaining guests are precisely those who drink only coffee.
+
+Statement (1) says 70 guests drink tea. The 70 tea drinkers consist of the only-tea group plus the both group, and the remaining 100 − 70 = 30 guests drink coffee but not tea, that is, only coffee. This is a single determined value of 30, so Statement (1) alone is sufficient.
+
+Statement (2) says 40 guests drink both. The only-coffee count equals the total coffee drinkers minus those who drink both, namely (coffee total) − 40. But the number of coffee drinkers is not given, so the only-coffee count is not determined. For instance, if 80 guests drink coffee, only coffee = 40; if 90 drink coffee, only coffee = 50. Because two outcomes are possible, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone settles the question while Statement (2) alone does not, there is no need to combine the statements. The correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q96
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Geometry
+
+In the coordinate plane, line k passes through the point (2, 5). What is the slope of line k?
+
+(1) Line k also passes through the point (6, 13).
+(2) Line k is perpendicular to the line whose equation is x + 2y = 8.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The slope of a non-vertical line is a single number, so for sufficiency a statement must pin the slope down to exactly one value. We are already told line k passes through (2, 5).
+
+Statement (1) gives a second point on line k, namely (6, 13). The slope through two distinct points is the change in y divided by the change in x: (13 − 5) / (6 − 2) = 8 / 4 = 2. Two distinct points determine a unique slope, so the slope of line k is 2. Statement (1) alone is sufficient.
+
+Statement (2) says line k is perpendicular to the line x + 2y = 8. Solving that equation for y gives y = −(1/2)x + 4, so its slope is −1/2. Two lines are perpendicular when their slopes are negative reciprocals, so the slope of line k is the negative reciprocal of −1/2, which is 2. This is a single determined value, so Statement (2) alone is sufficient.
+
+Because each statement alone determines the slope to be 2, there is no need to combine them. That the two statements agree is incidental and is not required for either to be sufficient. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q97
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Exponents
+
+What is the value of x?
+
+(1) 2^x = 8^(x − 2)
+(2) x² = 9
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** This is a value question: we need a single value of x.
+
+Statement (1) gives 2^x = 8^(x − 2). Writing 8 as 2³, the right side becomes (2³)^(x − 2) = 2^(3(x − 2)) = 2^(3x − 6). Since the base 2 is the same on both sides and an exponential function with base greater than 1 is one-to-one, the exponents must be equal: x = 3x − 6. Solving gives 2x = 6, so x = 3. A single value results, so Statement (1) alone is sufficient.
+
+Statement (2) gives x² = 9, so x = 3 or x = −3. Because two values are possible, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone determines x while Statement (2) alone does not, there is no need to combine the statements. The correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q98
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Sequences
+
+The sequence a₁, a₂, a₃, … is arithmetic, meaning that consecutive terms differ by a constant amount. What is the value of a₅?
+
+(1) a₂ + a₈ = 40
+(2) a₁ = 4 and a₉ = 36
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** In an arithmetic sequence the nth term is aₙ = a₁ + (n − 1)d, where d is the common difference. A useful property follows: for indices that are symmetric about a middle index, the terms sum to twice the middle term, because the equal spacing makes one term as far below the middle as the other is above it. We seek the single value a₅.
+
+Statement (1) gives a₂ + a₈ = 40. The indices 2 and 8 are symmetric about 5, since 5 is their average. Indeed a₂ + a₈ = (a₁ + d) + (a₁ + 7d) = 2a₁ + 8d, and a₅ = a₁ + 4d, so a₂ + a₈ = 2a₅. Therefore 2a₅ = 40, giving a₅ = 20. A single value results, so Statement (1) alone is sufficient.
+
+Statement (2) gives a₁ = 4 and a₉ = 36. Then a₉ = a₁ + 8d, so 36 = 4 + 8d, which gives 8d = 32 and d = 4. Hence a₅ = a₁ + 4d = 4 + 16 = 20. Alternatively, 5 is the midpoint of 1 and 9, so a₅ = (a₁ + a₉)/2 = (4 + 36)/2 = 20. A single value results, so Statement (2) alone is sufficient.
+
+Because each statement alone determines a₅ to be 20, there is no need to combine them. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q99
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Ratios
+
+A vat contains a mixture of syrup and water only. What is the ratio of the volume of syrup to the volume of water in the mixture?
+
+(1) The mixture is 30% syrup by volume.
+(2) The vat contains 12 liters of syrup.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** The mixture consists of syrup and water only, so the total volume is the volume of syrup plus the volume of water. We want the ratio of syrup to water, which depends only on the relative amounts of the two components, not on the absolute volume of the mixture.
+
+Statement (1) says the mixture is 30% syrup by volume. Then the water makes up the remaining 70% of the volume. Taking any total, say 100 units, gives 30 units of syrup and 70 units of water, so the ratio of syrup to water is 30 : 70 = 3 : 7. Because the percentages fix the proportion regardless of the actual total volume, the ratio is uniquely 3 : 7. Statement (1) alone is sufficient.
+
+Statement (2) says there are 12 liters of syrup, but it provides no information about the volume of water. If there were 28 liters of water, the ratio would be 12 : 28 = 3 : 7; if there were 12 liters of water, the ratio would be 12 : 12 = 1 : 1. Because two different ratios are possible, Statement (2) alone is not sufficient.
+
+Since Statement (1) alone settles the question while Statement (2) alone does not, there is no need to combine the statements. The correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
+## Q100
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Number Properties
+
+If n is a positive integer, what is the remainder when n is divided by 6?
+
+(1) When n is divided by 12, the remainder is 8.
+(2) n is even, and the remainder when n is divided by 3 is 2.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** We are asked for the single value of the remainder when the positive integer n is divided by 6. A statement is sufficient if it forces that remainder to one value.
+
+Statement (1) says that dividing n by 12 leaves remainder 8, so n = 12k + 8 for some nonnegative integer k. Since 12 is a multiple of 6, we have 12k = 6(2k), which is divisible by 6, so the remainder of n upon division by 6 comes entirely from 8. Now 8 = 6 + 2, so 8 leaves remainder 2 when divided by 6. Therefore n leaves remainder 2 when divided by 6, regardless of k. Statement (1) alone is sufficient.
+
+Statement (2) says n is even and n leaves remainder 2 when divided by 3, so n ≡ 2 (mod 3). The integers that are ≡ 2 (mod 3) are 2, 5, 8, 11, 14, 17, 20, 23, …, and restricting to the even ones gives 2, 8, 14, 20, 26, …. Each of these leaves remainder 2 when divided by 6 (for example, 2 = 6·0 + 2, 8 = 6·1 + 2, 14 = 6·2 + 2, 20 = 6·3 + 2). More directly, by the Chinese Remainder Theorem the conditions n ≡ 0 (mod 2) and n ≡ 2 (mod 3) together pin down n modulo 6 (since 2 and 3 are coprime and 6 = 2 × 3) to the single residue 2. Therefore the remainder when n is divided by 6 is 2. Statement (2) alone is sufficient.
+
+Because each statement alone forces the remainder to be 2, there is no need to combine them. The correct answer is D.
+**related_reading:** reading-di-02-data-sufficiency-logic

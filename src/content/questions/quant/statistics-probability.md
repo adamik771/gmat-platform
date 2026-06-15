@@ -2596,3 +2596,331 @@ The correct answer is C.
 **hint_nudge:** List all 6 ways to place the letters and mark how many land correctly in each — the pattern is short.
 **hint_strategy:** Pick which one letter is correct (3 ways), then force the other two to both be wrong (only the swap works).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+## Q78
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+A history class has 30 students. The 18 students who completed the optional essay earned a mean grade of 72 on the final, while the class as a whole earned a mean grade of 78. What was the mean final grade of the 12 students who did not complete the optional essay?
+
+- A) 75
+- B) 81
+- C) 84
+- D) 87
+- E) 90
+
+**answer:** D
+**fastest_path:** Balance the deviations. The 18 essay students sit 78 − 72 = 6 below the class mean, a deficit of 6 × 18 = 108. The 12 non-essay students must carry that 108 as a surplus, so they sit 108 / 12 = 9 above the mean: 78 + 9 = 87.
+**explanation:** The arithmetic mean of a group equals the sum of its values divided by the count, so the sum of a group equals its mean multiplied by its count. The total of the whole class equals the sum of its two subgroups, the essay completers and the non-completers.
+
+Let S denote the sum of all 30 final grades, let E denote the sum of the 18 essay completers' grades, and let N denote the sum of the 12 non-completers' grades. Because every student is in exactly one group, S = E + N.
+
+The class of 30 students has a mean of 78, so S = 30 × 78 = 2,340. The 18 essay completers have a mean of 72, so E = 18 × 72 = 1,296. The non-completers' total is therefore N = S − E = 2,340 − 1,296 = 1,044.
+
+The mean grade of the 12 non-completers is their sum divided by their count: N ÷ 12 = 1,044 ÷ 12 = 87.
+
+The correct answer is D.
+**mistake_a:** 75 splits the gap evenly, as if both groups sat the same distance from 78. The smaller group must move farther, so its mean is not just halfway up.
+**mistake_b:** 81 = 78 + 3 nudges the mean by part of the deficit only; it fails to load all 108 deficit points onto the 12-student group.
+**mistake_c:** 84 = 72 + 12 mirrors the class-to-essay gap of 6 incorrectly, or doubles it; the non-completers' offset is 9, not 12.
+**mistake_e:** 90 = 78 + 12 treats the two groups as equal in size, matching the non-completers' surplus to a 12-point figure. Because 18 essay students outnumber the 12 non-completers, the smaller group moves more than 6 but the figure is 9, not 12.
+**common_trap:** Ignoring the unequal group sizes and assuming the non-completers sit as far above the mean as the completers sit below it.
+**takeaway:** Weighted averages balance by total deviation, not equal shares: (count × distance from the mean) for one group must exactly offset the other group's.
+**hint_nudge:** Work in total points — the whole class totals 30 × 78.
+**hint_strategy:** Non-completers' total = class total − completers' total; then divide by 12.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q79
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability
+
+A committee of 3 people is selected at random from a group of 5 women and 4 men. What is the probability that the committee contains exactly 2 women?
+
+- A) 5/42
+- B) 10/21
+- C) 25/42
+- D) 4/9
+- E) 20/21
+
+**answer:** B
+**fastest_path:** Use combinations: favorable = choose 2 of 5 women and 1 of 4 men = C(5,2) × C(4,1) = 10 × 4 = 40; total = C(9,3) = 84. So 40/84 = 10/21.
+**explanation:** When a subset is chosen at random and order does not matter, the probability of an event equals the number of favorable combinations divided by the total number of combinations. The number of ways to choose r objects from n distinct objects is the combination C(n, r) = n! / [r!(n − r)!].
+
+The group has 5 women and 4 men, for 9 people total, and a committee of 3 is chosen. The total number of equally likely committees is the number of ways to choose 3 people from 9:
+
+C(9, 3) = (9 × 8 × 7) / (3 × 2 × 1) = 504 / 6 = 84.
+
+A committee with exactly 2 women must contain 2 of the 5 women and, to reach a size of 3, exactly 1 of the 4 men. By the multiplication principle, the number of such committees is
+
+C(5, 2) × C(4, 1) = [(5 × 4) / (2 × 1)] × 4 = 10 × 4 = 40.
+
+The probability is therefore the favorable count divided by the total count:
+
+40 / 84 = 10 / 21.
+
+The correct answer is B.
+**mistake_a:** 5/42 = 10/84 is P(all 3 women) = C(5,3)/C(9,3) = 10/84. "Exactly 2 women" requires the third member to be a man, not a third woman.
+**mistake_c:** 25/42 = 50/84 is P(at least 2 women) = (40 + 10)/84, which adds the all-women case to the exactly-two case. "Exactly 2" excludes the all-women committees.
+**mistake_d:** 4/9 ignores combinations entirely and reports a single draw's chance (4 men out of 9, or similar), skipping the C(n, r) counting the problem requires.
+**mistake_e:** 20/21 = 80/84 doubles the favorable count to 80, e.g., by treating the committee positions as ordered when choosing the 2 women and 1 man.
+**common_trap:** Reading "exactly 2 women" as "at least 2 women" and folding in the all-women committees, or treating the unordered committee as an ordered arrangement.
+**takeaway:** For unordered selections, multiply the combination for each required subgroup, C(women)×C(men), and divide by C(total). "Exactly k" means the remaining slots come from the other group only.
+**hint_nudge:** A 3-person committee with exactly 2 women has how many men?
+**hint_strategy:** Favorable = C(5,2) × C(4,1); total = C(9,3). Divide.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q80
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Standard Deviation
+
+Each of the following five sets contains five numbers with a mean of 44. Which set has the greatest standard deviation?
+
+- A) {40, 42, 44, 46, 48}
+- B) {30, 40, 44, 48, 58}
+- C) {44, 44, 44, 44, 44}
+- D) {16, 44, 44, 44, 72}
+- E) {34, 44, 44, 44, 54}
+
+**answer:** D
+**fastest_path:** All five sets share the mean 44, so the set whose values lie farthest from 44 has the largest standard deviation. Set D reaches 28 below and 28 above the mean (16 and 72) — the widest spread of any option — so D wins. No full variance computation needed.
+**explanation:** The standard deviation measures how far a set's values spread from its mean. When several sets share the same mean, the one whose values lie farther from that mean has the greater standard deviation. A quick rigorous proxy is the sum of squared deviations from the common mean: a larger sum of squared deviations means a larger standard deviation, since all sets here have the same count.
+
+Every set has mean 44, so compute each value's deviation from 44 and square it.
+
+Set A: deviations −4, −2, 0, 2, 4; squared deviations 16 + 4 + 0 + 4 + 16 = 40.
+
+Set B: deviations −14, −4, 0, 4, 14; squared deviations 196 + 16 + 0 + 16 + 196 = 424.
+
+Set C: all deviations 0; squared deviations sum to 0.
+
+Set D: deviations −28, 0, 0, 0, 28; squared deviations 784 + 0 + 0 + 0 + 784 = 1,568.
+
+Set E: deviations −10, 0, 0, 0, 10; squared deviations 100 + 0 + 0 + 0 + 100 = 200.
+
+The sum of squared deviations is largest for Set D (1,568), so Set D has the greatest standard deviation.
+
+The correct answer is D.
+**mistake_a:** {40, 42, 44, 46, 48} is the most tightly clustered set (largest deviation only 4), giving the smallest nonzero spread, not the greatest.
+**mistake_b:** {30, 40, 44, 48, 58} spreads out to ±14, more than A but well short of D's ±28; its sum of squared deviations (424) is far below D's.
+**mistake_c:** {44, 44, 44, 44, 44} has every value equal to the mean, so its standard deviation is 0 — the smallest possible, the opposite of greatest.
+**mistake_e:** {34, 44, 44, 44, 54} has the same shape as D (three values at the mean, two extremes) but its extremes reach only ±10 versus D's ±28, so its spread is much smaller.
+**common_trap:** Picking the set with the most spread-looking middle (B's evenly fanned values) instead of the set with the most extreme outliers; standard deviation is driven hardest by the points farthest from the mean, because those deviations get squared.
+**takeaway:** With equal means and counts, rank standard deviations by the sum of squared deviations; far-out values dominate because squaring magnifies large deviations.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q81
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Counting
+
+In how many ways can 7 distinct books be arranged in a row on a shelf if 2 particular books must NOT be placed next to each other?
+
+- A) 1,440
+- B) 2,520
+- C) 3,600
+- D) 4,320
+- E) 5,040
+
+**answer:** C
+**fastest_path:** Use the complement. Total arrangements of 7 distinct books = 7! = 5,040. Arrangements where the 2 particular books ARE adjacent = treat them as one block (2 internal orders) with the other 5 books: 2 × 6! = 1,440. Subtract: 5,040 − 1,440 = 3,600.
+**explanation:** The number of ways to arrange n distinct objects in a row is n factorial, written n!. To count the arrangements in which two particular objects are NOT adjacent, it is efficient to subtract the "bad" arrangements (those in which the two ARE adjacent) from the total, using the complement principle.
+
+First, the total number of arrangements of 7 distinct books in a row is
+
+7! = 7 × 6 × 5 × 4 × 3 × 2 × 1 = 5,040.
+
+Next, count the arrangements in which the two particular books are adjacent. Tie the two books together into a single block. This block, together with the remaining 5 books, makes 6 items to arrange in a row, which can be done in 6! = 720 ways. Within the block, the two books can be ordered in 2! = 2 ways. By the multiplication principle, the number of adjacent arrangements is
+
+2 × 6! = 2 × 720 = 1,440.
+
+Finally, the number of arrangements in which the two books are not adjacent is the total minus the adjacent arrangements:
+
+5,040 − 1,440 = 3,600.
+
+The correct answer is C.
+**mistake_a:** 1,440 = 2 × 6! is the count of arrangements where the two books ARE adjacent — the bad case you must subtract, not the answer.
+**mistake_b:** 2,520 = 7!/2 halves the total, as if exactly half the arrangements were adjacent; the adjacent fraction is 1,440/5,040 = 2/7, not 1/2.
+**mistake_d:** 4,320 = 6 × 6! subtracts only 6! (720) instead of 2 × 6! (1,440), forgetting the 2 internal orders of the tied block.
+**mistake_e:** 5,040 = 7! is the total number of arrangements with no restriction applied — the "not adjacent" condition has been ignored.
+**common_trap:** Forgetting that the glued pair has 2 internal orderings, so the adjacent count is 2 × 6! and not 6!; or counting the adjacent case as the final answer instead of subtracting it.
+**takeaway:** For "must not be adjacent," compute total − adjacent; tie the restricted pair into a block (k! internal orders for k items) and arrange the block among the rest.
+**hint_nudge:** It is easier to count the arrangements where the two books ARE together and remove them.
+**hint_strategy:** Adjacent count = (treat the pair as one block: 6! arrangements) × (2 ways to order the pair). Subtract from 7!.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q82
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mean / Median
+
+A list consists of 15 consecutive multiples of 4, the least of which is 12. What is the arithmetic mean of the list?
+
+- A) 36
+- B) 40
+- C) 44
+- D) 68
+- E) 96
+
+**answer:** B
+**fastest_path:** A list of consecutive multiples of 4 is evenly spaced, so its mean equals its median, the middle (8th of 15) term. The 8th term is 12 + 7 × 4 = 40.
+**explanation:** For any evenly spaced list — an arithmetic sequence — the values are symmetric about the center, so the arithmetic mean equals the median, which is the middle term when the count of terms is odd. Consecutive multiples of 4 are evenly spaced with a common difference of 4, so this shortcut applies.
+
+The list has 15 terms, an odd count, so the median is the single middle term. For a list of n terms in order, the middle position is (n + 1)/2; here (15 + 1)/2 = 8, so the median is the 8th term.
+
+The first term is 12, and each successive term increases by the common difference 4. The kth term equals the first term plus (k − 1) common differences, so the 8th term is
+
+12 + (8 − 1) × 4 = 12 + 28 = 40.
+
+Because the list is evenly spaced, the mean equals this middle term, so the mean is 40.
+
+As a check, the largest term is 12 + 14 × 4 = 68, and the mean of an evenly spaced list also equals the average of its first and last terms: (12 + 68)/2 = 80/2 = 40.
+
+The correct answer is B.
+**mistake_a:** 36 is the 7th term (12 + 6 × 4), an off-by-one on the middle position — the median of 15 terms is the 8th term, not the 7th.
+**mistake_c:** 44 is the 9th term (12 + 8 × 4), the other off-by-one, overshooting the middle position by one.
+**mistake_d:** 68 is the largest term (12 + 14 × 4), the maximum of the list rather than its center.
+**mistake_e:** 96 is roughly the sum of the first and last terms (12 + 68 = 80) miscomputed, or 24 × 4; it treats a total-like quantity as the mean instead of averaging.
+**common_trap:** Miscounting the middle position — with 15 terms the median is the 8th, not the 7th or 9th — or trying to sum all 15 terms when symmetry makes that unnecessary.
+**takeaway:** For evenly spaced lists, mean = median = middle term (odd count) = average of the first and last terms; never sum every term.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q83
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability
+
+An archer hits the bull's-eye on any given shot with probability 1/3, and the outcomes of her shots are independent. If she takes 3 shots, what is the probability that she hits the bull's-eye at least once?
+
+- A) 1/27
+- B) 8/27
+- C) 4/9
+- D) 19/27
+- E) 26/27
+
+**answer:** D
+**fastest_path:** Complement: P(at least one hit) = 1 − P(no hits). Each miss has probability 2/3, and the shots are independent, so P(no hits) = (2/3)^3 = 8/27. Thus 1 − 8/27 = 19/27.
+**explanation:** For independent trials, the probability that several specified outcomes all occur is the product of their individual probabilities. The most efficient route to an "at least once" probability is the complement: the probability of at least one success equals 1 minus the probability of no successes at all.
+
+On each shot the archer hits with probability 1/3, so she misses with probability 1 − 1/3 = 2/3. The three shots are independent, so the probability that she misses on all three shots is the product of the three individual miss probabilities:
+
+P(no hits) = (2/3) × (2/3) × (2/3) = (2/3)^3 = 8/27.
+
+The event "at least one hit" is the complement of "no hits," so
+
+P(at least one hit) = 1 − P(no hits) = 1 − 8/27 = 27/27 − 8/27 = 19/27.
+
+The correct answer is D.
+**mistake_a:** 1/27 = (1/3)^3 is P(she hits on all three shots) — the probability of three hits, not of at least one.
+**mistake_b:** 8/27 = (2/3)^3 is P(she misses all three shots), which is exactly the complement you subtract, not the answer.
+**mistake_c:** 4/9 = 3 × (1/3)(2/3)^2 is P(exactly one hit). "At least one" also includes exactly two and exactly three hits, which this drops.
+**mistake_e:** 26/27 = 1 − 1/27 subtracts the all-hits probability instead of the no-hits probability, flipping which extreme is removed.
+**common_trap:** Computing P(exactly one hit) instead of P(at least one hit), which silently omits the two-hit and three-hit cases; or subtracting the wrong extreme from 1.
+**takeaway:** "At least one" means 1 − P(none). For independent trials, P(none) is the product of the individual failure probabilities, here (2/3)^3.
+**hint_nudge:** "At least one hit" is everything except a single outcome — which one?
+**hint_strategy:** P(no hits) = (2/3)^3. Subtract that from 1.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q84
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+An investor places $3,000 in a fund that returns 4% for the year and an additional amount in a second fund that returns 9% for the year. If the combined return on the total amount invested is 6%, how much did the investor place in the second fund?
+
+- A) $1,200
+- B) $1,500
+- C) $2,000
+- D) $2,500
+- E) $4,500
+
+**answer:** C
+**fastest_path:** Balance the deviations from the 6% blend. The $3,000 at 4% is 2 points below the blend; the second fund at 9% is 3 points above it. To balance, 3,000 × 2 = x × 3, so x = 6,000/3 = $2,000.
+**explanation:** The overall return on a portfolio is the weighted average of the component returns, weighted by the dollar amount in each component. Equivalently, the dollar-weighted deviation of one component above the blended rate must exactly offset the dollar-weighted deviation of the other component below it.
+
+Let x be the amount placed in the second fund. The total invested is 3,000 + x. The combined dollar return equals the sum of the two funds' dollar returns and also equals 6% of the total. Setting these equal gives
+
+0.04 × 3,000 + 0.09 × x = 0.06 × (3,000 + x).
+
+Computing the constant terms, 0.04 × 3,000 = 120 and 0.06 × 3,000 = 180, so
+
+120 + 0.09x = 180 + 0.06x.
+
+Subtracting 0.06x and 120 from both sides yields
+
+0.03x = 60,
+
+so x = 60 / 0.03 = 2,000.
+
+As a check, $3,000 at 4% earns $120 and $2,000 at 9% earns $180, for $300 total on $5,000 invested, which is 300/5,000 = 6%.
+
+The correct answer is C.
+**mistake_a:** $1,200 reverses the balance, pairing the larger deviation with the larger amount (3,000 × 3 = x × 2 gives 4,500, or a related mis-pairing yields 1,200); the 4% fund is only 2 points off the blend, the 9% fund 3 points.
+**mistake_b:** $1,500 splits the $3,000 in half, as if the blend sat exactly halfway between 4% and 9%; the blend of 6% is closer to 4%, so the high fund needs a larger share than half the low fund's amount.
+**mistake_d:** $2,500 comes from balancing to the midpoint rate of 6.5% (halfway between 4% and 9%) instead of the given 6%, shifting the required amount.
+**mistake_e:** $4,500 makes the two funds' dollar deviations equal in the wrong direction (3,000 × 3 = 9,000 then /2), over-weighting the second fund far past what a 6% blend allows.
+**common_trap:** Assuming a 6% blend lies midway between 4% and 9% (it would be 6.5%), or pairing each fund's deviation with the wrong dollar amount.
+**takeaway:** Portfolio return is a dollar-weighted average; balance it by setting (amount × distance below the blend) equal to (amount × distance above the blend).
+**hint_nudge:** How far is each fund's rate from the 6% blend, and which side is it on?
+**hint_strategy:** Set 0.04(3,000) + 0.09x = 0.06(3,000 + x) and solve for x.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q85
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Counting
+
+A 4-person committee is to be formed from a pool of 6 teachers and 4 students. How many such committees include at least 2 teachers?
+
+- A) 90
+- B) 161
+- C) 170
+- D) 185
+- E) 195
+
+**answer:** D
+**fastest_path:** Use the complement. Total committees = C(10,4) = 210. Subtract those with fewer than 2 teachers: 0 teachers = C(4,4) = 1; 1 teacher = C(6,1) × C(4,3) = 6 × 4 = 24. So 210 − 1 − 24 = 185.
+**explanation:** When order does not matter, the number of ways to choose r objects from n distinct objects is C(n, r) = n! / [r!(n − r)!]. For an "at least k" condition, it is usually fastest to count the total number of selections and subtract the "too few" cases (the complement), rather than summing all qualifying cases.
+
+The pool has 6 teachers and 4 students, for 10 people total. The total number of 4-person committees is
+
+C(10, 4) = (10 × 9 × 8 × 7) / (4 × 3 × 2 × 1) = 5,040 / 24 = 210.
+
+A committee fails the "at least 2 teachers" condition only if it has 0 teachers or exactly 1 teacher.
+
+Zero teachers means all 4 members are students: C(6, 0) × C(4, 4) = 1 × 1 = 1.
+
+Exactly 1 teacher means 1 teacher and 3 students: C(6, 1) × C(4, 3) = 6 × 4 = 24.
+
+So the number of committees with fewer than 2 teachers is 1 + 24 = 25. Subtracting from the total gives the number with at least 2 teachers:
+
+210 − 25 = 185.
+
+As a direct check, sum the qualifying cases. Exactly 2 teachers: C(6, 2) × C(4, 2) = 15 × 6 = 90. Exactly 3 teachers: C(6, 3) × C(4, 1) = 20 × 4 = 80. Exactly 4 teachers: C(6, 4) × C(4, 0) = 15 × 1 = 15. The total is 90 + 80 + 15 = 185, confirming the result.
+
+The correct answer is D.
+**mistake_a:** 90 = C(6,2) × C(4,2) counts only the exactly-2-teacher committees and omits the exactly-3 and exactly-4 cases that "at least 2" also includes.
+**mistake_b:** 161 subtracts too much — for instance removing all committees with 1 teacher (24) plus an inflated zero-teacher count, or a slip in C(10,4).
+**mistake_c:** 170 = 90 + 80 captures exactly 2 and exactly 3 teachers but forgets the 15 all-teacher (exactly 4) committees.
+**mistake_e:** 195 = 210 − 15 subtracts only the all-student committees miscounted as 15, removing the wrong "too few" set; the cases to remove are 0 teachers (1) and 1 teacher (24).
+**common_trap:** Reading "at least 2 teachers" as "exactly 2 teachers," or removing the wrong complement (subtracting student-heavy committees incompletely).
+**takeaway:** For "at least k," prefer total − (fewer than k); here total C(10,4) minus the 0-teacher and 1-teacher committees. Verify by summing the qualifying exact cases.
+**hint_nudge:** Which committees do NOT have at least 2 teachers? There are only two such cases.
+**hint_strategy:** Total = C(10,4). Subtract C(4,4) for all-students and C(6,1) × C(4,3) for exactly one teacher.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics

@@ -2219,3 +2219,247 @@ Taking the two statements together, let Class B have n students and Class A have
 
 The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+## Q75
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Successive Percent Changes — Reversing the Chain
+
+The price of a share rose by 25% in one quarter and then fell by 10% in the next quarter. If the share's price at the end of the second quarter was $33.75, what was its price at the start of the first quarter?
+
+- A) $27.00
+- B) $30.00
+- C) $33.75
+- D) $37.50
+- E) $42.00
+
+**answer:** B
+**explanation:** Successive percent changes are applied multiplicatively, each to the amount produced by the previous change, so the combined effect of the two quarters is the product of the two individual factors. An increase of p percent corresponds to multiplication by (1 + p/100), and a decrease of d percent corresponds to multiplication by (1 - d/100).
+
+Let x denote the price at the start of the first quarter. The rise of 25% multiplies the price by 1 + 0.25 = 1.25, and the subsequent fall of 10% multiplies the result by 1 - 0.10 = 0.90. The end-of-second-quarter price is therefore the original price multiplied by both factors:
+
+x × 1.25 × 0.90.
+
+We combine the two factors into a single net multiplier:
+
+1.25 × 0.90 = 1.125.
+
+Thus the final price equals 1.125x. Setting this equal to the given final price gives the equation
+
+1.125x = 33.75.
+
+Solving for x, we divide both sides by 1.125:
+
+x = 33.75 / 1.125 = 30.
+
+The starting price was therefore $30.00. As a check, a 25% rise on $30 gives $37.50, and a 10% fall on $37.50 removes 0.10 × 37.50 = $3.75, leaving $33.75, which matches the stated final price. Note that the net change is not zero: a 25% gain followed by a 10% loss yields a net gain of 12.5%, which is why the original price is below the final price rather than equal to it.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q76
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Ratio Allocation with Percent Changes
+
+An investor allocates a $20,000 portfolio among three assets A, B, and C in the ratio 2 : 3 : 5. Over the following year, the value of asset A rises by 30%, the value of asset B rises by 10%, and the value of asset C falls by 20%. By what percent does the total value of the portfolio change over the year?
+
+- A) It decreased by 1%
+- B) It decreased by 2%
+- C) It is unchanged
+- D) It increased by 1%
+- E) It increased by 2%
+
+**answer:** A
+**explanation:** When a total is divided in a given ratio and each part then undergoes its own percent change, the overall percent change of the total is the weighted result of the individual changes, where each part's weight is its share of the original total. The correct method is to compute the new value of each part, sum these to obtain the new total, and compare it with the original total; the individual percents may not simply be averaged or added.
+
+The ratio 2 : 3 : 5 comprises 2 + 3 + 5 = 10 parts, and the portfolio is $20,000, so each part is worth 20,000 / 10 = 2,000 dollars. The initial values are therefore A = 2 × 2,000 = 4,000, B = 3 × 2,000 = 6,000, and C = 5 × 2,000 = 10,000 dollars.
+
+We now apply each percent change to its corresponding asset. Asset A rises by 30%, so its new value is 4,000 × 1.30 = 5,200 dollars. Asset B rises by 10%, so its new value is 6,000 × 1.10 = 6,600 dollars. Asset C falls by 20%, so its new value is 10,000 × 0.80 = 8,000 dollars.
+
+The new total value of the portfolio is the sum of the three new values:
+
+5,200 + 6,600 + 8,000 = 19,800 dollars.
+
+The change in total value is 19,800 - 20,000 = -200 dollars. As a percent of the original total, this is -200 / 20,000 = -0.01, a decrease of 1%.
+
+The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q77
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Revenue Share from Percent Relationships
+
+A company's total revenue comes entirely from two products, X and Y. Revenue from product X is what percent of the company's total revenue?
+
+(1) Revenue from product X is 50% greater than revenue from product Y.
+(2) If revenue from product X were increased by 10% and revenue from product Y were decreased by 15%, the company's total revenue would be unchanged.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**explanation:** The fraction of total revenue contributed by product X depends only on the ratio of the two products' revenues, not on their absolute dollar amounts, because the requested percent is X / (X + Y), in which any common scale factor cancels. Each statement is therefore sufficient if and only if it pins down the ratio of X to Y. Let x denote the revenue from product X and y the revenue from product Y, both positive.
+
+Statement (1) states that revenue from product X is 50% greater than revenue from product Y, which translates to x = 1.50y. Substituting gives the total revenue as x + y = 1.50y + y = 2.50y, so the share from product X is x / (x + y) = 1.50y / 2.50y = 1.50 / 2.50 = 3/5 = 60%. Because y cancels, this is a single determined value, so statement (1) alone is sufficient.
+
+Statement (2) describes a hypothetical adjustment that leaves total revenue unchanged: increasing x by 10% and decreasing y by 15% gives a new total of 1.10x + 0.85y, and this must equal the original total x + y. Translating the condition into an equation gives 1.10x + 0.85y = x + y. Subtracting x + y from both sides yields 0.10x - 0.15y = 0, so 0.10x = 0.15y, which gives x = 1.50y. This is the same ratio obtained in statement (1), so the share from product X is again 1.50 / 2.50 = 60%. Because y cancels, this too is a single determined value, so statement (2) alone is sufficient.
+
+Since each statement alone fixes the ratio of x to y and therefore the percent of total revenue coming from product X, each statement alone is sufficient.
+
+The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q78
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Percent Across Two Groups
+
+At a consulting firm, 40% of the employees work in the New York office and the remaining 60% work in the Chicago office. In the New York office, 25% of the employees are partners, and in the Chicago office, 50% of the employees are partners. What percent of all the firm's employees are partners?
+
+- A) 30%
+- B) 35%
+- C) 37.5%
+- D) 40%
+- E) 42.5%
+
+**answer:** D
+**explanation:** When a population is split into groups of unequal size, the overall percent in a category is the weighted average of the group percents, with each group weighted by its share of the whole; the simple average of the two percents applies only when the groups are equal in size. The cleanest approach is to assume a convenient total, count the members of the category in each group, and divide by the total.
+
+Let the firm have 100 employees, a choice that makes percents and counts coincide. Then 40% work in New York, which is 40 employees, and 60% work in Chicago, which is 60 employees.
+
+In the New York office, 25% of the 40 employees are partners, giving 0.25 × 40 = 10 partners. In the Chicago office, 50% of the 60 employees are partners, giving 0.50 × 60 = 30 partners.
+
+The total number of partners is 10 + 30 = 40, out of 100 employees in all. The percent of all employees who are partners is therefore 40 / 100 = 40%.
+
+Note that the answer is not the simple average of 25% and 50%, which would be 37.5%. The blend is pulled toward 50% because the larger Chicago group has the higher partner rate.
+
+The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q79
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Iterative Mixture — Multiplicative Decay
+
+A tank holds 80 liters of a solution that is 25% syrup. In each cycle, 16 liters of the solution are drained and replaced with 16 liters of pure water. After two complete cycles, what percent of the tank's contents is syrup?
+
+- A) 12.5%
+- B) 15%
+- C) 16%
+- D) 18.75%
+- E) 20%
+
+**answer:** C
+**explanation:** In a drain-and-replace process, each cycle removes a fixed fraction of whatever mixture is present and replaces it with pure water that contributes none of the dissolved substance. The amount of syrup is therefore multiplied by the same retention fraction on every cycle, making the process multiplicative.
+
+The tank holds 80 liters, and 16 liters are drained each cycle, so the fraction retained after a drain is (80 - 16) / 80 = 64 / 80 = 4/5. Because the drained portion has the same concentration as the tank, draining removes 1/5 of the syrup and retains 4/5; the pure water added afterward adds no syrup. Each cycle thus multiplies the amount of syrup by 4/5.
+
+The solution begins at 25% syrup. After n cycles, the concentration equals the initial concentration multiplied by (4/5) raised to the power n. After two complete cycles:
+
+syrup % = 25% × (4/5)^2 = 25% × 16/25 = 16%.
+
+We verify this by tracking the actual quantity of syrup. Initially the tank holds 25% of 80 = 20 liters of syrup. In the first cycle the drain removes 1/5 of this, namely 4 liters, leaving 16 liters of syrup, which is 16/80 = 20% of the tank. In the second cycle the drain removes 1/5 of the now-present syrup, namely 3.2 liters, leaving 16 - 3.2 = 12.8 liters of syrup, which is 12.8 / 80 = 0.16, or 16% of the tank. This confirms the computation. A common error is to stop after one cycle (yielding 20%) or to subtract 25% per cycle additively rather than multiplying by 4/5.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q80
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percent of a Percent
+
+In a certain city, 60% of the residents are adults, and 45% of those adults are employed full time. What percent of all the city's residents are full-time-employed adults?
+
+- A) 21%
+- B) 24%
+- C) 27%
+- D) 45%
+- E) 105%
+
+**answer:** C
+**explanation:** A percent taken of a quantity that is itself a percent of a larger whole is found by multiplying the two percents together, because the second percent is applied to the subgroup defined by the first, not to the entire population. Translating "a percent of a percent" into multiplication of the corresponding decimals avoids the error of adding the two figures.
+
+Let the city have 100 residents, a convenient choice that lets percents serve directly as counts. Then 60% of the residents are adults, which is 0.60 × 100 = 60 adults. Of these adults, 45% are employed full time, which is 0.45 × 60 = 27 adults employed full time.
+
+The full-time-employed adults therefore number 27 out of 100 residents, so they make up 27 / 100 = 27% of all residents.
+
+Equivalently, the two percents may be multiplied directly: 0.60 × 0.45 = 0.27, which is 27%. Note that the answer is neither the sum 60% + 45% = 105% (choice E, which is impossible for a subgroup of the whole) nor 45% of the whole (choice D), since the 45% applies only to the adult subgroup.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q81
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Net Percent Change Over Two Periods
+
+The price of a commodity changed in each of two consecutive months. By what percent did the price change in total over the two-month period?
+
+(1) During the first month, the price rose by 10%.
+(2) The price at the end of the two months was 99% of the price at the start of the two months.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The total percent change over two periods is the overall multiplier from start to finish, expressed as a percent change; it equals the product of the two monthly factors and is determined precisely when the ratio of the ending price to the starting price is fixed. Let P denote the price at the start, F the price at the end, so the quantity sought is (F - P)/P, equivalently F/P - 1, expressed as a percent.
+
+Statement (1) gives only the first month's change, a rise of 10%, so the price after one month is 1.10P. It says nothing about the second month's change, so the ending price F is not determined relative to P. For example, if the second month brings no further change, F = 1.10P and the total change is +10%; if the second month brings a 20% drop, F = 1.10P × 0.80 = 0.88P and the total change is -12%. Different totals are possible, so statement (1) alone is not sufficient.
+
+Statement (2) states that the ending price was 99% of the starting price, which translates directly to F = 0.99P. The total percent change is therefore (F - P)/P = (0.99P - P)/P = -0.01, a decrease of 1%. This value is fixed regardless of how the change was distributed between the two months, so statement (2) alone is sufficient.
+
+Since statement (2) alone determines the total percent change while statement (1) alone does not, statement (2) alone is sufficient but statement (1) alone is not.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q82
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Ratio Altered by Addition
+
+A vessel contains a mixture of milk and water in the ratio 7 : 2. After 6 liters of water are added, the ratio of milk to water becomes 7 : 5. How many liters of mixture were in the vessel originally?
+
+- A) 12
+- B) 16
+- C) 18
+- D) 20
+- E) 24
+
+**answer:** C
+**explanation:** When a mixture is altered by adding a fixed amount of one component, any component that is not added remains constant in absolute quantity. Here only water is added, so the amount of milk does not change; this fixed quantity anchors the comparison of the original and new ratios.
+
+Let the common multiplier of the original ratio be k, so the original amounts are milk = 7k liters and water = 2k liters. Because no milk is added, the milk remains 7k after the addition. The water increases by 6 liters, becoming 2k + 6. The new ratio of milk to water is 7 : 5, which we translate into the equation
+
+7k / (2k + 6) = 7 / 5.
+
+Cross-multiplying gives 5(7k) = 7(2k + 6), that is, 35k = 14k + 42. Subtracting 14k from both sides yields 21k = 42, so k = 2.
+
+The original mixture consisted of milk = 7k = 14 liters and water = 2k = 4 liters, for an original total of 14 + 4 = 18 liters.
+
+As a check, after 6 liters of water are added the water becomes 4 + 6 = 10 liters while the milk stays at 14 liters, giving a ratio of 14 : 10 = 7 : 5, exactly as required.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems

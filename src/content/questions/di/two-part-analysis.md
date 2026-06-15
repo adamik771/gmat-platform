@@ -4548,3 +4548,482 @@ Coffee only = 70 - 30 = 40
 
 The correct answers are Like both = 30 and Coffee only = 40.
 **related_reading:** reading-di-06-two-part-analysis
+
+
+---
+
+## Q86
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — System of Equations
+
+A supplier sells two items: a premium widget at price P dollars per unit and a standard widget at price S dollars per unit. A first order of 4 premium widgets and 6 standard widgets costs $510. A second order of 7 premium widgets and 3 standard widgets costs $615. Determine the price of one premium widget P (row 1) and the price of one standard widget S (row 2).
+
+|      | Premium price P | Standard price S |
+|------|-----------------|------------------|
+| $32  |                 |                  |
+| $37  |                 |                  |
+| $48  |                 |                  |
+| $55  |                 |                  |
+| $72  |                 |                  |
+
+**answer:** P = $72, S = $37
+**explanation:** **Governing principle.** Two purchases of the same two items at fixed unit prices produce a system of two linear equations in two unknowns, which has a unique solution whenever the two orders are not proportional. The system is solved by elimination.
+
+**Define variables.** Let P be the price of one premium widget and S be the price of one standard widget, both in dollars.
+
+**Translate the orders into equations.**
+
+The first order — 4 premium and 6 standard widgets for $510 — gives:
+
+4P + 6S = 510   ... (1)
+
+The second order — 7 premium and 3 standard widgets for $615 — gives:
+
+7P + 3S = 615   ... (2)
+
+**Solve by elimination.** Multiply equation (2) by 2 so the S-coefficient matches that of equation (1):
+
+14P + 6S = 1230   ... (2')
+
+Subtract equation (1) from (2'):
+
+(14P + 6S) - (4P + 6S) = 1230 - 510
+
+10P = 720
+
+P = 720 / 10 = 72
+
+**Back-substitute to find S.** Using equation (1):
+
+4(72) + 6S = 510
+
+288 + 6S = 510
+
+6S = 222
+
+S = 222 / 6 = 37
+
+**Verification.** Substituting both values into equation (2) confirms consistency: 7(72) + 3(37) = 504 + 111 = 615, which matches the second order exactly. Equation (1) also holds: 4(72) + 6(37) = 288 + 222 = 510.
+
+**Matching candidate values.** The candidate list includes $72 and $37. P = 72 selects the $72 row and S = 37 selects the $37 row. No other pairing from the list satisfies both orders: for instance, P = $55 in equation (1) would force 6S = 510 - 220 = 290, giving S ≈ 48.3, which is not among the candidates and fails equation (2).
+
+The correct answers are Premium price P = $72 and Standard price S = $37.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q87
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Rate Problem
+
+A reservoir is filled by two pumps. Pump A alone fills the reservoir in 5 hours, and Pump B alone fills it in 3 hours. If both pumps run together from the start on an empty reservoir, the time to fill it is T hours. If only Pump B runs, the time to fill it is S hours.
+
+Select the value of T (row 1) and the value of S (row 2).
+
+|           | T (both) | S (Pump B only) |
+|-----------|----------|-----------------|
+| 1.5 hrs   |          |                 |
+| 1.875 hrs |          |                 |
+| 2.5 hrs   |          |                 |
+| 3 hrs     |          |                 |
+| 4 hrs     |          |                 |
+
+**answer:** T = 1.875 hrs, S = 3 hrs
+**explanation:** **The combined-work principle.** When two pumps operate at the same time, their filling rates — expressed as fractions of the reservoir filled per hour — add. The time to fill one full reservoir equals 1 divided by the combined rate.
+
+**Setting up the rates.** Let the reservoir equal 1 unit of work.
+
+- Pump A fills the reservoir in 5 hours, so its rate is 1/5 reservoir per hour.
+- Pump B fills the reservoir in 3 hours, so its rate is 1/3 reservoir per hour.
+
+**Solving for T (both pumps).** The combined rate is:
+
+1/5 + 1/3
+
+Using the least common denominator of 15:
+
+1/5 + 1/3 = 3/15 + 5/15 = 8/15 reservoir per hour
+
+The time to fill one reservoir is:
+
+T = 1 / (8/15) = 15/8 = 1.875 hours
+
+Among the candidates, 1.875 hrs is the match.
+
+**Solving for S (Pump B only).** When only Pump B runs, its rate is 1/3 reservoir per hour, so the time is:
+
+S = 1 / (1/3) = 3 hours
+
+This restates the prompt's given that Pump B alone takes 3 hours; the value 3 hrs is the match.
+
+**Checking the other candidates.** The value 2.5 hrs would correspond to a combined rate of 1/2.5 = 0.4 = 6/15, which is below the actual 8/15. The value 1.5 hrs would require a rate of 2/3, which exceeds even the sum of both pumps. Neither is consistent with the rates derived above.
+
+The correct answers are T (both) = 1.875 hrs and S (Pump B only) = 3 hrs.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q88
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Distance/Rate
+
+A car and a truck leave the same point at the same time and travel in opposite directions along a straight highway. The car travels at 60 km/h and the truck at 45 km/h. Determine the time elapsed when they are exactly 420 km apart (row 1) and the distance the car has traveled at that moment (row 2).
+
+|        | Time to 420 km apart | Car distance |
+|--------|----------------------|--------------|
+| 3 hrs  |                      |              |
+| 4 hrs  |                      |              |
+| 180 km |                      |              |
+| 240 km |                      |              |
+| 300 km |                      |              |
+
+**answer:** Time = 4 hrs, Car distance = 240 km
+**explanation:** **Governing principle.** When two objects move in opposite directions from the same starting point, the distance between them grows at a rate equal to the sum of their speeds. The time to reach a given separation equals that separation divided by the combined speed.
+
+**Variable definitions.** Let t be the time in hours elapsed when the two vehicles are 420 km apart, and let d be the distance traveled by the car at that time.
+
+**Setting up the equation.** The car travels at 60 km/h and the truck at 45 km/h, so the gap between them widens at 60 + 45 = 105 km/h. The separation reaches 420 km when:
+
+105 * t = 420
+
+**Solving for t.**
+
+t = 420 / 105 = 4 hours
+
+The time elapsed is 4 hours.
+
+**Solving for d.** The car's distance is rate times time:
+
+d = 60 * 4 = 240 km
+
+**Verification.** In 4 hours the truck covers 45 * 4 = 180 km. The total separation is 240 + 180 = 420 km, matching the requirement. The solution is consistent.
+
+**Evaluating the candidate values.** In the "Time" column the options are 3 hrs and 4 hrs; at t = 3 the separation would be 105 * 3 = 315 km, short of 420, so only 4 hrs works. In the "Car distance" column the options are 180 km, 240 km, and 300 km; 180 km is the truck's distance, 300 km matches neither vehicle, and only 240 km equals 60 * 4.
+
+The correct answers are Time = 4 hrs and Car distance = 240 km.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q89
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Mixture
+
+A tea merchant blends Tea X (costing $6 per pound) with Tea Y (costing $11 per pound) to produce 25 pounds of a blend that costs $8 per pound. Determine the pounds of Tea X (row 1) and the pounds of Tea Y (row 2) required.
+
+|       | Tea X | Tea Y |
+|-------|-------|-------|
+| 5 lb  |       |       |
+| 10 lb |       |       |
+| 15 lb |       |       |
+| 18 lb |       |       |
+| 20 lb |       |       |
+
+**answer:** Tea X = 15 lb, Tea Y = 10 lb
+**explanation:** **Governing principle.** A blend problem is governed by two simultaneous constraints: the weights of the components must sum to the total weight, and the costs contributed by the components must sum to the total cost of the blend.
+
+**Variable definitions.** Let x be the pounds of Tea X and y be the pounds of Tea Y.
+
+**Setting up the equations.** The blend weighs 25 pounds:
+
+x + y = 25   ... (1)
+
+The blend costs $8 per pound over 25 pounds, for a total cost of 8 * 25 = $200. With Tea X at $6 and Tea Y at $11 per pound:
+
+6x + 11y = 200   ... (2)
+
+**Solving the system.** From equation (1), y = 25 - x. Substituting into equation (2):
+
+6x + 11(25 - x) = 200
+
+6x + 275 - 11x = 200
+
+-5x = 200 - 275
+
+-5x = -75
+
+x = 15
+
+Then y = 25 - 15 = 10.
+
+**Verification.** Weight: 15 + 10 = 25. Cost: 6(15) + 11(10) = 90 + 110 = 200, and 200 / 25 = $8 per pound. Both constraints hold.
+
+**Selecting from the candidate values.** The candidate weights are 5, 10, 15, 18, and 20 lb. The solution x = 15 and y = 10 both appear. The value 18 lb is a distractor consistent with neither equation, and any other pairing from the list fails the cost equation: for example, x = 20, y = 5 gives 6(20) + 11(5) = 120 + 55 = 175, not 200.
+
+The correct answers are Tea X = 15 lb and Tea Y = 10 lb.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q90
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Investment
+
+An investor allocates $80,000 between two bonds. Bond M yields 6.5% annually and Bond N yields 9% annually. The combined annual interest is $6,025. Determine the amount invested in Bond M (row 1) and the amount invested in Bond N (row 2).
+
+|         | Bond M | Bond N |
+|---------|--------|--------|
+| $25,000 |        |        |
+| $33,000 |        |        |
+| $40,000 |        |        |
+| $47,000 |        |        |
+| $55,000 |        |        |
+
+**answer:** Bond M = $47,000, Bond N = $33,000
+**explanation:** **Setup.** This problem partitions a fixed sum between two instruments subject to a total-interest constraint. Let x be the dollars invested in Bond M; then the remaining 80,000 - x is invested in Bond N.
+
+**Governing equation.** The interest from Bond M (6.5%) plus the interest from Bond N (9%) must equal $6,025:
+
+0.065x + 0.09(80,000 - x) = 6,025
+
+**Solving.** Expanding the left side:
+
+0.065x + 7,200 - 0.09x = 6,025
+
+Combining like terms:
+
+-0.025x + 7,200 = 6,025
+
+Subtracting 7,200 from both sides:
+
+-0.025x = -1,175
+
+Dividing both sides by -0.025:
+
+x = -1,175 / -0.025 = 47,000
+
+**Determining Bond N.** The remaining allocation is:
+
+80,000 - 47,000 = 33,000
+
+**Verification.** 0.065 * 47,000 + 0.09 * 33,000 = 3,055 + 2,970 = 6,025, which equals the stated total interest. The allocations also sum to 47,000 + 33,000 = 80,000.
+
+**Eliminating distractors.** Testing other candidates against the interest constraint rules them out. If Bond M = $40,000, then Bond N = $40,000 and the interest is 0.065(40,000) + 0.09(40,000) = 2,600 + 3,600 = 6,200, which exceeds 6,025. If Bond M = $55,000, then Bond N = $25,000 and the interest is 0.065(55,000) + 0.09(25,000) = 3,575 + 2,250 = 5,825, which falls short. Only x = 47,000 satisfies the equation exactly.
+
+The correct answers are Bond M = $47,000 and Bond N = $33,000.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q91
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Argument Structure
+
+Consider the following argument: "Quarterly profits at NorthStar Retail rose 18% after the company switched to a four-day work week in January. Employee turnover, which had been climbing for two years, fell sharply over the same period. Therefore, the four-day work week increased profits by improving employee retention."
+
+From the statements below, identify the conclusion of the argument (row 1) and the central unstated assumption on which the causal conclusion depends (row 2).
+
+| Statement                                                                                       | Conclusion | Assumption |
+|-------------------------------------------------------------------------------------------------|------------|------------|
+| The four-day work week increased profits by improving employee retention                        |            |            |
+| Lower employee turnover, rather than some other change, was responsible for the rise in profits  |            |            |
+| Quarterly profits rose 18% after the switch to a four-day work week                              |            |            |
+| Employee turnover fell sharply over the same period                                             |            |            |
+| Every company that shortens its work week sees profits rise                                       |            |            |
+
+**answer:** Conclusion = "The four-day work week increased profits by improving employee retention"; Assumption = "Lower employee turnover, rather than some other change, was responsible for the rise in profits"
+**explanation:** In this Two-Part Analysis question, the two tasks are to isolate the conclusion the argument is built to establish and to identify the unstated assumption the causal inference silently depends on.
+
+**Identifying the conclusion.** The conclusion is the claim the other statements are offered to support, and it is here introduced by the indicator word "Therefore." The argument presents two observations as evidence — profits rose 18% after the switch, and turnover fell sharply over the same period — and uses them to support a single integrated claim: "The four-day work week increased profits by improving employee retention." That final statement is what the argument is trying to establish; it is not offered as support for anything else. Therefore it is the conclusion.
+
+**Identifying the central unstated assumption.** The conclusion does more than note that profits rose; it asserts a specific causal pathway — the work week improved retention, and improved retention drove the profit increase. For that pathway to hold, the drop in turnover (not some unrelated factor) must be what produced the higher profits. If the 18% profit increase were actually caused by something else — a price increase, a competitor's exit, a seasonal sales surge, or a cost-cutting program — then even granting that turnover fell, the argument's specific causal story would collapse. The argument therefore silently relies on the premise that lower employee turnover, rather than some other change, was responsible for the rise in profits.
+
+This is confirmed by negation: if one supposes that some other change actually caused the profit increase, the conclusion's claimed mechanism (retention drove profits) no longer follows, which shows the statement is load-bearing.
+
+**Evaluating the remaining candidates.** "Quarterly profits rose 18% after the switch to a four-day work week" and "Employee turnover fell sharply over the same period" are the two explicit premises — observed data, not unstated assumptions, and not the conclusion. "Every company that shortens its work week sees profits rise" is a sweeping universal generalization; the argument makes only a local claim about one company and does not require so strong a principle, so it is not the minimal assumption doing the inferential work.
+
+The correct answers are Conclusion = The four-day work week increased profits by improving employee retention and Assumption = Lower employee turnover, rather than some other change, was responsible for the rise in profits.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q92
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Overlapping Sets
+
+A university surveys 200 students about which foreign languages they study. Of those surveyed, 130 study French, 95 study Spanish, and 30 study neither language. Each student who studies neither studies no surveyed language at all. Determine the number of students who study both French and Spanish (row 1) and the number who study French but not Spanish (row 2).
+
+|    | Study both | French only |
+|----|------------|-------------|
+| 35 |            |             |
+| 45 |            |             |
+| 55 |            |             |
+| 65 |            |             |
+| 75 |            |             |
+
+**answer:** Study both = 55, French only = 75
+**explanation:** **Governing principle.** For two overlapping groups within a population, the inclusion-exclusion principle states that the number studying at least one language equals the number studying the first plus the number studying the second minus the number studying both. The number studying at least one also equals the total surveyed minus those studying neither.
+
+**Define quantities.** The total surveyed is 200, with 130 studying French (F), 95 studying Spanish (S), and 30 studying neither. Let x be the number who study both.
+
+**Find the number who study at least one language.** Subtract those who study neither from the total:
+
+At least one = 200 - 30 = 170
+
+**Apply inclusion-exclusion to find the overlap.**
+
+|F| + |S| - |both| = |at least one|
+
+130 + 95 - x = 170
+
+225 - x = 170
+
+x = 55
+
+So 55 students study both French and Spanish.
+
+**Find the number who study French only.** Of the 130 French students, those who also study Spanish number 55, so:
+
+French only = 130 - 55 = 75
+
+**Verification.** French only (75) + Spanish only (95 - 55 = 40) + both (55) + neither (30) = 75 + 40 + 55 + 30 = 200, matching the total surveyed. The at-least-one count is 75 + 40 + 55 = 170, consistent with 200 - 30. Both checks pass.
+
+**Matching candidate values.** The candidate list is 35, 45, 55, 65, and 75. The overlap, 55, and the French-only count, 75, both appear. The distractor 45 corresponds to no requested quantity, and 65 likewise fails both inclusion-exclusion checks.
+
+The correct answers are Study both = 55 and French only = 75.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q93
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Numerical Relationships
+
+A set of five distinct positive integers has a mean of 20 and a median of 18. Let L be the largest possible value of the greatest integer in the set, and let S be the smallest possible value of the greatest integer in the set. Determine L (row 1) and S (row 2).
+
+|    | L (largest possible max) | S (smallest possible max) |
+|----|--------------------------|---------------------------|
+| 20 |                          |                           |
+| 25 |                          |                           |
+| 33 |                          |                           |
+| 49 |                          |                           |
+| 60 |                          |                           |
+
+**answer:** L = 60, S = 25
+**explanation:** **Setup and definitions.** Let the five distinct positive integers, in ascending order, be a1 < a2 < a3 < a4 < a5. With five elements, the median is the third element, so a3 = 18. The mean of 20 fixes the total sum at 5 * 20 = 100. Subtracting the known median:
+
+a1 + a2 + a4 + a5 = 100 - 18 = 82
+
+Two further constraints follow from ordering and distinctness: a1 and a2 are distinct positive integers strictly less than 18, and a4 is strictly greater than 18 and strictly less than a5.
+
+**Finding L (the largest possible greatest integer).** To maximize a5, minimize a1 + a2 + a4. The smallest distinct positive integers for a1 and a2 are 1 and 2, summing to 3. The smallest allowable a4, which must exceed 18, is 19. Therefore:
+
+a5 = 82 - 1 - 2 - 19 = 60
+
+The resulting set {1, 2, 18, 19, 60} satisfies every condition: five distinct positive integers, sum 1 + 2 + 18 + 19 + 60 = 100 (mean 20), median 18. No smaller choice for a1, a2, or a4 is available while respecting distinctness and ordering, so L = 60.
+
+**Finding S (the smallest possible greatest integer).** To minimize a5, maximize a1 + a2 + a4. The two largest distinct integers strictly below 18 are 16 and 17, giving a1 + a2 = 33. This forces:
+
+a4 + a5 = 82 - 33 = 49
+
+Since a4 and a5 are distinct with 18 < a4 < a5, a5 is smallest when a4 is as large as possible, namely a4 = a5 - 1. Substituting:
+
+(a5 - 1) + a5 = 49
+
+2 * a5 = 50
+
+a5 = 25,   a4 = 24
+
+No smaller a5 works: if a5 = 24, then a4 = 49 - 24 = 25 > a5, violating the ordering; any a5 below 24 forces a4 above a5 as well. The resulting set {16, 17, 18, 24, 25} satisfies all conditions: five distinct positive integers, sum 16 + 17 + 18 + 24 + 25 = 100 (mean 20), median 18. Therefore S = 25.
+
+The correct answers are L (largest possible max) = 60 and S (smallest possible max) = 25.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q94
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Cause and Effect / Strengthening and Weakening
+
+A city transit official argues: "After we replaced the fare-collection turnstiles with a faster tap-to-pay system at Central Station last spring, average passenger boarding time fell by 22%. Therefore, the tap-to-pay system is the reason boarding became faster, and installing it system-wide will speed up boarding at every station."
+
+From the statements below, identify one that would most strengthen the argument (row 1) and one that would most weaken it by offering an alternative explanation (row 2).
+
+| Statement                                                                                                            | Strengthens | Weakens (alt cause) |
+|--------------------------------------------------------------------------------------------------------------------|-------------|---------------------|
+| At a comparison station where only tap-to-pay was installed and nothing else changed, boarding time fell by 20%      |             |                     |
+| The same spring that tap-to-pay launched at Central Station, the transit agency also added two extra boarding doors per train there |             |                     |
+| The tap-to-pay terminals cost less to maintain than the old turnstiles                                              |             |                     |
+| Passenger satisfaction surveys at Central Station improved after the change                                          |             |                     |
+| Tap-to-pay has been adopted by transit systems in several other countries                                           |             |                     |
+
+**answer:** Strengthens = "At a comparison station where only tap-to-pay was installed and nothing else changed, boarding time fell by 20%"; Weakens = "The same spring that tap-to-pay launched at Central Station, the transit agency also added two extra boarding doors per train there"
+**explanation:** **The logical task.** This Strengthen/Weaken Two-Part Analysis requires two separate judgments: the statement that best supports the official's causal claim, and the statement that best undermines it by supplying an alternative cause. Each column is its own sub-question.
+
+**The argument.** Let T denote installing tap-to-pay and B denote the change in boarding time. The official observes that at Central Station, T was followed by a 22% fall in boarding time, and concludes that T caused the faster boarding and will reproduce the effect system-wide. This is a causal conclusion drawn from a single before-and-after observation at one station. The central gap is confounding: some other change at Central Station might have occurred at the same time as T and could itself explain the faster boarding. A strengthener must close that gap by isolating T; an alternative-cause weakener must exploit it.
+
+**Evaluating the candidates for Strengthens.** The best strengthener isolates the cause and shows the effect persists when nothing else varies.
+
+- "At a comparison station where only tap-to-pay was installed and nothing else changed, boarding time fell by 20%." This isolates the intervention: because tap-to-pay was the sole change at the comparison station, the 20% drop — close to the 22% at Central Station — cannot be attributed to other simultaneous modifications. It directly rebuts the confounding worry and supports the claim that tap-to-pay itself speeds boarding and would do so elsewhere. Strong strengthener.
+- "The tap-to-pay terminals cost less to maintain than the old turnstiles" concerns operating cost, not boarding speed, and is irrelevant to the causal claim.
+- "Passenger satisfaction surveys improved" reflects sentiment, not boarding time, and does not establish that tap-to-pay caused the speed-up.
+- "Tap-to-pay has been adopted by transit systems in several other countries" reports popularity, which says nothing about whether it caused faster boarding here. Irrelevant.
+
+The credited strengthener is the comparison-station result.
+
+**Evaluating the candidates for Weakens (alternative cause).** The best alternative-cause weakener names a distinct change that occurred alongside the intervention and could itself produce the observed effect.
+
+- "The same spring that tap-to-pay launched at Central Station, the transit agency also added two extra boarding doors per train there." Adding boarding doors independently speeds boarding by letting more passengers enter at once. Because this change happened at the same place and time as tap-to-pay, the observed 22% reduction at Central Station may be due to the extra doors rather than the payment system. The single-station observation cannot separate the two, so this is a textbook alternative cause that breaks the inferred link between tap-to-pay and the speed-up. Strong weakener.
+- The comparison-station statement supports the claim and is selected for the other column.
+- The maintenance-cost, satisfaction, and other-countries statements supply no competing causal mechanism for the boarding-time change and are irrelevant to weakening.
+
+The credited weakener is the extra-boarding-doors statement.
+
+**Summary of the selections.** For Strengthens, the comparison-station result is decisive because it isolates tap-to-pay from other changes and reproduces the effect, closing the correlation-to-causation gap and supporting the system-wide projection. For Weakens (alt cause), the extra-doors statement is decisive because it identifies a specific, simultaneous, causally plausible alternative that the single-station observation cannot rule out.
+
+The correct answers are Strengthens = At a comparison station where only tap-to-pay was installed and nothing else changed, boarding time fell by 20% and Weakens (alt cause) = The same spring that tap-to-pay launched at Central Station, the transit agency also added two extra boarding doors per train there.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q95
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Logic — Strengthening and Weakening
+
+A regional health board argues: "Requiring restaurants to post calorie counts on their menus will reduce the average number of calories customers order per meal by at least 10%."
+
+From the statements below, identify one that would most strengthen the board's argument (row 1) and one that would most weaken it (row 2).
+
+| Statement                                                                                                  | Strengthens | Weakens |
+|------------------------------------------------------------------------------------------------------------|-------------|---------|
+| In a neighboring region with similar dining habits, mandatory calorie posting cut average calories ordered by 12% |             |         |
+| Most customers say they ignore nutritional information when ordering a meal                                  |             |         |
+| Calorie counts will be printed in a slightly larger font than the menu prices                               |             |         |
+| Many restaurants already list the price of each menu item                                                   |             |         |
+| Posting calorie counts increases the cost of reprinting menus                                               |             |         |
+
+**answer:** Strengthens = "In a neighboring region with similar dining habits, mandatory calorie posting cut average calories ordered by 12%"; Weakens = "Most customers say they ignore nutritional information when ordering a meal"
+**explanation:** **Governing principle.** An argument is strengthened by a statement that raises the likelihood the conclusion is true — typically by supplying supporting evidence, a controlled analogous case, or validation of a key assumption. It is weakened by a statement that lowers that likelihood — typically by attacking the causal mechanism or showing the intervention cannot produce the claimed effect.
+
+**The argument.** The health board concludes that requiring calorie counts on menus will reduce the average calories customers order per meal by at least 10%. The conclusion rests on an unstated assumption: that customers will actually notice and respond to the posted calorie information by choosing lower-calorie options to a degree large enough to cut the average by 10% or more.
+
+**Evaluating the candidates for Strengthens.**
+
+- "In a neighboring region with similar dining habits, mandatory calorie posting cut average calories ordered by 12%." Let the board's threshold be 10% and the neighboring region's observed reduction be 12%. Because 12% exceeds 10% and the comparison region has similar dining habits — controlling for a key confounder — this analogous case provides direct empirical evidence that the same policy achieves the claimed effect under comparable conditions. Strong strengthener.
+- "Calorie counts will be printed in a slightly larger font than the menu prices" concerns formatting; a marginally larger font does not establish that customers will change their orders by 10%. Weak and indirect.
+- "Many restaurants already list the price of each menu item" is a background fact about pricing with no bearing on whether calorie posting reduces calories ordered. Irrelevant.
+
+The credited strengthener is the neighboring-region result.
+
+**Evaluating the candidates for Weakens.**
+
+- "Most customers say they ignore nutritional information when ordering a meal." This attacks the argument's key assumption directly. The board's prediction depends on customers noticing and acting on the posted calorie figures; if most customers ignore nutritional information, then posting calorie counts will not change their ordering behavior, and the projected 10% reduction cannot be achieved. By severing the link between the intervention (posting calories) and the intended effect (lower calories ordered), this is the strongest available weakener.
+- "Posting calorie counts increases the cost of reprinting menus." This raises a cost objection but says nothing about whether the policy reduces calories ordered. It does not bear on the effectiveness claim and is therefore not a weakener of this argument.
+- The larger-font and existing-prices statements likewise fail to weaken: neither shows that the calorie-reduction effect will not occur.
+
+The credited weakener is the customers-ignore-information statement.
+
+**Confirming the credited answers.** For Strengthens, the neighboring-region statement provides direct evidence at 12% ≥ 10% under comparable conditions — the strongest available support. For Weakens, the ignored-information statement destroys the behavioral mechanism the prediction depends on, so the posted calories would not change orders; the reprinting-cost statement, by contrast, never engages whether calories ordered will fall and is the intended trap.
+
+The correct answers are Strengthens = In a neighboring region with similar dining habits, mandatory calorie posting cut average calories ordered by 12% and Weakens = Most customers say they ignore nutritional information when ordering a meal.
+**related_reading:** reading-di-06-two-part-analysis

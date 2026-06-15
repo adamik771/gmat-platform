@@ -2386,3 +2386,158 @@ How many unordered pairs of positive integers have a greatest common factor of 9
 **answer:** C
 **explanation:** When two positive integers share a greatest common factor g, each can be written as g times a smaller factor, and those smaller factors must be coprime; their least common multiple is then g times the product of the coprime factors, so counting the valid pairs reduces to counting coprime factorizations of a single number. Let the two integers be 9a and 9b, where a and b are positive integers with greatest common factor 1, since 9 is their greatest common factor. The least common multiple of 9a and 9b is 9 times a times b, and this must equal 270, so a times b = 270 ÷ 9 = 30. We must therefore count the unordered pairs of coprime positive integers whose product is 30. Factoring gives 30 = 2 times 3 times 5, a product of three distinct primes, and a coprime factorization assigns each prime entirely to one member of the pair. The unordered coprime pairs with product 30 are (1, 30), (2, 15), (3, 10), and (5, 6); each pair consists of coprime numbers, and there are 4 of them. These correspond to the integer pairs (9, 270), (18, 135), (27, 90), and (45, 54), and a check confirms that each has greatest common factor 9 and least common multiple 270. Hence there are 4 such unordered pairs. The correct answer is C.
 **related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q93
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Remainders
+
+What is the smallest integer greater than 1 that leaves a remainder of 3 when divided by 5, a remainder of 4 when divided by 6, and a remainder of 5 when divided by 7?
+
+- A) 103
+- B) 138
+- C) 173
+- D) 188
+- E) 208
+
+**answer:** E
+**explanation:** The efficient route is to notice that each remainder is exactly two less than its divisor: 3 = 5 − 2, 4 = 6 − 2, and 5 = 7 − 2. Translating the three conditions into congruences gives n ≡ 3 (mod 5), n ≡ 4 (mod 6), and n ≡ 5 (mod 7), which can be rewritten uniformly as n ≡ −2 modulo each of 5, 6, and 7. A number that is congruent to −2 modulo 5, modulo 6, and modulo 7 simultaneously is congruent to −2 modulo their least common multiple. Since 5, 6, and 7 have least common multiple equal to 5 × 6 × 7 = 210 (the pairwise common factors do not reduce it, because 5 and 7 are prime and 6 = 2 × 3 shares no factor with either), we have n ≡ −2 (mod 210), so n = 210k − 2 for some integer k. The smallest such value greater than 1 occurs at k = 1, giving n = 210 − 2 = 208. As a check, 208 = 5 × 41 + 3, 208 = 6 × 34 + 4, and 208 = 7 × 29 + 5, so all three remainder conditions hold. The correct answer is E.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q94
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 24¹⁷ × 33²¹ × 17¹³?
+
+- A) 0
+- B) 2
+- C) 4
+- D) 6
+- E) 8
+
+**answer:** C
+**explanation:** The units digit of a product depends only on the units digits of its factors, and the units digit of each power depends only on the units digit of its base, whose powers repeat in a fixed cycle. For 24¹⁷ only the units digit 4 matters, and powers of 4 cycle through units digits 4, 6 with length 2 (odd exponents end in 4, even in 6); since 17 is odd, 24¹⁷ ends in 4. For 33²¹ only the units digit 3 matters, and powers of 3 cycle through 3, 9, 7, 1 with length 4; since 21 = 4 × 5 + 1, the remainder is 1, so 33²¹ ends in the first cycle entry, 3. For 17¹³ only the units digit 7 matters, and powers of 7 cycle through 7, 9, 3, 1 with length 4; since 13 = 4 × 3 + 1, the remainder is 1, so 17¹³ ends in the first cycle entry, 7. Multiplying the three units digits gives 4 × 3 × 7 = 84, whose units digit is 4, so the units digit of the entire product is 4. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q95
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Factors and Multiples
+
+How many positive factors of 7,560 are multiples of 6?
+
+- A) 24
+- B) 30
+- C) 36
+- D) 48
+- E) 64
+
+**answer:** C
+**explanation:** A factor of a number is a multiple of 6 precisely when it contains at least one factor of 2 and at least one factor of 3, so the cleanest count works directly from the prime factorization. We factor 7,560 = 2³ × 3³ × 5 × 7, which can be verified since 8 × 27 × 5 × 7 = 8 × 27 × 35 = 216 × 35 = 7,560. Any positive factor has the form 2ᵃ × 3ᵇ × 5ᶜ × 7ᵈ with 0 ≤ a ≤ 3, 0 ≤ b ≤ 3, 0 ≤ c ≤ 1, and 0 ≤ d ≤ 1. For the factor to be a multiple of 6, we require a ≥ 1 and b ≥ 1, while c and d remain free. The exponent a may then be 1, 2, or 3 (3 choices), the exponent b may be 1, 2, or 3 (3 choices), the exponent c may be 0 or 1 (2 choices), and the exponent d may be 0 or 1 (2 choices). Because the exponents are chosen independently, the number of qualifying factors is 3 × 3 × 2 × 2 = 36. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q96
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Remainders — Powers
+
+What is the remainder when 5⁸³ is divided by 7?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 5
+- E) 6
+
+**answer:** C
+**explanation:** To find the remainder of a power upon division by a modulus, we track the cycle that the residues of successive powers form, since congruence is preserved under multiplication. Reducing the powers of 5 modulo 7 gives 5¹ ≡ 5, 5² ≡ 25 ≡ 4, 5³ ≡ 5 × 4 = 20 ≡ 6, 5⁴ ≡ 5 × 6 = 30 ≡ 2, 5⁵ ≡ 5 × 2 = 10 ≡ 3, and 5⁶ ≡ 5 × 3 = 15 ≡ 1 (mod 7). The residues therefore repeat with period 6 in the pattern 5, 4, 6, 2, 3, 1. To locate 5⁸³ within this cycle, we find the remainder when the exponent 83 is divided by 6: since 83 = 6 × 13 + 5, the remainder is 5, so 5⁸³ has the same residue as 5⁵, which is the fifth entry of the cycle, namely 3. Hence the remainder when 5⁸³ is divided by 7 is 3. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q97
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Prime Factorization
+
+What is the product of all the distinct prime factors of 5,460?
+
+- A) 210
+- B) 273
+- C) 546
+- D) 1,365
+- E) 2,730
+
+**answer:** E
+**explanation:** The distinct prime factors of an integer are the different primes that appear in its prime factorization, regardless of how many times each appears, so the task is to factor 5,460 completely and then multiply the distinct primes once each. We factor by repeated division: 5,460 = 2 × 2,730 = 2 × 2 × 1,365, and 1,365 = 5 × 273 because it ends in 5, then 273 = 3 × 91, and finally 91 = 7 × 13. Collecting these, 5,460 = 2² × 3 × 5 × 7 × 13, so the distinct prime factors are 2, 3, 5, 7, and 13. Their product, taking each prime only once, is 2 × 3 × 5 × 7 × 13 = 6 × 5 × 7 × 13 = 30 × 91 = 2,730. The correct answer is E.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q98
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Divisibility
+
+Is the positive integer n divisible by 24?
+
+(1) n is divisible by 8.
+(2) n is divisible by 9.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** Since 24 = 2³ × 3, a positive integer is divisible by 24 if and only if it contains at least three factors of 2 and at least one factor of 3, and in a yes/no data sufficiency question a statement is sufficient only when it forces a single, consistent answer. Consider statement (1): n is divisible by 8 = 2³, which guarantees three factors of 2 but provides no information about a factor of 3. Testing values, n = 8 is divisible by 8 yet not by 24 (answer no), while n = 24 is divisible by 8 and by 24 (answer yes), so statement (1) alone is not sufficient. Consider statement (2): n is divisible by 9 = 3², which guarantees a factor of 3 but says nothing about factors of 2; here n = 9 is divisible by 9 yet not by 24 (answer no), while n = 72 is divisible by 9 and by 24 (answer yes), so statement (2) alone is not sufficient. Taking the statements together, n is divisible by both 8 and 9, hence by their least common multiple; since 8 = 2³ and 9 = 3² share no common prime factor, LCM(8, 9) = 2³ × 3² = 72, and n is a multiple of 72. Because 72 = 24 × 3, every multiple of 72 is a multiple of 24, so n must be divisible by 24, a definite yes. The two statements together are sufficient while neither alone is. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q99
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Counting Multiples — Inclusion-Exclusion
+
+How many integers from 1 to 1,000, inclusive, are divisible by 6 but divisible by neither 8 nor 9?
+
+- A) 70
+- B) 78
+- C) 83
+- D) 96
+- E) 111
+
+**answer:** C
+**explanation:** We begin with the multiples of 6 and then remove those that are also divisible by 8 or by 9, using inclusion-exclusion so that any number removed for both reasons is not subtracted twice; throughout, an integer divisible by two given numbers is divisible by their least common multiple, and the count of multiples of d from 1 to 1,000 is the greatest integer not exceeding 1,000 ÷ d. The multiples of 6 number ⌊1,000 ÷ 6⌋ = 166. Among these, the ones also divisible by 8 are the multiples of LCM(6, 8) = 24, numbering ⌊1,000 ÷ 24⌋ = 41, and the ones also divisible by 9 are the multiples of LCM(6, 9) = 18, numbering ⌊1,000 ÷ 18⌋ = 55. The ones removed by both criteria are the multiples of 6 divisible by both 8 and 9, that is, the multiples of LCM(6, 8, 9) = 72, numbering ⌊1,000 ÷ 72⌋ = 13. By inclusion-exclusion, the multiples of 6 that are divisible by 8 or by 9 number 41 + 55 − 13 = 83. Subtracting from the 166 multiples of 6 gives 166 − 83 = 83 integers that are divisible by 6 but by neither 8 nor 9. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q100
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Prime Powers in Factorials
+
+What is the greatest integer k such that 3ᵏ is a factor of 30! (that is, of 30 factorial)?
+
+- A) 10
+- B) 12
+- C) 13
+- D) 14
+- E) 15
+
+**answer:** D
+**explanation:** The exponent of a prime p in the factorization of n! equals the sum of the whole-number quotients ⌊n/p⌋ + ⌊n/p²⌋ + ⌊n/p³⌋ + …, because each term counts how many of the integers from 1 to n contribute at least one, then at least two, then at least three, and so on, factors of p. Here n! is 30! and the prime is p = 3, so we add the quotients for increasing powers of 3. The first term, ⌊30/3⌋ = 10, counts the multiples of 3 up to 30, each contributing at least one factor of 3. The second term, ⌊30/9⌋ = 3, counts the multiples of 9 (namely 9, 18, 27), each contributing an additional factor of 3. The third term, ⌊30/27⌋ = 1, counts the single multiple of 27 (namely 27), contributing yet another factor of 3. The next power, 81, exceeds 30, so ⌊30/81⌋ = 0 and all further terms vanish. Adding the contributions gives 10 + 3 + 1 = 14, so the greatest power of 3 dividing 30! is 3¹⁴, and the greatest such k is 14. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
