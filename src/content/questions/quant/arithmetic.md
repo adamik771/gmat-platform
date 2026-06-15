@@ -2888,6 +2888,8 @@ A common error is to apply the 80 percent to the increased price of $69, giving 
 The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
+---
+
 ## Q111
 **difficulty:** Medium
 **type:** Problem Solving

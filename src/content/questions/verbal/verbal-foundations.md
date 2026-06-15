@@ -253,6 +253,8 @@ The claim that the building's monitors cannot detect ultrafine particles plays w
 **explanation:** To find a statement's role, trace how it interacts with the opposing view. The author challenges the claim that the filters were wasteful, a claim resting on the fact that monitor readings barely changed; pointing out that the monitors cannot detect the ultrafine particles the filters target neutralizes that evidence by showing the unchanged readings prove nothing about the filters' real effect. Choice A is wrong because the unstated main conclusion is that the filters were worthwhile, not this detector fact. Choice B reverses the author's stance, since the author attacks rather than defends the objection. Choice D is incorrect because the statement is central, not unrelated background. Choice E is the opposite of the author's view. Choice C correctly identifies it as the move that defuses the opposing evidence.
 **related_reading:** verbal-01-foundations
 
+---
+
 ## Q13
 **difficulty:** Medium
 **type:** Critical Reasoning

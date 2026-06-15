@@ -2712,6 +2712,8 @@ A jar contains r red marbles and b blue marbles and no others. If 2 marbles are 
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
+---
+
 ## Q97
 **difficulty:** Hard
 **type:** Problem Solving

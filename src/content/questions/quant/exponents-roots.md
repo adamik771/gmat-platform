@@ -2313,6 +2313,9 @@ If n is a positive integer, is n a perfect cube?
 **answer:** E
 **explanation:** A perfect cube is an integer equal to the cube of some integer, and the question asks whether n is one. Statement (1) says √n is an integer, meaning n is a perfect square; but a perfect square may or may not also be a perfect cube. For example, n = 4 is a perfect square that is not a perfect cube (no), whereas n = 64 = 8² is a perfect square that is also a perfect cube, 4³ (yes). Since both answers occur, Statement (1) is not sufficient. Statement (2) gives only n < 100, which allows n = 8 (a perfect cube, yes) and n = 9 (not a perfect cube, no), so Statement (2) is not sufficient. Taking both together, n must be a perfect square less than 100: n = 4 gives no, while n = 64 gives yes, so the answer still varies and the statements together are not sufficient. The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
+
+---
+
 ## Q81
 **difficulty:** Medium
 **type:** Problem Solving

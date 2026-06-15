@@ -204,7 +204,7 @@ export function computeTopicMastery(
     mixedByDay.set(day, bucket)
   }
   const validMixedDays = [...mixedByDay.values()].filter(
-    (b) => b.total >= 1 && b.correct / b.total >= MIXED_ACCURACY,
+    (b) => b.total >= 3 && b.correct / b.total >= MIXED_ACCURACY,
   ).length
   const mixedSatisfied = validMixedDays >= MIXED_SESSIONS
   const mixedGate: MasteryGate = {

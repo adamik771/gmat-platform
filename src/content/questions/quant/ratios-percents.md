@@ -2220,6 +2220,8 @@ Taking the two statements together, let Class B have n students and Class A have
 The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
+---
+
 ## Q75
 **difficulty:** Medium
 **type:** Problem Solving

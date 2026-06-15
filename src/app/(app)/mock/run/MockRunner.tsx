@@ -489,6 +489,10 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
       const alreadyEdited =
         reviewEditsBySection[activeSection]?.includes(targetIdx) ?? false
       if (!alreadyEdited && used >= MAX_REVIEW_EDITS) return
+      // Only count a review edit when the answer actually changes — re-clicking
+      // the already-selected option must not burn the scarce edit budget.
+      const changed =
+        statesBySection[activeSection]?.[targetIdx]?.selected !== optionIdx
       setStatesBySection((prev) => {
         const states = prev[activeSection].slice()
         const curr = states[targetIdx]
@@ -505,7 +509,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
         }
         return { ...prev, [activeSection]: states }
       })
-      markReviewEdit(targetIdx)
+      if (changed) markReviewEdit(targetIdx)
       return
     }
     setStatesBySection((prev) => {
@@ -530,6 +534,11 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
       const alreadyEdited =
         reviewEditsBySection[activeSection]?.includes(targetIdx) ?? false
       if (!alreadyEdited && used >= MAX_REVIEW_EDITS) return
+      // Only count a review edit when a column's selection actually changes.
+      const changed =
+        (statesBySection[activeSection]?.[targetIdx]?.twoPartSelections ?? [])[
+          colIdx
+        ] !== rowIdx
       setStatesBySection((prev) => {
         const states = prev[activeSection].slice()
         const current = states[targetIdx]
@@ -551,7 +560,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
         }
         return { ...prev, [activeSection]: states }
       })
-      markReviewEdit(targetIdx)
+      if (changed) markReviewEdit(targetIdx)
       return
     }
     setStatesBySection((prev) => {
