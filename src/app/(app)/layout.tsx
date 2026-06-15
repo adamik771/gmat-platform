@@ -12,6 +12,7 @@ import {
   Wrench,
   BarChart3,
   AlertCircle,
+  Calculator,
   RotateCcw,
   FlaskConical,
   GraduationCap,
@@ -55,6 +56,7 @@ const navItems = [
   { label: "Exams", href: "/mock", icon: FlaskConical },
   { label: "Test Builder", href: "/test-builder", icon: Wrench },
   { label: "Analytics", href: "/analytics", icon: BarChart3 },
+  { label: "Score Calc", href: "/score-calculator", icon: Calculator },
   { label: "Error Log", href: "/error-log", icon: AlertCircle },
 ]
 
