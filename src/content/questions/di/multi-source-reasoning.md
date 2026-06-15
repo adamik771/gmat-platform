@@ -3420,3 +3420,539 @@ Only Oakdale trips the flag — and it trips both halves of the OR condition at 
 
 The correct answer is B.
 **related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 25: Meridian Air — Route Performance Review
+
+### Tab 1: Network Planning Memo
+
+**From:** Priya Anand, Director of Network Planning
+**To:** Route Profitability Committee
+
+The committee is reviewing five domestic routes ahead of the autumn schedule. For each route we track the number of weekly round-trip flights, the average number of seats sold per flight, the average fare collected per sold seat, and the fully allocated cost of operating one round-trip flight.
+
+We are under pressure to free up two aircraft for a new coastal market, so two routes will likely be trimmed. Please assess each route using the definitions in Tab 3 and identify which routes fall below our profitability standard. Note that every aircraft we operate seats 180 passengers, so a route's load factor tells us how full its flights run on average.
+
+### Tab 2: Route Operating Data
+
+| Route          | Weekly Round Trips | Avg Seats Sold / Flight | Avg Fare / Seat ($) | Cost / Round Trip ($) |
+|----------------|--------------------|-------------------------|---------------------|-----------------------|
+| Cedar–Brook    | 14                 | 153                     | 210                 | 24,000                |
+| Cedar–Glen     | 10                 | 99                      | 240                 | 23,000                |
+| Brook–Harbor   | 21                 | 126                     | 180                 | 19,500                |
+| Glen–Harbor    | 7                  | 162                     | 260                 | 36,000                |
+| Brook–Summit   | 12                 | 90                      | 150                 | 14,000                |
+
+### Tab 3: Definitions and Standard
+
+- **Revenue per round trip ($)** = Avg Seats Sold per Flight × Avg Fare per Seat.
+- **Profit per round trip ($)** = Revenue per round trip − Cost per round trip.
+- **Load factor (%)** = Avg Seats Sold per Flight / 180.
+- **Weekly route profit ($)** = Profit per round trip × Weekly Round Trips.
+- **Profitability standard:** a route meets the standard only if BOTH its profit per round trip is positive AND its load factor is at least 60%. A route that fails either test is a candidate for trimming.
+
+### Q80
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Multi-Criterion Flagging
+
+Applying the profitability standard in Tab 3 to the data in Tab 2, how many of the five routes are candidates for trimming (that is, fail at least one of the two tests)?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**explanation:** Tab 3 defines a two-part conjunctive standard: a route meets the standard only if BOTH (i) profit per round trip is positive AND (ii) load factor is at least 60%. A route is a trim candidate if it fails either test. Each route is evaluated using the Tab 3 definitions applied to the Tab 2 figures.
+
+First, revenue per round trip = Avg Seats Sold × Avg Fare:
+- Cedar–Brook: 153 × 210 = 32,130.
+- Cedar–Glen: 99 × 240 = 23,760.
+- Brook–Harbor: 126 × 180 = 22,680.
+- Glen–Harbor: 162 × 260 = 42,120.
+- Brook–Summit: 90 × 150 = 13,500.
+
+Profit per round trip = Revenue − Cost:
+- Cedar–Brook: 32,130 − 24,000 = +8,130 (positive).
+- Cedar–Glen: 23,760 − 23,000 = +760 (positive).
+- Brook–Harbor: 22,680 − 19,500 = +3,180 (positive).
+- Glen–Harbor: 42,120 − 36,000 = +6,120 (positive).
+- Brook–Summit: 13,500 − 14,000 = −500 (negative).
+
+Load factor = Avg Seats Sold / 180:
+- Cedar–Brook: 153 / 180 = 85.0%.
+- Cedar–Glen: 99 / 180 = 55.0%.
+- Brook–Harbor: 126 / 180 = 70.0%.
+- Glen–Harbor: 162 / 180 = 90.0%.
+- Brook–Summit: 90 / 180 = 50.0%.
+
+Now applying both tests:
+
+| Route        | Profit/RT | Positive? | Load Factor | ≥ 60%? | Meets standard? | Trim candidate? |
+|--------------|-----------|-----------|-------------|--------|-----------------|-----------------|
+| Cedar–Brook  | +8,130    | Yes       | 85.0%       | Yes    | Yes             | No              |
+| Cedar–Glen   | +760      | Yes       | 55.0%       | No     | No              | Yes             |
+| Brook–Harbor | +3,180    | Yes       | 70.0%       | Yes    | Yes             | No              |
+| Glen–Harbor  | +6,120    | Yes       | 90.0%       | Yes    | Yes             | No              |
+| Brook–Summit | −500      | No        | 50.0%       | No     | No              | Yes             |
+
+A route is a trim candidate if it fails at least one test, so the candidate set is the union of the profit failures and the load-factor failures. Routes failing the profit test: {Brook–Summit}, the only route with negative profit per round trip (−500). Routes failing the load-factor test (load factor below 60%): {Cedar–Glen at 55.0%, Brook–Summit at 50.0%}. The union of these two sets is {Cedar–Glen, Brook–Summit} — exactly two distinct routes.
+
+The instructive trap is to assume only the money-losing route (Brook–Summit) trims out, which yields choice A and overlooks Cedar–Glen. Cedar–Glen is profitable (+760 per round trip) and so survives the profit test, but its 55.0% load factor falls below the 60% floor, making it a trim candidate on the second test alone. Brook–Summit fails both tests but is still only one route. The remaining three routes — Cedar–Brook, Brook–Harbor, and Glen–Harbor — each clear both the profit test (all positive) and the load-factor floor (85.0%, 70.0%, and 90.0% respectively), so none of them is a candidate. Choices C, D, and E overcount; choice A undercounts by missing the profitable-but-empty route.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q81
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Using the Tab 3 definitions, which route generates the highest weekly route profit?
+
+- A) Cedar–Brook
+- B) Cedar–Glen
+- C) Brook–Harbor
+- D) Glen–Harbor
+- E) Brook–Summit
+
+**answer:** A
+**explanation:** Weekly route profit is defined in Tab 3 as profit per round trip multiplied by the number of weekly round trips. Profit per round trip is revenue per round trip (Avg Seats Sold × Avg Fare) minus cost per round trip. All inputs come from Tab 2.
+
+Profit per round trip (computed in the prior question):
+- Cedar–Brook: 153 × 210 − 24,000 = 32,130 − 24,000 = 8,130.
+- Cedar–Glen: 99 × 240 − 23,000 = 23,760 − 23,000 = 760.
+- Brook–Harbor: 126 × 180 − 19,500 = 22,680 − 19,500 = 3,180.
+- Glen–Harbor: 162 × 260 − 36,000 = 42,120 − 36,000 = 6,120.
+- Brook–Summit: 90 × 150 − 14,000 = 13,500 − 14,000 = −500.
+
+Weekly route profit = profit per round trip × weekly round trips:
+- Cedar–Brook: 8,130 × 14 = 113,820.
+- Cedar–Glen: 760 × 10 = 7,600.
+- Brook–Harbor: 3,180 × 21 = 66,780.
+- Glen–Harbor: 6,120 × 7 = 42,840.
+- Brook–Summit: −500 × 12 = −6,000.
+
+Ranking: 113,820 > 66,780 > 42,840 > 7,600 > −6,000. Cedar–Brook leads decisively at $113,820 per week. Glen–Harbor has the second-highest per-trip profit ($6,120) but operates only 7 weekly round trips, so its weekly total ($42,840) trails both Cedar–Brook and Brook–Harbor. Brook–Harbor is a strong second on weekly profit because its high frequency (21 trips) compounds a moderate per-trip profit. The trap of selecting Glen–Harbor (highest fare and highest per-trip profit margin per seat) is defused by the frequency weighting. Cedar–Brook, with both a healthy per-trip profit and the second-highest frequency, produces the largest weekly figure.
+
+The correct answer is A.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 26: Brightseed Agriculture — Trial Plot Yield Study
+
+### Tab 1: Agronomy Briefing
+
+**From:** Dr. Helena Wirth, Head of Field Research
+**To:** Product Development Group
+
+We tested four seed treatments (T1–T4) plus an untreated control on standardized one-hectare plots over a single growing season. Each treatment was applied to several replicate plots; the table reports the mean yield across replicates and the input cost per hectare for each treatment.
+
+Our adoption rule is simple but strict: we advance a treatment to multi-site trials only if it delivers a yield uplift over the control that is both statistically significant (p < 0.05 versus control) and economically worthwhile. "Economically worthwhile" is defined in Tab 3. Wheat sold at the assumed price of $250 per tonne this season.
+
+### Tab 2: Trial Results
+
+| Treatment | Mean Yield (tonnes/ha) | Input Cost ($/ha) | Yield p-value vs Control |
+|-----------|------------------------|-------------------|--------------------------|
+| Control   | 6.00                   | 0                 | —                        |
+| T1        | 6.40                   | 60                | 0.21                     |
+| T2        | 6.90                   | 120               | 0.03                     |
+| T3        | 7.50                   | 300               | 0.01                     |
+| T4        | 7.20                   | 250               | 0.04                     |
+
+### Tab 3: Adoption Economics
+
+- **Yield uplift (tonnes/ha)** = Treatment mean yield − Control mean yield.
+- **Incremental revenue ($/ha)** = Yield uplift × wheat price ($250/tonne).
+- **Net economic benefit ($/ha)** = Incremental revenue − Input cost.
+- **Economically worthwhile:** net economic benefit per hectare is at least $50.
+- **Advancement rule:** advance a treatment only if it is BOTH statistically significant (p < 0.05 vs control) AND economically worthwhile.
+
+### Q82
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Multi-Criterion Flagging
+
+Applying the advancement rule, exactly which treatments should be advanced to multi-site trials?
+
+- A) T2 only
+- B) T2 and T3
+- C) T2 and T4
+- D) T3 and T4
+- E) T2, T3, and T4
+
+**answer:** E
+**explanation:** The advancement rule (Tab 3) is conjunctive: a treatment advances only if it is BOTH statistically significant (p < 0.05 vs control) AND economically worthwhile (net economic benefit ≥ $50/ha). Each treatment is tested on both prongs using Tab 2 data and the Tab 3 definitions, with wheat at $250/tonne (Tab 1).
+
+Step 1 — statistical significance (p < 0.05):
+- T1: p = 0.21. Not significant (0.21 > 0.05). Eliminated immediately.
+- T2: p = 0.03. Significant.
+- T3: p = 0.01. Significant.
+- T4: p = 0.04. Significant.
+
+T1 fails the first prong and cannot advance regardless of economics. T2, T3, and T4 clear the significance bar and proceed to the economic test.
+
+Step 2 — net economic benefit (= uplift × $250 − input cost):
+- T2: uplift = 6.90 − 6.00 = 0.90 t/ha; incremental revenue = 0.90 × 250 = $225; net benefit = 225 − 120 = $105/ha. Since 105 ≥ 50, worthwhile.
+- T3: uplift = 7.50 − 6.00 = 1.50 t/ha; incremental revenue = 1.50 × 250 = $375; net benefit = 375 − 300 = $75/ha. Since 75 ≥ 50, worthwhile.
+- T4: uplift = 7.20 − 6.00 = 1.20 t/ha; incremental revenue = 1.20 × 250 = $300; net benefit = 300 − 250 = $50/ha. Since 50 ≥ 50, worthwhile (the threshold is inclusive).
+
+Both prongs:
+
+| Treatment | p < 0.05? | Net benefit | ≥ $50? | Advance? |
+|-----------|-----------|-------------|--------|----------|
+| T1        | No (0.21) | —           | —      | No       |
+| T2        | Yes       | $105        | Yes    | Yes      |
+| T3        | Yes       | $75         | Yes    | Yes      |
+| T4        | Yes       | $50         | Yes    | Yes      |
+
+T2, T3, and T4 each clear both prongs, so all three advance. Three features of the data create traps. First, T1 is the cheapest treatment ($60/ha) and shows a real yield bump (6.40 vs 6.00), but its p-value of 0.21 is far above 0.05, so it is not statistically significant and is eliminated at the first prong regardless of its economics (its net benefit would be only $40 anyway). Second, T3 carries the highest yield (7.50 t/ha) and the highest incremental revenue ($375), but its steep $300/ha input cost leaves a net benefit of just $75 — thin relative to its top-line, yet still comfortably above the $50 floor, so T3 advances. Third, T4 lands exactly on the boundary at $50 net benefit; because Tab 3 defines "economically worthwhile" as "at least $50," the boundary value qualifies, so T4 advances rather than being excluded.
+
+Choices A, B, C, and D each drop at least one qualifying treatment: A keeps only T2; B and C and D each omit a treatment that in fact passes both tests. Since T2 ($105), T3 ($75), and T4 ($50) are all both significant and worthwhile, and only T1 fails, the complete advancement set is T2, T3, and T4.
+
+The correct answer is E.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q83
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Which treatment delivers the highest net economic benefit per hectare?
+
+- A) T1
+- B) T2
+- C) T3
+- D) T4
+- E) Control
+
+**answer:** B
+**explanation:** Net economic benefit per hectare is defined in Tab 3 as incremental revenue minus input cost, where incremental revenue equals yield uplift over the control multiplied by the $250/tonne wheat price (Tab 1). All figures come from Tab 2.
+
+Computing net economic benefit for each treatment:
+- Control: uplift = 0; revenue = $0; cost = $0; net = $0.
+- T1: uplift = 6.40 − 6.00 = 0.40; revenue = 0.40 × 250 = $100; net = 100 − 60 = $40.
+- T2: uplift = 6.90 − 6.00 = 0.90; revenue = 0.90 × 250 = $225; net = 225 − 120 = $105.
+- T3: uplift = 7.50 − 6.00 = 1.50; revenue = 1.50 × 250 = $375; net = 375 − 300 = $75.
+- T4: uplift = 7.20 − 6.00 = 1.20; revenue = 1.20 × 250 = $300; net = 300 − 250 = $50.
+
+Ranking the net benefits: $105 (T2) > $75 (T3) > $50 (T4) > $40 (T1) > $0 (Control). T2 produces the highest net economic benefit at $105/ha.
+
+The instructive trap is T3, which posts the highest absolute yield (7.50 t/ha) and the highest incremental revenue ($375), so a solver anchoring on yield or top-line revenue would pick it. But T3's input cost of $300 is steep, netting only $75. T2 pairs a solid 0.90 t/ha uplift with a modest $120 input cost, so its net benefit edges out T3 by $30/ha. T4 is squeezed similarly by its $250 cost. The control and T1 trail. Net of costs, the moderate-yield, low-cost treatment T2 wins.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 27: Stratus Cloud — Subscription Plan Migration
+
+### Tab 1: Pricing Team Memo
+
+**From:** Marco Ferreira, Head of Monetization
+**To:** Revenue Operations
+
+We are migrating customers off our legacy "Flex" plan onto three new tiers. The committee wants to understand the revenue impact before we send migration notices. The tabs give the current Flex distribution, the new tier prices, and the migration mapping rules. All prices are monthly per seat. Assume every customer migrates exactly as the rules specify and that seat counts do not change.
+
+### Tab 2: Current Flex Customer Base
+
+| Segment      | Number of Customers | Seats per Customer | Current Flex Price ($/seat/mo) |
+|--------------|---------------------|--------------------|--------------------------------|
+| Starter      | 500                 | 5                  | 12                             |
+| Growth       | 300                 | 20                 | 12                             |
+| Scale        | 120                 | 50                 | 12                             |
+| Enterprise   | 80                  | 200                | 12                             |
+
+### Tab 3: New Tiers and Migration Rules
+
+New monthly per-seat prices:
+
+| New Tier   | Price ($/seat/mo) |
+|------------|-------------------|
+| Essential  | 10                |
+| Standard   | 15                |
+| Premium    | 22                |
+
+Migration mapping rules:
+- Customers with fewer than 10 seats migrate to **Essential**.
+- Customers with 10 to 99 seats (inclusive) migrate to **Standard**.
+- Customers with 100 or more seats migrate to **Premium**.
+
+### Q84
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Volume Calculation
+
+Under the migration rules, what is the total number of seats that will be migrated onto the Standard tier?
+
+- A) 2,500
+- B) 6,000
+- C) 12,000
+- D) 16,000
+- E) 18,000
+
+**answer:** C
+**explanation:** The Standard tier receives customers with 10 to 99 seats inclusive (Tab 3). The task is to identify which Tab 2 segments fall in that seat range, then sum their seats. Prices are irrelevant to a pure seat count.
+
+Mapping each segment to a tier by seats per customer:
+- Starter: 5 seats per customer → fewer than 10 → Essential. (Not Standard.)
+- Growth: 20 seats per customer → between 10 and 99 → Standard.
+- Scale: 50 seats per customer → between 10 and 99 → Standard.
+- Enterprise: 200 seats per customer → 100 or more → Premium. (Not Standard.)
+
+Only the Growth and Scale segments migrate to Standard. Total seats = customers × seats per customer:
+- Growth: 300 × 20 = 6,000 seats.
+- Scale: 120 × 50 = 6,000 seats.
+
+Standard total = 6,000 + 6,000 = 12,000 seats.
+
+Checking the distractors: choice B (6,000) captures only one of the two qualifying segments. Choice A (2,500) is the Starter segment's seats (500 × 5), which migrate to Essential, not Standard. Choice D (16,000) erroneously adds Enterprise's 16,000 seats (80 × 200), which actually go to Premium. Choice E (18,000) adds Enterprise's seats to one Standard segment. Only Growth and Scale belong on Standard, giving 12,000 seats.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q85
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Cross-Tab Inference
+
+Considering the migration from current Flex pricing to the new tiers, what is the net change in total monthly revenue across the entire customer base?
+
+- A) An increase of $31,000
+- B) An increase of $36,000
+- C) An increase of $160,000
+- D) An increase of $191,000
+- E) An increase of $196,000
+
+**answer:** D
+**explanation:** Net change in monthly revenue equals new total monthly revenue minus current total monthly revenue. The cleanest path is to compute, for each segment, the per-seat price change (new tier price − $12 Flex price) and multiply by that segment's total seats. Current prices come from Tab 2; new prices and the migration mapping come from Tab 3.
+
+First, total seats per segment (customers × seats per customer):
+- Starter: 500 × 5 = 2,500 seats → migrates to Essential ($10).
+- Growth: 300 × 20 = 6,000 seats → migrates to Standard ($15).
+- Scale: 120 × 50 = 6,000 seats → migrates to Standard ($15).
+- Enterprise: 80 × 200 = 16,000 seats → migrates to Premium ($22).
+
+Net change via per-seat price deltas:
+- Starter → Essential: (10 − 12) × 2,500 = −$5,000.
+- Growth → Standard: (15 − 12) × 6,000 = +$18,000.
+- Scale → Standard: (15 − 12) × 6,000 = +$18,000.
+- Enterprise → Premium: (22 − 12) × 16,000 = +$160,000.
+- Net change = −5,000 + 18,000 + 18,000 + 160,000 = +$191,000.
+
+Cross-check via totals. Current revenue: all 30,500 seats at $12 = $366,000. New revenue: 2,500 × 10 + 12,000 × 15 + 16,000 × 22 = 25,000 + 180,000 + 352,000 = $557,000. Difference = 557,000 − 366,000 = +$191,000, confirming the per-seat method.
+
+The distractors isolate partial computations. Choice C ($160,000) counts only the Enterprise repricing and ignores the Essential and Standard segments. Choice B ($36,000) captures only the two Standard segments' gains ($18,000 + $18,000) and drops both Enterprise and Essential. Choice A ($31,000) is the non-Enterprise net (−5,000 + 18,000 + 18,000), omitting the dominant Premium effect. Choice E ($196,000) forgets that the Starter segment loses $5,000 (treating its move as zero rather than negative), overstating the total by exactly that $5,000. The full, correctly signed total is +$191,000.
+
+The correct answer is D.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 28: Aurora Health System — Clinic Wait-Time Audit
+
+### Tab 1: Operations Memo
+
+**From:** Dana Okeke, Director of Patient Access
+**To:** Clinic Site Leads
+
+We audited five outpatient clinics last quarter. For each clinic we recorded the average patient wait time (minutes), the number of providers on staff, the average daily patient visits, and the patient satisfaction score (0–100). The board has asked us to identify clinics needing intervention. Use the targets in Tab 3.
+
+### Tab 2: Clinic Audit Data
+
+| Clinic     | Avg Wait (min) | Providers | Avg Daily Visits | Satisfaction (0–100) |
+|------------|----------------|-----------|------------------|----------------------|
+| Northgate  | 18             | 6         | 120              | 88                   |
+| Eastpark   | 35             | 4         | 132              | 71                   |
+| Westside   | 22             | 5         | 90               | 84                   |
+| Southbay   | 41             | 7         | 175              | 66                   |
+| Midtown    | 27             | 5         | 110              | 79                   |
+
+### Tab 3: Board Targets and Intervention Rule
+
+- **Visits per provider** = Avg Daily Visits / Providers.
+- **Targets:** average wait time should be at most 30 minutes; satisfaction should be at least 75; visits per provider should be at most 25.
+- **Intervention rule:** a clinic is flagged for intervention if it misses two or more of the three targets.
+
+### Q86
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Multi-Criterion Flagging
+
+Applying the intervention rule in Tab 3, how many of the five clinics are flagged for intervention?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**explanation:** Tab 3 sets three targets and flags a clinic that misses two or more of them. The three targets are: average wait ≤ 30 min; satisfaction ≥ 75; visits per provider ≤ 25. Visits per provider = Avg Daily Visits / Providers. Each clinic is evaluated on all three using Tab 2.
+
+Computing visits per provider:
+- Northgate: 120 / 6 = 20.0.
+- Eastpark: 132 / 4 = 33.0.
+- Westside: 90 / 5 = 18.0.
+- Southbay: 175 / 7 = 25.0.
+- Midtown: 110 / 5 = 22.0.
+
+Now testing each target (a "miss" is marked):
+
+| Clinic    | Wait ≤ 30? | Satisfaction ≥ 75? | Visits/prov ≤ 25? | Misses | Flagged? |
+|-----------|------------|--------------------|--------------------|--------|----------|
+| Northgate | 18 ✓       | 88 ✓               | 20.0 ✓             | 0      | No       |
+| Eastpark  | 35 ✗       | 71 ✗               | 33.0 ✗             | 3      | Yes      |
+| Westside  | 22 ✓       | 84 ✓               | 18.0 ✓             | 0      | No       |
+| Southbay  | 41 ✗       | 66 ✗               | 25.0 ✓             | 2      | Yes      |
+| Midtown   | 27 ✓       | 79 ✓               | 22.0 ✓             | 0      | No       |
+
+Eastpark misses all three targets (wait 35 > 30, satisfaction 71 < 75, visits/provider 33 > 25) and is flagged. Southbay misses two — wait (41 > 30) and satisfaction (66 < 75) — but exactly meets the visits-per-provider target at 25.0 (the target is "at most 25," which 25.0 satisfies), so it accumulates two misses and is flagged. Northgate, Westside, and Midtown each meet all three targets and are not flagged.
+
+The key trap is Southbay's visits-per-provider value of exactly 25.0: because the target is inclusive ("at most 25"), 25.0 is a pass, not a miss, so Southbay lands at exactly two misses — still enough to flag it, but a solver who mistakenly counts 25.0 as a miss would record three. Either way Southbay is flagged. The second trap is Midtown's wait of 27, which is under the 30-minute ceiling and therefore a pass, so Midtown stays clean. Exactly two clinics — Eastpark and Southbay — meet the "two or more misses" bar.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q87
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Cross-Tab Inference
+
+Based on the data in the tabs, which of the following statements must be true?
+
+- A) The clinic with the most providers has the lowest visits per provider.
+- B) Westside has the highest visits per provider of the five clinics.
+- C) Every clinic that meets the wait-time target also meets the satisfaction target.
+- D) Every clinic meets the visits-per-provider target.
+- E) No clinic meets all three board targets.
+
+**answer:** C
+**explanation:** A "must be true" question requires the credited statement to follow necessarily from the exhibits; each of the others must be checked against the data and shown false. The relevant figures are in Tab 2, with visits per provider computed via the Tab 3 definition (Avg Daily Visits / Providers): Northgate 20.0, Eastpark 33.0, Westside 18.0, Southbay 25.0, Midtown 22.0.
+
+Choice A: the clinic with the most providers is Southbay (7 providers), whose visits per provider is 25.0. The lowest visits per provider belongs to Westside at 18.0, not Southbay. So the most-staffed clinic does not have the lowest visits per provider. Choice A is false.
+
+Choice B: it claims Westside has the highest visits per provider. Westside's 18.0 is in fact the lowest of the five values (the highest is Eastpark at 33.0). Choice B is false; it reverses the extreme.
+
+Choice C: every clinic meeting the wait-time target (≤ 30 min) also meets the satisfaction target (≥ 75). The clinics meeting the wait target are Northgate (18), Westside (22), and Midtown (27); Eastpark (35) and Southbay (41) miss it. Checking those three on satisfaction: Northgate 88 ≥ 75, Westside 84 ≥ 75, Midtown 79 ≥ 75. All three clinics that satisfy the wait target also satisfy the satisfaction target, with no exception. Choice C is a universal claim verified exhaustively, so it must be true.
+
+Choice D: it claims every clinic meets the visits-per-provider target (≤ 25). Eastpark's 33.0 exceeds 25, so at least one clinic misses the target. Choice D is false.
+
+Choice E: it claims no clinic meets all three targets. Northgate meets all three — wait 18 ≤ 30, satisfaction 88 ≥ 75, visits/provider 20.0 ≤ 25 — so the claim is false. Choice E is false.
+
+Only choice C survives: it is the one statement that follows necessarily from the data, verified across every clinic in the qualifying subset.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 29: Tideline Apparel — Channel Profitability Review
+
+### Tab 1: Finance Memo
+
+**From:** Yara Solberg, FP&A Manager
+**To:** Channel Strategy Committee
+
+We sell the same core jacket through four channels. For each channel the table gives units sold last quarter, the average selling price per unit, the variable cost per unit, and the fixed cost allocated to that channel for the quarter. Returns are already netted out of units sold. Use the definitions in Tab 3 to assess channel economics.
+
+### Tab 2: Channel Data (Last Quarter)
+
+| Channel       | Units Sold | Avg Selling Price ($) | Variable Cost / Unit ($) | Allocated Fixed Cost ($) |
+|---------------|------------|-----------------------|--------------------------|--------------------------|
+| Own Stores    | 8,000      | 120                   | 72                       | 300,000                  |
+| Wholesale     | 25,000     | 70                    | 55                       | 180,000                  |
+| E-commerce    | 12,000     | 110                   | 60                       | 360,000                  |
+| Marketplace   | 15,000     | 95                    | 80                       | 90,000                   |
+
+### Tab 3: Definitions
+
+- **Contribution margin per unit ($)** = Avg Selling Price − Variable Cost per Unit.
+- **Total contribution ($)** = Contribution margin per unit × Units Sold.
+- **Channel operating profit ($)** = Total contribution − Allocated Fixed Cost.
+- **Contribution margin ratio (%)** = Contribution margin per unit / Avg Selling Price.
+
+### Q88
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Using the Tab 3 definitions, which channel had the highest channel operating profit last quarter?
+
+- A) Own Stores
+- B) Wholesale
+- C) E-commerce
+- D) Marketplace
+- E) Two channels tied for the highest
+
+**answer:** C
+**explanation:** Channel operating profit is defined in Tab 3 as total contribution minus allocated fixed cost, where total contribution equals contribution margin per unit (selling price minus variable cost) times units sold. All inputs come from Tab 2.
+
+Contribution margin per unit:
+- Own Stores: 120 − 72 = $48.
+- Wholesale: 70 − 55 = $15.
+- E-commerce: 110 − 60 = $50.
+- Marketplace: 95 − 80 = $15.
+
+Total contribution = CM/unit × units:
+- Own Stores: 48 × 8,000 = $384,000.
+- Wholesale: 15 × 25,000 = $375,000.
+- E-commerce: 50 × 12,000 = $600,000.
+- Marketplace: 15 × 15,000 = $225,000.
+
+Channel operating profit = total contribution − allocated fixed cost:
+- Own Stores: 384,000 − 300,000 = $84,000.
+- Wholesale: 375,000 − 180,000 = $195,000.
+- E-commerce: 600,000 − 360,000 = $240,000.
+- Marketplace: 225,000 − 90,000 = $135,000.
+
+Ranking: $240,000 (E-commerce) > $195,000 (Wholesale) > $135,000 (Marketplace) > $84,000 (Own Stores). The highest channel operating profit belongs to E-commerce at $240,000.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q89
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Business Analysis
+
+Which channel had the highest contribution margin ratio?
+
+- A) Own Stores
+- B) Wholesale
+- C) E-commerce
+- D) Marketplace
+- E) Own Stores and E-commerce tied
+
+**answer:** C
+**explanation:** Contribution margin ratio is defined in Tab 3 as contribution margin per unit divided by average selling price. Contribution margin per unit is average selling price minus variable cost per unit. All figures come from Tab 2.
+
+Contribution margin per unit (from the prior question):
+- Own Stores: $48; Wholesale: $15; E-commerce: $50; Marketplace: $15.
+
+Contribution margin ratio = CM per unit / selling price:
+- Own Stores: 48 / 120 = 0.400 = 40.0%.
+- Wholesale: 15 / 70 ≈ 0.214 = 21.4%.
+- E-commerce: 50 / 110 ≈ 0.455 = 45.5%.
+- Marketplace: 15 / 95 ≈ 0.158 = 15.8%.
+
+Ranking: 45.5% (E-commerce) > 40.0% (Own Stores) > 21.4% (Wholesale) > 15.8% (Marketplace). The highest contribution margin ratio belongs to E-commerce at about 45.5%.
+
+The trap is to anchor on contribution margin per unit in absolute dollars, where E-commerce ($50) and Own Stores ($48) are close, and conclude they are essentially tied (choice E) — but the ratio divides by selling price, and E-commerce's lower price base ($110 vs $120) lifts its ratio above Own Stores'. E-commerce leads on both the dollar margin and the ratio. Own Stores is a clear second on the ratio at 40.0%, distinct from E-commerce's 45.5%, so there is no tie.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning

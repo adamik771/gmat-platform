@@ -2887,3 +2887,257 @@ A common error is to apply the 80 percent to the increased price of $69, giving 
 
 The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+## Q111
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percentages
+
+What is 30% of 40% of 250?
+
+- A) 17.5
+- B) 30
+- C) 70
+- D) 75
+- E) 175
+
+**answer:** B
+**explanation:** The phrase "p percent of a quantity" instructs us to multiply the decimal equivalent of p by that quantity, and a chain of such phrases is evaluated by applying the percentages in succession, each acting on the result of the previous step. We therefore work from the inside outward.
+
+We first compute 40% of 250. The decimal equivalent of 40% is 0.40, so
+
+40% of 250 = 0.40 × 250 = 100.
+
+We then take 30% of this result. The decimal equivalent of 30% is 0.30, so
+
+30% of 100 = 0.30 × 100 = 30.
+
+Equivalently, because successive percentages of a quantity are combined by multiplying their decimal factors, the answer is (0.30)(0.40)(250) = (0.12)(250) = 30, which agrees. A common error is to add the percentages, treating the expression as 70% of 250 = 175, but the two percentages act in sequence rather than together.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q112
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Ratios
+
+Three quantities a, b, and c satisfy a : b = 3 : 4 and b : c = 6 : 7. If c exceeds a by 25, what is the value of a + b + c?
+
+- A) 105
+- B) 140
+- C) 175
+- D) 210
+- E) 245
+
+**answer:** C
+**explanation:** When two ratios share a common term, they can be merged into a single three-part ratio by rescaling each so that the shared term is represented by the same number; once a single ratio governs all three quantities, each can be written as that number of parts times one common value. The shared term here is b.
+
+In a : b = 3 : 4 the quantity b corresponds to 4, while in b : c = 6 : 7 the quantity b corresponds to 6. The least common multiple of 4 and 6 is 12, so we rescale each ratio to make b equal to 12. Multiplying a : b = 3 : 4 by 3 gives a : b = 9 : 12, and multiplying b : c = 6 : 7 by 2 gives b : c = 12 : 14. The combined ratio is therefore
+
+a : b : c = 9 : 12 : 14.
+
+Let k denote the value of one part, so a = 9k, b = 12k, and c = 14k. We are told that c exceeds a by 25, which gives
+
+14k − 9k = 25,
+
+so 5k = 25 and k = 5.
+
+The requested sum is a + b + c = 9k + 12k + 14k = 35k. Substituting k = 5 gives 35 × 5 = 175. As a check, a = 45, b = 60, and c = 70, and indeed c − a = 70 − 45 = 25.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q113
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Signed Numbers
+
+What is the value of −3² − (−3)² + (−2)³ × (−1)?
+
+- A) −10
+- B) −2
+- C) 2
+- D) 8
+- E) 10
+
+**answer:** A
+**explanation:** This expression turns on the distinction between an exponent applied to a negative base and an exponent applied to a positive base preceded by a negation. The notation −3² means the negative of 3², because exponentiation is performed before the leading negation, whereas (−3)² means the square of the negative number −3, because the parentheses bind the sign to the base. We evaluate each power with this rule in mind and then apply the order of operations.
+
+The expression is −3² − (−3)² + (−2)³ × (−1).
+
+First we evaluate −3². The exponent applies only to 3, so 3² = 9, and the leading negative sign gives −3² = −9.
+
+Next we evaluate (−3)². Here the parentheses include the sign, so we square −3, and since a negative times a negative is positive, (−3)² = 9.
+
+Next we evaluate (−2)³. Cubing a negative number yields a negative result, so (−2)³ = −8. Multiplying by −1 reverses the sign, giving (−8) × (−1) = 8.
+
+Substituting these results, the expression becomes −9 − 9 + 8. Working from left to right, −9 − 9 = −18, and −18 + 8 = −10.
+
+A common error is to treat −3² as (−3)² = 9, which would make the first two terms cancel and produce an incorrect total.
+
+The correct answer is A.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q114
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Decimals
+
+What is the value of (0.15 × 0.4) ÷ 0.012?
+
+- A) 0.5
+- B) 5
+- C) 50
+- D) 0.05
+- E) 500
+
+**answer:** B
+**explanation:** Quotients of decimals are most reliably evaluated by first carrying out any multiplication and then clearing the decimals through a common scaling, since multiplying both the dividend and the divisor by the same power of ten leaves the quotient unchanged. We follow the order of operations, multiplying before dividing.
+
+We first compute the product in the numerator. Multiplying the nonzero digits gives 15 × 4 = 60, and the factors 0.15 and 0.4 together carry 2 + 1 = 3 decimal places, so the product has three decimal places: 0.15 × 0.4 = 0.060, that is, 0.06.
+
+The expression is now 0.06 ÷ 0.012. To eliminate the decimals, we multiply both numbers by 1,000, which does not change the quotient:
+
+0.06 ÷ 0.012 = 60 ÷ 12 = 5.
+
+A common error is to misalign the decimal places when scaling, dividing 60 by 120 or 6 by 12 and obtaining 0.5 instead of 5.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q115
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractions
+
+A shopper spends 2/5 of her money on a coat, then spends 3/8 of what remains on a pair of boots. If she has $90 left, how much money did she start with?
+
+- A) $192
+- B) $216
+- C) $240
+- D) $300
+- E) $360
+
+**answer:** C
+**explanation:** When a fraction of a remaining amount is spent at each step, the fraction that survives a step is one minus the fraction spent, and the surviving fractions multiply across the steps. The governing relationship is therefore that the final amount equals the starting amount multiplied by the product of the surviving fractions.
+
+Let M denote the starting amount of money. The shopper spends 2/5 on the coat, so the fraction remaining after this purchase is 1 − 2/5 = 3/5, and the amount left is (3/5)M.
+
+She then spends 3/8 of what remains on the boots, so the surviving fraction of that remainder is 1 − 3/8 = 5/8. The amount left is
+
+(5/8)(3/5)M.
+
+Multiplying the surviving fractions gives (5/8)(3/5) = 15/40 = 3/8, so the amount remaining is (3/8)M.
+
+We are told this final amount equals $90, so
+
+(3/8)M = 90.
+
+Multiplying both sides by 8/3 gives
+
+M = 90 × 8/3 = 240.
+
+As a check, 2/5 of $240 is $96 spent on the coat, leaving $144; 3/8 of $144 is $54 spent on the boots, leaving exactly $90.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q116
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Percentages
+
+A quantity is first increased by 40% and then the result is decreased by 30%. The final value is what percent of the original quantity?
+
+- A) 90%
+- B) 92%
+- C) 98%
+- D) 102%
+- E) 110%
+
+**answer:** C
+**explanation:** Successive percent changes are combined by multiplying their scale factors, not by adding or subtracting the percentages. An increase of p percent corresponds to multiplication by (1 + p/100), and a decrease of p percent corresponds to multiplication by (1 − p/100). After applying both factors in sequence, the overall factor expresses the final value as a fraction of the original.
+
+Let Q represent the original quantity. The first change is an increase of 40 percent, which multiplies Q by 1 + 40/100 = 1.40, giving 1.40Q.
+
+The second change is a decrease of 30 percent applied to this new value, which multiplies it by 1 − 30/100 = 0.70. The final value is therefore
+
+0.70 (1.40Q) = (0.70)(1.40) Q = 0.98Q.
+
+Thus the final value is 0.98Q, which is 98 percent of the original quantity. A common error is to combine the percentages additively as +40 − 30 = +10, concluding that the final value is 110 percent of the original, but the decrease acts on the already-increased amount, not on the original.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q117
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Ratios
+
+A box contains red, green, and blue chips in the ratio 2 : 3 : 5. What percent of the chips in the box are green?
+
+- A) 20%
+- B) 25%
+- C) 30%
+- D) 35%
+- E) 60%
+
+**answer:** C
+**explanation:** A ratio partitions a whole into equal parts, so the proportion of the whole made up by any one quantity is the number of parts assigned to that quantity divided by the total number of parts. Converting that proportion to a percent answers the question without needing the actual number of chips.
+
+The chips are in the ratio 2 : 3 : 5 for red, green, and blue, so the total number of parts is 2 + 3 + 5 = 10. The green chips correspond to 3 of these 10 parts.
+
+The fraction of the chips that are green is therefore 3/10. Converting this fraction to a percent, we multiply by 100:
+
+3/10 = 0.30 = 30%.
+
+A common error is to read the green term against one of the other terms rather than against the total, for instance computing 3/10 as 30 percent but instead reporting the red share of 2/10 = 20 percent, or treating the ratio terms as percentages directly.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q118
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Order of Operations
+
+What is the value of 12 ÷ (1/2) − 5 × (−2)² + |−6|?
+
+- A) 2
+- B) 10
+- C) 14
+- D) 20
+- E) 34
+
+**answer:** B
+**explanation:** The value of this expression is fixed by the conventional order of operations, in which grouping symbols and absolute values are resolved first, then exponents, then multiplication and division from left to right, and finally addition and subtraction from left to right. Two points require care: dividing by the fraction 1/2 is the same as multiplying by 2, and the squared term applies to the negative base inside its parentheses.
+
+The expression is 12 ÷ (1/2) − 5 × (−2)² + |−6|.
+
+First we handle the grouped and absolute-value quantities. The exponent gives (−2)² = 4, since squaring a negative number yields a positive result, and the absolute value gives |−6| = 6.
+
+The expression now reads 12 ÷ (1/2) − 5 × 4 + 6. We perform the multiplication and division from left to right. Dividing by 1/2 multiplies by its reciprocal, so 12 ÷ (1/2) = 12 × 2 = 24, and 5 × 4 = 20. Substituting gives
+
+24 − 20 + 6.
+
+Finally we perform the subtraction and addition from left to right: 24 − 20 = 4, and 4 + 6 = 10.
+
+A common error is to treat 12 ÷ (1/2) as 12 × (1/2) = 6, which would lower the total; dividing by a fraction less than 1 must increase the value.
+
+The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations

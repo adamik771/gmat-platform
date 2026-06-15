@@ -2771,3 +2771,335 @@ As a check, in 100 seconds the faster runner covers 5 × 100 = 500 meters and th
 
 The correct answer is C.
 **related_reading:** reading-quant-05-word-problems
+
+
+## Q77
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Two Objects Moving — Overtaking with Lengths
+
+A train 400 meters long travels along a straight track at a constant 90 kilometers per hour. On a parallel track it overtakes a freight train 200 meters long traveling in the same direction at a constant 54 kilometers per hour. From the instant the front of the faster train reaches the rear of the freight train until the rear of the faster train clears the front of the freight train, how many seconds elapse?
+
+- A) 30
+- B) 40
+- C) 50
+- D) 60
+- E) 72
+
+**answer:** D
+**hint_nudge:** Same direction, so the trains approach each other at the DIFFERENCE of their speeds; the distance to clear is the sum of the two lengths.
+**hint_strategy:** Convert the relative speed to meters per second, then divide the total length to be covered by it.
+**hint_setup:** Relative speed = 90 - 54 = 36 km/h = 36 x (1000/3600) m/s; distance to clear = 400 + 200 m.
+**explanation:** When two objects move in the same direction, the faster one closes on the slower one at a rate equal to the difference of their speeds. For one train to pass another completely, the faster train must, relative to the slower train, advance a distance equal to the sum of the two train lengths: the front of the faster train begins at the rear of the freight train and must travel forward until the rear of the faster train reaches the front of the freight train.
+
+The relative speed is 90 − 54 = 36 kilometers per hour. Because the lengths are in meters and the question asks for seconds, we convert this relative speed to meters per second. Since 1 kilometer per hour equals 1000/3600 = 5/18 meters per second,
+
+36 km/h = 36 × (5/18) = 10 meters per second.
+
+The total distance the faster train must cover relative to the freight train is the sum of the two lengths:
+
+400 + 200 = 600 meters.
+
+Let t be the number of seconds required. Applying distance = rate × time to the relative motion,
+
+10 × t = 600,
+
+so
+
+t = 600 / 10 = 60 seconds.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q78
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Average Rate / Harmonic Mean
+
+A cyclist rode from her house to a park along a fixed route and then returned home along the same route. What was her average speed, in miles per hour, for the entire round trip?
+
+(1) Her speed from her house to the park was 12 miles per hour, and her speed from the park back to her house was 18 miles per hour.
+(2) The round trip covered a total of 24 miles and took a total of 1 hour and 40 minutes.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**hint_nudge:** Average speed is total distance over total time — it is NOT the simple mean of the two leg speeds.
+**hint_strategy:** A statement is sufficient if it pins a single value for total distance / total time; for equal-distance legs, knowing both leg speeds is enough on its own.
+**hint_setup:** (1) equal legs at 12 and 18 — let one way be d and form 2d / (d/12 + d/18). (2) gives total distance and total time directly.
+**explanation:** Average speed is defined as total distance divided by total time, not as the arithmetic mean of the two leg speeds. A statement is sufficient when it determines a single numerical value for that quotient.
+
+Statement (1) gives both leg speeds, 12 miles per hour outbound and 18 miles per hour returning, over equal distances. Let the one-way distance be d miles. The total distance is 2d, and the total time is d/12 + d/18. Using the common denominator 36, this time is 3d/36 + 2d/36 = 5d/36 hours. The average speed is 2d ÷ (5d/36) = 2d × (36/5d) = 72/5 = 14.4 miles per hour. The unknown d cancels, so a single value is determined. Statement (1) is sufficient.
+
+Statement (2) gives the total distance as 24 miles and the total time as 1 hour 40 minutes. Since 40 minutes is 40/60 = 2/3 hour, the total time is 1 + 2/3 = 5/3 hours. The average speed is total distance divided by total time, 24 ÷ (5/3) = 24 × (3/5) = 72/5 = 14.4 miles per hour, a single value. Statement (2) is sufficient.
+
+Because each statement alone determines the average speed, each statement alone is sufficient.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q79
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combined-Then-Solo Work Rates
+
+Pump A can fill a tank in 6 hours, and pump B can fill the same tank in 12 hours. The two pumps are opened together for 2 hours, after which pump B is shut off and pump A continues alone until the tank is full. What is the total time, in hours, from the moment the pumps were first opened until the tank is full?
+
+- A) 4
+- B) 4.5
+- C) 5
+- D) 5.5
+- E) 6
+
+**answer:** C
+**hint_nudge:** After B is shut off, only A works — finish the leftover at A's SOLO rate, not the combined rate.
+**hint_strategy:** Find the fraction filled jointly in 2 h, subtract from 1, divide the remainder by A's solo rate, then add the 2 h back.
+**hint_setup:** Combined 1/6 + 1/12 = 1/4; in 2 h that is 1/2; remaining 1/2 at A's rate 1/6 gives (1/2)/(1/6) h, then add 2.
+**explanation:** Work-rate problems are governed by the principle that each pump's rate is the reciprocal of the time it needs to fill the tank alone, and that the rates of pumps running simultaneously add. When the set of running pumps changes partway through, the work done in each phase must be computed with the rate that applies to that phase.
+
+Let the tank equal 1 full job. Pump A fills it in 6 hours, so A's rate is 1/6 of the tank per hour, and pump B fills it in 12 hours, so B's rate is 1/12 of the tank per hour.
+
+During the first phase both pumps run together, so their combined rate is the sum of the individual rates:
+
+1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 of the tank per hour.
+
+In 2 hours at this combined rate, the portion of the tank filled is
+
+2 × (1/4) = 1/2 of the tank.
+
+The portion remaining is therefore
+
+1 − 1/2 = 1/2 of the tank.
+
+In the second phase pump B is shut off, so the remaining work is done by pump A alone at its solo rate of 1/6 of the tank per hour. Let t be the number of hours pump A needs to finish. Then
+
+(1/6) × t = 1/2,
+
+so
+
+t = (1/2) ÷ (1/6) = (1/2) × 6 = 3 hours.
+
+The total time from the moment the pumps were first opened is the sum of the two phases:
+
+2 + 3 = 5 hours.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q80
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Rates — Upstream and Downstream
+
+A boat travels 36 miles downstream along a river and then returns the same 36 miles upstream. The current flows at a constant 3 miles per hour, and the total time for the round trip is 5 hours. What is the boat's speed in still water, in miles per hour?
+
+- A) 9
+- B) 12
+- C) 15
+- D) 18
+- E) 21
+
+**answer:** C
+**hint_nudge:** Downstream speed is boat + 3 and upstream is boat − 3; one distance, fixed current, total time given — this becomes a quadratic, or just test the choices.
+**hint_strategy:** Let b be the still-water speed; sum the two leg times to 5 and clear denominators, or substitute the answer choices.
+**hint_setup:** 36/(b + 3) + 36/(b − 3) = 5. Testing b = 15: 36/18 + 36/12 = 2 + 3 = __ (target 5).
+**explanation:** This is a uniform-rate problem in which one distance is covered at two different effective speeds, so the governing relationship is time = distance / rate, and the total time is the sum of the two leg times. In a current, the downstream effective speed is the still-water speed plus the current, and the upstream effective speed is the still-water speed minus the current.
+
+Let b denote the boat's speed in still water, in miles per hour. The downstream effective speed is b + 3 and the upstream effective speed is b − 3. Each leg covers 36 miles, so the downstream time is 36/(b + 3) and the upstream time is 36/(b − 3). Because the round trip takes 5 hours,
+
+36/(b + 3) + 36/(b − 3) = 5.
+
+With clean answer choices available, the fastest route is to test them. The value b = 15 gives a downstream speed of 18 and an upstream speed of 12, so the times are 36/18 = 2 hours and 36/12 = 3 hours, totaling exactly 5 hours, as required. The still-water speed is therefore 15 miles per hour.
+
+To solve algebraically instead, multiply both sides by (b + 3)(b − 3) to clear the denominators:
+
+36(b − 3) + 36(b + 3) = 5(b + 3)(b − 3).
+
+The left side simplifies to 36b − 108 + 36b + 108 = 72b, and the right side is 5(b² − 9) = 5b² − 45. The equation becomes
+
+72b = 5b² − 45,
+
+which rearranges to the quadratic equation
+
+5b² − 72b − 45 = 0.
+
+Applying the quadratic formula, the discriminant is (−72)² + 4 × 5 × 45 = 5184 + 900 = 6084, and √6084 = 78. The roots are b = (72 + 78)/10 = 15 and b = (72 − 78)/10 = −3/5. The negative root is discarded because a speed must be positive, leaving b = 15.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q81
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Combined Work Rate
+
+Workers P and Q each work at a constant rate. Working together, how many hours do P and Q take to complete one job?
+
+(1) Working alone, P would take 3 hours longer than Q would take to complete the job.
+(2) P works at 2/3 of Q's rate, and Q alone completes the job in 6 hours.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**hint_nudge:** The joint time depends on the ABSOLUTE combined rate, so you need actual rates, not just a relationship between the two solo times.
+**hint_strategy:** Test whether each statement fixes a single numerical value for the combined rate; a difference of solo times alone does not.
+**hint_setup:** (1) only gives P = Q + 3 — try two different Q values and see whether the joint time stays fixed. (2) fixes Q's rate, so P's rate follows.
+**explanation:** In combined-work problems, individual rates add to give a combined rate, and the time to finish one job together is the reciprocal of that combined rate. To answer the question, we must be able to determine a single numerical value for the combined rate, which requires both individual rates.
+
+Let p be the number of hours P needs alone and q the number of hours Q needs alone, so P's rate is 1/p and Q's rate is 1/q of the job per hour.
+
+Statement (1) states that P would take 3 hours longer than Q, that is, p = q + 3. This is a single relationship between p and q and does not fix either value. For example, if q = 6 then p = 9, and the combined rate is 1/6 + 1/9 = 3/18 + 2/18 = 5/18, giving a joint time of 18/5 = 3.6 hours; but if q = 3 then p = 6, and the combined rate is 1/3 + 1/6 = 1/2, giving a joint time of 2 hours. Different inputs yield different joint times, so statement (1) is not sufficient.
+
+Statement (2) states that Q alone completes the job in 6 hours, so Q's rate is 1/6 of the job per hour, and that P works at 2/3 of Q's rate, so P's rate is (2/3)(1/6) = 2/18 = 1/9 of the job per hour. The combined rate is 1/6 + 1/9 = 3/18 + 2/18 = 5/18 of the job per hour, giving a joint time of 18/5 = 3.6 hours, a single determined value. Statement (2) is sufficient.
+
+Because statement (2) alone is sufficient and statement (1) alone is not, the correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q82
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work Rates — Changing Team Size
+
+A job can be completed by 8 workers, each working at the same constant rate, in 9 days. A crew of 4 such workers begins the job and works for 3 days. To finish the entire job in exactly 5 more days, how many additional workers, each working at the same individual rate, must join the crew?
+
+- A) 4
+- B) 6
+- C) 8
+- D) 10
+- E) 12
+
+**answer:** C
+**hint_nudge:** Measure the whole job in worker-days; the total is fixed no matter how the crew changes.
+**hint_strategy:** Total worker-days from the first scenario, minus the work done in phase one, gives the remaining work; divide by 5 days to get the crew size needed, then subtract the 4 already there.
+**hint_setup:** Total = 8 x 9 = 72 worker-days; phase one 4 x 3 = 12; remaining 60 over 5 days needs 60/5 workers, then subtract 4.
+**explanation:** This problem is governed by the principle that, for a fixed job, the total amount of work is constant and can be measured in worker-days, the product of the number of workers and the number of days they labor. Because all workers share the same constant individual rate, the work completed by any group equals the number of workers multiplied by the number of days worked, and the total is conserved no matter how the crew changes.
+
+Let the total work be measured in worker-days. Because 8 workers complete the job in 9 days, the total work is
+
+8 × 9 = 72 worker-days.
+
+During the first phase, 4 workers labor for 3 days, completing
+
+4 × 3 = 12 worker-days.
+
+The work remaining is therefore
+
+72 − 12 = 60 worker-days.
+
+This remaining work must be completed in exactly 5 more days. Let n be the number of workers on the crew during this final phase. The work they complete is n × 5, which must equal the remaining 60 worker-days:
+
+5n = 60,
+
+so
+
+n = 60 / 5 = 12 workers.
+
+Since 4 workers are already on the crew, the number of additional workers who must join is
+
+12 − 4 = 8.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q83
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Two Objects Moving — Different Start Times
+
+At 8:00 AM a cyclist leaves a town traveling due north at a constant 15 kilometers per hour. At 9:00 AM a motorcyclist leaves the same town traveling due south at a constant 45 kilometers per hour. At what time will the cyclist and the motorcyclist be exactly 165 kilometers apart?
+
+- A) 11:00 AM
+- B) 11:30 AM
+- C) 12:00 PM
+- D) 12:30 PM
+- E) 1:00 PM
+
+**answer:** B
+**hint_nudge:** They head in opposite directions, so their separation is the SUM of the two distances — but the motorcyclist starts an hour later, so use its actual travel time.
+**hint_strategy:** Let t be the hours after 8:00 AM; the cyclist travels for t hours and the motorcyclist for (t − 1) hours; set the sum of distances to 165.
+**hint_setup:** 15t + 45(t − 1) = 165; solve for t, then add t hours to 8:00 AM.
+**explanation:** When two travelers leave a common point in opposite directions, the distance between them equals the sum of the distances each has covered. The governing relationship for each traveler is distance = rate × time, where the time used is the actual interval during which that traveler has been moving.
+
+Let t be the number of hours measured from 8:00 AM. The cyclist departs at 8:00 AM, so the cyclist has been moving for t hours and has covered 15t kilometers. The motorcyclist departs at 9:00 AM, one hour later, so at time t the motorcyclist has been moving for t − 1 hours and has covered 45(t − 1) kilometers.
+
+Because the two travel in opposite directions from the same point, their separation is the sum of these distances, and we require it to equal 165 kilometers:
+
+15t + 45(t − 1) = 165.
+
+Expanding the left side gives
+
+15t + 45t − 45 = 165,
+
+which simplifies to
+
+60t − 45 = 165.
+
+Adding 45 to both sides yields
+
+60t = 210,
+
+so
+
+t = 210 / 60 = 3.5 hours.
+
+The travelers are therefore 165 kilometers apart 3.5 hours after 8:00 AM, which is 11:30 AM.
+
+As a check, by 11:30 AM the cyclist has traveled 3.5 × 15 = 52.5 kilometers and the motorcyclist has traveled 2.5 × 45 = 112.5 kilometers; the sum is 52.5 + 112.5 = 165 kilometers, as required.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q84
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Two Objects Moving — Closing Speed
+
+Two cars start at the same time from towns that are 300 miles apart and travel toward each other along the same straight road. What is the speed of the faster car, in miles per hour?
+
+(1) The two cars meet 3 hours after they start.
+(2) The faster car's speed is 20 miles per hour greater than the slower car's speed.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**hint_nudge:** The meeting time fixes only the SUM of the two speeds; the speed difference alone fixes only how far apart they are. Pinning the faster car needs both.
+**hint_strategy:** Statement (1) gives one equation in the two speeds; statement (2) gives a second. Check whether either alone isolates the faster speed.
+**hint_setup:** Closing rate = sum of speeds; (1) gives sum × 3 = 300, so sum = 100. (2) gives faster = slower + 20. Combine the two relations.
+**explanation:** When two objects move directly toward each other, they close the gap between them at a rate equal to the sum of their individual speeds. The governing relationship is distance = rate × time applied to the combined separation. To find the speed of the faster car alone, we must determine both speeds, or enough information to isolate the faster one.
+
+Let s be the slower car's speed and f the faster car's speed, both in miles per hour.
+
+Statement (1) says the cars meet after 3 hours. Because they close the 300-mile gap together, the combined distance equals the initial separation: (s + f)(3) = 300, so s + f = 100. This fixes the sum of the two speeds but not the faster speed by itself; for example, s = 40 and f = 60 satisfy it, and so do s = 30 and f = 70, giving different values of f. Statement (1) alone is not sufficient.
+
+Statement (2) says f = s + 20. This fixes the difference of the two speeds but provides no information about their actual magnitudes; for example, s = 30 and f = 50 satisfy it, and so do s = 50 and f = 70, giving different values of f. Statement (2) alone is not sufficient.
+
+Taking the statements together, we have the system s + f = 100 and f = s + 20. Substituting the second equation into the first gives s + (s + 20) = 100, so 2s = 80 and s = 40, from which f = 60. The faster car's speed is uniquely determined to be 60 miles per hour. Both statements together are sufficient.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems

@@ -3250,3 +3250,296 @@ Now take the two statements together. We have the system M + L = 40 and M + 5 = 
 
 The correct answer is C.
 **related_reading:** reading-quant-05-word-problems
+## Q102
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Age Problem — Multiple-of Relationship
+
+A man is currently three times as old as his son. In 12 years, the man will be twice as old as his son will be then. How old is the man now?
+
+- A) 30
+- B) 33
+- C) 36
+- D) 42
+- E) 48
+
+**answer:** C
+**explanation:** Age problems are translated into algebra by assigning a variable to a present age, expressing the other present age in terms of it, and then shifting both ages by the same number of years to capture a future condition.
+
+Let s represent the son's present age. Because the man is currently three times as old as his son, the man's present age is 3s.
+
+The second condition concerns the situation 12 years from now, when each person will be 12 years older. The son's age then will be s + 12, and the man's age then will be 3s + 12. The statement that the man will be twice as old as his son at that time gives the equation
+
+3s + 12 = 2(s + 12).
+
+Expanding the right side yields 3s + 12 = 2s + 24. Subtracting 2s from both sides gives s + 12 = 24, and subtracting 12 from both sides gives s = 12.
+
+The son is therefore 12 years old now, and the man, being three times as old, is 3(12) = 36 years old.
+
+As a check, in 12 years the son will be 24 and the man will be 48, and 48 = 2(24), so the future condition is satisfied.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q103
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Mixture — Remove and Replace with Water
+
+A tank contains 40 liters of a solution that is 25% acid by volume. Some of this solution is drained off and replaced with an equal volume of pure water, leaving the tank with 40 liters of a solution that is 20% acid. How many liters of the original solution were drained off?
+
+- A) 6
+- B) 8
+- C) 10
+- D) 12
+- E) 15
+
+**answer:** B
+**explanation:** This is a remove-and-replace mixture problem. The governing idea is to track the actual amount of acid, not the volume of solution. Draining off part of the solution removes acid in proportion to the concentration, while adding pure water adds volume but no acid. Because the drained volume is replaced by an equal volume of water, the total volume returns to its starting value, so only the amount of acid changes.
+
+Let x represent the number of liters of the original solution drained off.
+
+The original 40 liters is 25% acid, so it contains 0.25 × 40 = 10 liters of acid. When x liters of this solution are drained, the acid removed is 25% of x, namely 0.25x liters. Replacing the drained portion with pure water adds no acid. Therefore the amount of acid remaining is
+
+10 − 0.25x.
+
+The volume is back to 40 liters, and the resulting concentration is 20%, so the acid remaining must equal 0.20 × 40 = 8 liters. Setting the two expressions for the remaining acid equal gives
+
+10 − 0.25x = 8.
+
+Subtracting 10 from both sides gives −0.25x = −2, and dividing both sides by −0.25 gives x = 8.
+
+As a check, draining 8 liters of the 25% solution removes 0.25 × 8 = 2 liters of acid, leaving 10 − 2 = 8 liters of acid in 40 liters of solution, which is 8/40 = 20%, as required.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q104
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Simple Interest — Find the Principal
+
+A fixed sum of money is invested at a constant rate of simple annual interest. The investment grows to a total value of $5,520 at the end of 3 years and to a total value of $6,240 at the end of 5 years. What was the original sum invested?
+
+- A) $4,080
+- B) $4,200
+- C) $4,440
+- D) $4,800
+- E) $5,160
+
+**answer:** C
+**explanation:** Under simple interest, the same fixed amount of interest is earned in each year, because interest is computed only on the original principal and not on accumulated interest. The total value at any time equals the principal plus the interest accrued so far, and the increase in total value over any span of years is the per-year interest multiplied by the number of years in that span.
+
+Let P represent the original sum invested and let I represent the interest earned in one year.
+
+The total value at the end of 3 years exceeds the total value at the end of 5 years by exactly the interest of the two intervening years. The value rose from $5,520 at year 3 to $6,240 at year 5, an increase of
+
+6,240 − 5,520 = 720 dollars over 2 years.
+
+Because simple interest accrues at a constant annual amount, the interest earned in one year is
+
+I = 720 / 2 = 360 dollars.
+
+The total value at the end of 3 years equals the principal plus 3 years of interest, so
+
+P + 3I = 5,520.
+
+Substituting I = 360 gives P + 3(360) = 5,520, that is, P + 1,080 = 5,520, so
+
+P = 5,520 − 1,080 = 4,440 dollars.
+
+As a check, the value at year 5 should be P + 5I = 4,440 + 5(360) = 4,440 + 1,800 = 6,240, which matches the given figure.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q105
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Compound Interest — Interest Earned
+
+An amount of $8,000 is deposited in an account that pays 10% annual interest, compounded annually. If no withdrawals or additional deposits are made, how much interest will the account have earned at the end of 2 years?
+
+- A) $1,600
+- B) $1,680
+- C) $1,720
+- D) $1,800
+- E) $1,936
+
+**answer:** B
+**explanation:** Under interest compounded annually, each year's interest is computed on the balance at the start of that year, which already includes interest earned in prior years. The balance after t years equals the principal multiplied by (1 + r) raised to the power t, where r is the annual rate written as a decimal. The interest earned is the final balance minus the original principal.
+
+Here the principal is $8,000 and the annual rate is 10%, so r = 0.10 and the growth factor for one year is 1 + 0.10 = 1.10.
+
+The balance after 2 years is the principal multiplied by the growth factor twice:
+
+8,000 × 1.10 × 1.10 = 8,000 × 1.21 = 9,680 dollars.
+
+The interest earned is the final balance minus the original deposit:
+
+9,680 − 8,000 = 1,680 dollars.
+
+It is instructive to see why this exceeds simple interest. In the first year the account earns 10% of 8,000, which is 800, raising the balance to 8,800. In the second year it earns 10% of 8,800, which is 880, because the first year's interest is itself now earning interest. The two years together produce 800 + 880 = 1,680 dollars, confirming the result.
+
+The correct answer is B.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q106
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Consecutive Integers — Product of Consecutive Even Integers
+
+The product of two consecutive positive even integers is 168. What is the sum of the two integers?
+
+- A) 22
+- B) 24
+- C) 26
+- D) 28
+- E) 30
+
+**answer:** C
+**explanation:** Two consecutive even integers differ by 2, so they can be represented as n and n + 2 for some positive even integer n. Translating the stated product into an equation and solving yields the pair, after which their sum can be computed directly.
+
+Let the two consecutive positive even integers be n and n + 2. Their product is 168, which gives the equation
+
+n(n + 2) = 168.
+
+Expanding the left side gives n² + 2n = 168, and moving all terms to one side gives the quadratic
+
+n² + 2n − 168 = 0.
+
+We factor by finding two numbers whose product is −168 and whose sum is 2; these are 14 and −12. Thus
+
+(n + 14)(n − 12) = 0,
+
+so n = −14 or n = 12. Because the integers are positive, we discard n = −14 and take n = 12. The two consecutive even integers are therefore 12 and 14.
+
+A quicker route is to recognize that the two integers lie close to the square root of 168, which is about 13. The even integers straddling 13 are 12 and 14, and indeed 12 × 14 = 168.
+
+The sum of the two integers is 12 + 14 = 26.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q107
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Consecutive Integers — Sum of Squares
+
+The sum of the squares of two consecutive positive integers is 365. What is the larger of the two integers?
+
+- A) 12
+- B) 13
+- C) 14
+- D) 15
+- E) 18
+
+**answer:** C
+**explanation:** Two consecutive integers can be written as n and n + 1. The phrase "sum of the squares" means we square each integer separately and add the results; this is not the same as squaring the sum. Translating the condition into an equation produces a quadratic that we solve and then interpret in light of the requirement that the integers be positive.
+
+Let the two consecutive positive integers be n and n + 1. The sum of their squares is 365, which gives
+
+n² + (n + 1)² = 365.
+
+Expanding (n + 1)² as n² + 2n + 1 and combining like terms gives
+
+n² + n² + 2n + 1 = 365,
+2n² + 2n + 1 = 365.
+
+Subtracting 365 from both sides gives 2n² + 2n − 364 = 0, and dividing every term by 2 gives
+
+n² + n − 182 = 0.
+
+We factor by finding two numbers whose product is −182 and whose sum is 1; these are 14 and −13. Thus
+
+(n + 14)(n − 13) = 0,
+
+so n = −14 or n = 13. Because the integers are positive, we take n = 13, and the two consecutive integers are 13 and 14.
+
+As a check, 13² + 14² = 169 + 196 = 365, as required. The larger of the two integers is 14.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q108
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Distribution — Sharing a Sum with Linked Shares
+
+A sum of $4,200 is divided among three people, A, B, and C. A receives twice as much as B, and C receives $300 more than A. How many dollars does B receive?
+
+- A) $540
+- B) $660
+- C) $720
+- D) $780
+- E) $900
+
+**answer:** D
+**explanation:** When a fixed total is split into shares that are described in terms of one another, the reliable method is to express every share using a single variable, write an equation stating that the shares sum to the total, and solve for the variable.
+
+Let b represent the number of dollars B receives. Because A receives twice as much as B, A's share is 2b. Because C receives $300 more than A, C's share is 2b + 300.
+
+The three shares together make up the entire $4,200, which gives the equation
+
+b + 2b + (2b + 300) = 4,200.
+
+Combining like terms on the left side gives
+
+5b + 300 = 4,200.
+
+Subtracting 300 from both sides gives
+
+5b = 3,900,
+
+and dividing both sides by 5 gives
+
+b = 780.
+
+Thus B receives $780.
+
+As a check, A receives 2(780) = 1,560, and C receives 1,560 + 300 = 1,860. The three shares sum to 780 + 1,560 + 1,860 = 4,200, which matches the total to be divided.
+
+The correct answer is D.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q109
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Simple Interest — Determine the Rate
+
+A sum of money is invested at a constant rate of simple annual interest. What is the annual interest rate?
+
+(1) At the end of 4 years, the total value of the investment is $7,200.
+(2) The principal invested is $6,000.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**explanation:** This is a data sufficiency question, so the task is to decide whether the information determines the annual interest rate uniquely, not merely to compute it. Under simple interest, the total value after t years is the principal P plus the interest P × r × t, where r is the annual rate as a decimal. To find r, one generally needs the principal, the total accrued interest, and the time, since r = (interest) / (P × t).
+
+Consider statement (1) alone. It tells us that after 4 years the investment is worth $7,200, so the time is known and the final value is known. However, without the principal we cannot separate how much of the $7,200 is original principal and how much is interest. For example, a principal of $6,000 would mean $1,200 of interest over 4 years, giving a rate of 5%, whereas a principal of $4,800 would mean $2,400 of interest over 4 years, giving a rate of 12.5%. Because more than one rate is possible, statement (1) alone is not sufficient.
+
+Consider statement (2) alone. It tells us only that the principal is $6,000. With no information about the interest earned or the length of the investment, the rate could be anything. Therefore statement (2) alone is not sufficient.
+
+Now take the two statements together. The principal is $6,000, the time is 4 years, and the final value is $7,200, so the interest earned is 7,200 − 6,000 = 1,200 dollars. Applying r = (interest) / (P × t) gives r = 1,200 / (6,000 × 4) = 1,200 / 24,000 = 0.05, that is, 5% per year, a single determined value. The two statements together are sufficient, while neither alone is sufficient.
+
+The correct answer is C.
+**related_reading:** reading-quant-05-word-problems

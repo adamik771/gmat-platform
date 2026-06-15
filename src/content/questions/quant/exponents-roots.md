@@ -2313,3 +2313,305 @@ If n is a positive integer, is n a perfect cube?
 **answer:** E
 **explanation:** A perfect cube is an integer equal to the cube of some integer, and the question asks whether n is one. Statement (1) says √n is an integer, meaning n is a perfect square; but a perfect square may or may not also be a perfect cube. For example, n = 4 is a perfect square that is not a perfect cube (no), whereas n = 64 = 8² is a perfect square that is also a perfect cube, 4³ (yes). Since both answers occur, Statement (1) is not sufficient. Statement (2) gives only n < 100, which allows n = 8 (a perfect cube, yes) and n = 9 (not a perfect cube, no), so Statement (2) is not sufficient. Taking both together, n must be a perfect square less than 100: n = 4 gives no, while n = 64 gives yes, so the answer still varies and the statements together are not sufficient. The correct answer is E.
 **related_reading:** reading-di-02-data-sufficiency-logic
+## Q81
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Scientific Notation
+
+What is the value of (6.3 × 10⁸) / (9 × 10⁻³)?
+
+- A) 7 × 10⁵
+- B) 7 × 10⁹
+- C) 7 × 10¹⁰
+- D) 7 × 10¹¹
+- E) 0.7 × 10¹¹
+
+**answer:** C
+**fastest_path:** Divide the coefficients (6.3 / 9 = 0.7), subtract the exponents (8 − (−3) = 11), then renormalize 0.7 × 10¹¹ to 7 × 10¹⁰.
+**explanation:** When two numbers in scientific notation are divided, the governing method is to divide the coefficients, apply the quotient rule for powers of 10 (subtracting the exponent in the denominator from the exponent in the numerator), and then renormalize the result so the coefficient satisfies 1 ≤ coefficient < 10.
+
+Let the expression be (6.3 × 10⁸) / (9 × 10⁻³). We treat the coefficients and the powers of 10 separately.
+
+The coefficients divide to give 6.3 / 9 = 0.7.
+
+The powers of 10, sharing the common base 10, are combined by subtracting their exponents: 10⁸ / 10⁻³ = 10^(8 − (−3)) = 10^(8 + 3) = 10¹¹.
+
+Combining the two results gives 0.7 × 10¹¹. This is numerically correct, but the coefficient 0.7 is less than 1, so it is not yet in standard scientific notation. We renormalize by writing 0.7 = 7 × 10⁻¹, which gives 7 × 10⁻¹ × 10¹¹ = 7 × 10¹⁰.
+
+The correct answer is C.
+**mistake_a:** 7 × 10⁵ subtracts the exponents in the wrong order or treats 10⁻³ as 10³, computing 8 − 3 = 5 instead of 8 − (−3) = 11.
+**mistake_b:** 7 × 10⁹ keeps 10¹¹ from the subtraction but mishandles the renormalization, dropping two powers instead of borrowing one.
+**mistake_d:** 7 × 10¹¹ renormalizes 0.7 in the wrong direction — moving the decimal to make the coefficient larger should LOWER the exponent, not raise it.
+**mistake_e:** 0.7 × 10¹¹ has the right value but an illegal coefficient: scientific notation requires 1 ≤ coefficient < 10, and 0.7 falls below 1.
+**common_trap:** A quotient of coefficients can land below 1; the exponent must then be reduced by 1 (not raised) when the coefficient is rescaled up into [1, 10).
+**takeaway:** Divide coefficients, subtract exponents (signs included), then renormalize: pushing the coefficient up by one decimal place drops the exponent by one.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q82
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 9^x · 27 = 3¹¹, what is the value of x?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 8
+
+**answer:** C
+**fastest_path:** Convert everything to base 3: 9^x = 3^(2x) and 27 = 3³, so 2x + 3 = 11, giving x = 4.
+
+**explanation:** When an exponential equation involves several bases that are all powers of a single prime, the governing strategy is to rewrite every term using that common base and then equate the exponents, since equal powers of the same base force their exponents to be equal.
+
+Let x be the unknown exponent in 9^x · 27 = 3¹¹. Both 9 and 27 are powers of 3: specifically 9 = 3² and 27 = 3³.
+
+Rewrite the first factor using the power-of-a-power rule, by which (a^m)^n = a^(mn): 9^x = (3²)^x = 3^(2x).
+
+The left side is therefore 3^(2x) · 3³. By the product rule for like bases, which adds the exponents, this equals 3^(2x + 3).
+
+The equation becomes 3^(2x + 3) = 3¹¹. Because the bases are equal, the exponents must be equal: 2x + 3 = 11. Subtracting 3 from both sides gives 2x = 8, and dividing by 2 gives x = 4.
+
+As a check, 9⁴ · 27 = 3⁸ · 3³ = 3¹¹, which matches the right side.
+
+The correct answer is C.
+**mistake_a:** 2 forgets to convert 9 to base 3, treating 9^x as 3^x and solving x + 3 = 11 incorrectly, or it solves 2x = 11 − 3 then halves wrong.
+**mistake_b:** 3 ignores the factor of 27 entirely, solving 2x = ... against the wrong target after dropping the +3 term.
+**mistake_d:** 5 converts 9 to 3² but forgets to double the exponent, solving x + 3 + 3 = 11 or a similar miscount.
+**mistake_e:** 8 reports the value of 2x (the combined-exponent step) instead of finishing the division by 2 to isolate x.
+**common_trap:** Leaving 9 in base 9 — the exponent on 9 must be doubled when rewritten over base 3, or the +3 from 27 gets misplaced.
+**takeaway:** Push every term to the shared prime base first; (3²)^x becomes 3^(2x), and only then can the exponents be set equal.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q83
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Roots & Radicals
+
+For x > 0, what is the value of √(50x³) · √(2x)?
+
+- A) 10x²
+- B) 10x³
+- C) 100x²
+- D) 10x²√x
+- E) 5x²
+
+**answer:** A
+**fastest_path:** Combine under one radical: 50x³ · 2x = 100x⁴, and √(100x⁴) = 10x².
+**explanation:** The governing principle is the product rule for square roots: for nonnegative quantities a and b, the square root of a times the square root of b equals the square root of their product. The most efficient method is to combine the two radicals into a single radical and simplify, since the resulting radicand is a perfect square.
+
+Let the expression be √(50x³) · √(2x), with x > 0. By the product rule, we combine the two radicands under one radical:
+
+√(50x³) · √(2x) = √(50x³ · 2x).
+
+We multiply inside the radical. The numerical factors give 50 · 2 = 100, and the variable factors combine by the product rule for exponents, x³ · x¹ = x^(3+1) = x⁴. Thus the radicand is 100x⁴, and the expression becomes √(100x⁴).
+
+We now simplify. Since 100 = 10² and x⁴ = (x²)², the radicand is a perfect square: 100x⁴ = (10x²)². Because x > 0, the square root is the nonnegative value 10x².
+
+As a check, (10x²)² = 100x⁴ = 50x³ · 2x, confirming the result.
+
+The correct answer is A.
+**mistake_b:** 10x³ halves the variable exponent incorrectly — √(x⁴) is x², not x³; the exponent 4 is divided by 2, not reduced by 1.
+**mistake_c:** 100x² square-roots the variable part but leaves the 100 untouched; √100 is 10, not 100.
+**mistake_d:** 10x²√x adds the variable exponents to 3 instead of 4 (forgetting the x inside √(2x)), leaving an odd power that traps a stray √x.
+**mistake_e:** 5x² takes √100 as 5 (confusing it with √25) while handling the variable correctly.
+**common_trap:** Square roots HALVE even exponents and take the actual square root of perfect-square coefficients: x⁴ exits as x², and 100 exits as 10.
+**takeaway:** Multiply radicals into one root first; GMAT pairs like 50x³ and 2x are built so the combined radicand is a clean perfect square.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q84
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Scientific Notation
+
+What is the value of (4.2 × 10⁵) + (8 × 10⁴), expressed in scientific notation?
+
+- A) 1.22 × 10⁵
+- B) 4.28 × 10⁵
+- C) 5.0 × 10⁵
+- D) 5.0 × 10⁹
+- E) 12.2 × 10⁴
+
+**answer:** C
+**fastest_path:** Match the exponents — 8 × 10⁴ = 0.8 × 10⁵ — then add coefficients: 4.2 + 0.8 = 5.0, giving 5.0 × 10⁵.
+**explanation:** Numbers in scientific notation cannot be added until they share the same power of 10; the governing method is to rewrite one term so both powers match, add the coefficients, and then renormalize the result into standard form if necessary.
+
+Let the sum be (4.2 × 10⁵) + (8 × 10⁴). The two terms carry different powers of 10, so we convert the second term to match the first. Writing 8 × 10⁴ with a power of 10⁵ requires moving one factor of 10 from the power into the coefficient:
+
+8 × 10⁴ = 0.8 × 10⁵.
+
+Both terms now share the power 10⁵, so we add the coefficients:
+
+(4.2 × 10⁵) + (0.8 × 10⁵) = (4.2 + 0.8) × 10⁵ = 5.0 × 10⁵.
+
+The coefficient 5.0 already satisfies 1 ≤ coefficient < 10, so the result is in proper scientific notation.
+
+As a check, 4.2 × 10⁵ = 420,000 and 8 × 10⁴ = 80,000; their sum is 500,000 = 5.0 × 10⁵.
+
+The correct answer is C.
+**mistake_a:** 1.22 × 10⁵ adds the coefficients as though both powers were already 10⁵ AND mishandles the digits — it ignores that 8 × 10⁴ is the smaller term and must be scaled down to 0.8.
+**mistake_b:** 4.28 × 10⁵ aligns by shrinking the second term too far, treating 8 × 10⁴ as 0.08 × 10⁵ instead of 0.8 × 10⁵.
+**mistake_d:** 5.0 × 10⁹ adds the exponents (5 + 4) as if the terms were being multiplied; addition never adds exponents.
+**mistake_e:** 12.2 × 10⁴ adds the coefficients after aligning to 10⁴ (4.2 × 10⁵ = 42 × 10⁴, plus 8) but then both miscounts and leaves an illegal coefficient above 10.
+**common_trap:** Treating addition like multiplication. To add, the powers of 10 must first be made equal; the exponents are not combined.
+**takeaway:** Scientific-notation sums require a common power of 10: rescale one term, add coefficients, then renormalize into [1, 10).
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q85
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractional Exponents
+
+What is the value of (1/8)^(−2/3)?
+
+- A) 1/4
+- B) 1/2
+- C) 2
+- D) 4
+- E) 16
+
+**answer:** D
+**fastest_path:** Negative exponent flips the fraction: (1/8)^(−2/3) = 8^(2/3) = (∛8)² = 2² = 4.
+**explanation:** This problem combines the negative-exponent rule with the fractional-exponent rule. The negative-exponent rule states that a base raised to a negative power equals the reciprocal of the base raised to the corresponding positive power. The fractional-exponent rule states that a^(m/n) = (a^(1/n))^m, where the denominator gives the root and the numerator gives the power.
+
+Let the expression be (1/8)^(−2/3). We first apply the negative-exponent rule by taking the reciprocal of the base and making the exponent positive. The reciprocal of 1/8 is 8, so
+
+(1/8)^(−2/3) = 8^(2/3).
+
+We now evaluate 8^(2/3) using the fractional-exponent rule, taking the root first to keep the numbers small. The denominator 3 calls for the cube root: 8^(1/3) = 2, since 2³ = 8. The numerator 2 then raises this to the second power: 2² = 4.
+
+Therefore (1/8)^(−2/3) = 4.
+
+The correct answer is D.
+**mistake_a:** 1/4 takes the reciprocal step in the wrong direction, evaluating (1/8)^(2/3) = (1/2)² = 1/4 and ignoring that the negative exponent flips the fraction.
+**mistake_b:** 1/2 stops after the cube root of 1/8, computing (1/8)^(1/3) and dropping both the negative sign and the numerator 2.
+**mistake_c:** 2 flips the fraction correctly to get 8^(...) but then takes only the cube root, evaluating 8^(1/3) and ignoring the numerator 2.
+**mistake_e:** 16 misreads the exponent as −4/3 or squares 4 a second time; 8^(2/3) raises the cube root (2) to the 2nd power, giving 4, not 16.
+**common_trap:** A negative fractional exponent does two things — it takes a reciprocal AND applies a root-and-power; skipping either step lands on a listed distractor.
+**takeaway:** For (a)^(−m/n), flip the base, then take the n-th root and raise to the m-th power: the sign moves the base, the fraction does the root-power.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q86
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Equations with Exponents
+
+If 3^(2x) − 10 · 3^x + 9 = 0, what is the sum of all values of x that satisfy the equation?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 10
+
+**answer:** C
+**fastest_path:** Substitute u = 3^x to get u² − 10u + 9 = (u − 1)(u − 9) = 0, so 3^x = 1 (x = 0) or 3^x = 9 (x = 2); the sum is 0 + 2 = 2.
+**explanation:** An exponential equation whose terms can be written in terms of a single repeating power is reduced to a quadratic through substitution. The principle here is that 3^(2x) is the square of 3^x, so the whole equation has the structure of a quadratic in the quantity 3^x.
+
+Let u = 3^x. Because 3^(2x) = (3^x)² = u², the equation 3^(2x) − 10 · 3^x + 9 = 0 becomes
+
+u² − 10u + 9 = 0.
+
+This quadratic factors as
+
+(u − 1)(u − 9) = 0,
+
+so u = 1 or u = 9.
+
+We now return to the original variable using u = 3^x. If 3^x = 1, then, since 1 = 3⁰, we have x = 0. If 3^x = 9, then, since 9 = 3², we have x = 2. Both roots u = 1 and u = 9 are positive, and since 3^x is always positive, no solution is rejected.
+
+We verify each value. For x = 0: 3⁰ − 10 · 3⁰ + 9 = 1 − 10 + 9 = 0. For x = 2: 3⁴ − 10 · 3² + 9 = 81 − 90 + 9 = 0. Both check.
+
+The sum of all values of x is therefore 0 + 2 = 2.
+
+The correct answer is C.
+**mistake_a:** 0 keeps only the root x = 0, discarding x = 2 — perhaps treating 3^x = 9 as having no valid solution.
+**mistake_b:** 1 sums the two u-values' square roots or averages the roots rather than adding the actual x-solutions 0 and 2.
+**mistake_d:** 3 adds the u-roots' related values incorrectly, e.g. taking the solutions as x = 1 and x = 2 by misreading 3^x = 1 as x = 1.
+**mistake_e:** 10 reports the middle coefficient, mistaking the sum of the quadratic's roots in u (which is 1 + 9 = 10) for the sum of the x-values.
+**common_trap:** Summing the roots in the substituted variable u (1 + 9 = 10) instead of converting each back to x first.
+**takeaway:** After u = b^x linearizes the equation, solve the quadratic, then map every root back through b^x = u to recover the actual x-values before summing.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q87
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponent Comparison
+
+Which of the following correctly orders 5²⁰, 10¹⁵, and 2⁵⁰ from least to greatest?
+
+- A) 5²⁰ < 10¹⁵ < 2⁵⁰
+- B) 2⁵⁰ < 5²⁰ < 10¹⁵
+- C) 10¹⁵ < 5²⁰ < 2⁵⁰
+- D) 5²⁰ < 2⁵⁰ < 10¹⁵
+- E) 2⁵⁰ < 10¹⁵ < 5²⁰
+
+**answer:** A
+**fastest_path:** All three exponents are divisible by 5, so rewrite each as a fifth power: 5²⁰ = 625⁵, 10¹⁵ = 1,000⁵, 2⁵⁰ = 1,024⁵ — then just compare the bases.
+**explanation:** The governing principle is that two positive powers can be compared without evaluating them by re-expressing each with a common outer exponent; once the outer exponents match, the larger quantity is the one with the larger base.
+
+Let the three quantities be A = 5²⁰, B = 10¹⁵, and C = 2⁵⁰. The exponents 20, 15, and 50 share the common divisor 5, so we write each quantity as a fifth power using the power-of-a-power rule (a^m)^n = a^(mn).
+
+For A: 5²⁰ = (5⁴)⁵ = 625⁵, since 5⁴ = 625.
+
+For B: 10¹⁵ = (10³)⁵ = 1,000⁵, since 10³ = 1,000.
+
+For C: 2⁵⁰ = (2¹⁰)⁵ = 1,024⁵, since 2¹⁰ = 1,024.
+
+All three are now fifth powers, so the ordering of the quantities matches the ordering of their bases. Comparing the bases, 625 < 1,000 < 1,024, so
+
+625⁵ < 1,000⁵ < 1,024⁵,
+
+which means 5²⁰ < 10¹⁵ < 2⁵⁰.
+
+The correct answer is A.
+**mistake_b:** 2⁵⁰ < 5²⁰ < 10¹⁵ places 2⁵⁰ smallest, but its base 1,024 is the largest of the three fifth-power bases, so 2⁵⁰ is the greatest, not the least.
+**mistake_c:** 10¹⁵ < 5²⁰ < 2⁵⁰ reverses the first pair — 625⁵ (which is 5²⁰) is smaller than 1,000⁵ (which is 10¹⁵), so 5²⁰ comes first.
+**mistake_d:** 5²⁰ < 2⁵⁰ < 10¹⁵ ranks by the size of the visible base alone (10 looks biggest), ignoring that 2¹⁰ = 1,024 exceeds 10³ = 1,000.
+**mistake_e:** 2⁵⁰ < 10¹⁵ < 5²⁰ both misplaces 2⁵⁰ and reverses the other pair, ranking purely by the size of the displayed base.
+**common_trap:** Judging by the visible base or exponent in isolation — 2 looks small and 10 looks large, but 2¹⁰ = 1,024 narrowly beats 10³ = 1,000.
+**takeaway:** When exponents share a common factor, rewrite each power with that factor as the outer exponent; the comparison then reduces to ranking the inner bases.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q88
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Exponent Comparison
+
+If n is a positive integer, is 3ⁿ > 2^(n+5)?
+
+(1) n > 8.
+(2) n is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** A
+**explanation:** This question asks whether 3ⁿ > 2^(n+5) for a positive integer n, so a statement is sufficient only if it forces a single yes-or-no answer across all values it permits. The governing approach is to reduce the comparison to a single growing quantity. Dividing both sides by 2ⁿ gives 3ⁿ / 2ⁿ > 2⁵, that is, (3/2)ⁿ > 32. Because 3/2 exceeds 1, the quantity (3/2)ⁿ strictly increases with n, so the inequality holds for all n at or above some threshold and fails below it. We locate that threshold using benchmark values: (3/2)⁸ = 6561/256 ≈ 25.6, which is less than 32, and (3/2)⁹ ≈ 38.4, which is greater than 32. Equivalently, at n = 8, 3⁸ = 6,561 and 2¹³ = 8,192, so 3ⁿ < 2^(n+5) (no); at n = 9, 3⁹ = 19,683 and 2¹⁴ = 16,384, so 3ⁿ > 2^(n+5) (yes). Thus the answer is "yes" exactly when n ≥ 9.
+
+Statement (1) gives n > 8. Since n is an integer, this means n ≥ 9, and for every such n we have (3/2)ⁿ ≥ (3/2)⁹ > 32, so 3ⁿ > 2^(n+5) holds. The answer is a consistent "yes," so Statement (1) is sufficient.
+
+Statement (2) gives that n is even. Testing permitted values, n = 2 gives 3² = 9 and 2⁷ = 128, so 3ⁿ < 2^(n+5) (no), while n = 10 gives 3¹⁰ = 59,049 and 2¹⁵ = 32,768, so 3ⁿ > 2^(n+5) (yes). Because the answer can be "no" or "yes," Statement (2) is not sufficient.
+
+Since Statement (1) alone is sufficient and Statement (2) alone is not, the answer is A.
+
+The correct answer is A.
+**related_reading:** reading-di-02-data-sufficiency-logic

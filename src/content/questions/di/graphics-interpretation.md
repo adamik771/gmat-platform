@@ -3234,3 +3234,396 @@ Among the answer choices — 18, 24, 32, 38, 45 — the value 31.82% is closest 
 
 The correct answer is C.
 **related_reading:** reading-di-04-graphics-interpretation
+
+
+---
+
+## Q85 (Set 40 — Regional Coffee Shop Openings)
+
+```chart
+{"type":"line","title":"New coffee shop openings by region (count)","x":{"label":"Year"},"y":{"label":"Openings"},"series":[{"key":"north","name":"North"},{"key":"south","name":"South"}],"data":[{"x":"2020","north":40,"south":24},{"x":"2021","north":52,"south":36},{"x":"2022","north":58,"south":54},{"x":"2023","north":61,"south":78},{"x":"2024","north":63,"south":99}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Crossover Identification
+
+Based on the graph, the first year in which the South region's annual openings exceeded the North region's was ______.
+
+- A) 2020
+- B) 2021
+- C) 2022
+- D) 2023
+- E) 2024
+
+**answer:** D
+**explanation:** This question asks for the earliest year in which one series first rises above another. We compare the two series value by value, in chronological order, and stop at the first year in which South strictly exceeds North.
+
+Reading the two lines directly from the graph:
+
+| Year | North | South | South > North? |
+|------|-------|-------|----------------|
+| 2020 | 40    | 24    | No (24 < 40)   |
+| 2021 | 52    | 36    | No (36 < 52)   |
+| 2022 | 58    | 54    | No (54 < 58)   |
+| 2023 | 61    | 78    | Yes (78 > 61)  |
+| 2024 | 63    | 99    | Yes (99 > 63)  |
+
+Through 2022 the North line remains above the South line, although the gap narrows from 16 (in 2020) to 4 (in 2022). In 2023 the South value of 78 exceeds the North value of 61 for the first time, marking the crossover. South also leads in 2024, but the question asks for the first such year.
+
+A common trap is to choose 2022, where the two lines are closest (58 vs. 54) and appear to be on the verge of crossing; but in 2022 South has not yet overtaken North. The crossover occurs the following year.
+
+The correct answer is D.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q86 (Set 41 — Manufacturing Plant Output)
+
+```chart
+{"type":"bar","title":"Monthly output by plant (thousands of units)","x":{"label":"Plant"},"y":{"label":"Output (K units)"},"series":[{"key":"output","name":"Output"}],"data":[{"x":"Plant 1","output":340},{"x":"Plant 2","output":410},{"x":"Plant 3","output":275},{"x":"Plant 4","output":520},{"x":"Plant 5","output":455}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Share of Total
+
+Based on the chart, the single highest-output plant accounts for approximately ______ percent of the combined output of all five plants.
+
+- A) 21
+- B) 26
+- C) 30
+- D) 34
+- E) 38
+
+**answer:** B
+**explanation:** A single category's share of a total is its value divided by the sum of all categories, expressed as a percentage. We first identify the highest-output plant, then compute the total across all five plants, then form the ratio.
+
+Reading the five bar heights (in thousands of units): Plant 1 = 340, Plant 2 = 410, Plant 3 = 275, Plant 4 = 520, Plant 5 = 455.
+
+The highest output belongs to Plant 4 at 520 thousand units, since 520 > 455 > 410 > 340 > 275.
+
+The combined output is the sum of all five values:
+
+340 + 410 + 275 + 520 + 455 = (340 + 410) + (275 + 520) + 455 = 750 + 795 + 455 = 2,000 thousand units.
+
+Plant 4's share is therefore:
+
+520 / 2,000 = 0.26 = 26%.
+
+Among the answer choices, 26% is an exact match. A cross-check: 25% of 2,000 would be 500, and 520 is 20 above that, corresponding to one additional percentage point (since 1% of 2,000 = 20). Thus 520 corresponds to exactly 26%, confirming choice B. The other choices correspond to plants that are not the maximum: roughly 21% (410/2,000) would be Plant 2's share, and about 23% (455/2,000) would be Plant 5's, neither of which is the highest plant requested.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q87 (Set 42 — Mobile App Revenue Mix)
+
+```chart
+{"type":"pie","title":"Mobile app revenue by source ($40M total, %)","data":[{"name":"In-app purchases","value":44},{"name":"Subscriptions","value":31},{"name":"Advertising","value":17},{"name":"Partnerships","value":8}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Reallocation and New Share
+
+If next year total revenue grows to $50 million, Subscriptions revenue grows by exactly 50 percent in dollar terms, and all other sources' dollar amounts remain unchanged, then Subscriptions' share of next year's total revenue will be closest to ______ percent.
+
+- A) 31
+- B) 34
+- C) 37
+- D) 40
+- E) 47
+
+**answer:** C
+**explanation:** A category's future share equals its future dollar amount divided by the future total. Each dollar amount is computed from the current percentages and the stated changes; the future total here is given directly as $50 million, so we do not infer it from the parts.
+
+Current total T = $40M. Reading the pie chart, the current dollar amounts are:
+
+- In-app purchases: 0.44 × 40 = $17.6M
+- Subscriptions: 0.31 × 40 = $12.4M
+- Advertising: 0.17 × 40 = $6.8M
+- Partnerships: 0.08 × 40 = $3.2M
+
+(Check: 17.6 + 12.4 + 6.8 + 3.2 = 40.0, consistent.)
+
+Subscriptions grows by exactly 50% in dollar terms:
+
+New Subscriptions = 12.4 × 1.50 = $18.6M.
+
+The future total is given as $50M. Therefore next year's Subscriptions share is:
+
+18.6 / 50 = 0.372 = 37.2%.
+
+Rounding 37.2% to the nearest listed option gives 37%, choice C.
+
+A consistency note: the other three sources are unchanged at 17.6 + 6.8 + 3.2 = $27.6M, so named sources total 27.6 + 18.6 = $46.2M; the remaining 50 − 46.2 = $3.8M reflects net growth in unspecified or newly added revenue consistent with the total reaching $50M, which does not affect the Subscriptions-share computation. Choice A (31%) is the unchanged old share and ignores both the dollar growth and the larger base; choice D (40%) would result from dividing the new Subscriptions figure by $46.2M of named revenue rather than the stated $50M total.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q88 (Set 43 — Streaming Hours vs. Churn Bubble Chart)
+
+```chart
+{"type":"bubble","title":"Streaming plans: monthly hours vs. churn (bubble = subscribers, M)","x":{"label":"Avg monthly hours watched","min":0,"max":60},"y":{"label":"Monthly churn (%)","min":0,"max":12},"data":[{"x":12,"y":10,"z":2.0},{"x":22,"y":8,"z":3.5},{"x":34,"y":6,"z":5.0},{"x":45,"y":4,"z":7.5},{"x":52,"y":3,"z":9.0},{"x":40,"y":9,"z":1.2}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Three-Variable Pattern with Outlier
+
+Based on the bubble chart, which statement is best supported?
+
+- A) Plans with more average hours watched have higher churn and fewer subscribers.
+- B) Setting aside one plan, plans with more average hours watched tend to have both lower churn and more subscribers.
+- C) Churn rate and subscriber count are positively associated across all plans.
+- D) The plan with the most subscribers has the highest churn.
+- E) Average hours watched is unrelated to subscriber count.
+
+**answer:** B
+**explanation:** A bubble chart encodes three variables: x-position (average monthly hours watched), y-position (monthly churn), and bubble size (subscribers, in millions). To evaluate a claimed pattern, the plans are sorted by the x-variable and the y- and size-variables are examined for systematic movement, with attention to any single exception.
+
+Sorting the six plans in ascending order of average hours watched:
+
+| Plan | x (hours) | y (churn, %) | z (subscribers, M) |
+|------|-----------|--------------|--------------------|
+| P1   | 12        | 10           | 2.0                |
+| P2   | 22        | 8            | 3.5                |
+| P3   | 34        | 6            | 5.0                |
+| P6   | 40        | 9            | 1.2                |
+| P4   | 45        | 4            | 7.5                |
+| P5   | 52        | 3            | 9.0                |
+
+One plan, P6, is an outlier: at 40 average hours it shows a churn of 9% (far above the downward trend) and only 1.2M subscribers (the smallest of all), both inconsistent with its high engagement. Excluding P6, the remaining five plans taken in order of increasing hours (P1, P2, P3, P4, P5) show churn of 10, 8, 6, 4, 3 — strictly decreasing — and subscribers of 2.0, 3.5, 5.0, 7.5, 9.0 — strictly increasing. Setting aside the single outlier, plans with more average hours watched have both lower churn and more subscribers, exactly as choice B states.
+
+Choice A reverses both relationships and is contradicted by the five-plan trend. Choice C claims churn and subscribers move together positively; in fact, as churn falls from 10% to 3% across the trend plans, subscribers rise from 2.0M to 9.0M, a negative association. Choice D claims the largest-subscriber plan has the highest churn; the largest is P5 (9.0M) with the lowest churn (3%), not the highest. Choice E denies any relationship between hours and subscribers, which the consistent positive trend among five of six plans refutes. Only choice B, which explicitly accounts for the single exception, holds.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q89 (Set 44 — Quarterly Units vs. Price Composed Chart)
+
+```chart
+{"type":"composed","title":"Quarterly units shipped vs. unit price","x":{"label":"Quarter"},"y":{"label":"Units (000s)"},"y2":{"label":"Unit price ($)"},"composed":{"bars":["units"],"lines":["price"]},"data":[{"x":"Q1","units":80,"price":60},{"x":"Q2","units":95,"price":56},{"x":"Q3","units":110,"price":50},{"x":"Q4","units":90,"price":64}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Derived Revenue Maximum
+
+Based on the chart, the quarter with the highest total revenue (units × unit price) was ______.
+
+- A) Q1
+- B) Q2
+- C) Q3
+- D) Q4
+- E) Q2 and Q4 tied
+
+**answer:** D
+**explanation:** Total revenue equals units shipped multiplied by unit price. Units are expressed in thousands and price in dollars per unit, so each product (thousands × dollars) yields revenue in thousands of dollars. Because units rise then fall while price falls then rises, the revenue maximum need not coincide with the peak of either factor; we therefore compute revenue for every quarter.
+
+Reading units from the bars and price from the line:
+
+| Quarter | Units (000s) | Price ($) | Revenue ($000s) |
+|---------|-------------|-----------|------------------|
+| Q1      | 80          | 60        | 80 × 60 = 4,800  |
+| Q2      | 95          | 56        | 95 × 56 = 5,320  |
+| Q3      | 110         | 50        | 110 × 50 = 5,500 |
+| Q4      | 90          | 64        | 90 × 64 = 5,760  |
+
+Ranking the four revenue figures: 5,760 > 5,500 > 5,320 > 4,800. The largest is Q4 at 5,760 thousand dollars.
+
+It is instructive to see why Q3, which ships the most units (110), does not win: its low price of $50 yields 110 × 50 = 5,500, which falls short of Q4's 90 × 64 = 5,760 by 260. Q4 combines the highest price ($64) with a still-substantial volume (90 thousand units), producing the top revenue. Likewise Q1, with the highest price tier shared by no other low-volume quarter, has too few units (80) to compete. Q2 and Q4 are not tied: 5,320 ≠ 5,760, eliminating choice E.
+
+The correct answer is D.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q90 (Set 45 — Customer Wait-Time Histogram)
+
+```chart
+{"type":"bar","title":"Customer call wait-time distribution (250 calls)","x":{"label":"Wait time (minutes)"},"y":{"label":"Calls"},"series":[{"key":"calls","name":"Calls"}],"data":[{"x":"0–2","calls":30},{"x":"2–4","calls":55},{"x":"4–6","calls":70},{"x":"6–8","calls":45},{"x":"8–10","calls":30},{"x":"10–12","calls":20}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Histogram Median Bin
+
+Based on the histogram, the median call wait time falls in which bin?
+
+- A) 2–4 minutes
+- B) 4–6 minutes
+- C) 6–8 minutes
+- D) 8–10 minutes
+- E) Cannot be determined
+
+**answer:** B
+**explanation:** The median of an ordered data set of n values, when n is even, is the average of the (n/2)-th and (n/2 + 1)-th values. With n = 250 calls, the median is the average of the 125th and 126th values in the ordered list of wait times. We use cumulative frequencies from the lowest bin upward to locate which bin contains those two positions.
+
+First confirm the total: 30 + 55 + 70 + 45 + 30 + 20 = 250.
+
+Cumulative counts from the smallest wait-time bin upward:
+
+- Bin 0–2: 30 calls — cumulative = 30. Positions 1–30. The 125th is not yet reached.
+- Bin 2–4: 55 calls — cumulative = 30 + 55 = 85. Positions 31–85. The 125th is still not reached.
+- Bin 4–6: 70 calls — cumulative = 85 + 70 = 155. Positions 86–155 fall in this bin.
+
+Because position 125 satisfies 86 ≤ 125 ≤ 155, the 125th value lies in the 4–6 bin. Position 126 likewise satisfies 86 ≤ 126 ≤ 155, so the 126th value is also in the 4–6 bin. The average of two values drawn from the same bin must itself lie within that bin. Therefore the median call wait time falls in the 4–6 minute bin.
+
+The 2–4 bin is exhausted at position 85, before position 125 is reached, and the 6–8 bin begins only at position 156, beyond both target positions. The location is unambiguous, so the answer is not "Cannot be determined."
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q91 (Set 46 — Two-City Rainfall Comparison)
+
+```chart
+{"type":"bar","title":"Average monthly rainfall, two cities (mm)","x":{"label":"Month"},"y":{"label":"Rainfall (mm)"},"series":[{"key":"riverton","name":"Riverton"},{"key":"hillcrest","name":"Hillcrest"}],"data":[{"x":"Mar","riverton":40,"hillcrest":55},{"x":"Apr","riverton":62,"hillcrest":58},{"x":"May","riverton":85,"hillcrest":70},{"x":"Jun","riverton":110,"hillcrest":95},{"x":"Jul","riverton":95,"hillcrest":120}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Comparing Two Series
+
+Based on the chart, the number of months in which Riverton recorded more rainfall than Hillcrest is ______.
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** C
+**explanation:** For each month we compare the two cities' rainfall values directly and count the months in which Riverton's value strictly exceeds Hillcrest's.
+
+Reading the paired bars for each month:
+
+| Month | Riverton | Hillcrest | Riverton > Hillcrest? |
+|-------|----------|-----------|------------------------|
+| Mar   | 40       | 55        | No (40 < 55)           |
+| Apr   | 62       | 58        | Yes (62 > 58)          |
+| May   | 85       | 70        | Yes (85 > 70)          |
+| Jun   | 110      | 95        | Yes (110 > 95)         |
+| Jul   | 95       | 120       | No (95 < 120)          |
+
+Riverton exceeds Hillcrest in April, May, and June — three months. In March and July, Hillcrest leads. The count of months in which Riverton recorded more rainfall is therefore 3.
+
+A common error is to focus on the single largest bar (Hillcrest's 120 in July or Riverton's 110 in June) rather than performing the month-by-month comparison; the question requires counting head-to-head wins, which yields exactly three months for Riverton.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q92 (Set 47 — Compound Growth of Enrollment)
+
+```chart
+{"type":"line","title":"Online course enrollment (thousands)","x":{"label":"Year"},"y":{"label":"Enrollment (K)"},"series":[{"key":"enrollment","name":"Enrollment"}],"data":[{"x":"2018","enrollment":50},{"x":"2019","enrollment":62},{"x":"2020","enrollment":88},{"x":"2021","enrollment":105},{"x":"2022","enrollment":130},{"x":"2023","enrollment":162}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** CAGR from Endpoints
+
+Based on the graph, the compound annual growth rate (CAGR) of enrollment from 2018 to 2023 was closest to ______ percent.
+
+- A) 16
+- B) 22
+- C) 26
+- D) 32
+- E) 38
+
+**answer:** C
+**explanation:** The compound annual growth rate over n years is the constant rate r satisfying Ending = Starting × (1 + r)^n, hence r = (Ending / Starting)^(1/n) − 1. Only the two endpoints enter the formula; the intermediate years are not used.
+
+Reading the endpoints from the graph: enrollment in 2018 is 50 thousand and in 2023 is 162 thousand. The span from 2018 to 2023 is n = 5 years.
+
+The growth ratio is 162 / 50 = 3.24, so we need (3.24)^(1/5) − 1.
+
+Rather than extract the fifth root directly, test the answer choices against the forward relation 50 × (1 + r)^5 = 162:
+
+- r = 0.22: (1.22)^5 = 1.22^2 × 1.22^2 × 1.22 = 1.4884 × 1.4884 × 1.22 ≈ 2.2153 × 1.22 ≈ 2.703; 50 × 2.703 ≈ 135. Too low.
+- r = 0.26: (1.26)^5: 1.26^2 = 1.5876; 1.5876^2 ≈ 2.5205; × 1.26 ≈ 3.176; 50 × 3.176 ≈ 158.8. Very close to 162.
+- r = 0.32: (1.32)^5: 1.32^2 = 1.7424; 1.7424^2 ≈ 3.0360; × 1.32 ≈ 4.008; 50 × 4.008 ≈ 200. Too high.
+
+The target ending value of 162 is matched most closely at r = 0.26, which gives about 159 — a shortfall of only about 3 — whereas r = 0.22 falls short by about 27 and r = 0.32 overshoots by about 38. Refining slightly, (3.24)^(1/5): since 1.26^5 ≈ 3.176 and 1.27^5 ≈ 3.30, the fifth root of 3.24 lies just above 1.26, near 1.265, giving r ≈ 0.265, which rounds to 26%.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q93 (Set 48 — Department Budget Stacked Bar)
+
+```chart
+{"type":"stackedBar","title":"Annual budget by department ($M)","x":{"label":"Year"},"y":{"label":"Budget ($M)"},"series":[{"key":"Eng","name":"Engineering"},{"key":"Sales","name":"Sales"},{"key":"Ops","name":"Operations"},{"key":"Admin","name":"Admin"}],"data":[{"x":"2022","Eng":24,"Sales":18,"Ops":12,"Admin":6},{"x":"2023","Eng":30,"Sales":20,"Ops":14,"Admin":6},{"x":"2024","Eng":48,"Sales":22,"Ops":16,"Admin":14}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Share Change Over Time
+
+Based on the chart, Engineering's share of the total annual budget changed from 2022 to 2024 by approximately ______ percentage points.
+
+- A) +4
+- B) +8
+- C) +12
+- D) +16
+- E) +20
+
+**answer:** B
+**explanation:** A percentage-point change in a category's share is the arithmetic difference between its later share and its earlier share, where each share is the category value divided by that year's total budget. We compute Engineering's share in 2022 and in 2024, then subtract.
+
+Reading the four series and totaling each year:
+
+- 2022 total = Eng 24 + Sales 18 + Ops 12 + Admin 6 = 60 ($M). Engineering share = 24 / 60 = 0.4000 = 40.00%.
+- 2024 total = Eng 48 + Sales 22 + Ops 16 + Admin 14 = 100 ($M). Engineering share = 48 / 100 = 0.4800 = 48.00%.
+
+The percentage-point change is:
+
+48.00% − 40.00% = 8.00 percentage points.
+
+The change is +8 percentage points, choice B. Note the distinction between a percentage-point change and a percentage change: in absolute dollars Engineering's budget rose from 24 to 48, a 100% increase, but its share of the (also growing) total rose only from 40% to 48%, an 8-percentage-point gain. Choices such as +16 or +20 would result from confusing the dollar growth with the share growth, while +4 would result from an arithmetic slip in one of the year totals.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q94 (Set 49 — Salesperson Performance Scatter Plot)
+
+```chart
+{"type":"scatter","title":"Sales calls vs. deals closed (per rep, monthly)","x":{"label":"Calls made","min":0,"max":120},"y":{"label":"Deals closed","min":0,"max":30},"data":[{"x":20,"y":4},{"x":35,"y":7},{"x":45,"y":9},{"x":55,"y":11},{"x":65,"y":14},{"x":75,"y":16},{"x":85,"y":18},{"x":95,"y":21},{"x":110,"y":24},{"x":50,"y":22}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Outlier Deviation from Trend
+
+Based on the scatter plot, the outlier rep at (50, 22) closed approximately how many more deals than the trend line would predict at 50 calls?
+
+- A) 4
+- B) 7
+- C) 12
+- D) 16
+- E) 20
+
+**answer:** C
+**explanation:** A trend line predicts the response value (deals closed) for a given explanatory value (calls made). To find how far the outlier rep at (50, 22) deviates, we estimate the predicted deals at 50 calls from the conforming points, then subtract that prediction from the rep's actual 22 deals.
+
+Nine of the ten plotted points form a tight, nearly linear cluster: (20, 4), (35, 7), (45, 9), (55, 11), (65, 14), (75, 16), (85, 18), (95, 21), and (110, 24). The tenth point, (50, 22), sits far above this band and is the outlier in question.
+
+The two conforming points that bracket x = 50 are (45, 9) and (55, 11). Because x = 50 is the exact midpoint of that interval, linear interpolation gives a predicted value of (9 + 11) / 2 = 10 deals at 50 calls. This visual reading is the natural GMAT approach. It is corroborated by a line through the endpoints of the cluster, (20, 4) and (110, 24): the slope is (24 − 4) / (110 − 20) = 20 / 90 ≈ 0.222 deals per call, and the intercept from 4 = 0.222 × 20 + b gives b ≈ 4 − 4.44 ≈ −0.44, so the predicted value at x = 50 is 0.222 × 50 − 0.44 ≈ 11.1 − 0.44 ≈ 10.7 deals. Both methods agree on roughly 10 to 11 predicted deals.
+
+The outlier's actual value is 22 deals. The deviation above the trend is therefore approximately 22 − 10 ≈ 12 (interpolation) or 22 − 10.7 ≈ 11.3 (regression). Among the answer choices — 4, 7, 12, 16, 20 — the value 12 is the closest to both estimates. No other choice falls within reasonable range: 7 would imply a predicted value of 15 (well above the cluster's level at 50 calls), and 16 would imply a predicted value of 6 (well below it).
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
