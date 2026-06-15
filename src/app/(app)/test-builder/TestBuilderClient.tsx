@@ -58,9 +58,20 @@ export default function TestBuilderClient({
   // Free-form count; the preset chips below are quick-picks. Clamped to the
   // available pool at build time via effectiveCount.
   const [numQuestions, setNumQuestions] = useState<number>(20)
+  // Editing buffer for the manual count input — lets the field be cleared /
+  // typed freely; clamped + committed to numQuestions on blur / Enter / preset.
+  const [countDraft, setCountDraft] = useState<string>("20")
   const [timed, setTimed] = useState(true)
   const [building, setBuilding] = useState(false)
   const router = useRouter()
+
+  function setCount(n: number) {
+    const clamped = Number.isFinite(n)
+      ? Math.max(1, Math.min(100, Math.round(n)))
+      : 20
+    setNumQuestions(clamped)
+    setCountDraft(String(clamped))
+  }
 
   function toggleSection(s: Section) {
     setSections((prev) =>
@@ -209,7 +220,7 @@ export default function TestBuilderClient({
                   return (
                     <button
                       key={n}
-                      onClick={() => setNumQuestions(n)}
+                      onClick={() => setCount(n)}
                       className={cn(
                         "px-4 py-2.5 rounded-xl text-[13px] font-semibold tracking-tight border transition-all tabular-nums",
                         active
@@ -231,14 +242,14 @@ export default function TestBuilderClient({
                 })}
                 <input
                   type="number"
+                  inputMode="numeric"
                   min={1}
                   max={100}
-                  value={numQuestions}
-                  onChange={(e) => {
-                    const n = Math.round(Number(e.target.value))
-                    setNumQuestions(
-                      Number.isFinite(n) ? Math.max(1, Math.min(100, n)) : 1
-                    )
+                  value={countDraft}
+                  onChange={(e) => setCountDraft(e.target.value)}
+                  onBlur={(e) => setCount(Number(e.target.value))}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") (e.target as HTMLInputElement).blur()
                   }}
                   aria-label="Custom number of questions"
                   placeholder="Custom"
@@ -246,7 +257,7 @@ export default function TestBuilderClient({
                 />
               </div>
               <p className="text-[11px] text-[#555555] mt-2.5">
-                Tap a preset or type any number (1–100). You'll get up to what
+                Tap a preset or type any number (1–100). You’ll get up to what
                 the selected sections + difficulty have available.
               </p>
             </FilterGroup>

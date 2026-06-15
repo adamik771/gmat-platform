@@ -49,8 +49,14 @@ export function sectionScoresToTotal(
   verbal: number,
   dataInsights: number
 ): number {
-  const clamp = (n: number) =>
-    Math.max(SECTION_SCORE_MIN, Math.min(SECTION_SCORE_MAX, Math.round(n)))
+  const clamp = (n: number) => {
+    const r = Math.round(n)
+    // Guard non-finite input (NaN/Infinity) so a bad value can never produce
+    // a NaN total — fall back to the floor rather than propagating NaN.
+    return Number.isFinite(r)
+      ? Math.max(SECTION_SCORE_MIN, Math.min(SECTION_SCORE_MAX, r))
+      : SECTION_SCORE_MIN
+  }
   const sum = clamp(quant) + clamp(verbal) + clamp(dataInsights)
   const raw = (sum - 180) * (20 / 3) + 205
   const snapped = 205 + Math.round((raw - 205) / 10) * 10
