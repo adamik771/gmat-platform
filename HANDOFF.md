@@ -2,6 +2,24 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-16 (core-flows bug-hunt: 19/20 confirmed bugs fixed)
+
+Ran a 5-dimension adversarial bug-hunt (each finding refuted by an independent skeptic before counting) across the core flows NOT touched by the prior nav/feature work — question runner, engines, scoring/reports, API+auth, content loader. **20 confirmed bugs; 19 fixed + verified + pushed across 8 commits (`845696c`→`5b554f9`), 1 deferred.** Branch is ahead of origin/main — needs a merge to deploy. Gate green throughout (`npm run check` → **257** tests, eslint clean, `next build` clean). +19 unit tests added.
+
+Fixed, by area:
+- **Mock runner:** stray/confirm clicks no longer burn a mock-review edit (#1); per-section save guard so a concurrent section save isn't silently dropped at a boundary, e.g. the review auto-timeout firing mid-save (#6); retry records the right section's `totalTimeMs` via a per-section duration snapshot (#8).
+- **Review / spaced engine:** the 84-day cutoff used a non-`!inner` embed, so it never bounded rows and old attempts came back with a null session (looked freshly-seen → overdue items suppressed) → `practice_sessions!inner` (#2); **drills + recall checkpoints resurrected** — `firstSeenAt` now written numeric + read with a `lastSeenAt` fallback (they were 100% dead) (#9).
+- **Study-plan / mastery / diagnostic:** exam-day off-by-one in positive-offset timezones (Oslo) (#10); mixed-ready gate now needs ≥3 attempts/day (#11); `classifyTimingPattern`'s "stuck" branch made reachable (#14).
+- **Scoring / analytics:** mock report's previous-vs-current total now uses the same full-set basis (#3); both mock totals use the 205-anchored snap (no impossible 750) via `scoring.snapToValidTotal` (#13); analytics week buckets use local-date keys, not UTC (#15).
+- **Ordering:** RC passages / MSR sets kept atomic in `pickAdaptiveOrder` + `orderForMock` via new `groupByContext` (#7).
+- **API / content hardening:** `/api/practice-sessions` payload validated + bounded, and review-/custom slugs no longer create junk skill keys (#5, #16); `mock-flags` + `mock-review-edits` cap per-value length + retained dates (#17); feedback `tag` validated against the known set (#19); content parser normalizes CRLF (#20) + tolerates parens in a flat-set "continued" title (#18). The missing-`---` question-merge backstop was wired (#4, applied externally; bank now 1933).
+
+**Deferred — #12** (`spaced-review` `mistakeTypeByQuestion` is unordered but labeled "most recent"): the clean fix needs `error_tags.created_at` to order by, and that column can't be confirmed from the repo (no migrations checked in). Low real-world impact (only multiply-tagged questions). To finish: confirm the column, then `.order("created_at", { ascending: false })` + set-on-first-seen.
+
+**Post-deploy eyeballing** (behavior-changing refactors): a mock with RC/MSR keeps each passage together; drills/checkpoints now appear in `/review` for started chapters; the mock report's previous-mock delta + score read right.
+
+---
+
 ## CONTEXT SWITCH — 2026-06-15 QA (adversarial review of the session's new code; bugs found + fixed)
 
 Committed + pushed; ahead of origin/main (needs merge to deploy). Ran a 4-agent adversarial review + lint/gate/build over the session's new code (calculator, Saved tab, test-builder). Everything green: `npm run check` (**247** tests) + eslint clean + `next build` clean.
