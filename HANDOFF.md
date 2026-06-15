@@ -2,6 +2,10 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-15 (practice declutter: removed "Recommended today" cards)
+
+Branch `claude/handoff-2026-06-13` (now **ahead of origin by 4 commits, all unpushed**). Per Adam, removed the "Recommended today" weak-skill cards row from `src/app/(app)/practice/PracticeClient.tsx` (the `recommendations.length > 0` section). **Kept** the hero's smart primary CTA ("Drill {weakest skill}" via `topRec`, falling back to "Build a custom set") — it's a single unlabeled action, not the flagged row; `recommendations` is still computed in `practice/page.tsx` and consumed only by that CTA now. If Adam later wants the recommendation engine fully out of practice: make the hero CTA static (always /test-builder) and drop the `recommendations` prop + its server computation. Gate green (lint clean, tsc, 238 tests, next build clean). Not browser-verified (practice is auth-gated) — pure section deletion.
+
 ## CONTEXT SWITCH — 2026-06-15 LATEST (study-plan: surfaced projected score + per-topic mastery)
 
 Branch `claude/handoff-2026-06-13`, **ahead of origin by 3 commits, all unpushed** (push needs Adam's GitHub auth — `git push origin claude/handoff-2026-06-13`; this env has no creds, `gh` not installed): `0377d65` (prior-session HANDOFF doc), `f3e3a43` (the cleanup batch from the entry below — now committed), and this feature commit. No more uncommitted work.
