@@ -2,6 +2,22 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-15 EVENING (SYNC: the 4 local commits are now PUSHED; branch in sync with origin)
+
+Branch `claude/handoff-2026-06-13` is now **in sync with its upstream `origin/claude/handoff-2026-06-13` (ahead 0, behind 0; origin tip `7c4eaeb`)**. The four commits the entries below describe as "unpushed" are all on origin now: `f3e3a43` (cleanup batch), `bb00922` (study-plan feature), `7c4eaeb` (practice declutter), `0377d65` (prior-session HANDOFF doc). **The status lines in the next three entries ("ahead by 4/3, all unpushed", "13 changed files, uncommitted") are STALE — superseded by this entry.** Working tree clean.
+
+**GitHub auth (the thing that blocked the push) is fixed:** the failure was an expired/empty credential in macOS `osxkeychain` (`gh` not installed, no SSH keys present). Adam created a fresh PAT and did one interactive `git push`; the token is now cached, so pushes/fetches from this repo work non-interactively going forward.
+
+**Gate re-verified GREEN this turn** (code unchanged since the commits, so this just re-confirms): `npm run check` exit 0 — validate:content **0 errors** (17 warnings, 24 info, all benign) + tsc clean + **238** vitest passed. Content coverage per validate: Quant 1024 / Verbal 430 / DI 470.
+
+**Open items — reconciled across all entries below and re-verified against the code this turn. Do NOT re-do the items the older "Open / not done" list (at the marketing entry) shows as open; most are already DONE:**
+- **THE ONE OPEN SHIPPING ITEM: merge branch -> main, then confirm the Vercel deploy is green.** These 4 commits are ahead of `origin/main` (earlier batches from this branch merged via PRs #464–#468). Open/merge: https://github.com/adamik771/gmat-platform/compare/main...claude/handoff-2026-06-13?expand=1
+- Verified DONE (don't redo): dead module `src/lib/study-path-engine.ts` deleted with **zero remaining references**; duplicate `algebra-q87` confirmed removed; `npm run lint` clean; `/how-we-compare` linked from the Footer + sitemap.
+- Optional / Adam's call: add `/how-we-compare` to the **Navbar** (only Footer + sitemap link it today); make the practice hero CTA static if the recommendation engine should be fully out of `/practice`; make the study-plan mastery tier ladder monotonic (would change `mastery.ts` semantics + tests).
+- Standing Phase-A hygiene (unchanged): ~519 remote `claude/*` branches; 4 local scheduled tasks still enabled (next writers: `gmat-qa-audit` Wed 2026-06-17, `gmat-marketing-post` Mon 2026-06-22).
+
+---
+
 ## CONTEXT SWITCH — 2026-06-15 (practice declutter: removed "Recommended today" cards)
 
 Branch `claude/handoff-2026-06-13` (now **ahead of origin by 4 commits, all unpushed**). Per Adam, removed the "Recommended today" weak-skill cards row from `src/app/(app)/practice/PracticeClient.tsx` (the `recommendations.length > 0` section). **Kept** the hero's smart primary CTA ("Drill {weakest skill}" via `topRec`, falling back to "Build a custom set") — it's a single unlabeled action, not the flagged row; `recommendations` is still computed in `practice/page.tsx` and consumed only by that CTA now. If Adam later wants the recommendation engine fully out of practice: make the hero CTA static (always /test-builder) and drop the `recommendations` prop + its server computation. Gate green (lint clean, tsc, 238 tests, next build clean). Not browser-verified (practice is auth-gated) — pure section deletion.
