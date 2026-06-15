@@ -6,7 +6,6 @@ import {
 } from "@/lib/tutor-rate-limit"
 
 const HOUR = 60 * 60 * 1000
-const DAY = 24 * HOUR
 // Fixed "now" — 2026-06-12T12:00:00Z — so every window is deterministic.
 const NOW = Date.UTC(2026, 5, 12, 12, 0, 0)
 const LIMITS = { hourly: 3, daily: 5 }

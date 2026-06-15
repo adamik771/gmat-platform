@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import {
   AlertTriangle,
   ArrowLeft,
@@ -1113,53 +1112,12 @@ export default function SessionClient({
   weakestTopic,
   setLabel,
 }: SessionClientProps) {
-  const router = useRouter()
   const [currentIdx, setCurrentIdx] = useState(0)
   // AI tutor drawer — per-question Claude explainer. Opens on the
   // current question's ID; closing keeps the conversation, switching
   // questions resets it (handled inside TutorDrawer).
   const [tutorOpen, setTutorOpen] = useState(false)
-  const [rebuilding, setRebuilding] = useState(false)
-  const [rebuildError, setRebuildError] = useState<string | null>(null)
-
   const isMixedReview = slug === "custom" && topic.toLowerCase().startsWith("mixed review")
-
-  async function handleRebuildMix() {
-    if (rebuilding) return
-    setRebuilding(true)
-    setRebuildError(null)
-    try {
-      // No chapterSlug — the student is already in the results screen
-      // where we can't recover it from the URL. Global mix still pulls
-      // from completed chapters + review queue + misses, which is what
-      // "Retake" should deliver anyway: a fresh interleaved sample.
-      const res = await fetch("/api/mixed-review", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ count: questions.length || 10 }),
-      })
-      if (!res.ok) {
-        const j = (await res.json().catch(() => ({}))) as { error?: string }
-        throw new Error(j.error ?? "Couldn't build a new mix right now.")
-      }
-      const body = (await res.json()) as {
-        ids?: string[]
-        label?: string
-        section?: string
-      }
-      if (!body.ids || body.ids.length === 0) {
-        throw new Error("Not enough practice history to mix right now.")
-      }
-      const url =
-        `/practice/session/custom?ids=${encodeURIComponent(body.ids.join(","))}` +
-        `&topic=${encodeURIComponent(body.label ?? "Mixed Review")}` +
-        (body.section ? `&section=${encodeURIComponent(body.section)}` : "")
-      router.push(url)
-    } catch (e) {
-      setRebuildError(e instanceof Error ? e.message : "Something went wrong")
-      setRebuilding(false)
-    }
-  }
 
   const [states, setStates] = useState<QuestionState[]>(() =>
     questions.map((q) => ({
@@ -2192,12 +2150,6 @@ export default function SessionClient({
             </div>
           )
         })()}
-
-        {rebuildError && (
-          <p className="text-xs text-center" style={{ color: "#FF4444" }}>
-            {rebuildError}
-          </p>
-        )}
       </div>
     )
   }

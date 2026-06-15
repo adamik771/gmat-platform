@@ -2409,25 +2409,6 @@ Maria is 5 years older than her brother Tom. If the sum of their current ages is
 
 ---
 
-## Q87
-**difficulty:** Easy
-**type:** Problem Solving
-**topic:** Word Problem — Translation
-
-The sum of three consecutive integers is 72. What is the largest of the three integers?
-
-- A) 23
-- B) 24
-- C) 25
-- D) 26
-- E) 27
-
-**answer:** C
-**explanation:** We let the three consecutive integers be n, n + 1, and n + 2. Their sum is 3n + 3 = 72, so 3n = 69 and n = 23. The largest integer is n + 2 = 25. The correct answer is C.
-**related_reading:** reading-quant-04-algebra-and-equations
-
----
-
 ## Q88
 **difficulty:** Medium
 **type:** Problem Solving

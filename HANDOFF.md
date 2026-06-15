@@ -2,6 +2,70 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-15 (practice declutter: removed "Recommended today" cards)
+
+Branch `claude/handoff-2026-06-13` (now **ahead of origin by 4 commits, all unpushed**). Per Adam, removed the "Recommended today" weak-skill cards row from `src/app/(app)/practice/PracticeClient.tsx` (the `recommendations.length > 0` section). **Kept** the hero's smart primary CTA ("Drill {weakest skill}" via `topRec`, falling back to "Build a custom set") — it's a single unlabeled action, not the flagged row; `recommendations` is still computed in `practice/page.tsx` and consumed only by that CTA now. If Adam later wants the recommendation engine fully out of practice: make the hero CTA static (always /test-builder) and drop the `recommendations` prop + its server computation. Gate green (lint clean, tsc, 238 tests, next build clean). Not browser-verified (practice is auth-gated) — pure section deletion.
+
+## CONTEXT SWITCH — 2026-06-15 LATEST (study-plan: surfaced projected score + per-topic mastery)
+
+Branch `claude/handoff-2026-06-13`, **ahead of origin by 3 commits, all unpushed** (push needs Adam's GitHub auth — `git push origin claude/handoff-2026-06-13`; this env has no creds, `gh` not installed): `0377d65` (prior-session HANDOFF doc), `f3e3a43` (the cleanup batch from the entry below — now committed), and this feature commit. No more uncommitted work.
+
+**What shipped (Adam asked to wire both computed-but-hidden signals into the UI):** `src/app/(app)/study-plan/page.tsx` (+~190) + a 1-line comment fix in `src/lib/mastery.ts`.
+1. **Projected-total card** — leads the Progress Stat Cards grid (changed `sm:grid-cols-3` → `sm:grid-cols-2 lg:grid-cols-4`). Shows the practice-derived GMAT Focus projection (`estimatedTotal`, 205-805) with a color-coded `±N vs target · baseline N` caption. Renders only when `estimatedTotal !== null` (every section ≥10 attempts). Read-only — does NOT duplicate the dashboard target editor or the baseline attribution line.
+2. **Mastery-gates section** — new numbered `<section>` between Weak Areas and Upcoming Chapters, rendered only when `masteries.length > 0`. Weakest-first list (engine already sorts tier-ascending), capped at 6 with a `+N more → /analytics` link. Each row: section+topic label, a 4-segment gate track (concept/timed/mixed/section, filled per `g.satisfied`, tier-colored), next-gate evidence hint (md+), and a tier pill. Registered in `renderedNumberedSections` (guarded by `masteries.length > 0`) so the `01/02/...` kickers stay gap-free.
+3. Removed the two `void estimatedTotal` / `void masteries` suppressions (the values now reach JSX). Fixed a stale `mastery.ts` comment ("Always 3" gates → "Always 4").
+
+**How it was built/verified:** investigation+design workflow (3 parallel readers → synthesized spec) → implement → in-browser visual check (desktop + mobile, throwaway public page with mock data across all 5 tiers, since the real page is auth-gated + needs ≥10 attempts/section; page deleted after) → adversarial review workflow (6 findings, all low, all fixed): row hover to match `WeakAreaCard`; `role="img"`+`aria-label` on gate segments (a11y, was tooltip-only); headline "holds." → "is forming." (list is weakest-first); **tier-aware `nextGate`** (was pointing at bypassed earlier gates); subhead dropped the false "in order/cumulative" framing.
+
+**Key engine insight (left as-is — it's a product decision with its own tests):** mastery gates are **non-monotonic** — `concept`/`timed`/`mixed` are independent data sources; only `section` requires `mixed`; the tier cascade is non-`else` ifs. So a topic can read "Timed" with the concept segment empty. The UI now honestly frames the four as independent milestones rather than a cumulative bar.
+
+**Gate green:** `npm run lint` clean; `npm run check` = validate:content 0 errors + tsc + **238** vitest; `next build` clean (144 static pages).
+
+Possible follow-ups (not done): make the engine tier ladder monotonic if "Timed-with-empty-concept" rows feel wrong (changes `mastery.ts` semantics + tests — needs Adam's call); the per-section `masteries` data also already powers `/analytics` if a fuller view is wanted.
+
+---
+
+## CONTEXT SWITCH — 2026-06-15 LATER (closed out the 4 open code items from the entry below; gate green, NOW committed as f3e3a43)
+
+Branch `claude/handoff-2026-06-13`. Picked up the "Open / not done" list from the next entry and cleared every code item (the 5th, "merge the pending PR", was already done — `e295d43` is on origin/main via #468; only this HANDOFF doc remains un-merged). Working tree: **13 changed files, uncommitted** (Adam reviews/commits). Gate green: `npm run lint` **clean (0 problems)**; `npm run check` = validate:content **0 errors** (17 warnings/24 info, all benign) + tsc + **238** vitest; `next build` clean.
+
+Done:
+1. **Linked `/how-we-compare`** — added to the Footer "Company" column (`src/components/shared/Footer.tsx`). Left the primary Navbar untouched (4-item design, tight on mobile) — easy to add there too if wanted.
+2. **De-duped the consecutive-integers question** — removed the misfiled `algebra-q87` (its own `topic:` was "Word Problem — Translation"; byte-for-byte the same problem as `word-problems-q13`, which has the fuller explanation and correct placement). IDs are header-derived (`${slug}-q${n}`), so the Q87 gap is ID-stable — no existing `algebra-qN` attempt is orphaned and the validator has no contiguity check. Quant bank 1025→1024.
+3. **Deleted dead `src/lib/study-path-engine.ts`** (532 lines, zero importers, superseded by `adaptive-plan-engine.ts`). Fixed the now-dangling reference in the `adaptive-plan-engine.ts` header comment.
+4. **Cleared all 14 lint issues → clean `npm run lint`.** Mostly unused import/var removals + one `prefer-const` + replacing two `any`s in `tests/rehype-caret-sup.test.ts` with a local `HastNode` type. Two were dead-feature remnants, not simple debt:
+   - **SessionClient** — removed the orphaned `handleRebuildMix` "rebuild mixed review" handler and its entire unwired cluster (`useRouter` import + `router`, the `rebuilding`/`rebuildError` state, and the now-dead `{rebuildError && …}` results-screen error UI). `isMixedReview` stays (still used at the results screen). The `/api/mixed-review` route is untouched — only the dead retake-button plumbing went.
+   - **study-plan** — `estimatedTotal` and `masteries` are computed but never read on the page (dropped consumers). Kept the computations and suppressed via the file's existing `void X` idiom rather than ripping them out (full removal would orphan `TopicMastery` + local helpers). **Decision for Adam:** wire these into the plan UI, or delete the computations.
+
+Still open / Adam's call: commit + push these (and whether onto this branch or a fresh one); optionally add `/how-we-compare` to the Navbar. **The standing Phase-A "stop the bleeding" item is still live** — a claude.ai/code web routine committed `0377d65` (this branch's own HANDOFF doc) at 12:28 *during* this session, and there are 519 remote `claude/*` branches. The 4 local scheduled tasks remain enabled (next writers: `gmat-qa-audit` Wed 06-17, `gmat-marketing-post` Mon 06-22).
+
+---
+
+## CONTEXT SWITCH — 2026-06-15 (marketing-sprint + question-bank expansion; everything pushed, one PR pending)
+
+Branch `claude/handoff-2026-06-13` (off main). All work this session is committed + pushed; Adam merged most of it incrementally as small PRs. At handoff the branch is **1 commit ahead of origin/main** (the round-2 questions commit `e295d43`); open PR: https://github.com/adamik771/gmat-platform/compare/main...claude/handoff-2026-06-13?expand=1 . Working tree clean. Gate green: `npm run check` = validate:content **0 errors** (18 warnings, 24 info — all benign: duplicate-prompt boilerplate, RC cross-pin notes, thin-chapter authoring nudges) + tsc + **238** vitest; `next build` clean (107 routes). Standing rules still apply: NO emojis, approximate marketing counts ("50+ chapters", "1,150+ questions"), do NOT commit unless Adam asks.
+
+### Shipped this session (all on the branch; most already merged to main)
+1. **Practice page declutter** — removed the "After every set" strip + the "How to practice" mode tiles from `practice/PracticeClient.tsx` (kept the adaptive "Recommended today" cards). Per Adam they were filler/duplicated nav.
+2. **5 marketing blog articles** (`(marketing)/blog/<slug>/page.tsx` + registered in `lib/blog-posts.ts` + `sitemap.ts`): `gmat-math-formulas-cheat-sheet`, `gmat-number-properties-guide`, `gmat-critical-reasoning-finding-the-assumption`, `gmat-logical-fallacies`, `gmat-3-month-study-schedule`. Authored from the free-resource library as REFERENCE (original prose; CC-licensed OER logic textbooks for the CR/fallacy pieces). Verified-generation workflow (draft → adversarial check). Blog is now 18 posts.
+3. **`/resources` page** — added a curated outbound "best free GMAT resources on the web" section (official GMAC + OER + a few free; deliberately NO paid-course competitors). Existing internal sections untouched.
+4. **Health audit + SEO fixes** — 7-dimension audit (routes/security/house-rules came back clean; content 0 errors). Fixes: added `alternates.canonical` to home / pricing / course / students / `/blog` index / the one blog post missing it; added `/blog` to sitemap; removed an unused `H3`. (Pre-existing lint debt left: 3 errors [prefer-const in dashboard/page.tsx; 2× no-explicit-any in tests/rehype-caret-sup.test.ts] + 11 unused-var warnings — build is NOT gated on lint.)
+5. **Competitor research** (web, 6-agent) — key takeaways: market = **role-specialists + a "pairing tax"** (TTP for quant, e-GMAT for verbal, official mocks; no one product is strong across all 3). Zakarian's real edges: **all-in-one across the 3 sections, Focus-native, learning-science pedagogy**. Gaps: small bank (now addressed), no reviews/track-record, no score guarantee. **Data Insights is the market's #1 under-served area.** Caveat: competitor pricing is volatile; GMAT Club/Reddit not directly scrapeable.
+6. **`/how-we-compare` page** — category-level "why we're different" positioning (NO competitor names/prices — brand-safe), built on the 3 axes above + an honest "no fabricated guarantee" framing. In sitemap; NOT yet linked from nav/footer (only follow-up worth noting).
+7. **Question bank: +295 verified original questions** across two rounds → **1,639 → 1,934**. Round 1 (`d9ba322`): even split (Quant +48, Verbal +50 incl. Verbal Foundations 12→32, DI +50). Round 2 (`e295d43`): grounded in the reference library (Quant +72, CR +25 grounded in the extracted CC-licensed OER logic taxonomy, DI +50). **IP line held: the copyrighted Manhattan Review / Magoosh question banks were NOT mined for items** — reference-for-coverage only; everything authored original. Method both rounds: per-file item-writer → independent adversarial verifier re-solves EVERY question (0 wrong answer keys across all 295) → numbering pre-flight → append → validate. Practice banks now ~Quant 900 / Verbal 430 / DI 470.
+
+### Reference library
+`/Users/adam/GMAT_Resources/` (index: `GMAT_Resource_Index.md`). Copyrighted REP banks (Manhattan Review, Magoosh, e-GMAT) = reference-only, never copied. The OER logic textbooks (forall x: Calgary CC BY; Athabasca Critical Thinking CC BY-NC-SA) are the clean source for CR; text was extracted to `/tmp/refs/cr-logic.txt` via python `fitz`/`pypdf` (the Read tool can't render PDFs here — no poppler/pdftoppm installed).
+
+### Open / not done (offered, deferred to Adam)
+- **Merge the pending PR** (`e295d43`) + confirm the Vercel deploy is green.
+- Link `/how-we-compare` from nav/footer (currently sitemap-only).
+- De-dup one genuine duplicate quant question (`algebra-q87` and `word-problems-q13`, both correct).
+- Delete dead module `src/lib/study-path-engine.ts` (532 lines, zero importers, superseded by `adaptive-plan-engine.ts`) — surfaced, not deleted (didn't author it).
+- Clear the pre-existing lint debt (14 issues) if a clean `npm run lint` is wanted.
+
+---
+
 ## CONTEXT SWITCH — 2026-06-13 (deferred-code cleanup shipped + paste-ready GO-LIVE RUNBOOK below)
 
 Branch `claude/handoff-2026-06-13` (off main). Shipped the four explicitly-deferred code items from the go-live audit, then wrote the runbook. Gate green: `npm run check` = validate:content 0 errors + tsc + **225** vitest tests (was 204); `next build` clean. NOT committed (Adam reviews/commits). Two small deps added with Adam's explicit approval: `server-only@^0.0.1`, `@vercel/analytics@^2.0.1` (`npm audit` shows 9 pre-existing transitive vulns, unrelated to these two — left alone; `audit fix --force` could break the build).

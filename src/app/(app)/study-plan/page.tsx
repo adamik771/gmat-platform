@@ -12,12 +12,12 @@ import {
   Sparkles,
   Target,
   TrendingDown,
+  TrendingUp,
   Flame,
   Wrench,
 } from "lucide-react"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
-import EmptyState from "@/components/shared/EmptyState"
 import {
   buildWeeklyCadence,
   computeStudyPlan,
@@ -32,6 +32,7 @@ import {
   type ChapterProgressShape,
   type MasteryAttempt,
   type MasterySession,
+  type MasteryTier,
   type OfficialReadySummary,
   type TopicMastery,
 } from "@/lib/mastery"
@@ -42,7 +43,6 @@ import {
   type PersonaProfile,
   type PersonaTag,
 } from "@/lib/personas"
-import { accuracyToScore } from "@/lib/diagnostic"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import type { Section } from "@/types"
 
@@ -838,6 +838,7 @@ export default async function StudyPlanPage() {
   renderedNumberedSections.push("this-week")
   if (plan && plan.weakAreas.length > 0)
     renderedNumberedSections.push("weak-areas")
+  if (masteries.length > 0) renderedNumberedSections.push("mastery")
   renderedNumberedSections.push("up-next")
   const sectionNum = (key: string) =>
     String(renderedNumberedSections.indexOf(key) + 1).padStart(2, "0")
@@ -1109,8 +1110,52 @@ export default async function StudyPlanPage() {
         </div>
       </section>
 
-      {/* Progress cards — real counts */}
-      <div className="grid sm:grid-cols-3 gap-4">
+      {/* Progress cards — real counts. Projected total leads when the
+          student has enough section data (>=10 attempts each) to estimate it. */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {estimatedTotal !== null && (
+          <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ backgroundColor: "#C9A84C15" }}
+            >
+              <TrendingUp className="w-4 h-4" style={{ color: "#C9A84C" }} />
+            </div>
+            <div className="min-w-0">
+              <p className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] tabular-nums leading-none">
+                {estimatedTotal}
+              </p>
+              <p className="text-[11px] text-[#888888] mt-1.5 uppercase tracking-[0.18em]">
+                Projected total
+              </p>
+              {(targetScore !== null || officialBaseline !== null) && (
+                <p className="text-[11px] text-[#555555] mt-1 tabular-nums">
+                  {targetScore !== null && (
+                    <span
+                      style={{
+                        color:
+                          estimatedTotal >= targetScore
+                            ? "#3ECF8E"
+                            : estimatedTotal >= targetScore - 40
+                              ? "#C9A84C"
+                              : "#FF4444",
+                      }}
+                    >
+                      {estimatedTotal >= targetScore ? "+" : ""}
+                      {estimatedTotal - targetScore} vs target
+                    </span>
+                  )}
+                  {targetScore !== null && officialBaseline !== null && (
+                    <span className="mx-1.5 text-[#333333]">·</span>
+                  )}
+                  {officialBaseline !== null && (
+                    <span>baseline {officialBaseline}</span>
+                  )}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
         <StatCard
           icon={BookOpen}
           color="#C9A84C"
@@ -1179,6 +1224,143 @@ export default async function StudyPlanPage() {
           </div>
         </section>
       )}
+
+      {/* Per-topic mastery gates — discrete concept->timed->mixed->section
+          progression from real attempts, weakest-first (already sorted).
+          Distinct from Weak Areas above: those are accuracy deficits,
+          these are gate milestones. */}
+      {masteries.length > 0 &&
+        (() => {
+          const TIER_COLOR: Record<MasteryTier, string> = {
+            "not-started": "#555555",
+            "concept-ready": "#C9A84C",
+            "timed-ready": "#C9A84C",
+            "mixed-ready": "#3ECF8E",
+            "section-ready": "#3ECF8E",
+          }
+          const TIER_LABEL: Record<MasteryTier, string> = {
+            "not-started": "Not started",
+            "concept-ready": "Concept",
+            "timed-ready": "Timed",
+            "mixed-ready": "Mixed",
+            "section-ready": "Section",
+          }
+          // Gate index each tier has reached, so the "next step" hint points
+          // at the gate ahead of the student rather than a bypassed earlier
+          // one (engine gates aren't strictly monotonic — concept/timed/mixed
+          // are independent checks).
+          const TIER_GATE_INDEX: Record<MasteryTier, number> = {
+            "not-started": 0,
+            "concept-ready": 1,
+            "timed-ready": 2,
+            "mixed-ready": 3,
+            "section-ready": 4,
+          }
+          const shown = masteries.slice(0, 6)
+          return (
+            <section>
+              <div className="flex items-center gap-3 mb-5">
+                <span
+                  className="font-display text-[11px] font-semibold tabular-nums"
+                  style={{ color: "rgba(201,168,76,0.55)" }}
+                  aria-hidden
+                >
+                  {sectionNum("mastery")}
+                </span>
+                <p
+                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+                  style={{ color: "#C9A84C" }}
+                >
+                  Mastery gates
+                </p>
+                <div
+                  className="h-px flex-1"
+                  style={{
+                    background:
+                      "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+                  }}
+                  aria-hidden
+                />
+              </div>
+              <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-2">
+                Where mastery{" "}
+                <span
+                  className="font-display-italic"
+                  style={{ color: "#C9A84C" }}
+                >
+                  is forming.
+                </span>
+              </h2>
+              <p className="text-[13px] text-[#888888] mb-5 max-w-2xl leading-relaxed">
+                Four milestones per topic — concept, timed, mixed, section.
+                Independent checks, not raw accuracy; weakest first.
+              </p>
+              <div className="space-y-3">
+                {shown.map((m) => {
+                  const color = TIER_COLOR[m.tier]
+                  const fromIndex = TIER_GATE_INDEX[m.tier]
+                  const nextGate =
+                    m.gates.slice(fromIndex).find((g) => !g.satisfied) ??
+                    m.gates.find((g) => !g.satisfied)
+                  return (
+                    <div
+                      key={`${m.section}|${m.topic}`}
+                      className="flex items-center gap-4 p-4 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
+                    >
+                      <p className="text-[13px] text-[#C0C0C0] w-32 sm:w-44 flex-shrink-0 truncate">
+                        <span className="text-[#555555] mr-1.5 text-[11px] uppercase tracking-wider">
+                          {m.section}
+                        </span>
+                        {m.topic}
+                      </p>
+                      <div className="flex-1 flex gap-1">
+                        {m.gates.map((g) => (
+                          <div
+                            key={g.id}
+                            className="flex-1 h-2 rounded-full bg-white/[0.06] overflow-hidden"
+                            title={`${g.label}: ${g.evidence}`}
+                            role="img"
+                            aria-label={`${g.label}: ${g.satisfied ? "cleared" : "not cleared"} — ${g.evidence}`}
+                          >
+                            <div
+                              className="h-full rounded-full transition-all duration-700"
+                              style={{
+                                width: g.satisfied ? "100%" : "0%",
+                                backgroundColor: color,
+                              }}
+                              aria-hidden
+                            />
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-2 flex-shrink-0 justify-end">
+                        {nextGate && (
+                          <span className="text-[11px] text-[#555555] truncate hidden md:inline max-w-[12rem]">
+                            {nextGate.evidence}
+                          </span>
+                        )}
+                        <span
+                          className="rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.18em] flex-shrink-0"
+                          style={{ color, backgroundColor: `${color}1f` }}
+                        >
+                          {TIER_LABEL[m.tier]}
+                        </span>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+              {masteries.length > 6 && (
+                <Link
+                  href="/analytics"
+                  className="mt-4 inline-block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#888888] hover:text-[#F0F0F0] transition-colors"
+                >
+                  +{masteries.length - 6} more topics →
+                </Link>
+              )}
+            </section>
+          )
+        })()}
 
       {/* Upcoming lessons — real curriculum */}
       <section>

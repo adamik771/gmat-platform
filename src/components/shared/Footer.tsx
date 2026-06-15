@@ -12,6 +12,7 @@ const platformLinks = [
 
 const companyLinks = [
   { label: "About", href: "/about" },
+  { label: "How We Compare", href: "/how-we-compare" },
   { label: "Student Results", href: "/students" },
   { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
