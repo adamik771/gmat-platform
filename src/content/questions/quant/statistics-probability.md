@@ -2264,3 +2264,335 @@ Taking both statements together, A can be shifted entirely above B while preserv
 
 The correct answer is E.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+
+---
+
+## Q70
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Weighted Average
+
+An alloy weighing 40 kilograms is 30% copper by weight. How many kilograms of a second alloy that is 75% copper by weight must be added so that the combined alloy is 60% copper by weight?
+
+- A) 24
+- B) 48
+- C) 60
+- D) 80
+- E) 90
+
+**answer:** D
+**fastest_path:** Balance the copper deviations from the 60% target. The first alloy is 30 points short over 40 kg, a deficit of 30 × 40 = 1,200 point-kg; the second alloy runs 15 points over, so it must supply 1,200/15 = 80 kg. No equation needed.
+**explanation:** In a mixture problem the amount of a component (here copper) is conserved: the copper in the final blend equals the sum of the copper contributed by each ingredient. The fraction of copper in a portion equals its copper weight divided by its total weight, so copper weight equals copper fraction times total weight.
+
+Let x be the number of kilograms of the second alloy added. The first alloy contributes 0.30 × 40 = 12 kilograms of copper, and the second alloy contributes 0.75x kilograms of copper. The combined alloy weighs 40 + x kilograms and must be 60% copper, so its copper weight is 0.60(40 + x).
+
+Setting the copper contributed equal to the copper required gives
+
+12 + 0.75x = 0.60(40 + x).
+
+Expanding the right side yields 12 + 0.75x = 24 + 0.60x. Subtracting 0.60x and 12 from both sides gives 0.15x = 12, so
+
+x = 12 / 0.15 = 80.
+
+Adding 80 kilograms of the 75% alloy produces a 120-kilogram blend whose copper weight is 12 + 0.75 × 80 = 12 + 60 = 72 kilograms, and 72 / 120 = 0.60, confirming the blend is 60% copper.
+
+The correct answer is D.
+**mistake_a:** 24 takes the simple midpoint reasoning that the target 60% sits halfway, then sizes the addition to the wrong reference; it ignores that the two alloys pull on the mean with different strengths.
+**mistake_b:** 48 comes from equating the two alloys' weighted distances incorrectly (for instance 30 × 40 = 15 × 80 mis-solved to 48) — an arithmetic slip in the balance equation.
+**mistake_c:** 60 mistakes the copper weight that must be added (0.75 × 80 = 60 kg of copper) for the weight of the alloy itself.
+**mistake_e:** 90 over-adds, as if the target were closer to 75% than it is; the second alloy needs to outweigh the first, but not by this much.
+**common_trap:** Averaging the two percentages (30% and 75%) as if equal weights were combined, instead of letting the unknown amount of the richer alloy do the balancing.
+**takeaway:** Mixture problems conserve the component: set (fraction × amount) contributed equal to (target fraction × total), or balance each ingredient's deviation from the target weighted by its amount.
+**hint_nudge:** Track the kilograms of copper, not the percentages — copper in equals copper out.
+**hint_strategy:** Copper from alloy 1 (0.30 × 40) plus copper from alloy 2 (0.75x) equals copper required (0.60 × (40 + x)). Solve for x.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q71
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability
+
+A committee of 3 people is to be selected at random from a group of 5 women and 4 men. What is the probability that the committee includes at least one man?
+
+- A) 5/42
+- B) 10/21
+- C) 4/9
+- D) 5/14
+- E) 37/42
+
+**answer:** E
+**fastest_path:** Complement: P(at least one man) = 1 − P(all women) = 1 − C(5,3)/C(9,3) = 1 − 10/84 = 74/84 = 37/42.
+**explanation:** When a question asks for the probability of "at least one" of something, the complement rule is usually the fastest route: the probability of at least one man equals 1 minus the probability of no men, which is the probability that all three committee members are women. Because the committee is an unordered selection, probabilities are computed with combinations, where C(n, r) = n! / [r!(n − r)!].
+
+The group has 5 + 4 = 9 people, and 3 are chosen, so the total number of equally likely committees is
+
+C(9, 3) = (9 × 8 × 7) / (3 × 2 × 1) = 504 / 6 = 84.
+
+The number of committees containing no men, that is all three members chosen from the 5 women, is
+
+C(5, 3) = (5 × 4 × 3) / (3 × 2 × 1) = 60 / 6 = 10.
+
+So the probability that the committee has no men is 10/84. Applying the complement rule, the probability of at least one man is
+
+1 − 10/84 = 84/84 − 10/84 = 74/84 = 37/42.
+
+The correct answer is E.
+**mistake_a:** 5/42 = 10/84 is P(no men) reduced incompletely or its mismatched form — the very event the complement removes, not the answer.
+**mistake_b:** 10/21 = 40/84 counts only the committees with exactly one man, C(4,1)·C(5,2) = 4 × 10 = 40, dropping the two-man and three-man cases that "at least one" also includes.
+**mistake_c:** 4/9 is a raw fraction-of-men guess (4 men out of 9 people) that ignores the multi-person selection entirely.
+**mistake_d:** 5/14 = 30/84 is another partial count, capturing some but not all of the committees with at least one man.
+**common_trap:** Computing P(exactly one man) and stopping, which silently omits the all-the-more-likely cases of two or three men.
+**takeaway:** For "at least one," subtract the single clean complement — P(none) — from 1, rather than summing the several "exactly k" cases.
+**hint_nudge:** "At least one man" is the opposite of one simple event. Which committee composition has no men at all?
+**hint_strategy:** Find P(all three women) = C(5,3)/C(9,3), then subtract from 1.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q72
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Counting
+
+Six students are to be seated in a row of six chairs. In how many of the possible arrangements are two particular students, Mara and Niko, NOT seated next to each other?
+
+- A) 240
+- B) 360
+- C) 480
+- D) 600
+- E) 720
+
+**answer:** C
+**fastest_path:** Total arrangements minus the adjacent ones: 6! − (5! × 2) = 720 − 240 = 480.
+**explanation:** The cleanest way to count arrangements that avoid a condition is to subtract the arrangements that satisfy the condition from the total number of arrangements. Here the total counts every way to seat 6 distinct students, and the condition to subtract is "Mara and Niko sit next to each other."
+
+The total number of ways to arrange 6 distinct students in a row is 6! = 720.
+
+To count the arrangements in which Mara and Niko are adjacent, treat the pair as a single combined unit. This unit, together with the other 4 students, gives 5 objects to arrange in a row, which can be done in 5! = 120 ways. Within the combined unit, Mara and Niko can be ordered in 2! = 2 ways (Mara-Niko or Niko-Mara). By the multiplication principle, the number of adjacent arrangements is
+
+5! × 2! = 120 × 2 = 240.
+
+The arrangements in which Mara and Niko are NOT adjacent are therefore the total minus the adjacent ones:
+
+720 − 240 = 480.
+
+The correct answer is C.
+**mistake_a:** 240 is the count of arrangements in which the two ARE adjacent — the quantity meant to be subtracted, not the final answer.
+**mistake_b:** 360 = 720 / 2 halves the total as if exactly half the seatings put the pair together, but the adjacent share is 240/720 = 1/3, not 1/2.
+**mistake_d:** 600 = 720 − 120 subtracts the 5! block-arrangements but forgets to double for the two internal orders of the pair, undercounting the adjacent cases.
+**mistake_e:** 720 is the total number of arrangements with no restriction applied at all.
+**common_trap:** Forgetting the 2! for the two ways the glued pair can be internally ordered, which leaves the adjacent count at 120 instead of 240.
+**takeaway:** Count "not adjacent" as total − adjacent; for the adjacent case, glue the pair into one unit (k! − 1 objects) and multiply by 2! for their internal order.
+**hint_nudge:** It is easier to count the seatings where they DO sit together and subtract.
+**hint_strategy:** Glue Mara and Niko into one block: arrange 5 objects (5!) and double for their internal order (2!). Subtract from 6!.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q73
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Mean
+
+A student's average (arithmetic mean) on her first 5 exams is 78. What score must she earn on a sixth exam so that her average over all 6 exams is exactly 80?
+
+- A) 82
+- B) 86
+- C) 88
+- D) 90
+- E) 92
+
+**answer:** D
+**fastest_path:** Required sixth score = new total − old total = 6 × 80 − 5 × 78 = 480 − 390 = 90.
+**explanation:** The arithmetic mean equals the sum of the values divided by the count, so the sum equals the mean multiplied by the count. The score needed on the new exam is simply the difference between the total the student must reach and the total she already has.
+
+The first 5 exams average 78, so their sum is
+
+5 × 78 = 390.
+
+For the average over all 6 exams to be 80, the sum of all 6 scores must be
+
+6 × 80 = 480.
+
+The sixth score is the amount by which the total must increase, which is the new required total minus the existing total:
+
+480 − 390 = 90.
+
+A quick sanity check using deviations confirms this: holding an 80 average over 6 exams while the first 5 each fell 2 points short of 80 means the first five carry a combined deficit of 5 × 2 = 10 points, so the sixth exam must exceed 80 by 10, giving 80 + 10 = 90.
+
+The correct answer is D.
+**mistake_a:** 82 = 80 + 2 just nudges the new average up by the 2-point gap between 78 and 80, ignoring that the deficit accumulated over all five earlier exams.
+**mistake_b:** 86 partially accounts for the accumulated deficit but stops short of the full 10-point make-up the five exams require.
+**mistake_c:** 88 = 78 + 10 adds the correct 10-point make-up to the old average instead of to the target average of 80.
+**mistake_e:** 92 over-corrects, as if the average had to rise by more than 2 points or more exams were below target than actually are.
+**common_trap:** Treating the needed score as "a little above the new average," when one exam must single-handedly erase the combined shortfall of all the earlier exams.
+**takeaway:** To hit a target average, the new value = (target mean × new count) − (current sum); equivalently, it must offset the total deviation already accumulated.
+**hint_nudge:** Work in total points: what sum do 6 exams need for an 80 average, and what sum do you already have?
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q74
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Probability
+
+A machine produces parts independently, and each part is defective with probability 0.1. If 3 parts are produced, what is the probability that at least one of them is defective?
+
+- A) 0.001
+- B) 0.027
+- C) 0.243
+- D) 0.271
+- E) 0.300
+
+**answer:** D
+**fastest_path:** Complement: P(at least one defective) = 1 − P(none defective) = 1 − (0.9)^3 = 1 − 0.729 = 0.271.
+**explanation:** For independent events, the probability that they all occur is the product of their individual probabilities. The phrase "at least one defective" is handled most efficiently with the complement rule: the probability of at least one defective equals 1 minus the probability that no part is defective, that is, the probability that all three parts are good.
+
+Each part is defective with probability 0.1, so each part is good with probability 1 − 0.1 = 0.9. Because the parts are produced independently, the probability that all three are good is the product
+
+0.9 × 0.9 × 0.9 = (0.9)^3 = 0.729.
+
+Applying the complement rule, the probability that at least one part is defective is
+
+1 − 0.729 = 0.271.
+
+The correct answer is D.
+**mistake_a:** 0.001 = (0.1)^3 is the probability that ALL three parts are defective, a far rarer event than "at least one."
+**mistake_b:** 0.027 mixes the factors, for example (0.1)^2 × (0.9) × 3 mis-evaluated, capturing only a sliver of the "at least one" event.
+**mistake_c:** 0.243 = 3 × (0.1)(0.9)^2 is P(exactly one defective); "at least one" must also include the two- and three-defective cases.
+**mistake_e:** 0.300 = 3 × 0.1 naively adds the per-part probabilities, double-counting the overlap where more than one part is defective and ignoring that probabilities cannot simply be summed.
+**common_trap:** Adding 0.1 three times to get 0.3, which treats mutually-overlapping events as disjoint and overcounts; probabilities of "at least one" are not additive across trials.
+**takeaway:** For "at least one" across independent trials, compute 1 − (probability of none) = 1 − (1 − p)^n; never sum the single-trial probabilities.
+**hint_nudge:** The opposite of "at least one defective" is a single tidy outcome — all parts good. Find that first.
+**hint_strategy:** P(all good) = (0.9)^3. Subtract from 1.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q75
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Counting
+
+At a meeting of 8 people, each person shakes hands exactly once with every other person. What is the total number of handshakes?
+
+- A) 16
+- B) 28
+- C) 32
+- D) 56
+- E) 64
+
+**answer:** B
+**fastest_path:** Each handshake is one unordered pair of people: C(8,2) = (8 × 7)/2 = 28.
+**explanation:** A handshake involves exactly two distinct people, and the handshake between two given people is the same regardless of the order in which they are named, so a handshake is an unordered pair. The number of ways to choose an unordered pair from n people is the combination C(n, 2) = n(n − 1) / 2.
+
+With 8 people, the number of distinct pairs, and therefore the number of handshakes, is
+
+C(8, 2) = (8 × 7) / 2 = 56 / 2 = 28.
+
+An equivalent way to see this: each of the 8 people shakes hands with the other 7, giving 8 × 7 = 56 person-to-person counts, but each handshake is counted twice (once from each participant's perspective), so the number of handshakes is 56 / 2 = 28.
+
+The correct answer is B.
+**mistake_a:** 16 = 8 × 2 has no combinatorial meaning here; it neither pairs people nor divides out the double count.
+**mistake_c:** 32 = 8 × 4 is a stray product that does not correspond to choosing pairs from 8 people.
+**mistake_d:** 56 = 8 × 7 counts every ordered pair (each handshake twice) and forgets to divide by 2.
+**mistake_e:** 64 = 8 × 8 = 8^2 counts ordered pairs including a person "shaking hands with themselves," neither of which applies.
+**common_trap:** Reporting 8 × 7 = 56 without halving; from each person's view there are 7 handshakes, but every handshake is shared by two people.
+**takeaway:** Handshake / mutual-pairing counts are combinations: C(n, 2) = n(n − 1)/2, because order within the pair does not matter.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q76
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Counting
+
+A committee of 4 people is to be formed from a pool of 5 men and 4 women. How many different committees include at least 2 women?
+
+- A) 60
+- B) 81
+- C) 96
+- D) 105
+- E) 126
+
+**answer:** B
+**fastest_path:** Total committees minus those with fewer than 2 women: C(9,4) − [C(4,0)C(5,4) + C(4,1)C(5,3)] = 126 − (5 + 40) = 126 − 45 = 81.
+**explanation:** A committee is an unordered selection, so it is counted with combinations: C(n, r) = n! / [r!(n − r)!]. The phrase "at least 2 women" covers the committees with exactly 2, exactly 3, or exactly 4 women. It is efficient to count by complement: all committees minus those that fail the condition, namely committees with 0 women or exactly 1 woman.
+
+The total number of 4-person committees from the 9 people is
+
+C(9, 4) = (9 × 8 × 7 × 6) / (4 × 3 × 2 × 1) = 3024 / 24 = 126.
+
+Committees with 0 women consist of 4 men chosen from 5:
+
+C(4, 0) × C(5, 4) = 1 × 5 = 5.
+
+Committees with exactly 1 woman have 1 of the 4 women and 3 of the 5 men:
+
+C(4, 1) × C(5, 3) = 4 × 10 = 40.
+
+So the committees with fewer than 2 women number 5 + 40 = 45. Subtracting from the total gives the committees with at least 2 women:
+
+126 − 45 = 81.
+
+As a check, counting the qualifying cases directly: exactly 2 women is C(4,2)·C(5,2) = 6 × 10 = 60; exactly 3 women is C(4,3)·C(5,1) = 4 × 5 = 20; exactly 4 women is C(4,4)·C(5,0) = 1 × 1 = 1. Their sum is 60 + 20 + 1 = 81, matching the complement count.
+
+The correct answer is B.
+**mistake_a:** 60 is the count for exactly 2 women only, C(4,2)·C(5,2); it omits the exactly-3 and exactly-4-women committees that "at least 2" also includes.
+**mistake_c:** 96 results from a miscount of one of the cases, such as using C(5,2) = 10 where C(5,1) = 5 belongs, inflating the three-women tally.
+**mistake_d:** 105 = 126 − 21 subtracts a wrong "fewer than 2 women" total, for example by miscounting the one-woman committees.
+**mistake_e:** 126 is the total number of committees with no restriction, ignoring the at-least-2-women condition entirely.
+**common_trap:** Counting only the "exactly 2 women" case and forgetting that the requirement is satisfied just as well by 3 or 4 women.
+**takeaway:** "At least k" of a category is total minus the deficient cases (0 through k−1), or the sum of the qualifying "exactly" cases — compute it whichever way is shorter and let the two agree.
+**hint_nudge:** "At least 2 women" out of 4 seats — list which exact woman-counts qualify, then decide whether direct or complement counting is faster.
+**hint_strategy:** Subtract the all-men and exactly-one-woman committees from C(9,4).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q77
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Probability
+
+Three letters are placed at random, one per envelope, into three envelopes that have been pre-addressed to the three intended recipients. What is the probability that exactly one letter is placed in its correct envelope?
+
+- A) 1/6
+- B) 1/3
+- C) 1/2
+- D) 2/3
+- E) 5/6
+
+**answer:** C
+**fastest_path:** Count permutations with exactly one fixed point: choose the 1 correct letter (3 ways), and the other 2 must both be wrong, which for 2 items happens in exactly 1 way (they swap). Favorable = 3 × 1 = 3 out of 3! = 6, so 3/6 = 1/2.
+**explanation:** Placing the three letters into the three envelopes at random corresponds to choosing one of the 3! = 6 equally likely orderings (permutations) of the letters. A letter is "correct" when it lands in its own envelope, which is a fixed point of the permutation. The event of interest is that exactly one letter is correct, meaning the permutation has exactly one fixed point.
+
+There are 3! = 6 equally likely arrangements in total.
+
+To count the arrangements with exactly one correct letter, first choose which single letter is correct: there are C(3, 1) = 3 choices. Once that letter is fixed in its own envelope, the remaining two letters must each be incorrect, that is, neither of them may go to its own envelope. With only two letters and two envelopes left, the sole way for both to be wrong is for them to swap envelopes; there is exactly 1 such arrangement (a derangement of 2 objects).
+
+By the multiplication principle, the number of favorable arrangements is
+
+3 × 1 = 3.
+
+The probability is the favorable count divided by the total:
+
+3 / 6 = 1/2.
+
+As a check, the six arrangements split as: 1 arrangement with all three correct, 0 arrangements with exactly two correct (fixing two forces the third), 3 arrangements with exactly one correct, and 2 arrangements with none correct, and 1 + 0 + 3 + 2 = 6.
+
+The correct answer is C.
+**mistake_a:** 1/6 is the probability that ALL three letters are correct (the single fully-matched arrangement), not exactly one.
+**mistake_b:** 1/3 = 2/6 is the probability that NO letter is correct (the two derangements of three objects), the opposite end of the count.
+**mistake_d:** 2/3 = 4/6 lumps together the "exactly one correct" and "all correct" arrangements (3 + 1), but "exactly one" excludes the all-correct case.
+**mistake_e:** 5/6 is the complement of "all three correct" (1 − 1/6) — the probability that not all are correct, a much broader event than exactly one.
+**common_trap:** Believing "exactly two correct" is possible; once two letters are in their own envelopes, the third has nowhere else to go and is automatically correct too, so exactly two can never happen.
+**takeaway:** "Exactly one fixed point" = choose the matched item, then derange the rest; for three letters this gives 3 favorable arrangements out of 6, or 1/2.
+**hint_nudge:** List all 6 ways to place the letters and mark how many land correctly in each — the pattern is short.
+**hint_strategy:** Pick which one letter is correct (3 ways), then force the other two to both be wrong (only the swap works).
+**related_reading:** reading-quant-06-statistics-probability-combinatorics

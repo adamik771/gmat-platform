@@ -5332,3 +5332,214 @@ Which of the following is an assumption on which the official's recommendation d
 **answer:** B
 **explanation:** The official recommends green tea for everyone based on an observed association between heavy green-tea drinking and lower heart-disease rates. For that recommendation to follow, the lower rate must be attributable to the tea itself rather than to confounding habits that happen to accompany tea drinking. Choice B is the required assumption: if green-tea drinkers also shared other risk-lowering habits uncommon among non-drinkers, the 25 percent difference could stem from those habits, and the tea recommendation would not be supported; negating B destroys the argument, the hallmark of a necessary assumption. The trap answers fail standard tests: Choice A (more effective than any other beverage) is far stronger than needed, the argument never claims superiority. Choice C (leading cause of death) overstates what is required, the recommendation needs only that tea lowers risk. Choice D (even more benefit beyond three cups) is unnecessary to a three-cup recommendation. Choice E (non-drinkers' awareness) is irrelevant to whether the tea caused the effect. The correct answer is B.
 **related_reading:** reading-verbal-04-cr-question-types
+
+
+---
+
+## Q212
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Assumption
+
+City transit director: Last year we replaced the fare-card readers on our buses with faster contactless readers. Boarding times per passenger fell by an average of four seconds. We therefore expect that the buses on our busiest route, the 12, will now complete their loops noticeably faster, allowing us to run the same schedule with one fewer bus.
+
+The transit director's argument depends on which of the following assumptions?
+
+- A) The faster contactless readers cost less to maintain than the fare-card readers they replaced.
+- B) Passengers on the 12 route board more frequently than passengers on the transit system's other routes.
+- C) The time the 12 buses spend stopped to let passengers board accounts for enough of each loop's total time that shaving four seconds per passenger meaningfully shortens the loop.
+- D) Most passengers on the 12 route had complained about slow boarding before the new readers were installed.
+- E) The contactless readers will not need to be replaced again for at least several years.
+
+**answer:** C
+**explanation:** The director reasons from a four-second-per-passenger reduction in boarding time to the conclusion that the 12 route's loops will run noticeably faster, enough to drop a bus. This holds only if boarding time is a large enough share of total loop time that the per-passenger savings translate into a meaningful reduction; if loop time is dominated by driving and traffic, four seconds per boarding passenger could be negligible. Choice C states exactly this required link; negate it (boarding is too small a share of loop time to matter) and the conclusion collapses, the mark of a necessary assumption. Choice A (maintenance cost) bears on budget, not loop speed. Choice B (relative boarding frequency) compares routes but does not establish that the saving matters in absolute terms on the 12. Choice D (prior complaints) is about perception, not whether loops actually shorten. Choice E (longevity) concerns future replacement, not the present conclusion. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q213
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Weaken
+
+A pharmaceutical firm tested a new cholesterol drug by recruiting volunteers and assigning the drug to those who agreed to take a daily pill and a placebo to those who declined. After one year, the group taking the drug showed a 30 percent greater reduction in cholesterol than the placebo group. The firm concluded that the drug is highly effective at lowering cholesterol.
+
+Which of the following, if true, most seriously weakens the firm's conclusion?
+
+- A) The reduction in cholesterol observed in the drug group was larger than that produced by any drug previously on the market.
+- B) People who agree to take a daily pill for a year tend to be more health-conscious overall and more likely to also improve their diet and exercise than people who decline.
+- C) A small number of volunteers in the drug group stopped taking the pill partway through the study.
+- D) The placebo pills were identical in appearance to the drug pills, so volunteers could not tell them apart.
+- E) Cholesterol levels in the general population rose slightly over the year the study was conducted.
+
+**answer:** B
+**explanation:** Because volunteers were not randomly assigned but instead sorted themselves into the drug group (those who agreed) and the placebo group (those who declined), the two groups may differ systematically apart from the drug. Choice B exposes exactly this self-selection confounder: if those willing to commit to a daily pill are also more likely to eat better and exercise, then diet and exercise, not the drug, could explain the greater cholesterol reduction, badly undermining the causal conclusion. Choice A strengthens the result by emphasizing its magnitude. Choice C (a few dropouts) would, if anything, dilute the drug group's measured effect, not explain it away. Choice D (matched appearance) supports blinding and thus the study's validity. Choice E (population-wide rise) applies to both groups and does not explain the difference between them. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q214
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A regional airline introduced a policy of boarding passengers from the back rows of the plane to the front, replacing its previous practice of boarding first-class and frequent-flyer passengers first. In the three months after the change, the airline's average on-time departure rate improved from 78 percent to 86 percent. The airline credits the new boarding order for the improvement.
+
+Which of the following, if true, most strengthens the airline's claim?
+
+- A) The airline added two new destinations to its network during the same three-month period.
+- B) Passenger surveys showed that travelers found the new boarding process more orderly than the old one.
+- C) Competing airlines that did not change their boarding procedures saw their on-time departure rates hold steady over the same three months.
+- D) The new boarding order was announced to passengers through signs at the gate and onboard announcements.
+- E) The airline's on-time arrival rate, measured at the destination, also improved during the period.
+
+**answer:** C
+**explanation:** The airline draws a causal conclusion, that the new back-to-front boarding order improved on-time departures. Such a claim is strengthened most by ruling out the leading alternative explanation, namely that broader conditions (weather, air-traffic patterns, scheduling) lifted on-time rates industry-wide. Choice C does this: competitors facing the same external conditions but keeping their old boarding procedures saw no change, isolating the boarding-order switch as the factor that distinguishes this airline. Choice A introduces a confound (new routes could affect timing) and does not support the claim. Choice B (passengers found it orderly) is about perception, not departure times. Choice D (how the change was communicated) does not bear on whether boarding order caused faster departures. Choice E (better on-time arrivals) could result from many in-flight or routing factors and does not isolate boarding as the cause of faster departures. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q215
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Paradox
+
+A national park introduced a strict carry-in, carry-out trash policy and removed all garbage bins from its trails, expecting that visitors would pack out their own waste and the amount of litter left along the trails would fall. In the year after the bins were removed, however, park rangers collected substantially more litter from the trails than they had in the year before.
+
+Which of the following, if true, most helps to resolve the apparent discrepancy?
+
+- A) The park increased the number of rangers patrolling the trails after the policy took effect.
+- B) Many visitors, finding no bins available, left their trash beside the spots where the bins used to stand rather than carrying it out.
+- C) The park posted signs at every trailhead explaining the new carry-in, carry-out policy.
+- D) Litter at the park's picnic areas, which still had bins, decreased over the same period.
+- E) The total number of visitors to the park rose modestly in the year after the policy change.
+
+**answer:** B
+**explanation:** The puzzle is that removing bins to encourage pack-out behavior coincided with more litter, not less. Choice B resolves it directly: rather than carrying their waste out, many visitors simply dropped it where the bins used to be, so eliminating the bins produced abandoned piles of trash instead of clean trails, accounting for the increase. Choice A (more rangers) might improve detection but the stem already says rangers collected more litter, and more patrols do not explain why visitors littered more. Choice C (informational signs) would, if anything, promote the intended behavior and deepens the paradox. Choice D (picnic-area litter fell) concerns a different area that kept its bins and does not explain the trail increase. Choice E (a modest visitor rise) is too small to plausibly account for a substantial jump in litter and does not by itself reconcile the outcome. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q216
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Flaw
+
+Columnist: A recent survey of our newspaper's online readers found that 70 percent support raising the city's property tax to fund new libraries. The city council should therefore proceed with the tax increase, confident that it reflects the will of the city's residents.
+
+The columnist's reasoning is most vulnerable to criticism on the grounds that it
+
+- A) presumes that the city's residents are well informed about how library funding works
+- B) treats the opinions of those who responded to a survey of one newspaper's online readers as representative of the city's residents generally
+- C) fails to consider whether the new libraries would be used by a majority of residents
+- D) assumes that raising the property tax is the only way to fund new libraries
+- E) overlooks the possibility that supporting new libraries is different from supporting a tax increase
+
+**answer:** B
+**explanation:** The columnist generalizes from a survey of one newspaper's online readers to a conclusion about the will of all city residents. That leap is unsound because the people who read this particular paper online and choose to respond are unlikely to be a representative cross-section of the whole city; they are a self-selected, possibly atypical subgroup. Choice B names exactly this sampling flaw. Choice A (whether residents are well informed) raises a different worry not central to the argument's logic. Choice C (whether libraries would be used) concerns the policy's merits, not the inference from the survey. Choice D (tax as the only funding option) attacks a claim the columnist never makes. Choice E (supporting libraries versus supporting the tax) is not the flaw, since the survey question already asked specifically about the tax increase. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q217
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Inference
+
+In the Brookhaven school district, every student who takes the advanced calculus course must first pass the algebra placement exam. Some students who pass the algebra placement exam go on to take the advanced statistics course instead of advanced calculus. No student takes both advanced calculus and advanced statistics in the same year.
+
+If the statements above are true, which of the following must also be true?
+
+- A) Every student who passes the algebra placement exam takes either advanced calculus or advanced statistics.
+- B) No student who takes advanced statistics in a given year also takes advanced calculus that same year.
+- C) Most students who pass the algebra placement exam take advanced calculus.
+- D) Some students who take advanced calculus did not pass the algebra placement exam.
+- E) Every student who takes advanced statistics first passed the algebra placement exam.
+
+**answer:** B
+**explanation:** We are told no student takes both advanced calculus and advanced statistics in the same year. It follows directly that a student taking advanced statistics in a given year does not also take advanced calculus that same year, which is Choice B and must be true. Choice A overreaches: passing the placement exam does not require taking either course; some who pass may take neither. Choice C asserts a proportion ("most") the premises never support. Choice D contradicts a premise, since taking advanced calculus requires passing the placement exam. Choice E is unsupported: only advanced calculus is stated to require the placement exam, so the premises do not establish that every statistics student passed it. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q218
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Evaluate
+
+Marketing director: Last quarter we shifted half of our television advertising budget to social-media ads, while keeping the other half on television. Sales of our flagship product rose 12 percent over the quarter. Since television had previously delivered our strongest results, this rise shows that social-media advertising is now the more cost-effective channel for us, and we should move the rest of our television budget to social media.
+
+The answer to which of the following questions would be most useful in evaluating the director's recommendation?
+
+- A) How much did the company spend in total on advertising last quarter compared with the previous quarter?
+- B) Of the 12 percent sales increase, how much can be attributed to customers who saw the social-media ads versus those who saw the television ads?
+- C) Do the company's competitors advertise more heavily on social media or on television?
+- D) Has the flagship product's price changed over the past several quarters?
+- E) What share of the company's target customers use the social-media platforms on which the ads ran?
+
+**answer:** B
+**explanation:** The director concludes that social media is more cost-effective and should absorb the rest of the TV budget, but the 12 percent rise occurred while both channels ran simultaneously, so the data cannot tell which channel produced the gain. Choice B targets precisely this gap: knowing how much of the increase came from social-media exposure versus television exposure is decisive, because if television drove most of the rise, cutting it entirely could reduce sales rather than improve cost-effectiveness. Choice A (total spend) bears on overall budget changes but not on which channel was responsible. Choice C (competitors' channels) is context, not a test of this firm's results. Choice D (price changes) is worth knowing generally but the stem gives no indication price moved, and it does not directly resolve the channel comparison. Choice E (target customers' platform use) is suggestive but does not measure the channels' actual contribution to the observed sales. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q219
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Boldface
+
+Economist: Several analysts argue that **the recent surge in remote work will permanently depress demand for office space in major cities**. They point to the high office-vacancy rates recorded over the past two years. But vacancy rates lag behind actual usage, because long-term leases keep nominally vacant space off the rental market for years even after companies decide to give it up. As those leases expire and the space is finally released, today's reported vacancy figures will prove to have understated, not overstated, the eventual decline. **Demand for urban office space will fall even further than current vacancy data suggest.**
+
+In the economist's argument, the two portions in boldface play which of the following roles?
+
+- A) The first is a prediction the economist rejects; the second is the conclusion the economist draws.
+- B) The first is the conclusion of the economist's argument; the second is evidence offered in support of it.
+- C) The first is a prediction the economist endorses; the second restates that prediction in stronger terms.
+- D) The first is evidence the economist uses; the second is an objection the economist concedes.
+- E) The first and second are competing predictions, neither of which the economist accepts.
+
+**answer:** C
+**explanation:** Trace the economist's stance. The first boldface, that remote work will permanently depress office demand, is attributed to "several analysts," but the economist does not reject it; the entire argument supports an even stronger version of it, explaining that lagging vacancy data have understated the coming decline. The second boldface, that demand will fall even further than current data suggest, is the economist's own conclusion and is a stronger restatement of the first prediction. Choice C captures this: a prediction the economist endorses, then the same prediction sharpened. Choice A wrongly says the economist rejects the first prediction. Choice B reverses conclusion and evidence. Choice D mislabels the first as evidence and the second as a conceded objection. Choice E wrongly claims the economist accepts neither, when in fact the conclusion affirms and extends the first. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q220
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Complete the Argument
+
+Consumer advocate: A popular brand of "energy-saving" space heater is advertised as costing less to operate than ordinary electric heaters because it uses only 750 watts rather than the 1,500 watts a standard heater draws. But this advertised saving is illusory, because __________.
+
+Which of the following most logically completes the advocate's argument?
+
+- A) the energy-saving heater is sold at a higher purchase price than ordinary electric heaters
+- B) electricity rates have risen in most regions over the past several years
+- C) the lower-wattage heater produces only half as much heat, so it must run twice as long to warm a room to the same temperature, consuming the same total energy
+- D) many consumers leave space heaters running in rooms they are not currently occupying
+- E) the energy-saving heater is more expensive to repair than ordinary electric heaters
+
+**answer:** C
+**explanation:** The advocate claims the advertised operating saving is illusory and needs a completion explaining why drawing half the wattage does not actually cut energy used. Choice C supplies exactly that: because the heater outputs only half the heat, it must run twice as long to reach the same temperature, so total energy consumed (watts multiplied by time) is the same, making the operating cost identical and the advertised saving illusory. Choice A (higher purchase price) concerns upfront cost, not the operating saving the ad touts. Choice B (rising electricity rates) applies equally to both heaters and does not erase the wattage difference. Choice D (heaters left running unoccupied) is a user behavior that does not bear on the comparison between the two heaters. Choice E (repair cost) is a separate expense, not the operating-cost claim at issue. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q221
+**difficulty:** Hard
+**type:** Critical Reasoning
+**topic:** Weaken
+
+Restaurant owner: We installed a large outdoor patio last spring, and our total summer revenue rose 20 percent compared with the previous summer. The patio was clearly a sound investment, so next year we will spend even more to expand it further.
+
+Which of the following, if true, most seriously weakens the owner's reasoning?
+
+- A) The patio can be used only during the warmer months and must be closed during winter.
+- B) Almost all of the revenue increase came from existing indoor customers who moved to the patio on busy nights, leaving indoor tables empty rather than adding new diners.
+- C) Several other restaurants in the area also added outdoor seating last spring.
+- D) The cost of building the patio was recovered within the first two months of summer.
+- E) Customers seated on the patio tended to order more expensive drinks than indoor customers did.
+
+**answer:** B
+**explanation:** The owner infers that the patio caused a net 20 percent revenue gain and is therefore worth expanding. Choice B undercuts this by showing the patio largely shifted existing customers rather than attracting new business: if indoor tables sat empty while patio tables filled, the patio mostly relocated revenue instead of adding it, so the apparent gain may owe little to the patio and further expansion would not pay off. Choice A (seasonal use) is a known limitation but does not explain away the observed gain or argue against expanding the usable-season capacity. Choice C (competitors also added seating) does not directly weaken the claim that this patio drove this restaurant's revenue. Choice D (fast cost recovery) strengthens the investment case. Choice E (patio customers spend more on drinks) also supports, not weakens, the value of the patio. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types

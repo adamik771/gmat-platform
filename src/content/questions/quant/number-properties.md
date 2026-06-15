@@ -2231,3 +2231,158 @@ When the positive integer n is divided by 12, what is the remainder?
 **answer:** C
 **explanation:** Each division condition restricts the remainder of n upon division by 12 to a short list of possibilities, and a statement is sufficient only when it narrows that list to a single value; this works because 12 is a common multiple of both 6 and 4, so a remainder modulo 12 is consistent with at most one or two remainders modulo each smaller divisor. Consider statement (1): n leaves remainder 5 when divided by 6, so n has the form 6k + 5; reducing such values modulo 12 yields 5 when k is even and 11 when k is odd, so n modulo 12 is either 5 or 11, which is not unique, and statement (1) alone is not sufficient. Consider statement (2): n leaves remainder 3 when divided by 4, so n has the form 4m + 3; reducing modulo 12 yields the three values 3, 7, and 11, which is not unique, and statement (2) alone is not sufficient. Taking the statements together, the remainder modulo 12 must lie in both lists, and the only value common to {5, 11} and {3, 7, 11} is 11. The two statements together fix the remainder at 11, so they are sufficient while neither alone is. A check confirms this: 11 leaves remainder 5 when divided by 6 and remainder 3 when divided by 4. The correct answer is C.
 **related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q85
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 7¹²³ × 4⁵⁷?
+
+- A) 2
+- B) 4
+- C) 6
+- D) 8
+- E) 9
+
+**answer:** A
+**explanation:** The units digit of a product depends only on the units digits of its factors, and the units digits of successive powers of a fixed base repeat in a cycle, so we find the units digit of each power separately and then multiply, keeping only the units digit of the result. The units digits of the powers of 7 form the repeating cycle 7, 9, 3, 1, which has length 4; the position within this cycle for exponent n is given by the remainder when n is divided by 4, with a remainder of 0 corresponding to the fourth position. Since 123 = 4 times 30 plus 3, the remainder is 3, and the third entry of the cycle 7, 9, 3, 1 is 3, so 7¹²³ ends in 3. The units digits of the powers of 4 form the shorter repeating cycle 4, 6, which has length 2: odd exponents give 4 and even exponents give 6. Since 57 is odd, 4⁵⁷ ends in 4. Multiplying the two units digits gives 3 times 4 = 12, whose units digit is 2, so the units digit of the entire product is 2. The correct answer is A.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q86
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** GCD and LCM
+
+Two positive integers have a greatest common factor of 14 and a least common multiple of 420. If one of the integers is 70, what is the sum of the two integers?
+
+- A) 84
+- B) 98
+- C) 140
+- D) 154
+- E) 168
+
+**answer:** D
+**explanation:** The governing principle is the identity that, for any two positive integers, the product of their greatest common factor and their least common multiple equals the product of the integers themselves. Let the two integers be a and b. The identity states that GCF(a, b) times LCM(a, b) equals a times b, so substituting the given values yields 14 times 420 = a times b, that is, a times b = 5,880. We are told that one of the integers is 70, so we set a = 70 and solve for the other integer: b = 5,880 ÷ 70 = 84. Before summing, we verify that the pair 70 and 84 actually has the stated greatest common factor and least common multiple. Factoring gives 70 = 2 times 5 times 7 and 84 = 2² times 3 times 7; the greatest common factor takes the smaller power of each shared prime, namely 2 times 7 = 14, and the least common multiple takes the greater power of each prime, namely 2² times 3 times 5 times 7 = 420. Both conditions hold, so the second integer is indeed 84, and the sum of the two integers is 70 + 84 = 154. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q87
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Primes and Remainders
+
+If p is a prime number greater than 3, what is the remainder when p² is divided by 12?
+
+- A) 0
+- B) 1
+- C) 3
+- D) 5
+- E) 7
+
+**answer:** B
+**explanation:** The governing idea is that any prime greater than 3 avoids the factors 2 and 3, which sharply constrains its residue modulo small numbers and lets us reason about p² modulo 12 in general rather than testing values blindly. Because p is prime and greater than 3, p is divisible by neither 2 nor 3, so p is odd and is not a multiple of 3. An odd integer can be written as p = 2k + 1, and its square is p² = 4k² + 4k + 1 = 4k(k + 1) + 1. Since k and k + 1 are consecutive integers, one of them is even, so the product k(k + 1) is even, which makes 4k(k + 1) a multiple of 8; in particular it is a multiple of 4. Thus p² leaves a remainder of 1 upon division by 4. Considering divisibility by 3, because p is not a multiple of 3 it is congruent to 1 or 2 modulo 3, and in either case p² is congruent to 1 modulo 3, since 1² = 1 and 2² = 4 leaves remainder 1. Therefore p² leaves remainder 1 upon division by both 4 and 3; since 4 and 3 are coprime and their product is 12, p² leaves remainder 1 upon division by 12. A check confirms this: for p = 5, p² = 25 = 12 times 2 + 1; for p = 7, p² = 49 = 12 times 4 + 1; and for p = 11, p² = 121 = 12 times 10 + 1. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q88
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Remainders
+
+When a positive integer n is divided by 6, the remainder is 4, and when n is divided by 10, the remainder is 8. What is the smallest possible value of n?
+
+- A) 22
+- B) 28
+- C) 34
+- D) 52
+- E) 58
+
+**answer:** B
+**explanation:** This problem describes an integer through two division conditions, each expressible as a quotient-plus-remainder equation; the efficient method is to encode one condition algebraically and substitute it into the other rather than testing values blindly. Let n be the positive integer. The condition that n leaves a remainder of 4 when divided by 6 means n = 6a + 4 for some non-negative integer a. We impose the second condition by reducing n = 6a + 4 modulo 10 and requiring the result to be 8. We need 6a + 4 to leave a remainder of 8 upon division by 10, which means 6a must leave a remainder of 4 upon division by 10. Testing successive values of a, we find that a = 0 gives 0, a = 1 gives 6, a = 2 gives 12 (remainder 2), a = 3 gives 18 (remainder 8), and a = 4 gives 24 (remainder 4); thus the smallest qualifying value is a = 4. Substituting a = 4 into n = 6a + 4 gives n = 24 + 4 = 28. We verify both original conditions: dividing 28 by 6 gives quotient 4 and remainder 4, since 28 = 6 times 4 + 4, and dividing 28 by 10 gives quotient 2 and remainder 8, since 28 = 10 times 2 + 8. Because a = 4 is the smallest qualifying value, n = 28 is the smallest possible value of n. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q89
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Factors and Multiples
+
+How many positive factors of 5,400 are multiples of 6?
+
+- A) 18
+- B) 24
+- C) 27
+- D) 30
+- E) 36
+
+**answer:** C
+**explanation:** Every positive factor of a number is built from the same primes that appear in that number, each taken to an exponent no larger than its exponent in the number; a factor is a multiple of 6 = 2 times 3 exactly when it contains at least one factor of 2 and at least one factor of 3. We first factor the number: 5,400 = 54 times 100 = (2 times 3³) times (2² times 5²) = 2³ times 3³ times 5². Any factor has the form 2^a times 3^b times 5^c, where 0 ≤ a ≤ 3, 0 ≤ b ≤ 3, and 0 ≤ c ≤ 2. For the factor to be a multiple of 6, we require a ≥ 1 and b ≥ 1, while c is unrestricted. Counting the admissible exponents: a may be 1, 2, or 3, giving 3 choices; b may be 1, 2, or 3, giving 3 choices; and c may be 0, 1, or 2, giving 3 choices. Because the exponents are chosen independently, the number of factors that are multiples of 6 is 3 times 3 times 3 = 27. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q90
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Even/Odd Arithmetic
+
+If a and b are integers, is a + b even?
+
+(1) a²b is even.
+(2) a − b is even.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** B
+**explanation:** The question asks for a definite yes-or-no answer to whether a + b is even, and the governing parity rules are that a sum is even exactly when its two terms share the same parity, a product is even exactly when at least one factor is even, and a square has the same parity as its base. Consider statement (1): a²b is even, so at least one of a² and b is even, which means at least one of a and b is even. This does not fix the parity of the sum. If a = 2 and b = 4, both are even, a²b = 16 is even, and a + b = 6 is even, giving the answer yes; but if a = 2 and b = 3, then a²b = 12 is even while a + b = 5 is odd, giving the answer no. Because statement (1) permits both outcomes, it is not sufficient. Consider statement (2): a − b is even. A difference of two integers is even precisely when the two integers share the same parity, so a and b are either both even or both odd. In either case their sum a + b combines two terms of the same parity and is therefore even, giving the definite answer yes. Statement (2) alone is sufficient. The correct answer is B.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q91
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Units Digit Patterns
+
+What is the units digit of 13¹⁷ + 18²²?
+
+- A) 1
+- B) 3
+- C) 5
+- D) 7
+- E) 9
+
+**answer:** D
+**explanation:** The units digit of a power depends only on the units digit of the base, and the units digits of successive powers repeat in a cycle, so we find the units digit of each term separately and then add, keeping only the units digit of the sum. For 13¹⁷, only the base's units digit 3 matters, and the powers of 3 cycle through units digits 3, 9, 7, 1 with length 4; the position is the remainder when the exponent is divided by 4, with a remainder of 0 meaning the fourth position. Since 17 = 4 times 4 + 1, the remainder is 1, and the first entry of the cycle is 3, so 13¹⁷ ends in 3. For 18²², only the units digit 8 matters, and the powers of 8 cycle through units digits 8, 4, 2, 6 with length 4. Since 22 = 4 times 5 + 2, the remainder is 2, and the second entry of the cycle is 4, so 18²² ends in 4. Adding the two units digits gives 3 + 4 = 7, whose units digit is 7, so the units digit of the entire sum is 7. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q92
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** GCD and LCM
+
+How many unordered pairs of positive integers have a greatest common factor of 9 and a least common multiple of 270?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 6
+- E) 8
+
+**answer:** C
+**explanation:** When two positive integers share a greatest common factor g, each can be written as g times a smaller factor, and those smaller factors must be coprime; their least common multiple is then g times the product of the coprime factors, so counting the valid pairs reduces to counting coprime factorizations of a single number. Let the two integers be 9a and 9b, where a and b are positive integers with greatest common factor 1, since 9 is their greatest common factor. The least common multiple of 9a and 9b is 9 times a times b, and this must equal 270, so a times b = 270 ÷ 9 = 30. We must therefore count the unordered pairs of coprime positive integers whose product is 30. Factoring gives 30 = 2 times 3 times 5, a product of three distinct primes, and a coprime factorization assigns each prime entirely to one member of the pair. The unordered coprime pairs with product 30 are (1, 30), (2, 15), (3, 10), and (5, 6); each pair consists of coprime numbers, and there are 4 of them. These correspond to the integer pairs (9, 270), (18, 135), (27, 90), and (45, 54), and a check confirms that each has greatest common factor 9 and least common multiple 270. Hence there are 4 such unordered pairs. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties

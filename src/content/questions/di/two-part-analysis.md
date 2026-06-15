@@ -4043,3 +4043,508 @@ giving x = 8 or x = 15.
 
 The correct answers are Longer Side = 15 cm and Shorter Side = 8 cm.
 **related_reading:** reading-di-06-two-part-analysis
+
+
+---
+
+## Q76
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Digit Properties
+
+A two-digit positive integer has digits that sum to 11. When the digits are reversed, the resulting number is 27 greater than the original. Determine the tens digit of the original number (row 1) and the units digit of the original number (row 2).
+
+|   | Tens digit | Units digit |
+|---|------------|-------------|
+| 2 |            |             |
+| 3 |            |             |
+| 4 |            |             |
+| 5 |            |             |
+| 7 |            |             |
+| 8 |            |             |
+
+**answer:** Tens digit = 4, Units digit = 7
+**explanation:** **Governing principle.** A two-digit number with tens digit t and units digit u has the value 10t + u. Reversing the digits produces 10u + t. Each verbal condition translates into one linear equation, and the two equations are solved simultaneously.
+
+**Define variables.** Let t be the tens digit and u be the units digit of the original number, where t and u are integers with 1 ≤ t ≤ 9 and 0 ≤ u ≤ 9.
+
+**Translate the conditions into equations.**
+
+The digits sum to 11:
+
+t + u = 11   ... (1)
+
+The reversed number exceeds the original by 27:
+
+(10u + t) - (10t + u) = 27
+
+Simplifying the left side: 10u + t - 10t - u = 9u - 9t. The condition becomes:
+
+9u - 9t = 27
+
+Dividing both sides by 9:
+
+u - t = 3   ... (2)
+
+**Solve the system.** Adding equations (1) and (2):
+
+(t + u) + (u - t) = 11 + 3
+
+2u = 14
+
+u = 7
+
+Substituting u = 7 into equation (1): t + 7 = 11, so t = 4.
+
+**Identify the number.** The original number is 10(4) + 7 = 47.
+
+**Verification.** Digit sum: 4 + 7 = 11. Correct. Reversed number: 74, and 74 - 47 = 27. Correct.
+
+**Matching candidate values.** The candidate list is 2, 3, 4, 5, 7, and 8. The tens digit 4 and the units digit 7 both appear among the candidates. No other pairing from the list satisfies both equations: for instance, tens 5 with units 7 would sum to 12, and tens 3 with units 8 would give a reversal difference of 9(8) - 9(3) = 45, not 27.
+
+The correct answers are Tens digit = 4 and Units digit = 7.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q77
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Boats and Streams
+
+A boat travels 36 km downstream in 2 hours and the same 36 km upstream in 3 hours. The boat's speed in still water and the current's speed are both constant. Determine the boat's speed in still water (row 1) and the speed of the current (row 2).
+
+|          | Boat speed (still water) | Current speed |
+|----------|--------------------------|---------------|
+| 3 km/h   |                          |               |
+| 6 km/h   |                          |               |
+| 9 km/h   |                          |               |
+| 12 km/h  |                          |               |
+| 15 km/h  |                          |               |
+| 18 km/h  |                          |               |
+
+**answer:** Boat speed = 15 km/h, Current speed = 3 km/h
+**explanation:** **Governing principle.** When a boat moves downstream, the current aids it, so the effective speed is the sum of the boat's still-water speed and the current's speed. When it moves upstream, the current opposes it, so the effective speed is the difference. Each effective speed equals distance divided by time.
+
+**Define variables.** Let b be the boat's speed in still water (km/h) and c be the speed of the current (km/h).
+
+**Compute the two effective speeds.**
+
+Downstream: the boat covers 36 km in 2 hours, so the downstream speed is 36 / 2 = 18 km/h. This gives:
+
+b + c = 18   ... (1)
+
+Upstream: the boat covers 36 km in 3 hours, so the upstream speed is 36 / 3 = 12 km/h. This gives:
+
+b - c = 12   ... (2)
+
+**Solve the system.** Adding equations (1) and (2) eliminates c:
+
+(b + c) + (b - c) = 18 + 12
+
+2b = 30
+
+b = 15
+
+Substituting b = 15 into equation (1): 15 + c = 18, so c = 3.
+
+**Verification.** Downstream effective speed: 15 + 3 = 18 km/h, and 18 × 2 = 36 km. Upstream effective speed: 15 - 3 = 12 km/h, and 12 × 3 = 36 km. Both trips check out.
+
+**Matching candidate values.** The candidate list is 3, 6, 9, 12, 15, and 18 km/h. The boat speed 15 km/h and current speed 3 km/h both appear among the candidates. No other pair from the list satisfies both equations: for example, boat 12 with current 6 would give a downstream speed of 18 but an upstream speed of only 6, requiring 6 hours upstream rather than 3.
+
+The correct answers are Boat speed = 15 km/h and Current speed = 3 km/h.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q78
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Work with Partial Participation
+
+Machine A can complete a production order alone in 12 days, and Machine B can complete the same order alone in 24 days. Both machines start the order together. After some whole number of days, Machine A is taken offline for maintenance, and Machine B continues alone until the order is finished. From start to finish, Machine B runs for a total of 16 days. Determine the number of days Machine A worked (row 1) and the fraction of the order completed by Machine B (row 2).
+
+|       | Days A worked | Fraction done by B |
+|-------|---------------|--------------------|
+| 2     |               |                    |
+| 4     |               |                    |
+| 6     |               |                    |
+| 1/3   |               |                    |
+| 1/2   |               |                    |
+| 2/3   |               |                    |
+
+**answer:** Days A worked = 4, Fraction done by B = 2/3
+**explanation:** **Governing principle.** Each machine's rate is the reciprocal of its solo completion time, expressed as a fraction of the order per day. The total work done is the sum of each machine's rate multiplied by the number of days it ran, and a completed order equals 1 full unit of work.
+
+**Define variables and rates.** Let d be the number of days Machine A worked before going offline. Machine B runs for the entire job, a total of 16 days. The rates are:
+
+- Machine A: 1/12 of the order per day.
+- Machine B: 1/24 of the order per day.
+
+**Set up the completion equation.** The total work performed must equal one full order. Machine A contributes work for d days and Machine B contributes work for all 16 days:
+
+(1/12)·d + (1/24)·16 = 1
+
+**Solve for d.** First evaluate Machine B's total contribution:
+
+(1/24)·16 = 16/24 = 2/3
+
+The equation becomes:
+
+(1/12)·d + 2/3 = 1
+
+Subtracting 2/3 from both sides:
+
+(1/12)·d = 1 - 2/3 = 1/3
+
+Multiplying both sides by 12:
+
+d = 12 · (1/3) = 4
+
+Machine A therefore worked 4 days.
+
+**Determine the fraction completed by Machine B.** Machine B ran for all 16 days at a rate of 1/24 per day, completing:
+
+16 · (1/24) = 16/24 = 2/3
+
+So Machine B completed 2/3 of the order. (Machine A completed the remaining 1/3, consistent with 4 · (1/12) = 4/12 = 1/3.)
+
+**Verification.** Total work: 1/3 (by A) + 2/3 (by B) = 1, a complete order. The first 4 days were worked jointly; thereafter Machine B continued alone for the remaining 12 of its 16 days. Joint output in 4 days: 4·(1/12 + 1/24) = 4·(2/24 + 1/24) = 4·(3/24) = 4·(1/8) = 1/2. Machine B alone over its final 12 days: 12·(1/24) = 1/2. Total: 1/2 + 1/2 = 1. Consistent.
+
+**Matching candidate values.** The candidate list is 2, 4, 6, 1/3, 1/2, and 2/3. The value 4 (days A worked) and the value 2/3 (fraction done by B) both appear. The distractor 1/3 is the fraction done by A, not B, and 1/2 corresponds to neither requested quantity.
+
+The correct answers are Days A worked = 4 and Fraction done by B = 2/3.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q79
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Weighted Average
+
+A class of 30 students consists only of boys and girls. The boys scored an average of 70 on an exam, the girls scored an average of 85, and the class as a whole averaged 76. Determine the number of boys (row 1) and the number of girls (row 2).
+
+|     | Number of boys | Number of girls |
+|-----|----------------|-----------------|
+| 10  |                |                 |
+| 12  |                |                 |
+| 15  |                |                 |
+| 18  |                |                 |
+| 20  |                |                 |
+
+**answer:** Number of boys = 18, Number of girls = 12
+**explanation:** **Governing principle.** The overall average of a group equals the total of all scores divided by the number of members. For two subgroups, the sum of each subgroup's total (count multiplied by its average) equals the whole group's total (count multiplied by its average). This yields a weighted-average equation that pairs with the head-count equation.
+
+**Define variables.** Let b be the number of boys and g be the number of girls.
+
+**Translate into equations.**
+
+Head count: the class has 30 students:
+
+b + g = 30   ... (1)
+
+Total score balance: boys' total plus girls' total equals the class total. The class total is 76 × 30 = 2,280:
+
+70b + 85g = 2,280   ... (2)
+
+**Solve the system.** From equation (1), g = 30 - b. Substituting into equation (2):
+
+70b + 85(30 - b) = 2,280
+
+70b + 2,550 - 85b = 2,280
+
+-15b + 2,550 = 2,280
+
+-15b = -270
+
+b = 18
+
+Then g = 30 - 18 = 12.
+
+**Verification.** Boys' total: 70 × 18 = 1,260. Girls' total: 85 × 12 = 1,020. Combined total: 1,260 + 1,020 = 2,280, and 2,280 / 30 = 76, matching the class average. Both conditions hold.
+
+**Matching candidate values.** The candidate list is 10, 12, 15, 18, and 20. The number of boys, 18, and the number of girls, 12, both appear. As a check on the alligation logic, the class average 76 lies closer to the boys' average 70 than to the girls' 85, so boys should outnumber girls — consistent with 18 versus 12. No other pairing from the list satisfies equation (2): for instance, 15 boys and 15 girls would give 70(15) + 85(15) = 2,325, exceeding 2,280.
+
+The correct answers are Number of boys = 18 and Number of girls = 12.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q80
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Successive Percentage Change
+
+A retailer purchases an item for $200. It marks the item up by 40% over cost to set the list price, then advertises a sale at 25% off the list price. The item sells at the sale price. Determine the list price (row 1) and the final sale price (row 2).
+
+|       | List price | Sale price |
+|-------|------------|------------|
+| $150  |            |            |
+| $210  |            |            |
+| $240  |            |            |
+| $250  |            |            |
+| $280  |            |            |
+| $300  |            |            |
+
+**answer:** List price = $280, Sale price = $210
+**explanation:** **Governing principle.** Successive percentage changes are applied multiplicatively, each to the running result rather than to the original base. A markup of p% multiplies the amount by (1 + p/100); a discount of d% multiplies the amount by (1 - d/100).
+
+**Define the base.** The cost to the retailer is $200.
+
+**Apply the markup to find the list price.** A 40% markup over cost multiplies the cost by 1.40:
+
+List price = 200 × 1.40 = 280
+
+The list price is therefore $280.
+
+**Apply the discount to find the sale price.** A 25% discount off the list price multiplies the list price by (1 - 0.25) = 0.75:
+
+Sale price = 280 × 0.75 = 210
+
+The sale price is therefore $210.
+
+**Verification.** A 25% discount removes 0.25 × 280 = $70 from the $280 list price, leaving 280 - 70 = $210, which matches. Note that the retailer still profits: $210 sale price exceeds the $200 cost by $10, so the combined markup-then-discount nets a 5% gain over cost. This confirms the order of operations was applied correctly — applying the 25% discount to the cost instead of the list price would have produced an incorrect figure.
+
+**Matching candidate values.** The candidate list is $150, $210, $240, $250, $280, and $300. The list price $280 and the sale price $210 both appear among the candidates. A common error is to treat the markup and discount as if they simply net out — "40% up then 25% down equals 15% up" — and compute 200 × 1.15 = $230; the candidate $240 sits near that mistaken figure to catch it. The percentages do not combine additively, however: applying them multiplicatively (200 × 1.40 × 0.75) gives the correct $210, not $230.
+
+The correct answers are List price = $280 and Sale price = $210.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q81
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Argument Structure
+
+Consider the following argument: "Since the regional hospital adopted an electronic prescribing system last year, the number of medication errors reported by its pharmacy has fallen by 22%. Electronic prescribing eliminates handwriting ambiguity, which has long been a source of dispensing mistakes. Therefore, the new system is responsible for the decline in medication errors."
+
+From the statements below, identify the main conclusion of the argument (row 1) and the central unstated assumption on which the argument depends (row 2).
+
+| Statement                                                                                          | Conclusion | Assumption |
+|----------------------------------------------------------------------------------------------------|------------|------------|
+| Electronic prescribing eliminates handwriting ambiguity                                            |            |            |
+| The new system is responsible for the decline in medication errors                                 |            |            |
+| Reported medication errors fell by 22% after the system was adopted                                |            |            |
+| No other change at the hospital materially contributed to the decline in reported errors           |            |            |
+| Electronic prescribing systems are now standard across most regional hospitals                     |            |            |
+
+**answer:** Conclusion = "The new system is responsible for the decline in medication errors"; Assumption = "No other change at the hospital materially contributed to the decline in reported errors"
+**explanation:** **Governing principle.** In an argument, the conclusion is the claim the author is ultimately trying to establish; it is supported by the premises and is typically flagged by an indicator such as "therefore." A premise is a stated fact offered as support. A central unstated assumption is a suppressed premise the argument needs in order for its inference to hold; the negation test confirms it — if denying the statement collapses the argument, it is a required assumption.
+
+**Identifying the conclusion.** The passage offers two pieces of support: an observed datum (errors fell 22% after adoption) and a mechanism (electronic prescribing removes handwriting ambiguity). Both are marshaled, via the indicator "Therefore," in service of the final claim: "the new system is responsible for the decline in medication errors." That claim is not offered as evidence for anything else in the passage; it is the endpoint the other statements are meant to prove. The Conclusion column is therefore assigned to "The new system is responsible for the decline in medication errors."
+
+**Identifying the central unstated assumption.** The inferential core is causal: the system was adopted, errors then fell, so the system caused the fall. This is a post hoc structure that holds only if the observed decline is not better explained by some other simultaneous change. If, for example, the hospital also hired more pharmacists, reduced patient volume, or changed how errors were defined or counted in the same period, the 22% drop could be explained without crediting the prescribing system. The argument silently relies on the premise "No other change at the hospital materially contributed to the decline in reported errors." Applying the negation test: if some other change did materially contribute, the conclusion that the system is responsible no longer follows — confirming this statement is load-bearing and is the central assumption.
+
+**Evaluating the remaining candidates.**
+
+- "Electronic prescribing eliminates handwriting ambiguity" is a stated premise (the mechanism), not the conclusion and not unstated.
+- "Reported medication errors fell by 22% after the system was adopted" is the stated observational premise, not an assumption and not the conclusion.
+- "Electronic prescribing systems are now standard across most regional hospitals" is an irrelevant background fact about industry adoption; the argument concerns one hospital's results and does not depend on what other hospitals do.
+
+**Summary of assignments.**
+
+| Column | Credited value |
+|---|---|
+| Conclusion | The new system is responsible for the decline in medication errors |
+| Assumption | No other change at the hospital materially contributed to the decline in reported errors |
+
+The correct answers are Conclusion = The new system is responsible for the decline in medication errors and Assumption = No other change at the hospital materially contributed to the decline in reported errors.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q82
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Quantitative — Geometry
+
+A right triangle has a perimeter of 24 cm and an area of 24 cm². Determine the length of the longer leg (row 1) and the length of the hypotenuse (row 2).
+
+|       | Longer leg | Hypotenuse |
+|-------|------------|------------|
+| 6 cm  |            |            |
+| 8 cm  |            |            |
+| 10 cm |            |            |
+| 12 cm |            |            |
+| 16 cm |            |            |
+
+**answer:** Longer leg = 8 cm, Hypotenuse = 10 cm
+**explanation:** **Governing principle.** For a right triangle with legs a and b and hypotenuse c, three relationships hold: the area equals (1/2)ab, the perimeter equals a + b + c, and the Pythagorean theorem gives a² + b² = c². Combining these constraints determines the side lengths.
+
+**Define variables.** Let a and b be the two legs and c the hypotenuse, with a + b + c = 24 and (1/2)ab = 24.
+
+**Extract the leg relationships.**
+
+From the area: (1/2)ab = 24, so ab = 48.
+
+From the perimeter: a + b + c = 24, so c = 24 - (a + b). Let s = a + b. Then c = 24 - s.
+
+**Apply the Pythagorean theorem.** Substitute c = 24 - s into a² + b² = c². Note that a² + b² = (a + b)² - 2ab = s² - 2(48) = s² - 96. Therefore:
+
+s² - 96 = (24 - s)²
+
+Expanding the right side:
+
+s² - 96 = 576 - 48s + s²
+
+Subtracting s² from both sides:
+
+-96 = 576 - 48s
+
+48s = 576 + 96 = 672
+
+s = 14
+
+So a + b = 14. Combined with ab = 48, the legs are the roots of x² - 14x + 48 = 0, which factors as (x - 6)(x - 8) = 0, giving legs 6 and 8.
+
+**Determine the hypotenuse.** c = 24 - s = 24 - 14 = 10.
+
+**Identify the requested values.** The longer leg is 8 cm, and the hypotenuse is 10 cm. (This is the classic 6-8-10 right triangle, a scaled 3-4-5.)
+
+**Verification.** Perimeter: 6 + 8 + 10 = 24 cm. Area: (1/2)(6)(8) = 24 cm². Pythagoras: 6² + 8² = 36 + 64 = 100 = 10². All three conditions hold.
+
+**Matching candidate values.** The candidate list is 6, 8, 10, 12, and 16 cm. The longer leg 8 cm and the hypotenuse 10 cm both appear. The value 6 cm is the shorter leg, not the requested longer leg, and serves as a distractor.
+
+The correct answers are Longer leg = 8 cm and Hypotenuse = 10 cm.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q83
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Consecutive Integers
+
+Four consecutive integers have a sum of 90. Determine the smallest of the four integers (row 1) and the largest of the four integers (row 2).
+
+|    | Smallest | Largest |
+|----|----------|---------|
+| 18 |          |         |
+| 20 |          |         |
+| 21 |          |         |
+| 22 |          |         |
+| 24 |          |         |
+
+**answer:** Smallest = 21, Largest = 24
+**explanation:** **Governing principle.** Consecutive integers differ by 1. A set of consecutive integers can be represented by a single variable plus successive offsets, so their sum becomes a linear equation in that variable.
+
+**Define variables.** Let n be the smallest of the four consecutive integers. The four integers are then n, n + 1, n + 2, and n + 3.
+
+**Translate into an equation.** The sum of the four integers is 90:
+
+n + (n + 1) + (n + 2) + (n + 3) = 90
+
+Combining like terms:
+
+4n + 6 = 90
+
+**Solve.** Subtracting 6 from both sides:
+
+4n = 84
+
+n = 21
+
+The smallest integer is therefore 21, and the four integers are 21, 22, 23, and 24. The largest is 24.
+
+**Verification.** 21 + 22 + 23 + 24 = 90. The four values are consecutive integers, and their sum matches the given total.
+
+**Matching candidate values.** The candidate list is 18, 20, 21, 22, and 24. The smallest, 21, and the largest, 24, both appear. The values 22 and 20 are interior or off-by-one distractors: 22 is the second integer in the set, not the smallest, and 20 would force the set 20-21-22-23, which sums to 86, not 90.
+
+The correct answers are Smallest = 21 and Largest = 24.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q84
+**difficulty:** Hard
+**type:** Two-Part Analysis
+**topic:** Logic — Cause and Effect / Strengthening and Weakening
+
+A nutrition company argues: "In a survey of our customers, those who took our daily multivitamin reported 30% fewer sick days over the past year than those who did not. Therefore, our multivitamin reduces the number of sick days people experience."
+
+From the statements below, identify one that would most strengthen the argument (row 1) and one that would most weaken it by offering an alternative explanation (row 2).
+
+| Statement                                                                                              | Strengthens | Weakens (alt cause) |
+|--------------------------------------------------------------------------------------------------------|-------------|---------------------|
+| In a randomized double-blind trial, participants given the multivitamin had 28% fewer sick days than a placebo group |             |                     |
+| Customers who take the daily multivitamin are also far more likely to exercise regularly and sleep eight hours a night |             |                     |
+| The multivitamin contains the full recommended daily allowance of vitamins C and D                     |             |                     |
+| The multivitamin is the company's best-selling product                                                 |             |                     |
+| Customers who buy the multivitamin tend to renew their subscriptions                                    |             |                     |
+
+**answer:** Strengthens = "In a randomized double-blind trial, participants given the multivitamin had 28% fewer sick days than a placebo group"; Weakens = "Customers who take the daily multivitamin are also far more likely to exercise regularly and sleep eight hours a night"
+**explanation:** **The logical task.** This Strengthen/Weaken Two-Part Analysis asks for two distinct judgments: the statement that best supports the causal claim, and the statement that best undermines it by supplying an alternative cause. Each column is its own sub-question.
+
+**The argument.** Let V denote taking the multivitamin and let D denote the number of sick days. The company observes, in a customer survey, that V is associated with about 30% fewer D, and concludes that V causes the reduction in D. This is a causal conclusion drawn from self-reported observational data. The central gap is confounding: some other factor may travel with multivitamin use and independently lower sick days. A strengthener must close that gap; an alternative-cause weakener must exploit it.
+
+**Evaluating the candidates for Strengthens.** The best strengthener of a causal claim removes competing explanations and shows the effect persists when the cause is isolated.
+
+- "In a randomized double-blind trial, participants given the multivitamin had 28% fewer sick days than a placebo group." Random assignment neutralizes pre-existing differences between groups in expectation, and the double-blind placebo control isolates the multivitamin itself from expectation and self-selection effects. Because the treatment group showed about 28% fewer sick days — close to the cited 30% — relative to an otherwise comparable placebo group, the result is attributable to the multivitamin rather than to lifestyle, motivation, or reporting habits. This directly closes the correlation-to-causation gap and is the strongest available support.
+- "The multivitamin contains the full recommended daily allowance of vitamins C and D" describes the product's composition, offering a possible mechanism but no evidence that the product actually lowers sick days. It is weaker than direct experimental outcome evidence.
+- "The multivitamin is the company's best-selling product" and "Customers who buy the multivitamin tend to renew their subscriptions" speak to sales and satisfaction, not to whether the product reduces sick days. Both are irrelevant to causation.
+
+The credited strengthener is the randomized double-blind trial.
+
+**Evaluating the candidates for Weakens (alternative cause).** The best alternative-cause weakener names a distinct variable that plausibly accompanies multivitamin use and could itself produce the observed reduction in sick days.
+
+- "Customers who take the daily multivitamin are also far more likely to exercise regularly and sleep eight hours a night." This identifies a healthier overall lifestyle — regular exercise and adequate sleep — that travels with multivitamin use and is independently known to reduce illness. Because the survey cannot separate the multivitamin from these accompanying habits, the observed 30% gap may be due to the lifestyle rather than the pill. This is a textbook alternative cause: it does not deny that the multivitamin group had fewer sick days, only that the multivitamin is what caused it.
+- The randomized-trial statement supports the claim and is selected for the other column.
+- The vitamin-content, best-seller, and renewal statements supply no competing causal mechanism and are irrelevant to weakening.
+
+The credited weakener is the lifestyle-confound statement.
+
+**Summary of the selections.** For Strengthens, the randomized double-blind trial is decisive because it isolates the multivitamin from confounders and reproduces the effect under controlled conditions. For Weakens (alt cause), the exercise-and-sleep statement is decisive because it supplies a specific, simultaneous, causally plausible alternative that the observational survey cannot rule out.
+
+The correct answers are Strengthens = In a randomized double-blind trial, participants given the multivitamin had 28% fewer sick days than a placebo group and Weakens (alt cause) = Customers who take the daily multivitamin are also far more likely to exercise regularly and sleep eight hours a night.
+**related_reading:** reading-di-06-two-part-analysis
+
+---
+
+## Q85
+**difficulty:** Medium
+**type:** Two-Part Analysis
+**topic:** Quantitative — Overlapping Sets
+
+A market researcher surveys 120 people about two beverages. Of those surveyed, 70 say they like coffee, 60 say they like tea, and 20 say they like neither. Each respondent who likes neither likes no surveyed beverage at all. Determine the number of people who like both coffee and tea (row 1) and the number who like coffee but not tea (row 2).
+
+|    | Like both | Coffee only |
+|----|-----------|-------------|
+| 10 |           |             |
+| 20 |           |             |
+| 30 |           |             |
+| 40 |           |             |
+| 50 |           |             |
+
+**answer:** Like both = 30, Coffee only = 40
+**explanation:** **Governing principle.** For two overlapping groups within a population, the inclusion-exclusion principle states that the number liking at least one item equals the number liking the first plus the number liking the second minus the number liking both. The number liking at least one also equals the total surveyed minus those liking neither.
+
+**Define quantities.** Let the total surveyed be 120, with 70 liking coffee (C), 60 liking tea (T), and 20 liking neither. Let x be the number who like both coffee and tea.
+
+**Find the number who like at least one beverage.** Subtract those who like neither from the total:
+
+At least one = 120 - 20 = 100
+
+**Apply inclusion-exclusion to find the overlap.** The inclusion-exclusion identity gives:
+
+|C| + |T| - |both| = |at least one|
+
+70 + 60 - x = 100
+
+130 - x = 100
+
+x = 30
+
+So 30 people like both coffee and tea.
+
+**Find the number who like coffee only.** Of the 70 coffee likers, those who also like tea number 30, so:
+
+Coffee only = 70 - 30 = 40
+
+**Verification.** Coffee only (40) + tea only (60 - 30 = 30) + both (30) + neither (20) = 40 + 30 + 30 + 20 = 120, matching the total surveyed. The at-least-one count is 40 + 30 + 30 = 100, consistent with 120 - 20. Both checks pass.
+
+**Matching candidate values.** The candidate list is 10, 20, 30, 40, and 50. The number who like both, 30, and the number who like coffee only, 40, both appear. The distractor 20 is the "neither" count rather than the overlap, and 50 corresponds to no requested quantity in this configuration.
+
+The correct answers are Like both = 30 and Coffee only = 40.
+**related_reading:** reading-di-06-two-part-analysis

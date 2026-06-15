@@ -3089,3 +3089,156 @@ If |x - 5| = |x + 1|, what is the value of x?
 **answer:** D
 **explanation:** The equation |x - 5| = |x + 1| states that x is equidistant from 5 and from -1 on the number line, so x must be the midpoint of 5 and -1, namely (5 + (-1))/2 = 2. Algebraically, squaring both sides gives (x - 5)² = (x + 1)², which expands to x² - 10x + 25 = x² + 2x + 1; the x² terms cancel, leaving -10x + 25 = 2x + 1, so 24 = 12x and x = 2. As a check, |2 - 5| = 3 and |2 + 1| = 3, which are equal. The correct answer is D.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+
+---
+
+## Q122
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations
+
+A boat travels 36 kilometers downstream in 2 hours and the same 36 kilometers upstream in 3 hours. What is the speed of the boat in still water, in kilometers per hour?
+
+- A) 3
+- B) 9
+- C) 12
+- D) 15
+- E) 18
+
+**answer:** D
+**explanation:** Let b be the speed of the boat in still water and c the speed of the current, both in kilometers per hour. Going downstream the current adds to the boat's speed, so the effective speed is b + c; covering 36 km in 2 hours gives b + c = 36/2 = 18. Going upstream the current opposes the boat, so the effective speed is b - c; covering 36 km in 3 hours gives b - c = 36/3 = 12. Adding the two equations eliminates c: (b + c) + (b - c) = 18 + 12, so 2b = 30 and b = 15. The current speed is then c = 18 - 15 = 3, which is positive and consistent. The question asks for the speed in still water, which is 15. The correct answer is D.
+**related_reading:** reading-quant-08-method-selection
+
+---
+
+## Q123
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics
+
+If r and s are the two solutions of x² - 7x + 10 = 0, what is the value of r² + s²?
+
+- A) 9
+- B) 29
+- C) 39
+- D) 49
+- E) 69
+
+**answer:** B
+**explanation:** Rather than finding r and s individually, we use Vieta's formulas together with an algebraic identity. For x² - 7x + 10 = 0, the sum of the roots is r + s = -(-7)/1 = 7 and the product is r·s = 10/1 = 10. The identity (r + s)² = r² + 2rs + s² can be rearranged to r² + s² = (r + s)² - 2rs. Substituting the known values gives r² + s² = 7² - 2(10) = 49 - 20 = 29. As a check, the equation factors as (x - 2)(x - 5) = 0, so the roots are 2 and 5, and 2² + 5² = 4 + 25 = 29, confirming the result. The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q124
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inequalities
+
+How many integer values of x satisfy -2 ≤ (5 - 2x)/3 ≤ 4?
+
+- A) 7
+- B) 8
+- C) 9
+- D) 10
+- E) 11
+
+**answer:** C
+**explanation:** We solve the compound inequality by performing the same operation on all three parts. Starting from -2 ≤ (5 - 2x)/3 ≤ 4, multiply each part by 3 to clear the denominator: -6 ≤ 5 - 2x ≤ 12. Subtract 5 from each part: -11 ≤ -2x ≤ 7. Now divide each part by -2; because we are dividing by a negative number, both inequality signs reverse, giving 11/2 ≥ x ≥ -7/2, which is the same as -7/2 ≤ x ≤ 11/2, that is, -3.5 ≤ x ≤ 5.5. Because the bounds are inclusive, every integer from -3 up to 5 qualifies: -3, -2, -1, 0, 1, 2, 3, 4, 5, which is 9 integers. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q125
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Functions
+
+The function f is defined by f(x) = 3x - 4 for all real numbers x. For what value of x does f(f(x)) = x?
+
+- A) 1
+- B) 2
+- C) 4/3
+- D) 4
+- E) 8
+
+**answer:** B
+**explanation:** We first form the composite f(f(x)) and then set it equal to x. Substituting f(x) = 3x - 4 into f gives f(f(x)) = 3(f(x)) - 4 = 3(3x - 4) - 4 = 9x - 12 - 4 = 9x - 16. Setting this equal to x yields 9x - 16 = x. Subtracting x from both sides gives 8x - 16 = 0, so 8x = 16 and x = 2. As a check, f(2) = 3(2) - 4 = 2, so f(f(2)) = f(2) = 2, which indeed equals x. (Geometrically, x = 2 is the fixed point of f, the point where the line y = 3x - 4 meets the line y = x.) The correct answer is B.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q126
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value
+
+What is the sum of all values of x that satisfy |3x - 2| = x + 6?
+
+- A) -4
+- B) -1
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** C
+**explanation:** An absolute-value equation |A| = B has solutions only where the right side is nonnegative, and for those it splits into A = B or A = -B. Here B = x + 6, and we will verify each candidate at the end. The first case is 3x - 2 = x + 6, which gives 2x = 8, so x = 4; then x + 6 = 10 ≥ 0, so this solution is valid. The second case is 3x - 2 = -(x + 6) = -x - 6, which gives 4x = -4, so x = -1; then x + 6 = 5 ≥ 0, so this solution is also valid. Both x = 4 and x = -1 check out (|3(4) - 2| = 10 = 4 + 6, and |3(-1) - 2| = 5 = -1 + 6), so the sum of all valid values is 4 + (-1) = 3. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q127
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Functions
+
+For all x ≠ 1, the function f is defined by f(x) = (x + 1)/(x - 1). What is the value of f(f(2))?
+
+- A) 0
+- B) 1
+- C) 5/3
+- D) 2
+- E) 3
+
+**answer:** D
+**explanation:** A composite function is evaluated from the inside outward, so we first compute the inner value f(2) and then apply f to that result. Substituting x = 2 gives f(2) = (2 + 1)/(2 - 1) = 3/1 = 3. We then apply f to 3: f(3) = (3 + 1)/(3 - 1) = 4/2 = 2. Therefore f(f(2)) = f(3) = 2. (Both inputs, 2 and 3, differ from 1, so the function is defined at each step.) The correct answer is D.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q128
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics
+
+The length of a rectangle is 3 meters greater than its width, and its area is 70 square meters. What is the perimeter of the rectangle, in meters?
+
+- A) 17
+- B) 24
+- C) 34
+- D) 40
+- E) 70
+
+**answer:** C
+**explanation:** Let w be the width in meters; then the length is w + 3. The area is the product of length and width, so w(w + 3) = 70, which expands to w² + 3w - 70 = 0. We factor by finding two numbers whose product is -70 and whose sum is 3; these are 10 and -7, giving (w + 10)(w - 7) = 0. The solutions are w = -10 and w = 7, but a width must be positive, so w = 7. The length is then 7 + 3 = 10, and the perimeter is 2(length + width) = 2(10 + 7) = 2(17) = 34. As a check, the area is 10 × 7 = 70, as required. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q129
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Inequalities
+
+For how many integer values of x is x² - x - 12 < 0?
+
+- A) 4
+- B) 5
+- C) 6
+- D) 7
+- E) 8
+
+**answer:** C
+**explanation:** A quadratic inequality is solved by first finding the roots of the corresponding equation and then determining where the parabola lies below the x-axis. Factoring x² - x - 12 gives (x - 4)(x + 3), so the roots are x = 4 and x = -3. Because the leading coefficient is positive, the parabola opens upward and is negative only between its two roots, so x² - x - 12 < 0 exactly when -3 < x < 4. Since the inequality is strict, the endpoints -3 and 4 are excluded, and the integers strictly between them are -2, -1, 0, 1, 2, and 3, which is 6 integers. The correct answer is C.
+**related_reading:** reading-quant-04-algebra-and-equations

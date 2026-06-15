@@ -3369,3 +3369,447 @@ Exactly one location — Uptown — satisfies both conditions simultaneously. Th
 
 The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q74 (Set 12 — Airline On-Time Performance)
+
+The following table shows operating statistics for five airlines during a recent month.
+
+| Airline   | Flights | On-Time % | Avg Delay (min) | Cancellations |
+|-----------|---------|-----------|-----------------|---------------|
+| AeroJet   | 4,200   | 82        | 19              | 38            |
+| BlueWing  | 3,600   | 88        | 9               | 22            |
+| CrestAir  | 5,000   | 76        | 21              | 65            |
+| DeltaLine | 2,800   | 91        | 7               | 12            |
+| EastGate  | 4,500   | 79        | 17              | 50            |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Comparisons
+
+For each statement, select Yes if the statement can be determined to be true based on the data in the table. Otherwise, select No.
+
+Statement: More than half of the airlines had an on-time percentage of at least 80%.
+
+- A) Yes
+- B) No
+
+**answer:** A
+**explanation:** **Condition and threshold.** An airline meets the stated condition if its on-time percentage is at least 80%, i.e. On-Time % >= 80. With five airlines in the table, "more than half" requires that at least 3 of the 5 satisfy the condition.
+
+**Airline-by-airline evaluation.** Reading the On-Time % column directly and testing against the threshold of 80:
+
+- AeroJet: 82 >= 80 — satisfies the condition.
+- BlueWing: 88 >= 80 — satisfies the condition.
+- CrestAir: 76 >= 80 is false — does not satisfy the condition.
+- DeltaLine: 91 >= 80 — satisfies the condition.
+- EastGate: 79 >= 80 is false — does not satisfy the condition.
+
+**Count and conclusion.** Three airlines — AeroJet, BlueWing, and DeltaLine — each post an on-time percentage of at least 80%. Three out of five is 60%, which is greater than 50% and therefore more than half. CrestAir (76) and EastGate (79) fall just short of the threshold but do not change the count. We can determine from the table that the statement is true.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q75 (Set 12 — Airline On-Time Performance, continued)
+
+The following table shows operating statistics for five airlines during a recent month.
+
+| Airline   | Flights | On-Time % | Avg Delay (min) | Cancellations |
+|-----------|---------|-----------|-----------------|---------------|
+| AeroJet   | 4,200   | 82        | 19              | 38            |
+| BlueWing  | 3,600   | 88        | 9               | 22            |
+| CrestAir  | 5,000   | 76        | 21              | 65            |
+| DeltaLine | 2,800   | 91        | 7               | 12            |
+| EastGate  | 4,500   | 79        | 17              | 50            |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Joint Extremes
+
+Statement: The airline with the highest on-time percentage also had the fewest cancellations.
+
+- A) Yes
+- B) No
+
+**answer:** A
+**explanation:** The statement asks whether a single airline simultaneously holds the maximum of one column (On-Time %) and the minimum of another (Cancellations). Each extreme is identified independently and then the two airlines are compared.
+
+**Identifying the highest on-time percentage.** Ranking the On-Time % column: 91 (DeltaLine) > 88 (BlueWing) > 82 (AeroJet) > 79 (EastGate) > 76 (CrestAir). The maximum is 91, belonging to DeltaLine.
+
+**Identifying the fewest cancellations.** Ranking the Cancellations column from smallest to largest: 12 (DeltaLine) < 22 (BlueWing) < 38 (AeroJet) < 50 (EastGate) < 65 (CrestAir). The minimum is 12, belonging to DeltaLine.
+
+**Comparing the two identifications.** The airline with the highest on-time percentage is DeltaLine (91%), and the airline with the fewest cancellations is also DeltaLine (12). The two coincide, so the statement holds. DeltaLine's strong reliability shows up in both metrics at once, which is consistent with the smallest flight volume in the table (2,800) reducing exposure to delay and cancellation.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q76 (Set 12 — Airline On-Time Performance, continued)
+
+The following table shows operating statistics for five airlines during a recent month.
+
+| Airline   | Flights | On-Time % | Avg Delay (min) | Cancellations |
+|-----------|---------|-----------|-----------------|---------------|
+| AeroJet   | 4,200   | 82        | 19              | 38            |
+| BlueWing  | 3,600   | 88        | 9               | 22            |
+| CrestAir  | 5,000   | 76        | 21              | 65            |
+| DeltaLine | 2,800   | 91        | 7               | 12            |
+| EastGate  | 4,500   | 79        | 17              | 50            |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Conditional Statements
+
+Statement: Every airline with more than 4,000 flights had at least 35 cancellations.
+
+- A) Yes
+- B) No
+
+**answer:** A
+**explanation:** **Governing principle.** A universal conditional of the form "every X with property P has property Q" is true if and only if no row satisfies P while failing Q. Here the antecedent P is Flights > 4,000 and the consequent Q is Cancellations >= 35. We identify every airline satisfying the antecedent and verify the consequent for each.
+
+**Identifying the qualifying airlines.** Scanning the Flights column for values strictly greater than 4,000:
+
+- AeroJet: 4,200 > 4,000 — qualifies.
+- BlueWing: 3,600 > 4,000 is false — does not qualify.
+- CrestAir: 5,000 > 4,000 — qualifies.
+- DeltaLine: 2,800 > 4,000 is false — does not qualify.
+- EastGate: 4,500 > 4,000 — qualifies.
+
+The qualifying set is {AeroJet, CrestAir, EastGate}. BlueWing and DeltaLine fall outside the scope of the statement and are irrelevant regardless of their cancellation counts.
+
+**Verifying the consequent for each qualifying airline.** We require Cancellations >= 35:
+
+- AeroJet: 38 >= 35 — satisfied.
+- CrestAir: 65 >= 35 — satisfied.
+- EastGate: 50 >= 35 — satisfied.
+
+**Conclusion.** All three airlines with more than 4,000 flights recorded at least 35 cancellations. No counterexample exists, so the universal conditional holds.
+
+The correct answer is A.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q77 (Set 12 — Airline On-Time Performance, continued)
+
+The following table shows operating statistics for five airlines during a recent month.
+
+| Airline   | Flights | On-Time % | Avg Delay (min) | Cancellations |
+|-----------|---------|-----------|-----------------|---------------|
+| AeroJet   | 4,200   | 82        | 19              | 38            |
+| BlueWing  | 3,600   | 88        | 9               | 22            |
+| CrestAir  | 5,000   | 76        | 21              | 65            |
+| DeltaLine | 2,800   | 91        | 7               | 12            |
+| EastGate  | 4,500   | 79        | 17              | 50            |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Inverse Relationships
+
+Statement: Airlines with higher on-time percentages consistently have lower average delays.
+
+- A) Yes
+- B) No
+
+**answer:** B
+**explanation:** **An inverse relationship** between two variables exists when, as one variable increases, the other consistently decreases across every ordered pair in the dataset. The statement asserts that whenever one airline has a higher on-time percentage than another, it has a strictly lower average delay — with no exceptions. A single violating pair is enough to falsify the claim.
+
+**Sorting by on-time percentage.** Arranging the five airlines in ascending order of On-Time % and recording the corresponding average delay:
+
+| Rank (by On-Time %) | Airline   | On-Time % | Avg Delay (min) |
+|---------------------|-----------|-----------|-----------------|
+| 1 | CrestAir  | 76 | 21 |
+| 2 | EastGate  | 79 | 17 |
+| 3 | AeroJet   | 82 | 19 |
+| 4 | BlueWing  | 88 | 9  |
+| 5 | DeltaLine | 91 | 7  |
+
+**Checking each consecutive pair.** For a perfect inverse relationship, every step up in on-time percentage must correspond to a step down in average delay:
+
+- CrestAir to EastGate: on-time 76 to 79 (up), delay 21 to 17 (down). Consistent.
+- EastGate to AeroJet: on-time 79 to 82 (up), delay 17 to 19 (UP). Inconsistent — this pair violates the inverse relationship.
+
+**Conclusion.** AeroJet has a higher on-time percentage than EastGate (82 vs. 79), yet its average delay is also higher (19 vs. 17). Because a higher on-time percentage is paired with a higher average delay, the claim that higher on-time percentages "consistently" go with lower delays fails. A single counterexample is decisive; the statement does not hold.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q78 (Set 12 — Airline On-Time Performance, continued)
+
+The following table shows operating statistics for five airlines during a recent month.
+
+| Airline   | Flights | On-Time % | Avg Delay (min) | Cancellations |
+|-----------|---------|-----------|-----------------|---------------|
+| AeroJet   | 4,200   | 82        | 19              | 38            |
+| BlueWing  | 3,600   | 88        | 9               | 22            |
+| CrestAir  | 5,000   | 76        | 21              | 65            |
+| DeltaLine | 2,800   | 91        | 7               | 12            |
+| EastGate  | 4,500   | 79        | 17              | 50            |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Negated Existential
+
+Statement: No airline had both an on-time percentage below 80% and an average delay above 18 minutes.
+
+- A) Yes
+- B) No
+
+**answer:** B
+**explanation:** **Governing principle.** A statement of the form "no row has both property P and property Q" is true if and only if there is no single row satisfying P and Q simultaneously. To test it, we identify the rows satisfying the first condition and check whether any of them also satisfies the second. Finding even one row that meets both conditions makes the statement false.
+
+**Identifying airlines with on-time percentage below 80%.** Scanning the On-Time % column for values strictly less than 80:
+
+- CrestAir: 76 < 80 — qualifies.
+- EastGate: 79 < 80 — qualifies.
+
+AeroJet (82), BlueWing (88), and DeltaLine (91) all have on-time percentages of 80 or above and so cannot be counterexamples.
+
+**Checking the second condition for the survivors.** We require Avg Delay > 18 minutes:
+
+- CrestAir: average delay = 21, and 21 > 18 — the second condition is also satisfied.
+- EastGate: average delay = 17, and 17 > 18 is false — the second condition fails.
+
+**Conclusion.** CrestAir has both an on-time percentage below 80% (76) and an average delay above 18 minutes (21). This single airline satisfies both conditions at once, which is exactly the combination the statement claims does not exist. The existence of CrestAir as a counterexample falsifies the claim. EastGate clears the on-time screen but is rescued by its 17-minute delay, so it is not a counterexample; CrestAir alone is sufficient.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q79 (Set 13 — Software Subscription Tiers)
+
+The following table shows data for the five subscription plans of a software product.
+
+| Plan       | Monthly Price ($) | Subscribers | Storage (GB) | Support Tickets |
+|------------|-------------------|-------------|--------------|-----------------|
+| Basic      | 9                 | 12,000      | 50           | 3,400           |
+| Standard   | 19                | 8,000       | 200          | 2,100           |
+| Premium    | 39                | 4,500       | 1,000        | 1,500           |
+| Business   | 79                | 2,000       | 5,000        | 900             |
+| Enterprise | 149               | 600         | 20,000       | 400             |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Derived Metrics
+
+Which plan generates the highest monthly revenue (Monthly Price x Subscribers)?
+
+- A) Basic
+- B) Standard
+- C) Premium
+- D) Business
+- E) Enterprise
+
+**answer:** C
+**explanation:** Monthly revenue for a plan is the product of its monthly price and its number of subscribers: revenue = Monthly Price ($) x Subscribers. This derived quantity must be computed for every plan, because neither the cheapest, most-subscribed plan nor the most expensive plan is guaranteed to maximize the product.
+
+Computing the monthly revenue for each plan:
+
+- Basic: 9 x 12,000 = 108,000
+- Standard: 19 x 8,000 = 152,000
+- Premium: 39 x 4,500 = 175,500
+- Business: 79 x 2,000 = 158,000
+- Enterprise: 149 x 600 = 89,400
+
+Ranking these values from highest to lowest: Premium ($175,500) > Business ($158,000) > Standard ($152,000) > Basic ($108,000) > Enterprise ($89,400).
+
+Premium's monthly revenue of $175,500 is strictly the highest. Two traps are worth noting. Basic has by far the most subscribers (12,000) but its low $9 price holds its revenue to $108,000. Enterprise commands the highest price ($149) but its small base of 600 subscribers leaves it last at $89,400. Premium wins by balancing a moderately high price ($39) against a still-substantial base of 4,500 subscribers.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q80 (Set 13 — Software Subscription Tiers, continued)
+
+The following table shows data for the five subscription plans of a software product.
+
+| Plan       | Monthly Price ($) | Subscribers | Storage (GB) | Support Tickets |
+|------------|-------------------|-------------|--------------|-----------------|
+| Basic      | 9                 | 12,000      | 50           | 3,400           |
+| Standard   | 19                | 8,000       | 200          | 2,100           |
+| Premium    | 39                | 4,500       | 1,000        | 1,500           |
+| Business   | 79                | 2,000       | 5,000        | 900             |
+| Enterprise | 149               | 600         | 20,000       | 400             |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Per-Capita Ratio
+
+Which plan has the lowest number of support tickets per subscriber?
+
+- A) Basic
+- B) Standard
+- C) Premium
+- D) Business
+- E) Enterprise
+
+**answer:** B
+**explanation:** Support tickets per subscriber is defined as the ratio of total support tickets to the number of subscribers: tickets per subscriber = Support Tickets / Subscribers. This ratio normalizes raw ticket counts against the size of each plan's user base, so the plan with the fewest raw tickets is not necessarily the one with the lowest per-subscriber rate.
+
+Computing the ratio for each plan:
+
+- Basic: 3,400 / 12,000 = 0.2833
+- Standard: 2,100 / 8,000 = 0.2625
+- Premium: 1,500 / 4,500 = 0.3333
+- Business: 900 / 2,000 = 0.4500
+- Enterprise: 400 / 600 = 0.6667
+
+Ranking these values from lowest to highest: Standard (0.2625) < Basic (0.2833) < Premium (0.3333) < Business (0.4500) < Enterprise (0.6667).
+
+Standard's rate of 0.2625 tickets per subscriber is strictly the lowest. The decisive trap is Enterprise, which posts the fewest raw support tickets in the table (400) yet has the highest per-subscriber rate (0.6667) because it serves only 600 subscribers. Standard achieves the lowest rate by pairing a moderate 2,100 tickets with a large base of 8,000 subscribers.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q81 (Set 13 — Software Subscription Tiers, continued)
+
+The following table shows data for the five subscription plans of a software product.
+
+| Plan       | Monthly Price ($) | Subscribers | Storage (GB) | Support Tickets |
+|------------|-------------------|-------------|--------------|-----------------|
+| Basic      | 9                 | 12,000      | 50           | 3,400           |
+| Standard   | 19                | 8,000       | 200          | 2,100           |
+| Premium    | 39                | 4,500       | 1,000        | 1,500           |
+| Business   | 79                | 2,000       | 5,000        | 900             |
+| Enterprise | 149               | 600         | 20,000       | 400             |
+
+**difficulty:** Medium
+**type:** Table Analysis
+**topic:** Value Ratio
+
+Which plan offers the most storage per dollar of monthly price (GB per $)?
+
+- A) Basic
+- B) Standard
+- C) Premium
+- D) Business
+- E) Enterprise
+
+**answer:** E
+**explanation:** Storage per dollar is defined as the ratio of included storage to monthly price: GB per dollar = Storage (GB) / Monthly Price ($). This value ratio measures how much storage each dollar of subscription buys, so the plan with the most absolute storage need not offer the most storage per dollar.
+
+Computing the ratio for each plan:
+
+- Basic: 50 / 9 ≈ 5.56
+- Standard: 200 / 19 ≈ 10.53
+- Premium: 1,000 / 39 ≈ 25.64
+- Business: 5,000 / 79 ≈ 63.29
+- Enterprise: 20,000 / 149 ≈ 134.23
+
+Ranking these values from highest to lowest: Enterprise (≈134.23) > Business (≈63.29) > Premium (≈25.64) > Standard (≈10.53) > Basic (≈5.56).
+
+Enterprise offers approximately 134.23 GB per dollar, strictly the highest in the table. Storage scales far more aggressively across the tiers than price does: from Basic to Enterprise, monthly price rises by a factor of about 16.6 (9 to 149) while storage rises by a factor of 400 (50 to 20,000). Because storage outpaces price so dramatically as plans get larger, the storage-per-dollar ratio increases monotonically up the ladder, peaking at Enterprise.
+
+The correct answer is E.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q82 (Set 13 — Software Subscription Tiers, continued)
+
+The following table shows data for the five subscription plans of a software product.
+
+| Plan       | Monthly Price ($) | Subscribers | Storage (GB) | Support Tickets |
+|------------|-------------------|-------------|--------------|-----------------|
+| Basic      | 9                 | 12,000      | 50           | 3,400           |
+| Standard   | 19                | 8,000       | 200          | 2,100           |
+| Premium    | 39                | 4,500       | 1,000        | 1,500           |
+| Business   | 79                | 2,000       | 5,000        | 900             |
+| Enterprise | 149               | 600         | 20,000       | 400             |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Multi-Criterion Filtering
+
+How many plans have BOTH a monthly price above $15 AND more than 3,000 subscribers?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** B
+**explanation:** Two conditions must hold simultaneously: Monthly Price > $15 AND Subscribers > 3,000. A plan qualifies only when both strict inequalities are satisfied; each plan is screened against the first condition, and the survivors are then tested against the second.
+
+Applying the first condition (Monthly Price > $15), reading the Monthly Price column directly:
+
+- Basic: 9 > 15 is false — eliminated.
+- Standard: 19 > 15 — survives.
+- Premium: 39 > 15 — survives.
+- Business: 79 > 15 — survives.
+- Enterprise: 149 > 15 — survives.
+
+The survivors of the price screen are Standard, Premium, Business, and Enterprise.
+
+Now applying the second condition (Subscribers > 3,000) to those four survivors:
+
+- Standard: 8,000 > 3,000 — satisfied. Both conditions hold; Standard qualifies.
+- Premium: 4,500 > 3,000 — satisfied. Both conditions hold; Premium qualifies.
+- Business: 2,000 > 3,000 is false — eliminated.
+- Enterprise: 600 > 3,000 is false — eliminated.
+
+Exactly two plans — Standard and Premium — satisfy both conditions simultaneously. Basic fails the price screen despite having the largest subscriber base in the table (12,000), and the two highest-priced plans, Business and Enterprise, fail the subscriber screen. The total count of qualifying plans is therefore 2.
+
+The correct answer is B.
+**related_reading:** reading-di-03-table-analysis
+
+---
+
+## Q83 (Set 13 — Software Subscription Tiers, continued)
+
+The following table shows data for the five subscription plans of a software product.
+
+| Plan       | Monthly Price ($) | Subscribers | Storage (GB) | Support Tickets |
+|------------|-------------------|-------------|--------------|-----------------|
+| Basic      | 9                 | 12,000      | 50           | 3,400           |
+| Standard   | 19                | 8,000       | 200          | 2,100           |
+| Premium    | 39                | 4,500       | 1,000        | 1,500           |
+| Business   | 79                | 2,000       | 5,000        | 900             |
+| Enterprise | 149               | 600         | 20,000       | 400             |
+
+**difficulty:** Hard
+**type:** Table Analysis
+**topic:** Aggregate Estimation
+
+The total monthly revenue across all five plans (Monthly Price x Subscribers, summed) is closest to which value?
+
+- A) $600,000
+- B) $650,000
+- C) $683,000
+- D) $720,000
+- E) $750,000
+
+**answer:** C
+**explanation:** Total monthly revenue is the sum, over all five plans, of each plan's monthly revenue, where a plan's monthly revenue equals Monthly Price ($) x Subscribers. Each product is computed, the five products are added, and the total is compared against the answer choices.
+
+Computing each plan's monthly revenue:
+
+- Basic: 9 x 12,000 = 108,000
+- Standard: 19 x 8,000 = 152,000
+- Premium: 39 x 4,500 = 175,500
+- Business: 79 x 2,000 = 158,000
+- Enterprise: 149 x 600 = 89,400
+
+Summing the five products:
+
+108,000 + 152,000 = 260,000
+260,000 + 175,500 = 435,500
+435,500 + 158,000 = 593,500
+593,500 + 89,400 = 682,900
+
+The exact total is $682,900. Comparing this figure against the answer choices: it lies between $650,000 and $720,000, with a deviation of |682,900 - 683,000| = 100 from choice C, far smaller than the deviation from any other option (|682,900 - 650,000| = 32,900 and |682,900 - 720,000| = 37,100). The total monthly revenue is therefore closest to $683,000.
+
+The correct answer is C.
+**related_reading:** reading-di-03-table-analysis

@@ -2929,3 +2929,494 @@ Average award = funding this year / awards granted = 180,000 / 60 = $3,000 per s
 
 The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning
+
+
+---
+
+## Set 21: Cascade Freight — Rail vs. Truck Lane Analysis
+
+### Tab 1: Logistics Memo
+
+**From:** Dana Okafor, Director of Network Planning
+**To:** Lane Managers
+**Re:** Shifting outbound lanes from truck to intermodal rail
+
+We are reviewing whether to shift outbound shipments on four high-volume lanes from full-truckload (truck) service to intermodal rail. Rail is generally cheaper on long hauls but carries a flat per-shipment terminal handling fee and adds transit days because of yard dwell time.
+
+For this review, treat each shipment as a single full container of identical weight. Use the per-shipment cost formulas in Tab 3, the lane data in Tab 2, and the two decision rules below.
+
+**Decision rules for moving a lane to rail:**
+
+1. Rail's per-shipment cost must be strictly lower than truck's per-shipment cost on that lane.
+2. The transit-time penalty (rail transit days minus truck transit days) on that lane must be no greater than 2 days.
+
+A lane moves to rail only if BOTH rules are satisfied.
+
+### Tab 2: Lane Data
+
+| Lane              | Distance (mi) | Truck Rate ($/mi) | Truck Transit (days) | Rail Transit (days) |
+|-------------------|---------------|-------------------|----------------------|---------------------|
+| Portland–Boise    | 400           | 1.80              | 1                    | 3                   |
+| Portland–Denver   | 1,200         | 2.25              | 3                    | 4                   |
+| Portland–Dallas   | 2,000         | 2.10             | 4                    | 7                   |
+| Portland–Chicago  | 2,200         | 2.05              | 4                    | 6                   |
+
+### Tab 3: Cost Formulas
+
+- **Truck per-shipment cost** = Distance (mi) × Truck Rate ($/mi).
+- **Rail per-shipment cost** = $500 flat terminal handling fee + Distance (mi) × $1.20 per mile.
+
+The flat $500 fee and the $1.20-per-mile rail rate are the same on every lane.
+
+### Q70
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Cost Comparison
+
+On how many of the four lanes is rail's per-shipment cost strictly lower than truck's per-shipment cost?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) Cannot be determined
+
+**answer:** C
+**explanation:** The cost comparison requires combining Tab 2 (distances and truck rates) with the per-shipment formulas in Tab 3. For each lane, truck cost is Distance × Truck Rate, and rail cost is $500 + Distance × $1.20. The decision-rule wording in Tab 1 ("strictly lower") confirms that ties would not count, though no ties arise here.
+
+Computing both costs for each lane:
+
+Portland–Boise: truck = 400 × 1.80 = $720; rail = 500 + 400 × 1.20 = 500 + 480 = $980. Since 980 > 720, rail is more expensive on this lane.
+
+Portland–Denver: truck = 1,200 × 2.25 = $2,700; rail = 500 + 1,200 × 1.20 = 500 + 1,440 = $1,940. Since 1,940 < 2,700, rail is cheaper.
+
+Portland–Dallas: truck = 2,000 × 2.10 = $4,200; rail = 500 + 2,000 × 1.20 = 500 + 2,400 = $2,900. Since 2,900 < 4,200, rail is cheaper.
+
+Portland–Chicago: truck = 2,200 × 2.05 = $4,510; rail = 500 + 2,200 × 1.20 = 500 + 2,640 = $3,140. Since 3,140 < 4,510, rail is cheaper.
+
+Rail is strictly cheaper on three lanes — Denver, Dallas, and Chicago — and more expensive on the short Boise lane, where the flat $500 fee is not offset by enough mileage savings. The structural reason is that rail's per-mile rate ($1.20) undercuts every truck rate, but the fixed $500 fee dominates on short distances; the break-even distance against, for example, the Boise truck rate of $1.80/mi is 500 / (1.80 − 1.20) = 500 / 0.60 ≈ 833 miles, and Boise's 400 miles falls below it.
+
+Choice D overcounts by including Boise; choices A and B undercount. Choice E is wrong because every required figure is provided. Exactly three lanes favor rail on cost.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q71
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Savings Projection
+
+Cascade ships 6 full-container loads per week on the Portland–Denver lane. If all 6 were shifted from truck to rail, approximately what would the weekly cost savings be?
+
+- A) $760
+- B) $2,700
+- C) $4,560
+- D) $11,640
+- E) $16,200
+
+**answer:** C
+**explanation:** Weekly savings equal the per-shipment savings on the lane multiplied by the number of weekly shipments. The per-shipment costs come from Tab 2 and Tab 3; the weekly load count comes from the question stem.
+
+From the Portland–Denver row of Tab 2, distance is 1,200 miles and the truck rate is $2.25 per mile. Applying the Tab 3 formulas:
+
+Truck per-shipment cost = 1,200 × 2.25 = $2,700.
+
+Rail per-shipment cost = 500 + 1,200 × 1.20 = 500 + 1,440 = $1,940.
+
+Per-shipment savings = 2,700 − 1,940 = $760.
+
+The lane carries 6 loads per week, so weekly savings = 760 × 6 = $4,560.
+
+Choice A ($760) reports the per-shipment savings without multiplying by the 6 weekly loads. Choice B ($2,700) is the truck cost of a single shipment, not a savings figure. Choice D ($11,640) results from multiplying the rail cost ($1,940) by 6 rather than the savings, and choice E ($16,200) multiplies the truck cost ($2,700) by 6. Only $4,560 reflects the per-shipment savings of $760 scaled to the 6 weekly shipments.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q72
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Multi-Constraint Filtering
+
+Applying BOTH decision rules from Tab 1, how many of the four lanes should be moved to rail?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 4
+
+**answer:** C
+**explanation:** Tab 1 imposes a conjunctive test: a lane moves to rail only if (Rule 1) rail's per-shipment cost is strictly lower than truck's, AND (Rule 2) the transit-time penalty — rail transit days minus truck transit days — is no greater than 2 days. Each lane is tested against both rules using Tab 2 and the Tab 3 formulas.
+
+Rule 1 (cost) was established lane by lane: rail is cheaper on Denver ($1,940 vs. $2,700), Dallas ($2,900 vs. $4,200), and Chicago ($3,140 vs. $4,510), and more expensive on Boise ($980 vs. $720). So Boise fails Rule 1 immediately and is eliminated.
+
+Rule 2 (transit penalty) is computed from the two transit-day columns in Tab 2:
+
+- Portland–Boise: 3 − 1 = 2 days (passes Rule 2, but already failed Rule 1).
+- Portland–Denver: 4 − 3 = 1 day. Since 1 ≤ 2, Rule 2 is satisfied.
+- Portland–Dallas: 7 − 4 = 3 days. Since 3 > 2, Rule 2 is violated.
+- Portland–Chicago: 6 − 4 = 2 days. Since 2 ≤ 2, Rule 2 is satisfied.
+
+Combining both rules:
+
+| Lane    | Rule 1 (rail cheaper) | Rule 2 (penalty ≤ 2) | Move to rail? |
+|---------|-----------------------|----------------------|---------------|
+| Boise   | Fail                  | Pass (2)             | No            |
+| Denver  | Pass                  | Pass (1)             | Yes           |
+| Dallas  | Pass                  | Fail (3)             | No            |
+| Chicago | Pass                  | Pass (2)             | Yes           |
+
+Only Denver and Chicago satisfy both rules. Dallas is the key trap: it offers the second-largest cost savings ($1,300 per shipment), which might tempt a solver to include it, but its 3-day transit penalty exceeds the 2-day cap and disqualifies it. Choice D (3) counts Dallas on cost alone; choice E (4) ignores both filters; choices A and B undercount. Exactly two lanes qualify.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 22: Helios Solar — Module Production Line Review
+
+### Tab 1: Plant Briefing
+
+**Subject:** Capacity-expansion screening across three module production lines
+**Prepared by:** Manufacturing Engineering, Helios Solar
+
+Our Phoenix plant runs three solar-module production lines. Each line runs 20 operating hours per day. Lines differ in throughput (modules started per hour) and in yield (the percentage of started modules that pass final inspection and become saleable). A module that fails inspection is scrapped and cannot be sold.
+
+We are screening lines for a capital-expansion program. Capacity will be added only to lines that are both high-quality and high-volume, per the framework in Tab 3.
+
+### Tab 2: Line Performance
+
+| Line   | Modules Started per Hour | Yield (%) |
+|--------|--------------------------|-----------|
+| Line 1 | 200                      | 92        |
+| Line 2 | 160                      | 97        |
+| Line 3 | 240                      | 85        |
+
+### Tab 3: Expansion Screening Framework
+
+A line qualifies for the capacity-expansion program only if it satisfies BOTH:
+
+- Yield is at least 90 percent.
+- Good (saleable) module output is at least 3,000 modules per day.
+
+"Good output per day" is defined as: Modules Started per Hour × 20 operating hours × Yield.
+
+### Q73
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Cross-Tab Inference
+
+Based on the data in the three tabs, which of the following must be true?
+
+- A) Line 3 produces the most good modules per day despite having the lowest yield.
+- B) The line with the highest yield also has the highest good output per day.
+- C) Line 2 produces the most good modules per day.
+- D) Every line produces at least 3,500 good modules per day.
+- E) Line 1 has both the highest throughput and the highest yield.
+
+**answer:** A
+**explanation:** A "must be true" question requires the credited statement to follow necessarily from the data, while every other choice is contradicted by the exhibits. Tab 3 defines good output per day as Modules Started per Hour × 20 × Yield. Computing it for each line using Tab 2:
+
+- Line 1: 200 × 20 × 0.92 = 4,000 × 0.92 = 3,680 good modules/day.
+- Line 2: 160 × 20 × 0.97 = 3,200 × 0.97 = 3,104 good modules/day.
+- Line 3: 240 × 20 × 0.85 = 4,800 × 0.85 = 4,080 good modules/day.
+
+Choice A claims Line 3 produces the most good modules per day despite having the lowest yield. Line 3's good output of 4,080 is the largest of the three values (4,080 > 3,680 > 3,104), and its 85% yield is the lowest of the three. Line 3's very high throughput (240 started per hour) more than compensates for its weaker yield. Both halves of the statement are confirmed by the data, so A must be true.
+
+Choice B claims the highest-yield line also has the highest good output. The highest yield belongs to Line 2 (97%), but Line 2 has the lowest good output (3,104). The highest good output belongs to Line 3 (4,080), which has the lowest yield. So B is false.
+
+Choice C claims Line 2 produces the most good modules. Line 2's 3,104 is in fact the lowest of the three, so C is false.
+
+Choice D claims every line produces at least 3,500 good modules per day. Line 2 produces only 3,104, which is below 3,500, so D is false.
+
+Choice E claims Line 1 has both the highest throughput and the highest yield. Line 1's throughput of 200 is exceeded by Line 3's 240, and its 92% yield is exceeded by Line 2's 97%. Line 1 leads on neither metric, so E is false.
+
+Only choice A is necessarily supported by the data.
+
+The correct answer is A.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q74
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Throughput Calculation
+
+Which line produces the greatest number of GOOD (saleable) modules per day?
+
+- A) Line 1
+- B) Line 2
+- C) Line 3
+- D) Line 1 and Line 3 are tied
+- E) Cannot be determined
+
+**answer:** C
+**explanation:** Tab 3 supplies the governing definition: good output per day equals Modules Started per Hour × 20 operating hours × Yield. The required inputs — throughput and yield — are read from Tab 2.
+
+Applying the formula to each line:
+
+- Line 1: 200 × 20 × 0.92 = 3,680 good modules/day.
+- Line 2: 160 × 20 × 0.97 = 3,104 good modules/day.
+- Line 3: 240 × 20 × 0.85 = 4,080 good modules/day.
+
+Ranking the three results: 4,080 > 3,680 > 3,104, which corresponds to Line 3 > Line 1 > Line 2. Line 3 produces the most saleable modules per day.
+
+The trap in this item is yield. Line 3 has the lowest yield of the three lines at 85%, which might lead a solver to dismiss it; and Line 2 has the highest yield at 97%, which might appear to make it the leader. But yield alone does not determine output — it must be applied to throughput. Line 3's high throughput of 240 modules started per hour produces 4,800 gross modules per day, and even after scrapping 15%, the 4,080 saleable units exceed every other line's good output. Choice D is impossible because 3,680 (Line 1) does not equal 4,080 (Line 3), and choice E is wrong because all needed data are present.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q75
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Multi-Constraint Screening
+
+Applying the screening framework in Tab 3, which line(s) qualify for the capacity-expansion program?
+
+- A) Line 1 only
+- B) Line 3 only
+- C) Line 1 and Line 3
+- D) Line 1 and Line 2
+- E) All three lines
+
+**answer:** D
+**explanation:** Tab 3 establishes a conjunctive test: a line qualifies only if BOTH (i) its yield is at least 90 percent, AND (ii) its good output is at least 3,000 modules per day. Failure on either condition disqualifies the line. Good output per day is computed as Modules Started per Hour × 20 × Yield, using Tab 2.
+
+Line 1. Yield = 92%; since 92 ≥ 90, condition (i) is satisfied. Good output = 200 × 20 × 0.92 = 3,680; since 3,680 ≥ 3,000, condition (ii) is satisfied. Both hold — Line 1 qualifies.
+
+Line 2. Yield = 97%; since 97 ≥ 90, condition (i) is satisfied. Good output = 160 × 20 × 0.97 = 3,104; since 3,104 ≥ 3,000, condition (ii) is satisfied. Both hold — Line 2 qualifies.
+
+Line 3. Yield = 85%; since 85 < 90, condition (i) fails. The conjunctive test is therefore not met, and Line 3 is disqualified regardless of its good output. (For completeness, its good output of 4,080 is the highest of the three and clears the 3,000 bar, but the yield gate stops it.)
+
+| Line   | Yield ≥ 90% | Good output ≥ 3,000 | Qualifies? |
+|--------|-------------|---------------------|------------|
+| Line 1 | Pass (92%)  | Pass (3,680)        | Yes        |
+| Line 2 | Pass (97%)  | Pass (3,104)        | Yes        |
+| Line 3 | Fail (85%)  | Pass (4,080)        | No         |
+
+Exactly two lines — Line 1 and Line 2 — satisfy both conditions. Choice B and choice C both include Line 3, the highest-volume line, which is the central trap: high output cannot rescue a line that fails the yield gate. Choice A omits the qualifying Line 2, and choice E wrongly admits Line 3.
+
+The correct answer is D.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 23: Brightline Publishing — Subscription Tier Review
+
+### Tab 1: Revenue Memo
+
+**From:** Priya Raman, Head of Consumer Revenue
+**To:** Subscriptions Working Group
+
+Brightline sells three subscription tiers: Digital, Print+Digital, and Premium. Before we set next year's pricing, the working group should understand where our monthly recurring revenue actually comes from. A common misconception internally is that the tier with the most subscribers drives the most revenue — that is not necessarily so once price differences are accounted for.
+
+All figures in Tab 2 are current as of the most recent monthly close. Treat each subscriber as paying the full listed monthly price.
+
+### Tab 2: Tier Snapshot
+
+| Tier          | Monthly Price ($) | Subscribers | Monthly Churn (%) |
+|---------------|-------------------|-------------|-------------------|
+| Digital       | 8                 | 50,000      | 5.0               |
+| Print+Digital | 20                | 30,000      | 3.0               |
+| Premium       | 35                | 12,000      | 2.0               |
+
+### Tab 3: Definitions
+
+- **Monthly recurring revenue (MRR) for a tier** = Monthly Price × Subscribers.
+- **Monthly churn** is the percentage of a tier's subscribers who cancel during the month.
+
+### Q76
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Revenue Attribution
+
+Which tier generates the most monthly recurring revenue?
+
+- A) Digital
+- B) Print+Digital
+- C) Premium
+- D) Digital and Premium are approximately tied
+- E) Cannot be determined
+
+**answer:** B
+**explanation:** Tab 3 defines monthly recurring revenue (MRR) for a tier as Monthly Price × Subscribers. The two inputs come from Tab 2. The memo in Tab 1 flags the trap explicitly: the tier with the most subscribers is not necessarily the highest-revenue tier.
+
+Computing MRR for each tier:
+
+- Digital: 8 × 50,000 = $400,000.
+- Print+Digital: 20 × 30,000 = $600,000.
+- Premium: 35 × 12,000 = $420,000.
+
+Ranking the three results: $600,000 > $420,000 > $400,000, which corresponds to Print+Digital > Premium > Digital. Print+Digital generates the most monthly recurring revenue.
+
+This is precisely the situation the memo anticipates. Digital has by far the largest subscriber base (50,000), which might suggest it leads on revenue, but its low $8 price holds its MRR to $400,000 — actually the lowest of the three. Premium commands the highest price ($35), which might also suggest it leads, but its small base of 12,000 caps its MRR at $420,000. Print+Digital's middle price ($20) combined with a substantial base (30,000) produces the largest MRR. Choice A (Digital) is the most-subscribers trap, and choice C (Premium) is the highest-price trap. Choice D fails because $400,000 (Digital) and $420,000 (Premium) are not the leaders and are not tied with the winner. Choice E is wrong because both inputs are given.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q77
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Scenario Modeling
+
+Suppose Brightline raises the Premium price by 20 percent and, as a result, loses 10 percent of its Premium subscribers, with all other tiers unchanged. Approximately how would Premium's monthly recurring revenue change?
+
+- A) It would fall by about $42,000.
+- B) It would be unchanged.
+- C) It would rise by about $33,600.
+- D) It would rise by about $84,000.
+- E) It would rise by about $420,000.
+
+**answer:** C
+**explanation:** Premium's monthly recurring revenue (MRR), per Tab 3, is Monthly Price × Subscribers. The scenario changes both factors: price rises 20 percent and subscribers fall 10 percent. The new MRR equals the old MRR multiplied by the combined factor (1 + 0.20) × (1 − 0.10), and the change is new MRR minus old MRR.
+
+From Tab 2, Premium's current price is $35 and its current subscriber count is 12,000, so current MRR = 35 × 12,000 = $420,000.
+
+Applying the scenario:
+
+- New price = 35 × 1.20 = $42.
+- New subscribers = 12,000 × 0.90 = 10,800.
+- New MRR = 42 × 10,800 = $453,600.
+
+Change in MRR = 453,600 − 420,000 = +$33,600, an increase. Equivalently, the combined multiplier is 1.20 × 0.90 = 1.08, an 8 percent net increase: 420,000 × 0.08 = $33,600.
+
+Choice B (unchanged) is the trap for a solver who assumes a 20 percent price increase and a 10 percent subscriber loss roughly cancel; they do not, because the percentages are applied multiplicatively and the price increase is larger, leaving a net 8 percent gain. Choice A treats the change as a decline, the wrong direction. Choice D ($84,000) doubles the correct change, as if applying a 20 percent gain without the offsetting 10 percent loss (420,000 × 0.20 = 84,000). Choice E ($420,000) restates the entire current MRR rather than the change. The correct net effect is an increase of about $33,600.
+
+The correct answer is C.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+## Set 24: Vanguard Athletics — Store Cohort Review
+
+### Tab 1: Real Estate Memo
+
+**From:** Leo Tanaka, VP Retail Strategy
+**To:** Store Operations Committee
+
+The committee is reviewing the four stores in our newest cohort before approving any further leases in those markets. For each store we track annual revenue, annual operating cost, the one-time buildout cost we paid to open it, and selling-floor square footage.
+
+Please assess each store on profitability, capital payback, and selling productivity, using the definitions in Tab 3 and the review flag described there.
+
+### Tab 2: Store Cohort Data
+
+| Store      | Annual Revenue ($K) | Annual Operating Cost ($K) | Buildout Cost ($K) | Selling Floor (sq ft) |
+|------------|---------------------|----------------------------|--------------------|-----------------------|
+| Riverside  | 1,200               | 900                        | 600                | 4,000                 |
+| Harborview | 1,800               | 1,260                      | 900                | 6,000                 |
+| Oakdale    | 840                 | 720                        | 500                | 4,200                 |
+| Summit     | 1,500               | 975                        | 1,100              | 4,000                 |
+
+### Tab 3: Definitions and Review Flag
+
+- **Annual operating profit** = Annual Revenue − Annual Operating Cost.
+- **Payback period (years)** = Buildout Cost / Annual operating profit.
+- **Sales per square foot ($)** = Annual Revenue (in dollars) / Selling Floor (sq ft).
+- **Review flag:** a store is flagged for review if its sales per square foot is below $250 OR its payback period exceeds 3 years.
+
+### Q78
+**difficulty:** Medium
+**type:** Multi-Source Reasoning
+**topic:** Cross-Tab Inference
+
+Based on the data in the tabs, which of the following must be true?
+
+- A) The store with the highest revenue also has the highest sales per square foot.
+- B) Summit has the highest sales per square foot of the four stores.
+- C) Oakdale has both the highest annual operating profit and the shortest payback period.
+- D) Every store has a payback period under 3 years.
+- E) Harborview and Summit have equal annual operating profit.
+
+**answer:** B
+**explanation:** A "must be true" question requires the credited statement to follow necessarily from the data, while the others are contradicted by the exhibits. Using the Tab 3 definitions on the Tab 2 figures:
+
+Annual operating profit (Revenue − Operating Cost):
+- Riverside: 1,200 − 900 = $300K.
+- Harborview: 1,800 − 1,260 = $540K.
+- Oakdale: 840 − 720 = $120K.
+- Summit: 1,500 − 975 = $525K.
+
+Payback period (Buildout / profit):
+- Riverside: 600 / 300 = 2.00 yr.
+- Harborview: 900 / 540 ≈ 1.67 yr.
+- Oakdale: 500 / 120 ≈ 4.17 yr.
+- Summit: 1,100 / 525 ≈ 2.10 yr.
+
+Sales per square foot (Revenue in dollars / sq ft):
+- Riverside: 1,200,000 / 4,000 = $300.
+- Harborview: 1,800,000 / 6,000 = $300.
+- Oakdale: 840,000 / 4,200 = $200.
+- Summit: 1,500,000 / 4,000 = $375.
+
+Choice A claims the highest-revenue store also has the highest sales per square foot. The highest-revenue store is Harborview ($1,800K), but Harborview's sales per square foot is $300, which is below Summit's $375. The highest sales per square foot belongs to Summit, not the highest-revenue store, because Harborview also has the largest selling floor (6,000 sq ft), diluting its productivity. Choice A is false.
+
+Choice B claims Summit has the highest sales per square foot. Summit's $375 exceeds Riverside's $300, Harborview's $300, and Oakdale's $200. Summit is the unique maximum, so B is true.
+
+Choice C claims Oakdale has both the highest profit and the shortest payback. Oakdale has the lowest profit ($120K) and the longest payback (4.17 yr), the opposite of the claim, so C is false.
+
+Choice D claims every store's payback is under 3 years. Oakdale's payback is 4.17 years, so D is false.
+
+Choice E claims Harborview and Summit have equal profit. Harborview earns $540K and Summit $525K; 540 ≠ 525, so E is false.
+
+Only choice B is necessarily supported by the data: Summit leads on sales per square foot at $375.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning
+
+---
+
+### Q79
+**difficulty:** Hard
+**type:** Multi-Source Reasoning
+**topic:** Multi-Criterion Flagging
+
+Applying the review flag defined in Tab 3, how many of the four stores are flagged for review?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 4
+
+**answer:** B
+**explanation:** Tab 3 defines the review flag as a disjunctive condition: a store is flagged if its sales per square foot is below $250 OR its payback period exceeds 3 years. A store avoids the flag only if it clears BOTH thresholds — sales per square foot of at least $250 and payback of at most 3 years. Each store is tested using the Tab 3 definitions applied to Tab 2.
+
+First, the two metrics for each store.
+
+Annual operating profit (needed for payback) = Revenue − Operating Cost:
+- Riverside: $300K; Harborview: $540K; Oakdale: $120K; Summit: $525K.
+
+Payback period = Buildout / profit:
+- Riverside: 600 / 300 = 2.00 yr.
+- Harborview: 900 / 540 ≈ 1.67 yr.
+- Oakdale: 500 / 120 ≈ 4.17 yr.
+- Summit: 1,100 / 525 ≈ 2.10 yr.
+
+Sales per square foot = Revenue (in dollars) / sq ft:
+- Riverside: 1,200,000 / 4,000 = $300.
+- Harborview: 1,800,000 / 6,000 = $300.
+- Oakdale: 840,000 / 4,200 = $200.
+- Summit: 1,500,000 / 4,000 = $375.
+
+Now applying the disjunctive flag (flag if sales/sq ft < $250 OR payback > 3 yr):
+
+| Store      | Sales/sq ft | < $250? | Payback (yr) | > 3 yr? | Flagged? |
+|------------|-------------|---------|--------------|---------|----------|
+| Riverside  | $300        | No      | 2.00         | No      | No       |
+| Harborview | $300        | No      | 1.67         | No      | No       |
+| Oakdale    | $200        | Yes     | 4.17         | Yes     | Yes      |
+| Summit     | $375        | No      | 2.10         | No      | No       |
+
+Only Oakdale trips the flag — and it trips both halves of the OR condition at once: its $200 sales per square foot is below the $250 floor, and its 4.17-year payback exceeds the 3-year limit. The remaining three stores clear both thresholds and are not flagged. The trap is to misread the flag as conjunctive (requiring both failures) or to over-apply it; here the disjunction happens to catch a single store because only Oakdale fails on either dimension. Choices C, D, and E overcount, and choice A overlooks Oakdale entirely.
+
+The correct answer is B.
+**related_reading:** reading-di-05-multi-source-reasoning

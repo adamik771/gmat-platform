@@ -2872,3 +2872,365 @@ The percentage-point change is 22.62% − 13.04% = 9.58 pp. Among the answer cho
 
 The correct answer is C.
 **related_reading:** reading-di-04-graphics-interpretation
+
+
+---
+
+## Q75 (Set 34 — Logistics Cost Breakdown Pie Chart)
+
+```chart
+{"type":"pie","title":"Logistics cost breakdown, 2025 (%)","data":[{"name":"Warehousing","value":34},{"name":"Transportation","value":28},{"name":"Inventory","value":16},{"name":"Labor","value":14},{"name":"Technology","value":8}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Pie Chart Proportions
+
+If the firm's total annual logistics cost was $250 million, the combined spending on Warehousing and Technology was approximately ______ million dollars.
+
+- A) 85
+- B) 95
+- C) 105
+- D) 115
+- E) 125
+
+**answer:** C
+**explanation:** To find the combined dollar spending of two pie-chart segments, the percentage shares are first added and the resulting combined share is multiplied by the total quantity the whole chart represents.
+
+Let T = total logistics cost = $250 million. Reading the two relevant slices: Warehousing = 34% and Technology = 8%.
+
+Combined share = 34% + 8% = 42%.
+
+Combined spending = 0.42 × 250 = 105 million dollars.
+
+A useful cross-check computes each slice separately: Warehousing = 0.34 × 250 = 85 million, and Technology = 0.08 × 250 = 20 million. Their sum is 85 + 20 = 105 million, confirming the result. Among the answer choices — 85, 95, 105, 115, 125 — the value 105 is an exact match. Note that 85 (choice A) is the Warehousing slice alone, a trap for solvers who forget to add the Technology share.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q76 (Set 34 — Logistics Cost Breakdown, continued)
+
+```chart
+{"type":"pie","title":"Logistics cost breakdown, 2025 (%)","data":[{"name":"Warehousing","value":34},{"name":"Transportation","value":28},{"name":"Inventory","value":16},{"name":"Labor","value":14},{"name":"Technology","value":8}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Pie Chart Reallocation
+
+Suppose the firm cuts the Transportation share by one quarter and adds the freed-up percentage to Technology. After this change, Technology's share will be approximately ______ times its original share.
+
+- A) 1.5
+- B) 1.9
+- C) 2.5
+- D) 2.9
+- E) 3.5
+
+**answer:** B
+**explanation:** This problem requires translating a relative cut in one slice into an absolute number of percentage points, transferring those points to a second slice, and then comparing the second slice's new share to its original share as a ratio.
+
+The Transportation slice begins at 28%. Cutting it by one quarter removes 28 × (1/4) = 7 percentage points, so the freed-up amount is 7 percentage points. These 7 points are added to Technology.
+
+Technology begins at 8%. Its new share is 8 + 7 = 15%.
+
+The ratio of new to original Technology share is 15 / 8 = 1.875, which rounds to approximately 1.9.
+
+A cross-check confirms the total still sums to 100%: Warehousing 34 + Transportation (28 − 7 = 21) + Inventory 16 + Labor 14 + Technology 15 = 34 + 21 + 16 + 14 + 15 = 100. Among the choices, 1.875 is closest to 1.9. Choice C (2.5) is a trap that incorrectly transfers the full 28% rather than only the one-quarter cut, and choice A (1.5) understates the transferred amount.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q77 (Set 35 — Solar Capacity Bar Chart)
+
+```chart
+{"type":"bar","title":"Installed solar capacity by region (GW), 2025","x":{"label":"Region"},"y":{"label":"Capacity (GW)"},"series":[{"key":"capacity","name":"Capacity"}],"data":[{"x":"North","capacity":50},{"x":"South","capacity":70},{"x":"East","capacity":30},{"x":"West","capacity":90},{"x":"Central","capacity":50}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Bar Chart
+
+Based on the chart, the West region's installed capacity exceeds the average of the other four regions by approximately ______ percent.
+
+- A) 35
+- B) 55
+- C) 72
+- D) 80
+- E) 95
+
+**answer:** D
+**explanation:** The phrase "exceeds the average of the other four regions by approximately X percent" requires first computing the mean of the four non-West regions, then expressing West's capacity as a percentage excess over that mean using the formula ((West − mean) / mean) × 100.
+
+Reading the bar heights: North 50, South 70, East 30, West 90, Central 50 (all in GW).
+
+The four regions other than West are North, South, East, and Central. Their sum is 50 + 70 + 30 + 50 = 200 GW, and their average is 200 / 4 = 50 GW.
+
+West's capacity is 90 GW. The percentage excess over the four-region average is:
+
+((90 − 50) / 50) × 100 = (40 / 50) × 100 = 80%.
+
+Among the answer choices — 35, 55, 72, 80, 95 — the value 80% is an exact match. A common trap is to compute West as a percentage OF the four-region average (90 / 50 = 180%) and select the wrong magnitude; the question asks by how much West EXCEEDS the average, which is the 80 percentage points above 100%, not the 180% ratio itself.
+
+The correct answer is D.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q78 (Set 35 — Solar Capacity, continued)
+
+```chart
+{"type":"bar","title":"Installed solar capacity by region (GW), 2025","x":{"label":"Region"},"y":{"label":"Capacity (GW)"},"series":[{"key":"capacity","name":"Capacity"}],"data":[{"x":"North","capacity":50},{"x":"South","capacity":70},{"x":"East","capacity":30},{"x":"West","capacity":90},{"x":"Central","capacity":50}]}
+```
+
+**difficulty:** Easy
+**type:** Graphics Interpretation
+**topic:** Bar Chart
+
+Based on the chart, the West region's capacity is approximately ______ times that of the East region.
+
+- A) 1.5
+- B) 2.0
+- C) 2.5
+- D) 2.8
+- E) 3.0
+
+**answer:** E
+**explanation:** To find how many times one bar is another, the ratio definition applies: divide the larger region's value by the smaller region's value, both read directly from the chart.
+
+Reading the two relevant bars: West = 90 GW and East = 30 GW.
+
+The ratio is 90 / 30 = 3.0 exactly.
+
+A cross-check confirms the result: 3.0 × 30 = 90, matching West's capacity precisely. Among the choices — 1.5, 2.0, 2.5, 2.8, 3.0 — the value 3.0 is an exact match rather than an approximation. The trap choice 2.8 would correspond to an East value near 32, and 2.5 to an East value of 36; neither matches the chart's East reading of 30.
+
+The correct answer is E.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q79 (Set 36 — Subscriber Cohort Line Graph)
+
+```chart
+{"type":"line","title":"Subscriber retention by cohort month (% remaining)","x":{"label":"Months since signup"},"y":{"label":"Retention (%)","min":0,"max":100},"series":[{"key":"retention","name":"Retention"}],"data":[{"x":"0","retention":100},{"x":"1","retention":82},{"x":"2","retention":70},{"x":"3","retention":61},{"x":"4","retention":55},{"x":"5","retention":51},{"x":"6","retention":48}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Line Graph
+
+Based on the graph, the steepest single-month drop in retention occurred between month ______ and the month after it.
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) 4
+
+**answer:** A
+**explanation:** A single-month drop in retention is the decline from one month's value to the next: drop = retention(month n) − retention(month n+1). The steepest drop is the largest such decline, computed over every consecutive pair.
+
+Reading the retention curve: month 0 = 100, month 1 = 82, month 2 = 70, month 3 = 61, month 4 = 55, month 5 = 51, month 6 = 48 (all percentages).
+
+Consecutive drops:
+
+- Month 0 to 1: 100 − 82 = 18
+- Month 1 to 2: 82 − 70 = 12
+- Month 2 to 3: 70 − 61 = 9
+- Month 3 to 4: 61 − 55 = 6
+- Month 4 to 5: 55 − 51 = 4
+- Month 5 to 6: 51 − 48 = 3
+
+Ranking in descending order: 18 > 12 > 9 > 6 > 4 > 3. The largest decline, 18 percentage points, occurs between month 0 and month 1. This reflects the common pattern in subscription cohorts: the heaviest churn happens immediately after signup, and the curve flattens as the remaining subscribers become progressively more committed.
+
+The correct answer is A.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q80 (Set 36 — Subscriber Cohort, continued)
+
+```chart
+{"type":"line","title":"Subscriber retention by cohort month (% remaining)","x":{"label":"Months since signup"},"y":{"label":"Retention (%)","min":0,"max":100},"series":[{"key":"retention","name":"Retention"}],"data":[{"x":"0","retention":100},{"x":"1","retention":82},{"x":"2","retention":70},{"x":"3","retention":61},{"x":"4","retention":55},{"x":"5","retention":51},{"x":"6","retention":48}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Line Graph
+
+If the cohort began with 5,000 subscribers, the number who churned between month 2 and month 6 was approximately ______.
+
+- A) 600
+- B) 900
+- C) 1,100
+- D) 1,400
+- E) 1,750
+
+**answer:** C
+**explanation:** The number of subscribers remaining at any month equals the starting cohort multiplied by that month's retention percentage. The number who churned over an interval is the difference between the count remaining at the start of the interval and the count remaining at the end.
+
+The starting cohort is 5,000 subscribers. Reading the retention values: month 2 = 70% and month 6 = 48%.
+
+Subscribers remaining at month 2 = 0.70 × 5,000 = 3,500.
+Subscribers remaining at month 6 = 0.48 × 5,000 = 2,400.
+
+The number who churned between month 2 and month 6 is 3,500 − 2,400 = 1,100.
+
+Equivalently, the retention fell by 70% − 48% = 22 percentage points, and 22% of 5,000 is 0.22 × 5,000 = 1,100. Both methods agree. Among the choices — 600, 900, 1,100, 1,400, 1,750 — the value 1,100 is an exact match. Choice E (1,750) is a trap that computes those who left from the original cohort by month 2 (the 30% already churned, 1,500) plus confusion; choice A (600) reflects only the month 4-to-6 interval.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q81 (Set 37 — Department Headcount vs. Attrition Composed Chart)
+
+```chart
+{"type":"composed","title":"Headcount and attrition rate by department (2025)","x":{"label":"Department"},"y":{"label":"Headcount"},"y2":{"label":"Attrition (%)"},"composed":{"bars":["headcount"],"lines":["attrition"]},"data":[{"x":"Sales","headcount":200,"attrition":15},{"x":"Engineering","headcount":350,"attrition":10},{"x":"Support","headcount":150,"attrition":20},{"x":"Marketing","headcount":100,"attrition":12},{"x":"Finance","headcount":80,"attrition":5}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Combination Bar + Line
+
+Based on the chart, the department that lost the greatest number of employees to attrition in 2025 was ______.
+
+- A) Sales
+- B) Engineering
+- C) Support
+- D) Marketing
+- E) Finance
+
+**answer:** B
+**explanation:** The number of employees lost to attrition equals a department's headcount multiplied by its attrition rate. Although the attrition rate is read from the line and the headcount from the bars, the product — not either factor alone — determines the absolute number of departures.
+
+Reading both series for each department and computing headcount × attrition rate:
+
+- Sales: 200 × 0.15 = 30
+- Engineering: 350 × 0.10 = 35
+- Support: 150 × 0.20 = 30
+- Marketing: 100 × 0.12 = 12
+- Finance: 80 × 0.05 = 4
+
+Ranking in descending order: Engineering 35 > Sales 30 = Support 30 > Marketing 12 > Finance 4.
+
+Engineering lost the greatest number of employees, 35, even though its 10% attrition rate is far from the highest in the chart. Its large headcount of 350 more than compensates: 350 × 10% exceeds Support's 150 × 20% = 30 and Sales's 200 × 15% = 30. The two traps are Support, which has the highest attrition rate (20%) but only the third-largest workforce, and Engineering being overlooked because solvers fixate on the visibly low line value. Only the product of headcount and rate gives the true count of departures, and that product is uniquely largest for Engineering.
+
+The correct answer is B.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q82 (Set 38 — R&D Spending vs. Patents Bubble Chart)
+
+```chart
+{"type":"bubble","title":"Pharma firms: R&D spend vs. approval rate (bubble = patents filed)","x":{"label":"R&D spend ($B)","min":0,"max":12},"y":{"label":"Drug approval rate (%)","min":0,"max":40},"data":[{"x":2,"y":12,"z":40},{"x":4,"y":18,"z":75},{"x":6,"y":22,"z":120},{"x":8,"y":28,"z":160},{"x":10,"y":34,"z":210},{"x":3,"y":30,"z":250}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Bubble Chart
+
+Which statement is best supported by the chart?
+
+- A) Higher R&D spending is associated with lower approval rates.
+- B) The firm with the highest approval rate also files the most patents.
+- C) Excluding one firm, higher R&D spending is associated with both higher approval rates and more patents filed.
+- D) Patents filed are independent of R&D spending.
+- E) The firm spending the least on R&D files the most patents.
+
+**answer:** C
+**explanation:** In a bubble chart each point encodes three variables: horizontal position (R&D spend, x), vertical position (approval rate, y), and bubble size (patents filed, z). To evaluate a claimed pattern, the firms are sorted by the x-variable and the y- and z-variables are checked for systematic movement, noting any exception.
+
+Sorting the six firms in ascending order of R&D spend:
+
+| Firm | x (R&D spend, $B) | y (approval rate, %) | z (patents) |
+|------|-------------------|----------------------|-------------|
+| F1   | 2                 | 12                   | 40          |
+| F6   | 3                 | 30                   | 250         |
+| F2   | 4                 | 18                   | 75          |
+| F3   | 6                 | 22                   | 120         |
+| F4   | 8                 | 28                   | 160         |
+| F5   | 10                | 34                   | 210         |
+
+One firm, F6, is an outlier in both vertical dimensions: at only $3B of R&D spend it posts a 30% approval rate and files 250 patents, both far above what its modest spend would predict. The remaining five firms — F1, F2, F3, F4, F5, taken in order of increasing spend — show approval rates of 12, 18, 22, 28, 34 (strictly rising) and patent counts of 40, 75, 120, 160, 210 (strictly rising). Excluding F6, therefore, higher R&D spend is associated with both higher approval rates and more patents filed, exactly as choice C states.
+
+Choice A claims a negative association between spend and approval; among the five non-outlier firms the relationship is clearly positive, so A is wrong. Choice B claims the firm with the highest approval rate also files the most patents. The highest approval rate belongs to F5 (34%), but F5 files 210 patents, whereas F6 files the most at 250 — so the highest-approval firm is not the top patent filer, and B is false. Choice D is refuted because, once the single outlier is set aside, patents rise in lock-step with spend, so the two are clearly not independent. Choice E is false: the least-spending firm (F1, $2B) files the fewest patents (40), not the most — the most patents (250) come from F6, which spends $3B, the second-lowest. Only choice C, which explicitly accounts for the single exception, holds.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q83 (Set 39 — Quarterly Imports and Exports Stacked Bar Chart)
+
+```chart
+{"type":"stackedBar","title":"Quarterly trade volume by category ($B)","x":{"label":"Quarter"},"y":{"label":"Trade volume ($B)"},"series":[{"key":"Goods","name":"Goods"},{"key":"Services","name":"Services"},{"key":"Energy","name":"Energy"}],"data":[{"x":"Q1","Goods":120,"Services":60,"Energy":40},{"x":"Q2","Goods":135,"Services":75,"Energy":30},{"x":"Q3","Goods":150,"Services":90,"Energy":50},{"x":"Q4","Goods":140,"Services":100,"Energy":60}]}
+```
+
+**difficulty:** Hard
+**type:** Graphics Interpretation
+**topic:** Proportional Analysis
+
+Based on the chart, Services as a share of total quarterly trade volume was highest in ______.
+
+- A) Q1
+- B) Q2
+- C) Q3
+- D) Q4
+- E) Q2 and Q3 tied
+
+**answer:** D
+**explanation:** A category's share of total quarterly trade volume is its value divided by the sum of all three categories that quarter, expressed as a percentage. We compute the Services share for each quarter and compare.
+
+Reading the three series and totaling each quarter:
+
+- Q1: total = 120 + 60 + 40 = 220; Services share = 60 / 220 ≈ 27.27%.
+- Q2: total = 135 + 75 + 30 = 240; Services share = 75 / 240 = 31.25%.
+- Q3: total = 150 + 90 + 50 = 290; Services share = 90 / 290 ≈ 31.03%.
+- Q4: total = 140 + 100 + 60 = 300; Services share = 100 / 300 ≈ 33.33%.
+
+Ranking in descending order: Q4 (33.33%) > Q2 (31.25%) > Q3 (31.03%) > Q1 (27.27%). Services claimed its largest share of the trade mix in Q4, at about 33.33%, even though Q2 and Q3 are close behind. Note that Q3 has the highest absolute Services value at 90, yet its larger total (290) dilutes the share below Q4's, where Services reaches 100 against a total of 300. The trap here is selecting Q3 (highest absolute Services) instead of computing the proportional share.
+
+The correct answer is D.
+**related_reading:** reading-di-04-graphics-interpretation
+
+---
+
+## Q84 (Set 39 — Quarterly Trade Volume, continued)
+
+```chart
+{"type":"stackedBar","title":"Quarterly trade volume by category ($B)","x":{"label":"Quarter"},"y":{"label":"Trade volume ($B)"},"series":[{"key":"Goods","name":"Goods"},{"key":"Services","name":"Services"},{"key":"Energy","name":"Energy"}],"data":[{"x":"Q1","Goods":120,"Services":60,"Energy":40},{"x":"Q2","Goods":135,"Services":75,"Energy":30},{"x":"Q3","Goods":150,"Services":90,"Energy":50},{"x":"Q4","Goods":140,"Services":100,"Energy":60}]}
+```
+
+**difficulty:** Medium
+**type:** Graphics Interpretation
+**topic:** Absolute Comparison
+
+Based on the chart, the total trade volume across all three categories grew from Q1 to Q3 by approximately ______ percent.
+
+- A) 18
+- B) 24
+- C) 32
+- D) 38
+- E) 45
+
+**answer:** C
+**explanation:** The percentage growth in total trade volume from Q1 to Q3 is ((Q3 total − Q1 total) / Q1 total) × 100, where each quarter's total is the sum of all three category values for that quarter.
+
+Reading and summing the three categories for each endpoint:
+
+- Q1 total = Goods 120 + Services 60 + Energy 40 = 220 ($B).
+- Q3 total = Goods 150 + Services 90 + Energy 50 = 290 ($B).
+
+The growth is:
+
+((290 − 220) / 220) × 100 = (70 / 220) × 100 ≈ 31.82%.
+
+Among the answer choices — 18, 24, 32, 38, 45 — the value 31.82% is closest to 32. A cross-check: 220 × 1.32 = 290.4, essentially matching the Q3 total of 290. The next candidate, 38, would imply 220 × 1.38 = 303.6, overshooting by nearly 14; and 24 would imply 272.8, undershooting by more than 17. Neither is as close as 32.
+
+The correct answer is C.
+**related_reading:** reading-di-04-graphics-interpretation
