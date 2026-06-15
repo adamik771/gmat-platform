@@ -2710,7 +2710,6 @@ A jar contains r red marbles and b blue marbles and no others. If 2 marbles are 
 **answer:** A
 **explanation:** A pair of 2 marbles that are both red is an unordered choice of 2 of the red marbles, so the number of such pairs is C(r, 2) and depends only on r, not on b. Statement (1) gives r = 6, so the number of all-red pairs is C(6, 2) = (6 x 5) / (2 x 1) = 15, a single determined value; this is sufficient. Statement (2) gives only b = 5, which says nothing about how many red marbles are available and therefore leaves C(r, 2) undetermined; this is not sufficient. Since the count depends solely on r, statement (1) alone suffices while statement (2) alone does not. The correct answer is A.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
-**related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
 

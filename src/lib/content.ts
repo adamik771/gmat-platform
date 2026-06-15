@@ -567,8 +567,14 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
       return firstQuestionIdx === -1 ? block : block.slice(firstQuestionIdx)
     })()
 
-    const question = parseQuestionBlock(questionOnly, section, topic, fileSlug, contextForBlock)
-    if (question) parsed.push(question)
+    // Parse each header-delimited sub-block. Normally there is exactly one, so
+    // this is identical to parsing `questionOnly` directly; the split only
+    // matters when a `---` separator is missing, recovering the would-be-dropped
+    // question instead of merging it into its predecessor.
+    for (const sub of splitOnQuestionHeaders(questionOnly)) {
+      const question = parseQuestionBlock(sub, section, topic, fileSlug, contextForBlock)
+      if (question) parsed.push(question)
+    }
   }
   return parsed
 }
