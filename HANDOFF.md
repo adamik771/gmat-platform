@@ -2,6 +2,22 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-15 LATER (closed out the 4 open code items from the entry below; gate green, NOT committed)
+
+Branch `claude/handoff-2026-06-13`. Picked up the "Open / not done" list from the next entry and cleared every code item (the 5th, "merge the pending PR", was already done — `e295d43` is on origin/main via #468; only this HANDOFF doc remains un-merged). Working tree: **13 changed files, uncommitted** (Adam reviews/commits). Gate green: `npm run lint` **clean (0 problems)**; `npm run check` = validate:content **0 errors** (17 warnings/24 info, all benign) + tsc + **238** vitest; `next build` clean.
+
+Done:
+1. **Linked `/how-we-compare`** — added to the Footer "Company" column (`src/components/shared/Footer.tsx`). Left the primary Navbar untouched (4-item design, tight on mobile) — easy to add there too if wanted.
+2. **De-duped the consecutive-integers question** — removed the misfiled `algebra-q87` (its own `topic:` was "Word Problem — Translation"; byte-for-byte the same problem as `word-problems-q13`, which has the fuller explanation and correct placement). IDs are header-derived (`${slug}-q${n}`), so the Q87 gap is ID-stable — no existing `algebra-qN` attempt is orphaned and the validator has no contiguity check. Quant bank 1025→1024.
+3. **Deleted dead `src/lib/study-path-engine.ts`** (532 lines, zero importers, superseded by `adaptive-plan-engine.ts`). Fixed the now-dangling reference in the `adaptive-plan-engine.ts` header comment.
+4. **Cleared all 14 lint issues → clean `npm run lint`.** Mostly unused import/var removals + one `prefer-const` + replacing two `any`s in `tests/rehype-caret-sup.test.ts` with a local `HastNode` type. Two were dead-feature remnants, not simple debt:
+   - **SessionClient** — removed the orphaned `handleRebuildMix` "rebuild mixed review" handler and its entire unwired cluster (`useRouter` import + `router`, the `rebuilding`/`rebuildError` state, and the now-dead `{rebuildError && …}` results-screen error UI). `isMixedReview` stays (still used at the results screen). The `/api/mixed-review` route is untouched — only the dead retake-button plumbing went.
+   - **study-plan** — `estimatedTotal` and `masteries` are computed but never read on the page (dropped consumers). Kept the computations and suppressed via the file's existing `void X` idiom rather than ripping them out (full removal would orphan `TopicMastery` + local helpers). **Decision for Adam:** wire these into the plan UI, or delete the computations.
+
+Still open / Adam's call: commit + push these (and whether onto this branch or a fresh one); optionally add `/how-we-compare` to the Navbar. **The standing Phase-A "stop the bleeding" item is still live** — a claude.ai/code web routine committed `0377d65` (this branch's own HANDOFF doc) at 12:28 *during* this session, and there are 519 remote `claude/*` branches. The 4 local scheduled tasks remain enabled (next writers: `gmat-qa-audit` Wed 06-17, `gmat-marketing-post` Mon 06-22).
+
+---
+
 ## CONTEXT SWITCH — 2026-06-15 (marketing-sprint + question-bank expansion; everything pushed, one PR pending)
 
 Branch `claude/handoff-2026-06-13` (off main). All work this session is committed + pushed; Adam merged most of it incrementally as small PRs. At handoff the branch is **1 commit ahead of origin/main** (the round-2 questions commit `e295d43`); open PR: https://github.com/adamik771/gmat-platform/compare/main...claude/handoff-2026-06-13?expand=1 . Working tree clean. Gate green: `npm run check` = validate:content **0 errors** (18 warnings, 24 info — all benign: duplicate-prompt boilerplate, RC cross-pin notes, thin-chapter authoring nudges) + tsc + **238** vitest; `next build` clean (107 routes). Standing rules still apply: NO emojis, approximate marketing counts ("50+ chapters", "1,150+ questions"), do NOT commit unless Adam asks.

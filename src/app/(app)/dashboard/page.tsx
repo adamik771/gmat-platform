@@ -284,7 +284,7 @@ export default async function DashboardPage() {
   let longestStreak = 0
   /** Every session's timestamp + duration — the study-hours chart buckets
    *  these into local-time days client-side and supports week-back nav. */
-  let studySessions: Array<{ t: string; ms: number }> = []
+  const studySessions: Array<{ t: string; ms: number }> = []
   let badges: Badge[] = []
   let reviewDueCount = 0
   let reviewTopTopic: string | null = null

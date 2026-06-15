@@ -17,7 +17,6 @@ import {
 } from "lucide-react"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
-import EmptyState from "@/components/shared/EmptyState"
 import {
   buildWeeklyCadence,
   computeStudyPlan,
@@ -42,7 +41,6 @@ import {
   type PersonaProfile,
   type PersonaTag,
 } from "@/lib/personas"
-import { accuracyToScore } from "@/lib/diagnostic"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import type { Section } from "@/types"
 
@@ -193,8 +191,9 @@ export default async function StudyPlanPage() {
         // Two viable derivations — accuracy→total or sum-of-sections. Use
         // accuracy→total here (same as analytics/dashboard).
         estimatedTotal = accuracyToFocusTotal(avgAccuracy * 100)
-        // Keep the per-section math around as a sanity check (unused but
-        // documents the relationship) — suppress the unused warning.
+        // Both values are computed for documentation/sanity but not yet
+        // surfaced on this page — suppress the unused warnings.
+        void estimatedTotal
         void sectionScore
       }
 
@@ -292,6 +291,8 @@ export default async function StudyPlanPage() {
           personaThresholdOverrides(persona.key),
         )
       }
+      // Computed for a future plan surface; not read on this page yet.
+      void masteries
 
       // Aggregate Official-ready signal — two-week stability across
       // mixed + mock attempts. Uses the same persona threshold override

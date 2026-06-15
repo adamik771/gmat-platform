@@ -6,15 +6,22 @@ import rehypeCaretSup from "@/lib/rehype-caret-sup"
 function run(node: unknown): string {
   const tree = { type: "root", children: [node] } as { children: unknown[] }
   ;(rehypeCaretSup() as (t: unknown) => void)(tree)
-  return render(tree.children[0])
+  return render(tree.children[0] as HastNode)
 }
-function render(n: any): string {
-  if (n.type === "text") return n.value
-  if (n.tagName === "sup") return "⟨" + n.children.map(render).join("") + "⟩"
-  return n.children.map(render).join("")
+type HastNode = {
+  type: string
+  value?: string
+  tagName?: string
+  properties?: Record<string, unknown>
+  children?: HastNode[]
 }
-const T = (value: string) => ({ type: "text", value })
-const E = (tagName: string, kids: any[]) => ({
+function render(n: HastNode): string {
+  if (n.type === "text") return n.value ?? ""
+  const kids = (n.children ?? []).map(render).join("")
+  return n.tagName === "sup" ? "⟨" + kids + "⟩" : kids
+}
+const T = (value: string): HastNode => ({ type: "text", value })
+const E = (tagName: string, kids: HastNode[]): HastNode => ({
   type: "element",
   tagName,
   properties: {},

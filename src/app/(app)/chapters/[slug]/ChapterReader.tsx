@@ -11,7 +11,6 @@ import {
   Check,
   CheckCircle2,
   ChevronDown,
-  Clock,
   FlaskConical,
   Lightbulb,
   Maximize2,

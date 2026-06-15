@@ -96,7 +96,7 @@ function usesPerChoice(q: ParsedQuestion): boolean {
 // region and are preserved). `rewriteBlock` self-guards: it returns null for any
 // block missing the `**fastest_path:**`/`**explanation:**` markers, so a
 // malformed block is logged as skipped rather than corrupted.
-function applySupported(_q: ParsedQuestion): boolean {
+function applySupported(): boolean {
   return true
 }
 
@@ -345,7 +345,7 @@ function applyAll(proposals: Proposal[], byId: Map<string, ParsedQuestion>) {
   for (const p of proposals) {
     const q = byId.get(p.id)
     if (!q) { unknown.push(p.id); continue }
-    if (!applySupported(q)) { unsupported.push(p.id); continue }
+    if (!applySupported()) { unsupported.push(p.id); continue }
     const key = fileForSlug(q.setSlug, q.section)
     if (!byFile.has(key)) byFile.set(key, new Map())
     byFile.get(key)!.set(q.number, { q, res: p.after })

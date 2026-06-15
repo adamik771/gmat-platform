@@ -1,13 +1,11 @@
 import Link from "next/link"
 import {
   ArrowRight,
-  Award,
   BookOpen,
   CheckCircle2,
   Clock,
   Compass,
   Flag,
-  Sparkles,
   Target,
 } from "lucide-react"
 import { getAllChapters, getAllGuides } from "@/lib/content"

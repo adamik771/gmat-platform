@@ -53,9 +53,8 @@ import type { Difficulty, QuestionType, Section } from "@/types"
  *   week-by-week schedule. Pure so tests + UI previews can run without
  *   a database.
  *
- * This module supersedes `study-path-engine.ts` (diagnostic-only). The
- * older engine remains for backward compatibility with `/diagnostic`
- * callers that don't yet have ongoing-practice signals.
+ * This is the planner used across the app (study-plan, dashboard); it
+ * replaced an earlier diagnostic-only engine.
  */
 
 // ============================================================

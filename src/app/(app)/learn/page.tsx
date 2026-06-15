@@ -392,7 +392,6 @@ export default async function CoursePage() {
             it stops being a footer afterthought. */}
         <CourseLoop
           baselineEntered={baselineEntered}
-          officialExamCount={officialExamCount}
         />
 
         {/* BY THE NUMBERS — moved out of the hero. Stats now carry an
@@ -611,10 +610,8 @@ function StatCell({
  */
 function CourseLoop({
   baselineEntered,
-  officialExamCount,
 }: {
   baselineEntered: boolean
-  officialExamCount: number
 }) {
   type LoopNode = {
     n: string
