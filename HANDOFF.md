@@ -2,7 +2,26 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
-## CONTEXT SWITCH — 2026-06-15 LATER (closed out the 4 open code items from the entry below; gate green, NOT committed)
+## CONTEXT SWITCH — 2026-06-15 LATEST (study-plan: surfaced projected score + per-topic mastery)
+
+Branch `claude/handoff-2026-06-13`, **ahead of origin by 3 commits, all unpushed** (push needs Adam's GitHub auth — `git push origin claude/handoff-2026-06-13`; this env has no creds, `gh` not installed): `0377d65` (prior-session HANDOFF doc), `f3e3a43` (the cleanup batch from the entry below — now committed), and this feature commit. No more uncommitted work.
+
+**What shipped (Adam asked to wire both computed-but-hidden signals into the UI):** `src/app/(app)/study-plan/page.tsx` (+~190) + a 1-line comment fix in `src/lib/mastery.ts`.
+1. **Projected-total card** — leads the Progress Stat Cards grid (changed `sm:grid-cols-3` → `sm:grid-cols-2 lg:grid-cols-4`). Shows the practice-derived GMAT Focus projection (`estimatedTotal`, 205-805) with a color-coded `±N vs target · baseline N` caption. Renders only when `estimatedTotal !== null` (every section ≥10 attempts). Read-only — does NOT duplicate the dashboard target editor or the baseline attribution line.
+2. **Mastery-gates section** — new numbered `<section>` between Weak Areas and Upcoming Chapters, rendered only when `masteries.length > 0`. Weakest-first list (engine already sorts tier-ascending), capped at 6 with a `+N more → /analytics` link. Each row: section+topic label, a 4-segment gate track (concept/timed/mixed/section, filled per `g.satisfied`, tier-colored), next-gate evidence hint (md+), and a tier pill. Registered in `renderedNumberedSections` (guarded by `masteries.length > 0`) so the `01/02/...` kickers stay gap-free.
+3. Removed the two `void estimatedTotal` / `void masteries` suppressions (the values now reach JSX). Fixed a stale `mastery.ts` comment ("Always 3" gates → "Always 4").
+
+**How it was built/verified:** investigation+design workflow (3 parallel readers → synthesized spec) → implement → in-browser visual check (desktop + mobile, throwaway public page with mock data across all 5 tiers, since the real page is auth-gated + needs ≥10 attempts/section; page deleted after) → adversarial review workflow (6 findings, all low, all fixed): row hover to match `WeakAreaCard`; `role="img"`+`aria-label` on gate segments (a11y, was tooltip-only); headline "holds." → "is forming." (list is weakest-first); **tier-aware `nextGate`** (was pointing at bypassed earlier gates); subhead dropped the false "in order/cumulative" framing.
+
+**Key engine insight (left as-is — it's a product decision with its own tests):** mastery gates are **non-monotonic** — `concept`/`timed`/`mixed` are independent data sources; only `section` requires `mixed`; the tier cascade is non-`else` ifs. So a topic can read "Timed" with the concept segment empty. The UI now honestly frames the four as independent milestones rather than a cumulative bar.
+
+**Gate green:** `npm run lint` clean; `npm run check` = validate:content 0 errors + tsc + **238** vitest; `next build` clean (144 static pages).
+
+Possible follow-ups (not done): make the engine tier ladder monotonic if "Timed-with-empty-concept" rows feel wrong (changes `mastery.ts` semantics + tests — needs Adam's call); the per-section `masteries` data also already powers `/analytics` if a fuller view is wanted.
+
+---
+
+## CONTEXT SWITCH — 2026-06-15 LATER (closed out the 4 open code items from the entry below; gate green, NOW committed as f3e3a43)
 
 Branch `claude/handoff-2026-06-13`. Picked up the "Open / not done" list from the next entry and cleared every code item (the 5th, "merge the pending PR", was already done — `e295d43` is on origin/main via #468; only this HANDOFF doc remains un-merged). Working tree: **13 changed files, uncommitted** (Adam reviews/commits). Gate green: `npm run lint` **clean (0 problems)**; `npm run check` = validate:content **0 errors** (17 warnings/24 info, all benign) + tsc + **238** vitest; `next build` clean.
 

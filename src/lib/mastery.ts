@@ -35,7 +35,7 @@ export interface TopicMastery {
   topic: string
   section: Section
   tier: MasteryTier
-  /** Always 3, in gate order. */
+  /** Always 4, in gate order (concept, timed, mixed, section). */
   gates: MasteryGate[]
   chapterSlug: string | null
   /** Total timed attempts on the topic — used as a tiebreaker and for the
