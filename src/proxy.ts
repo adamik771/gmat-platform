@@ -19,6 +19,7 @@ const APP_ROUTES = [
   "/practice",
   "/qa",
   "/review",
+  "/score-calculator",
   "/settings",
   "/study-plan",
   "/test-builder",

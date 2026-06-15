@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowLeft, ArrowRight, Bookmark } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getQuestionsByIds } from "@/lib/content"
-import SaveForReviewButton from "@/components/review/SaveForReviewButton"
+import SavedUnsaveButton from "./SavedUnsaveButton"
 import EmptyState from "@/components/shared/EmptyState"
 import type { Section } from "@/types"
 
@@ -21,12 +21,17 @@ const SECTION_ACCENT: Record<Section, string> = {
 /** First ~150 chars of the prompt, markdown stripped, for a one-line preview. */
 function preview(prompt: string): string {
   const stripped = prompt
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "") // images
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // links → their text
     .replace(/[#*_`>~|]/g, "")
     .replace(/\s+/g, " ")
     .trim()
-  return stripped.length > 150 ? stripped.slice(0, 150).trimEnd() + "…" : stripped
+  if (!stripped) return "Open to view this question." // e.g. an image-only prompt
+  // Slice by code points so a multi-byte glyph (emoji) is never cut mid-pair.
+  const chars = [...stripped]
+  return chars.length > 150
+    ? chars.slice(0, 150).join("").trimEnd() + "…"
+    : stripped
 }
 
 export default async function SavedQuestionsPage() {
@@ -109,11 +114,7 @@ export default async function SavedQuestionsPage() {
               </div>
               {/* Compact toggle = unsave (initialSaved is true here). */}
               <div className="flex-shrink-0">
-                <SaveForReviewButton
-                  questionId={q.id}
-                  initialSaved
-                  variant="compact"
-                />
+                <SavedUnsaveButton questionId={q.id} />
               </div>
             </div>
             <div className="mt-3 pt-3 border-t border-white/[0.06]">

@@ -37,4 +37,10 @@ describe("sectionScoresToTotal (GMAT Focus section→total estimate)", () => {
     expect(sectionScoresToTotal(40, 60, 60)).toBe(205) // 40 clamps up to 60
     expect(sectionScoresToTotal(99, 90, 90)).toBe(805) // 99 clamps down to 90
   })
+
+  it("guards non-finite inputs (NaN/Infinity) — never returns NaN", () => {
+    expect(Number.isFinite(sectionScoresToTotal(NaN, 75, 75))).toBe(true)
+    expect(Number.isFinite(sectionScoresToTotal(75, Infinity, 75))).toBe(true)
+    expect(sectionScoresToTotal(NaN, NaN, NaN)).toBe(205) // non-finite → floor (60) → 205
+  })
 })

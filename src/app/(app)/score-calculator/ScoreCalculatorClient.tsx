@@ -8,7 +8,7 @@ import {
   SECTION_SCORE_MAX,
   SECTION_TOTAL_ESTIMATE_SWING,
 } from "@/lib/scoring"
-import { totalPercentile, percentileBand } from "@/lib/score-percentiles"
+import { totalPercentile } from "@/lib/score-percentiles"
 
 const EYEBROW = "text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A84C]"
 
@@ -19,8 +19,29 @@ const SECTIONS: { key: SectionKey; label: string; color: string }[] = [
   { key: "di", label: "Data Insights", color: "#3ECF8E" },
 ]
 
-const clampSection = (n: number) =>
-  Math.max(SECTION_SCORE_MIN, Math.min(SECTION_SCORE_MAX, Math.round(n)))
+const clampSection = (n: number) => {
+  const r = Math.round(n)
+  // Guard non-finite input so the field can never commit (or render) NaN.
+  return Number.isFinite(r)
+    ? Math.max(SECTION_SCORE_MIN, Math.min(SECTION_SCORE_MAX, r))
+    : 75
+}
+
+/** 1 → "1st", 2 → "2nd", 3 → "3rd", 11–13 → "th", else "th". */
+function ordinal(n: number): string {
+  const v = n % 100
+  if (v >= 11 && v <= 13) return `${n}th`
+  switch (n % 10) {
+    case 1:
+      return `${n}st`
+    case 2:
+      return `${n}nd`
+    case 3:
+      return `${n}rd`
+    default:
+      return `${n}th`
+  }
+}
 
 export default function ScoreCalculatorClient() {
   const [scores, setScores] = useState<Record<SectionKey, number>>({
@@ -28,14 +49,31 @@ export default function ScoreCalculatorClient() {
     verbal: 75,
     di: 75,
   })
+  // Editing buffer per field: lets the user freely type (including clearing the
+  // field or a partial single digit) without the value snapping mid-keystroke.
+  // The number is clamped + committed to `scores` only on blur / Enter / stepper.
+  const [drafts, setDrafts] = useState<Record<SectionKey, string>>({
+    quant: "75",
+    verbal: "75",
+    di: "75",
+  })
 
-  const set = (key: SectionKey, value: number) =>
-    setScores((s) => ({ ...s, [key]: clampSection(value) }))
+  const commit = (key: SectionKey, raw: string) => {
+    const n = clampSection(Number(raw))
+    setScores((s) => ({ ...s, [key]: n }))
+    setDrafts((d) => ({ ...d, [key]: String(n) }))
+  }
+  const step = (key: SectionKey, delta: number) => {
+    const n = clampSection(scores[key] + delta)
+    setScores((s) => ({ ...s, [key]: n }))
+    setDrafts((d) => ({ ...d, [key]: String(n) }))
+  }
 
   const total = sectionScoresToTotal(scores.quant, scores.verbal, scores.di)
   const low = Math.max(205, total - SECTION_TOTAL_ESTIMATE_SWING)
   const high = Math.min(805, total + SECTION_TOTAL_ESTIMATE_SWING)
-  const pct = totalPercentile(total)
+  // GMAC's published top band is the 99th percentile; never display "100th".
+  const pct = Math.min(99, totalPercentile(total))
 
   return (
     <div className="max-w-3xl mx-auto space-y-10">
@@ -69,7 +107,7 @@ export default function ScoreCalculatorClient() {
             <div className="flex items-center justify-between gap-2">
               <button
                 type="button"
-                onClick={() => set(key, scores[key] - 1)}
+                onClick={() => step(key, -1)}
                 disabled={scores[key] <= SECTION_SCORE_MIN}
                 aria-label={`Decrease ${label} score`}
                 className="flex items-center justify-center w-9 h-9 rounded-lg border border-white/[0.08] text-[#C0C0C0] hover:bg-white/[0.04] disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
@@ -81,14 +119,20 @@ export default function ScoreCalculatorClient() {
                 inputMode="numeric"
                 min={SECTION_SCORE_MIN}
                 max={SECTION_SCORE_MAX}
-                value={scores[key]}
-                onChange={(e) => set(key, Number(e.target.value))}
+                value={drafts[key]}
+                onChange={(e) =>
+                  setDrafts((d) => ({ ...d, [key]: e.target.value }))
+                }
+                onBlur={(e) => commit(key, e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") (e.target as HTMLInputElement).blur()
+                }}
                 aria-label={`${label} section score`}
                 className="w-16 bg-transparent text-center font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
               <button
                 type="button"
-                onClick={() => set(key, scores[key] + 1)}
+                onClick={() => step(key, 1)}
                 disabled={scores[key] >= SECTION_SCORE_MAX}
                 aria-label={`Increase ${label} score`}
                 className="flex items-center justify-center w-9 h-9 rounded-lg border border-white/[0.08] text-[#C0C0C0] hover:bg-white/[0.04] disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
@@ -110,23 +154,26 @@ export default function ScoreCalculatorClient() {
         }}
       >
         <p className={EYEBROW + " mb-3"}>Estimated total</p>
-        <p
-          className="font-display text-6xl sm:text-7xl font-semibold tabular-nums leading-none"
-          style={{ color: "#C9A84C" }}
-          aria-live="polite"
-        >
-          {total}
-        </p>
-        <p className="mt-4 text-[14px] text-[#C0C0C0] tabular-nums">
-          Likely range{" "}
-          <span className="font-semibold text-[#F0F0F0]">
-            {low}–{high}
-          </span>{" "}
-          <span className="text-[#888888]">(±{SECTION_TOTAL_ESTIMATE_SWING})</span>
-        </p>
-        <p className="mt-1 text-[13px] text-[#888888] tabular-nums">
-          ≈ {pct}th percentile · {percentileBand(pct)}
-        </p>
+        <div aria-live="polite">
+          <p
+            className="font-display text-6xl sm:text-7xl font-semibold tabular-nums leading-none"
+            style={{ color: "#C9A84C" }}
+          >
+            {total}
+          </p>
+          <p className="mt-4 text-[14px] text-[#C0C0C0] tabular-nums">
+            Likely range{" "}
+            <span className="font-semibold text-[#F0F0F0]">
+              {low}–{high}
+            </span>{" "}
+            <span className="text-[#888888]">
+              (±{SECTION_TOTAL_ESTIMATE_SWING})
+            </span>
+          </p>
+          <p className="mt-1 text-[13px] text-[#888888] tabular-nums">
+            ≈ {ordinal(pct)} percentile
+          </p>
+        </div>
       </div>
 
       {/* Honesty / source note */}
