@@ -264,11 +264,16 @@ export async function computeStudyPlan(
   const todaysFocus: FocusAction[] = []
 
   const daysUntilExam = opts.examDate
-    ? Math.ceil(
-        (new Date(opts.examDate).getTime() -
-          new Date(new Date().toDateString()).getTime()) /
-          86400000
-      )
+    ? (() => {
+        // Parse the exam date (YYYY-MM-DD) as LOCAL midnight, not UTC. `new
+        // Date("YYYY-MM-DD")` is UTC midnight, which in a positive-offset
+        // timezone (e.g. Oslo UTC+1/2) reads as the previous local day and
+        // threw the day count off by one. Compare local-midnight to local-today.
+        const [y, m, d] = opts.examDate.split("-").map(Number)
+        const examLocal = new Date(y, (m ?? 1) - 1, d ?? 1).getTime()
+        const todayLocal = new Date(new Date().toDateString()).getTime()
+        return Math.ceil((examLocal - todayLocal) / 86400000)
+      })()
     : null
 
   // 1. Official baseline if none entered — the highest-priority first action.

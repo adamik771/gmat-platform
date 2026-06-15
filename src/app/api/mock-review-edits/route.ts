@@ -70,7 +70,7 @@ export async function POST(request: Request) {
   for (const raw of body.edits as unknown[]) {
     if (!raw || typeof raw !== "object") continue
     const r = raw as Record<string, unknown>
-    if (typeof r.questionId !== "string") continue
+    if (typeof r.questionId !== "string" || r.questionId.length > 100) continue
     const pre =
       typeof r.preEditAnswer === "number" ? r.preEditAnswer : null
     const post =
@@ -88,10 +88,16 @@ export async function POST(request: Request) {
       | Record<string, Partial<Record<string, EditEntry[]>>>
       | undefined) ?? {}
   const existingForDate = existing[body.dateIso] ?? {}
-  const next = {
+  const merged: Record<string, Partial<Record<string, EditEntry[]>>> = {
     ...existing,
     [body.dateIso]: { ...existingForDate, [body.section]: cleaned },
   }
+  // Keep only the most recent ~24 mock dates so the map can't grow unbounded.
+  const next = Object.fromEntries(
+    Object.entries(merged)
+      .sort(([a], [b]) => b.localeCompare(a))
+      .slice(0, 24)
+  )
 
   const { error } = await supabase.auth.updateUser({
     data: { mock_review_edits: next },

@@ -319,7 +319,7 @@ async function buildConceptItems(
   const { data: attempts } = await supabase
     .from("practice_attempts")
     .select(
-      "question_id, section, topic, subtopic, is_correct, practice_sessions(created_at)"
+      "question_id, section, topic, subtopic, is_correct, practice_sessions!inner(created_at)"
     )
     .eq("user_id", userId)
     .gte("practice_sessions.created_at", cutoff.toISOString())
@@ -612,9 +612,18 @@ export function readChapterProgressLite(
   if (!cp || typeof cp !== "object") return out
   for (const [slug, raw] of Object.entries(cp)) {
     if (!raw || typeof raw !== "object") continue
-    const firstSeenAt = (raw as { firstSeenAt?: unknown }).firstSeenAt
+    // firstSeenAt is written as a numeric epoch (ChapterReader). Fall back to
+    // lastSeenAt for chapters started before firstSeenAt existed, and still
+    // accept a legacy ISO string. Previously this only read a string, so it was
+    // always undefined and drills/checkpoints never surfaced.
+    const r = raw as { firstSeenAt?: unknown; lastSeenAt?: unknown }
+    const candidate = r.firstSeenAt ?? r.lastSeenAt
     const firstSeenMs =
-      typeof firstSeenAt === "string" ? Date.parse(firstSeenAt) : undefined
+      typeof candidate === "number"
+        ? candidate
+        : typeof candidate === "string"
+          ? Date.parse(candidate)
+          : undefined
     out[slug] = {
       firstSeenMs: Number.isFinite(firstSeenMs) ? firstSeenMs : undefined,
     }

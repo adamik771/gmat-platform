@@ -2647,6 +2647,8 @@ Statement (2) says n + 1 is a multiple of 5. A number is a multiple of 5 exactly
 Taking the statements together, Statement (1) restricts the units digit of n to the set {4, 6} and Statement (2) restricts it to the set {4, 9}. The only value common to both sets is 4, so the units digit of n must be 4. For example, n could be 4, 14, 24, and so on; each ends in 4, has a square ending in 6, and has n + 1 ending in 5. The units digit is uniquely determined, so both statements together are sufficient while neither alone suffices. The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
+---
+
 ## Q91
 **difficulty:** Hard
 **type:** Data Sufficiency

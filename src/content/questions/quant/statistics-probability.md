@@ -2597,6 +2597,8 @@ The correct answer is C.
 **hint_strategy:** Pick which one letter is correct (3 ways), then force the other two to both be wrong (only the swap works).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
+---
+
 ## Q78
 **difficulty:** Medium
 **type:** Problem Solving

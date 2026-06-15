@@ -478,8 +478,41 @@ function extractFlatSetReference(block: string): string | undefined {
   return ref.length > 0 ? ref : undefined
 }
 
+/**
+ * Split a question chunk into one sub-block per `## Qn` / `### Qn` header.
+ *
+ * Questions are normally `---`-separated, and `parseQuestionBlock` only reads
+ * the *first* header in whatever it's handed. So if a file is missing the `---`
+ * between two adjacent questions, both land in the same chunk and the second is
+ * silently dropped — while the first absorbs the second's options and
+ * explanation (e.g. a 5-option question rendering with 10 options A–E twice).
+ *
+ * This is the structural backstop against that: by cutting on each header line
+ * we guarantee every authored question is parsed even when its separator is
+ * missing, instead of failing silently. Any preamble before the first header
+ * (already-stripped group context, or a flat-set's inline table) stays with the
+ * first sub-block. With 0 or 1 header the input is returned unchanged, so this
+ * is a no-op for correctly-separated content.
+ */
+function splitOnQuestionHeaders(text: string): string[] {
+  const headerIndices: number[] = []
+  for (const match of text.matchAll(/^#{2,3}\s+Q\d+[^\n]*$/gm)) {
+    headerIndices.push(match.index!)
+  }
+  if (headerIndices.length <= 1) return [text]
+  const parts: string[] = []
+  for (let i = 0; i < headerIndices.length; i++) {
+    const start = i === 0 ? 0 : headerIndices[i]
+    const end = i + 1 < headerIndices.length ? headerIndices[i + 1] : text.length
+    parts.push(text.slice(start, end))
+  }
+  return parts
+}
+
 function parseQuestionFile(filePath: string): ParsedQuestion[] {
-  const raw = fs.readFileSync(filePath, "utf8")
+  // Normalize CRLF → LF so the `\n---\n` splitter and header regexes work
+  // regardless of how a content file was saved/uploaded.
+  const raw = fs.readFileSync(filePath, "utf8").replace(/\r\n/g, "\n")
   const { frontmatter, body } = parseFrontmatter(raw)
   const section = sectionFromString(frontmatter.section)
   const topic = frontmatter.topic ?? "General"
@@ -514,7 +547,7 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
     // inline (it renders everywhere, including the tutor, which only sees the
     // prompt); each continued question inherits that reference as `context`.
     let contextForBlock = currentContext
-    const flatSetMatch = block.match(/^##\s+Q\d+\s*\(Set\b([^)]*)\)/m)
+    const flatSetMatch = block.match(/^##\s+Q\d+\s*\(Set\b(.*)\)/m)
     if (flatSetMatch) {
       if (/continued/i.test(flatSetMatch[1])) {
         contextForBlock = flatSetReference
@@ -536,8 +569,14 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
       return firstQuestionIdx === -1 ? block : block.slice(firstQuestionIdx)
     })()
 
-    const question = parseQuestionBlock(questionOnly, section, topic, fileSlug, contextForBlock)
-    if (question) parsed.push(question)
+    // Parse each header-delimited sub-block. Normally there is exactly one, so
+    // this is identical to parsing `questionOnly` directly; the split only
+    // matters when a `---` separator is missing, recovering the would-be-dropped
+    // question instead of merging it into its predecessor.
+    for (const sub of splitOnQuestionHeaders(questionOnly)) {
+      const question = parseQuestionBlock(sub, section, topic, fileSlug, contextForBlock)
+      if (question) parsed.push(question)
+    }
   }
   return parsed
 }

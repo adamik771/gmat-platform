@@ -182,8 +182,35 @@ function targetMix(level: number): Record<Difficulty, number> {
  *
  *  Falls back to the input order when `attempts < MIN_ATTEMPTS_FOR_ADAPTIVE`
  *  — new users get predictable file-order behaviour. */
+/** Group questions that share a passage/set context (RC passages, MSR sets)
+ *  into atomic units so difficulty-based reordering keeps a group's questions
+ *  together. Standalone questions (no context) become singletons; each group is
+ *  placed at its first member's position and within-group order is preserved. */
+export function groupByContext<Q extends { context?: string }>(
+  questions: Q[]
+): Q[][] {
+  const groups: Q[][] = []
+  const byContext = new Map<string, Q[]>()
+  for (const q of questions) {
+    const ctx = q.context && q.context.trim() ? q.context : null
+    if (ctx === null) {
+      groups.push([q])
+    } else {
+      const existing = byContext.get(ctx)
+      if (existing) {
+        existing.push(q)
+      } else {
+        const g: Q[] = [q]
+        byContext.set(ctx, g)
+        groups.push(g)
+      }
+    }
+  }
+  return groups
+}
+
 export function pickAdaptiveOrder<
-  Q extends { difficulty: Difficulty; id: string }
+  Q extends { difficulty: Difficulty; id: string; context?: string }
 >(
   questions: Q[],
   skill: TopicSkillLevel,
@@ -194,14 +221,18 @@ export function pickAdaptiveOrder<
 
   const mix = targetMix(skill.level)
 
-  // Bucket by difficulty preserving original within-bucket order.
-  const buckets: Record<Difficulty, Q[]> = {
+  // Bucket by difficulty, but treat grouped questions (RC passages, MSR sets)
+  // as one atomic unit (keyed by their first question's difficulty) so a
+  // passage's questions are never scattered apart by the reorder. All-standalone
+  // sets are singletons, so their ordering is unchanged.
+  const groups = groupByContext(questions)
+  const buckets: Record<Difficulty, Q[][]> = {
     Beginner: [],
     Intermediate: [],
     Advanced: [],
   }
-  for (const q of questions) {
-    buckets[q.difficulty]?.push(q)
+  for (const g of groups) {
+    buckets[g[0].difficulty]?.push(g)
   }
 
   // Order tiers by target weight desc — the student's most-wanted
@@ -220,7 +251,11 @@ export function pickAdaptiveOrder<
     buckets[tier] = mulberrySort(buckets[tier], seed + tier.length)
   }
 
-  return [...buckets[tierOrder[0]], ...buckets[tierOrder[1]], ...buckets[tierOrder[2]]]
+  return [
+    ...buckets[tierOrder[0]],
+    ...buckets[tierOrder[1]],
+    ...buckets[tierOrder[2]],
+  ].flat()
 }
 
 // ---------- internals ----------

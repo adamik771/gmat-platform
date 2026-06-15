@@ -370,10 +370,11 @@ function classifyTimingPattern(
   if (rushedRate > 0.3 && laboredRate > 0.3) return "mixed"
   // > 30% rushed → rushed (skipping past hard questions)
   if (rushedRate > 0.3) return "rushed"
+  // > 50% labored → stuck (severe). Checked BEFORE the 30% labored band,
+  // which would otherwise shadow it and make "stuck" unreachable.
+  if (laboredRate > 0.5) return "stuck"
   // > 30% labored → labored (sinking time on hard questions)
   if (laboredRate > 0.3) return "labored"
-  // > 50% labored → stuck (severe — losing on time across the board)
-  if (laboredRate > 0.5) return "stuck"
   return "efficient"
 }
 

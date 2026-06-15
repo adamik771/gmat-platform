@@ -130,7 +130,7 @@ export async function getReviewQueue(
   let query = supabase
     .from("practice_attempts")
     .select(
-      "question_id, section, topic, subtopic, is_correct, practice_sessions(created_at)"
+      "question_id, section, topic, subtopic, is_correct, practice_sessions!inner(created_at)"
     )
     .eq("user_id", userId)
     .gte("practice_sessions.created_at", cutoff.toISOString())

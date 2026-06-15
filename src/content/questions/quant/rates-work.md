@@ -2772,6 +2772,7 @@ As a check, in 100 seconds the faster runner covers 5 × 100 = 500 meters and th
 The correct answer is C.
 **related_reading:** reading-quant-05-word-problems
 
+---
 
 ## Q77
 **difficulty:** Hard

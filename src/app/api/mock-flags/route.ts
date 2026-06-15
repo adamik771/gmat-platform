@@ -56,19 +56,28 @@ export async function POST(request: Request) {
     )
   }
 
-  // Defensive cap — a mock section maxes out around 23 questions; 50 is
-  // already a generous ceiling against a hostile caller.
-  const cleaned = (flagged as string[]).slice(0, 50)
+  // Defensive caps against a hostile caller bloating the auth JWT via
+  // user_metadata: bound each value's length (question ids are short), the
+  // per-section array (a section maxes ~23 questions), and the retained dates.
+  const cleaned = (flagged as string[])
+    .filter((v) => v.length <= 100)
+    .slice(0, 50)
 
   const existing =
     (user.user_metadata?.mock_flags as
       | Record<string, Partial<Record<string, string[]>>>
       | undefined) ?? {}
   const existingForDate = existing[dateIso] ?? {}
-  const next = {
+  const merged: Record<string, Partial<Record<string, string[]>>> = {
     ...existing,
     [dateIso]: { ...existingForDate, [section]: cleaned },
   }
+  // Keep only the most recent ~24 mock dates so the map can't grow unbounded.
+  const next = Object.fromEntries(
+    Object.entries(merged)
+      .sort(([a], [b]) => b.localeCompare(a))
+      .slice(0, 24)
+  )
 
   const { error } = await supabase.auth.updateUser({
     data: { mock_flags: next },

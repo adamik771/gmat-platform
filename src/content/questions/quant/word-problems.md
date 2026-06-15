@@ -3250,6 +3250,9 @@ Now take the two statements together. We have the system M + L = 40 and M + 5 = 
 
 The correct answer is C.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
 ## Q102
 **difficulty:** Medium
 **type:** Problem Solving

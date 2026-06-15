@@ -56,7 +56,36 @@ export async function POST(request: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const body: SessionPayload = await request.json()
+  let body: SessionPayload
+  try {
+    body = (await request.json()) as SessionPayload
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 })
+  }
+
+  // The payload is fully client-controlled — validate it. Reject clearly-bad
+  // shapes and bound the numeric fields + attempts array so a tampered client
+  // can't write fabricated or unbounded rows into the user's own history.
+  const isStr = (v: unknown, max = 200): v is string =>
+    typeof v === "string" && v.length > 0 && v.length <= max
+  const intIn = (v: unknown, lo: number, hi: number): boolean =>
+    typeof v === "number" && Number.isInteger(v) && v >= lo && v <= hi
+  if (
+    !isStr(body?.slug, 120) ||
+    !isStr(body?.topic) ||
+    !isStr(body?.section, 40) ||
+    !intIn(body.totalQuestions, 0, 100) ||
+    !intIn(body.correctCount, 0, body.totalQuestions) ||
+    typeof body.accuracy !== "number" ||
+    body.accuracy < 0 ||
+    body.accuracy > 100 ||
+    typeof body.totalTimeMs !== "number" ||
+    body.totalTimeMs < 0 ||
+    !Array.isArray(body.attempts) ||
+    body.attempts.length > 100
+  ) {
+    return Response.json({ error: "Invalid session payload" }, { status: 400 })
+  }
 
   // Insert the session-level record.
   const { data: session, error: sessionError } = await supabase
@@ -131,7 +160,9 @@ export async function POST(request: Request) {
   // feed into the practice-set adaptivity loop.
   if (
     !body.slug.startsWith("mock-") &&
-    !body.slug.startsWith("diagnostic-")
+    !body.slug.startsWith("diagnostic-") &&
+    !body.slug.startsWith("review-") &&
+    body.slug !== "custom"
   ) {
     try {
       const currentLevels = getTopicSkillLevels(user.user_metadata)
