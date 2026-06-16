@@ -929,7 +929,7 @@ function buildHeadline(
   const baseline = signals.latestMockTotalScore ?? signals.diagnosticTotalScore
   const baselineSource = signals.latestMockTotalScore !== null ? "mock" : "diagnostic"
   if (baseline === null) {
-    return `Adaptive ${weeks}-week plan — take a diagnostic to set the score baseline.`
+    return `Adaptive ${weeks}-week plan — enter an official practice-exam score to set the baseline.`
   }
   if (targetScore !== null) {
     const gap = Math.max(0, targetScore - baseline)

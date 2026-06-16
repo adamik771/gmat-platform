@@ -469,7 +469,7 @@ export default function PostPage() {
             </Link>{" "}
             &mdash; the framework explains the <em>why</em>, this gives you
             the dated <em>what</em>. Zakarian GMAT runs the whole loop for
-            you: a stratified diagnostic to set the baseline, chapters that
+            you: an official practice-exam baseline you enter on the platform, chapters that
             build fundamentals, topic-filtered practice with escalating
             difficulty, a six-tag error log, a spaced-retrieval review
             queue, and full-length mocks scored on the 205-805 Focus scale

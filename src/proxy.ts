@@ -10,7 +10,6 @@ const APP_ROUTES = [
   "/analytics",
   "/chapters",
   "/dashboard",
-  "/diagnostic",
   "/error-log",
   "/guides",
   "/learn",

@@ -155,10 +155,10 @@ export default function PostPage() {
 
           <H2>The diagnostic-first approach</H2>
           <p>
-            Every study plan worth following begins with a real diagnostic.
-            Not your gut feeling. Not the section you find scary. A 30-question
-            stratified diagnostic that gives you per-topic and per-difficulty
-            accuracy data.
+            Every study plan worth following begins with a real baseline.
+            Not your gut feeling. Not the section you find scary. A full-length
+            official practice exam that anchors your per-section starting
+            scores — then per-topic and per-difficulty accuracy data as you practice.
           </p>
           <p>What a good diagnostic gives you:</p>
           <ul>
@@ -206,7 +206,7 @@ export default function PostPage() {
 
           <H3>Weeks 1&ndash;2 — Diagnose and orient</H3>
           <ul>
-            <li>Day 1&ndash;3: full 30-question diagnostic, untimed first pass.</li>
+            <li>Day 1&ndash;3: take a full-length official practice exam to set your baseline.</li>
             <li>Day 4: read your diagnostic report. Identify your three biggest weaknesses.</li>
             <li>
               Day 5&ndash;10: foundational chapter reading on the weakest
@@ -409,8 +409,8 @@ export default function PostPage() {
           <ol>
             <li>
               <Strong>Diagnose first.</Strong> No plan worth following starts
-              before a real 30-question diagnostic with per-topic and
-              per-difficulty data.
+              before a real baseline — a full-length official practice exam
+              that scores you per section.
             </li>
             <li>
               <Strong>Plan around weaknesses, not topics.</Strong> The two
