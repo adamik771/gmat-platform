@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Student score lifts",
   alternates: { canonical: "/students" },
   description:
-    "Verified score improvements from Zakarian GMAT beta students.",
+    "The founder's verified 565 to 735, plus how we report results. Beta student score lifts publish here as they're verified — no synthetic numbers.",
 }
 
 /**
@@ -46,11 +46,17 @@ interface StudentLift {
 }
 
 const STUDENTS: StudentLift[] = [
+  // The only fully verified result so far is the founder's own — clearly
+  // labelled as the founder, not a customer. Replace/extend with real student
+  // lifts (drop the placeholder: true flag) as the beta cohort completes.
   {
-    placeholder: true,
-  },
-  {
-    placeholder: true,
+    name: "Adam Zakarian",
+    context: "Founder · non-native English speaker, non-technical background",
+    start: 565,
+    after: 735,
+    official: true,
+    focus: "Mistake-driven review",
+    note: "565 on a cold official practice exam; 735 on the official GMAT Focus eight months later. The decisive jump — 675 to 735 — came from five days of focused mistake review, not new content.",
   },
   {
     placeholder: true,
@@ -91,15 +97,16 @@ export default function StudentsPage() {
             Student outcomes
           </p>
           <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-6">
-            Score lifts from{" "}
+            Real results,{" "}
             <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              real students.
+              reported straight.
             </span>
           </h1>
           <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
-            Verified before-and-after results from beta students. Every
-            lift below is a real baseline-to-mock or
-            baseline-to-official delta — no synthetic numbers.
+            We publish only real baseline-to-mock or baseline-to-official
+            deltas — no synthetic numbers. The first beta cohort is still
+            finishing, so for now the one fully verified result is the
+            founder&apos;s own.
           </p>
         </div>
       </section>
@@ -115,8 +122,9 @@ export default function StudentsPage() {
               Verified
             </p>
             <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-              {verified.length} student{verified.length === 1 ? "" : "s"}{" "}
-              completed
+              {verified.length === 1
+                ? "One verified result so far"
+                : `${verified.length} verified results`}
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -139,8 +147,7 @@ export default function StudentsPage() {
               Coming soon
             </p>
             <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
-              {placeholders.length} beta student
-              {placeholders.length === 1 ? "" : "s"} in progress.
+              Student results, coming soon.
             </h2>
             <p className="text-[14px] text-[#888888] max-w-xl mx-auto leading-relaxed">
               We&apos;re holding space for verified score lifts as the
@@ -265,14 +272,14 @@ function StudentCard({ student }: { student: StudentLift }) {
           className="font-display text-2xl font-semibold tracking-[-0.02em] leading-tight"
           style={{ color: "rgba(240,240,240,0.5)" }}
         >
-          Beta student in progress
+          Result coming soon
         </p>
         <p
           className="text-[12px] leading-snug"
           style={{ color: "rgba(255,255,255,0.4)" }}
         >
-          We&apos;ll publish this lift as soon as the student completes
-          their final mock and verifies the score.
+          A verified score lift lands here as soon as a student finishes
+          their final mock and we can confirm the number.
         </p>
       </div>
     )

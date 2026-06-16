@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Mail } from "lucide-react"
 import LeadCapture from "@/components/marketing/LeadCapture"
+import { SITE_CONTACT_EMAIL } from "@/lib/site"
 
 const platformLinks = [
   { label: "Course Overview", href: "/course" },
@@ -88,7 +89,7 @@ export default function Footer() {
                 actual profile links when they're live. */}
             <div className="flex items-center gap-2">
               <a
-                href="mailto:adamzakaryan17@gmail.com"
+                href={`mailto:${SITE_CONTACT_EMAIL}`}
                 className="p-2 rounded-full border border-white/[0.08] hover:border-[#C9A84C]/30 transition-colors duration-200"
                 aria-label="Email"
               >
@@ -180,10 +181,10 @@ export default function Footer() {
           </p>
           <p className="text-[11px] text-[#555555] tracking-tight">
             <a
-              href="mailto:adamzakaryan17@gmail.com"
+              href={`mailto:${SITE_CONTACT_EMAIL}`}
               className="hover:text-[#C9A84C] transition-colors duration-200"
             >
-              adamzakaryan17@gmail.com
+              {SITE_CONTACT_EMAIL}
             </a>
           </p>
         </div>

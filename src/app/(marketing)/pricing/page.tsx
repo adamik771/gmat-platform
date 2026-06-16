@@ -6,6 +6,7 @@ import PricingCard from "@/components/marketing/PricingCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import { PricingTier } from "@/types"
 import { STRIPE_PRICES } from "@/lib/stripe"
+import { QUESTION_CLAIM, QUESTION_CLAIM_SHORT } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -26,7 +27,7 @@ const tiers: PricingTier[] = [
     cta: "Get Self-Study",
     features: [
       { text: "50+ chapters — Quant, Verbal & Data Insights", included: true },
-      { text: "1,150+ original practice questions", included: true },
+      { text: QUESTION_CLAIM, included: true },
       { text: "Per-chapter practice tests + custom test builder", included: true },
       { text: "Official-exam study plan & score tracking", included: true },
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
@@ -48,7 +49,7 @@ const tiers: PricingTier[] = [
     cta: "Get Mentorship",
     features: [
       { text: "50+ chapters — Quant, Verbal & Data Insights", included: true },
-      { text: "1,150+ original practice questions", included: true },
+      { text: QUESTION_CLAIM, included: true },
       { text: "Per-chapter practice tests + custom test builder", included: true },
       { text: "Official-exam study plan & score tracking", included: true },
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
@@ -70,7 +71,7 @@ const tiers: PricingTier[] = [
     cta: "Start Coaching",
     features: [
       { text: "50+ chapters — Quant, Verbal & Data Insights", included: true },
-      { text: "1,150+ original practice questions", included: true },
+      { text: QUESTION_CLAIM, included: true },
       { text: "Per-chapter practice tests + custom test builder", included: true },
       { text: "Official-exam study plan & score tracking", included: true },
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
@@ -92,7 +93,7 @@ const tiers: PricingTier[] = [
     cta: "Start Intensive",
     features: [
       { text: "50+ chapters — Quant, Verbal & Data Insights", included: true },
-      { text: "1,150+ original practice questions", included: true },
+      { text: QUESTION_CLAIM, included: true },
       { text: "Per-chapter practice tests + custom test builder", included: true },
       { text: "Official-exam study plan & score tracking", included: true },
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
@@ -134,7 +135,7 @@ const faqItems = [
 
 const comparisonFeatures = [
   "50+ chapters (Q / V / DI)",
-  "1,150+ practice questions",
+  QUESTION_CLAIM_SHORT,
   "Practice tests + test builder",
   "Official-exam study plan",
   "Full analytics",
@@ -186,6 +187,20 @@ export default function PricingPage() {
               Four paths from self-study to full-service coaching. Choose the plan that
               fits your timeline. Upgrade anytime.
             </p>
+            <div
+              className="mt-7 inline-flex items-start gap-2.5 px-4 py-3 rounded-xl border text-left"
+              style={{
+                borderColor: "rgba(201,168,76,0.28)",
+                backgroundColor: "rgba(201,168,76,0.05)",
+              }}
+            >
+              <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
+                <span className="font-semibold text-[#F0F0F0]">Early access.</span>{" "}
+                The full self-study platform is free to use while we&apos;re in beta
+                &mdash; create an account and start today. The plans below are how
+                pricing and Adam&apos;s 1:1 coaching work as they roll out.
+              </p>
+            </div>
           </div>
 
           {/* Pricing cards */}

@@ -219,7 +219,7 @@ export default function CoursePage() {
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <span className="text-[12px] text-[#666666]">
-                Two full readings from the Critical Reasoning chapter, no signup.
+                Two full readings from the Verbal Foundations chapter, no signup.
               </span>
             </div>
           </div>

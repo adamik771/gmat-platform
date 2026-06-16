@@ -12,24 +12,23 @@ A GMAT Focus Edition prep SaaS. Next.js 16 (App Router, Turbopack), Supabase Aut
 
 The platform is built around a standardized-exam product framework:
 
-1. **Diagnose before teaching** — `/diagnostic` (30 questions, stratified)
-2. **Teach with research-backed chapters** — `/chapters` (17 chapters, pretest → readings with Recall check + self-explanation prompts → graded problem sets)
+1. **Baseline from an official exam** — the student takes an official mba.com practice exam and enters the section + total scores on `/mock`. That baseline is the data that unlocks the dashboard, study plan, and analytics. (The standalone in-app `/diagnostic` placement route was removed and none is planned; the diagnostic libraries `src/lib/diagnostic*.ts` and the adaptive-plan engine's `loadDiagnosticReport` are kept for scoring and for any legacy `diagnostic-{section}` data. NOTE: some in-app/marketing copy still references a "30-question placement diagnostic" — e.g. `OnboardingClient` step copy, `personas.ts`, `study-schedule.ts`, `how-we-compare` — which is stale and should be reconciled against the official-exam baseline.)
+2. **Teach with research-backed chapters** — `/chapters` (62 chapters, pretest → readings with Recall check + self-explanation prompts → graded problem sets)
 3. **Retrieval + spacing** — `/review` (daily spaced-retrieval queue)
-4. **Adaptive plan from the diagnostic** — `/study-plan` (Today's Focus + Weak Areas + 7-day cadence)
+4. **Adaptive plan from the baseline** — `/study-plan` (Today's Focus + Weak Areas + 7-day cadence; unlocks after the baseline exam is entered)
 5. **Realistic measurement** — `/mock` (full-length 3-section × 45 min, auto-submit on timeout, mock-to-mock trend)
-6. **Diagnostic feedback** — `/analytics` (per-topic + per-difficulty timing, behaviour patterns: efficient/labored/rushed/stuck)
+6. **Performance feedback** — `/analytics` (per-topic + per-difficulty timing, behaviour patterns: efficient/labored/rushed/stuck)
 7. **Error log with 6-tag taxonomy** — `/error-log` (Conceptual / Careless / Time Pressure / Misread / Strategy / Other)
 8. **Motivation** — streaks, 10-badge grid, mock-trend visibility
 
-The whole loop: diagnostic → weak areas → chapter → problem set → mistakes → error log tag → review queue → mock → repeat.
+The whole loop: baseline exam → weak areas → chapter → problem set → mistakes → error log tag → review queue → mock → repeat.
 
 ## Surfaces (routes)
 
 Authenticated app lives under `(app)`:
 
 - `/dashboard` — greeting, Getting Started checklist (onboarding), Score Goal, metrics, activity, mistakes
-- `/diagnostic` + `/diagnostic/[section]` + `/diagnostic/report` — placement flow
-- `/chapters` + `/chapters/[slug]` — 17 interactive chapters (Quant → Verbal → DI)
+- `/chapters` + `/chapters/[slug]` — 62 interactive chapters (Quant → Verbal → DI)
 - `/lessons` + `/lessons/[slug]` — older lesson library (kept; chapters superseded them)
 - `/practice` + `/practice/session/[slug]` — topic-filtered practice drills, reusable SessionClient
 - `/review` + `/review/[section]` — spaced retrieval
@@ -53,7 +52,7 @@ API: `/api/practice-sessions` (session POST), `/api/target-score`, `/api/profile
 Question IDs are `${fileSlug}-q${n}` (e.g. `algebra-q5`, `critical-reasoning-q12`).
 
 **Supabase tables** (most important):
-- `practice_sessions` — `id, user_id, slug, section, topic, total_questions, correct_count, accuracy, total_time_ms, created_at`. Slug conventions: topic slug for practice (e.g. `algebra`), `diagnostic-{section}`, `mock-YYYY-MM-DD-{section}`, `review-{section}-YYYY-MM-DD`, `custom`.
+- `practice_sessions` — `id, user_id, slug, section, topic, total_questions, correct_count, accuracy, total_time_ms, created_at`. Slug conventions: topic slug for practice (e.g. `algebra`), `diagnostic-{section}` (legacy — no longer generated; may exist in old beta rows), `mock-YYYY-MM-DD-{section}`, `review-{section}-YYYY-MM-DD`, `custom`.
 - `practice_attempts` — `id, session_id, user_id, question_id, section, topic, subtopic, difficulty, question_type, selected_answer, is_correct, time_spent_ms`.
 - `error_tags` — `id, user_id, attempt_id, tag, notes, reviewed`. Tag values in `src/app/(app)/error-log/constants.ts`.
 - `lesson_completions` — `user_id, lesson_slug, completed_at`.
@@ -72,7 +71,7 @@ Update via `supabase.auth.updateUser({ data: { ... } })`. See `/api/target-score
 
 - `src/lib/content.ts` — filesystem loaders (`getAllQuestions`, `getChapterBySlug`, `getQuestionsByIds`, …). All server-only (uses `node:fs`).
 - `src/lib/supabase/{server,browser,service,proxy}.ts` — client factories.
-- `src/lib/diagnostic.ts` — `pickDiagnosticQuestions`, `buildReport`, score helper.
+- `src/lib/diagnostic.ts` — `accuracyToScore` scoring helper (plus legacy `pickDiagnosticQuestions`/`buildReport`; the in-app diagnostic route was removed — baseline is an official mba.com exam entered on `/mock`).
 - `src/lib/mock.ts` — `pickMockQuestions`, `MOCK_QUESTION_COUNT`, `MOCK_SECTION_MINUTES`, score helper.
 - `src/lib/review-queue.ts` — `getReviewQueue`, `bucketBySection`. Priority = recentMiss + repeatMiss + spacing.
 - `src/lib/study-plan-engine.ts` — `computeStudyPlan` (todaysFocus + weakAreas), `buildWeeklyCadence`.
@@ -96,7 +95,7 @@ Per-section 60-90 scaling used by the dashboard: `60 + (correct/total) × 30`.
 - Prefer `user_metadata` persistence over new tables for small user-scoped state.
 - Server components query Supabase directly (no thin helper layer); `createSupabaseServer()` per request.
 - Content loading is filesystem-based; don't introduce a CMS.
-- Reuse `SessionClient` at `src/app/(app)/practice/session/[slug]/SessionClient.tsx` for any question-runner flow (it powers practice, diagnostic sections, review sessions). Build fresh only if needs diverge materially (see `MockRunner.tsx`).
+- Reuse `SessionClient` at `src/app/(app)/practice/session/[slug]/SessionClient.tsx` for any question-runner flow (it powers practice and review sessions). Build fresh only if needs diverge materially (see `MockRunner.tsx`).
 - Preview routes: see `.claude/launch.json`. Dev server name is `"GMAT Platform"` — use `preview_start` to launch it.
 
 **Design tokens** (from commonly-used inline styles):

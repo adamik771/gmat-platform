@@ -186,7 +186,7 @@ export const ENTRIES: GlossaryEntry[] = [
   {
     term: "Sample chapter",
     definition:
-      "On Zakarian GMAT, a publicly accessible reading from the production curriculum, free and without signup. Three samples cover the three Focus sections: Critical Reasoning (Verbal), Algebra (Quant), and Data Sufficiency (DI).",
+      "On Zakarian GMAT, a publicly accessible reading from the production curriculum, free and without signup. Three samples cover the three Focus sections: Verbal Foundations (Verbal), Algebra (Quant), and Data Sufficiency (DI).",
     link: { href: "/sample-chapter", label: "Read a sample chapter" },
   },
   {

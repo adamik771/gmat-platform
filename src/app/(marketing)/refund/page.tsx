@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import LegalPage, { LegalSection } from "@/components/marketing/LegalPage"
+import { SITE_CONTACT_EMAIL } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Refund Policy",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 const LAST_UPDATED = "June 12, 2026"
-const CONTACT_EMAIL = "adamzakaryan17@gmail.com"
+const CONTACT_EMAIL = SITE_CONTACT_EMAIL
 
 export default function RefundPage() {
   return (

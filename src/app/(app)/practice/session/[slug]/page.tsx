@@ -61,7 +61,7 @@ export default async function PracticeSessionPage({
             feature="More practice tests"
             blurb="Free accounts get the first test in every chapter. Unlock every test in all chapters across Quant, Verbal, and Data Insights — hundreds of original, timing-targeted questions."
             perks={[
-              "Every practice test in all 49 chapters",
+              "Every practice test in every chapter",
               "Hundreds of additional original questions",
               "Full per-chapter coverage, easy to hard",
             ]}
