@@ -2378,7 +2378,7 @@ In a certain group, every person plays chess, checkers, or both; no one plays ne
 **answer:** B
 **explanation:** Because no one plays neither game, the total number of people equals the size of the union of the chess-players and the checkers-players, given by inclusion-exclusion as Total = (chess) + (checkers) - (both) = 20 + (checkers) - (both). The total is therefore determined only once both the checkers count and the overlap are known.
 
-Statement (1) gives checkers = 18 but says nothing about the overlap. The number who play both can be any integer from 2 to 18 (the overlap is at most the smaller group, 18, and at least 20 + 18 - Total forces it to be positive), so the total ranges over several values. Statement (1) alone is not sufficient.
+Statement (1) gives checkers = 18 but says nothing about the overlap. The number who play both can be any integer from 0 to 18 (the overlap is at most the smaller group, 18, and need not be positive since the two groups need not overlap), so the total ranges from 20 to 38. Statement (1) alone is not sufficient.
 
 Statement (2) says every chess player also plays checkers, so the chess set is entirely contained in the checkers set; this makes the union equal to the checkers set alone. Since exactly 25 people play checkers, the union, and hence the total, is 25. Statement (2) alone is sufficient. The correct answer is B.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
