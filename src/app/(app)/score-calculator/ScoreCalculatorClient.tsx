@@ -70,8 +70,6 @@ export default function ScoreCalculatorClient() {
   }
 
   const total = sectionScoresToTotal(scores.quant, scores.verbal, scores.di)
-  const low = Math.max(205, total - SECTION_TOTAL_ESTIMATE_SWING)
-  const high = Math.min(805, total + SECTION_TOTAL_ESTIMATE_SWING)
   // GMAC's published top band is the 99th percentile; never display "100th".
   const pct = Math.min(99, totalPercentile(total))
 
@@ -161,16 +159,7 @@ export default function ScoreCalculatorClient() {
           >
             {total}
           </p>
-          <p className="mt-4 text-[14px] text-[#C0C0C0] tabular-nums">
-            Likely range{" "}
-            <span className="font-semibold text-[#F0F0F0]">
-              {low}–{high}
-            </span>{" "}
-            <span className="text-[#888888]">
-              (±{SECTION_TOTAL_ESTIMATE_SWING})
-            </span>
-          </p>
-          <p className="mt-1 text-[13px] text-[#888888] tabular-nums">
+          <p className="mt-4 text-[13px] text-[#888888] tabular-nums">
             ≈ {ordinal(pct)} percentile
           </p>
         </div>
