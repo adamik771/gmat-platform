@@ -681,17 +681,34 @@ export async function buildSpacedReviewQueue(
   const checkpointReviewLog = readReviewLog(userMetadata, "checkpoint_reviews")
   const savedSet = readSavedForReview(userMetadata)
 
-  // Mistake-type lookup: question_id → most recent error tag.
+  // Mistake-type lookup: question_id → most-recent error tag. "Most recent"
+  // is ordered by the parent practice session's created_at — the same recency
+  // basis the error log uses — because error_tags has no reliable own
+  // timestamp. Oldest-first sort means the newest tag is applied last and so
+  // wins the Map.set for a question tagged across multiple sessions.
   const { data: errorRows } = await supabase
     .from("error_tags")
-    .select("attempt_id, tag, root_cause, practice_attempts(question_id)")
+    .select(
+      "tag, root_cause, practice_attempts(question_id, practice_sessions(created_at))"
+    )
     .eq("user_id", userId)
   const mistakeTypeByQuestion = new Map<string, string>()
-  for (const row of (errorRows ?? []) as unknown as Array<{
+  const errorTagRows = (errorRows ?? []) as unknown as Array<{
     tag: string | null
     root_cause: string | null
-    practice_attempts: { question_id: string } | null
-  }>) {
+    practice_attempts: {
+      question_id: string
+      practice_sessions: { created_at: string | null } | null
+    } | null
+  }>
+  const sortedErrorTagRows = [...errorTagRows].sort((a, b) => {
+    const ta =
+      Date.parse(a.practice_attempts?.practice_sessions?.created_at ?? "") || 0
+    const tb =
+      Date.parse(b.practice_attempts?.practice_sessions?.created_at ?? "") || 0
+    return ta - tb
+  })
+  for (const row of sortedErrorTagRows) {
     const qid = row.practice_attempts?.question_id
     if (!qid) continue
     // Prefer root_cause when present (it tells us WHY); fall back to tag.
