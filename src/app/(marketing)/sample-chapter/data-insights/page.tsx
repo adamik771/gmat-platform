@@ -21,7 +21,7 @@ export default function SampleDataInsightsChapterPage() {
         {
           href: "/sample-chapter",
           sectionLabel: "Verbal",
-          chapterLabel: "Critical Reasoning",
+          chapterLabel: "Verbal Foundations",
         },
         {
           href: "/sample-chapter/quant",

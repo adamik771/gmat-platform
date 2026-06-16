@@ -35,7 +35,7 @@ export default async function TestBuilderPage() {
       }
     }
   }
-  // The client samples from this pool on Generate. Shipping the full 443-row
+  // The client samples from this pool on Generate. Shipping the full ~1,900-row
   // question list is a few KB — cheaper than POSTing to the server on every
   // click, and keeps the action instant.
   const pool: QuestionPoolEntry[] = getAllQuestions()

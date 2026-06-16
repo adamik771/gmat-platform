@@ -143,7 +143,7 @@ export default function PostPage() {
 
           <H3>Days 1-2: The full diagnostic</H3>
           <p>
-            Take a 30-question stratified diagnostic across all three
+            Take a baseline practice exam across all three
             sections. Untimed on the first pass &mdash; you&apos;re
             measuring content knowledge, not pacing. The output is a
             per-topic and per-difficulty heatmap. Without this, every

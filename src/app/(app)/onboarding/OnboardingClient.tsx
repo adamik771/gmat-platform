@@ -661,7 +661,7 @@ function ReviewStep({ state }: { state: OnboardingState }) {
   const next =
     state.prepHistory === "retake"
       ? "Open your adaptive plan."
-      : "Run the 30-question diagnostic — about 50 minutes."
+      : "Take an official mba.com practice exam to set your baseline."
   return (
     <div>
       <div

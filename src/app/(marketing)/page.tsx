@@ -19,6 +19,7 @@ import FAQAccordion from "@/components/marketing/FAQAccordion"
 import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
+import { QUESTION_CLAIM } from "@/lib/site"
 
 // Self-referencing canonical for the homepage (root layout sets title /
 // description / OG but no canonical; the apex redirects to www).
@@ -57,9 +58,9 @@ const pillars = [
   },
   {
     icon: TrendingUp,
-    title: "Proven Score Jumps",
+    title: "Built on a Real Jump",
     description:
-      "Average improvement of +95 points. Not a promise — a pattern backed by a real 170-point jump.",
+      "A verified founder jump from 565 to 735 (+170 points). Real student results coming soon — no averages until they're verified.",
   },
 ]
 
@@ -87,7 +88,7 @@ const faqItems = [
   {
     question: "Is there a refund policy?",
     answer:
-      "Yes. If you complete the full curriculum and don't hit your target score, contact us within 30 days of your exam. We'll work with you one-on-one or refund your course fee.",
+      "Yes — a 14-day money-back guarantee on every paid plan, no questions asked. The refund is unconditional within those 14 days; it isn't tied to your exam result, because no honest prep can promise a specific score. Coaching and Intensive have additional terms once sessions begin — the full conditions for each plan are on our Refund Policy page.",
   },
 ]
 
@@ -140,7 +141,7 @@ export default function HomePage() {
                 }}
               >
                 <Flame className="w-3 h-3" />
-                565 → 735 · 99th Percentile
+                565 → 735 · 100th Percentile
               </div>
 
               <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-[-0.02em] mb-6">
@@ -180,7 +181,7 @@ export default function HomePage() {
                   When the paywall lands, revisit this copy alongside the
                   real access model. */}
               <p className="text-xs text-[#888888] mb-2">
-                No credit card required. Full access — every chapter, the full question bank, mock exams and review.
+                Free while we&apos;re in beta — no credit card. Full access to every chapter, the full question bank, mock exams and review.
               </p>
               <p className="text-xs mb-10">
                 <Link
@@ -200,7 +201,7 @@ export default function HomePage() {
                   { label: "→", color: "#555555", bg: "transparent" },
                   { label: "735 Final Score", color: "#C9A84C", bg: "rgba(201,168,76,0.1)" },
                   { label: "→", color: "#555555", bg: "transparent" },
-                  { label: "99th Percentile", color: "#3ECF8E", bg: "rgba(62,207,142,0.1)" },
+                  { label: "100th Percentile", color: "#3ECF8E", bg: "rgba(62,207,142,0.1)" },
                 ].map((chip, i) => (
                   <span
                     key={i}
@@ -399,14 +400,14 @@ export default function HomePage() {
               that doesn&apos;t.
             </p>
             <p className="text-[#888888] leading-relaxed mb-8">
-              In 8 months, I went from 565 to 735 — 99th percentile. This platform is the
+              In 8 months, I went from 565 to 735 — 100th percentile. This platform is the
               exact system I built for myself, packaged for every ambitious student facing the
               same obstacles I did.
             </p>
 
             <div className="flex flex-wrap gap-3">
               {[
-                { label: "Scored 99th Percentile", color: "#C9A84C" },
+                { label: "Scored 100th Percentile", color: "#C9A84C" },
                 { label: "Non-Native Speaker", color: "#3ECF8E" },
                 { label: "Non-Technical Background", color: "#888888" },
               ].map((badge) => (
@@ -483,7 +484,7 @@ export default function HomePage() {
               desc: "Full platform, 4-month access",
               features: [
                 "50+ chapters — Q, V & Data Insights",
-                "1,150+ original practice questions",
+                QUESTION_CLAIM,
                 "Full analytics + error log",
                 "4-month platform access",
               ],
@@ -662,7 +663,7 @@ export default function HomePage() {
             <span className="font-display-italic" style={{ color: "#C9A84C" }}>655+?</span>
           </h2>
           <p className="text-[#888888] mb-8 text-lg">
-            Join students who stopped guessing and started scoring.
+            Stop guessing. Start scoring with a system, not a pile of videos.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link

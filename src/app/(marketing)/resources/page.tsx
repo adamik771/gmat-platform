@@ -89,9 +89,9 @@ const CHECKLISTS: ResourceCard[] = [
 
 const SAMPLES: ResourceCard[] = [
   {
-    title: "Verbal sample — Critical Reasoning",
+    title: "Verbal sample — Verbal Foundations",
     description:
-      "Two full readings: argument structure + the strengthen / weaken templates. From the Zakarian GMAT chapter on Critical Reasoning.",
+      "Two full readings: how GMAT Focus Verbal works and the active-reading method. From the Zakarian GMAT Verbal Foundations chapter.",
     href: "/sample-chapter",
     cta: "Read the sample",
     icon: BookOpen,

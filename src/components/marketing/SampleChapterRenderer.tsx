@@ -320,8 +320,8 @@ export default function SampleChapterRenderer({
                 className="w-3.5 h-3.5"
                 style={{ color: "#3ECF8E" }}
               />
-              No card. 14-day money-back on Self-Study tiers. Score
-              guarantee on Intensive.
+              No card required. Free while in beta. 14-day money-back on
+              paid self-study tiers.
             </div>
           </div>
         </div>

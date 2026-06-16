@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Mail, Clock, MessageSquare, ArrowRight, Loader2 } from "lucide-react"
+import { SITE_CONTACT_EMAIL } from "@/lib/site"
 
 export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false)
@@ -213,10 +214,10 @@ export default function ContactClient() {
                       Email
                     </p>
                     <a
-                      href="mailto:adamzakaryan17@gmail.com"
+                      href={`mailto:${SITE_CONTACT_EMAIL}`}
                       className="text-[14px] text-[#F0F0F0] hover:text-[#C9A84C] transition-colors break-all"
                     >
-                      adamzakaryan17@gmail.com
+                      {SITE_CONTACT_EMAIL}
                     </a>
                   </div>
                 </div>

@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import ScoreTimeline from "@/components/marketing/ScoreTimeline"
+import ScoreReportProof from "@/components/marketing/ScoreReportProof"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
@@ -189,6 +190,7 @@ export default function AboutPage() {
               From 565 to 735
             </h2>
             <ScoreTimeline />
+            <ScoreReportProof />
           </div>
         </div>
       </SectionWrapper>

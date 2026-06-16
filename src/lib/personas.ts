@@ -126,8 +126,8 @@ const PROFILES: Record<
  *   Stretcher: baseline 595–655
  *   Elite:     baseline 655+
  *
- * Null baseline (no diagnostic yet) returns "unknown" so the caller can
- * prompt the student to finish the diagnostic. Target is used for the
+ * Null baseline (no baseline score entered yet) returns "unknown" so the
+ * caller can prompt the student to enter a baseline score. Target is used for the
  * display-only band label; the persona key itself is baseline-driven so
  * the assignment stays stable even if the target shifts.
  */
@@ -154,9 +154,9 @@ export function computePersona(
     return {
       key: "unknown",
       label: "Not yet assigned",
-      bandLabel: "Finish the diagnostic to unlock",
+      bandLabel: "Enter your baseline score to unlock",
       coreNeed:
-        "Your persona assignment depends on the diagnostic baseline. Take the 30-question placement to unlock a tailored plan.",
+        "Your persona assignment depends on your baseline score. Take an official practice exam and log your score to unlock a tailored plan.",
       emphasis: "",
       color: "#888888",
       bg: "rgba(255,255,255,0.04)",
