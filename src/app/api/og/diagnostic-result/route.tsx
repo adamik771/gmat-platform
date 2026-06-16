@@ -8,6 +8,10 @@ import {
 /**
  * GET /api/og/diagnostic-result?q=...&v=...&d=...
  *
+ * ORPHANED (2026-06): the `/free-diagnostic` page this card was built for was
+ * removed, and nothing links to this endpoint. Kept (not deleted) this pass —
+ * safe to remove together with `free-diagnostic-share.ts` once confirmed.
+ *
  * Dynamic OpenGraph card for shared free-diagnostic results. Reads the
  * same query-param payload as `/free-diagnostic/result` and renders a
  * 1200×630 PNG with the user's section signals against the brand palette.

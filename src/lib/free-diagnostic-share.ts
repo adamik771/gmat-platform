@@ -3,6 +3,11 @@ import type { Section } from "@/types"
 /**
  * Free-diagnostic share encoding.
  *
+ * ORPHANED (2026-06): the public `/free-diagnostic` result page was removed.
+ * The only remaining importer is `/api/og/diagnostic-result` (an OG-card route
+ * that nothing links to). Kept rather than deleted this pass — safe to remove
+ * the pair together once confirmed unused. See the baseline note in AGENTS.md.
+ *
  * The result of the public mini-diagnostic encodes as three short URL
  * parameters — one per section — where each parameter is a binary string
  * with one character per question. "1" = correct, "0" = wrong.

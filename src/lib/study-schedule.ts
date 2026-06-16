@@ -36,13 +36,13 @@ export interface ScheduleInput {
   /**
    * Optional accuracy snapshot. If omitted, the schedule defaults to
    * an even Quant/Verbal/DI distribution and warns the user that
-   * taking the diagnostic produces a much better plan.
+   * entering a baseline score produces a much better plan.
    */
   accuracy?: SectionAccuracy
 }
 
 export type WeekFocus =
-  | "Diagnostic + foundation"
+  | "Baseline + foundation"
   | "Foundational reading"
   | "Weakest section deep work"
   | "Second-weakest section"
@@ -183,11 +183,11 @@ export function buildSchedule(input: ScheduleInput): Schedule {
   // Foundation
   if (foundationWeeks >= 2) {
     addWeek(
-      "Diagnostic + foundation",
-      "Diagnose first, then start reading the section you're weakest at.",
+      "Baseline + foundation",
+      "Set your baseline first, then start reading the section you're weakest at.",
       [
-        "Take the 30-question stratified diagnostic (~35 min).",
-        "Read your report — identify weakest section + two weakest topics.",
+        "Take an official practice exam to set your baseline.",
+        "Review your section scores — identify your weakest section + two weakest topics.",
         "Set up the error log template before any practice.",
       ],
     )
@@ -202,10 +202,10 @@ export function buildSchedule(input: ScheduleInput): Schedule {
     )
   } else {
     addWeek(
-      "Diagnostic + foundation",
-      "Compressed start: diagnose + immediately read your weakest section.",
+      "Baseline + foundation",
+      "Compressed start: set your baseline, then immediately read your weakest section.",
       [
-        "Take the diagnostic on day 1.",
+        "Take an official practice exam on day 1 to set your baseline.",
         "Read 2 chapters per day on the weakest section.",
         "Set up the error log before any practice.",
       ],
@@ -214,7 +214,7 @@ export function buildSchedule(input: ScheduleInput): Schedule {
 
   // Weakest section deep work
   for (let i = 0; i < weakestSpan; i++) {
-    const sectionLabel = weakest ?? "weakest section (TBD by diagnostic)"
+    const sectionLabel = weakest ?? "weakest section (TBD by your baseline exam)"
     addWeek(
       "Weakest section deep work",
       `Drill ${sectionLabel} topics, timed, with full review after every set.`,
@@ -229,7 +229,7 @@ export function buildSchedule(input: ScheduleInput): Schedule {
   // Second-weakest section
   for (let i = 0; i < secondSpan; i++) {
     const sectionLabel =
-      secondWeakest ?? "second-weakest section (TBD by diagnostic)"
+      secondWeakest ?? "second-weakest section (TBD by your baseline exam)"
     addWeek(
       "Second-weakest section",
       `Drill ${sectionLabel} topics. Maintain weekly maintenance on the first.`,

@@ -18,7 +18,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Zakarian GMAT",
     short_name: "Zakarian GMAT",
     description:
-      "GMAT Focus Edition prep — diagnostic-driven, mistake-driven, score-anchored.",
+      "GMAT Focus Edition prep — baseline-driven, mistake-driven, score-anchored.",
     start_url: "/dashboard",
     scope: "/",
     display: "standalone",

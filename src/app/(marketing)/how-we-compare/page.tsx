@@ -42,7 +42,7 @@ const PILLARS: Pillar[] = [
     icon: Brain,
     eyebrow: "Learning science",
     title: "Designed around how people actually learn.",
-    body: "Not a pile of videos. A loop the research backs: a diagnostic that places you, readings that make you recall instead of re-read, problem sets that interleave, an error log that tags why you missed, and a spaced-review queue that brings misses back before you forget them.",
+    body: "Not a pile of videos. A loop the research backs: an official-exam baseline that places you, readings that make you recall instead of re-read, problem sets that interleave, an error log that tags why you missed, and a spaced-review queue that brings misses back before you forget them.",
   },
 ]
 
@@ -86,7 +86,7 @@ const LOOP: { step: string; detail: string }[] = [
   {
     step: "Diagnose",
     detail:
-      "A stratified diagnostic places you by section and sub-skill — so you study your gaps, not the whole syllabus from zero.",
+      "An official mba.com practice exam places you by section and sub-skill — you enter your scores and the adaptive plan targets your gaps, not the whole syllabus from zero.",
   },
   {
     step: "Learn by retrieval",

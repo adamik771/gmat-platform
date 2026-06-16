@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "Zakarian GMAT",
     title: "Zakarian GMAT — From 565 to 735, On Your Terms",
     description:
-      "The structured GMAT prep system that took Adam from 565 to 735. Diagnostic-driven, mistake-driven, score-anchored — built for ambitious MBA candidates.",
+      "The structured GMAT prep system that took Adam from 565 to 735. Baseline-driven, mistake-driven, score-anchored — built for ambitious MBA candidates.",
     images: [
       {
         url: "/opengraph-image",
