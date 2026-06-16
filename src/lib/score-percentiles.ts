@@ -209,6 +209,7 @@ export function sectionPercentile(section: Section, sectionScore: number): numbe
  * Used as a fallback when the exact percentile would over-promise precision.
  */
 export function percentileBand(percentile: number): string {
+  if (percentile >= 100) return "100th percentile (top 1%)"
   if (percentile >= 99) return "99th percentile (top 1%)"
   if (percentile >= 95) return `${percentile}th percentile (top 5%)`
   if (percentile >= 90) return `${percentile}th percentile (top 10%)`

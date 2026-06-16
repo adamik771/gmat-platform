@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest"
-import { totalPercentile, sectionPercentile } from "@/lib/score-percentiles"
+import {
+  totalPercentile,
+  sectionPercentile,
+  percentileBand,
+} from "@/lib/score-percentiles"
 
 // Locks the GMAT Focus percentile tables (population data 2020-2025) so the
 // values can't silently regress again. Spot-values transcribed from the
@@ -53,5 +57,16 @@ describe("sectionPercentile", () => {
     ["DI", 60, 4],
   ] as const)("%s %i → %ith percentile", (section, score, expected) => {
     expect(sectionPercentile(section, score)).toBe(expected)
+  })
+})
+
+describe("percentileBand", () => {
+  it("labels 735+ (100th) as the 100th band", () => {
+    expect(percentileBand(totalPercentile(735))).toBe("100th percentile (top 1%)")
+    expect(percentileBand(100)).toBe("100th percentile (top 1%)")
+  })
+  it("keeps 99 distinct from 100", () => {
+    expect(percentileBand(totalPercentile(715))).toBe("99th percentile (top 1%)")
+    expect(percentileBand(99)).toBe("99th percentile (top 1%)")
   })
 })
