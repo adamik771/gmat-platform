@@ -70,8 +70,8 @@ export default function ScoreCalculatorClient() {
   }
 
   const total = sectionScoresToTotal(scores.quant, scores.verbal, scores.di)
-  // GMAC's published top band is the 99th percentile; never display "100th".
-  const pct = Math.min(99, totalPercentile(total))
+  // 735+ is the 100th-percentile band per the GMAT Focus tables — show it.
+  const pct = totalPercentile(total)
 
   return (
     <div className="max-w-3xl mx-auto space-y-10">
