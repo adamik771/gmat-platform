@@ -118,7 +118,7 @@ export default function ScoreCalloutNumbers({
   return (
     <div
       ref={rootRef}
-      className="relative inline-flex items-center gap-8 px-10 py-8 rounded-2xl border mb-12"
+      className="relative inline-flex items-center gap-4 sm:gap-8 px-5 sm:px-10 py-6 sm:py-8 rounded-2xl border mb-12"
       style={{
         borderColor: "rgba(201,168,76,0.18)",
         backgroundColor: "#111111",
@@ -128,7 +128,7 @@ export default function ScoreCalloutNumbers({
     >
       <div className="text-center">
         <p
-          className="font-display text-6xl sm:text-7xl font-semibold text-[#888888] tracking-[-0.03em] leading-none tabular-nums relative"
+          className="font-display text-5xl sm:text-7xl font-semibold text-[#888888] tracking-[-0.03em] leading-none tabular-nums relative"
           aria-label={`${start}`}
         >
           <span aria-hidden className="invisible">
@@ -144,7 +144,7 @@ export default function ScoreCalloutNumbers({
       </div>
       <div className="flex flex-col items-center gap-1.5">
         <div
-          className="h-px w-16 sm:w-20"
+          className="h-px w-10 sm:w-20"
           style={{
             background:
               "linear-gradient(to right, rgba(201,168,76,0.1), #C9A84C, rgba(201,168,76,0.1))",
@@ -174,7 +174,7 @@ export default function ScoreCalloutNumbers({
           aria-hidden
         />
         <p
-          className="relative font-display text-6xl sm:text-7xl font-semibold tracking-[-0.03em] leading-none tabular-nums"
+          className="relative font-display text-5xl sm:text-7xl font-semibold tracking-[-0.03em] leading-none tabular-nums"
           style={{ color: "#C9A84C" }}
           aria-label={`${end}`}
         >
