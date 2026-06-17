@@ -4,9 +4,9 @@ import {
   ArrowRight,
   CheckSquare,
   ClipboardList,
-  Printer,
 } from "lucide-react"
 import JsonLd from "@/components/seo/JsonLd"
+import PrintButton from "@/components/marketing/PrintButton"
 import { softwareApplicationLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 
@@ -329,14 +329,7 @@ export default function ExamDayChecklistPage() {
             {SECTIONS.length} stages.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a
-              href="javascript:window.print()"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-            >
-              <Printer className="w-4 h-4" />
-              Print or save as PDF
-            </a>
+            <PrintButton />
             <Link
               href="/sample-chapter"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all duration-200"
