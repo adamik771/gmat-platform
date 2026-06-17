@@ -140,18 +140,16 @@ export const BANK_RULES: Record<string, SubtopicRule[]> = {
  * omitted entirely (not practice-test material).
  */
 export const COMING_SOON_CHAPTERS: ReadonlySet<string> = new Set([
-  // All RC subtype chapters are now live from the reading-comprehension bank:
-  // reading-process is fed by "Passage Structure" questions and answer-traps by
-  // "Answer Traps" questions (see the reading-comprehension routing rules).
-])
-
-/**
- * Chapters omitted from the Practice page entirely — method, foundations, and
- * timing chapters that aren't standalone-test material. Pins pointing at these
- * are ignored so their sampler questions route to their real topic chapters.
- */
-export const OMITTED_CHAPTERS: ReadonlySet<string> = new Set([
-  "gmat-welcome",
+  // Real syllabus chapters shown in the Practice list so it stays 1:1 with the
+  // /chapters guided path (same chapters, same order), but which have no
+  // standalone question bank — rendered as a muted "coming soon" row. These are
+  // readable on /chapters; they just aren't standalone practice-test material:
+  //   - the three section intros,
+  //   - the four Quant strategy/method chapters (backsolving … answer-choice tactics),
+  //   - DI foundations,
+  //   - the three timing chapters.
+  // They stay `isHidden` for question routing, so their sampler questions still
+  // route to the real topic chapters (pool stays empty → coming-soon row).
   "quant-section-intro",
   "verbal-section-intro",
   "di-section-intro",
@@ -159,10 +157,21 @@ export const OMITTED_CHAPTERS: ReadonlySet<string> = new Set([
   "quant-02-plugging-in-numbers",
   "quant-03-estimation",
   "quant-04-answer-choice-tactics",
+  "di-foundations",
   "quant-30-timing",
   "verbal-21-mixed-timing",
-  "di-foundations",
   "di-timing-mixed",
+])
+
+/**
+ * Chapters omitted from the Practice page entirely. Only the welcome chapter —
+ * it's the General intro page, not a topic (and it's also skipped by the
+ * `section === "General"` guard in getPracticeChapterGroups). Everything else
+ * now appears in the list for 1:1 ordering parity with /chapters; see
+ * COMING_SOON_CHAPTERS.
+ */
+export const OMITTED_CHAPTERS: ReadonlySet<string> = new Set([
+  "gmat-welcome",
 ])
 
 /**

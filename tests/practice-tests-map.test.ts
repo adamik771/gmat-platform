@@ -142,27 +142,42 @@ describe("TEST_CAPS / COMING_SOON / OMITTED sets", () => {
     expect(TEST_CAPS).toEqual({ Quant: 15, Verbal: 8, DI: 15 })
   })
 
-  it("COMING_SOON_CHAPTERS is currently empty (all RC subtypes are live)", () => {
-    expect(COMING_SOON_CHAPTERS.size).toBe(0)
-    expect(COMING_SOON_CHAPTERS.has("verbal-13-rc-reading-process")).toBe(false)
+  it("COMING_SOON_CHAPTERS holds the no-bank syllabus chapters shown for /chapters parity", () => {
+    // The practice list mirrors the /chapters guided path 1:1 (same chapters,
+    // same order); chapters with no question bank render as muted coming-soon
+    // rows rather than being dropped. That's the section intros, the four Quant
+    // strategy/method chapters, DI foundations, and the three timing chapters.
+    expect(COMING_SOON_CHAPTERS.size).toBe(11)
+    for (const slug of [
+      "quant-section-intro",
+      "verbal-section-intro",
+      "di-section-intro",
+      "quant-01-backsolving",
+      "quant-02-plugging-in-numbers",
+      "quant-03-estimation",
+      "quant-04-answer-choice-tactics",
+      "di-foundations",
+      "quant-30-timing",
+      "verbal-21-mixed-timing",
+      "di-timing-mixed",
+    ]) {
+      expect(COMING_SOON_CHAPTERS.has(slug), `expected ${slug} to be coming-soon`).toBe(true)
+    }
+    // a real, practiceable topic chapter must NOT be coming-soon
+    expect(COMING_SOON_CHAPTERS.has("quant-08-even-odd-integer-properties")).toBe(false)
+    expect(COMING_SOON_CHAPTERS.has("data-sufficiency")).toBe(false)
   })
 
-  it("OMITTED_CHAPTERS contains method/foundations/timing/intro chapters and excludes real topic chapters", () => {
-    expect(OMITTED_CHAPTERS.has("quant-01-backsolving")).toBe(true)
-    // verbal-01-foundations now has a dedicated practice bank (verbal-foundations.md
-    // via DIRECT_BANK_CHAPTER), so it is no longer omitted.
-    expect(OMITTED_CHAPTERS.has("verbal-01-foundations")).toBe(false)
-    expect(OMITTED_CHAPTERS.has("di-foundations")).toBe(true)
-    expect(OMITTED_CHAPTERS.has("quant-30-timing")).toBe(true)
-    // the welcome + section-intro chapters have no banks either
+  it("OMITTED_CHAPTERS is just the welcome intro page (everything else is shown on Practice)", () => {
+    expect(OMITTED_CHAPTERS.size).toBe(1)
     expect(OMITTED_CHAPTERS.has("gmat-welcome")).toBe(true)
-    expect(OMITTED_CHAPTERS.has("quant-section-intro")).toBe(true)
-    expect(OMITTED_CHAPTERS.has("verbal-section-intro")).toBe(true)
-    expect(OMITTED_CHAPTERS.has("di-section-intro")).toBe(true)
-    // a real, practiceable topic chapter must NOT be omitted
-    expect(OMITTED_CHAPTERS.has("quant-08-even-odd-integer-properties")).toBe(false)
+    // chapters that used to be omitted now appear as coming-soon rows, not dropped
+    expect(OMITTED_CHAPTERS.has("quant-01-backsolving")).toBe(false)
+    expect(OMITTED_CHAPTERS.has("di-foundations")).toBe(false)
+    expect(OMITTED_CHAPTERS.has("quant-30-timing")).toBe(false)
+    expect(OMITTED_CHAPTERS.has("quant-section-intro")).toBe(false)
+    // a real, practiceable topic chapter is not omitted
     expect(OMITTED_CHAPTERS.has("data-sufficiency")).toBe(false)
-    expect(OMITTED_CHAPTERS.size).toBe(12)
   })
 
   it("COMING_SOON and OMITTED sets are disjoint (no chapter is both)", () => {
