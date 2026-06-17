@@ -99,7 +99,7 @@ Everything in this platform serves one loop, and you are standing at the start o
 
 Here is what an honest arc looks like. No overnight-score promises — anyone selling those is selling.
 
-**Week one: baseline.** Take **Official Exam 1 on mba.com early, before you feel ready.** Resist the urge to "study a bit first": a prepared baseline measures your cramming, not your starting point, and every plan built on it inherits the distortion. Take it cold, in one sitting, under real conditions, and enter the result on the Exams page. The number may sting; that is what baselines are for.
+**Week one: baseline.** Take **Official Exam 1 on mba.com early, before you feel ready.** Resist the urge to "study a bit first": a prepared baseline measures your cramming, not your starting point, and every plan built on it inherits the distortion. Take it cold, in one sitting, under real conditions, and enter the result on the Exams page. **Answer every question — even if the last few are blind guesses with seconds left on the clock.** On the GMAT Focus, an unanswered question hurts your score far more than a wrong one, so never let the timer run out with blanks on the screen. The number may sting; that is what baselines are for.
 
 **The long middle: the loop, on repeat.** Weeks of chapters in path order, practice tests after each, every miss tagged, review queue cleared most days. This phase is unglamorous; it is also where the score is built. Consistency beats intensity: regular sessions most days outperform heroic weekends, because retention — not exposure — is what survives to test day.
 
@@ -117,7 +117,7 @@ You now know the machine: three 45-minute sections, **64 questions**, your choic
 
 Here is your first week, concretely:
 
-1. **Take Official Exam 1 on mba.com.** Cold, one sitting, real conditions, the one optional 10-minute break and nothing more. Do not study for it first.
+1. **Take Official Exam 1 on mba.com.** Cold, one sitting, real conditions, the one optional 10-minute break and nothing more. Do not study for it first — and **answer every question, guessing if you must, since leaving any blank costs you more than a wrong answer.**
 2. **Enter the score on the Exams page.** That trend line is the only score signal you will trust from now on.
 3. **Set your target score and your exam date in the app.** The platform calibrates around the target, and a real date turns "someday" prep into a schedule.
 4. **Start the path.** Move to the next chapter and take them in order. Do not skip ahead to your favorite section.

@@ -21,6 +21,7 @@ import {
 import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
+import { REVEAL_SENTINEL, transformRecallChecks } from "@/lib/recall-reveal"
 import { selectChapterCoachingState } from "@/lib/chapter-coaching"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
@@ -447,8 +448,57 @@ function CalloutBlock({
   )
 }
 
+// ---------- Recall-check answer reveal ----------
+//
+// Recall checks are authored inline as `> **Recall check.** Q (A)`. Showing
+// the answer next to the question defeats retrieval practice (the whole point
+// is to answer from memory first), so at render time we split off the trailing
+// parenthetical answer and hide it behind a "Reveal answer" toggle. Only fires
+// when the check cleanly ENDS in `)`; the irregular ones (mid-sentence answers,
+// or "close the book and write these from memory" self-tests with no answer
+// paren) are left inline untouched.
+
+/** A paragraph the preprocess marked as a hidden recall-check answer. Strips
+ *  the sentinel and returns the answer nodes for the reveal toggle. */
+function detectReveal(children: ReactNode): ReactNode[] | null {
+  const arr = Children.toArray(children)
+  const first = arr[0]
+  if (typeof first !== "string" || !first.startsWith(REVEAL_SENTINEL)) return null
+  const rest = [...arr]
+  rest[0] = first.slice(REVEAL_SENTINEL.length)
+  return rest
+}
+
+function RevealBlock({ children }: { children: ReactNode }) {
+  const [shown, setShown] = useState(false)
+  if (shown) {
+    return (
+      <div
+        className="mt-2 text-[15px] leading-[1.75] not-italic"
+        style={{ color: "var(--read-text-body)" }}
+      >
+        {children}
+      </div>
+    )
+  }
+  return (
+    <button
+      type="button"
+      onClick={() => setShown(true)}
+      className="mt-2 inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] not-italic transition-opacity hover:opacity-80"
+      style={{ borderColor: "var(--read-gold-strong)", color: "var(--read-gold)" }}
+    >
+      Reveal answer
+    </button>
+  )
+}
+
 const mdComponents: Components = {
   p: ({ children, ...rest }) => {
+    const reveal = detectReveal(children)
+    if (reveal) {
+      return <RevealBlock>{reveal}</RevealBlock>
+    }
     const callout = detectCallout(children)
     if (callout) {
       return <CalloutBlock kind={callout.kind}>{callout.rest}</CalloutBlock>
@@ -1629,7 +1679,7 @@ function SectionCard({
         {s.body && (
           <div className="prose-chapter prose-chapter-dropcap">
             <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
-              {s.body}
+              {transformRecallChecks(s.body)}
             </ReactMarkdown>
           </div>
         )}
