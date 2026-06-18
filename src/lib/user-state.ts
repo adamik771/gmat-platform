@@ -1,5 +1,8 @@
 import "server-only"
 import type { SupabaseClient, User } from "@supabase/supabase-js"
+import { USER_STATE_KEYS, type UserStateKey, type UserState } from "./user-state-keys"
+
+export { USER_STATE_KEYS, type UserStateKey, type UserState }
 
 /**
  * Per-user app state that GROWS with usage — chapter progress, saved
@@ -25,25 +28,6 @@ import type { SupabaseClient, User } from "@supabase/supabase-js"
  * Small scalars stay in user_metadata (see /api/target-score, /api/profile,
  * /api/notification-prefs) — those routes are intentionally NOT touched.
  */
-
-/** Keys relocated out of user_metadata into the user_state table. */
-export const USER_STATE_KEYS = [
-  "chapter_progress",
-  "saved_for_review",
-  "confidence_log",
-  "mock_flags",
-  "mock_review_edits",
-  "drill_reviews",
-  "checkpoint_reviews",
-  "topic_skill_levels",
-  "official_exam_scores",
-] as const
-
-export type UserStateKey = (typeof USER_STATE_KEYS)[number]
-
-/** Loosely typed by design — call sites cast each value exactly as they did
- *  when reading off user_metadata (e.g. `as ChapterProgressMap`). */
-export type UserState = Partial<Record<UserStateKey, unknown>>
 
 /** SQL for the table + RLS. Run once in the Supabase SQL editor (the repo has
  *  no migrations dir; schema is applied manually, mirroring beta-feedback.ts). */

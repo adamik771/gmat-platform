@@ -163,7 +163,12 @@ export default async function AnalyticsPage() {
           .select(
             "question_id, topic, subtopic, section, difficulty, is_correct, time_spent_ms, confidence, practice_sessions(created_at)"
           )
-          .eq("user_id", user.id),
+          .eq("user_id", user.id)
+          // Safety cap so a multi-year power user can't load an unbounded
+          // history (the aggregations below are order-independent, so this is a
+          // no-op for any realistic account).
+          .order("session_id", { ascending: false })
+          .limit(20000),
       ])
 
       if (sessions && sessions.length > 0) {

@@ -107,13 +107,18 @@ export const TAG_DEFS: Array<{ id: FeedbackTag; label: string; kinds: FeedbackKi
 ]
 
 /** Maximum entries kept in the user_metadata fallback before we trim oldest first. */
-export const USER_METADATA_FALLBACK_LIMIT = 30
+export const USER_METADATA_FALLBACK_LIMIT = 10
+/** Max message chars kept in the fallback. The full message belongs in the
+ *  beta_feedback table; the fallback keeps only a short preview so it can never
+ *  bloat the auth JWT/cookie (the 494 REQUEST_HEADER_TOO_LARGE failure mode). */
+export const USER_METADATA_FALLBACK_MESSAGE_CHARS = 280
 
 /**
  * Append a feedback entry to user_metadata.beta_feedback. Used as a
  * fallback when the Supabase table doesn't exist yet (i.e., before the
- * migration runs). Trims to the last `USER_METADATA_FALLBACK_LIMIT`
- * entries to keep user_metadata size bounded.
+ * migration runs). Bounds both the entry COUNT and each message's LENGTH so the
+ * fallback can never grow user_metadata (which rides in the auth cookie) past
+ * the request-header limit.
  */
 export function appendToUserMetadata(
   userMetadata: unknown,
@@ -123,8 +128,16 @@ export function appendToUserMetadata(
     ? { ...(userMetadata as Record<string, unknown>) }
     : {}) as Record<string, unknown>
 
+  // Truncate the message to a preview — the full text lives in the table.
+  const message = (entry as { message?: unknown }).message
+  const slim =
+    typeof message === "string" &&
+    message.length > USER_METADATA_FALLBACK_MESSAGE_CHARS
+      ? { ...entry, message: message.slice(0, USER_METADATA_FALLBACK_MESSAGE_CHARS) }
+      : entry
+
   const existing = (meta.beta_feedback as Array<unknown> | undefined) ?? []
-  const next: Array<unknown> = [...existing, entry]
+  const next: Array<unknown> = [...existing, slim]
 
   // Trim oldest first when over the cap.
   while (next.length > USER_METADATA_FALLBACK_LIMIT) next.shift()

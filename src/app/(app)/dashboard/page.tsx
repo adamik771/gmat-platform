@@ -353,7 +353,12 @@ export default async function DashboardPage() {
         supabase
           .from("practice_attempts")
           .select("section, is_correct, practice_sessions(created_at)")
-          .eq("user_id", userId),
+          .eq("user_id", userId)
+          // Safety cap against an unbounded multi-year history. The section
+          // stats below aggregate order-independently, so this is a no-op for
+          // any realistic account.
+          .order("session_id", { ascending: false })
+          .limit(20000),
         supabase
           .from("lesson_completions")
           .select("user_id", { count: "exact", head: true })

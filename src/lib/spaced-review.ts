@@ -692,6 +692,10 @@ export async function buildSpacedReviewQueue(
       "tag, root_cause, practice_attempts(question_id, practice_sessions(created_at))"
     )
     .eq("user_id", userId)
+    // Safety cap so a long-tenured user's full tag history isn't loaded + sorted
+    // on every review build. attempt_id desc keeps the most recent tags when capped.
+    .order("attempt_id", { ascending: false })
+    .limit(2000)
   const mistakeTypeByQuestion = new Map<string, string>()
   const errorTagRows = (errorRows ?? []) as unknown as Array<{
     tag: string | null
@@ -797,13 +801,35 @@ export async function buildSpacedReviewQueue(
   }
 }
 
+/** Hard cap on review-log entries kept per user. These maps are keyed by item
+ *  id, so re-reviewing updates in place, but a multi-year power user can still
+ *  touch enough distinct items to bloat the user_state row. Spacing is driven
+ *  by recent activity, so trimming the oldest entries is behaviour-safe. */
+const MAX_REVIEW_LOG_ENTRIES = 1000
+
+/** Keep only the `max` most-recently-touched entries of a review-log map. */
+function capByRecency(
+  map: Record<string, unknown>,
+  tsOf: (v: unknown) => number,
+  max = MAX_REVIEW_LOG_ENTRIES
+): Record<string, unknown> {
+  const keys = Object.keys(map)
+  if (keys.length <= max) return map
+  const kept = keys.sort((a, b) => tsOf(map[b]) - tsOf(map[a])).slice(0, max)
+  const out: Record<string, unknown> = {}
+  for (const k of kept) out[k] = map[k]
+  return out
+}
+
+const tsOfConfidence = (v: unknown): number =>
+  v && typeof v === "object" ? Number((v as { ts?: unknown }).ts) || 0 : 0
+const tsOfReview = (v: unknown): number => Number(v) || 0
+
 /**
- * Record the result of a spaced-review attempt — writes back into
- * `user_metadata` so subsequent calls advance the rung.
- *
- * Usage: from an API route that handles "I just reviewed item X with
- * confidence Y". The caller passes the new metadata to
- * `supabase.auth.updateUser({ data: nextMeta })`.
+ * Record the result of a spaced-review attempt — returns the updated state
+ * (confidence_log + the kind-specific review log) so the caller persists it via
+ * `patchUserState`. Each map is capped at MAX_REVIEW_LOG_ENTRIES (newest-first)
+ * so the user_state row can't grow without bound.
  */
 export function recordReviewAttempt(
   userMetadata: unknown,
@@ -817,19 +843,19 @@ export function recordReviewAttempt(
 
   // Update confidence log for any kind.
   const confLog = (meta.confidence_log as Record<string, unknown> | undefined) ?? {}
-  meta.confidence_log = {
-    ...confLog,
-    [item.id]: { confidence, ts: nowMs },
-  }
+  meta.confidence_log = capByRecency(
+    { ...confLog, [item.id]: { confidence, ts: nowMs } },
+    tsOfConfidence
+  )
 
   // For drill/checkpoint, also update the kind-specific review log so
   // the rung advances on subsequent calls.
   if (item.kind === "drill") {
     const log = (meta.drill_reviews as Record<string, unknown> | undefined) ?? {}
-    meta.drill_reviews = { ...log, [item.id]: nowMs }
+    meta.drill_reviews = capByRecency({ ...log, [item.id]: nowMs }, tsOfReview)
   } else if (item.kind === "checkpoint") {
     const log = (meta.checkpoint_reviews as Record<string, unknown> | undefined) ?? {}
-    meta.checkpoint_reviews = { ...log, [item.id]: nowMs }
+    meta.checkpoint_reviews = capByRecency({ ...log, [item.id]: nowMs }, tsOfReview)
   }
 
   return meta
