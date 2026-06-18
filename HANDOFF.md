@@ -2,6 +2,19 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-19 (494 incident CLOSED + growth-class hardening MERGED to main)
+
+The 494 REQUEST_HEADER_TOO_LARGE incident (see the 2026-06-18 entry below) is fully resolved and shipped: the `user_state` SQL was run, the fix deployed, and `backfill-user-state.ts --apply` migrated all 5 affected users (the locked-out user's ~9.6KB cookie payload moved to the table) — they signed in cleanly with data intact. Both PRs are merged to `main`.
+
+Then a latent-failure audit (other "works until the data grows / fails silently" landmines) drove a **hardening PR, also merged** — all targeting the same class:
+- **Guardrail test** `tests/user-metadata-guardrail.test.ts` — fails CI if any growing key is read off `user_metadata` again. Key list extracted to `src/lib/user-state-keys.ts` (no `server-only`) so test + backfill + accessor share it. THIS is the durable backstop.
+- **Review logs capped** — `confidence_log`/`drill_reviews`/`checkpoint_reviews` keep newest 1000 (`recordReviewAttempt`); they'd been relocated off the cookie but left uncapped in the table.
+- **`beta_feedback` fallback bounded** — 30->10 entries + each message truncated to 280 chars (the last path that could bloat the cookie, if its table were missing).
+- **Uncapped reads safety-capped** — `practice_attempts` on `/analytics` + `/dashboard` (20k), `error_tags` in `buildSpacedReviewQueue` (2k); order-independent aggregations so no change for realistic accounts. Mock-report N+1 batched.
+- **Leading-indicator log** — `src/proxy.ts` `console.warn`s when an incoming cookie exceeds ~6KB (the 494 happens at the edge BEFORE app code, so this fires in the still-allowed window). `tests/state-size-budget.test.ts` locks in the caps.
+
+**Standing follow-ups (offered, not done):** point a Vercel log-drain alert at the `"[proxy] large cookie"` warning (infra, Adam's side); the heavy-user *render* test (the size caps are tested; a full page-render-at-scale test needs integration infra the repo lacks). Architectural rule now enforced by test: growing per-user state goes in `user_state`, only small scalars in `user_metadata`.
+
 ## CONTEXT SWITCH — 2026-06-18 (FIX: 494 REQUEST_HEADER_TOO_LARGE — moved growing state out of the auth cookie; NOT committed, needs SQL + backfill + deploy)
 
 A user hit Vercel **494 REQUEST_HEADER_TOO_LARGE** on every page once signed in (incognito worked; login re-triggered it). Root cause: Supabase packs `user_metadata` into the auth JWT/`sb-…-auth-token` cookie, and the app stored ever-growing state there (chapter_progress with per-question state + free-text notes across 62 chapters was the dominant offender), so an active user's cookie outgrew Vercel's header limit and locked them out. It would hit every heavy user.
