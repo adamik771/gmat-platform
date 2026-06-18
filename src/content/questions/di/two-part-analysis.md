@@ -1947,8 +1947,6 @@ The credited answer for Column 2 is therefore "When mortgage borrowing becomes c
 The correct answers are Strengthens = Durable goods account for approximately 60% of total consumer spending and Gap in Chain = When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead.
 **related_reading:** reading-di-06-two-part-analysis
 
-**related_reading:** reading-di-06-two-part-analysis
-
 ---
 
 ## Q36
