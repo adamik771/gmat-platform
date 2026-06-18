@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, Bookmark } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
 import { getQuestionsByIds } from "@/lib/content"
 import SavedUnsaveButton from "./SavedUnsaveButton"
 import EmptyState from "@/components/shared/EmptyState"
@@ -56,9 +57,11 @@ export default async function SavedQuestionsPage() {
     )
   }
 
+  const state = await getUserState(supabase, user)
+
   // `saved_for_review` is the explicit "mark this to revisit" bookmark
   // (the Save button in practice + single-question review). Newest first.
-  const rawSaved = user.user_metadata?.saved_for_review
+  const rawSaved = state.saved_for_review
   const savedIds: string[] = Array.isArray(rawSaved)
     ? rawSaved.filter((x): x is string => typeof x === "string")
     : []

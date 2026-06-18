@@ -3,6 +3,7 @@ import {
   recordReviewAttempt,
   type SpacedItemKind,
 } from "@/lib/spaced-review"
+import { getUserState, patchUserState, type UserState } from "@/lib/user-state"
 
 /**
  * POST /api/spaced-review — record the result of a spaced-review attempt.
@@ -14,12 +15,10 @@ import {
  *     confidence: 1 | 2 | 3 | 4 | 5
  *   }
  *
- * Side-effects:
- *   - Writes `user_metadata.confidence_log[itemId] = { confidence, ts }`
- *   - For drill/checkpoint: also writes `user_metadata.{kind}_reviews[itemId] = ts`
- *
- * Why these go in user_metadata: low write volume, never queried by the
- * server outside the spacing engine, and avoids a Supabase migration.
+ * Side-effects (stored in the user_state table, NOT user_metadata — these
+ * grow with usage and would bloat the auth cookie):
+ *   - Writes `confidence_log[itemId] = { confidence, ts }`
+ *   - For drill/checkpoint: also writes `{kind}_reviews[itemId] = ts`
  */
 
 const VALID_KINDS: Set<SpacedItemKind> = new Set([
@@ -76,16 +75,23 @@ export async function POST(request: Request) {
     )
   }
 
+  const state = await getUserState(supabase, user)
   const nextMeta = recordReviewAttempt(
-    user.user_metadata,
+    state,
     { id: itemId, kind: kind as SpacedItemKind },
     confidence,
     Date.now()
   )
 
-  const { error } = await supabase.auth.updateUser({ data: nextMeta })
+  // Persist only the keys recordReviewAttempt can touch: confidence_log for any
+  // kind, plus the kind-specific review log for drill/checkpoint.
+  const patch: UserState = { confidence_log: nextMeta.confidence_log }
+  if (kind === "drill") patch.drill_reviews = nextMeta.drill_reviews
+  else if (kind === "checkpoint") patch.checkpoint_reviews = nextMeta.checkpoint_reviews
+
+  const { error } = await patchUserState(supabase, user, patch)
   if (error) {
-    return Response.json({ error: error.message }, { status: 500 })
+    return Response.json({ error }, { status: 500 })
   }
 
   return Response.json({ ok: true })

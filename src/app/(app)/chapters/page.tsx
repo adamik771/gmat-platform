@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 import { getAllChapters, getAllGuides } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
 
 // Section visual identity — distinct accent per GMAT section so each
 // journey carries its own feel. Re-uses the spaced-review queue's color
@@ -959,7 +960,8 @@ export default async function ChaptersPage() {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
-      const raw = user.user_metadata?.chapter_progress
+      const state = await getUserState(supabase, user)
+      const raw = state.chapter_progress
       if (raw && typeof raw === "object") {
         chapterProgress = raw as Record<string, StoredChapterProgress>
       }

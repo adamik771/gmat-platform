@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState, patchUserState } from "@/lib/user-state"
 import {
   applySessionAttempts,
   getTopicSkillLevels,
@@ -165,7 +166,8 @@ export async function POST(request: Request) {
     body.slug !== "custom"
   ) {
     try {
-      const currentLevels = getTopicSkillLevels(user.user_metadata)
+      const state = await getUserState(supabase, user)
+      const currentLevels = getTopicSkillLevels(state)
       const updateAttempts = body.attempts
         .filter(
           (a) =>
@@ -185,9 +187,7 @@ export async function POST(request: Request) {
         }))
       if (updateAttempts.length > 0) {
         const nextLevels = applySessionAttempts(currentLevels, updateAttempts)
-        await supabase.auth.updateUser({
-          data: { topic_skill_levels: nextLevels },
-        })
+        await patchUserState(supabase, user, { topic_skill_levels: nextLevels })
       }
     } catch {
       // Non-fatal — adaptivity simply doesn't update for this session.

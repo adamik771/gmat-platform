@@ -8,6 +8,7 @@ import {
 } from "@/lib/entitlements"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import { pickMockQuestions, getDifficultyMixForTarget } from "@/lib/mock"
+import { getUserState } from "@/lib/user-state"
 import {
   getMockSectionsForMode,
   isValidMockMode,
@@ -96,10 +97,11 @@ export default async function MockRunPage({
   // Otherwise scale to the student's target tier — high-target students
   // see a tougher baseline mix, foundation-target students see an easier
   // one. Same per-section question counts in either case.
+  const state = await getUserState(supabase, user)
   const picks = await getMockSectionsForMode(mode, {
     supabase,
     userId: user.id,
-    userMetadata: user.user_metadata,
+    userMetadata: state,
     pickStatic: (section, mix, count) =>
       pickMockQuestions(
         section,

@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
 import {
   getAllChapters,
   getAllQuestions,
@@ -71,10 +72,11 @@ export async function POST(request: Request) {
     : []
 
   // Pool 2: other chapters the student has actually attempted — not every
-  // chapter in the catalog. Checked against user_metadata.chapter_progress
+  // chapter in the catalog. Checked against the user_state chapter_progress
   // where any problem-set run landed (correct + total > 0).
+  const state = await getUserState(supabase, user)
   const chapterProgress =
-    (user.user_metadata?.chapter_progress as Record<string, unknown> | undefined) ?? {}
+    (state.chapter_progress as Record<string, unknown> | undefined) ?? {}
   const otherCompletedSlugs: string[] = []
   for (const [slug, raw] of Object.entries(chapterProgress)) {
     if (slug === chapterSlug) continue
@@ -126,7 +128,7 @@ export async function POST(request: Request) {
   // Pool 4: review queue top (priority-ranked, flag-boosted).
   const queue = await getReviewQueue(supabase, user.id, {
     limit: 10,
-    flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
+    flaggedQuestionIds: gatherFlaggedQuestionIds(state),
   })
   const queueIds = queue.map((c) => c.questionId)
 

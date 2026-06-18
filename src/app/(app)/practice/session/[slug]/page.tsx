@@ -22,6 +22,7 @@ import {
   type TopicSkillLevel,
 } from "@/lib/topic-skill"
 import { TOPIC_TO_SET } from "@/lib/topic-chapter-map"
+import { getUserState } from "@/lib/user-state"
 import SessionClient, { type SessionQuestion, type WeakTopicHint } from "./SessionClient"
 
 export default async function PracticeSessionPage({
@@ -147,7 +148,8 @@ export default async function PracticeSessionPage({
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
-      const levels = getTopicSkillLevels(user.user_metadata)
+      const state = await getUserState(supabase, user)
+      const levels = getTopicSkillLevels(state)
       skill = getLevelForSlug(levels, slug)
 
       // Fetch enough history to compute per-topic accuracy. 2k rows is

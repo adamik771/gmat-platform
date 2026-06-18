@@ -11,6 +11,7 @@ import {
   X,
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
 import { MOCK_SECTIONS, accuracyToScore } from "@/lib/mock"
 import { snapToValidTotal } from "@/lib/scoring"
 import { getAllQuestions, getQuestionsByIds } from "@/lib/content"
@@ -76,6 +77,8 @@ export default async function MockReportPage() {
       />
     )
   }
+
+  const state = await getUserState(supabase, user)
 
   const { data: sessionRows } = await supabase
     .from("practice_sessions")
@@ -244,7 +247,7 @@ export default async function MockReportPage() {
   let editsHurt = 0
   let editsNeutral = 0
   if (targetDate) {
-    const reviewEdits = (user.user_metadata?.mock_review_edits ?? {}) as Record<
+    const reviewEdits = (state.mock_review_edits ?? {}) as Record<
       string,
       Partial<Record<Section, Array<{
         questionId: string
@@ -275,7 +278,7 @@ export default async function MockReportPage() {
 
   const flaggedRows: FlaggedRow[] = []
   if (targetDate) {
-    const mockFlags = (user.user_metadata?.mock_flags ?? {}) as Record<
+    const mockFlags = (state.mock_flags ?? {}) as Record<
       string,
       Partial<Record<Section, string[]>>
     >

@@ -1,14 +1,15 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState, patchUserState } from "@/lib/user-state"
 
 /**
- * POST /api/chapter-progress — persist a single chapter's progress to
- * `auth.users.raw_user_meta_data.chapter_progress[slug]` via Supabase Auth's
- * updateUser. Accepts `{ slug: string, progress: object }`.
+ * POST /api/chapter-progress — persist a single chapter's progress to the
+ * `user_state` table (keyed by slug). Accepts `{ slug: string, progress: object }`.
  *
  * Chapter progress state (sectionsRead, per-question attempts, problem-set
- * results) lives in user metadata so it syncs across devices without a new
- * table. The localStorage cache on the client remains as a write-through so
- * offline edits don't get lost.
+ * results, free-text notes) syncs across devices via user_state — NOT
+ * user_metadata, since it grows without bound and would bloat the auth cookie.
+ * The localStorage cache on the client remains as a write-through so offline
+ * edits don't get lost.
  */
 export async function POST(request: Request) {
   const supabase = await createSupabaseServer()
@@ -38,16 +39,15 @@ export async function POST(request: Request) {
     )
   }
 
+  const state = await getUserState(supabase, user)
   const existing =
-    (user.user_metadata?.chapter_progress as Record<string, unknown> | undefined) ?? {}
+    (state.chapter_progress as Record<string, unknown> | undefined) ?? {}
   const next = { ...existing, [slug]: progress }
 
-  const { error } = await supabase.auth.updateUser({
-    data: { chapter_progress: next },
-  })
+  const { error } = await patchUserState(supabase, user, { chapter_progress: next })
 
   if (error) {
-    return Response.json({ error: error.message }, { status: 500 })
+    return Response.json({ error }, { status: 500 })
   }
 
   return Response.json({ ok: true })

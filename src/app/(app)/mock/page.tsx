@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowRight, ClipboardList, Lock, NotebookPen } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
 import { MOCK_MODE_DEFS, type MockMode } from "@/lib/mock-modes"
 import OfficialExamPlanClient, {
   type OfficialExamEntry,
@@ -27,10 +28,10 @@ const CONDITIONS_CHECKLIST = [
   "Scratch work only on the booklet — never loose paper.",
 ] as const
 
-/** Parse user_metadata.official_exam_scores into typed entries. */
-function parseOfficialEntries(metadata: unknown): OfficialExamEntry[] {
-  if (!metadata || typeof metadata !== "object") return []
-  const raw = (metadata as Record<string, unknown>).official_exam_scores
+/** Parse the official_exam_scores state value into typed entries. */
+function parseOfficialEntries(state: unknown): OfficialExamEntry[] {
+  if (!state || typeof state !== "object") return []
+  const raw = (state as Record<string, unknown>).official_exam_scores
   if (!Array.isArray(raw)) return []
   const out: OfficialExamEntry[] = []
   for (const item of raw) {
@@ -63,6 +64,7 @@ export default async function MockLandingPage() {
   let practiceAttemptsCount = 0
 
   if (user) {
+    const state = await getUserState(supabase, user)
     const meta = user.user_metadata ?? {}
     examDate =
       typeof meta.exam_date === "string" &&
@@ -70,7 +72,7 @@ export default async function MockLandingPage() {
         ? meta.exam_date
         : null
     targetScore = typeof meta.target_score === "number" ? meta.target_score : null
-    officialEntries = parseOfficialEntries(meta)
+    officialEntries = parseOfficialEntries(state)
 
     // Adaptive-mode gate signal — any practice attempts at all. Used to
     // decide whether weak-area / mixed-review site mocks have enough

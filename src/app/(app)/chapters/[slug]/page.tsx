@@ -10,6 +10,7 @@ import {
   type ParsedQuestion,
 } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
 import ChapterReader, {
   type ReaderQuestion,
   type ReaderSection,
@@ -86,7 +87,7 @@ export default async function ChapterDetailPage({
 
   // Pull the user's target score so the reader can surface the accuracy
   // target for the difficulty they're about to attempt, plus any existing
-  // chapter progress persisted to user_metadata so a student who switches
+  // chapter progress persisted to user_state so a student who switches
   // devices picks up where they left off. Also aggregate per-section
   // accuracy from practice_attempts so the reader can surface a "your
   // weakest section is X" hint for returning students who don't know
@@ -108,15 +109,17 @@ export default async function ChapterDetailPage({
     if (typeof raw === "number" && Number.isInteger(raw)) {
       targetScore = raw
     }
-    const chapterProgress = user?.user_metadata?.chapter_progress as
-      | Record<string, unknown>
-      | undefined
-    const entry = chapterProgress?.[slug]
-    if (entry && typeof entry === "object") {
-      initialProgress = entry
-    }
 
     if (user) {
+      const state = await getUserState(supabase, user)
+      const chapterProgress = state.chapter_progress as
+        | Record<string, unknown>
+        | undefined
+      const entry = chapterProgress?.[slug]
+      if (entry && typeof entry === "object") {
+        initialProgress = entry
+      }
+
       // Build a map: question_id → sectionId (the FIRST section that
       // lists it as a check question). Drives the section-attribution
       // for practice attempts on this chapter's questions. Sections

@@ -5,6 +5,7 @@ import { createSupabaseServer } from "@/lib/supabase/server"
 import { getAllQuestions, type ParsedQuestion } from "@/lib/content"
 import { getReviewQueue, type ReviewCandidate } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import { getUserState } from "@/lib/user-state"
 import SessionClient, {
   type SessionQuestion,
 } from "../../practice/session/[slug]/SessionClient"
@@ -50,10 +51,11 @@ export default async function ReviewSectionPage({
     )
   }
 
+  const state = await getUserState(supabase, user)
   const queue = await getReviewQueue(supabase, user.id, {
     section,
     limit: SESSION_SIZE,
-    flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
+    flaggedQuestionIds: gatherFlaggedQuestionIds(state),
   })
 
   if (queue.length === 0) {

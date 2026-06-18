@@ -1,10 +1,11 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState, patchUserState } from "@/lib/user-state"
 
 const VALID_SECTIONS = new Set(["Quant", "Verbal", "DI"])
 
 /**
  * POST /api/mock-flags — persist the per-section list of flagged question
- * IDs from a mock run. Shape written to `user_metadata.mock_flags`:
+ * IDs from a mock run. Shape written to `user_state.mock_flags`:
  *
  *   { [dateIso: "YYYY-MM-DD"]: { Quant?: string[], Verbal?: string[], DI?: string[] } }
  *
@@ -56,15 +57,16 @@ export async function POST(request: Request) {
     )
   }
 
-  // Defensive caps against a hostile caller bloating the auth JWT via
-  // user_metadata: bound each value's length (question ids are short), the
-  // per-section array (a section maxes ~23 questions), and the retained dates.
+  // Defensive caps against a hostile caller bloating storage: bound each
+  // value's length (question ids are short), the per-section array (a section
+  // maxes ~23 questions), and the retained dates.
   const cleaned = (flagged as string[])
     .filter((v) => v.length <= 100)
     .slice(0, 50)
 
+  const state = await getUserState(supabase, user)
   const existing =
-    (user.user_metadata?.mock_flags as
+    (state.mock_flags as
       | Record<string, Partial<Record<string, string[]>>>
       | undefined) ?? {}
   const existingForDate = existing[dateIso] ?? {}
@@ -79,12 +81,10 @@ export async function POST(request: Request) {
       .slice(0, 24)
   )
 
-  const { error } = await supabase.auth.updateUser({
-    data: { mock_flags: next },
-  })
+  const { error } = await patchUserState(supabase, user, { mock_flags: next })
 
   if (error) {
-    return Response.json({ error: error.message }, { status: 500 })
+    return Response.json({ error }, { status: 500 })
   }
 
   return Response.json({ ok: true })

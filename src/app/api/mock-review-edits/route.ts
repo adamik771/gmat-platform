@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState, patchUserState } from "@/lib/user-state"
 
 const VALID_SECTIONS = new Set(["Quant", "Verbal", "DI"])
 
@@ -83,8 +84,9 @@ export async function POST(request: Request) {
     if (cleaned.length >= 10) break // real GMAT caps edits at 3; 10 is a generous ceiling
   }
 
+  const state = await getUserState(supabase, user)
   const existing =
-    (user.user_metadata?.mock_review_edits as
+    (state.mock_review_edits as
       | Record<string, Partial<Record<string, EditEntry[]>>>
       | undefined) ?? {}
   const existingForDate = existing[body.dateIso] ?? {}
@@ -99,12 +101,10 @@ export async function POST(request: Request) {
       .slice(0, 24)
   )
 
-  const { error } = await supabase.auth.updateUser({
-    data: { mock_review_edits: next },
-  })
+  const { error } = await patchUserState(supabase, user, { mock_review_edits: next })
 
   if (error) {
-    return Response.json({ error: error.message }, { status: 500 })
+    return Response.json({ error }, { status: 500 })
   }
 
   return Response.json({ ok: true })
