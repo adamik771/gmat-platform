@@ -146,6 +146,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.7,
     },
+    {
+      path: "/blog/what-is-a-good-gmat-focus-score",
+      changeFrequency: "yearly",
+      priority: 0.8,
+    },
+    {
+      path: "/blog/gmat-focus-exam-structure",
+      changeFrequency: "yearly",
+      priority: 0.8,
+    },
+    {
+      path: "/blog/gmat-multi-source-reasoning-strategy",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
     { path: "/score-converter", changeFrequency: "monthly", priority: 0.8 },
     { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
     { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
