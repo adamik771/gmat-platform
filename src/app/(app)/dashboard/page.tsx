@@ -37,6 +37,7 @@ import {
   type Badge,
 } from "@/lib/gamification"
 import type { Section } from "@/types"
+import { getUserState, type UserState } from "@/lib/user-state"
 import TargetScoreControl from "./TargetScoreControl"
 
 const PLAN_LABELS: Record<string, string> = {
@@ -60,6 +61,11 @@ function timeOfDayGreeting(): string {
 export default async function DashboardPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any = null
+  // Per-user state relocated out of user_metadata (chapter_progress,
+  // official_exam_scores, mock_flags, …) — read once from the user_state
+  // table via getUserState and shared across both query blocks below. Stays
+  // null until we have a `user`, mirroring how `user` itself is guarded.
+  let state: UserState = {}
 
   // "Resume" card target — the chapter the student most recently touched
   // (highest lastSeenAt across all chapter_progress entries) plus the
@@ -93,8 +99,9 @@ export default async function DashboardPage() {
       user = data.user
 
       if (user) {
+        state = await getUserState(supabase, user)
         try {
-          const flaggedQuestionIds = gatherFlaggedQuestionIds(user.user_metadata)
+          const flaggedQuestionIds = gatherFlaggedQuestionIds(state)
           const examDate =
             (user.user_metadata?.exam_date as string | null | undefined) ?? null
           const targetScore =
@@ -107,7 +114,7 @@ export default async function DashboardPage() {
           // and `flaggedQuestionIds` inputs. Failures are non-fatal:
           // the hero card just doesn't render.
           try {
-            const metaOfficialEarly = user.user_metadata?.official_exam_scores
+            const metaOfficialEarly = state.official_exam_scores
             const plan = await computeStudyPlan(supabase, user.id, {
               targetScore,
               examDate,
@@ -155,11 +162,11 @@ export default async function DashboardPage() {
         }
 
         // Resume target — find the most recently touched chapter from
-        // user_metadata.chapter_progress and surface a "continue where
+        // the user_state chapter_progress map and surface a "continue where
         // you left off" card. Independent from NBA: NBA suggests new
         // weak spots; Resume continues an in-progress reading.
         try {
-          const rawProgress = user.user_metadata?.chapter_progress as
+          const rawProgress = state.chapter_progress as
             | Record<
                 string,
                 {
@@ -388,7 +395,7 @@ export default async function DashboardPage() {
           .eq("is_correct", false),
         getReviewQueue(supabase, userId, {
           limit: 60,
-          flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
+          flaggedQuestionIds: gatherFlaggedQuestionIds(state),
         }),
       ])
 
@@ -554,7 +561,7 @@ export default async function DashboardPage() {
       // Official baseline — how many mba.com practice-exam scores the
       // student has entered. Drives the "set your baseline" CTA until the
       // first official score exists.
-      const metaOfficialScores = user.user_metadata?.official_exam_scores
+      const metaOfficialScores = state.official_exam_scores
       officialExamCount = Array.isArray(metaOfficialScores)
         ? metaOfficialScores.length
         : 0
@@ -585,10 +592,11 @@ export default async function DashboardPage() {
       )
 
       // Last-mock flag nudge — take the most recent date with any
-      // flags across its three sections. The flags live in
-      // user_metadata.mock_flags, so no extra DB round-trip needed.
+      // flags across its three sections. The flags live in the
+      // user_state mock_flags map (already loaded above), so no extra
+      // DB round-trip needed.
       const mockFlagsTree =
-        (user.user_metadata?.mock_flags as
+        (state.mock_flags as
           | Record<string, Partial<Record<Section, string[]>>>
           | undefined) ?? {}
       const sortedDates = Object.keys(mockFlagsTree)
@@ -721,7 +729,7 @@ export default async function DashboardPage() {
   // Course progress — share of chapters the student has fully read (every
   // section marked read). Drives the dashboard "Course progress" stat, which
   // replaced the old readiness projection.
-  const chapterProgressForPct = (user?.user_metadata?.chapter_progress ?? null) as
+  const chapterProgressForPct = (state.chapter_progress ?? null) as
     | Record<string, { sectionsRead?: Record<string, boolean> }>
     | null
   const allChaptersForPct = getAllChapters()

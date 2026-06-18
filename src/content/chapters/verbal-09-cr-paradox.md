@@ -100,7 +100,7 @@ That last row is the common variant. On a "resolve EXCEPT" question, four choice
 
 > **Self-explanation prompt.** Why does an answer that strongly supports only one of the two facts *never* resolve a paradox — even when it's a true, on-topic statement? (Because the surprise lives in the *combination*; explaining one fact better leaves the other just as inconsistent with it, so the tension is untouched.)
 
-> **Recall check.** Name the six steps of the procedure in order, from reading the stem to confirming the survivor. (1) Read the stem and confirm the type; (2) state the two facts in your own words; (3) name the hidden assumption; (4) predict the gap's shape; (5) run the explain-both test on each choice; (6) confirm the survivor carries both facts. Listing them from memory now is what lets you run the routine on autopilot at minute 40 of the section — skimming the list again would only feel like learning.
+> **Recall check.** Name the six steps of the procedure in order, from reading the stem to confirming the survivor. ((1) Read the stem and confirm the type; (2) state the two facts in your own words; (3) name the hidden assumption; (4) predict the gap's shape; (5) run the explain-both test on each choice; (6) confirm the survivor carries both facts.) Listing them from memory now is what lets you run the routine on autopilot at minute 40 of the section — skimming the list again would only feel like learning.
 
 **Common mistakes.**
 - **Treating it like Strengthen/Weaken.** There's no conclusion to support or attack — hunting for "the author's point" wastes the read. The right answer is *explanatory*, not stronger or weaker.

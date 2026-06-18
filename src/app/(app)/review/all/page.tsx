@@ -21,6 +21,7 @@ import {
   type SpacedItemKind,
 } from "@/lib/spaced-review"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import { getUserState } from "@/lib/user-state"
 import EmptyState from "@/components/shared/EmptyState"
 
 export const metadata = {
@@ -90,11 +91,12 @@ export default async function SpacedReviewAllPage() {
     )
   }
 
-  const flaggedQuestionIds = gatherFlaggedQuestionIds(user.user_metadata)
+  const state = await getUserState(supabase, user)
+  const flaggedQuestionIds = gatherFlaggedQuestionIds(state)
   const queue = await buildSpacedReviewQueue(
     supabase,
     user.id,
-    user.user_metadata,
+    state,
     { flaggedQuestionIds, limit: 40 }
   )
 

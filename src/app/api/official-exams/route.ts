@@ -1,8 +1,9 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState, patchUserState } from "@/lib/user-state"
 
 /**
  * POST /api/official-exams — persist official mba.com practice-exam
- * scores to Supabase Auth's `user_metadata.official_exam_scores`.
+ * scores to the `user_state.official_exam_scores` table.
  *
  * The product treats the six official GMAT Focus practice exams as the
  * calibrated score signal; the student types each result in here after
@@ -103,7 +104,8 @@ export async function POST(request: Request) {
     )
   }
 
-  const entries = readStoredEntries(user.user_metadata)
+  const state = await getUserState(supabase, user)
+  const entries = readStoredEntries(state)
 
   if (body.action === "remove") {
     if (typeof body.date !== "string" || !DATE_RE.test(body.date)) {
@@ -119,11 +121,11 @@ export async function POST(request: Request) {
         { status: 404 }
       )
     }
-    const { error } = await supabase.auth.updateUser({
-      data: { official_exam_scores: next },
+    const { error } = await patchUserState(supabase, user, {
+      official_exam_scores: next,
     })
     if (error) {
-      return Response.json({ error: error.message }, { status: 500 })
+      return Response.json({ error }, { status: 500 })
     }
     return Response.json({ ok: true, official_exam_scores: next })
   }
@@ -195,11 +197,11 @@ export async function POST(request: Request) {
       : [...entries, entry]
   next.sort((a, b) => a.date.localeCompare(b.date))
 
-  const { error } = await supabase.auth.updateUser({
-    data: { official_exam_scores: next },
+  const { error } = await patchUserState(supabase, user, {
+    official_exam_scores: next,
   })
   if (error) {
-    return Response.json({ error: error.message }, { status: 500 })
+    return Response.json({ error }, { status: 500 })
   }
 
   return Response.json({ ok: true, official_exam_scores: next })

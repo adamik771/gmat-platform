@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
 
 // Always fresh — this is the signed-in user's own data.
 export const dynamic = "force-dynamic"
@@ -50,15 +51,20 @@ export async function GET() {
     rows("beta_feedback"),
   ])
 
+  // Growing state (chapter_progress, saved_for_review, mock_flags, etc.) lives
+  // in the user_state table now, not user_metadata — merge it back in so the
+  // export stays complete.
+  const state = await getUserState(supabase, user)
+
   const payload = {
     exported_at: new Date().toISOString(),
     account: {
       id: user.id,
       email: user.email,
       created_at: user.created_at,
-      // user_metadata holds target_score, exam_date, full_name,
-      // chapter_progress, notification_prefs, persona flags, etc.
-      profile: user.user_metadata ?? {},
+      // Small scalars (target_score, exam_date, full_name, notification_prefs,
+      // persona flags) live in user_metadata; the rest comes from user_state.
+      profile: { ...(user.user_metadata ?? {}), ...state },
     },
     practice_sessions: practiceSessions,
     practice_attempts: practiceAttempts,

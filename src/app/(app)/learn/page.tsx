@@ -18,6 +18,7 @@ import {
 } from "lucide-react"
 import { getAllGuides, type ParsedGuide } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
 import type { Section } from "@/types"
 
 /**
@@ -33,7 +34,7 @@ import type { Section } from "@/types"
  *   4. Track      — mistake log, spaced review, progress analytics
  *
  * The page is read-mostly. It never mutates user state. Progress badges
- * pull from `user_metadata.chapter_progress` (the same source the
+ * pull from `state.chapter_progress` via getUserState (the same source the
  * existing `/chapters` page uses) so the hub stays consistent with
  * downstream surfaces.
  */
@@ -144,6 +145,7 @@ export default async function CoursePage() {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
+      const state = await getUserState(supabase, user)
       // Only use a real authored full_name. The email-username fallback
       // (e.g. "adamzakaryan15") makes the page look like a dev build —
       // better to drop the comma than to greet someone with their handle.
@@ -152,7 +154,7 @@ export default async function CoursePage() {
         fullName && fullName.trim().length > 0
           ? fullName.trim().split(/\s+/)[0]
           : null
-      const raw = user.user_metadata?.chapter_progress
+      const raw = state.chapter_progress
       if (raw && typeof raw === "object") {
         progress = raw as Record<string, ProgressShape>
       }
@@ -163,7 +165,7 @@ export default async function CoursePage() {
       const examMeta = user.user_metadata?.exam_date
       examDate =
         typeof examMeta === "string" && examMeta.length > 0 ? examMeta : null
-      const metaOfficialScores = user.user_metadata?.official_exam_scores
+      const metaOfficialScores = state.official_exam_scores
       officialExamCount = Array.isArray(metaOfficialScores)
         ? metaOfficialScores.length
         : 0

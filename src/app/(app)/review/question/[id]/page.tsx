@@ -27,6 +27,7 @@ import {
 import { getCurriculumOutline } from "@/lib/curriculum-outline"
 import { findSimilarQuestions } from "@/lib/similar-questions"
 import { readSavedForReview } from "@/lib/spaced-review"
+import { getUserState } from "@/lib/user-state"
 import QuestionFeedbackBar from "@/components/beta/QuestionFeedbackBar"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import type { Section } from "@/types"
@@ -105,7 +106,8 @@ export default async function QuestionReviewPage({
           createdAt: row.practice_sessions?.created_at ?? null,
         }
       }
-      initialSaved = readSavedForReview(user.user_metadata).has(id)
+      const state = await getUserState(supabase, user)
+      initialSaved = readSavedForReview(state).has(id)
     }
   } catch {
     // Render anonymously when Supabase is unavailable.

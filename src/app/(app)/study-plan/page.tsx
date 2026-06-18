@@ -44,6 +44,7 @@ import {
   type PersonaTag,
 } from "@/lib/personas"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import { getUserState } from "@/lib/user-state"
 import type { Section } from "@/types"
 
 const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -94,6 +95,7 @@ export default async function StudyPlanPage() {
     } = await supabase.auth.getUser()
 
     if (user) {
+      const state = await getUserState(supabase, user)
       examDate = (user.user_metadata?.exam_date as string | null) ?? null
       const rawTarget = user.user_metadata?.target_score
       targetScore =
@@ -101,7 +103,7 @@ export default async function StudyPlanPage() {
           ? rawTarget
           : null
 
-      const rawReadProgress = user.user_metadata?.chapter_progress
+      const rawReadProgress = state.chapter_progress
       if (rawReadProgress && typeof rawReadProgress === "object") {
         readProgress = rawReadProgress as Record<
           string,
@@ -148,7 +150,7 @@ export default async function StudyPlanPage() {
         computeStudyPlan(supabase, user.id, {
           targetScore,
           examDate,
-          flaggedQuestionIds: gatherFlaggedQuestionIds(user.user_metadata),
+          flaggedQuestionIds: gatherFlaggedQuestionIds(state),
           officialExamCount,
         }),
       ])
@@ -254,7 +256,7 @@ export default async function StudyPlanPage() {
       masteries = computeEngagedTopicMasteries(
         (masteryAttempts ?? []) as MasteryAttempt[],
         sessionsById,
-        user.user_metadata?.chapter_progress as
+        state.chapter_progress as
           | ChapterProgressShape
           | undefined,
         questionIndex,
@@ -263,7 +265,7 @@ export default async function StudyPlanPage() {
       // Official baseline — the latest mba.com practice-exam score the
       // student has entered (user_metadata.official_exam_scores). It
       // anchors persona assignment and the plan's attribution line.
-      const metaOfficial = user.user_metadata?.official_exam_scores
+      const metaOfficial = state.official_exam_scores
       const officialScores: Array<{ date?: unknown; total?: unknown }> =
         Array.isArray(metaOfficial) ? metaOfficial : []
       const validOfficial = officialScores
@@ -301,7 +303,7 @@ export default async function StudyPlanPage() {
         masteries = computeEngagedTopicMasteries(
           (masteryAttempts ?? []) as MasteryAttempt[],
           sessionsById,
-          user.user_metadata?.chapter_progress as
+          state.chapter_progress as
             | ChapterProgressShape
             | undefined,
           questionIndex,
@@ -353,7 +355,7 @@ export default async function StudyPlanPage() {
           completedTags.add("drilled-recently")
         }
       }
-      const chapterProgress = user.user_metadata?.chapter_progress as
+      const chapterProgress = state.chapter_progress as
         | ChapterProgressShape
         | undefined
       if (chapterProgress) {

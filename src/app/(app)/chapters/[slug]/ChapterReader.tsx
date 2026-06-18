@@ -450,13 +450,13 @@ function CalloutBlock({
 
 // ---------- Recall-check answer reveal ----------
 //
-// Recall checks are authored inline as `> **Recall check.** Q (A)`. Showing
-// the answer next to the question defeats retrieval practice (the whole point
-// is to answer from memory first), so at render time we split off the trailing
-// parenthetical answer and hide it behind a "Reveal answer" toggle. Only fires
-// when the check cleanly ENDS in `)`; the irregular ones (mid-sentence answers,
-// or "close the book and write these from memory" self-tests with no answer
-// paren) are left inline untouched.
+// Recall checks are authored inline as `> **Recall check.** Q (A) {coaching}`.
+// Showing the answer next to the question defeats retrieval practice (the whole
+// point is to answer from memory first), so at render time we split off the
+// parenthetical answer and hide it behind a "Reveal answer" toggle; any coaching
+// that followed the answer stays visible with the question. See
+// `transformRecallChecks` for which parenthetical counts as the answer (and the
+// citation / list-label guards). Self-tests with no answer paren are left inline.
 
 /** A paragraph the preprocess marked as a hidden recall-check answer. Strips
  *  the sentinel and returns the answer nodes for the reveal toggle. */

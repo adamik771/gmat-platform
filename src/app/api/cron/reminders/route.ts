@@ -50,6 +50,23 @@ export async function GET(request: Request) {
     const { data, error } = await service.auth.admin.listUsers({ page, perPage: 100 })
     if (error || !data || data.users.length === 0) break
 
+    // official_exam_scores moved out of user_metadata into the user_state table
+    // (it grows and would bloat the auth cookie). Batch-read this page's rows so
+    // the reminder-suppression count is accurate post-migration. Falls back to
+    // user_metadata per-user below when a row is absent (pre-backfill).
+    const officialByUser = new Map<string, unknown[]>()
+    const { data: stateRows } = await service
+      .from("user_state")
+      .select("user_id, data")
+      .in(
+        "user_id",
+        data.users.map((u) => u.id),
+      )
+    for (const r of stateRows ?? []) {
+      const s = (r.data as Record<string, unknown> | null)?.official_exam_scores
+      if (Array.isArray(s)) officialByUser.set(r.user_id as string, s)
+    }
+
     for (const user of data.users) {
       checked++
       const meta = (user.user_metadata ?? {}) as Record<string, unknown>
@@ -62,7 +79,8 @@ export async function GET(request: Request) {
 
       const examDate = typeof meta.exam_date === "string" ? meta.exam_date : null
       if (!examDate) continue
-      const scores = meta.official_exam_scores
+      // Prefer the user_state row; fall back to legacy metadata pre-backfill.
+      const scores = officialByUser.get(user.id) ?? meta.official_exam_scores
       const officialCount = Array.isArray(scores) ? scores.length : 0
 
       const reminder = officialExamReminder(examDate, todayIso, officialCount)

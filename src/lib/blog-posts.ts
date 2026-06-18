@@ -33,6 +33,43 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "what-is-a-good-gmat-focus-score",
+    title: "What Is a Good GMAT Focus Score? The 2026 Percentile Chart",
+    description:
+      "What counts as a good GMAT Focus score, read off percentile rather than the raw number — the 2026 score-to-percentile chart, where the median sits, the competitive and elite tiers, and why 645 is the percentile equivalent of the old 700. Then how to set your own target from the schools you are aiming at.",
+    date: "2026-06-18",
+    readMinutes: 11,
+    tags: ["scoring", "beginner", "strategy"],
+  },
+  {
+    slug: "gmat-focus-exam-structure",
+    title: "GMAT Focus Edition 2026: Format, Sections, Timing, and Scoring",
+    description:
+      "A standalone reference for the GMAT Focus Edition format: the three sections, 64 questions in 2 hours 15 minutes, the section-order choice, the bookmark-and-edit feature, the Data-Insights-only calculator, and the 205-805 scoring scale with equal section weighting.",
+    date: "2026-06-18",
+    readMinutes: 10,
+    tags: ["beginner", "section-guide", "scoring"],
+  },
+  {
+    slug: "gmat-multi-source-reasoning-strategy",
+    title: "GMAT Multi-Source Reasoning: A Timing and Triage Playbook",
+    description:
+      "Multi-Source Reasoning is the Data Insights format that quietly eats the clock — a single tabbed set can run 10 minutes for three questions. A timing-and-triage playbook: map the tabs instead of reading them, when to mark-and-skip, a worked example, and the recurring traps.",
+    date: "2026-06-18",
+    readMinutes: 12,
+    tags: ["data-insights", "section-guide", "strategy"],
+  },
+  {
+    slug: "gmat-two-part-analysis-strategy",
+    title:
+      "GMAT Two-Part Analysis: A Strategy Guide for the Trickiest DI Format",
+    description:
+      "Two-Part Analysis is the Data Insights format that quietly costs students the most time. The two-column structure, the dependent-vs-independent distinction, a worked quantitative example, the recurring traps, and a timing plan for the only question type where one mistake costs two answers.",
+    date: "2026-06-18",
+    readMinutes: 13,
+    tags: ["data-insights", "section-guide", "strategy"],
+  },
+  {
     slug: "gmat-math-formulas-cheat-sheet",
     title: "GMAT Math Formulas: The Cheat Sheet You Actually Need (2026)",
     description:

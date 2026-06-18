@@ -11,6 +11,7 @@ import {
   TrendingUp,
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
 import {
   computeCalibration,
   type CalibrationReport,
@@ -101,6 +102,8 @@ export default async function AnalyticsPage() {
     } = await supabase.auth.getUser()
 
     if (user) {
+      const state = await getUserState(supabase, user)
+
       // Paywall gate (reference implementation). Fully skipped while
       // PAYWALL_ENABLED is off — no extra query, no behavior change, the page
       // renders exactly as before. Flip PAYWALL_ENABLED=true to make the full
@@ -125,8 +128,8 @@ export default async function AnalyticsPage() {
       }
 
       // Official baseline — entering the first mba.com practice-exam score
-      // unlocks several modules. Read straight from user_metadata.
-      const metaOfficialScores = user.user_metadata?.official_exam_scores
+      // unlocks several modules. Read from relocated user state.
+      const metaOfficialScores = state.official_exam_scores
       officialExamCount = Array.isArray(metaOfficialScores)
         ? metaOfficialScores.length
         : 0
@@ -134,7 +137,7 @@ export default async function AnalyticsPage() {
       // chapter_progress is written cross-device via /api/chapter-progress;
       // practice_attempts.confidence is written by SessionClient on session
       // submit. The two sources are merged below once attempts are fetched.
-      const chapterProgress = user.user_metadata?.chapter_progress as
+      const chapterProgress = state.chapter_progress as
         | ChapterProgressMap
         | undefined
 

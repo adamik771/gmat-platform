@@ -117,6 +117,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      path: "/blog/gmat-two-part-analysis-strategy",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
       path: "/blog/gmat-math-formulas-cheat-sheet",
       changeFrequency: "yearly",
       priority: 0.7,
@@ -138,6 +143,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       path: "/blog/gmat-3-month-study-schedule",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      path: "/blog/what-is-a-good-gmat-focus-score",
+      changeFrequency: "yearly",
+      priority: 0.8,
+    },
+    {
+      path: "/blog/gmat-focus-exam-structure",
+      changeFrequency: "yearly",
+      priority: 0.8,
+    },
+    {
+      path: "/blog/gmat-multi-source-reasoning-strategy",
       changeFrequency: "yearly",
       priority: 0.7,
     },

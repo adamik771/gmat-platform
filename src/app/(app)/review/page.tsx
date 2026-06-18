@@ -14,6 +14,7 @@ import {
   type ReviewCandidate,
 } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import { getUserState } from "@/lib/user-state"
 import { getQuestionsByIds } from "@/lib/content"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
 import ReviewCachePrimer from "@/components/offline/ReviewCachePrimer"
@@ -69,7 +70,8 @@ export default async function ReviewPage() {
     }
   }
 
-  const flaggedQuestionIds = gatherFlaggedQuestionIds(user.user_metadata)
+  const state = await getUserState(supabase, user)
+  const flaggedQuestionIds = gatherFlaggedQuestionIds(state)
   const queue = await getReviewQueue(supabase, user.id, {
     limit: 60,
     flaggedQuestionIds,

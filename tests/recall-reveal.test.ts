@@ -16,15 +16,41 @@ describe("transformRecallChecks", () => {
     )
   })
 
-  it("leaves a check with no trailing-paren answer untouched (close-the-book self-test)", () => {
+  it("hides a mid-line answer and keeps the trailing coaching with the question", () => {
+    const input =
+      "> **Recall check.** Try (a) 8^(2/3). (Answers: 4.) If any took too long, fix your order."
+    expect(transformRecallChecks(input)).toBe(
+      `> **Recall check.** Try (a) 8^(2/3). If any took too long, fix your order.\n>\n> ${REVEAL_SENTINEL}Answers: 4.`
+    )
+  })
+
+  it("keeps question-internal parens visible, hiding only the trailing answer group", () => {
+    const input =
+      "> **Recall check.** Name the three filters. (Too narrow, too broad, off-stance.) Say them before peeking."
+    expect(transformRecallChecks(input)).toBe(
+      `> **Recall check.** Name the three filters. Say them before peeking.\n>\n> ${REVEAL_SENTINEL}Too narrow, too broad, off-stance.`
+    )
+  })
+
+  it("leaves a check with no parenthetical answer untouched (close-the-book self-test)", () => {
     const input =
       "> **Recall check.** Close the book. Write 1/8, 3/8 from memory. Score yourself."
     expect(transformRecallChecks(input)).toBe(input)
   })
 
-  it("leaves a check whose answer is mid-sentence (not at the end) untouched", () => {
+  it("does not mistake an academic citation for the answer", () => {
     const input =
-      "> **Recall check.** Try (a) 8^(2/3). (Answers: 4.) If any took too long, fix your order."
+      "> **Recall check.** What did the study show? Retrieval beats re-reading (Roediger & Karpicke, 2006)."
+    expect(transformRecallChecks(input)).toBe(input)
+    const etAl =
+      "> **Recall check.** Why space practice? The short gap builds durable memory (Cepeda et al., 2006) on delayed tests."
+    expect(transformRecallChecks(etAl)).toBe(etAl)
+  })
+
+  it("does not mistake a bare list label for the answer", () => {
+    // Answer authored as an unwrapped labelled list — `(b)` is a label, not an answer.
+    const input =
+      "> **Recall check.** Classify: (a) marbles; (b) coin flips. (a) dependent; (b) independent."
     expect(transformRecallChecks(input)).toBe(input)
   })
 

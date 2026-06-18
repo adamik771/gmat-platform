@@ -2,6 +2,7 @@ import { getPracticeChapterGroups, getQuestionSets } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { collectAdaptiveSignals } from "@/lib/adaptive-plan-engine"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import { getUserState } from "@/lib/user-state"
 import {
   PAYWALL_ENABLED,
   getPlanTierForUser,
@@ -45,11 +46,12 @@ export default async function PracticePage() {
         const allowed = practiceTestsAllowed(tier)
         lockTestsBeyond = Number.isFinite(allowed) ? allowed : null
       }
-      const flaggedQuestionIds = gatherFlaggedQuestionIds(user.user_metadata)
+      const state = await getUserState(supabase, user)
+      const flaggedQuestionIds = gatherFlaggedQuestionIds(state)
       const signals = await collectAdaptiveSignals(
         supabase,
         user.id,
-        user.user_metadata,
+        state,
         { flaggedQuestionIds }
       )
       recommendations = signals.topWeakSubskills

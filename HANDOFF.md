@@ -2,6 +2,55 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-18 (FIX: 494 REQUEST_HEADER_TOO_LARGE — moved growing state out of the auth cookie; NOT committed, needs SQL + backfill + deploy)
+
+A user hit Vercel **494 REQUEST_HEADER_TOO_LARGE** on every page once signed in (incognito worked; login re-triggered it). Root cause: Supabase packs `user_metadata` into the auth JWT/`sb-…-auth-token` cookie, and the app stored ever-growing state there (chapter_progress with per-question state + free-text notes across 62 chapters was the dominant offender), so an active user's cookie outgrew Vercel's header limit and locked them out. It would hit every heavy user.
+
+**The fix (durable):** relocated the 9 growing keys — `chapter_progress, saved_for_review, confidence_log, mock_flags, mock_review_edits, drill_reviews, checkpoint_reviews, topic_skill_levels, official_exam_scores` — out of `user_metadata` into a new **`public.user_state`** table (one `jsonb` row/user), behind `src/lib/user-state.ts` (`getUserState`/`patchUserState`). Small scalars (`target_score, exam_date, full_name, notification_prefs, onboarding, role, reminder_state, beta_feedback`) stay in `user_metadata`.
+- **`src/lib/user-state.ts`** (new) — accessor + `USER_STATE_MIGRATION_SQL` const + RLS. Reads fall back to `user_metadata` when the table/row is absent OR on transient error (best-effort). `patchUserState` ABORTS on a transient read error (never clobbers the row) and strips moved keys from `user_metadata` ONLY after a successful table write (no data-loss window).
+- **`scripts/backfill-user-state.ts`** (new) — service-key, paginated; copies legacy keys → table then nulls them in `user_metadata` (shrinks every cookie, unblocks already-494'd users). Dry-run by default; `--apply`; `--email X` for one user.
+- Migrated **~25 server pages + API routes** to `getUserState`/`patchUserState`.
+
+**An adversarial review caught what a plain grep missed** (and was then fixed): a data-loss blocker in `patchUserState` (clobber-on-transient-read-error); 4 pages that passed `user.user_metadata` (not the migrated `state`) as a *middle* arg into `buildSpacedReviewQueue`/`collectAdaptiveSignals`/`getMockSectionsForMode` (review/all, study-plan/adaptive, practice, mock/run) → would have silently degraded spaced-review/adaptive/mock-mode for migrated users; the **cron** (`api/cron/reminders`) read `official_exam_scores` off metadata (service-key, can't use the cookie accessor) → now batch-reads `user_state`; and the account export now merges `user_state` back in. Lesson: grep for helper-passed + aliased reads, not just `user_metadata.<key>`.
+
+**Gate:** tsc clean, `next build` clean, 305 tests. Comprehensive sweep clean (no moved-key read/write left on `user_metadata` except intentional kept-key reads + the cron's table-first/metadata fallback).
+
+**TO DEPLOY (Adam — ordering matters):** (1) run `USER_STATE_MIGRATION_SQL` in Supabase FIRST (writes 500 until the table exists; reads still work via fallback); (2) deploy the code; (3) run `node --experimental-strip-types --env-file=.env.local scripts/backfill-user-state.ts --apply` once. To unblock one locked user immediately: same script with `--apply --email <them>` (after the SQL). Run the SQL on the dev DB too or local writes 500.
+
+**Two adversarial-review passes ran; both clean after fixes.** Invariant guarded in code: `readStateRow` MUST stay `.maybeSingle()` (a `.single()` swap would abort every first-write). **Concurrency hardened:** `patchUserState` no longer read-modify-writes — it calls the `merge_user_state(jsonb)` RPC (in the SQL), an atomic server-side `data = data || patch`, so concurrent writes to different keys can't lost-update each other and there's no whole-row overwrite path. Pre-backfill, it folds the user's legacy `user_metadata` keys into the write so the strip never orphans them. (Remaining low-prob edge, NOT fixed: a route that read-merges a single nested key, e.g. `chapter-progress` building the full `chapter_progress` map, can lose that key's other entries if its own `getUserState` read errors transiently mid-write — mitigated for `chapter_progress` by the client localStorage write-through; a future hardening would do a nested-path merge per such route.)
+
+## CONTEXT SWITCH — 2026-06-18 (3 new SEO blog posts: good-score / MSR / exam-structure; NOT committed)
+
+Built three demand-driven blog posts to fill content gaps. **All gate-green + browser-verified; uncommitted, ready for review.** Note the brief originally offered "MSR or Two-Part Analysis" for the DI deep-dive — TPA already exists (`gmat-two-part-analysis-strategy`), so the real gap was **Multi-Source Reasoning**.
+
+**New posts** (`src/app/(marketing)/blog/<slug>/page.tsx`, dated 2026-06-18, mirroring the TPA template — JsonLd articleLd, Breadcrumbs, gold-italic H1, prose-zk + local H2/H3/Strong/Pull, BlogInlineCTA, RelatedPosts):
+- **`what-is-a-good-gmat-focus-score`** — head-term hub. Full score->percentile->interpretation TABLE, FAQ (faqPageLd). priority 0.8.
+- **`gmat-focus-exam-structure`** — definitive 2026 format reference (structure table, section order, edit rule, calculator scope, 205-805). FAQ schema. priority 0.8.
+- **`gmat-multi-source-reasoning-strategy`** — MSR timing/triage deep-dive (map-don't-read tabs, mark-and-skip, worked example). priority 0.7.
+- All three registered in **`src/lib/blog-posts.ts`** (POSTS, newest-first) + **`src/app/sitemap.ts`**. B and C link to A (funnels authority to the scoring hub); all link to `/score-converter` + siblings.
+
+**DATA INTEGRITY (the part that mattered):** all percentile/score numbers are anchored to the repo's own `score-percentiles.ts` (verified row-by-row: 655=91st, 705=98th, 645=87th, 565=51st median, etc.) and `score-conversion.ts`. The **"645 is the new 700"** claim is framed strictly as a PERCENTILE equivalence (645 = 87th, the tier old-700 held), NOT a score equivalence — the post explicitly notes 645 Focus -> ~680 old by concordance and links to `/score-converter`, so it never contradicts the live tool.
+
+**Process:** authored via a 5-phase Workflow (verify facts -> draft -> 3-lens adversarial verify [facts / SEO+voice / JSX-build] -> revise -> fact reconfirm; 21 agents). Then I independently re-verified every number against the repo, fixed a **systematic SWC/Turbopack JSX whitespace bug** (spaces around `<Strong>`/`<em>` dropped on lines containing HTML entities like `&mdash;` -> words ran together, e.g. "655is", "cannotuse"; fixed by making every inline-tag boundary an explicit `{" "}` across all 3 files), and browser-verified all three render CLEAN (200, correct H1s/tables/FAQ JSON-LD, percentile table styled correctly). Gate: `npm run check` 305 tests + `next build` clean.
+
+**Still uncommitted alongside this:** the recall-reveal sweep below (separate reviewable unit).
+
+## CONTEXT SWITCH — 2026-06-18 (recall-check reveal sweep — the "~handful" was actually 91; NOT committed)
+
+Picked up the 2026-06-16 LATE open follow-up "sweep the ~handful of irregular recall checks for full reveal coverage." It was badly under-counted: **91 of 286 recall checks (32%) were leaking their answer inline**, so PR #483's retrieval-practice toggle was silently failing for a third of checks. The leak pattern is `**Recall check.** {question} ({answer}) {coaching}` — the old `transformRecallChecks` only fired when the line *ended* in `)`, so any check with a trailing coaching sentence after the answer showed the answer in the open.
+
+**Changed (uncommitted, working tree on branch `claude/handoff-update-2026-06-16`):**
+- **`src/lib/recall-reveal.ts`** — generalized: the answer is now the LAST top-level balanced paren group (depth-matched, so nested `(2+1)(1+1)` and `row(s)` stay whole). Any trailing coaching after the answer stays visible *with* the question; only the parenthetical answer hides. Three no-mangle guards: (1) academic citations `(Author, 2006)` / `(… et al.)` are not answers; (2) a stray paren in the coaching tail → leave inline; (3) a bare single-char `(a)`/`(6)` list label is not an answer.
+- **`tests/recall-reveal.test.ts`** — the old test that *asserted the mid-sentence case stays inline* now asserts it transforms; +citation, +list-label, +coaching-tail cases (9 tests).
+- **2 content fixes** where the answer was an unwrapped labelled list (the only 2 true mangles the audit caught): `quant-27-probability.md:500` and `verbal-09-cr-paradox.md:103` — wrapped the `(a)…(b)…` / `(1)…(6)…` answer in an outer paren so it hides as a unit.
+- **`ChapterReader.tsx`** — updated the now-stale doc comment (it said reveal "only fires when the check cleanly ENDS in `)`"). Rendering path (`detectReveal`/`RevealBlock`) is UNCHANGED — the transform just feeds more checks through the same proven path.
+
+**Verification:** ran the real `transformRecallChecks` over all 286 checks and eyeballed every split — 281 transform, 5 correctly stay inline (3 prose-answer self-tests, 1 reflection prompt, the 2 citation lines). Caught + fixed the 2 list-label mangles. Gate green: `npm run check` → **305 tests**, content 0 errors, tsc clean; `next build` clean.
+
+**Known limitations (not mangles, left as-is):** ~2 *dual-answer* checks (e.g. `di-4-graphics-interpretation.md:421`, `quant-07:190`) put two Q→A pairs on one line; only the *last* answer hides, the first stays visible. Fixing fully needs two reveal blocks per line — not worth the parser complexity for 2 checks.
+
+**Not browser-verified** — the reveal toggle is auth-gated (`/chapters/[slug]`); the public `/sample-chapter` pages use `SampleChapterRenderer`, which does NOT use the reveal transform. Eyeball the toggle on the deploy. **Nothing committed** — diff is 5 files, ready for Adam's review / a PR.
+
 ## CONTEXT SWITCH — 2026-06-16 LATE (audit-driven trust + UX fixes; 2 merged, 3 PRs open)
 
 A long session of audit-driven fixes on top of the bug-hunt below.
