@@ -117,6 +117,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      path: "/blog/gmat-two-part-analysis-strategy",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
       path: "/blog/gmat-math-formulas-cheat-sheet",
       changeFrequency: "yearly",
       priority: 0.7,

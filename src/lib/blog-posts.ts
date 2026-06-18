@@ -33,6 +33,16 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "gmat-two-part-analysis-strategy",
+    title:
+      "GMAT Two-Part Analysis: A Strategy Guide for the Trickiest DI Format",
+    description:
+      "Two-Part Analysis is the Data Insights format that quietly costs students the most time. The two-column structure, the dependent-vs-independent distinction, a worked quantitative example, the recurring traps, and a timing plan for the only question type where one mistake costs two answers.",
+    date: "2026-06-18",
+    readMinutes: 13,
+    tags: ["data-insights", "section-guide", "strategy"],
+  },
+  {
     slug: "gmat-math-formulas-cheat-sheet",
     title: "GMAT Math Formulas: The Cheat Sheet You Actually Need (2026)",
     description:
