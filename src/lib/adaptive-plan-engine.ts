@@ -680,26 +680,29 @@ async function loadLatestMockReport(
   const sameDate = sessions.filter((s) =>
     (s.slug as string).startsWith(`mock-${latestDate}-`)
   )
+  // Batch all sections of the latest mock into one query (was N+1: one query
+  // per section). sameDate is the latest mock's section sessions.
   const attempts: DiagnosticAttempt[] = []
-  for (const s of sameDate) {
-    const { data: rows } = await supabase
-      .from("practice_attempts")
-      .select(
-        "question_id, section, topic, subtopic, difficulty, is_correct, time_spent_ms"
-      )
-      .eq("session_id", s.id)
-    for (const r of rows ?? []) {
-      attempts.push({
-        questionId: r.question_id as string,
-        section: r.section as Section,
-        topic: (r.topic as string | null) ?? "General",
-        subtopic: (r.subtopic as string | null) ?? "General",
-        difficulty:
-          (r.difficulty as "Beginner" | "Intermediate" | "Advanced") ?? "Intermediate",
-        isCorrect: !!r.is_correct,
-        timeSpentMs: (r.time_spent_ms as number | null) ?? undefined,
-      })
-    }
+  const { data: rows } = await supabase
+    .from("practice_attempts")
+    .select(
+      "question_id, section, topic, subtopic, difficulty, is_correct, time_spent_ms"
+    )
+    .in(
+      "session_id",
+      sameDate.map((s) => s.id as string)
+    )
+  for (const r of rows ?? []) {
+    attempts.push({
+      questionId: r.question_id as string,
+      section: r.section as Section,
+      topic: (r.topic as string | null) ?? "General",
+      subtopic: (r.subtopic as string | null) ?? "General",
+      difficulty:
+        (r.difficulty as "Beginner" | "Intermediate" | "Advanced") ?? "Intermediate",
+      isCorrect: !!r.is_correct,
+      timeSpentMs: (r.time_spent_ms as number | null) ?? undefined,
+    })
   }
   if (attempts.length === 0) return null
   const ids = Array.from(new Set(attempts.map((a) => a.questionId)))
