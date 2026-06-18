@@ -497,7 +497,7 @@ Strategy named: **complement counting.** "At least one" sequences are messy to e
 
 Whenever you see "at least one" in a without-replacement problem, reach for 1 − P(none) before anything else. Directly summing "exactly one" + "exactly two" here would also work but takes three times as long and invites an arithmetic slip. Note the edge case that makes the complement essential: if the jar had only 2 dead batteries and you drew 3, "all dead" is *impossible* — but the direct sum tempts you to write a term for it anyway. The complement sidesteps that entirely; 1 − P(none) never asks you to enumerate the impossible.
 
-> **Recall check.** Classify each as independent or dependent and explain in one phrase: (a) draw 2 marbles from a bag without replacement; (b) flip a coin twice. (a) dependent — the first marble is removed, shrinking the bag; (b) independent — each flip is a fresh 50/50 regardless of the prior flip.
+> **Recall check.** Classify each as independent or dependent and explain in one phrase: (a) draw 2 marbles from a bag without replacement; (b) flip a coin twice. ((a) dependent — the first marble is removed, shrinking the bag; (b) independent — each flip is a fresh 50/50 regardless of the prior flip.)
 
 **Worked example (hard — conditional with a twist).** A deck of 52 cards. Two cards are drawn without replacement. Given that the first card is a heart, what is the probability the second card is also a heart? Then: what is the probability *both* are hearts?
 
