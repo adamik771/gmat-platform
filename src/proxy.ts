@@ -27,7 +27,25 @@ const APP_ROUTES = [
 // Routes under the (auth) group — authenticated users get redirected away.
 const AUTH_ROUTES = ["/login", "/signup"]
 
+/** Warn (in logs) when the request's cookies get large. A cookie past the
+ *  platform's total-header limit (~16KB) is rejected at the edge with 494
+ *  REQUEST_HEADER_TOO_LARGE BEFORE this code runs — so by the time a user is
+ *  locked out we can't see it here. This fires in the still-large-but-allowed
+ *  window (~6KB+) so the creep shows up as a leading indicator. Point a Vercel
+ *  log-drain alert at "[proxy] large cookie" to get paged before a lockout. */
+const COOKIE_WARN_BYTES = 6 * 1024
+function warnIfCookieLarge(request: NextRequest) {
+  const bytes = (request.headers.get("cookie") ?? "").length
+  if (bytes > COOKIE_WARN_BYTES) {
+    console.warn(
+      `[proxy] large cookie: ${bytes} bytes on ${request.nextUrl.pathname} — approaching the request-header limit (494). Keep growing per-user state in user_state, not user_metadata.`
+    )
+  }
+}
+
 export async function proxy(request: NextRequest) {
+  warnIfCookieLarge(request)
+
   // Guard: if Supabase env vars are missing, skip auth entirely so the
   // site doesn't crash with a 500 on every route.
   if (
