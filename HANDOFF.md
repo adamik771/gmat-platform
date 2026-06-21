@@ -2,6 +2,14 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-20 (chapter-progress hydration bug FIXED — graded tests / sections could vanish on reload)
+
+Adam reported two chapter-progress glitches (a completed chapter showing incomplete, and a 2nd graded test not sticking on re-entry). Root cause (PRE-EXISTING, not the cookie migration): the ChapterReader hydration effect picked whichever of {localStorage, server user_state} had the bigger `sectionsRead + questions` count and DISCARDED the other — and that size heuristic never counted `problemSetResults`. So a graded set finished locally but not yet synced (or progress from another device) tied on the count, lost, and disappeared on reload.
+
+Fix: new `src/lib/chapter-progress-merge.ts` (`mergeProgress` + `progressContentSig`, pure + unit-tested) does a field-by-field UNION — sectionsRead OR'd, more-complete question per id, problem-set result with more attempts, longer note, max lastSeenAt / min firstSeenAt. The hydration effect in `ChapterReader.tsx` now merges instead of picking, and pushes the union back to the server (only when it adds something — gated by `progressContentSig`) so drift self-heals. +`tests/chapter-progress-merge.test.ts` (7 tests). Gate green: tsc, 316 tests, eslint, next build.
+
+Caveat for Adam's own data: if a prior load with the OLD code overwrote localStorage with the server (test-2-less) copy, that result is gone from both stores and must be redone once; if localStorage still has it, opening the chapter on the new code syncs it up. Diagnostic finding for `quant-05` separately: it gained a 3rd reading section (`integers-vs-non-integers`) in the chapter rebuild after Adam completed it, so that chapter legitimately needs that section read (not a bug). NOT yet committed/pushed at time of writing — see below.
+
 ## CONTEXT SWITCH — 2026-06-19 (494 incident CLOSED + growth-class hardening MERGED to main)
 
 The 494 REQUEST_HEADER_TOO_LARGE incident (see the 2026-06-18 entry below) is fully resolved and shipped: the `user_state` SQL was run, the fix deployed, and `backfill-user-state.ts --apply` migrated all 5 affected users (the locked-out user's ~9.6KB cookie payload moved to the table) — they signed in cleanly with data intact. Both PRs are merged to `main`.
