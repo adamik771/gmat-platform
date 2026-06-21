@@ -22,6 +22,7 @@ import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import { REVEAL_SENTINEL, transformRecallChecks } from "@/lib/recall-reveal"
+import { mergeProgress, progressContentSig } from "@/lib/chapter-progress-merge"
 import { selectChapterCoachingState } from "@/lib/chapter-coaching"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
@@ -735,18 +736,23 @@ export default function ChapterReader({
   useEffect(() => {
     const local = loadProgress(slug)
     const server = normalizeServerProgress(initialProgress)
-    // Prefer whichever has more progress. "More" is measured by sum of
-    // sections marked read + questions attempted — a crude but deterministic
-    // heuristic that prevents a fresh device from overwriting saved state,
-    // and prevents a stale user_metadata from erasing in-session work.
-    const sizeOf = (p: ChapterProgress) =>
-      Object.values(p.sectionsRead).filter(Boolean).length +
-      Object.keys(p.questions).length
+    // Union both sources so nothing is lost: a graded set saved locally but not
+    // yet synced to the server, or progress from another device, both survive.
+    // (The old "pick the bigger snapshot" heuristic discarded the other side and
+    // never counted problemSetResults, so a just-finished test could vanish.)
+    const merged = mergeProgress(local, server)
     // Reads localStorage (browser-only) — required to run in the effect
     // rather than during render to avoid SSR hydration mismatch.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setProgress(sizeOf(server) >= sizeOf(local) ? server : local)
+    setProgress(merged)
     setHydrated(true)
+    // Heal drift: persist the union locally, and push to the server only when
+    // the union adds something the server didn't already have (so this doesn't
+    // write on every open) — this makes a locally-saved-but-unsynced result stick.
+    saveProgress(slug, merged)
+    if (progressContentSig(merged) !== progressContentSig(server)) {
+      void pushProgress(slug, merged)
+    }
   }, [slug, initialProgress])
 
   // Debounce server pushes so free-text self-explanation typing doesn't
