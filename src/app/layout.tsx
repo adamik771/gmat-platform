@@ -3,6 +3,7 @@ import { Inter, Fraunces } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import JsonLd from "@/components/seo/JsonLd"
+import AdPixels from "@/components/analytics/AdPixels"
 import { organizationLd, websiteLd } from "@/lib/structured-data"
 
 const inter = Inter({
@@ -104,6 +105,9 @@ export default function RootLayout({
         {/* Vercel Web Analytics — page views + custom conversion events
             (see lib/analytics.ts). No-op until enabled on Vercel. */}
         <Analytics />
+        {/* Meta Pixel + Google tag — dormant until NEXT_PUBLIC_META_PIXEL_ID /
+            NEXT_PUBLIC_GOOGLE_TAG_ID are set; trackEvent forwards conversions. */}
+        <AdPixels />
       </body>
     </html>
   )
