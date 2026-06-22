@@ -33,6 +33,16 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "gmat-table-analysis-strategy",
+    title:
+      "GMAT Table Analysis: A Strategy Guide for the Sortable-Table Format",
+    description:
+      "Table Analysis is the Data Insights format that rewards reading over computing. How the sortable spreadsheet works, why the Sort dropdown is your main tool, a worked example with median and majority traps, the recurring mistakes, and a timing plan for the three-statement, all-or-nothing item.",
+    date: "2026-06-22",
+    readMinutes: 12,
+    tags: ["data-insights", "section-guide", "strategy"],
+  },
+  {
     slug: "what-is-a-good-gmat-focus-score",
     title: "What Is a Good GMAT Focus Score? The 2026 Percentile Chart",
     description:
