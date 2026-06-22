@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle, ShieldCheck, KeyRound } from "lucide-react"
+import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle, ShieldCheck, KeyRound, MailCheck } from "lucide-react"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import { trackEvent } from "@/lib/analytics"
 
@@ -66,6 +66,11 @@ function SignupForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [accessCode, setAccessCode] = useState("")
+  // When Supabase has email confirmation ON, signUp returns no session and the
+  // user must click an emailed link first. We surface a "check your email"
+  // state (keyed by this) instead of pushing them to a protected route.
+  const [pendingEmail, setPendingEmail] = useState<string | null>(null)
+  const [resendState, setResendState] = useState<"idle" | "sending" | "sent">("idle")
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -130,7 +135,7 @@ function SignupForm() {
     }
 
     const supabase = createSupabaseBrowser()
-    const { error: authError } = await supabase.auth.signUp({
+    const { data: signUpData, error: authError } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -146,8 +151,105 @@ function SignupForm() {
     }
 
     trackEvent("signup", { gated: false })
+
+    // No session means email confirmation is required (Supabase "Confirm
+    // email" is on). Pushing to a protected route here would bounce the
+    // brand-new user to /login with no explanation — a silent dead-end. Show
+    // the "check your email" state instead. When confirmation is off, a
+    // session is returned and we proceed straight to the app.
+    if (!signUpData.session) {
+      setPendingEmail(email)
+      setLoading(false)
+      return
+    }
+
     router.push(redirectTarget)
     router.refresh()
+  }
+
+  async function handleResend() {
+    if (!pendingEmail || resendState === "sending") return
+    setResendState("sending")
+    try {
+      const supabase = createSupabaseBrowser()
+      await supabase.auth.resend({
+        type: "signup",
+        email: pendingEmail,
+        options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+      })
+    } catch {
+      // Best-effort — the link in the original email still works.
+    }
+    setResendState("sent")
+  }
+
+  // Email-confirmation pending: a session wasn't returned, so the account
+  // exists but isn't usable until the emailed link is clicked. This replaces
+  // the silent redirect-to-/login dead-end.
+  if (pendingEmail) {
+    return (
+      <div className="w-full max-w-lg">
+        <div className="text-center mb-8">
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
+            style={{ color: "#C9A84C" }}
+          >
+            Almost there
+          </p>
+          <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
+            Check your{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              email.
+            </span>
+          </h1>
+        </div>
+
+        <div
+          className="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] text-center"
+          style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)" }}
+        >
+          <div className="flex justify-center mb-5">
+            <div
+              className="w-12 h-12 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: "rgba(201,168,76,0.12)" }}
+            >
+              <MailCheck className="w-6 h-6" style={{ color: "#C9A84C" }} />
+            </div>
+          </div>
+          <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+            We sent a confirmation link to{" "}
+            <span className="text-[#F0F0F0] font-semibold">{pendingEmail}</span>.
+            Click it to activate your account, then sign in.
+          </p>
+          <p className="text-[12px] text-[#555555] leading-relaxed mt-3">
+            Didn&apos;t get it? Check your spam folder, or resend below.
+          </p>
+          <button
+            type="button"
+            onClick={handleResend}
+            disabled={resendState !== "idle"}
+            className="mt-5 w-full py-3 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all disabled:opacity-50 disabled:hover:border-white/[0.1]"
+          >
+            {resendState === "sending"
+              ? "Sending…"
+              : resendState === "sent"
+                ? "Email resent — check your inbox"
+                : "Resend confirmation email"}
+          </button>
+        </div>
+
+        <p className="text-center text-[13px] text-[#888888] mt-6">
+          Already confirmed?{" "}
+          <Link
+            href="/login"
+            className="font-medium hover:opacity-80 transition-opacity"
+            style={{ color: "#C9A84C" }}
+          >
+            Sign in
+          </Link>
+        </p>
+      </div>
+    )
   }
 
   return (

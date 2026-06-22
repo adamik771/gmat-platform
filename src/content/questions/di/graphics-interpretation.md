@@ -464,7 +464,7 @@ The correct answer is B.
 **topic:** Line Graph
 
 ```chart
-{"type":"line","title":"Quarterly active users (millions)","x":{"label":"Quarter"},"y":{"label":"Users (M)"},"series":[{"key":"users","name":"Active users"}],"data":[{"x":"Q1'23","users":4.2},{"x":"Q2'23","users":4.8},{"x":"Q3'23","users":5.1},{"x":"Q4'23","users":5.6},{"x":"Q1'24","users":6.0},{"x":"Q2'24","users":6.9},{"x":"Q3'24","users":7.5},{"x":"Q4'24","users":8.4}]}
+{"type":"line","title":"Quarterly active users (millions)","x":{"label":"Quarter"},"y":{"label":"Users (M)"},"series":[{"key":"users","name":"Active users"}],"data":[{"x":"Q1'23","users":4.2},{"x":"Q2'23","users":4.8},{"x":"Q3'23","users":5.1},{"x":"Q4'23","users":5.6},{"x":"Q1'24","users":6.0},{"x":"Q2'24","users":6.9},{"x":"Q3'24","users":7.5},{"x":"Q4'24","users":8.5}]}
 ```
 
 The quarter-over-quarter growth in active users was largest between:
@@ -489,7 +489,7 @@ The eight data points read from the line graph are:
 | Q1 2024 | 6.0 |
 | Q2 2024 | 6.9 |
 | Q3 2024 | 7.5 |
-| Q4 2024 | 8.4 |
+| Q4 2024 | 8.5 |
 
 Every consecutive difference:
 
@@ -499,9 +499,9 @@ Every consecutive difference:
 - Q4 2023 to Q1 2024: 6.0 - 5.6 = 0.4
 - Q1 2024 to Q2 2024: 6.9 - 6.0 = 0.9
 - Q2 2024 to Q3 2024: 7.5 - 6.9 = 0.6
-- Q3 2024 to Q4 2024: 8.4 - 7.5 = 0.9
+- Q3 2024 to Q4 2024: 8.5 - 7.5 = 1.0
 
-The maximum change of 0.9 million is achieved in exactly two intervals: Q1 2024 to Q2 2024 (choice C) and Q3 2024 to Q4 2024 (choice E). Every other interval produces a strictly smaller difference, with the next largest being 0.6. Because both tied intervals appear among the answer choices and the question credits a single answer, E is confirmed as a correct identification of an interval achieving the maximum quarter-over-quarter growth.
+The maximum change of 1.0 million occurs in a single interval, Q3 2024 to Q4 2024 (choice E). The next largest increase is 0.9 million, from Q1 2024 to Q2 2024 (choice C), and every remaining interval is smaller still. Only choice E attains the maximum quarter-over-quarter growth, so it is the unique correct answer.
 
 The correct answer is E.
 **related_reading:** reading-di-04-graphics-interpretation

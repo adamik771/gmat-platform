@@ -33,6 +33,15 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "gmat-graphics-interpretation-strategy",
+    title: "GMAT Graphics Interpretation: An Estimation-First Strategy Guide",
+    description:
+      "Graphics Interpretation is the Data Insights format students lose to carelessness, not difficulty — two dropdown blanks, both scored all-or-nothing. An estimation-first strategy: map the axes, scale, and units before the question, find two clean points for trend lines, the chart types ranked by difficulty, and the recurring traps.",
+    date: "2026-06-22",
+    readMinutes: 11,
+    tags: ["data-insights", "section-guide", "strategy"],
+  },
+  {
     slug: "what-is-a-good-gmat-focus-score",
     title: "What Is a Good GMAT Focus Score? The 2026 Percentile Chart",
     description:

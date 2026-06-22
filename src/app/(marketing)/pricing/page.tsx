@@ -6,6 +6,7 @@ import PricingCard from "@/components/marketing/PricingCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import { PricingTier } from "@/types"
 import { STRIPE_PRICES } from "@/lib/stripe"
+import { PAYWALL_ENABLED } from "@/lib/entitlements"
 import { QUESTION_CLAIM, QUESTION_CLAIM_SHORT } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -194,12 +195,21 @@ export default function PricingPage() {
                 backgroundColor: "rgba(201,168,76,0.05)",
               }}
             >
-              <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
-                <span className="font-semibold text-[#F0F0F0]">Early access.</span>{" "}
-                The full self-study platform is free to use while we&apos;re in beta
-                &mdash; create an account and start today. The plans below are how
-                pricing and Adam&apos;s 1:1 coaching work as they roll out.
-              </p>
+              {PAYWALL_ENABLED ? (
+                <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
+                  <span className="font-semibold text-[#F0F0F0]">Secure checkout.</span>{" "}
+                  Payments are handled by Stripe, and every self-study plan is
+                  covered by a 14-day money-back guarantee. Create a free account,
+                  then upgrade when you&apos;re ready.
+                </p>
+              ) : (
+                <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
+                  <span className="font-semibold text-[#F0F0F0]">Early access.</span>{" "}
+                  The full self-study platform is free to use while we&apos;re in beta
+                  &mdash; create an account and start today. The plans below are how
+                  pricing and Adam&apos;s 1:1 coaching work as they roll out.
+                </p>
+              )}
             </div>
           </div>
 
