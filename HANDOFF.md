@@ -2,6 +2,31 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-22 (Stripe SANDBOX wired + ad-readiness audit & Path-A funnel fixes shipped; GI blog post + GI Q13 QA fix)
+
+Four commits on `claude/qa-fixes-2026-06-18` (`31f6b00`, `1ecafd8`, `a410891`, `0739b16`), pushed to origin; **NOT yet merged to main — merge to deploy to prod.** Gate green throughout (tsc, content 0 errors, 316 tests, eslint, next build).
+
+**Content (committed):**
+- `feat(blog)` `31f6b00` — new **Graphics Interpretation** strategy post (`/blog/gmat-graphics-interpretation-strategy`), estimation-first, mirrors the MSR/TPA template; registered in `blog-posts.ts` + `sitemap.ts`; linked from the DI complete-guide hub. Closes the DI deep-dive cluster (DS/MSR/TPA/GI done; **Table Analysis is the remaining gap** — Adam's "next week" post). 645=87th anchored to `score-percentiles.ts`.
+- `fix(content)` `1ecafd8` — GI **Q13** ambiguous-multiple-correct fix (QoQ-growth max 0.9M was tied between choice C and E; bumped chart Q4'24 8.4→8.5 so E is the unique 1.0M max). Found by the weekly QA audit's full-bank pass — **graphics-interpretation, multi-source-reasoning, verbal-foundations are now FULLY audited** (see memory `reference_gmat_qa_audit_log`).
+
+**Stripe — SANDBOX/TEST ONLY, NOT live.** Adam created a Stripe account ("Zakarian Gmat") and chose **Managed Payments / "Let us handle it"** (merchant-of-record, +3.5%/txn — Stripe carries global VAT/sales-tax liability). `.env.local` now holds real **test** keys (`sk_test`/`pk_test`) + the 4 real **test-mode** price IDs (legacy `STRIPE_PRICE_SELF_STUDY_PLUS` renamed to canonical `_GUARANTEED`). Verified a real test checkout session creates for $429 (the "Managed Payments: Needs info" flag does NOT block test checkout). STILL ABSENT: `STRIPE_WEBHOOK_SECRET`, live activation, live keys/prices. `.env.local` is gitignored/local-only; prod Vercel unchanged. NOTE: Armenia is NOT a Stripe merchant country — Adam used his real country; business-location/activation deferred until monetizing.
+
+**Ad-readiness audit (6-dimension, repo + live site).** zakariangmat.com is LIVE free-beta; **signup is OPEN in prod** (`NEXT_PUBLIC_SIGNUP_GATED` is OFF in prod — armed only in local `.env.local`, code `climb-2026`). Recommendation: **PATH A — advertise the free beta, build the email list, monetize later** (Path B = selling cold traffic is a much bigger lift). The blockers found drove the fixes below.
+
+**Ad-readiness code (committed):**
+- `feat(growth)` `0739b16` — (1) signup **"check your email" interstitial**: when `supabase.auth.signUp` returns no session (Supabase "Confirm email" ON), shows a check-email + resend state instead of silently bouncing brand-new users to `/login` (the #1 funnel killer for ad traffic). (2) **Ad-pixel scaffolding**: new `src/components/analytics/AdPixels.tsx` (mounted in `layout.tsx`) loads Meta Pixel + Google tag ONLY when `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_GOOGLE_TAG_ID` are set — dormant until ads run. `trackEvent` (`src/lib/analytics.ts`) now forwards funnel events to `fbq`/`gtag` (`signup`→CompleteRegistration, `purchase_completed`→Purchase), so existing call sites become conversions with no call-site changes.
+- `feat(pricing)` `a410891` — gated the pricing page's "free while in beta" banner on `PAYWALL_ENABLED` (shows a Stripe/14-day-money-back reassurance when on). First of ~9 surfaces; the rest still hardcode beta copy (see Path B).
+
+**Adam's PATH-A launch checklist (to advertise the free beta):**
+1. Supabase → Auth: decide "Confirm email" (recommend **OFF** for instant ad-funnel access) AND set custom SMTP with a verified zakariangmat.com domain (password-reset + confirmation run on Supabase's built-in email, currently default SMTP = rate-limited, not production).
+2. Provision `hello@zakariangmat.com` + MX/SPF/DKIM (the contact address currently bounces — no MX record; same domain backs the `noreply@` sender).
+3. Create a Meta Pixel + Google Ads conversion, then set `NEXT_PUBLIC_META_PIXEL_ID` + `NEXT_PUBLIC_GOOGLE_TAG_ID` in Vercel.
+4. Add `public/score-report.png` (redacted 735 proof; `/score-report.png` 404s now → the /about proof stays hidden).
+Then Claude runs a live cold-signup test to confirm the funnel, and Adam launches ads.
+
+**Deferred — PATH B (sell to traffic), later:** Stripe live activation (identity + payout bank) → create live products/prices → set `sk_live`/`pk_live` + 4 live price IDs + `STRIPE_WEBHOOK_SECRET` in Vercel (register the live webhook at `/api/stripe/webhook` for `checkout.session.completed`/`charge.refunded`/`charge.dispute.created`) → gate the remaining ~8 "free while in beta" surfaces on `PAYWALL_ENABLED` (`page.tsx:184`, `faq:68/78`, `resources:622`, `about:343`, `students:224`, `how-we-compare:386`, `glossary`, `SampleChapterRenderer:285/323`) → flip `PAYWALL_ENABLED=true` in Vercel → one real end-to-end purchase + refund test. Lower priority: server-side Meta CAPI / Google enhanced conversions from the Stripe webhook; Sentry DSN; `NEXT_PUBLIC_SITE_URL` in Vercel.
+
 ## CONTEXT SWITCH — 2026-06-20 (chapter-progress hydration bug FIXED — graded tests / sections could vanish on reload)
 
 Adam reported two chapter-progress glitches (a completed chapter showing incomplete, and a 2nd graded test not sticking on re-entry). Root cause (PRE-EXISTING, not the cookie migration): the ChapterReader hydration effect picked whichever of {localStorage, server user_state} had the bigger `sectionsRead + questions` count and DISCARDED the other — and that size heuristic never counted `problemSetResults`. So a graded set finished locally but not yet synced (or progress from another device) tied on the count, lost, and disappeared on reload.
