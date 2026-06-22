@@ -262,6 +262,15 @@ export default function PostPage() {
             <Strong>Timing target.</Strong> 2 minutes. GI is faster than it
             looks once the chart is mapped.
           </p>
+          <p>
+            For the full estimation-first method &mdash; the orientation pass,
+            the two-clean-points trick for trend lines, and the chart types
+            ranked by difficulty &mdash; see the{" "}
+            <Link href="/blog/gmat-graphics-interpretation-strategy">
+              Graphics Interpretation strategy guide
+            </Link>
+            .
+          </p>
 
           <H3>5. Two-Part Analysis (TPA)</H3>
           <p>
