@@ -5,6 +5,7 @@ import SectionWrapper from "@/components/shared/SectionWrapper"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import JsonLd from "@/components/seo/JsonLd"
 import { faqPageLd } from "@/lib/structured-data"
+import { PAYWALL_ENABLED } from "@/lib/entitlements"
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -64,8 +65,9 @@ const categories: FAQCategory[] = [
     items: [
       {
         question: "What do I get with a free account?",
-        answer:
-          "Full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+        answer: PAYWALL_ENABLED
+          ? "The free tier covers all 50+ chapters, the first practice test in each chapter, the adaptive study plan, and the error log — a genuine working slice of the system. Full-length mock exams, the full analytics, the spaced review queue, the custom test builder, unlimited practice, and the AI tutor are on the paid plans. No credit card required at signup."
+          : "Full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
       },
       {
         question: "Do I need a credit card to sign up?",
@@ -74,8 +76,9 @@ const categories: FAQCategory[] = [
       },
       {
         question: "Will my free access expire after a set number of days?",
-        answer:
-          "No. There's no time-boxed trial — the platform is free to use while it's in beta, with no countdown and nothing to cancel. If paid plans are introduced later, any change to what's free will be made clear in advance.",
+        answer: PAYWALL_ENABLED
+          ? "No. The free tier is permanent — there's no time-boxed trial, no countdown, and nothing to cancel. Paid plans are a one-time payment that unlocks the rest (full-length mocks, the full analytics, the spaced review queue, the custom test builder, unlimited practice, and the AI tutor), with a 14-day money-back guarantee. What's free stays free."
+          : "No. There's no time-boxed trial — the platform is free to use while it's in beta, with no countdown and nothing to cancel. If paid plans are introduced later, any change to what's free will be made clear in advance.",
       },
       {
         question: "How does the platform know where I'm starting from?",

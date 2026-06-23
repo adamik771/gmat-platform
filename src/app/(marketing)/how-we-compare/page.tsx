@@ -10,6 +10,7 @@ import {
   Target,
 } from "lucide-react"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
+import { PAYWALL_ENABLED } from "@/lib/entitlements"
 
 export const metadata: Metadata = {
   title: "How Zakarian GMAT Is Different",
@@ -382,8 +383,10 @@ export default function HowWeComparePage() {
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
             50+ chapters across Quant, Verbal, and Data Insights, the adaptive
             study plan, the error log and spaced-review queue, and mock exams
-            with debrief tools &mdash; built for the GMAT Focus Edition. Free
-            while in beta, no card required.
+            with debrief tools &mdash; built for the GMAT Focus Edition.{" "}
+            {PAYWALL_ENABLED
+              ? "Free to start, with a 14-day money-back guarantee on paid plans."
+              : "Free while in beta, no card required."}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link

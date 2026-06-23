@@ -19,6 +19,7 @@ import {
 import LeadCapture from "@/components/marketing/LeadCapture"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 import { POSTS as ALL_POSTS, type BlogPost } from "@/lib/blog-posts"
+import { PAYWALL_ENABLED } from "@/lib/entitlements"
 
 export const metadata: Metadata = {
   title: "Free GMAT resources",
@@ -619,8 +620,17 @@ export default function ResourcesPage() {
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
             50+ chapters. The adaptive study plan. The error log built into
             the platform with the spaced-review queue.
-            Mock exams with debrief tools. Full access, free while in beta &mdash;
-            no card required.
+            Mock exams with debrief tools.{" "}
+            {PAYWALL_ENABLED ? (
+              <>
+                Free to start; full access on every paid plan, with a 14-day
+                money-back guarantee.
+              </>
+            ) : (
+              <>
+                Full access, free while in beta &mdash; no card required.
+              </>
+            )}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link

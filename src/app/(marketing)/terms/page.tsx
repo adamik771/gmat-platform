@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import LegalPage, { LegalSection } from "@/components/marketing/LegalPage"
 import { SITE_CONTACT_EMAIL } from "@/lib/site"
+import { PAYWALL_ENABLED } from "@/lib/entitlements"
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -56,12 +57,21 @@ export default function TermsPage() {
           authorize our payments processor (Stripe) to charge your payment
           method for the listed amount.
         </p>
-        <p>
-          The Platform is currently free to use, and creating an account does
-          not require a credit card. If a paid plan or a time-limited trial is
-          introduced, its terms and duration will be described before you are
-          charged.
-        </p>
+        {PAYWALL_ENABLED ? (
+          <p>
+            Creating an account is free and does not require a credit card.
+            Access to paid features requires purchasing a plan as described on
+            the <Link href="/pricing">pricing page</Link>. The price and the
+            duration of access are shown before you are charged.
+          </p>
+        ) : (
+          <p>
+            The Platform is currently free to use, and creating an account does
+            not require a credit card. If a paid plan or a time-limited trial is
+            introduced, its terms and duration will be described before you are
+            charged.
+          </p>
+        )}
         <p>
           All prices are listed in U.S. dollars unless otherwise stated. You
           are responsible for any taxes that apply to your purchase.
