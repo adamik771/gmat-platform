@@ -102,6 +102,11 @@ export async function POST(request: Request) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: [{ price: priceId, quantity: 1 }],
+      // Show an "Add promotion code" field on the hosted checkout, so coupon /
+      // promotion codes apply (launch discounts, comps, and $0 test purchases).
+      // A 100%-off code makes the total $0 and still fires
+      // checkout.session.completed, which grants access via the webhook.
+      allow_promotion_codes: true,
       customer_email: user.email ?? undefined,
       // Tie the Stripe session to our user so the webhook can resolve it
       // back without needing a Stripe customer object.
