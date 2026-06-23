@@ -20,6 +20,7 @@ import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
 import { QUESTION_CLAIM } from "@/lib/site"
+import { PAYWALL_ENABLED } from "@/lib/entitlements"
 
 // Self-referencing canonical for the homepage (root layout sets title /
 // description / OG but no canonical; the apex redirects to www).
@@ -174,14 +175,16 @@ export default function HomePage() {
                   <ChevronDown className="w-4 h-4" />
                 </Link>
               </div>
-              {/* No paywall is enforced today (PAYWALL_ENABLED off), so the
-                  product is genuinely free to use right now — but there is NO
-                  time-boxed "trial" mechanism, so the copy must not promise a
-                  "7-day trial" that would falsely imply expiry/conversion.
-                  When the paywall lands, revisit this copy alongside the
-                  real access model. */}
+              {/* This subtext is now gated on PAYWALL_ENABLED. While off, it
+                  renders the beta copy byte-for-byte (no time-boxed "trial"
+                  language, since there is no expiry/conversion mechanism).
+                  When the paywall lands, the paid branch takes over: signup
+                  stays free, chapters + the first practice test stay free, and
+                  the deeper measurement surfaces move to the paid plans. */}
               <p className="text-xs text-[#888888] mb-2">
-                Free while we&apos;re in beta — no credit card. Full access to every chapter, the full question bank, mock exams and review.
+                {PAYWALL_ENABLED
+                  ? "Free to sign up — no credit card. Every chapter and your first practice test per chapter are free; full-length mock exams, full analytics and unlimited practice are on the paid plans, with a 14-day money-back guarantee."
+                  : "Free while we're in beta — no credit card. Full access to every chapter, the full question bank, mock exams and review."}
               </p>
               <p className="text-xs mb-10">
                 <Link

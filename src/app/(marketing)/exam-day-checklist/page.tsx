@@ -9,6 +9,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import PrintButton from "@/components/marketing/PrintButton"
 import { softwareApplicationLd } from "@/lib/structured-data"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
+import { PAYWALL_ENABLED } from "@/lib/entitlements"
 
 export const metadata: Metadata = {
   title: "GMAT Exam-Day Checklist",
@@ -411,7 +412,9 @@ export default function ExamDayChecklistPage() {
             The checklist above is the easy part. The hard part &mdash; the
             structured prep that gets you to a score you&apos;d be happy to
             sit for &mdash; is what the platform was built for. Free sample
-            chapter, the full curriculum free, no card required.
+            chapter,{" "}
+            {PAYWALL_ENABLED ? "then start free" : "the full curriculum free"},
+            no card required.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link

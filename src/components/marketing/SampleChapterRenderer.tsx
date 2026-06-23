@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react"
 import { getChapterBySlug, type ParsedChapter } from "@/lib/content"
+import { PAYWALL_ENABLED } from "@/lib/entitlements"
 import { notFound } from "next/navigation"
 
 export interface SiblingSample {
@@ -282,8 +283,10 @@ export default function SampleChapterRenderer({
             <p className="text-[15px] text-[#C0C0C0] leading-relaxed max-w-xl mb-6">
               Plus the adaptive study plan, the error log with six-tag
               taxonomy, the spaced review queue, and the full question bank
-              tagged by topic and difficulty. Full access, free while in beta
-              &mdash; no card required.
+              tagged by topic and difficulty.{" "}
+              {PAYWALL_ENABLED
+                ? "Free to start; full access on every paid plan."
+                : "Full access, free while in beta — no card required."}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link
@@ -320,8 +323,9 @@ export default function SampleChapterRenderer({
                 className="w-3.5 h-3.5"
                 style={{ color: "#3ECF8E" }}
               />
-              No card required. Free while in beta. 14-day money-back on
-              paid self-study tiers.
+              {PAYWALL_ENABLED
+                ? "No card required to start. 14-day money-back guarantee on self-study plans."
+                : "No card required. Free while in beta. 14-day money-back on paid self-study tiers."}
             </div>
           </div>
         </div>
