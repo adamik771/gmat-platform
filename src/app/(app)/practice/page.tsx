@@ -27,6 +27,12 @@ export default async function PracticePage() {
   // the list renders every test as before. A number means lock tests beyond
   // that index (free accounts when the paywall is on).
   let lockTestsBeyond: number | null = null
+  // test.id (`ch-<chapterSlug>-t<n>`) -> latest attempt summary, so the test
+  // row shows "Review" + last score instead of "Start" (beta feedback).
+  const attemptsBySlug: Record<
+    string,
+    { lastCorrect: number; lastTotal: number; attempts: number }
+  > = {}
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -64,6 +70,28 @@ export default async function PracticePage() {
           section: w.section,
           misses: w.misses,
         }))
+
+      // Attempted chapter tests + latest score. Latest-first so the first row
+      // per slug is the most recent attempt; bounded read.
+      const { data: testSessions } = await supabase
+        .from("practice_sessions")
+        .select("slug, correct_count, total_questions, created_at")
+        .eq("user_id", user.id)
+        .like("slug", "ch-%")
+        .order("created_at", { ascending: false })
+        .limit(2000)
+      for (const s of testSessions ?? []) {
+        const slug = s.slug as string
+        if (attemptsBySlug[slug]) {
+          attemptsBySlug[slug].attempts += 1
+        } else {
+          attemptsBySlug[slug] = {
+            lastCorrect: (s.correct_count as number | null) ?? 0,
+            lastTotal: (s.total_questions as number | null) ?? 0,
+            attempts: 1,
+          }
+        }
+      }
     }
   } catch {
     // Signals unavailable — render without recommendations.
@@ -75,6 +103,7 @@ export default async function PracticePage() {
       recommendations={recommendations}
       targetScore={targetScore}
       lockTestsBeyond={lockTestsBeyond}
+      attemptsBySlug={attemptsBySlug}
     />
   )
 }

@@ -6,6 +6,8 @@ import {
   Clock,
   Lock,
   Target,
+  Check,
+  RotateCcw,
 } from "lucide-react"
 import type { PracticeChapterGroup, PracticeTest } from "@/lib/content"
 
@@ -32,6 +34,7 @@ export default function PracticeClient({
   recommendations = [],
   targetScore = null,
   lockTestsBeyond = null,
+  attemptsBySlug = {},
 }: {
   chapterGroups: PracticeChapterGroup[]
   recommendations?: PracticeRecommendation[]
@@ -39,6 +42,11 @@ export default function PracticeClient({
   /** Lock per-chapter tests whose 1-based index exceeds this number (free
    *  accounts when the paywall is on). null = no locking. */
   lockTestsBeyond?: number | null
+  /** test.id -> latest attempt summary; drives the "Review" state + last score. */
+  attemptsBySlug?: Record<
+    string,
+    { lastCorrect: number; lastTotal: number; attempts: number }
+  >
 }) {
   // Accuracy the score formula (205 + accuracy x 600) implies for the goal,
   // softened to 0.9x. A raw per-set bar at the literal score-accuracy is too
@@ -206,6 +214,7 @@ export default function PracticeClient({
                   group={group}
                   requiredAccuracy={requiredAccuracy}
                   lockTestsBeyond={lockTestsBeyond}
+                  attemptsBySlug={attemptsBySlug}
                 />
               ))}
             </div>
@@ -233,10 +242,15 @@ function ChapterBlock({
   group,
   requiredAccuracy,
   lockTestsBeyond,
+  attemptsBySlug,
 }: {
   group: PracticeChapterGroup
   requiredAccuracy: number | null
   lockTestsBeyond: number | null
+  attemptsBySlug: Record<
+    string,
+    { lastCorrect: number; lastTotal: number; attempts: number }
+  >
 }) {
   const totalQ = group.tests.reduce((s, t) => s + t.count, 0)
   return (
@@ -276,6 +290,7 @@ function ChapterBlock({
               requiredAccuracy={requiredAccuracy}
               accent={SECTION_ACCENT[group.section]}
               locked={lockTestsBeyond !== null && i + 1 > lockTestsBeyond}
+              attempt={attemptsBySlug[test.id] ?? null}
             />
           ))}
         </div>
@@ -294,6 +309,7 @@ function ChapterTestRow({
   requiredAccuracy,
   accent,
   locked = false,
+  attempt = null,
 }: {
   test: PracticeTest
   requiredAccuracy: number | null
@@ -301,6 +317,9 @@ function ChapterTestRow({
   accent: string
   /** Paid test the free account can't run yet — links to /pricing. */
   locked?: boolean
+  /** Latest attempt on this test, or null if never run. Drives the "Review"
+   *  CTA + last-score badge (beta feedback). */
+  attempt?: { lastCorrect: number; lastTotal: number; attempts: number } | null
 }) {
   const { easy, medium, hard } = test.difficultyMix
   const pills: Array<{ label: string; count: number; color: string }> = []
@@ -312,13 +331,21 @@ function ChapterTestRow({
     requiredAccuracy !== null
       ? Math.min(test.count, Math.ceil(requiredAccuracy * test.count))
       : null
+  // A locked test never counts as "attempted" (it can't have been run).
+  const lastAttempt = locked ? null : attempt
+  const metAim =
+    lastAttempt && aimCount !== null
+      ? lastAttempt.lastCorrect >= aimCount
+      : null
   return (
     <Link
       href={locked ? "/pricing" : `/practice/session/${test.id}`}
       aria-label={
         locked
           ? `${test.label} — locked, see plans to unlock`
-          : `Start ${test.label} — ${test.count} questions`
+          : lastAttempt
+            ? `Review ${test.label} — last score ${lastAttempt.lastCorrect} of ${lastAttempt.lastTotal}`
+            : `Start ${test.label} — ${test.count} questions`
       }
       className={
         "group flex items-center justify-between gap-4 px-4 sm:px-5 py-4 rounded-xl border border-white/[0.06] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.14] hover:bg-[#111111]" +
@@ -363,7 +390,25 @@ function ChapterTestRow({
             </span>
           ))}
         </span>
-        {aimCount !== null && !locked && (
+        {lastAttempt ? (
+          <span
+            className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[12px] font-semibold tabular-nums"
+            style={{
+              backgroundColor:
+                metAim === true
+                  ? "rgba(62,207,142,0.12)"
+                  : "rgba(255,255,255,0.05)",
+              color: metAim === true ? "#3ECF8E" : "rgba(192,192,192,0.9)",
+            }}
+          >
+            {metAim === true ? (
+              <Check className="w-3 h-3" aria-hidden />
+            ) : (
+              <Target className="w-3 h-3" aria-hidden />
+            )}
+            last {lastAttempt.lastCorrect}/{lastAttempt.lastTotal}
+          </span>
+        ) : aimCount !== null && !locked ? (
           <span
             className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[12px] font-semibold tabular-nums"
             style={{
@@ -374,7 +419,7 @@ function ChapterTestRow({
             <Target className="w-3 h-3" aria-hidden />
             aim {aimCount}/{test.count}
           </span>
-        )}
+        ) : null}
       </div>
       <span
         className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.18em] font-semibold flex-shrink-0 transition-colors"
@@ -384,6 +429,11 @@ function ChapterTestRow({
           <>
             Unlock
             <Lock className="w-3.5 h-3.5" />
+          </>
+        ) : lastAttempt ? (
+          <>
+            Review
+            <RotateCcw className="w-3.5 h-3.5" />
           </>
         ) : (
           <>
