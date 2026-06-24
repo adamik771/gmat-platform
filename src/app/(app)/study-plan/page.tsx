@@ -21,6 +21,7 @@ import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   buildWeeklyCadence,
   computeStudyPlan,
+  pickNextChapters,
   type DailySuggestion,
   type FocusAction,
   type StudyPlanOutput,
@@ -408,9 +409,21 @@ export default async function StudyPlanPage() {
     if (!entry || ch.sections.length === 0) return false
     return ch.sections.every((s) => entry.sectionsRead?.[s.id])
   }
+  // A chapter is "engaged" once any section has been read — anchors the
+  // recommendation to where the student actually is.
+  const isChapterEngaged = (ch: (typeof pathChapters)[number]) => {
+    const sr = readProgress[ch.slug]?.sectionsRead
+    return sr ? Object.values(sr).some(Boolean) : false
+  }
   const incompleteChapters = pathChapters.filter((ch) => !isChapterRead(ch))
-  const upcomingChapters = incompleteChapters.slice(0, 3)
-  const nextChapterUp = incompleteChapters[0] ?? null
+  // Recency-aware "Up next": recommend forward from the furthest chapter the
+  // student has touched, so a single unread section in chapter 1 no longer pins
+  // "Welcome to the GMAT" as next after they've moved on (see pickNextChapters).
+  const {
+    nextUp: nextChapterUp,
+    upcoming: upcomingChapters,
+    readingQueue: nextReadingQueue,
+  } = pickNextChapters(pathChapters, isChapterRead, isChapterEngaged)
   const chaptersDoneCount = pathChapters.length - incompleteChapters.length
   const totalChapters = pathChapters.length
 
@@ -427,7 +440,7 @@ export default async function StudyPlanPage() {
     } as StudyPlanOutput)
   const weeklyCadence = buildWeeklyCadence(
     adaptivePlan,
-    incompleteChapters.map((ch) => ({ slug: ch.slug, title: ch.title }))
+    nextReadingQueue.map((ch) => ({ slug: ch.slug, title: ch.title }))
   )
   const suggestionByKey = new Map<string, DailySuggestion>()
 
