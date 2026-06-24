@@ -166,11 +166,11 @@ export async function POST(request: Request) {
     return Response.json({ error: error.message }, { status: 500 })
   }
 
-  // Decide the next destination. Retakers go straight to the adaptive
-  // plan (their current score + weak-areas form a viable signal set);
-  // everyone else goes to the official exam plan, which seeds the rest of the
-  // engine.
-  const nextHref = prepHistory === "retake" ? "/study-plan/adaptive" : "/mock"
+  // Finish on the personalized study plan so the student immediately sees their
+  // inputs reflected (beta feedback: it didn't feel like the plan adapted). The
+  // ?welcome=1 shows a one-time "you're all set" confirmation there; first-timers
+  // land where "Set your baseline" is the clear first action.
+  const nextHref = "/study-plan?welcome=1"
 
   return Response.json({ ok: true, nextHref, onboarding })
 }

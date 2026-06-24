@@ -67,7 +67,40 @@ function scaledSectionScore(correct: number, total: number): number {
   return Math.round(60 + (correct / total) * 30)
 }
 
-export default async function StudyPlanPage() {
+export default async function StudyPlanPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ welcome?: string }>
+}) {
+  // One-time "you're all set" confirmation when arriving from onboarding
+  // (?welcome=1) — the visible "your plan adapted" signal beta testers wanted.
+  // Rendered in BOTH the pre-baseline early-return and the full plan below, so
+  // a brand-new user (officialExamCount === 0) still sees it.
+  const justOnboarded = (await searchParams).welcome === "1"
+  const welcomeBanner = justOnboarded ? (
+    <div
+      className="flex items-start gap-3 px-5 py-4 rounded-2xl border"
+      style={{
+        borderColor: "rgba(201,168,76,0.28)",
+        backgroundColor: "rgba(201,168,76,0.06)",
+      }}
+    >
+      <CheckCircle
+        className="w-5 h-5 flex-shrink-0 mt-0.5"
+        style={{ color: "#C9A84C" }}
+        aria-hidden
+      />
+      <div>
+        <p className="text-[14px] font-semibold text-[#F0F0F0]">
+          You&apos;re all set — this is your plan.
+        </p>
+        <p className="text-[13px] text-[#888888] leading-relaxed mt-0.5">
+          It&apos;s built from your answers and gets sharper as you study. Your
+          next step is right below.
+        </p>
+      </div>
+    </div>
+  ) : null
   // ---------- Data we'll display ----------
   // Default to zero / null so an unauth or Supabase-down render shows empty.
   let examDate: string | null = null
@@ -498,6 +531,7 @@ export default async function StudyPlanPage() {
   if (officialExamCount === 0) {
     return (
       <div className="max-w-5xl mx-auto space-y-10">
+        {welcomeBanner}
         {/* Hero — baseline-dominant; the page's only primary CTA */}
         <section
           className="relative overflow-hidden rounded-2xl border"
@@ -876,6 +910,7 @@ export default async function StudyPlanPage() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-10">
+      {welcomeBanner}
       <section
         className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-6 py-10 sm:px-10 sm:py-14"
         style={{ backgroundColor: "#0D0D0D" }}
