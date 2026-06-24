@@ -429,3 +429,45 @@ export function buildWeeklyCadence(
 
   return days
 }
+
+/**
+ * Pick the guided-path chapters to recommend, **respecting where the student
+ * actually is** rather than the first gap in fixed order.
+ *
+ * The old logic was `incompleteChapters[0]`, which pinned the FIRST incomplete
+ * chapter as "Up next" forever — so a single section left unread in chapter 1
+ * kept "Welcome to the GMAT" as the recommendation even after the student had
+ * finished a dozen later chapters (it felt like the plan wasn't tracking them).
+ *
+ * Instead: find the furthest chapter the student has engaged with (any section
+ * read), and recommend forward from there — continue that chapter if it's
+ * incomplete, else the next incomplete chapter after it. Chapters they skipped
+ * *before* their furthest point aren't lost — they fall to the end of the
+ * reading queue and only become "Up next" once everything forward is done.
+ *
+ * Pure and generic over the chapter type so it's unit-testable; preserves the
+ * original objects so the page keeps full chapter fields (section, summary…).
+ */
+export function pickNextChapters<T>(
+  chapters: T[],
+  isRead: (c: T) => boolean,
+  isEngaged: (c: T) => boolean
+): { nextUp: T | null; upcoming: T[]; readingQueue: T[]; skippedEarlier: T[] } {
+  // Highest index the student has touched. -1 (untouched) -> start at 0, so a
+  // brand-new student still gets chapter 1 as "Up next".
+  let furthest = -1
+  chapters.forEach((c, i) => {
+    if (isEngaged(c)) furthest = i
+  })
+  const start = Math.max(0, furthest)
+  const forward = chapters.slice(start).filter((c) => !isRead(c))
+  const skippedEarlier = chapters.slice(0, start).filter((c) => !isRead(c))
+  return {
+    nextUp: forward[0] ?? skippedEarlier[0] ?? null,
+    upcoming: forward.slice(0, 3),
+    // Forward work first; skipped-earlier chapters appended so they're covered
+    // by the weekly cadence eventually but never hijack the headline.
+    readingQueue: [...forward, ...skippedEarlier],
+    skippedEarlier,
+  }
+}

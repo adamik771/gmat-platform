@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { buildWeeklyCadence } from "@/lib/study-plan-engine"
+import { buildWeeklyCadence, pickNextChapters } from "@/lib/study-plan-engine"
 import type {
   StudyPlanOutput,
   WeakArea,
@@ -248,5 +248,58 @@ describe("buildWeeklyCadence — output varies with inputs (not a fixed rotation
     const hrefs = days.map((d) => d.href)
     expect(hrefs).toContain("/chapters/w")
     expect(hrefs).toContain("/chapters/r1")
+  })
+})
+
+describe("pickNextChapters — recency-aware recommendation", () => {
+  type Ch = { slug: string; read: boolean; engaged: boolean }
+  const ch = (slug: string, read: boolean, engaged: boolean): Ch => ({ slug, read, engaged })
+  const run = (chapters: Ch[]) =>
+    pickNextChapters(
+      chapters,
+      (c) => c.read,
+      (c) => c.engaged,
+    )
+  const slugs = (cs: Ch[]) => cs.map((c) => c.slug)
+
+  it("brand-new student (no engagement) gets chapter 1 as next", () => {
+    const r = run([ch("a", false, false), ch("b", false, false), ch("c", false, false)])
+    expect(r.nextUp?.slug).toBe("a")
+    expect(slugs(r.upcoming)).toEqual(["a", "b", "c"])
+    expect(r.skippedEarlier).toEqual([])
+  })
+
+  it("the Mikayel case: an early chapter left 1 section short no longer pins as next", () => {
+    // a = "Welcome" (engaged but not fully read), b/c read, d/e untouched.
+    const r = run([
+      ch("welcome", false, true),
+      ch("b", true, true),
+      ch("c", true, true),
+      ch("d", false, false),
+      ch("e", false, false),
+    ])
+    expect(r.nextUp?.slug).toBe("d") // forward from furthest engaged (c), NOT welcome
+    expect(slugs(r.upcoming)).toEqual(["d", "e"])
+    expect(slugs(r.skippedEarlier)).toEqual(["welcome"]) // not lost, just deprioritized
+    // welcome still appears in the cadence queue — after the forward work.
+    expect(slugs(r.readingQueue)).toEqual(["d", "e", "welcome"])
+  })
+
+  it("continues the furthest chapter when it is itself incomplete", () => {
+    const r = run([ch("a", true, true), ch("b", false, true), ch("c", false, false)])
+    expect(r.nextUp?.slug).toBe("b") // continue b, the furthest engaged + incomplete
+  })
+
+  it("falls back to a skipped-earlier chapter when everything forward is done", () => {
+    // skipped a; engaged + read b and c; nothing forward left.
+    const r = run([ch("a", false, false), ch("b", true, true), ch("c", true, true)])
+    expect(r.nextUp?.slug).toBe("a")
+    expect(slugs(r.skippedEarlier)).toEqual(["a"])
+  })
+
+  it("returns null next when every chapter is read", () => {
+    const r = run([ch("a", true, true), ch("b", true, true)])
+    expect(r.nextUp).toBeNull()
+    expect(r.upcoming).toEqual([])
   })
 })
