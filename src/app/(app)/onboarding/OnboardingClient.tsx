@@ -17,7 +17,7 @@ import {
 } from "lucide-react"
 
 const EYEBROW = "text-[10px] font-semibold uppercase tracking-[0.22em]"
-const STEPS = ["target", "exam-date", "current-score", "weekly-hours", "weak-areas", "prep-history", "review"] as const
+const STEPS = ["target", "exam-date", "baseline-info", "current-score", "weekly-hours", "weak-areas", "prep-history", "review"] as const
 type StepId = (typeof STEPS)[number]
 
 interface OnboardingState {
@@ -201,6 +201,7 @@ export default function OnboardingClient({
               onChange={(v) => update("examDate", v)}
             />
           )}
+          {step === "baseline-info" && <BaselineInfoStep />}
           {step === "current-score" && (
             <CurrentScoreStep
               value={state.currentScore}
@@ -301,6 +302,8 @@ function stepHeading(step: StepId, firstName: string | null): string {
       return firstName ? `${firstName}, what's your target score?` : `What's your target score?`
     case "exam-date":
       return "When's your exam?"
+    case "baseline-info":
+      return "Get your baseline score"
     case "current-score":
       return "Have you taken the GMAT before?"
     case "weekly-hours":
@@ -320,6 +323,8 @@ function stepDescription(step: StepId): string {
       return "Pick a realistic GMAT Focus score. We'll calibrate the plan to close the gap from your baseline to this number."
     case "exam-date":
       return "Even an approximate date helps the engine compress weeks of prep into the time you have."
+    case "baseline-info":
+      return "The single data point the whole plan calibrates from. Here's how to get it."
     case "current-score":
       return "If you've taken the test or a recent mock, paste the score in. Skip if not."
     case "weekly-hours":
@@ -339,6 +344,8 @@ function isStepValid(step: StepId, state: OnboardingState): boolean {
       return state.targetScore >= 205 && state.targetScore <= 805
     case "exam-date":
       return true // null OK
+    case "baseline-info":
+      return true // informational, no input
     case "current-score":
       return true // null OK
     case "weekly-hours":
@@ -355,6 +362,58 @@ function isStepValid(step: StepId, state: OnboardingState): boolean {
 // ============================================================
 // Step subcomponents
 // ============================================================
+
+/**
+ * Informational step (no input): explains what the baseline exam is, how to
+ * get it, and lets the student peek at a real question before the timed cold
+ * test (beta feedback: people wanted to be oriented before being asked to take
+ * a baseline). Links open in a new tab so onboarding progress isn't lost.
+ */
+function BaselineInfoStep() {
+  return (
+    <div className="space-y-4">
+      <div className="p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] space-y-3">
+        <p className="text-[14px] text-[#C0C0C0] leading-relaxed">
+          Your plan calibrates from one real data point: an{" "}
+          <strong className="text-[#F0F0F0] font-semibold">
+            official GMAT practice exam
+          </strong>
+          . The first two are free in the GMAT Official Starter Kit on mba.com —
+          take one under full exam conditions to get your true baseline.
+        </p>
+        <p className="text-[13px] text-[#888888] leading-relaxed">
+          New to the format? Look at a real question first, so the timed exam
+          isn&apos;t your first contact with how the GMAT actually asks things.
+        </p>
+        <div className="flex flex-wrap gap-3 pt-1">
+          <a
+            href="/sample-chapter"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-[13px] font-semibold border transition-colors"
+            style={{ borderColor: "rgba(201,168,76,0.4)", color: "#C9A84C" }}
+          >
+            See a sample question
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+          <a
+            href="/blog/gmat-focus-official-practice-exams"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-4 py-2.5 rounded-lg text-[13px] font-medium transition-colors hover:text-[#C0C0C0]"
+            style={{ color: "#888888" }}
+          >
+            How the official exams work
+          </a>
+        </div>
+      </div>
+      <p className="text-[13px] text-[#888888] leading-relaxed">
+        On the next step, enter your baseline score — or skip it if you
+        haven&apos;t taken the exam yet and come back once you have.
+      </p>
+    </div>
+  )
+}
 
 function TargetScoreStep({
   value,
