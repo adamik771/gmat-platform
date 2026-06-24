@@ -5,6 +5,7 @@ import { Children, useCallback, useEffect, useMemo, useRef, useState, useSyncExt
 import {
   AlertTriangle,
   ArrowRight,
+  ArrowLeft,
   Award,
   BookOpen,
   BrainCircuit,
@@ -666,6 +667,8 @@ export default function ChapterReader({
   initialProgress,
   weakestSection,
   firstPracticeTestSlug,
+  prevChapter,
+  nextChapter,
 }: {
   slug: string
   title: string
@@ -676,6 +679,10 @@ export default function ChapterReader({
   problemSets: ReaderProblemSet[]
   targetScore: number | null
   initialProgress?: unknown
+  /** Adjacent chapters in guided-path order, for the end-of-chapter
+   *  "Previous / Next chapter" navigation. Null at the path ends. */
+  prevChapter?: { slug: string; title: string } | null
+  nextChapter?: { slug: string; title: string } | null
   /** Session slug of this chapter's first practice test (`ch-<slug>-t1`), or
    *  null when the chapter has no bank yet. Drives the "Practice" CTA; null
    *  falls back to the /practice hub so the link never 404s. */
@@ -1089,6 +1096,8 @@ export default function ChapterReader({
                     sets={problemSets}
                     targetScore={targetScore}
                     firstPracticeTestSlug={firstPracticeTestSlug ?? null}
+                    prevChapter={prevChapter ?? null}
+                    nextChapter={nextChapter ?? null}
                   />
                 )}
             </div>
@@ -1199,6 +1208,8 @@ function ChapterCompletionCard({
   sets,
   targetScore,
   firstPracticeTestSlug,
+  prevChapter,
+  nextChapter,
 }: {
   section: Section | "General"
   title: string
@@ -1209,6 +1220,8 @@ function ChapterCompletionCard({
   sets: ReaderProblemSet[]
   targetScore: number | null
   firstPracticeTestSlug: string | null
+  prevChapter: { slug: string; title: string } | null
+  nextChapter: { slug: string; title: string } | null
 }) {
   // Deep-link to this chapter's first practice test; fall back to the
   // Practice hub when the chapter has no bank yet (so the CTA never 404s).
@@ -1465,6 +1478,44 @@ function ChapterCompletionCard({
             All chapters
           </Link>
         </div>
+
+        {(prevChapter || nextChapter) && (
+          <div
+            className="flex flex-wrap items-center justify-between gap-3 mt-6 pt-5"
+            style={{ borderTop: "1px solid var(--read-border)" }}
+          >
+            {prevChapter ? (
+              <Link
+                href={`/chapters/${prevChapter.slug}`}
+                className="inline-flex items-center gap-2 text-[13px] font-medium transition-opacity hover:opacity-80"
+                style={{ color: "var(--read-text-muted)" }}
+              >
+                <ArrowLeft className="w-3.5 h-3.5 flex-shrink-0" aria-hidden />
+                <span className="truncate max-w-[42vw] sm:max-w-xs">
+                  Previous: {prevChapter.title}
+                </span>
+              </Link>
+            ) : (
+              <span aria-hidden />
+            )}
+            {nextChapter && (
+              <Link
+                href={`/chapters/${nextChapter.slug}`}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold border transition-all duration-200 hover:-translate-y-0.5"
+                style={{
+                  borderColor: "var(--read-gold)",
+                  color: "var(--read-gold)",
+                  backgroundColor: "transparent",
+                }}
+              >
+                <span className="truncate max-w-[52vw] sm:max-w-sm">
+                  Next chapter: {nextChapter.title}
+                </span>
+                <ArrowRight className="w-3.5 h-3.5 flex-shrink-0" aria-hidden />
+              </Link>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
