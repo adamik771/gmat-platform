@@ -16,6 +16,7 @@ import {
   TrendingUp,
 } from "lucide-react"
 import Link from "next/link"
+import { redirect } from "next/navigation"
 import QuickActions from "@/components/dashboard/QuickActions"
 import StudyHoursChart from "./StudyHoursChart"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
@@ -59,6 +60,32 @@ function timeOfDayGreeting(): string {
 }
 
 export default async function DashboardPage() {
+  // Forced first-run: a new account (onboarding neither completed nor skipped)
+  // is sent into the guided onboarding instead of the busy dashboard (beta
+  // feedback: new users didn't know where to start). Kept OUTSIDE the try below
+  // so redirect()'s control-flow throw propagates instead of being swallowed by
+  // the catch.
+  {
+    let needsOnboarding = false
+    try {
+      const supabaseGuard = await createSupabaseServer()
+      const {
+        data: { user: guardUser },
+      } = await supabaseGuard.auth.getUser()
+      const ob = guardUser?.user_metadata?.onboarding as
+        | { completedAt?: unknown; skippedAt?: unknown }
+        | undefined
+      needsOnboarding =
+        !!guardUser &&
+        typeof ob?.completedAt !== "string" &&
+        typeof ob?.skippedAt !== "string"
+    } catch {
+      // Auth/network hiccup — fail open and render the dashboard.
+    }
+    // redirect() outside the try so its control-flow throw isn't swallowed.
+    if (needsOnboarding) redirect("/onboarding")
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any = null
   // Per-user state relocated out of user_metadata (chapter_progress,

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
+import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import {
   ArrowLeft,
   ArrowRight,
@@ -121,6 +122,22 @@ export default function OnboardingClient({
     })
   }
 
+  // "Skip for now" — record that onboarding was dismissed so the dashboard's
+  // first-run guard stops redirecting here, then go into the app. Best-effort.
+  const [skipping, setSkipping] = useState(false)
+  const handleSkip = async () => {
+    setSkipping(true)
+    try {
+      const supabase = createSupabaseBrowser()
+      await supabase.auth.updateUser({
+        data: { onboarding: { skippedAt: new Date().toISOString() } },
+      })
+    } catch {
+      // Non-fatal — worst case the guard shows onboarding again next visit.
+    }
+    router.push("/dashboard")
+  }
+
   return (
     <div className="relative min-h-[80vh]">
       <div
@@ -132,6 +149,16 @@ export default function OnboardingClient({
         aria-hidden
       />
       <div className="relative max-w-2xl mx-auto py-2">
+        <div className="flex justify-end mb-4">
+          <button
+            type="button"
+            onClick={handleSkip}
+            disabled={skipping}
+            className="text-[12px] text-[#888888] hover:text-[#C0C0C0] transition-colors disabled:opacity-50"
+          >
+            {skipping ? "Skipping…" : "Skip for now"}
+          </button>
+        </div>
         {/* Stepper */}
         <div className="flex items-center gap-1 mb-10">
           {STEPS.map((_, i) => (
