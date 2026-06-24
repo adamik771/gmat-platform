@@ -820,6 +820,10 @@ export default async function DashboardPage() {
   // checklist + a locked
   // preview of what unlocks afterward are the only other things on screen.
   if (!hasData) {
+    // Baseline entered but no practice yet: stop telling the user to "set your
+    // baseline" (they have — the status panel shows it) and point them at
+    // practice, which is what actually activates the dashboard.
+    const baselineSet = officialExamCount > 0
     return (
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Slim greeting — no daily-goal pill, no plan chip; nothing to
@@ -870,8 +874,9 @@ export default async function DashboardPage() {
               )}
             </h1>
             <p className="text-[14px] text-[#888888] leading-[1.65] mt-3 max-w-xl">
-              Your dashboard activates once you practice and enter your
-              baseline official exam. Until then, everything here is setup.
+              {baselineSet
+                ? "Your baseline's in. The dashboard fills in once you start practicing — run your first set to bring it to life."
+                : "Your dashboard activates once you practice and enter your baseline official exam. Until then, everything here is setup."}
             </p>
           </div>
         </section>
@@ -907,60 +912,97 @@ export default async function DashboardPage() {
                 </p>
               </div>
               <h2 className="font-display text-3xl sm:text-[40px] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-                Set your baseline{" "}
-                <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-                  first.
-                </span>
+                {baselineSet ? (
+                  <>
+                    Start{" "}
+                    <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+                      practicing.
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    Set your baseline{" "}
+                    <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+                      first.
+                    </span>
+                  </>
+                )}
               </h2>
               <p className="mt-4 text-[15px] text-[#C0C0C0] leading-[1.7] max-w-2xl">
-                Take Official Practice Exam 1 on mba.com under full exam
-                conditions — same start time as your real slot, one sitting,
-                official breaks — then enter the score here. A real exam is
-                the only baseline worth planning around.
+                {baselineSet
+                  ? "Your baseline's recorded. Run your first practice set and the dashboard comes alive — accuracy, pacing, weak areas, and a daily focus, all driven by what you actually get wrong."
+                  : "Take Official Practice Exam 1 on mba.com under full exam conditions — same start time as your real slot, one sitting, official breaks — then enter the score here. A real exam is the only baseline worth planning around."}
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px]" style={{ color: "rgba(255,255,255,0.5)" }}>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#C9A84C" }} aria-hidden />
-                  Official GMAT Focus practice exam · mba.com
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock className="w-3 h-3" />
-                  ~2 h 15 min, one sitting
-                </span>
-              </div>
+              {!baselineSet && (
+                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px]" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#C9A84C" }} aria-hidden />
+                    Official GMAT Focus practice exam · mba.com
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Clock className="w-3 h-3" />
+                    ~2 h 15 min, one sitting
+                  </span>
+                </div>
+              )}
               <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Link
-                  href="/mock"
-                  className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  Open the official exam plan
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                </Link>
-                <a
-                  href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors hover:border-white/20"
-                  style={{
-                    borderColor: "rgba(255,255,255,0.10)",
-                    color: "#C0C0C0",
-                  }}
-                >
-                  Get the exam on mba.com
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-                {!onboardingTargetSet && (
-                  <Link
-                    href="/onboarding"
-                    className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
-                    style={{
-                      borderColor: "rgba(255,255,255,0.10)",
-                      color: "#C0C0C0",
-                    }}
-                  >
-                    Set target score
-                  </Link>
+                {baselineSet ? (
+                  <>
+                    <Link
+                      href="/practice"
+                      className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
+                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                    >
+                      Start a practice set
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                    <Link
+                      href="/chapters"
+                      className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors hover:border-white/20"
+                      style={{
+                        borderColor: "rgba(255,255,255,0.10)",
+                        color: "#C0C0C0",
+                      }}
+                    >
+                      Browse chapters
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/mock"
+                      className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
+                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                    >
+                      Open the official exam plan
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                    <a
+                      href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors hover:border-white/20"
+                      style={{
+                        borderColor: "rgba(255,255,255,0.10)",
+                        color: "#C0C0C0",
+                      }}
+                    >
+                      Get the exam on mba.com
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                    {!onboardingTargetSet && (
+                      <Link
+                        href="/onboarding"
+                        className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
+                        style={{
+                          borderColor: "rgba(255,255,255,0.10)",
+                          color: "#C0C0C0",
+                        }}
+                      >
+                        Set target score
+                      </Link>
+                    )}
+                  </>
                 )}
               </div>
             </div>
