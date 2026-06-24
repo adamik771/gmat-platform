@@ -2,6 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 import {
+  getAllChapters,
   getAllQuestions,
   getChapterBySlug,
   getPracticeChapterGroups,
@@ -46,6 +47,20 @@ export default async function ChapterDetailPage({
   const { slug } = await params
   const chapter = getChapterBySlug(slug)
   if (!chapter) notFound()
+
+  // Adjacent chapters in guided-path order, for the end-of-chapter
+  // "Previous / Next chapter" navigation (beta feedback: the linear path
+  // wasn't obvious after finishing a chapter).
+  const allChapters = getAllChapters()
+  const pathIdx = allChapters.findIndex((c) => c.slug === chapter.slug)
+  const prevChapter =
+    pathIdx > 0
+      ? { slug: allChapters[pathIdx - 1].slug, title: allChapters[pathIdx - 1].title }
+      : null
+  const nextChapter =
+    pathIdx >= 0 && pathIdx < allChapters.length - 1
+      ? { slug: allChapters[pathIdx + 1].slug, title: allChapters[pathIdx + 1].title }
+      : null
 
   // The chapter's first practice test (`ch-<slug>-t1`), for the "Practice this
   // chapter" CTA. Null for chapters with no bank yet (method/foundations/timing,
@@ -206,6 +221,8 @@ export default async function ChapterDetailPage({
         initialProgress={initialProgress}
         weakestSection={weakestSection}
         firstPracticeTestSlug={firstPracticeTestSlug}
+        prevChapter={prevChapter}
+        nextChapter={nextChapter}
       />
     </div>
   )
