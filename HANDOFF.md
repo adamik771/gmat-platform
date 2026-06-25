@@ -2,6 +2,41 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-25 (Stripe go-live IN PROGRESS — test purchase pending; 8 beta-feedback fixes shipped + merged)
+
+**All commits below are merged to `main`** (branch `claude/qa-fixes-2026-06-18` in sync with origin/main). Gate green throughout (tsc, content 0 errors, 321 tests, eslint, next build).
+
+### THE ACTIVE TASK — turn on real selling ("buy → instant access"). NOT live yet.
+`PAYWALL_ENABLED` is still **OFF** in Vercel → the product is **free**. The Stripe plumbing is fully built + wired; what remains is verify-then-flip.
+
+**Done (Stripe):** account **activated for live charges** ("Zakarian Gmat", **Managed Payments** = merchant-of-record, +3.5%/txn handles global VAT). LIVE products recreated (test-mode products do NOT carry to live mode — that surprised us once). **Vercel Production has the LIVE values**: `STRIPE_SECRET_KEY=sk_live_…`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_…`, the 4 live `STRIPE_PRICE_*` ids, and `STRIPE_WEBHOOK_SECRET`. Live webhook "live-webhook" registered at `https://www.zakariangmat.com/api/stripe/webhook` (events: `checkout.session.completed`, `charge.refunded`, `charge.dispute.created`). `allow_promotion_codes:true` added to checkout (`857ec1c`, merged). A **`LAUNCHTEST`** coupon (99% off, once) **+ a promotion code** exist in LIVE mode (note: a *coupon* alone isn't redeemable — checkout validates the *promotion code*; that was the "code invalid" bug).
+
+**Remaining — in this exact order (do NOT flip the paywall first):**
+1. Adam completes **one real test purchase** on the live `/pricing` (apply `LAUNCHTEST`; at 99% it's **$4.29** and needs a card — refundable — OR make a **100%-off** code for a true $0). **The `purchases` table is currently EMPTY — no purchase has completed yet** (the code applied but payment wasn't finished).
+2. Verify the chain: a row lands in **`public.purchases`** (plan, user, `revoked_at` null) and the dashboard shows the paid plan. Watch it via `SUPABASE_SERVICE_ROLE_KEY` (in `.env.local`): `GET {NEXT_PUBLIC_SUPABASE_URL}/rest/v1/purchases?select=...`. The webhook (signing secret) is what actually grants access — no row = check it.
+3. ONLY THEN: Vercel → set `PAYWALL_ENABLED=true` (Production) → redeploy. That is the go-live moment.
+
+### Beta-feedback fixes — ALL SHIPPED + MERGED (from two beta testers, Niclas + Mikayel)
+- `3d49ed2` **study-plan "Up next" recency-aware** — was `incompleteChapters[0]` (first gap in fixed order), so a 1-section-short chapter 1 pinned "Welcome to the GMAT" forever. New `pickNextChapters` (study-plan-engine.ts, pure + 5 tests) anchors to the furthest engaged chapter.
+- `0002e79` **Previous / Next chapter nav** at the chapter-complete card (guided-path order).
+- `a2c1ac5` **Practice list: "Start"→"Review" + last score** on attempted tests (reads `ch-…-t…` sessions).
+- `160bd9c` **Forced first-run onboarding** — dashboard redirects a new account (no `onboarding.completedAt`/`skippedAt`) to `/onboarding`; "Skip for now" writes `skippedAt`. (Guard is fail-open, outside the try so redirect() isn't swallowed.)
+- `1b19166` **"Get your baseline" onboarding step** (step 3/8) — how to get the official mba.com exam + a "see a sample question" link.
+- `5029840` **Onboarding ends on `/study-plan?welcome=1`** with a "You're all set" banner (rendered in BOTH the pre-baseline early-return AND the full plan).
+- `2d4f1f5` **Dashboard setup hero adapts** — once `officialExamCount > 0`, "Set your baseline first" flips to "Start practicing" (the dashboard activation is gated on practice sessions, `hasData`, not the baseline — that mismatch was the bug Adam hit).
+- `160d4f2` **Cross-account localStorage bleed FIXED** — ChapterReader cached progress under `chapter-progress:<slug>` (not per-user), so a new account on a shared browser showed (and the merge-on-load pushed to the server) the prior account's chapters. Now `chapter-progress:<userId>:<slug>`. Old test accounts may have polluted server state (throwaway); Adam's real account is fine.
+
+### OPEN ITEMS
+- **Welcome-step onboarding copy** — the only unbuilt onboarding slice. Blocked on Adam's story copy (2–3 screens: 565→735 + the loop). No "welcome" step exists in `OnboardingClient` STEPS yet; add it at the front once copy arrives.
+- **Ad-readiness** (for when ads run): Meta Pixel + Google tag are scaffolded but **dormant until `NEXT_PUBLIC_META_PIXEL_ID` / `NEXT_PUBLIC_GOOGLE_TAG_ID` are set in Vercel** (then `trackEvent` auto-fires conversions); `RESEND_API_KEY` + `EMAIL_FROM` ARE set in Vercel, but Supabase **auth** emails (signup confirm / password reset) likely run on Supabase default SMTP — set custom SMTP before scaling; provision `hello@zakariangmat.com` (no MX → bounces); `public/score-report.png` missing (the /about 100th-pct proof stays hidden).
+- **Table Analysis blog post** — the last missing DI deep-dive (DS/MSR/TPA/GI done). A stale `.next/types` ref to `gmat-table-analysis-strategy` (no source file) is from a concurrent effort; harmless, `tsc` exits 0.
+
+### CONTEXT / GOTCHAS for the fresh chat
+- **Verifying auth-gated pages:** create a throwaway user via the live/dev signup (it's invite-gated, access code **`climb-2026`**; Supabase "**Confirm email" is now OFF** → instant session), set state via the Supabase admin API (`SUPABASE_SERVICE_ROLE_KEY` in `.env.local`: `PUT /auth/v1/admin/users/{id}` for user_metadata; getUserState falls back to user_metadata when no `user_state` row), screenshot, then **delete the user** (`DELETE /auth/v1/admin/users/{id}`). Used this all session.
+- `.env.local` holds **TEST** Stripe keys (`sk_test_`) for local dev; **Vercel has LIVE**. Don't conflate. To pull price ids etc. locally you'd need the live key (it's only in Vercel).
+- **Concurrency hazard** on this checkout (a concurrent agent/the scheduled `gmat-qa-audit` task touch it) — a detached-HEAD happened once and was fast-forwarded; the QA-audit memory log rewrites under you. Check `git status` before committing.
+- Commits land as `Adam <adam@MacBook-Pro.local>` (local git identity) — harmless.
+
 ## CONTEXT SWITCH — 2026-06-22 (Stripe SANDBOX wired + ad-readiness audit & Path-A funnel fixes shipped; GI blog post + GI Q13 QA fix)
 
 Four commits on `claude/qa-fixes-2026-06-18` (`31f6b00`, `1ecafd8`, `a410891`, `0739b16`), pushed to origin; **NOT yet merged to main — merge to deploy to prod.** Gate green throughout (tsc, content 0 errors, 316 tests, eslint, next build).
