@@ -80,6 +80,12 @@ export function computeCalibration(
   chapterProgress: ChapterProgressMap | null | undefined,
   questions: ParsedQuestion[],
   practiceAttempts?: PracticeAttemptCalibrationRow[] | null,
+  /** Pre-aggregated practice confidence tiers (already normalized to
+   *  low/med/high). Lets a caller feed counts from a DB aggregate instead of
+   *  raw rows — equivalent to passing `practiceAttempts`, just compact. */
+  practiceTierTotals?:
+    | Partial<Record<ConfidenceLevel, { total: number; correct: number }>>
+    | null,
 ): CalibrationReport {
   const byId = new Map(questions.map((q) => [q.id, q]))
   const tiers: Record<ConfidenceLevel, { total: number; correct: number }> = {
@@ -112,6 +118,15 @@ export function computeCalibration(
       if (!confidence) continue
       tiers[confidence].total += 1
       if (row.is_correct) tiers[confidence].correct += 1
+    }
+  }
+
+  if (practiceTierTotals) {
+    for (const level of ["low", "med", "high"] as const) {
+      const b = practiceTierTotals[level]
+      if (!b) continue
+      tiers[level].total += b.total
+      tiers[level].correct += b.correct
     }
   }
 
