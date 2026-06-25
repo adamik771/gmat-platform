@@ -133,16 +133,18 @@ const EMPTY_PROGRESS: ChapterProgress = {
   },
 }
 
-/** localStorage key for this chapter's progress. Client-only. */
-function storageKey(slug: string) {
-  return `chapter-progress:${slug}`
+/** localStorage key for this chapter's progress. Client-only.
+ *  Scoped by user id so a shared browser doesn't bleed one account's progress
+ *  into another's (and so the merge-on-load doesn't push it to the server). */
+function storageKey(userId: string | null, slug: string) {
+  return `chapter-progress:${userId ?? "anon"}:${slug}`
 }
 
 /** Safe-read from localStorage. Returns EMPTY_PROGRESS during SSR or on bad JSON. */
-function loadProgress(slug: string): ChapterProgress {
+function loadProgress(userId: string | null, slug: string): ChapterProgress {
   if (typeof window === "undefined") return EMPTY_PROGRESS
   try {
-    const raw = window.localStorage.getItem(storageKey(slug))
+    const raw = window.localStorage.getItem(storageKey(userId, slug))
     if (!raw) return EMPTY_PROGRESS
     const parsed = JSON.parse(raw) as ChapterProgress
     // Defensive: backfill missing keys if the shape evolves.
@@ -158,10 +160,10 @@ function loadProgress(slug: string): ChapterProgress {
   }
 }
 
-function saveProgress(slug: string, progress: ChapterProgress) {
+function saveProgress(userId: string | null, slug: string, progress: ChapterProgress) {
   if (typeof window === "undefined") return
   try {
-    window.localStorage.setItem(storageKey(slug), JSON.stringify(progress))
+    window.localStorage.setItem(storageKey(userId, slug), JSON.stringify(progress))
   } catch {
     // Quota exceeded or private mode — silently ignore; progress just doesn't persist.
   }
@@ -669,6 +671,7 @@ export default function ChapterReader({
   firstPracticeTestSlug,
   prevChapter,
   nextChapter,
+  userId,
 }: {
   slug: string
   title: string
@@ -683,6 +686,8 @@ export default function ChapterReader({
    *  "Previous / Next chapter" navigation. Null at the path ends. */
   prevChapter?: { slug: string; title: string } | null
   nextChapter?: { slug: string; title: string } | null
+  /** Signed-in user id — scopes the localStorage progress cache per account. */
+  userId?: string | null
   /** Session slug of this chapter's first practice test (`ch-<slug>-t1`), or
    *  null when the chapter has no bank yet. Drives the "Practice" CTA; null
    *  falls back to the /practice hub so the link never 404s. */
@@ -741,7 +746,7 @@ export default function ChapterReader({
     setFocusModeStore(!focusMode)
   }
   useEffect(() => {
-    const local = loadProgress(slug)
+    const local = loadProgress(userId ?? null, slug)
     const server = normalizeServerProgress(initialProgress)
     // Union both sources so nothing is lost: a graded set saved locally but not
     // yet synced to the server, or progress from another device, both survive.
@@ -756,11 +761,11 @@ export default function ChapterReader({
     // Heal drift: persist the union locally, and push to the server only when
     // the union adds something the server didn't already have (so this doesn't
     // write on every open) — this makes a locally-saved-but-unsynced result stick.
-    saveProgress(slug, merged)
+    saveProgress(userId ?? null, slug, merged)
     if (progressContentSig(merged) !== progressContentSig(server)) {
       void pushProgress(slug, merged)
     }
-  }, [slug, initialProgress])
+  }, [slug, initialProgress, userId])
 
   // Debounce server pushes so free-text self-explanation typing doesn't
   // hammer the API once per keystroke. 800ms covers a typical typing burst
@@ -790,12 +795,12 @@ export default function ChapterReader({
           // spaced-review drill/checkpoint schedule.
           firstSeenAt: prev.firstSeenAt ?? Date.now(),
         }
-        saveProgress(slug, next)
+        saveProgress(userId ?? null, slug, next)
         queueServerPush(next)
         return next
       })
     },
-    [slug, queueServerPush]
+    [slug, queueServerPush, userId]
   )
 
   // Flush a pending debounced push when the tab is hidden or the user

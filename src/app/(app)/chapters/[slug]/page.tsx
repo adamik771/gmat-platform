@@ -109,6 +109,10 @@ export default async function ChapterDetailPage({
   // where to re-enter.
   let targetScore: number | null = null
   let initialProgress: unknown = null
+  // Signed-in user id, so the reader scopes its localStorage cache per account.
+  // Without this, progress bleeds across accounts on a shared browser (a new
+  // account showed the previous account's completed chapters).
+  let userId: string | null = null
   let weakestSection: {
     id: string
     title: string
@@ -126,6 +130,7 @@ export default async function ChapterDetailPage({
     }
 
     if (user) {
+      userId = user.id
       const state = await getUserState(supabase, user)
       const chapterProgress = state.chapter_progress as
         | Record<string, unknown>
@@ -223,6 +228,7 @@ export default async function ChapterDetailPage({
         firstPracticeTestSlug={firstPracticeTestSlug}
         prevChapter={prevChapter}
         nextChapter={nextChapter}
+        userId={userId}
       />
     </div>
   )
