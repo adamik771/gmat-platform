@@ -2,6 +2,18 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-26 (launch/growth funnel: founding-member reservation + referral page + UTM/funnel tracking)
+
+Committed on branch `launch-system-growth-funnel` (commit `b408dce`), **NOT merged**. Extends the Path-A free-beta launch (2026-06-22 entry below). Gate green: content 0 errors, tsc, **321 tests**, eslint, next build.
+
+- **Founding funnel:** `FoundingOffer` block on landing + pricing (gated on `!PAYWALL_ENABLED`) lets beta users reserve a locked-in 30-40% founding discount; fires `founding_reserve`. Reuses `LeadCapture` (new `founding-member` source / `founding-reservation` magnet + optional `trackEventName`).
+- **Referral:** new `/refer` page + `ReferralShare` (copy/email a personal, referral-tagged link); fires `referral_click`. No per-user code system yet — referrals tracked manually during launch.
+- **Attribution + events:** `AttributionCapture` (root layout) stores first-touch `utm_*`/`ref`; `trackEvent` now auto-merges it into every event. New events: `pricing_view`, `referral_click`, `founding_reserve`, `feedback_click`. Public feedback button added to marketing pages (-> /contact).
+- **Disclaimer:** GMAC no-affiliation notice now site-wide in the footer (was only /terms).
+- **Strategy docs** in `marketing-drafts/`: GROWTH_PLAN, LAUNCH_ASSETS, OUTREACH_PLAYBOOK, CONTENT_CALENDAR, REFERRAL_AND_DISCOUNT_PLAN.
+
+**Owner actions (open):** (1) **run `supabase/migrations/20260626000000_lead_captures_founding_referral.sql`** in the Supabase SQL editor — without it, `founding-member`/`referral` lead rows fail the CHECK and are silently dropped (the `founding_reserve` event still records in analytics); (2) create Stripe promo codes `FOUNDING30`/`FOUNDING40`/`WARM300` (`allow_promotion_codes` already on); (3) the `hello@` inbox + pixel env vars overlap with the Path-A checklist below.
+
 ## CONTEXT SWITCH — 2026-06-22 (Stripe SANDBOX wired + ad-readiness audit & Path-A funnel fixes shipped; GI blog post + GI Q13 QA fix)
 
 Four commits on `claude/qa-fixes-2026-06-18` (`31f6b00`, `1ecafd8`, `a410891`, `0739b16`), pushed to origin; **NOT yet merged to main — merge to deploy to prod.** Gate green throughout (tsc, content 0 errors, 316 tests, eslint, next build).
