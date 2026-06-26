@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ArrowRight, Check, Download, Loader2 } from "lucide-react"
+import { trackEvent } from "@/lib/analytics"
 
 type Source =
   | "footer"
@@ -11,8 +12,13 @@ type Source =
   | "score-converter"
   | "study-schedule"
   | "score-by-school"
+  | "founding-member"
+  | "referral"
   | "other"
-type LeadMagnet = "error-log-template" | "newsletter"
+type LeadMagnet =
+  | "error-log-template"
+  | "newsletter"
+  | "founding-reservation"
 
 interface LeadCaptureProps {
   source: Source
@@ -31,6 +37,11 @@ interface LeadCaptureProps {
   successDescription?: string
   /** Compact variant for footer placement. */
   variant?: "default" | "compact"
+  /** Optional small print under the form. Defaults to the no-spam line. */
+  footnote?: string
+  /** When set, fires this trackEvent (with source + lead_magnet) on a
+   *  successful submit — used for funnel events like `founding_reserve`. */
+  trackEventName?: string
 }
 
 export default function LeadCapture({
@@ -43,6 +54,8 @@ export default function LeadCapture({
   successHeadline,
   successDescription,
   variant = "default",
+  footnote = "One email. No spam. Unsubscribe with one click.",
+  trackEventName,
 }: LeadCaptureProps) {
   const [email, setEmail] = useState("")
   const [hp, setHp] = useState("")
@@ -75,6 +88,11 @@ export default function LeadCapture({
       }
       setDownloadUrl(data.downloadUrl ?? null)
       setState("done")
+      // Funnel event (e.g. founding_reserve) — trackEvent swallows its own
+      // errors and carries first-touch attribution automatically.
+      if (trackEventName) {
+        trackEvent(trackEventName, { source, lead_magnet: leadMagnet })
+      }
     } catch {
       setState("error")
       setError("Network error — try again in a moment.")
@@ -226,9 +244,7 @@ export default function LeadCapture({
           {error}
         </p>
       )}
-      <p className="text-[11px] text-[#555555] mt-3">
-        One email. No spam. Unsubscribe with one click.
-      </p>
+      <p className="text-[11px] text-[#555555] mt-3">{footnote}</p>
     </div>
   )
 }

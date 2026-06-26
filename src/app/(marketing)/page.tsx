@@ -19,6 +19,7 @@ import FAQAccordion from "@/components/marketing/FAQAccordion"
 import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
+import FoundingOffer from "@/components/marketing/FoundingOffer"
 import { QUESTION_CLAIM } from "@/lib/site"
 import { PAYWALL_ENABLED } from "@/lib/entitlements"
 
@@ -609,6 +610,10 @@ export default function HomePage() {
           </Link>
         </div>
       </SectionWrapper>
+
+      {/* FOUNDING OFFER — beta-only conversion block (reserve a locked-in
+          founding discount). Disappears the moment real checkout goes live. */}
+      {!PAYWALL_ENABLED && <FoundingOffer variant="darker" />}
 
       {/* FAQ PREVIEW */}
       <SectionWrapper>

@@ -1,5 +1,6 @@
 import Navbar from "@/components/shared/Navbar"
 import Footer from "@/components/shared/Footer"
+import MarketingFeedbackButton from "@/components/shared/MarketingFeedbackButton"
 
 export default function MarketingLayout({
   children,
@@ -14,6 +15,7 @@ export default function MarketingLayout({
       <Navbar />
       <main id="main-content">{children}</main>
       <Footer />
+      <MarketingFeedbackButton />
     </>
   )
 }

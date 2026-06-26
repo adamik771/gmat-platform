@@ -4,6 +4,8 @@ import { Check, X, Shield, Calendar, Globe, ArrowRight } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import PricingCard from "@/components/marketing/PricingCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
+import FoundingOffer from "@/components/marketing/FoundingOffer"
+import TrackView from "@/components/analytics/TrackView"
 import { PricingTier } from "@/types"
 import { STRIPE_PRICES } from "@/lib/stripe"
 import { PAYWALL_ENABLED } from "@/lib/entitlements"
@@ -156,6 +158,8 @@ const comparisonData: Record<string, (boolean | string)[]> = {
 export default function PricingPage() {
   return (
     <div style={{ backgroundColor: "#0A0A0A" }}>
+      {/* Fires pricing_view on mount — top of the conversion funnel. */}
+      <TrackView event="pricing_view" />
       {/* Header */}
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div
@@ -262,6 +266,10 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
+
+      {/* FOUNDING OFFER — beta-only: reserve a locked-in founding discount
+          before paid checkout goes live. Hidden once PAYWALL_ENABLED. */}
+      {!PAYWALL_ENABLED && <FoundingOffer variant="dark" />}
 
       {/* Comparison table */}
       <SectionWrapper variant="darker">

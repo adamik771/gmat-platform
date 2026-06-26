@@ -33,12 +33,15 @@ const VALID_SOURCES = new Set([
   "score-converter",
   "study-schedule",
   "score-by-school",
+  "founding-member",
+  "referral",
   "other",
 ])
 const VALID_MAGNETS = new Set([
   "error-log-template",
   "newsletter",
   "diagnostic-deeper-view",
+  "founding-reservation",
 ])
 
 const MAGNET_DOWNLOADS: Record<string, string> = {
