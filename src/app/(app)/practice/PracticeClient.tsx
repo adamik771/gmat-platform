@@ -358,12 +358,20 @@ function ChapterTestRow({
           style={{
             backgroundColor: locked
               ? "rgba(255,255,255,0.04)"
-              : accent + "1A",
-            color: locked ? "#888888" : accent,
+              : lastAttempt
+                ? "rgba(62,207,142,0.12)"
+                : accent + "1A",
+            color: locked ? "#888888" : lastAttempt ? "#3ECF8E" : accent,
           }}
           aria-hidden
         >
-          {locked ? <Lock className="w-4 h-4" /> : testNumber}
+          {locked ? (
+            <Lock className="w-4 h-4" />
+          ) : lastAttempt ? (
+            <Check className="w-5 h-5" />
+          ) : (
+            testNumber
+          )}
         </span>
         <span className="text-[15px] font-semibold text-[#F0F0F0]">
           {test.label}
@@ -423,7 +431,7 @@ function ChapterTestRow({
       </div>
       <span
         className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-[0.18em] font-semibold flex-shrink-0 transition-colors"
-        style={{ color: locked ? "#888888" : accent }}
+        style={{ color: locked || lastAttempt ? "#888888" : accent }}
       >
         {locked ? (
           <>

@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
-import { getReviewQueue } from "./review-queue"
+import { getReviewQueue, type ReviewCandidate } from "./review-queue"
 import type { Section } from "@/types"
 
 /**
@@ -165,15 +165,23 @@ export async function computeStudyPlan(
     /** Entries in user_metadata.official_exam_scores — the official mba.com
      *  practice-exam scores the student has entered. 0 means no baseline yet. */
     officialExamCount?: number
+    /** An already-fetched review queue (same params this engine would use).
+     *  Lets a caller that also needs the queue — e.g. the dashboard, which
+     *  renders the review widget — share a single fetch instead of paying for
+     *  a second identical 12-week practice_attempts scan. */
+    reviewQueue?: ReviewCandidate[]
   }
 ): Promise<StudyPlanOutput> {
 
   // Review queue — the spaced-retrieval queue's length drives one arm of
-  // the "what to do today" decision.
-  const queue = await getReviewQueue(supabase, userId, {
-    limit: 60,
-    flaggedQuestionIds: opts.flaggedQuestionIds,
-  })
+  // the "what to do today" decision. Reuse a caller-provided queue when given
+  // (the params match), otherwise fetch it here.
+  const queue =
+    opts.reviewQueue ??
+    (await getReviewQueue(supabase, userId, {
+      limit: 60,
+      flaggedQuestionIds: opts.flaggedQuestionIds,
+    }))
   const reviewDueCount = queue.length
 
   // Topic-level accuracy from all attempts. Bounded to 5k rows via the

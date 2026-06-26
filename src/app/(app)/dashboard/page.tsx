@@ -21,7 +21,7 @@ import QuickActions from "@/components/dashboard/QuickActions"
 import StudyHoursChart from "./StudyHoursChart"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
-import { getReviewQueue } from "@/lib/review-queue"
+import { getReviewQueue, type ReviewCandidate } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import {
   officialExamReminder,
@@ -31,6 +31,7 @@ import {
 import {
   computeStudyPlan,
   type FocusAction,
+  type StudyPlanOutput,
 } from "@/lib/study-plan-engine"
 import {
   computeBadges,
@@ -117,6 +118,14 @@ export default async function DashboardPage() {
   let topFocus: FocusAction | null = null
   let topFocusMinutes: number | null = null
 
+  // Shared across the two data blocks below. The review queue is fetched once
+  // and reused by both the study-plan engine and the dashboard's review widget
+  // (previously two identical 12-week scans). The study-plan compute is kicked
+  // off without awaiting so it overlaps with the metrics batch instead of
+  // blocking it — the result is awaited once the batch is in flight.
+  let reviewQueue: ReviewCandidate[] = []
+  let studyPlanPromise: Promise<StudyPlanOutput | null> | null = null
+
   try {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -142,47 +151,30 @@ export default async function DashboardPage() {
           // the hero card just doesn't render.
           try {
             const metaOfficialEarly = state.official_exam_scores
-            const plan = await computeStudyPlan(supabase, user.id, {
+            const officialCount = Array.isArray(metaOfficialEarly)
+              ? metaOfficialEarly.length
+              : 0
+            // Single review-queue fetch, shared with the metrics batch's
+            // review widget below (this was a duplicate 12-week
+            // practice_attempts scan). Passing it into the engine stops it
+            // from refetching the same rows.
+            reviewQueue = await getReviewQueue(supabase, user.id, {
+              limit: 60,
+              flaggedQuestionIds,
+            })
+            // Start the study-plan compute but don't block on it here — it
+            // runs concurrently with the metrics batch and is awaited there.
+            // The hero's topFocus is derived once the result lands. Non-fatal:
+            // on failure the promise resolves null and the hero stays hidden.
+            studyPlanPromise = computeStudyPlan(supabase, user.id, {
               targetScore,
               examDate,
               flaggedQuestionIds,
-              officialExamCount: Array.isArray(metaOfficialEarly)
-                ? metaOfficialEarly.length
-                : 0,
-            })
-            if (plan.todaysFocus.length > 0) {
-              topFocus = plan.todaysFocus[0]
-              if (
-                topFocus.type === "weak-topic-chapter" &&
-                topFocus.href.startsWith("/chapters/")
-              ) {
-                const slug =
-                  topFocus.href.split("/chapters/")[1]?.split(/[#?]/)[0] ??
-                  ""
-                const chapter = getAllChapters().find(
-                  (c) => c.slug === slug
-                )
-                if (chapter?.estimatedMinutes) {
-                  topFocusMinutes = chapter.estimatedMinutes
-                }
-              } else if (topFocus.type === "practice") {
-                topFocusMinutes = 15
-              } else if (topFocus.type === "review") {
-                // ~2 min per due item, clamped to a sensible range so
-                // the card doesn't promise a 90-min review session.
-                topFocusMinutes = Math.max(
-                  5,
-                  Math.min(plan.reviewDueCount * 2, 30)
-                )
-              } else if (topFocus.type === "mock") {
-                topFocusMinutes = 135
-              } else if (topFocus.type === "baseline") {
-                topFocusMinutes = 135
-              }
-            }
+              officialExamCount: officialCount,
+              reviewQueue,
+            }).catch(() => null)
           } catch {
-            // Study-plan computation failed — leave nulls so the
-            // hero card stays hidden.
+            // Study-plan inputs failed — leave nulls so the hero stays hidden.
           }
         } catch {
           // Study-plan inputs failed to resolve — leave the hero hidden.
@@ -361,7 +353,6 @@ export default async function DashboardPage() {
         customProbeRes,
         tagRowsRes,
         totalWrongRes,
-        reviewQueueRes,
       ] = await Promise.all([
         supabase
           .from("practice_sessions")
@@ -425,11 +416,36 @@ export default async function DashboardPage() {
           .select("id", { count: "exact", head: true })
           .eq("user_id", userId)
           .eq("is_correct", false),
-        getReviewQueue(supabase, userId, {
-          limit: 60,
-          flaggedQuestionIds: gatherFlaggedQuestionIds(state),
-        }),
       ])
+
+      // Today's Mission — the study plan has been computing in parallel with
+      // the metrics batch above; await it now (usually already resolved) and
+      // derive the hero card's top focus + estimated minutes.
+      const plan = studyPlanPromise ? await studyPlanPromise : null
+      if (plan && plan.todaysFocus.length > 0) {
+        topFocus = plan.todaysFocus[0]
+        if (
+          topFocus.type === "weak-topic-chapter" &&
+          topFocus.href.startsWith("/chapters/")
+        ) {
+          const slug =
+            topFocus.href.split("/chapters/")[1]?.split(/[#?]/)[0] ?? ""
+          const chapter = getAllChapters().find((c) => c.slug === slug)
+          if (chapter?.estimatedMinutes) {
+            topFocusMinutes = chapter.estimatedMinutes
+          }
+        } else if (topFocus.type === "practice") {
+          topFocusMinutes = 15
+        } else if (topFocus.type === "review") {
+          // ~2 min per due item, clamped so the card doesn't promise a
+          // 90-minute review session.
+          topFocusMinutes = Math.max(5, Math.min(plan.reviewDueCount * 2, 30))
+        } else if (topFocus.type === "mock") {
+          topFocusMinutes = 135
+        } else if (topFocus.type === "baseline") {
+          topFocusMinutes = 135
+        }
+      }
 
       const { data: weekSessions } = weekSessionsRes
 
@@ -580,8 +596,9 @@ export default async function DashboardPage() {
       })
 
       // Daily review queue — surface the count + top weak topic on the
-      // dashboard so retrieval practice becomes a visible daily prompt.
-      const queue = reviewQueueRes
+      // dashboard so retrieval practice becomes a visible daily prompt. Reuses
+      // the single fetch from the study-plan block above.
+      const queue = reviewQueue
       reviewDueCount = queue.length
       if (queue.length > 0) {
         const counts = new Map<string, number>()

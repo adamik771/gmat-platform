@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { memo, useCallback, useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import {
   ArrowLeft,
@@ -93,6 +93,18 @@ type Phase = "intro" | "running" | "review" | "break" | "posting" | "done"
 const BREAK_SECONDS = 10 * 60
 const REVIEW_SECONDS = 3 * 60
 const MAX_REVIEW_EDITS = 3
+
+// Memoized markdown. The mock header runs a 1-second countdown that re-renders
+// MockRunner every tick; without memoization the question prompt + passage
+// re-parse through ReactMarkdown each second. The text prop is a string, so a
+// shallow compare keeps parsing tied to the actual question changing.
+const MockMarkdown = memo(function MockMarkdown({ text }: { text: string }) {
+  return (
+    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
+      {text}
+    </ReactMarkdown>
+  )
+})
 
 /** Coarse device-class detection for telemetry — mirrors the helper in
  *  SessionClient. Tailwind-ish breakpoints (<640 / 640-1024 / ≥1024). */
@@ -880,9 +892,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
               Passage
             </p>
             <div className="text-sm text-[#C0C0C0] leading-relaxed max-h-64 overflow-y-auto">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
-                {question.context}
-              </ReactMarkdown>
+              <MockMarkdown text={question.context} />
             </div>
           </div>
         )}
@@ -902,7 +912,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
         {question.chartSpec && <QuestionChart spec={question.chartSpec} />}
 
         <div className="text-[15px] text-[#F0F0F0] leading-relaxed">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>{question.prompt}</ReactMarkdown>
+          <MockMarkdown text={question.prompt} />
         </div>
 
         {question.twoPartColumns ? (

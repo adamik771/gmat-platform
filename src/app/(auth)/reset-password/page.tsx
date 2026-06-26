@@ -3,7 +3,6 @@
 import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, ArrowLeft, Loader2, Mail, AlertCircle, CheckCircle2 } from "lucide-react"
-import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
 export default function ResetPasswordPage() {
   const [email, setEmail] = useState("")
@@ -16,14 +15,23 @@ export default function ResetPasswordPage() {
     setLoading(true)
     setError("")
 
-    const supabase = createSupabaseBrowser()
-    const { error: authError } = await supabase.auth.resetPasswordForEmail(
-      email,
-      { redirectTo: `${window.location.origin}/reset-password/update` }
-    )
-
-    if (authError) {
-      setError(authError.message)
+    // Branded reset mail: the server mints the recovery link and sends it via
+    // Resend (see /api/auth/reset-request). Always succeeds for the user
+    // (enumeration-safe) unless the request body is malformed.
+    try {
+      const res = await fetch("/api/auth/reset-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { error?: string }
+        setError(body.error ?? "Couldn't send the reset email. Please try again.")
+        setLoading(false)
+        return
+      }
+    } catch {
+      setError("Network error. Please try again.")
       setLoading(false)
       return
     }

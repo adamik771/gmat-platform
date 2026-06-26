@@ -16,7 +16,7 @@ import {
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import FeatureCard from "@/components/marketing/FeatureCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
-import HeroDashboardCard from "@/components/marketing/HeroDashboardCard"
+import HeroDashboardCard from "@/components/marketing/HeroDashboardCardLazy"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
 import FoundingOffer from "@/components/marketing/FoundingOffer"

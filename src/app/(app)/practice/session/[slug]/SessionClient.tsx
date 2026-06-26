@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import {
   AlertTriangle,
@@ -143,7 +143,11 @@ function detectDeviceType(): DeviceType {
  * panel. Key win over the old `<pre>` fallback: pipe tables render as real
  * HTML <table>s for Table Analysis and Multi-Source Reasoning.
  */
-function PromptBlock({ text, className = "" }: { text: string; className?: string }) {
+// Memoized: markdown parsing (ReactMarkdown + remark-gfm) is CPU-heavy and a
+// question prompt + 5 options + explanation each render through it. Props are
+// primitives (text/className), so a shallow compare lets the per-second timer
+// tick (and other unrelated state changes) re-render without re-parsing.
+const PromptBlock = memo(function PromptBlock({ text, className = "" }: { text: string; className?: string }) {
   return (
     <div className={`text-sm leading-relaxed text-[#F0F0F0] ${className}`}>
       <ReactMarkdown
@@ -239,7 +243,7 @@ function PromptBlock({ text, className = "" }: { text: string; className?: strin
       </ReactMarkdown>
     </div>
   )
-}
+})
 
 function DIMethodCardBanner({ questionType }: { questionType: string }) {
   const [open, setOpen] = useState(true)
@@ -495,6 +499,9 @@ function PostSubmitUnderstandingRow({
           kind: "question",
           confidence: rating,
         }),
+        // Bound the request so a slow/hung endpoint surfaces a retry instead of
+        // leaving the row stuck on "Saving…" indefinitely.
+        signal: AbortSignal.timeout(10_000),
       })
       if (res.status === 401) {
         setStatus("unauthorized")
