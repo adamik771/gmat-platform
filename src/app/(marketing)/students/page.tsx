@@ -179,12 +179,9 @@ export default function StudentsPage() {
           <div className="space-y-4 text-[14px] text-[#C0C0C0] leading-[1.75]">
             <p>
               Each &quot;start&quot; score is the student&apos;s baseline when
-              they joined — for the beta cohort, a 30-question stratified
-              set across Quant, Verbal, and Data Insights with a
-              section-scaled estimate (60–90) and a Focus-scale total
-              (205–805) from the same formula shown on the dashboard.
-              New students baseline with an official mba.com practice
-              exam instead.
+              they joined — an official mba.com practice exam, scored on the
+              section scale (60–90) and the Focus-scale total (205–805) from
+              the same formula shown on the dashboard.
             </p>
             <p>
               Each &quot;after&quot; score is either a verified full-length

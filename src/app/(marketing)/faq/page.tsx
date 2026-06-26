@@ -41,7 +41,7 @@ const categories: FAQCategory[] = [
       {
         question: "How long does the full course take?",
         answer:
-          "The full curriculum is designed for a 16-week timeline at ~90 minutes/day, 5 days/week. You can compress to 8-10 weeks if needed, or extend if you have more time. Most students see meaningful score movement within 4-6 weeks.",
+          "The full curriculum is designed for a 16-week timeline at ~90 minutes/day, 5 days/week. You can compress to 8-10 weeks if you have less time, or extend it if you have more. How quickly your score moves depends on your starting point and consistency — we don't promise a timeline.",
       },
       {
         question: "Can I use this alongside TTP, Manhattan, or Magoosh?",
@@ -98,12 +98,12 @@ const categories: FAQCategory[] = [
       {
         question: "What kind of score improvement can I expect?",
         answer:
-          "Results vary based on starting score, consistency, and time invested. For non-native speakers starting in the 545-595 range, 12-16 weeks of structured prep typically lands at 645-695. Starting at 595-645 typically lands at 685-735. Starting at 645+ typically lands at 705-755 in 8-12 weeks.",
+          "We don't promise a specific score or improvement — results depend on your starting point, your consistency, and how honestly you review your mistakes. What the platform gives you is the structure to improve efficiently: a baseline from an official practice exam, an adaptive plan that targets your weak areas, an error log that turns mistakes into data, and mock-to-mock tracking so you can watch your own trend.",
       },
       {
         question: "How long until I see real score movement?",
         answer:
-          "Most students see measurable improvement on mocks within 3-4 weeks of consistent daily practice. The biggest gains usually come between weeks 4 and 10, after the error log has enough data for patterns to surface.",
+          "That varies by starting point and consistency, so we don't put a number on it. What we can say is the method compounds: the more honestly you log and review your misses, the faster patterns surface in your analytics. The review loop is where the work pays off — not the calendar.",
       },
       {
         question: "How does the GMAT Focus 205-805 scale compare to my old GMAT score?",
