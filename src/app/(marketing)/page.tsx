@@ -80,7 +80,7 @@ const faqItems = [
   {
     question: "How long does it take to see results?",
     answer:
-      "Most students see measurable improvement within 3–4 weeks of consistent daily study. Hitting 655+ typically takes 10–16 weeks depending on your starting score.",
+      "It depends on your starting point and how consistently you study — we don't promise a timeline or a score. The system is built to surface your weak areas fast, so your study time is targeted from day one instead of spent guessing.",
   },
   {
     question: "What if I've already tried other courses?",
