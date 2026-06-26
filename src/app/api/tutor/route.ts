@@ -221,7 +221,11 @@ export async function POST(request: Request) {
     )
   }
 
-  const client = new Anthropic({ apiKey })
+  // Bound the request so a slow/hung Anthropic call can't tie up the route
+  // (the SDK default timeout is ~10 min). MAX_OUTPUT_TOKENS is small (2048),
+  // so a tutor reply completes well within 45s; one retry covers a transient
+  // 429/5xx without letting the user wait through the default two-retry backoff.
+  const client = new Anthropic({ apiKey, timeout: 45_000, maxRetries: 1 })
   const model = process.env.ANTHROPIC_MODEL || DEFAULT_MODEL
 
   try {
