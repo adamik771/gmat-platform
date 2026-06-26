@@ -33,6 +33,15 @@ export interface BlogPost {
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "how-the-gmat-focus-adaptive-algorithm-works",
+    title: "How the GMAT Focus Adaptive Algorithm Actually Works",
+    description:
+      "How the GMAT Focus Edition adapts question by question, what the algorithm actually rewards, why the first-ten-questions myth is wrong, how bookmark-and-edit fits the scoring, and what all of it means for your timing strategy.",
+    date: "2026-06-26",
+    readMinutes: 11,
+    tags: ["scoring", "strategy", "section-guide"],
+  },
+  {
     slug: "gmat-graphics-interpretation-strategy",
     title: "GMAT Graphics Interpretation: An Estimation-First Strategy Guide",
     description:
