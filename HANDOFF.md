@@ -2,6 +2,38 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-26 (perf engagement + UX/auth fixes; work split across TWO unmerged branches; perf NOT in main yet)
+
+Read this whole block first — the branch state is the unusual part.
+
+### ⚠️ BRANCH STATE (most important)
+- This session's work is on **TWO unmerged branches**, neither in `origin/main`. `gh` CLI is **NOT installed** here — open PRs via the web compare links.
+  - **`claude/qa-fixes-2026-06-18`** (tip `01d3cbb`) — **6 commits ahead of `origin/main`**: the perf engagement + `/mock` + `/practice` UX. PR: `https://github.com/adamik771/gmat-platform/compare/main...claude/qa-fixes-2026-06-18`
+  - **`claude/auth-branded-reset`** (tip `f709443`, off `main`) — branded password-reset email. PR: `https://github.com/adamik771/gmat-platform/compare/main...claude/auth-branded-reset`
+- **PR #501 (and #497–#500) merged only OLDER qa-fixes commits (up to `160d4f2`).** The perf work + UI polish are **NOT in `main`** — opening the PR above is what ships them. (The "merged to main" note in the 2026-06-25 block below predates this and is misleading for the perf commits.)
+- **Concurrency hazard, live:** mid-session this checkout was switched to `blog/gmat-focus-quant-vs-di-overlap` by a concurrent blog automation, and that branch's `HANDOFF.md` is **stale** (top section 2026-06-22). This complete HANDOFF lives on `qa-fixes`. **For the next session: `git checkout claude/qa-fixes-2026-06-18` first, then read HANDOFF.md.** All commits this session were made via isolated `git worktree` so the blog checkout was never disturbed.
+
+### Perf engagement — on `claude/qa-fixes-2026-06-18`, every commit gate-green (tsc, eslint, 321 tests, next build)
+- `402f8ca` — landing page **−489KB First Load JS** (lazy-load `HeroDashboardCard` so recharts+framer-motion leave the bundle); **dashboard** fetches the review queue once (was 2×) and runs the study-plan compute in parallel with the metrics batch; **`PromptBlock` (SessionClient) + MockRunner markdown memoized** so the per-second timer stops re-parsing the question; **tutor route 45s timeout + 1 retry**, **spaced-review save 10s timeout**; removed dead `MetricCard`/`PulseNumber`.
+- `23cbc4b` — `/analytics` **recharts lazy-loaded** (−384KB) via new `ScoreTrajectoryChart` + `next/dynamic`.
+- `5c32f8e` + `c6b0ab7` — `/analytics` calls a Postgres RPC **`get_analytics_aggregates()`** instead of fetching up to **20k `practice_attempts`** rows; the page shapes the compact result with the same thresholds/rounding.
+  - **Migration `supabase/migrations/20260625000000_analytics_aggregates.sql` is ALREADY APPLIED to the live DB (2026-06-26) and verified** (totals summed correctly via a manual SQL spot-check; note the SQL editor bypasses RLS so it shows all users — in-app it's per-user via `SECURITY INVOKER` + existing RLS).
+  - **MIGRATE-BEFORE-DEPLOY:** the function must be live before the page deploys (it is). If absent, `/analytics` degrades to the baseline view (graceful), so deploy order is safe.
+  - Why RPC, not `unstable_cache`: the service client is documented "do NOT import from pages" (RLS-bypass leak guard) and a per-user app cache would require it; the RPC runs under RLS via the cookie client. No per-user app-cache pattern exists in this repo by design.
+- `01d3cbb` — `/mock`: "official exam" → **"official practice exam"** throughout, a **"Baseline — take now"** row for accounts with zero officials logged (the baseline unlocks dashboard/study-plan/analytics), and scroll-to-form on its CTA. `/practice`: completed tests now render a **green check tile + muted "Review"** (were near-identical to un-done "Start").
+
+### Auth — branded password reset, on `claude/auth-branded-reset` (`f709443`), gate-green
+- `/reset-password` → new **`/api/auth/reset-request`** → `admin.generateLink` (recovery — the same verify link Supabase emits) + **Resend branded email** (new `src/lib/auth-emails.ts`). Enumeration-safe. `/reset-password/update` is unchanged.
+- **DEPLOY PREREQS:** (1) **verify `zakariangmat.com` in Resend (SPF/DKIM)** or the mail won't deliver (same domain prereq as custom SMTP); (2) confirm `RESEND_API_KEY`/`EMAIL_FROM` in env; (3) **add a per-email/IP rate-limit** — minting our own link bypasses Supabase's reset throttle (none today; Resend account limits are the only backstop); (4) **test end-to-end** (request → email → set password → log in).
+
+### Findings / decisions (no code shipped)
+- **"Paid but no password" is NOT a bug** — checkout 401s an unauthenticated buyer to `/signup` (requires a password); payment uses the already-logged-in `user.email`. The owner saw no prompt because already logged in.
+- **SEO weekly brief:** a score-chart/percentile post **already exists** (`what-is-a-good-gmat-focus-score`, accurate — 705 = 98th per `score-percentiles.ts`, NOT the brief's 99th). Don't write a 2nd (cannibalization). Real uncovered gaps: **GMAT Focus retake-limits POLICY** + **calculator-allowed**.
+- **Deferred product question:** chapter "graded problem sets" are 2-question curated sets shown with a goal % (e.g. "Goal 95%" on a 2-question set is mathematically unreachable). Recommendation: reframe them as "apply what you read" quick checks, not a graded assessment. Not done.
+
+### Stripe go-live
+- Still the standing task (`PAYWALL_ENABLED` OFF). The owner made a **real payment this session** while testing — so the "one real test purchase" step below may now be satisfied; **verify a row landed in `public.purchases`** before flipping the paywall.
+
 ## CONTEXT SWITCH — 2026-06-25 (Stripe go-live IN PROGRESS — test purchase pending; 8 beta-feedback fixes shipped + merged)
 
 **All commits below are merged to `main`** (branch `claude/qa-fixes-2026-06-18` in sync with origin/main). Gate green throughout (tsc, content 0 errors, 321 tests, eslint, next build).
