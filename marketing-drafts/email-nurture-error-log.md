@@ -179,7 +179,7 @@ You signed up for the error log template a month ago. Whether you've been loggin
 
 Three quick things if you have any prep cycle left:
 
-1. **The platform is at zakariangmat.com.** Free diagnostic, no card required for the trial. If the spreadsheet has been useful, the platform is the spreadsheet on autopilot.
+1. **The platform is at zakariangmat.com.** Free to use during the private beta, no card required. If the spreadsheet has been useful, the platform is the spreadsheet on autopilot.
 
 2. **The blog has the long-form versions of everything I've sent in these emails.** zakariangmat.com/resources lists all of it — section guides, study plan framework, the Focus-vs-old-GMAT explainer.
 
