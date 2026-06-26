@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import JsonLd from "@/components/seo/JsonLd"
 import AdPixels from "@/components/analytics/AdPixels"
+import AttributionCapture from "@/components/analytics/AttributionCapture"
 import { organizationLd, websiteLd } from "@/lib/structured-data"
 
 const inter = Inter({
@@ -108,6 +109,9 @@ export default function RootLayout({
         {/* Meta Pixel + Google tag — dormant until NEXT_PUBLIC_META_PIXEL_ID /
             NEXT_PUBLIC_GOOGLE_TAG_ID are set; trackEvent forwards conversions. */}
         <AdPixels />
+        {/* First-touch campaign attribution — stores utm_* / ref from the
+            landing URL so every conversion event is traceable to its source. */}
+        <AttributionCapture />
       </body>
     </html>
   )

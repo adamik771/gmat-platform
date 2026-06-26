@@ -7,6 +7,7 @@ const platformLinks = [
   { label: "Course Overview", href: "/course" },
   { label: "Pricing", href: "/pricing" },
   { label: "Free Resources", href: "/resources" },
+  { label: "Refer a Friend", href: "/refer" },
   { label: "FAQ", href: "/faq" },
   { label: "Login", href: "/login" },
 ]
@@ -188,6 +189,15 @@ export default function Footer() {
             </a>
           </p>
         </div>
+
+        {/* No-affiliation disclaimer — kept site-wide in the footer so the
+            trademark notice is visible on every page, not just /terms. */}
+        <p className="mt-5 text-[11px] text-[#555555] leading-relaxed max-w-3xl">
+          GMAT™ is a registered trademark of the Graduate Management Admission
+          Council™ (GMAC™). GMAC does not endorse, nor is it affiliated in any
+          way with, the owner or any content of this site. All references to the
+          GMAT exam are for descriptive and educational purposes only.
+        </p>
       </div>
     </footer>
   )

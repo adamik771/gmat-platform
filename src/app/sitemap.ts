@@ -166,6 +166,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.7,
     },
+    {
+      path: "/blog/how-the-gmat-focus-adaptive-algorithm-works",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
     { path: "/score-converter", changeFrequency: "monthly", priority: 0.8 },
     { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
     { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
