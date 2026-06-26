@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState, useTransition } from "react"
+import { useMemo, useRef, useState, useTransition } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
@@ -95,6 +95,23 @@ export default function OfficialExamPlanClient({
   const [formOpen, setFormOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // The entry form lives near the bottom of the card; the baseline CTA at the
+  // top scrolls to it so opening it has visible feedback.
+  const formSectionRef = useRef<HTMLDivElement>(null)
+
+  function openForm() {
+    setError(null)
+    setFormOpen(true)
+    // Wait for the form to render, then bring it into view.
+    setTimeout(
+      () =>
+        formSectionRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        }),
+      50
+    )
+  }
 
   // Today is derived client-side — the student's local calendar date is
   // what "this week's slot" should mean, not the server's timezone.
@@ -249,13 +266,13 @@ export default function OfficialExamPlanClient({
       <div className="relative p-6 sm:p-8 space-y-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0">
-            <p className={EYEBROW + " mb-2"}>Official exam plan</p>
+            <p className={EYEBROW + " mb-2"}>Official practice exam plan</p>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.1]">
-              One official exam every week.
+              One official practice exam every week.
             </h2>
             <p className="text-[13px] text-[#C0C0C0] leading-relaxed mt-2 max-w-xl">
               Same weekday and start time as test day (if your slot is
-              9:00, start at 9:00), full exam conditions, one sitting.
+              9:00, start at 9:00), full test conditions, one sitting.
               Type each score in here — these six results are your real
               score trajectory.
             </p>
@@ -317,6 +334,45 @@ export default function OfficialExamPlanClient({
               </span>
             </div>
 
+            {/* Baseline — the first, unmistakable action for a new account.
+                The baseline official practice exam is what unlocks the
+                dashboard, study plan and analytics, so it gets its own row
+                (rather than only the conditional banner) until one is logged. */}
+            {entries.length === 0 && (
+              <div
+                className="rounded-xl border p-4"
+                style={{
+                  borderColor: "rgba(201,168,76,0.32)",
+                  backgroundColor: "rgba(201,168,76,0.06)",
+                }}
+              >
+                <span
+                  className="inline-block px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.14em] font-semibold"
+                  style={{
+                    color: "#C9A84C",
+                    backgroundColor: "rgba(201,168,76,0.10)",
+                    border: "1px solid rgba(201,168,76,0.32)",
+                  }}
+                >
+                  Baseline — take now
+                </span>
+                <p className="text-[12px] text-[#C0C0C0] leading-relaxed mt-2">
+                  Sit one official practice exam now and log it here — your
+                  baseline score is what unlocks your dashboard, study plan, and
+                  analytics.
+                </p>
+                <button
+                  type="button"
+                  onClick={openForm}
+                  className="inline-flex items-center gap-2 mt-3 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  Log your baseline
+                </button>
+              </div>
+            )}
+
             {moreThanEightWeeksOut && (
               <div
                 className="rounded-lg border px-4 py-3 text-[12px] leading-relaxed"
@@ -326,10 +382,9 @@ export default function OfficialExamPlanClient({
                   color: "#C0C0C0",
                 }}
               >
-                You are more than 8 weeks out. Take your first official{" "}
-                <span className="font-semibold text-[#F0F0F0]">now</span> as a
-                baseline (log it below on the date you sit it) and save the
-                remaining officials for the final 6 weeks listed here.
+                You are more than 8 weeks out — save these weekly slots for the
+                final 6 weeks before test day, one official practice exam per
+                week.
               </div>
             )}
 
@@ -423,7 +478,7 @@ export default function OfficialExamPlanClient({
         )}
 
         {/* Entry form */}
-        <div>
+        <div ref={formSectionRef}>
           <button
             type="button"
             onClick={() => {
@@ -438,7 +493,7 @@ export default function OfficialExamPlanClient({
             ) : (
               <Plus className="w-3.5 h-3.5" />
             )}
-            {formOpen ? "Close form" : "Enter an official score"}
+            {formOpen ? "Close form" : "Enter an official practice score"}
           </button>
           {formOpen && (
             <EntryForm
@@ -467,7 +522,7 @@ export default function OfficialExamPlanClient({
             <ExternalLink className="w-3 h-3" />
           </a>{" "}
           <span className="text-[#555555]">
-            — official exams 1-6 on mba.com.
+            — official practice exams 1-6 on mba.com.
           </span>
         </p>
       </div>
