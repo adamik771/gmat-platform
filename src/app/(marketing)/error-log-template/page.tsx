@@ -4,6 +4,7 @@ import { ArrowRight, Check, ListChecks } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import LeadCapture from "@/components/marketing/LeadCapture"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
+import TrackView from "@/components/analytics/TrackView"
 
 export const metadata: Metadata = {
   title: "GMAT Error Log Template — Free Download",
@@ -74,6 +75,7 @@ const faqItems = [
 export default function ErrorLogTemplatePage() {
   return (
     <div style={{ backgroundColor: "#0A0A0A" }}>
+      <TrackView event="landing_view" props={{ page: "error-log-template" }} />
       {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div

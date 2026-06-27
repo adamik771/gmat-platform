@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { Check, Copy, Mail } from "lucide-react"
+import { Check, Copy, Mail, MessageCircle, Share2 } from "lucide-react"
 import { trackEvent } from "@/lib/analytics"
 
 /**
@@ -67,6 +67,35 @@ If you reserve founding access, mention my name and you'll get the founding disc
     window.location.href = `mailto:?subject=${subject}&body=${body}`
   }
 
+  function shareWhatsApp() {
+    trackEvent("referral_click", { channel: "whatsapp", named: Boolean(refSlug) })
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, "_blank", "noopener")
+  }
+
+  function shareX() {
+    const text =
+      "A structured GMAT prep system built by someone who went from 565 to 735 — free while it's in beta:"
+    trackEvent("referral_click", { channel: "x", named: Boolean(refSlug) })
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(link)}`,
+      "_blank",
+      "noopener",
+    )
+  }
+
+  async function shareNative() {
+    trackEvent("referral_click", { channel: "native", named: Boolean(refSlug) })
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share({ text: message, url: link })
+      } catch {
+        // user dismissed the share sheet — nothing to do
+      }
+    } else {
+      copyMessage()
+    }
+  }
+
   return (
     <div className="p-6 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]">
       <label
@@ -121,6 +150,31 @@ If you reserve founding access, mention my name and you'll get the founding disc
         >
           <Mail className="w-3.5 h-3.5" />
           Email it
+        </button>
+      </div>
+      <div className="flex flex-col sm:flex-row gap-2.5 mt-2.5">
+        <button
+          type="button"
+          onClick={shareWhatsApp}
+          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5 transition-all"
+        >
+          <MessageCircle className="w-3.5 h-3.5" />
+          WhatsApp
+        </button>
+        <button
+          type="button"
+          onClick={shareX}
+          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5 transition-all"
+        >
+          Share on X
+        </button>
+        <button
+          type="button"
+          onClick={shareNative}
+          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5 transition-all"
+        >
+          <Share2 className="w-3.5 h-3.5" />
+          More
         </button>
       </div>
       <p className="text-[11px] text-[#555555] mt-3 leading-relaxed">
