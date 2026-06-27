@@ -20,6 +20,7 @@ import HeroDashboardCard from "@/components/marketing/HeroDashboardCardLazy"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
 import FoundingOffer from "@/components/marketing/FoundingOffer"
+import TrackView from "@/components/analytics/TrackView"
 import { QUESTION_CLAIM } from "@/lib/site"
 import { PAYWALL_ENABLED } from "@/lib/entitlements"
 
@@ -97,6 +98,8 @@ const faqItems = [
 export default function HomePage() {
   return (
     <div style={{ backgroundColor: "#0A0A0A" }}>
+      {/* Fires landing_view on mount — top of the passive funnel. */}
+      <TrackView event="landing_view" />
       {/* HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Atmospheric depth layers */}

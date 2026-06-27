@@ -60,23 +60,26 @@ function SignupFallback() {
 }
 
 function SignupForm() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [accessCode, setAccessCode] = useState("")
-  // When Supabase has email confirmation ON, signUp returns no session and the
-  // user must click an emailed link first. We surface a "check your email"
-  // state (keyed by this) instead of pushing them to a protected route.
-  const [pendingEmail, setPendingEmail] = useState<string | null>(null)
-  const [resendState, setResendState] = useState<"idle" | "sending" | "sent">("idle")
-
   const router = useRouter()
   const searchParams = useSearchParams()
   const rawRedirect = searchParams.get("redirect")
   const redirectTarget =
     rawRedirect && ALLOWED_REDIRECTS.has(rawRedirect) ? rawRedirect : "/dashboard"
+
+  const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  // Shareable invite link: /signup?invite=CODE pre-fills the access code so a
+  // friend can sign up in one step when signup is gated. Lazy initializer reads
+  // it once on mount; harmless when signup is open (the field isn't rendered).
+  const [accessCode, setAccessCode] = useState(() => searchParams.get("invite") ?? "")
+  // When Supabase has email confirmation ON, signUp returns no session and the
+  // user must click an emailed link first. We surface a "check your email"
+  // state (keyed by this) instead of pushing them to a protected route.
+  const [pendingEmail, setPendingEmail] = useState<string | null>(null)
+  const [resendState, setResendState] = useState<"idle" | "sending" | "sent">("idle")
   const [error, setError] = useState("")
 
   async function handleSubmit(e: React.FormEvent) {
@@ -92,6 +95,7 @@ function SignupForm() {
     }
 
     setLoading(true)
+    trackEvent("signup_initiated", { gated: SIGNUP_GATED })
 
     // Invite-only path: the server validates the access code and creates the
     // account (service role, email auto-confirmed); we then sign in to get a

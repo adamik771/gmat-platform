@@ -36,6 +36,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/study-schedule", changeFrequency: "monthly", priority: 0.9 },
     { path: "/glossary", changeFrequency: "monthly", priority: 0.7 },
     { path: "/resources", changeFrequency: "weekly", priority: 0.9 },
+    { path: "/error-log-template", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/refer", changeFrequency: "monthly", priority: 0.6 },
     { path: "/blog", changeFrequency: "weekly", priority: 0.7 },
     { path: "/how-we-compare", changeFrequency: "monthly", priority: 0.8 },
     { path: "/sample-chapter", changeFrequency: "monthly", priority: 0.9 },

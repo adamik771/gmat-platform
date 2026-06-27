@@ -88,9 +88,11 @@ export default function LeadCapture({
       }
       setDownloadUrl(data.downloadUrl ?? null)
       setState("done")
-      // Funnel event (e.g. founding_reserve) — trackEvent swallows its own
+      // Always record the email capture; also fire the specific funnel event
+      // when one is named (e.g. founding_reserve). trackEvent swallows its own
       // errors and carries first-touch attribution automatically.
-      if (trackEventName) {
+      trackEvent("lead_captured", { source, lead_magnet: leadMagnet })
+      if (trackEventName && trackEventName !== "lead_captured") {
         trackEvent(trackEventName, { source, lead_magnet: leadMagnet })
       }
     } catch {
