@@ -82,7 +82,7 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   },
   {
     label: "Free error-log template",
-    href: "/error-log-template",
+    href: "/gmat-error-log-template",
     description: "Tag DI misses by cause, not just by topic.",
   },
 ]

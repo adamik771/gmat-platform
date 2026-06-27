@@ -72,7 +72,7 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   },
   {
     label: "Free error-log template",
-    href: "/error-log-template",
+    href: "/gmat-error-log-template",
     description: "Tag every miss by cause, then find the pattern.",
   },
   {
