@@ -66,6 +66,11 @@ const DATA: AcquisitionLandingProps = {
 
 const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   {
+    label: "The 2-month GMAT study plan",
+    href: "/gmat-study-plan-2-months",
+    description: "A week-by-week, 8-week version of this method.",
+  },
+  {
     label: "Review your mocks the right way",
     href: "/gmat-mock-review",
     description: "Turn each full-length into your next two weeks of study.",
