@@ -1,2 +1,2 @@
-Name,LinkedIn URL,Segment,Relationship Strength,Status,Last Contacted,Next Follow-up Date,Message Angle,Trial Started,Founding Reserved,Paid,Referral Source,Notes
-Jane Example,https://www.linkedin.com/in/example,B-school classmate,Warm,Contacted,2026-06-26,2026-06-30,Classmate intro + free beta invite,No,No,No,Direct outreach,"Example row - delete. BI Oslo cohort, mentioned retaking GMAT in fall."
+Name,Segment,Channel,Source/UTM,Date contacted,Template used,Status,Last touch,Next action + date,Referred by,Owner,Escalated?,Notes
+Jane Example,B - warm b-school peer,LinkedIn (own account),referral / utm_source=referral,2026-06-27,DS-1 connection note,Contacted,2026-06-27,Follow up 2026-07-02,Adam Z.,Assistant,No,"Example row - delete before use. Columns match delegated-growth/CRM_WORKFLOW.md. BI Oslo cohort; mentioned retaking the GMAT in autumn."
