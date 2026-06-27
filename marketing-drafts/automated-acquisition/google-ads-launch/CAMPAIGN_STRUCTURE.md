@@ -51,8 +51,13 @@ Each ad group maps 1:1 to a single live, content-rich page so the message match 
 | 4 | `AG-Data-Insights` | gmat data insights practice | https://www.zakariangmat.com/gmat-data-insights-practice | lead_captured (newsletter) |
 | 5 | `AG-Quant-Practice` | gmat quant practice | https://www.zakariangmat.com/gmat-quant-practice | lead_captured (newsletter) |
 | 6 | `AG-Prep-Platform` | gmat prep platform / private beta | https://www.zakariangmat.com/gmat-private-beta | founding_reserve (founding reservation) |
+| 7 | `AG-Verbal-Practice` | gmat verbal practice | https://www.zakariangmat.com/gmat-verbal-practice | `lead_captured` (Verbal worksheet) — Tier 1 |
+| 8 | `AG-Data-Sufficiency` | gmat data sufficiency practice | https://www.zakariangmat.com/gmat-data-sufficiency-practice | `lead_captured` (DS cheat sheet) — Tier 1 |
+| 9 | `AG-Study-Plan-2mo` | 2 month gmat study plan | https://www.zakariangmat.com/gmat-study-plan-2-months | `lead_captured` (8-week worksheet) — Tier 1 |
+| 10 | `AG-Free-Practice` | free gmat practice questions | https://www.zakariangmat.com/gmat-practice-questions-free | `lead_captured` (starter pack) / `signup` — Tier 1 |
+| 11 | `AG-Focus-Changes` | gmat focus edition changes | https://www.zakariangmat.com/gmat-focus-edition-changes | `landing_view` -> `signup` — Tier 2 (informational, low bid) |
 
-Six ad groups is the launch set. KEYWORDS.csv may split a couple of these into tightly-themed sub-buckets for SKAG-like control, but every keyword still points at one of these six pages.
+Eleven ad groups total: the original six (1-6) plus five for the new high-intent pages (7-11). Ad groups 1-10 are Tier 1 (commercial/transactional intent); `AG-Focus-Changes` (11) is Tier 2 (informational, low bid). MINIMUM-MONEY START: do NOT launch all eleven at once. Begin with just `AG-Error-Log-Template` + `AG-Study-Plan` (the highest-intent pair) at $5-10/day, prove conversions, then expand to the other Tier 1 groups one at a time. Keep `AG-Focus-Changes` paused until the Tier 1 groups are profitable. Every keyword still points at exactly one of these eleven pages.
 
 ## 6. Bidding strategy progression
 
