@@ -66,6 +66,11 @@ const DATA: AcquisitionLandingProps = {
 
 const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   {
+    label: "Practice Data Sufficiency",
+    href: "/gmat-data-sufficiency-practice",
+    description: "The DS sub-type now lives in Data Insights.",
+  },
+  {
     label: "Drill Quant by weak topic",
     href: "/gmat-quant-practice",
     description: "The other half of your section scores.",

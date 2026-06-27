@@ -71,6 +71,11 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
     description: "The section most people under-prep.",
   },
   {
+    label: "Practice Verbal (CR + RC)",
+    href: "/gmat-verbal-practice",
+    description: "Complete the section set — no Sentence Correction on Focus.",
+  },
+  {
     label: "Build a study plan from your baseline",
     href: "/gmat-study-plan",
     description: "Put Quant in the context of your whole score.",

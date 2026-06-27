@@ -43,6 +43,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/gmat-data-insights-practice", changeFrequency: "monthly", priority: 0.8 },
     { path: "/gmat-quant-practice", changeFrequency: "monthly", priority: 0.8 },
     { path: "/gmat-private-beta", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/gmat-verbal-practice", changeFrequency: "monthly", priority: 0.8 },
+    {
+      path: "/gmat-data-sufficiency-practice",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      path: "/gmat-study-plan-2-months",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      path: "/gmat-practice-questions-free",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      path: "/gmat-focus-edition-changes",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     { path: "/blog", changeFrequency: "weekly", priority: 0.7 },
     { path: "/how-we-compare", changeFrequency: "monthly", priority: 0.8 },
     { path: "/sample-chapter", changeFrequency: "monthly", priority: 0.9 },
