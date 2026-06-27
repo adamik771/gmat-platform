@@ -25,7 +25,8 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           "/chapters",
           "/dashboard",
-          "/error-log",
+          "/error-log$",
+          "/error-log/",
           "/learn",
           "/mock",
           "/offline",
@@ -38,9 +39,7 @@ export default function robots(): MetadataRoute.Robots {
           "/study-plan",
           "/test-builder",
         ],
-        // Google treats robots paths as prefix matches. Keep the logged-in
-        // /error-log app blocked, but allow the public SEO lead magnet.
-        allow: ["/", "/error-log-template"],
+        allow: "/",
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
