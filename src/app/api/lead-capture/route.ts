@@ -135,22 +135,33 @@ export async function POST(request: Request) {
     )
   }
 
-  // Marketing-sequence enrolment requires EXPLICIT opt-in (the form's unticked
+  // Consent + sequence enrolment require EXPLICIT opt-in (the form's unticked
   // checkbox). The lead row + the requested asset (template download) are
-  // delivered regardless; only the email SEQUENCE is gated on consent. Without
-  // opt-in we enrol no one. Best-effort; the worker re-checks consent per send.
+  // delivered regardless. With opt-in we record consent for EVERY lead; only
+  // the founding / error-log magnets also start an automated drip. Best-effort;
+  // the worker re-checks consent on every send.
   try {
     const optIn = body.optIn === true
     const isFounding = source === "founding-member"
     const isErrorLog = leadMagnet === "error-log-template"
-    if (optIn && (isFounding || isErrorLog)) {
+    if (optIn) {
+      // Record consent for every explicit opt-in, so the consent ledger is
+      // complete and a future newsletter can reach this person with a working
+      // one-click unsubscribe — not only the magnets that have a drip today.
+      // (Previously a ticked box on the newsletter landing pages was captured
+      // as a lead but silently dropped from email_subscriptions.)
+      const consentSource = isFounding
+        ? "founding-reservation"
+        : isErrorLog
+          ? "lead-capture:error-log-template"
+          : `lead-capture:${leadMagnet}`
       const consent = await recordConsent(supabase, {
         email,
-        source: isFounding
-          ? "founding-reservation"
-          : "lead-capture:error-log-template",
+        source: consentSource,
       })
-      if (consent?.subscribed) {
+      // Enrol in an automated drip only where a sequence exists (founding,
+      // error-log). Newsletter opt-ins are recorded but not auto-sequenced.
+      if (consent?.subscribed && (isFounding || isErrorLog)) {
         await enqueueDrip(supabase, {
           sequence: isFounding ? "founding" : "error-log",
           email,

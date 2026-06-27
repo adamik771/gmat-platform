@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight, Gift, Send, UserPlus } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import ReferralShare from "@/components/marketing/ReferralShare"
+import TrackView from "@/components/analytics/TrackView"
 
 export const metadata: Metadata = {
   title: "Refer a Friend",
@@ -32,6 +33,7 @@ const steps = [
 export default function ReferPage() {
   return (
     <div style={{ backgroundColor: "#0A0A0A" }}>
+      <TrackView event="landing_view" props={{ page: "refer" }} />
       {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div

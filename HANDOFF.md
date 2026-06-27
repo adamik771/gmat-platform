@@ -2,6 +2,39 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-27 (BIG session: data-integrity fixes + lead-capture fix + opt-in EMAIL OUTREACH system + ACQUISITION system — ALL MERGED TO MAIN, DEPLOYED, and EMAIL IS LIVE)
+
+Read this whole block first. Everything below this entry predates it.
+
+### Branch + deploy state (most important)
+- **`launch-system-growth-funnel` is the canonical growth branch and is MERGED INTO `main` + DEPLOYED to production.** `origin/main` tip = `892c29f` (Merge launch-system-growth-funnel into main). To ship more, keep working on `launch-system-growth-funnel`, gate it, then merge to `main` (that triggers the Vercel prod deploy).
+- This session's commits on `launch-system-growth-funnel` (all in `main` now): `2cd9bfe` + `83a2f64` + `38f3b48` (data-integrity claim scrubs), `d30d739` (lead-capture failure patch), `678f1c1` (email outreach system), `1fc8f67` (explicit-opt-in consent), `b48cd3e` (cron daily fix), `b19a366` (acquisition pages/docs).
+- **Working tree is on `launch-system-growth-funnel`, in sync with origin.** Gate green throughout: content 0 errors, tsc, **339 tests**, eslint, next build.
+- Worktrees: main checkout `/Users/adam/gmat-platform` (this branch). `/Users/adam/gmat-platform-wt-reset` holds the UNCOMMITTED password-reset rate-limit (see below). The old `claude/growth-launch-system` worktree was the superseded approach and was REMOVED.
+
+### Two new systems shipped (both live in prod)
+1. **Opt-in email outreach** (`src/lib/outreach/*`, `/api/cron/outreach`, `/api/email/{unsubscribe,open,click}`, `/unsubscribe`). Queue-based: tables `email_subscriptions` (consent), `email_queue` (outbox), `email_events` (admin log) — all service-role-only. Sequences A signup / B founding / C error-log / D inactive / E milestone(first-practice only). **EXPLICIT GDPR opt-in required**: an unticked checkbox on signup (`user_metadata.marketing_consent`) and on `LeadCapture` (`optIn`); the cron enrols only opted-in users; transactional (password reset) is never gated. A unit test (`tests/outreach-templates.test.ts`) fails the build on any prohibited phrase. Cron is **daily `0 14 * * *`** (Vercel Hobby rejects sub-daily — Pro can go hourly). Docs: `marketing-drafts/automated-outreach/`.
+2. **Acquisition** (`b19a366`): reusable `AcquisitionLanding` component + 5 real SEO/ad landing pages (`/gmat-study-plan`, `/gmat-mock-review`, `/gmat-data-insights-practice`, `/gmat-quant-practice`, `/gmat-private-beta`), improved `/error-log-template` (view tracking), `ReferralShare` share buttons (WhatsApp/X/native), sitemap updated. Docs: `marketing-drafts/automated-acquisition/` (9 files). All pages: real value + opt-in LeadCapture + signup CTA + GMAC disclaimer + `landing_view`; runtime-verified live with **0 prohibited phrases**.
+
+### Production is configured (done this session, verified)
+- **Migrations applied** in Supabase (prod): `20260626000000_lead_captures_founding_referral.sql` (founding/referral sources) and `20260627000000_email_outreach.sql` (3 email tables). Verified via read-only checks + the `lead_captures_source_check` constraint includes `founding-member`/`referral`.
+- **Vercel Production env set**: `SUPABASE_SERVICE_ROLE_KEY` (was the lead-capture bug — now fixed + e2e verified live), `CRON_SECRET`, `NEXT_PUBLIC_SITE_URL`, `RESEND_API_KEY`, `EMAIL_FROM = Zakarian GMAT <noreply@zakariangmat.com>`. **Resend domain `zakariangmat.com` is VERIFIED; email sending confirmed live** (a real password-reset email landed). So the outreach worker WILL send to opted-in users on its daily run.
+- `PAYWALL_ENABLED` still OFF (product free in private beta). Stripe still test-mode only.
+
+### OPEN ITEMS / next-session candidates
+- **Pixels still dormant** — set `NEXT_PUBLIC_META_PIXEL_ID` / `NEXT_PUBLIC_GOOGLE_TAG_ID` in Vercel before retargeting / ad-platform conversion import (events already fire; see `RETARGETING_SETUP.md`).
+- **In-app referral prompts NOT built** — `ReferralShare` (marketing) is done, but the requested post-signup / post-value in-app prompts were deferred (need careful dashboard/onboarding integration). Source tracking already works via first-touch UTM.
+- **Outreach milestone hooks**: only `first-practice` (E) is wired; `mock-review` + `progress` templates exist but aren't enqueued (need hooks at the mock-report / analytics surfaces).
+- **Password-reset rate-limit**: built early this session but UNCOMMITTED on `claude/auth-branded-reset` (worktree `…-wt-reset`). The branded reset email is live + in real use, but link-minting is unthrottled. Finish + ship if desired.
+- **`/gmat-error-log-template` ad slug**: deliberately used the existing `/error-log-template` (avoids a duplicate-content cannibalizing page). Add a redirect if a literal slug is wanted for ads.
+- **Lead-capture opt-in e2e**: offered, not yet run (would submit a test opt-in lead through prod → confirm `lead_captures` + `email_subscriptions` rows → delete).
+- After merges, **submit the sitemap in Google Search Console** so the new landing pages index.
+
+### Gotchas for the fresh chat
+- **Concurrency hazard is real**: concurrent agents/automation (blog, weekly QA-audit) and even workflow sub-agents touch this checkout — this session a workflow's doc-agents wrote stray duplicate `.md` files to the repo root (cleaned up). Check `git status` before committing; prefer isolated `git worktree` for risky parallel work.
+- **Compliance is load-bearing**: no fake diagnostic / no "30-question"/"readiness band"/"score band" / no guaranteed-score / no GMAC-or-mba.com affiliation / no generalized "students improve X". The only allowed performance claim is the founder's own 565→735. Email templates are test-enforced; pages were manually scanned.
+- `.env.local` points at the PROD Supabase (used for read-only verification with the service key). `CRON_SECRET` is NOT in `.env.local` (it's a Vercel-only sensitive var), so the outreach worker can only be manually triggered by the owner via curl.
+
 ## CONTEXT SWITCH — 2026-06-26 (launch/growth funnel: founding-member reservation + referral page + UTM/funnel tracking)
 
 Committed on branch `launch-system-growth-funnel` (commit `b408dce`), **NOT merged**. Extends the Path-A free-beta launch (2026-06-22 entry below). Gate green: content 0 errors, tsc, **321 tests**, eslint, next build.

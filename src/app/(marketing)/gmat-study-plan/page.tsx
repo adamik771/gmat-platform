@@ -64,6 +64,34 @@ const DATA: AcquisitionLandingProps = {
   "metaDescription": "A real GMAT study plan isn't a calendar of chapters — it's a feedback loop anchored to your official mba.com practice score. Here's how to build one, plus how Zakarian GMAT generates an adaptive plan from your baseline."
 }
 
+const RELATED: AcquisitionLandingProps["relatedLinks"] = [
+  {
+    label: "Review your mocks the right way",
+    href: "/gmat-mock-review",
+    description: "Turn each full-length into your next two weeks of study.",
+  },
+  {
+    label: "Drill Quant by weak topic",
+    href: "/gmat-quant-practice",
+    description: "Targeted Quant practice tied to your error log.",
+  },
+  {
+    label: "Practice Data Insights",
+    href: "/gmat-data-insights-practice",
+    description: "The newest section, and the one most people under-prep.",
+  },
+  {
+    label: "Free error-log template",
+    href: "/error-log-template",
+    description: "The six-tag system, as a spreadsheet — no account.",
+  },
+  {
+    label: "How to build a GMAT study plan that works",
+    href: "/blog/how-to-build-a-gmat-study-plan-that-works",
+    description: "The long-form walkthrough behind this page.",
+  },
+]
+
 export default function Page() {
-  return <AcquisitionLanding {...DATA} />
+  return <AcquisitionLanding {...DATA} relatedLinks={RELATED} />
 }

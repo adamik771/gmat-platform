@@ -3,7 +3,6 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import ScoreTimeline from "@/components/marketing/ScoreTimeline"
-import ScoreReportProof from "@/components/marketing/ScoreReportProof"
 import Breadcrumbs from "@/components/seo/Breadcrumbs"
 
 export const metadata: Metadata = {
@@ -190,7 +189,12 @@ export default function AboutPage() {
               From 565 to 735
             </h2>
             <ScoreTimeline />
-            <ScoreReportProof />
+            {/* ScoreReportProof is intentionally not rendered: there is no
+                redacted score-report image yet, so referencing the missing
+                /score-report.png would mean a 404 image request and an
+                unsupported "verified score report" caption in production. To
+                re-enable, add the redacted PNG at public/score-report.png and
+                restore the import + `<ScoreReportProof />` here. */}
           </div>
         </div>
       </SectionWrapper>

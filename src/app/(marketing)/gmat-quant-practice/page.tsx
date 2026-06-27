@@ -64,6 +64,29 @@ const DATA: AcquisitionLandingProps = {
   "metaDescription": "A founder-built GMAT Focus Quant study approach: fix the real bottleneck, drill mixed sets under timing, log errors by cause, and master the 5 decision points that move your score."
 }
 
+const RELATED: AcquisitionLandingProps["relatedLinks"] = [
+  {
+    label: "Practice Data Insights",
+    href: "/gmat-data-insights-practice",
+    description: "The section most people under-prep.",
+  },
+  {
+    label: "Build a study plan from your baseline",
+    href: "/gmat-study-plan",
+    description: "Put Quant in the context of your whole score.",
+  },
+  {
+    label: "Review your mocks the right way",
+    href: "/gmat-mock-review",
+    description: "Where Quant timing actually gets tested.",
+  },
+  {
+    label: "GMAT Quant timing strategy",
+    href: "/blog/gmat-quant-timing-strategy",
+    description: "Pacing, triage, and when to bail on a question.",
+  },
+]
+
 export default function Page() {
-  return <AcquisitionLanding {...DATA} />
+  return <AcquisitionLanding {...DATA} relatedLinks={RELATED} />
 }
