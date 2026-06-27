@@ -36,6 +36,9 @@ export interface AcquisitionLandingProps {
   }
   primaryCta?: { label: string; href: string }
   metaDescription: string
+  /** Internal cross-links ("Keep going" grid) — keeps the visitor in the funnel
+   *  and builds the on-site link graph search engines crawl. */
+  relatedLinks?: { label: string; href: string; description?: string }[]
 }
 
 /** Render structured prose: blank-line-separated paragraphs + "- " bullet lists. */
@@ -142,6 +145,39 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
                 <p className="text-[15px] font-semibold text-[#F0F0F0] mb-1.5">{f.q}</p>
                 <p className="text-[14px] text-[#888888] leading-relaxed">{f.a}</p>
               </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Internal links — keep the visitor in the funnel + build the link graph */}
+      {props.relatedLinks && props.relatedLinks.length > 0 && (
+        <section className="max-w-3xl mx-auto px-4 py-8">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] mb-6">
+            Keep going
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {props.relatedLinks.map((l, i) => (
+              <Link
+                key={i}
+                href={l.href}
+                className="group flex items-start gap-3 p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D] hover:border-white/[0.16] transition-all"
+              >
+                <ArrowRight
+                  className="w-4 h-4 mt-0.5 flex-shrink-0"
+                  style={{ color: "#C9A84C" }}
+                />
+                <span>
+                  <span className="block text-[14px] font-semibold text-[#F0F0F0] group-hover:text-white transition-colors">
+                    {l.label}
+                  </span>
+                  {l.description && (
+                    <span className="block text-[13px] text-[#888888] leading-relaxed mt-0.5">
+                      {l.description}
+                    </span>
+                  )}
+                </span>
+              </Link>
             ))}
           </div>
         </section>

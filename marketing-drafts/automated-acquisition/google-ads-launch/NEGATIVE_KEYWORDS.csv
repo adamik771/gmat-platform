@@ -1,0 +1,61 @@
+Negative Keyword,Match Type,Level,Reason
+free official,Phrase,Campaign,Seeking GMAC official free material not our product
+official guide,Phrase,Campaign,Wants the GMAC Official Guide book not our platform
+official gmat,Phrase,Campaign,Implies GMAC-owned material; avoid affiliation confusion and wrong intent
+mba.com,Phrase,Campaign,Looking for GMAC official site not us
+mba.com login,Phrase,Campaign,Navigational to GMAC site
+gmac,Phrase,Campaign,Brand owner navigational - careers/login/contact
+gmac login,Phrase,Campaign,Navigational to GMAC
+gmac careers,Phrase,Campaign,Job seeker not student
+answers,Phrase,Campaign,Wants answer keys not practice
+answer key,Phrase,Campaign,Wants answer keys not practice
+cheat,Phrase,Campaign,Cheating intent - policy and wrong audience
+cheat sheet,Phrase,Campaign,Wants a cheat sheet not a platform
+hack,Phrase,Campaign,Low-intent shortcut seekers
+leaked,Phrase,Campaign,Seeking leaked/pirated content
+pdf,Phrase,Campaign,Wants a downloadable PDF not a SaaS product
+free pdf,Phrase,Campaign,Wants free PDF downloads
+torrent,Phrase,Campaign,Piracy intent
+crack,Phrase,Campaign,Piracy/cracked-software intent
+download crack,Phrase,Campaign,Piracy intent
+free download,Phrase,Campaign,Wants downloadable freebie not signup
+jobs,Phrase,Campaign,Job seeker not student
+job,Phrase,Campaign,Job seeker not student
+salary,Phrase,Campaign,Career-salary intent not prep
+career,Phrase,Campaign,Career intent not test prep
+careers,Phrase,Campaign,Career intent not test prep
+coupon,Phrase,Campaign,Discount-only seeker; nothing to charge during free beta
+coupon code,Phrase,Campaign,Discount-only seeker
+promo code,Phrase,Campaign,Discount-only seeker
+discount code,Phrase,Campaign,Discount-only seeker
+is gmat hard,Phrase,Campaign,Pure-research intent not buying intent
+is the gmat hard,Phrase,Campaign,Pure-research intent
+what is gmat,Phrase,Campaign,Top-of-funnel definitional not buying
+what is a good gmat score,Phrase,Campaign,Informational not product intent
+gmat vs gre,Phrase,Campaign,Comparison shopping different exam
+gre,Phrase,Campaign,Different exam entirely
+gmat syllabus,Phrase,Campaign,Wants exam content outline not platform
+gmat exam dates,Phrase,Campaign,Wants test scheduling not prep
+gmat registration,Phrase,Campaign,Wants to register for the exam not prep
+gmat test center,Phrase,Campaign,Test-day logistics not prep
+gmat fee,Phrase,Campaign,Exam-fee research not our product
+gmat cost,Phrase,Campaign,Exam-cost research not our product
+executive assessment,Phrase,Campaign,Different exam
+ea exam,Phrase,Campaign,Different exam
+gmat club,Phrase,Campaign,Competitor/forum navigational
+manhattan,Phrase,Campaign,Competitor brand navigational
+kaplan,Phrase,Campaign,Competitor brand navigational
+princeton review,Phrase,Campaign,Competitor brand navigational
+magoosh,Phrase,Campaign,Competitor brand navigational
+ttp,Phrase,Campaign,Competitor brand navigational (Target Test Prep)
+target test prep,Phrase,Campaign,Competitor brand navigational
+e-gmat,Phrase,Campaign,Competitor brand navigational
+egmat,Phrase,Campaign,Competitor brand navigational
+gmat coaching,Phrase,Campaign,Seeking in-person tutor/coaching not self-serve platform
+gmat tutor,Phrase,Campaign,Seeking 1-on-1 tutor not self-serve platform
+gmat classes,Phrase,Campaign,Seeking classroom course not self-serve platform
+gmat coaching near me,Phrase,Campaign,Local in-person intent
+old gmat,Phrase,Campaign,Pre-Focus legacy exam not relevant
+gmat 800,Phrase,Campaign,Legacy 800-scale exam not Focus Edition
+free,Exact,Campaign,Block bare 'free' searches with no buying intent
+gmat,Exact,Campaign,Block ultra-broad single-word exact - no commercial intent

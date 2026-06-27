@@ -64,6 +64,29 @@ const DATA: AcquisitionLandingProps = {
   "metaDescription": "Zakarian GMAT's private beta is free with no card: 62 Focus Edition chapters, 1,900+ questions, a 6-tag error log, spaced review, and an adaptive plan built from your own official practice exam. Founding members lock in early pricing."
 }
 
+const RELATED: AcquisitionLandingProps["relatedLinks"] = [
+  {
+    label: "Build a study plan from your baseline",
+    href: "/gmat-study-plan",
+    description: "See how the adaptive plan works.",
+  },
+  {
+    label: "Review your mocks the right way",
+    href: "/gmat-mock-review",
+    description: "The mock-to-mock trend, explained.",
+  },
+  {
+    label: "Free error-log template",
+    href: "/error-log-template",
+    description: "Try the six-tag system without an account.",
+  },
+  {
+    label: "Refer a friend",
+    href: "/refer",
+    description: "Bring someone in; you both get founding pricing.",
+  },
+]
+
 export default function Page() {
-  return <AcquisitionLanding {...DATA} />
+  return <AcquisitionLanding {...DATA} relatedLinks={RELATED} />
 }

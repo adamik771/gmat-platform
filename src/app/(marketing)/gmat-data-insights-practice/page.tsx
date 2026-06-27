@@ -64,6 +64,29 @@ const DATA: AcquisitionLandingProps = {
   "metaDescription": "A specific guide to GMAT Focus Data Insights practice: the five DI question formats, why DI is the most under-trained section, and a concrete drilling method that builds the skills it actually tests."
 }
 
+const RELATED: AcquisitionLandingProps["relatedLinks"] = [
+  {
+    label: "Drill Quant by weak topic",
+    href: "/gmat-quant-practice",
+    description: "The other half of your section scores.",
+  },
+  {
+    label: "Build a study plan from your baseline",
+    href: "/gmat-study-plan",
+    description: "Rank DI against your other weak areas.",
+  },
+  {
+    label: "Data Insights: the complete guide",
+    href: "/blog/gmat-data-insights-complete-guide",
+    description: "All five DI question formats, explained.",
+  },
+  {
+    label: "Free error-log template",
+    href: "/error-log-template",
+    description: "Tag DI misses by cause, not just by topic.",
+  },
+]
+
 export default function Page() {
-  return <AcquisitionLanding {...DATA} />
+  return <AcquisitionLanding {...DATA} relatedLinks={RELATED} />
 }

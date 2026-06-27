@@ -1,0 +1,44 @@
+Campaign,Ad Group,Keyword,Match Type,Suggested Max CPC,Landing Page,Notes
+ZG-Search-Launch,AG-Study-Plan,gmat study plan,Exact,1.80,https://www.zakariangmat.com/gmat-study-plan,Primary keyword - tight match to page
+ZG-Search-Launch,AG-Study-Plan,gmat study plan,Phrase,1.50,https://www.zakariangmat.com/gmat-study-plan,Captures modifiers like best/free/template
+ZG-Search-Launch,AG-Study-Plan,gmat study schedule,Phrase,1.40,https://www.zakariangmat.com/gmat-study-plan,Close variant intent
+ZG-Search-Launch,AG-Study-Plan,gmat focus study plan,Exact,1.60,https://www.zakariangmat.com/gmat-study-plan,Focus Edition specific
+ZG-Search-Launch,AG-Study-Plan,gmat focus study plan,Phrase,1.40,https://www.zakariangmat.com/gmat-study-plan,Focus Edition specific
+ZG-Search-Launch,AG-Study-Plan,gmat study plan 3 months,Phrase,1.30,https://www.zakariangmat.com/gmat-study-plan,Timeframe variant
+ZG-Search-Launch,AG-Study-Plan,gmat preparation plan,Phrase,1.30,https://www.zakariangmat.com/gmat-study-plan,Synonym
+ZG-Search-Launch,AG-Study-Plan,how to study for gmat,Phrase,1.10,https://www.zakariangmat.com/gmat-study-plan,Higher funnel - lower CPC
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log template,Exact,1.60,https://www.zakariangmat.com/error-log-template,HIGHEST intent - free CSV no account
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log template,Phrase,1.40,https://www.zakariangmat.com/error-log-template,HIGHEST intent
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log,Exact,1.40,https://www.zakariangmat.com/error-log-template,Core term
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log,Phrase,1.20,https://www.zakariangmat.com/error-log-template,Core term
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log spreadsheet,Phrase,1.30,https://www.zakariangmat.com/error-log-template,Format-specific intent
+ZG-Search-Launch,AG-Error-Log-Template,error log for gmat,Phrase,1.20,https://www.zakariangmat.com/error-log-template,Word-order variant
+ZG-Search-Launch,AG-Error-Log-Template,gmat mistake log,Phrase,1.10,https://www.zakariangmat.com/error-log-template,Synonym
+ZG-Search-Launch,AG-Error-Log-Template,gmat error tracker,Phrase,1.10,https://www.zakariangmat.com/error-log-template,Synonym
+ZG-Search-Launch,AG-Mock-Review,gmat mock review,Exact,1.40,https://www.zakariangmat.com/gmat-mock-review,Primary keyword
+ZG-Search-Launch,AG-Mock-Review,gmat mock review,Phrase,1.20,https://www.zakariangmat.com/gmat-mock-review,Primary keyword
+ZG-Search-Launch,AG-Mock-Review,gmat mock test analysis,Phrase,1.20,https://www.zakariangmat.com/gmat-mock-review,Analysis intent
+ZG-Search-Launch,AG-Mock-Review,gmat practice test review,Phrase,1.20,https://www.zakariangmat.com/gmat-mock-review,Synonym
+ZG-Search-Launch,AG-Mock-Review,how to review gmat mocks,Phrase,1.10,https://www.zakariangmat.com/gmat-mock-review,Question intent
+ZG-Search-Launch,AG-Mock-Review,gmat mock test analysis tool,Phrase,1.30,https://www.zakariangmat.com/gmat-mock-review,Tool intent - higher value
+ZG-Search-Launch,AG-Data-Insights,gmat data insights practice,Exact,1.50,https://www.zakariangmat.com/gmat-data-insights-practice,Primary keyword
+ZG-Search-Launch,AG-Data-Insights,gmat data insights practice,Phrase,1.30,https://www.zakariangmat.com/gmat-data-insights-practice,Primary keyword
+ZG-Search-Launch,AG-Data-Insights,gmat data insights questions,Phrase,1.30,https://www.zakariangmat.com/gmat-data-insights-practice,Question-bank intent
+ZG-Search-Launch,AG-Data-Insights,data insights gmat practice,Phrase,1.30,https://www.zakariangmat.com/gmat-data-insights-practice,Word-order variant
+ZG-Search-Launch,AG-Data-Insights,gmat di practice,Phrase,1.10,https://www.zakariangmat.com/gmat-data-insights-practice,Abbreviation
+ZG-Search-Launch,AG-Data-Insights,gmat data insights prep,Phrase,1.20,https://www.zakariangmat.com/gmat-data-insights-practice,Synonym
+ZG-Search-Launch,AG-Quant-Practice,gmat quant practice,Exact,1.60,https://www.zakariangmat.com/gmat-quant-practice,Primary keyword - high volume
+ZG-Search-Launch,AG-Quant-Practice,gmat quant practice,Phrase,1.40,https://www.zakariangmat.com/gmat-quant-practice,Primary keyword
+ZG-Search-Launch,AG-Quant-Practice,gmat quant questions,Phrase,1.40,https://www.zakariangmat.com/gmat-quant-practice,Question-bank intent
+ZG-Search-Launch,AG-Quant-Practice,gmat quantitative practice,Phrase,1.30,https://www.zakariangmat.com/gmat-quant-practice,Long-form synonym
+ZG-Search-Launch,AG-Quant-Practice,gmat math practice,Phrase,1.30,https://www.zakariangmat.com/gmat-quant-practice,Synonym
+ZG-Search-Launch,AG-Quant-Practice,gmat problem solving practice,Phrase,1.20,https://www.zakariangmat.com/gmat-quant-practice,Sub-topic intent
+ZG-Search-Launch,AG-Quant-Practice,gmat focus quant practice,Phrase,1.30,https://www.zakariangmat.com/gmat-quant-practice,Focus Edition specific
+ZG-Search-Launch,AG-Prep-Platform,gmat prep platform,Exact,2.00,https://www.zakariangmat.com/gmat-private-beta,Primary keyword - high commercial intent
+ZG-Search-Launch,AG-Prep-Platform,gmat prep platform,Phrase,1.70,https://www.zakariangmat.com/gmat-private-beta,Primary keyword
+ZG-Search-Launch,AG-Prep-Platform,gmat prep app,Phrase,1.70,https://www.zakariangmat.com/gmat-private-beta,App intent
+ZG-Search-Launch,AG-Prep-Platform,online gmat prep,Phrase,1.60,https://www.zakariangmat.com/gmat-private-beta,Broad commercial
+ZG-Search-Launch,AG-Prep-Platform,gmat prep online,Phrase,1.60,https://www.zakariangmat.com/gmat-private-beta,Word-order variant
+ZG-Search-Launch,AG-Prep-Platform,best gmat prep platform,Phrase,2.00,https://www.zakariangmat.com/gmat-private-beta,High intent comparison
+ZG-Search-Launch,AG-Prep-Platform,gmat focus prep,Phrase,1.50,https://www.zakariangmat.com/gmat-private-beta,Focus Edition specific
+ZG-Search-Launch,AG-Prep-Platform,adaptive gmat prep,Phrase,1.40,https://www.zakariangmat.com/gmat-private-beta,Feature-matched (adaptive study plan)

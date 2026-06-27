@@ -64,6 +64,29 @@ const DATA: AcquisitionLandingProps = {
   "metaDescription": "The right way to review a GMAT mock exam. A question-by-question method that turns one practice test into your next score points, plus a mock-to-mock review system."
 }
 
+const RELATED: AcquisitionLandingProps["relatedLinks"] = [
+  {
+    label: "Build a study plan from your baseline",
+    href: "/gmat-study-plan",
+    description: "Turn mock results into a ranked weak-area plan.",
+  },
+  {
+    label: "Free error-log template",
+    href: "/error-log-template",
+    description: "Tag every miss by cause, then find the pattern.",
+  },
+  {
+    label: "Drill Quant by weak topic",
+    href: "/gmat-quant-practice",
+    description: "Practice the topics your mock just exposed.",
+  },
+  {
+    label: "Why your GMAT score is stuck",
+    href: "/blog/why-your-gmat-score-is-stuck",
+    description: "The plateau, and how to break it.",
+  },
+]
+
 export default function Page() {
-  return <AcquisitionLanding {...DATA} />
+  return <AcquisitionLanding {...DATA} relatedLinks={RELATED} />
 }
