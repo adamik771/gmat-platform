@@ -194,5 +194,49 @@ export async function POST(request: Request) {
     }
   }
 
+  // Milestone outreach (sequence E): on a practice set, enrol the signed-up
+  // user and enqueue the "first practice" email. Deduped, so it fires exactly
+  // once. Best-effort and isolated — never fails the save. The user id/email
+  // come from the verified session (not the request body), so the service-role
+  // write is safe.
+  if (
+    user.email &&
+    !body.slug.startsWith("mock-") &&
+    !body.slug.startsWith("diagnostic-") &&
+    !body.slug.startsWith("review-") &&
+    body.slug !== "custom"
+  ) {
+    try {
+      const [{ getSupabaseService }, { recordConsent }, { enqueueStep }] =
+        await Promise.all([
+          import("@/lib/supabase/service"),
+          import("@/lib/outreach/consent"),
+          import("@/lib/outreach/queue"),
+        ])
+      const service = getSupabaseService()
+      const consent = await recordConsent(service, {
+        email: user.email,
+        userId: user.id,
+        source: "signup",
+      })
+      if (consent?.subscribed) {
+        const meta = (user.user_metadata ?? {}) as Record<string, unknown>
+        const firstName =
+          typeof meta.full_name === "string" && meta.full_name.trim()
+            ? meta.full_name.trim().split(/\s+/)[0]
+            : null
+        await enqueueStep(service, {
+          sequence: "milestone",
+          step: "first-practice",
+          email: user.email,
+          userId: user.id,
+          payload: { firstName },
+        })
+      }
+    } catch {
+      // milestone outreach is best-effort
+    }
+  }
+
   return Response.json({ sessionId: session.id })
 }

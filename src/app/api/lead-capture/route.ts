@@ -1,4 +1,6 @@
 import { getSupabaseService } from "@/lib/supabase/service"
+import { recordConsent } from "@/lib/outreach/consent"
+import { enqueueDrip } from "@/lib/outreach/queue"
 
 /**
  * POST /api/lead-capture — collect a prospect email from public marketing
@@ -130,6 +132,31 @@ export async function POST(request: Request) {
       { ok: false, error: "Could not save that right now. Please try again." },
       { status: 503 },
     )
+  }
+
+  // Opt-in outreach: this submission IS the consent. Enrol founding-member and
+  // error-log leads into their nurture sequence. Best-effort — never blocks or
+  // fails the capture response; the worker re-checks consent before any send.
+  try {
+    const isFounding = source === "founding-member"
+    const isErrorLog = leadMagnet === "error-log-template"
+    if (isFounding || isErrorLog) {
+      const consent = await recordConsent(supabase, {
+        email,
+        source: isFounding
+          ? "founding-reservation"
+          : "lead-capture:error-log-template",
+      })
+      if (consent?.subscribed) {
+        await enqueueDrip(supabase, {
+          sequence: isFounding ? "founding" : "error-log",
+          email,
+          payload: { downloadUrl: MAGNET_DOWNLOADS[leadMagnet] ?? null },
+        })
+      }
+    }
+  } catch {
+    /* outreach enrolment is best-effort */
   }
 
   return Response.json({

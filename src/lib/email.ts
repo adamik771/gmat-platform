@@ -14,6 +14,8 @@ export interface SendEmailInput {
   subject: string
   html: string
   text?: string
+  /** Extra SMTP headers (e.g. List-Unsubscribe) passed through to Resend. */
+  headers?: Record<string, string>
 }
 
 export type SendEmailResult =
@@ -51,6 +53,7 @@ export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult>
         subject: input.subject,
         html: input.html,
         ...(input.text ? { text: input.text } : {}),
+        ...(input.headers ? { headers: input.headers } : {}),
       }),
     })
     if (!res.ok) {
