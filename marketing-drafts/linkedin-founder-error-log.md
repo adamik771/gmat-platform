@@ -14,7 +14,7 @@
 
 **First-reply (link plug — post within 5 minutes of original):**
 
-> The error log + the system that aggregates it is the core of the platform I built — zakariangmat.com. Free diagnostic if you want to see your own pattern.
+> The error log + the system that aggregates it is the core of the platform I built — zakariangmat.com. Free during the private beta if you want to track your own patterns.
 
 ---
 

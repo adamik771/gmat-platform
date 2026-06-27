@@ -1,4 +1,5 @@
 import Link from "next/link"
+import InviteFriend from "@/components/dashboard/InviteFriend"
 import {
   AlertTriangle,
   ArrowLeft,
@@ -958,6 +959,9 @@ export default async function MockReportPage() {
             </ul>
           </div>
         </div>
+
+        {/* Product-led referral nudge at a milestone moment (a completed mock) */}
+        <InviteFriend surface="mock_report" />
       </div>
     </div>
   )

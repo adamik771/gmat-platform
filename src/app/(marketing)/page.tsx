@@ -20,6 +20,7 @@ import HeroDashboardCard from "@/components/marketing/HeroDashboardCardLazy"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
 import FoundingOffer from "@/components/marketing/FoundingOffer"
+import TrackView from "@/components/analytics/TrackView"
 import { QUESTION_CLAIM } from "@/lib/site"
 import { PAYWALL_ENABLED } from "@/lib/entitlements"
 
@@ -80,7 +81,7 @@ const faqItems = [
   {
     question: "How long does it take to see results?",
     answer:
-      "Most students see measurable improvement within 3–4 weeks of consistent daily study. Hitting 655+ typically takes 10–16 weeks depending on your starting score.",
+      "It depends on your starting point and how consistently you study — we don't promise a timeline or a score. The system is built to surface your weak areas fast, so your study time is targeted from day one instead of spent guessing.",
   },
   {
     question: "What if I've already tried other courses?",
@@ -97,6 +98,8 @@ const faqItems = [
 export default function HomePage() {
   return (
     <div style={{ backgroundColor: "#0A0A0A" }}>
+      {/* Fires landing_view on mount — top of the passive funnel. */}
+      <TrackView event="landing_view" />
       {/* HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Atmospheric depth layers */}

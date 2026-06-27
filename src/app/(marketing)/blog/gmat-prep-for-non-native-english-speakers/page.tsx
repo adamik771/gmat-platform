@@ -321,30 +321,21 @@ export default function PostPage() {
 
           <BlogInlineCTA />
 
-          <H2>Targets you can realistically expect</H2>
+          <H2>How to think about your targets</H2>
           <p>
-            Honest brackets, based on common non-native-speaker
-            trajectories:
+            The honest answer: your timeline and your ceiling depend on
+            your starting point, how consistently you study, and how
+            seriously you review your mistakes. Anyone quoting you a
+            guaranteed score or a fixed number of weeks is guessing.
           </p>
-          <ul>
-            <li>
-              <Strong>Diagnostic 545-595 (Focus):</Strong> 12-16 weeks
-              of structured prep typically lands at 645-695.
-            </li>
-            <li>
-              <Strong>Diagnostic 595-645:</Strong> 12 weeks usually
-              lands at 685-735.
-            </li>
-            <li>
-              <Strong>Diagnostic 645+:</Strong> 8-12 weeks of focused
-              work typically lands at 705-755.
-            </li>
-          </ul>
           <p>
-            These aren&apos;t guarantees &mdash; outcomes depend on
-            consistency and study quality. They&apos;re the rough
-            patterns I see across non-native students who actually run
-            the loop.
+            What you can control is the process. Start from a real
+            baseline (an official mba.com practice exam), build the three
+            sections in parallel rather than one at a time, and put most
+            of your energy into reviewing what you miss. For non-native
+            speakers the gap is rarely raw English &mdash; it is pattern
+            recognition under time pressure, and that is exactly what the
+            review loop trains.
           </p>
 
           <H2>The five things that don&apos;t work</H2>

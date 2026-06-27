@@ -1,5 +1,6 @@
 import { getSupabaseService } from "@/lib/supabase/service"
 import { evaluateSignupGate, isSignupGateArmed } from "@/lib/signup-gate"
+import { buildMarketingConsent } from "@/lib/outreach/consent-flag"
 
 /**
  * POST /api/signup — the access-code-gated signup path.
@@ -31,6 +32,7 @@ export async function POST(request: Request) {
     password?: unknown
     accessCode?: unknown
     hp?: unknown
+    marketingConsent?: unknown
   }
   try {
     body = (await request.json()) as typeof body
@@ -102,7 +104,13 @@ export async function POST(request: Request) {
     email,
     password,
     email_confirm: true,
-    user_metadata: { full_name: name },
+    user_metadata: {
+      full_name: name,
+      marketing_consent: buildMarketingConsent(
+        body.marketingConsent === true,
+        new Date().toISOString()
+      ),
+    },
   })
 
   if (error) {

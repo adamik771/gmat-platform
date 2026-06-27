@@ -18,6 +18,7 @@ import {
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import QuickActions from "@/components/dashboard/QuickActions"
+import InviteFriend from "@/components/dashboard/InviteFriend"
 import StudyHoursChart from "./StudyHoursChart"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
@@ -1903,6 +1904,10 @@ export default async function DashboardPage() {
           Achievements
         </span>
       </div>
+
+      {/* Product-led referral nudge — shown to active users (post-value), not
+          in the no-data activation state. Fires referral_click on copy. */}
+      <InviteFriend surface="dashboard" />
     </div>
   )
 }

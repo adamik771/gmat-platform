@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle, ShieldCheck, KeyRound, MailCheck } from "lucide-react"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import { trackEvent } from "@/lib/analytics"
+import { buildMarketingConsent } from "@/lib/outreach/consent-flag"
 
 /**
  * Valid redirect paths after signup. A bare allow-list is safer than
@@ -60,23 +61,29 @@ function SignupFallback() {
 }
 
 function SignupForm() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [accessCode, setAccessCode] = useState("")
-  // When Supabase has email confirmation ON, signUp returns no session and the
-  // user must click an emailed link first. We surface a "check your email"
-  // state (keyed by this) instead of pushing them to a protected route.
-  const [pendingEmail, setPendingEmail] = useState<string | null>(null)
-  const [resendState, setResendState] = useState<"idle" | "sending" | "sent">("idle")
-
   const router = useRouter()
   const searchParams = useSearchParams()
   const rawRedirect = searchParams.get("redirect")
   const redirectTarget =
     rawRedirect && ALLOWED_REDIRECTS.has(rawRedirect) ? rawRedirect : "/dashboard"
+
+  const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  // Shareable invite link: /signup?invite=CODE pre-fills the access code so a
+  // friend can sign up in one step when signup is gated. Lazy initializer reads
+  // it once on mount; harmless when signup is open (the field isn't rendered).
+  const [accessCode, setAccessCode] = useState(() => searchParams.get("invite") ?? "")
+  // Explicit, unticked-by-default marketing consent (separate from account
+  // creation). Transactional emails are unaffected by this.
+  const [marketingOptIn, setMarketingOptIn] = useState(false)
+  // When Supabase has email confirmation ON, signUp returns no session and the
+  // user must click an emailed link first. We surface a "check your email"
+  // state (keyed by this) instead of pushing them to a protected route.
+  const [pendingEmail, setPendingEmail] = useState<string | null>(null)
+  const [resendState, setResendState] = useState<"idle" | "sending" | "sent">("idle")
   const [error, setError] = useState("")
 
   async function handleSubmit(e: React.FormEvent) {
@@ -92,6 +99,7 @@ function SignupForm() {
     }
 
     setLoading(true)
+    trackEvent("signup_initiated", { gated: SIGNUP_GATED })
 
     // Invite-only path: the server validates the access code and creates the
     // account (service role, email auto-confirmed); we then sign in to get a
@@ -103,7 +111,13 @@ function SignupForm() {
         const res = await fetch("/api/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, password, accessCode }),
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            accessCode,
+            marketingConsent: marketingOptIn,
+          }),
         })
         data = await res.json().catch(() => ({}))
         if (!res.ok) {
@@ -139,7 +153,13 @@ function SignupForm() {
       email,
       password,
       options: {
-        data: { full_name: name },
+        data: {
+          full_name: name,
+          marketing_consent: buildMarketingConsent(
+            marketingOptIn,
+            new Date().toISOString()
+          ),
+        },
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     })
@@ -380,6 +400,20 @@ function SignupForm() {
               Minimum 8 characters
             </p>
           </div>
+
+          <label className="flex items-start gap-2.5 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={marketingOptIn}
+              onChange={(e) => setMarketingOptIn(e.target.checked)}
+              className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#C9A84C]"
+            />
+            <span className="text-[12px] text-[#888888] leading-relaxed">
+              Email me GMAT study tips, founding-user offers, and product
+              updates. Optional &mdash; unsubscribe anytime. We&apos;ll always
+              send essential account emails (like password resets) regardless.
+            </span>
+          </label>
 
           <button
             type="submit"
