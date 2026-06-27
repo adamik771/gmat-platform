@@ -13,10 +13,9 @@ import { getSupabaseService } from "@/lib/supabase/service"
  *   }
  *
  * Returns:
- *   {
- *     ok: true,
- *     downloadUrl?: string   // populated when leadMagnet has a downloadable asset
- *   }
+ *   200 { ok: true, downloadUrl?: string }  // captured (downloadUrl when the magnet has a file)
+ *   400 { error }                           // invalid JSON body or email
+ *   503 { ok: false, error }                // persistence failed (server misconfig or DB error)
  *
  * Storage: writes to public.lead_captures via the service-role client. The
  * table is RLS-on with no policies, so only the service role can read or
@@ -97,16 +96,17 @@ export async function POST(request: Request) {
   try {
     supabase = getSupabaseService()
   } catch {
-    // Service-role key not configured. We still want the form to "work"
-    // for the user — log on the server, return ok. Adam will see the
-    // misconfigured-env warning in the build.
-    console.warn(
-      "[lead-capture] SUPABASE_SERVICE_ROLE_KEY not set — capture is a no-op",
+    // Server misconfiguration (service-role key / Supabase URL missing or
+    // invalid), not a user error. Surface it instead of pretending success,
+    // so a broken prod env can't silently swallow every lead. The client
+    // (LeadCapture) already renders { ok: false } as a retryable error state.
+    console.error(
+      "[lead-capture] Supabase service client unavailable — capture failed",
     )
-    return Response.json({
-      ok: true,
-      downloadUrl: MAGNET_DOWNLOADS[leadMagnet] ?? null,
-    })
+    return Response.json(
+      { ok: false, error: "Lead capture is temporarily unavailable." },
+      { status: 503 },
+    )
   }
 
   const { error } = await supabase.from("lead_captures").upsert(
@@ -122,15 +122,14 @@ export async function POST(request: Request) {
   )
 
   if (error) {
-    // Most likely the migration hasn't run yet. We don't surface this to
-    // the user — failing the form on a backend-config issue would feel
-    // broken. Log and return ok with the download URL still attached so
-    // the lead magnet still gets delivered.
+    // Persistence failed (e.g. the CHECK-constraint migration hasn't run, or
+    // a transient DB error). Surface it instead of a false ok, so lost leads
+    // are visible in logs/monitoring and the client can retry.
     console.error("[lead-capture] upsert failed:", error.message)
-    return Response.json({
-      ok: true,
-      downloadUrl: MAGNET_DOWNLOADS[leadMagnet] ?? null,
-    })
+    return Response.json(
+      { ok: false, error: "Could not save that right now. Please try again." },
+      { status: 503 },
+    )
   }
 
   return Response.json({
