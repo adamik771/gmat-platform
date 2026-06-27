@@ -1,5 +1,3 @@
-I have everything I need. The subject lines and body intent are verified against the canonical templates. Here is the complete document.
-
 # Email Sequences
 
 This document describes the five automated email sequences (A through E) used by Zakarian GMAT's opt-in outreach system. It mirrors the editorial copy in the codebase; it does not introduce new claims.
@@ -14,7 +12,7 @@ This document describes the five automated email sequences (A through E) used by
 
 ## Compliance (applies to every step)
 
-- Opt-in only. A subscription row is created only from an action the person took (signup, founding reservation, or form submit). No cold outreach, no scraped or purchased contacts, no LinkedIn bots or DMs.
+- Opt-in only. A subscription row is created only from an explicit, unticked-by-default opt-in checkbox (ticked at signup or on the lead form). No cold outreach, no scraped or purchased contacts, no LinkedIn bots or DMs.
 - Every email carries a visible unsubscribe link plus `List-Unsubscribe` and one-click `List-Unsubscribe-Post` headers.
 - Every email carries the not-affiliated / no-guarantee footer (independent prep; not affiliated with, endorsed by, or sponsored by GMAC, the GMAT, or mba.com; no score guaranteed).
 - Consent is re-checked (`subscribed = true`) immediately before each send; an unsubscribe is never resurrected.
@@ -24,7 +22,7 @@ This document describes the five automated email sequences (A through E) used by
 
 ## Sequence A — New signup
 
-**Trigger:** A new account signs up. The cron worker's enqueue phase (phase 1a) enrols accounts created within the last 3 days into this drip. Consent source: `signup`.
+**Trigger:** A new account signs up AND ticks the marketing opt-in checkbox (stored in `user_metadata.marketing_consent`). The cron worker's enqueue phase (phase 1a) enrols only opted-in accounts created within the last 3 days. Consent source: `signup`.
 
 | Step | Day | Purpose | Primary CTA |
 |------|-----|---------|-------------|

@@ -1,11 +1,9 @@
-Files confirmed. Here is the complete contents of MANUAL_SETUP.md.
-
 # Manual Setup
 
 This is the owner runbook for taking the opt-in email outreach system live for Zakarian GMAT. Follow the steps in order. The system is already built on branch `launch-system-growth-funnel` but is intentionally NOT deployed: it is gated on you setting the email provider and environment variables below.
 
 Important up front:
-- This system is opt-in only. Subscription rows are created only from an action the person took (signup, founding reservation, or a form submit). There is no cold outreach, no scraped or purchased contacts, and no LinkedIn automation. Keep it that way.
+- This system is opt-in only. Subscription rows are created only from an explicit, unticked-by-default opt-in checkbox (ticked at signup or on a lead form). There is no cold outreach, no scraped or purchased contacts, and no LinkedIn automation. Keep it that way.
 - Do not print or paste secret values anywhere (chat, commits, logs, screenshots). Set them directly in the Vercel dashboard.
 - Until RESEND is configured in Production, the queue will build but nothing will send. That is the intended safe state.
 
@@ -70,7 +68,7 @@ Trigger a redeploy of the Production deployment so it picks up the new environme
 - After deploy, confirm the cron job appears in the Vercel project under the Cron Jobs view.
 
 How the worker behaves once live:
-- Phase 1 (enqueue) ALWAYS runs, even with no email provider configured: it enrolls new signups (sequence A; accounts created within the last 3 days) and detects inactivity (sequence D; only for already-consented users inactive at the 3/7/14-day thresholds).
+- Phase 1 (enqueue) ALWAYS runs, even with no email provider configured: it enrolls new signups that ticked the marketing opt-in box (sequence A; opted-in accounts created within the last 3 days) and detects inactivity (sequence D; only for already-consented users inactive at the 3/7/14-day thresholds).
 - Phase 2 (send) runs ONLY if `RESEND_API_KEY` is set. If it is unset, Phase 2 returns without sending and without faking a send — the queue just accumulates rows in `pending`.
 - Consent is re-checked (subscribed = true) immediately before every send, sends carry `List-Unsubscribe` and `List-Unsubscribe-Post` (one-click) headers, each message is attempted up to 3 times, and every outcome is written to `email_events`.
 

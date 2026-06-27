@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle, ShieldCheck, KeyRound, MailCheck } from "lucide-react"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import { trackEvent } from "@/lib/analytics"
+import { buildMarketingConsent } from "@/lib/outreach/consent-flag"
 
 /**
  * Valid redirect paths after signup. A bare allow-list is safer than
@@ -75,6 +76,9 @@ function SignupForm() {
   // friend can sign up in one step when signup is gated. Lazy initializer reads
   // it once on mount; harmless when signup is open (the field isn't rendered).
   const [accessCode, setAccessCode] = useState(() => searchParams.get("invite") ?? "")
+  // Explicit, unticked-by-default marketing consent (separate from account
+  // creation). Transactional emails are unaffected by this.
+  const [marketingOptIn, setMarketingOptIn] = useState(false)
   // When Supabase has email confirmation ON, signUp returns no session and the
   // user must click an emailed link first. We surface a "check your email"
   // state (keyed by this) instead of pushing them to a protected route.
@@ -107,7 +111,13 @@ function SignupForm() {
         const res = await fetch("/api/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, password, accessCode }),
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            accessCode,
+            marketingConsent: marketingOptIn,
+          }),
         })
         data = await res.json().catch(() => ({}))
         if (!res.ok) {
@@ -143,7 +153,13 @@ function SignupForm() {
       email,
       password,
       options: {
-        data: { full_name: name },
+        data: {
+          full_name: name,
+          marketing_consent: buildMarketingConsent(
+            marketingOptIn,
+            new Date().toISOString()
+          ),
+        },
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     })
@@ -384,6 +400,20 @@ function SignupForm() {
               Minimum 8 characters
             </p>
           </div>
+
+          <label className="flex items-start gap-2.5 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={marketingOptIn}
+              onChange={(e) => setMarketingOptIn(e.target.checked)}
+              className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#C9A84C]"
+            />
+            <span className="text-[12px] text-[#888888] leading-relaxed">
+              Email me GMAT study tips, founding-user offers, and product
+              updates. Optional &mdash; unsubscribe anytime. We&apos;ll always
+              send essential account emails (like password resets) regardless.
+            </span>
+          </label>
 
           <button
             type="submit"

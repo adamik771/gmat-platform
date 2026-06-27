@@ -29,7 +29,13 @@ const COLS = "email, user_id, subscribed, consent_source, unsubscribe_token"
  */
 export async function recordConsent(
   service: SupabaseClient,
-  input: { email: string; userId?: string | null; source: string }
+  input: {
+    email: string
+    userId?: string | null
+    source: string
+    /** Actual time the user gave consent (e.g. ticked the box). Defaults to now. */
+    consentAt?: string
+  }
 ): Promise<ConsentRow | null> {
   const email = input.email.trim().toLowerCase()
   if (!email) return null
@@ -57,7 +63,7 @@ export async function recordConsent(
         user_id: input.userId ?? null,
         subscribed: true,
         consent_source: input.source,
-        consent_at: new Date().toISOString(),
+        consent_at: input.consentAt ?? new Date().toISOString(),
         unsubscribe_token: randomUUID(),
       })
       .select(COLS)

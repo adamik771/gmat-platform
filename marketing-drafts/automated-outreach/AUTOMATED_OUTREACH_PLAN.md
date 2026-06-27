@@ -12,7 +12,7 @@ The system turns actions a person already took on the site — signing up, reser
 
 Core properties:
 
-- **Opt-in only.** A subscription row is created only from an action the person took. No cold outreach, no scraped or purchased contacts, no LinkedIn bots or DMs. Ever.
+- **Opt-in only.** A subscription row is created only from an explicit, unticked-by-default marketing opt-in checkbox (at signup and on lead forms). Creating an account or submitting a form never enrols anyone on its own. No cold outreach, no scraped or purchased contacts, no LinkedIn bots or DMs. Ever.
 - **No provider = no fake sends.** If the email provider is not configured, the queue accumulates pending rows and the worker returns without sending and without faking a send.
 - **Auditable.** Every queue outcome (queued, sent, failed, skipped, held, open, click, unsubscribe) is written to an admin-safe event log.
 - **Re-checked consent.** Consent is verified immediately before every send; a prior unsubscribe is never resurrected.

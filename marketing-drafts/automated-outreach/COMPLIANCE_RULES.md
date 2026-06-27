@@ -1,5 +1,3 @@
-I'll write the compliance document based on the spec provided.
-
 # Compliance Rules
 
 This document defines the hard compliance model for the Zakarian GMAT automated email outreach system. These rules are load-bearing. They are not guidelines. If a situation is not covered here, default to not sending.
@@ -8,22 +6,22 @@ Zakarian GMAT is not affiliated with GMAC or mba.com. No email, page, or templat
 
 ## 1. Opt-in only
 
-A person receives outreach only if they created a consent record by taking an explicit action themselves. There is no other path to a subscription. The system never adds a contact on its own initiative.
+A person receives marketing outreach only if they gave EXPLICIT consent by ticking an unticked-by-default opt-in checkbox. Creating an account, reserving founding access, or submitting a lead form does NOT by itself enrol anyone — the checkbox is the consent. The system never adds a contact on its own initiative. No cold outreach, no scraped or purchased contacts, no LinkedIn automation. Ever.
 
-A subscription row in `email_subscriptions` is created ONLY from one of these user actions:
+A subscription row in `email_subscriptions` is created ONLY when the person ticked a marketing opt-in box:
 
-- A new account signup (cron phase 1a) — `consent_source = 'signup'`.
-- A founding-member reservation through the lead-capture API when `source = 'founding-member'` — `consent_source = 'founding-reservation'`.
-- A lead-magnet form submission through the lead-capture API when `leadMagnet = 'error-log-template'` — `consent_source = 'lead-capture:error-log-template'`.
+- Signup checkbox — stored as `user_metadata.marketing_consent = { optedIn: true, at, source: 'signup' }`. Cron phase 1a enrols an account only when this reads `optedIn === true`. `consent_source = 'signup'`.
+- Lead-capture checkbox (`optIn: true` in the request) on the founding-member form — `consent_source = 'founding-reservation'`.
+- Lead-capture checkbox (`optIn: true`) on the error-log-template form — `consent_source = 'lead-capture:error-log-template'`.
 
-If none of those actions happened, no subscription exists and nothing may be sent. Inactivity (sequence D) and milestones (sequence E) are NOT new consent sources — they only act on people who already have a `subscribed = true` record.
+The lead record and any requested asset (e.g. the template download) are delivered regardless of the checkbox; only the email SEQUENCE is gated on opt-in. If the box was not ticked, no subscription exists and nothing is sent. Inactivity (sequence D) and milestones (sequence E) are NOT consent sources — they only act on people who already have a `subscribed = true` record from an explicit opt-in. Pre-existing users are never auto-enrolled; they are reached only if they opt in going forward or via an approved manual backfill.
 
 ## 2. Consent tracking
 
 Every subscription records who consented, why, and when:
 
-- `consent_source` — the exact action that created the record (see the list above).
-- `consent_at` — the timestamp of that action.
+- `consent_source` — where the opt-in box was ticked (see the list above).
+- `consent_at` — the timestamp the person ticked the opt-in box.
 
 These fields are written at creation and are the audit trail. A subscription without a valid `consent_source` and `consent_at` is invalid and must not be sent to.
 
@@ -85,7 +83,7 @@ The system is safe to run before the email provider is set up:
 Confirm every item before enabling sends:
 
 1. The recipient has an `email_subscriptions` row with `subscribed = true`.
-2. That row has a valid `consent_source` and `consent_at` from one of the three approved actions (signup, founding reservation, error-log lead capture).
+2. That row has a valid `consent_source` and `consent_at` from an explicit opt-in checkbox (signup, founding reservation, or error-log lead capture).
 3. The recipient has not unsubscribed (`unsubscribed_at` is null; `subscribed` is true) — and the worker re-checks this immediately before the send.
 4. The email being sent is a real template that passed `tests/outreach-templates.test.ts` (no prohibited claims).
 5. The email contains a visible unsubscribe link and is sent with `List-Unsubscribe` + `List-Unsubscribe-Post` headers.

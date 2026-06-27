@@ -1,5 +1,3 @@
-I have everything I need. I've confirmed every trigger site, the dedupe-key shapes, consent sources, and the exact event-logging call sites. One note: the `queued` event type exists in the schema/enum and the `EmailEventType` union, but I should verify whether anything actually writes a `queued` event. From my reads, no enqueue path writes a `queued` event — the enqueue helpers (`enqueueDrip`/`enqueueStep`) only upsert into `email_queue` and don't call `logEmailEvent`. I'll document `queued` accurately as a reserved/defined-but-unused type. Same for `held` (a defined status/event with no current writer). Let me write EVENT_MAP.md.
-
 # Event Map
 
 This document maps every outreach trigger to its enqueue site, the sequence and steps it schedules, the consent source it records, and the dedupe-key shape it uses. It then documents the `email_events` log: every event type, when each is written, and the open/click tracking routes.
@@ -41,7 +39,7 @@ A second, independent gate runs at send time: the worker re-checks `subscribed=t
 
 Notes on the table:
 - `@N` means N days after the trigger. For A-C these are real schedule offsets. For D the day-number is the inactivity threshold that fires the step (not an offset from a single trigger). E steps are event-time (offset 0).
-- Phase 1a only enrolls signups whose account was created within the last 3 days (`ENROLL_WINDOW_DAYS`) and only confirmed accounts (`email_confirmed_at` set), so the daily scan is bounded and pre-existing users are not blasted.
+- Phase 1a only enrolls accounts that ticked the marketing opt-in box (`user_metadata.marketing_consent.optedIn === true`), are confirmed (`email_confirmed_at` set), and were created within the last 3 days (`ENROLL_WINDOW_DAYS`). Without the opt-in flag, an account is never enrolled; pre-existing users are not blasted.
 - The `mock-review` and `progress` milestone templates exist but their event hooks are not wired yet; they are documented as a follow-up.
 
 ---
@@ -164,7 +162,7 @@ Both tracking routes run on the Node runtime, are `force-dynamic`, and log throu
 
 ## 7. Compliance recap (load-bearing)
 
-- Opt-in only. A subscription row is created solely from an action the person took (signup, founding reservation, form submit). No cold outreach, scraped or purchased contacts, or LinkedIn bots/DMs, ever.
+- Opt-in only. A subscription row is created solely from an explicit, unticked-by-default opt-in checkbox (at signup or on the lead form). No cold outreach, scraped or purchased contacts, or LinkedIn bots/DMs, ever.
 - `consent_source` + `consent_at` are recorded on every subscription; the footer reason line is derived from `consent_source` via `consentReasonFor`.
 - `recordConsent` never resurrects a prior unsubscribe; the worker re-checks `subscribed=true` immediately before every send and cancels otherwise.
 - Every marketing email includes a visible unsubscribe link plus `List-Unsubscribe` and one-click headers, and the not-affiliated / no-guarantee footer.

@@ -64,6 +64,9 @@ export default function LeadCapture({
   )
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null)
   const [error, setError] = useState("")
+  // Explicit, unticked-by-default marketing consent. Submitting still captures
+  // the email / delivers the asset; only the email SEQUENCE is gated on this.
+  const [optIn, setOptIn] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -74,7 +77,7 @@ export default function LeadCapture({
       const res = await fetch("/api/lead-capture", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source, leadMagnet, hp }),
+        body: JSON.stringify({ email, source, leadMagnet, hp, optIn }),
       })
       const data = (await res.json().catch(() => ({}))) as {
         ok?: boolean
@@ -237,6 +240,19 @@ export default function LeadCapture({
           )}
         </button>
       </form>
+      <label className="flex items-start gap-2 mt-3 cursor-pointer select-none">
+        <input
+          type="checkbox"
+          checked={optIn}
+          onChange={(e) => setOptIn(e.target.checked)}
+          className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 accent-[#C9A84C]"
+          aria-label="Email me GMAT study tips and updates"
+        />
+        <span className="text-[11px] text-[#888888] leading-relaxed">
+          Email me GMAT study tips, founding-user offers, and product updates.
+          Optional &mdash; unsubscribe anytime.
+        </span>
+      </label>
       {state === "error" && (
         <p
           role="alert"

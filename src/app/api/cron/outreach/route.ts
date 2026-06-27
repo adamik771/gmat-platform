@@ -12,6 +12,7 @@ import {
 import { renderTemplate, isKnownTemplate } from "@/lib/outreach/templates"
 import { INACTIVE_THRESHOLDS } from "@/lib/outreach/sequences"
 import { consentReasonFor } from "@/lib/outreach/labels"
+import { readMarketingConsent } from "@/lib/outreach/consent-flag"
 
 // Node runtime: service-role client + fetch to Resend. Never cache.
 export const runtime = "nodejs"
@@ -51,6 +52,10 @@ interface UserInfo {
   firstName: string | null
   confirmed: boolean
   createdMs: number
+  /** Explicit marketing opt-in from the signup checkbox. */
+  marketingOptIn: boolean
+  /** When the user ticked the opt-in box (consent timestamp). */
+  consentAt?: string
 }
 
 function firstNameOf(meta: Record<string, unknown>): string | null {
@@ -94,11 +99,14 @@ export async function GET(request: Request) {
       for (const u of data.users) {
         if (!u.email) continue
         const meta = (u.user_metadata ?? {}) as Record<string, unknown>
+        const mc = readMarketingConsent(meta)
         usersById.set(u.id, {
           email: u.email,
           firstName: firstNameOf(meta),
           confirmed: !!u.email_confirmed_at,
           createdMs: u.created_at ? new Date(u.created_at).getTime() : 0,
+          marketingOptIn: mc.optedIn,
+          consentAt: mc.at,
         })
       }
       if (data.users.length < 100) break
@@ -111,11 +119,15 @@ export async function GET(request: Request) {
   try {
     for (const [userId, u] of usersById) {
       if (!u.confirmed) continue
+      // EXPLICIT consent required: only enrol accounts that ticked the signup
+      // opt-in box. Creating an account never enrols anyone on its own.
+      if (!u.marketingOptIn) continue
       if (nowMs - u.createdMs > ENROLL_WINDOW_DAYS * DAY_MS) continue
       const consent = await recordConsent(service, {
         email: u.email,
         userId,
         source: "signup",
+        consentAt: u.consentAt,
       })
       if (!consent || !consent.subscribed) continue
       const n = await enqueueDrip(service, {

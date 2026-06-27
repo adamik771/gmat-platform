@@ -207,19 +207,16 @@ export async function POST(request: Request) {
     body.slug !== "custom"
   ) {
     try {
-      const [{ getSupabaseService }, { recordConsent }, { enqueueStep }] =
+      const [{ getSupabaseService }, { isSubscribed }, { enqueueStep }] =
         await Promise.all([
           import("@/lib/supabase/service"),
           import("@/lib/outreach/consent"),
           import("@/lib/outreach/queue"),
         ])
       const service = getSupabaseService()
-      const consent = await recordConsent(service, {
-        email: user.email,
-        userId: user.id,
-        source: "signup",
-      })
-      if (consent?.subscribed) {
+      // Milestone emails go ONLY to users who explicitly opted in (an existing
+      // subscription). A practice session never creates consent on its own.
+      if (await isSubscribed(service, user.email)) {
         const meta = (user.user_metadata ?? {}) as Record<string, unknown>
         const firstName =
           typeof meta.full_name === "string" && meta.full_name.trim()

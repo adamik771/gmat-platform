@@ -60,6 +60,7 @@ export async function POST(request: Request) {
     source?: unknown
     leadMagnet?: unknown
     hp?: unknown
+    optIn?: unknown
   }
   try {
     body = (await request.json()) as typeof body
@@ -134,13 +135,15 @@ export async function POST(request: Request) {
     )
   }
 
-  // Opt-in outreach: this submission IS the consent. Enrol founding-member and
-  // error-log leads into their nurture sequence. Best-effort — never blocks or
-  // fails the capture response; the worker re-checks consent before any send.
+  // Marketing-sequence enrolment requires EXPLICIT opt-in (the form's unticked
+  // checkbox). The lead row + the requested asset (template download) are
+  // delivered regardless; only the email SEQUENCE is gated on consent. Without
+  // opt-in we enrol no one. Best-effort; the worker re-checks consent per send.
   try {
+    const optIn = body.optIn === true
     const isFounding = source === "founding-member"
     const isErrorLog = leadMagnet === "error-log-template"
-    if (isFounding || isErrorLog) {
+    if (optIn && (isFounding || isErrorLog)) {
       const consent = await recordConsent(supabase, {
         email,
         source: isFounding

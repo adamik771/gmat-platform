@@ -4,18 +4,19 @@
  */
 export function consentReasonFor(source: string): string {
   const map: Record<string, string> = {
-    signup: "you created a Zakarian GMAT account",
-    "founding-reservation": "you reserved founding access at zakariangmat.com",
+    signup: "you opted in to Zakarian GMAT emails when you created your account",
+    "founding-reservation":
+      "you opted in to emails when you reserved founding access",
     "lead-capture:founding-reservation":
-      "you reserved founding access at zakariangmat.com",
+      "you opted in to emails when you reserved founding access",
     "lead-capture:error-log-template":
-      "you requested the error-log template at zakariangmat.com",
-    "lead-capture:newsletter": "you subscribed at zakariangmat.com",
-    referral: "you joined through a referral link at zakariangmat.com",
-    milestone: "you have a Zakarian GMAT account",
+      "you opted in to emails when you requested the error-log template",
+    "lead-capture:newsletter": "you opted in to Zakarian GMAT emails",
+    referral: "you opted in to emails through a referral at zakariangmat.com",
+    milestone: "you opted in to Zakarian GMAT emails",
   }
   if (map[source]) return map[source]
   if (source.startsWith("lead-capture:"))
-    return "you submitted a form at zakariangmat.com"
-  return "you opted in at zakariangmat.com"
+    return "you opted in to emails at zakariangmat.com"
+  return "you opted in to emails at zakariangmat.com"
 }
