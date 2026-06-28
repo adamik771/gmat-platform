@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const DATA: AcquisitionLandingProps = {
   "slug": "gmat-study-plan",
   "eyebrow": "GMAT study plan",
-  "h1": "How to Build a GMAT Study Plan That Actually Moves Your Score",
+  "h1": "How to Build a GMAT Study Plan Around Your Own Baseline",
   "intro": "Most GMAT study plans fail for the same reason: they are a list of topics on a calendar, not a system that reacts to your mistakes. A plan that says \"Week 3: Geometry, Week 4: Critical Reasoning\" assumes your weaknesses are evenly spaced and never change. They aren't. Real score movement comes from three things working together — an honest baseline, a ruthless focus on your worst-performing topics, and a review schedule that re-tests what you got wrong before you forget it.\n\nThe single most important input is a number you cannot fake: your score on a full-length official GMAT Focus practice exam from mba.com. Everything downstream — which chapters to read, which question types to drill, how aggressive your timeline can be — should be derived from that baseline and updated every time you take another full-length. This page walks through how to build that loop by hand, and how Zakarian GMAT builds an adaptive version of it for you automatically. It's useful either way.",
   "sections": [
     {

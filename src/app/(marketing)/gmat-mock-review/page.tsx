@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const DATA: AcquisitionLandingProps = {
   "slug": "gmat-mock-review",
   "eyebrow": "GMAT mock review",
-  "h1": "How to Review a GMAT Mock Exam (the part that actually moves your score)",
+  "h1": "How to Review a GMAT Mock Exam — the Step Most People Skip",
   "intro": "Most people spend three hours taking a GMAT mock and twenty minutes reviewing it. That ratio is backwards. The test itself doesn't teach you anything — it's a measurement. The score points come from the review, and specifically from the questions you got right but shouldn't have, the ones you guessed, and the ones where you ran out of time and clicked anything to move on. A raw score tells you where you are. A proper review tells you what to do next, and that's the only part that changes the number.\n\nHere's the core idea you can use today, even with no platform: review every mock at the level of the individual question, not the section. \"I need to get better at Critical Reasoning\" is not actionable. \"I keep choosing the answer that's true but doesn't address the conclusion\" is. Below is the exact method — how to sort your misses, what to look for in the questions you got right, how to read your timing data, and how to compare one mock to the next so you're fixing trends instead of chasing one-off mistakes.",
   "sections": [
     {
