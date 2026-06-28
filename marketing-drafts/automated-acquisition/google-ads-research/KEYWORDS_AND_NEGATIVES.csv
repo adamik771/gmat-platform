@@ -1,0 +1,143 @@
+campaign,ad_group,keyword,match_type,intent,landing_page,starting_bid_or_bid_cap,priority,notes
+ZG-Search-Launch,AG-Study-Plan,gmat study plan,Exact,commercial,https://www.zakariangmat.com/gmat-study-plan,$1.80 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Study-Plan,gmat study plan,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan,$1.50 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Study-Plan,gmat study schedule,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan,$1.40 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Study-Plan,gmat focus study plan,Exact,commercial,https://www.zakariangmat.com/gmat-study-plan,$1.60 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Study-Plan,gmat focus study plan,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan,$1.40 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Study-Plan,gmat study plan 3 months,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan,$1.30 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Study-Plan,gmat preparation plan,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan,$1.30 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Study-Plan,how to study for gmat,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan,$1.10 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log template,Exact,transactional (free tool / lead magnet),https://www.zakariangmat.com/error-log-template,$1.60 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log template,Phrase,transactional (free tool / lead magnet),https://www.zakariangmat.com/error-log-template,$1.40 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log,Exact,transactional (free tool / lead magnet),https://www.zakariangmat.com/error-log-template,$1.40 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log,Phrase,transactional (free tool / lead magnet),https://www.zakariangmat.com/error-log-template,$1.20 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Error-Log-Template,gmat error log spreadsheet,Phrase,transactional (free tool / lead magnet),https://www.zakariangmat.com/error-log-template,$1.30 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Error-Log-Template,error log for gmat,Phrase,transactional (free tool / lead magnet),https://www.zakariangmat.com/error-log-template,$1.20 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Error-Log-Template,gmat mistake log,Phrase,transactional (free tool / lead magnet),https://www.zakariangmat.com/error-log-template,$1.10 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Error-Log-Template,gmat error tracker,Phrase,transactional (free tool / lead magnet),https://www.zakariangmat.com/error-log-template,$1.10 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Mock-Review,gmat mock review,Exact,commercial,https://www.zakariangmat.com/gmat-mock-review,$1.40 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Mock-Review,gmat mock review,Phrase,commercial,https://www.zakariangmat.com/gmat-mock-review,$1.20 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Mock-Review,gmat mock test analysis,Phrase,commercial,https://www.zakariangmat.com/gmat-mock-review,$1.20 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Mock-Review,gmat practice test review,Phrase,commercial,https://www.zakariangmat.com/gmat-mock-review,$1.20 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Mock-Review,how to review gmat mocks,Phrase,commercial,https://www.zakariangmat.com/gmat-mock-review,$1.10 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Mock-Review,gmat mock test analysis tool,Phrase,commercial,https://www.zakariangmat.com/gmat-mock-review,$1.30 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Insights,gmat data insights practice,Exact,commercial,https://www.zakariangmat.com/gmat-data-insights-practice,$1.50 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Insights,gmat data insights practice,Phrase,commercial,https://www.zakariangmat.com/gmat-data-insights-practice,$1.30 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Insights,gmat data insights questions,Phrase,commercial,https://www.zakariangmat.com/gmat-data-insights-practice,$1.30 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Insights,data insights gmat practice,Phrase,commercial,https://www.zakariangmat.com/gmat-data-insights-practice,$1.30 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Insights,gmat di practice,Phrase,commercial,https://www.zakariangmat.com/gmat-data-insights-practice,$1.10 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Insights,gmat data insights prep,Phrase,commercial,https://www.zakariangmat.com/gmat-data-insights-practice,$1.20 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Quant-Practice,gmat quant practice,Exact,commercial,https://www.zakariangmat.com/gmat-quant-practice,$1.60 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Quant-Practice,gmat quant practice,Phrase,commercial,https://www.zakariangmat.com/gmat-quant-practice,$1.40 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Quant-Practice,gmat quant questions,Phrase,commercial,https://www.zakariangmat.com/gmat-quant-practice,$1.40 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Quant-Practice,gmat quantitative practice,Phrase,commercial,https://www.zakariangmat.com/gmat-quant-practice,$1.30 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Quant-Practice,gmat math practice,Phrase,commercial,https://www.zakariangmat.com/gmat-quant-practice,$1.30 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Quant-Practice,gmat problem solving practice,Phrase,commercial,https://www.zakariangmat.com/gmat-quant-practice,$1.20 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Quant-Practice,gmat focus quant practice,Phrase,commercial,https://www.zakariangmat.com/gmat-quant-practice,$1.30 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Prep-Platform,gmat prep platform,Exact,transactional (product / founding),https://www.zakariangmat.com/gmat-private-beta,$2.00 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Prep-Platform,gmat prep platform,Phrase,transactional (product / founding),https://www.zakariangmat.com/gmat-private-beta,$1.70 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Prep-Platform,gmat prep app,Phrase,transactional (product / founding),https://www.zakariangmat.com/gmat-private-beta,$1.70 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Prep-Platform,online gmat prep,Phrase,transactional (product / founding),https://www.zakariangmat.com/gmat-private-beta,$1.60 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Prep-Platform,gmat prep online,Phrase,transactional (product / founding),https://www.zakariangmat.com/gmat-private-beta,$1.60 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Prep-Platform,best gmat prep platform,Phrase,transactional (product / founding),https://www.zakariangmat.com/gmat-private-beta,$2.00 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Prep-Platform,gmat focus prep,Phrase,transactional (product / founding),https://www.zakariangmat.com/gmat-private-beta,$1.50 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Prep-Platform,adaptive gmat prep,Phrase,transactional (product / founding),https://www.zakariangmat.com/gmat-private-beta,$1.40 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Verbal-Practice,gmat verbal practice,Phrase,commercial,https://www.zakariangmat.com/gmat-verbal-practice,$2.10 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Verbal-Practice,gmat verbal practice questions,Phrase,commercial,https://www.zakariangmat.com/gmat-verbal-practice,$1.90 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Verbal-Practice,gmat critical reasoning practice,Exact,commercial,https://www.zakariangmat.com/gmat-verbal-practice,$1.70 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Verbal-Practice,gmat reading comprehension practice,Exact,commercial,https://www.zakariangmat.com/gmat-verbal-practice,$1.60 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Verbal-Practice,gmat focus verbal prep,Phrase,commercial,https://www.zakariangmat.com/gmat-verbal-practice,$1.50 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Verbal-Practice,gmat verbal prep,Phrase,commercial,https://www.zakariangmat.com/gmat-verbal-practice,$1.80 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Verbal-Practice,critical reasoning gmat questions,Phrase,commercial,https://www.zakariangmat.com/gmat-verbal-practice,$1.40 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Verbal-Practice,gmat reading comprehension questions,Phrase,commercial,https://www.zakariangmat.com/gmat-verbal-practice,$1.35 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Sufficiency,gmat data sufficiency practice,Phrase,commercial,https://www.zakariangmat.com/gmat-data-sufficiency-practice,$2.20 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Sufficiency,gmat data sufficiency practice,Exact,commercial,https://www.zakariangmat.com/gmat-data-sufficiency-practice,$2.50 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Sufficiency,data sufficiency practice questions,Phrase,commercial,https://www.zakariangmat.com/gmat-data-sufficiency-practice,$1.80 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Sufficiency,gmat data sufficiency questions,Phrase,commercial,https://www.zakariangmat.com/gmat-data-sufficiency-practice,$1.90 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Sufficiency,ds practice gmat,Phrase,commercial,https://www.zakariangmat.com/gmat-data-sufficiency-practice,$1.40 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Sufficiency,gmat focus data sufficiency,Phrase,commercial,https://www.zakariangmat.com/gmat-data-sufficiency-practice,$1.60 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Sufficiency,data sufficiency questions,Exact,commercial,https://www.zakariangmat.com/gmat-data-sufficiency-practice,$1.50 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Data-Sufficiency,gmat data insights practice,Phrase,commercial,https://www.zakariangmat.com/gmat-data-sufficiency-practice,$1.50 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Study-Plan-2mo,2 month gmat study plan,Exact,commercial,https://www.zakariangmat.com/gmat-study-plan-2-months,$2.20 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Study-Plan-2mo,8 week gmat study plan,Exact,commercial,https://www.zakariangmat.com/gmat-study-plan-2-months,$2.00 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Study-Plan-2mo,gmat study plan 2 months,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan-2-months,$1.90 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Study-Plan-2mo,two month gmat plan,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan-2-months,$1.70 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Study-Plan-2mo,2 month gmat prep plan,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan-2-months,$1.80 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Study-Plan-2mo,8 week gmat plan,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan-2-months,$1.70 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Study-Plan-2mo,gmat study schedule 2 months,Phrase,commercial,https://www.zakariangmat.com/gmat-study-plan-2-months,$1.60 (campaign cap $3.00),Medium,Phase 2 expansion (add after first test reads)
+ZG-Search-Launch,AG-Free-Practice,free gmat practice questions,Exact,transactional (free practice),https://www.zakariangmat.com/gmat-practice-questions-free,$2.40 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Free-Practice,gmat practice questions free,Phrase,transactional (free practice),https://www.zakariangmat.com/gmat-practice-questions-free,$2.20 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Free-Practice,free gmat questions,Phrase,transactional (free practice),https://www.zakariangmat.com/gmat-practice-questions-free,$1.90 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Free-Practice,gmat focus practice questions free,Phrase,transactional (free practice),https://www.zakariangmat.com/gmat-practice-questions-free,$1.70 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Free-Practice,free gmat practice,Phrase,transactional (free practice),https://www.zakariangmat.com/gmat-practice-questions-free,$2.00 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Free-Practice,gmat practice questions,Exact,transactional (free practice),https://www.zakariangmat.com/gmat-practice-questions-free,$2.50 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Free-Practice,free gmat question bank,Phrase,transactional (free practice),https://www.zakariangmat.com/gmat-practice-questions-free,$1.60 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Free-Practice,gmat focus practice questions,Phrase,transactional (free practice),https://www.zakariangmat.com/gmat-practice-questions-free,$2.10 (campaign cap $3.00),High,First $50 test ad group
+ZG-Search-Launch,AG-Focus-Changes,gmat focus edition changes,Exact,informational,https://www.zakariangmat.com/gmat-focus-edition-changes,$0.85 (campaign cap $3.00),Low,"Tier 2 informational - lowest bid, add last"
+ZG-Search-Launch,AG-Focus-Changes,gmat focus vs old gmat,Exact,informational,https://www.zakariangmat.com/gmat-focus-edition-changes,$0.80 (campaign cap $3.00),Low,"Tier 2 informational - lowest bid, add last"
+ZG-Search-Launch,AG-Focus-Changes,what is gmat focus edition,Exact,informational,https://www.zakariangmat.com/gmat-focus-edition-changes,$0.75 (campaign cap $3.00),Low,"Tier 2 informational - lowest bid, add last"
+ZG-Search-Launch,AG-Focus-Changes,gmat focus vs gmat,Exact,informational,https://www.zakariangmat.com/gmat-focus-edition-changes,$0.80 (campaign cap $3.00),Low,"Tier 2 informational - lowest bid, add last"
+ZG-Search-Launch,AG-Focus-Changes,gmat focus edition changes,Phrase,informational,https://www.zakariangmat.com/gmat-focus-edition-changes,$0.70 (campaign cap $3.00),Low,"Tier 2 informational - lowest bid, add last"
+ZG-Search-Launch,AG-Focus-Changes,gmat focus edition explained,Phrase,informational,https://www.zakariangmat.com/gmat-focus-edition-changes,$0.65 (campaign cap $3.00),Low,"Tier 2 informational - lowest bid, add last"
+ZG-Search-Launch,AG-Focus-Changes,what changed gmat focus,Phrase,informational,https://www.zakariangmat.com/gmat-focus-edition-changes,$0.60 (campaign cap $3.00),Low,"Tier 2 informational - lowest bid, add last"
+ZG-Search-Launch,AG-Focus-Changes,gmat focus data insights,Phrase,informational,https://www.zakariangmat.com/gmat-focus-edition-changes,$0.55 (campaign cap $3.00),Low,"Tier 2 informational - lowest bid, add last"
+ZG-Search-Launch,(campaign negative - Campaign),free official,Negative Phrase,exclude,-,-,negative,Seeking GMAC official free material not our product
+ZG-Search-Launch,(campaign negative - Campaign),official guide,Negative Phrase,exclude,-,-,negative,Wants the GMAC Official Guide book not our platform
+ZG-Search-Launch,(campaign negative - Campaign),official gmat,Negative Phrase,exclude,-,-,negative,Implies GMAC-owned material; avoid affiliation confusion and wrong intent
+ZG-Search-Launch,(campaign negative - Campaign),mba.com,Negative Phrase,exclude,-,-,negative,Looking for GMAC official site not us
+ZG-Search-Launch,(campaign negative - Campaign),mba.com login,Negative Phrase,exclude,-,-,negative,Navigational to GMAC site
+ZG-Search-Launch,(campaign negative - Campaign),gmac,Negative Phrase,exclude,-,-,negative,Brand owner navigational - careers/login/contact
+ZG-Search-Launch,(campaign negative - Campaign),gmac login,Negative Phrase,exclude,-,-,negative,Navigational to GMAC
+ZG-Search-Launch,(campaign negative - Campaign),gmac careers,Negative Phrase,exclude,-,-,negative,Job seeker not student
+ZG-Search-Launch,(campaign negative - Campaign),answers,Negative Phrase,exclude,-,-,negative,Wants answer keys not practice
+ZG-Search-Launch,(campaign negative - Campaign),answer key,Negative Phrase,exclude,-,-,negative,Wants answer keys not practice
+ZG-Search-Launch,(campaign negative - Campaign),cheat,Negative Phrase,exclude,-,-,negative,Cheating intent - policy and wrong audience
+ZG-Search-Launch,(campaign negative - Campaign),cheat sheet,Negative Phrase,exclude,-,-,negative,Wants a cheat sheet not a platform
+ZG-Search-Launch,(campaign negative - Campaign),hack,Negative Phrase,exclude,-,-,negative,Low-intent shortcut seekers
+ZG-Search-Launch,(campaign negative - Campaign),leaked,Negative Phrase,exclude,-,-,negative,Seeking leaked/pirated content
+ZG-Search-Launch,(campaign negative - Campaign),pdf,Negative Phrase,exclude,-,-,negative,Wants a downloadable PDF not a SaaS product
+ZG-Search-Launch,(campaign negative - Campaign),free pdf,Negative Phrase,exclude,-,-,negative,Wants free PDF downloads
+ZG-Search-Launch,(campaign negative - Campaign),torrent,Negative Phrase,exclude,-,-,negative,Piracy intent
+ZG-Search-Launch,(campaign negative - Campaign),crack,Negative Phrase,exclude,-,-,negative,Piracy/cracked-software intent
+ZG-Search-Launch,(campaign negative - Campaign),download crack,Negative Phrase,exclude,-,-,negative,Piracy intent
+ZG-Search-Launch,(campaign negative - Campaign),free download,Negative Phrase,exclude,-,-,negative,Wants downloadable freebie not signup
+ZG-Search-Launch,(campaign negative - Campaign),jobs,Negative Phrase,exclude,-,-,negative,Job seeker not student
+ZG-Search-Launch,(campaign negative - Campaign),job,Negative Phrase,exclude,-,-,negative,Job seeker not student
+ZG-Search-Launch,(campaign negative - Campaign),salary,Negative Phrase,exclude,-,-,negative,Career-salary intent not prep
+ZG-Search-Launch,(campaign negative - Campaign),career,Negative Phrase,exclude,-,-,negative,Career intent not test prep
+ZG-Search-Launch,(campaign negative - Campaign),careers,Negative Phrase,exclude,-,-,negative,Career intent not test prep
+ZG-Search-Launch,(campaign negative - Campaign),coupon,Negative Phrase,exclude,-,-,negative,Discount-only seeker; nothing to charge during free beta
+ZG-Search-Launch,(campaign negative - Campaign),coupon code,Negative Phrase,exclude,-,-,negative,Discount-only seeker
+ZG-Search-Launch,(campaign negative - Campaign),promo code,Negative Phrase,exclude,-,-,negative,Discount-only seeker
+ZG-Search-Launch,(campaign negative - Campaign),discount code,Negative Phrase,exclude,-,-,negative,Discount-only seeker
+ZG-Search-Launch,(campaign negative - Campaign),is gmat hard,Negative Phrase,exclude,-,-,negative,Pure-research intent not buying intent
+ZG-Search-Launch,(campaign negative - Campaign),is the gmat hard,Negative Phrase,exclude,-,-,negative,Pure-research intent
+ZG-Search-Launch,(campaign negative - Campaign),what is gmat,Negative Phrase,exclude,-,-,negative,Top-of-funnel definitional not buying
+ZG-Search-Launch,(campaign negative - Campaign),what is a good gmat score,Negative Phrase,exclude,-,-,negative,Informational not product intent
+ZG-Search-Launch,(campaign negative - Campaign),gmat vs gre,Negative Phrase,exclude,-,-,negative,Comparison shopping different exam
+ZG-Search-Launch,(campaign negative - Campaign),gre,Negative Phrase,exclude,-,-,negative,Different exam entirely
+ZG-Search-Launch,(campaign negative - Campaign),gmat syllabus,Negative Phrase,exclude,-,-,negative,Wants exam content outline not platform
+ZG-Search-Launch,(campaign negative - Campaign),gmat exam dates,Negative Phrase,exclude,-,-,negative,Wants test scheduling not prep
+ZG-Search-Launch,(campaign negative - Campaign),gmat registration,Negative Phrase,exclude,-,-,negative,Wants to register for the exam not prep
+ZG-Search-Launch,(campaign negative - Campaign),gmat test center,Negative Phrase,exclude,-,-,negative,Test-day logistics not prep
+ZG-Search-Launch,(campaign negative - Campaign),gmat fee,Negative Phrase,exclude,-,-,negative,Exam-fee research not our product
+ZG-Search-Launch,(campaign negative - Campaign),gmat cost,Negative Phrase,exclude,-,-,negative,Exam-cost research not our product
+ZG-Search-Launch,(campaign negative - Campaign),executive assessment,Negative Phrase,exclude,-,-,negative,Different exam
+ZG-Search-Launch,(campaign negative - Campaign),ea exam,Negative Phrase,exclude,-,-,negative,Different exam
+ZG-Search-Launch,(campaign negative - Campaign),gmat club,Negative Phrase,exclude,-,-,negative,Competitor/forum navigational
+ZG-Search-Launch,(campaign negative - Campaign),manhattan,Negative Phrase,exclude,-,-,negative,Competitor brand navigational
+ZG-Search-Launch,(campaign negative - Campaign),kaplan,Negative Phrase,exclude,-,-,negative,Competitor brand navigational
+ZG-Search-Launch,(campaign negative - Campaign),princeton review,Negative Phrase,exclude,-,-,negative,Competitor brand navigational
+ZG-Search-Launch,(campaign negative - Campaign),magoosh,Negative Phrase,exclude,-,-,negative,Competitor brand navigational
+ZG-Search-Launch,(campaign negative - Campaign),ttp,Negative Phrase,exclude,-,-,negative,Competitor brand navigational (Target Test Prep)
+ZG-Search-Launch,(campaign negative - Campaign),target test prep,Negative Phrase,exclude,-,-,negative,Competitor brand navigational
+ZG-Search-Launch,(campaign negative - Campaign),e-gmat,Negative Phrase,exclude,-,-,negative,Competitor brand navigational
+ZG-Search-Launch,(campaign negative - Campaign),egmat,Negative Phrase,exclude,-,-,negative,Competitor brand navigational
+ZG-Search-Launch,(campaign negative - Campaign),gmat coaching,Negative Phrase,exclude,-,-,negative,Seeking in-person tutor/coaching not self-serve platform
+ZG-Search-Launch,(campaign negative - Campaign),gmat tutor,Negative Phrase,exclude,-,-,negative,Seeking 1-on-1 tutor not self-serve platform
+ZG-Search-Launch,(campaign negative - Campaign),gmat classes,Negative Phrase,exclude,-,-,negative,Seeking classroom course not self-serve platform
+ZG-Search-Launch,(campaign negative - Campaign),gmat coaching near me,Negative Phrase,exclude,-,-,negative,Local in-person intent
+ZG-Search-Launch,(campaign negative - Campaign),old gmat,Negative Phrase,exclude,-,-,negative,Pre-Focus legacy exam not relevant
+ZG-Search-Launch,(campaign negative - Campaign),gmat 800,Negative Phrase,exclude,-,-,negative,Legacy 800-scale exam not Focus Edition
+ZG-Search-Launch,(campaign negative - Campaign),free,Negative Exact,exclude,-,-,negative,Block bare 'free' searches with no buying intent
+ZG-Search-Launch,(campaign negative - Campaign),gmat,Negative Exact,exclude,-,-,negative,Block ultra-broad single-word exact - no commercial intent
