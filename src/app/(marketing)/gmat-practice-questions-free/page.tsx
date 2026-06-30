@@ -63,11 +63,11 @@ const DATA: AcquisitionLandingProps = {
   ],
   lead: {
     source: "other",
-    leadMagnet: "newsletter",
-    headline: "Get the free GMAT starter pack",
+    leadMagnet: "error-log-template",
+    headline: "Get the free six-tag error-log template",
     description:
-      "We’ll email you the six-tag error-log template plus a link to a free sample chapter, so you can start practicing and reviewing the right way today.",
-    ctaLabel: "Send it to me",
+      "We’ll send the six-tag error-log template now — the system Adam used to go from 565 to 735 — then a short series on turning practice into progress. Use it alongside the free question bank.",
+    ctaLabel: "Email me the template",
   },
   metaDescription:
     "Free GMAT practice questions during our private beta — original Quant, Verbal, and Data Insights items built for the Focus Edition. No card, no catch.",
