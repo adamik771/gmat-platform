@@ -409,9 +409,10 @@ function SignupForm() {
               className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#C9A84C]"
             />
             <span className="text-[12px] text-[#888888] leading-relaxed">
-              Email me GMAT study tips, founding-user offers, and product
-              updates. Optional &mdash; unsubscribe anytime. We&apos;ll always
-              send essential account emails (like password resets) regardless.
+              Email me the getting-started series from Adam &mdash; how to use
+              the platform, founding-user offers, and product updates. Optional;
+              unsubscribe in one click. We&apos;ll always send essential account
+              emails (like password resets) regardless.
             </span>
           </label>
 

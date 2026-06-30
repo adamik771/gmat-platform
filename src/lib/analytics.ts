@@ -91,7 +91,9 @@ export function captureAttribution(search: string): void {
  * Keep names stable and snake_case; they show up verbatim in the Vercel
  * Analytics "Events" view. Funnel events in use: `signup`,
  * `checkout_initiated`, `purchase_completed`, `pricing_view`,
- * `founding_reserve`, `referral_click`, `feedback_click`.
+ * `founding_reserve`, `referral_click`, `feedback_click`,
+ * `lead_captured`, `marketing_opt_in` (props: source, lead_magnet,
+ * placement = "inline" | "post_download").
  *
  * First-touch campaign attribution (utm_* / ref) is merged into every event
  * automatically — see getAttribution / captureAttribution.

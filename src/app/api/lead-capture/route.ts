@@ -140,6 +140,15 @@ export async function POST(request: Request) {
   // delivered regardless. With opt-in we record consent for EVERY lead; only
   // the founding / error-log magnets also start an automated drip. Best-effort;
   // the worker re-checks consent on every send.
+  //
+  // We report the actual outcome back to the client so the success UI can be
+  // truthful: `subscribed` = the address is now opted in (false if it had
+  // previously unsubscribed — recordConsent never resurrects that); `emailScheduled`
+  // = a drip was actually enqueued (only founding / error-log have a sequence —
+  // a newsletter opt-in is recorded but sends nothing until a manual broadcast,
+  // so the client must NOT promise "first email on its way" there).
+  let subscribed = false
+  let emailScheduled = false
   try {
     const optIn = body.optIn === true
     const isFounding = source === "founding-member"
@@ -159,14 +168,16 @@ export async function POST(request: Request) {
         email,
         source: consentSource,
       })
+      subscribed = consent?.subscribed === true
       // Enrol in an automated drip only where a sequence exists (founding,
       // error-log). Newsletter opt-ins are recorded but not auto-sequenced.
-      if (consent?.subscribed && (isFounding || isErrorLog)) {
+      if (subscribed && (isFounding || isErrorLog)) {
         await enqueueDrip(supabase, {
           sequence: isFounding ? "founding" : "error-log",
           email,
           payload: { downloadUrl: MAGNET_DOWNLOADS[leadMagnet] ?? null },
         })
+        emailScheduled = true
       }
     }
   } catch {
@@ -176,5 +187,7 @@ export async function POST(request: Request) {
   return Response.json({
     ok: true,
     downloadUrl: MAGNET_DOWNLOADS[leadMagnet] ?? null,
+    subscribed,
+    emailScheduled,
   })
 }

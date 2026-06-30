@@ -23,6 +23,6 @@ This is the spreadsheet I used to climb from 565 to 735. Six columns, one row pe
 
 It doesn't surface patterns automatically. It doesn't space the re-tests for you. It doesn't tell you which chapter to open next. The platform — zakariangmat.com — does all of that.
 
-If you want to run the loop in a spreadsheet, this is the loop. If you'd rather have it run for you, the diagnostic on the platform is free.
+If you want to run the loop in a spreadsheet, this is the loop. If you'd rather have it run for you, the platform is free while it's in private beta: enter an official-practice-exam baseline and it builds your weak-area plan and spaced review from there.
 
 — Adam Zakarian

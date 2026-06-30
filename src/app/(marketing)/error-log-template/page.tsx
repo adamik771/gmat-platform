@@ -53,7 +53,7 @@ const faqItems = [
   {
     question: "Is the template really free?",
     answer:
-      "Yes. Enter your email and the spreadsheet downloads immediately — no account, no card. You will also get occasional GMAT prep notes you can unsubscribe from in one click.",
+      "Yes. Enter your email and the spreadsheet downloads immediately — no account, no card. If you opt in, you will also get a short series on how to actually use the log, which you can unsubscribe from in one click.",
   },
   {
     question: "Do I need to sign up for the platform to use it?",
@@ -118,6 +118,9 @@ export default function ErrorLogTemplatePage() {
             description="The six-tag taxonomy and the spreadsheet structure, ready to use. Two months of honest logging surfaces the patterns that cost you points."
             ctaLabel="Email me the template"
             successHeadline="Check your download — and good luck."
+            optInLabel="Also send the 4-part walkthrough — how to actually use this log and put it on autopilot, from the system behind Adam's 565 to 735. Optional; unsubscribe in one click."
+            secondChancePitch="Want the walkthrough? I'll send four short emails on getting real signal out of this log — and the rest of the system behind 565 to 735. Unsubscribe in one click."
+            optInCtaLabel="Email me the walkthrough"
           />
           <p className="text-[11px] text-[#555555] leading-relaxed mt-4">
             GMAT is a registered trademark of the Graduate Management Admission

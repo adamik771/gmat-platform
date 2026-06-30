@@ -42,6 +42,15 @@ interface LeadCaptureProps {
   /** When set, fires this trackEvent (with source + lead_magnet) on a
    *  successful submit — used for funnel events like `founding_reserve`. */
   trackEventName?: string
+  /** Label for the explicit, unticked marketing-consent checkbox. Describe the
+   *  actual emails so the tick is an informed choice (and worth making). */
+  optInLabel?: string
+  /** Pitch shown on the success screen to a prospect who did NOT tick the box —
+   *  the second-chance opt-in, offered at peak intent right after they convert.
+   *  Their click is the explicit consent (GDPR-clean). */
+  secondChancePitch?: string
+  /** Button label for the second-chance opt-in. */
+  optInCtaLabel?: string
 }
 
 export default function LeadCapture({
@@ -56,6 +65,9 @@ export default function LeadCapture({
   variant = "default",
   footnote = "One email. No spam. Unsubscribe with one click.",
   trackEventName,
+  optInLabel = "Also email me Adam's GMAT prep notes — the system behind his 565 to 735, one practical step at a time. Optional; unsubscribe in one click.",
+  secondChancePitch = "Want Adam's GMAT prep notes? A short series on the system behind his 565 to 735 — no spam, unsubscribe in one click.",
+  optInCtaLabel = "Email me the notes",
 }: LeadCaptureProps) {
   const [email, setEmail] = useState("")
   const [hp, setHp] = useState("")
@@ -67,6 +79,61 @@ export default function LeadCapture({
   // Explicit, unticked-by-default marketing consent. Submitting still captures
   // the email / delivers the asset; only the email SEQUENCE is gated on this.
   const [optIn, setOptIn] = useState(false)
+  // Second-chance opt-in on the success screen (for prospects who didn't tick
+  // the box). Tracked separately so the success UI can reflect its own state.
+  const [postOptIn, setPostOptIn] = useState<
+    "idle" | "submitting" | "done" | "error"
+  >("idle")
+  // The server's actual consent outcome (not client intent), so the success UI
+  // can be truthful: `subscribed` is false for an address that previously
+  // unsubscribed (never resurrected); `emailScheduled` is true only when a drip
+  // was really enqueued. Null until an opt-in has been attempted.
+  const [subResult, setSubResult] = useState<{
+    subscribed: boolean
+    emailScheduled: boolean
+  } | null>(null)
+
+  // Fire the stable opt-in conversion event once per opt-in. `placement`
+  // distinguishes the inline checkbox from the post-download second chance, so
+  // we can measure which one is actually converting leads into subscribers.
+  function trackOptIn(placement: "inline" | "post_download") {
+    trackEvent("marketing_opt_in", {
+      source,
+      lead_magnet: leadMagnet,
+      placement,
+    })
+  }
+
+  // Re-post the same lead with explicit consent — upserts the lead row, records
+  // consent, and enrols the drip where one exists. Best-effort; mirrors submit.
+  async function handleSecondChanceOptIn() {
+    if (!email.trim() || postOptIn === "submitting") return
+    setPostOptIn("submitting")
+    try {
+      const res = await fetch("/api/lead-capture", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source, leadMagnet, hp: "", optIn: true }),
+      })
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean
+        subscribed?: boolean
+        emailScheduled?: boolean
+      }
+      if (!res.ok || !data.ok) {
+        setPostOptIn("error")
+        return
+      }
+      setSubResult({
+        subscribed: data.subscribed === true,
+        emailScheduled: data.emailScheduled === true,
+      })
+      setPostOptIn("done")
+      trackOptIn("post_download")
+    } catch {
+      setPostOptIn("error")
+    }
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -83,6 +150,8 @@ export default function LeadCapture({
         ok?: boolean
         downloadUrl?: string | null
         error?: string
+        subscribed?: boolean
+        emailScheduled?: boolean
       }
       if (!res.ok || !data.ok) {
         setState("error")
@@ -90,11 +159,18 @@ export default function LeadCapture({
         return
       }
       setDownloadUrl(data.downloadUrl ?? null)
+      if (optIn) {
+        setSubResult({
+          subscribed: data.subscribed === true,
+          emailScheduled: data.emailScheduled === true,
+        })
+      }
       setState("done")
       // Always record the email capture; also fire the specific funnel event
       // when one is named (e.g. founding_reserve). trackEvent swallows its own
       // errors and carries first-touch attribution automatically.
       trackEvent("lead_captured", { source, lead_magnet: leadMagnet })
+      if (optIn) trackOptIn("inline")
       if (trackEventName && trackEventName !== "lead_captured") {
         trackEvent(trackEventName, { source, lead_magnet: leadMagnet })
       }
@@ -117,6 +193,15 @@ export default function LeadCapture({
       (downloadUrl
         ? "The template is downloading now. If it doesn't open automatically, click below."
         : "Expect the next post when it ships.")
+    // An opt-in was attempted via the inline checkbox or the second chance.
+    // Drive the confirmation off the SERVER's outcome (subResult), not client
+    // intent, so the copy is truthful — a previously-unsubscribed address reads
+    // subscribed:false, and only founding / error-log magnets actually schedule
+    // an email. Offer the second chance only to someone who hasn't opted in yet.
+    const optInAttempted = optIn || postOptIn === "done"
+    const subscribed = subResult?.subscribed === true
+    const emailScheduled = subResult?.emailScheduled === true
+    const showSecondChance = !optIn && postOptIn !== "done"
     return (
       <div
         className={
@@ -150,8 +235,60 @@ export default function LeadCapture({
                 Download the template
               </a>
             )}
+            {optInAttempted &&
+              (subscribed ? (
+                <p className="text-[12px] text-[#3ECF8E] leading-relaxed mt-3">
+                  {emailScheduled
+                    ? "You're on the list — the first email is on its way. Unsubscribe anytime."
+                    : "You're on the list. I'll only email you when there's something genuinely worth sending. Unsubscribe anytime."}
+                </p>
+              ) : (
+                <p className="text-[12px] text-[#888888] leading-relaxed mt-3">
+                  {"You unsubscribed from these emails before, so I'll respect that and leave it there."}
+                </p>
+              ))}
           </div>
         </div>
+
+        {showSecondChance && (
+          <div className="mt-5 pt-5 border-t border-white/[0.08]">
+            <p className="text-[13px] text-[#C0C0C0] leading-relaxed mb-3">
+              {secondChancePitch}
+            </p>
+            <button
+              type="button"
+              onClick={handleSecondChanceOptIn}
+              disabled={postOptIn === "submitting"}
+              aria-busy={postOptIn === "submitting"}
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold transition-all duration-200 hover:enabled:opacity-90 hover:enabled:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {postOptIn === "submitting" ? (
+                <>
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  Adding you
+                </>
+              ) : (
+                <>
+                  {optInCtaLabel}
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </>
+              )}
+            </button>
+            {postOptIn === "error" && (
+              <p
+                role="alert"
+                className="text-[12px] mt-2"
+                style={{ color: "#FF4444" }}
+              >
+                Couldn&apos;t add you just now — try again in a moment.
+              </p>
+            )}
+            <p className="text-[11px] text-[#555555] mt-3">
+              One short email at a time. Unsubscribe in one click.
+            </p>
+          </div>
+        )}
       </div>
     )
   }
@@ -249,8 +386,7 @@ export default function LeadCapture({
           aria-label="Email me GMAT study tips and updates"
         />
         <span className="text-[11px] text-[#888888] leading-relaxed">
-          Email me GMAT study tips, founding-user offers, and product updates.
-          Optional &mdash; unsubscribe anytime.
+          {optInLabel}
         </span>
       </label>
       {state === "error" && (
