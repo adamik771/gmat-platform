@@ -2,6 +2,43 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-30 (Google Ads went LIVE + 5 new SEO pages deployed + ad-compliance H1 fix + deep Google-Ads research + the "funnel converts but 0% opt-in" finding)
+
+Read this whole block first. Everything below predates it.
+
+### Shipped to prod (`main` @ 28eec75, deployed + verified live)
+- **5 new SEO landing pages** (`/gmat-verbal-practice`, `/gmat-data-sufficiency-practice`, `/gmat-study-plan-2-months`, `/gmat-practice-questions-free`, `/gmat-focus-edition-changes`) — reuse `AcquisitionLanding`; + sitemap entries + a "Keep going" internal-links section on all acquisition pages. (Adam merged these via PR #507.)
+- **`/about`**: removed the missing `/score-report.png` reference (no broken image, no unsupported "verified" proof claim) + added real PWA icons (`public/icons/icon-192/512/512-maskable.png`, gold-Z brand mark).
+- **Ad-compliance H1 reword** (commit `28eec75`): `/gmat-study-plan` and `/gmat-mock-review` no longer say "moves your score" (Google unrealistic-claims policy) → now "...Around Your Own Baseline" / "...the Step Most People Skip". Both are now compliant paid-traffic destinations.
+- Earlier this session: lead-capture now records consent for ALL explicit opt-ins (was silently dropping newsletter opt-ins); `/refer` got `landing_view` tracking.
+- Adam also pushed his own fixes: the `/gmat-error-log-template` slug + robots.txt change so `/error-log-template` isn't prefix-blocked by the `/error-log` disallow.
+
+### Docs on branch `seo-pages-batch-2` (@ 2bd09d6 — docs only, NOT in main; merge anytime)
+- `marketing-drafts/automated-acquisition/google-ads-launch/` extended to 11 ad groups (char-validated keywords/RSAs/landing-map).
+- `marketing-drafts/automated-acquisition/google-ads-research/` — **10 cited deliverables** (RESEARCH_SUMMARY, SOURCE_MATRIX [72 real URLs, ~40 official Google docs], GOOGLE_ADS_RECOMMENDATION, FIRST_50_DOLLAR_TEST, KEYWORDS_AND_NEGATIVES.csv, ADS.csv, CONVERSION_TRACKING_PLAN, LANDING_PAGE_FIXES, DAILY_MONITORING_GUIDE, EXACT_MANUAL_STEPS). Evidence-backed plan: Search-only, exact/phrase, Maximize Clicks → Maximize Conversions only after ~15 conv/30d, ~$7/day, `lead_captured` primary, **concentrate budget on 2 ad groups not 4**.
+
+### LIVE Google Ads (Adam's account — external, NOK currency)
+- Campaign **"Campaign #1"** (= the `ZG-Search-Launch` in docs): Search only, Display + Search Partners OFF, locations US/CA/UK/AU (Presence), English, EXACT/PHRASE only, **Maximize Clicks $3 cap**, ~$7–20/day.
+- **Ad group 1 (error-log)** → `/error-log-template` (3 RSAs). **Ad group 2 (free-practice)** → `/gmat-practice-questions-free` (2 RSAs). **FIXED this session: Ad group 2's ads were wrongly pointing at `/error-log-template`** — all its ~17 clicks had been misrouted to the wrong page.
+- Added this session: 4 sitelinks, 8 callouts, ~43 negative keywords (saved as list "ZG core negatives").
+- Perf so far: ~29 clicks / ~340 impr / CTR ~5–6% / ~NOK300 spent.
+- **Conversion tracking:** GA4 live (G-id in Vercel, events firing); `lead_captured` marked as a GA4 **key event**; GA4↔Ads linked (metrics+audiences). **The conversion-action IMPORT into Google Ads is NOT done yet** — waiting on the 24–48h GA4→Ads sync. Until it's done Google Ads shows 0 conversions. PRIMARY=`lead_captured`; SECONDARY=`signup`, `founding_reserve` (neither fired yet).
+- `claude-ads` skill installed at `~/.claude/skills/` (22 ads skills). Ran its `ads-google` audit → **64/100 (C+)**, dragged almost entirely by the conversion-tracking gap; foundation (Search-only/exact-phrase/networks-off/presence/tight structure/strong copy) is top-tier.
+
+### KEY FINDINGS
+- **The funnel converts.** `lead_captures` has 5 emails — **2 are real ad-driven leads** (`jcallahan531@gmail.com`, `alacet10@gmail.com`, Jun 29). ~17 real beta accounts exist in Supabase auth, but all ORGANIC / pre-ad (mid-June launch).
+- **BIGGEST GAP — 0% marketing opt-in** across every lead AND every signup → `email_subscriptions` is EMPTY → the automated email nurture reaches NOBODY. The return loop (lead → nurture → signup) is broken at the opt-in checkbox. Proposed but NOT done: put a CTA inside the error-log CSV + the download success screen, and rework the opt-in copy. The magnet is good; the **return mechanism is the weak link.**
+
+### OPEN TO-DOs (priority order)
+1. **Finish the Google Ads conversion import** (after the GA4 sync, ~Jul 1): Goals → Conversions → New conversion action → Import → GA4 → Web → `lead_captured` → set Primary. THE priority — unlocks measurement + later Smart Bidding.
+2. **Confirm auto-apply recommendations are OFF** (Recommendations → Auto-apply settings) — was Task 4, unconfirmed.
+3. **Fix the 0%-opt-in / return path** (in-template + download-screen CTA + opt-in copy) — biggest strategic lever for turning leads into users.
+4. Enhanced Conversions + Consent Mode v2 (audit items; matters for UK/EEA traffic).
+5. **Delete test account `adamzakaryan+signuptest@gmail.com`** from Supabase auth (created while verifying signup works — signup confirmed working end-to-end).
+6. GSC: request-index the 5 new pages if not already done.
+7. Optional: merge `seo-pages-batch-2` docs to main; a sharper 3rd RSA for free-practice (decided 2 is enough for now).
+- Pixels still dormant (Meta/retargeting later); `PAYWALL_ENABLED` still OFF (free beta).
+
 ## CONTEXT SWITCH — 2026-06-27 (BIG session: data-integrity fixes + lead-capture fix + opt-in EMAIL OUTREACH system + ACQUISITION system — ALL MERGED TO MAIN, DEPLOYED, and EMAIL IS LIVE)
 
 Read this whole block first. Everything below this entry predates it.
