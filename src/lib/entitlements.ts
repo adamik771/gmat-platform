@@ -82,20 +82,21 @@ export function practiceTestsAllowed(tier: PlanTier): number {
 }
 
 /* ------------------------------------------------------------------------- *
- * Free trial (card-on-file, single charge after the window — model "B").
+ * Free trial + paid access.
  *
- * A new account starts a TRIAL_DAYS trial when it puts a card on file at
- * signup; the day-after-trial charge is collected by a separate billing step
- * (Stripe SetupIntent at signup + a scheduled off-session charge — built in a
- * later phase). THIS module is pure and processor-agnostic: it only decides,
- * from {has a paid purchase?, when did the trial start?, now}, whether an
- * account may enter the paid surfaces. Nothing here reaches Stripe.
+ * Billing model: a Stripe subscription with a card-required 7-day trial (Stripe
+ * Billing's native `trial_period_days`). Stripe collects the card at signup,
+ * runs the trial, and auto-charges when it ends — so Stripe owns the trial +
+ * billing + tax/SCA/dunning (the account is on Stripe Managed Payments, i.e.
+ * merchant of record, on a supported Norway business location). The app only
+ * mirrors the subscription's status into the gating contract below — see
+ * accessFromStripeSubscriptionStatus.
  *
- * The trial start timestamp is a small per-user scalar — it lives in
- * `user_metadata.trial_started_at` (ISO string), never in a growing table-or
- * cookie payload (see the user_state split). Everything below is dormant while
- * PAYWALL_ENABLED is off: resolveAccess is only consulted by gated surfaces,
- * which themselves no-op until the paywall is armed.
+ * The pure helpers here (resolveAccess / trialDaysLeft) are processor-agnostic
+ * and also back a no-card, in-app trial fallback keyed on a small
+ * `user_metadata.trial_started_at` scalar (never a growing table/cookie payload
+ * — see the user_state split). Everything is dormant while PAYWALL_ENABLED is
+ * off: the gating surfaces no-op until the paywall is armed.
  * ------------------------------------------------------------------------- */
 
 /** Length of the free trial, in days. */
@@ -157,6 +158,54 @@ export function resolveAccess(input: {
 /** Does this access state grant entry to the paid surfaces? */
 export function accessGrants(state: AccessState): boolean {
   return state === "paid" || state === "trialing"
+}
+
+/* ------------------------------------------------------------------------- *
+ * Stripe subscription -> access. Stripe owns the trial + the charge + tax/SCA/
+ * dunning; the webhook upserts the subscription's status and we mirror it into
+ * the gating contract above. Statuses verified against the Stripe API
+ * subscription object: trialing, active, past_due, canceled, unpaid,
+ * incomplete, incomplete_expired, paused.
+ * ------------------------------------------------------------------------- */
+
+/** Subscription statuses the Stripe API reports on a subscription object. */
+export type StripeSubscriptionStatus =
+  | "trialing"
+  | "active"
+  | "past_due"
+  | "canceled"
+  | "unpaid"
+  | "incomplete"
+  | "incomplete_expired"
+  | "paused"
+
+/**
+ * Map a Stripe subscription status to our access state.
+ * - `trialing` -> trialing (card on file, inside the 7-day trial)
+ * - `active`   -> paid (trial converted / billing current)
+ * - `past_due` -> paid (GRACE: Stripe is retrying the card via dunning; don't
+ *   cut off a recoverable customer on the first failed renewal)
+ * - everything else — `unpaid` (dunning exhausted), `canceled`, `paused` (trial
+ *   ended with no card), `incomplete`/`incomplete_expired` (first payment never
+ *   succeeded), or any unknown string -> none (fail closed)
+ */
+export function accessFromStripeSubscriptionStatus(
+  status: string | null | undefined
+): AccessState {
+  switch (status) {
+    case "trialing":
+      return "trialing"
+    case "active":
+    case "past_due": // grace window while Stripe retries the card
+      return "paid"
+    case "unpaid":
+    case "canceled":
+    case "paused":
+    case "incomplete":
+    case "incomplete_expired":
+    default:
+      return "none"
+  }
 }
 
 /** Read `trial_started_at` from a user's metadata (ISO string or null). */
