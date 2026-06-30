@@ -2,6 +2,35 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
+## CONTEXT SWITCH — 2026-06-30 (LATER: fixed the 0%-opt-in RETURN PATH — second-chance opt-in + server-truthful confirmation + CSV/README CTA. Branch `growth/opt-in-return-path`, NOT committed/merged)
+
+Read this block first. It addresses **OPEN TO-DO #3** from the entry just below ("Fix the 0%-opt-in / return path"), the biggest strategic lever for turning leads into users.
+
+### Branch + state
+- New branch **`growth/opt-in-return-path`** off `origin/main` (tip `ce4ccb4`). **Uncommitted, NOT merged.** Gate green: content 0 errors, tsc, **339 tests**, eslint, `next build`. Browser-verified all three confirmation paths (stubbed `/api/lead-capture` to avoid writing test rows to prod Supabase).
+- The Table Analysis blog post (`737a53e` on `blog/gmat-table-analysis-strategy`) is a SEPARATE prior-session branch, still pushed-not-merged — untouched by this work.
+
+### Root cause of 0% opt-in
+The marketing-consent checkbox is unticked-by-default (correct GDPR) AND the magnet (CSV) is delivered regardless, with weak generic copy — so nobody ticks → `email_subscriptions` stays empty → nurture reaches no one.
+
+### What shipped (all on the shared `LeadCapture` → fixes all ~11 surfaces at once)
+1. **Second-chance opt-in on the success screen** (the lever): a prospect who skipped the box gets a one-click opt-in at peak intent (right after the asset is delivered). The click re-POSTs to `/api/lead-capture` with `optIn:true` → records consent + enrols the drip. Explicit click = GDPR-clean; never auto-enrols.
+2. **Server-truthful confirmation** (from the adversarial review): `/api/lead-capture` now returns `{ subscribed, emailScheduled }`. The success copy keys off the REAL outcome, not client intent: drip magnet (founding/error-log) → "the first email is on its way"; newsletter (consent recorded but **no drip exists**) → "I'll only email you when there's something genuinely worth sending"; previously-unsubscribed (recordConsent never resurrects) → "You unsubscribed before, so I'll respect that." Prevents a false "first email on its way" promise on the ~9 newsletter ad-landing pages.
+3. **Stronger/specific opt-in copy** — `optInLabel`/`secondChancePitch`/`optInCtaLabel` props (good generic defaults; error-log page + `FoundingOffer` pass surface-specific copy). Signup opt-in copy also sharpened.
+4. **CTA inside the delivered CSV** (`public/downloads/zakarian-gmat-error-log-template.csv`, the only artifact users actually get) + fixed a stale/non-compliant "diagnostic" line in the orphaned README.
+5. **`marketing_opt_in` event** (`placement: inline | post_download`) so the opt-in rate is finally measurable.
+
+### Files
+`src/components/marketing/LeadCapture.tsx` (core), `src/app/api/lead-capture/route.ts` (returns subscribed/emailScheduled), `src/app/(marketing)/error-log-template/page.tsx` (copy + FAQ), `src/components/marketing/FoundingOffer.tsx` (founding opt-in copy), `src/app/(auth)/signup/page.tsx` (copy), `src/lib/analytics.ts` (event doc), `public/downloads/*` (CSV CTA + README), `HANDOFF.md`.
+
+### Adversarial review (5-lens Workflow) verdict
+Compliance: 0 findings (no banned phrases, no emojis). GDPR: clean. The 4 confirmed findings were all the false-confirmation class above — **all fixed**, then re-verified.
+
+### Open follow-ups (NOT done)
+- The README (`zakarian-gmat-error-log-readme.md`) is **orphaned** — only the CSV is linked from the download flow, so users never see the README. Either deliver it too or fold its CTA fully into the CSV.
+- `FoundingOffer`'s `successDescription` ("I'll email your founding code…") still implies an email even without opt-in (pre-existing; the new second-chance opt-in mitigates it but doesn't fully reconcile).
+- This is decision-support code only; **Adam reviews + merges** (typically via PR). Owner-only handoff items #1/#2/#5/#6 (Google Ads conversion import, auto-apply off, delete test account, GSC index) are untouched — external UIs.
+
 ## CONTEXT SWITCH — 2026-06-30 (Google Ads went LIVE + 5 new SEO pages deployed + ad-compliance H1 fix + deep Google-Ads research + the "funnel converts but 0% opt-in" finding)
 
 Read this whole block first. Everything below predates it.

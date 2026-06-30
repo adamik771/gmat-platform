@@ -76,6 +76,9 @@ export default function FoundingOffer({
               successHeadline="You're on the founding list."
               successDescription="I'll email your founding code before paid plans open. No charge until you decide to upgrade."
               footnote="No charge today. No obligation. Unsubscribe with one click."
+              optInLabel="Also email me founding-user updates — getting-started tips and early access as paid plans open. Optional; unsubscribe in one click."
+              secondChancePitch="Want founding-user updates? I'll email getting-started tips and early access as paid plans open. Unsubscribe in one click."
+              optInCtaLabel="Email me founding updates"
             />
             <p className="text-[11px] text-[#555555] leading-relaxed mt-4">
               GMAT is a registered trademark of the Graduate Management Admission
