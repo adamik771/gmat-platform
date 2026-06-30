@@ -6,6 +6,7 @@ import {
   resolveAccess,
   accessGrants,
   readTrialStartedAt,
+  accessFromPaddleStatus,
 } from "@/lib/entitlements"
 
 // Fixed reference instant so every case is deterministic.
@@ -94,5 +95,32 @@ describe("readTrialStartedAt", () => {
     expect(readTrialStartedAt(undefined)).toBeNull()
     expect(readTrialStartedAt({ trial_started_at: "" })).toBeNull()
     expect(readTrialStartedAt({ trial_started_at: 12345 })).toBeNull()
+  })
+})
+
+describe("accessFromPaddleStatus", () => {
+  it("grants for trialing (as trialing) and active (as paid)", () => {
+    expect(accessFromPaddleStatus("trialing")).toBe("trialing")
+    expect(accessFromPaddleStatus("active")).toBe("paid")
+    expect(accessGrants(accessFromPaddleStatus("trialing"))).toBe(true)
+    expect(accessGrants(accessFromPaddleStatus("active"))).toBe(true)
+  })
+
+  it("keeps access during past_due (dunning grace)", () => {
+    expect(accessFromPaddleStatus("past_due")).toBe("paid")
+    expect(accessGrants(accessFromPaddleStatus("past_due"))).toBe(true)
+  })
+
+  it("revokes for paused and canceled", () => {
+    expect(accessFromPaddleStatus("paused")).toBe("none")
+    expect(accessFromPaddleStatus("canceled")).toBe("none")
+    expect(accessGrants(accessFromPaddleStatus("paused"))).toBe(false)
+    expect(accessGrants(accessFromPaddleStatus("canceled"))).toBe(false)
+  })
+
+  it("fails closed for unknown / missing statuses", () => {
+    expect(accessFromPaddleStatus("something_new")).toBe("none")
+    expect(accessFromPaddleStatus(null)).toBe("none")
+    expect(accessFromPaddleStatus(undefined)).toBe("none")
   })
 })

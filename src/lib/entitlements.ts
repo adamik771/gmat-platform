@@ -159,6 +159,46 @@ export function accessGrants(state: AccessState): boolean {
   return state === "paid" || state === "trialing"
 }
 
+/* ------------------------------------------------------------------------- *
+ * Paddle subscription -> access. Billing model: a subscription with a
+ * card-required 7-day trial, Paddle as merchant of record. Paddle owns the
+ * trial + the charge + tax/SCA/dunning; we mirror its subscription status into
+ * the gating contract above. Statuses verified against Paddle Billing docs:
+ * active, trialing, past_due, paused, canceled.
+ * ------------------------------------------------------------------------- */
+
+/** Subscription statuses Paddle Billing reports on a subscription. */
+export type PaddleSubscriptionStatus =
+  | "active"
+  | "trialing"
+  | "past_due"
+  | "paused"
+  | "canceled"
+
+/**
+ * Map a Paddle subscription status to our access state.
+ * - `trialing` -> trialing (card on file, inside the 7-day trial)
+ * - `active`   -> paid (trial converted / billing current)
+ * - `past_due` -> paid (GRACE: Paddle is mid-dunning, retrying the card; cutting
+ *   a recoverable customer off on the first failed charge would churn them)
+ * - `paused` / `canceled` / unknown -> none (fail closed)
+ */
+export function accessFromPaddleStatus(
+  status: string | null | undefined
+): AccessState {
+  switch (status) {
+    case "trialing":
+      return "trialing"
+    case "active":
+    case "past_due": // grace window while Paddle retries the card
+      return "paid"
+    case "paused":
+    case "canceled":
+    default:
+      return "none"
+  }
+}
+
 /** Read `trial_started_at` from a user's metadata (ISO string or null). */
 export function readTrialStartedAt(
   meta: Record<string, unknown> | null | undefined
