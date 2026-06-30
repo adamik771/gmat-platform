@@ -6,6 +6,7 @@ import {
   resolveAccess,
   accessGrants,
   readTrialStartedAt,
+  accessFromStripeSubscriptionStatus,
 } from "@/lib/entitlements"
 
 // Fixed reference instant so every case is deterministic.
@@ -94,5 +95,38 @@ describe("readTrialStartedAt", () => {
     expect(readTrialStartedAt(undefined)).toBeNull()
     expect(readTrialStartedAt({ trial_started_at: "" })).toBeNull()
     expect(readTrialStartedAt({ trial_started_at: 12345 })).toBeNull()
+  })
+})
+
+describe("accessFromStripeSubscriptionStatus", () => {
+  it("grants for trialing (as trialing) and active (as paid)", () => {
+    expect(accessFromStripeSubscriptionStatus("trialing")).toBe("trialing")
+    expect(accessFromStripeSubscriptionStatus("active")).toBe("paid")
+    expect(accessGrants(accessFromStripeSubscriptionStatus("trialing"))).toBe(true)
+    expect(accessGrants(accessFromStripeSubscriptionStatus("active"))).toBe(true)
+  })
+
+  it("keeps access during past_due (dunning grace)", () => {
+    expect(accessFromStripeSubscriptionStatus("past_due")).toBe("paid")
+    expect(accessGrants(accessFromStripeSubscriptionStatus("past_due"))).toBe(true)
+  })
+
+  it("revokes for unpaid, canceled, paused, and incomplete states", () => {
+    for (const s of [
+      "unpaid",
+      "canceled",
+      "paused",
+      "incomplete",
+      "incomplete_expired",
+    ]) {
+      expect(accessFromStripeSubscriptionStatus(s)).toBe("none")
+      expect(accessGrants(accessFromStripeSubscriptionStatus(s))).toBe(false)
+    }
+  })
+
+  it("fails closed for unknown / missing statuses", () => {
+    expect(accessFromStripeSubscriptionStatus("something_new")).toBe("none")
+    expect(accessFromStripeSubscriptionStatus(null)).toBe("none")
+    expect(accessFromStripeSubscriptionStatus(undefined)).toBe("none")
   })
 })
