@@ -160,6 +160,54 @@ export function accessGrants(state: AccessState): boolean {
   return state === "paid" || state === "trialing"
 }
 
+/* ------------------------------------------------------------------------- *
+ * Stripe subscription -> access. Stripe owns the trial + the charge + tax/SCA/
+ * dunning; the webhook upserts the subscription's status and we mirror it into
+ * the gating contract above. Statuses verified against the Stripe API
+ * subscription object: trialing, active, past_due, canceled, unpaid,
+ * incomplete, incomplete_expired, paused.
+ * ------------------------------------------------------------------------- */
+
+/** Subscription statuses the Stripe API reports on a subscription object. */
+export type StripeSubscriptionStatus =
+  | "trialing"
+  | "active"
+  | "past_due"
+  | "canceled"
+  | "unpaid"
+  | "incomplete"
+  | "incomplete_expired"
+  | "paused"
+
+/**
+ * Map a Stripe subscription status to our access state.
+ * - `trialing` -> trialing (card on file, inside the 7-day trial)
+ * - `active`   -> paid (trial converted / billing current)
+ * - `past_due` -> paid (GRACE: Stripe is retrying the card via dunning; don't
+ *   cut off a recoverable customer on the first failed renewal)
+ * - everything else — `unpaid` (dunning exhausted), `canceled`, `paused` (trial
+ *   ended with no card), `incomplete`/`incomplete_expired` (first payment never
+ *   succeeded), or any unknown string -> none (fail closed)
+ */
+export function accessFromStripeSubscriptionStatus(
+  status: string | null | undefined
+): AccessState {
+  switch (status) {
+    case "trialing":
+      return "trialing"
+    case "active":
+    case "past_due": // grace window while Stripe retries the card
+      return "paid"
+    case "unpaid":
+    case "canceled":
+    case "paused":
+    case "incomplete":
+    case "incomplete_expired":
+    default:
+      return "none"
+  }
+}
+
 /** Read `trial_started_at` from a user's metadata (ISO string or null). */
 export function readTrialStartedAt(
   meta: Record<string, unknown> | null | undefined
