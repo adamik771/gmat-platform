@@ -2,7 +2,48 @@
 
 This file exists so a fresh Claude chat can pick up exactly where the previous one left off. Read it first, then continue.
 
-## CONTEXT SWITCH — 2026-06-30 (LATER: fixed the 0%-opt-in RETURN PATH — second-chance opt-in + server-truthful confirmation + CSV/README CTA. Branch `growth/opt-in-return-path`, NOT committed/merged)
+## CONTEXT SWITCH — 2026-07-01 (BIG: free-beta → 7-DAY-TRIAL + PAID pivot [built, dormant]; opt-in return path + ad-traffic drip fix + Google Ads audit SHIPPED; 4 users granted 6-mo access)
+
+Read this whole block first. Everything below predates it.
+
+### Shipped to prod (merged + deployed)
+- **PR #509 — 0%-opt-in return path** (finished the 2026-06-30 priority #3): second-chance opt-in on the `LeadCapture` success screen (peak-intent, explicit click = GDPR-clean, re-POSTs `optIn:true` → records consent + enrols the drip); **server-truthful confirmation** — `/api/lead-capture` now returns `{subscribed, emailScheduled}` and the copy varies by drip / newsletter-no-drip / previously-unsubscribed (kills the false "first email on its way" that would have shown on the ~9 newsletter ad pages); stronger opt-in copy; a CTA inside the delivered error-log CSV + fixed the stale "diagnostic" line in its README; new `marketing_opt_in` event (placement `inline|post_download`). 5-lens adversarial review: compliance 0 findings.
+- **PR #510 — ad-traffic drip fix + Google Ads audit**: repointed `/gmat-practice-questions-free` (the ONLY page Google Ads is actually serving) from the `newsletter` magnet (no delivery, no drip — its copy PROMISED the error-log template but delivered nothing) to `error-log-template` (delivers the CSV + enrols the 4-email drip). + `marketing-drafts/automated-acquisition/GOOGLE-ADS-REPORT.md` (config-only audit ~62/100; the conversion-tracking gap is the dominant dragger).
+- **PR #511 — trial/entitlements core (Phase 1)**: pure `resolveAccess` / `trialDaysLeft` / `isWithinTrial` / `accessGrants` / `getAccessForUser` in `src/lib/entitlements.ts`. Dormant behind `PAYWALL_ENABLED`.
+
+### THE PIVOT: free beta → 7-day trial, then pay (Adam's spec)
+"Enter → 7-day free trial, FULL access, NO card → at day 7 the app blocks with 'choose a plan to continue' → purchase → keep going on the SAME account with all data intact." The gate only blocks ACCESS; it never touches data.
+
+**Processor decision (deep cited research):** direct Stripe / Stripe Managed Payments does NOT support Armenia. BUT **Adam's Stripe account is registered under NORWAY** (he's a BI Oslo student) — Norway IS a supported Stripe + Managed-Payments country, so his EXISTING Stripe can go live (it's test-mode; live activation was "deferred / Needs info" and should clear now). So **use his existing Stripe, not Paddle.** The model is a **ONE-TIME purchase** (reuses the existing `mode:"payment"` checkout + `purchases` table), NOT a subscription — so the Paddle mapping (#512) and the Stripe-subscription-status mapping (#513) were built then **CLOSED as superseded**. (Heads-up: Adam moves to Switzerland / HSG in Sept 2026; a Stripe account's country can't change in place — CH is also Stripe-supported, deal with it then.)
+
+**PR #514 — 7-day trial gate + `/upgrade` block (OPEN, NOT merged; ALL dormant behind `PAYWALL_ENABLED`):**
+- Signup stamps `user_metadata.trial_started_at` (client `signup/page.tsx` + gated `/api/signup`).
+- `src/proxy.ts` whole-app gate: a signed-in user past their trial with no active plan → redirect to `/upgrade` (all-or-nothing: trial = full access, expired = blocked, paid = full access). `/upgrade` is exempt; the `purchases` read only runs once the trial window has closed.
+- New `src/app/upgrade/page.tsx` — the block screen (trialing/ended headline, "same account, same progress" reassurance, the 4 plans via `PricingCard` + the existing checkout; noindex).
+- `effectiveTierForUser` — gate on THIS, not the raw purchase tier (a trialing user is tier "free" but must reach everything). The 5 per-page `UpgradeGate` checks (analytics / mock / review / practice / test-builder) now read it.
+- Extracted the 4-tier list to `src/lib/plans.ts` (shared by `/pricing` + `/upgrade`).
+- Gate green (tsc, 350 tests, lint, build). `/pricing` verified still renders; `/upgrade` verified auth-gated. The block flow itself is NOT browser-e2e'd (dormant — verify on a preview right before flipping).
+- **SAFE TO MERGE** (recommended): dormant behind the off flag; the only live effects are new signups get `trial_started_at` (good — fewer to backfill) and `/upgrade` exists.
+
+**Ops scripts (committed on the #514 branch):**
+- `scripts/grant-access.ts` — insert a `purchases` row to grant any plan to any emails (dry-run default, `--apply`, idempotent). Reusable anytime; grant / change / (via SQL or a future `--revoke`) revoke.
+- `scripts/backfill-trial-start.ts` — set `trial_started_at` for existing users missing it. **RUN AT FLIP TIME** (the clock starts at `--at`, default now — running early would expire everyone's trial before launch). Dry-run: 26 users currently need it.
+
+### Manual grants APPLIED to prod (via grant-access.ts, self_study_guaranteed / 6-month)
+niclasberg.business@gmail.com, remihus03@gmail.com, seigneurgensthomas@gmail.com, mikayel.asatryan11@gmail.com. NOTE: all plans grant IDENTICAL platform access (plan_id is just a label + future duration/coaching bundle); the N-month duration is NOT enforced in code yet (access is currently indefinite). **2 more people paid Adam — emails pending; grant when provided.**
+
+### Current state + go-live sequence (all gated on Stripe)
+- **`PAYWALL_ENABLED` still OFF** → everyone has full access now; the whole trial/paywall is invisible/inactive.
+- Stripe still test-mode; **live activation under Norway pending** (identity + Norwegian payout bank) + set the 4 live price IDs + webhook secret in Vercel.
+- Go-live order: **merge #514 → complete Stripe activation → `backfill-trial-start.ts --apply` → grant the 2 remaining payers → flip `PAYWALL_ENABLED=true` → one real purchase test.**
+
+### Google Ads (external, Adam's account)
+Only **ad group 2 (free-practice → /gmat-practice-questions-free)** serves impressions; ad group 1 (error-log) is starved (near-zero search volume on those keywords). The conversion-action import into Ads is still NOT done (the audit's #1 gap). The other 4 `newsletter` AcquisitionLanding pages still promise non-existent assets (study-plan worksheet / DS cheat sheet / Verbal worksheet / one-pager) — flagged, not fixed.
+
+### Offered, not done
+`--revoke` mode on grant-access.ts; an `/admin` email→state lookup UI; enforcing the N-month access cutoff; fixing the other 4 newsletter pages' broken-promise copy.
+
+## CONTEXT SWITCH — 2026-06-30 (LATER: fixed the 0%-opt-in RETURN PATH — second-chance opt-in + server-truthful confirmation + CSV/README CTA. MERGED as PR #509)
 
 Read this block first. It addresses **OPEN TO-DO #3** from the entry just below ("Fix the 0%-opt-in / return path"), the biggest strategic lever for turning leads into users.
 
