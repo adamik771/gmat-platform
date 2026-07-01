@@ -103,7 +103,9 @@ for (const email of emails) {
   const { error } = await admin.from("purchases").insert({
     user_id: user.id,
     plan_id: plan,
-    stripe_session_id: `manual-${user.id}`,
+    // Timestamped so a revoke-then-regrant never collides with the unique
+    // index on stripe_session_id (a bare `manual-<id>` would).
+    stripe_session_id: `manual-${user.id}-${Date.now()}`,
     amount_cents: amountCents,
     currency: "usd",
     paid_at: new Date().toISOString(),

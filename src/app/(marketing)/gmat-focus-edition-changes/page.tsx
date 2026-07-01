@@ -63,11 +63,11 @@ const DATA: AcquisitionLandingProps = {
   ],
   lead: {
     source: "other",
-    leadMagnet: "newsletter",
-    headline: "Get the free GMAT Focus structure-and-scoring one-pager",
+    leadMagnet: "error-log-template",
+    headline: "Get the free six-tag error-log template",
     description:
-      "A single-page reference covering the three sections, question counts, the 205-805 scale, and the five Data Insights formats — everything that changed, in one place.",
-    ctaLabel: "Send it to me",
+      "Whatever the section format, points come back the same way: log every miss, tag the cause, fix the pattern. This is the six-tag spreadsheet Adam used going from 565 to 735, one row per miss.",
+    ctaLabel: "Email me the template",
   },
   metaDescription:
     "A clear, factual breakdown of the GMAT Focus Edition changes — three 45-minute sections, what was removed, the new Data Insights section, and the 205-805 scale.",

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import Anthropic from "@anthropic-ai/sdk"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getQuestionsByIds } from "@/lib/content"
-import { canAccess, getPlanTierForUser } from "@/lib/entitlements"
+import { canAccess, effectiveTierForUser } from "@/lib/entitlements"
 import { checkTutorRateLimit, recordTutorUse } from "@/lib/tutor-rate-limit"
 
 /**
@@ -181,8 +181,9 @@ export async function POST(request: Request) {
     }
 
     // Plan gate — a no-op while PAYWALL_ENABLED is off; once the paywall is
-    // on, the tutor is a paid feature.
-    const tier = await getPlanTierForUser(supabase, user.id)
+    // on, the tutor is a paid feature. effectiveTierForUser, NOT the raw
+    // purchase tier: a trialing account is tier "free" but has full access.
+    const tier = await effectiveTierForUser(supabase, user, new Date())
     if (!canAccess(tier, "ai-tutor")) {
       return NextResponse.json(
         { error: "The AI tutor is part of the paid plans." },

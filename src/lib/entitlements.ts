@@ -160,54 +160,6 @@ export function accessGrants(state: AccessState): boolean {
   return state === "paid" || state === "trialing"
 }
 
-/* ------------------------------------------------------------------------- *
- * Stripe subscription -> access. Stripe owns the trial + the charge + tax/SCA/
- * dunning; the webhook upserts the subscription's status and we mirror it into
- * the gating contract above. Statuses verified against the Stripe API
- * subscription object: trialing, active, past_due, canceled, unpaid,
- * incomplete, incomplete_expired, paused.
- * ------------------------------------------------------------------------- */
-
-/** Subscription statuses the Stripe API reports on a subscription object. */
-export type StripeSubscriptionStatus =
-  | "trialing"
-  | "active"
-  | "past_due"
-  | "canceled"
-  | "unpaid"
-  | "incomplete"
-  | "incomplete_expired"
-  | "paused"
-
-/**
- * Map a Stripe subscription status to our access state.
- * - `trialing` -> trialing (card on file, inside the 7-day trial)
- * - `active`   -> paid (trial converted / billing current)
- * - `past_due` -> paid (GRACE: Stripe is retrying the card via dunning; don't
- *   cut off a recoverable customer on the first failed renewal)
- * - everything else — `unpaid` (dunning exhausted), `canceled`, `paused` (trial
- *   ended with no card), `incomplete`/`incomplete_expired` (first payment never
- *   succeeded), or any unknown string -> none (fail closed)
- */
-export function accessFromStripeSubscriptionStatus(
-  status: string | null | undefined
-): AccessState {
-  switch (status) {
-    case "trialing":
-      return "trialing"
-    case "active":
-    case "past_due": // grace window while Stripe retries the card
-      return "paid"
-    case "unpaid":
-    case "canceled":
-    case "paused":
-    case "incomplete":
-    case "incomplete_expired":
-    default:
-      return "none"
-  }
-}
-
 /** Read `trial_started_at` from a user's metadata (ISO string or null). */
 export function readTrialStartedAt(
   meta: Record<string, unknown> | null | undefined
@@ -217,23 +169,89 @@ export function readTrialStartedAt(
 }
 
 /**
+ * The instant a user's trial began, from server-controlled data.
+ *
+ * With PAYWALL_TRIAL_EPOCH set (an ISO instant, e.g. the paywall flip time),
+ * the trial start is `max(user.created_at, epoch)`: accounts created before
+ * the flip get a fresh trial starting at the flip; accounts created after it
+ * start at signup. Both inputs are server-side (`created_at` is stamped by
+ * Supabase and immutable; the epoch is an env var), so a user cannot extend
+ * their own trial — unlike `user_metadata`, which any signed-in user can
+ * rewrite via auth.updateUser(). Setting the epoch also replaces the
+ * backfill-trial-start script: no per-user write is needed at flip time.
+ *
+ * Without the epoch, falls back to the legacy `user_metadata.trial_started_at`
+ * stamp (tamper-able; acceptable only while the paywall is off).
+ */
+export function trialStartFor(user: {
+  created_at?: string | null
+  user_metadata?: Record<string, unknown> | null
+}): string | null {
+  const epochRaw = process.env.PAYWALL_TRIAL_EPOCH
+  if (epochRaw) {
+    const epoch = new Date(epochRaw).getTime()
+    if (!Number.isNaN(epoch)) {
+      const created = user.created_at ? new Date(user.created_at).getTime() : NaN
+      const start = Number.isNaN(created) ? epoch : Math.max(created, epoch)
+      return new Date(start).toISOString()
+    }
+    // A set-but-broken epoch must not silently expire everyone (created_at
+    // alone would): log and fall through to the metadata stamp.
+    console.error(
+      "[entitlements] PAYWALL_TRIAL_EPOCH is not a valid date — falling back to user_metadata.trial_started_at"
+    )
+  }
+  return readTrialStartedAt(user.user_metadata)
+}
+
+/**
  * Resolve the caller's live access state: their purchase tier (from `purchases`)
- * combined with their trial start (from `user_metadata`). Thin wrapper over the
- * pure resolveAccess — getPlanTierForUser already logs + fails closed to "free"
- * on a read error, so a transient failure degrades to the trial/none decision
- * rather than silently granting paid access.
+ * combined with their trial start (trialStartFor — created_at/epoch when
+ * PAYWALL_TRIAL_EPOCH is set, else the legacy metadata stamp). Thin wrapper over
+ * the pure resolveAccess — getPlanTierForUser already logs + fails closed to
+ * "free" on a read error, so a transient failure degrades to the trial/none
+ * decision rather than silently granting paid access.
  */
 export async function getAccessForUser(
   supabase: SupabaseClient,
-  user: { id: string; user_metadata?: Record<string, unknown> | null },
+  user: {
+    id: string
+    created_at?: string | null
+    user_metadata?: Record<string, unknown> | null
+  },
   now: Date
 ): Promise<AccessState> {
   const tier = await getPlanTierForUser(supabase, user.id)
   return resolveAccess({
     tier,
-    trialStartedAt: readTrialStartedAt(user.user_metadata),
+    trialStartedAt: trialStartFor(user),
     now,
   })
+}
+
+/**
+ * API-route mirror of the proxy's whole-app gate. Returns a 402 Response when
+ * the caller's trial has ended with no active plan (so a blocked user can't
+ * keep reading/writing study data through the JSON APIs after the page gate
+ * shuts), or null when access is granted. A no-op while the paywall is off.
+ * Account-management and billing routes must NOT use this — a blocked user
+ * still needs settings, checkout, and account deletion.
+ */
+export async function blockIfNoAccess(
+  supabase: SupabaseClient,
+  user: {
+    id: string
+    created_at?: string | null
+    user_metadata?: Record<string, unknown> | null
+  },
+  now: Date = new Date()
+): Promise<Response | null> {
+  if (!PAYWALL_ENABLED) return null
+  if (accessGrants(await getAccessForUser(supabase, user, now))) return null
+  return Response.json(
+    { error: "Your free trial has ended. Choose a plan to continue." },
+    { status: 402 }
+  )
 }
 
 /**
@@ -246,7 +264,11 @@ export async function getAccessForUser(
  */
 export async function effectiveTierForUser(
   supabase: SupabaseClient,
-  user: { id: string; user_metadata?: Record<string, unknown> | null },
+  user: {
+    id: string
+    created_at?: string | null
+    user_metadata?: Record<string, unknown> | null
+  },
   now: Date
 ): Promise<PlanTier> {
   return accessGrants(await getAccessForUser(supabase, user, now))

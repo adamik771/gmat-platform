@@ -74,7 +74,7 @@ export default function FoundingOffer({
               description="Drop your email and I'll reserve your founding price. When paid plans open, you get your code first — at the founding rate, locked in."
               ctaLabel="Reserve my founding rate"
               successHeadline="You're on the founding list."
-              successDescription="I'll email your founding code before paid plans open. No charge until you decide to upgrade."
+              successDescription="Your founding rate is reserved to this address. When paid plans open, I'll send your code here — one email, just the code. No charge unless you decide to upgrade."
               footnote="No charge today. No obligation. Unsubscribe with one click."
               optInLabel="Also email me founding-user updates — getting-started tips and early access as paid plans open. Optional; unsubscribe in one click."
               secondChancePitch="Want founding-user updates? I'll email getting-started tips and early access as paid plans open. Unsubscribe in one click."

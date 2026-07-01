@@ -11,6 +11,10 @@ interface Props {
   label: string
   highlighted: boolean
   className?: string
+  /** Where Stripe's "back" arrow returns the user. Defaults to /pricing; the
+   *  /upgrade block screen passes itself so a cancelled checkout doesn't dump
+   *  a blocked user on the marketing pricing page. */
+  cancelPath?: "/pricing" | "/upgrade"
 }
 
 /**
@@ -26,6 +30,7 @@ export default function CheckoutButton({
   label,
   highlighted,
   className,
+  cancelPath,
 }: Props) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -41,7 +46,7 @@ export default function CheckoutButton({
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ planId }),
+        body: JSON.stringify({ planId, cancelPath }),
       })
 
       if (res.status === 401) {

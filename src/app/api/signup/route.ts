@@ -1,6 +1,8 @@
 import { getSupabaseService } from "@/lib/supabase/service"
 import { evaluateSignupGate, isSignupGateArmed } from "@/lib/signup-gate"
 import { buildMarketingConsent } from "@/lib/outreach/consent-flag"
+import { recordConsent } from "@/lib/outreach/consent"
+import { enqueueDrip } from "@/lib/outreach/queue"
 
 /**
  * POST /api/signup — the access-code-gated signup path.
@@ -100,16 +102,17 @@ export async function POST(request: Request) {
     )
   }
 
-  const { error } = await supabase.auth.admin.createUser({
+  const consentFlag = buildMarketingConsent(
+    body.marketingConsent === true,
+    new Date().toISOString()
+  )
+  const { data: created, error } = await supabase.auth.admin.createUser({
     email,
     password,
     email_confirm: true,
     user_metadata: {
       full_name: name,
-      marketing_consent: buildMarketingConsent(
-        body.marketingConsent === true,
-        new Date().toISOString()
-      ),
+      marketing_consent: consentFlag,
       // Start the free trial clock at signup (see entitlements / paywall gate).
       trial_started_at: new Date().toISOString(),
     },
@@ -131,6 +134,32 @@ export async function POST(request: Request) {
       { error: "Could not create your account. Please try again." },
       { status: 400 }
     )
+  }
+
+  // A ticked opt-in goes straight into the consent ledger + welcome drip —
+  // this path already holds the service client, so there's no reason to leave
+  // the consent metadata-only until the daily cron. Best-effort and idempotent
+  // (the cron re-derives it from user_metadata if this fails).
+  if (consentFlag.optedIn && created?.user) {
+    try {
+      const row = await recordConsent(supabase, {
+        email,
+        userId: created.user.id,
+        source: "signup",
+        consentAt: consentFlag.at,
+      })
+      if (row?.subscribed) {
+        await enqueueDrip(supabase, {
+          sequence: "signup",
+          email,
+          userId: created.user.id,
+          startIso: created.user.created_at ?? undefined,
+          payload: { firstName: name ? name.split(/\s+/)[0] : null },
+        })
+      }
+    } catch {
+      /* cron is the safety net */
+    }
   }
 
   // The user exists and is confirmed; the client signs in to get a session.

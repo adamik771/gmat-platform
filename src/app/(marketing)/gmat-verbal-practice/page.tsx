@@ -63,11 +63,11 @@ const DATA: AcquisitionLandingProps = {
   ],
   lead: {
     source: "other",
-    leadMagnet: "newsletter",
-    headline: "Get the free GMAT Verbal review worksheet",
+    leadMagnet: "error-log-template",
+    headline: "Get the free six-tag error-log template",
     description:
-      "A one-page Verbal worksheet: a Critical Reasoning question-type checklist plus the Reading Comprehension passage-mapping method, ready to use on your next practice set.",
-    ctaLabel: "Send it to me",
+      "Verbal improves when review is honest. The six-tag error log turns your CR and RC misses into a short list of fixable habits — the same spreadsheet Adam used going from 565 to 735.",
+    ctaLabel: "Email me the template",
   },
   metaDescription:
     "Free GMAT Focus Verbal practice for Critical Reasoning and Reading Comprehension. Practice by question type, log every miss by cause, and review on a spaced schedule.",

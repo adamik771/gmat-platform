@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { blockIfNoAccess } from "@/lib/entitlements"
 import {
   recordReviewAttempt,
   type SpacedItemKind,
@@ -38,6 +39,9 @@ export async function POST(request: Request) {
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
+
+  const blocked = await blockIfNoAccess(supabase, user)
+  if (blocked) return blocked
 
   let body: {
     itemId?: unknown

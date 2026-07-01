@@ -186,6 +186,14 @@ function SignupForm() {
       return
     }
 
+    // Record a ticked opt-in into the consent ledger + start the welcome drip
+    // right away (needs the session we now have). Fire-and-forget: the daily
+    // outreach cron re-derives the same thing from user_metadata, so a failure
+    // here only delays enrolment, never loses consent.
+    if (marketingOptIn) {
+      fetch("/api/marketing-consent", { method: "POST" }).catch(() => {})
+    }
+
     router.push(redirectTarget)
     router.refresh()
   }

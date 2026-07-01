@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { blockIfNoAccess } from "@/lib/entitlements"
 import { getUserState } from "@/lib/user-state"
 import {
   getAllChapters,
@@ -47,6 +48,9 @@ export async function POST(request: Request) {
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
+
+  const blocked = await blockIfNoAccess(supabase, user)
+  if (blocked) return blocked
 
   const body = (await request.json().catch(() => ({}))) as {
     chapterSlug?: string

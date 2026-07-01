@@ -52,6 +52,10 @@ interface UserInfo {
   firstName: string | null
   confirmed: boolean
   createdMs: number
+  /** When the email was confirmed (0 = not confirmed). The enrol window is
+   *  anchored on max(created, confirmed) so an account that confirms its email
+   *  days after signing up doesn't age out of the window unenrolled. */
+  confirmedMs: number
   /** Explicit marketing opt-in from the signup checkbox. */
   marketingOptIn: boolean
   /** When the user ticked the opt-in box (consent timestamp). */
@@ -105,6 +109,9 @@ export async function GET(request: Request) {
           firstName: firstNameOf(meta),
           confirmed: !!u.email_confirmed_at,
           createdMs: u.created_at ? new Date(u.created_at).getTime() : 0,
+          confirmedMs: u.email_confirmed_at
+            ? new Date(u.email_confirmed_at).getTime()
+            : 0,
           marketingOptIn: mc.optedIn,
           consentAt: mc.at,
         })
@@ -122,7 +129,12 @@ export async function GET(request: Request) {
       // EXPLICIT consent required: only enrol accounts that ticked the signup
       // opt-in box. Creating an account never enrols anyone on its own.
       if (!u.marketingOptIn) continue
-      if (nowMs - u.createdMs > ENROLL_WINDOW_DAYS * DAY_MS) continue
+      // Window AND drip schedule share one anchor. Anchoring only the window
+      // on max(created, confirmed) while the drip stayed on created_at meant a
+      // late confirmer enrolled with every step already past-due — and Phase 2
+      // of the same run would blast the whole sequence in one batch.
+      const anchorMs = Math.max(u.createdMs, u.confirmedMs)
+      if (nowMs - anchorMs > ENROLL_WINDOW_DAYS * DAY_MS) continue
       const consent = await recordConsent(service, {
         email: u.email,
         userId,
@@ -134,7 +146,7 @@ export async function GET(request: Request) {
         sequence: "signup",
         email: u.email,
         userId,
-        startIso: new Date(u.createdMs).toISOString(),
+        startIso: new Date(anchorMs).toISOString(),
         payload: { firstName: u.firstName },
       })
       enq.signup += n

@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server"
 import { createSupabaseProxy } from "@/lib/supabase/proxy"
 import {
   PAYWALL_ENABLED,
-  readTrialStartedAt,
+  trialStartFor,
   isWithinTrial,
   resolveAccess,
   accessGrants,
@@ -24,6 +24,7 @@ const APP_ROUTES = [
   "/mock",
   "/onboarding",
   "/practice",
+  "/purchase-success",
   "/qa",
   "/review",
   "/score-calculator",
@@ -32,6 +33,13 @@ const APP_ROUTES = [
   "/test-builder",
   "/upgrade",
 ]
+
+// App routes a signed-in user can reach even when their trial has ended with
+// no plan: the block screen itself, the verified checkout return (which
+// records the purchase that unblocks them), and account management — a
+// blocked user must keep settings / email / deletion (GDPR hygiene). Study
+// surfaces stay all-or-nothing.
+const GATE_EXEMPT_ROUTES = ["/upgrade", "/purchase-success", "/settings"]
 
 // Routes under the (auth) group — authenticated users get redirected away.
 const AUTH_ROUTES = ["/login", "/signup"]
@@ -119,18 +127,20 @@ export async function proxy(request: NextRequest) {
     // Paywall / trial gate (a no-op while PAYWALL_ENABLED is off). A signed-in
     // user whose in-app free trial has ended with no active plan is redirected
     // to /upgrade — the app is all-or-nothing: trial = full access, expired =
-    // blocked, paid = full access. /upgrade is exempt so they can buy, and the
-    // block only ever gates ACCESS — their account + data are untouched. The
-    // purchases read happens only once the trial window has closed (trialing
-    // users skip it).
+    // blocked, paid = full access. GATE_EXEMPT_ROUTES stay reachable so they
+    // can buy and manage their account, and the block only ever gates ACCESS —
+    // their account + data are untouched. The purchases read happens only once
+    // the trial window has closed (trialing users skip it).
     if (
       PAYWALL_ENABLED &&
       isAppRoute &&
       user &&
-      !pathname.startsWith("/upgrade")
+      !GATE_EXEMPT_ROUTES.some(
+        (route) => pathname === route || pathname.startsWith(route + "/")
+      )
     ) {
       const now = new Date()
-      const trialStartedAt = readTrialStartedAt(user.user_metadata)
+      const trialStartedAt = trialStartFor(user)
       if (!isWithinTrial(trialStartedAt, now)) {
         const tier = await getPlanTierForUser(supabase, user.id)
         if (!accessGrants(resolveAccess({ tier, trialStartedAt, now }))) {

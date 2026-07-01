@@ -1,4 +1,10 @@
 /**
+ * LEGACY PATH — superseded by PAYWALL_TRIAL_EPOCH. Setting that env var to the
+ * flip instant makes the gate derive every trial start server-side from
+ * max(user.created_at, epoch), which needs no per-user writes and cannot be
+ * tampered with via user_metadata (see entitlements.ts::trialStartFor). Prefer
+ * the epoch; this script remains only for the metadata fallback path.
+ *
  * Backfill `user_metadata.trial_started_at` for existing users who don't have
  * it, so that when PAYWALL_ENABLED is flipped on they get a fresh trial window
  * instead of being blocked immediately. Accounts created via signup after the

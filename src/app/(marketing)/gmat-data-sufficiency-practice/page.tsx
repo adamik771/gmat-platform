@@ -63,11 +63,11 @@ const DATA: AcquisitionLandingProps = {
   ],
   lead: {
     source: "other",
-    leadMagnet: "newsletter",
-    headline: "Get the free Data Sufficiency decision-grid cheat sheet",
+    leadMagnet: "error-log-template",
+    headline: "Get the free six-tag error-log template",
     description:
-      "A one-page reference with the AD/BCE elimination framework and a trap checklist (solve-don’t-test, carried-over info, negatives/zero/fractions) you can keep beside your drills.",
-    ctaLabel: "Send it to me",
+      "Most Data Sufficiency points are lost to the same few traps, repeated. Log every miss and tag the cause with the six-tag spreadsheet Adam used going from 565 to 735 — so your drills stop repeating them.",
+    ctaLabel: "Email me the template",
   },
   metaDescription:
     "Practice GMAT Data Sufficiency the smart way: the AD/BCE decision grid, the classic traps, and deliberate timed drills. On the Focus Edition, DS lives in Data Insights.",

@@ -7,7 +7,7 @@ import { tiers } from "@/lib/plans"
 import {
   getAccessForUser,
   trialDaysLeft,
-  readTrialStartedAt,
+  trialStartFor,
 } from "@/lib/entitlements"
 
 export const metadata: Metadata = {
@@ -30,14 +30,16 @@ export default async function UpgradePage() {
 
   const now = new Date()
   const access = user ? await getAccessForUser(supabase, user, now) : "none"
-  const daysLeft = user
-    ? trialDaysLeft(readTrialStartedAt(user.user_metadata), now)
-    : 0
+  const daysLeft = user ? trialDaysLeft(trialStartFor(user), now) : 0
   const stillTrialing = access === "trialing"
 
+  // "none" = no trial ever started (rare — pre-backfill/pre-epoch accounts);
+  // don't tell that user a trial "ended" that never began.
   const heading = stillTrialing
     ? `You're on your free trial — ${daysLeft} day${daysLeft === 1 ? "" : "s"} left`
-    : "Your free trial has ended"
+    : access === "none"
+      ? "Choose a plan to unlock the full platform"
+      : "Your free trial has ended"
   const sub = stillTrialing
     ? "Lock in full access whenever you're ready — or keep going until your trial runs out."
     : "Choose a plan to pick up right where you left off. Everything you've done is saved."
@@ -78,7 +80,7 @@ export default async function UpgradePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {tiers.map((tier) => (
-              <PricingCard key={tier.id} tier={tier} />
+              <PricingCard key={tier.id} tier={tier} checkoutCancelPath="/upgrade" />
             ))}
           </div>
           <p className="text-center text-[12px] text-[#555555] mt-10">
