@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { blockIfNoAccess } from "@/lib/entitlements"
 import {
   ALL_TAG_IDS,
   ROOT_CAUSE_IDS,
@@ -28,6 +29,9 @@ export async function POST(request: Request) {
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
+
+  const blocked = await blockIfNoAccess(supabase, user)
+  if (blocked) return blocked
 
   const body = (await request.json()) as {
     attemptId?: string
@@ -216,6 +220,9 @@ export async function DELETE(request: Request) {
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
+
+  const blocked = await blockIfNoAccess(supabase, user)
+  if (blocked) return blocked
 
   const { attemptId } = (await request.json()) as { attemptId?: string }
   if (!attemptId || typeof attemptId !== "string") {

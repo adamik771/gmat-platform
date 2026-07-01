@@ -1,6 +1,7 @@
 import { getStripe } from "@/lib/stripe"
 import { getSupabaseService } from "@/lib/supabase/service"
-import { normalizeChargeId, resolveWebhookEvent } from "@/lib/stripe-webhook"
+import { resolveWebhookEvent } from "@/lib/stripe-webhook"
+import { recordPurchase } from "@/lib/purchases"
 import type Stripe from "stripe"
 
 // Opt-out of Next.js's Edge runtime — Stripe's signature verification
@@ -75,43 +76,18 @@ export async function POST(request: Request) {
       )
       return Response.json({ ok: true, skipped: "missing_metadata" })
     } else if (action.kind === "record") {
-      // Resolve the Charge id from the PaymentIntent. The checkout.session.completed
-      // payload carries no charge, but a later refund/dispute can arrive with a
-      // null payment_intent while still carrying the Charge id — storing it here
-      // gives revokePurchase a fallback match key for that case. Best-effort: a
-      // paid purchase must still be recorded even if this lookup fails, so we log
-      // and fall back to a null charge id.
-      let chargeId: string | null = null
-      if (action.paymentIntent) {
-        try {
-          const pi = await getStripe().paymentIntents.retrieve(action.paymentIntent)
-          chargeId = normalizeChargeId(pi.latest_charge)
-        } catch (err) {
-          console.error(
-            "[stripe/webhook] could not resolve charge id for purchase — refund-by-charge fallback won't apply",
-            { sessionId: action.sessionId, paymentIntent: action.paymentIntent, err }
-          )
-        }
-      }
-      const { error } = await service.from("purchases").upsert(
-        {
-          user_id: action.userId,
-          plan_id: action.planId,
-          stripe_session_id: action.sessionId,
-          // Stored so a later refund/dispute (which carries the PI, not the
-          // session) can be mapped back to this row to revoke access.
-          stripe_payment_intent: action.paymentIntent,
-          // Second match key — used when the refund/dispute event has no PI.
-          stripe_charge_id: chargeId,
-          amount_cents: action.amountCents,
-          currency: action.currency,
-          paid_at: new Date().toISOString(),
-        },
-        { onConflict: "stripe_session_id" }
-      )
-      if (error) {
-        console.error("[stripe/webhook] purchases insert failed", error)
-        return Response.json({ error: error.message }, { status: 500 })
+      // Shared with the /purchase-success return page — upserts on
+      // stripe_session_id, so double-recording the same payment converges.
+      const failed = await recordPurchase(service, {
+        userId: action.userId,
+        planId: action.planId,
+        sessionId: action.sessionId,
+        paymentIntent: action.paymentIntent,
+        amountCents: action.amountCents,
+        currency: action.currency,
+      })
+      if (failed) {
+        return Response.json({ error: failed.error }, { status: 500 })
       }
     } else if (action.kind === "partial_refund_noop") {
       // Partial refund — `charge.refunded` was false; access stays intact.

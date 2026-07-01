@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { blockIfNoAccess } from "@/lib/entitlements"
 
 /**
  * POST /api/onboarding — persist the new-student intake form into
@@ -35,6 +36,9 @@ export async function POST(request: Request) {
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
+
+  const blocked = await blockIfNoAccess(supabase, user)
+  if (blocked) return blocked
 
   let body: {
     targetScore?: unknown

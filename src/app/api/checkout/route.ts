@@ -46,11 +46,17 @@ export async function POST(request: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const body = (await request.json()) as { planId?: string }
+  const body = (await request.json()) as {
+    planId?: string
+    cancelPath?: string
+  }
   const planId = body.planId
   if (!planId || !PLAN_IDS.includes(planId as PlanId)) {
     return Response.json({ error: "invalid planId" }, { status: 400 })
   }
+  // Whitelisted, never interpolated raw — a cancelled checkout returns to the
+  // page that launched it (/upgrade for blocked users, /pricing otherwise).
+  const cancelPath = body.cancelPath === "/upgrade" ? "/upgrade" : "/pricing"
 
   const priceId = PLAN_TO_PRICE[planId as PlanId]
   // Guard against an unconfigured tier (any tier still on its placeholder id) —
@@ -128,8 +134,13 @@ export async function POST(request: Request) {
       ...(tosConsent
         ? { consent_collection: { terms_of_service: "required" as const } }
         : {}),
-      success_url: `${origin}/dashboard?purchase=success&plan=${planId}`,
-      cancel_url: `${origin}/pricing?purchase=cancelled`,
+      // Return through /purchase-success, which verifies the session with
+      // Stripe server-side and records the purchase BEFORE the user reaches
+      // the gated app — otherwise the redirect can beat the webhook and a
+      // just-paid customer bounces off the paywall to /upgrade.
+      // {CHECKOUT_SESSION_ID} is a literal template Stripe fills in.
+      success_url: `${origin}/purchase-success?session_id={CHECKOUT_SESSION_ID}&plan=${planId}`,
+      cancel_url: `${origin}${cancelPath}?purchase=cancelled`,
     })
 
     if (!session.url) {

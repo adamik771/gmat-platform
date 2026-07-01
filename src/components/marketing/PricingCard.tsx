@@ -6,9 +6,15 @@ import CheckoutButton from "./CheckoutButton"
 interface PricingCardProps {
   tier: PricingTier
   className?: string
+  /** Passed through to CheckoutButton — see its cancelPath doc. */
+  checkoutCancelPath?: "/pricing" | "/upgrade"
 }
 
-export default function PricingCard({ tier, className }: PricingCardProps) {
+export default function PricingCard({
+  tier,
+  className,
+  checkoutCancelPath,
+}: PricingCardProps) {
   return (
     <div
       className={cn(
@@ -57,6 +63,7 @@ export default function PricingCard({ tier, className }: PricingCardProps) {
         planId={tier.id}
         label={tier.cta}
         highlighted={tier.highlighted}
+        cancelPath={checkoutCancelPath}
       />
 
       {/* Features */}

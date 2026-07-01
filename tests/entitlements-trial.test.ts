@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest"
+import { describe, it, expect, afterEach } from "vitest"
 import {
   TRIAL_DAYS,
   trialDaysLeft,
@@ -6,7 +6,7 @@ import {
   resolveAccess,
   accessGrants,
   readTrialStartedAt,
-  accessFromStripeSubscriptionStatus,
+  trialStartFor,
 } from "@/lib/entitlements"
 
 // Fixed reference instant so every case is deterministic.
@@ -98,35 +98,55 @@ describe("readTrialStartedAt", () => {
   })
 })
 
-describe("accessFromStripeSubscriptionStatus", () => {
-  it("grants for trialing (as trialing) and active (as paid)", () => {
-    expect(accessFromStripeSubscriptionStatus("trialing")).toBe("trialing")
-    expect(accessFromStripeSubscriptionStatus("active")).toBe("paid")
-    expect(accessGrants(accessFromStripeSubscriptionStatus("trialing"))).toBe(true)
-    expect(accessGrants(accessFromStripeSubscriptionStatus("active"))).toBe(true)
+describe("trialStartFor", () => {
+  const EPOCH = "2026-07-10T09:00:00.000Z"
+
+  afterEach(() => {
+    delete process.env.PAYWALL_TRIAL_EPOCH
   })
 
-  it("keeps access during past_due (dunning grace)", () => {
-    expect(accessFromStripeSubscriptionStatus("past_due")).toBe("paid")
-    expect(accessGrants(accessFromStripeSubscriptionStatus("past_due"))).toBe(true)
+  it("without an epoch, falls back to the metadata stamp", () => {
+    expect(
+      trialStartFor({ created_at: ago(30), user_metadata: { trial_started_at: ago(1) } })
+    ).toBe(ago(1))
+    expect(trialStartFor({ created_at: ago(30), user_metadata: {} })).toBeNull()
   })
 
-  it("revokes for unpaid, canceled, paused, and incomplete states", () => {
-    for (const s of [
-      "unpaid",
-      "canceled",
-      "paused",
-      "incomplete",
-      "incomplete_expired",
-    ]) {
-      expect(accessFromStripeSubscriptionStatus(s)).toBe("none")
-      expect(accessGrants(accessFromStripeSubscriptionStatus(s))).toBe(false)
-    }
+  it("with the epoch set, an account created BEFORE it starts at the epoch (fresh trial at flip, no backfill)", () => {
+    process.env.PAYWALL_TRIAL_EPOCH = EPOCH
+    expect(
+      trialStartFor({ created_at: ago(60), user_metadata: {} })
+    ).toBe(EPOCH)
   })
 
-  it("fails closed for unknown / missing statuses", () => {
-    expect(accessFromStripeSubscriptionStatus("something_new")).toBe("none")
-    expect(accessFromStripeSubscriptionStatus(null)).toBe("none")
-    expect(accessFromStripeSubscriptionStatus(undefined)).toBe("none")
+  it("with the epoch set, an account created AFTER it starts at signup", () => {
+    process.env.PAYWALL_TRIAL_EPOCH = EPOCH
+    const created = "2026-07-15T00:00:00.000Z"
+    expect(trialStartFor({ created_at: created, user_metadata: {} })).toBe(created)
+  })
+
+  it("with the epoch set, tampered metadata is IGNORED (the tamper-proofing)", () => {
+    process.env.PAYWALL_TRIAL_EPOCH = EPOCH
+    const created = "2026-07-15T00:00:00.000Z"
+    expect(
+      trialStartFor({
+        created_at: created,
+        // A user rewrites their own metadata to restart the clock…
+        user_metadata: { trial_started_at: "2099-01-01T00:00:00.000Z" },
+      })
+      // …and it changes nothing: the start stays created_at/epoch-derived.
+    ).toBe(created)
+  })
+
+  it("an invalid epoch falls back to metadata instead of expiring everyone", () => {
+    process.env.PAYWALL_TRIAL_EPOCH = "not-a-date"
+    expect(
+      trialStartFor({ created_at: ago(60), user_metadata: { trial_started_at: ago(1) } })
+    ).toBe(ago(1))
+  })
+
+  it("with the epoch set but no created_at, starts at the epoch", () => {
+    process.env.PAYWALL_TRIAL_EPOCH = EPOCH
+    expect(trialStartFor({ user_metadata: {} })).toBe(EPOCH)
   })
 })

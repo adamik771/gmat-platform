@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { blockIfNoAccess } from "@/lib/entitlements"
 import { getUserState, patchUserState } from "@/lib/user-state"
 
 const VALID_SECTIONS = new Set(["Quant", "Verbal", "DI"])
@@ -24,6 +25,9 @@ export async function POST(request: Request) {
   if (authError || !user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
+
+  const blocked = await blockIfNoAccess(supabase, user)
+  if (blocked) return blocked
 
   const body = (await request.json()) as {
     dateIso?: string
