@@ -10,7 +10,7 @@ import {
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   PAYWALL_ENABLED,
-  getPlanTierForUser,
+  effectiveTierForUser,
   practiceTestsAllowed,
 } from "@/lib/entitlements"
 import UpgradeGate from "@/components/shared/UpgradeGate"
@@ -55,7 +55,9 @@ export default async function PracticeSessionPage({
       const {
         data: { user },
       } = await supabase.auth.getUser()
-      const tier = user ? await getPlanTierForUser(supabase, user.id) : "free"
+      const tier = user
+        ? await effectiveTierForUser(supabase, user, new Date())
+        : "free"
       if (parsedForGate.testIndex > practiceTestsAllowed(tier)) {
         return (
           <UpgradeGate

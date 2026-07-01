@@ -3,7 +3,7 @@ import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   PAYWALL_ENABLED,
   canAccess,
-  getPlanTierForUser,
+  effectiveTierForUser,
 } from "@/lib/entitlements"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import TestBuilderClient, {
@@ -19,7 +19,7 @@ export default async function TestBuilderPage() {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
-      const tier = await getPlanTierForUser(supabase, user.id)
+      const tier = await effectiveTierForUser(supabase, user, new Date())
       if (!canAccess(tier, "test-builder")) {
         return (
           <UpgradeGate

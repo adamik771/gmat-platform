@@ -82,20 +82,21 @@ export function practiceTestsAllowed(tier: PlanTier): number {
 }
 
 /* ------------------------------------------------------------------------- *
- * Free trial (card-on-file, single charge after the window — model "B").
+ * Free trial + paid access.
  *
- * A new account starts a TRIAL_DAYS trial when it puts a card on file at
- * signup; the day-after-trial charge is collected by a separate billing step
- * (Stripe SetupIntent at signup + a scheduled off-session charge — built in a
- * later phase). THIS module is pure and processor-agnostic: it only decides,
- * from {has a paid purchase?, when did the trial start?, now}, whether an
- * account may enter the paid surfaces. Nothing here reaches Stripe.
+ * Model: a new account gets a TRIAL_DAYS in-app free trial with FULL access and
+ * NO card required. When the trial ends, the whole app is blocked (the proxy
+ * redirects to /upgrade) until the user buys a plan; a paid purchase restores
+ * full access on the SAME account — no data is ever touched, only access is
+ * gated. So during the trial an account is tier "free" but should reach
+ * everything — gate on resolveAccess/effectiveTierForUser, not the raw tier.
  *
- * The trial start timestamp is a small per-user scalar — it lives in
- * `user_metadata.trial_started_at` (ISO string), never in a growing table-or
- * cookie payload (see the user_state split). Everything below is dormant while
- * PAYWALL_ENABLED is off: resolveAccess is only consulted by gated surfaces,
- * which themselves no-op until the paywall is armed.
+ * These helpers are pure/processor-agnostic and decide, from {has a paid
+ * purchase?, when did the trial start?, now}, whether an account may enter the
+ * app. The trial start is a small per-user scalar in
+ * `user_metadata.trial_started_at` (ISO string), never a growing table/cookie
+ * payload (see the user_state split). Everything is dormant while
+ * PAYWALL_ENABLED is off.
  * ------------------------------------------------------------------------- */
 
 /** Length of the free trial, in days. */
@@ -185,6 +186,24 @@ export async function getAccessForUser(
     trialStartedAt: readTrialStartedAt(user.user_metadata),
     now,
   })
+}
+
+/**
+ * The tier a surface should gate on: "paid" when the account currently has
+ * access (an active purchase OR an in-progress trial), else "free". Trialing
+ * users are tier "free" but must reach everything, so per-feature gates
+ * (canAccess / practiceTestsAllowed) should read THIS, not getPlanTierForUser
+ * (which is the raw purchase tier, for display/billing). Once the trial ends
+ * with no purchase this returns "free" and the gates bite.
+ */
+export async function effectiveTierForUser(
+  supabase: SupabaseClient,
+  user: { id: string; user_metadata?: Record<string, unknown> | null },
+  now: Date
+): Promise<PlanTier> {
+  return accessGrants(await getAccessForUser(supabase, user, now))
+    ? "paid"
+    : "free"
 }
 
 /**

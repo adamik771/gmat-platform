@@ -1,5 +1,13 @@
 import { NextResponse, type NextRequest } from "next/server"
 import { createSupabaseProxy } from "@/lib/supabase/proxy"
+import {
+  PAYWALL_ENABLED,
+  readTrialStartedAt,
+  isWithinTrial,
+  resolveAccess,
+  accessGrants,
+  getPlanTierForUser,
+} from "@/lib/entitlements"
 
 // Routes under the (app) group that require authentication. Keep in
 // sync with `src/app/(app)/` directory entries — any new top-level
@@ -22,6 +30,7 @@ const APP_ROUTES = [
   "/settings",
   "/study-plan",
   "/test-builder",
+  "/upgrade",
 ]
 
 // Routes under the (auth) group — authenticated users get redirected away.
@@ -105,6 +114,31 @@ export async function proxy(request: NextRequest) {
       const url = request.nextUrl.clone()
       url.pathname = "/dashboard"
       return NextResponse.redirect(url)
+    }
+
+    // Paywall / trial gate (a no-op while PAYWALL_ENABLED is off). A signed-in
+    // user whose in-app free trial has ended with no active plan is redirected
+    // to /upgrade — the app is all-or-nothing: trial = full access, expired =
+    // blocked, paid = full access. /upgrade is exempt so they can buy, and the
+    // block only ever gates ACCESS — their account + data are untouched. The
+    // purchases read happens only once the trial window has closed (trialing
+    // users skip it).
+    if (
+      PAYWALL_ENABLED &&
+      isAppRoute &&
+      user &&
+      !pathname.startsWith("/upgrade")
+    ) {
+      const now = new Date()
+      const trialStartedAt = readTrialStartedAt(user.user_metadata)
+      if (!isWithinTrial(trialStartedAt, now)) {
+        const tier = await getPlanTierForUser(supabase, user.id)
+        if (!accessGrants(resolveAccess({ tier, trialStartedAt, now }))) {
+          const url = request.nextUrl.clone()
+          url.pathname = "/upgrade"
+          return NextResponse.redirect(url)
+        }
+      }
     }
 
     const finalResponse = response()
