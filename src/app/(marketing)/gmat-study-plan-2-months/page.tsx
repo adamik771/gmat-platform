@@ -63,11 +63,11 @@ const DATA: AcquisitionLandingProps = {
   ],
   lead: {
     source: "other",
-    leadMagnet: "newsletter",
-    headline: "Get the free 8-week study-plan worksheet",
+    leadMagnet: "error-log-template",
+    headline: "Get the free six-tag error-log template",
     description:
-      "A printable worksheet that takes you from your official practice baseline to a ranked list of weak areas and a weekly cadence with the full spaced-review schedule.",
-    ctaLabel: "Send it to me",
+      "The log that makes an 8-week plan work: record every miss, tag the cause, and let two weeks of entries rank your weak areas for you. The same spreadsheet Adam used going from 565 to 735.",
+    ctaLabel: "Email me the template",
   },
   metaDescription:
     "A concrete week-by-week 2 month GMAT study plan for the Focus Edition, anchored to an official mba.com practice baseline and a spaced-review ladder.",
