@@ -4,7 +4,7 @@ import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   PAYWALL_ENABLED,
   canAccess,
-  getPlanTierForUser,
+  effectiveTierForUser,
 } from "@/lib/entitlements"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import {
@@ -54,7 +54,7 @@ export default async function ReviewPage() {
 
   // Paywall gate (no-op while PAYWALL_ENABLED is off).
   if (PAYWALL_ENABLED) {
-    const tier = await getPlanTierForUser(supabase, user.id)
+    const tier = await effectiveTierForUser(supabase, user, new Date())
     if (!canAccess(tier, "review-queue")) {
       return (
         <UpgradeGate

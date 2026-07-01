@@ -22,7 +22,7 @@ import type { Section } from "@/types"
 import {
   PAYWALL_ENABLED,
   canAccess,
-  getPlanTierForUser,
+  effectiveTierForUser,
 } from "@/lib/entitlements"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import AnalyticsClient, {
@@ -119,7 +119,7 @@ export default async function AnalyticsPage() {
       // analytics dashboard a paid feature. Copy this guard to gate any other
       // surface (mock simulator, review queue, test builder).
       if (PAYWALL_ENABLED) {
-        const tier = await getPlanTierForUser(supabase, user.id)
+        const tier = await effectiveTierForUser(supabase, user, new Date())
         if (!canAccess(tier, "analytics")) {
           return (
             <UpgradeGate

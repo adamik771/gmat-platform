@@ -159,6 +159,9 @@ function SignupForm() {
             marketingOptIn,
             new Date().toISOString()
           ),
+          // Start the free trial clock at signup. The paywall (dormant until
+          // PAYWALL_ENABLED) reads this to grant full access for TRIAL_DAYS.
+          trial_started_at: new Date().toISOString(),
         },
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },

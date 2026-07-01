@@ -110,6 +110,8 @@ export async function POST(request: Request) {
         body.marketingConsent === true,
         new Date().toISOString()
       ),
+      // Start the free trial clock at signup (see entitlements / paywall gate).
+      trial_started_at: new Date().toISOString(),
     },
   })
 

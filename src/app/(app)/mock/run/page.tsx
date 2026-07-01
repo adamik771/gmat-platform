@@ -4,7 +4,7 @@ import { createSupabaseServer } from "@/lib/supabase/server"
 import {
   PAYWALL_ENABLED,
   canAccess,
-  getPlanTierForUser,
+  effectiveTierForUser,
 } from "@/lib/entitlements"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import { pickMockQuestions, getDifficultyMixForTarget } from "@/lib/mock"
@@ -48,7 +48,7 @@ export default async function MockRunPage({
   // Paywall gate (no-op while PAYWALL_ENABLED is off). The Official Exam Plan
   // on /mock stays free; the site's internal mock simulator is paid "extra reps".
   if (PAYWALL_ENABLED) {
-    const tier = await getPlanTierForUser(supabase, user.id)
+    const tier = await effectiveTierForUser(supabase, user, new Date())
     if (!canAccess(tier, "mock-simulator")) {
       return (
         <UpgradeGate
