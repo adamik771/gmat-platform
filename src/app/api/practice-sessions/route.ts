@@ -1,4 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { blockIfNoAccess } from "@/lib/entitlements"
+import { dropBlankAttempts } from "@/lib/practice-save"
 import { getUserState, patchUserState } from "@/lib/user-state"
 import {
   applySessionAttempts,
@@ -57,6 +59,9 @@ export async function POST(request: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
 
+  const blocked = await blockIfNoAccess(supabase, user)
+  if (blocked) return blocked
+
   let body: SessionPayload
   try {
     body = (await request.json()) as SessionPayload
@@ -86,6 +91,27 @@ export async function POST(request: Request) {
     body.attempts.length > 100
   ) {
     return Response.json({ error: "Invalid session payload" }, { status: 400 })
+  }
+
+  // Stale-client guard: SessionClient now persists only submitted questions,
+  // but a practice tab opened before that fix deployed still runs the old JS
+  // and POSTs the untouched remainder of an abandoned session as blank
+  // attempts (no answer, no time, scored wrong) — the rows that poison
+  // per-topic accuracy and the review queue. Drop them here and recompute the
+  // stored totals from what remains so total/correct/accuracy always agree.
+  // Mock payloads are exempt on purpose: a timed-out mock records unanswered
+  // as wrong for exam realism.
+  if (!body.slug.startsWith("mock-")) {
+    const summary = dropBlankAttempts(body.attempts)
+    // Nothing answered — not worth a row (mirrors the client behaviour).
+    if (!summary) return Response.json({ sessionId: null })
+    body = {
+      ...body,
+      totalQuestions: summary.totalQuestions,
+      correctCount: summary.correctCount,
+      accuracy: summary.accuracy,
+      attempts: summary.attempts,
+    }
   }
 
   // Insert the session-level record.

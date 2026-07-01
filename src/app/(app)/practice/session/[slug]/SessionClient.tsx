@@ -17,6 +17,7 @@ import {
   X,
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
+import { summarizeAnsweredAttempts } from "@/lib/practice-save"
 import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
@@ -1178,28 +1179,34 @@ export default function SessionClient({
   }, [])
 
   const saveSession = async () => {
-    setSaveStatus("saving")
+    // Persist SUBMITTED questions only — see summarizeAnsweredAttempts for the
+    // why (blanks used to be recorded as wrong answers and the stored totals
+    // were inconsistent).
     const deviceType = detectDeviceType()
-    const attempts = questions.map((q, i) => ({
-      questionId: q.id,
-      section: q.section,
-      topic: q.topic,
-      subtopic: q.subtopic,
-      difficulty: q.difficulty,
-      questionType: q.type,
-      selectedAnswer: states[i].selected,
-      isCorrect: isQuestionCorrect(q, states[i]),
-      timeSpentMs: states[i].elapsedMs,
-      confidence: states[i].confidence,
-      hintsRevealed: states[i].hintsRevealed,
-      firstInteractionMs: states[i].firstInteractionMs,
-      deviceType,
-    }))
-    const answeredTotal = states.filter((s) => s.submitted).length
-    const correctTotal = states.reduce(
-      (acc, s, i) => (isQuestionCorrect(questions[i], s) ? acc + 1 : acc),
-      0
+    const summary = summarizeAnsweredAttempts(
+      questions.map((q, i) => ({
+        submitted: states[i].submitted,
+        correct: isQuestionCorrect(q, states[i]),
+        attempt: {
+          questionId: q.id,
+          section: q.section,
+          topic: q.topic,
+          subtopic: q.subtopic,
+          difficulty: q.difficulty,
+          questionType: q.type,
+          selectedAnswer: states[i].selected,
+          isCorrect: isQuestionCorrect(q, states[i]),
+          timeSpentMs: states[i].elapsedMs,
+          confidence: states[i].confidence,
+          hintsRevealed: states[i].hintsRevealed,
+          firstInteractionMs: states[i].firstInteractionMs,
+          deviceType,
+        },
+      }))
     )
+    // Nothing answered — there is no session worth recording.
+    if (!summary) return
+    setSaveStatus("saving")
     try {
       const res = await fetch("/api/practice-sessions", {
         method: "POST",
@@ -1208,12 +1215,11 @@ export default function SessionClient({
           slug,
           topic,
           section,
-          totalQuestions: questions.length,
-          correctCount: correctTotal,
-          accuracy:
-            answeredTotal === 0 ? 0 : Math.round((correctTotal / answeredTotal) * 100),
+          totalQuestions: summary.totalQuestions,
+          correctCount: summary.correctCount,
+          accuracy: summary.accuracy,
           totalTimeMs: Date.now() - sessionStart,
-          attempts,
+          attempts: summary.attempts,
         }),
       })
       if (res.ok) {
