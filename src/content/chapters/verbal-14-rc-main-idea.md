@@ -14,13 +14,13 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q1
-      - reading-comprehension-q2
+      - reading-comprehension-q56
+      - reading-comprehension-q65
   - id: rc-main-idea
     type: reading
     title: "RC: Main Idea"
     check_question_ids:
-      - reading-comprehension-q3
+      - reading-comprehension-q114
   - id: main-idea-from-the-map
     type: reading
     title: "Main idea falls out of your map"
@@ -33,9 +33,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - reading-comprehension-q3
+      - reading-comprehension-q124
       - reading-comprehension-q4
-      - reading-comprehension-q5
+      - reading-comprehension-q126
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,7 +43,7 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q6
+      - reading-comprehension-q112
       - reading-comprehension-q7
       - reading-comprehension-q8
 ---

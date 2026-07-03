@@ -15,23 +15,23 @@ sections:
     intro: |
       Two mixed DI questions, no clock yet. Notice the pull to over-invest in a heavy stimulus — that instinct is exactly what timing strategy retrains.
     pretest_question_ids:
-      - multi-source-reasoning-q1
-      - two-part-analysis-q1
+      - multi-source-reasoning-q88
+      - two-part-analysis-q42
   - id: pacing-triage
     type: reading
     title: "Pacing and heavy-stimulus triage — 20 questions, 45 minutes"
     check_question_ids:
-      - multi-source-reasoning-q2
+      - multi-source-reasoning-q31
   - id: note-strategy
     type: reading
     title: "Note strategy and calculator use under time"
     check_question_ids:
-      - multi-source-reasoning-q3
+      - multi-source-reasoning-q65
   - id: revisit-review
     type: reading
     title: "Bookmark, revisit, and the three edits in Data Insights"
     check_question_ids:
-      - two-part-analysis-q2
+      - two-part-analysis-q89
   - id: summary
     type: summary
     title: "The DI timing discipline in one screen"
@@ -44,9 +44,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - data-sufficiency-q5
-      - graphics-interpretation-q5
-      - table-analysis-q5
+      - data-sufficiency-q60
+      - graphics-interpretation-q46
+      - table-analysis-q49
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -54,9 +54,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - multi-source-reasoning-q4
-      - two-part-analysis-q4
-      - data-sufficiency-q10
+      - multi-source-reasoning-q22
+      - two-part-analysis-q41
+      - data-sufficiency-q77
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -64,9 +64,9 @@ problem_sets:
       "685": 60
       "725": 80
     question_ids:
-      - multi-source-reasoning-q10
-      - two-part-analysis-q12
-      - data-sufficiency-q30
+      - multi-source-reasoning-q80
+      - two-part-analysis-q93
+      - data-sufficiency-q53
 ---
 
 ## @pacing-triage

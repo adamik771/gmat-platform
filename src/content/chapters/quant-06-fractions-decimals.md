@@ -45,7 +45,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - arithmetic-q1
+      - arithmetic-q79
       - arithmetic-q14
   medium:
     target_accuracy_by_score:

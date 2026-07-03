@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - rates-work-q7
-      - rates-work-q8
+      - rates-work-q49
+      - rates-work-q33
   - id: combined-work
     type: reading
     title: "Combined work — add the rates, never the times"
@@ -45,7 +45,7 @@ problem_sets:
       "725": 95
     question_ids:
       - rates-work-q11
-      - rates-work-q12
+      - rates-work-q70
 ---
 
 ## @combined-work

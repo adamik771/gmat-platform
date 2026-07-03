@@ -20,14 +20,14 @@ sections:
     type: reading
     title: "Percent fundamentals — translation over memorization"
     check_question_ids:
-      - ratios-percents-q1
-      - ratios-percents-q2
+      - ratios-percents-q51
+      - ratios-percents-q34
   - id: percent-change-and-successive
     type: reading
     title: "Percent change — multipliers and why successive changes don't cancel"
     check_question_ids:
-      - ratios-percents-q4
-      - ratios-percents-q7
+      - ratios-percents-q28
+      - ratios-percents-q24
   - id: percent-word-problems
     type: reading
     title: "Percent word problems — reverse change, ratios from percents"
@@ -43,7 +43,7 @@ problem_sets:
       "725": 100
     question_ids:
       - ratios-percents-q9
-      - ratios-percents-q10
+      - ratios-percents-q22
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -51,7 +51,7 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - ratios-percents-q11
+      - ratios-percents-q43
       - ratios-percents-q12
 ---
 

@@ -20,8 +20,8 @@ sections:
     type: reading
     title: "Functions, sequences, and custom characters"
     check_question_ids:
-      - algebra-q6
-      - algebra-q11
+      - algebra-q37
+      - algebra-q116
 problem_sets:
   easy:
     target_accuracy_by_score:

@@ -13,7 +13,7 @@ sections:
     intro: |
       Before I teach you anything, try these two. It's fine to miss them — research shows that *attempting* questions before instruction primes your brain to encode the lesson better. Rate your confidence honestly; your calibration matters more than your accuracy right now.
     pretest_question_ids:
-      - graphics-interpretation-q1
+      - graphics-interpretation-q55
       - graphics-interpretation-q7
 
   - id: reading-charts-accurately
@@ -49,7 +49,7 @@ sections:
     intro: |
       Pie charts and stacked bars both represent proportions, but they obey different reading rules. Treating them as the same chart type causes two entirely separate mistake classes. This section gives each its own discipline — and the stacked-bar segment-height trap is the single most exploitable error across all DI chart types.
     check_question_ids:
-      - graphics-interpretation-q7
+      - graphics-interpretation-q75
       - graphics-interpretation-q8
       - graphics-interpretation-q18
 
@@ -82,13 +82,13 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - graphics-interpretation-q1
-      - graphics-interpretation-q7
-      - graphics-interpretation-q11
-      - graphics-interpretation-q13
+      - graphics-interpretation-q63
+      - graphics-interpretation-q86
+      - graphics-interpretation-q78
+      - graphics-interpretation-q59
       - graphics-interpretation-q16
       - graphics-interpretation-q21
-      - graphics-interpretation-q24
+      - graphics-interpretation-q71
       - graphics-interpretation-q29
       - graphics-interpretation-q30
   medium:
@@ -98,17 +98,17 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - graphics-interpretation-q2
-      - graphics-interpretation-q3
-      - graphics-interpretation-q4
-      - graphics-interpretation-q5
+      - graphics-interpretation-q52
+      - graphics-interpretation-q36
+      - graphics-interpretation-q68
+      - graphics-interpretation-q41
       - graphics-interpretation-q6
-      - graphics-interpretation-q8
+      - graphics-interpretation-q45
       - graphics-interpretation-q10
       - graphics-interpretation-q12
-      - graphics-interpretation-q15
+      - graphics-interpretation-q31
       - graphics-interpretation-q17
-      - graphics-interpretation-q18
+      - graphics-interpretation-q84
       - graphics-interpretation-q22
       - graphics-interpretation-q25
       - graphics-interpretation-q27

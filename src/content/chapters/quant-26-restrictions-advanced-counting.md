@@ -14,15 +14,15 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - combinatorics-q13
-      - combinatorics-q14
+      - combinatorics-q82
+      - combinatorics-q38
   - id: restrictions
     type: reading
     title: "Restrictions — adjacent, forbidden, alternating, compound"
     check_question_ids:
-      - combinatorics-q8
-      - combinatorics-q9
-      - combinatorics-q15
+      - combinatorics-q35
+      - combinatorics-q53
+      - combinatorics-q72
   - id: counting-and-combinations
     type: reading
     title: "Counting and combinations — when to multiply, when to choose"
@@ -37,8 +37,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - combinatorics-q15
-      - combinatorics-q16
+      - combinatorics-q58
+      - combinatorics-q91
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -46,8 +46,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - combinatorics-q17
-      - combinatorics-q18
+      - combinatorics-q102
+      - combinatorics-q69
 ---
 
 ## @restrictions

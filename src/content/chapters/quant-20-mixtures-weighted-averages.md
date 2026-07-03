@@ -14,14 +14,14 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - ratios-percents-q13
+      - ratios-percents-q57
       - ratios-percents-q14
   - id: mixture-and-weighted-average
     type: reading
     title: "Mixtures and weighted averages — anchor the invariant"
     check_question_ids:
-      - ratios-percents-q8
-      - ratios-percents-q12
+      - ratios-percents-q56
+      - ratios-percents-q71
 problem_sets:
   easy:
     target_accuracy_by_score:

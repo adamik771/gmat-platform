@@ -13,8 +13,8 @@ sections:
     intro: |
       Before I teach you anything, try these two. It's fine to miss them — research shows that *attempting* questions before instruction primes your brain to encode the lesson better. Rate your confidence honestly; your calibration matters more than your accuracy right now.
     pretest_question_ids:
-      - data-sufficiency-q1
-      - data-sufficiency-q2
+      - data-sufficiency-q70
+      - data-sufficiency-q49
 
   - id: the-five-answer-framework
     type: reading
@@ -81,13 +81,13 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - data-sufficiency-q1
-      - data-sufficiency-q2
-      - data-sufficiency-q3
+      - data-sufficiency-q69
+      - data-sufficiency-q71
+      - data-sufficiency-q89
       - data-sufficiency-q4
       - data-sufficiency-q5
       - data-sufficiency-q16
-      - data-sufficiency-q17
+      - data-sufficiency-q59
       - data-sufficiency-q18
       - data-sufficiency-q19
       - data-sufficiency-q31
@@ -101,19 +101,19 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - data-sufficiency-q6
-      - data-sufficiency-q7
+      - data-sufficiency-q83
+      - data-sufficiency-q74
       - data-sufficiency-q8
       - data-sufficiency-q9
       - data-sufficiency-q10
-      - data-sufficiency-q20
-      - data-sufficiency-q21
-      - data-sufficiency-q22
-      - data-sufficiency-q23
+      - data-sufficiency-q88
+      - data-sufficiency-q63
+      - data-sufficiency-q92
+      - data-sufficiency-q62
       - data-sufficiency-q24
       - data-sufficiency-q25
-      - data-sufficiency-q26
-      - data-sufficiency-q27
+      - data-sufficiency-q73
+      - data-sufficiency-q64
       - data-sufficiency-q35
       - data-sufficiency-q36
       - data-sufficiency-q37
@@ -129,12 +129,12 @@ problem_sets:
       "685": 60
       "725": 80
     question_ids:
-      - data-sufficiency-q11
+      - data-sufficiency-q67
       - data-sufficiency-q12
       - data-sufficiency-q13
       - data-sufficiency-q14
       - data-sufficiency-q15
-      - data-sufficiency-q28
+      - data-sufficiency-q48
       - data-sufficiency-q29
       - data-sufficiency-q30
       - data-sufficiency-q43

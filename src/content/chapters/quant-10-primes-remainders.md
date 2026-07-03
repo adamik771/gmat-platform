@@ -14,20 +14,20 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - number-properties-q13
+      - number-properties-q86
       - number-properties-q14
   - id: primes-and-prime-factorization
     type: reading
     title: "Primes and prime factorization — the atomic structure of integers"
     check_question_ids:
-      - number-properties-q1
-      - number-properties-q8
+      - number-properties-q62
+      - number-properties-q82
   - id: remainders
     type: reading
     title: "Remainders — modular arithmetic, GMAT-style"
     check_question_ids:
-      - number-properties-q4
-      - number-properties-q12
+      - number-properties-q77
+      - number-properties-q25
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -37,7 +37,7 @@ problem_sets:
       "725": 100
     question_ids:
       - number-properties-q15
-      - number-properties-q16
+      - number-properties-q31
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -45,7 +45,7 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - number-properties-q17
+      - number-properties-q90
       - number-properties-q18
 ---
 

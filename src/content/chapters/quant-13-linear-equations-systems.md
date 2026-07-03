@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "Linear equations in one unknown — isolate-the-variable discipline"
     check_question_ids:
-      - algebra-q1
+      - algebra-q110
   - id: systems-of-equations
     type: reading
     title: "Systems of equations — substitution vs. elimination"
@@ -40,7 +40,7 @@ problem_sets:
       "725": 100
     question_ids:
       - algebra-q3
-      - algebra-q4
+      - algebra-q43
   medium:
     target_accuracy_by_score:
       "605": 50

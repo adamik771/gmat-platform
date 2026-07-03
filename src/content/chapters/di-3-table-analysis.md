@@ -41,7 +41,7 @@ sections:
     intro: |
       Three statements per question, and nearly every one is a variation on seven recurring shapes. The instant you can name the pattern, you stop improvising and start executing a move you have already rehearsed. This is the section that converts Table Analysis from a reading task into pure pattern recognition.
     check_question_ids:
-      - table-analysis-q1
+      - table-analysis-q43
       - table-analysis-q2
       - table-analysis-q3
 
@@ -85,12 +85,12 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - table-analysis-q11
-      - table-analysis-q12
-      - table-analysis-q13
+      - table-analysis-q66
+      - table-analysis-q54
+      - table-analysis-q62
       - table-analysis-q21
-      - table-analysis-q22
-      - table-analysis-q23
+      - table-analysis-q50
+      - table-analysis-q70
       - table-analysis-q24
   medium:
     target_accuracy_by_score:
@@ -99,20 +99,20 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - table-analysis-q1
-      - table-analysis-q2
-      - table-analysis-q3
+      - table-analysis-q75
+      - table-analysis-q37
+      - table-analysis-q68
       - table-analysis-q5
-      - table-analysis-q7
+      - table-analysis-q71
       - table-analysis-q8
       - table-analysis-q9
-      - table-analysis-q14
-      - table-analysis-q15
+      - table-analysis-q46
+      - table-analysis-q41
       - table-analysis-q16
-      - table-analysis-q17
+      - table-analysis-q45
       - table-analysis-q18
       - table-analysis-q25
-      - table-analysis-q26
+      - table-analysis-q56
       - table-analysis-q27
       - table-analysis-q28
       - table-analysis-q29
@@ -129,7 +129,7 @@ problem_sets:
       - table-analysis-q4
       - table-analysis-q6
       - table-analysis-q10
-      - table-analysis-q19
+      - table-analysis-q93
       - table-analysis-q20
       - table-analysis-q33
       - table-analysis-q34

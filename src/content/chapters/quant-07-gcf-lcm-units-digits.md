@@ -15,12 +15,12 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - arithmetic-q13
-      - arithmetic-q14
+      - arithmetic-q70
   - id: gcf-lcm
     type: reading
     title: "GCF and LCM — the machinery behind every fraction operation"
     check_question_ids:
-      - arithmetic-q13
+      - arithmetic-q69
   - id: units-digit-patterns
     type: reading
     title: "Units digit patterns — answering power questions in 10 seconds"
@@ -38,8 +38,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - arithmetic-q15
-      - arithmetic-q16
+      - arithmetic-q40
+      - arithmetic-q74
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -47,8 +47,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - arithmetic-q17
-      - arithmetic-q18
+      - arithmetic-q72
+      - arithmetic-q86
 ---
 
 ## @gcf-lcm

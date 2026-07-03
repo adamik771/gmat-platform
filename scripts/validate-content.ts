@@ -364,6 +364,39 @@ for (const [qid, chs] of pinnedIn) {
   }
 }
 
+// ERROR: the same question pinned in more than one reader slot — pretest,
+// recall check, or problem set, within OR across chapters (coming-soon
+// chapters included: their readers are fully visible on /chapters). A student
+// following the path would hit the identical question twice, which reads as
+// broken repetition. Every reader slot must pin a distinct question; pick an
+// unused one from the bank (grow the bank if it has none left).
+const readerPinSeen = new Map<string, string>()
+for (const c of chapters) {
+  const visitReaderPins = (ids: readonly string[], where: string) => {
+    for (const qid of ids) {
+      const prev = readerPinSeen.get(qid)
+      if (prev) {
+        push({
+          severity: "ERROR",
+          setSlug: c.slug,
+          questionId: qid,
+          rule: "reader-duplicate-pin",
+          detail: `Also pinned at ${prev} — a reader question may be pinned exactly once across all chapters`,
+        })
+      } else {
+        readerPinSeen.set(qid, `${c.slug}:${where}`)
+      }
+    }
+  }
+  for (const s of c.sections) {
+    visitReaderPins(s.pretestQuestionIds, `pretest(${s.id})`)
+    visitReaderPins(s.checkQuestionIds, `check(${s.id})`)
+  }
+  for (const ps of c.problemSets) {
+    visitReaderPins(ps.questionIds, `problem_set(${ps.difficulty})`)
+  }
+}
+
 // WARN: share of a shared bank's questions that fall to the bank default
 // (no subtopic keyword matched) — a spike means uploads use unrecognized tags.
 const bankTotals = new Map<string, { total: number; viaDefault: number }>()

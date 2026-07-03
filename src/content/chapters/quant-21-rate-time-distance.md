@@ -41,7 +41,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - rates-work-q3
+      - rates-work-q45
       - rates-work-q4
   medium:
     target_accuracy_by_score:
@@ -50,7 +50,7 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - rates-work-q5
+      - rates-work-q39
       - rates-work-q6
 ---
 

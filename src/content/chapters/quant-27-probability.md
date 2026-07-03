@@ -20,20 +20,20 @@ sections:
     type: reading
     title: "Probability basics — counting favorable vs total"
     check_question_ids:
-      - combinatorics-q24
-      - combinatorics-q21
+      - combinatorics-q32
+      - combinatorics-q83
   - id: basic-probability
     type: reading
     title: "Basic probability — favorable over total, and the complement"
     check_question_ids:
       - statistics-probability-q10
-      - statistics-probability-q8
+      - statistics-probability-q68
   - id: dependent-events
     type: reading
     title: "Dependent events — with and without replacement"
     check_question_ids:
       - statistics-probability-q15
-      - statistics-probability-q5
+      - statistics-probability-q71
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -42,8 +42,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - statistics-probability-q9
-      - statistics-probability-q10
+      - statistics-probability-q58
+      - statistics-probability-q47
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -51,8 +51,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - statistics-probability-q11
-      - statistics-probability-q12
+      - statistics-probability-q75
+      - statistics-probability-q82
 ---
 
 ## @probability-basics

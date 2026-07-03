@@ -34,7 +34,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - ratios-percents-q3
+      - ratios-percents-q52
       - ratios-percents-q4
   medium:
     target_accuracy_by_score:

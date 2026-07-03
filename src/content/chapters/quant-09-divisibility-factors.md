@@ -20,13 +20,13 @@ sections:
     type: reading
     title: "Divisibility rules — the shortcuts you can't afford to rederive"
     check_question_ids:
-      - number-properties-q5
+      - number-properties-q79
       - number-properties-q9
   - id: factors-and-multiples
     type: reading
     title: "Factors, multiples, GCF, and LCM"
     check_question_ids:
-      - number-properties-q3
+      - number-properties-q76
       - number-properties-q13
 problem_sets:
   easy:
@@ -36,7 +36,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - number-properties-q9
+      - number-properties-q35
       - number-properties-q10
   medium:
     target_accuracy_by_score:
@@ -45,7 +45,7 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - number-properties-q11
+      - number-properties-q85
       - number-properties-q12
 ---
 
