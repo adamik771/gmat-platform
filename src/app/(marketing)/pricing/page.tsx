@@ -128,7 +128,11 @@ export default function PricingPage() {
           {/* Pricing cards */}
           <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {tiers.map((tier) => (
-              <PricingCard key={tier.id} tier={tier} />
+              <PricingCard
+                key={tier.id}
+                tier={tier}
+                purchasable={PAYWALL_ENABLED}
+              />
             ))}
           </div>
 
