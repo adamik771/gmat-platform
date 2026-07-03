@@ -334,9 +334,9 @@ Scientific notation writes any number as **a × 10ᵏ**, where 1 ≤ a < 10 and 
 
 The mnemonic that never fails: the *original number* and the *power of 10* must multiply back to where you started. If you shrank a big number down to a coefficient between 1 and 10, the 10ᵏ has to be big to compensate, so k > 0. If you grew a tiny number up to a coefficient between 1 and 10, the 10ᵏ has to be a small fraction to compensate, so k < 0. Whenever the sign feels slippery, fall back on this compensation idea rather than memorizing a rule you might flip.
 
-**Worked example.** Express 0.00045 in scientific notation.
+**Worked example.** Express 0.00062 in scientific notation.
 
-Slide the decimal right until one nonzero digit is on the left: 0.00045 → 4.5, and that took 4 slides. The original number was tiny (less than 1), so k is negative. Result: **4.5 × 10⁻⁴**. Sanity check: 4.5 × 10⁻⁴ = 4.5 / 10,000 = 0.00045. Matches.
+Slide the decimal right until one nonzero digit is on the left: 0.00062 → 6.2, and that took 4 slides. The original number was tiny (less than 1), so k is negative. Result: **6.2 × 10⁻⁴**. Sanity check: 6.2 × 10⁻⁴ = 6.2 / 10,000 = 0.00062. Matches.
 
 **Worked example.** Express 6,300,000 in scientific notation.
 
@@ -391,7 +391,7 @@ Now group coefficients and powers of 10 separately. Coefficients: (3.2 × 1.5) /
 
 You don't need a precise product — the choices differ only in their exponents, so this is a pure **order-of-magnitude / answer-choice tactic**. One hour is 3,600 seconds = 3.6 × 10³ s. Multiply: (3 × 10⁸) · (3.6 × 10³). Coefficients: 3 · 3.6 = 10.8. Exponents: 8 + 3 = 11. That's 10.8 × 10¹¹, which normalizes to 1.08 × 10¹² ≈ **1.1 × 10¹²**, choice **(C)**. Notice the whole problem reduced to "exponent 8 plus exponent 3 is 11, then normalizing the coefficient 10.8 bumps it to 12." If you'd only tracked the powers of 10 you'd have landed within one normalization step of the answer and could have picked (C) by elimination, since no other choice is near 10¹².
 
-**Trap to watch.** Be precise about whether exponents move up or down, and never confuse the sign of the exponent with the sign of the number. 4.5 × 10⁻⁴ is a *very small positive* number (0.00045); the negative exponent does not make the value negative — it makes it small. If you wrote 4.5 × 10⁴ you'd have 45,000, which is wrong by a factor of 10⁸. Whenever an exponent sign feels ambiguous, plug in a sanity-check number and confirm the order of magnitude before you commit.
+**Trap to watch.** Be precise about whether exponents move up or down, and never confuse the sign of the exponent with the sign of the number. 6.2 × 10⁻⁴ is a *very small positive* number (0.00062); the negative exponent does not make the value negative — it makes it small. If you wrote 6.2 × 10⁴ you'd have 62,000, which is wrong by a factor of 10⁸. Whenever an exponent sign feels ambiguous, plug in a sanity-check number and confirm the order of magnitude before you commit.
 
 **A second trap — the decimal-count slip.** When converting, count *places moved*, not *zeros visible*. For 6,300,000 the answer is 10⁶ (six slides), even though there are only five trailing zeros after the 63. Counting zeros instead of slides is the single most common conversion error, and it's always an off-by-one in the exponent.
 

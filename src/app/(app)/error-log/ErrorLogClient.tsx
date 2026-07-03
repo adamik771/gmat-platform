@@ -290,6 +290,7 @@ export default function ErrorLogClient({
   remediationInProgress: number
   remediationCompletedThisWeek: number
 }) {
+  const router = useRouter()
   const [sectionFilter, setSectionFilter] = useState<(typeof SECTION_FILTERS)[number]>("All")
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("All")
   const [expandedId, setExpandedId] = useState<string | null>(null)
@@ -297,6 +298,15 @@ export default function ErrorLogClient({
   // as the user tags / toggles. Server also gets the update so a refresh
   // won't lose it.
   const [mistakes, setMistakes] = useState(initialMistakes)
+  // Resync when the server sends fresh props (router.refresh after a write,
+  // or a remount from the Router Cache): server truth wins. Without this a
+  // remount re-seeded every row from a stale payload and toggles looked like
+  // they "went away when you change window" (beta report).
+  const [prevInitial, setPrevInitial] = useState(initialMistakes)
+  if (prevInitial !== initialMistakes) {
+    setPrevInitial(initialMistakes)
+    setMistakes(initialMistakes)
+  }
 
   const filtered = useMemo(() => {
     let list = mistakes
@@ -378,6 +388,9 @@ export default function ErrorLogClient({
         const body = (await res.json().catch(() => ({}))) as { error?: string }
         throw new Error(body.error || `Request failed (${res.status})`)
       }
+      // Keep the Router Cache in step with the write (same pattern as
+      // TagEditor.save) so a window switch can't resurrect the old state.
+      router.refresh()
     } catch {
       // Roll back on failure — the SQL migration may not have landed yet,
       // in which case the cycle control is effectively read-only until

@@ -150,6 +150,22 @@ export async function POST(request: Request) {
     )
   }
 
+  // An official is logged AFTER it was taken. Without this, a future slot in
+  // the derived weekly schedule could be "scored" months ahead and become the
+  // latest point on the score trend (beta: a Nov 1 slot scored 705 in July,
+  // trend read "on target"). One day of UTC grace absorbs clients whose local
+  // calendar is ahead of the server's.
+  const maxIso = new Date(Date.now() + 86_400_000).toISOString().slice(0, 10)
+  if (raw.date > maxIso) {
+    return Response.json(
+      {
+        error:
+          "entry.date cannot be in the future — log an official exam after you've taken it",
+      },
+      { status: 400 }
+    )
+  }
+
   if (
     typeof raw.total !== "number" ||
     !Number.isInteger(raw.total) ||

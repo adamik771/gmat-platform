@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useTransition } from "react"
+import { useRouter } from "next/navigation"
 import { Bookmark, BookmarkCheck, Loader2 } from "lucide-react"
 
 /**
@@ -8,8 +9,11 @@ import { Bookmark, BookmarkCheck, Loader2 } from "lucide-react"
  * the spaced-review queue with a +50 priority boost.
  *
  * Reads its starting state from the `initialSaved` prop (so the button
- * matches what's already in `user_metadata.saved_for_review`); thereafter
+ * matches what's already in `user_state.saved_for_review`); thereafter
  * the state is local + optimistic. Failed POSTs roll back the state.
+ * Successful toggles also router.refresh() so the Router Cache
+ * (staleTimes.dynamic) can't re-serve a pre-toggle payload — the state
+ * used to look like it "went away when you change window" (beta report).
  *
  * Three visual variants:
  *   - "default" — full button with label, ~28px tall
@@ -29,9 +33,18 @@ export default function SaveForReviewButton({
    *  parent react (e.g. the Saved tab refreshes so an unsaved row drops out). */
   onToggle?: (saved: boolean) => void
 }) {
+  const router = useRouter()
   const [saved, setSaved] = useState(initialSaved)
   const [error, setError] = useState<string | null>(null)
   const [pending, startTransition] = useTransition()
+
+  // Resync when the server prop changes (fresh RSC payload after a refresh
+  // or a parent-tracked seed) — server truth wins over stale local state.
+  const [prevInitial, setPrevInitial] = useState(initialSaved)
+  if (prevInitial !== initialSaved) {
+    setPrevInitial(initialSaved)
+    setSaved(initialSaved)
+  }
 
   const toggle = () => {
     const nextSaved = !saved
@@ -53,6 +66,9 @@ export default function SaveForReviewButton({
           setError(data.error ?? "Failed to save")
         } else {
           onToggle?.(nextSaved)
+          // Refetch the current route's payload so re-navigation within the
+          // Router Cache window reflects the write.
+          router.refresh()
         }
       } catch {
         setSaved(!nextSaved)

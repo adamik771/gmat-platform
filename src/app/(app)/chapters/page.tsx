@@ -1002,8 +1002,13 @@ export default async function ChaptersPage() {
     const readCount = readingSections.filter((s) => readIds[s.id]).length
     const readPct = totalSections === 0 ? 0 : (readCount / totalSections) * 100
     const isComplete = readCount === totalSections && totalSections > 0
-    const isStarted = readCount > 0
-    const firstUnread = readingSections.find((s) => !readIds[s.id])
+    // Started = ANY section touched, pretest included, so pretest-only
+    // progress still resumes rather than restarting at the top.
+    const isStarted = c.sections.some((s) => readIds[s.id])
+    // Resume over ALL sections (not just readings) so the anchor can never
+    // jump past an untouched pretest — clicking a fresh chapter used to land
+    // mid-page below "try before you learn" (beta report on chapter 5).
+    const firstUnread = c.sections.find((s) => !readIds[s.id])
     // Aggregate problem-set attempts: count sets touched + overall accuracy.
     // Iterating Object.values is safe because the stored map only has
     // difficulty-keyed entries; the optional chain handles cold-start users.
@@ -1027,7 +1032,9 @@ export default async function ChaptersPage() {
       href: `/chapters/${c.slug}`,
       estimatedMinutes: c.estimatedMinutes,
       estimatedPages: c.estimatedPages,
-      resumeAnchor: firstUnread?.id ?? null,
+      // Anchor only once the user actually started the chapter — a fresh
+      // chapter opens at the top (hero, summary, then the pretest in order).
+      resumeAnchor: isStarted && firstUnread ? firstUnread.id : null,
       totalSections,
       readSections: readCount,
       problemSetCount: c.problemSets.length,

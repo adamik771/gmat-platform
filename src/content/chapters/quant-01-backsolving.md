@@ -129,7 +129,7 @@ Backsolving isn't only for equations. It shines anywhere the choices are concret
 
 **Worked example.** *(Word problem.)* A store sells pens at one price and pencils at half that price. Marco buys 3 pens and 4 pencils for $20. What is the price of one pen? Choices: (A) $3 (B) $4 (C) $5 (D) $6 (E) $8. Test C, pen = $5, pencil = $2.50: 3(5) + 4(2.50) = $25 — **too big**, so kill C, D, E (a higher pen price only raises the total). Test B, pen = $4: 12 + 8 = $20. Answer **(B)**. You never wrote "3p + 4(p/2) = 20"; you read the sentence and checked a number against it.
 
-**Worked example.** *(Number properties.)* The sum of three consecutive even integers is 78. What is the largest? Choices: (A) 24 (B) 26 (C) 28 (D) 30 (E) 32. Largest = C = 28 means 24, 26, 28; sum = 78. Exact on the first try — answer **(C)**. Stems with "consecutive," "divisible by," or "largest such" are prime territory, because each choice is instantly checkable against the stated property with no equation at all.
+**Worked example.** *(Number properties.)* The sum of three consecutive even integers is 84. What is the largest? Choices: (A) 26 (B) 28 (C) 30 (D) 32 (E) 34. Largest = C = 30 means 26, 28, 30; sum = 84. Exact on the first try — answer **(C)**. Stems with "consecutive," "divisible by," or "largest such" are prime territory, because each choice is instantly checkable against the stated property with no equation at all.
 
 Now the discipline that separates fast from reckless — the four places backsolving **breaks**:
 

@@ -498,6 +498,7 @@ export default function OfficialExamPlanClient({
           {formOpen && (
             <EntryForm
               defaultDate={defaultEntryDate}
+              maxDate={todayIso}
               saving={saving}
               onSubmit={submitEntry}
             />
@@ -633,10 +634,14 @@ function ScheduleRow({
 
 function EntryForm({
   defaultDate,
+  maxDate,
   saving,
   onSubmit,
 }: {
   defaultDate: string
+  /** Latest selectable date (the student's local today) — an official is
+   *  logged after it was taken, never scheduled into a future slot. */
+  maxDate: string
   saving: boolean
   onSubmit: (entry: OfficialExamEntry) => Promise<boolean>
 }) {
@@ -665,6 +670,12 @@ function EntryForm({
     setLocalError(null)
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
       setLocalError("Pick a date")
+      return
+    }
+    if (date > maxDate) {
+      setLocalError(
+        "That date is in the future — log an official after you've taken it."
+      )
       return
     }
     const totalNum = Number(total)
@@ -716,6 +727,7 @@ function EntryForm({
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            max={maxDate}
             required
             className={INPUT_CLASS}
             style={INPUT_STYLE}

@@ -195,11 +195,11 @@ Memorize this table cold. Every entry below "twice as many as" is a place where 
 
 > **Recall check.** Translate "8 fewer than three times n." (Answer: 3n − 8 — "fewer than" subtracts the stated amount from the base, which here is the whole expression "three times n.")
 
-**Worked example.** (easy) The sum of three consecutive even integers is 18 more than twice the smallest. Find the largest.
+**Worked example.** (easy) The sum of three consecutive even integers is 24 more than twice the smallest. Find the largest.
 
-Let the three integers be n, n + 2, n + 4. Sum: 3n + 6. "18 more than twice the smallest" = 2n + 18.
+Let the three integers be n, n + 2, n + 4. Sum: 3n + 6. "24 more than twice the smallest" = 2n + 24.
 
-Equation: 3n + 6 = 2n + 18 → n = 12. Largest: n + 4 = 16.
+Equation: 3n + 6 = 2n + 24 → n = 18. Largest: n + 4 = 22.
 
 Notice the literal rendering of "18 more than twice the smallest": twice the smallest is 2n, and "18 more than" that adds 18 *to* it, giving 2n + 18 — not 18 − 2n and not 2(n + 18). Render the inner phrase first, then the outer. One more discipline point: the question asks for the *largest*, not the smallest n. A test-taker who solves for n = 12 and grids 12 has done all the algebra correctly and still missed the point — the answer is n + 4 = 16. This is why Step 1 of the procedure (underline the target) is non-negotiable.
 
@@ -209,16 +209,16 @@ The clean translation is x + 0.30x = 91, i.e. 1.30x = 91, so x = 70 — choice (
 
 **The unit-matching habit.** In word problems with mixed units (dollars, hours, kilograms), write units next to every variable. "A muffin costs m dollars" → m has units of dollars per muffin. Check that equations have matching units; a mismatch almost always means a translation error. If one side of your equation is "dollars" and the other is "muffins," you have not written a real equation — you've written nonsense that happens to have an equals sign. Units are a free correctness check that costs nothing: when "distance = rate × time" and you confirm that (miles/hour) × (hours) genuinely cancels to miles, you have caught the most common rate-problem inversion before it costs you a point.
 
-**Worked example.** (medium, naming the strategy: two-variable elimination) At a bakery, 2 muffins and 3 scones cost $21, while 4 muffins and 1 scone cost $17. Find the cost of one scone.
+**Worked example.** (medium, naming the strategy: two-variable elimination) At a bakery, 2 muffins and 3 scones cost $24, while 4 muffins and 1 scone cost $18. Find the cost of one scone.
 
 Let m = dollars per muffin, s = dollars per scone.
 
-- 2m + 3s = 21
-- 4m + s = 17
+- 2m + 3s = 24
+- 4m + s = 18
 
-From equation 2: s = 17 − 4m. Substitute: 2m + 3(17 − 4m) = 21 → 2m + 51 − 12m = 21 → −10m = −30 → m = 3. Then s = 17 − 12 = 5.
+From equation 2: s = 18 − 4m. Substitute: 2m + 3(18 − 4m) = 24 → 2m + 54 − 12m = 24 → −10m = −30 → m = 3. Then s = 18 − 12 = 6.
 
-Strategy note: substitution was clean here because equation 2 had a coefficient of 1 on s — solving for that lone variable produced no fractions. **When a system has a variable with coefficient 1, isolate that variable; it keeps the arithmetic fraction-free.** Had both coefficients been 2 or larger, elimination (scale one equation, add or subtract to cancel a variable) is usually faster than substitution. Always verify at the end: 2(3) + 3(5) = 6 + 15 = 21, and 4(3) + 5 = 17. Both hold. And once more, read the target: the question wanted the scone, s = 5, not the muffin. Solving the system fully and then circling the wrong variable is a classic avoidable miss.
+Strategy note: substitution was clean here because equation 2 had a coefficient of 1 on s — solving for that lone variable produced no fractions. **When a system has a variable with coefficient 1, isolate that variable; it keeps the arithmetic fraction-free.** Had both coefficients been 2 or larger, elimination (scale one equation, add or subtract to cancel a variable) is usually faster than substitution. Always verify at the end: 2(3) + 3(6) = 6 + 18 = 24, and 4(3) + 6 = 18. Both hold. And once more, read the target: the question wanted the scone, s = 6, not the muffin. Solving the system fully and then circling the wrong variable is a classic avoidable miss.
 
 > **Recall check.** In a 2-variable system, when should you prefer substitution over elimination? (Answer: when one variable already has a coefficient of 1, so isolating it avoids fractions; otherwise elimination is usually cleaner.)
 

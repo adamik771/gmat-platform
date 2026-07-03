@@ -61,11 +61,11 @@ Example: 2^(−3) = 1/2³ = 1/8.
 
 x^(1/n) = nth root of x.
 
-Example: 8^(1/3) = ∛8 = 2.
+Example: 8^(1/3) = the cube root of 8 = 2.
 
 x^(m/n) = (x^(1/n))^m = (nth root of x)^m.
 
-Example: 8^(2/3) = (∛8)² = 2² = 4.
+Example: 8^(2/3) = (8^(1/3))² = 2² = 4.
 
 ### Negative bases
 
@@ -84,9 +84,9 @@ Example: 8^(2/3) = (∛8)² = 2² = 4.
 
 ### Cube root
 
-∛x = x^(1/3). Defined for all real x (including negatives).
+x^(1/3) is the cube root of x. Defined for all real x (including negatives).
 
-∛(−8) = −2.
+(−8)^(1/3) = −2.
 
 ### Root rules
 

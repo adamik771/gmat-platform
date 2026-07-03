@@ -71,9 +71,9 @@ Fifteen primes. You should know all of them on sight. Students who have to test 
 
 **The factor count formula.** If `n = p₁^a × p₂^b × p₃^c × …`, the number of positive factors of n is `(a+1)(b+1)(c+1)…`. The logic: to *build* a factor, you independently choose how many copies of each prime to include — anywhere from 0 up to that prime's exponent. For p₁ that is `a+1` choices (0, 1, …, a), for p₂ it is `b+1` choices, and so on. Multiply the independent choices.
 
-**Worked example.** How many positive factors does 720 have?
+**Worked example.** How many positive factors does 540 have?
 
-`720 = 2⁴ × 3² × 5¹`. Factor count `= (4+1)(2+1)(1+1) = 5 × 3 × 2 = 30`. Note the often-forgotten `(1+1)` from the lone factor of 5 — every prime present, even with exponent 1, contributes a `(1+1) = 2` to the product. Drop it and you would wrongly get 15.
+`540 = 2² × 3³ × 5¹`. Factor count `= (2+1)(3+1)(1+1) = 3 × 4 × 2 = 24`. Note the often-forgotten `(1+1)` from the lone factor of 5 — every prime present, even with exponent 1, contributes a `(1+1) = 2` to the product. Drop it and you would wrongly get 12.
 
 > **Recall check.** A number's prime factorization is `p² × q × r` for distinct primes p, q, r. How many positive factors does it have? (`(2+1)(1+1)(1+1) = 3 × 2 × 2 = 12`.)
 
@@ -151,13 +151,13 @@ Use `GCD × LCM = product of the two numbers`: `4 × 144 = 16 × (other)`, so ot
 
 **Micro-drill.** No calculator — 90 seconds total:
 
-1. How many positive factors does 720 have? → ___
+1. How many positive factors does 540 have? → ___
 2. List all primes between 40 and 55. → ___
 3. What is the smallest positive integer n such that n² is divisible by 180? → ___
 4. How many positive factors of `600 = 2³ × 3 × 5²` are perfect squares? → ___
 5. The GCD of two numbers is 6 and their LCM is 90. If one number is 18, what is the other? → ___
 
-Answers: (1) **30** — 720 = 2⁴ × 3² × 5; factor count = (4+1)(2+1)(1+1) = 5 × 3 × 2 = 30. (2) **41, 43, 47, 53** — eliminate composites: 45 = 9×5, 49 = 7², 51 = 3×17; the four survivors are prime. (3) **n = 30** — 180 = 2² × 3² × 5. Since n² must have all even exponents, the single factor of 5 in 180 forces 5² into n², so 5 | n; similarly 2 | n and 3 | n. Smallest such n = 2 × 3 × 5 = 30. Verify: 30² = 900 = 180 × 5. ✓ (4) **4** — a square factor `2^a × 3^b × 5^c` needs even a, b, c: a ∈ {0, 2} (2 choices), b ∈ {0} (1 choice, since 3's exponent is only 1), c ∈ {0, 2} (2 choices), giving 2 × 1 × 2 = 4 (they are 1, 4, 25, 100). (5) **30** — GCD × LCM = product, so 6 × 90 = 18 × other → other = 540 / 18 = 30. Check: 18 = 2 × 3², 30 = 2 × 3 × 5; GCD = 2 × 3 = 6 ✓, LCM = 2 × 3² × 5 = 90 ✓.
+Answers: (1) **24** — 540 = 2² × 3³ × 5; factor count = (2+1)(3+1)(1+1) = 3 × 4 × 2 = 24. (2) **41, 43, 47, 53** — eliminate composites: 45 = 9×5, 49 = 7², 51 = 3×17; the four survivors are prime. (3) **n = 30** — 180 = 2² × 3² × 5. Since n² must have all even exponents, the single factor of 5 in 180 forces 5² into n², so 5 | n; similarly 2 | n and 3 | n. Smallest such n = 2 × 3 × 5 = 30. Verify: 30² = 900 = 180 × 5. ✓ (4) **4** — a square factor `2^a × 3^b × 5^c` needs even a, b, c: a ∈ {0, 2} (2 choices), b ∈ {0} (1 choice, since 3's exponent is only 1), c ∈ {0, 2} (2 choices), giving 2 × 1 × 2 = 4 (they are 1, 4, 25, 100). (5) **30** — GCD × LCM = product, so 6 × 90 = 18 × other → other = 540 / 18 = 30. Check: 18 = 2 × 3², 30 = 2 × 3 × 5; GCD = 2 × 3 = 6 ✓, LCM = 2 × 3² × 5 = 90 ✓.
 
 **Recap.** Primes are the atoms; every integer above 1 has a unique prime factorization. Memorize the fifteen primes under 50 and the fake-primes 91 = 7 × 13, 51 = 3 × 17, and 57 = 3 × 19. From the exponents you can read off almost everything the GMAT asks: total factor count via `(a+1)(b+1)…`, perfect squares (all exponents even, equivalently an odd factor count), perfect cubes (all divisible by 3), special-factor counts (restrict the exponent choices and multiply), and GCD/LCM (lowest vs. highest exponents). When a question fixes a power — "n² is divisible by K" — round each required exponent up to the next valid multiple, then divide. To minimize an integer with a target factor count, load the biggest exponents onto the smallest primes. Always count 1 as a factor but never as a prime, and never forget that 2 is prime. Factor first, then think; that single habit converts most 685+ factor questions into two clean lines.
 
@@ -169,9 +169,9 @@ Remainder questions show up on 685+ difficulty constantly because they have so m
 
 Read the equation in both directions. Forward: given n, d, and k, you recover the original number. Backward, and more usefully on the GMAT: given the remainder r, you know n is "r more than a multiple of d." That phrase — *a multiple of d, plus r* — is how you should hear every remainder fact. "n leaves remainder 4 mod 7" means "n is a multiple of 7, plus 4," i.e. n is one of 4, 11, 18, 25, 32, …. Train this translation until it is automatic, because nearly every hard remainder problem is solved the instant you have rewritten its words as `n = dk + r`.
 
-**Worked example.** (easy) When the positive integer n is divided by 9, the remainder is 5. What is the remainder when n + 13 is divided by 9?
+**Worked example.** (easy) When the positive integer n is divided by 8, the remainder is 3. What is the remainder when n + 13 is divided by 8?
 
-Write `n = 9k + 5`. Then `n + 13 = 9k + 18 = 9(k + 2)`. That is a clean multiple of 9, so the remainder is 0. The lesson: adding 13 (which is itself `9 + 4`) shifted the remainder by 4, from 5 up to 9, and 9 wraps back to 0. You did not need a value of n at all.
+Write `n = 8k + 3`. Then `n + 13 = 8k + 16 = 8(k + 2)`. That is a clean multiple of 8, so the remainder is 0. The lesson: adding 13 (which is itself `8 + 5`) shifted the remainder by 5, from 3 up to 8, and 8 wraps back to 0. You did not need a value of n at all.
 
 **Worked example.** (easy–medium) n divided by 7 leaves remainder 4. What is the remainder when 3n + 5 is divided by 7?
 

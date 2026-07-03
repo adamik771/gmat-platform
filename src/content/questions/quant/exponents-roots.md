@@ -639,7 +639,7 @@ If x = 8^(2/3), what is the value of x²?
 - E) 128
 
 **answer:** B
-**fastest_path:** Squaring doubles the exponent: x² = 8^(4/3) = (∛8)⁴ = 2⁴ = 16.
+**fastest_path:** Squaring doubles the exponent: x² = 8^(4/3) = (8^(1/3))⁴ = 2⁴ = 16.
 **explanation:** This problem is governed by the rule for fractional exponents, which states that for any nonnegative base a and positive integers m and n, a^(m/n) = (a^(1/n))^m. In words, the denominator of the exponent indicates the root to be taken, and the numerator indicates the power to which that root is raised.
 
 Let x = 8^(2/3). Applying the rule, we first take the cube root of 8 and then square the result:
@@ -938,7 +938,7 @@ The correct answer is B.
 **type:** Problem Solving
 **topic:** Roots & Radicals
 
-What is the value of ∛(−27)?
+What is the value of (−27)^(1/3) (the cube root of −27)?
 
 - A) −9
 - B) −3
@@ -997,14 +997,14 @@ The correct answer is C.
 
 For x > 0, which of the following is equivalent to √(75x⁴)?
 
-- A) 5x²√3
-- B) 5x²√15
+- A) 5x²·√3
+- B) 5x²·√15
 - C) 15x²
-- D) 25x²√3
-- E) 5x⁴√3
+- D) 25x²·√3
+- E) 5x⁴·√3
 
 **answer:** A
-**fastest_path:** Split into perfect squares: 75 = 25 × 3 gives 5√3, and √(x⁴) = x² — assemble 5x²√3.
+**fastest_path:** Split into perfect squares: 75 = 25 × 3 gives 5√3, and √(x⁴) = x² — assemble 5x²·√3.
 **explanation:** To simplify a square root, we apply the product property of radicals, which states that for nonnegative quantities a and b, the root of a product equals the product of the roots: the square root of (a times b) equals the square root of a times the square root of b. The strategy is to separate the numerical factor from the variable factor, then extract the largest perfect-square factor from each.
 
 Let the expression be the square root of (75 times x to the fourth), with x > 0. Separating the two factors gives the square root of 75 times the square root of (x to the fourth).
@@ -1016,10 +1016,10 @@ We next simplify the variable factor. Because x > 0, the square root of (x to th
 Multiplying the simplified factors together, we obtain 5 times the square root of 3 times x squared, which we write as 5x squared times the square root of 3.
 
 The correct answer is A.
-**mistake_b:** 5x²√15 factors 75 as 5 × 15 and moves the 5 outside without square-rooting it — only perfect-square factors exit the radical.
+**mistake_b:** 5x²·√15 factors 75 as 5 × 15 and moves the 5 outside without square-rooting it — only perfect-square factors exit the radical.
 **mistake_c:** 15x² drops the radical entirely, multiplying 5 × 3 as if √3 were a whole 3.
-**mistake_d:** 25x²√3 moves 25 out of the radical without taking its square root; 25 exits as 5.
-**mistake_e:** 5x⁴√3 forgets that a square root halves even exponents — √(x⁴) is x², not x⁴.
+**mistake_d:** 25x²·√3 moves 25 out of the radical without taking its square root; 25 exits as 5.
+**mistake_e:** 5x⁴·√3 forgets that a square root halves even exponents — √(x⁴) is x², not x⁴.
 **common_trap:** Square roots halve even exponents and square-root perfect-square factors: x⁴ exits as x², and 25 exits as 5.
 **takeaway:** Split the radicand into its perfect-square parts (25 and x⁴ here) and root each on the way out; whatever remains stays under the radical.
 **related_reading:** reading-quant-04-algebra-and-equations
@@ -1477,9 +1477,9 @@ The result is the constant 2, independent of x. The correct answer is B.
 Which of the following equals 4^(3/4)?
 
 - A) 2√2
-- B) 2∜2
-- C) ∜8
-- D) √2 · ∛2
+- B) 2 · 2^(1/4)
+- C) 8^(1/4)
+- D) √2 · 2^(1/3)
 - E) 4√2
 
 **answer:** A
@@ -1493,9 +1493,9 @@ We now simplify 2^(3/2) by writing the exponent as a sum: 3/2 = 1 + 1/2. By the 
 Thus 4^(3/4) = 2√2.
 
 The correct answer is A.
-**mistake_b:** 2∜2 = 2^(5/4) splits the exponent as 1 + 1/4 — but the base-2 exponent is 3/2, which splits as 1 + 1/2.
-**mistake_c:** ∜8 = 2^(3/4) applies the exponent 3/4 to base 2 directly, skipping the conversion 4 = 2² that doubles it to 3/2.
-**mistake_d:** √2 · ∛2 = 2^(5/6) mixes root indices — nothing in 4^(3/4) generates a cube root.
+**mistake_b:** 2 · 2^(1/4) = 2^(5/4) splits the exponent as 1 + 1/4 — but the base-2 exponent is 3/2, which splits as 1 + 1/2.
+**mistake_c:** 8^(1/4) = 2^(3/4) applies the exponent 3/4 to base 2 directly, skipping the conversion 4 = 2² that doubles it to 3/2.
+**mistake_d:** √2 · 2^(1/3) = 2^(5/6) mixes root indices — nothing in 4^(3/4) generates a cube root.
 **mistake_e:** 4√2 = 2^(5/2) keeps the base 4 alongside the radical, landing a full factor of 2 too high; the whole-number part is 2¹, not 2².
 **common_trap:** Working in base 4 — converting to base 2 makes the exponent arithmetic (2 × 3/4 = 3/2 = 1 + 1/2) transparent.
 **takeaway:** Convert composite bases to primes, then split the fractional exponent into whole + fractional parts to read off the radical form directly.
@@ -1816,10 +1816,10 @@ Which of the following has the greatest value?
 - B) √19
 - C) 2√5
 - D) 4
-- E) ∛80
+- E) 80^(1/3)
 
 **answer:** C
-**explanation:** To compare these expressions we square the square-root terms, ranking them as integers (all values are positive, so squaring preserves order): (3√2)² = 18, (2√5)² = 20, (√19)² = 19, and 4² = 16. Among these four, 2√5 is largest, with square 20. The remaining candidate ∛80 cannot be cleared by squaring, so compare it with the leader 2√5 by raising both to the 6th power, which eliminates every radical at once (again, both are positive, so order is preserved): (∛80)⁶ = 80² = 6,400, while (2√5)⁶ = 2⁶ × (√5)⁶ = 64 × 5³ = 64 × 125 = 8 × 8 × 125 = 8 × 1,000 = 8,000. Because 6,400 < 8,000, ∛80 does not exceed 2√5. A common error is to assume the cube root is largest because 80 is the biggest radicand, or to stop after comparing only the square roots. The correct answer is C.
+**explanation:** To compare these expressions we square the square-root terms, ranking them as integers (all values are positive, so squaring preserves order): (3√2)² = 18, (2√5)² = 20, (√19)² = 19, and 4² = 16. Among these four, 2√5 is largest, with square 20. The remaining candidate 80^(1/3) cannot be cleared by squaring, so compare it with the leader 2√5 by raising both to the 6th power, which eliminates every radical at once (again, both are positive, so order is preserved): (80^(1/3))⁶ = 80² = 6,400, while (2√5)⁶ = 2⁶ × (√5)⁶ = 64 × 5³ = 64 × 125 = 8 × 8 × 125 = 8 × 1,000 = 8,000. Because 6,400 < 8,000, 80^(1/3) does not exceed 2√5. A common error is to assume the cube root is largest because 80 is the biggest radicand, or to stop after comparing only the square roots. The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -2401,7 +2401,7 @@ For x > 0, what is the value of √(50x³) · √(2x)?
 - A) 10x²
 - B) 10x³
 - C) 100x²
-- D) 10x²√x
+- D) 10x²·√x
 - E) 5x²
 
 **answer:** A
@@ -2421,7 +2421,7 @@ As a check, (10x²)² = 100x⁴ = 50x³ · 2x, confirming the result.
 The correct answer is A.
 **mistake_b:** 10x³ halves the variable exponent incorrectly — √(x⁴) is x², not x³; the exponent 4 is divided by 2, not reduced by 1.
 **mistake_c:** 100x² square-roots the variable part but leaves the 100 untouched; √100 is 10, not 100.
-**mistake_d:** 10x²√x adds the variable exponents to 3 instead of 4 (forgetting the x inside √(2x)), leaving an odd power that traps a stray √x.
+**mistake_d:** 10x²·√x adds the variable exponents to 3 instead of 4 (forgetting the x inside √(2x)), leaving an odd power that traps a stray √x.
 **mistake_e:** 5x² takes √100 as 5 (confusing it with √25) while handling the variable correctly.
 **common_trap:** Square roots HALVE even exponents and take the actual square root of perfect-square coefficients: x⁴ exits as x², and 100 exits as 10.
 **takeaway:** Multiply radicals into one root first; GMAT pairs like 50x³ and 2x are built so the combined radicand is a clean perfect square.
@@ -2483,7 +2483,7 @@ What is the value of (1/8)^(−2/3)?
 - E) 16
 
 **answer:** D
-**fastest_path:** Negative exponent flips the fraction: (1/8)^(−2/3) = 8^(2/3) = (∛8)² = 2² = 4.
+**fastest_path:** Negative exponent flips the fraction: (1/8)^(−2/3) = 8^(2/3) = (8^(1/3))² = 2² = 4.
 **explanation:** This problem combines the negative-exponent rule with the fractional-exponent rule. The negative-exponent rule states that a base raised to a negative power equals the reciprocal of the base raised to the corresponding positive power. The fractional-exponent rule states that a^(m/n) = (a^(1/n))^m, where the denominator gives the root and the numerator gives the power.
 
 Let the expression be (1/8)^(−2/3). We first apply the negative-exponent rule by taking the reciprocal of the base and making the exponent positive. The reciprocal of 1/8 is 8, so

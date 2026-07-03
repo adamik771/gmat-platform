@@ -1,5 +1,8 @@
 import Link from "next/link"
 import { getQuestionsByIds } from "@/lib/content"
+import { createSupabaseServer } from "@/lib/supabase/server"
+import { getUserState } from "@/lib/user-state"
+import { readSavedForReview } from "@/lib/spaced-review"
 import SessionClient, { type SessionQuestion } from "../[slug]/SessionClient"
 import type { Section } from "@/types"
 
@@ -86,12 +89,29 @@ export default async function CustomSessionPage({
     ? (rawSection as Section)
     : deriveSection(playable)
 
+  // Saved-for-review ids so the save button reflects server truth here too.
+  // Best-effort: anonymous/errored just means an empty seed.
+  let savedForReview: string[] = []
+  try {
+    const supabase = await createSupabaseServer()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+    if (user) {
+      const state = await getUserState(supabase, user)
+      savedForReview = Array.from(readSavedForReview(state))
+    }
+  } catch {
+    /* render unauthenticated */
+  }
+
   return (
     <SessionClient
       slug="custom"
       topic={topicLabel}
       section={sectionLabel}
       questions={playable}
+      initialSavedForReview={savedForReview}
     />
   )
 }
