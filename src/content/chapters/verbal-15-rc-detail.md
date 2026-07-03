@@ -14,13 +14,13 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q9
+      - reading-comprehension-q66
       - reading-comprehension-q10
   - id: rc-detail
     type: reading
     title: "RC: Specific Detail"
     check_question_ids:
-      - reading-comprehension-q11
+      - reading-comprehension-q139
   - id: detail-is-a-lookup
     type: reading
     title: "Detail questions are lookups, not memory tests"
@@ -33,9 +33,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - reading-comprehension-q11
+      - reading-comprehension-q60
       - reading-comprehension-q12
-      - reading-comprehension-q13
+      - reading-comprehension-q110
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -44,7 +44,7 @@ problem_sets:
       "725": 95
     question_ids:
       - reading-comprehension-q14
-      - reading-comprehension-q15
+      - reading-comprehension-q73
       - reading-comprehension-q16
 ---
 

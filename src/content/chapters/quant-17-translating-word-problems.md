@@ -29,8 +29,8 @@ sections:
     type: reading
     title: "Word-problem translation — English into equations"
     check_question_ids:
-      - algebra-q7
-      - algebra-q20
+      - algebra-q45
+      - algebra-q89
 problem_sets:
   easy:
     target_accuracy_by_score:

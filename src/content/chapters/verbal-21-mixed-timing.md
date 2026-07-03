@@ -15,23 +15,23 @@ sections:
     intro: |
       Two mixed questions under no time pressure yet. Notice your instinct to over-invest — that instinct is exactly what timing strategy retrains.
     pretest_question_ids:
-      - critical-reasoning-q4
-      - reading-comprehension-q6
+      - critical-reasoning-q94
+      - reading-comprehension-q128
   - id: pacing-triage
     type: reading
     title: "Pacing and passage triage — 23 questions, 45 minutes"
     check_question_ids:
-      - critical-reasoning-q9
+      - critical-reasoning-q138
   - id: elimination
     type: reading
     title: "Elimination under time — the disciplined path to the last answer"
     check_question_ids:
-      - reading-comprehension-q8
+      - reading-comprehension-q78
   - id: temptation-control
     type: reading
     title: "Temptation control — why the trap answer feels right"
     check_question_ids:
-      - critical-reasoning-q12
+      - critical-reasoning-q173
   - id: review-edit
     type: reading
     title: "Bookmark, review, and the three edits — using the Focus interface"
@@ -48,10 +48,10 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q16
-      - reading-comprehension-q14
-      - critical-reasoning-q21
-      - reading-comprehension-q18
+      - critical-reasoning-q149
+      - reading-comprehension-q72
+      - critical-reasoning-q143
+      - reading-comprehension-q74
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -59,12 +59,12 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q24
-      - reading-comprehension-q21
-      - critical-reasoning-q31
-      - reading-comprehension-q25
-      - critical-reasoning-q36
-      - reading-comprehension-q29
+      - critical-reasoning-q145
+      - reading-comprehension-q59
+      - critical-reasoning-q137
+      - reading-comprehension-q57
+      - critical-reasoning-q142
+      - reading-comprehension-q52
   hard:
     target_accuracy_by_score:
       "605": 25
@@ -72,10 +72,10 @@ problem_sets:
       "685": 60
       "725": 80
     question_ids:
-      - critical-reasoning-q47
-      - reading-comprehension-q43
-      - critical-reasoning-q50
-      - reading-comprehension-q51
+      - critical-reasoning-q198
+      - reading-comprehension-q63
+      - critical-reasoning-q213
+      - reading-comprehension-q111
 ---
 
 ## @pacing-triage

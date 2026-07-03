@@ -29,7 +29,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q51
+      - critical-reasoning-q201
       - critical-reasoning-q52
       - critical-reasoning-q53
   medium:

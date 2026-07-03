@@ -20,6 +20,7 @@ import { redirect } from "next/navigation"
 import QuickActions from "@/components/dashboard/QuickActions"
 import InviteFriend from "@/components/dashboard/InviteFriend"
 import StudyHoursChart from "./StudyHoursChart"
+import FirstRunGuide from "./FirstRunGuide"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getReviewQueue, type ReviewCandidate } from "@/lib/review-queue"
@@ -314,6 +315,9 @@ export default async function DashboardPage() {
   const studySessions: Array<{ t: string; ms: number }> = []
   let badges: Badge[] = []
   let reviewDueCount = 0
+  // First-run guide (fresh accounts only; skippable forever).
+  let guideDismissed = true
+  let guideChapterStarted = false
   let reviewTopTopic: string | null = null
   let officialExamCount = 0
   let examReminder: OfficialExamReminder | null = null
@@ -616,6 +620,17 @@ export default async function DashboardPage() {
         ? metaOfficialScores.length
         : 0
 
+      // First-run guide state — shown only to genuinely-fresh accounts and
+      // permanently skippable (guide_dismissed_at scalar).
+      guideDismissed =
+        typeof user.user_metadata?.guide_dismissed_at === "string"
+      const rawChapterProgress = state.chapter_progress as
+        | Record<string, unknown>
+        | null
+        | undefined
+      guideChapterStarted =
+        !!rawChapterProgress && Object.keys(rawChapterProgress).length > 0
+
       // Onboarding state — target + exam are in user_metadata. Read
       // once for the Getting Started checklist up top. The intake-survey
       // flag flips when the multi-step /onboarding wizard has been
@@ -898,6 +913,18 @@ export default async function DashboardPage() {
             </p>
           </div>
         </section>
+
+        {/* First-run guide — the graduated path for a brand-new account
+            (chapter -> short practice -> baseline -> review). The baseline
+            hero below stays as the single big ask; this gives the lighter
+            first moves so day one isn't "go take a 2-hour exam". */}
+        {!guideDismissed && officialExamCount === 0 && (
+          <FirstRunGuide
+            chapterStarted={guideChapterStarted}
+            practiced={false}
+            reviewDue={reviewDueCount}
+          />
+        )}
 
         {/* Baseline-dominant hero — the single page-level primary
             action. Everything else is secondary. */}
@@ -1344,6 +1371,19 @@ export default async function DashboardPage() {
           </div>
         </div>
       </section>
+
+      {/* First-run guide — what to actually DO first. Fresh accounts only
+          (no baseline, under 3 sessions), skippable forever, retires on its
+          own once the account is rolling. */}
+      {!guideDismissed &&
+        (totalSessionCount ?? 0) < 3 &&
+        officialExamCount === 0 && (
+          <FirstRunGuide
+            chapterStarted={guideChapterStarted}
+            practiced={(totalSessionCount ?? 0) > 0}
+            reviewDue={reviewDueCount}
+          />
+        )}
 
       {/* Getting Started — disappears once all setup steps are done */}
       {/* Finish-setup strip — compact. Shows only the steps still left (no

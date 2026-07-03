@@ -1086,6 +1086,23 @@ export function getPracticeChapterGroups(): PracticeChapterGroup[] {
     }
   }
 
+  // Questions embedded in ANY chapter's reader (pretest, recall checks,
+  // problem sets) are teaching material the student has just worked through —
+  // dealing them into the practice tests made a chapter's Test 1 open with the
+  // very question the student answered minutes earlier at the end of the
+  // reading (the pretest/problem-set questions skew easy, and Test 1 is the
+  // easiest slice). Keep them out of the test pools; they stay reachable in
+  // the reader and the topic drills.
+  const readerEmbedded = new Set<string>()
+  for (const ch of chapters) {
+    for (const ps of ch.problemSets)
+      for (const qid of ps.questionIds) readerEmbedded.add(qid)
+    for (const sec of ch.sections) {
+      for (const qid of sec.pretestQuestionIds) readerEmbedded.add(qid)
+      for (const qid of sec.checkQuestionIds) readerEmbedded.add(qid)
+    }
+  }
+
   // 2. Assign each question to exactly one chapter.
   const isHidden = (slug: string) =>
     OMITTED_CHAPTERS.has(slug) || COMING_SOON_CHAPTERS.has(slug)
@@ -1125,8 +1142,15 @@ export function getPracticeChapterGroups(): PracticeChapterGroup[] {
       return
     }
 
+    // Drop reader-embedded questions from the test pool — unless the chapter
+    // is so small that excluding them would gut its tests, in which case keep
+    // everything (a thin test beats no test).
+    const MIN_TEST_POOL = 4
+    const fresh = pool.filter((q) => !readerEmbedded.has(q.id))
+    const testPool = fresh.length >= MIN_TEST_POOL ? fresh : pool
+
     // Order easy->hard; stable tiebreak by source file + question number.
-    const sorted = [...pool].sort((a, b) => {
+    const sorted = [...testPool].sort((a, b) => {
       const d = DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty]
       if (d !== 0) return d
       if (a.setSlug !== b.setSlug) return a.setSlug.localeCompare(b.setSlug)

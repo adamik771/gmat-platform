@@ -20,13 +20,13 @@ sections:
     type: reading
     title: "Quadratics and factoring — FOIL, reverse FOIL, and Vieta's"
     check_question_ids:
-      - algebra-q5
+      - algebra-q60
       - algebra-q13
   - id: algebraic-manipulation
     type: reading
     title: "Algebraic manipulation — identities and exponent rules"
     check_question_ids:
-      - algebra-q2
+      - algebra-q53
       - algebra-q12
 problem_sets:
   easy:
@@ -46,7 +46,7 @@ problem_sets:
       "725": 95
     question_ids:
       - algebra-q11
-      - algebra-q12
+      - algebra-q136
 ---
 
 ## @quadratics-and-factoring

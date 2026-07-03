@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "Even and odd — the smallest ideas with the biggest payoff"
     check_question_ids:
-      - number-properties-q2
+      - number-properties-q52
       - number-properties-q17
   - id: integer-properties-of-expressions
     type: reading

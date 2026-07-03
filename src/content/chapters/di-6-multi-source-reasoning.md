@@ -22,7 +22,7 @@ sections:
     type: reading
     title: "The two-pass navigation protocol"
     check_question_ids:
-      - multi-source-reasoning-q1
+      - multi-source-reasoning-q56
 
   - id: matching-question-to-tab
     type: reading
@@ -70,8 +70,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - multi-source-reasoning-q10
-      - multi-source-reasoning-q13
+      - multi-source-reasoning-q54
+      - multi-source-reasoning-q62
       - multi-source-reasoning-q37
       - multi-source-reasoning-q41
       - multi-source-reasoning-q44
@@ -84,13 +84,13 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - multi-source-reasoning-q1
-      - multi-source-reasoning-q2
-      - multi-source-reasoning-q4
+      - multi-source-reasoning-q55
+      - multi-source-reasoning-q89
+      - multi-source-reasoning-q23
       - multi-source-reasoning-q6
-      - multi-source-reasoning-q7
-      - multi-source-reasoning-q11
-      - multi-source-reasoning-q14
+      - multi-source-reasoning-q68
+      - multi-source-reasoning-q81
+      - multi-source-reasoning-q63
       - multi-source-reasoning-q15
       - multi-source-reasoning-q38
       - multi-source-reasoning-q39
@@ -106,11 +106,11 @@ problem_sets:
       "685": 60
       "725": 80
     question_ids:
-      - multi-source-reasoning-q3
+      - multi-source-reasoning-q57
       - multi-source-reasoning-q5
-      - multi-source-reasoning-q8
+      - multi-source-reasoning-q69
       - multi-source-reasoning-q9
-      - multi-source-reasoning-q12
+      - multi-source-reasoning-q85
       - multi-source-reasoning-q40
       - multi-source-reasoning-q43
       - multi-source-reasoning-q47

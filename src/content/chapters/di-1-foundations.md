@@ -41,9 +41,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - data-sufficiency-q1
-      - table-analysis-q1
-      - graphics-interpretation-q1
+      - data-sufficiency-q57
+      - table-analysis-q74
+      - graphics-interpretation-q51
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -51,7 +51,7 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - data-sufficiency-q2
+      - data-sufficiency-q58
       - multi-source-reasoning-q1
 ---
 

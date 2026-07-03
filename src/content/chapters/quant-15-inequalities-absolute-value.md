@@ -14,13 +14,13 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - algebra-q13
+      - algebra-q67
       - algebra-q14
   - id: inequalities
     type: reading
     title: "Inequalities — the sign flip you can't forget"
     check_question_ids:
-      - algebra-q3
+      - algebra-q65
   - id: polynomial-inequalities-wavy-line
     type: reading
     title: "Polynomial and rational inequalities — the wavy-line method"
@@ -43,7 +43,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - algebra-q15
+      - algebra-q124
       - algebra-q16
   medium:
     target_accuracy_by_score:
@@ -52,8 +52,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - algebra-q17
-      - algebra-q18
+      - algebra-q106
+      - algebra-q76
 ---
 
 ## @inequalities

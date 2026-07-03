@@ -20,13 +20,13 @@ sections:
     type: reading
     title: "Fractional exponents — roots in disguise"
     check_question_ids:
-      - exponents-roots-q8
+      - exponents-roots-q13
   - id: roots-and-simplification
     type: reading
     title: "Roots — factor, split, simplify"
     check_question_ids:
-      - exponents-roots-q2
-      - exponents-roots-q7
+      - exponents-roots-q34
+      - exponents-roots-q53
   - id: rationalizing-and-combining
     type: reading
     title: "Rationalizing denominators and combining radicals"
@@ -45,7 +45,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - exponents-roots-q9
+      - exponents-roots-q81
       - exponents-roots-q10
   medium:
     target_accuracy_by_score:
@@ -54,8 +54,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - exponents-roots-q11
-      - exponents-roots-q12
+      - exponents-roots-q28
+      - exponents-roots-q55
 ---
 
 ## @fractional-exponents-and-radicals

@@ -20,13 +20,13 @@ sections:
     type: reading
     title: "Enumeration — counting the long way"
     check_question_ids:
-      - combinatorics-q2
+      - combinatorics-q34
   - id: decision
     type: reading
     title: "The decision tree — all patterns in one place"
     check_question_ids:
-      - combinatorics-q1
-      - combinatorics-q2
+      - combinatorics-q59
+      - combinatorics-q68
       - combinatorics-q3
       - combinatorics-q4
       - combinatorics-q5
@@ -57,7 +57,7 @@ sections:
     type: reading
     title: "Distributions — identical items among distinct recipients"
     check_question_ids:
-      - combinatorics-q26
+      - combinatorics-q40
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -66,8 +66,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - combinatorics-q3
-      - combinatorics-q4
+      - combinatorics-q75
+      - combinatorics-q60
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -75,8 +75,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - combinatorics-q5
-      - combinatorics-q6
+      - combinatorics-q64
+      - combinatorics-q65
 ---
 
 ## @enumeration

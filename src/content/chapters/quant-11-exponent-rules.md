@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "Integer exponents — the three rules you multiply by"
     check_question_ids:
-      - exponents-roots-q1
+      - exponents-roots-q71
       - exponents-roots-q11
   - id: negative-and-zero-exponents
     type: reading
@@ -46,7 +46,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - exponents-roots-q3
+      - exponents-roots-q35
       - exponents-roots-q4
   medium:
     target_accuracy_by_score:
@@ -55,7 +55,7 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - exponents-roots-q5
+      - exponents-roots-q39
       - exponents-roots-q6
 ---
 

@@ -2,18 +2,26 @@ import { Check, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { PricingTier } from "@/types"
 import CheckoutButton from "./CheckoutButton"
+import ReserveInterceptButton from "./ReserveInterceptButton"
 
 interface PricingCardProps {
   tier: PricingTier
   className?: string
   /** Passed through to CheckoutButton — see its cancelPath doc. */
   checkoutCancelPath?: "/pricing" | "/upgrade"
+  /** False while no live payment processor exists (PAYWALL_ENABLED off): the
+   *  buy CTA becomes a founding-rate reservation link instead of a checkout
+   *  that dead-ends in a declined test-mode charge. The #founding anchor is
+   *  the FoundingOffer block, rendered on /pricing exactly when the paywall
+   *  is off. Defaults to purchasable for post-flip surfaces (/upgrade). */
+  purchasable?: boolean
 }
 
 export default function PricingCard({
   tier,
   className,
   checkoutCancelPath,
+  purchasable = true,
 }: PricingCardProps) {
   return (
     <div
@@ -58,13 +66,25 @@ export default function PricingCard({
       </div>
 
       {/* CTA — routes unauthenticated users to /signup, otherwise POSTs
-          to /api/checkout and redirects to Stripe. */}
-      <CheckoutButton
-        planId={tier.id}
-        label={tier.cta}
-        highlighted={tier.highlighted}
-        cancelPath={checkoutCancelPath}
-      />
+          to /api/checkout and redirects to Stripe. Pre-checkout (paywall
+          off), the same slot shows an identical-looking button whose CLICK
+          reveals the interim story (free meanwhile + founding reservation) —
+          the reveal is intent-gated on purpose, so the cards read as a normal
+          pricing page to browsers who never meant to buy. */}
+      {purchasable ? (
+        <CheckoutButton
+          planId={tier.id}
+          label={tier.cta}
+          highlighted={tier.highlighted}
+          cancelPath={checkoutCancelPath}
+        />
+      ) : (
+        <ReserveInterceptButton
+          planId={tier.id}
+          label={tier.cta}
+          highlighted={tier.highlighted}
+        />
+      )}
 
       {/* Features */}
       <ul className="space-y-2.5 flex-1 mt-6 pt-6 border-t border-white/[0.05]">

@@ -14,8 +14,8 @@ sections:
     intro: |
       Two RC questions to try before the method. Notice what you reach for when the passage is dense — and what you wish you'd tracked while reading.
     pretest_question_ids:
-      - reading-comprehension-q1
-      - reading-comprehension-q2
+      - reading-comprehension-q53
+      - reading-comprehension-q116
   - id: one-process
     type: reading
     title: "One process, every passage — the RC mindset"
@@ -51,7 +51,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - reading-comprehension-q2
+      - reading-comprehension-q123
       - reading-comprehension-q6
       - reading-comprehension-q3
   medium:
@@ -61,10 +61,10 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q1
-      - reading-comprehension-q5
-      - reading-comprehension-q9
-      - reading-comprehension-q13
+      - reading-comprehension-q62
+      - reading-comprehension-q71
+      - reading-comprehension-q122
+      - reading-comprehension-q146
   hard:
     target_accuracy_by_score:
       "605": 25

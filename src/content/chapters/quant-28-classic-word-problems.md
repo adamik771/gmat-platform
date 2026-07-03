@@ -20,8 +20,8 @@ sections:
     type: reading
     title: "Profit, markup, and percent change"
     check_question_ids:
-      - word-problems-q2
-      - word-problems-q8
+      - word-problems-q71
+      - word-problems-q65
       - word-problems-q46
       - word-problems-q50
       - word-problems-q51
@@ -60,7 +60,7 @@ problem_sets:
       "725": 95
     question_ids:
       - word-problems-q11
-      - word-problems-q12
+      - word-problems-q66
 ---
 
 ## @profit-and-percent

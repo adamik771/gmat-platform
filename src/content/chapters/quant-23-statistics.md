@@ -42,7 +42,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - statistics-probability-q3
+      - statistics-probability-q46
       - statistics-probability-q4
   medium:
     target_accuracy_by_score:
@@ -52,7 +52,7 @@ problem_sets:
       "725": 95
     question_ids:
       - statistics-probability-q5
-      - statistics-probability-q6
+      - statistics-probability-q52
 ---
 
 ## @mean-and-sum

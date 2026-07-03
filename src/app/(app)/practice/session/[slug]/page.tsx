@@ -19,6 +19,7 @@ import {
   getLevelForSlug,
   getTopicSkillLevels,
   pickAdaptiveOrder,
+  pickFreshOrder,
   type TopicSkillLevel,
 } from "@/lib/topic-skill"
 import { TOPIC_TO_SET } from "@/lib/topic-chapter-map"
@@ -144,6 +145,8 @@ export default async function PracticeSessionPage({
     updatedAt: 0,
   }
   let weakestTopic: WeakTopicHint | null = null
+  // question id -> most recent attempt (epoch ms), for seen-aware ordering.
+  const lastSeenAtMs = new Map<string, number>()
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -157,13 +160,22 @@ export default async function PracticeSessionPage({
       // Fetch enough history to compute per-topic accuracy. 2k rows is
       // sufficient for most users; the limit avoids over-fetching on
       // heavy accounts while still giving good signal.
+      // Most-recent-first so the seen-map's first hit per question id IS the
+      // latest attempt, and the 2k window covers recent history.
       const { data: attempts } = await supabase
         .from("practice_attempts")
-        .select("topic, is_correct")
+        .select("topic, is_correct, question_id, created_at")
         .eq("user_id", user.id)
+        .order("created_at", { ascending: false })
         .limit(2000)
 
       if (attempts && attempts.length > 0) {
+        for (const row of attempts) {
+          const qid = row.question_id as string | null
+          if (!qid || lastSeenAtMs.has(qid)) continue
+          const at = new Date(row.created_at as string).getTime()
+          if (!Number.isNaN(at)) lastSeenAtMs.set(qid, at)
+        }
         const stats = new Map<string, { total: number; correct: number }>()
         for (const row of attempts) {
           const t = row.topic as string | null
@@ -195,7 +207,13 @@ export default async function PracticeSessionPage({
   } catch {
     // Anonymous or supabase down — keep defaults / skip recommendation.
   }
-  const adaptive = pickAdaptiveOrder(playable, skill)
+  // Chapter tests are fixed, curated sets — retaking one repeats it by
+  // design, so they keep the plain adaptive order. Topic drills serve the
+  // whole bank file and are where "the same questions keep coming up" bit:
+  // unseen material now leads, then least-recently-seen.
+  const adaptive = chapterTest
+    ? pickAdaptiveOrder(playable, skill)
+    : pickFreshOrder(playable, skill, lastSeenAtMs)
 
   return (
     <SessionClient

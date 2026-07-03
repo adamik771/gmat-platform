@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - word-problems-q13
-      - word-problems-q14
+      - word-problems-q29
+      - word-problems-q30
   - id: sets-and-venn
     type: reading
     title: "Sets and Venn diagrams — the inclusion-exclusion template"
@@ -30,8 +30,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - word-problems-q15
-      - word-problems-q16
+      - word-problems-q31
+      - word-problems-q75
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,8 +39,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - word-problems-q17
-      - word-problems-q18
+      - word-problems-q38
+      - word-problems-q90
 ---
 
 ## @sets-and-venn

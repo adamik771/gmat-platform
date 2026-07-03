@@ -74,8 +74,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - two-part-analysis-q9
-      - two-part-analysis-q10
+      - two-part-analysis-q67
+      - two-part-analysis-q40
       - two-part-analysis-q28
       - two-part-analysis-q29
       - two-part-analysis-q30
@@ -86,15 +86,15 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - two-part-analysis-q1
-      - two-part-analysis-q2
-      - two-part-analysis-q4
-      - two-part-analysis-q6
-      - two-part-analysis-q8
-      - two-part-analysis-q11
+      - two-part-analysis-q87
+      - two-part-analysis-q66
+      - two-part-analysis-q72
+      - two-part-analysis-q60
+      - two-part-analysis-q64
+      - two-part-analysis-q44
       - two-part-analysis-q12
-      - two-part-analysis-q13
-      - two-part-analysis-q17
+      - two-part-analysis-q81
+      - two-part-analysis-q70
       - two-part-analysis-q19
       - two-part-analysis-q23
       - two-part-analysis-q26
@@ -109,20 +109,20 @@ problem_sets:
       "685": 60
       "725": 80
     question_ids:
-      - two-part-analysis-q3
-      - two-part-analysis-q5
-      - two-part-analysis-q7
-      - two-part-analysis-q14
-      - two-part-analysis-q15
+      - two-part-analysis-q90
+      - two-part-analysis-q50
+      - two-part-analysis-q48
+      - two-part-analysis-q84
+      - two-part-analysis-q71
       - two-part-analysis-q16
-      - two-part-analysis-q18
+      - two-part-analysis-q86
       - two-part-analysis-q20
       - two-part-analysis-q21
       - two-part-analysis-q22
       - two-part-analysis-q24
       - two-part-analysis-q25
       - two-part-analysis-q34
-      - two-part-analysis-q35
+      - two-part-analysis-q49
 ---
 
 ## @the-two-part-format

@@ -14,29 +14,29 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - combinatorics-q7
-      - combinatorics-q8
+      - combinatorics-q62
+      - combinatorics-q51
   - id: permutations
     type: reading
     title: "Permutations — when order matters"
     check_question_ids:
-      - combinatorics-q3
+      - combinatorics-q87
   - id: combinations
     type: reading
     title: "Combinations — when order doesn't matter"
     check_question_ids:
-      - combinatorics-q5
+      - combinatorics-q74
   - id: repeats
     type: reading
     title: "Repeated letters and multiset arrangements"
     check_question_ids:
-      - combinatorics-q27
+      - combinatorics-q63
   - id: circular
     type: reading
     title: "Circular arrangements"
     check_question_ids:
-      - combinatorics-q11
-      - combinatorics-q28
+      - combinatorics-q70
+      - combinatorics-q94
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -45,8 +45,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - combinatorics-q9
-      - combinatorics-q10
+      - combinatorics-q50
+      - combinatorics-q78
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -54,8 +54,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - combinatorics-q11
-      - combinatorics-q12
+      - combinatorics-q61
+      - combinatorics-q89
 ---
 
 ## @permutations
