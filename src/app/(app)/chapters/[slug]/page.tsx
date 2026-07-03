@@ -36,6 +36,9 @@ function toReaderQuestion(q: ParsedQuestion): ReaderQuestion {
     correctAnswerLetter: q.correctAnswerLetter,
     explanation: q.explanation,
     context: q.context,
+    chartSpec: q.chartSpec,
+    twoPartColumns: q.twoPartColumns,
+    twoPartCorrectAnswers: q.twoPartCorrectAnswers,
   }
 }
 

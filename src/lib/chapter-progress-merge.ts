@@ -20,6 +20,8 @@ export interface MergeableQuestion {
   selected?: number | null
   submitted?: boolean
   selfExplanation?: string
+  /** Two-Part Analysis: one selection per column. Single-select questions omit it. */
+  twoPartSelections?: (number | null)[]
 }
 
 interface SetResult {
@@ -39,9 +41,12 @@ export interface MergeableProgress {
 /** Higher = keep this question when two ids collide. */
 function questionScore(q: MergeableQuestion | undefined): number {
   if (!q) return -1
+  const hasSelection =
+    (q.selected !== null && q.selected !== undefined) ||
+    (q.twoPartSelections?.some((s) => s !== null && s !== undefined) ?? false)
   return (
     (q.submitted ? 4 : 0) +
-    (q.selected !== null && q.selected !== undefined ? 2 : 0) +
+    (hasSelection ? 2 : 0) +
     (q.selfExplanation ? 1 : 0)
   )
 }

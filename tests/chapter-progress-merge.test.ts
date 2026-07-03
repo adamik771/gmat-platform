@@ -64,6 +64,33 @@ describe("mergeProgress (chapter progress union — fixes lost graded tests)", (
     expect(merged.questions.q2.submitted).toBe(true) // server-only id preserved
   })
 
+  it("carries Two-Part Analysis selections through the merge and ranks them like a single-select pick", () => {
+    // TPA questions keep `selected: null` and store per-column picks in
+    // twoPartSelections. The side with selections must beat an untouched
+    // entry, and the array must survive the merge intact.
+    const local = empty()
+    local.questions = {
+      tpa1: { selected: null, submitted: true, twoPartSelections: [2, 4] },
+    }
+    const server = empty()
+    server.questions = { tpa1: { selected: null, submitted: false } }
+
+    const ab = mergeProgress(local, server)
+    const ba = mergeProgress(server, local)
+    expect(ab.questions.tpa1.twoPartSelections).toEqual([2, 4])
+    expect(ba.questions.tpa1.twoPartSelections).toEqual([2, 4])
+
+    // In-progress TPA (selections, not yet submitted) still outranks an
+    // empty entry — same weighting a single-select `selected` gets.
+    const partial = empty()
+    partial.questions = { tpa2: { selected: null, twoPartSelections: [1, null] } }
+    const untouched = empty()
+    untouched.questions = { tpa2: { selected: null } }
+    expect(
+      mergeProgress(untouched, partial).questions.tpa2.twoPartSelections
+    ).toEqual([1, null])
+  })
+
   it("never loses progress regardless of merge order", () => {
     const local = empty()
     local.problemSetResults.hard = { correct: 6, total: 10 }

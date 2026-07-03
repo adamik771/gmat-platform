@@ -27,6 +27,8 @@ import { mergeProgress, progressContentSig } from "@/lib/chapter-progress-merge"
 import { selectChapterCoachingState } from "@/lib/chapter-coaching"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
+import QuestionChart from "@/components/shared/QuestionChart"
+import type { ChartSpec } from "@/lib/chart-spec"
 import ReaderThemeToggle, { useReadingTheme } from "@/components/shared/ReaderThemeToggle"
 import ChapterSidebarNav from "./ChapterSidebarNav"
 import ChapterRightPanel from "./ChapterRightPanel"
@@ -68,6 +70,14 @@ export interface ReaderQuestion {
   /** Shared passage / set / source text (RC passages, MSR sets). Rendered above
    *  the prompt so a question about "the passage" actually shows the passage. */
   context?: string
+  /** Graphics Interpretation: structured chart rendered by QuestionChart.
+   *  Without it a GI question's "the graph shows..." had no graph. */
+  chartSpec?: ChartSpec
+  /** Two-Part Analysis: column headers (the two "roles"). Present only for TPA
+   *  questions — `options` then holds the row labels, `correctAnswer` is -1. */
+  twoPartColumns?: string[]
+  /** Two-Part Analysis: the correct row index per column. Same length as twoPartColumns. */
+  twoPartCorrectAnswers?: number[]
 }
 
 export interface ReaderSection {
@@ -98,6 +108,10 @@ interface QuestionProgress {
   selfExplanation: string
   /** Whether the user asked to skip / continue without answering. */
   skipped?: boolean
+  /** Two-Part Analysis: one row selection per column (parallel to
+   *  twoPartColumns). Single-select questions never set it; `selected`
+   *  stays null for TPA. */
+  twoPartSelections?: (number | null)[]
 }
 
 interface ChapterProgress {
@@ -1866,6 +1880,137 @@ function PassageContext({ text }: { text: string }) {
   )
 }
 
+/** Grades a reader question. TPA is correct only when every column's row
+ *  selection matches; single-select falls back to the picked index. Mirrors
+ *  SessionClient's isAnswerCorrect so the two surfaces never disagree. */
+function isReaderAnswerCorrect(
+  q: ReaderQuestion,
+  selected: number | null,
+  twoPartSelections: (number | null)[] | undefined
+): boolean {
+  if (q.twoPartCorrectAnswers && twoPartSelections) {
+    return q.twoPartCorrectAnswers.every((ans, i) => twoPartSelections[i] === ans)
+  }
+  return selected === q.correctAnswer
+}
+
+/** Two-Part Analysis answer grid — one selection per column. Reader-themed
+ *  sibling of SessionClient's TwoPartGrid (CSS vars instead of fixed hex so
+ *  it follows the reading-theme toggle). */
+function ReaderTwoPartGrid({
+  question: q,
+  selections,
+  submitted,
+  onSelect,
+}: {
+  question: ReaderQuestion
+  selections: (number | null)[]
+  submitted: boolean
+  onSelect: (colIdx: number, rowIdx: number) => void
+}) {
+  const cols = q.twoPartColumns ?? []
+  const rows = q.options
+  const correctAnswers = q.twoPartCorrectAnswers
+
+  return (
+    <div
+      className="overflow-x-auto rounded-lg border"
+      style={{ borderColor: "var(--read-border-strong)" }}
+    >
+      <table className="w-full border-collapse text-sm">
+        <thead style={{ backgroundColor: "var(--read-bg-elevated)" }}>
+          <tr>
+            <th
+              className="text-left py-3 px-4 border-b w-1/2"
+              style={{ borderColor: "var(--read-border)" }}
+            />
+            {cols.map((col) => (
+              <th
+                key={col}
+                className="py-3 px-4 text-center text-[11px] font-semibold uppercase tracking-wide border-b"
+                style={{ color: "var(--read-gold)", borderColor: "var(--read-border)" }}
+              >
+                {col}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, ri) => (
+            <tr
+              key={ri}
+              className="border-b"
+              style={{ borderColor: "var(--read-border)" }}
+            >
+              <td
+                className="py-3 px-4 text-[13px]"
+                style={{ color: "var(--read-text-body)" }}
+              >
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
+                  components={mdComponents}
+                >
+                  {row}
+                </ReactMarkdown>
+              </td>
+              {cols.map((_, ci) => {
+                const isSelected = selections[ci] === ri
+                const isCorrectCell = correctAnswers?.[ci] === ri
+
+                let borderColor = "var(--read-border-strong)"
+                let backgroundColor = "transparent"
+                if (submitted && isSelected && isCorrectCell) {
+                  borderColor = "var(--read-success)"
+                  backgroundColor = "var(--read-success-soft)"
+                } else if (submitted && isSelected) {
+                  borderColor = "var(--read-error)"
+                  backgroundColor = "var(--read-error-soft)"
+                } else if (submitted && isCorrectCell) {
+                  borderColor = "var(--read-success)"
+                } else if (isSelected) {
+                  borderColor = "var(--read-gold-strong)"
+                  backgroundColor = "var(--read-gold-soft)"
+                }
+
+                return (
+                  <td key={ci} className="py-3 px-4 text-center">
+                    <button
+                      type="button"
+                      onClick={() => onSelect(ci, ri)}
+                      disabled={submitted}
+                      className="w-6 h-6 rounded-full border-2 mx-auto flex items-center justify-center transition-colors disabled:cursor-default"
+                      style={{ borderColor, backgroundColor }}
+                    >
+                      {isSelected && (
+                        <div
+                          className="w-2.5 h-2.5 rounded-full"
+                          style={{
+                            backgroundColor: submitted
+                              ? isCorrectCell
+                                ? "var(--read-success)"
+                                : "var(--read-error)"
+                              : "var(--read-gold)",
+                          }}
+                        />
+                      )}
+                      {submitted && isCorrectCell && !isSelected && (
+                        <Check
+                          className="w-3 h-3"
+                          style={{ color: "var(--read-success)" }}
+                        />
+                      )}
+                    </button>
+                  </td>
+                )
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 function InlineQuestion({
   question: q,
   label,
@@ -1905,9 +2050,17 @@ function InlineQuestion({
     [q.id, state, update]
   )
 
-  const canSubmit =
-    state.selected !== null && !state.submitted && state.confidence !== null
-  const isCorrect = state.selected === q.correctAnswer
+  const isTwoPart = !!q.twoPartColumns?.length
+  // Normalize to one slot per column so a partially-answered TPA (or a stale
+  // save with a different column count) renders without index drift.
+  const twoPartSelections = isTwoPart
+    ? q.twoPartColumns!.map((_, i) => state.twoPartSelections?.[i] ?? null)
+    : undefined
+  const hasAnswer = isTwoPart
+    ? twoPartSelections!.every((s) => s !== null)
+    : state.selected !== null
+  const canSubmit = hasAnswer && !state.submitted && state.confidence !== null
+  const isCorrect = isReaderAnswerCorrect(q, state.selected, twoPartSelections)
 
   return (
     <div
@@ -1942,13 +2095,29 @@ function InlineQuestion({
 
       <div className="px-5 py-5 space-y-4">
         {q.context && <PassageContext text={q.context} />}
+        {/* Graphics Interpretation: the chart the prompt refers to. Without
+            this the reader showed "the graph shows..." with no graph. */}
+        {q.chartSpec && <QuestionChart spec={q.chartSpec} />}
         <div>
           <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
             {q.prompt}
           </ReactMarkdown>
         </div>
 
-        {/* Options */}
+        {/* Answer input — TPA selection grid, or the single-select options list */}
+        {isTwoPart ? (
+          <ReaderTwoPartGrid
+            question={q}
+            selections={twoPartSelections!}
+            submitted={state.submitted}
+            onSelect={(ci, ri) => {
+              if (state.submitted) return
+              const next = [...twoPartSelections!]
+              next[ci] = ri
+              patch({ twoPartSelections: next })
+            }}
+          />
+        ) : (
         <div className="space-y-2">
           {q.options.map((opt, idx) => {
             const isChosen = state.selected === idx
@@ -2015,9 +2184,10 @@ function InlineQuestion({
             )
           })}
         </div>
+        )}
 
         {/* Confidence + self-explanation (pre-submit only) */}
-        {!state.submitted && state.selected !== null && (
+        {!state.submitted && hasAnswer && (
           <div
             className="pt-4 space-y-4 border-t"
             style={{ borderColor: "var(--read-border)" }}
@@ -2110,7 +2280,11 @@ function PostSubmitReveal({
   question: ReaderQuestion
   state: QuestionProgress
 }) {
-  const isCorrect = state.selected === question.correctAnswer
+  const isCorrect = isReaderAnswerCorrect(
+    question,
+    state.selected,
+    state.twoPartSelections
+  )
   const [showExplanation, setShowExplanation] = useState(!isCorrect)
 
   // Calibration hint — compare confidence vs correctness.
@@ -2146,7 +2320,9 @@ function PostSubmitReveal({
           <p className="font-semibold">
             {isCorrect
               ? "Correct."
-              : `Incorrect. The answer is ${question.correctAnswerLetter}.`}
+              : question.correctAnswerLetter
+              ? `Incorrect. The answer is ${question.correctAnswerLetter}.`
+              : "Incorrect. The correct selections are marked in the grid above."}
           </p>
           {calibrationLabel && (
             <p className="text-[12px] mt-1 opacity-90">{calibrationLabel}</p>
@@ -2451,17 +2627,27 @@ function ProblemSetRunner({
 }) {
   const [idx, setIdx] = useState(0)
   const [selected, setSelected] = useState<number | null>(null)
+  // Two-Part Analysis: one row selection per column. Reset to [] on advance;
+  // the normalization below pads it back out to one null per column.
+  const [twoPartSelected, setTwoPartSelected] = useState<(number | null)[]>([])
   const [submitted, setSubmitted] = useState(false)
   const [answers, setAnswers] = useState<boolean[]>([])
   const [done, setDone] = useState(false)
   const current = set.questions[idx]
+  const isTwoPart = !!current.twoPartColumns?.length
+  const twoSel = isTwoPart
+    ? current.twoPartColumns!.map((_, i) => twoPartSelected[i] ?? null)
+    : undefined
+  const hasAnswer = isTwoPart
+    ? twoSel!.every((s) => s !== null)
+    : selected !== null
 
   function submit() {
-    if (selected === null) return
+    if (!hasAnswer) return
     setSubmitted(true)
   }
   function next() {
-    const isCorrect = selected === current.correctAnswer
+    const isCorrect = isReaderAnswerCorrect(current, selected, twoSel)
     const nextAnswers = [...answers, isCorrect]
     setAnswers(nextAnswers)
     if (idx + 1 >= set.questions.length) {
@@ -2472,6 +2658,7 @@ function ProblemSetRunner({
     }
     setIdx(idx + 1)
     setSelected(null)
+    setTwoPartSelected([])
     setSubmitted(false)
   }
 
@@ -2530,11 +2717,25 @@ function ProblemSetRunner({
         ) : (
           <div className="px-6 py-6 space-y-4">
             {current.context && <PassageContext text={current.context} />}
+            {current.chartSpec && <QuestionChart spec={current.chartSpec} />}
             <div>
               <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
                 {current.prompt}
               </ReactMarkdown>
             </div>
+            {isTwoPart ? (
+              <ReaderTwoPartGrid
+                question={current}
+                selections={twoSel!}
+                submitted={submitted}
+                onSelect={(ci, ri) => {
+                  if (submitted) return
+                  const next = [...twoSel!]
+                  next[ci] = ri
+                  setTwoPartSelected(next)
+                }}
+              />
+            ) : (
             <div className="space-y-2">
               {current.options.map((opt, i) => {
                 const chosen = selected === i
@@ -2599,6 +2800,7 @@ function ProblemSetRunner({
                 )
               })}
             </div>
+            )}
 
             {submitted && (
               <div
@@ -2621,7 +2823,7 @@ function ProblemSetRunner({
               {!submitted ? (
                 <button
                   onClick={submit}
-                  disabled={selected === null}
+                  disabled={!hasAnswer}
                   className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                   style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
                 >
