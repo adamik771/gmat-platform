@@ -292,16 +292,16 @@ This is where the "is/of/what" translation table earns its keep. The pattern nev
 
 Before the patterns, anchor the one idea that underlies all of them: a percent is always a percent **of something**, and that something is the *base*. Change the base and you change the answer, even when every digit in the problem stays the same. The discipline that follows — underline the values, fix the base, fix the direction — is just a procedure for never losing track of the base under time pressure.
 
-**The ratio-from-percents pattern.** "If 30% of x equals 45% of y, what is the ratio of x to y?"
+**The ratio-from-percents pattern.** "If 20% of x equals 35% of y, what is the ratio of x to y?"
 
-Translate the sentence literally, left to right: 0.30x = 0.45y. Now you want x/y, so isolate it by dividing both sides by y and by 0.30:
+Translate the sentence literally, left to right: 0.20x = 0.35y. Now you want x/y, so isolate it by dividing both sides by y and by 0.20:
 
-    0.30x = 0.45y
-    x/y = 0.45/0.30 = 3/2
+    0.20x = 0.35y
+    x/y = 0.35/0.20 = 7/4
 
-So x:y = 3:2.
+So x:y = 7:4.
 
-**Why x > y.** Intuition check, and a genuine answer-eliminator: if the *smaller* percent of x matches the *larger* percent of y, then x must be compensating by being bigger. A smaller chunk of a bigger number equals a bigger chunk of a smaller number. This inverse relationship is the fastest way to eliminate wrong answers — the moment you see "30% of x = 45% of y," you know x > y, so any answer choice with x:y less than 1 (like 2:3) is dead on sight, before you compute anything. On a five-choice problem the test-writer almost always plants the inverted ratio as a trap, so this single direction check often cuts the field in half for free.
+**Why x > y.** Intuition check, and a genuine answer-eliminator: if the *smaller* percent of x matches the *larger* percent of y, then x must be compensating by being bigger. A smaller chunk of a bigger number equals a bigger chunk of a smaller number. This inverse relationship is the fastest way to eliminate wrong answers — the moment you see "20% of x = 35% of y," you know x > y, so any answer choice with x:y less than 1 (like 4:7) is dead on sight, before you compute anything. On a five-choice problem the test-writer almost always plants the inverted ratio as a trap, so this single direction check often cuts the field in half for free.
 
 **Worked example.** If 20% of a equals 80% of b, what is the ratio of a to b?
 
@@ -311,7 +311,7 @@ Translate: 0.20a = 0.80b. Solve: a/b = 0.80/0.20 = 4. So a:b = 4:1. Sanity check
 
 Don't panic at three variables — chain two cross-overs. From "25% of m = 40% of n," cross the coefficients: m:n = 40:25 = 8:5. From "40% of n = 10% of p," cross: n:p = 10:40 = 1:4 = 5:20 (scaling n to 5 so it matches the first ratio). Now stitch them on the shared variable n = 5: m:n:p = 8:5:20. Quick direction check — p carries the smallest percent (10%), so p should be the largest variable, and 20 is indeed the biggest term. The technique that makes this painless is **using the cross-over to keep the shared variable's value identical in both ratios**, then reading the chain straight off.
 
-> **Recall check.** In "p% of x = q% of y," does the ratio x:y equal p:q or q:p? (q:p — the coefficients cross over, so the bigger percent ends up attached to the *smaller* variable. Quick check: 30% of x = 45% of y gives x:y = 45:30 = 3:2, and x is indeed the larger one.)
+> **Recall check.** In "p% of x = q% of y," does the ratio x:y equal p:q or q:p? (q:p — the coefficients cross over, so the bigger percent ends up attached to the *smaller* variable. Quick check: 20% of x = 35% of y gives x:y = 35:20 = 7:4, and x is indeed the larger one.)
 
 **Markup vs margin — a classic hard-GMAT trap.** "30% profit on cost" and "30% profit on selling price" use completely different bases, and the GMAT writes problems specifically to punish anyone who doesn't catch which one is stated.
 
@@ -373,7 +373,7 @@ Neither fact alone would get you there: a 15% rise could be a few cents or many 
 2. **Find the base.** For "of" problems, the base follows "of." For profit problems, the base follows "on." For change problems, the base is the *original* (pre-change) value.
 3. **Classify the direction.** Are you given the value *before* the change (then multiply) or *after* the change (then divide by the multiplier)?
 4. **Write the equation as a multiplier.** new = old × multiplier; or part = (rate) × base. Avoid the subtract-then-recombine approach — it invites base errors.
-5. **Solve, then sanity-check the direction.** Did the answer move the way the English demanded? If "30% of x = 45% of y," confirm x > y. If reversing a discount, confirm the original exceeds the sale price.
+5. **Solve, then sanity-check the direction.** Did the answer move the way the English demanded? If "20% of x = 35% of y," confirm x > y. If reversing a discount, confirm the original exceeds the sale price.
 6. **If stuck on algebra, backsolve from a middle answer choice, or plug in 100 for an unknown base.** The answers are usually clean dollar amounts; plug them into the problem's own conditions.
 
 **Micro-drill.** Apply the translation table and the procedure — 60 seconds total:

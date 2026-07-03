@@ -73,7 +73,7 @@ Why does this definition even hold? Because it's the only way to keep the ordina
 **Worked example.** 27^(2/3).
 
 Option A: cube first, then square. 27² = 729, and the cube root of 729 is 9.
-Option B: cube-root first, then square. ³√27 = 3, and 3² = 9.
+Option B: cube-root first, then square. ³√27 = 3 (the raised 3 is the root's index — read it as "the third root of 27"), and 3² = 9.
 
 Option B took three seconds. Option A took thirty and required you to know ³√729. **Always take the root first.** The numbers stay small and manageable. The whole reason the problem is solvable in your head is that 27 is a perfect cube; the test author chose it precisely so that root-first keeps the intermediate value tiny. Power-first throws that gift away.
 
@@ -191,9 +191,9 @@ Factor: 540 = 4 × 135 = 2² × 27 × 5 = 2² × 3³ × 5 = 2² × 3² × 3 × 5
 
 **Adding and subtracting radicals.** You can only add or subtract radicals that share the **same radicand** (the number under the root). Treat each distinct radical like its own variable: 2√3 and 5√3 combine the way 2x and 5x do, but √3 and √5 are as un-combinable as x and y. This "radical-as-variable" mental model is the single most useful frame for the add/subtract questions — once you see √3 as just "a letter," the algebra is obvious.
 
-**Worked example.** √12 + √27.
+**Worked example.** √18 + √50.
 
-Simplify each first — this is the step people skip. √12 = √(4·3) = 2√3, and √27 = √(9·3) = 3√3. Now both carry √3 as the shared "variable": 2√3 + 3√3 = 5√3. The terms looked unlike at the start (√12 vs √27) and only revealed their common radical *after* simplifying. **Always simplify before you decide whether radicals can combine.**
+Simplify each first — this is the step people skip. √18 = √(9·2) = 3√2, and √50 = √(25·2) = 5√2. Now both carry √2 as the shared "variable": 3√2 + 5√2 = 8√2. The terms looked unlike at the start (√18 vs √50) and only revealed their common radical *after* simplifying. **Always simplify before you decide whether radicals can combine.**
 
 **Worked example (harder).** Simplify √48 − √75 + √12.
 
@@ -242,7 +242,7 @@ Look for the largest perfect-cube factor of 54. The perfect cubes are 8, 27, 64,
 - **Grabbing a small perfect square.** Using 4 instead of 36 inside √72 isn't *wrong*, but it costs extra steps — and people often stop too early at 2√18, calling a not-yet-simplified expression "done."
 - **Leaving a product unsimplified.** After (2√6)(3√10) = 6√60, forgetting that √60 still contains a perfect square (4) and reporting 6√60 instead of 12√15.
 - **Combining unlike radicals.** Treating √3 + √5 as if it equals √8 or some single radical. They cannot be combined at all — different radicands.
-- **Combining before simplifying.** Declaring √12 + √27 "uncombinable" because the radicands differ on sight, when simplifying first reveals a shared √3.
+- **Combining before simplifying.** Declaring √18 + √50 "uncombinable" because the radicands differ on sight, when simplifying first reveals a shared √2.
 - **Forgetting to reduce a fraction under the root.** Splitting √(50/8) directly into messy √50/√8 instead of first reducing to √(25/4) = 5/2.
 
 **Recap.** Two rules drive everything: √(ab) = √a·√b and √(a/b) = √a/√b — splitting works across multiplication and division, never across addition or subtraction. To simplify a single root, pull out the **largest perfect-square factor** (or pull out **pairs** via prime factorization when the big square is hard to spot); for cube roots, pull out perfect cubes (triples). For a root of a fraction, **reduce first**. To add or subtract radicals, **simplify each one first**, then combine only those sharing a radicand, treating the radical like a variable. To multiply, combine coefficients and radicands separately, then re-scan for leftover perfect squares. And when the answer choices are spread apart, **estimate with perfect-square bracketing**; when they're integers in an equation, **backsolve**. Memorize your perfect squares through 225 and your basic cube roots — recognition speed, not cleverness, is what wins this question type.
