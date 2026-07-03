@@ -74,13 +74,22 @@ export default function MixedReviewCard({
     }
   }
 
+  // The card renders on /review (dark app chrome) AND inside the chapter
+  // reader, whose light/sepia reading themes define var(--read-*). Every
+  // color resolves the reader variable with the dark value as fallback —
+  // hardcoded dark-palette text was near-invisible on the cream theme
+  // (beta: "the white thing is not readable").
+  const cText = "var(--read-text, #F0F0F0)"
+  const cMuted = "var(--read-text-muted, #888888)"
+  const cFaint = "var(--read-text-faint, #555555)"
+
   if (isLocked) {
     return (
       <div
         className="p-5 rounded-xl border"
         style={{
           borderColor: "rgba(255,255,255,0.06)",
-          backgroundColor: "#0D0D0D",
+          backgroundColor: "var(--read-bg-elevated, #0D0D0D)",
         }}
       >
         <div className="flex items-start gap-3">
@@ -88,14 +97,21 @@ export default function MixedReviewCard({
             className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
             style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
           >
-            <Shuffle className="w-5 h-5 text-[#555555]" />
+            <Shuffle className="w-5 h-5" style={{ color: cFaint }} />
           </div>
           <div className="flex-1">
-            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-1">
+            <p
+              className="text-[10px] uppercase tracking-widest mb-1"
+              style={{ color: cFaint }}
+            >
               Locked
             </p>
-            <h3 className="text-sm font-semibold text-[#888888] mb-1">{title}</h3>
-            <p className="text-xs text-[#555555] leading-relaxed">{lockedHint}</p>
+            <h3 className="text-sm font-semibold mb-1" style={{ color: cMuted }}>
+              {title}
+            </h3>
+            <p className="text-xs leading-relaxed" style={{ color: cFaint }}>
+              {lockedHint}
+            </p>
           </div>
         </div>
       </div>
@@ -123,7 +139,10 @@ export default function MixedReviewCard({
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1 flex-wrap">
-              <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+              <p
+                className="text-[10px] uppercase tracking-widest"
+                style={{ color: cFaint }}
+              >
                 Research-backed interleaving
               </p>
               <span
@@ -133,8 +152,10 @@ export default function MixedReviewCard({
                 {count}Q
               </span>
             </div>
-            <h3 className="text-sm font-semibold text-[#F0F0F0] mb-1">{title}</h3>
-            <p className="text-xs text-[#888888] leading-relaxed">
+            <h3 className="text-sm font-semibold mb-1" style={{ color: cText }}>
+              {title}
+            </h3>
+            <p className="text-xs leading-relaxed" style={{ color: cMuted }}>
               {variant === "chapter"
                 ? "Mixes this chapter with your recent misses and other completed chapters. Interleaving feels harder than blocked practice — that's the point. It forces you to first identify the method before executing, which is the skill the test measures."
                 : "Pulls from your recent misses, the review queue, and chapters you've completed. Better for retention than drilling one topic at a time."}
@@ -155,7 +176,7 @@ export default function MixedReviewCard({
           />
         </div>
       </button>
-      <p className="text-[11px] text-[#555555] mt-2 leading-relaxed">
+      <p className="text-[11px] mt-2 leading-relaxed" style={{ color: cFaint }}>
         {loading
           ? "Building your mix…"
           : "Set is built fresh each run — same pools, different sample."}

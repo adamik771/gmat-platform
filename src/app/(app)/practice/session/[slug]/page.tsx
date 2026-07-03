@@ -24,6 +24,7 @@ import {
 } from "@/lib/topic-skill"
 import { TOPIC_TO_SET } from "@/lib/topic-chapter-map"
 import { getUserState } from "@/lib/user-state"
+import { readSavedForReview } from "@/lib/spaced-review"
 import SessionClient, { type SessionQuestion, type WeakTopicHint } from "./SessionClient"
 
 export default async function PracticeSessionPage({
@@ -147,6 +148,9 @@ export default async function PracticeSessionPage({
   let weakestTopic: WeakTopicHint | null = null
   // question id -> most recent attempt (epoch ms), for seen-aware ordering.
   const lastSeenAtMs = new Map<string, number>()
+  // Already-saved-for-review ids so the per-question save button reflects
+  // server truth instead of remounting as "unsaved" on every navigation.
+  let savedForReview: string[] = []
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -156,6 +160,7 @@ export default async function PracticeSessionPage({
       const state = await getUserState(supabase, user)
       const levels = getTopicSkillLevels(state)
       skill = getLevelForSlug(levels, slug)
+      savedForReview = Array.from(readSavedForReview(state))
 
       // Fetch enough history to compute per-topic accuracy. 2k rows is
       // sufficient for most users; the limit avoids over-fetching on
@@ -225,6 +230,7 @@ export default async function PracticeSessionPage({
       skillAttempts={skill.attempts}
       weakestTopic={weakestTopic ?? undefined}
       setLabel={setLabel}
+      initialSavedForReview={savedForReview}
     />
   )
 }

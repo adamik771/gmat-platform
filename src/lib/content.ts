@@ -297,8 +297,20 @@ function parseQuestionBlock(
   // dropping the meta lines themselves. Works for both "meta-first" blocks
   // (## Qn → meta → prompt → options) and "prompt-first" blocks like
   // table-analysis (## Qn → prose/table → meta → prompt → options).
+  //
+  // The prompt must ALSO stop at the first tail field. Questions without
+  // "- A)" option lines (Two-Part Analysis — options come from the pipe
+  // table) otherwise extend the prompt to the end of the block, and the
+  // line-level filter below only drops the MARKER lines of multi-paragraph
+  // fields — every 95-question TPA prompt was shipping its full worked
+  // explanation and the answer-announcing sentence to students before they
+  // answered.
   const firstOptionIdx = block.search(/^-\s+[A-E]\)/m)
-  const promptEndIdx = firstOptionIdx === -1 ? block.length : firstOptionIdx
+  const firstTailFieldIdx = block.search(
+    /^\*\*(?:answer|explanation|fastest_path|common_trap|takeaway|mistake_[a-z]|hint_nudge|hint_strategy|hint_setup|related_reading):\*\*/im
+  )
+  const candidateEnds = [firstOptionIdx, firstTailFieldIdx].filter((i) => i !== -1)
+  const promptEndIdx = candidateEnds.length > 0 ? Math.min(...candidateEnds) : block.length
   const bodyAfterHeader = block.slice(headerMatch.index! + headerMatch[0].length, promptEndIdx)
   const promptLines = bodyAfterHeader
     .split("\n")

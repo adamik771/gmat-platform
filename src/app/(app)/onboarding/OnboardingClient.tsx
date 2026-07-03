@@ -486,13 +486,12 @@ function ExamDateStep({
           className="flex-1 bg-transparent text-[14px] text-[#F0F0F0] focus:outline-none"
         />
       </div>
-      <button
-        type="button"
-        onClick={() => onChange(null)}
-        className="text-[12px] text-[#888888] hover:text-[#C9A84C] transition-colors"
-      >
-        I haven&apos;t scheduled yet — skip for now
-      </button>
+      {/* No skip control here (beta feedback: it read as "advance the step"
+          but only cleared the field, so it felt broken). The date is optional
+          — Next proceeds with it empty. */}
+      <p className="text-[12px] text-[#888888]">
+        Haven&apos;t scheduled yet? Leave it empty and hit Next.
+      </p>
     </div>
   )
 }

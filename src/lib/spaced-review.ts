@@ -145,9 +145,10 @@ interface ConfidenceLogEntry {
 }
 
 /**
- * Read the saved-for-review list out of user_metadata. Returns an empty
- * Set for missing or malformed shapes. Used by `liftQuestions` to apply
- * the +50 priority boost.
+ * Read the saved-for-review list out of a user_state row (it moved there
+ * from user_metadata in the cookie-size migration). Returns an empty Set
+ * for missing or malformed shapes. Used by `liftQuestions` to apply the
+ * +50 priority boost.
  */
 export function readSavedForReview(userMetadata: unknown): Set<string> {
   if (!userMetadata || typeof userMetadata !== "object") return new Set()

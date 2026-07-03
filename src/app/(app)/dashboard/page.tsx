@@ -1277,6 +1277,41 @@ export default async function DashboardPage() {
     )
   }
 
+  // Cold-start fallback for Today's Mission (beta feedback: "hard to tell
+  // where to start... wish there was even less room for decisions"). When the
+  // study-plan engine has no recommendation, the hero used to vanish and the
+  // user got a strip of CHOICES (QuickActions) — the opposite of one decisive
+  // action. Fall back to continuing the in-progress chapter, and before any
+  // chapter has been touched, to starting the guided course at chapter one.
+  if (!topFocus) {
+    if (resumeTarget && !resumeTarget.isComplete) {
+      topFocus = {
+        type: "weak-topic-chapter",
+        title: `Continue: ${resumeTarget.title}`,
+        subtitle: resumeTarget.nextSectionTitle
+          ? `Pick up where you left off — up next: ${resumeTarget.nextSectionTitle}.`
+          : `Pick up where you left off (${resumeTarget.pct}% read).`,
+        href: resumeTarget.href,
+        cta: "Continue reading",
+        priority: 0,
+      }
+    } else {
+      const firstChapter = getAllChapters()[0]
+      if (firstChapter) {
+        topFocus = {
+          type: "weak-topic-chapter",
+          title: "Start the course",
+          subtitle:
+            "The chapters run in a guided order — begin at the beginning and the platform sequences everything else (practice, review, mocks) as you go.",
+          href: `/chapters/${firstChapter.slug}`,
+          cta: "Open the first chapter",
+          priority: 0,
+        }
+        topFocusMinutes = firstChapter.estimatedMinutes ?? null
+      }
+    }
+  }
+
   // === Active-mode derived bits ===
   // Unlocked-badge count + the label of the most recently relevant unlocked
   // badge, surfaced in the one-line Achievements chip. computeBadges returns

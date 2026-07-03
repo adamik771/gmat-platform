@@ -6,6 +6,7 @@ import { getAllQuestions, type ParsedQuestion } from "@/lib/content"
 import { getReviewQueue, type ReviewCandidate } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { getUserState } from "@/lib/user-state"
+import { readSavedForReview } from "@/lib/spaced-review"
 import SessionClient, {
   type SessionQuestion,
 } from "../../practice/session/[slug]/SessionClient"
@@ -135,6 +136,7 @@ export default async function ReviewSectionPage({
         topic="Daily Review"
         section={section}
         questions={playable}
+        initialSavedForReview={Array.from(readSavedForReview(state))}
       />
     </div>
   )

@@ -111,6 +111,10 @@ interface SessionClientProps {
   /** Optional context line shown above the session title, e.g.
    *  "Algebra: Linear Equations & Systems · Test 1" for a per-chapter test. */
   setLabel?: string
+  /** Question ids the student already saved for review (user_state.
+   *  saved_for_review). Without this the save button remounted per question
+   *  with a hardcoded unsaved state and looked like it "forgot" the save. */
+  initialSavedForReview?: string[]
 }
 
 function formatDuration(ms: number): string {
@@ -1119,8 +1123,15 @@ export default function SessionClient({
   skillAttempts,
   weakestTopic,
   setLabel,
+  initialSavedForReview,
 }: SessionClientProps) {
   const [currentIdx, setCurrentIdx] = useState(0)
+  // Which questions are saved for review — seeded from the server, updated
+  // as the student toggles, so the per-question button survives navigation
+  // between questions (it remounts per question by key).
+  const [savedIds, setSavedIds] = useState<Set<string>>(
+    () => new Set(initialSavedForReview ?? [])
+  )
   // AI tutor drawer — per-question Claude explainer. Opens on the
   // current question's ID; closing keeps the conversation, switching
   // questions resets it (handled inside TutorDrawer).
@@ -1156,6 +1167,13 @@ export default function SessionClient({
   // visible regardless of mode so the review list can jump back into
   // fully-explained questions.
   const [finished, setFinished] = useState(false)
+  // The instant the session ended — captured at the finish click so the
+  // results screen's "Total time" and the persisted total_time_ms are frozen
+  // facts, not clocks that keep counting while the student reads results
+  // (beta: "timer in practice test does not stop at the end"). The ?? prev
+  // guard at the set sites keeps the FIRST finish moment if the student
+  // revisits questions from the review list and finishes again.
+  const [sessionEndedAt, setSessionEndedAt] = useState<number | null>(null)
   const reveal = mode === "study" || finished
 
   function switchMode(next: "exam" | "study") {
@@ -1172,11 +1190,14 @@ export default function SessionClient({
   const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
   const [showAllReview, setShowAllReview] = useState(false)
 
-  // Tick the timer once a second for the header readouts.
+  // Tick the timer once a second for the header readouts. Stops on the
+  // results screen — every clock there reads the frozen sessionEndedAt, and
+  // without the gate the whole (heavy) results tree re-rendered every second.
   useEffect(() => {
+    if (showResults) return
     const id = window.setInterval(() => setNow(Date.now()), 1000)
     return () => window.clearInterval(id)
-  }, [])
+  }, [showResults])
 
   const saveSession = async () => {
     // Persist SUBMITTED questions only — see summarizeAnsweredAttempts for the
@@ -1218,7 +1239,10 @@ export default function SessionClient({
           totalQuestions: summary.totalQuestions,
           correctCount: summary.correctCount,
           accuracy: summary.accuracy,
-          totalTimeMs: Date.now() - sessionStart,
+          // The finish moment, not the save moment — a manual "Retry save"
+          // clicked after idling on the results screen must not inflate the
+          // stored total by the idle minutes.
+          totalTimeMs: (sessionEndedAt ?? Date.now()) - sessionStart,
           attempts: summary.attempts,
         }),
       })
@@ -1348,6 +1372,7 @@ export default function SessionClient({
     if (currentIdx < total - 1) {
       goTo(currentIdx + 1)
     } else {
+      setSessionEndedAt((prev) => prev ?? Date.now())
       setFinished(true)
       setShowResults(true)
     }
@@ -1438,7 +1463,9 @@ export default function SessionClient({
 
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
-    const totalTime = now - sessionStart
+    // Frozen at the finish click — not a running clock (sessionEndedAt is
+    // always set by the time results render; `now` is a type-level fallback).
+    const totalTime = (sessionEndedAt ?? now) - sessionStart
 
     // Shared next-step accuracy bands. Below LOW signals a concept gap
     // (revisit the chapter); at/above SOLID the topic is strong enough to
@@ -2167,7 +2194,7 @@ export default function SessionClient({
     )
   }
 
-  const sessionElapsed = now - sessionStart
+  const sessionElapsed = (sessionEndedAt ?? now) - sessionStart
   const progressPct = Math.round(((currentIdx + (currentState.submitted ? 1 : 0)) / total) * 100)
   const hasContext = !!current.context && current.context.length > 0
 
@@ -2484,7 +2511,15 @@ export default function SessionClient({
                 <SaveForReviewButton
                   key={`save-${current.id}`}
                   questionId={current.id}
-                  initialSaved={false}
+                  initialSaved={savedIds.has(current.id)}
+                  onToggle={(saved) =>
+                    setSavedIds((prev) => {
+                      const next = new Set(prev)
+                      if (saved) next.add(current.id)
+                      else next.delete(current.id)
+                      return next
+                    })
+                  }
                   variant="ghost"
                 />
               </div>
@@ -2522,6 +2557,7 @@ export default function SessionClient({
 
             <button
               onClick={() => {
+                setSessionEndedAt((prev) => prev ?? Date.now())
                 setFinished(true)
                 setShowResults(true)
               }}
