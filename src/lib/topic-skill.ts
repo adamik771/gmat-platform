@@ -258,6 +258,52 @@ export function pickAdaptiveOrder<
   ].flat()
 }
 
+/**
+ * Seen-aware drill ordering: everything the student has NEVER attempted comes
+ * first (in pickAdaptiveOrder's order), then already-seen material,
+ * least-recently-attempted first.
+ *
+ * This is the fix for "the same questions keep coming up": a topic drill
+ * serves its whole bank file, so short sessions kept replaying the same
+ * leading questions — file order for new users (below the adaptive
+ * threshold), or reshuffles of the same level bucket for adaptive ones.
+ * Partitioning by attempt history makes a second session continue where the
+ * first left off instead of starting over.
+ *
+ * Grouped questions (RC passages, MSR sets) stay atomic: a group counts as
+ * seen if ANY member was attempted, stamped with the group's most recent
+ * member attempt. `lastSeenAtMs` maps question id -> last attempt epoch ms;
+ * an empty map degrades to plain pickAdaptiveOrder.
+ */
+export function pickFreshOrder<
+  Q extends { difficulty: Difficulty; id: string; context?: string }
+>(
+  questions: Q[],
+  skill: TopicSkillLevel,
+  lastSeenAtMs: ReadonlyMap<string, number>,
+  options: { seed?: number } = {}
+): Q[] {
+  if (questions.length <= 1 || lastSeenAtMs.size === 0) {
+    return pickAdaptiveOrder(questions, skill, options)
+  }
+  const unseen: Q[][] = []
+  const seen: Array<{ group: Q[]; at: number }> = []
+  for (const group of groupByContext(questions)) {
+    let at = 0
+    for (const q of group) at = Math.max(at, lastSeenAtMs.get(q.id) ?? 0)
+    if (at === 0) unseen.push(group)
+    else seen.push({ group, at })
+  }
+  if (seen.length === 0) return pickAdaptiveOrder(questions, skill, options)
+  seen.sort((a, b) => a.at - b.at)
+  // Re-running pickAdaptiveOrder on the flattened unseen groups is safe:
+  // each group's members stay contiguous, so groupByContext reassembles them.
+  return [
+    ...pickAdaptiveOrder(unseen.flat(), skill, options),
+    ...seen.flatMap((s) => s.group),
+  ]
+}
+
 // ---------- internals ----------
 
 function clamp(n: number, lo: number, hi: number): number {
