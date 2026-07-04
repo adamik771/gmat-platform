@@ -85,6 +85,11 @@ export const metadata: Metadata = {
   verification: {
     google: "IkL___StkwO8aX58q2m4QSPUbniMlfqHk5s12e3EKnM",
   },
+  // AdSense account verification. Emits
+  // <meta name="google-adsense-account" content="..."> into <head>.
+  other: {
+    "google-adsense-account": "ca-pub-3203755066826260",
+  },
 }
 
 export default function RootLayout({
