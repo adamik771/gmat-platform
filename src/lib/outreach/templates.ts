@@ -57,60 +57,81 @@ const path = (ctx: TemplateContext, p: string) => `${ctx.siteUrl}${p}`
 /** Builders, keyed by template_key. */
 const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
   // A. New signup ------------------------------------------------------------
+  // Founder-nurture rewrite (2026-07-04): TTP-style narrative structure
+  // (cost-of-delay, evaluation criteria, anchored offer) delivered in Adam's
+  // own 565->735 voice. Honesty rails: real prices, real urgency only
+  // (founding rate exists until checkout opens), approximate counts, no
+  // invented programs or ratings.
   "signup-welcome": (c) => ({
-    subject: "Welcome to Zakarian GMAT",
-    preheader: "You're in. Here's what the platform actually does.",
-    heading: "You're in.",
+    subject: "You're in. Here's where I'd start.",
+    preheader:
+      "I went 565 to 735 on the GMAT Focus. This platform is that system — and it's free during private beta.",
+    heading: "Welcome to Zakarian GMAT",
     paragraphs: [
       greeting(c),
-      "Thanks for signing up. Zakarian GMAT is a structured GMAT Focus prep system: 62 chapters, a big practice bank, a six-tag error log, spaced review, full-length mocks, and a study plan built from your own baseline.",
-      "It's free to use while we're in private beta. Start whenever you're ready.",
+      "Quick story first. My first GMAT Focus score was a 565. I rebuilt my prep from scratch — pretest, reading, recall checks, graded problem sets, every miss logged and reviewed until it stopped repeating. I finished at 735, the 100th percentile. This platform is that system, chapter by chapter.",
+      "You have all of it free while we're in private beta: 50+ interactive chapters, 1,900+ practice questions, full-length mocks, the six-tag error log, and daily spaced review.",
+      "One thing before you dive in: your study plan calibrates from a real baseline — an official mba.com practice exam. If you have a recent official score, start your plan from it. If not, take one this week. Honest baseline first, everything else second.",
+      "Last thing: I'm a solo founder. There's no support team behind this address — replies come to me, and I answer them personally.",
     ],
     cta: { label: "Open your dashboard", href: path(c, "/dashboard") },
   }),
   "signup-start": (c) => ({
-    subject: "How to start (do this first)",
-    preheader: "Baseline with an official practice exam, then let the plan target your weak areas.",
-    heading: "First move: set your baseline",
+    subject: "The biggest obstacle isn't intelligence",
+    preheader:
+      "I lost months to drift before the 735. Here's the smallest way to avoid repeating my mistake.",
+    heading: "The most expensive thing in GMAT prep",
     paragraphs: [
       greeting(c),
-      "The fastest way to make your study time count is to baseline with an official mba.com practice exam and enter your section scores on the platform. That baseline calibrates your study plan so you work on your weak areas first.",
-      "No promises on timeline or score — that depends on you. The point is to stop guessing about what to study.",
+      "When I was stuck at 565, my problem wasn't ability. It was drift. I studied in bursts, took weeks off, and re-learned the same rate problems three separate times. The distance between 565 and 735 wasn't talent — it was consistency I hadn't built yet.",
+      "Delay has a real bill, and it compounds quietly: a pushed-back test date, retake fees, a rushed application in a later round, and hours spent re-learning things you knew a month ago.",
+      "So my ask is deliberately small: one chapter today. Pretest, read, recall check, problem set. About an hour. Not a heroic five-hour Saturday you'll never repeat — just today's hour.",
+      "String a few of those together and the system takes over: daily spaced review keeps yesterday's work from leaking away, and the plan tells you what tomorrow's hour is. Your only job is to show up for it.",
     ],
-    cta: { label: "Set your baseline", href: path(c, "/mock") },
+    cta: { label: "Start your first chapter", href: path(c, "/chapters") },
   }),
   "signup-invite": (c) => ({
-    subject: "Know someone else prepping?",
-    preheader: "Bring a friend in — you both get founding pricing.",
-    heading: "Prep is easier with someone",
+    subject: "Know someone else fighting this test?",
+    preheader:
+      "Your friend locks founding pricing, you get $50. Tracked by hand, by me.",
+    heading: "Prep is easier when someone knows your test date",
     paragraphs: [
       greeting(c),
-      "If a friend or classmate is also studying for the GMAT, you can bring them in. They get founding pricing, and you get a small thank-you for the referral.",
-      "Your personal invite link is on the refer page.",
+      "My own prep only got serious once someone else knew my test date. Accountability beats motivation, and it isn't close. If a classmate or friend is grinding toward the same score, you'll both study more together.",
+      "The deal: send them your referral link. They lock founding-member pricing before checkout opens, and you get $50 when the referral goes through.",
+      "Full transparency — there's no slick referral software behind this yet. I track every referral by hand. It's a real program with two real beneficiaries: your friend and you.",
+      "And right now it costs them nothing to try — the whole platform is free during private beta. Worst case, they studied free alongside you for a while.",
     ],
-    cta: { label: "Invite a friend", href: path(c, "/refer") },
+    cta: { label: "Get your referral link", href: path(c, "/refer") },
   }),
   "signup-founding": (c) => ({
-    subject: "Lock in founding pricing while the beta's free",
-    preheader: "Free now; founding users hold an early price for when it goes paid.",
-    heading: "Founding access",
+    subject: "Founding pricing, before checkout opens",
+    preheader:
+      "Self-Study will be $429. Founding members lock about $299. Reserving is free — nothing to pay today.",
+    heading: "How to judge any GMAT course — then our numbers",
     paragraphs: [
       greeting(c),
-      "The platform is free during the private beta, so there's nothing to pay today. Founding users lock in early pricing for when it goes paid later — premium early access, not a discount bin.",
-      "If you'd like your founding spot held, reserve it and I'll note it.",
+      "Before the prices, here's how I'd evaluate any GMAT course, mine included: original questions at realistic difficulty, a system that forces you to confront your errors instead of just logging hours, and mocks plus a study plan calibrated against official material. If a course can't show you those three things, keep your money — whether it's mine or anyone else's.",
+      "That's the standard I built to: 50+ interactive chapters, 1,900+ practice questions, a six-tag error log, daily spaced review, full-length mocks, and a plan calibrated from your official mba.com practice exam baseline.",
+      "Now the numbers. When checkout opens, Self-Study will be $429 for 4 months. Self-Study + Mentorship — direct WhatsApp Q&A with me — will be $599 for 6 months.",
+      "Founding members lock roughly $299 and $399 instead. Reserving is free and there's nothing to pay today — you pay only when checkout opens, and every paid plan carries a 14-day money-back guarantee.",
+      "No countdown timer, because there isn't one. The founding rate exists until checkout opens, then it's gone. That's the whole pitch.",
     ],
-    cta: { label: "Reserve founding access", href: path(c, "/pricing") },
+    cta: { label: "Reserve your founding rate", href: path(c, "/pricing") },
   }),
   "signup-feedback": (c) => ({
-    subject: "What's working? What's annoying?",
-    preheader: "I read every reply — tell me the annoying part.",
-    heading: "Two questions",
+    subject: "One question (I read every reply)",
+    preheader:
+      "No survey, no ticket system. Just tell me the most annoying thing about the platform so far.",
+    heading: "Tell me what's broken",
     paragraphs: [
       greeting(c),
-      "You've had a little time with the platform. What's working, and what's the most annoying thing right now? I'd rather hear the annoying part — I actually ship fixes.",
-      "Just reply to this email, or use the contact page.",
+      "You've had access for about ten days now, so I want one thing from you — and it isn't money.",
+      "What's the single most annoying, confusing, or missing thing so far? A chapter that dragged. An explanation that felt off. A feature you expected and couldn't find. One sentence is plenty.",
+      "And if you haven't started yet, that's an answer too — tell me what stopped you. That's some of the most useful feedback a beta user can give me.",
+      "There's no support team and no ticket queue here. Your reply lands in my inbox, I read every one, and it shapes what I build next. Reply directly, or use the contact page if you prefer a form.",
     ],
-    cta: { label: "Send feedback", href: path(c, "/contact") },
+    cta: { label: "Send me a note", href: path(c, "/contact") },
   }),
 
   // B. Founding reservation --------------------------------------------------
