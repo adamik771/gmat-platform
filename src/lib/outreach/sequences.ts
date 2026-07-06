@@ -37,6 +37,7 @@ export const SEQUENCES: Record<SequenceId, SequenceStep[]> = {
   signup: [
     { step: "welcome", offsetDays: 0, templateKey: "signup-welcome" },
     { step: "start", offsetDays: 1, templateKey: "signup-start" },
+    { step: "consult", offsetDays: 2, templateKey: "signup-consult" },
     { step: "invite", offsetDays: 3, templateKey: "signup-invite" },
     { step: "founding", offsetDays: 5, templateKey: "signup-founding" },
     { step: "feedback", offsetDays: 10, templateKey: "signup-feedback" },

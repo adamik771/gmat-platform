@@ -28,12 +28,14 @@ This document describes the five automated email sequences (A through E) used by
 |------|-----|---------|-------------|
 | welcome | 0 | Confirm signup and explain what the platform does | Open your dashboard (`/dashboard`) |
 | start | 1 | Get the user to set a baseline first | Set your baseline (`/mock`) |
+| consult | 2 | Offer a free 30-minute 1:1 call about their prep | Reply with times, or contact page (`/contact`) |
 | invite | 3 | Soft referral prompt | Invite a friend (`/refer`) |
 | founding | 5 | Introduce founding pricing | Reserve founding access (`/pricing`) |
 | feedback | 10 | Ask for honest feedback | Send feedback (`/contact`) |
 
 - **welcome** — Subject: *Welcome to Zakarian GMAT.* Confirms the signup and describes the platform (62 chapters, practice bank, six-tag error log, spaced review, full-length mocks, baseline-driven study plan) and that it is free during the private beta.
 - **start** — Subject: *How to start (do this first).* Tells the user to baseline with an official mba.com practice exam and enter their section scores so the study plan can calibrate to their weak areas; explicitly makes no promise on timeline or score.
+- **consult** — Subject: *A free 30-minute call, if you want one.* Offers a free 30-minute 1:1 call with Adam about anything in their prep (study plan, plateau, timing, retakes, using the platform). Explicitly free, no obligation, not a sales call; after the call they can prep with any materials. Honest capacity limit (a handful of calls a week), reply-to-book with times + timezone.
 - **invite** — Subject: *Know someone else prepping?* Invites the user to bring in a friend or classmate; the friend gets founding pricing and the user gets a small thank-you, via their link on the refer page.
 - **founding** — Subject: *Lock in founding pricing while the beta's free.* Explains there is nothing to pay during the beta and that founding users hold early pricing for when the platform goes paid later.
 - **feedback** — Subject: *What's working? What's annoying?* Asks two questions about what is working and what is most annoying, inviting a direct reply or use of the contact page.

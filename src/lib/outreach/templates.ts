@@ -90,6 +90,20 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
     ],
     cta: { label: "Start your first chapter", href: path(c, "/chapters") },
   }),
+  "signup-consult": (c) => ({
+    subject: "A free 30-minute call, if you want one",
+    preheader:
+      "Your plan, a plateau, timing, retakes — bring anything. No pitch waiting at minute 25.",
+    heading: "Thirty minutes, one on one",
+    paragraphs: [
+      greeting(c),
+      "Now that you're in, I want to offer you something I hold time for every week: a free 30-minute call with me about your prep. Bring anything — your study plan, a score plateau, section timing, whether to retake, how the exam really works, or how to get the most out of the platform for your target score.",
+      "To be clear: it's completely free, there's no obligation, and it is not a sales call in disguise. There's no pitch waiting for you at minute 25. My goal isn't to sell you anything — it's to help you reach your full potential on this test. After we talk, you can prep with my materials, a competitor's, or none at all. Genuinely fine by me.",
+      "If the call helps you score even 10 points higher, I'll be proud of that. You should be too.",
+      "One limit: it's just me, so I can take a handful of calls each week, first come first served. Reply with two or three times that work for you this week, plus your timezone, and I'll confirm.",
+    ],
+    cta: { label: "Send me your times", href: path(c, "/contact") },
+  }),
   "signup-invite": (c) => ({
     subject: "Know someone else fighting this test?",
     preheader:
