@@ -2945,3 +2945,339 @@ Taking the statements together, C(b, 2) = 21 and g = 5, so the number of squads 
 
 The correct answer is C.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q105
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Multiplication Principle
+
+
+A lunch counter offers a fixed-price combo in which a customer picks exactly one sandwich, one soup, and one drink. There are 4 sandwiches, 3 soups, and 5 drinks available. How many different combos can a customer order?
+
+- A) 12
+- B) 15
+- C) 19
+- D) 60
+- E) 120
+
+**answer:** D
+**explanation:** Governing principle: the multiplication (fundamental counting) principle. When a choice is made in several stages, multiply the number of options at each stage. Here the three stages are the sandwich (4 ways), the soup (3 ways), and the drink (5 ways). The total number of combos is 4 x 3 x 5 = 60. (Adding the counts, 4 + 3 + 5 = 12, is the classic error; 4 x 3 = 12 or 3 x 5 = 15 forget a stage; 4 + 3 x 5 = 19 mishandles order of operations; 60 x 2 = 120 double-counts.) The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q106
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Counting Principle
+
+
+A locker uses a 3-character code. The first character must be a letter (A through Z) and each of the last two characters must be a digit (0 through 9). Digits may repeat. How many different locker codes are possible?
+
+- A) 46
+- B) 260
+- C) 2600
+- D) 6760
+- E) 67600
+
+**answer:** C
+**explanation:** Governing principle: the fundamental counting principle. Multiply the number of choices available at each position. Position 1 (a letter) has 26 choices; position 2 (a digit) has 10 choices; position 3 (a digit) has 10 choices. Because digits may repeat, the choices are made freely at each slot, so the total is 26 x 10 x 10 = 2600. (26 + 10 + 10 = 46 adds instead of multiplying; 26 x 10 = 260 drops a digit slot; 26 x 26 x 10 = 6760 wrongly uses two letters; 26 x 26 x 10 x 10 = 67600 adds an extra letter slot.) The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q107
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fundamental Counting
+
+
+A website requires a 4-character password. Each character may be any one of the 26 lowercase letters or any one of the 10 digits, and characters may repeat. How many different passwords are possible?
+
+- A) 1296
+- B) 46656
+- C) 456976
+- D) 1679616
+- E) 60466176
+
+**answer:** D
+**explanation:** Governing principle: the fundamental counting principle. First find how many choices exist for a single character: 26 letters + 10 digits = 36 options. Since each of the 4 characters is chosen from all 36 options and repeats are allowed, multiply 36 by itself once per position: 36 x 36 x 36 x 36 = 36^4 = 1,679,616. (36^2 = 1296 and 36^3 = 46656 use too few positions; 26^4 = 456976 forgets the digits; 36^5 = 60,466,176 uses one position too many.) The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q108
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Counting Principle
+
+
+A region issues 6-character license plates that must alternate between letters and digits. A plate is valid only if it follows one of exactly two formats: letter-digit-letter-digit-letter-digit, or digit-letter-digit-letter-digit-letter. Letters are chosen from A through Z (26 options), digits from 0 through 9 (10 options), and characters may repeat within a plate. How many valid license plates are possible?
+
+- A) 13520000
+- B) 17576000
+- C) 35152000
+- D) 70304000
+- E) 91395200
+
+**answer:** C
+**explanation:** Governing principle: the fundamental counting principle applied to each format, then add the two disjoint formats. In each format there are exactly 3 letter positions (26 choices each) and 3 digit positions (10 choices each), so one format yields 26^3 x 10^3 = 17,576 x 1000 = 17,576,000 plates. The two formats produce completely different plates (they start with different character types), so add them: 17,576,000 + 17,576,000 = 2 x 17,576,000 = 35,152,000. (17,576,000 counts only one format; 4 x 26^3 x 10^3 = 70,304,000 uses four formats; 2 x 26^2 x 10^4 = 13,520,000 miscounts as 2 letters and 4 digits; 2 x 26^4 x 10^2 = 91,395,200 miscounts as 4 letters and 2 digits.) The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q109
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Permutations
+
+
+A display shelf has 5 positions in a row, left to right. A store manager wants to place 5 different award trophies on the shelf, one trophy per position. In how many different orders can the 5 trophies be arranged on the shelf?
+
+- A) 20
+- B) 24
+- C) 60
+- D) 120
+- E) 720
+
+**answer:** D
+**explanation:** Governing principle: arranging n distinct objects in a row gives n! orderings. Here 5 distinct trophies fill 5 distinct positions, so the number of arrangements is 5! = 5 x 4 x 3 x 2 x 1 = 120. (Distractor 24 = 4!, treating only 4 objects; 720 = 6!, one too many; 20 = 5 x 4, filling only the first two positions; 60 = 5!/2, dividing by an unnecessary symmetry factor.) The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q110
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Combinations
+
+
+A reader is packing for a trip and will bring exactly 4 novels chosen from the 9 different novels on a shelf. Since the novels will all be carried together in one bag, the order of selection does not matter. How many different sets of 4 novels can the reader choose?
+
+- A) 84
+- B) 126
+- C) 210
+- D) 792
+- E) 3024
+
+**answer:** B
+**explanation:** Governing principle: choosing r items from n distinct items where order does not matter is nCr = n! / (r!(n-r)!). Here 9C4 = 9! / (4! x 5!) = (9 x 8 x 7 x 6) / (4 x 3 x 2 x 1) = 3024 / 24 = 126. (Distractor 3024 = 9P4, the permutation, wrongly keeping order; 84 = 9C3, choosing 3 instead of 4; 210 = 10C4, using 10 items; 792 = 12C5, an unrelated miscount.) The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q111
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations
+
+
+How many distinct arrangements can be formed using all 7 letters of the word BALLOON?
+
+- A) 210
+- B) 420
+- C) 630
+- D) 1260
+- E) 2520
+
+**answer:** D
+**explanation:** Governing principle: the number of distinct arrangements of n objects where one group of identical objects repeats a times and another repeats b times is n! / (a! x b!). BALLOON has 7 letters with L repeated twice and O repeated twice (B, A, N each appear once). So the count is 7! / (2! x 2!) = 5040 / 4 = 1260. (Distractor 2520 = 7!/2!, dividing for only one repeated pair; 5040 = 7! would ignore both repeats but is not listed; 630 = 7!/(2! x 2! x 2!), over-dividing as if there were three repeated pairs; 420 = 7!/(3! x 2!), mis-sizing a repeat as triple; 210 = 7!/4!, over-dividing as if four letters were identical.) The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q112
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Combinations
+
+
+A studio must staff a project by selecting 3 designers from a pool of 7 available designers and 2 writers from a pool of 5 available writers. Within each role the people chosen are simply a set, so the order in which they are picked does not matter. How many different project teams are possible?
+
+- A) 45
+- B) 350
+- C) 792
+- D) 2100
+- E) 4200
+
+**answer:** B
+**explanation:** Governing principle: when independent selections are made from separate pools, multiply the number of ways for each pool, and each unordered selection uses a combination nCr. Designers: 7C3 = 35. Writers: 5C2 = 10. Total teams = 35 x 10 = 350. (Distractor 45 = 35 + 10, adding the stages instead of multiplying; 4200 = 7P3 x 5P2 = 210 x 20, using ordered permutations for both roles; 2100 = 7P3 x 5C2 = 210 x 10, ordering only the designers; 792 = 12C5, ignoring the two separate pools and just choosing 5 people from all 12.) The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q113
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Restrictions
+
+
+Five distinct books — a novel, a biography, an atlas, a dictionary, and a cookbook — are to be placed in a row on a shelf. The atlas and the dictionary must NOT be placed next to each other. In how many different orders can the five books be arranged?
+
+- A) 24
+- B) 48
+- C) 72
+- D) 96
+- E) 120
+
+**answer:** C
+**explanation:** This is a restriction problem handled by subtraction: total arrangements minus the forbidden (adjacent) ones. Total arrangements of 5 distinct books = 5! = 120. Now count arrangements where the atlas and dictionary ARE adjacent using the glue-block method: treat the two of them as a single block, giving 4 items (block + 3 other books), which arrange in 4! = 24 ways, and the two books inside the block can be ordered in 2! = 2 ways, for 24 × 2 = 48 adjacent arrangements. Subtract: 120 − 48 = 72 arrangements in which they are not next to each other. (Option 48 is the adjacent count itself; 120 forgets the restriction; 24 is 4!.) The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q114
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Restrictions
+
+
+Seven people — four adults (all distinct) and three children (all distinct) — are to be seated in a row of seven chairs. The three children must all sit together, in three consecutive chairs. In how many different ways can the seven people be seated?
+
+- A) 120
+- B) 144
+- C) 240
+- D) 600
+- E) 720
+
+**answer:** E
+**explanation:** Use the glue-block method for the 'must sit together' restriction. Bundle the three children into a single block. This leaves 5 units to arrange: the 4 adults plus the 1 children-block, which can be ordered in 5! = 120 ways. Within the block, the 3 children can be ordered among themselves in 3! = 6 ways. By the multiplication principle, total = 120 × 6 = 720. (Option 144 = 3!·4! wrongly bundles only the adults; 120 = 5! forgets the internal 3!.) The correct answer is E.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q115
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Committee Selection with Constraints
+
+
+A firm has 5 engineers and 4 designers. A committee of 4 people is to be chosen from these 9. The committee must include at least one designer. How many different committees are possible?
+
+- A) 40
+- B) 116
+- C) 120
+- D) 121
+- E) 126
+
+**answer:** D
+**explanation:** For an 'at least one' committee constraint, use the complement: (all committees) − (committees with no designer). Total committees of 4 from 9 people = C(9,4) = 126. Committees with no designer use only the 5 engineers: C(5,4) = 5. Therefore committees with at least one designer = 126 − 5 = 121. (Option 126 ignores the restriction; 116 wrongly subtracts C(5,3)=10; 40 counts only 'exactly one designer' = C(4,1)·C(5,3).) The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q116
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Circular Permutations
+
+
+Six distinct people are to be seated around a round table. The host and the guest of honor must sit next to each other. Two seatings are considered the same if one can be obtained from the other by rotating everyone around the table. How many distinct seatings are possible?
+
+- A) 24
+- B) 48
+- C) 120
+- D) 240
+- E) 720
+
+**answer:** B
+**explanation:** This is a circular-permutation problem with an adjacency constraint. Glue the host and guest of honor into one block, so there are 5 units to place around the table. Distinct circular arrangements of 5 units (rotations equivalent) = (5 − 1)! = 4! = 24. The two people inside the block can be ordered in 2! = 2 ways. Total = 24 × 2 = 48. (Option 120 = 5! treats the seats as a straight row; 720 = 6! ignores both the circular reduction and the constraint; 24 forgets the internal ordering.) The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q117
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations with Adjacency Restrictions
+
+
+Three distinct math books and two distinct physics books are to be arranged in a single row on a shelf. The two physics books must NOT be adjacent to each other. In how many different orders can the five books be arranged?
+
+- A) 48
+- B) 60
+- C) 72
+- D) 96
+- E) 120
+
+**answer:** C
+**explanation:** Use the gap method for the 'not adjacent' restriction. First arrange the 3 math books in a row: 3! = 6 ways. These create 4 gaps (including the two ends) in which physics books can go: _ M _ M _ M _. Place the 2 distinct physics books into 2 different gaps so they are never adjacent: choose and order 2 of the 4 gaps = 4 × 3 = 12 ways. Total = 6 × 12 = 72. (Check by subtraction: 5! − 2·4! = 120 − 48 = 72.) Option 120 = 5! forgets the restriction; 48 = 2·4! is the adjacent count. The correct answer is C.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q118
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Restrictions
+
+
+Six distinct speakers — A, B, C, D, E, and F — are to be scheduled one after another in six time slots. Two restrictions apply: speaker A must be scheduled at some point before speaker B (not necessarily immediately before), and speakers C and D must be scheduled in consecutive slots (in either order). How many different schedules satisfy both restrictions?
+
+- A) 120
+- B) 180
+- C) 240
+- D) 360
+- E) 720
+
+**answer:** A
+**explanation:** Handle the two restrictions in turn. First the adjacency of C and D: glue them into one block, giving 5 units (block, A, B, E, F) to arrange in 5! = 120 ways, with 2! = 2 internal orders for C and D, so 120 × 2 = 240 schedules have C and D consecutive. Now impose 'A before B': among all these schedules, by symmetry A precedes B in exactly half of them (swapping the positions of A and B pairs each schedule with a distinct one where the order is reversed, and this swap does not disturb the C–D block). So 240 ÷ 2 = 120. (Option 240 applies only the adjacency; 720 = 6! is all schedules; 360 = 720/2 applies only the 'A before B' halving.) The correct answer is A.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q119
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Grid Paths
+
+
+A courier travels on a street grid from the corner at (0, 0) to the corner at (5, 4), moving only one block right (east) or one block up (north) at each step. The route must pass through the corner at (2, 3). How many different routes from (0, 0) to (5, 4) pass through (2, 3)?
+
+- A) 20
+- B) 40
+- C) 50
+- D) 70
+- E) 126
+
+**answer:** B
+**explanation:** A monotone grid path is counted by choosing which of its steps are 'right' versus 'up.' Split the trip at the required point (2, 3). Leg 1, from (0,0) to (2,3), needs 2 rights and 3 ups: C(5,2) = 10 paths. Leg 2, from (2,3) to (5,4), needs 3 rights and 1 up: C(4,1) = 4 paths. By the multiplication principle the number of routes through (2,3) is 10 × 4 = 40. (Option 126 = C(9,5) counts all routes ignoring the required point; 10 and 4 are the individual legs.) The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q120
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Committee Selection with Constraints
+
+
+A committee of 5 people is to be chosen from a group of 6 men and 5 women. The committee must contain at least 2 men and at least 2 women. How many different committees are possible?
+
+- A) 150
+- B) 200
+- C) 300
+- D) 350
+- E) 462
+
+**answer:** D
+**explanation:** With 5 chosen and requirements of at least 2 men and at least 2 women, the only feasible splits are 2 men/3 women and 3 men/2 women (4+1 or 1+4 would violate one minimum). Case 2M–3W: C(6,2)·C(5,3) = 15 × 10 = 150. Case 3M–2W: C(6,3)·C(5,2) = 20 × 10 = 200. Add the disjoint cases: 150 + 200 = 350. (Option 462 = C(11,5) ignores the constraints; 150 and 200 each count only one valid split; 300 double-counts a single split.) The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics

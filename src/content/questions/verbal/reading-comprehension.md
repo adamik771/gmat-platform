@@ -4615,3 +4615,603 @@ The correct answer is C.
 **mistake_d:** Anseth continues to reject the masking theory, calling that motive "implausibly weak." The concession concerns flavor and medicine, not a vindication of masking.
 **mistake_e:** The passage treats flavor and medicine as contributing factors subordinate to status display, not as equally important; "both surely mattered" does not make them co-equal with the dominant driver.
 **related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 38: The Warehouse as Fitting Room
+
+Online retailers have long treated liberal return policies as an unambiguous virtue. The conventional argument holds that when a shopper cannot touch or try a product before buying, the promise of free, no-questions-asked returns lowers the perceived risk of purchase, converting hesitant browsers into buyers. Empirical work by the retail economist Priya Nandakumar appears to confirm this logic: across a sample of apparel merchants, sites offering free returns saw checkout conversion rates roughly a fifth higher than those charging a restocking fee. Because a single incremental sale can be worth far more than the handling cost of an occasional return, the reasoning goes, generosity at the point of return simply pays for itself. On this view, the return policy is a marketing instrument, and its cost is best understood as a form of advertising spend that widens the top of the purchasing funnel.
+
+The fuller accounting, however, is less flattering. Nandakumar's later work shows that the handling cost of a returned garment routinely consumes the entire margin the original sale generated, and that reverse logistics—inspection, repackaging, and restocking—can render a returned item unsellable at full price. More corrosive still is a behavioral pattern the trade calls "bracketing": a shopper orders the same dress in three sizes intending to keep one, treating the retailer's warehouse as a fitting room. Free returns, in other words, do not merely accommodate returns; they manufacture them. Once the friction of returning is removed, the marginal cost of an unnecessary purchase falls to nearly zero for the consumer while the retailer absorbs the shipping in both directions. The instrument that widens the funnel, it turns out, also thins the margin on everything that passes through it.
+
+Retailers have therefore begun to treat returns not as a fixed cost of doing business but as a variable to be managed. Some deploy "virtual fitting" tools and richer product data to reduce the size mismatches that drive bracketing, attacking the return before it occurs. Others quietly track return rates at the level of the individual account, reserving the most generous terms for customers whose behavior remains profitable while nudging chronic returners toward stricter policies. Nandakumar cautions, though, that the crudest response—simply reimposing return fees across the board—risks forfeiting the very conversion gains that justified free returns in the first place. The emerging consensus is that the profitable path lies not in abandoning generosity but in calibrating it: distinguishing the returns that signal a genuine sizing problem from those that signal a customer exploiting a policy, and pricing each accordingly.
+
+### Q154
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) trace how an initially favorable view of free returns is complicated by a fuller accounting of their costs, and describe how retailers are responding
+- B) argue that free return policies are ultimately unprofitable and should be abandoned by online retailers
+- C) compare the conversion rates of retailers that offer free returns with those that charge restocking fees
+- D) explain the reverse-logistics process by which returned garments are inspected, repackaged, and restocked
+- E) criticize retailers for tracking the return behavior of individual customer accounts
+
+**answer:** A
+**explanation:** The passage moves through three stages: the conventional favorable view of free returns (paragraph 1), the fuller accounting that reveals their hidden costs (paragraph 2), and the ways retailers are now responding by managing returns (paragraph 3). Choice A captures this three-part arc. The correct answer is A.
+**mistake_b:** Choice B overstates the passage's conclusion; the passage explicitly rejects abandoning free returns, endorsing calibration rather than elimination.
+**mistake_c:** Choice C describes only one supporting detail from paragraph 1, not the overall purpose of the passage.
+**mistake_d:** Choice D names a mechanism mentioned in passing in paragraph 2, not the passage's primary purpose.
+**mistake_e:** Choice E mistakes a neutral description of account-level tracking in paragraph 3 for criticism; the passage does not condemn the practice.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q155
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, a shopper engaged in "bracketing"
+
+- A) returns a purchased item after wearing it once and then requesting a full refund
+- B) orders the same item in several sizes intending to keep only one and return the rest
+- C) delays a purchase until the retailer offers free returns rather than a restocking fee
+- D) buys an item at one retailer after inspecting it in person at another
+- E) repeatedly returns items in order to be reclassified as a more profitable customer
+
+**answer:** B
+**explanation:** Paragraph 2 defines bracketing as a shopper ordering the same dress in three sizes intending to keep one, treating the retailer's warehouse as a fitting room. Choice B restates this definition directly. The correct answer is B.
+**mistake_a:** Choice A describes wardrobing, returning a worn item, which is a different abuse the passage does not equate with bracketing.
+**mistake_c:** Choice C describes a shopper reacting to return-fee policy, not the multi-size ordering behavior that defines bracketing.
+**mistake_d:** Choice D describes showrooming across retailers, not bracketing within a single order.
+**mistake_e:** Choice E invents a motive tied to account-level profitability that the passage never attributes to bracketing.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q156
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following retailer actions is most consistent with the calibrated approach the passage endorses?
+
+- A) Eliminating free returns entirely and charging every customer a flat restocking fee on all returned items
+- B) Extending the return window from thirty to ninety days for all customers to further increase checkout conversion
+- C) Adding detailed measurement charts and a virtual try-on feature so that fewer customers order multiple sizes to find a fit
+- D) Discontinuing the sale of apparel categories, such as fitted garments, that generate the highest return rates
+- E) Offering every customer a cash bonus for each item they choose to keep rather than return
+
+**answer:** C
+**explanation:** The passage endorses attacking the return before it occurs and distinguishing genuine sizing problems from policy exploitation. Choice C, adding measurement charts and virtual try-on to reduce size mismatches, directly reduces the bracketing that drives unnecessary returns, matching the calibrated approach. The correct answer is C.
+**mistake_a:** Choice A is the crude across-the-board fee reimposition the passage warns forfeits the conversion gains that justified free returns.
+**mistake_b:** Choice B chases conversion while ignoring the return-cost problem entirely, worsening the margin the passage says free returns thin.
+**mistake_d:** Choice D abandons profitable categories wholesale rather than calibrating the return policy, an overcorrection the passage does not endorse.
+**mistake_e:** Choice E is an untargeted blanket incentive that pays even non-returning customers, the opposite of distinguishing behavior and pricing each accordingly.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q157
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+Which of the following best expresses the main idea of the passage?
+
+- A) Because reverse logistics can render returned garments unsellable, online retailers lose money on every return they accept.
+- B) Free returns raise checkout conversion, which proves that liberal return policies are the most effective marketing instrument available to online retailers.
+- C) The behavioral pattern known as bracketing is the single most important cause of declining profitability among online apparel retailers.
+- D) Although free returns were long seen as a straightforward benefit, a fuller accounting reveals costs that lead retailers to manage returns through calibration rather than blanket generosity or blanket fees.
+- E) Online retailers should track the return behavior of individual accounts in order to identify and penalize their least profitable customers.
+
+**answer:** D
+**explanation:** The passage begins with the favorable view of free returns, complicates it with a fuller accounting of hidden costs, and concludes that retailers should calibrate rather than abandon generosity or reimpose blanket fees. Choice D captures all three movements without overstatement. The correct answer is D.
+**mistake_a:** Choice A overstates paragraph 2 into an absolute claim of loss on every return, which the passage does not assert; it says handling routinely, not always, consumes the margin.
+**mistake_b:** Choice B endorses the paragraph 1 view the passage goes on to complicate, and treats a conversion correlation as proof, ignoring the rest of the passage.
+**mistake_c:** Choice C singles out bracketing as the most important cause of declining profitability, a ranking the passage never makes.
+**mistake_e:** Choice E turns a neutral description of account-level tracking into a prescriptive recommendation to penalize customers, which the passage frames as calibration, not punishment.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 39: The Engineer of the Braided Stream
+
+When beavers were reintroduced to river catchments across northern Europe in the early 2000s, ecologists welcomed them as agents of restoration. By felling trees and damming channels, beavers convert straight, fast-flowing streams into braided networks of ponds and wetlands. Proponents credited these engineered landscapes with an impressive roster of benefits: the ponds trap sediment and pollutants, the wetlands recharge groundwater and buffer downstream communities against floods, and the resulting mosaic of habitats supports amphibians, fish, and waterfowl whose numbers had dwindled under intensive agriculture. Because beavers accomplish this without human management or expense, advocates began to describe them as a low-cost solution to problems that engineered infrastructure had failed to solve. In policy circles, the animal was reframed less as wildlife than as free public works, and reintroduction schemes multiplied across the continent on the strength of that promise.
+
+The evidence, however, has proven more equivocal than the early enthusiasm implied. In a fifteen-year study of thirty catchments, the hydrologist Mara Volkov found that beaver ponds did reliably reduce peak flood flows in small headwater streams, but that this effect diminished sharply in larger rivers, where a single dam complex represents a negligible fraction of total discharge. Volkov also observed that the flood-buffering benefit was itself contingent: ponds already saturated by a wet season offered little additional storage when the heaviest rains arrived. Meanwhile, the sediment beavers trap does not vanish; it accumulates behind dams that eventually breach, releasing accumulated material downstream in pulses. Volkov cautioned that many published benefit estimates derived from a handful of showcase sites selected precisely because they performed well, and that scaling those figures to whole regions risked mistaking the exceptional for the typical.
+
+None of this amounts to a case against reintroduction, and Volkov is careful to say so. Her argument is narrower: that the language of costless, universal benefit obscures a set of real trade-offs and site-specific conditions that determine whether a given scheme succeeds. Beaver activity that is beneficial in a degraded headwater may flood productive farmland or undermine a road embankment elsewhere, and the animal cannot be directed to build only where its work is wanted. Volkov therefore urges that reintroduction be evaluated catchment by catchment, with benefits weighed against local costs rather than assumed from a regional average. The beaver, in her account, remains a valuable ecological engineer; what she disputes is the accounting that treats its every intervention as a net gain, and that mistakes a genuine but conditional good for an unconditional one.
+
+### Q158
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) argue that beaver reintroduction schemes should be halted until their hydrological effects are better understood
+- B) present an initially enthusiastic view of beaver reintroduction and then a researcher's more qualified reassessment of it
+- C) demonstrate that beaver ponds reduce peak flood flows more effectively in small streams than in large rivers
+- D) compare the costs of natural beaver engineering with those of conventional flood-control infrastructure
+- E) explain the ecological mechanisms by which beavers convert streams into wetland habitats
+
+**answer:** B
+**explanation:** The passage opens with the early enthusiasm for beavers as low-cost restoration agents (paragraph 1) and then shifts to Volkov's more qualified reassessment (paragraphs 2 and 3), which weighs benefits against site-specific costs. Choice B captures this two-part structure. The correct answer is B.
+**mistake_a:** Choice A overstates Volkov's position; she explicitly says her findings are not a case against reintroduction, only against treating its benefits as unconditional.
+**mistake_c:** Choice C names one supporting detail from paragraph 2, not the passage's overall purpose.
+**mistake_d:** Choice D describes a framing mentioned in passing (beavers as 'free public works') but no actual cost comparison is developed, so it is not the primary purpose.
+**mistake_e:** Choice E covers only the mechanism described in paragraph 1 and ignores the evaluative arc that dominates the passage.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q159
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, Volkov found that the flood-buffering effect of beaver ponds
+
+- A) was strongest in the largest rivers, where dam complexes store the most water
+- B) was consistent across catchments of every size studied
+- C) diminished in larger rivers and could be reduced when ponds were already saturated before heavy rains
+- D) disappeared entirely once sediment accumulated behind the dams
+- E) depended primarily on the number of amphibian and fish species present
+
+**answer:** C
+**explanation:** Paragraph 2 states the effect 'diminished sharply in larger rivers' and that saturated ponds 'offered little additional storage when the heaviest rains arrived.' Choice C combines both findings. The correct answer is C.
+**mistake_a:** Choice A reverses the finding; the effect was strongest in small headwater streams, not the largest rivers.
+**mistake_b:** Choice B contradicts the passage, which reports the effect diminished sharply with river size rather than staying consistent.
+**mistake_d:** Choice D distorts the sediment point; the passage says sediment eventually breaches and releases downstream, not that the flood-buffering effect vanishes once sediment accumulates.
+**mistake_e:** Choice E imports amphibian and fish species, which the passage links to habitat benefits, not to the flood-buffering mechanism.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q160
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following approaches to a reintroduction decision most closely reflects the reasoning Volkov advocates?
+
+- A) Approving a reintroduction scheme for a region because a nearby showcase catchment recorded large flood-reduction benefits
+- B) Rejecting all reintroduction proposals in a region where one dam complex once breached and released sediment downstream
+- C) Prioritizing reintroduction in the largest rivers of a region because they carry the greatest total discharge
+- D) Assessing a proposed release in a degraded headwater by weighing its likely benefits against the specific costs it could impose on nearby farmland and roads
+- E) Setting a single regional benefit estimate and applying it uniformly to every catchment to streamline approvals
+
+**answer:** D
+**explanation:** Volkov urges that reintroduction be evaluated catchment by catchment, with benefits weighed against local costs rather than assumed from a regional average (paragraph 3). Choice D applies exactly this site-specific cost-benefit reasoning. The correct answer is D.
+**mistake_a:** Choice A commits the error Volkov warns against: generalizing from a showcase site to a whole region.
+**mistake_b:** Choice B is a blanket rejection, which contradicts Volkov's insistence that her findings are not a case against reintroduction.
+**mistake_c:** Choice C ignores her finding that the benefit diminishes in large rivers, where a dam is a negligible fraction of discharge.
+**mistake_e:** Choice E is precisely the regional-average shortcut Volkov criticizes as mistaking the exceptional for the typical.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q161
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+Which of the following best characterizes Volkov's attitude toward beaver reintroduction as presented in the passage?
+
+- A) Enthusiastic endorsement of reintroduction as a costless and universally beneficial policy
+- B) Outright skepticism that beavers provide any genuine ecological benefits
+- C) Detached neutrality that declines to take any position on the merits of reintroduction
+- D) Reluctant acceptance of reintroduction only where it can be shown to lower costs relative to engineered infrastructure
+- E) Qualified support that accepts the beaver's value while disputing the claim that its benefits are unconditional
+
+**answer:** E
+**explanation:** Volkov calls the beaver 'a valuable ecological engineer' yet disputes the accounting that treats its every intervention as a net gain (paragraph 3). Choice E captures this qualified support. The correct answer is E.
+**mistake_a:** Choice A describes the early advocates' view, which Volkov explicitly challenges.
+**mistake_b:** Choice B overshoots; she affirms genuine benefits and only disputes their unconditional framing.
+**mistake_c:** Choice C is wrong because Volkov clearly takes a position, urging catchment-by-catchment evaluation.
+**mistake_d:** Choice D narrows her stance to a cost comparison with engineered infrastructure, a test the passage does not attribute to her.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 40: The Guild's Warranted Name
+
+The standard account of medieval craft guilds treats them chiefly as engines of monopoly. On this view, guilds fixed prices, capped output, and restricted membership largely to shield established masters from competition, retarding the growth of the urban economies they dominated. Historians in this tradition point to guild ordinances that limited the number of apprentices a master could keep, prohibited advertising, and barred outsiders from selling within town walls. Adam Smith gave the interpretation its classic form, casting the guild as a conspiracy against the public. The picture is not baseless: many ordinances did indeed narrow the field of sellers, and guildsmen were rarely shy about the advantages that scarcity conferred. Yet a growing body of recent scholarship contends that reading guilds solely through the lens of competition obscures the more consequential work these institutions actually performed in economies that lacked the legal and informational infrastructure modern markets take for granted.
+
+The revisionist case begins with the problem of quality. In a marketplace where buyers could not readily verify the soundness of a barrel, the purity of a dye, or the temper of a blade before purchase, and where a cheating seller might vanish before the defect surfaced, transactions were chronically vulnerable to fraud. Guilds addressed this by staking their collective name on member work: they set technical standards, inspected goods, punished adulteration, and expelled offenders whose failures threatened the reputation the whole body relied upon. The apprenticeship rules that Smith read as barriers also functioned as a training system, transmitting tacit skills that no written manual could convey and certifying that a finished master had genuinely acquired them. Historian Sheilagh Vance calculates that guild-marked cloth commanded a measurable premium in distant markets precisely because the mark traveled as a credible warranty where the maker's own name could not.
+
+None of this requires denying that guilds also suppressed competition; the revisionist claim is one of emphasis, not exoneration. Guilds plainly did both, and the balance varied by trade, town, and century. What the newer scholarship insists is that the restrictive features and the reputational ones were frequently entangled: the same rule that limited entry could also guarantee that whoever did enter had been vetted and trained. Where modern institutions supply contract enforcement, product certification, and vocational credentials through courts, agencies, and schools, the medieval guild bundled these functions into a single body that competition alone could not have provided. To judge guilds only by the efficiency losses of their monopolies, the revisionists argue, is to measure them against a world of cheap information and reliable courts that did not yet exist, and so to mistake a partial solution for a pure obstruction.
+
+### Q162
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) trace the historical decline of craft guilds as modern legal institutions assumed their functions
+- B) compare the effectiveness of medieval guilds with that of modern courts, agencies, and vocational schools
+- C) present a revisionist argument that guilds performed valuable economic functions the standard monopoly account overlooks
+- D) demonstrate that Adam Smith's characterization of guilds as conspiracies against the public was wholly mistaken
+- E) argue that the restrictive practices of guilds ultimately outweighed whatever benefits they provided to consumers
+
+**answer:** C
+**explanation:** The passage lays out the standard monopoly account of guilds, then devotes most of its length to the revisionist case that guilds performed valuable quality-assurance, certification, and enforcement functions the monopoly view overlooks. Choice C captures this purpose. Choice A misstates the focus: the passage contrasts guilds with modern institutions but does not narrate a historical decline. Choice B names a contrast the passage draws only in passing, not its purpose. Choice D overstates: the revisionist claim is explicitly 'one of emphasis, not exoneration,' and the passage grants Smith's picture 'is not baseless.' Choice E reverses the passage's thrust. The correct answer is C.
+**mistake_a:** The passage contrasts guilds with modern courts, agencies, and schools but does not trace a chronological decline of guilds as those institutions took over; this choice imports a narrative the text never tells.
+**mistake_b:** A comparison with modern institutions appears only as a supporting contrast in the third paragraph, not as the passage's overall purpose.
+**mistake_d:** The passage explicitly calls the revisionist claim 'one of emphasis, not exoneration' and concedes Smith's picture 'is not baseless,' so it does not hold his view wholly mistaken.
+**mistake_e:** This reverses the passage's argument, which stresses the reputational functions the monopoly account overlooks rather than concluding the restrictions outweighed the benefits.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q163
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, Sheilagh Vance's calculation shows that
+
+- A) guild ordinances succeeded in capping the total output of cloth sold in distant markets
+- B) cloth produced outside the guild system was consistently of inferior technical quality
+- C) apprenticeship rules transmitted tacit skills that no written manual could convey to a finished master
+- D) the guild mark functioned as a credible warranty that earned a price premium where the individual maker's name could not travel
+- E) buyers in distant markets preferred cloth whose maker they could identify by personal reputation
+
+**answer:** D
+**explanation:** The passage states that Vance calculates guild-marked cloth 'commanded a measurable premium in distant markets precisely because the mark traveled as a credible warranty where the maker's own name could not.' Choice D restates this directly. Choice A concerns output capping, which Vance's calculation does not address. Choice B makes a claim about non-guild cloth's quality that the calculation does not establish. Choice C describes a different point in the passage (apprenticeship transmitting tacit skills), not Vance's finding. Choice E inverts the point: the premium arose precisely because the maker's name could not travel. The correct answer is D.
+**mistake_a:** Vance's calculation concerns the price premium of guild-marked cloth, not the capping of total output; output limits belong to the standard monopoly account, not her finding.
+**mistake_b:** The calculation shows guild-marked cloth earned a premium; it does not establish that non-guild cloth was consistently inferior in technical quality.
+**mistake_c:** This restates the passage's separate point about apprenticeship transmitting tacit skills, not the content of Vance's calculation about the guild mark's premium.
+**mistake_e:** This inverts the finding: the mark commanded a premium precisely because the maker's own name could not travel, not because buyers could identify the maker.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q164
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following present-day institutions most closely parallels the reputational function the revisionists attribute to guilds?
+
+- A) A government tariff that raises the price of imported goods to protect a domestic industry from foreign competitors
+- B) A retailer that offers steep introductory discounts to draw customers away from established rivals
+- C) A patent office that grants an inventor an exclusive right to profit from a new technique for a fixed term
+- D) A labor union that negotiates higher wages for its members by restricting the supply of workers in a trade
+- E) A trade association that certifies member firms against published standards and revokes certification from those found to sell defective goods
+
+**answer:** E
+**explanation:** The revisionist reputational function is staking a collective name on member work: setting standards, inspecting goods, and expelling offenders whose failures threaten the group's reputation. Choice E, a trade association that certifies members against standards and revokes certification for defective goods, mirrors this exactly. Choice A (a tariff) protects against outside competition but performs no quality-certification role. Choice C (a patent office) confers exclusivity for novelty, not a warranty of quality. Choice D (a labor union restricting worker supply) captures only the monopoly-restriction side, not the reputational one. Choice B (a retailer offering steep introductory discounts) competes for customers on price and performs no quality-certification role. The correct answer is E.
+**mistake_a:** A tariff shields a domestic industry from competition but does no quality certification, so it parallels only the monopoly side the revisionists de-emphasize, not the reputational function.
+**mistake_b:** A retailer using introductory discounts competes for customers on price; it performs no quality-certification or standard-enforcing role, so it captures the competitive side rather than the reputational function the revisionists emphasize.
+**mistake_c:** A patent office grants exclusivity for novelty for a fixed term; it warrants originality, not the ongoing product quality the guild's reputational function guaranteed.
+**mistake_d:** A union restricting worker supply captures the entry-limiting monopoly feature only, not the standard-setting and quality-enforcing reputational role.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q165
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Inference
+
+The revisionists would most likely argue that the standard monopoly account of guilds
+
+- A) evaluates guilds against conditions of cheap information and reliable enforcement that did not yet exist
+- B) underestimates how strongly guildsmen resented the scarcity their ordinances created
+- C) relies too heavily on the testimony of a single historian, Sheilagh Vance
+- D) assumes that medieval buyers were incapable of judging the quality of goods for themselves
+- E) fails to recognize that guild ordinances varied by trade, town, and century
+
+**answer:** A
+**explanation:** The passage closes by saying that to judge guilds only by the efficiency losses of their monopolies 'is to measure them against a world of cheap information and reliable courts that did not yet exist.' Choice A restates this criticism. Choice B is unsupported and, if anything, the passage says guildsmen embraced scarcity's advantages. Choice C misattributes: Vance supports the revisionists, so overreliance on her would be a charge against them, not the monopoly account. Choice D overstates: the passage says buyers could not readily verify quality before purchase, not that they were wholly incapable of judging it. Choice E names a point the revisionists themselves concede, not a flaw they charge to the monopoly account. The correct answer is A.
+**mistake_b:** The passage says guildsmen were 'rarely shy about the advantages that scarcity conferred,' so the monopoly account is not charged with underestimating their resentment of scarcity.
+**mistake_c:** Vance's evidence supports the revisionists, so overreliance on her would be an objection to their case, not a criticism the revisionists level at the monopoly account.
+**mistake_d:** The passage says buyers could not readily verify quality before purchase, which is narrower than claiming they were incapable of judging quality at all.
+**mistake_e:** That ordinances varied by trade, town, and century is a point the revisionists concede about their own claim, not a flaw they attribute to the monopoly account.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 41: The Case for the Sensation Novel
+
+For much of the twentieth century, literary critics treated the Victorian sensation novel — a genre of the 1860s built on bigamy, forgery, hidden identities, and domestic crime — as a commercial embarrassment unworthy of serious study. Contemporary reviewers had condemned these books for exciting the nerves rather than instructing the mind, and later scholars largely inherited that verdict, filing the sensation novel among the ephemeral products of an expanding mass market. The genre's enormous popularity was itself read as evidence against it: a form that sold hundreds of thousands of copies to circulating-library subscribers could not, the reasoning went, possess genuine artistic merit. On this account, writers such as Mary Elizabeth Braddon and Wilkie Collins were skilled entertainers who manufactured suspense for profit, not novelists whose work rewarded critical attention.
+
+The scholar Helen Verrick has argued that this dismissal rested on a category error. The Victorians who denounced the sensation novel, she notes, objected less to its literary quality than to its subject matter — specifically, its insistence that crime and deception could flourish behind the respectable facade of the middle-class household. What reviewers experienced as a failure of decorum, Verrick contends, was in fact the genre's central formal achievement: by locating villainy inside the drawing room rather than in some gothic elsewhere, the sensation novel dramatized anxieties about identity and social mobility that more decorous fiction of the period systematically avoided. The genre's reliance on plots of concealed pasts, she argues, was not a lapse of realism but a precise instrument for examining how thoroughly a person's public identity could be fabricated.
+
+Verrick is careful, however, not to overstate her case. She does not claim that every sensation novel repays close reading, nor that the genre's craftsmanship rivals that of the period's acknowledged masters; many titles were indeed formulaic, and the mechanics of suspense sometimes crowded out characterization. Her contention is narrower and, for that reason, more durable: that the grounds on which the genre was originally rejected — its popularity, its sensational incident, its domestic settings — were precisely the wrong grounds, and that a form dismissed for pandering to its audience was in fact engaging, however unevenly, with the era's most unsettling social questions. To read the sensation novel only as commercial ephemera, she concludes, is to mistake the source of a work's cultural power for the measure of its artistic worth.
+
+### Q166
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) trace the decline in popularity of the Victorian sensation novel over the course of the twentieth century
+- B) explain why Victorian reviewers objected to the domestic settings of the sensation novel
+- C) demonstrate that the sensation novel is artistically superior to the acknowledged masterworks of the Victorian period
+- D) present a scholar's argument that the sensation novel was dismissed on mistaken grounds and merits reconsideration
+- E) compare the critical reputations of Mary Elizabeth Braddon and Wilkie Collins
+
+**answer:** D
+**explanation:** The passage first lays out the traditional dismissal of the sensation novel (paragraph 1), then presents Helen Verrick's argument that this dismissal rested on a category error and that the genre engaged with serious social questions (paragraphs 2-3). The passage is organized around presenting and developing this scholarly reconsideration. The correct answer is D.
+**mistake_a:** The passage does not trace a decline in popularity; the genre's popularity is treated as a fixed fact used against it, not as something that changed over time.
+**mistake_b:** This describes only one detail from paragraph 2, not the overall purpose; the reviewers' objection was to subject matter generally, and this is a supporting point rather than the main aim.
+**mistake_c:** Verrick explicitly declines to claim the genre rivals the acknowledged masters, so the passage does not argue for artistic superiority.
+**mistake_e:** Braddon and Collins are mentioned only as examples in paragraph 1; the passage does not compare their reputations.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q167
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, Verrick contends that the Victorian reviewers who condemned the sensation novel objected primarily to its
+
+- A) excessive length and the demands it placed on circulating-library subscribers
+- B) technical clumsiness in the construction of its suspenseful plots
+- C) failure to achieve the commercial success its publishers had anticipated
+- D) imitation of earlier gothic novels set in remote and exotic locations
+- E) subject matter, particularly its depiction of crime concealed within respectable middle-class households
+
+**answer:** E
+**explanation:** Paragraph 2 states that the Victorians who denounced the sensation novel objected less to its literary quality than to its subject matter — specifically, its insistence that crime and deception could flourish behind the respectable facade of the middle-class household. The correct answer is E.
+**mistake_a:** The passage never mentions the length of the novels or demands placed on subscribers by their length; this detail is fabricated.
+**mistake_b:** The passage frames the reviewers' objection as directed 'less to its literary quality than to its subject matter,' so faulting the novels' technical plot construction inverts the passage: technical craft was not their primary objection.
+**mistake_c:** The passage says the genre sold enormously well, so a failure of commercial success contradicts the text.
+**mistake_d:** The passage contrasts the sensation novel's domestic settings with the gothic elsewhere; it does not say the genre imitated remote, exotic gothic novels.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q168
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Application
+
+Which of the following statements is most consistent with Verrick's view of the sensation novel as presented in the passage?
+
+- A) Contemporary critics condemned the genre for the vulgarity of its subject matter, a subject matter that in fact allowed it to confront social tensions its more respectable rivals avoided.
+- B) The genre had sold poorly in its own time but was rediscovered by later scholars who admired its craftsmanship.
+- C) The genre was popular chiefly because it flattered its readers' existing prejudices rather than challenging them.
+- D) The genre's leading practitioners were later shown to be as technically accomplished as the period's most celebrated novelists.
+- E) Later scholars agreed with the original reviewers that the genre's popularity was incompatible with genuine artistic merit.
+
+**answer:** A
+**explanation:** Verrick's central claim is that the very subject matter reviewers condemned — crime and deception within the middle-class household — was what allowed the genre to dramatize social anxieties that more decorous fiction avoided. This option captures both the condemnation and its ironic productivity. The correct answer is A.
+**mistake_b:** The passage states the genre sold hundreds of thousands of copies, so it did not sell poorly; and Verrick praises its social engagement rather than its craftsmanship, which she declines to elevate.
+**mistake_c:** This restates the dismissal Verrick argues against; she contends the genre engaged with unsettling social questions rather than merely flattering readers' prejudices.
+**mistake_d:** Verrick explicitly refuses to claim the genre's craftsmanship rivals that of the acknowledged masters, so this contradicts her position.
+**mistake_e:** This is the inherited verdict Verrick rejects, not a view consistent with hers.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q169
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Function
+
+The primary function of the third paragraph is to
+
+- A) introduce a rival scholar who disputes Verrick's reading of the sensation novel
+- B) qualify Verrick's argument by limiting its scope, thereby making the reconsideration more defensible
+- C) concede that the sensation novel ultimately deserves the low reputation described in the first paragraph
+- D) provide additional historical evidence that the sensation novel confronted contemporary social anxieties
+- E) propose a program of future research into neglected Victorian genres
+
+**answer:** B
+**explanation:** The third paragraph opens by noting that Verrick is careful not to overstate her case, acknowledging that not every sensation novel repays close reading and that the genre does not rival the acknowledged masters. By narrowing her claim, the paragraph makes the reconsideration more durable and defensible. The correct answer is B.
+**mistake_a:** No rival scholar is introduced; the paragraph continues to develop Verrick's own position by limiting it.
+**mistake_c:** The paragraph limits Verrick's claim but does not concede that the genre deserves its low reputation; on the contrary, it reaffirms that the original grounds for rejection were wrong.
+**mistake_d:** The paragraph does not supply additional historical evidence; it restricts the scope of the argument rather than adding support for the social-anxiety claim.
+**mistake_e:** The paragraph proposes no research program; it concludes Verrick's argument rather than pointing toward future study.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 42: The Enigma of the Radio Flash
+
+In 2007, astronomers reviewing archived data from an Australian radio telescope identified a single burst of radio energy lasting only a few milliseconds yet carrying, in that fleeting instant, as much energy as the Sun emits over several days. Because the burst's signal was smeared across frequencies in a pattern indicating passage through vast stretches of ionized gas, researchers concluded it had traveled billions of light-years, originating far beyond our galaxy. For some years this so-called fast radio burst was dismissed by skeptics as a terrestrial artifact, perhaps interference from a microwave oven or a faulty instrument. That objection collapsed once independent telescopes on different continents began recording similar events, each bearing the same telltale frequency-smearing signature that no local interference could plausibly produce.
+
+The bursts posed an immediate puzzle: what mechanism could release so much energy so abruptly? An early and influential proposal held that fast radio bursts were cataclysmic, one-time events—the collapse of an overweight neutron star into a black hole, say, or the collision of two such stars. This hypothesis had the appeal of matching the bursts' extreme energy to an equally extreme, destructive origin. Then a burst was observed to repeat, flashing again from the very same patch of sky. A cataclysm that destroys its source cannot recur, so the repeater demanded a non-destructive engine. Yet the picture did not simply invert, for many bursts have never been seen to repeat despite prolonged monitoring, leaving open whether the population comprises two distinct kinds of source or one kind observed under differing conditions.
+
+Attention has since converged on the magnetar—a young neutron star wrapped in a magnetic field trillions of times stronger than Earth's—as a leading candidate, especially after a magnetar within our own galaxy emitted a burst resembling a faint cousin of the cosmological flashes. A magnetar can flare repeatedly without destroying itself, accommodating the repeaters, and a rare, more violent magnetar event might account for some apparent one-offs. Still, no single model has been shown to generate the full observed range of energies, and the magnetar seen locally was far dimmer than a typical extragalactic burst, so the identification remains provisional. What the bursts have already delivered is unexpected: because their frequency-smearing measures the intervening gas, each burst weighs the otherwise invisible matter strewn between galaxies, turning an unsolved puzzle into a working instrument.
+
+### Q170
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) argue that magnetars are conclusively established as the source of all fast radio bursts
+- B) compare the energy released by a fast radio burst with the energy output of the Sun
+- C) explain why early skeptics were correct to attribute the first fast radio burst to terrestrial interference
+- D) demonstrate that fast radio bursts are most valuable as tools for measuring gas between galaxies
+- E) trace how explanations of fast radio bursts have developed in response to new observations, while noting that a definitive account remains elusive
+
+**answer:** E
+**explanation:** The passage moves through the discovery and confirmation of fast radio bursts, an early cataclysmic explanation, its complication by a repeating burst, the rise of the magnetar candidate, and a caveat that no model yet accounts for everything. That developmental, still-open arc is exactly what Choice E captures. The correct answer is E.
+**mistake_a:** Choice A overstates the passage, which explicitly calls the magnetar identification 'provisional' and notes no single model generates the full range of energies.
+**mistake_b:** Choice B seizes on a single vivid detail from the opening sentence and mistakes it for the purpose of the whole passage.
+**mistake_c:** Choice C contradicts the passage, which says the terrestrial-interference objection 'collapsed' once independent telescopes recorded matching events.
+**mistake_d:** Choice D elevates the closing observation about weighing intergalactic gas into the main point, but the passage frames that as an unexpected byproduct, not its central purpose.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q171
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, the objection that fast radio bursts were terrestrial artifacts collapsed because
+
+- A) independent telescopes on different continents recorded similar events bearing the same frequency-smearing signature
+- B) a single burst was observed to repeat from the same patch of sky
+- C) a magnetar within our own galaxy was observed to emit a similar burst
+- D) researchers calculated that the burst had traveled billions of light-years
+- E) astronomers ruled out microwave ovens as a source of local interference
+
+**answer:** A
+**explanation:** The first paragraph states directly that the terrestrial-artifact objection 'collapsed once independent telescopes on different continents began recording similar events, each bearing the same telltale frequency-smearing signature that no local interference could plausibly produce.' That is Choice A. The correct answer is A.
+**mistake_b:** Choice B refers to the repeating burst, which is what undercut the cataclysmic hypothesis in paragraph two, not what dispelled the terrestrial-artifact objection.
+**mistake_c:** Choice C names the local magnetar from paragraph three, which supports the magnetar candidacy rather than establishing that the bursts were not terrestrial.
+**mistake_d:** Choice D describes the reasoning for the extragalactic origin of the original burst, not the evidence that overturned the interference objection.
+**mistake_e:** Choice E invents a specific ruling-out of microwave ovens; the passage mentions microwave ovens only as an example of the dismissed objection, not as something separately disproven.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q172
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+The observation that a burst repeated from the same patch of sky is significant primarily because
+
+- A) It proved that all fast radio bursts originate from magnetars.
+- B) It ruled out a purely destructive, one-time event as the source of at least some bursts.
+- C) It established that fast radio bursts comprise two entirely distinct populations of sources.
+- D) It confirmed that the repeating burst was closer to Earth than the non-repeating bursts.
+- E) It showed that non-repeating bursts must eventually repeat if monitored long enough.
+
+**answer:** B
+**explanation:** The passage explains that 'a cataclysm that destroys its source cannot recur, so the repeater demanded a non-destructive engine.' The repetition therefore rules out a purely destructive, one-time origin for at least those bursts, which is Choice B. The correct answer is B.
+**mistake_a:** Choice A overreaches: the magnetar is only a leading, provisional candidate, and the repeating burst by itself proves nothing about magnetars as the universal source.
+**mistake_c:** Choice C states as settled what the passage leaves open—the text says it remains unclear whether there are two distinct kinds of source or one kind observed under differing conditions.
+**mistake_d:** Choice D invents a distance claim; the passage says nothing about the repeater being closer to Earth than non-repeating bursts.
+**mistake_e:** Choice E contradicts the passage, which notes that many bursts have never been seen to repeat despite prolonged monitoring.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q173
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Passage Structure
+
+Which of the following best describes the organization of the passage?
+
+- A) A long-standing scientific consensus is presented, challenged with new evidence, and ultimately overturned in favor of a rival theory.
+- B) A practical instrument is described, its underlying physics explained, and its measurements applied to a series of galaxies.
+- C) A phenomenon is introduced and confirmed as real; a first explanation is offered and then complicated by a new observation; a leading but unsettled candidate is discussed and an unexpected use is noted.
+- D) Two competing theories are stated at the outset and then evaluated point by point until one is shown to be decisively superior.
+- E) A historical controversy is recounted chronologically to argue that early skeptics were vindicated by later findings.
+
+**answer:** C
+**explanation:** Paragraph one introduces fast radio bursts and confirms they are real; paragraph two offers the cataclysmic explanation and complicates it with the repeating burst; paragraph three discusses the magnetar as a leading but provisional candidate and closes with the unexpected use of bursts to weigh intergalactic gas. That sequence is Choice C. The correct answer is C.
+**mistake_a:** Choice A misreads the passage: there is no long-standing consensus that gets overturned; the bursts are a recent discovery whose explanation is still developing.
+**mistake_b:** Choice B fits only the final sentence about the bursts as a measuring instrument and ignores the discovery, hypothesis, and candidate-evaluation that structure most of the passage.
+**mistake_d:** Choice D wrongly claims a point-by-point contest ending in a decisive winner, whereas the passage stresses that the magnetar identification remains provisional.
+**mistake_e:** Choice E gets the conclusion backward—the passage says the skeptics' terrestrial-artifact objection collapsed, not that they were vindicated.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 43: When Many Minds Mislead
+
+The proposition that aggregating many independent judgments yields estimates more accurate than those of any single expert has become a fixture of popular decision science. Its canonical demonstration is the county-fair contest in which the average of hundreds of guesses about an ox's weight lands closer to the truth than the guess of any individual, including seasoned butchers. Proponents attribute this result to statistical cancellation: because individual errors scatter in both directions, averaging causes overestimates and underestimates to offset, leaving the aggregate near the correct value. On this account, the crowd's advantage is not a matter of shared insight but of arithmetic. The larger and more varied the pool of guesses, the more reliably the errors cancel, and the tighter the aggregate estimate converges on the quantity being estimated.
+
+This mechanism, however, depends on a condition that is easily violated: the judgments must be statistically independent. When individuals form their estimates in isolation, their errors are uncorrelated, and cancellation proceeds as the model predicts. But people rarely judge in isolation. When members of a group observe one another's guesses, or share a common source of information, or defer to a confident early speaker, their errors begin to correlate—to lean, collectively, in the same direction. Correlated errors do not cancel; they compound. A crowd swayed by a single misleading cue can converge with great confidence on a badly wrong answer, and the very size that lends the aggregate its apparent authority now amplifies rather than dampens the shared mistake. Aggregation, in short, launders correlated bias into false precision.
+
+The practical upshot is not that collective judgment should be abandoned but that its accuracy hinges on preserving the diversity and independence of the inputs. Researchers have found that eliciting estimates privately before any discussion, or deliberately seeking out dissenting and minority views, restores much of the error cancellation that unstructured deliberation destroys. Some have gone further, showing that a modestly sized panel of genuinely independent judges can outperform a far larger crowd whose members have influenced one another. The lesson cuts against a common intuition: adding more people is worthless, and can be harmful, if the additions merely echo views already present. What a crowd contributes is not numbers as such but the independent errors that numbers, under the right conditions, allow to cancel.
+
+### Q174
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+The primary purpose of the passage is to
+
+- A) explain why aggregating many judgments works in some conditions but not others, and identify what those conditions are
+- B) argue that collective judgment is generally less accurate than the judgment of a single well-chosen expert
+- C) trace the historical origins of the wisdom-of-crowds idea from the county-fair contest to modern research
+- D) recommend that organizations replace large decision-making groups with small panels of independent judges
+- E) refute the statistical claim that averaging causes individual errors to cancel
+
+**answer:** A
+**explanation:** The passage first lays out the wisdom-of-crowds claim and its error-cancellation mechanism, then identifies the independence condition on which it depends, and finally explains how to preserve that condition. This is a balanced account of when aggregation works and when it fails, which is exactly what Choice A captures. The correct answer is A.
+**mistake_b:** The passage explicitly says collective judgment should not be abandoned and can outperform experts under the right conditions, so it does not argue crowds are generally worse than a single expert.
+**mistake_c:** The county-fair contest and modern research both appear, but the passage uses them to make an analytical point about conditions, not to trace a historical development.
+**mistake_d:** Small independent panels are mentioned only as one illustration of the independence principle, not as the passage's overall recommendation.
+**mistake_e:** The passage endorses the cancellation mechanism for independent errors rather than refuting it; it argues cancellation fails only when errors correlate.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q175
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Specific Detail
+
+According to the passage, error cancellation proceeds as the wisdom-of-crowds model predicts only when the individual judgments are
+
+- A) made by individuals with relevant expertise in the quantity being estimated
+- B) statistically independent of one another
+- C) collected from a pool that is as large as possible
+- D) revised after group members observe one another's guesses
+- E) drawn from a single shared source of information
+
+**answer:** B
+**explanation:** The second paragraph states that the mechanism depends on a condition easily violated: the judgments must be statistically independent, and that when individuals judge in isolation their errors are uncorrelated and cancellation proceeds as the model predicts. Choice B restates this required condition. The correct answer is B.
+**mistake_a:** The passage attributes the crowd's advantage to arithmetic rather than shared expertise, and even notes the average beats seasoned butchers, so expertise is not the stated condition.
+**mistake_c:** Pool size increases reliability only when errors are independent; size alone does not produce cancellation, and a large correlated crowd fares worse.
+**mistake_d:** Revising estimates after observing others' guesses is precisely the source of correlated errors that destroys cancellation, the opposite of the required condition.
+**mistake_e:** Sharing a single source of information is one of the passage's examples of how errors come to correlate, which prevents cancellation.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q176
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Answer Traps
+
+Which of the following statements is most consistent with the view of crowd size advanced in the passage?
+
+- A) A larger crowd always produces a more accurate aggregate estimate than a smaller one
+- B) The size of a crowd is irrelevant to the accuracy of its aggregate judgment
+- C) A crowd's size improves accuracy only insofar as the added members contribute independent errors that can cancel
+- D) Small panels of experts are inherently more reliable than crowds of any size
+- E) Large crowds are accurate only when their members reach a confident consensus
+
+**answer:** C
+**explanation:** The final paragraph states that what a crowd contributes is not numbers as such but the independent errors that numbers, under the right conditions, allow to cancel, and that adding people who merely echo existing views is worthless or harmful. Choice C captures this conditional value of size. The correct answer is C.
+**mistake_a:** The passage directly contradicts this: a larger crowd whose members influence one another can be beaten by a small independent panel, so size does not always improve accuracy.
+**mistake_b:** Size is not irrelevant; under the right conditions more independent members improve cancellation, so the passage grants size a conditional, not null, role.
+**mistake_d:** The passage credits independent panels only through independence, not inherent expert superiority, and does not claim small panels always beat crowds of any size.
+**mistake_e:** Confident consensus is associated with correlated errors and false precision, which the passage treats as a danger, not a source of accuracy.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+### Q177
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward the wisdom-of-crowds idea is best described as
+
+- A) unqualified enthusiasm for its power to outperform individual experts
+- B) dismissive skepticism about whether aggregation ever improves accuracy
+- C) alarm at the tendency of crowds to converge on confident errors
+- D) measured acceptance tempered by insistence on a specific precondition
+- E) detached neutrality that withholds any evaluative stance
+
+**answer:** D
+**explanation:** The author accepts that aggregation can outperform experts and explicitly says collective judgment should not be abandoned, yet insists throughout that this holds only when the judgments are independent. That combination of acceptance plus a firm precondition is exactly Choice D. The correct answer is D.
+**mistake_a:** The author's enthusiasm is qualified, not unqualified: the entire second paragraph warns that aggregation can produce false precision when errors correlate.
+**mistake_b:** The author is not dismissive; the passage affirms that aggregation improves accuracy under the right conditions and recommends ways to preserve them.
+**mistake_c:** Alarm at confident errors describes only one paragraph's cautionary point, not the author's overall stance, which remains constructively accepting.
+**mistake_e:** The author does take an evaluative stance, endorsing aggregation conditionally and prescribing methods to protect independence, so the tone is not detached neutrality.
+**related_reading:** reading-verbal-06-rc-question-types
