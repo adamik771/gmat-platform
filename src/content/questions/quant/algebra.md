@@ -2555,8 +2555,8 @@ The sum of three consecutive odd integers is 51 more than twice the smallest of 
 - D) 47
 - E) 49
 
-**answer:** D
-**explanation:** We let the three consecutive odd integers be n, n + 2, and n + 4. Their sum is 3n + 6. The condition states 3n + 6 = 2n + 51, so n = 45. The largest integer is n + 4 = 49. The correct answer is D.
+**answer:** E
+**explanation:** We let the three consecutive odd integers be n, n + 2, and n + 4. Their sum is 3n + 6. The condition states 3n + 6 = 2n + 51, so n = 45. The largest integer is n + 4 = 49. (Choice C, 45, is the smallest of the three; choice D, 47, is the middle one.) The correct answer is E.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---

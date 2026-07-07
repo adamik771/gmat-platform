@@ -252,9 +252,9 @@ Workflow: locate the target → locate the actual → compare precisely.
 
 **Example.** Tab 3: board target = software revenue must be at least 45% of total. Tab 2: software = $10.93M out of $24.30M total.
 
-Actual software share: $10.93M / $24.30M = 44.97%. Target: 45%. Does it meet the target?
+Actual software share: $10.93M / $24.30M = 44.98%. Target: 45%. Does it meet the target?
 
-44.97% < 45%. No — misses by 0.03 percentage points. Note: if you had approximated 44.97% as "roughly 45%," you'd answer incorrectly. Precision matters on compliance questions. Don't round until you've made the comparison.
+44.98% < 45%. No — misses by 0.02 percentage points. Note: if you had approximated 44.98% as "roughly 45%," you'd answer incorrectly. Precision matters on compliance questions. Don't round until you've made the comparison.
 
 **Synthesis pattern 2: Extract, then adjust (remove or add a component).**
 

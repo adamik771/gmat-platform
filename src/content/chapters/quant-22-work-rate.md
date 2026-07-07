@@ -230,19 +230,19 @@ Notice the back-out move: you found the combined phase-2 rate from the work and 
 
 Named tactics: the **"both-from-start" lower bound** and the **"slowest-solo" upper bound** bracket the answer and routinely kill two or three choices before you commit to arithmetic. On a hard question where time is short, bracketing alone may leave one survivor and you can move on. Internalize the logic of each bound: starting both workers together is the *fastest* possible scenario, so it is a floor; having only the fastest single worker run the whole job is *slower* than any cooperative scenario, so the slowest-solo time is a ceiling. Any real staggered-start answer lives strictly between them.
 
-**When to use algebra instead of phases.** Not every "something changed mid-way" problem is a staggered start. "If her speed were 10 mph higher, she'd arrive 15 minutes earlier" is a *speed-comparison* problem, not a phased one — nobody joins partway; two whole scenarios are being compared. Write two equations (original, altered) and solve the system. This usually produces a quadratic with one valid positive root.
+**When to use algebra instead of phases.** Not every "something changed mid-way" problem is a staggered start. "If her speed were 10 mph higher, she'd arrive 18 minutes earlier" is a *speed-comparison* problem, not a phased one — nobody joins partway; two whole scenarios are being compared. Write two equations (original, altered) and solve the system. This usually produces a quadratic with one valid positive root.
 
-**Worked example (speed-comparison setup).** Usual speed r, time 60/r. Faster speed r + 10, time 60/(r+10). The faster trip is 1/4 hour shorter:
+**Worked example (speed-comparison setup).** Usual speed r, time 60/r. Faster speed r + 10, time 60/(r+10). The faster trip is 18 minutes (3/10 hour) shorter:
 
-    60/r − 60/(r+10) = 1/4
+    60/r − 60/(r+10) = 3/10
 
-Multiply both sides by 4r(r+10):
+Multiply both sides by 10r(r+10):
 
-    240(r+10) − 240r = r(r+10)
-    2400 = r^2 + 10r
-    r^2 + 10r − 2400 = 0 → (r−40)(r+60) = 0 → r = 40 mph
+    600(r+10) − 600r = 3r(r+10)
+    6000 = 3r^2 + 30r
+    r^2 + 10r − 2000 = 0 → (r−40)(r+50) = 0 → r = 40 mph
 
-The negative root (−60) is discarded because speed must be positive. **Strategic alternative — backsolving.** If this appeared with answer choices like (A) 30 (B) 40 (C) 50 (D) 60 (E) 80, you could plug a choice straight in: test (B) r = 40. Then 60/40 = 1.5 hours and 60/50 = 1.2 hours; difference 0.3 hour = 18 minutes — not 15. That overshoots, so the real usual speed is higher (a faster baseline makes the gap shrink). Test (C) r = 50: 60/50 = 1.2 and 60/60 = 1.0, difference 0.2 hour = 12 minutes — undershoots. The target 15 minutes sits between, so this particular problem's clean root is the one the quadratic gave, 40 — but the difference at 40 was 18, not 15, which tells you the *stated* difference here must be 18 minutes for r = 40 to be exact. The real lesson: **backsolve when the choices are clean integers and the target lands exactly on one; reach for the quadratic when the given difference is an odd fraction that no listed integer hits cleanly.** Knowing which tool to grab — and when to abandon backsolving after one or two misses — is itself the skill.
+The negative root (−50) is discarded because speed must be positive. **Strategic alternative — backsolving.** If this appeared with answer choices like (A) 30 (B) 40 (C) 50 (D) 60 (E) 80, you could plug a choice straight in: test (B) r = 40. Then 60/40 = 1.5 hours and 60/50 = 1.2 hours; difference 0.3 hour = 18 minutes — exactly the target, so (B) is the answer on the first real test. Had the gap come out larger than 18 minutes, the usual speed would have to be higher (a faster baseline shrinks the gap); had it come out smaller, lower. The real lesson: **backsolve when the choices are clean integers and the target lands exactly on one; reach for the quadratic when the given difference is an odd fraction that no listed integer hits cleanly.** Knowing which tool to grab — and when to abandon backsolving after one or two misses — is itself the skill.
 
 **Trap to watch.** The headline trap is **adding or averaging times across phases.** "A works 2 hours, then both finish in some more time — total is 2 plus that," yes — but you can *only* get "that" by going through the remaining-fraction step. Students who see "2 hours solo, job finished in 5 hours combined-rate terms" and try to blend the two durations directly are doomed. A second, sneakier trap: **forgetting that the solo worker keeps working in phase 2.** When B joins A, A does not stop — phase 2's rate is A + B, not B alone. And the drain trap from above: **a draining pipe subtracts.** All three come from the same root cause: not writing the two-row table and not labeling each rate.
 

@@ -234,7 +234,7 @@ The single most common GMAT pattern: you're given `xy` and `x² + y²`, and aske
 
 **Worked example.** `xy = 6` and `x² + y² = 20`. Find `(x + y)²`.
 
-`(x + y)² = x² + 2xy + y² = (x² + y²) + 2xy = 20 + 12 = 32`. One line. Notice you never had to find x or y — and you couldn't easily, since they're `x = 3, y = 2` here but the problem doesn't need that. As a bonus, once you have `(x + y)² = 32` and `(x − y)² = (x² + y²) − 2xy = 20 − 12 = 8`, you could read off `x + y = √32` and `x − y = √8` and recover the variables — but resist the urge unless the question forces it.
+`(x + y)² = x² + 2xy + y² = (x² + y²) + 2xy = 20 + 12 = 32`. One line. Notice you never had to find x or y — and you couldn't easily, since they're irrational here (`x = 3√2, y = √2`) but the problem doesn't need that. As a bonus, once you have `(x + y)² = 32` and `(x − y)² = (x² + y²) − 2xy = 20 − 12 = 8`, you could read off `x + y = √32` and `x − y = √8` and recover the variables — but resist the urge unless the question forces it.
 
 **Worked example (harder, the "and also" twist).** `x + y = 7` and `xy = 10`. Find `x² + y²` and then `x³ + y³`.
 

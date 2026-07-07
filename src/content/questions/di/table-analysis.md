@@ -736,7 +736,7 @@ The following table shows units sold (in thousands) of four product lines across
 |------------|-----|-----|-----|-----|
 | Helios     | 40  | 48  | 55  | 72  |
 | Luna       | 85  | 82  | 78  | 90  |
-| Meridian   | 30  | 38  | 46  | 54  |
+| Meridian   | 30  | 38  | 46  | 51  |
 | Nova       | 110 | 105 | 115 | 120 |
 
 Which product had the greatest percent increase in units sold from Q1 to Q4?
@@ -756,10 +756,10 @@ Let Q1 and Q4 denote the units sold (in thousands) in the first and fourth quart
 
 - Helios: Q1 = 40, Q4 = 72. Percent increase = (72 - 40) / 40 * 100 = 32 / 40 * 100 = 4/5 * 100 = 80.0%.
 - Luna: Q1 = 85, Q4 = 90. Percent increase = (90 - 85) / 85 * 100 = 5 / 85 * 100 ≈ 5.9%.
-- Meridian: Q1 = 30, Q4 = 54. Percent increase = (54 - 30) / 30 * 100 = 24 / 30 * 100 = 4/5 * 100 = 80.0%.
+- Meridian: Q1 = 30, Q4 = 51. Percent increase = (51 - 30) / 30 * 100 = 21 / 30 * 100 = 7/10 * 100 = 70.0%.
 - Nova: Q1 = 110, Q4 = 120. Percent increase = (120 - 110) / 110 * 100 = 10 / 110 * 100 ≈ 9.1%.
 
-**Ranking the results.** Luna and Nova record the two lowest rates, at roughly 5.9% and 9.1%, respectively. Helios and Meridian both achieve exactly 80.0%, which is the highest rate in the table. A note on the arithmetic: 32/40 reduces to 4/5, and 24/30 likewise reduces to 4/5, so the two rates are identically equal. No answer choice covers a Helios-Meridian tie, and the question asks which product had the greatest percent increase; Helios satisfies that criterion and corresponds to choice A.
+**Ranking the results.** Helios achieves 80.0% (32/40 = 4/5), the highest rate in the table. Meridian is next at 70.0% (21/30 = 7/10), followed by Nova at roughly 9.1% and Luna at roughly 5.9%. Helios alone attains the greatest percent increase, and it corresponds to choice A. (Choice E, which asserts a Luna-Nova tie, is false: their rates of 5.9% and 9.1% differ.)
 
 The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
@@ -776,8 +776,8 @@ The following table shows the masses (in grams) and volumes (in cm³) of five me
 | Sample   | Mass (g) | Volume (cm³) |
 |----------|----------|---------------|
 | Alpha    | 192      | 24            |
-| Bravo    | 270      | 30            |
-| Charlie  | 378      | 42            |
+| Bravo    | 264      | 30            |
+| Charlie  | 357      | 42            |
 | Delta    | 156      | 20            |
 | Echo     | 225      | 25            |
 
@@ -793,12 +793,12 @@ Which sample has a density (mass/volume) closest to 9.0 g/cm³?
 **explanation:** Density is defined as mass divided by volume. Applying this formula to each sample and comparing each result to the target of 9.0 g/cm³:
 
 - Alpha: 192 / 24 = 8.0 g/cm³; deviation |8.0 − 9.0| = 1.0
-- Bravo: 270 / 30 = 9.0 g/cm³; deviation |9.0 − 9.0| = 0.0
-- Charlie: 378 / 42 = 9.0 g/cm³; deviation |9.0 − 9.0| = 0.0
+- Bravo: 264 / 30 = 8.8 g/cm³; deviation |8.8 − 9.0| = 0.2
+- Charlie: 357 / 42 = 8.5 g/cm³; deviation |8.5 − 9.0| = 0.5
 - Delta: 156 / 20 = 7.8 g/cm³; deviation |7.8 − 9.0| = 1.2
 - Echo: 225 / 25 = 9.0 g/cm³; deviation |9.0 − 9.0| = 0.0
 
-Alpha deviates by 1.0 and Delta by 1.2, making those two the most distant from the target. Bravo, Charlie, and Echo each produce a density of exactly 9.0 g/cm³, achieving the minimum possible deviation of 0.0. Among those three, Echo is the credited selection.
+Echo produces a density of exactly 9.0 g/cm³, a deviation of 0.0, which is smaller than every other sample's. The next closest is Bravo at 8.8 (deviation 0.2), then Charlie at 8.5 (deviation 0.5), Alpha at 8.0 (deviation 1.0), and Delta at 7.8 (deviation 1.2). Echo is therefore the single sample whose density is closest to 9.0.
 
 The correct answer is E.
 **related_reading:** reading-di-03-table-analysis
@@ -818,7 +818,7 @@ The following table shows annual revenue (in MILLIONS USD) and annual R&D spendi
 | Brio      | 220          | 44,000    |
 | Cedar     | 650          | 78,000    |
 | Dovetail  | 140          | 35,000    |
-| Everest   | 380          | 95,000    |
+| Everest   | 380          | 114,000   |
 
 Which firm spent the highest fraction of its revenue on R&D?
 
@@ -837,9 +837,9 @@ Which firm spent the highest fraction of its revenue on R&D?
 - Brio: 44,000 / (220 × 1,000) = 44,000 / 220,000 = 44/220 = 1/5 = 0.200 (20.0%)
 - Cedar: 78,000 / (650 × 1,000) = 78,000 / 650,000 = 78/650 = 3/25 = 0.120 (12.0%)
 - Dovetail: 35,000 / (140 × 1,000) = 35,000 / 140,000 = 35/140 = 1/4 = 0.250 (25.0%)
-- Everest: 95,000 / (380 × 1,000) = 95,000 / 380,000 = 95/380 = 1/4 = 0.250 (25.0%)
+- Everest: 114,000 / (380 × 1,000) = 114,000 / 380,000 = 114/380 = 3/10 = 0.300 (30.0%)
 
-**Comparison.** Ranking the five ratios in ascending order: Cedar (3/25) < Avalon (3/20) < Brio (1/5) < Dovetail (1/4) = Everest (1/4). The three smaller values fall clearly below 1/4. Dovetail and Everest both reduce to exactly 1/4, yielding a precise tie at the top with no rounding involved. Among the two tied firms, the credited answer designates Everest as the correct selection.
+**Comparison.** Ranking the five ratios in ascending order: Cedar (3/25) < Avalon (3/20) < Brio (1/5) < Dovetail (1/4) < Everest (3/10). Everest, at 0.300, spends the highest fraction of its revenue on R&D, ahead of Dovetail at 0.250, with the remaining three firms below 0.250. The top value is reached by Everest alone, with no tie.
 
 The correct answer is E.
 **related_reading:** reading-di-03-table-analysis
@@ -997,7 +997,7 @@ The following table shows population (in thousands) for five mid-sized cities ov
 | Fairhaven  | 180  | 195  | 210  | 225  |
 | Glenwood   | 140  | 155  | 175  | 200  |
 | Harbordale | 220  | 230  | 245  | 260  |
-| Ivyton     | 90   | 105  | 125  | 150  |
+| Ivyton     | 90   | 105  | 125  | 145  |
 | Jasper     | 310  | 300  | 315  | 320  |
 
 Which city had the largest ABSOLUTE increase in population from 2005 to 2020?
@@ -1016,10 +1016,10 @@ For each city, let the absolute increase be d = population(2020) - population(20
 - Fairhaven: d = 225 - 180 = 45
 - Glenwood: d = 200 - 140 = 60
 - Harbordale: d = 260 - 220 = 40
-- Ivyton: d = 150 - 90 = 60
+- Ivyton: d = 145 - 90 = 55
 - Jasper: d = 320 - 310 = 10
 
-Ranking these differences from largest to smallest: Glenwood = 60, Ivyton = 60, Fairhaven = 45, Harbordale = 40, Jasper = 10. Glenwood and Ivyton are tied at 60, and both values exceed those of the remaining three cities. Among the answer choices offered, choice B (Glenwood) is credited as correct. Glenwood's gain of 60 thousand is therefore selected as the credited largest absolute increase.
+Ranking these differences from largest to smallest: Glenwood = 60, Ivyton = 55, Fairhaven = 45, Harbordale = 40, Jasper = 10. Glenwood's gain of 60 thousand is the single largest, exceeding every other city. Choice B (Glenwood) is therefore the correct answer.
 
 The correct answer is B.
 **related_reading:** reading-di-03-table-analysis

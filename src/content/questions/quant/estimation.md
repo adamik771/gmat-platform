@@ -536,14 +536,14 @@ Which of the following is closest to (0.0382 × 815) / 0.0206 ?
 
 A rectangular plot of land has an area of A square meters. Is A greater than 2,000?
 
+(1) The length of the plot is between 38 and 44 meters.
+(2) The width of the plot is between 45 and 52 meters.
+
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
 - C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-(1) The length of the plot is between 38 and 44 meters.
-(2) The width of the plot is between 45 and 52 meters.
 
 **answer:** E
 **explanation:** Each statement alone fixes only one dimension within a range and says nothing about the other, so neither is sufficient on its own. Combining them, the area can be as small as 38 × 45 = 1,710 (which is not greater than 2,000) or as large as 44 × 52 = 2,288 (which is greater than 2,000). Because the possible area straddles 2,000, the two statements together still do not settle the yes/no question, so the answer is E.
@@ -577,14 +577,14 @@ The value of (2.02)^6 is closest to which of the following?
 
 Is the product mn greater than 600?
 
+(1) m is between 24 and 26, and n is between 31 and 33.
+(2) m + n is between 50 and 60.
+
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
 - C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-(1) m is between 24 and 26, and n is between 31 and 33.
-(2) m + n is between 50 and 60.
 
 **answer:** A
 **explanation:** From statement (1) the product is at minimum 24 × 31 = 744, which already exceeds 600 for every allowed pair, so the answer is a definite "yes" and statement (1) alone is sufficient. Statement (2) fixes only the sum: m = 5 and n = 50 give a sum of 55 with product 250 (not greater than 600), while m = 27 and n = 28 give a sum of 55 with product 756 (greater than 600), so it yields both answers and is insufficient. Since one statement alone settles the question and the other does not, the answer is A.
@@ -599,14 +599,14 @@ Is the product mn greater than 600?
 
 A contractor placed a single order for identical floor tiles. Was the total cost of the order greater than $1,000?
 
+(1) The order contained between 350 and 360 tiles.
+(2) Each tile cost between $3.00 and $3.10.
+
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
 - C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-(1) The order contained between 350 and 360 tiles.
-(2) Each tile cost between $3.00 and $3.10.
 
 **answer:** C
 **explanation:** Statement (1) gives the tile count but not the price, so the cost is unknown, and statement (2) gives the price but not the count, so neither alone is sufficient. Together, the smallest possible total is 350 × $3.00 = $1,050, and even this minimum already exceeds $1,000, so the total cost is greater than $1,000 for every allowed combination. Because the combined information forces a definite "yes" while neither statement alone can, the answer is C.
@@ -773,14 +773,14 @@ Which of the following is closest to (0.0594 × 1,980) / 0.0289 ?
 
 A rectangular courtyard has an area of A square meters. Is A greater than 5,000?
 
+(1) The length of the courtyard is between 60 and 66 meters.
+(2) The width of the courtyard is between 72 and 80 meters.
+
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
 - C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-(1) The length of the courtyard is between 60 and 66 meters.
-(2) The width of the courtyard is between 72 and 80 meters.
 
 **answer:** E
 **explanation:** Each statement alone fixes only one dimension within a range and says nothing about the other, so neither is sufficient on its own. Combining them, the area can be as small as 60 × 72 = 4,320 (which is not greater than 5,000) or as large as 66 × 80 = 5,280 (which is greater than 5,000). Because the possible area straddles 5,000, the two statements together still do not settle the yes/no question, so the answer is E.
@@ -795,14 +795,14 @@ A rectangular courtyard has an area of A square meters. Is A greater than 5,000?
 
 A landscaper placed a single order for identical paving stones. Was the total cost of the order greater than $2,000?
 
+(1) The order contained between 490 and 500 stones.
+(2) Each stone cost between $4.20 and $4.40.
+
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
 - C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-(1) The order contained between 490 and 500 stones.
-(2) Each stone cost between $4.20 and $4.40.
 
 **answer:** C
 **explanation:** Statement (1) gives the stone count but not the price, so the cost is unknown, and statement (2) gives the price but not the count, so neither alone is sufficient. Together, the smallest possible total is 490 × $4.20 = $2,058, and even this minimum already exceeds $2,000, so the total cost is greater than $2,000 for every allowed combination. Because the combined information forces a definite "yes" while neither statement alone can, the answer is C.
@@ -817,14 +817,14 @@ A landscaper placed a single order for identical paving stones. Was the total co
 
 Is the product pq greater than 800?
 
+(1) p is between 28 and 30, and q is between 31 and 33.
+(2) p + q is between 60 and 70.
+
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
 - C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
-
-(1) p is between 28 and 30, and q is between 31 and 33.
-(2) p + q is between 60 and 70.
 
 **answer:** A
 **explanation:** From statement (1) the product is at minimum 28 × 31 = 868, which already exceeds 800 for every allowed pair, so the answer is a definite "yes" and statement (1) alone is sufficient. Statement (2) fixes only the sum: p = 10 and q = 55 give a sum of 65 with product 550 (not greater than 800), while p = 33 and q = 33 give a sum of 66 with product 1,089 (greater than 800), so it yields both answers and is insufficient. Since one statement alone settles the question and the other does not, the answer is A.
