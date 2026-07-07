@@ -14,6 +14,7 @@ describe("outreach sequences", () => {
     expect(SEQUENCES.signup.map((s) => s.step)).toEqual([
       "welcome",
       "start",
+      "consult",
       "invite",
       "founding",
       "feedback",
@@ -50,6 +51,7 @@ describe("outreach sequences", () => {
     expect(plan.map((p) => p.step)).toEqual([
       "welcome",
       "start",
+      "consult",
       "invite",
       "founding",
       "feedback",
@@ -57,8 +59,9 @@ describe("outreach sequences", () => {
     // welcome is immediate; day-N steps are exactly N*24h later.
     expect(plan[0].scheduledFor).toBe("2026-06-27T12:00:00.000Z")
     expect(plan[1].scheduledFor).toBe("2026-06-28T12:00:00.000Z")
-    expect(plan[3].scheduledFor).toBe("2026-07-02T12:00:00.000Z")
-    expect(plan[4].scheduledFor).toBe("2026-07-07T12:00:00.000Z")
+    expect(plan[2].scheduledFor).toBe("2026-06-29T12:00:00.000Z")
+    expect(plan[4].scheduledFor).toBe("2026-07-02T12:00:00.000Z")
+    expect(plan[5].scheduledFor).toBe("2026-07-07T12:00:00.000Z")
   })
 
   it("plannedSteps is deterministic for the same start", () => {
