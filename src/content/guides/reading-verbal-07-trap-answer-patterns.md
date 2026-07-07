@@ -143,7 +143,7 @@ Five meta-traps in trap elimination itself.
 
 A worked example demonstrating trap-pattern recognition on a CR strengthening question.
 
-*Argument.* In a recent study of online retailers, those that offered free shipping had higher customer return rates than those that did not. Therefore, free shipping caused customers to spend more.
+*Argument.* In a recent study of online retailers, those that offered free shipping had higher average customer spending than those that did not. Therefore, free shipping caused customers to spend more.
 
 *Question stem.* Which of the following, if true, would most strengthen the conclusion?
 
@@ -157,7 +157,7 @@ A worked example demonstrating trap-pattern recognition on a CR strengthening qu
 
 (C) Customers who use free shipping also tend to be wealthier on average. — Trap: *causal exaggeration* on the wrong side — this introduces an alternative cause (wealth), which would *weaken*, not strengthen.
 
-(D) When retailers offering free shipping introduced a $5 shipping fee, customer return rates dropped sharply. — IN. This intervention evidence directly supports the causal claim: changing the free-shipping variable changed spending behavior.
+(D) When retailers offering free shipping introduced a $5 shipping fee, average customer spending dropped sharply. — IN. This intervention evidence directly supports the causal claim: changing the free-shipping variable changed spending behavior.
 
 (E) Free shipping has been a marketing standard for over a decade. — Trap: *outside knowledge / out of scope*. The history of marketing doesn't bear on the causal question.
 

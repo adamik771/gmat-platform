@@ -1822,7 +1822,7 @@ What is the value of 0.045 × 200 ?
 ## Q62
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Fraction Operations
+**topic:** Fractions
 
 What is the value of (2/3) ÷ (5/9) × (5/4) ?
 
@@ -1879,7 +1879,7 @@ A water tank is 2/5 full. After 9 liters are added, the tank is 7/10 full. What 
 ## Q65
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Fraction Operations
+**topic:** Fractions
 
 Which of the following correctly expresses 7/40 as both a decimal and a percent?
 
@@ -1898,7 +1898,7 @@ Which of the following correctly expresses 7/40 as both a decimal and a percent?
 ## Q66
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Fraction Operations
+**topic:** Fractions
 
 What is the value of 1 ÷ ( 1 + 1 ÷ ( 1 + 1/3 ) ) ?
 
@@ -3142,4 +3142,130 @@ Finally we perform the subtraction and addition from left to right: 24 − 20 = 
 A common error is to treat 12 ÷ (1/2) as 12 × (1/2) = 6, which would lower the total; dividing by a fraction less than 1 must increase the value.
 
 The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q119
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Fractions
+
+
+A gardener starts the day with one full bag of potting soil. She uses 3/8 of the bag on Monday and 1/6 of the bag on Tuesday. What fraction of the bag remains after Tuesday?
+
+- A) 1/4
+- B) 11/24
+- C) 1/2
+- D) 13/24
+- E) 5/8
+
+**answer:** B
+**explanation:** To combine fractions with unlike denominators, rewrite them over a common denominator, then subtract the total used from the whole (represented as 1). The least common denominator of 8 and 6 is 24. Monday's use is 3/8 = 9/24 and Tuesday's use is 1/6 = 4/24, so the total used is 9/24 + 4/24 = 13/24. The fraction remaining is 1 - 13/24 = 24/24 - 13/24 = 11/24. (Choice D, 13/24, is the amount used, not the amount left; Choice C, 1/2, comes from mistakenly treating 1/6 as 1/8.) The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q120
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractions
+
+
+A water tank is completely full. First, 2/5 of the water in the tank is used to water a lawn. Then 1/3 of the water still remaining is used for a flower bed. After both uses, 24 liters of water are left in the tank. How many liters of water did the full tank hold?
+
+- A) 40
+- B) 48
+- C) 60
+- D) 72
+- E) 90
+
+**answer:** C
+**explanation:** When a fraction is taken 'of the remaining' amount, apply it to what is left, not to the original whole. After the lawn use, 1 - 2/5 = 3/5 of the tank remains. The flower bed uses 1/3 of that remainder, leaving 2/3 of it: (2/3)(3/5) = 6/15 = 2/5 of the full tank. So 2/5 of the tank equals 24 liters, giving a full tank of 24 / (2/5) = 24 * 5/2 = 60 liters. (Choice A, 40, comes from applying 1/3 to the full tank instead of the remainder; Choice E, 90, from using 3/5 of the tank = 24.) The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q121
+
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Decimals
+
+
+What is the value of 0.6 x 0.05 + 0.017 ?
+
+- A) 0.019
+- B) 0.047
+- C) 0.077
+- D) 0.317
+- E) 0.617
+
+**answer:** B
+**explanation:** Follow the standard order of operations: multiply before adding, and track decimal places by counting the total number of digits after the decimal points. The product 0.6 x 0.05 has 1 + 2 = 3 decimal places: 6 x 5 = 30, placed as 0.030. Then 0.030 + 0.017 = 0.047. (Choice D, 0.317, comes from adding 0.6 x 0.05 as if it were 0.3; Choice A, 0.019, from misplacing the product as 0.002.) The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q122
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Decimals
+
+
+The repeating decimal 0.454545... (in which the block 45 repeats forever) is exactly equal to which of the following fractions?
+
+- A) 9/20
+- B) 5/11
+- C) 1/2
+- D) 5/9
+- E) 45/50
+
+**answer:** B
+**explanation:** A repeating decimal whose repeating block has length 2 can be written as that two-digit block divided by 99. Let x = 0.454545...; then 100x = 45.454545..., and subtracting gives 100x - x = 45, so 99x = 45 and x = 45/99. Dividing numerator and denominator by 9 gives 45/99 = 5/11. (Choice A, 9/20, is 0.45 treated as terminating; Choice D, 5/9, is the value of 0.5555...) The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q123
+
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractions
+
+
+What is the value of the complex fraction ( 1/2 + 1/3 ) / ( 1/2 - 1/4 ) ?
+
+- A) 3/10
+- B) 10/9
+- C) 5/3
+- D) 10/3
+- E) 5
+
+**answer:** D
+**explanation:** Simplify the numerator and denominator of the complex fraction separately, then divide by multiplying by the reciprocal. Numerator: 1/2 + 1/3 = 3/6 + 2/6 = 5/6. Denominator: 1/2 - 1/4 = 2/4 - 1/4 = 1/4. Dividing, (5/6) / (1/4) = (5/6)(4/1) = 20/6 = 10/3. (Choice A, 3/10, results from inverting the whole expression; Choice B, 10/9, from using 1/2 + 1/4 in the denominator.) The correct answer is D.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q124
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Comparing Fractions
+
+
+Which of the following fractions has the greatest value?
+
+- A) 7/12
+- B) 11/18
+- C) 13/21
+- D) 5/8
+- E) 9/14
+
+**answer:** E
+**explanation:** To compare fractions, put them on a common footing; cross-multiplying pairs or converting to a common denominator both work, but here comparing each to a benchmark and then head-to-head is fastest. As decimals: 7/12 approximately 0.583, 11/18 approximately 0.611, 13/21 approximately 0.619, 5/8 = 0.625, and 9/14 approximately 0.643. The largest is 9/14. To confirm the top two by cross-multiplication, compare 5/8 and 9/14: 5 x 14 = 70 while 9 x 8 = 72, and since 72 > 70, 9/14 > 5/8. (Choice D, 5/8, is the second largest and a common trap; Choice A, 7/12, is actually the smallest.) The correct answer is E.
 **related_reading:** reading-quant-02-arithmetic-foundations

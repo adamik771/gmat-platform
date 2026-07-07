@@ -1305,7 +1305,7 @@ The correct answer is C.
 
 In the xy-plane, the circle C has center (h, k) and radius r. Does the point (3, 4) lie inside circle C?
 
-(1) The circle passes through the origin (0, 0).
+(1) The circle passes through the point (6, 8).
 (2) h = 0 and k = 0.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
@@ -1314,16 +1314,16 @@ In the xy-plane, the circle C has center (h, k) and radius r. Does the point (3,
 - D) EACH statement ALONE is sufficient.
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
-**answer:** E
+**answer:** C
 **explanation:** A point lies inside a circle precisely when its distance from the center is strictly less than the radius. Thus the point (3, 4) lies inside circle C if and only if (3 - h)^2 + (4 - k)^2 < r^2. The question therefore asks whether enough is known about the center (h, k) and the radius r to determine the truth of this inequality.
 
-Consider Statement (1) alone. If the circle passes through the origin, then the distance from the center to (0, 0) equals the radius, giving h^2 + k^2 = r^2. This single equation fixes neither the center nor the radius. For example, let the center be (3, 4) with r = 5; then h^2 + k^2 = 9 + 16 = 25 = r^2, the condition is satisfied, and the distance from (3, 4) to the center is 0, which is less than 5, so the point lies inside. Alternatively, let the center be (-10, 0) with r = 10; then h^2 + k^2 = 100 = r^2, the condition is satisfied, but the distance from (3, 4) to (-10, 0) is the square root of (169 + 16) = the square root of 185, approximately 13.6, which exceeds 10, so the point lies outside. Because Statement (1) permits both a yes answer and a no answer, it is not sufficient.
+Consider Statement (1) alone. If the circle passes through (6, 8), then the distance from the center to (6, 8) equals the radius, giving (6 - h)^2 + (8 - k)^2 = r^2. This single equation fixes neither the center nor the radius. For example, let the center be (3, 4); then r^2 = (6 - 3)^2 + (8 - 4)^2 = 9 + 16 = 25, so r = 5, and the distance from (3, 4) to the center is 0, which is less than 5, so the point lies inside. Alternatively, let the center be (16, 8); then r^2 = (6 - 16)^2 + (8 - 8)^2 = 100, so r = 10, but the distance from (3, 4) to (16, 8) is the square root of (169 + 16) = the square root of 185, approximately 13.6, which exceeds 10, so the point lies outside. Because Statement (1) permits both a yes answer and a no answer, it is not sufficient.
 
 Consider Statement (2) alone. This fixes the center at the origin but says nothing about the radius. If r = 10, the distance from (3, 4) to the origin is 5, which is less than 10, so the point lies inside (yes). If instead r = 2, that distance of 5 exceeds 2, so the point lies outside (no). Two different outcomes are possible, so Statement (2) is not sufficient.
 
-Taking the statements together, Statement (2) places the center at the origin, while Statement (1) requires the circle to pass through the origin. A circle whose center is the origin and which also passes through the origin would have radius r = 0, which is a single point rather than a genuine circle of positive radius. The two statements jointly describe a degenerate figure, so no valid circle exists for which the inquiry can be evaluated, and the combined information fails to yield a determinate answer. Hence the statements together are not sufficient.
+Taking the statements together, Statement (2) places the center at the origin, and Statement (1) then fixes the radius: the circle passes through (6, 8), so r^2 = (6 - 0)^2 + (8 - 0)^2 = 36 + 64 = 100, giving r = 10. The distance from (3, 4) to the center (0, 0) is the square root of (3^2 + 4^2) = the square root of 25 = 5, which is strictly less than 10. The point (3, 4) therefore lies inside the circle, a determinate "yes." Because the two statements together produce a single definite answer while neither does so alone, they are sufficient in combination but not individually.
 
-The correct answer is E.
+The correct answer is C.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---

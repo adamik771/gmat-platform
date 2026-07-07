@@ -4227,14 +4227,14 @@ An online bookstore added a feature that displays, for each book, a list of titl
 
 A regional grocery chain replaced all of its older incandescent store lighting with energy-efficient LED fixtures, expecting its monthly electricity bills to fall noticeably. After the switch, however, the chain's total monthly electricity costs were actually higher than before. Which of the following, if true, best explains the unexpected increase in electricity costs?
 
-- A) The LED fixtures emit far less heat than the incandescent lighting they replaced, so the stores' air-conditioning systems ran much longer to maintain a comfortable temperature.
+- A) The LED fixtures emit far less heat than the incandescent lighting they replaced, so during colder months the stores' electric heating systems ran much longer to maintain a comfortable temperature.
 - B) The chain's competitors also switched to LED lighting at roughly the same time, gaining similar energy savings.
 - C) LED fixtures last several times longer than incandescent bulbs, reducing the chain's spending on replacement bulbs.
 - D) Customers reported that the new LED lighting made the produce section appear brighter and more appealing.
 - E) The electricity provider offered a one-time rebate to businesses that installed LED lighting.
 
 **answer:** A
-**explanation:** The paradox is that switching to lower-wattage LED lighting raised, rather than lowered, total electricity costs. The credited choice resolves this by introducing a second electricity-consuming system: incandescent bulbs gave off substantial heat, and removing that heat source forced the air conditioning to work harder and draw more power, so total electricity use rose even as lighting use fell. Both facts are then true. The competitor switch and the longer LED lifespan are irrelevant to this chain's electricity bill or concern non-electricity costs. Customer perceptions and a rebate would, if anything, reduce costs or be irrelevant, deepening rather than resolving the paradox. The correct answer is A.
+**explanation:** The paradox is that switching to lower-wattage LED lighting raised, rather than lowered, total electricity costs. The credited choice resolves this by introducing a second electricity-consuming system: incandescent bulbs gave off substantial heat that had helped warm the stores, and removing that heat source forced the electric heating to work harder and draw more power, so total electricity use rose even as lighting use fell. Both facts are then true. The competitor switch and the longer LED lifespan are irrelevant to this chain's electricity bill or concern non-electricity costs. Customer perceptions and a rebate would, if anything, reduce costs or be irrelevant, deepening rather than resolving the paradox. The correct answer is A.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -5094,12 +5094,12 @@ Which of the following, if true, most weakens the owner's argument?
 
 - A) The ceramic mugs must be washed after each use, which has slightly raised the café's water bill.
 - B) Several nearby cafés have also begun offering reusable containers to their customers.
-- C) Nearly all of the café's customers take their coffee to go rather than drinking it in the store.
+- C) To-go customers rarely bring the steel tumblers back, so the café would have to keep buying and discarding replacement tumblers.
 - D) The reusable steel tumblers cost more to purchase than the paper cups they would replace.
 - E) Most of the café's customers say they support efforts to reduce single-use waste.
 
 **answer:** C
-**explanation:** The owner reasons that because switching in-store customers to ceramic mugs cut disposal costs by 30 percent, switching to-go customers to steel tumblers will cut costs by a similar amount. This assumes the two groups generate comparable amounts of disposable waste. Choice C undercuts that assumption directly: if nearly all customers already take their coffee to go, then the in-store group that switched to mugs was small, so the 30 percent reduction came from a minor source, and the much larger to-go group's switch is not parallel in the way the owner claims, making a "similar" second cut implausible. Choice A (water bill) and Choice D (tumbler cost) raise costs but do not bear on whether disposal costs will fall. Choice B (competitors) and Choice E (customer attitudes) are irrelevant to the size of the disposal-cost reduction. The correct answer is C.
+**explanation:** The owner reasons that because switching in-store customers to ceramic mugs cut disposal costs by 30 percent, switching to-go customers to steel tumblers will cut costs by a similar amount. This assumes the tumblers will be reused the way the in-store mugs are: ceramic mugs never leave the café, so they reliably remove disposable cups from the waste stream. Choice C undercuts that assumption directly: if to-go customers rarely return the tumblers, the café must keep buying and throwing away replacements, so the projected disposal-cost reduction would not materialize — and disposal costs could even rise. Choice A (water bill) and Choice D (tumbler purchase cost) raise other costs but do not bear on whether disposal costs will fall. Choice B (competitors) and Choice E (customer attitudes) are irrelevant to the size of the disposal-cost reduction. The correct answer is C.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -5535,13 +5535,13 @@ Restaurant owner: We installed a large outdoor patio last spring, and our total 
 Which of the following, if true, most seriously weakens the owner's reasoning?
 
 - A) The patio can be used only during the warmer months and must be closed during winter.
-- B) Almost all of the revenue increase came from existing indoor customers who moved to the patio on busy nights, leaving indoor tables empty rather than adding new diners.
+- B) The 20 percent revenue increase was driven mainly by a citywide surge in summer tourism, which also lifted revenue at nearby restaurants that have no outdoor patio.
 - C) Several other restaurants in the area also added outdoor seating last spring.
 - D) The cost of building the patio was recovered within the first two months of summer.
 - E) Customers seated on the patio tended to order more expensive drinks than indoor customers did.
 
 **answer:** B
-**explanation:** The owner infers that the patio caused a net 20 percent revenue gain and is therefore worth expanding. Choice B undercuts this by showing the patio largely shifted existing customers rather than attracting new business: if indoor tables sat empty while patio tables filled, the patio mostly relocated revenue instead of adding it, so the apparent gain may owe little to the patio and further expansion would not pay off. Choice A (seasonal use) is a known limitation but does not explain away the observed gain or argue against expanding the usable-season capacity. Choice C (competitors also added seating) does not directly weaken the claim that this patio drove this restaurant's revenue. Choice D (fast cost recovery) strengthens the investment case. Choice E (patio customers spend more on drinks) also supports, not weakens, the value of the patio. The correct answer is B.
+**explanation:** The owner infers that the patio caused the 20 percent revenue gain and is therefore worth expanding. Choice B undercuts this by supplying an alternative cause for the gain: if a citywide summer tourism surge drove the increase — and that surge also lifted revenue at nearby restaurants with no patio — then the patio may deserve little credit for the rise, and spending more to expand it would not reliably produce further gains. Choice A (seasonal use) is a known limitation but does not explain away the observed summer gain or argue against expanding usable-season capacity. Choice C (competitors also added seating) does not directly weaken the claim that this patio drove this restaurant's revenue. Choice D (fast cost recovery) strengthens the investment case. Choice E (patio customers spend more on drinks) also supports, not weakens, the value of the patio. The correct answer is B.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---

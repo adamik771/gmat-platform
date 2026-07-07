@@ -107,7 +107,7 @@ The total budget for a four-question passage: roughly two minutes for the first 
 4. Step 4 (return to the passage) is required for which question types?
 5. The total budget for a 4-question passage is roughly what?
 
-*Answers.* (1) First pass — read for structure (60-90 seconds); note author's stance and tone; read each question with the skeleton in mind; return to the passage on detail and inference questions. (2) Identify paragraph roles — not memorize facts. 60-90 seconds for a typical passage. (3) Tone and attitude questions — they target the author's evaluative stance, which is set by word choices across the whole passage. (4) Detail and inference questions — never trust memory on these. (5) About 8 minutes — 60-90 sec for first read + 60-90 sec per question × 4.
+*Answers.* (1) First pass — read for structure (60-90 seconds); note author's stance and tone; read each question with the skeleton in mind; return to the passage on detail and inference questions. (2) Identify paragraph roles — not memorize facts. 60-90 seconds for a typical passage. (3) Tone and attitude questions — they target the author's evaluative stance, which is set by word choices across the whole passage. (4) Detail and inference questions — never trust memory on these. (5) About 8 minutes — roughly 2 min for the first read + 60-90 sec per question × 4.
 
 ## Common traps
 

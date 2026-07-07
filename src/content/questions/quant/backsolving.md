@@ -1118,7 +1118,7 @@ If x is a positive integer, what is the value of x?
 
 A jar contains only nickels (5 cents) and dimes (10 cents), and there are 24 coins in total. How many dimes are in the jar?
 
-(1) The total value of the coins is 1.95 dollars.
+(1) The total value of the coins is 1.60 dollars.
 (2) There are twice as many nickels as dimes.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
@@ -1128,7 +1128,7 @@ A jar contains only nickels (5 cents) and dimes (10 cents), and there are 24 coi
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** With n nickels and d dimes and the stem giving n + d = 24, each statement need only produce one more independent equation to determine d. Statement (1) gives 5n + 10d = 195; substituting n = 24 - d yields 5(24 - d) + 10d = 120 + 5d = 195, so 5d = 75 and d = 15, a unique value, so statement (1) is sufficient. Statement (2) gives n = 2d, so n + d = 3d = 24 and d = 8, also a unique value, so statement (2) is sufficient on its own. Since each statement alone determines the number of dimes, the answer is D.
+**explanation:** With n nickels and d dimes and the stem giving n + d = 24, each statement need only produce one more independent equation to determine d. Statement (1) gives 5n + 10d = 160; substituting n = 24 - d yields 5(24 - d) + 10d = 120 + 5d = 160, so 5d = 40 and d = 8, a unique value, so statement (1) is sufficient. Statement (2) gives n = 2d, so n + d = 3d = 24 and d = 8, also a unique value, so statement (2) is sufficient on its own. Since each statement alone determines the number of dimes, the answer is D.
 **related_reading:** quant-01-backsolving
 
 ---
@@ -1141,7 +1141,7 @@ A jar contains only nickels (5 cents) and dimes (10 cents), and there are 24 coi
 If n is a positive integer, what is the value of n?
 
 (1) n is a factor of 12.
-(2) n is a prime number that is greater than 10 and less than 13.
+(2) n is a prime number that is greater than 2 and less than 5.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
@@ -1150,7 +1150,7 @@ If n is a positive integer, what is the value of n?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**explanation:** The question asks for one specific value of n, so each statement must be checked against the full set of candidates it permits. Statement (1) lists the factors of 12 as 1, 2, 3, 4, 6, and 12, which is six possible values, so it is not sufficient alone. Statement (2) requires a prime strictly between 10 and 13, and the only integer in that range that is prime is 11 (12 is not prime), so it pins n to a single value and is sufficient alone. Because statement (2) by itself determines n while statement (1) does not, the answer is B.
+**explanation:** The question asks for one specific value of n, so each statement must be checked against the full set of candidates it permits. Statement (1) lists the factors of 12 as 1, 2, 3, 4, 6, and 12, which is six possible values, so it is not sufficient alone. Statement (2) requires a prime strictly between 2 and 5, and the only integer in that range that is prime is 3 (4 is not prime), so it pins n to a single value and is sufficient alone. Because statement (2) by itself determines n while statement (1) does not, the answer is B.
 **related_reading:** quant-01-backsolving
 
 ---

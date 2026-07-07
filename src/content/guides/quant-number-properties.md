@@ -337,11 +337,11 @@ To find the units digit of a^n, look up the cycle, compute n mod cycle length, p
 
 3^n cycle: 3, 9, 7, 1 (cycle 4). 47 mod 4 = 3. So 3^47 has units digit = 3rd in cycle = 7.
 
-7^n cycle: 7, 9, 3, 1 (cycle 4). 23 mod 4 = 3. So 7^23 has units digit = 7.
+7^n cycle: 7, 9, 3, 1 (cycle 4). 23 mod 4 = 3. So 7^23 has units digit = 3rd in cycle = 3.
 
-Sum: 7 + 7 = 14. Units digit = 4.
+Sum: 7 + 3 = 10. Units digit = 0.
 
-*Answer: 4.*
+*Answer: 0.*
 
 ## Integer Constraints
 
