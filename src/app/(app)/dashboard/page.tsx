@@ -21,6 +21,7 @@ import QuickActions from "@/components/dashboard/QuickActions"
 import InviteFriend from "@/components/dashboard/InviteFriend"
 import StudyHoursChart from "./StudyHoursChart"
 import FirstRunGuide from "./FirstRunGuide"
+import ConsultOffer from "./ConsultOffer"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getReviewQueue, type ReviewCandidate } from "@/lib/review-queue"
@@ -317,6 +318,8 @@ export default async function DashboardPage() {
   let reviewDueCount = 0
   // First-run guide (fresh accounts only; skippable forever).
   let guideDismissed = true
+  // Consultation-offer strip — shown to every logged-in user until dismissed.
+  let consultDismissed = false
   let guideChapterStarted = false
   let reviewTopTopic: string | null = null
   let officialExamCount = 0
@@ -624,6 +627,8 @@ export default async function DashboardPage() {
       // permanently skippable (guide_dismissed_at scalar).
       guideDismissed =
         typeof user.user_metadata?.guide_dismissed_at === "string"
+      consultDismissed =
+        typeof user.user_metadata?.consult_offer_dismissed_at === "string"
       const rawChapterProgress = state.chapter_progress as
         | Record<string, unknown>
         | null
@@ -859,6 +864,7 @@ export default async function DashboardPage() {
     const baselineSet = officialExamCount > 0
     return (
       <div className="max-w-7xl mx-auto space-y-10">
+        {user && !consultDismissed && <ConsultOffer />}
         {/* Slim greeting — no daily-goal pill, no plan chip; nothing to
             show until there's signal. */}
         <section className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-6 py-9 sm:px-10 sm:py-12" style={{ backgroundColor: "#0D0D0D" }}>
@@ -1323,6 +1329,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
+      {user && !consultDismissed && <ConsultOffer />}
       {/* Compact greeting bar — one slim row replacing the old ~200px
           editorial hero. Greeting + date on the left; plan chip + a
           compact daily-goal indicator on the right. Restrained gold. */}
