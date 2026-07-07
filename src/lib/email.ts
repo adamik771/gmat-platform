@@ -14,6 +14,9 @@ export interface SendEmailInput {
   subject: string
   html: string
   text?: string
+  /** Reply-To address; falls back to EMAIL_REPLY_TO. Lets replies reach a
+   *  monitored inbox even while the sending domain has no MX record. */
+  replyTo?: string
   /** Extra SMTP headers (e.g. List-Unsubscribe) passed through to Resend. */
   headers?: Record<string, string>
 }
@@ -40,6 +43,7 @@ export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult>
   if (!input.to || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.to)) {
     return { ok: false, skipped: true, reason: "invalid recipient" }
   }
+  const replyTo = input.replyTo || process.env.EMAIL_REPLY_TO || ""
   try {
     const res = await fetch(RESEND_ENDPOINT, {
       method: "POST",
@@ -53,6 +57,7 @@ export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult>
         subject: input.subject,
         html: input.html,
         ...(input.text ? { text: input.text } : {}),
+        ...(replyTo ? { reply_to: replyTo } : {}),
         ...(input.headers ? { headers: input.headers } : {}),
       }),
     })
