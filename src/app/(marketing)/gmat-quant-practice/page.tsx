@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import AcquisitionLanding, {
   type AcquisitionLandingProps,
 } from "@/components/marketing/AcquisitionLanding"
+import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "GMAT Quant Practice and Study Plan: Strategy Over Content",
@@ -29,7 +30,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "heading": "Practice in mixed, timed sets and let spaced review do the retention",
-      "body": "How you practice matters more than how much. Two structural choices separate efficient prep from spinning your wheels:\n\n- Mixed over blocked. Doing 30 exponent questions in a row teaches your brain to expect exponents, which the real exam never does. The hard skill on test day is recognizing, cold, what kind of question you are looking at. So after you learn a concept in isolation, practice it interleaved with other topics. Mixed sets are uncomfortable and that discomfort is the training effect.\n- Timed by default. Untimed practice builds false confidence. Even early on, give yourself a soft clock so timing pressure is baked into how you solve, not bolted on at the end.\n\nRetention is the other half. You will relearn the same number-properties rule three times unless you revisit it on a spacing curve, reviewing a concept just as you are about to forget it. Doing this by hand with flashcards works but is tedious to schedule. The platform runs a daily spaced-review queue that resurfaces your past misses on that curve automatically, so the rules you got wrong come back exactly when they are most fragile. Across the 62 chapters and 1,900+ original practice questions, the workflow is: learn a concept, practice it mixed and timed, log every miss by cause, and let the review queue handle long-term retention."
+      "body": "How you practice matters more than how much. Two structural choices separate efficient prep from spinning your wheels:\n\n- Mixed over blocked. Doing 30 exponent questions in a row teaches your brain to expect exponents, which the real exam never does. The hard skill on test day is recognizing, cold, what kind of question you are looking at. So after you learn a concept in isolation, practice it interleaved with other topics. Mixed sets are uncomfortable and that discomfort is the training effect.\n- Timed by default. Untimed practice builds false confidence. Even early on, give yourself a soft clock so timing pressure is baked into how you solve, not bolted on at the end.\n\nRetention is the other half. You will relearn the same number-properties rule three times unless you revisit it on a spacing curve, reviewing a concept just as you are about to forget it. Doing this by hand with flashcards works but is tedious to schedule. The platform runs a daily spaced-review queue that resurfaces your past misses on that curve automatically, so the rules you got wrong come back exactly when they are most fragile. Across the " + CHAPTER_COUNT_CLAIM + " chapters and " + QUESTION_CLAIM + ", the workflow is: learn a concept, practice it mixed and timed, log every miss by cause, and let the review queue handle long-term retention."
     },
     {
       "heading": "Use mocks to calibrate, and build the plan around your own baseline",

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 }
 
-const LAST_UPDATED = "May 3, 2026"
+const LAST_UPDATED = "July 8, 2026"
 const CONTACT_EMAIL = SITE_CONTACT_EMAIL
 
 export default function PrivacyPage() {
@@ -67,8 +67,16 @@ export default function PrivacyPage() {
           </li>
         </ul>
         <p>
-          We do not currently use third-party advertising trackers, behavioral
-          analytics, or session-replay tools.
+          We use Vercel Web Analytics to count page views and key product
+          events in aggregate. We also store the campaign parameters that
+          brought you to the site (for example, utm_source) in your
+          browser&apos;s local storage so we can attribute signups to a
+          campaign. Emails from our marketing sequences include an
+          open-tracking pixel and links that pass through our own
+          click-tracking redirect so we can tell which emails are useful;
+          unsubscribing stops those emails. When our advertising measurement
+          tags (Meta Pixel, Google tag) are active, they measure whether ads
+          lead to signups. We do not use session-replay tools.
         </p>
       </LegalSection>
 
@@ -104,6 +112,14 @@ export default function PrivacyPage() {
             <strong>Anthropic</strong> — language-model inference for the
             in-product AI tutor.
           </li>
+          <li>
+            <strong>Resend</strong> — transactional and product email delivery
+            (processes your name and email address).
+          </li>
+          <li>
+            <strong>Formspree</strong> — contact-form processing (US-based;
+            the name, email, and message you submit on the contact page).
+          </li>
         </ul>
         <p>
           Each of these providers has its own privacy and security commitments.
@@ -116,8 +132,10 @@ export default function PrivacyPage() {
           We use a small number of cookies (and equivalent local-storage keys)
           that are necessary for the Platform to function — primarily to keep
           you signed in and to remember session state such as your study timer
-          and offline cache. We do not use advertising or cross-site tracking
-          cookies.
+          and offline cache. Our analytics does not use advertising cookies.
+          Advertising measurement tags (Meta Pixel, Google tag), when active,
+          may set cookies to attribute ad performance; beyond that we do not
+          use cross-site tracking cookies.
         </p>
       </LegalSection>
 

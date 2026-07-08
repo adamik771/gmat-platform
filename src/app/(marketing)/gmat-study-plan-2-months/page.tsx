@@ -4,7 +4,7 @@ import AcquisitionLanding, {
 } from "@/components/marketing/AcquisitionLanding"
 
 export const metadata: Metadata = {
-  title: "2 Month GMAT Study Plan (8 Weeks) | Zakarian GMAT",
+  title: "2 Month GMAT Study Plan (8 Weeks)",
   description:
     "A concrete week-by-week 2 month GMAT study plan for the Focus Edition, anchored to an official mba.com practice baseline and a spaced-review ladder.",
   alternates: { canonical: "/gmat-study-plan-2-months" },
@@ -86,7 +86,7 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   },
   {
     label: "Error Log Template",
-    href: "/error-log-template",
+    href: "/gmat-error-log-template",
     description: "The six-tag log that powers the adapt-when-stalled step.",
   },
   {

@@ -8,6 +8,8 @@
  * EMAIL_SEQUENCES.md mirrors.
  */
 
+import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM_SHORT } from "@/lib/site"
+
 const GOLD = "#C9A84C"
 
 export interface TemplateContext {
@@ -70,7 +72,7 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
     paragraphs: [
       greeting(c),
       "Quick story first. My first GMAT Focus score was a 565. I rebuilt my prep from scratch — pretest, reading, recall checks, graded problem sets, every miss logged and reviewed until it stopped repeating. I finished at 735, the 100th percentile. This platform is that system, chapter by chapter.",
-      "You have all of it free while we're in private beta: 50+ interactive chapters, 1,900+ practice questions, full-length mocks, the six-tag error log, and daily spaced review.",
+      "You have all of it free while we're in private beta: " + CHAPTER_COUNT_CLAIM + " interactive chapters, " + QUESTION_CLAIM_SHORT + ", full-length mocks, the six-tag error log, and daily spaced review.",
       "One thing before you dive in: your study plan calibrates from a real baseline — an official mba.com practice exam. If you have a recent official score, start your plan from it. If not, take one this week. Honest baseline first, everything else second.",
       "Last thing: I'm a solo founder. There's no support team behind this address — replies come to me, and I answer them personally.",
     ],
@@ -145,9 +147,9 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
     paragraphs: [
       greeting(c),
       "Before the prices, here's how I'd evaluate any GMAT course, mine included: original questions at realistic difficulty, a system that forces you to confront your errors instead of just logging hours, and mocks plus a study plan calibrated against official material. If a course can't show you those three things, keep your money — whether it's mine or anyone else's.",
-      "That's the standard I built to: 50+ interactive chapters, 1,900+ practice questions, a six-tag error log, daily spaced review, full-length mocks, and a plan calibrated from your official mba.com practice exam baseline.",
+      "That's the standard I built to: " + CHAPTER_COUNT_CLAIM + " interactive chapters, " + QUESTION_CLAIM_SHORT + ", a six-tag error log, daily spaced review, full-length mocks, and a plan calibrated from your official mba.com practice exam baseline.",
       "Now the numbers. When checkout opens, Self-Study will be $429 for 4 months. Self-Study + Mentorship — direct WhatsApp Q&A with me — will be $599 for 6 months.",
-      "Founding members lock roughly $299 and $399 instead. Reserving is free and there's nothing to pay today — you pay only when checkout opens, and every paid plan carries a 14-day money-back guarantee.",
+      "Founding members lock roughly $299 and $399 instead. Reserving is free and there's nothing to pay today — you pay only when checkout opens, and both plans carry a 14-day money-back guarantee.",
       "No countdown timer, because there isn't one. The founding rate exists until checkout opens, then it's gone. That's the whole pitch.",
     ],
     cta: { label: "Reserve your founding rate", href: path(c, "/pricing") },
@@ -181,11 +183,11 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
   }),
   "founding-includes": (c) => ({
     subject: "What your beta access includes",
-    preheader: "62 chapters, the question bank, mocks, review, and a baseline-driven plan.",
+    preheader: CHAPTER_COUNT_CLAIM + " chapters, the question bank, mocks, review, and a baseline-driven plan.",
     heading: "What you've got",
     paragraphs: [
       greeting(c),
-      "Your beta access is the whole platform: 62 chapters, the full practice bank, full-length mocks, the spaced review queue, the error log, and a study plan built from your official practice-exam baseline. No card required.",
+      "Your beta access is the whole platform: " + CHAPTER_COUNT_CLAIM + " chapters, the full practice bank, full-length mocks, the spaced review queue, the error log, and a study plan built from your official practice-exam baseline. No card required.",
       "If you only do one thing this week, set your baseline so the plan can calibrate.",
     ],
     cta: { label: "Set your baseline", href: path(c, "/mock") },

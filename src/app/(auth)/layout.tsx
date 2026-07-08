@@ -53,6 +53,29 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       >
         {children}
       </main>
+
+      {/* Minimal legal footer — the marketing footer is heavy for auth pages,
+          but the GMAC non-affiliation disclaimer and legal links must appear
+          on every public page. */}
+      <footer className="relative px-6 pb-6 pt-2">
+        <div className="flex items-center justify-center gap-4 mb-3">
+          <Link href="/privacy" className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors">
+            Privacy
+          </Link>
+          <Link href="/terms" className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors">
+            Terms
+          </Link>
+          <Link href="/refund" className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors">
+            Refund Policy
+          </Link>
+        </div>
+        <p className="max-w-xl mx-auto text-center text-[11px] text-[#555555] leading-relaxed">
+          GMAT™ is a registered trademark of the Graduate Management Admission
+          Council™ (GMAC™). GMAC does not endorse, nor is it affiliated in any
+          way with, the owner or any content of this site. All references to the
+          GMAT exam are for descriptive and educational purposes only.
+        </p>
+      </footer>
     </div>
   )
 }

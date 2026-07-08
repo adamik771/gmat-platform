@@ -22,12 +22,24 @@ import LeadCapture from "@/components/marketing/LeadCapture"
 import FoundingOffer from "@/components/marketing/FoundingOffer"
 import TrackView from "@/components/analytics/TrackView"
 import { QUESTION_CLAIM } from "@/lib/site"
-import { PAYWALL_ENABLED } from "@/lib/entitlements"
+import { PAYWALL_ENABLED, TRIAL_DAYS } from "@/lib/entitlements"
 
-// Self-referencing canonical for the homepage (root layout sets title /
-// description / OG but no canonical; the apex redirects to www).
+// Self-referencing canonical + the homepage's shared-link card (moved here
+// from the root layout so other pages inherit their own og text instead of
+// all sharing the homepage's).
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
+  openGraph: {
+    url: "/",
+    title: "Zakarian GMAT — From 565 to 735, On Your Terms",
+    description:
+      "The structured GMAT prep system that took Adam from 565 to 735. Baseline-driven, mistake-driven, score-anchored — built for ambitious MBA candidates.",
+  },
+  twitter: {
+    title: "Zakarian GMAT — From 565 to 735, On Your Terms",
+    description:
+      "The structured GMAT prep system that took Adam from 565 to 735.",
+  },
 }
 
 // The guided path's five phases — mirrors the /course curriculum section
@@ -91,7 +103,7 @@ const faqItems = [
   {
     question: "Is there a refund policy?",
     answer:
-      "Yes — a 14-day money-back guarantee on every paid plan, no questions asked. The refund is unconditional within those 14 days; it isn't tied to your exam result, because no honest prep can promise a specific score. Coaching and Intensive have additional terms once sessions begin — the full conditions for each plan are on our Refund Policy page.",
+      "Yes — a 14-day money-back guarantee on both self-study plans, no questions asked, and it isn't tied to your exam result, because no honest prep can promise a specific score. Coaching and Intensive are refundable in full before your first session; the full conditions for each plan are on our Refund Policy page.",
   },
 ]
 
@@ -179,15 +191,15 @@ export default function HomePage() {
                   <ChevronDown className="w-4 h-4" />
                 </Link>
               </div>
-              {/* This subtext is now gated on PAYWALL_ENABLED. While off, it
-                  renders the beta copy byte-for-byte (no time-boxed "trial"
-                  language, since there is no expiry/conversion mechanism).
-                  When the paywall lands, the paid branch takes over: signup
-                  stays free, chapters + the first practice test stay free, and
-                  the deeper measurement surfaces move to the paid plans. */}
+              {/* This subtext is gated on PAYWALL_ENABLED. While off, it renders
+                  the beta copy byte-for-byte. When the paywall lands, the paid
+                  branch takes over and must describe the REAL model
+                  (entitlements.ts + proxy.ts): a TRIAL_DAYS full-access trial,
+                  then a one-time plan purchase unlocks the plan's access
+                  window — there is no permanent free tier. */}
               <p className="text-xs text-[#888888] mb-2">
                 {PAYWALL_ENABLED
-                  ? "Free to sign up — no credit card. Every chapter and your first practice test per chapter are free; full-length mock exams, full analytics and unlimited practice are on the paid plans, with a 14-day money-back guarantee."
+                  ? `Free to sign up — no credit card. Every new account starts a ${TRIAL_DAYS}-day full-access trial; after that, a one-time plan purchase (no subscription) unlocks your plan's access window, with a 14-day money-back guarantee on the self-study plans.`
                   : "Free while we're in beta — no credit card. Full access to every chapter, the full question bank, mock exams and review."}
               </p>
               <p className="text-xs mb-10">

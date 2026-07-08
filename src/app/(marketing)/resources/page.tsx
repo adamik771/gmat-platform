@@ -624,7 +624,7 @@ export default function ResourcesPage() {
             {PAYWALL_ENABLED ? (
               <>
                 Free to start; full access on every paid plan, with a 14-day
-                money-back guarantee.
+                money-back guarantee on the self-study plans.
               </>
             ) : (
               <>
