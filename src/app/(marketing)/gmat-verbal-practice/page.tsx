@@ -16,7 +16,7 @@ const DATA: AcquisitionLandingProps = {
   eyebrow: "Verbal Reasoning",
   h1: "GMAT Verbal Practice for the Focus Edition: Critical Reasoning and Reading Comprehension",
   intro:
-    "GMAT Focus Verbal is shorter and narrower than the Verbal section many older study guides describe, and that changes how you should practice. The section is now Critical Reasoning and Reading Comprehension only — Sentence Correction was removed when the Focus Edition replaced the prior format. So honest GMAT verbal practice means CR and RC, not grammar drills, and any prep that still leans on Sentence Correction is preparing you for an exam that no longer exists.\n\nZakarian GMAT is an independent GMAT Focus Edition prep platform, free during a private beta with no credit card required. This page explains exactly what GMAT Focus Verbal is now, how to practice each question type with method rather than guesswork, and how the platform’s Verbal chapters, original question bank, error log, and spaced-review queue fit together. It is built by Adam Zakarian, a non-native English speaker who self-studied from 565 to 735 — his own official GMAT Focus result, not a prediction of yours.",
+    "GMAT Focus Verbal is shorter and narrower than the Verbal section many older study guides describe, and that changes how you should practice. The section is now Critical Reasoning and Reading Comprehension only — Sentence Correction was removed when the Focus Edition replaced the prior format. So honest GMAT verbal practice means CR and RC, not grammar drills, and any prep that still leans on Sentence Correction is preparing you for an exam that no longer exists.\n\nZakarian GMAT is an independent GMAT Focus Edition prep platform with a free 7-day full-access trial, no credit card required. This page explains exactly what GMAT Focus Verbal is now, how to practice each question type with method rather than guesswork, and how the platform’s Verbal chapters, original question bank, error log, and spaced-review queue fit together. It is built by Adam Zakarian, a non-native English speaker who self-studied from 565 to 735 — his own official GMAT Focus result, not a prediction of yours.",
   sections: [
     {
       heading: "What GMAT Focus Verbal actually is now",
@@ -59,7 +59,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       q: "Is the Verbal practice free?",
-      a: "Yes. Zakarian GMAT is free during a private beta, with no credit card required. That includes the Verbal chapters, the original question bank, the error log, and the spaced-review queue."
+      a: "Yes. Every new account starts with a free 7-day full-access trial, with no credit card required. That includes the Verbal chapters, the original question bank, the error log, and the spaced-review queue."
     }
   ],
   lead: {

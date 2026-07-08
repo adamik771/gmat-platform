@@ -386,7 +386,7 @@ export default function HowWeComparePage() {
             with debrief tools &mdash; built for the GMAT Focus Edition.{" "}
             {PAYWALL_ENABLED
               ? "Free trial to start, with a 14-day money-back guarantee on the self-study plans."
-              : "Free while in beta, no card required."}
+              : "Free 7-day full-access trial, no card required."}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link

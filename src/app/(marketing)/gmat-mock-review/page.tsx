@@ -51,7 +51,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "What score improvement can the platform get me?",
-      "a": "We don't make score-guarantee or typical-result claims, because honest prep can't promise a specific number for any individual. The one performance story we'll stand behind is the founder's: Adam Zakarian self-studied from 565 to 735 (100th percentile on his official GMAT Focus report) and built this platform around the exact review method that got him there. Your result depends on your work — what we provide is the system, not a promise. The platform is free to use during a private beta, no card required, so you can judge it on its own merits."
+      "a": "We don't make score-guarantee or typical-result claims, because honest prep can't promise a specific number for any individual. The one performance story we'll stand behind is the founder's: Adam Zakarian self-studied from 565 to 735 (100th percentile on his official GMAT Focus report) and built this platform around the exact review method that got him there. Your result depends on your work — what we provide is the system, not a promise. Every new account starts with a free 7-day full-access trial, no card required, so you can judge it on its own merits."
     }
   ],
   "lead": {

@@ -40,7 +40,7 @@ const DATA: AcquisitionLandingProps = {
     {
       heading: "How the Platform Supports Data Sufficiency Work",
       body:
-        "Zakarian GMAT is an independent GMAT Focus Edition prep platform built by Adam Zakarian, who self-studied from a 565 to a 735 (100th percentile on his own official GMAT Focus score report) and built the tools he wished he had had. It treats Data Sufficiency as the Data Insights skill it now is, not a Quant afterthought.\n\nThe platform pairs structured Data Insights chapters — including dedicated Data Sufficiency instruction — with a large bank of original practice questions written in the DS format. The pieces are designed to work together rather than in isolation:\n\n- Interactive Data Insights chapters that teach the AD/BCE framework and the common traps before you drill.\n- An original question bank for timed DS sets, with per-topic and per-difficulty analytics so you can see where sufficiency breaks down.\n- A six-tag error log (Conceptual, Careless, Time Pressure, Misread, Strategy, Other) so every miss is filed by cause, not just counted.\n- A daily spaced-review queue (same-day, then 2, 7, 21, and 42 days) that resurfaces the questions you got wrong before you forget the lesson.\n\nThe questions are original and modeled on the format; they are not official GMAT questions, and Zakarian GMAT is not affiliated with or endorsed by GMAC. It is free during the current private beta — no credit card required.",
+        "Zakarian GMAT is an independent GMAT Focus Edition prep platform built by Adam Zakarian, who self-studied from a 565 to a 735 (100th percentile on his own official GMAT Focus score report) and built the tools he wished he had had. It treats Data Sufficiency as the Data Insights skill it now is, not a Quant afterthought.\n\nThe platform pairs structured Data Insights chapters — including dedicated Data Sufficiency instruction — with a large bank of original practice questions written in the DS format. The pieces are designed to work together rather than in isolation:\n\n- Interactive Data Insights chapters that teach the AD/BCE framework and the common traps before you drill.\n- An original question bank for timed DS sets, with per-topic and per-difficulty analytics so you can see where sufficiency breaks down.\n- A six-tag error log (Conceptual, Careless, Time Pressure, Misread, Strategy, Other) so every miss is filed by cause, not just counted.\n- A daily spaced-review queue (same-day, then 2, 7, 21, and 42 days) that resurfaces the questions you got wrong before you forget the lesson.\n\nThe questions are original and modeled on the format; they are not official GMAT questions, and Zakarian GMAT is not affiliated with or endorsed by GMAC. Every new account starts with a free 7-day full-access trial — no credit card required.",
     },
   ],
   faq: [
@@ -58,7 +58,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       q: "Is it free?",
-      a: "Yes, it is free during the current private beta — no credit card required. You get access to the Data Insights chapters, the original question bank, the six-tag error log, and the daily spaced-review queue while the beta is open.",
+      a: "Yes — every new account starts with a free 7-day full-access trial, no credit card required. That covers the Data Insights chapters, the original question bank, the six-tag error log, and the daily spaced-review queue.",
     },
   ],
   lead: {

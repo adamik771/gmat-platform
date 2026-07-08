@@ -6,21 +6,21 @@ import AcquisitionLanding, {
 export const metadata: Metadata = {
   title: "Free GMAT Practice Questions",
   description:
-    "Free GMAT practice questions during our private beta — original Quant, Verbal, and Data Insights items built for the Focus Edition. No card, no catch.",
+    "Free GMAT practice questions — original Quant, Verbal, and Data Insights items built for the Focus Edition. No card, no catch.",
   alternates: { canonical: "/gmat-practice-questions-free" },
 }
 
 const DATA: AcquisitionLandingProps = {
   slug: "gmat-practice-questions-free",
-  eyebrow: "Free beta access",
+  eyebrow: "Free 7-day trial",
   h1: "Free GMAT Practice Questions, Built for the Focus Edition",
   intro:
-    "Zakarian GMAT is in a private beta, which means the whole platform — including a large bank of free GMAT practice questions — is open with no credit card and no catch. These are original questions modeled on the GMAT Focus Edition format across Quant, Verbal, and Data Insights, not official GMAC questions.\n\nThis page is honest about what “free” actually means here, what the question bank covers, and how to turn raw practice into real progress. Volume by itself just repeats your mistakes; the point is to practice in a system that helps you catch and fix them.",
+    "Zakarian GMAT starts every new account with a free 7-day full-access trial, which means the whole platform — including a large bank of free GMAT practice questions — is open with no credit card and no catch. These are original questions modeled on the GMAT Focus Edition format across Quant, Verbal, and Data Insights, not official GMAC questions.\n\nThis page is honest about what “free” actually means here, what the question bank covers, and how to turn raw practice into real progress. Volume by itself just repeats your mistakes; the point is to practice in a system that helps you catch and fix them.",
   sections: [
     {
       heading: "What’s actually free right now",
       body:
-        "During the private beta there is no paywall. You can create a free account and get full access to the platform — the complete question bank, the error log, the daily spaced-review queue, the full-length mocks, and the per-topic and per-difficulty analytics. There is no card required and nothing to cancel.\n\nA few things need no account at all, so you can look before you sign up:\n\n- Sample chapters you can read without logging in, to see how the lessons teach a concept before you drill it\n- The six-tag error-log template you can copy and use on your own from day one\n- Free score and study tools that work in the browser with no signup\n\nWhen you want the full question bank, spaced review, and analytics tied to your progress, that lives behind a free beta account so your work is saved and your study plan can adapt to it.",
+        "Every new account starts with a free 7-day full-access trial — no paywall inside it. Create a free account and get full access to the platform — the complete question bank, the error log, the daily spaced-review queue, the full-length mocks, and the per-topic and per-difficulty analytics. There is no card required and nothing to cancel.\n\nA few things need no account at all, so you can look before you sign up:\n\n- Sample chapters you can read without logging in, to see how the lessons teach a concept before you drill it\n- The six-tag error-log template you can copy and use on your own from day one\n- Free score and study tools that work in the browser with no signup\n\nWhen you want the full question bank, spaced review, and analytics tied to your progress, that lives behind a free account so your work is saved and your study plan can adapt to it.",
     },
     {
       heading: "How to get real value from free questions",
@@ -40,17 +40,17 @@ const DATA: AcquisitionLandingProps = {
     {
       heading: "How the platform turns free practice into progress",
       body:
-        "Practice questions are the input; the system around them is what compounds. When you miss a question, it goes into your error log with one of six tags — Conceptual, Careless, Time Pressure, Misread, Strategy, or Other — so you’re not just collecting wrong answers, you’re collecting reasons.\n\nFrom there, items feed a daily spaced-review queue that resurfaces them on a same-day, then 2-, 7-, 21-, and 42-day rhythm, so the concepts you got wrong come back exactly when you’re about to forget them. Your official mba.com baseline shapes an adaptive study plan, and per-topic and per-difficulty analytics show whether the work is moving the right numbers. The questions are free during beta; the structure is what makes them count.",
+        "Practice questions are the input; the system around them is what compounds. When you miss a question, it goes into your error log with one of six tags — Conceptual, Careless, Time Pressure, Misread, Strategy, or Other — so you’re not just collecting wrong answers, you’re collecting reasons.\n\nFrom there, items feed a daily spaced-review queue that resurfaces them on a same-day, then 2-, 7-, 21-, and 42-day rhythm, so the concepts you got wrong come back exactly when you’re about to forget them. Your official mba.com baseline shapes an adaptive study plan, and per-topic and per-difficulty analytics show whether the work is moving the right numbers. The questions are free on your trial; the structure is what makes them count.",
     },
   ],
   faq: [
     {
       q: "Are the practice questions really free?",
-      a: "Yes. The platform is in a private beta, so the full question bank and the tools around it are free to use right now. There is no credit card required and nothing to cancel.",
+      a: "Yes. Every new account starts with a free 7-day full-access trial, so the full question bank and the tools around it are free to try. No credit card required and nothing to cancel.",
     },
     {
       q: "Do I need an account?",
-      a: "Not for everything. Sample chapters, the error-log template, and the free score tools work with no account. The full question bank, spaced-review queue, and analytics need a free beta account so your progress is saved and your plan can adapt.",
+      a: "Not for everything. Sample chapters, the error-log template, and the free score tools work with no account. The full question bank, spaced-review queue, and analytics need a free account so your progress is saved and your plan can adapt.",
     },
     {
       q: "Are these official GMAT questions?",
@@ -58,7 +58,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       q: "What’s the catch?",
-      a: "There isn’t one during the beta. Access is free, no card is required, and we’re upfront that it’s an early private beta. We’d rather tell you exactly what you’re getting than dress it up.",
+      a: "There isn’t one. The 7-day trial is free with full access, no card required, and we’re upfront about what comes later: a one-time plan purchase once checkout opens. We’d rather tell you exactly what you’re getting than dress it up.",
     },
   ],
   lead: {
@@ -70,7 +70,7 @@ const DATA: AcquisitionLandingProps = {
     ctaLabel: "Email me the template",
   },
   metaDescription:
-    "Free GMAT practice questions during our private beta — original Quant, Verbal, and Data Insights items built for the Focus Edition. No card, no catch.",
+    "Free GMAT practice questions — original Quant, Verbal, and Data Insights items built for the Focus Edition. No card, no catch.",
 }
 
 const RELATED: AcquisitionLandingProps["relatedLinks"] = [
