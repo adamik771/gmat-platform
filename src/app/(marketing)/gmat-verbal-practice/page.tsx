@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import AcquisitionLanding, {
   type AcquisitionLandingProps,
 } from "@/components/marketing/AcquisitionLanding"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "GMAT Verbal Practice (CR + RC) | Zakarian GMAT",
+  title: "GMAT Verbal Practice (CR + RC)",
   description:
     "Free GMAT Focus Verbal practice for Critical Reasoning and Reading Comprehension. Practice by question type, log every miss by cause, and review on a spaced schedule.",
   alternates: { canonical: "/gmat-verbal-practice" },
@@ -40,7 +41,7 @@ const DATA: AcquisitionLandingProps = {
     {
       heading: "How the platform supports your Verbal practice",
       body:
-        "Zakarian GMAT gives you the pieces that make Verbal practice stick instead of staying a pile of solved questions. The flow is designed so that every miss teaches you something specific and comes back when you are about to forget the lesson.\n\n- Verbal chapters: interactive lessons that build the CR and RC methods above before you drill, part of the platform’s 62 chapters across Quant, Verbal, and Data Insights.\n- An original question bank: a large set of practice questions written for the Focus format — original questions, not official GMAT questions — so you can drill CR by type and RC by passage.\n- A six-tag error log: tag each miss by cause — Conceptual, Careless, Time Pressure, Misread, Strategy, or Other — so you can see whether you are losing CR points to a method gap or RC points to misreading.\n- A daily spaced-review queue: missed questions and concepts resurface on a same-day, then 2-, 7-, 21-, and 42-day schedule so the fix actually lands.\n- Analytics and mocks: per-topic and per-difficulty breakdowns, plus full-length mocks (three sections, 45 minutes each) so you practice Verbal under real timing, not just untimed sets.\n\nYour study plan is adaptive and built from the baseline you enter from your real official mba.com practice exam — there is no in-app diagnostic and no fabricated score. You bring the honest starting point; the platform turns your Verbal misses into a targeted, spaced practice loop."
+        "Zakarian GMAT gives you the pieces that make Verbal practice stick instead of staying a pile of solved questions. The flow is designed so that every miss teaches you something specific and comes back when you are about to forget the lesson.\n\n- Verbal chapters: interactive lessons that build the CR and RC methods above before you drill, part of the platform’s " + CHAPTER_COUNT_CLAIM + " chapters across Quant, Verbal, and Data Insights.\n- An original question bank: a large set of practice questions written for the Focus format — original questions, not official GMAT questions — so you can drill CR by type and RC by passage.\n- A six-tag error log: tag each miss by cause — Conceptual, Careless, Time Pressure, Misread, Strategy, or Other — so you can see whether you are losing CR points to a method gap or RC points to misreading.\n- A daily spaced-review queue: missed questions and concepts resurface on a same-day, then 2-, 7-, 21-, and 42-day schedule so the fix actually lands.\n- Analytics and mocks: per-topic and per-difficulty breakdowns, plus full-length mocks (three sections, 45 minutes each) so you practice Verbal under real timing, not just untimed sets.\n\nYour study plan is adaptive and built from the baseline you enter from your real official mba.com practice exam — there is no in-app diagnostic and no fabricated score. You bring the honest starting point; the platform turns your Verbal misses into a targeted, spaced practice loop."
     }
   ],
   faq: [
@@ -91,7 +92,7 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   },
   {
     label: "Error Log Template",
-    href: "/error-log-template",
+    href: "/gmat-error-log-template",
     description: "Tag every Verbal miss by cause so the right fix gets reviewed.",
   },
   {

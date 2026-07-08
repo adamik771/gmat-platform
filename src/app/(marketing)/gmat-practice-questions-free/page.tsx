@@ -4,7 +4,7 @@ import AcquisitionLanding, {
 } from "@/components/marketing/AcquisitionLanding"
 
 export const metadata: Metadata = {
-  title: "Free GMAT Practice Questions | Zakarian GMAT",
+  title: "Free GMAT Practice Questions",
   description:
     "Free GMAT practice questions during our private beta — original Quant, Verbal, and Data Insights items built for the Focus Edition. No card, no catch.",
   alternates: { canonical: "/gmat-practice-questions-free" },
@@ -91,7 +91,7 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   },
   {
     label: "Error-log template",
-    href: "/error-log-template",
+    href: "/gmat-error-log-template",
     description: "The six-tag system that turns misses into progress.",
   },
   {

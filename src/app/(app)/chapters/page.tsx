@@ -186,7 +186,7 @@ function MissionHero({
   const why = hasResume
     ? (resumeItem!.summary.split(/[.!?]\s/)[0] ||
         SECTION_THEME[resumeItem!.section].blurb).trim()
-    : "Diagnostic-driven, paced for the GMAT Focus Edition. Start anywhere."
+    : "Baseline-driven, paced for the GMAT Focus Edition. Start anywhere."
 
   const examLine = formatExamCountdown(daysUntilExam)
 

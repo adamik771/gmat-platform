@@ -385,7 +385,7 @@ export default function HowWeComparePage() {
             study plan, the error log and spaced-review queue, and mock exams
             with debrief tools &mdash; built for the GMAT Focus Edition.{" "}
             {PAYWALL_ENABLED
-              ? "Free to start, with a 14-day money-back guarantee on paid plans."
+              ? "Free trial to start, with a 14-day money-back guarantee on the self-study plans."
               : "Free while in beta, no card required."}
           </p>
           <div className="flex flex-wrap justify-center gap-3">

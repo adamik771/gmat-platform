@@ -4,7 +4,7 @@ import AcquisitionLanding, {
 } from "@/components/marketing/AcquisitionLanding"
 
 export const metadata: Metadata = {
-  title: "GMAT Data Sufficiency Practice | Zakarian GMAT",
+  title: "GMAT Data Sufficiency Practice",
   description:
     "Practice GMAT Data Sufficiency the smart way: the AD/BCE decision grid, the classic traps, and deliberate timed drills. On the Focus Edition, DS lives in Data Insights.",
   alternates: { canonical: "/gmat-data-sufficiency-practice" },
@@ -94,7 +94,7 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   },
   {
     label: "Error Log Template",
-    href: "/error-log-template",
+    href: "/gmat-error-log-template",
     description:
       "The six-tag error log that files every Data Sufficiency miss by its real cause.",
   },

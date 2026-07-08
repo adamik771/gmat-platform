@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import AcquisitionLanding, {
   type AcquisitionLandingProps,
 } from "@/components/marketing/AcquisitionLanding"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "GMAT Study Plan: Build One That Actually Works | Zakarian GMAT",
+  title: "GMAT Study Plan: Build One That Actually Works",
   description: "A real GMAT study plan isn't a calendar of chapters — it's a feedback loop anchored to your official mba.com practice score. Here's how to build one, plus how Zakarian GMAT generates an adaptive plan from your baseline.",
   alternates: { canonical: "/gmat-study-plan" },
 }
@@ -21,7 +22,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "heading": "Rank your weak areas by score impact, not by syllabus order",
-      "body": "Once you have a baseline, resist the urge to study front-to-back. The GMAT Focus total is built from three equally weighted sections, so the fastest points usually come from your *lowest* section and, within it, the topics where your accuracy is worst relative to how often they appear.\n\nBuild a simple weakness table. For each topic you've practiced, track accuracy and average time per question. Sort by the gap between your accuracy and a target (say, 80%). The topics with the biggest deficit that also show up frequently — Critical Reasoning and Data Sufficiency-style reasoning carry a lot of weight — go to the top of the queue. A topic where you're already at 85% accuracy is a poor use of a study block, even if it's 'next' in a textbook.\n\nThen attack each weak topic in order: read the concept, do a focused problem set, log the mistakes, and only move on when accuracy climbs. This is what Zakarian GMAT's adaptive study plan automates. From your baseline and ongoing practice, it computes your weakest topics by accuracy deficit, tags each as a concept gap or an execution problem, and surfaces a short 'Today's Focus' list — one to three concrete actions — plus a rolling 7-day cadence. Each weak area links straight to the relevant chapter (there are 62, across Quant, Verbal, and Data Insights) and a matching drill, so 'study Data Sufficiency' becomes a specific click instead of a vague intention."
+      "body": "Once you have a baseline, resist the urge to study front-to-back. The GMAT Focus total is built from three equally weighted sections, so the fastest points usually come from your *lowest* section and, within it, the topics where your accuracy is worst relative to how often they appear.\n\nBuild a simple weakness table. For each topic you've practiced, track accuracy and average time per question. Sort by the gap between your accuracy and a target (say, 80%). The topics with the biggest deficit that also show up frequently — Critical Reasoning and Data Sufficiency-style reasoning carry a lot of weight — go to the top of the queue. A topic where you're already at 85% accuracy is a poor use of a study block, even if it's 'next' in a textbook.\n\nThen attack each weak topic in order: read the concept, do a focused problem set, log the mistakes, and only move on when accuracy climbs. This is what Zakarian GMAT's adaptive study plan automates. From your baseline and ongoing practice, it computes your weakest topics by accuracy deficit, tags each as a concept gap or an execution problem, and surfaces a short 'Today's Focus' list — one to three concrete actions — plus a rolling 7-day cadence. Each weak area links straight to the relevant chapter (there are " + CHAPTER_COUNT_CLAIM + ", across Quant, Verbal, and Data Insights) and a matching drill, so 'study Data Sufficiency' becomes a specific click instead of a vague intention."
     },
     {
       "heading": "Make review spaced, not crammed — the part most plans skip",

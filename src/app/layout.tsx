@@ -41,17 +41,15 @@ export const metadata: Metadata = {
   keywords: ["GMAT", "GMAT prep", "MBA", "score improvement", "test prep"],
   authors: [{ name: "Adam Zakarian" }],
   creator: "Adam Zakarian",
-  // OpenGraph — controls the rich card every social platform / chat
-  // app renders when a Zakarian GMAT link is shared. Without this,
-  // shared links rendered as a blank tile.
+  // OpenGraph — shared-link card defaults. Deliberately NO url/title/
+  // description here: those inherit per page from each page's own
+  // title/description, so /pricing shares as /pricing rather than every
+  // page rendering the homepage card. The homepage's own card lives in
+  // (marketing)/page.tsx metadata.
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: SITE_URL,
     siteName: "Zakarian GMAT",
-    title: "Zakarian GMAT — From 565 to 735, On Your Terms",
-    description:
-      "The structured GMAT prep system that took Adam from 565 to 735. Baseline-driven, mistake-driven, score-anchored — built for ambitious MBA candidates.",
     images: [
       {
         url: "/opengraph-image",
@@ -65,9 +63,6 @@ export const metadata: Metadata = {
   // openGraph but explicit `twitter:` keys give better cards on X.
   twitter: {
     card: "summary_large_image",
-    title: "Zakarian GMAT — From 565 to 735, On Your Terms",
-    description:
-      "The structured GMAT prep system that took Adam from 565 to 735.",
     images: ["/opengraph-image"],
   },
   robots: {

@@ -6,11 +6,11 @@ import { SITE_CONTACT_EMAIL } from "@/lib/site"
 export const metadata: Metadata = {
   title: "Refund Policy",
   description:
-    "How refunds work for each Zakarian GMAT plan — a 14-day money-back guarantee on every plan, plus package terms for Coaching and Intensive.",
+    "How refunds work for each Zakarian GMAT plan — a 14-day money-back guarantee on the self-study plans, plus full refunds before your first session on Coaching and Intensive.",
   alternates: { canonical: "/refund" },
 }
 
-const LAST_UPDATED = "June 12, 2026"
+const LAST_UPDATED = "July 8, 2026"
 const CONTACT_EMAIL = SITE_CONTACT_EMAIL
 
 export default function RefundPage() {
@@ -18,7 +18,7 @@ export default function RefundPage() {
     <LegalPage
       eyebrow="Legal"
       title="Refund Policy"
-      intro="Clear, plan-by-plan refund terms — a 14-day money-back guarantee on every plan, plus the package terms for Coaching and Intensive."
+      intro="Clear, plan-by-plan refund terms — a 14-day money-back guarantee on both self-study plans, plus full refunds before your first session on Coaching and Intensive."
       lastUpdated={LAST_UPDATED}
     >
       <LegalSection title="Summary">

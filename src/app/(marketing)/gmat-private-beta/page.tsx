@@ -2,10 +2,11 @@ import type { Metadata } from "next"
 import AcquisitionLanding, {
   type AcquisitionLandingProps,
 } from "@/components/marketing/AcquisitionLanding"
+import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM, QUESTION_CLAIM_SHORT } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "GMAT Private Beta: Free Founding Access | Zakarian GMAT",
-  description: "Zakarian GMAT's private beta is free with no card: 62 Focus Edition chapters, 1,900+ questions, a 6-tag error log, spaced review, and an adaptive plan built from your own official practice exam. Founding members lock in early pricing.",
+  title: "GMAT Private Beta: Free Founding Access",
+  description: `Zakarian GMAT's private beta is free with no card: ${CHAPTER_COUNT_CLAIM} Focus Edition chapters, 1,900+ questions, a 6-tag error log, spaced review, and an adaptive plan built from your own official practice exam. Founding members lock in early pricing.`,
   alternates: { canonical: "/gmat-private-beta" },
 }
 
@@ -20,8 +21,8 @@ const DATA: AcquisitionLandingProps = {
       "body": "Here is the single most important GMAT prep decision, and most platforms get it wrong: where your baseline comes from. A short in-app quiz cannot reproduce the fatigue, pacing pressure, and adaptive difficulty of the real exam, so any plan built on it is calibrated to a fiction.\n\nZakarian GMAT deliberately ships with no in-app diagnostic. Your baseline is an official mba.com practice exam — free from the test maker, full-length, on the real scoring scale (205–805). You take it, then enter your Quant, Verbal, Data Insights, and total scores on the platform. That data is what unlocks your dashboard, your adaptive study plan, and your analytics.\n\nDo this even if you never use the platform: before you buy any course or build any schedule, sit one official practice exam under real conditions. Without a real baseline you cannot tell whether you're a content problem (you don't know the material) or a test-taking problem (you know it but lose points to timing and careless errors) — and those two problems have completely different fixes."
     },
     {
-      "heading": "62 chapters across Quant, Verbal, and Data Insights — built for Focus Edition, not retrofitted",
-      "body": "The GMAT Focus Edition is not the old GMAT with the essay removed. Data Insights is now a full scored section equal in weight to Quant and Verbal, Sentence Correction is gone from Verbal, and the scoring scale changed to 205–805. A lot of prep material on the market still treats DI as an afterthought.\n\nThe platform's 62 chapters are organized by these three real sections and built around how people actually learn: each chapter runs pretest, then readings that interleave Recall checks and self-explanation prompts, then graded problem sets — so you retrieve and apply, not just highlight. Behind the chapters sits a bank of 1,900+ original practice questions tagged by topic and difficulty, so practice maps directly onto the chapter you just studied.\n\nIf you're studying elsewhere, the principle still applies: spend real time on Data Insights (Data Sufficiency, Multi-Source Reasoning, Table/Graph, Two-Part). It is the section most people under-prepare and the one most likely to drag a total score down on test day."
+      "heading": `${CHAPTER_COUNT_CLAIM} chapters across Quant, Verbal, and Data Insights — built for Focus Edition, not retrofitted`,
+      "body": `The GMAT Focus Edition is not the old GMAT with the essay removed. Data Insights is now a full scored section equal in weight to Quant and Verbal, Sentence Correction is gone from Verbal, and the scoring scale changed to 205–805. A lot of prep material on the market still treats DI as an afterthought.\n\nThe platform's ${CHAPTER_COUNT_CLAIM} chapters are organized by these three real sections and built around how people actually learn: each chapter runs pretest, then readings that interleave Recall checks and self-explanation prompts, then graded problem sets — so you retrieve and apply, not just highlight. Behind the chapters sits a bank of ${QUESTION_CLAIM} tagged by topic and difficulty, so practice maps directly onto the chapter you just studied.\n\nIf you're studying elsewhere, the principle still applies: spend real time on Data Insights (Data Sufficiency, Multi-Source Reasoning, Table/Graph, Two-Part). It is the section most people under-prepare and the one most likely to drag a total score down on test day.`
     },
     {
       "heading": "A 6-tag error log — because *why* you missed a question matters more than that you missed it",
@@ -43,7 +44,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "What does \"private beta\" actually mean — is it unfinished or limited?",
-      "a": "It means full access to the real product — 62 chapters, 1,900+ practice questions, the error log, spaced review, adaptive study plan, mocks, and analytics — at no cost while paid plans aren't switched on yet. \"Beta\" reflects that it's pre-paid-launch and actively improving with user feedback, not that features are locked behind a paywall. There's no trial countdown and no credit card."
+      "a": `It means full access to the real product — ${CHAPTER_COUNT_CLAIM} chapters, ${QUESTION_CLAIM_SHORT}, the error log, spaced review, adaptive study plan, mocks, and analytics — at no cost while paid plans aren't switched on yet. "Beta" reflects that it's pre-paid-launch and actively improving with user feedback, not that features are locked behind a paywall. There's no trial countdown and no credit card.`
     },
     {
       "q": "If it's free now, what's the catch with founding pricing?",
@@ -61,7 +62,7 @@ const DATA: AcquisitionLandingProps = {
     "description": "Get the exact 6-tag error log Adam used to find and kill his score leaks — the same Conceptual / Careless / Time Pressure / Misread / Strategy / Other system built into the platform, as a downloadable template you can start today. Drop your email and I'll send it, plus your founding access to the private beta. No card, no charge — you reserve your founding rate and decide later.",
     "ctaLabel": "Reserve my spot"
   },
-  "metaDescription": "Zakarian GMAT's private beta is free with no card: 62 Focus Edition chapters, 1,900+ questions, a 6-tag error log, spaced review, and an adaptive plan built from your own official practice exam. Founding members lock in early pricing."
+  "metaDescription": `Zakarian GMAT's private beta is free with no card: ${CHAPTER_COUNT_CLAIM} Focus Edition chapters, 1,900+ questions, a 6-tag error log, spaced review, and an adaptive plan built from your own official practice exam. Founding members lock in early pricing.`
 }
 
 const RELATED: AcquisitionLandingProps["relatedLinks"] = [

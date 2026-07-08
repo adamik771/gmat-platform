@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Platform", href: "/course" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
-  { label: "Results", href: "/about#results" },
+  { label: "Results", href: "/#results" },
 ]
 
 export default function Navbar() {

@@ -158,7 +158,7 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
             {[
-              { icon: Shield, label: "14-Day Money-Back" },
+              { icon: Shield, label: "14-Day Money-Back on Self-Study" },
               { icon: Calendar, label: "Flexible Scheduling" },
               { icon: Globe, label: "Non-Native Speaker Support" },
             ].map((item, i) => {
