@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Mail, Clock, MessageSquare, ArrowRight, Loader2 } from "lucide-react"
 import { SITE_CONTACT_EMAIL } from "@/lib/site"
+import { trackEvent } from "@/lib/analytics"
 
 export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false)
@@ -21,6 +22,9 @@ export default function ContactClient() {
         headers: { Accept: "application/json" },
       })
       setSubmitted(true)
+      // The free-consult booking is the highest-intent conversion that is
+      // live today; without this event it has zero telemetry anywhere.
+      trackEvent("consult_request")
     } catch {
       // silent
     } finally {

@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle, ShieldCheck, KeyRound, MailCheck } from "lucide-react"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
-import { trackEvent } from "@/lib/analytics"
+import { getAttribution, trackEvent } from "@/lib/analytics"
 import { buildMarketingConsent } from "@/lib/outreach/consent-flag"
 
 /**
@@ -117,6 +117,7 @@ function SignupForm() {
             password,
             accessCode,
             marketingConsent: marketingOptIn,
+            attribution: getAttribution(),
           }),
         })
         data = await res.json().catch(() => ({}))
@@ -162,6 +163,10 @@ function SignupForm() {
           // Start the free trial clock at signup. The paywall (dormant until
           // PAYWALL_ENABLED) reads this to grant full access for TRIAL_DAYS.
           trial_started_at: new Date().toISOString(),
+          // First-touch campaign attribution (utm_* / gclid) captured on the
+          // landing page — persisted so every signup is joinable to the ad
+          // click or campaign that started it.
+          attribution: getAttribution(),
         },
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },

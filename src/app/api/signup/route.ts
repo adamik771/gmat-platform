@@ -35,6 +35,7 @@ export async function POST(request: Request) {
     accessCode?: unknown
     hp?: unknown
     marketingConsent?: unknown
+    attribution?: unknown
   }
   try {
     body = (await request.json()) as typeof body
@@ -102,6 +103,22 @@ export async function POST(request: Request) {
     )
   }
 
+  // First-touch attribution forwarded by the client (utm_* / gclid /
+  // landing_path). Client-supplied, so sanitize: known keys only, short
+  // string values. Empty -> omitted entirely.
+  const ATTR_KEYS = new Set([
+    "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+    "ref", "gclid", "wbraid", "gbraid", "landing_path",
+  ])
+  const attribution: Record<string, string> = {}
+  if (body.attribution && typeof body.attribution === "object") {
+    for (const [k, v] of Object.entries(body.attribution as Record<string, unknown>)) {
+      if (ATTR_KEYS.has(k) && typeof v === "string" && v.length > 0) {
+        attribution[k] = v.slice(0, 200)
+      }
+    }
+  }
+
   const consentFlag = buildMarketingConsent(
     body.marketingConsent === true,
     new Date().toISOString()
@@ -115,6 +132,7 @@ export async function POST(request: Request) {
       marketing_consent: consentFlag,
       // Start the free trial clock at signup (see entitlements / paywall gate).
       trial_started_at: new Date().toISOString(),
+      ...(Object.keys(attribution).length > 0 ? { attribution } : {}),
     },
   })
 
