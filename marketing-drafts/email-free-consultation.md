@@ -7,6 +7,7 @@
 - Email B — existing platform signups / trial users.
 
 **Send log:**
+- 2026-07-08 — maddy.rosales.r@gmail.com sent directly by Adam (error-log lead, no account — the one contact outside both the BCC and the banner). Covered; exclude from any future round.
 - 2026-07-08 — manual Gmail BCC, 19 recipients (all real accounts minus 10 explicit opt-outs, 5 test/self, 2 drip-covered): denver.hallc@gmail.com, seyram.e.am@gmail.com, maria.chizhevskaya@gmail.com, mikal.shahimi@icloud.com, sidmand242@gmail.com, tirilbpe@icloud.com, hilmarkiernan@gmail.com, clausen.mia@outlook.com, studentm.encrypted@proton.me, artmarkosian1206@gmail.com, jacobthaulow@icloud.com, arakelyankhazhak97@gmail.com, mikayel.asatryan11@gmail.com, lilykarap3tyan@gmail.com, bjellerrs@hotmail.com, anders.v.kruse@gmail.com, niclasberg.business@gmail.com, remihus03@gmail.com, seigneurgensthomas@gmail.com. Future manual rounds: exclude these + anyone with a consult row in email_queue.
 
 **Sending notes:**
