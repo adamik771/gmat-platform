@@ -40,7 +40,7 @@ const DATA: AcquisitionLandingProps = {
     {
       heading: "How the platform automates the moving parts",
       body:
-        "Running this by hand means maintaining a ranked weak-topic list, a spaced-review queue, and a mock trend line all at once. Zakarian GMAT handles those three jobs so you can spend your hours studying instead of bookkeeping.\n\nThe study plan is built from the official mba.com practice-exam baseline you enter on the mock page — there is no in-app diagnostic; it uses your real official practice result. From there, per-topic and per-difficulty analytics rank your weak areas automatically, the daily queue schedules each item on the same-day to 42-day ladder for you, and the full-length mocks plot a trend so you can see whether a section is actually moving. The six-tag error log — Conceptual, Careless, Time Pressure, Misread, Strategy, Other — is what makes the “adapt when a section stalls” step concrete rather than a guess.\n\nIt’s free during the current private beta — no credit card — so you can run the full 8 week GMAT study plan, baseline to taper, without paying anything while the beta is open.",
+        "Running this by hand means maintaining a ranked weak-topic list, a spaced-review queue, and a mock trend line all at once. Zakarian GMAT handles those three jobs so you can spend your hours studying instead of bookkeeping.\n\nThe study plan is built from the official mba.com practice-exam baseline you enter on the mock page — there is no in-app diagnostic; it uses your real official practice result. From there, per-topic and per-difficulty analytics rank your weak areas automatically, the daily queue schedules each item on the same-day to 42-day ladder for you, and the full-length mocks plot a trend so you can see whether a section is actually moving. The six-tag error log — Conceptual, Careless, Time Pressure, Misread, Strategy, Other — is what makes the “adapt when a section stalls” step concrete rather than a guess.\n\nEvery new account starts with a free 7-day full-access trial — no credit card — so you can start the 8 week GMAT study plan, baseline to taper, without paying anything while the beta is open.",
     },
   ],
   faq: [
@@ -58,7 +58,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       q: "Is the plan free?",
-      a: "Yes. Zakarian GMAT is free during the current private beta, with no credit card required. You can run the full eight-week structure — baseline, ranked weak areas, spaced review, and mocks — without paying anything while the beta is open.",
+      a: "Yes. Every new account starts with a free 7-day full-access trial, no credit card required. That's enough to set your baseline, see your ranked weak areas, and decide whether the system fits how you study — before paying anything.",
     },
   ],
   lead: {
@@ -97,7 +97,7 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   {
     label: "Create a free account",
     href: "/signup",
-    description: "Run the whole plan free during the private beta.",
+    description: "Start the plan on a free 7-day full-access trial.",
   },
 ]
 

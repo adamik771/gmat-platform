@@ -25,7 +25,7 @@ export default function InviteFriend({
     process.env.NEXT_PUBLIC_SITE_URL || "https://www.zakariangmat.com"
   ).replace(/\/$/, "")
   const link = `${baseUrl}/?utm_source=referral&utm_medium=in_app`
-  const message = `I've been using Zakarian GMAT to prep for the GMAT — it's a structured system built by someone who went from 565 to 735, and it's free to use right now while it's in beta. Take a look: ${link}`
+  const message = `I've been using Zakarian GMAT to prep for the GMAT — it's a structured system built by someone who went from 565 to 735, and every new account starts with a free 7-day trial. Take a look: ${link}`
 
   async function copy() {
     try {
@@ -52,7 +52,7 @@ export default function InviteFriend({
             Know someone else prepping for the GMAT?
           </p>
           <p className="text-[13px] text-[#888888] leading-relaxed mb-4">
-            Send them the platform while it&apos;s free in beta. They get the
+            Send them the platform — free 7-day trial, no card. They get the
             founding discount when paid plans launch, and you get a $50 reward
             when they join as a founding member.
           </p>

@@ -68,7 +68,7 @@ const categories: FAQCategory[] = [
         question: "What do I get with a free account?",
         answer: PAYWALL_ENABLED
           ? `Every new account starts a free ${TRIAL_DAYS}-day trial with full access to everything — all ${CHAPTER_COUNT_CLAIM} chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, and the AI tutor. No credit card required at signup.`
-          : "Full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+          : "A free 7-day trial with full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
       },
       {
         question: "Do I need a credit card to sign up?",
@@ -79,7 +79,7 @@ const categories: FAQCategory[] = [
         question: "Will my free access expire after a set number of days?",
         answer: PAYWALL_ENABLED
           ? `Yes — the free trial runs ${TRIAL_DAYS} days from signup, with full access and nothing to cancel. When it ends, your study data stays exactly where you left it; a one-time plan purchase (not a subscription) unlocks the platform for your plan's access window, with a 14-day money-back guarantee on the self-study plans.`
-          : "No. There's no time-boxed trial — the platform is free to use while it's in beta, with no countdown and nothing to cancel. If paid plans are introduced later, any change to what's free will be made clear in advance.",
+          : "Every account starts with a free 7-day full-access trial — no credit card, nothing to cancel. We're pre-launch, so access isn't cut off the moment the trial ends; when paid plans open, a one-time purchase (not a subscription) continues your access, and any change will be made clear in advance.",
       },
       {
         question: "How does the platform know where I'm starting from?",

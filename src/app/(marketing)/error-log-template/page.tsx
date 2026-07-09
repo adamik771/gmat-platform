@@ -58,7 +58,7 @@ const faqItems = [
   {
     question: "Do I need to sign up for the platform to use it?",
     answer:
-      "No. The template is a standalone spreadsheet that works on its own. The full platform has the same six-tag error log built in (plus spaced review of your mistakes), and it is free to use during the private beta if you want it.",
+      "No. The template is a standalone spreadsheet that works on its own. The full platform has the same six-tag error log built in (plus spaced review of your mistakes), and every new account starts with a free 7-day full-access trial if you want it.",
   },
   {
     question: "Why an error log instead of just doing more questions?",
@@ -203,7 +203,7 @@ export default function ErrorLogTemplatePage() {
           <p className="text-[14px] text-[#888888] leading-relaxed mb-7">
             The full platform has this same six-tag log inside it, then feeds your
             tagged mistakes into a spaced review queue so you actually re-test the
-            ones that hurt. It is free to use while it is in private beta.
+            ones that hurt. Every new account starts with a free 7-day full-access trial.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -211,7 +211,7 @@ export default function ErrorLogTemplatePage() {
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start free in beta
+              Start your free trial
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

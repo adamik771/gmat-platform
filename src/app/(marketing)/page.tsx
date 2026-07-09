@@ -192,7 +192,7 @@ export default function HomePage() {
                 </Link>
               </div>
               {/* This subtext is gated on PAYWALL_ENABLED. While off, it renders
-                  the beta copy byte-for-byte. When the paywall lands, the paid
+                  the pre-launch copy byte-for-byte. When the paywall lands, the paid
                   branch takes over and must describe the REAL model
                   (entitlements.ts + proxy.ts): a TRIAL_DAYS full-access trial,
                   then a one-time plan purchase unlocks the plan's access
@@ -200,7 +200,7 @@ export default function HomePage() {
               <p className="text-xs text-[#888888] mb-2">
                 {PAYWALL_ENABLED
                   ? `Free to sign up — no credit card. Every new account starts a ${TRIAL_DAYS}-day full-access trial; after that, a one-time plan purchase (no subscription) unlocks your plan's access window, with a 14-day money-back guarantee on the self-study plans.`
-                  : "Free while we're in beta — no credit card. Full access to every chapter, the full question bank, mock exams and review."}
+                  : "Free to start — no credit card. Every new account begins with a 7-day full-access trial: every chapter, the full question bank, mock exams and review."}
               </p>
               <p className="text-xs mb-10">
                 <Link

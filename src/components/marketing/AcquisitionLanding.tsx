@@ -187,7 +187,7 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
       <section className="max-w-3xl mx-auto px-4 pt-8 pb-24">
         <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-8 text-center">
           <p className="text-[15px] text-[#C0C0C0] mb-5">
-            The full platform is free while we&apos;re in private beta. No credit card.
+            Every new account starts with a free 7-day full-access trial. No credit card.
           </p>
           <Link
             href={cta.href}

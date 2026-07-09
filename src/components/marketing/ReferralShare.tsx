@@ -42,7 +42,7 @@ export default function ReferralShare() {
 
   const message = useMemo(() => {
     const signoff = name.trim() ? `\n\n— ${name.trim()}` : ""
-    return `I've been using Zakarian GMAT to prep — it's a structured system built by someone who went from 565 to 735. It's free to use right now while it's in beta.
+    return `I've been using Zakarian GMAT to prep — it's a structured system built by someone who went from 565 to 735. Every new account starts with a free 7-day trial.
 
 Take a look: ${link}
 
@@ -74,7 +74,7 @@ If you reserve founding access, mention my name and you'll get the founding disc
 
   function shareX() {
     const text =
-      "A structured GMAT prep system built by someone who went from 565 to 735 — free while it's in beta:"
+      "A structured GMAT prep system built by someone who went from 565 to 735 — free 7-day trial:"
     trackEvent("referral_click", { channel: "x", named: Boolean(refSlug) })
     window.open(
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(link)}`,

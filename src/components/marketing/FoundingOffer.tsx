@@ -16,7 +16,7 @@ export default function FoundingOffer({
   variant?: "dark" | "darker"
 }) {
   const perks = [
-    "Full access to the whole platform, free, for the entire beta",
+    "Full access to the whole platform — a free 7-day trial, no card",
     "A founding discount of 30-40% off, locked in for when paid plans launch",
     "Your founding code before anyone else — no charge until you choose to upgrade",
     "A direct line to shape what gets built next",
@@ -43,7 +43,7 @@ export default function FoundingOffer({
               Become a founding member.
             </h2>
             <p className="text-[15px] text-[#888888] leading-relaxed mb-7 max-w-md">
-              The platform is free to use while it&apos;s in beta — full access,
+              Every new account starts with a free 7-day full-access trial —
               no card. Founding members reserve a permanent discount on the paid
               plans before they launch. There&apos;s no charge today and no
               obligation; you&apos;re holding your place and your price.

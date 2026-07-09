@@ -21,7 +21,7 @@ const steps = [
   {
     icon: UserPlus,
     title: "They join",
-    body: "Your friend creates a free beta account and reserves founding access. When they mention your name, they lock in the founding discount on paid plans.",
+    body: "Your friend creates a free trial account and reserves founding access. When they mention your name, they lock in the founding discount on paid plans.",
   },
   {
     icon: Gift,

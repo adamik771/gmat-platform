@@ -117,7 +117,7 @@ export default function PricingPage() {
               ) : (
                 <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
                   <span className="font-semibold text-[#F0F0F0]">Early access.</span>{" "}
-                  The full self-study platform is free to use while we&apos;re in beta
+                  Every new account starts with a free 7-day full-access trial of the self-study platform
                   &mdash; create an account and start today. The plans below are how
                   pricing and Adam&apos;s 1:1 coaching work as they roll out.
                 </p>

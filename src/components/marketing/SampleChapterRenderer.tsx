@@ -286,7 +286,7 @@ export default function SampleChapterRenderer({
               tagged by topic and difficulty.{" "}
               {PAYWALL_ENABLED
                 ? "Free to start; full access on every paid plan."
-                : "Full access, free while in beta — no card required."}
+                : "Full access free for 7 days — no card required."}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link
@@ -325,7 +325,7 @@ export default function SampleChapterRenderer({
               />
               {PAYWALL_ENABLED
                 ? "No card required to start. 14-day money-back guarantee on self-study plans."
-                : "No card required. Free while in beta. 14-day money-back on paid self-study tiers."}
+                : "No card required. Free 7-day full-access trial. 14-day money-back on paid self-study tiers."}
             </div>
           </div>
         </div>

@@ -628,7 +628,7 @@ export default function ResourcesPage() {
               </>
             ) : (
               <>
-                Full access, free while in beta &mdash; no card required.
+                Full access free for 7 days &mdash; no card required.
               </>
             )}
           </p>
