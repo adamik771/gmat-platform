@@ -17,6 +17,7 @@ declare global {
  */
 const META_EVENT_MAP: Record<string, string> = {
   signup: "CompleteRegistration",
+  consult_request: "Lead",
   checkout_initiated: "InitiateCheckout",
   purchase_completed: "Purchase",
 }
@@ -33,6 +34,12 @@ const ATTRIBUTION_PARAMS = [
   "utm_content",
   "utm_term",
   "ref",
+  // Ad-click IDs (Google Ads gclid / wbraid / gbraid). Captured with the same
+  // first-touch rules so a signup can later be joined back to the exact ad
+  // click — the prerequisite for offline/enhanced conversion uploads.
+  "gclid",
+  "wbraid",
+  "gbraid",
 ] as const
 
 /**
