@@ -8,11 +8,6 @@ prerequisites:
 summary: |
   The five choices are data. This chapter teaches ballpark elimination, sign and unit checks, and spotting the engineered trap answer before you compute.
 sections:
-  - id: pretest
-    type: pretest
-    title: "Try before you learn"
-    intro: |
-      Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
   - id: answer-choice-tactics
     type: reading
     title: "Method: Answer-Choice Tactics"

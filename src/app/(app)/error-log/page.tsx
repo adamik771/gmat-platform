@@ -11,6 +11,7 @@ import { buildMistakeInsights } from "@/lib/mistake-insights"
 import EmptyState from "@/components/shared/EmptyState"
 import type { Difficulty, QuestionType, Section } from "@/types"
 import {
+  byMostRecent,
   ERROR_TAG_BY_ID,
   ERROR_FAMILIES,
   ROOT_CAUSE_BY_ID,
@@ -50,6 +51,11 @@ export default async function ErrorLogPage({
       // the related row under the relationship name. When `session_id` is
       // present in the query string, scope to that session — used by the
       // "Tag mistakes from this session" CTA on the practice completion screen.
+      //
+      // `practice_attempts` has no created_at of its own and PostgREST can't
+      // order the parent rows by the joined session column, so scope the
+      // query to the user's most recent sessions first — that keeps the row
+      // cap on the NEWEST mistakes instead of an arbitrary UUID-ordered slice.
       let attemptsQuery = supabase
         .from("practice_attempts")
         .select(
@@ -57,10 +63,20 @@ export default async function ErrorLogPage({
         )
         .eq("user_id", user.id)
         .eq("is_correct", false)
-        .order("session_id", { ascending: false })
-        .limit(200)
+        .limit(1000)
       if (sessionIdFilter) {
         attemptsQuery = attemptsQuery.eq("session_id", sessionIdFilter)
+      } else {
+        const { data: recentSessions } = await supabase
+          .from("practice_sessions")
+          .select("id")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: false })
+          .limit(150)
+        attemptsQuery = attemptsQuery.in(
+          "session_id",
+          (recentSessions ?? []).map((s) => s.id as string)
+        )
       }
       // The wrong-attempts read and the error-tags read are independent (both
       // key on user.id) — run them concurrently. The legacy-column fallback
@@ -147,7 +163,11 @@ export default async function ErrorLogPage({
         return {
           id: a.id,
           questionId: a.question_id,
-          section: a.section as Section,
+          // Prefer the question's CURRENT parsed section over the section
+          // stamped on the attempt row — attempts recorded before the
+          // DS-belongs-to-DI reclassification carry section='Quant' for
+          // Data Sufficiency questions and would leak into the Quant filter.
+          section: q?.section ?? (a.section as Section),
           topic: a.topic,
           subtopic: a.subtopic ?? "",
           difficulty: a.difficulty ?? "",
@@ -178,6 +198,10 @@ export default async function ErrorLogPage({
             : null) as MistakeEntry["confidence"],
         }
       })
+      // Most recent first, capped to the display budget. The DB rows arrive
+      // unordered (see the query note above), so this is the ordering.
+      mistakes.sort(byMostRecent)
+      mistakes = mistakes.slice(0, 200)
     }
   } catch {
     // Supabase unavailable — render empty state below.

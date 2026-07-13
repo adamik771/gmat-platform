@@ -4,6 +4,12 @@ import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import {
+  perDayMinutes,
+  weeklyHoursAdvice,
+  WEEKLY_HOURS_MAX,
+  WEEKLY_HOURS_MIN,
+} from "@/lib/study-hours"
+import {
   ArrowLeft,
   ArrowRight,
   Calendar,
@@ -326,7 +332,7 @@ function stepDescription(step: StepId): string {
     case "baseline-info":
       return "The single data point the whole plan calibrates from. Here's how to get it."
     case "current-score":
-      return "If you've taken the test or a recent mock, paste the score in. Skip if not."
+      return "If you've taken the test or a recent mock, paste the score in — it seeds your first week. Skip if not. (Your official baseline still gets logged on the Mock page.)"
     case "weekly-hours":
       return "Honest answer here. The plan only works if it fits your real schedule, not your aspirational one."
     case "weak-areas":
@@ -408,8 +414,10 @@ function BaselineInfoStep() {
         </div>
       </div>
       <p className="text-[13px] text-[#888888] leading-relaxed">
-        On the next step, enter your baseline score — or skip it if you
-        haven&apos;t taken the exam yet and come back once you have.
+        When you have your score, log it on the{" "}
+        <span className="text-[#C0C0C0]">Mock</span> page — that entry is
+        what unlocks your study plan and analytics. The next step only asks
+        for a rough prior score so the first week isn&apos;t flying blind.
       </p>
     </div>
   )
@@ -575,8 +583,8 @@ function WeeklyHoursStep({
       </div>
       <input
         type="range"
-        min={1}
-        max={30}
+        min={WEEKLY_HOURS_MIN}
+        max={WEEKLY_HOURS_MAX}
         step={1}
         value={value}
         onChange={(e) => onChange(parseInt(e.target.value, 10))}
@@ -584,10 +592,19 @@ function WeeklyHoursStep({
         aria-label="Weekly study hours"
       />
       <div className="flex justify-between text-[11px] text-[#555555] mt-2 uppercase tracking-[0.16em] font-medium">
-        <span>1 hr</span>
-        <span>15 hr</span>
-        <span>30 hr</span>
+        <span>{WEEKLY_HOURS_MIN} hr</span>
+        <span>20 hr</span>
+        <span>{WEEKLY_HOURS_MAX} hr</span>
       </div>
+      <p className="text-[12px] text-[#888888] leading-relaxed mt-5">
+        That&apos;s about{" "}
+        <span className="text-[#C0C0C0]">{perDayMinutes(value)} min/day</span>.{" "}
+        {weeklyHoursAdvice(value)}
+      </p>
+      <p className="text-[11px] text-[#555555] leading-relaxed mt-2">
+        This shapes your weekly study plan — what each day of the week
+        prioritizes. You can change it here anytime.
+      </p>
     </div>
   )
 }

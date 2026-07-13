@@ -397,6 +397,34 @@ for (const c of chapters) {
   }
 }
 
+// ERROR: a pretest section that pins no questions — it renders its "try
+// these first" framing followed by nothing (the reader now drops such
+// sections defensively, but an empty pretest in the source is always an
+// authoring mistake).
+// ERROR: any section after the summary — the summary must close the
+// chapter, or "review what you learned" appears mid-read.
+for (const c of chapters) {
+  const summaryIdx = c.sections.findIndex((s) => s.type === "summary")
+  c.sections.forEach((s, i) => {
+    if (s.type === "pretest" && s.pretestQuestionIds.length === 0) {
+      push({
+        severity: "ERROR",
+        setSlug: c.slug,
+        rule: "chapter-empty-pretest",
+        detail: `Pretest section "${s.id}" pins no questions — add pretest_question_ids or remove the section`,
+      })
+    }
+    if (summaryIdx !== -1 && i > summaryIdx) {
+      push({
+        severity: "ERROR",
+        setSlug: c.slug,
+        rule: "chapter-content-after-summary",
+        detail: `Section "${s.id}" comes after the summary — reorder so the summary closes the chapter`,
+      })
+    }
+  })
+}
+
 // WARN: share of a shared bank's questions that fall to the bank default
 // (no subtopic keyword matched) — a spike means uploads use unrecognized tags.
 const bankTotals = new Map<string, { total: number; viaDefault: number }>()
