@@ -11,6 +11,7 @@ import {
 import { getAllChapters, getAllGuides } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getUserState } from "@/lib/user-state"
+import { daysUntil } from "@/lib/utils"
 
 // Section visual identity — distinct accent per GMAT section so each
 // journey carries its own feel. Re-uses the spaced-review queue's color
@@ -974,16 +975,11 @@ export default async function ChaptersPage() {
     // Supabase unavailable — render with empty progress state.
   }
 
+  // Shared local-midnight parse — Date.parse("YYYY-MM-DD") is UTC midnight,
+  // which read the countdown a day short in positive-offset timezones and
+  // disagreed with the study-plan engine's number for the same exam date.
   const daysUntilExam =
-    examDate !== null
-      ? Math.max(
-          0,
-          Math.ceil(
-            (Date.parse(examDate) - new Date(new Date().toDateString()).getTime()) /
-              86_400_000
-          )
-        )
-      : null
+    examDate !== null ? Math.max(0, daysUntil(examDate) ?? 0) : null
 
   const sectionOrder: Record<SectionKey, number> = {
     Quant: 0,

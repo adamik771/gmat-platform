@@ -432,14 +432,23 @@ function parseQuestionBlock(
 
   const answerLetter = (meta.answer ?? "A").trim().toUpperCase().charAt(0)
 
+  // On the GMAT Focus Edition, Data Sufficiency lives ONLY in Data Insights.
+  // Some quant technique banks (backsolving, number-properties, …) author
+  // DS-format drills, and inheriting the file's `section: Quant` leaked them
+  // into every Quant-only pool (test builder, quant mock sections, error-log
+  // section filter). The question's own type wins over the file frontmatter.
+  const questionType = questionTypeFromString(meta.type)
+  const effectiveSection: Section =
+    questionType === "Data Sufficiency" ? "DI" : section
+
   return {
     id: `${fileSlug}-q${questionNumber}`,
     number: questionNumber,
-    section,
+    section: effectiveSection,
     topic: topLevelTopic,
     subtopic: meta.topic ?? topLevelTopic,
     difficulty: difficultyFromString(meta.difficulty),
-    type: questionTypeFromString(meta.type),
+    type: questionType,
     prompt,
     context,
     setSlug: fileSlug,

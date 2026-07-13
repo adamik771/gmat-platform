@@ -128,6 +128,27 @@ export async function getUserState(
 }
 
 /**
+ * Error-aware read for READ-MODIFY-WRITE flows (e.g. /api/chapter-progress,
+ * which merges one chapter into the whole chapter_progress map). Unlike
+ * getUserState, a FAILED row read is surfaced instead of silently degrading
+ * to the (post-strip, usually empty) legacy copy — a caller that proceeded
+ * with {} would clobber every sibling key of the map it is patching. Abort
+ * the write when `errored` is true.
+ */
+export async function getUserStateForWrite(
+  supabase: SupabaseClient,
+  user: User,
+): Promise<{ state: UserState; errored: boolean }> {
+  const { row, errored } = await readStateRow(supabase, user)
+  if (errored) return { state: {}, errored: true }
+  return {
+    state:
+      row ?? pickLegacy(user.user_metadata as Record<string, unknown> | undefined),
+    errored: false,
+  }
+}
+
+/**
  * Merge a patch into the user's state row, then strip the relocated keys from
  * user_metadata so the auth cookie shrinks. Pass only the keys you are changing;
  * existing keys are preserved.

@@ -92,17 +92,8 @@ export default async function AnalyticsPage() {
   let predictionMAE: PredictionMAE | null = null
   let hasData = false
 
-  // Baseline-mode signals — counted regardless of `hasData` so the
-  // unlock checklist always reflects current state. Cheap derivations
-  // computed alongside the existing analytics aggregations.
+  // Baseline gate — the only pre-data signal the locked view needs.
   let officialExamCount = 0
-  const sectionAttemptCount: Record<Section, number> = {
-    Quant: 0,
-    Verbal: 0,
-    DI: 0,
-  }
-  let confidenceRatedCount = 0
-  let weeksOfPractice = 0
 
   try {
     const supabase = await createSupabaseServer()
@@ -259,19 +250,6 @@ export default async function AnalyticsPage() {
 
       if (agg && agg.attempt_count > 0) {
         hasData = true
-
-        // Baseline-unlock signals (from the RPC's compact aggregates).
-        confidenceRatedCount = agg.confidence_rated_count ?? 0
-        weeksOfPractice = agg.week_count ?? 0
-        for (const r of agg.section_totals ?? []) {
-          if (
-            r.section === "Quant" ||
-            r.section === "Verbal" ||
-            r.section === "DI"
-          ) {
-            sectionAttemptCount[r.section] = r.total
-          }
-        }
 
         // ---------- Per-topic accuracy ----------
         // Filter to topics with enough attempts to trust, sort by volume.
@@ -494,12 +472,7 @@ export default async function AnalyticsPage() {
   // contradictions.
   if (!hasData) {
     return (
-      <BaselineView
-        officialExamCount={officialExamCount}
-        sectionAttemptCount={sectionAttemptCount}
-        confidenceRatedCount={confidenceRatedCount}
-        weeksOfPractice={weeksOfPractice}
-      />
+      <BaselineView officialExamCount={officialExamCount} />
     )
   }
 
@@ -531,67 +504,16 @@ const EYEBROW_BASE =
  */
 function BaselineView({
   officialExamCount,
-  sectionAttemptCount,
-  confidenceRatedCount,
-  weeksOfPractice,
 }: {
   officialExamCount: number
-  sectionAttemptCount: Record<Section, number>
-  confidenceRatedCount: number
-  weeksOfPractice: number
 }) {
+  // This view only renders while attempt_count === 0, so every
+  // attempt-derived "progress" number here would be 0 by construction —
+  // the old six-row have/need checklist with progress bars could never
+  // display anything but 0/N (one attempt anywhere and the whole page
+  // flips to active mode). Only the baseline exam is a real, trackable
+  // step at this stage; per-module thresholds live on the locked cards.
   const baselineDone = officialExamCount > 0
-  const totalAttempts =
-    sectionAttemptCount.Quant +
-    sectionAttemptCount.Verbal +
-    sectionAttemptCount.DI
-
-  // Unlock checklist — each row carries a "have / need" pair so the
-  // student can see how close they are to each module rather than just
-  // "not enough data yet". Modules unlock when the threshold is met.
-  const checklist: Array<{
-    label: string
-    have: number
-    need: number
-    sublabel: string
-  }> = [
-    {
-      label: "Official baseline exam",
-      have: Math.min(officialExamCount, 1),
-      need: 1,
-      sublabel: "Score entered",
-    },
-    {
-      label: "Quant attempts",
-      have: sectionAttemptCount.Quant,
-      need: 5,
-      sublabel: "Per-topic accuracy",
-    },
-    {
-      label: "Verbal attempts",
-      have: sectionAttemptCount.Verbal,
-      need: 5,
-      sublabel: "Per-topic accuracy",
-    },
-    {
-      label: "DI attempts",
-      have: sectionAttemptCount.DI,
-      need: 5,
-      sublabel: "Per-topic accuracy",
-    },
-    {
-      label: "Confidence ratings",
-      have: confidenceRatedCount,
-      need: 10,
-      sublabel: "Calibration signal",
-    },
-    {
-      label: "Weeks of practice",
-      have: weeksOfPractice,
-      need: 2,
-      sublabel: "Readiness trajectory",
-    },
-  ]
 
   const lockedModules: Array<{
     Icon: typeof BarChart3
@@ -642,9 +564,7 @@ function BaselineView({
   // the analytics page itself flips to active mode (not this branch).
   const primaryHref = baselineDone ? "/practice" : "/mock"
   const primaryLabel = baselineDone
-    ? totalAttempts === 0
-      ? "Run your first practice set"
-      : "Continue practice"
+    ? "Run your first practice set"
     : "Enter your baseline official exam"
 
   return (
@@ -709,10 +629,10 @@ function BaselineView({
         </div>
       </section>
 
-      {/* === Unlock checklist === */}
+      {/* === First step — the one real, trackable item at this stage === */}
       <section>
         <div className="flex items-center gap-3 mb-5">
-          <p className={EYEBROW_BASE}>Unlock checklist</p>
+          <p className={EYEBROW_BASE}>First step</p>
           <div
             className="h-px flex-1"
             style={{
@@ -721,85 +641,46 @@ function BaselineView({
             }}
             aria-hidden
           />
-          <span className="text-[11px] text-[#555555] tabular-nums">
-            {checklist.filter((r) => r.have >= r.need).length} /{" "}
-            {checklist.length} unlocked
-          </span>
         </div>
         <div className="rounded-xl border border-white/[0.06] bg-[#0D0D0D] p-2">
-          {checklist.map((row) => {
-            const done = row.have >= row.need
-            const pct = Math.min(100, Math.round((row.have / row.need) * 100))
-            return (
-              <div
-                key={row.label}
-                className="flex items-center gap-4 px-4 py-3 rounded-lg transition-colors"
+          <div className="flex items-center gap-4 px-4 py-3 rounded-lg">
+            <span
+              className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{
+                backgroundColor: baselineDone
+                  ? "rgba(62,207,142,0.15)"
+                  : "rgba(255,255,255,0.04)",
+                border: `1px solid ${
+                  baselineDone
+                    ? "rgba(62,207,142,0.35)"
+                    : "rgba(255,255,255,0.08)"
+                }`,
+              }}
+              aria-hidden
+            >
+              {baselineDone && (
+                <CheckCircle2
+                  className="w-3.5 h-3.5"
+                  style={{ color: "#3ECF8E" }}
+                />
+              )}
+            </span>
+            <div className="flex-1 min-w-0">
+              <p
+                className="text-[13px] font-semibold tracking-tight"
+                style={{
+                  color: baselineDone ? "rgba(240,240,240,0.7)" : "#F0F0F0",
+                }}
               >
-                <span
-                  className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    backgroundColor: done
-                      ? "rgba(62,207,142,0.15)"
-                      : "rgba(255,255,255,0.04)",
-                    border: `1px solid ${
-                      done
-                        ? "rgba(62,207,142,0.35)"
-                        : "rgba(255,255,255,0.08)"
-                    }`,
-                  }}
-                  aria-hidden
-                >
-                  {done && (
-                    <CheckCircle2
-                      className="w-3.5 h-3.5"
-                      style={{ color: "#3ECF8E" }}
-                    />
-                  )}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-3 mb-1.5">
-                    <p
-                      className="text-[13px] font-semibold tracking-tight"
-                      style={{
-                        color: done ? "rgba(240,240,240,0.7)" : "#F0F0F0",
-                      }}
-                    >
-                      {row.label}
-                    </p>
-                    <p
-                      className="text-[11px] tabular-nums flex-shrink-0"
-                      style={{
-                        color: done
-                          ? "#3ECF8E"
-                          : "rgba(255,255,255,0.45)",
-                      }}
-                    >
-                      {row.have} / {row.need}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="h-1 flex-1 rounded-full bg-white/[0.05] overflow-hidden">
-                      <div
-                        className="h-full rounded-full transition-all duration-500"
-                        style={{
-                          width: `${pct}%`,
-                          backgroundColor: done ? "#3ECF8E" : "#C9A84C",
-                        }}
-                      />
-                    </div>
-                    <span
-                      className="text-[10px] uppercase tracking-[0.18em] font-semibold flex-shrink-0"
-                      style={{
-                        color: done ? "#3ECF8E" : "rgba(255,255,255,0.4)",
-                      }}
-                    >
-                      {row.sublabel}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+                Official baseline exam
+              </p>
+              <p className="text-[11px] mt-0.5" style={{ color: "#888888" }}>
+                {baselineDone
+                  ? "Score entered — practice attempts unlock the modules below."
+                  : "Take an official mba.com practice exam and enter the score on the Mock page."}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

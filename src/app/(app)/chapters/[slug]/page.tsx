@@ -83,8 +83,8 @@ export default async function ChapterDetailPage({
       .map(toReaderQuestion)
   }
 
-  const sections: ReaderSection[] = chapter.sections.map(
-    (s: ChapterSection) => ({
+  const sections: ReaderSection[] = chapter.sections
+    .map((s: ChapterSection) => ({
       id: s.id,
       type: s.type,
       title: s.title,
@@ -92,8 +92,11 @@ export default async function ChapterDetailPage({
       body: s.body,
       pretestQuestions: resolveIds(s.pretestQuestionIds),
       checkQuestions: resolveIds(s.checkQuestionIds),
-    })
-  )
+    }))
+    // A pretest with zero resolvable questions would render its "try these
+    // first" framing followed by nothing. Drop it here so the reader, TOC,
+    // and progress counts all agree it doesn't exist.
+    .filter((s) => s.type !== "pretest" || s.pretestQuestions.length > 0)
 
   const problemSets: ReaderProblemSet[] = chapter.problemSets.map(
     (ps: ChapterProblemSet) => ({

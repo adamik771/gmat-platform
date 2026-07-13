@@ -124,6 +124,12 @@ interface ChapterProgress {
     "easy" | "medium" | "hard",
     { correct: number; total: number } | undefined
   >
+  /** Difficulty → mid-set progress for a graded run the student left before
+   *  finishing (idx = next question, answers = graded so far). Lets a
+   *  student resume instead of silently losing the run; cleared on finish. */
+  problemSetRuns?: Partial<
+    Record<"easy" | "medium" | "hard", { idx: number; answers: boolean[] }>
+  >
   /** Free-text per-section notes the student writes while reading. Keyed
    *  by section id; empty entries are pruned by the UI. */
   notes?: Record<string, string>
@@ -166,8 +172,10 @@ function loadProgress(userId: string | null, slug: string): ChapterProgress {
       sectionsRead: parsed.sectionsRead ?? {},
       questions: parsed.questions ?? {},
       problemSetResults: parsed.problemSetResults ?? EMPTY_PROGRESS.problemSetResults,
+      problemSetRuns: parsed.problemSetRuns ?? {},
       notes: parsed.notes ?? {},
       lastSeenAt: parsed.lastSeenAt,
+      firstSeenAt: parsed.firstSeenAt,
     }
   } catch {
     return EMPTY_PROGRESS
@@ -195,8 +203,10 @@ function normalizeServerProgress(input: unknown): ChapterProgress {
     sectionsRead: source.sectionsRead ?? {},
     questions: source.questions ?? {},
     problemSetResults: source.problemSetResults ?? EMPTY_PROGRESS.problemSetResults,
+    problemSetRuns: source.problemSetRuns ?? {},
     notes: source.notes ?? {},
     lastSeenAt: source.lastSeenAt,
+    firstSeenAt: source.firstSeenAt,
   }
 }
 
@@ -820,12 +830,23 @@ export default function ChapterReader({
   // Flush a pending debounced push when the tab is hidden or the user
   // navigates away — otherwise the last ~800ms of edits could be lost on
   // navigation.
+  //
+  // The latest snapshot lives in a ref, NOT in the effect deps: with
+  // `progress` in the deps array, every update ran the previous effect's
+  // cleanup, which cancelled the freshly-queued push and re-sent the OLD
+  // closure value — the server copy was permanently one action behind, and
+  // a single-action visit synced nothing at all (beta: chapter % stuck at
+  // 0 on every server-rendered surface).
+  const progressRef = useRef(progress)
+  useEffect(() => {
+    progressRef.current = progress
+  }, [progress])
   useEffect(() => {
     function flushIfPending() {
       if (pushTimer.current) {
         clearTimeout(pushTimer.current)
         pushTimer.current = null
-        void pushProgress(slug, progress)
+        void pushProgress(slug, progressRef.current)
       }
     }
     window.addEventListener("pagehide", flushIfPending)
@@ -833,7 +854,7 @@ export default function ChapterReader({
       window.removeEventListener("pagehide", flushIfPending)
       flushIfPending()
     }
-  }, [slug, progress])
+  }, [slug])
 
   const totalSections = sections.length
   const completedSections = sections.filter(
@@ -2516,6 +2537,9 @@ function ProblemSetCard({
 }) {
   const [running, setRunning] = useState(false)
   const result = progress.problemSetResults[set.difficulty]
+  const run = progress.problemSetRuns?.[set.difficulty]
+  const resumable =
+    !!run && run.idx > 0 && run.idx < set.questions.length ? run : null
   const targetPct = resolveAccuracyTarget(set.targetAccuracyByScore, targetScore)
   const achievedPct =
     result && result.total > 0
@@ -2548,18 +2572,30 @@ function ProblemSetCard({
           >
             {set.difficulty}
           </p>
-          {achievedPct !== null && (
+          {resumable ? (
             <span
               className="text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-[0.18em]"
               style={{
-                backgroundColor: passedTarget
-                  ? "var(--read-success-soft)"
-                  : "var(--read-error-soft)",
-                color: passedTarget ? "var(--read-success)" : "var(--read-error)",
+                backgroundColor: "var(--read-gold-soft)",
+                color: "var(--read-gold)",
               }}
             >
-              {passedTarget ? "Passed" : "Retake"}
+              Resume · Q{resumable.idx + 1}
             </span>
+          ) : (
+            achievedPct !== null && (
+              <span
+                className="text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-[0.18em]"
+                style={{
+                  backgroundColor: passedTarget
+                    ? "var(--read-success-soft)"
+                    : "var(--read-error-soft)",
+                  color: passedTarget ? "var(--read-success)" : "var(--read-error)",
+                }}
+              >
+                {passedTarget ? "Passed" : "Retake"}
+              </span>
+            )
           )}
         </div>
         <p
@@ -2597,13 +2633,28 @@ function ProblemSetCard({
           slug={slug}
           set={set}
           targetPct={targetPct}
+          initialRun={progress.problemSetRuns?.[set.difficulty]}
           onClose={() => setRunning(false)}
+          onProgress={(idx, answers) =>
+            update((prev) => ({
+              ...prev,
+              problemSetRuns: {
+                ...prev.problemSetRuns,
+                [set.difficulty]: { idx, answers },
+              },
+            }))
+          }
           onFinish={(correct, total) =>
             update((prev) => ({
               ...prev,
               problemSetResults: {
                 ...prev.problemSetResults,
                 [set.difficulty]: { correct, total },
+              },
+              // The run is complete — drop the mid-set checkpoint.
+              problemSetRuns: {
+                ...prev.problemSetRuns,
+                [set.difficulty]: undefined,
               },
             }))
           }
@@ -2616,22 +2667,38 @@ function ProblemSetCard({
 function ProblemSetRunner({
   set,
   targetPct,
+  initialRun,
   onClose,
+  onProgress,
   onFinish,
 }: {
   slug: string
   set: ReaderProblemSet
   targetPct: number
+  /** Mid-set checkpoint from a previous run the student left unfinished —
+   *  resume there instead of restarting (progress used to be silently lost). */
+  initialRun?: { idx: number; answers: boolean[] }
   onClose: () => void
+  /** Checkpoint after each graded question so leaving mid-set can resume. */
+  onProgress: (idx: number, answers: boolean[]) => void
   onFinish: (correct: number, total: number) => void
 }) {
-  const [idx, setIdx] = useState(0)
+  // Only trust a checkpoint that is internally consistent and still matches
+  // this set's length (the set composition can change between deploys).
+  const resume =
+    initialRun &&
+    initialRun.answers.length === initialRun.idx &&
+    initialRun.idx > 0 &&
+    initialRun.idx < set.questions.length
+      ? initialRun
+      : null
+  const [idx, setIdx] = useState(resume?.idx ?? 0)
   const [selected, setSelected] = useState<number | null>(null)
   // Two-Part Analysis: one row selection per column. Reset to [] on advance;
   // the normalization below pads it back out to one null per column.
   const [twoPartSelected, setTwoPartSelected] = useState<(number | null)[]>([])
   const [submitted, setSubmitted] = useState(false)
-  const [answers, setAnswers] = useState<boolean[]>([])
+  const [answers, setAnswers] = useState<boolean[]>(resume?.answers ?? [])
   const [done, setDone] = useState(false)
   const current = set.questions[idx]
   const isTwoPart = !!current.twoPartColumns?.length
@@ -2656,6 +2723,7 @@ function ProblemSetRunner({
       setDone(true)
       return
     }
+    onProgress(idx + 1, nextAnswers)
     setIdx(idx + 1)
     setSelected(null)
     setTwoPartSelected([])

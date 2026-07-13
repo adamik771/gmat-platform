@@ -23,6 +23,8 @@ const MIN_ATTEMPTS_FOR_WEAKNESS = 3
 const WEAK_TOPIC_THRESHOLD = 0.7 // accuracy below this = flag as weak
 const REVIEW_QUEUE_URGENT = 10 // if ≥ this many due, review-first
 
+import { hoursBand } from "./study-hours"
+import { daysUntil } from "./utils"
 import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "./topic-chapter-map"
 import { ERROR_TAG_BY_ID, ROOT_CAUSE_BY_ID } from "@/app/(app)/error-log/constants"
 
@@ -271,18 +273,10 @@ export async function computeStudyPlan(
   // Today's focus — a ranked list, highest-impact first.
   const todaysFocus: FocusAction[] = []
 
-  const daysUntilExam = opts.examDate
-    ? (() => {
-        // Parse the exam date (YYYY-MM-DD) as LOCAL midnight, not UTC. `new
-        // Date("YYYY-MM-DD")` is UTC midnight, which in a positive-offset
-        // timezone (e.g. Oslo UTC+1/2) reads as the previous local day and
-        // threw the day count off by one. Compare local-midnight to local-today.
-        const [y, m, d] = opts.examDate.split("-").map(Number)
-        const examLocal = new Date(y, (m ?? 1) - 1, d ?? 1).getTime()
-        const todayLocal = new Date(new Date().toDateString()).getTime()
-        return Math.ceil((examLocal - todayLocal) / 86400000)
-      })()
-    : null
+  // Local-midnight parse — the shared helper exists because the naive
+  // `new Date("YYYY-MM-DD")` (UTC midnight) countdown was off by one in
+  // positive-offset timezones. Every exam countdown must use this.
+  const daysUntilExam = daysUntil(opts.examDate)
 
   // 1. Official baseline if none entered — the highest-priority first action.
   // The baseline is a real mba.com practice exam taken under exam conditions;
@@ -383,10 +377,17 @@ export async function computeStudyPlan(
  *   - injects review days whenever the queue is large
  *   - injects weak-topic chapter days when weak areas exist
  *   - falls back to practice when nothing else applies
+ *
+ * `weeklyHours` (the onboarding target) shapes the week when provided:
+ *   - low band: weak-area work leads the rotation — scarce hours go to the
+ *     highest-leverage gap first
+ *   - high band: the last day becomes a light review/rest day so a
+ *     high-volume week has a scheduled recovery point
  */
 export function buildWeeklyCadence(
   plan: StudyPlanOutput,
-  nextReadings: Array<{ slug: string; title: string }>
+  nextReadings: Array<{ slug: string; title: string }>,
+  weeklyHours?: number | null
 ): DailySuggestion[] {
   const days: DailySuggestion[] = []
   // Next chapters on the guided path (the lessons library is deprecated —
@@ -398,11 +399,16 @@ export function buildWeeklyCadence(
   // guided-path chapter read, then fresh practice, cycling.
   const hasReview = plan.reviewDueCount > 0
   const hasWeakTopic = weakQueue.length > 0
+  const band = typeof weeklyHours === "number" ? hoursBand(weeklyHours) : null
 
   const pool: Array<DailySuggestionType | "reading"> = []
   if (hasReview) pool.push("review")
   if (hasWeakTopic) pool.push("chapter")
   pool.push("reading", "practice")
+  if (band === "low" && hasWeakTopic) {
+    pool.splice(pool.indexOf("chapter"), 1)
+    pool.unshift("chapter")
+  }
 
   for (let i = 0; i < 7; i++) {
     const choice = pool[i % pool.length]
@@ -432,6 +438,16 @@ export function buildWeeklyCadence(
         label: "Practice set",
         href: "/practice",
       })
+    }
+  }
+
+  if (band === "high") {
+    // Scheduled recovery: at 15+ hrs/week the marginal day of fresh material
+    // costs more (burnout) than it earns — close the week light.
+    days[6] = {
+      type: "review",
+      label: "Light review + rest",
+      href: "/review",
     }
   }
 

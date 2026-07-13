@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
   ArrowRight,
@@ -504,8 +505,9 @@ export default function TestBuilderClient({
           ) : (
             <div className="space-y-3">
               {recent.map((test) => (
-                <div
+                <Link
                   key={test.id}
+                  href={`/practice/history/${test.id}`}
                   className="flex items-center justify-between p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] gap-4"
                   style={{
                     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
@@ -536,7 +538,7 @@ export default function TestBuilderClient({
                       {test.accuracy}%
                     </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}

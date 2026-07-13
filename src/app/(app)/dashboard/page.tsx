@@ -43,6 +43,8 @@ import {
 } from "@/lib/gamification"
 import type { Section } from "@/types"
 import { getUserState, type UserState } from "@/lib/user-state"
+import { isChapterRead } from "@/lib/chapter-progress-merge"
+import { localDayIso } from "@/lib/utils"
 import TargetScoreControl from "./TargetScoreControl"
 
 const PLAN_LABELS: Record<string, string> = {
@@ -364,7 +366,7 @@ export default async function DashboardPage() {
       ] = await Promise.all([
         supabase
           .from("practice_sessions")
-          .select("total_questions, correct_count, total_time_ms, accuracy")
+          .select("slug, total_questions, correct_count, total_time_ms, accuracy")
           .eq("user_id", userId)
           .gte("created_at", weekAgo),
         supabase
@@ -464,13 +466,21 @@ export default async function DashboardPage() {
       questionsToday =
         todaySessions?.reduce((s, r) => s + r.total_questions, 0) ?? 0
 
+      // Question-weighted, and review sessions excluded: an unweighted mean
+      // of session accuracies let a 2-question review at 50% count the same
+      // as a 45-question set at 80% — and review-{section} sessions replay
+      // previously-missed questions, so they dragged the number down right
+      // after the student did the right thing (reviewing).
+      const scoredWeek = (weekSessions ?? []).filter(
+        (r) => !String(r.slug ?? "").startsWith("review-")
+      )
+      const weekQTotal = scoredWeek.reduce((s, r) => s + r.total_questions, 0)
+      const weekQCorrect = scoredWeek.reduce(
+        (s, r) => s + ((r.correct_count as number) ?? 0),
+        0
+      )
       weekAccuracy =
-        weekSessions && weekSessions.length > 0
-          ? Math.round(
-              weekSessions.reduce((s, r) => s + Number(r.accuracy), 0) /
-                weekSessions.length
-            )
-          : null
+        weekQTotal > 0 ? Math.round((weekQCorrect / weekQTotal) * 100) : null
 
       // Total sessions ever
       const { count } = totalSessionRes
@@ -549,7 +559,9 @@ export default async function DashboardPage() {
       let totalQuestions = 0
       let largestSessionQuestions = 0
       for (const s of allSessions ?? []) {
-        const iso = (s.created_at as string).slice(0, 10)
+        // Local day, not UTC slice — a late-evening Oslo session belongs to
+        // the local day's streak, not the next UTC day's.
+        const iso = localDayIso(new Date(s.created_at as string))
         activeDays.add(iso)
         const qCount = (s.total_questions as number) ?? 0
         totalQuestions += qCount
@@ -558,7 +570,7 @@ export default async function DashboardPage() {
         if (ms > 0) studySessions.push({ t: s.created_at as string, ms })
       }
       for (const c of allCompletions ?? []) {
-        activeDays.add((c.completed_at as string).slice(0, 10))
+        activeDays.add(localDayIso(new Date(c.completed_at as string)))
       }
 
       const streak = computeStreaks(activeDays)
@@ -578,22 +590,35 @@ export default async function DashboardPage() {
         if (t.reviewed) reviewedMistakeCount++
       }
 
-      // Untagged mistakes = total wrong attempts − tagged attempts.
-      // Head-only count keeps the payload tiny; we never pull the rows.
+      // Mistakes still to clear = total wrong attempts − reviewed ones.
+      // Matches the study-plan's "pending" definition (the two disagreed:
+      // this chip used to subtract ALL tag rows, but the error-log page
+      // auto-classifies every miss on render, so "untagged" collapsed to ~0
+      // after one visit while the real review backlog stayed untouched).
       const { count: totalWrongCount } = totalWrongRes
       untaggedMistakeCount = Math.max(
         0,
-        (totalWrongCount ?? 0) - taggedMistakeCount
+        (totalWrongCount ?? 0) - reviewedMistakeCount
       )
 
       const rawTargetBadge = user.user_metadata?.target_score
       const hasTarget =
         typeof rawTargetBadge === "number" && rawTargetBadge >= 205
 
+      // Reading badges must count CHAPTER reads too — lesson_completions is
+      // the deprecated /lessons library's table, so a student on the
+      // canonical /chapters path kept those badges locked at 0 forever.
+      const badgeChapterProgress = (state.chapter_progress ?? null) as
+        | Record<string, { sectionsRead?: Record<string, boolean> }>
+        | null
+      const chaptersReadForBadges = getAllChapters().filter((ch) =>
+        isChapterRead(ch.sections, badgeChapterProgress?.[ch.slug]?.sectionsRead)
+      ).length
+
       badges = computeBadges({
         totalSessions: totalSessionCount ?? 0,
         totalQuestions,
-        lessonsCompleted: lessonsCompletedCount,
+        lessonsCompleted: lessonsCompletedCount + chaptersReadForBadges,
         longestStreak,
         currentStreak,
         taggedMistakeCount,
@@ -796,19 +821,18 @@ export default async function DashboardPage() {
       ? rawDailyGoal
       : 25
 
-  // Course progress — share of chapters the student has fully read (every
-  // section marked read). Drives the dashboard "Course progress" stat, which
-  // replaced the old readiness projection.
+  // Course progress — share of chapters the student has read, using the
+  // shared reading-sections rule (same as the /chapters cards; the old
+  // every-section-including-pretest rule kept this stat at 0% for students
+  // who read everything but never clicked the pretest/summary cards).
   const chapterProgressForPct = (state.chapter_progress ?? null) as
     | Record<string, { sectionsRead?: Record<string, boolean> }>
     | null
   const allChaptersForPct = getAllChapters()
   const totalChapters = allChaptersForPct.length
-  const completedChapters = allChaptersForPct.filter((ch) => {
-    const entry = chapterProgressForPct?.[ch.slug]
-    if (!entry || ch.sections.length === 0) return false
-    return ch.sections.every((s) => entry.sectionsRead?.[s.id])
-  }).length
+  const completedChapters = allChaptersForPct.filter((ch) =>
+    isChapterRead(ch.sections, chapterProgressForPct?.[ch.slug]?.sectionsRead)
+  ).length
   const courseCompletionPct =
     totalChapters > 0 ? Math.round((completedChapters / totalChapters) * 100) : 0
 
@@ -1960,7 +1984,7 @@ export default async function DashboardPage() {
               className="text-[10px] uppercase tracking-[0.18em] font-semibold px-2 py-0.5 rounded-full"
               style={{ backgroundColor: "rgba(255,68,68,0.1)", color: "#FF4444" }}
             >
-              {untaggedMistakeCount} untagged
+              {untaggedMistakeCount} to review
             </span>
           )}
         </Link>

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { localDayIso } from "@/lib/utils"
 
 /**
  * Weekly study-hours chart. Buckets every session's duration into local-time
@@ -13,12 +14,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 const MAX_WEEKS_BACK = 26
 
-function localIso(d: Date): string {
-  const y = d.getFullYear()
-  const m = String(d.getMonth() + 1).padStart(2, "0")
-  const day = String(d.getDate()).padStart(2, "0")
-  return `${y}-${m}-${day}`
-}
+// Shared local-day key — the one boundary every activity metric uses.
+const localIso = localDayIso
 
 /** Monday 00:00 local time of the week containing `d`. */
 function weekStart(d: Date): Date {

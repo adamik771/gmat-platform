@@ -29,13 +29,39 @@ interface SetResult {
   total: number
 }
 
+interface SetRun {
+  idx: number
+  answers: boolean[]
+}
+
 export interface MergeableProgress {
   sectionsRead: Record<string, boolean>
   questions: Record<string, MergeableQuestion>
   problemSetResults: Record<"easy" | "medium" | "hard", SetResult | undefined>
+  /** Mid-set graded-run resume state; cleared when the set finishes. */
+  problemSetRuns?: Partial<Record<"easy" | "medium" | "hard", SetRun | undefined>>
   notes?: Record<string, string>
   lastSeenAt?: number
   firstSeenAt?: number
+}
+
+/**
+ * THE chapter-completion rule, shared by every surface that counts
+ * "chapters done" (/chapters cards, dashboard Course progress, study-plan
+ * chapter counts / reading queue). A chapter is read when every READING
+ * section is marked read — pretest and summary cards are check-ins, not
+ * gates. Before this helper, the dashboard and study-plan required EVERY
+ * section (pretest + summary included), so a student who read everything
+ * but never clicked those two cards sat at a permanent 0% "Course
+ * progress" while /chapters called the same chapter complete.
+ */
+export function isChapterRead(
+  sections: ReadonlyArray<{ id: string; type: string }>,
+  sectionsRead: Record<string, boolean> | null | undefined
+): boolean {
+  const readings = sections.filter((s) => s.type === "reading")
+  if (readings.length === 0) return false
+  return readings.every((s) => !!sectionsRead?.[s.id])
 }
 
 /** Higher = keep this question when two ids collide. */
@@ -78,6 +104,19 @@ export function mergeProgress<T extends MergeableProgress>(a: T, b: T): T {
     hard: pickSetResult(a.problemSetResults?.hard, b.problemSetResults?.hard),
   }
 
+  // Keep the in-flight run that has graded more questions (a longer run is
+  // strictly more progress; a cleared run — undefined — never resurrects a
+  // stale one from the other side ONLY when the other side is also behind
+  // the recorded result, which pickSetResult already reflects).
+  const problemSetRuns: MergeableProgress["problemSetRuns"] = {}
+  for (const d of ["easy", "medium", "hard"] as const) {
+    const ra = a.problemSetRuns?.[d]
+    const rb = b.problemSetRuns?.[d]
+    const winner =
+      (rb?.answers.length ?? -1) > (ra?.answers.length ?? -1) ? rb : ra
+    if (winner) problemSetRuns[d] = winner
+  }
+
   const notes: Record<string, string> = { ...(a.notes ?? {}) }
   for (const [k, v] of Object.entries(b.notes ?? {})) {
     if (v && v.length > (notes[k]?.length ?? 0)) notes[k] = v
@@ -94,6 +133,7 @@ export function mergeProgress<T extends MergeableProgress>(a: T, b: T): T {
     sectionsRead,
     questions,
     problemSetResults,
+    problemSetRuns,
     notes,
     lastSeenAt,
     firstSeenAt,
@@ -107,6 +147,7 @@ export function progressContentSig(p: MergeableProgress): string {
     s: p.sectionsRead,
     q: p.questions,
     r: p.problemSetResults,
+    u: p.problemSetRuns ?? {},
     n: p.notes ?? {},
   })
 }

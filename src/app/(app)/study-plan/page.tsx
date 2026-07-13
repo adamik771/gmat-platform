@@ -1,4 +1,7 @@
 import Link from "next/link"
+import { perDayMinutes, weeklyHoursAdvice } from "@/lib/study-hours"
+import { daysUntil, localDayIso } from "@/lib/utils"
+import { isChapterRead } from "@/lib/chapter-progress-merge"
 import {
   ArrowRight,
   BookOpen,
@@ -12,7 +15,6 @@ import {
   Sparkles,
   Target,
   TrendingDown,
-  TrendingUp,
   Flame,
   Wrench,
 } from "lucide-react"
@@ -46,26 +48,8 @@ import {
 } from "@/lib/personas"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { getUserState } from "@/lib/user-state"
-import type { Section } from "@/types"
 
 const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-const SECTION_MIN_SAMPLE = 10
-
-/**
- * Scale 0-100 accuracy to a GMAT Focus total (205..805 in 10-point
- * increments). Mirrors the dashboard + analytics helpers so the three
- * surfaces agree on what "estimated score" means.
- */
-function accuracyToFocusTotal(accuracy: number): number {
-  const clamped = Math.max(0, Math.min(100, accuracy))
-  const raw = 205 + clamped * 6.0
-  return 205 + Math.round((raw - 205) / 10) * 10
-}
-
-/** Same section → 60-90 scaling used by the dashboard Score Goal card. */
-function scaledSectionScore(correct: number, total: number): number {
-  return Math.round(60 + (correct / total) * 30)
-}
 
 export default async function StudyPlanPage({
   searchParams,
@@ -105,10 +89,10 @@ export default async function StudyPlanPage({
   // Default to zero / null so an unauth or Supabase-down render shows empty.
   let examDate: string | null = null
   let targetScore: number | null = null
+  let weeklyHoursTarget: number | null = null
   const activityDays = new Set<string>() // YYYY-MM-DD for past 7 days with activity
   let studyHoursWeek = 0
   let studyDays30Count = 0
-  let estimatedTotal: number | null = null
   let pendingMistakeCount = 0
   let plan: StudyPlanOutput | null = null
   let baselineExamDate: string | null = null
@@ -136,6 +120,15 @@ export default async function StudyPlanPage({
         typeof rawTarget === "number" && Number.isInteger(rawTarget)
           ? rawTarget
           : null
+      // The onboarding wizard's hours-per-week answer — shapes the weekly
+      // cadence (weak-areas-first when low, a rest day when high).
+      const rawHours = (
+        user.user_metadata?.onboarding as { weeklyHours?: unknown } | undefined
+      )?.weeklyHours
+      weeklyHoursTarget =
+        typeof rawHours === "number" && Number.isFinite(rawHours)
+          ? rawHours
+          : null
 
       const rawReadProgress = state.chapter_progress
       if (rawReadProgress && typeof rawReadProgress === "object") {
@@ -150,16 +143,38 @@ export default async function StudyPlanPage({
       // the synchronous inputs already in scope — so they have no
       // inter-dependency and resolve in one round-trip's worth of wall-clock
       // instead of five. reviewedTags is the one genuine dependency (it needs
-      // wrongIds) and stays sequential below. officialExamCount is still 0 here,
-      // exactly as before (it's derived from user_metadata further down, after
-      // this point — preserved deliberately, not "fixed").
+      // wrongIds) and stays sequential below.
+      //
+      // Official baseline — derived from user_state BEFORE the plan engine
+      // runs. This used to happen ~120 lines below, so computeStudyPlan
+      // always saw officialExamCount=0 and its priority-100 "Set your
+      // baseline" card sat permanently on top of Today's Focus even after
+      // the student had entered their exam (friend-reported bug).
+      const metaOfficial = state.official_exam_scores
+      const officialScores: Array<{ date?: unknown; total?: unknown }> =
+        Array.isArray(metaOfficial) ? metaOfficial : []
+      const validOfficial = officialScores
+        .filter(
+          (e) =>
+            typeof e?.date === "string" &&
+            typeof e?.total === "number" &&
+            e.total >= 205 &&
+            e.total <= 805,
+        )
+        .sort((a, b) => String(a.date).localeCompare(String(b.date)))
+      officialExamCount = validOfficial.length
+      if (validOfficial.length > 0) {
+        const latest = validOfficial[validOfficial.length - 1]
+        officialBaseline = latest.total as number
+        baselineExamDate = latest.date as string
+      }
+
       const sevenAgo = new Date(Date.now() - 7 * 86400000).toISOString()
       const thirtyAgo = new Date(Date.now() - 30 * 86400000).toISOString()
       const [
         { data: weekSessions },
         { data: monthSessions },
         { data: wrongAttempts },
-        { data: sectionAttempts },
         planResult,
       ] = await Promise.all([
         supabase
@@ -177,10 +192,6 @@ export default async function StudyPlanPage({
           .select("id")
           .eq("user_id", user.id)
           .eq("is_correct", false),
-        supabase
-          .from("practice_attempts")
-          .select("section, is_correct")
-          .eq("user_id", user.id),
         computeStudyPlan(supabase, user.id, {
           targetScore,
           examDate,
@@ -189,19 +200,19 @@ export default async function StudyPlanPage({
         }),
       ])
 
-      // Past-7-day session activity — calendar dots + study hours
+      // Past-7-day session activity — calendar dots + study hours.
+      // localDayIso: the calendar renders LOCAL weekdays, so a late-evening
+      // session must land on the local day's dot, not the next UTC day's.
       for (const s of weekSessions ?? []) {
         const d = new Date(s.created_at as string)
-        activityDays.add(d.toISOString().slice(0, 10))
+        activityDays.add(localDayIso(d))
         studyHoursWeek += ((s.total_time_ms as number) ?? 0) / 3600000
       }
 
       // Past-30-day activity days for "days practiced" — streak proxy.
       const monthDays = new Set<string>()
       for (const s of monthSessions ?? []) {
-        monthDays.add(
-          new Date(s.created_at as string).toISOString().slice(0, 10)
-        )
+        monthDays.add(localDayIso(new Date(s.created_at as string)))
       }
       studyDays30Count = monthDays.size
 
@@ -221,37 +232,6 @@ export default async function StudyPlanPage({
           (reviewedTags ?? []).map((t) => t.attempt_id as string)
         )
         pendingMistakeCount = wrongIds.filter((id) => !reviewedSet.has(id)).length
-      }
-
-      // Estimated GMAT total — only if all 3 sections have ≥10 attempts,
-      // matching the dashboard's gating exactly.
-      const secStats: Record<Section, { total: number; correct: number }> = {
-        Quant: { total: 0, correct: 0 },
-        Verbal: { total: 0, correct: 0 },
-        DI: { total: 0, correct: 0 },
-      }
-      for (const a of sectionAttempts ?? []) {
-        const sec = a.section as Section
-        if (!secStats[sec]) continue
-        secStats[sec].total++
-        if (a.is_correct) secStats[sec].correct++
-      }
-      const allSectionsReady = (["Quant", "Verbal", "DI"] as const).every(
-        (s) => secStats[s].total >= SECTION_MIN_SAMPLE
-      )
-      if (allSectionsReady) {
-        const sectionScore = (s: { total: number; correct: number }) =>
-          scaledSectionScore(s.correct, s.total)
-        const avgAccuracy =
-          (["Quant", "Verbal", "DI"] as const)
-            .map((sec) => secStats[sec].correct / secStats[sec].total)
-            .reduce((a, b) => a + b, 0) / 3
-        // Two viable derivations — accuracy→total or sum-of-sections. Use
-        // accuracy→total here (same as analytics/dashboard).
-        estimatedTotal = accuracyToFocusTotal(avgAccuracy * 100)
-        // Keep the per-section math around as a sanity check (unused but
-        // documents the relationship) — suppress the unused warning.
-        void sectionScore
       }
 
       // Adaptive plan (Today's focus + weak areas + queue counts) — computed
@@ -295,28 +275,6 @@ export default async function StudyPlanPage({
           | undefined,
         questionIndex,
       )
-
-      // Official baseline — the latest mba.com practice-exam score the
-      // student has entered (user_metadata.official_exam_scores). It
-      // anchors persona assignment and the plan's attribution line.
-      const metaOfficial = state.official_exam_scores
-      const officialScores: Array<{ date?: unknown; total?: unknown }> =
-        Array.isArray(metaOfficial) ? metaOfficial : []
-      const validOfficial = officialScores
-        .filter(
-          (e) =>
-            typeof e?.date === "string" &&
-            typeof e?.total === "number" &&
-            e.total >= 205 &&
-            e.total <= 805,
-        )
-        .sort((a, b) => String(a.date).localeCompare(String(b.date)))
-      officialExamCount = validOfficial.length
-      if (validOfficial.length > 0) {
-        const latest = validOfficial[validOfficial.length - 1]
-        officialBaseline = latest.total as number
-        baselineExamDate = latest.date as string
-      }
 
       persona = computePersona(officialBaseline, targetScore, {
         englishNative:
@@ -437,18 +395,19 @@ export default async function StudyPlanPage({
   // the "Up next" panel; the full queue feeds the weekly cadence. (The old
   // /lessons library is deprecated — chapters are the curriculum.)
   const pathChapters = getAllChapters()
-  const isChapterRead = (ch: (typeof pathChapters)[number]) => {
-    const entry = readProgress[ch.slug]
-    if (!entry || ch.sections.length === 0) return false
-    return ch.sections.every((s) => entry.sectionsRead?.[s.id])
-  }
+  // Shared reading-sections completion rule — the old inline every-section
+  // predicate (pretest + summary included) disagreed with /chapters and kept
+  // "Chapters read" pinned low for students who read everything but never
+  // clicked the pretest/summary cards.
+  const isChapterReadHere = (ch: (typeof pathChapters)[number]) =>
+    isChapterRead(ch.sections, readProgress[ch.slug]?.sectionsRead)
   // A chapter is "engaged" once any section has been read — anchors the
   // recommendation to where the student actually is.
   const isChapterEngaged = (ch: (typeof pathChapters)[number]) => {
     const sr = readProgress[ch.slug]?.sectionsRead
     return sr ? Object.values(sr).some(Boolean) : false
   }
-  const incompleteChapters = pathChapters.filter((ch) => !isChapterRead(ch))
+  const incompleteChapters = pathChapters.filter((ch) => !isChapterReadHere(ch))
   // Recency-aware "Up next": recommend forward from the furthest chapter the
   // student has touched, so a single unread section in chapter 1 no longer pins
   // "Welcome to the GMAT" as next after they've moved on (see pickNextChapters).
@@ -456,7 +415,7 @@ export default async function StudyPlanPage({
     nextUp: nextChapterUp,
     upcoming: upcomingChapters,
     readingQueue: nextReadingQueue,
-  } = pickNextChapters(pathChapters, isChapterRead, isChapterEngaged)
+  } = pickNextChapters(pathChapters, isChapterReadHere, isChapterEngaged)
   const chaptersDoneCount = pathChapters.length - incompleteChapters.length
   const totalChapters = pathChapters.length
 
@@ -473,7 +432,8 @@ export default async function StudyPlanPage({
     } as StudyPlanOutput)
   const weeklyCadence = buildWeeklyCadence(
     adaptivePlan,
-    nextReadingQueue.map((ch) => ({ slug: ch.slug, title: ch.title }))
+    nextReadingQueue.map((ch) => ({ slug: ch.slug, title: ch.title })),
+    weeklyHoursTarget
   )
   const suggestionByKey = new Map<string, DailySuggestion>()
 
@@ -488,7 +448,10 @@ export default async function StudyPlanPage({
   const weekDays = Array.from({ length: 7 }, (_, i) => {
     const d = new Date(sunday)
     d.setDate(sunday.getDate() + i)
-    const key = d.toISOString().slice(0, 10)
+    // Same local-day key as activityDays — toISOString() on a local-midnight
+    // date shifts to the previous UTC day in positive-offset timezones,
+    // which would leave every dot one cell off (or missing entirely).
+    const key = localDayIso(d)
     const isToday = d.getTime() === todayStartMs
     const isPast = d.getTime() < todayStartMs
     return {
@@ -513,13 +476,10 @@ export default async function StudyPlanPage({
   }
 
   // ---------- Derived: exam readiness ----------
-  const daysUntilExam = examDate
-    ? Math.ceil(
-        (new Date(examDate).getTime() -
-          new Date(new Date().toDateString()).getTime()) /
-          86400000
-      )
-    : null
+  // Shared local-midnight parse — the naive new Date("YYYY-MM-DD") (UTC)
+  // version read a day short in positive-offset timezones and disagreed
+  // with the engine's own countdown.
+  const daysUntilExam = daysUntil(examDate)
 
   // === Stage gate ===
   // The page promises an "adaptive plan" but the engine has no real
@@ -843,7 +803,7 @@ export default async function StudyPlanPage({
               {
                 Icon: CalendarDays,
                 title: "Weekly cadence",
-                body: "Real seven-day schedule built from your exam runway + recommended hours per week.",
+                body: "Real seven-day schedule shaped by your exam runway + the hours per week you chose at onboarding.",
               },
               {
                 Icon: Target,
@@ -1111,6 +1071,24 @@ export default async function StudyPlanPage({
             aria-hidden
           />
         </div>
+        {weeklyHoursTarget !== null && (
+          <p className="text-[12px] text-[#888888] leading-relaxed mb-4 max-w-2xl">
+            Planned around your{" "}
+            <span className="text-[#C0C0C0]">
+              {weeklyHoursTarget} hr/week
+            </span>{" "}
+            target (~{perDayMinutes(weeklyHoursTarget)} min/day).{" "}
+            {weeklyHoursAdvice(weeklyHoursTarget)}{" "}
+            <Link
+              href="/onboarding"
+              className="underline underline-offset-2"
+              style={{ color: "#C9A84C" }}
+            >
+              Change it
+            </Link>
+            .
+          </p>
+        )}
         <div className="overflow-x-auto -mx-1 px-1">
           <div className="grid grid-cols-7 gap-2 min-w-[560px]">
           {weekDays.map((day) => {
@@ -1176,52 +1154,13 @@ export default async function StudyPlanPage({
         </div>
       </section>
 
-      {/* Progress cards — real counts. Projected total leads when the
-          student has enough section data (>=10 attempts each) to estimate it. */}
+      {/* Progress cards — real counts only. The "Projected total" estimate
+          card was removed: it was the THIRD score estimate in the product
+          (dashboard and /analytics each compute their own from different
+          attempt pools), fed by an uncapped query that silently truncated
+          at ~1000 rows — one more number that could disagree with the other
+          two. /analytics owns the score estimate. */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {estimatedTotal !== null && (
-          <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
-            <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: "#C9A84C15" }}
-            >
-              <TrendingUp className="w-4 h-4" style={{ color: "#C9A84C" }} />
-            </div>
-            <div className="min-w-0">
-              <p className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] tabular-nums leading-none">
-                {estimatedTotal}
-              </p>
-              <p className="text-[11px] text-[#888888] mt-1.5 uppercase tracking-[0.18em]">
-                Projected total
-              </p>
-              {(targetScore !== null || officialBaseline !== null) && (
-                <p className="text-[11px] text-[#555555] mt-1 tabular-nums">
-                  {targetScore !== null && (
-                    <span
-                      style={{
-                        color:
-                          estimatedTotal >= targetScore
-                            ? "#3ECF8E"
-                            : estimatedTotal >= targetScore - 40
-                              ? "#C9A84C"
-                              : "#FF4444",
-                      }}
-                    >
-                      {estimatedTotal >= targetScore ? "+" : ""}
-                      {estimatedTotal - targetScore} vs target
-                    </span>
-                  )}
-                  {targetScore !== null && officialBaseline !== null && (
-                    <span className="mx-1.5 text-[#333333]">·</span>
-                  )}
-                  {officialBaseline !== null && (
-                    <span>baseline {officialBaseline}</span>
-                  )}
-                </p>
-              )}
-            </div>
-          </div>
-        )}
         <StatCard
           icon={BookOpen}
           color="#C9A84C"
@@ -1231,7 +1170,11 @@ export default async function StudyPlanPage({
         <StatCard
           icon={Clock}
           color="#C9A84C"
-          label="Practice hours (7d)"
+          label={
+            weeklyHoursTarget !== null
+              ? `Practice hours (7d, target ${weeklyHoursTarget})`
+              : "Practice hours (7d)"
+          }
           value={(() => {
             const rounded = Math.round(studyHoursWeek * 10) / 10
             return rounded >= 0.1 ? `${rounded.toFixed(1)} hrs` : "—"

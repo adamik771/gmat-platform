@@ -18,6 +18,8 @@ import {
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
 import { summarizeAnsweredAttempts } from "@/lib/practice-save"
+import { isAnswerCorrect, pickMissed } from "@/lib/practice-retry"
+import { activeSessionMs } from "@/lib/practice-timing"
 import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
@@ -744,11 +746,20 @@ function ContextPanel({ text }: { text: string }) {
 
 /** Returns true when a submitted question is answered correctly. */
 function isQuestionCorrect(q: SessionQuestion, state: QuestionState): boolean {
-  if (!state.submitted) return false
-  if (q.twoPartCorrectAnswers && state.twoPartSelections) {
-    return q.twoPartCorrectAnswers.every((ans, i) => state.twoPartSelections![i] === ans)
-  }
-  return state.selected === q.correctAnswer
+  return isAnswerCorrect(q, state)
+}
+
+/** Untouched per-question state for a fresh attempt over `qs`. */
+function freshStates(qs: SessionQuestion[]): QuestionState[] {
+  return qs.map((q) => ({
+    selected: null,
+    twoPartSelections: q.twoPartColumns ? q.twoPartColumns.map(() => null) : undefined,
+    submitted: false,
+    elapsedMs: 0,
+    hintsRevealed: 0,
+    confidence: null,
+    firstInteractionMs: null,
+  }))
 }
 
 interface SessionInsight {
@@ -1118,13 +1129,24 @@ export default function SessionClient({
   slug,
   topic,
   section,
-  questions,
+  questions: questionsProp,
   skillLevel,
   skillAttempts,
   weakestTopic,
   setLabel,
   initialSavedForReview,
 }: SessionClientProps) {
+  // Freeze the question list this mount was born with. The server page
+  // re-shuffles topic drills on every render (Date.now()-seeded adaptive
+  // order), so any router.refresh() fired mid-session — the save-for-review
+  // button does one after each toggle — would hand the mounted session a
+  // REORDERED questions prop while the per-index answer states stayed put:
+  // answers, results, and revealed explanations all landed on the wrong
+  // questions (unanswered ones could render pre-submitted with the answer
+  // showing). A fresh session (remount) still gets a fresh order. The list
+  // only ever changes through restartSession below (retry flows) — never
+  // from the prop.
+  const [questions, setQuestions] = useState(questionsProp)
   const [currentIdx, setCurrentIdx] = useState(0)
   // Which questions are saved for review — seeded from the server, updated
   // as the student toggles, so the per-question button survives navigation
@@ -1139,17 +1161,8 @@ export default function SessionClient({
   const isMixedReview = slug === "custom" && topic.toLowerCase().startsWith("mixed review")
 
   const [states, setStates] = useState<QuestionState[]>(() =>
-    questions.map((q) => ({
-      selected: null,
-      twoPartSelections: q.twoPartColumns ? q.twoPartColumns.map(() => null) : undefined,
-      submitted: false,
-      elapsedMs: 0,
-      hintsRevealed: 0,
-      confidence: null,
-      firstInteractionMs: null,
-    }))
+    freshStates(questions)
   )
-  const [sessionStart] = useState(() => Date.now())
   const [questionStart, setQuestionStart] = useState(() => Date.now())
   const [now, setNow] = useState(() => Date.now())
   const [showResults, setShowResults] = useState(false)
@@ -1167,13 +1180,6 @@ export default function SessionClient({
   // visible regardless of mode so the review list can jump back into
   // fully-explained questions.
   const [finished, setFinished] = useState(false)
-  // The instant the session ended — captured at the finish click so the
-  // results screen's "Total time" and the persisted total_time_ms are frozen
-  // facts, not clocks that keep counting while the student reads results
-  // (beta: "timer in practice test does not stop at the end"). The ?? prev
-  // guard at the set sites keeps the FIRST finish moment if the student
-  // revisits questions from the review list and finishes again.
-  const [sessionEndedAt, setSessionEndedAt] = useState<number | null>(null)
   const reveal = mode === "study" || finished
 
   function switchMode(next: "exam" | "study") {
@@ -1191,7 +1197,7 @@ export default function SessionClient({
   const [showAllReview, setShowAllReview] = useState(false)
 
   // Tick the timer once a second for the header readouts. Stops on the
-  // results screen — every clock there reads the frozen sessionEndedAt, and
+  // results screen — every clock there reads the banked answering time, and
   // without the gate the whole (heavy) results tree re-rendered every second.
   useEffect(() => {
     if (showResults) return
@@ -1239,10 +1245,9 @@ export default function SessionClient({
           totalQuestions: summary.totalQuestions,
           correctCount: summary.correctCount,
           accuracy: summary.accuracy,
-          // The finish moment, not the save moment — a manual "Retry save"
-          // clicked after idling on the results screen must not inflate the
-          // stored total by the idle minutes.
-          totalTimeMs: (sessionEndedAt ?? Date.now()) - sessionStart,
+          // Active answering time only — reading solutions, idling on the
+          // results screen, or a late "Retry save" never inflate the total.
+          totalTimeMs: activeSessionMs(states, null),
           attempts: summary.attempts,
         }),
       })
@@ -1269,10 +1274,49 @@ export default function SessionClient({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showResults])
 
+  // Answers live only in React state until the finish-time save above — warn
+  // before a mid-session unload (tab close, hard refresh, external nav) so a
+  // chapter test or custom set isn't silently lost. Off once finished: the
+  // results screen has already persisted.
+  const hasUnsavedAnswers = !finished && states.some((s) => s.submitted)
+  useEffect(() => {
+    if (!hasUnsavedAnswers) return
+    const onBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+    }
+    window.addEventListener("beforeunload", onBeforeUnload)
+    return () => window.removeEventListener("beforeunload", onBeforeUnload)
+  }, [hasUnsavedAnswers])
+
   const goTo = useCallback((idx: number) => {
     setCurrentIdx(idx)
     setQuestionStart(Date.now())
   }, [])
+
+  /**
+   * Start a clean attempt over `qs` — the full set ("Practice again") or
+   * just the missed subset ("Redo missed"). This is a client-side reset,
+   * NOT a link: the old "Practice again" linked to the URL this component
+   * was already mounted on, and same-URL App Router navigation never
+   * remounts — the student stayed parked on the old results screen (and,
+   * before the questions-freeze fix, the server's reshuffled list was
+   * re-scored against stale answers as a fake ~0% result). The finished
+   * attempt is already saved; the fresh one saves as its own session when
+   * it finishes.
+   */
+  function restartSession(qs: SessionQuestion[]) {
+    if (qs.length === 0) return
+    setQuestions(qs)
+    setStates(freshStates(qs))
+    setCurrentIdx(0)
+    setQuestionStart(Date.now())
+    setNow(Date.now())
+    setShowResults(false)
+    setFinished(false)
+    setSaveStatus("idle")
+    setSavedSessionId(null)
+    setShowAllReview(false)
+  }
 
   const current = questions[currentIdx]
   const currentState = states[currentIdx]
@@ -1372,7 +1416,6 @@ export default function SessionClient({
     if (currentIdx < total - 1) {
       goTo(currentIdx + 1)
     } else {
-      setSessionEndedAt((prev) => prev ?? Date.now())
       setFinished(true)
       setShowResults(true)
     }
@@ -1463,9 +1506,8 @@ export default function SessionClient({
 
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
-    // Frozen at the finish click — not a running clock (sessionEndedAt is
-    // always set by the time results render; `now` is a type-level fallback).
-    const totalTime = (sessionEndedAt ?? now) - sessionStart
+    // Banked answering time — frozen by construction, not a running clock.
+    const totalTime = activeSessionMs(states, null)
 
     // Shared next-step accuracy bands. Below LOW signals a concept gap
     // (revisit the chapter); at/above SOLID the topic is strong enough to
@@ -1568,6 +1610,20 @@ export default function SessionClient({
         </div>
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
+
+        {savedSessionId && (
+          <p className="text-[11px] text-[#555555]">
+            Session saved — revisit these results anytime at{" "}
+            <Link
+              href={`/practice/history/${savedSessionId}`}
+              className="underline underline-offset-2"
+              style={{ color: "#C9A84C" }}
+            >
+              session results
+            </Link>
+            .
+          </p>
+        )}
 
         {/* Core metrics + insight breakdown */}
         <div
@@ -2088,8 +2144,35 @@ export default function SessionClient({
             slug !== "custom"
           const chapterSlug = TOPIC_TO_CHAPTER[topic]
 
-          type NextAction = { label: string; href: string; variant: "primary" | "secondary" }
+          type NextAction = {
+            label: string
+            variant: "primary" | "secondary"
+            href?: string
+            onClick?: () => void
+          }
           const actions: NextAction[] = []
+
+          // Redo only the questions answered wrong — a clean client-side
+          // restart over the missed subset (see restartSession). Offered on
+          // every runner flow (topic drills, custom sets, review sessions).
+          const missed = pickMissed(questions, states)
+          // Full-set restart: reuse the freshest server-provided order so a
+          // repeat feels like a new visit, not a replay.
+          const practiceAgain: NextAction = {
+            label: "Practice again",
+            onClick: () => restartSession(questionsProp),
+            variant: "secondary",
+          }
+
+          if (missed.length > 0) {
+            actions.push({
+              label: `Redo ${missed.length} missed`,
+              onClick: () => restartSession(missed),
+              // Below the concept-gap line the chapter is the better first
+              // move; otherwise redoing the misses is.
+              variant: accuracy < LOW_ACCURACY ? "secondary" : "primary",
+            })
+          }
 
           if (isMixedReview) {
             actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
@@ -2101,11 +2184,14 @@ export default function SessionClient({
               variant: "primary",
             })
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+              actions.push(practiceAgain)
             }
           } else if (accuracy < SOLID_ACCURACY) {
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary" })
+              actions.push({
+                ...practiceAgain,
+                variant: missed.length > 0 ? "secondary" : "primary",
+              })
             }
             actions.push({
               label: chapterSlug ? "Review the chapter" : "Browse chapters",
@@ -2142,7 +2228,7 @@ export default function SessionClient({
             actions.push({ label: "View your study plan", href: "/study-plan", variant: "primary" })
             actions.push({ label: "Go to chapters", href: "/chapters", variant: "secondary" })
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+              actions.push(practiceAgain)
             }
           }
 
@@ -2161,31 +2247,44 @@ export default function SessionClient({
                 {nextStepNote}
               </p>
               <div className="flex flex-wrap gap-3">
-                {actions.map((action) =>
-                  action.variant === "primary" ? (
-                    <Link
-                      key={action.href}
-                      href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
-                      {action.label}
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  ) : (
-                    <Link
-                      key={action.href}
-                      href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0]"
-                      style={{
+                {actions.map((action) => {
+                  const primary = action.variant === "primary"
+                  const className = primary
+                    ? "inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
+                    : "inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0]"
+                  const style = primary
+                    ? { backgroundColor: "#C9A84C", color: "#0A0A0A" }
+                    : {
                         borderColor: "rgba(255,255,255,0.08)",
                         color: "#888888",
-                      }}
+                      }
+                  const key = action.href ?? action.label
+                  if (action.onClick) {
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={action.onClick}
+                        className={className}
+                        style={style}
+                      >
+                        {action.label}
+                        {primary && <ArrowRight className="w-3.5 h-3.5" />}
+                      </button>
+                    )
+                  }
+                  return (
+                    <Link
+                      key={key}
+                      href={action.href!}
+                      className={className}
+                      style={style}
                     >
                       {action.label}
+                      {primary && <ArrowRight className="w-3.5 h-3.5" />}
                     </Link>
                   )
-                )}
+                })}
               </div>
             </div>
           )
@@ -2194,7 +2293,15 @@ export default function SessionClient({
     )
   }
 
-  const sessionElapsed = (sessionEndedAt ?? now) - sessionStart
+  // Answering time only: banked time on submitted questions, plus the
+  // running clock on the current question ONLY while it's unanswered. The
+  // header timer visibly pauses while the student reads a solution and
+  // resumes when they open the next unanswered question.
+  const sessionElapsed = activeSessionMs(states, {
+    submitted: currentState.submitted,
+    startedAt: questionStart,
+    now,
+  })
   const progressPct = Math.round(((currentIdx + (currentState.submitted ? 1 : 0)) / total) * 100)
   const hasContext = !!current.context && current.context.length > 0
 
@@ -2204,6 +2311,17 @@ export default function SessionClient({
       <div>
         <Link
           href="/practice"
+          onClick={(e) => {
+            // In-app navigation skips beforeunload — confirm here instead.
+            if (
+              hasUnsavedAnswers &&
+              !window.confirm(
+                "Leave this session? Your answers so far won't be saved."
+              )
+            ) {
+              e.preventDefault()
+            }
+          }}
           className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
         >
           <ArrowLeft className="w-3 h-3" />
@@ -2557,7 +2675,6 @@ export default function SessionClient({
 
             <button
               onClick={() => {
-                setSessionEndedAt((prev) => prev ?? Date.now())
                 setFinished(true)
                 setShowResults(true)
               }}

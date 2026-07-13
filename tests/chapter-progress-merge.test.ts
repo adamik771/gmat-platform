@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
 import {
+  isChapterRead,
   mergeProgress,
   progressContentSig,
   type MergeableProgress,
@@ -104,6 +105,36 @@ describe("mergeProgress (chapter progress union — fixes lost graded tests)", (
     expect(ab.sectionsRead).toEqual(ba.sectionsRead)
     expect(ab.problemSetResults.easy).toBeDefined()
     expect(ab.problemSetResults.hard).toBeDefined()
+  })
+
+  it("keeps the mid-set graded run with the most progress (resume survives reload)", () => {
+    const local = empty()
+    local.problemSetRuns = { medium: { idx: 4, answers: [true, false, true, true] } }
+    const server = empty()
+    server.problemSetRuns = { medium: { idx: 2, answers: [true, false] } }
+    const ab = mergeProgress(local, server)
+    const ba = mergeProgress(server, local)
+    expect(ab.problemSetRuns?.medium?.idx).toBe(4)
+    expect(ba.problemSetRuns?.medium?.idx).toBe(4)
+  })
+
+  it("isChapterRead: reading sections gate completion; pretest/summary do not", () => {
+    const sections = [
+      { id: "pretest", type: "pretest" },
+      { id: "r1", type: "reading" },
+      { id: "r2", type: "reading" },
+      { id: "summary", type: "summary" },
+    ]
+    // All readings read, pretest/summary untouched -> complete. (The old
+    // every-section rule kept dashboard/study-plan at 0% here.)
+    expect(isChapterRead(sections, { r1: true, r2: true })).toBe(true)
+    // A reading missing -> incomplete, even with pretest/summary clicked.
+    expect(
+      isChapterRead(sections, { pretest: true, r1: true, summary: true })
+    ).toBe(false)
+    // No progress at all / no reading sections -> never complete.
+    expect(isChapterRead(sections, undefined)).toBe(false)
+    expect(isChapterRead([{ id: "pretest", type: "pretest" }], {})).toBe(false)
   })
 
   it("progressContentSig ignores timestamps (so we don't push on every open)", () => {

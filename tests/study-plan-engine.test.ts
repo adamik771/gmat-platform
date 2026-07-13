@@ -117,6 +117,32 @@ describe("buildWeeklyCadence — pool composition reacts to inputs", () => {
     expect(days.some((d) => d.type === "chapter")).toBe(false)
   })
 
+  it("low weekly hours put the weak-area chapter FIRST in the rotation", () => {
+    const p = plan({
+      reviewDueCount: 3,
+      weakAreas: [weakArea("Algebra", "algebra")],
+    })
+    // Without hours (or medium hours) review leads; at a low-hours target the
+    // scarce first day goes to the weakest area instead.
+    expect(buildWeeklyCadence(p, [])[0].type).toBe("review")
+    expect(buildWeeklyCadence(p, [], 10)[0].type).toBe("review")
+    const low = buildWeeklyCadence(p, [], 4)
+    expect(low[0].type).toBe("chapter")
+    expect(low[0].href).toBe("/chapters/algebra")
+  })
+
+  it("high weekly hours reserve the last day as a light review/rest day", () => {
+    const high = buildWeeklyCadence(plan(), [], 20)
+    expect(high.length).toBe(7)
+    expect(high[6]).toEqual({
+      type: "review",
+      label: "Light review + rest",
+      href: "/review",
+    })
+    // Medium hours leave the seventh day alone.
+    expect(buildWeeklyCadence(plan(), [], 10)[6].type).toBe("practice")
+  })
+
   it("readings in the queue surface as chapter days with /chapters/<slug> hrefs", () => {
     const days = buildWeeklyCadence(plan(), [
       reading("quant-18-ratios-proportions", "Ratios & Proportions"),
