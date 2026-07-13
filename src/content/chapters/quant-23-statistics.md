@@ -2,7 +2,7 @@
 slug: quant-23-statistics
 title: "Statistics: Mean, Median & Standard Deviation"
 section: Quant
-estimated_minutes: 11
+estimated_minutes: 90
 prerequisites:
   - quant-22-work-rate
 summary: |
@@ -15,7 +15,7 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - statistics-probability-q1
-      - statistics-probability-q2
+      - statistics-probability-q21
   - id: mean-and-sum
     type: reading
     title: "Mean and sum — the one identity that unlocks half the chapter"

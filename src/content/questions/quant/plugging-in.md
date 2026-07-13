@@ -253,7 +253,7 @@ The correct answer is C.
 ---
 
 ## Q10
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Plugging In
 
@@ -283,7 +283,7 @@ The correct answer is C.
 ---
 
 ## Q11
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Plugging In
 

@@ -2,7 +2,7 @@
 slug: quant-09-divisibility-factors
 title: "Number Properties: Divisibility, Factors & Multiples"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 45
 prerequisites:
   - quant-08-even-odd-integer-properties
 summary: |

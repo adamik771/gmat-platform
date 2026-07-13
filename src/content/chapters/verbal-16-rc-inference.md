@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q17
-      - reading-comprehension-q18
+      - reading-comprehension-q165
+      - reading-comprehension-q115
   - id: rc-inference
     type: reading
     title: "RC: Inference"

@@ -5018,6 +5018,29 @@ The primary function of the third paragraph is to
 
 ---
 
+### Q178
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward Verrick's argument can best be described as
+
+- A) unqualified enthusiasm for a thesis that vindicates every work in the genre
+- B) approval of an argument whose deliberately limited scope the author treats as a source of its strength
+- C) strict neutrality between the traditional dismissal of the genre and Verrick's reassessment
+- D) skepticism about whether the genre's subject matter can support the weight of Verrick's claims
+- E) disappointment that Verrick stops short of claiming artistic parity with the period's acknowledged masters
+
+**answer:** B
+**explanation:** The author's evaluative language signals measured endorsement. The author frames the traditional verdict in Verrick's terms as a "category error" resting on "precisely the wrong grounds," and, when describing how Verrick restricts her own claim, editorializes that the contention is "narrower and, for that reason, more durable" — the author's own judgment that the restraint strengthens the argument. That combination of agreement plus praise for its careful limits is approval of a deliberately modest thesis. The correct answer is B.
+**mistake_a:** "Unqualified" and "every work" are both too strong: the passage stresses that Verrick does not claim every sensation novel repays close reading, and the author endorses precisely that restraint.
+**mistake_c:** The author is not neutral; describing the narrowed contention as "more durable" and the original grounds for rejection as "precisely the wrong grounds" takes an evaluative side in Verrick's favor.
+**mistake_d:** The author expresses no doubt about Verrick's claims; the only limits noted are ones Verrick herself draws, which the author presents approvingly.
+**mistake_e:** The author records Verrick's refusal to claim parity as careful scholarship, not as a shortcoming to regret.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
 ## Passage 42: The Enigma of the Radio Flash
 
 In 2007, astronomers reviewing archived data from an Australian radio telescope identified a single burst of radio energy lasting only a few milliseconds yet carrying, in that fleeting instant, as much energy as the Sun emits over several days. Because the burst's signal was smeared across frequencies in a pattern indicating passage through vast stretches of ionized gas, researchers concluded it had traveled billions of light-years, originating far beyond our galaxy. For some years this so-called fast radio burst was dismissed by skeptics as a terrestrial artifact, perhaps interference from a microwave oven or a faulty instrument. That objection collapsed once independent telescopes on different continents began recording similar events, each bearing the same telltale frequency-smearing signature that no local interference could plausibly produce.

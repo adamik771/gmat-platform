@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q25
-      - reading-comprehension-q26
+      - reading-comprehension-q90
+      - reading-comprehension-q96
   - id: rc-application
     type: reading
     title: "RC: Application"

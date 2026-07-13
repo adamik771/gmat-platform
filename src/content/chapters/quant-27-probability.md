@@ -2,7 +2,7 @@
 slug: quant-27-probability
 title: "Probability"
 section: Quant
-estimated_minutes: 11
+estimated_minutes: 90
 prerequisites:
   - quant-26-restrictions-advanced-counting
 summary: |
@@ -14,7 +14,7 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - statistics-probability-q7
+      - statistics-probability-q51
       - statistics-probability-q8
   - id: probability-basics
     type: reading

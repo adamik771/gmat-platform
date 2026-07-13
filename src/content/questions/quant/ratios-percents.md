@@ -1568,7 +1568,7 @@ The correct answer is C.
 ---
 
 ## Q50
-**difficulty:** Challenge
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Iterative Replacement — Target Concentration
 

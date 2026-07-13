@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q49
-      - critical-reasoning-q50
+      - critical-reasoning-q91
+      - critical-reasoning-q105
   - id: cr-flaw
     type: reading
     title: "CR: Flaw"

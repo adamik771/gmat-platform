@@ -2,7 +2,7 @@
 slug: quant-22-work-rate
 title: "Work-Rate Problems"
 section: Quant
-estimated_minutes: 10
+estimated_minutes: 50
 prerequisites:
   - quant-21-rate-time-distance
 summary: |

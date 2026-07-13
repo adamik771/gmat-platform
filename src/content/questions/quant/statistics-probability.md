@@ -829,28 +829,28 @@ The correct answer is C.
 **type:** Problem Solving
 **topic:** Probability — Addition Rule
 
-A card is drawn at random from a standard 52-card deck. What is the probability that the card is either a heart or a face card (jack, queen, or king)?
+A card is drawn at random from a standard 52-card deck. What is the probability that the card is either a spade or an ace?
 
 - A) 1/4
-- B) 3/13
-- C) 11/26
-- D) 25/52
-- E) 1/2
+- B) 15/52
+- C) 4/13
+- D) 17/52
+- E) 9/26
 
 **answer:** C
 **explanation:** This problem is governed by the addition rule of probability, which for two events that may overlap states that P(A or B) = P(A) + P(B) - P(A and B). The intersection is subtracted once because outcomes belonging to both events are otherwise counted twice.
 
-Let A be the event that the card drawn is a heart, and let B be the event that the card drawn is a face card (jack, queen, or king). The sample space consists of the 52 equally likely cards in a standard deck.
+Let A be the event that the card drawn is a spade, and let B be the event that the card drawn is an ace. The sample space consists of the 52 equally likely cards in a standard deck.
 
-There are 13 hearts, so P(A) = 13/52. There are 3 face cards in each of the 4 suits, giving 12 face cards in all, so P(B) = 12/52. The cards that are both hearts and face cards are the jack, queen, and king of hearts, a total of 3 cards, so P(A and B) = 3/52.
+There are 13 spades, so P(A) = 13/52. There are 4 aces, so P(B) = 4/52. Exactly one card is both a spade and an ace — the ace of spades — so P(A and B) = 1/52.
 
 Applying the addition rule:
 P(A or B) = P(A) + P(B) - P(A and B)
-P(A or B) = 13/52 + 12/52 - 3/52
-P(A or B) = (13 + 12 - 3)/52
-P(A or B) = 22/52.
+P(A or B) = 13/52 + 4/52 - 1/52
+P(A or B) = (13 + 4 - 1)/52
+P(A or B) = 16/52.
 
-Reducing the fraction by dividing numerator and denominator by 2 gives 22/52 = 11/26.
+Reducing the fraction by dividing numerator and denominator by 4 gives 16/52 = 4/13. Adding 13/52 and 4/52 without subtracting the ace of spades produces the trap value 17/52, which counts that card twice.
 
 The correct answer is C.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics

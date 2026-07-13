@@ -3,8 +3,7 @@ slug: quant-05-order-and-signed-numbers
 title: "Arithmetic: Order of Operations & Signed Numbers"
 section: Quant
 estimated_minutes: 9
-prerequisites:
-  - quant-04-answer-choice-tactics
+prerequisites: []
 summary: |
   The grammar of arithmetic: PEMDAS, sign rules, and what changes when a value need not be an integer. Estimation and plugging-in pay off heavily here.
 sections:

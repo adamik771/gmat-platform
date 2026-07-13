@@ -2,7 +2,7 @@
 slug: quant-15-inequalities-absolute-value
 title: "Algebra: Inequalities & Absolute Value"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 85
 prerequisites:
   - quant-14-quadratics-factoring
 summary: |
@@ -15,7 +15,7 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - algebra-q67
-      - algebra-q14
+      - algebra-q66
   - id: inequalities
     type: reading
     title: "Inequalities — the sign flip you can't forget"

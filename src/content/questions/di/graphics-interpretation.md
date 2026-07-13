@@ -1440,7 +1440,13 @@ The correct answer is B.
 
 ## Q38 (Set 15 — SaaS Dashboard Snapshot)
 
-Description: A dashboard for a subscription software company displays three metrics. Monthly recurring revenue (MRR) in January: $4.5 million. Annualized net revenue retention (NRR): 112%. Monthly gross churn rate: approximately 2% of MRR.
+A dashboard for a subscription software company displays three metrics:
+
+| Dashboard metric | Value |
+|---|---|
+| Monthly recurring revenue (MRR), January | $4.5 million |
+| Net revenue retention (NRR), annualized | 112% |
+| Monthly gross churn rate | approximately 2% of MRR |
 
 **difficulty:** Hard
 **type:** Graphics Interpretation

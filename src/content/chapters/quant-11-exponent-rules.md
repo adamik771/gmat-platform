@@ -2,7 +2,7 @@
 slug: quant-11-exponent-rules
 title: "Exponents: The Rules & Scientific Notation"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 80
 prerequisites:
   - quant-10-primes-remainders
 summary: |

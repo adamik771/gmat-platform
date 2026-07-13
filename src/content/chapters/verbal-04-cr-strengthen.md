@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q17
-      - critical-reasoning-q18
+      - critical-reasoning-q132
+      - critical-reasoning-q136
   - id: cr-strengthen
     type: reading
     title: "CR: Strengthen"

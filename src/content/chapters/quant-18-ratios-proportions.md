@@ -2,7 +2,7 @@
 slug: quant-18-ratios-proportions
 title: "Ratios & Proportions"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 50
 prerequisites:
   - quant-17-translating-word-problems
 summary: |

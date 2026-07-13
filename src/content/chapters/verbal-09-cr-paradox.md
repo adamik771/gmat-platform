@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q57
-      - critical-reasoning-q58
+      - critical-reasoning-q190
+      - critical-reasoning-q159
   - id: cr-paradox
     type: reading
     title: "CR: Paradox"

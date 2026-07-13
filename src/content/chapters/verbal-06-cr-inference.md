@@ -15,7 +15,7 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - critical-reasoning-q33
-      - critical-reasoning-q34
+      - critical-reasoning-q144
   - id: cr-inference
     type: reading
     title: "CR: Inference"

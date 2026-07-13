@@ -2,7 +2,7 @@
 slug: quant-19-percents
 title: "Percents & Percent Change"
 section: Quant
-estimated_minutes: 11
+estimated_minutes: 70
 prerequisites:
   - quant-18-ratios-proportions
 summary: |

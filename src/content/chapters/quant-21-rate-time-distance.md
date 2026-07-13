@@ -2,7 +2,7 @@
 slug: quant-21-rate-time-distance
 title: "Rates: Time, Distance & Speed"
 section: Quant
-estimated_minutes: 10
+estimated_minutes: 70
 prerequisites:
   - quant-20-mixtures-weighted-averages
 summary: |
