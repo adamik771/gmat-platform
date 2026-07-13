@@ -30,7 +30,12 @@ export async function POST(request: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const body = (await request.json()) as { email?: string }
+  let body: { email?: string }
+  try {
+    body = (await request.json()) as { email?: string }
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 })
+  }
   const nextEmail = (body.email ?? "").trim().toLowerCase()
 
   if (!nextEmail || !EMAIL_RE.test(nextEmail)) {

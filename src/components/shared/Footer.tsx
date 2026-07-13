@@ -5,8 +5,10 @@ import { SITE_CONTACT_EMAIL } from "@/lib/site"
 
 const platformLinks = [
   { label: "Course Overview", href: "/course" },
+  { label: "Free 7-Day Trial", href: "/gmat-free-trial" },
   { label: "Pricing", href: "/pricing" },
   { label: "Free Resources", href: "/resources" },
+  { label: "GMAT Focus Changes", href: "/gmat-focus-edition-changes" },
   { label: "Refer a Friend", href: "/refer" },
   { label: "FAQ", href: "/faq" },
   { label: "Login", href: "/login" },

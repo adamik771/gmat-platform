@@ -479,6 +479,11 @@ export default function PostPage() {
             </Link>
           </div>
         </div>
+        <p className="text-[13px] text-[#888888] leading-relaxed mb-8">
+          <Link href="/gmat-focus-edition-changes" className="underline underline-offset-2" style={{ color: "#C9A84C" }}>
+            For the quick reference, see the GMAT Focus Edition changes overview.
+          </Link>
+        </p>
         <RelatedPosts currentSlug="gmat-focus-vs-old-gmat-whats-changed" />
       </article>
       <style>{`

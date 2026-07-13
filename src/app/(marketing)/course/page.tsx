@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   title: "Course",
   alternates: { canonical: "/course" },
   description:
-    "A complete GMAT prep system. One guided path through 50+ chapters.",
+    `A complete GMAT prep system. One guided path through ${CHAPTER_COUNT_CLAIM} chapters.`,
 }
 
 // The guided path, phase by phase. Each phase lists the slugs of a few
@@ -200,7 +201,7 @@ export default function CoursePage() {
               <span className="text-[#888888]">Not a collection of videos.</span>
             </h1>
             <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl">
-              One guided path through 50+ chapters, built around how the GMAT
+              One guided path through {CHAPTER_COUNT_CLAIM} chapters, built around how the GMAT
               actually tests you. Each chapter connects to the next. Every
               mistake feeds into the system.
             </p>
@@ -420,7 +421,7 @@ export default function CoursePage() {
             </span>
           </h2>
           <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed mb-10">
-            Choose your plan and start your first lesson today.
+            Start your free 7-day full-access trial — no card required — and open your first chapter today.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link

@@ -49,18 +49,6 @@ const SECTION_TARGET_MIN: Record<Section, number> = {
   DI: 2.5,
 }
 
-/**
- * Scale an accuracy percentage (0-100) to an estimated GMAT Focus total
- * (205..805 in 10-point increments). Matches the derivation on the
- * dashboard's Score Goal card so the two surfaces don't drift.
- */
-function accuracyToFocusTotal(accuracy: number): number {
-  const clamped = Math.max(0, Math.min(100, accuracy))
-  // 0% → 60 per section → 205 total. 100% → 90 per section → 805 total.
-  const raw = 205 + clamped * 6.0
-  return 205 + Math.round((raw - 205) / 10) * 10
-}
-
 /** Shape returned by the get_analytics_aggregates() RPC — compact per-group
  *  aggregates the database computes from practice_attempts (RLS-scoped to the
  *  caller), replacing the legacy ~20k-row fetch + JS fan-out. */
@@ -156,7 +144,7 @@ export default async function AnalyticsPage() {
       const [{ data: sessions }, { data: aggRaw }] = await Promise.all([
         supabase
           .from("practice_sessions")
-          .select("accuracy, section, created_at")
+          .select("slug, section, created_at, total_questions, correct_count")
           .eq("user_id", user.id)
           .gte("created_at", eightWeeksAgo)
           .order("created_at", { ascending: true }),
@@ -165,9 +153,16 @@ export default async function AnalyticsPage() {
       const agg = (aggRaw ?? null) as AnalyticsAggregates | null
 
       if (sessions && sessions.length > 0) {
-        type Bucket = { overall: number[]; Quant: number[]; Verbal: number[]; DI: number[] }
+        // Question-weighted, review-excluded (same rules as the dashboard's
+        // weekly accuracy): an unweighted mean of session accuracies let a
+        // 2-question review replay of past misses count like a 45-question
+        // set and systematically dragged the trajectory down.
+        type Tally = { correct: number; total: number }
+        type Bucket = { overall: Tally; Quant: Tally; Verbal: Tally; DI: Tally }
+        const newTally = (): Tally => ({ correct: 0, total: 0 })
         const weeks = new Map<string, Bucket>()
         for (const s of sessions) {
+          if (String(s.slug ?? "").startsWith("review-")) continue
           const d = new Date(s.created_at as string)
           const weekStart = new Date(d)
           weekStart.setDate(d.getDate() - d.getDay())
@@ -178,16 +173,19 @@ export default async function AnalyticsPage() {
           ).padStart(2, "0")}-${String(weekStart.getDate()).padStart(2, "0")}`
           const bucket =
             weeks.get(key) ?? {
-              overall: [],
-              Quant: [],
-              Verbal: [],
-              DI: [],
+              overall: newTally(),
+              Quant: newTally(),
+              Verbal: newTally(),
+              DI: newTally(),
             }
-          const acc = Number(s.accuracy)
-          bucket.overall.push(acc)
+          const total = (s.total_questions as number) ?? 0
+          const correct = (s.correct_count as number) ?? 0
+          bucket.overall.total += total
+          bucket.overall.correct += correct
           const sec = s.section as Section | string
           if (sec === "Quant" || sec === "Verbal" || sec === "DI") {
-            bucket[sec].push(acc)
+            bucket[sec].total += total
+            bucket[sec].correct += correct
           }
           weeks.set(key, bucket)
         }
@@ -197,9 +195,9 @@ export default async function AnalyticsPage() {
           .map(([weekKey, b], i) => {
             const [wy, wm, wd] = weekKey.split("-").map(Number)
             const weekDate = new Date(wy, (wm ?? 1) - 1, wd ?? 1)
-            const mean = (arr: number[]) =>
-              arr.length > 0 ? arr.reduce((x, y) => x + y, 0) / arr.length : null
-            const overallAcc = mean(b.overall)
+            const pct = (tal: Tally) =>
+              tal.total > 0 ? (tal.correct / tal.total) * 100 : null
+            const overallAcc = pct(b.overall)
             return {
               weekKey,
               weekLabel:
@@ -208,11 +206,11 @@ export default async function AnalyticsPage() {
                 }) + ` W${Math.ceil(weekDate.getDate() / 7)}`,
               index: i,
               total:
-                overallAcc !== null ? accuracyToFocusTotal(overallAcc) : null,
+                overallAcc !== null ? accuracyToScore(overallAcc / 100) : null,
               overallAccuracy: overallAcc !== null ? Math.round(overallAcc) : null,
-              quant: mean(b.Quant) !== null ? Math.round(mean(b.Quant)!) : null,
-              verbal: mean(b.Verbal) !== null ? Math.round(mean(b.Verbal)!) : null,
-              di: mean(b.DI) !== null ? Math.round(mean(b.DI)!) : null,
+              quant: pct(b.Quant) !== null ? Math.round(pct(b.Quant)!) : null,
+              verbal: pct(b.Verbal) !== null ? Math.round(pct(b.Verbal)!) : null,
+              di: pct(b.DI) !== null ? Math.round(pct(b.DI)!) : null,
             }
           })
       }
@@ -435,7 +433,7 @@ export default async function AnalyticsPage() {
                   readinessSecStats[s].correct / readinessSecStats[s].total
               )
               .reduce((x, y) => x + y, 0) / 3
-          const readinessTotal = accuracyToFocusTotal(avgAccuracy * 100)
+          const readinessTotal = accuracyToScore(avgAccuracy)
           const [date, group] = completeMocks[0]
           const mockTotal = mockTotalFor(group)
           const signedDelta = readinessTotal - mockTotal
@@ -550,12 +548,6 @@ function BaselineView({
       title: "Calibration",
       answers: "Are you over- or under-confident on what you know?",
       unlock: "Unlocks after 10+ confidence-rated answers.",
-    },
-    {
-      Icon: BarChart3,
-      title: "Score-report mirror",
-      answers: "How will the GMAC ESR break down your performance?",
-      unlock: "Unlocks after enough section + question-type coverage.",
     },
   ]
 

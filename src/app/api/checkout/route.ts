@@ -46,9 +46,15 @@ export async function POST(request: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const body = (await request.json()) as {
+  type CheckoutBody = {
     planId?: string
     cancelPath?: string
+  }
+  let body: CheckoutBody
+  try {
+    body = (await request.json()) as CheckoutBody
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 })
   }
   const planId = body.planId
   if (!planId || !PLAN_IDS.includes(planId as PlanId)) {

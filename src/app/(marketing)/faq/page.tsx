@@ -68,7 +68,7 @@ const categories: FAQCategory[] = [
         question: "What do I get with a free account?",
         answer: PAYWALL_ENABLED
           ? `Every new account starts a free ${TRIAL_DAYS}-day trial with full access to everything — all ${CHAPTER_COUNT_CLAIM} chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, and the AI tutor. No credit card required at signup.`
-          : "A free 7-day trial with full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+          : `A free 7-day trial with full access to everything: all ${CHAPTER_COUNT_CLAIM} chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.`,
       },
       {
         question: "Do I need a credit card to sign up?",
@@ -119,7 +119,7 @@ const categories: FAQCategory[] = [
       {
         question: "How is the curriculum structured?",
         answer:
-          "50+ chapters covering every GMAT Focus topic across Quant, Verbal, and Data Insights. Each chapter has a pre-test (~2 questions), 6-9 reading sections with in-chapter recall checks, and a graded problem set across easy / medium / hard tiers.",
+          `${CHAPTER_COUNT_CLAIM} chapters covering every GMAT Focus topic across Quant, Verbal, and Data Insights. Each chapter has a pre-test (~2 questions), 6-9 reading sections with in-chapter recall checks, and a graded problem set across easy / medium / hard tiers.`,
       },
       {
         question: "Can I skip chapters I already know?",

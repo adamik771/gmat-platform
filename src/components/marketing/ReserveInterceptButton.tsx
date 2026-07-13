@@ -60,9 +60,10 @@ export default function ReserveInterceptButton({
           }}
         >
           <p className="text-[12px] text-[#C0C0C0] leading-relaxed">
-            Checkout opens shortly. Until then the full platform is free to
-            use, and you can lock a founding-member discount on this exact
-            plan — we&apos;ll email you your code the day checkout opens.
+            Paid checkout hasn&apos;t opened yet. Until then the full platform
+            is free to use, and you can lock a founding-member discount on
+            this exact plan — we&apos;ll email you your code when checkout
+            opens.
           </p>
           <Link
             href="#founding"

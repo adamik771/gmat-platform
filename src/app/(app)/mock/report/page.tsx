@@ -114,9 +114,25 @@ export default async function MockReportPage() {
   const dateMatch = firstSlug.match(/^mock-(\d{4}-\d{2}-\d{2})-/)
   const targetDate = dateMatch?.[1] ?? null
 
-  const mostRecent = targetDate
-    ? sessionRows.filter((r) => (r.slug as string).startsWith(`mock-${targetDate}-`))
-    : sessionRows.slice(0, 3)
+  // One row per SECTION, newest first (sessionRows is created_at desc).
+  // Mock slugs are only unique per day+section, so a full mock plus a later
+  // single-section rep the same day used to merge into one bogus report:
+  // duplicate section rows, the total averaged over 4+ entries, and a
+  // finished full mock relabeled "Partial".
+  const dedupeBySection = (rows: typeof sessionRows) => {
+    const seen = new Set<string>()
+    return rows.filter((r) => {
+      const sec = r.section as string
+      if (seen.has(sec)) return false
+      seen.add(sec)
+      return true
+    })
+  }
+  const mostRecent = dedupeBySection(
+    targetDate
+      ? sessionRows.filter((r) => (r.slug as string).startsWith(`mock-${targetDate}-`))
+      : sessionRows.slice(0, 3)
+  )
 
   // Mode label = the `topic` we wrote at save time (e.g., "Full mock",
   // "Quant-only mock", "Hard-question mock"). Older sessions wrote the
@@ -571,7 +587,7 @@ export default async function MockReportPage() {
                         {Math.round(r.avgTimePerQuestionMs / 1000)}s avg/q
                       </p>
                       <p className="text-[11px] text-[#555555] mt-2 uppercase tracking-[0.16em] font-medium">
-                        {sectionPercentile(section, accuracyToSectionScore(r.accuracy))}th percentile
+                        ~{sectionPercentile(section, accuracyToSectionScore(r.accuracy))}th percentile (est.)
                       </p>
                     </>
                   ) : (

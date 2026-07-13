@@ -26,6 +26,7 @@ import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getReviewQueue, type ReviewCandidate } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import { TRIAL_DAYS, trialDaysLeft, trialStartFor } from "@/lib/entitlements"
 import {
   officialExamReminder,
   parseIsoDate,
@@ -44,6 +45,8 @@ import {
 import type { Section } from "@/types"
 import { getUserState, type UserState } from "@/lib/user-state"
 import { isChapterRead } from "@/lib/chapter-progress-merge"
+import { sectionScoresToTotal } from "@/lib/scoring"
+import { accuracyToSectionScore } from "@/lib/score-percentiles"
 import { localDayIso } from "@/lib/utils"
 import TargetScoreControl from "./TargetScoreControl"
 
@@ -281,27 +284,12 @@ export default async function DashboardPage() {
   let weekAccuracy: number | null = null
   let totalSessionCount: number | null = null
   // Per-section stats split into overall / thisWeek / priorWeek so we can
-  // derive a section score (60-90) and a week-over-week trend label.
+  // derive a section score (60-90) for the estimated-total readout.
   type SectionBucket = { total: number; correct: number }
-  const sectionStats: Record<
-    Section,
-    { overall: SectionBucket; thisWeek: SectionBucket; priorWeek: SectionBucket }
-  > = {
-    Quant: {
-      overall: { total: 0, correct: 0 },
-      thisWeek: { total: 0, correct: 0 },
-      priorWeek: { total: 0, correct: 0 },
-    },
-    Verbal: {
-      overall: { total: 0, correct: 0 },
-      thisWeek: { total: 0, correct: 0 },
-      priorWeek: { total: 0, correct: 0 },
-    },
-    DI: {
-      overall: { total: 0, correct: 0 },
-      thisWeek: { total: 0, correct: 0 },
-      priorWeek: { total: 0, correct: 0 },
-    },
+  const sectionStats: Record<Section, { overall: SectionBucket }> = {
+    Quant: { overall: { total: 0, correct: 0 } },
+    Verbal: { overall: { total: 0, correct: 0 } },
+    DI: { overall: { total: 0, correct: 0 } },
   }
   let recentMistakes: {
     id: string
@@ -380,12 +368,13 @@ export default async function DashboardPage() {
           .eq("user_id", userId),
         supabase
           .from("practice_attempts")
-          .select("section, is_correct, practice_sessions(created_at)")
+          .select("section, is_correct")
           .eq("user_id", userId)
           // Safety cap against an unbounded multi-year history. The section
-          // stats below aggregate order-independently, so this is a no-op for
-          // any realistic account.
-          .order("session_id", { ascending: false })
+          // stats below aggregate order-independently; created_at (not a
+          // UUID column) keeps the capped slice the RECENT history if a
+          // power user ever exceeds it.
+          .order("created_at", { ascending: false })
           .limit(20000),
         supabase
           .from("lesson_completions")
@@ -396,7 +385,9 @@ export default async function DashboardPage() {
           .select("id, question_id, section, topic")
           .eq("user_id", userId)
           .eq("is_correct", false)
-          .order("session_id", { ascending: false })
+          // created_at, not session_id: session ids are random UUIDs, so
+          // "recent" was an arbitrary frozen slice of the mistake history.
+          .order("created_at", { ascending: false })
           .limit(3),
         supabase
           .from("purchases")
@@ -491,30 +482,14 @@ export default async function DashboardPage() {
       // buckets for trend calculations.
       const { data: sectionAttempts } = sectionAttemptsRes
 
-      const weekAgoMs = Date.now() - 7 * 86400000
-      const twoWeeksAgoMs = Date.now() - 14 * 86400000
-      type AttemptWithSession = {
+      for (const a of (sectionAttempts as Array<{
         section: string
         is_correct: boolean
-        practice_sessions: { created_at: string } | null
-      }
-      for (const a of (sectionAttempts as AttemptWithSession[] | null) ?? []) {
+      }> | null) ?? []) {
         const sec = a.section as Section
         if (!sectionStats[sec]) continue
         sectionStats[sec].overall.total++
         if (a.is_correct) sectionStats[sec].overall.correct++
-
-        const createdAt = a.practice_sessions?.created_at
-        if (createdAt) {
-          const t = new Date(createdAt).getTime()
-          if (t >= weekAgoMs) {
-            sectionStats[sec].thisWeek.total++
-            if (a.is_correct) sectionStats[sec].thisWeek.correct++
-          } else if (t >= twoWeeksAgoMs) {
-            sectionStats[sec].priorWeek.total++
-            if (a.is_correct) sectionStats[sec].priorWeek.correct++
-          }
-        }
       }
 
       // Lessons completed count
@@ -721,71 +696,23 @@ export default async function DashboardPage() {
   // to avoid wild swings from 1-2 lucky answers.
   const SECTION_MIN_SAMPLE = 10
 
-  /** Accuracy (0-1) → official GMAT section scaled score (60-90). */
-  function scaledSectionScore(correct: number, total: number): number {
-    return Math.round(60 + (correct / total) * 30)
-  }
-
-  /**
-   * Sum of section scores → GMAT Focus total (205, 215, 225, …, 805).
-   * Three sections each contribute 30 points above the 60 floor, so
-   * 600 raw points map to the 600-point 205..805 range (1:1 at max).
-   * Round to the nearest valid Focus score (increments of 10 offset by 5).
-   */
-  function scaledTotalScore(
-    quant: number,
-    verbal: number,
-    di: number
-  ): number {
-    const above60 = quant - 60 + (verbal - 60) + (di - 60)
-    const raw = 205 + above60 * 6.6667
-    const rounded = 205 + Math.round((raw - 205) / 10) * 10
-    return Math.min(805, Math.max(205, rounded))
-  }
-
-  const sectionDerived: Record<
-    Section,
-    {
-      score: number | null
-      accuracy: number | null
-      trend: "up" | "down" | "stable" | undefined
-      trendLabel: string | undefined
+  // Shared scoring helpers (src/lib): the local re-implementations they
+  // replace were one of THREE parallel estimated-score derivations across
+  // dashboard / study-plan / analytics that could disagree by a snap step.
+  function deriveSection(section: Section): { score: number | null } {
+    const s = sectionStats[section]
+    const hasEnough = s.overall.total >= SECTION_MIN_SAMPLE
+    return {
+      score: hasEnough
+        ? accuracyToSectionScore(s.overall.correct / s.overall.total)
+        : null,
     }
-  > = {
+  }
+
+  const sectionDerived: Record<Section, { score: number | null }> = {
     Quant: deriveSection("Quant"),
     Verbal: deriveSection("Verbal"),
     DI: deriveSection("DI"),
-  }
-
-  function deriveSection(section: Section) {
-    const s = sectionStats[section]
-    const hasEnough = s.overall.total >= SECTION_MIN_SAMPLE
-    const accuracy = hasEnough
-      ? Math.round((s.overall.correct / s.overall.total) * 100)
-      : null
-    const score = hasEnough
-      ? scaledSectionScore(s.overall.correct, s.overall.total)
-      : null
-
-    let trend: "up" | "down" | "stable" | undefined
-    let trendLabel: string | undefined
-    if (s.thisWeek.total >= 3 && s.priorWeek.total >= 3) {
-      const thisWeekAcc = (s.thisWeek.correct / s.thisWeek.total) * 100
-      const priorWeekAcc = (s.priorWeek.correct / s.priorWeek.total) * 100
-      const delta = Math.round(thisWeekAcc - priorWeekAcc)
-      if (Math.abs(delta) < 2) {
-        trend = "stable"
-        trendLabel = "flat"
-      } else if (delta > 0) {
-        trend = "up"
-        trendLabel = `+${delta}%`
-      } else {
-        trend = "down"
-        trendLabel = `${delta}%`
-      }
-    }
-
-    return { score, accuracy, trend, trendLabel }
   }
 
   const allSectionsHaveSample =
@@ -794,7 +721,7 @@ export default async function DashboardPage() {
     sectionDerived.DI.score !== null
 
   const estimatedTotal = allSectionsHaveSample
-    ? scaledTotalScore(
+    ? sectionScoresToTotal(
         sectionDerived.Quant.score!,
         sectionDerived.Verbal.score!,
         sectionDerived.DI.score!
@@ -815,6 +742,19 @@ export default async function DashboardPage() {
 
   // Daily question goal — per-user override stored in user_metadata,
   // defaults to 25 when unset. Drives the goal widget in the hero.
+  // Trial status — signup promises a 7-day full-access trial, but nothing in
+  // the app ever mentioned it again; a student who took the framing literally
+  // hit day 8 with no signal. One honest line: day counter while it runs, and
+  // the over-delivery message after (paywall is off, access continues free).
+  const trialStart = user ? trialStartFor(user) : null
+  const trialLeft = trialStart ? trialDaysLeft(trialStart, new Date()) : null
+  const trialLine =
+    trialLeft === null
+      ? null
+      : trialLeft > 0
+        ? `Day ${TRIAL_DAYS - trialLeft + 1} of your ${TRIAL_DAYS}-day full-access trial`
+        : "Trial period over — access continues free until paid checkout opens"
+
   const rawDailyGoal = user?.user_metadata?.daily_question_goal
   const dailyQuestionGoal: number =
     typeof rawDailyGoal === "number" && rawDailyGoal > 0 && rawDailyGoal <= 200
@@ -1388,6 +1328,12 @@ export default async function DashboardPage() {
             </h1>
             <p className="text-[12px] mt-1" style={{ color: "#888888" }}>
               {today}
+              {trialLine && (
+                <>
+                  <span className="mx-1.5 text-[#444444]">·</span>
+                  <span style={{ color: "#C9A84C" }}>{trialLine}</span>
+                </>
+              )}
             </p>
           </div>
           <div className="flex items-center gap-3 flex-shrink-0">
@@ -1630,6 +1576,19 @@ export default async function DashboardPage() {
                 initialTarget={targetScore}
                 estimate={estimatedTotal}
               />
+              {/* The one on-dashboard readiness readout — the pre-data locked
+                  tile promises a 205-805 estimate, and this is where it lands
+                  once every section clears the 10-attempt sample gate. */}
+              {estimatedTotal !== null && (
+                <>
+                  <span className="text-[11px] text-[#555555]" aria-hidden>
+                    ·
+                  </span>
+                  <span className="text-[11px] tabular-nums" style={{ color: "#C9A84C" }}>
+                    est. {estimatedTotal}
+                  </span>
+                </>
+              )}
             </div>
           </div>
 
