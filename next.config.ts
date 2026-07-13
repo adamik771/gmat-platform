@@ -62,6 +62,10 @@ const nextConfig: NextConfig = {
       { source: "/diagnostic/:path*", destination: "/mock", permanent: true },
       { source: "/free-diagnostic", destination: "/signup", permanent: true },
       { source: "/free-diagnostic/:path*", destination: "/signup", permanent: true },
+      // "Private beta" positioning retired (2026-07): the public offer is the
+      // 7-day full-access trial, so the old founding/beta landing URL forwards
+      // to the clean trial page. Old ads/snippets may still link it.
+      { source: "/gmat-private-beta", destination: "/gmat-free-trial", permanent: true },
       { source: "/chapters/critical-reasoning", destination: "/chapters/verbal-02-cr-argument-structure", permanent: true },
       { source: "/chapters/reading-comprehension", destination: "/chapters/verbal-13-rc-reading-process", permanent: true },
       { source: "/chapters/verbal-1-foundations", destination: "/chapters/verbal-01-foundations", permanent: true },

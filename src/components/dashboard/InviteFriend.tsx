@@ -53,7 +53,7 @@ export default function InviteFriend({
           </p>
           <p className="text-[13px] text-[#888888] leading-relaxed mb-4">
             Send them the platform — free 7-day trial, no card. They get the
-            founding discount when paid plans launch, and you get a $50 reward
+            founding discount when checkout opens, and you get a $50 reward
             when they join as a founding member.
           </p>
           <div className="flex flex-col sm:flex-row gap-2.5">

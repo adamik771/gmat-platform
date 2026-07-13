@@ -46,7 +46,7 @@ export default function ReferralShare() {
 
 Take a look: ${link}
 
-If you reserve founding access, mention my name and you'll get the founding discount when paid plans launch.${signoff}`
+If you reserve founding access, mention my name and you'll get the founding discount when checkout opens.${signoff}`
   }, [link, name])
 
   async function copyMessage() {

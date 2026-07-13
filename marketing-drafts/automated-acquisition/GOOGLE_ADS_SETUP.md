@@ -1,5 +1,7 @@
 # Google Search Ads Setup
 
+> **STALE — do not build ads from this doc (2026-07-13).** It predates the offer change: the public offer is now the **free 7-day full-access trial, no card** (never "free beta"/"private beta"), `/gmat-private-beta` redirects to `/gmat-free-trial`, and founding pricing is a down-funnel /pricing offer, not an ad angle. Use `google-ads-launch/` (updated) + `marketing-drafts/acquisition-cleanup/OFFER_AUDIT.md` for current wording; keep this file only for the keyword/negative research below.
+
 Acquisition playbook for **Zakarian GMAT** (zakariangmat.com) on Google Search Ads. Search only — this doc does not cover Display, PMax, or YouTube.
 
 This is decision-support for the founder. Everything below is built to match the platform as it actually exists. Nothing here implies affiliation with GMAC, the GMAT, GMAT Focus Edition, or mba.com. "GMAT" and "GMAT Focus Edition" are referenced nominatively only (describing what the platform helps you prepare for); they are not used as if Zakarian GMAT is endorsed by or partnered with the trademark holder.
