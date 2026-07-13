@@ -2,7 +2,7 @@
 slug: quant-25-permutations-combinations
 title: "Permutations & Combinations"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 90
 prerequisites:
   - quant-24-counting-basics
 summary: |

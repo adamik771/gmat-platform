@@ -188,6 +188,15 @@ export function trialStartFor(user: {
   user_metadata?: Record<string, unknown> | null
 }): string | null {
   const epochRaw = process.env.PAYWALL_TRIAL_EPOCH
+  if (!epochRaw && PAYWALL_ENABLED) {
+    // Loud guard for the unsafe combination: with the paywall ON and no
+    // server-side epoch, the trial anchor is user_metadata.trial_started_at,
+    // which any signed-in user can rewrite via auth.updateUser() to extend
+    // their own trial indefinitely. Set PAYWALL_TRIAL_EPOCH at flip time.
+    console.error(
+      "[entitlements] PAYWALL_ENABLED is true but PAYWALL_TRIAL_EPOCH is unset — trial starts fall back to user-editable metadata. Set the epoch env var."
+    )
+  }
   if (epochRaw) {
     const epoch = new Date(epochRaw).getTime()
     if (!Number.isNaN(epoch)) {

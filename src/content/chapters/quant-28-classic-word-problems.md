@@ -2,9 +2,9 @@
 slug: quant-28-classic-word-problems
 title: "Classic Word Problems"
 section: Quant
-estimated_minutes: 10
+estimated_minutes: 85
 prerequisites:
-  - quant-27-probability
+  - quant-17-translating-word-problems
 summary: |
   Profit/markup, ages-coins-digits setups, and max/min optimization under constraints.
 sections:

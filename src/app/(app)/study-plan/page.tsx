@@ -920,91 +920,6 @@ export default async function StudyPlanPage({
         </div>
       </section>
 
-      {/* Persona card — research-report segmentation by (baseline, target).
-          Drives copy, emphasis, and downstream mastery thresholds. Shows
-          "Not yet assigned" with a baseline CTA when baseline is null. */}
-      {persona && <PersonaCard persona={persona} />}
-
-      {/* Persona path — each baseline-derived persona gets a short,
-          tailored "do these next" list. Research-report segment table
-          drives the prescription per persona: Rebuilder rebuilds
-          fundamentals, Improver rehearses consistency, Stretcher hits
-          harder pools + review/edit discipline, Elite calibrates
-          against official-style mocks. Hidden when persona is unknown. */}
-      {persona && persona.key !== "unknown" && (
-        <PersonaPathCard
-          personaKey={persona.key}
-          completedTags={completedTags}
-          tags={persona.tags}
-        />
-      )}
-
-      {/* Baseline attribution — only when an official score exists, so the
-          plan is visibly rooted in real data. Tiny line; clicks through to
-          the exam plan. */}
-      {officialExamCount > 0 && baselineExamDate && (
-        <Link
-          href="/mock"
-          className="flex items-center justify-between gap-3 p-4 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] hover:border-white/[0.12] transition-all duration-300 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
-        >
-          <p className="text-[13px] text-[#C0C0C0]">
-            <span className="text-[#888888]">
-              Plan anchored to your latest official exam
-              {officialBaseline !== null ? ` (${officialBaseline})` : ""}
-            </span>
-            <span className="mx-2 text-[#333333]">·</span>
-            {new Date(baselineExamDate).toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </p>
-          <span
-            className="text-[11px] font-semibold uppercase tracking-[0.18em]"
-            style={{ color: "#C9A84C" }}
-          >
-            View report →
-          </span>
-        </Link>
-      )}
-
-      {/* Adaptive multi-week plan link — synthesises every signal source
-          (official exams, mocks, practice, timing, confidence, mistakes,
-          spaced queue) into a 2-4 week schedule. Sits above today's
-          focus so students can choose between zoomed-in (today) and
-          zoomed-out (week) views. */}
-      <Link
-        href="/study-plan/adaptive"
-        className="group flex items-center justify-between gap-4 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
-        style={{
-          borderColor: "rgba(201,168,76,0.18)",
-          backgroundColor: "#0D0D0D",
-          boxShadow:
-            "0 0 40px rgba(201,168,76,0.05), inset 0 1px 0 rgba(255,255,255,0.04)",
-        }}
-      >
-        <div className="flex items-start gap-3">
-          <CalendarDays
-            className="w-4 h-4 mt-0.5 flex-shrink-0"
-            style={{ color: "#C9A84C" }}
-          />
-          <div>
-            <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
-              Open your adaptive multi-week plan
-            </p>
-            <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
-              Synthesised from your official exams, mocks, practice attempts,
-              timing patterns, confidence log, and mistake-log patterns.
-              Re-runs every visit so the schedule stays current.
-            </p>
-          </div>
-        </div>
-        <ArrowRight
-          className="w-4 h-4 flex-shrink-0 text-[#C9A84C] group-hover:translate-x-0.5 transition-transform"
-          aria-hidden
-        />
-      </Link>
-
       {/* Today's focus — adaptive action queue ranked by impact.
           Highest-priority item first; up to 3 shown. */}
       {plan && plan.todaysFocus.length > 0 && (
@@ -1160,7 +1075,7 @@ export default async function StudyPlanPage({
           attempt pools), fed by an uncapped query that silently truncated
           at ~1000 rows — one more number that could disagree with the other
           two. /analytics owns the score estimate. */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard
           icon={BookOpen}
           color="#C9A84C"
@@ -1191,6 +1106,96 @@ export default async function StudyPlanPage({
       {/* Official-ready status — surfaces when the user has cleared the
           official-exam readiness bar. */}
       {officialReady && <OfficialReadyCard summary={officialReady} />}
+
+      {/* Persona, baseline attribution, and the multi-week plan link sit
+          BELOW the actionable blocks: beta feedback said the answer to
+          "what should I do today?" was buried ~1000px down, under four
+          cards of context. Today's Focus and the 7-day calendar now lead. */}
+      {/* Persona card — research-report segmentation by (baseline, target).
+          Drives copy, emphasis, and downstream mastery thresholds. Shows
+          "Not yet assigned" with a baseline CTA when baseline is null. */}
+      {persona && <PersonaCard persona={persona} />}
+
+      {/* Persona path — each baseline-derived persona gets a short,
+          tailored "do these next" list. Research-report segment table
+          drives the prescription per persona: Rebuilder rebuilds
+          fundamentals, Improver rehearses consistency, Stretcher hits
+          harder pools + review/edit discipline, Elite calibrates
+          against official-style mocks. Hidden when persona is unknown. */}
+      {persona && persona.key !== "unknown" && (
+        <PersonaPathCard
+          personaKey={persona.key}
+          completedTags={completedTags}
+          tags={persona.tags}
+        />
+      )}
+
+      {/* Baseline attribution — only when an official score exists, so the
+          plan is visibly rooted in real data. Tiny line; clicks through to
+          the exam plan. */}
+      {officialExamCount > 0 && baselineExamDate && (
+        <Link
+          href="/mock"
+          className="flex items-center justify-between gap-3 p-4 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] hover:border-white/[0.12] transition-all duration-300 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
+        >
+          <p className="text-[13px] text-[#C0C0C0]">
+            <span className="text-[#888888]">
+              Plan anchored to your latest official exam
+              {officialBaseline !== null ? ` (${officialBaseline})` : ""}
+            </span>
+            <span className="mx-2 text-[#333333]">·</span>
+            {new Date(baselineExamDate).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </p>
+          <span
+            className="text-[11px] font-semibold uppercase tracking-[0.18em]"
+            style={{ color: "#C9A84C" }}
+          >
+            View report →
+          </span>
+        </Link>
+      )}
+
+      {/* Adaptive multi-week plan link — synthesises every signal source
+          (official exams, mocks, practice, timing, confidence, mistakes,
+          spaced queue) into a 2-4 week schedule. Sits above today's
+          focus so students can choose between zoomed-in (today) and
+          zoomed-out (week) views. */}
+      <Link
+        href="/study-plan/adaptive"
+        className="group flex items-center justify-between gap-4 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
+        style={{
+          borderColor: "rgba(201,168,76,0.18)",
+          backgroundColor: "#0D0D0D",
+          boxShadow:
+            "0 0 40px rgba(201,168,76,0.05), inset 0 1px 0 rgba(255,255,255,0.04)",
+        }}
+      >
+        <div className="flex items-start gap-3">
+          <CalendarDays
+            className="w-4 h-4 mt-0.5 flex-shrink-0"
+            style={{ color: "#C9A84C" }}
+          />
+          <div>
+            <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
+              Open your adaptive multi-week plan
+            </p>
+            <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
+              Synthesised from your official exams, mocks, practice attempts,
+              timing patterns, confidence log, and mistake-log patterns.
+              Re-runs every visit so the schedule stays current.
+            </p>
+          </div>
+        </div>
+        <ArrowRight
+          className="w-4 h-4 flex-shrink-0 text-[#C9A84C] group-hover:translate-x-0.5 transition-transform"
+          aria-hidden
+        />
+      </Link>
+
 
       {/* Weak areas — topic-level accuracy deficit driven from real attempts.
           Each row links to the relevant chapter so the student can read

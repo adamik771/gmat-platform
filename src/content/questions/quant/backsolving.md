@@ -882,7 +882,7 @@ The correct answer is C.
 ---
 
 ## Q28
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Backsolving
 

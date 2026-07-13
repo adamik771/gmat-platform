@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -618,7 +619,7 @@ export default function ResourcesPage() {
             </span>
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
-            50+ chapters. The adaptive study plan. The error log built into
+            {CHAPTER_COUNT_CLAIM} chapters. The adaptive study plan. The error log built into
             the platform with the spaced-review queue.
             Mock exams with debrief tools.{" "}
             {PAYWALL_ENABLED ? (

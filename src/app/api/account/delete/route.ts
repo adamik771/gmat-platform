@@ -74,10 +74,15 @@ export async function POST() {
       console.warn(`[account/delete] post-delete cleanup of ${table} failed:`, error.message)
     }
   }
-  // The marketing prospect list is keyed by email, not user_id — erase it too.
+  // Email-keyed data — erase alongside the account. Without these, a deleted
+  // account stayed subscribed=true with drip emails still pending in the
+  // queue, so the outreach cron kept mailing someone who had erased
+  // themselves from the product.
   if (email) {
-    const { error } = await service.from("lead_captures").delete().eq("email", email)
-    if (error) console.warn("[account/delete] could not clear lead_captures:", error.message)
+    for (const table of ["lead_captures", "email_queue", "email_subscriptions", "email_events"]) {
+      const { error } = await service.from(table).delete().eq("email", email)
+      if (error) console.warn(`[account/delete] could not clear ${table}:`, error.message)
+    }
   }
 
   return Response.json({ ok: true })

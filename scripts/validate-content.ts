@@ -10,6 +10,8 @@
  *   WARN     should fix soon — short explanation, missing optional taxonomy
  *   INFO     FYI — low-weight observations like uneven section coverage
  */
+import { readdirSync, readFileSync } from "node:fs"
+import path from "node:path"
 import {
   getAllQuestions,
   getAllGuides,
@@ -205,9 +207,17 @@ for (const [id, arr] of idMap) {
 
 // Duplicate prompts (normalize whitespace, lowercase, full text — a prefix
 // comparison false-positives on TA/GI set questions that share an inlined
-// table/graph block but ask different things after it)
+// table/graph block but ask different things after it). Unicode minus/dash
+// and curly quotes are folded to ASCII first: two byte-identical prompts once
+// differed only by − vs - and slipped past this check (algebra q37/q79).
 const normalize = (s: string): string =>
-  s.replace(/\s+/g, " ").trim().toLowerCase()
+  s
+    .replace(/[−–—]/g, "-")
+    .replace(/[‘’]/g, "'")
+    .replace(/[“”]/g, '"')
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase()
 const promptMap = new Map<string, ParsedQuestion[]>()
 for (const q of questions) {
   if (!q.prompt || q.prompt.trim().length < MIN_PROMPT_CHARS) continue
@@ -423,6 +433,188 @@ for (const c of chapters) {
       })
     }
   })
+}
+
+// ============================================================================
+// Content-audit rules (2026-07-13 academic audit) — raw-field canon, DS
+// placement, tier alignment, chapter shape, reading-time sanity, GI visuals.
+// ============================================================================
+
+// ERROR: raw difficulty label outside the canonical Easy/Medium/Hard
+// vocabulary. The loader silently maps aliases ("Challenge", "Medium-Hard")
+// and typos fall through to Intermediate — so a misspelled label mis-tiers a
+// question with no visible failure. Keep the source canonical.
+{
+  const QUESTIONS_DIR = path.join(process.cwd(), "src", "content", "questions")
+  const walk = (dir: string): string[] =>
+    readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith(".md") ? [path.join(dir, e.name)] : []
+    )
+  for (const file of walk(QUESTIONS_DIR)) {
+    const rel = path.relative(QUESTIONS_DIR, file)
+    const lines = readFileSync(file, "utf8").split("\n")
+    lines.forEach((line, i) => {
+      const m = line.match(/^\*\*difficulty:\*\*\s*(.+?)\s*$/)
+      if (m && !["Easy", "Medium", "Hard"].includes(m[1])) {
+        push({
+          severity: "ERROR",
+          setSlug: rel,
+          rule: "question-difficulty-noncanonical",
+          detail: `${rel}:${i + 1} difficulty "${m[1]}" — use Easy/Medium/Hard`,
+        })
+      }
+    })
+  }
+}
+
+// WARN: a Data Sufficiency question pinned inside a Quant chapter. On the
+// GMAT Focus Edition DS lives only in Data Insights (the parser already
+// forces q.section to DI), so a DS item in a Quant chapter's pretest/check/
+// problem set contradicts the course's own teaching. Re-pin to a Problem
+// Solving item, or consciously keep it and accept the warning.
+{
+  const qById = new Map(questions.map((q) => [q.id, q]))
+  for (const c of chapters) {
+    if (c.section !== "Quant") continue
+    const visit = (ids: readonly string[], where: string) => {
+      for (const qid of ids) {
+        const q = qById.get(qid)
+        if (q && q.type === "Data Sufficiency") {
+          push({
+            severity: "WARN",
+            setSlug: c.slug,
+            questionId: qid,
+            rule: "ds-pinned-in-quant-chapter",
+            detail: `${where} pins a Data Sufficiency item inside a Quant chapter`,
+          })
+        }
+      }
+    }
+    for (const s of c.sections) {
+      visit(s.pretestQuestionIds, `pretest(${s.id})`)
+      visit(s.checkQuestionIds, `check(${s.id})`)
+    }
+    for (const ps of c.problemSets) visit(ps.questionIds, `problem_set(${ps.difficulty})`)
+  }
+}
+
+// WARN: problem-set tier disagrees with the pinned question's own difficulty
+// label (easy set holding a Hard-labeled question, etc.). The reader shows
+// both labels side by side, so mismatches are student-visible.
+{
+  const qById = new Map(questions.map((q) => [q.id, q]))
+  const tierToDifficulty = { easy: "Beginner", medium: "Intermediate", hard: "Advanced" } as const
+  for (const c of chapters) {
+    for (const ps of c.problemSets) {
+      for (const qid of ps.questionIds) {
+        const q = qById.get(qid)
+        if (q && q.difficulty !== tierToDifficulty[ps.difficulty]) {
+          push({
+            severity: "WARN",
+            setSlug: c.slug,
+            questionId: qid,
+            rule: "problem-set-tier-mismatch",
+            detail: `${ps.difficulty} set pins a ${q.difficulty}-tier question`,
+          })
+        }
+      }
+    }
+  }
+}
+
+// Chapter shape: INFO when a skill chapter lacks a pretest ("try before you
+// learn") or a closing summary. Orientation chapters are exempt by design.
+{
+  const ORIENTATION = new Set(["gmat-welcome", "quant-section-intro", "verbal-section-intro", "di-section-intro"])
+  for (const c of chapters) {
+    if (ORIENTATION.has(c.slug)) continue
+    const types = c.sections.map((s) => s.type)
+    if (!types.includes("pretest")) {
+      push({ severity: "INFO", setSlug: c.slug, rule: "chapter-no-pretest", detail: "Skill chapter without a try-before-you-learn pretest" })
+    }
+    if (!types.includes("summary")) {
+      push({ severity: "INFO", setSlug: c.slug, rule: "chapter-no-summary", detail: "Chapter has no closing summary section" })
+    }
+  }
+}
+
+// WARN: estimated_minutes implies an impossible reading speed. The author's
+// calibrated chapters read at ~90-240 wpm; above 300 wpm the estimate is
+// stale (body grew, estimate didn't) and it corrupts study-plan pacing.
+for (const c of chapters) {
+  const words = c.sections.reduce((n, s) => n + s.body.split(/\s+/).length, 0)
+  if (c.estimatedMinutes > 0 && words > 0) {
+    const wpm = Math.round(words / c.estimatedMinutes)
+    if (wpm > 300) {
+      push({
+        severity: "WARN",
+        setSlug: c.slug,
+        rule: "chapter-minutes-implausible",
+        detail: `${c.estimatedMinutes} min for ${words} words = ${wpm} wpm — re-estimate`,
+      })
+    }
+  }
+}
+
+// ERROR: a chapter's declared prerequisite comes AFTER it in the guided path
+// (or doesn't exist). getAllChapters() returns guided-path order.
+{
+  const rank = new Map(chapters.map((c, i) => [c.slug, i]))
+  for (const c of chapters) {
+    for (const p of c.prerequisites) {
+      if (!rank.has(p)) {
+        push({ severity: "ERROR", setSlug: c.slug, rule: "broken-chapter-prerequisite", detail: `prerequisite "${p}" is not a known chapter slug` })
+      } else if ((rank.get(p) as number) > (rank.get(c.slug) as number)) {
+        push({
+          severity: "ERROR",
+          setSlug: c.slug,
+          rule: "prerequisite-after-chapter",
+          detail: `prerequisite "${p}" comes after this chapter in the guided path`,
+        })
+      }
+    }
+  }
+}
+
+// ERROR: a Graphics Interpretation question with no visual at all — no
+// parsed chart spec and no markdown table in its prompt/context. GI that
+// renders as a wall of prose is broken for students.
+for (const q of questions) {
+  if (q.setSlug !== "graphics-interpretation") continue
+  const hasTable = /\|.*\|/.test(`${q.prompt}\n${q.context ?? ""}`)
+  if (!q.chartSpec && !hasTable) {
+    push({
+      severity: "ERROR",
+      questionId: q.id,
+      rule: "gi-question-missing-visual",
+      detail: "GI question has neither a chart spec nor a table",
+    })
+  }
+}
+
+// INFO: old-scale GMAT score anchors ("700+ scorer", "600-level") in teaching
+// content. Focus totals end in 5 (gmat-welcome: "705 exists, 700 does not"),
+// and old-scale numbers don't map 1:1 onto Focus difficulty — rewrite to
+// Focus anchors or scale-free language ("top scorers", "the hardest items").
+{
+  const CONTENT_DIR = path.join(process.cwd(), "src", "content")
+  for (const sub of ["chapters", "guides", "lessons"]) {
+    const dir = path.join(CONTENT_DIR, sub)
+    for (const name of readdirSync(dir)) {
+      if (!name.endsWith(".md")) continue
+      const lines = readFileSync(path.join(dir, name), "utf8").split("\n")
+      lines.forEach((line, i) => {
+        if (/\b[4567][05]0(\+(?!\d)|[- ]?(level|scorers?|test-?takers?))/i.test(line)) {
+          push({
+            severity: "INFO",
+            setSlug: `${sub}/${name}`,
+            rule: "old-scale-score-anchor",
+            detail: `${sub}/${name}:${i + 1} "${line.trim().slice(0, 80)}"`,
+          })
+        }
+      })
+    }
+  }
 }
 
 // WARN: share of a shared bank's questions that fall to the bank default

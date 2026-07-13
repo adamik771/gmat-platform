@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q33
-      - reading-comprehension-q34
+      - reading-comprehension-q113
+      - reading-comprehension-q120
   - id: rc-function
     type: reading
     title: "RC: Function"

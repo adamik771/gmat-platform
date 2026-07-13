@@ -2915,7 +2915,7 @@ The correct answers are S (smallest N) = 17 and R (S mod 28) = 17.
 ---
 
 ## Q52
-**difficulty:** Challenge
+**difficulty:** Hard
 **type:** Two-Part Analysis
 **topic:** Quantitative — Arithmetic Sequence with Efficiency Constraint
 

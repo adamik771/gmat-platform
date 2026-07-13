@@ -20,7 +20,7 @@ import HeroDashboardCard from "@/components/marketing/HeroDashboardCardLazy"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
 import TrackView from "@/components/analytics/TrackView"
-import { QUESTION_CLAIM } from "@/lib/site"
+import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM } from "@/lib/site"
 import { PAYWALL_ENABLED, TRIAL_DAYS } from "@/lib/entitlements"
 
 // Self-referencing canonical + the homepage's shared-link card (moved here
@@ -97,7 +97,7 @@ const faqItems = [
   {
     question: "What if I've already tried other courses?",
     answer:
-      "Many students come to this system after TTP, Manhattan, or Magoosh. The difference is the review layer — the error log, the debrief frameworks, and the consistency system. Most prep is content-heavy. This system focuses on what you do with mistakes.",
+      "If you've already tried TTP, Manhattan, or Magoosh, the difference here is the review layer — the error log, the debrief frameworks, and the consistency system. Most prep is content-heavy. This system focuses on what you do with mistakes.",
   },
   {
     question: "Is there a refund policy?",
@@ -199,7 +199,7 @@ export default function HomePage() {
               <p className="text-xs text-[#888888] mb-2">
                 {PAYWALL_ENABLED
                   ? `Free to sign up — no credit card. Every new account starts a ${TRIAL_DAYS}-day full-access trial; after that, a one-time plan purchase (no subscription) unlocks your plan's access window, with a 14-day money-back guarantee on the self-study plans.`
-                  : "Free to start — no credit card. Every new account begins with a 7-day full-access trial: every chapter, the full question bank, mock exams and review."}
+                  : "Free to start — no credit card. Every new account begins with a 7-day full-access trial: every chapter, the full question bank, mock exams and review. After the trial, access continues with a one-time paid plan — no subscription."}
               </p>
               <p className="text-xs mb-10">
                 <Link
@@ -285,7 +285,7 @@ export default function HomePage() {
           <FeatureCard
             icon={BookOpen}
             title="Structured Curriculum"
-            description="One guided path through 50+ chapters, built around how the GMAT actually tests you — not how you think it does."
+            description={`One guided path through ${CHAPTER_COUNT_CLAIM} chapters, built around how the GMAT actually tests you — not how you think it does.`}
           />
           <FeatureCard
             icon={BarChart3}
@@ -294,7 +294,7 @@ export default function HomePage() {
           />
           <FeatureCard
             icon={Users}
-            title="Expert Coaching"
+            title="Expert Coaching (select plans)"
             description="Weekly 1:1 sessions with Adam. Not an outsourced tutor — the person who built the system."
           />
         </div>
@@ -501,7 +501,7 @@ export default function HomePage() {
               note: "one-time",
               desc: "Full platform, 4-month access",
               features: [
-                "50+ chapters — Q, V & Data Insights",
+                `${CHAPTER_COUNT_CLAIM} chapters — Q, V & Data Insights`,
                 QUESTION_CLAIM,
                 "Full analytics + error log",
                 "4-month platform access",

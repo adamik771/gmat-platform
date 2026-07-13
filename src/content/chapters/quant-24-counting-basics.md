@@ -2,7 +2,7 @@
 slug: quant-24-counting-basics
 title: "Counting: The Fundamentals"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 80
 prerequisites:
   - quant-23-statistics
 summary: |

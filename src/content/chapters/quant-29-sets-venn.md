@@ -2,7 +2,7 @@
 slug: quant-29-sets-venn
 title: "Sets & Venn Diagrams"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 25
 prerequisites:
   - quant-28-classic-word-problems
 summary: |

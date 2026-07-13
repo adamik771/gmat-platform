@@ -2,7 +2,7 @@
 slug: quant-13-linear-equations-systems
 title: "Algebra: Linear Equations & Systems"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 60
 prerequisites:
   - quant-12-roots-radicals
 summary: |
@@ -15,7 +15,7 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - algebra-q1
-      - algebra-q2
+      - algebra-q41
   - id: linear-equations-one-unknown
     type: reading
     title: "Linear equations in one unknown — isolate-the-variable discipline"

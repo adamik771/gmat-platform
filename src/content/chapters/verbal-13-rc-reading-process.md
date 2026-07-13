@@ -1,6 +1,6 @@
 ---
 slug: verbal-13-rc-reading-process
-title: "RC Reading Process"
+title: "RC: Reading Process"
 section: Verbal
 estimated_minutes: 40
 prerequisites:

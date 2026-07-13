@@ -16,11 +16,28 @@ import { passwordResetEmail } from "@/lib/auth-emails"
  * can't be used to probe who has an account. The only non-200 is a 400 for a
  * structurally invalid request body.
  *
- * NOTE: minting our own link bypasses Supabase's built-in reset rate limit, so
- * a durable per-email/IP throttle should be added before scaling (Resend's
- * account send limits are the only backstop today). Not added here because a
- * naive cooldown after generateLink can invalidate a just-emailed token.
+ * NOTE: minting our own link bypasses Supabase's built-in reset rate limit.
+ * The in-memory cooldown below (checked BEFORE generateLink, so it can never
+ * invalidate a just-emailed token) blocks per-address loops within a warm
+ * instance; it is per-lambda, so a durable per-email/IP throttle (table or
+ * Vercel WAF rule) is still the owner task before scaling.
  */
+
+// email -> last-send ms. Per-instance, pruned to keep the map bounded.
+const recentResetSends = new Map<string, number>()
+const RESET_COOLDOWN_MS = 5 * 60 * 1000
+
+function underCooldown(email: string, now: number): boolean {
+  const last = recentResetSends.get(email)
+  if (last !== undefined && now - last < RESET_COOLDOWN_MS) return true
+  if (recentResetSends.size > 1000) {
+    for (const [k, v] of recentResetSends) {
+      if (now - v >= RESET_COOLDOWN_MS) recentResetSends.delete(k)
+    }
+  }
+  recentResetSends.set(email, now)
+  return false
+}
 export async function POST(request: Request) {
   let email: string | undefined
   try {
@@ -38,6 +55,14 @@ export async function POST(request: Request) {
 
   // One generic response for every outcome below — never reveals account state.
   const ok = () => Response.json({ ok: true })
+
+  // Cooldown BEFORE the link is minted: repeated posts for the same address
+  // within the window silently no-op (same generic response, so the throttle
+  // is not observable either). A loop-POST attack now sends at most one email
+  // per address per 5 minutes per warm instance instead of one per request.
+  if (underCooldown(email, Date.now())) {
+    return ok()
+  }
 
   let service: ReturnType<typeof getSupabaseService>
   try {

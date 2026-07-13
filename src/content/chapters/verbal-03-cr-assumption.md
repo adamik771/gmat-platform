@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q9
-      - critical-reasoning-q10
+      - critical-reasoning-q191
+      - critical-reasoning-q126
   - id: cr-assumption
     type: reading
     title: "CR: Assumption & the Negation Test"

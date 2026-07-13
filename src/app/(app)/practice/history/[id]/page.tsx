@@ -55,7 +55,9 @@ export default async function SessionHistoryPage({
       .from("practice_attempts")
       .select("id, question_id, selected_answer, is_correct, time_spent_ms")
       .eq("user_id", user.id)
-      .eq("session_id", id),
+      .eq("session_id", id)
+      // Answered order — without this the Q1..Qn numbering was arbitrary.
+      .order("created_at", { ascending: true }),
     getUserState(supabase, user),
   ])
   if (!session) notFound()

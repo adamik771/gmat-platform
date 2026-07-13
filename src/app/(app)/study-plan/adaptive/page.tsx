@@ -12,6 +12,7 @@ import {
   Timer,
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { daysUntil } from "@/lib/utils"
 import {
   collectAdaptiveSignals,
   computeAdaptivePlan,
@@ -72,19 +73,13 @@ export default async function AdaptivePlanPage() {
     { flaggedQuestionIds }
   )
 
-  // Derive days-available from exam_date if it's set.
+  // Derive days-available from exam_date if it's set. Shared local-midnight
+  // parse — the old mixed UTC/local math here overshot by a day in
+  // positive-offset timezones and disagreed with every other countdown.
   const examDate = (user.user_metadata?.exam_date as string | null | undefined) ?? null
   const targetScore = (user.user_metadata?.target_score as number | null | undefined) ?? null
   const daysAvailable =
-    examDate !== null
-      ? Math.max(
-          0,
-          Math.ceil(
-            (Date.parse(examDate) - new Date(new Date().toDateString()).getTime()) /
-              86_400_000
-          )
-        )
-      : null
+    examDate !== null ? Math.max(0, daysUntil(examDate) ?? 0) : null
 
   const plan = computeAdaptivePlan(signals, {
     targetScore,

@@ -1495,33 +1495,31 @@ The correct answer is D.
 **type:** Problem Solving
 **topic:** Remainders
 
-When positive integer n is divided by 7, the remainder is 4. What is the remainder when 3n + 5 is divided by 7?
+When the positive integer n is divided by 8, the remainder is 5. What is the remainder when n² + 3n is divided by 8?
 
-- A) 1
+- A) 0
 - B) 2
-- C) 3
-- D) 4
+- C) 4
+- D) 5
 - E) 6
 
-**answer:** C
+**answer:** A
 **explanation:** The governing principle is the division algorithm: when a positive integer is divided by a fixed divisor, it can be written as the product of the divisor and the quotient plus the remainder, where the remainder is a nonnegative integer less than the divisor.
 
-Let n be the positive integer. Since n divided by 7 leaves a remainder of 4, we may write n = 7k + 4 for some nonnegative integer k.
+Let n be the positive integer. Since n divided by 8 leaves a remainder of 5, we may write n = 8k + 5 for some nonnegative integer k.
 
-We substitute this expression into 3n + 5 and simplify:
+The fastest route is to factor before substituting: n² + 3n = n(n + 3). Since n = 8k + 5, the second factor is n + 3 = 8k + 8 = 8(k + 1), which is a multiple of 8. A product with a factor that is a multiple of 8 is itself a multiple of 8, so n² + 3n is divisible by 8 and the remainder is 0.
 
-3n + 5 = 3(7k + 4) + 5
-= 21k + 12 + 5
-= 21k + 17.
+Direct substitution confirms this. With n = 8k + 5:
 
-To isolate the remainder upon division by 7, we separate the part that is a multiple of 7 from the rest. We note that 21k is divisible by 7, and we rewrite 17 as 14 + 3:
+n² + 3n = (8k + 5)² + 3(8k + 5)
+= 64k² + 80k + 25 + 24k + 15
+= 64k² + 104k + 40
+= 8(8k² + 13k + 5).
 
-21k + 17 = 21k + 14 + 3
-= 7(3k + 2) + 3.
+Every term contains the factor 8, so the remainder upon division by 8 is 0. As a numerical check, n = 5 gives n² + 3n = 25 + 15 = 40 = 8 × 5, and n = 13 gives 169 + 39 = 208 = 8 × 26 — both leave remainder 0.
 
-The quantity 7(3k + 2) is a multiple of 7, and 3 is a nonnegative integer less than 7. Therefore, when 3n + 5 is divided by 7, the remainder is 3.
-
-The correct answer is C.
+The correct answer is A.
 **related_reading:** reading-quant-03-number-properties
 
 ---

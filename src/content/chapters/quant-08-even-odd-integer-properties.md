@@ -2,7 +2,7 @@
 slug: quant-08-even-odd-integer-properties
 title: "Number Properties: Even/Odd & Integer Properties"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 50
 prerequisites:
   - quant-07-gcf-lcm-units-digits
 summary: |

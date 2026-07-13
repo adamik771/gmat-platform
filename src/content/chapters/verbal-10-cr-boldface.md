@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q65
-      - critical-reasoning-q66
+      - critical-reasoning-q197
+      - critical-reasoning-q209
   - id: cr-boldface
     type: reading
     title: "CR: Boldface"

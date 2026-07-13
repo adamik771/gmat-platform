@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
@@ -276,7 +277,7 @@ export default function SampleChapterRenderer({
                 className="font-display-italic"
                 style={{ color: "#C9A84C" }}
               >
-                50+ chapters
+                {CHAPTER_COUNT_CLAIM} chapters
               </span>{" "}
               like this one.
             </h2>

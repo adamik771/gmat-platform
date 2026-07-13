@@ -35,11 +35,17 @@ function LoginForm() {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-
   const router = useRouter()
   const searchParams = useSearchParams()
   const next = safeNext(searchParams.get("next"))
+  // Seed the error banner from the auth callback's redirect: a failed or
+  // already-used email-confirmation link lands here with ?error=auth_callback,
+  // and without this the student saw a plain login form with no explanation.
+  const [error, setError] = useState(() =>
+    searchParams.get("error") === "auth_callback"
+      ? "That confirmation link was invalid or already used. Try signing in — if your email isn't confirmed yet, sign up again to get a fresh link."
+      : ""
+  )
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()

@@ -29,10 +29,16 @@ export async function POST(request: Request) {
   const blocked = await blockIfNoAccess(supabase, user)
   if (blocked) return blocked
 
-  const body = (await request.json()) as {
+  type FlagBody = {
     dateIso?: string
     section?: string
     flaggedQuestionIds?: unknown
+  }
+  let body: FlagBody
+  try {
+    body = (await request.json()) as FlagBody
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 })
   }
 
   const dateIso = body.dateIso

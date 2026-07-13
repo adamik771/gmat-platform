@@ -2,7 +2,7 @@
 slug: quant-14-quadratics-factoring
 title: "Algebra: Quadratics & Factoring"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 55
 prerequisites:
   - quant-13-linear-equations-systems
 summary: |
@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - algebra-q7
-      - algebra-q8
+      - algebra-q54
+      - algebra-q55
   - id: quadratics-and-factoring
     type: reading
     title: "Quadratics and factoring — FOIL, reverse FOIL, and Vieta's"

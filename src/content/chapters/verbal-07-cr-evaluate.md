@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q41
-      - critical-reasoning-q42
+      - critical-reasoning-q150
+      - critical-reasoning-q151
   - id: cr-evaluate
     type: reading
     title: "CR: Evaluate"

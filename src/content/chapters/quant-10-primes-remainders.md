@@ -2,7 +2,7 @@
 slug: quant-10-primes-remainders
 title: "Number Properties: Primes & Remainders"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 60
 prerequisites:
   - quant-09-divisibility-factors
 summary: |

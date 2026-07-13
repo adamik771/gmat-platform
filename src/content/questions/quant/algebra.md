@@ -2262,16 +2262,16 @@ For all numbers a and b, the operation ⊕ is defined by a ⊕ b = a² - 2b. Wha
 **type:** Problem Solving
 **topic:** Function Composition
 
-The functions f and g are defined by f(x) = 2x + 1 and g(x) = x² - 3. What is the value of f(g(2))?
+The functions f and g are defined by f(x) = 3x - 4 and g(x) = x² + 1. What is the value of g(f(2))?
 
-- A) 1
-- B) 2
-- C) 3
-- D) 22
-- E) 5
+- A) 2
+- B) 4
+- C) 5
+- D) 11
+- E) 13
 
 **answer:** C
-**explanation:** The inner function is evaluated first: g(2) = 2² - 3 = 4 - 3 = 1. Then f is applied to this result: f(1) = 2(1) + 1 = 3. The value 22 results from reversing the order and computing g(f(2)) = g(5) = 25 - 3 = 22, while 2 results from finding g(2) = 1 but forgetting to add 1 when applying f. The correct answer is C.
+**explanation:** The inner function is evaluated first: f(2) = 3(2) - 4 = 2. Then g is applied to this result: g(2) = 2² + 1 = 5. The value 11 results from reversing the order and computing f(g(2)) = f(5) = 15 - 4 = 11, while 2 results from finding f(2) = 2 but forgetting to apply g, and 4 comes from squaring without adding the trailing 1. The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---

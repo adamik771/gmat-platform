@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q41
-      - reading-comprehension-q42
+      - reading-comprehension-q79
+      - reading-comprehension-q85
   - id: rc-attitude
     type: reading
     title: "RC: Author's Attitude"

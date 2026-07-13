@@ -1551,7 +1551,7 @@ The correct answer is D.
 ---
 
 ## Q45
-**difficulty:** Challenge
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Overlapping Sets — Three Groups, Ratio Constraints and Reverse Setup
 

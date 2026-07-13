@@ -2,7 +2,7 @@
 slug: quant-12-roots-radicals
 title: "Roots & Radicals"
 section: Quant
-estimated_minutes: 9
+estimated_minutes: 85
 prerequisites:
   - quant-11-exponent-rules
 summary: |

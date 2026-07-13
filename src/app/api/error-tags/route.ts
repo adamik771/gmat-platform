@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   const blocked = await blockIfNoAccess(supabase, user)
   if (blocked) return blocked
 
-  const body = (await request.json()) as {
+  type TagBody = {
     attemptId?: string
     tag?: ErrorTag | null
     rootCause?: string | null
@@ -43,9 +43,29 @@ export async function POST(request: Request) {
     remediationAssignedAt?: string | null
     remediationCompletedAt?: string | null
   }
+  let body: TagBody
+  try {
+    body = (await request.json()) as TagBody
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 })
+  }
 
   if (!body.attemptId || typeof body.attemptId !== "string") {
     return Response.json({ error: "attemptId required" }, { status: 400 })
+  }
+
+  // Notes: free text, but bounded — every sibling field is validated and an
+  // unbounded string could stash multi-megabyte payloads rendered on
+  // /error-log and dumped into the GDPR export. Same cap as beta feedback.
+  if (
+    body.notes !== undefined &&
+    body.notes !== null &&
+    (typeof body.notes !== "string" || body.notes.length > 2000)
+  ) {
+    return Response.json(
+      { error: "notes must be a string of at most 2000 characters" },
+      { status: 400 },
+    )
   }
 
   if (
@@ -224,7 +244,12 @@ export async function DELETE(request: Request) {
   const blocked = await blockIfNoAccess(supabase, user)
   if (blocked) return blocked
 
-  const { attemptId } = (await request.json()) as { attemptId?: string }
+  let attemptId: string | undefined
+  try {
+    attemptId = ((await request.json()) as { attemptId?: string }).attemptId
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 })
+  }
   if (!attemptId || typeof attemptId !== "string") {
     return Response.json({ error: "attemptId required" }, { status: 400 })
   }

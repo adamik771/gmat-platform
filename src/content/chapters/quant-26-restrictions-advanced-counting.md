@@ -2,7 +2,7 @@
 slug: quant-26-restrictions-advanced-counting
 title: "Advanced Counting & Restrictions"
 section: Quant
-estimated_minutes: 9
+estimated_minutes: 70
 prerequisites:
   - quant-25-permutations-combinations
 summary: |

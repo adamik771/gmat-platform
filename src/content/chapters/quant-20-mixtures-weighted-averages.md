@@ -2,7 +2,7 @@
 slug: quant-20-mixtures-weighted-averages
 title: "Mixtures & Weighted Averages"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 30
 prerequisites:
   - quant-19-percents
 summary: |
@@ -15,7 +15,7 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - ratios-percents-q57
-      - ratios-percents-q14
+      - ratios-percents-q36
   - id: mixture-and-weighted-average
     type: reading
     title: "Mixtures and weighted averages — anchor the invariant"

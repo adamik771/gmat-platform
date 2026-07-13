@@ -2,7 +2,7 @@
 slug: quant-17-translating-word-problems
 title: "Algebra: Translating Word Problems"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 55
 prerequisites:
   - quant-16-functions-sequences
 summary: |

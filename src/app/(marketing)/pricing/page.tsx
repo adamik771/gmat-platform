@@ -7,7 +7,7 @@ import FAQAccordion from "@/components/marketing/FAQAccordion"
 import FoundingOffer from "@/components/marketing/FoundingOffer"
 import TrackView from "@/components/analytics/TrackView"
 import { PAYWALL_ENABLED } from "@/lib/entitlements"
-import { QUESTION_CLAIM_SHORT } from "@/lib/site"
+import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM_SHORT } from "@/lib/site"
 import { tiers } from "@/lib/plans"
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ const faqItems = [
 ]
 
 const comparisonFeatures = [
-  "50+ chapters (Q / V / DI)",
+  `${CHAPTER_COUNT_CLAIM} chapters (Q / V / DI)`,
   QUESTION_CLAIM_SHORT,
   "Practice tests + test builder",
   "Official-exam study plan",

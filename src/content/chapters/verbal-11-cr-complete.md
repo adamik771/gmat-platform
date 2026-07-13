@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q73
-      - critical-reasoning-q74
+      - critical-reasoning-q163
+      - critical-reasoning-q165
   - id: cr-complete
     type: reading
     title: "CR: Complete the Argument"

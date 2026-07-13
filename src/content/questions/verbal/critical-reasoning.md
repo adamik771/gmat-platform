@@ -3254,7 +3254,7 @@ The correct answer is A.
 ---
 
 ## Q113
-**difficulty:** Medium-Hard
+**difficulty:** Hard
 **type:** Critical Reasoning
 **topic:** Strengthen — Latent Demand
 
@@ -3429,7 +3429,7 @@ The correct answer is A.
 ---
 
 ## Q119
-**difficulty:** Medium-Hard
+**difficulty:** Hard
 **type:** Critical Reasoning
 **topic:** Strengthen — Local Consumer Preference
 
@@ -5634,7 +5634,7 @@ The correct answer is B.
 ---
 
 ## Q225
-**difficulty:** Medium-Hard
+**difficulty:** Hard
 **type:** Critical Reasoning
 **topic:** Inference
 

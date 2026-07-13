@@ -2,7 +2,7 @@
 slug: quant-16-functions-sequences
 title: "Algebra: Functions & Sequences"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 35
 prerequisites:
   - quant-15-inequalities-absolute-value
 summary: |
