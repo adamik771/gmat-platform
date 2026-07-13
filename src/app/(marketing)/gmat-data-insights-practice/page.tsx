@@ -56,10 +56,10 @@ const DATA: AcquisitionLandingProps = {
   ],
   "lead": {
     "source": "other",
-    "leadMagnet": "newsletter",
-    "headline": "Get the DI Error-Log Template and the five-format drill checklist",
-    "description": "Enter your email and we will send the downloadable error-log template (with the six cause tags) plus the one-week Data Insights drill plan from this page, so you can run the full method yourself. No card, no spam, just the tools.",
-    "ctaLabel": "Send it to me"
+    "leadMagnet": "error-log-template",
+    "headline": "Get the free six-tag error-log template",
+    "description": "Enter your email and the error-log spreadsheet (with the six cause tags) downloads right away — pair it with the one-week Data Insights drill plan above and you can run the full method yourself. No card, no account.",
+    "ctaLabel": "Send me the template"
   },
   "metaDescription": "A specific guide to GMAT Focus Data Insights practice: the five DI question formats, why DI is the most under-trained section, and a concrete drilling method that builds the skills it actually tests."
 }

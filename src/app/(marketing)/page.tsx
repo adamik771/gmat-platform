@@ -19,7 +19,6 @@ import FAQAccordion from "@/components/marketing/FAQAccordion"
 import HeroDashboardCard from "@/components/marketing/HeroDashboardCardLazy"
 import ScoreCalloutNumbers from "@/components/marketing/ScoreCalloutNumbers"
 import LeadCapture from "@/components/marketing/LeadCapture"
-import FoundingOffer from "@/components/marketing/FoundingOffer"
 import TrackView from "@/components/analytics/TrackView"
 import { QUESTION_CLAIM } from "@/lib/site"
 import { PAYWALL_ENABLED, TRIAL_DAYS } from "@/lib/entitlements"
@@ -626,9 +625,9 @@ export default function HomePage() {
         </div>
       </SectionWrapper>
 
-      {/* FOUNDING OFFER — beta-only conversion block (reserve a locked-in
-          founding discount). Disappears the moment real checkout goes live. */}
-      {!PAYWALL_ENABLED && <FoundingOffer variant="darker" />}
+      {/* The founding-discount block was removed from the homepage on purpose:
+          cold traffic gets ONE offer (the 7-day full-access trial). The founding
+          reservation still exists down-funnel on /pricing (#founding). */}
 
       {/* FAQ PREVIEW */}
       <SectionWrapper>
@@ -657,7 +656,7 @@ export default function HomePage() {
             leadMagnet="error-log-template"
             eyebrow="Free template"
             headline="The error-log template I used to go from 565 to 735."
-            description="The exact six-tag taxonomy and the spreadsheet structure. Two months of honest logging surfaces the patterns. No signup required."
+            description="The exact six-tag taxonomy and the spreadsheet structure. Two months of honest logging surfaces the patterns. No account needed — just your email."
             ctaLabel="Send me the template"
           />
         </div>

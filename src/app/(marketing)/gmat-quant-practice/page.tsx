@@ -44,7 +44,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "Is the platform free, and is there a catch?",
-      "a": "Every new account starts with a free 7-day full-access trial, with no credit card required. Separately, founding users can reserve early pricing if they want to lock it in: the founding rate is $399, anchored to the $599 mentorship tier, and there is a referral option where a friend gets the founding price and the referrer gets $50. None of that is required to study. The free tools (sample chapters, a Focus-to-old score converter, a section-to-total calculator, and the downloadable error-log template) need no account at all."
+      "a": "Every new account starts with a free 7-day full-access trial, with no credit card required. After the trial, access continues with a one-time plan purchase (no subscription) — current prices are on the pricing page. The free tools (sample chapters, a Focus-to-old score converter, a section-to-total calculator, and the downloadable error-log template) need no account at all."
     },
     {
       "q": "Does Zakarian GMAT have a diagnostic that tells me my score?",
@@ -57,10 +57,10 @@ const DATA: AcquisitionLandingProps = {
   ],
   "lead": {
     "source": "other",
-    "leadMagnet": "newsletter",
-    "headline": "Get the Quant error-log template and a sample chapter",
-    "description": "Enter your email and I will send you the six-cause error-log template (Conceptual, Careless, Time Pressure, Misread, Strategy, Other) plus a sample Quant chapter, so you can start sorting your misses by root cause today. No card, no spam, just the tools. You will also get notified when founding pricing opens up.",
-    "ctaLabel": "Send it to me"
+    "leadMagnet": "error-log-template",
+    "headline": "Get the free six-tag error-log template",
+    "description": "Enter your email and the six-cause error-log spreadsheet (Conceptual, Careless, Time Pressure, Misread, Strategy, Other) downloads right away, so you can start sorting your Quant misses by root cause today. The sample Quant chapter is free on the site with no email at all. No card, no account.",
+    "ctaLabel": "Send me the template"
   },
   "metaDescription": "A founder-built GMAT Focus Quant study approach: fix the real bottleneck, drill mixed sets under timing, log errors by cause, and master the 5 decision points that move your score."
 }

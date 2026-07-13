@@ -24,7 +24,7 @@ job,Phrase,Campaign,Job seeker not student
 salary,Phrase,Campaign,Career-salary intent not prep
 career,Phrase,Campaign,Career intent not test prep
 careers,Phrase,Campaign,Career intent not test prep
-coupon,Phrase,Campaign,Discount-only seeker; nothing to charge during free beta
+coupon,Phrase,Campaign,Discount-only seeker; nothing to charge until checkout opens
 coupon code,Phrase,Campaign,Discount-only seeker
 promo code,Phrase,Campaign,Discount-only seeker
 discount code,Phrase,Campaign,Discount-only seeker

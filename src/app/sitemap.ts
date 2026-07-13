@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/gmat-mock-review", changeFrequency: "monthly", priority: 0.8 },
     { path: "/gmat-data-insights-practice", changeFrequency: "monthly", priority: 0.8 },
     { path: "/gmat-quant-practice", changeFrequency: "monthly", priority: 0.8 },
-    { path: "/gmat-private-beta", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/gmat-free-trial", changeFrequency: "monthly", priority: 0.9 },
     { path: "/gmat-verbal-practice", changeFrequency: "monthly", priority: 0.8 },
     {
       path: "/gmat-data-sufficiency-practice",

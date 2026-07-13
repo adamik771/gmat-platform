@@ -56,10 +56,10 @@ const DATA: AcquisitionLandingProps = {
   ],
   "lead": {
     "source": "other",
-    "leadMagnet": "newsletter",
-    "headline": "Get the GMAT mock review checklist behind a 565-to-735 climb",
-    "description": "A free one-page checklist for reviewing any GMAT mock the right way: how to tag every miss by cause with the six-tag error log, how to catch the lucky right answers before they cost you, and how to read your pacing data. Built from the exact process behind the founder's 565-to-735 climb. Enter your email and we'll send the checklist plus the downloadable error-log template — no card, no spam.",
-    "ctaLabel": "Send it to me"
+    "leadMagnet": "error-log-template",
+    "headline": "Get the free six-tag error-log template",
+    "description": "The review method on this page runs on one tool: a log that tags every miss by cause. Enter your email and the exact six-tag spreadsheet from the founder's 565-to-735 climb downloads right away — no card, no account.",
+    "ctaLabel": "Send me the template"
   },
   "metaDescription": "The right way to review a GMAT mock exam. A question-by-question method that turns one practice test into your next score points, plus a mock-to-mock review system."
 }

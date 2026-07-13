@@ -61,7 +61,7 @@ export default function Footer() {
             leadMagnet="error-log-template"
             eyebrow="Free template"
             headline="Get the GMAT error-log template I used to go from 565 to 735."
-            description="The exact six-tag taxonomy and the spreadsheet structure. Two months of honest logging surfaces the patterns. No signup required."
+            description="The exact six-tag taxonomy and the spreadsheet structure. Two months of honest logging surfaces the patterns. No account needed — just your email."
             ctaLabel="Send me the template"
           />
         </div>

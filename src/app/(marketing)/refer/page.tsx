@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Refer a Friend",
   alternates: { canonical: "/refer" },
   description:
-    "Share Zakarian GMAT with someone prepping for the GMAT. They get the founding discount; you get a $50 reward when they become a founding member.",
+    "Share Zakarian GMAT with someone prepping for the GMAT. They start with a free 7-day full-access trial; you get a $50 reward if they later become a paying founding member.",
 }
 
 const steps = [
@@ -21,7 +21,7 @@ const steps = [
   {
     icon: UserPlus,
     title: "They join",
-    body: "Your friend creates a free trial account and reserves founding access. When they mention your name, they lock in the founding discount on paid plans.",
+    body: "Your friend starts a free 7-day full-access trial — no card, nothing to cancel. If they also reserve the founding rate and mention your name, they lock in the founding discount for when checkout opens.",
   },
   {
     icon: Gift,
@@ -59,8 +59,9 @@ export default function ReferPage() {
           </h1>
           <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed">
             If the platform has helped you, the best thing you can do is pass it
-            to someone it would help too. They get the founding discount; you get
-            a $50 reward when they become a founding member.
+            to someone it would help too. They start with the same free 7-day
+            full-access trial you did — and you get a $50 reward if they later
+            become a paying founding member.
           </p>
         </div>
       </section>
@@ -124,11 +125,11 @@ export default function ReferPage() {
             just make sure your friend mentions your name when they reserve.
           </p>
           <Link
-            href="/#founding"
+            href="/pricing#founding"
             className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
             style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
           >
-            Reserve your own founding access
+            Reserve your own founding rate
             <ArrowRight className="w-4 h-4" />
           </Link>
           <p className="text-[11px] text-[#555555] leading-relaxed mt-8 max-w-xl mx-auto">

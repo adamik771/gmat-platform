@@ -57,10 +57,10 @@ const DATA: AcquisitionLandingProps = {
   ],
   "lead": {
     "source": "other",
-    "leadMagnet": "newsletter",
-    "headline": "The Weak-Area + Spaced-Review Worksheet",
-    "description": "Get the free error-log template plus a one-page worksheet for turning your official practice score into a ranked weak-area plan with a built-in spaced-review schedule (same-day → 2 → 7 → 21 → 42 days) — the exact structure the founder used on his way from 565 to 735. No card, no account, just your email.",
-    "ctaLabel": "Send it to me"
+    "leadMagnet": "error-log-template",
+    "headline": "Get the free six-tag error-log template",
+    "description": "The exact Conceptual / Careless / Time Pressure / Misread / Strategy / Other log the founder used on his way from 565 to 735, as a ready-to-use spreadsheet — the review backbone of the study plan on this page. No card, no account, just your email.",
+    "ctaLabel": "Send me the template"
   },
   "metaDescription": "A real GMAT study plan isn't a calendar of chapters — it's a feedback loop anchored to your official mba.com practice score. Here's how to build one, plus how Zakarian GMAT generates an adaptive plan from your baseline."
 }

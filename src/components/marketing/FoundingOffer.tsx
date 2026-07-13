@@ -3,12 +3,13 @@ import SectionWrapper from "@/components/shared/SectionWrapper"
 import LeadCapture from "@/components/marketing/LeadCapture"
 
 /**
- * FoundingOffer — the launch conversion block. While the platform is free in
- * beta, this lets a prospect reserve a locked-in founding discount (honored
- * when paid plans turn on) without paying today. Render it gated on
- * `!PAYWALL_ENABLED` from the parent server page so it disappears the moment
- * real checkout goes live. Reuses LeadCapture's founding-member capture, which
- * fires the `founding_reserve` funnel event on submit.
+ * FoundingOffer — the pre-checkout reservation block. While checkout is not
+ * yet open, this lets a prospect reserve a locked-in founding discount on the
+ * published plan prices without paying today. Rendered ONLY on /pricing
+ * (down-funnel; the public lead offer everywhere else is the 7-day trial),
+ * gated on `!PAYWALL_ENABLED` so it disappears the moment real checkout goes
+ * live. Reuses LeadCapture's founding-member capture, which fires the
+ * `founding_reserve` funnel event on submit.
  */
 export default function FoundingOffer({
   variant = "dark",
@@ -17,8 +18,8 @@ export default function FoundingOffer({
 }) {
   const perks = [
     "Full access to the whole platform — a free 7-day trial, no card",
-    "A founding discount of 30-40% off, locked in for when paid plans launch",
-    "Your founding code before anyone else — no charge until you choose to upgrade",
+    "30-40% off the plan prices above, locked in for when checkout opens",
+    "Your founding code before anyone else — no charge until you choose to buy",
     "A direct line to shape what gets built next",
   ]
 
@@ -43,10 +44,10 @@ export default function FoundingOffer({
               Become a founding member.
             </h2>
             <p className="text-[15px] text-[#888888] leading-relaxed mb-7 max-w-md">
-              Every new account starts with a free 7-day full-access trial —
-              no card. Founding members reserve a permanent discount on the paid
-              plans before they launch. There&apos;s no charge today and no
-              obligation; you&apos;re holding your place and your price.
+              Paid checkout isn&apos;t open yet. Until it opens, you can reserve
+              a founding discount on the plan prices listed above — no charge
+              today and no obligation; you&apos;re holding your place and your
+              price while you try the platform on the free 7-day trial.
             </p>
             <ul className="space-y-3">
               {perks.map((perk) => (
@@ -71,13 +72,13 @@ export default function FoundingOffer({
               trackEventName="founding_reserve"
               eyebrow="Reserve your rate"
               headline="Hold my founding discount."
-              description="Drop your email and I'll reserve your founding price. When paid plans open, you get your code first — at the founding rate, locked in."
+              description="Drop your email and I'll reserve your founding price. When checkout opens, you get your code first — at the founding rate, locked in."
               ctaLabel="Reserve my founding rate"
               successHeadline="You're on the founding list."
-              successDescription="Your founding rate is reserved to this address. When paid plans open, I'll send your code here — one email, just the code. No charge unless you decide to upgrade."
+              successDescription="Your founding rate is reserved to this address. When checkout opens, I'll send your code here — one email, just the code. No charge unless you decide to buy."
               footnote="No charge today. No obligation. Unsubscribe with one click."
-              optInLabel="Also email me founding-user updates — getting-started tips and early access as paid plans open. Optional; unsubscribe in one click."
-              secondChancePitch="Want founding-user updates? I'll email getting-started tips and early access as paid plans open. Unsubscribe in one click."
+              optInLabel="Also email me founding-user updates — getting-started tips and early access as checkout opens. Optional; unsubscribe in one click."
+              secondChancePitch="Want founding-user updates? I'll email getting-started tips and early access as checkout opens. Unsubscribe in one click."
               optInCtaLabel="Email me founding updates"
             />
             <p className="text-[11px] text-[#555555] leading-relaxed mt-4">

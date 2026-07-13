@@ -106,6 +106,10 @@ export default function PricingCard({
                 feature.included ? "text-[#C0C0C0]" : "text-[#444444]"
               )}
             >
+              {/* Excluded features are only distinguished visually (dimmed + X
+                  icon); spell it out for screen readers and text extraction so
+                  e.g. Self-Study never *reads* as including WhatsApp/coaching. */}
+              {!feature.included && <span className="sr-only">Not included: </span>}
               {feature.text}
             </span>
           </li>

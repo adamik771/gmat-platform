@@ -53,7 +53,7 @@ function SignupFallback() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Full access. No credit card needed.
+          Free 7-day full-access trial. No credit card needed.
         </p>
       </div>
     </div>
@@ -304,7 +304,7 @@ function SignupForm() {
           </span>
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Full access. No credit card needed.
+          Free 7-day full-access trial. No credit card needed.
         </p>
       </div>
 

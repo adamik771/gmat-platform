@@ -116,10 +116,11 @@ export default function PricingPage() {
                 </p>
               ) : (
                 <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
-                  <span className="font-semibold text-[#F0F0F0]">Early access.</span>{" "}
-                  Every new account starts with a free 7-day full-access trial of the self-study platform
-                  &mdash; create an account and start today. The plans below are how
-                  pricing and Adam&apos;s 1:1 coaching work as they roll out.
+                  <span className="font-semibold text-[#F0F0F0]">Start with the free trial.</span>{" "}
+                  Every new account begins with a free 7-day full-access trial &mdash;
+                  no credit card. Paid checkout hasn&apos;t opened yet; the plans below
+                  show exactly what each tier costs when it does, and every price is a
+                  one-time payment, not a subscription.
                 </p>
               )}
             </div>

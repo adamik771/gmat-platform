@@ -1,6 +1,6 @@
 # 7-Day Optimization Plan
 
-For `ZG-Search-Launch`. Budget ~$7/day, Maximize Clicks with a $1.50 max-CPC cap. Goal: validate that paid search produces micro-conversions (signup / lead_captured / founding_reserve) at a sane cost, while spending the least money possible. This is a no-traffic beta — expect low absolute numbers; read directionally.
+For `ZG-Search-Launch`. Budget ~$7/day, Maximize Clicks with a $1.50 max-CPC cap. Goal: validate that paid search produces micro-conversions (signup / lead_captured / founding_reserve) at a sane cost, while spending the least money possible. This is a low-traffic pre-launch site — expect low absolute numbers; read directionally.
 
 Metrics to watch every day: **impressions, CTR, avg CPC, clicks, conversions, conversion rate, cost/conversion, and the Search Terms report.** Log each day in a simple running note.
 
@@ -8,7 +8,7 @@ Reference thresholds (from BUDGET_PLAN.md):
 - Kill keyword: **$10 spent, 0 conversions** -> pause.
 - Kill keyword early: **$6 spent, CTR < 1%** -> pause.
 - Kill ad group: **$25 spent, 0 conversions, irrelevant search terms** -> pause.
-- Good cost/micro-conversion target during free beta: **<= ~$8.**
+- Good cost/micro-conversion target pre-launch: **<= ~$8.**
 
 ---
 
@@ -41,7 +41,7 @@ Reference thresholds (from BUDGET_PLAN.md):
 
 ## Day 6 — Conversion read (if any)
 - Look at **conversions and cost/conversion** by ad group and keyword.
-- If you have conversions: compute cost per micro-conversion. Under ~$8 = healthy for a free beta. Flag the winning ad group/keyword for scaling next week.
+- If you have conversions: compute cost per micro-conversion. Under ~$8 = healthy for a pre-launch free-trial product. Flag the winning ad group/keyword for scaling next week.
 - If you have ZERO conversions across the whole campaign after ~$40–45 spent: STOP and diagnose before spending more —
   1. Is tracking actually firing? Re-test `lead_captured`/`signup`/`founding_reserve` on the live site.
   2. Are landing pages loading fast and showing the lead magnet above the fold?
