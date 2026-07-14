@@ -45,7 +45,7 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - number-properties-q90
+      - number-properties-q40
       - number-properties-q18
 ---
 
@@ -112,7 +112,7 @@ Answer **(E)**. Strategic note: 6 factors as a product of "(exponent+1)" terms m
 
 **Worked example (reverse-engineering the exponent shape, very hard).** A positive integer n has exactly 15 positive factors and is divisible by 18. What is the smallest possible value of n?
 
-Start from the factor count. 15 = `(a+1)(b+1)…`, and 15 factors as either 15 = 15 (one prime: `p^14`) or 15 = 3 × 5 (two primes: `p² × q⁴`). The one-prime shape `p^14` cannot be divisible by 18 = 2 × 3² (it has only one prime), so n must have the shape `p² × q⁴`. Divisibility by 18 = 2¹ × 3² demands at least 2¹ and 3². With exponents restricted to {2, 4}, the prime 3 needs an exponent ≥ 2 → it can be the "²"; the prime 2 needs an exponent ≥ 1 → it must take the "⁴" (since the only available slots are exponent 2 or 4, and 2 already claimed the squared... let's be careful): we need 3² and 2¹, and the two exponents available are 2 and 4. Putting 3⁴ × 2² gives `81 × 4 = 324`; putting 3² × 2⁴ gives `9 × 16 = 144`. Both satisfy divisibility by 18. To **minimize**, put the *larger* exponent on the *smaller* prime: `2⁴ × 3² = 144`. Answer **144**. This combines two moves you must own at 700+: decode the factor count into exponent shapes, then assign the big exponents to the small primes to minimize.
+Start from the factor count. 15 = `(a+1)(b+1)…`, and 15 factors as either 15 = 15 (one prime: `p^14`) or 15 = 3 × 5 (two primes: `p² × q⁴`). The one-prime shape `p^14` cannot be divisible by 18 = 2 × 3² (it has only one prime), so n must have the shape `p² × q⁴`. Divisibility by 18 = 2¹ × 3² demands at least 2¹ and 3². With exponents restricted to {2, 4}, the prime 3 needs an exponent ≥ 2 → it can be the "²"; the prime 2 needs an exponent ≥ 1 → it must take the "⁴" (since the only available slots are exponent 2 or 4, and 2 already claimed the squared... let's be careful): we need 3² and 2¹, and the two exponents available are 2 and 4. Putting 3⁴ × 2² gives `81 × 4 = 324`; putting 3² × 2⁴ gives `9 × 16 = 144`. Both satisfy divisibility by 18. To **minimize**, put the *larger* exponent on the *smaller* prime: `2⁴ × 3² = 144`. Answer **144**. This combines two moves you must own at the top difficulty tier: decode the factor count into exponent shapes, then assign the big exponents to the small primes to minimize.
 
 > **Recall check.** You want the smallest integer with exactly 12 factors. 12 factors as (exp+1) products: which shape gives the smallest number — `2^11`, `2^5 × 3`, `2^3 × 3 × 5`, or `2² × 3 × 5`... wait, check the last? (`2² × 3 × 5` gives `3 × 2 × 2 = 12` factors and equals 60; `2² × 3¹ × 5¹` is the smallest. Put the *largest* exponents on the *smallest* primes to minimize the value.)
 
@@ -120,7 +120,7 @@ Start from the factor count. 15 = `(a+1)(b+1)…`, and 15 factors as either 15 =
 
 The first five primes are 2, 3, 5, 7, 11. Their product (called a "primorial") is `2 × 3 × 5 × 7 × 11`. Group for speed: `2 × 5 = 10`, then `× 11 = 110`, then `× 3 = 330`, then `× 7 = 2,310`. ✓ Yes. The tactic — **pair factors that make round numbers (here 2 × 5 = 10) first** — keeps the arithmetic clean and is a reliable estimation habit on no-calculator problems.
 
-**GCD and LCM from prime factorizations.** Two more payoffs of the atomic view, common at 700+:
+**GCD and LCM from prime factorizations.** Two more payoffs of the atomic view, common on the hardest items:
 - **GCD (greatest common divisor):** for each prime, take the *lowest* exponent appearing in either number.
 - **LCM (least common multiple):** for each prime, take the *highest* exponent appearing in either number.
 
@@ -163,7 +163,7 @@ Answers: (1) **24** — 540 = 2² × 3³ × 5; factor count = (2+1)(3+1)(1+1) = 
 
 ## @remainders
 
-Remainder questions show up on 685+ difficulty constantly because they have so many angles: algebra, units digits, modular arithmetic, layered constraints. The good news: they all reduce to one equation, and once you internalize that equation plus a handful of behaviors, the entire topic collapses into mechanical work. The reason remainders feel hard is that the GMAT phrases them in disguises — "when 3n+5 is divided by 7," "the units digit of 7^83," "the remainder when the product is divided by 8" — but underneath every disguise is the same structure. Learn the structure once and you stop being surprised. The 700+ scorer is not faster at long division; they have simply trained their ear to hear every remainder fact as the same sentence, and they police one tiny range constraint that everyone else forgets.
+Remainder questions show up on 685+ difficulty constantly because they have so many angles: algebra, units digits, modular arithmetic, layered constraints. The good news: they all reduce to one equation, and once you internalize that equation plus a handful of behaviors, the entire topic collapses into mechanical work. The reason remainders feel hard is that the GMAT phrases them in disguises — "when 3n+5 is divided by 7," "the units digit of 7^83," "the remainder when the product is divided by 8" — but underneath every disguise is the same structure. Learn the structure once and you stop being surprised. The top scorer is not faster at long division; they have simply trained their ear to hear every remainder fact as the same sentence, and they police one tiny range constraint that everyone else forgets.
 
 **The remainder equation.** If n divided by d leaves remainder r, then `n = dk + r` for some non-negative integer k, and `0 ≤ r < d`. This equation is the master tool. Everything else in this section is a consequence of it. The constraint `0 ≤ r < d` is doing real work: it says the remainder is never negative and never as large as the divisor. A "remainder of 7 when dividing by 5" is impossible — it would mean you failed to subtract another full 5.
 
@@ -203,7 +203,7 @@ Algebra route: write `n = 7k + 4`. Then `3n + 5 = 3(7k + 4) + 5 = 21k + 12 + 5 =
 
 Do not compute 7^83. Instead find the cycle of remainders of powers of 7 mod 5. Reduce the base first: 7 leaves remainder 2 mod 5, so 7^83 has the same remainder as 2^83 mod 5. Now list powers of 2 mod 5: `2^1 = 2`, `2^2 = 4`, `2^3 = 8 → 3`, `2^4 = 16 → 1`, then `2^5 → 2` and it repeats. The cycle is `2, 4, 3, 1` with length 4. So the remainder of `2^83` depends only on where 83 lands in a cycle of 4: `83 = 4 × 20 + 3`, remainder 3, which points to the **third** entry of the cycle, `3`. So 7^83 leaves remainder **3** when divided by 5. The named tactic here is **cycle-and-reduce**: shrink the base, find the period, divide the exponent by the period, and read off the position.
 
-One edge case that trips up even strong students: what if the exponent divides evenly by the cycle length? Suppose you needed `2^84 mod 5`. Then `84 = 4 × 21 + 0`, remainder 0 — and a remainder of 0 points to the **last** entry of the cycle, not the first. Here that is `1`. The mental rule: remainder 1 → first slot, remainder 2 → second slot, …, remainder 0 → final slot. Mishandling the "remainder 0" landing is one of the most common cycle errors at the 700 level.
+One edge case that trips up even strong students: what if the exponent divides evenly by the cycle length? Suppose you needed `2^84 mod 5`. Then `84 = 4 × 21 + 0`, remainder 0 — and a remainder of 0 points to the **last** entry of the cycle, not the first. Here that is `1`. The mental rule: remainder 1 → first slot, remainder 2 → second slot, …, remainder 0 → final slot. Mishandling the "remainder 0" landing is one of the most common cycle errors at the top difficulty tier.
 
 **Worked example.** (hard — translate remainders, then combine) A positive integer n leaves remainder 0 when divided by 3 and remainder 2 when divided by 4. Which of the following must be true? (A) n is divisible by 6 (B) n is divisible by 12 (C) n is odd (D) n is divisible by 8 (E) n is divisible by 9
 

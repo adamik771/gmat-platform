@@ -466,7 +466,7 @@ The correct answer is C.
 ---
 
 ## Q16
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Mixtures
 

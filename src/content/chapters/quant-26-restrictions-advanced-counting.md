@@ -52,7 +52,7 @@ problem_sets:
 
 ## @restrictions
 
-Restriction problems add a constraint to a basic arrangement or selection. They are the GMAT's favorite way to turn a routine permutation into a 700-level trap, because the *method* you pick depends entirely on reading the constraint correctly. There are four core patterns — **required adjacency, forbidden adjacency, alternating, and compound** — plus a small toolkit of structural shortcuts (the glue trick, the complement reflex, and the gap method). The 700+ skill here is not heavier arithmetic; it is recognizing which pattern is in front of you *before* you compute, then executing the matching procedure cleanly. Misread the pattern and you will confidently produce a wrong number that is sitting right there in the answer choices, planted precisely for you.
+Restriction problems add a constraint to a basic arrangement or selection. They are the GMAT's favorite way to turn a routine permutation into a top-tier trap, because the *method* you pick depends entirely on reading the constraint correctly. There are four core patterns — **required adjacency, forbidden adjacency, alternating, and compound** — plus a small toolkit of structural shortcuts (the glue trick, the complement reflex, and the gap method). The top-tier skill here is not heavier arithmetic; it is recognizing which pattern is in front of you *before* you compute, then executing the matching procedure cleanly. Misread the pattern and you will confidently produce a wrong number that is sitting right there in the answer choices, planted precisely for you.
 
 Here is the decision spine for the whole section. Memorize it cold — under timed pressure you want to classify first and reach for the right tool by reflex, not improvise.
 
@@ -224,7 +224,7 @@ Classify the constraint first, then execute the matching method. **Together → 
 
 ## @counting-and-combinations
 
-Many probability problems — and most hard ones — require counting how many ways something can happen. There are exactly three counting tools. The trap answer on most counting questions is the right count done with the wrong tool — permutation when the answer needs combination, or multiplication when cases must be split and added. Identify the tool first; the arithmetic follows. On a 700+ test, the difficulty almost never lives in the arithmetic — C(7, 3) is a 10-second computation. The difficulty lives in **diagnosis**: is this multiply, or add? Order, or no order? One clean count, or a split into cases? Get the diagnosis right and the rest is bookkeeping. The score gap between a 600 and a 750 test-taker on these problems is almost never speed at factorials — it is the discipline to ask the three diagnostic questions *before* touching a number.
+Many probability problems — and most hard ones — require counting how many ways something can happen. There are exactly three counting tools. The trap answer on most counting questions is the right count done with the wrong tool — permutation when the answer needs combination, or multiplication when cases must be split and added. Identify the tool first; the arithmetic follows. At the top score levels, the difficulty almost never lives in the arithmetic — C(7, 3) is a 10-second computation. The difficulty lives in **diagnosis**: is this multiply, or add? Order, or no order? One clean count, or a split into cases? Get the diagnosis right and the rest is bookkeeping. The score gap between a mid-scoring and a top-scoring test-taker on these problems is almost never speed at factorials — it is the discipline to ask the three diagnostic questions *before* touching a number.
 
 Three tools:
 
@@ -371,7 +371,7 @@ Use complement when the "bad" arrangements form a tidy pattern — adjacency is 
 - Inclusion-exclusion for "at least one pair adjacent": 720 − 288 + 48 = 480.
 - "No couple adjacent" = total − (at least one adjacent) = 720 − 480 = **240.**
 
-The takeaway is not to memorize this number — it's to recognize that "no pair adjacent" with *multiple* pairs needs inclusion-exclusion (subtract singles, add back doubles, subtract triples), and that the block method supplies each term. Most test-takers stop after subtracting 720 and report a negative or wrong answer; the 700+ move is knowing the overlaps must be added back. The sign pattern is worth carving in: **plus the whole, minus singles, plus doubles, minus triples** — alternating, with the count of terms at each level given by C(3,1), C(3,2), C(3,3). When in doubt about a sign, the rule is "subtract odd-sized overlaps, add even-sized ones."
+The takeaway is not to memorize this number — it's to recognize that "no pair adjacent" with *multiple* pairs needs inclusion-exclusion (subtract singles, add back doubles, subtract triples), and that the block method supplies each term. Most test-takers stop after subtracting 720 and report a negative or wrong answer; the expert move is knowing the overlaps must be added back. The sign pattern is worth carving in: **plus the whole, minus singles, plus doubles, minus triples** — alternating, with the count of terms at each level given by C(3,1), C(3,2), C(3,3). When in doubt about a sign, the rule is "subtract odd-sized overlaps, add even-sized ones."
 
 **Template 2: Fix the constrained item first, then fill freely.**
 

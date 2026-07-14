@@ -1942,7 +1942,7 @@ How many 4-digit numbers have all four digits distinct and are even? (A 4-digit 
 ---
 
 ## Q58
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Fundamental Counting
 

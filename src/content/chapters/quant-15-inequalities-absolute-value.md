@@ -44,7 +44,7 @@ problem_sets:
       "725": 100
     question_ids:
       - algebra-q124
-      - algebra-q16
+      - number-properties-q37
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -58,7 +58,7 @@ problem_sets:
 
 ## @inequalities
 
-Inequalities work like equalities with one brutal exception: multiplying or dividing by a negative flips the inequality sign. This is the single most common algebra mistake on the GMAT, and it costs more 605-to-705 jumpers a correct answer than any other reflex. The good news is that the topic is narrow and rule-bound. Master the flip, learn to count integer solutions cleanly, respect the edge cases around reciprocals and unknown-sign denominators, and a whole band of "medium" inequality questions collapses into routine work — while the genuinely hard 700+ items become a matter of applying the same three or four disciplines without slipping.
+Inequalities work like equalities with one brutal exception: multiplying or dividing by a negative flips the inequality sign. This is the single most common algebra mistake on the GMAT, and it costs more 605-to-705 jumpers a correct answer than any other reflex. The good news is that the topic is narrow and rule-bound. Master the flip, learn to count integer solutions cleanly, respect the edge cases around reciprocals and unknown-sign denominators, and a whole band of "medium" inequality questions collapses into routine work — while the genuinely hard items become a matter of applying the same three or four disciplines without slipping.
 
 **Operations that preserve the inequality direction:**
 

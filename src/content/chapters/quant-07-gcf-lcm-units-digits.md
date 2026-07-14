@@ -48,7 +48,7 @@ problem_sets:
       "725": 95
     question_ids:
       - arithmetic-q72
-      - arithmetic-q86
+      - arithmetic-q71
 ---
 
 ## @gcf-lcm
@@ -166,7 +166,6 @@ The closest is **13/40** (gap ≈ 0.008). A rigorous check uses cross-multiplica
 
 **Estimation heuristics worth memorizing:**
 
-- `π ≈ 3.14 ≈ 22/7`. Close enough for any GMAT geometry question.
 - `√2 ≈ 1.414`, `√3 ≈ 1.732`, `√5 ≈ 2.236`. Decimals of these three roots show up constantly.
 - 10% of a number is easy; 1% is easier. For 17% of 350, compute 10% = 35, plus 7% = 7 × 3.5 = 24.5. Total ≈ 59.5.
 - Doubling and halving preserves a product: `25 × 16 = 50 × 8 = 100 × 4 = 400`. Cleaner numbers, same answer.

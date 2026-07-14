@@ -31,7 +31,7 @@ problem_sets:
     question_ids:
       - critical-reasoning-q158
       - critical-reasoning-q28
-      - critical-reasoning-q29
+      - critical-reasoning-q26
   medium:
     target_accuracy_by_score:
       "605": 50

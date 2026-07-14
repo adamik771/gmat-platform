@@ -487,9 +487,6 @@ Break n into small primes in order. Check 2, 3, 5, 7, 11, 13 in sequence. Stop w
 - Confusing percent increase with multiplier. 50% increase means multiply by 1.5, not 0.5.
 - Adding percent changes instead of multiplying multipliers. A 10% gain followed by a 10% loss is a net 1% loss, not zero.
 - Treating 1 as prime, or forgetting that 2 is the only even prime.
-- Forgetting the triangle inequality when choosing side lengths.
-- Mixing up radius and diameter in circle formulas.
-- Treating parallelogram slanted side as the height; the height must be perpendicular to the chosen base.
 - Confusing permutation (order matters) with combination (order doesn't). Read the problem carefully.
 - In probability, forgetting to subtract P(A and B) in the general union formula.
 - Mixing absolute change with percent change in Data Insights questions that pull from the same graph.

@@ -138,7 +138,7 @@ A fast cross-check using **the C × k! bridge**: total unrestricted arrangements
 
 > **Self-explanation prompt.** State, without looking up, why P(n, k) / k! = C(n, k). If you can say "because each group of k people appears k! times in the permutation count — once per ordering — and we divide to collapse all those orderings into one," you understand the relationship cold.
 
-**Trap to watch.** "A committee of 3 is chosen from 10" is C(10, 3) = 120. "A president, VP, and treasurer are chosen from 10" is P(10, 3) = 720. Six times larger — because roles make order matter. The signal: are the positions named and distinct? A subtler version of this trap hides in word choice. "Arrange," "rank," "order," "schedule," "seat in a row," "award medals," "first/second/third," and "form a number/code/word" all scream permutation. "Select," "choose," "form a committee/group/team," "a handful," and "subset" scream combination. When a question mixes both — *choose 3 of 8 and seat them in 3 chairs* — do the combination, then multiply by the arrangements: C(8, 3) × 3! = 56 × 6 = 336, which is just P(8, 3). Recognizing that "choose then arrange" collapses back into a single permutation is a hallmark of the 700+ scorer. The deepest version of this trap is **mixed roles within one selection**: "From 9 people, choose a 4-person committee, then within it name a chair and a secretary." That is C(9, 4) to pick the four, then P(4, 2) to assign two named roles among them: C(9, 4) × P(4, 2) = 126 × 12 = 1,512. Don't try to do it in one symbol — break it into a choose-phase and an arrange-phase.
+**Trap to watch.** "A committee of 3 is chosen from 10" is C(10, 3) = 120. "A president, VP, and treasurer are chosen from 10" is P(10, 3) = 720. Six times larger — because roles make order matter. The signal: are the positions named and distinct? A subtler version of this trap hides in word choice. "Arrange," "rank," "order," "schedule," "seat in a row," "award medals," "first/second/third," and "form a number/code/word" all scream permutation. "Select," "choose," "form a committee/group/team," "a handful," and "subset" scream combination. When a question mixes both — *choose 3 of 8 and seat them in 3 chairs* — do the combination, then multiply by the arrangements: C(8, 3) × 3! = 56 × 6 = 336, which is just P(8, 3). Recognizing that "choose then arrange" collapses back into a single permutation is a hallmark of the top scorer. The deepest version of this trap is **mixed roles within one selection**: "From 9 people, choose a 4-person committee, then within it name a chair and a secretary." That is C(9, 4) to pick the four, then P(4, 2) to assign two named roles among them: C(9, 4) × P(4, 2) = 126 × 12 = 1,512. Don't try to do it in one symbol — break it into a choose-phase and an arrange-phase.
 
 **A second trap — identical items.** Standard P(n, k) assumes the n items are all *distinct*. If some items are identical, arranging "all n" is *not* n!; it is n! divided by the factorial of each repeat group. The number of distinct arrangements of the letters in MISSISSIPPI (11 letters: 1 M, 4 I, 4 S, 2 P) is 11! / (4! 4! 2!) = 34,650, not 11!. The GMAT loves to slip a repeated letter or a pair of identical objects into an "arrange" problem precisely because the naive 11! answer will be sitting in the choices.
 
@@ -204,7 +204,7 @@ For C(10, 3): top is 10 × 9 × 8 (three descending factors), bottom is 3! = 6. 
 - Top: 8 × 7 × 6. Bottom: 3! = 6.
 - Cancel the 6: 8 × 7 = **56**.
 
-If you had naively used k = 5, you would have written 8 × 7 × 6 × 5 × 4 over 5! — the same answer, but far more arithmetic and far more chances to slip. Flipping to the smaller side is not optional polish; it is how 700+ scorers avoid careless errors under time pressure.
+If you had naively used k = 5, you would have written 8 × 7 × 6 × 5 × 4 over 5! — the same answer, but far more arithmetic and far more chances to slip. Flipping to the smaller side is not optional polish; it is how top scorers avoid careless errors under time pressure.
 
 **Symmetry trick.** C(n, k) = C(n, n − k). Choosing 3 of 6 is equivalent to *not choosing* the other 3 — every choice of who is in determines who is out, a perfect one-to-one pairing. Useful shortcut: C(10, 7) = C(10, 3) = 120 — flip to the smaller side and skip the heavy arithmetic.
 
@@ -274,7 +274,7 @@ You can backsolve the structure with the complement and then sanity-check agains
 
 Naming the moves: **complementary counting** to set it up, then **estimation against the answer choices** to confirm the magnitude is sane before committing. On a hard problem, that magnitude check is often enough to eliminate three or four choices even if you fumble the exact fraction.
 
-**Worked example (the subtle double-count — separating poison the 700+ level loves).** A group has 7 people. A 3-person subcommittee must be chosen, and **one specific person, Dana, must be on it**. How many subcommittees are possible?
+**Worked example (the subtle double-count — separating poison the hardest items love).** A group has 7 people. A 3-person subcommittee must be chosen, and **one specific person, Dana, must be on it**. How many subcommittees are possible?
 
 The trap is to "include Dana and then choose freely," computed wrongly as 7 × C(6, 2) — treating Dana's seat as if it still had 7 candidates. The clean reasoning:
 
@@ -371,7 +371,7 @@ These are the same calculation seen from two angles. Choosing positions for the 
 
 > **Self-explanation prompt.** Why does swapping two identical letters NOT produce a new arrangement, while a *unique* letter contributes nothing to the denominator? If you can say "swapping identical letters leaves the visible word unchanged — the two F positions in COFFEE look the same either way, so the two labelings collapse to one word; and a unique letter has only 1! = 1 way to 'rearrange itself,' so dividing by 1 changes nothing," you have the intuition that makes the formula permanent rather than memorized.
 
-**Worked example — lattice paths (a 700+ disguise).** A robot moves from the bottom-left corner of a grid to a point 4 blocks east and 3 blocks north, moving only east (E) or north (N) one block at a time. How many distinct shortest paths are there?
+**Worked example — lattice paths (a hard-item disguise).** A robot moves from the bottom-left corner of a grid to a point 4 blocks east and 3 blocks north, moving only east (E) or north (N) one block at a time. How many distinct shortest paths are there?
 
 - Every shortest path is a sequence of exactly 4 E's and 3 N's, in some order — 7 moves total.
 - Counting paths = counting distinct arrangements of the multiset EEEENNN.
@@ -484,7 +484,7 @@ The glue trick applies in circular arrangements too. Treat the required-adjacent
 - Internal ordering of the pair: × 2
 - Total: 120 × 2 = **240**
 
-**Trap to watch.** Forgetting the × 2 internal ordering of the block is the most common error. The two people in the block can swap seats — that is a distinct arrangement. Equally common at the 700+ level: applying the linear glue count (treating the merged units with n! instead of (n − 1)!). After you glue, you still have a *circular* problem with fewer units, so subtract 1 from the unit count before taking the factorial.
+**Trap to watch.** Forgetting the × 2 internal ordering of the block is the most common error. The two people in the block can swap seats — that is a distinct arrangement. Equally common on the hardest items: applying the linear glue count (treating the merged units with n! instead of (n − 1)!). After you glue, you still have a *circular* problem with fewer units, so subtract 1 from the unit count before taking the factorial.
 
 **Worked example — a block of three.** 8 people at a round table; 3 specific people (a panel) must sit together as a consecutive trio.
 

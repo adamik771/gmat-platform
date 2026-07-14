@@ -14,7 +14,7 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - algebra-q19
+      - algebra-q35
       - algebra-q20
   - id: functions-and-sequences
     type: reading
@@ -31,7 +31,7 @@ problem_sets:
       "725": 100
     question_ids:
       - algebra-q21
-      - algebra-q22
+      - algebra-q36
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -150,7 +150,7 @@ The elegant interpretation: the sum of n terms equals n times the *average* term
 
 The "`+ 1`" in the count is the classic **fence-post** error: the gaps between terms number one fewer than the terms themselves. Always `(last − first)/d + 1`. Forgetting the `+ 1` here would give 13 terms and a sum of `(13/2)(125) = 812.5` — not even an integer, which is itself a clue you miscounted.
 
-**Worked example (estimation as a sanity check).** A 700-level prompt asks for the sum of the integers from 17 to 83 inclusive, and one answer choice is 3,300. Should you trust it? Don't grind — **estimate.** The count is `(83 − 17) + 1 = 67`. The average term is `(17 + 83)/2 = 50`. So the sum is about `67 × 50 = 3,350`. The candidate 3,300 is close but not exact, so it is wrong; the true value is exactly `67 × 50 = 3,350`. **Estimation** here doubles as the actual method — "count times average term" *is* the sum — and it instantly flags a near-miss decoy. When answer choices are spread out, a 10-second estimate often eliminates three of them.
+**Worked example (estimation as a sanity check).** A hard prompt asks for the sum of the integers from 17 to 83 inclusive, and one answer choice is 3,300. Should you trust it? Don't grind — **estimate.** The count is `(83 − 17) + 1 = 67`. The average term is `(17 + 83)/2 = 50`. So the sum is about `67 × 50 = 3,350`. The candidate 3,300 is close but not exact, so it is wrong; the true value is exactly `67 × 50 = 3,350`. **Estimation** here doubles as the actual method — "count times average term" *is* the sum — and it instantly flags a near-miss decoy. When answer choices are spread out, a 10-second estimate often eliminates three of them.
 
 > **Recall check.** Without scrolling up, state the formula for the nth term of an arithmetic sequence and the formula for the nth term of a geometric sequence. Now state the sum formula for an arithmetic sequence, and the rule for counting how many terms run from first to last. (`aₙ = a₁ + (n − 1)d`; `aₙ = a₁ × r^(n − 1)`; `Sₙ = (n/2)(a₁ + aₙ)`; count `= (last − first)/d + 1`.) If you can write them from memory, you've encoded the template; if not, re-read the boxes and try again in two minutes. Retrieval beats re-reading — that's the single most robust finding in the learning-science literature.
 
