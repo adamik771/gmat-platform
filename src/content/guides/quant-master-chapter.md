@@ -977,7 +977,7 @@ The structural identity is the only fast path. The student who knows it solves i
 
 *Recognition cue.* Any problem involving *symmetric functions* of two or three variables — x + y, xy; x + y + z, xy + yz + xz, xyz — should trigger the structural identity for the sum of squares or the product decomposition. These are among the top-twenty shapes on hard Quant.
 
-## Part 8: The Glossary of 700+ Problem Shapes
+## Part 8: The Glossary of Top-Tier Problem Shapes
 
 The GMAT recycles a finite library of high-difficulty problem shapes. Here are the most frequent ones above the 75th percentile, with the shape name, the recognition cue, and the right method.
 

@@ -21,7 +21,7 @@ sections:
     title: "Even and odd — the smallest ideas with the biggest payoff"
     check_question_ids:
       - number-properties-q52
-      - number-properties-q17
+      - number-properties-q56
   - id: integer-properties-of-expressions
     type: reading
     title: "Integer properties of expressions and units digits"

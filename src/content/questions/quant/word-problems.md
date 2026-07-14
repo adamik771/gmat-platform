@@ -235,7 +235,7 @@ The correct answer is C.
 ---
 
 ## Q9
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Rate/Time/Distance
 
@@ -272,7 +272,7 @@ The correct answer is B.
 ---
 
 ## Q10
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Work Rate
 

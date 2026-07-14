@@ -333,7 +333,7 @@ The correct answer is A.
 ---
 
 ## Q10
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Exponents
 
@@ -798,7 +798,7 @@ The correct answer is D.
 ---
 
 ## Q21
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Symmetric Sums
 

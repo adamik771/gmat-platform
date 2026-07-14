@@ -107,3 +107,24 @@ Quant mixes "Area: Topic" (quant-05..08, 11, 13..17, 21, 23, 24), plain topic (q
 - **Duplicates**: beyond the three fixed pairs, the letter-arrangement family (MISSION/PROGRAM/BALLOON/LEVEL) and the shared RC stems ("The primary purpose of the passage is to") are deliberate template variety, not defects.
 
 No claim in this audit should be read as a statement about what official GMAC materials say, and none of the fixes promises any score outcome.
+
+---
+
+## EDITORIAL CONSISTENCY PASS — 2026-07-13 (approved decisions applied)
+
+Adam approved decisions on flagged items 1-5; this section records what changed and what remains deferred. Verified by script: 0 DS pins in quant chapters, 0 broad "gone entirely" geometry claims, 0 old-scale teaching anchors, 6 two-tier mismatches remaining (all documented below).
+
+**1. Geometry (flagged item 1) — scoped line adopted:** "Geometry is removed from GMAT Focus Quant, but light geometric reasoning can still appear inside Data Insights contexts."
+- `quant-section-intro:112` "gone entirely" rescoped; trig/law-of-sines line in `ds-logic-deep-dive` replaced with a no-trig statement; geometry formulas removed from the `test-day-checklist` and `lessons/07` final-week sweeps; `master-chapter` syllabus line corrected and its Coordinate-geometry subsection kept but labeled "not tested on GMAT Focus Quant — optional background"; three geometry memorization rows deleted from `quant-formula-sheet`; five passing mentions aligned (pacing-guide, quant-07/13, lessons/02/07).
+- NOT changed (per decision): the 17 geometry-topic DS/TPA questions and the DI geometry teaching stay — the DI-syllabus question remains open.
+
+**2. DS pins (flagged item 2) — all 12 re-pinned** to chapter-skill Problem Solving items (cross-bank where the home bank had none; every replacement tier-matched, previously unpinned, verified by loader script): quant-05 arithmetic-q18→q50, quant-07 arithmetic-q86→q71, quant-08 number-properties-q17→q56, quant-10 number-properties-q90→q40, quant-15 algebra-q16→number-properties-q37, quant-16 algebra-q19→algebra-q35, quant-20 ratios-percents-q15→q63 and q18→arithmetic-q87, quant-28 word-problems-q58→q87 / q60→ratios-percents-q59 / q18→word-problems-q28, quant-29 word-problems-q90→q34. Mid-run problemSetRuns resume edge accepted per decision. The 12 DS items remain in their banks (they still serve DI drills).
+
+**3+4. Two-tier mismatches (flagged item 3) — 15 of 21 resolved, 6 flagged:**
+- 8 relabeled Hard→Medium (all judged over-labeled in flagged item 4's sample): word-problems q9/q10, algebra q10/q21, ratios-percents q16, combinatorics q58, graphics-interpretation q46, reading-comprehension q60.
+- 7 re-pinned to Beginner same-skill items: CR q29→q26, q169→q164, q85→q202, q218→q156; RC q3→q18; algebra q9→q100, q22→q36.
+- 6 REMAIN FLAGGED (no same-type Beginner exists unpinned; an off-type pin would trade tier consistency for skill consistency): critical-reasoning-q5 (verbal-02), critical-reasoning-q20 (verbal-04), reading-comprehension-q124/q28/q55/q140 (verbal-14/17/18/19). Resolving them needs either new Beginner questions in those types or a relabel judgment. The 113 one-tier mismatches stay deferred pending the Hard-tier calibration re-review (flagged item 4, still open beyond the 8 relabels above).
+
+**5. Old-scale score anchors (flagged item 5) — all 49 sites rewritten** scale-free ("top scorers", "the hardest items", "mid-difficulty") per the approved mapping; no numeric old→Focus conversions were made; deliberate old-exam comparisons were left only where the text is explicitly about the old exam. The validator INFO rule now reports zero.
+
+**Still deferred/open from the original flag list:** DI geometry syllabus call (item 1b), the broader Hard-tier calibration re-review (item 4 beyond the 8 relabels), quant-27 duplicate intro sections (item 6), CR/RC split disagreement (item 7), chapter shape gaps (item 8), title-style convention (item 9), minor flags (item 10).

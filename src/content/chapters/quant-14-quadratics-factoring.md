@@ -36,7 +36,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - algebra-q9
+      - algebra-q100
       - algebra-q10
   medium:
     target_accuracy_by_score:
@@ -123,7 +123,7 @@ Every one of these is built from sum and product alone — exactly what Vieta's 
 - `b² − 4ac = 0`: exactly one real root (a repeated root).
 - `b² − 4ac < 0`: no real roots.
 
-The discriminant is the tool for any question phrased around the *number* of solutions, or that asks for a parameter making a quadratic have one solution / two solutions / no solution. You compute one number and read off the answer — you almost never solve the equation itself. A 700+ refinement worth knowing: a perfect-square discriminant signals **rational** roots (the trinomial factors over the integers/rationals), while a positive-but-non-perfect-square discriminant means two distinct *irrational* roots. The GMAT loves the "for what `k` is `x² + kx + 36` factorable" flavor, which is secretly asking when `k² − 144` is a perfect square.
+The discriminant is the tool for any question phrased around the *number* of solutions, or that asks for a parameter making a quadratic have one solution / two solutions / no solution. You compute one number and read off the answer — you almost never solve the equation itself. A top-tier refinement worth knowing: a perfect-square discriminant signals **rational** roots (the trinomial factors over the integers/rationals), while a positive-but-non-perfect-square discriminant means two distinct *irrational* roots. The GMAT loves the "for what `k` is `x² + kx + 36` factorable" flavor, which is secretly asking when `k² − 144` is a perfect square.
 
 **Example.** For what `k` does `x² − 10x + k = 0` have exactly one real solution? Discriminant = 0 → `100 − 4k = 0` → `k = 25`. The repeated root is `x = 5`.
 

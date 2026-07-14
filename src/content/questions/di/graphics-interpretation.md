@@ -1800,7 +1800,7 @@ The correct answer is B.
 {"type":"scatter","title":"Years of experience vs. annual salary ($K)","x":{"label":"Experience (years)"},"y":{"label":"Salary ($K)"},"data":[{"x":2,"y":52},{"x":3,"y":58},{"x":3,"y":65},{"x":5,"y":68},{"x":7,"y":75},{"x":8,"y":85},{"x":9,"y":90},{"x":10,"y":95},{"x":12,"y":105},{"x":14,"y":120},{"x":15,"y":110},{"x":18,"y":140}]}
 ```
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Graphics Interpretation
 **topic:** Correlation Strength
 

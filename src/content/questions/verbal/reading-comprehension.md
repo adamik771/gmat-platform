@@ -2002,7 +2002,7 @@ The correct answer is B.
 ---
 
 ### Q60
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Reading Comprehension
 **topic:** Inference
 

@@ -40,7 +40,7 @@ problem_sets:
       "725": 95
     question_ids:
       - word-problems-q38
-      - word-problems-q90
+      - word-problems-q34
 ---
 
 ## @sets-and-venn
