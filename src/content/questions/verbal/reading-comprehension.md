@@ -5238,3 +5238,95 @@ The author's attitude toward the wisdom-of-crowds idea is best described as
 **mistake_c:** Alarm at confident errors describes only one paragraph's cautionary point, not the author's overall stance, which remains constructively accepting.
 **mistake_e:** The author does take an evaluative stance, endorsing aggregation conditionally and prescribing methods to protect independence, so the tone is not detached neutrality.
 **related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 44: Why Libraries Started Lending Tools
+
+For most of their history, public libraries were defined by a single service: lending books. In recent years, however, a growing number of libraries have begun lending objects that have nothing to do with reading — power drills, sewing machines, telescopes, even musical instruments. To some observers this shift looks like a distraction from the library's real purpose. The librarians who run these programs argue the opposite. The library, they point out, has always existed to give a community shared access to resources that individuals may not be able to afford or store on their own. A drill that a household uses twice a year fits that principle as neatly as a novel that a reader finishes in a weekend. Seen this way, lending tools is not a departure from the library's mission but a straightforward extension of it.
+
+### Q179
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Main Idea
+
+Which of the following best states the main point of the passage?
+
+- A) Public libraries should stop lending books and focus instead on lending tools and other objects.
+- B) Lending tools and similar objects extends, rather than betrays, the library's long-standing purpose of providing shared community access to resources.
+- C) Power drills and telescopes are among the items most frequently borrowed from modern public libraries.
+- D) Most librarians object to programs that lend anything other than books.
+- E) Communities that cannot afford to buy books benefit more from libraries than wealthier communities do.
+
+**answer:** B
+**explanation:** **Question task.** This is a Main Idea question, so the correct answer must capture the one claim that unifies the whole passage — not a single detail and not an overstatement. **Why B is correct.** The passage sets up a contrast (some see tool-lending as a distraction) and then endorses the librarians' reply: the library has always existed to provide shared access to resources people cannot easily afford or store, and tools fit that principle just as books do. The closing sentence states the thesis outright — tool-lending is "not a departure from the library's mission but a straightforward extension of it." B restates exactly that. **Why the others fail.** A is too extreme and reverses the passage, which never says books should be dropped. C is a supporting detail (examples of borrowed objects), not the central claim. D contradicts the passage, which presents the librarians as defending these programs. E introduces a comparison between rich and poor communities that the passage never makes. The correct answer is B.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 45: Design That Explains Itself
+
+An industrial designer argues that a well-made everyday object should make its correct use obvious from its shape alone, so that a first-time user needs no printed instructions. A door meant to be pushed, she notes, should present a flat plate with nothing to grab; a door meant to be pulled should present a handle that invites the hand. When the shape of an object suggests the wrong action, she warns, users will keep making the same mistake no matter how clearly the instructions are written. Good design, in her view, does its explaining silently, through form, and treats a printed warning label as a confession that the shape has failed.
+
+### Q180
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Application
+
+The designer would most likely consider which of the following a design failure?
+
+- A) A pair of scissors molded to fit the curve of a right hand.
+- B) A cabinet drawer fitted with a rounded knob that invites a pull, though the drawer opens only when it is pressed inward.
+- C) A camera on which the shutter button is the largest and most prominent control.
+- D) A water faucet whose single lever lifts to start the flow and lowers to stop it.
+- E) A light switch mounted just inside the entrance of a room.
+
+**answer:** B
+**explanation:** **Question task.** Apply the designer's principle to a new object — find the case where the shape points the user toward the wrong action. **Why B is correct.** A rounded knob "invites the hand" to pull, but the drawer opens only when pressed inward; the form actively suggests the wrong action, which is precisely the failure the passage describes, and no printed label can undo it. This is the door principle carried to a fresh object rather than the door itself. **Why the others fail.** A (hand-shaped scissors), C (a prominent shutter button on a camera), and D (a lever whose motion matches the flow) are all cases where the shape supports correct use — the principle would approve of them. E places a light switch where a person entering would reach for it, again a shape-and-placement match, not a failure. The correct answer is B.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 46: Why Ice Floats
+
+Most substances grow denser as they cool, so their solid form sinks in their own liquid. Water is a striking exception. As water nears its freezing point, its molecules lock into a rigid lattice that holds them slightly farther apart than they sit in the liquid. Because the same number of molecules now takes up more space, ice is less dense than the water around it, and so it floats. This small quirk has large consequences. A pond freezes from the top down rather than the bottom up, leaving a layer of liquid water beneath the ice in which fish and other creatures can survive the winter.
+
+### Q181
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Function
+
+In the passage, the statement that most substances grow denser as they cool serves primarily to
+
+- A) prove that water is the most unusual liquid found in nature.
+- B) establish the general rule against which water's behavior is presented as an exception.
+- C) explain how fish are able to survive the winter in a frozen pond.
+- D) describe the rigid lattice that water molecules form near freezing.
+- E) argue that cooling always lowers the density of a substance.
+
+**answer:** B
+**explanation:** **Question task.** A Function question asks what a sentence *does* for the passage, not what it states. **Why B is correct.** The opening sentence lays down the normal rule — substances get denser and their solids sink — so that the next sentence ("Water is a striking exception") has something to stand against. Its job is to set the baseline that makes water's behavior notable. **Why the others fail.** A overreaches: the sentence sets up a contrast, not a ranking of water among all liquids. C names the passage's final consequence, which comes later and is a different sentence's job. D describes content that appears afterward (the lattice), not the function of this sentence. E misreads the rule as a claim that cooling *always* lowers density, which is the opposite of what the sentence says. The correct answer is B.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 47: Points and Badges in the Classroom
+
+The recent enthusiasm for "gamifying" education — awarding students points, badges, and leaderboard rankings for finishing their lessons — has produced some real benefits. Students who might otherwise drift often work longer when a game-like system rewards their effort, and teachers describe livelier classrooms. Still, it would be a mistake to treat these rewards as a cure-all. When the points themselves become the goal, students can learn to chase them while absorbing little of the material the points were meant to encourage. Used sparingly, gamification is a genuinely useful tool; mistaken for the substance of learning, it quietly defeats its own purpose.
+
+### Q182
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's overall attitude toward gamification in education is best described as
+
+- A) unqualified enthusiasm.
+- B) cautious approval tempered by a clear reservation.
+- C) firm opposition.
+- D) complete indifference.
+- E) bewilderment about its effects.
+
+**answer:** B
+**explanation:** **Question task.** An Attitude question is a two-dial check: get the direction and the intensity of the author's stance both right. **Why B is correct.** The author names "real benefits" and calls gamification "genuinely useful" (positive direction) but warns against treating it as "a cure-all" and describes how it can "defeat its own purpose" (a clear reservation). Favorable, but hedged — cautious approval with a reservation. **Why the others fail.** A overshoots the intensity: "unqualified" ignores the explicit warning. C reverses the direction; the author does not oppose gamification, only its misuse. D is wrong because the author plainly cares and takes a position. E mistakes a balanced, well-organized judgment for confusion. The correct answer is B.
+**related_reading:** reading-verbal-06-rc-question-types

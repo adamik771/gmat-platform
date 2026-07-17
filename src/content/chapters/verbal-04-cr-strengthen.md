@@ -30,7 +30,7 @@ problem_sets:
       "725": 100
     question_ids:
       - critical-reasoning-q156
-      - critical-reasoning-q20
+      - critical-reasoning-q248
       - critical-reasoning-q21
   medium:
     target_accuracy_by_score:

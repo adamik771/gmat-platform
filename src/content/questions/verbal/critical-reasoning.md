@@ -6268,3 +6268,41 @@ The correct answer is A.
 **mistake_d:** Choice D calls the first an assumption the analyst makes. The analyst does not adopt the first claim; the analyst disputes it, so it is not an assumption underlying the argument.
 **mistake_e:** Choice E says the analyst rejects both portions. The analyst rejects only the first; the second is the analyst's own supporting explanation, which the analyst endorses, so this mischaracterizes the second.
 **related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q247
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Strengthen
+
+A community center began offering free yoga classes on weekday evenings. In the three months after the classes started, new memberships at the center rose by 25 percent. The center's director concludes that the free evening classes were responsible for the increase in memberships. Which of the following, if true, most strengthens the director's conclusion?
+
+- A) A similar community center nearby that did not add any new classes saw its new memberships stay flat over the same three-month period.
+- B) The yoga instructor hired by the center holds a widely recognized teaching certification.
+- C) The center spent a substantial part of its annual budget to launch the free classes.
+- D) Some longtime members of the center have said they prefer weightlifting to yoga.
+- E) Yoga has become a more popular form of exercise nationwide over the past several years.
+
+**answer:** A
+**explanation:** The director attributes the 25 percent rise in memberships to the new free evening classes. Strengthening a causal claim of this kind is done most powerfully by ruling out other explanations — showing the effect tracks the supposed cause. Choice A does exactly that: a comparable center that added no classes saw no change over the same period, which makes it far more likely that the classes, rather than some broader trend, drove the increase. Choice E points to a general nationwide trend, which if anything supplies a competing explanation and does not strengthen. Choice B (instructor credentials) and Choice C (cost of launching) say nothing about whether the classes caused the membership rise, and Choice D describes a preference of existing members, which is irrelevant to new memberships. The correct answer is A.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q248
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Evaluate
+
+A theater added a Sunday afternoon matinee to its weekly schedule. During the first month, the matinee filled 85 percent of its seats. On this basis, the theater's owner concludes that adding Sunday matinees at the company's other theaters would be profitable. Which of the following would be most useful to determine in evaluating the owner's conclusion?
+
+- A) Whether the ticket revenue from the matinee exceeded the cost of staffing and running the extra show.
+- B) Whether the audience at the matinee preferred seats in the balcony or on the main floor.
+- C) Whether the play performed at the matinee had won any awards.
+- D) Whether the theater is located within walking distance of public transit.
+- E) Whether the other theaters are larger or smaller than the one that added the matinee.
+
+**answer:** A
+**explanation:** The owner leaps from "85 percent of seats were filled" to "adding matinees elsewhere would be profitable." A full house is not the same as a profitable one: profit depends on whether the revenue those seats bring in exceeds the cost of putting on the show. Choice A targets exactly that gap — if revenue exceeded cost, the profitability claim gains support; if it did not, filling seats at low or discounted prices could still lose money, and the conclusion collapses. Because the answer swings the evaluation in opposite directions, it is the most useful thing to determine. Choice B (seat preference) and Choice C (awards) are incidental to profitability. Choice E (relative theater size) has some bearing on how the result might transfer but says nothing about whether the matinee itself made money, and Choice D (transit access) is background that does not test the cost-versus-revenue premise the argument rests on. The correct answer is A.
+**related_reading:** reading-verbal-04-cr-question-types

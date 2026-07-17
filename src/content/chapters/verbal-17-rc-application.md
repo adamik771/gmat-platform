@@ -34,7 +34,7 @@ problem_sets:
       "725": 100
     question_ids:
       - reading-comprehension-q84
-      - reading-comprehension-q28
+      - reading-comprehension-q180
       - reading-comprehension-q29
   medium:
     target_accuracy_by_score:

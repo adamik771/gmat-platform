@@ -33,7 +33,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - reading-comprehension-q55
+      - reading-comprehension-q181
       - reading-comprehension-q36
       - reading-comprehension-q37
   medium:
