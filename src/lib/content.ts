@@ -646,7 +646,17 @@ export function getQuestionsByDifficulty(difficulty: Difficulty): ParsedQuestion
 }
 
 export function getQuestionsBySetSlug(slug: string): ParsedQuestion[] {
-  return getAllQuestions().filter((question) => question.setSlug === slug)
+  // DS-format items inside quant technique banks parse as section DI (see
+  // parseQuestionBlock), but a topic drill serves its whole bank file — so a
+  // Quant-branded drill would still deal DS. On GMAT Focus, DS lives only in
+  // Data Insights: the DS bank's own drill is the only set that serves it.
+  // Those items stay reachable via the DI test-builder pool, DI mocks, the
+  // review queue, and the error log.
+  return getAllQuestions().filter(
+    (question) =>
+      question.setSlug === slug &&
+      (question.type !== "Data Sufficiency" || slug === "data-sufficiency")
+  )
 }
 
 /**
@@ -1096,6 +1106,7 @@ export function getPracticeChapterGroups(): PracticeChapterGroup[] {
   const chapters = getAllChapters()
   const questions = getAllQuestions()
   const chapterExists = new Set(chapters.map((c) => c.slug))
+  const sectionBySlug = new Map(chapters.map((c) => [c.slug, c.section]))
 
   // 1. Pins from problem_sets win (curated seed). First chapter wins on conflict.
   const pin = new Map<string, string>()
@@ -1135,6 +1146,11 @@ export function getPracticeChapterGroups(): PracticeChapterGroup[] {
     if (chapterSlug && isHidden(chapterSlug)) chapterSlug = null
     if (!chapterSlug) chapterSlug = resolveChapterAssignment(q.setSlug, q.subtopic).chapter
     if (!chapterSlug || !chapterExists.has(chapterSlug) || isHidden(chapterSlug)) continue
+    // DS questions authored in quant technique banks resolve to Quant chapters
+    // via BANK_RULES, which would deal DS into a Quant-branded practice test.
+    // On GMAT Focus, DS belongs only to DI surfaces — drop the assignment
+    // (no re-route: DI chapter tests keep drawing solely from the DI banks).
+    if (q.type === "Data Sufficiency" && sectionBySlug.get(chapterSlug) !== "DI") continue
     const list = assigned.get(chapterSlug)
     if (list) list.push(q)
     else assigned.set(chapterSlug, [q])
