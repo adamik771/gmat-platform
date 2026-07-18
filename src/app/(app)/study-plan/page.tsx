@@ -151,8 +151,11 @@ export default async function StudyPlanPage({
       // baseline" card sat permanently on top of Today's Focus even after
       // the student had entered their exam (friend-reported bug).
       const metaOfficial = state.official_exam_scores
-      const officialScores: Array<{ date?: unknown; total?: unknown }> =
-        Array.isArray(metaOfficial) ? metaOfficial : []
+      const officialScores: Array<{
+        date?: unknown
+        total?: unknown
+        attemptNumber?: unknown
+      }> = Array.isArray(metaOfficial) ? metaOfficial : []
       const validOfficial = officialScores
         .filter(
           (e) =>
@@ -163,8 +166,15 @@ export default async function StudyPlanPage({
         )
         .sort((a, b) => String(a.date).localeCompare(String(b.date)))
       officialExamCount = validOfficial.length
-      if (validOfficial.length > 0) {
-        const latest = validOfficial[validOfficial.length - 1]
+      // Anchor the plan to the latest FIRST ATTEMPT — retake scores draw
+      // from a seen pool and can be inflated, so they never set the
+      // baseline. Legacy entries (no attemptNumber) are first attempts.
+      const firstAttempts = validOfficial.filter(
+        (e) =>
+          !(typeof e.attemptNumber === "number" && e.attemptNumber >= 2),
+      )
+      if (firstAttempts.length > 0) {
+        const latest = firstAttempts[firstAttempts.length - 1]
         officialBaseline = latest.total as number
         baselineExamDate = latest.date as string
       }

@@ -3,9 +3,11 @@ import { ArrowRight, ClipboardList, Lock, NotebookPen } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getUserState } from "@/lib/user-state"
 import { MOCK_MODE_DEFS, type MockMode } from "@/lib/mock-modes"
-import OfficialExamPlanClient, {
+import {
+  parseOfficialExamEntries,
   type OfficialExamEntry,
-} from "./OfficialExamPlanClient"
+} from "@/lib/official-exams"
+import OfficialExamPlanClient from "./OfficialExamPlanClient"
 
 export const metadata = {
   title: "Mock Exams",
@@ -28,30 +30,6 @@ const CONDITIONS_CHECKLIST = [
   "Scratch work only on the booklet — never loose paper.",
 ] as const
 
-/** Parse the official_exam_scores state value into typed entries. */
-function parseOfficialEntries(state: unknown): OfficialExamEntry[] {
-  if (!state || typeof state !== "object") return []
-  const raw = (state as Record<string, unknown>).official_exam_scores
-  if (!Array.isArray(raw)) return []
-  const out: OfficialExamEntry[] = []
-  for (const item of raw) {
-    if (!item || typeof item !== "object") continue
-    const rec = item as Record<string, unknown>
-    if (typeof rec.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(rec.date))
-      continue
-    if (typeof rec.total !== "number") continue
-    out.push({
-      date: rec.date,
-      total: rec.total,
-      quant: typeof rec.quant === "number" ? rec.quant : null,
-      verbal: typeof rec.verbal === "number" ? rec.verbal : null,
-      di: typeof rec.di === "number" ? rec.di : null,
-      label: typeof rec.label === "string" ? rec.label : undefined,
-    })
-  }
-  return out
-}
-
 export default async function MockLandingPage() {
   const supabase = await createSupabaseServer()
   const {
@@ -73,7 +51,7 @@ export default async function MockLandingPage() {
         ? meta.exam_date
         : null
     targetScore = typeof meta.target_score === "number" ? meta.target_score : null
-    officialEntries = parseOfficialEntries(state)
+    officialEntries = parseOfficialExamEntries(state)
 
     // Two independent signals, fetched in parallel:
     //   - any practice attempts at all (gates the adaptive site-mock modes)
@@ -423,9 +401,10 @@ function SiteMocksSection({
         </div>
         <p className="text-[13px] text-[#C0C0C0] leading-relaxed max-w-2xl">
           These are simulations on our question bank — great for pacing
-          reps, stamina, and weakness repair between officials. The
-          official exams above are the calibrated score signal; treat
-          site-mock scores as training feedback, not predictions.
+          reps, stamina, and weakness repair between officials. First
+          attempts on the official exams above are the calibrated score
+          signal; treat site-mock scores as training feedback, not
+          predictions.
         </p>
       </div>
 

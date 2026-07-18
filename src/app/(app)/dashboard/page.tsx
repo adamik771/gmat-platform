@@ -30,6 +30,8 @@ import { TRIAL_DAYS, trialDaysLeft, trialStartFor } from "@/lib/entitlements"
 import {
   officialExamReminder,
   parseIsoDate,
+  parseOfficialExamEntries,
+  deriveExamUsage,
   type OfficialExamReminder,
 } from "@/lib/official-exams"
 import {
@@ -627,13 +629,13 @@ export default async function DashboardPage() {
         reviewTopTopic = topTopic?.[0] ?? null
       }
 
-      // Official baseline — how many mba.com practice-exam scores the
-      // student has entered. Drives the "set your baseline" CTA until the
-      // first official score exists.
-      const metaOfficialScores = state.official_exam_scores
-      officialExamCount = Array.isArray(metaOfficialScores)
-        ? metaOfficialScores.length
-        : 0
+      // Official baseline — how many mba.com practice-exam sittings the
+      // student has logged (canonical parser, so this can't drift from the
+      // /mock plan). Drives the "set your baseline" CTA until the first
+      // official score exists.
+      const officialEntriesParsed = parseOfficialExamEntries(state)
+      const officialUsage = deriveExamUsage(officialEntriesParsed)
+      officialExamCount = officialEntriesParsed.length
 
       // First-48-hours guide state — permanently skippable
       // (guide_dismissed_at scalar); explainer-opened is its own scalar.
@@ -668,12 +670,17 @@ export default async function DashboardPage() {
 
       // Official-exam reminder — surfaces only when the next weekly official
       // practice exam is due within a week (or overdue), derived from the
-      // exam date + how many officials have been entered.
-      examReminder = officialExamReminder(
-        typeof metaExamDate === "string" ? metaExamDate : null,
-        new Date().toISOString().slice(0, 10),
-        officialExamCount,
-      )
+      // exam date + how many sittings have been logged. Suppressed while
+      // untagged legacy entries exist: /mock's roadmap asks the student to
+      // tag those first, and "take your next official" would contradict it.
+      examReminder =
+        officialUsage.unclassifiedCount > 0
+          ? null
+          : officialExamReminder(
+              typeof metaExamDate === "string" ? metaExamDate : null,
+              new Date().toISOString().slice(0, 10),
+              officialExamCount,
+            )
 
       // Last-mock flag nudge — take the most recent date with any
       // flags across its three sections. The flags live in the
@@ -1765,7 +1772,7 @@ export default async function DashboardPage() {
                   ? `Due today (${dueLabel}) — full exam conditions`
                   : `Due ${dueLabel} · ${examReminder.daysUntil} day${
                       examReminder.daysUntil === 1 ? "" : "s"
-                    } · ${examReminder.enteredCount}/${examReminder.totalSlots} done`
+                    } · ${examReminder.enteredCount}/${examReminder.totalSlots} sittings`
               return (
                 <Link
                   href="/mock"

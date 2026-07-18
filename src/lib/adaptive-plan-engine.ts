@@ -580,12 +580,19 @@ export async function collectAdaptiveSignals(
     | { official_exam_scores?: unknown }
     | null
     | undefined)?.official_exam_scores
+  // Retakes (attemptNumber >= 2) never set the baseline — they draw from a
+  // seen pool and can be inflated. Legacy entries count as first attempts.
   const officialTotals = Array.isArray(metaOfficialScores)
     ? metaOfficialScores
         .filter(
           (e): e is { date: string; total: number } =>
             typeof (e as { date?: unknown })?.date === "string" &&
-            typeof (e as { total?: unknown })?.total === "number",
+            typeof (e as { total?: unknown })?.total === "number" &&
+            !(
+              typeof (e as { attemptNumber?: unknown })?.attemptNumber ===
+                "number" &&
+              (e as { attemptNumber: number }).attemptNumber >= 2
+            ),
         )
         .sort((a, b) => a.date.localeCompare(b.date))
     : []

@@ -278,9 +278,9 @@ export default function FirstRunGuide({
                         </span>{" "}
                         live on mba.com — six exist, made by GMAC with the real
                         adaptive engine and real scoring. Exams 1 and 2 are
-                        free; 3-6 are paid. They are your calibrated score
-                        signal, so they&apos;re scarce: one per week at most, logged
-                        on the Mock page.
+                        free; 3-6 are paid. Your first attempt on each is your
+                        calibrated score signal, so they&apos;re scarce: one per
+                        week at most, logged on the Mock page.
                       </p>
                       <p className="text-[12px] leading-relaxed text-[#C0C0C0]">
                         <span className="font-semibold text-[#F0F0F0]">

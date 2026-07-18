@@ -69,7 +69,7 @@ export function deriveFirst48Steps(s: First48Signals): First48Step[] {
       day: 1,
       title: "Know the two exam types",
       detail:
-        "Official mba.com practice exams are your calibrated score signal; in-platform mocks are unlimited training reps. Thirty seconds to read.",
+        "First attempts on official mba.com practice exams are your calibrated score signal; in-platform mocks are unlimited training reps. Thirty seconds to read.",
       href: "#",
       cta: "Read it",
       done: s.explainerOpened || baselineDone,
@@ -86,10 +86,13 @@ export function deriveFirst48Steps(s: First48Signals): First48Step[] {
     },
     {
       key: "plan",
+      // Completes on the same signal as the baseline step by design: the
+      // plan derives from the baseline the moment the score saves, so the
+      // title states that fact rather than implying a separate action.
       day: 1,
-      title: "See your study plan",
+      title: "Your study plan is ready",
       detail:
-        "It builds itself from your baseline the moment the score is saved — today's focus, weak areas, and a weekly cadence.",
+        "It builds itself from your baseline the moment the score is saved — open it for today's focus, weak areas, and a weekly cadence.",
       href: "/study-plan",
       cta: "Open plan",
       done: baselineDone,
