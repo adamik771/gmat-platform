@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "CR: Evaluate"
     check_question_ids:
-      - critical-reasoning-q43
+      - critical-reasoning-q39
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +29,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q166
-      - critical-reasoning-q44
-      - critical-reasoning-q45
+      - critical-reasoning-q16
+      - critical-reasoning-q156
+      - critical-reasoning-q248
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,8 +39,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q46
-      - critical-reasoning-q47
+      - critical-reasoning-q62
+      - critical-reasoning-q68
       - critical-reasoning-q48
 ---
 

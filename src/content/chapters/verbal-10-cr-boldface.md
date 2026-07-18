@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "CR: Boldface"
     check_question_ids:
-      - critical-reasoning-q67
+      - critical-reasoning-q49
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +29,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q205
-      - critical-reasoning-q68
-      - critical-reasoning-q69
+      - critical-reasoning-q45
+      - critical-reasoning-q249
+      - critical-reasoning-q64
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,9 +39,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q70
-      - critical-reasoning-q71
-      - critical-reasoning-q72
+      - critical-reasoning-q73
+      - critical-reasoning-q90
+      - critical-reasoning-q93
 ---
 
 ## @cr-boldface

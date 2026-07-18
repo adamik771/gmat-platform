@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "CR: Inference"
     check_question_ids:
-      - critical-reasoning-q35
+      - critical-reasoning-q23
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +29,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q193
-      - critical-reasoning-q36
-      - critical-reasoning-q37
+      - critical-reasoning-q21
+      - critical-reasoning-q22
+      - critical-reasoning-q54
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,8 +39,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q38
-      - critical-reasoning-q39
+      - critical-reasoning-q24
+      - critical-reasoning-q60
       - critical-reasoning-q40
 ---
 

@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "CR: Strengthen"
     check_question_ids:
-      - critical-reasoning-q19
+      - critical-reasoning-q35
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +29,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q156
-      - critical-reasoning-q248
-      - critical-reasoning-q21
+      - critical-reasoning-q51
+      - critical-reasoning-q201
+      - critical-reasoning-q131
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,9 +39,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q22
-      - critical-reasoning-q23
-      - critical-reasoning-q24
+      - critical-reasoning-q193
+      - critical-reasoning-q76
+      - critical-reasoning-q41
 ---
 
 ## @cr-strengthen

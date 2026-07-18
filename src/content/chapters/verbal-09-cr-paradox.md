@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "CR: Paradox"
     check_question_ids:
-      - critical-reasoning-q59
+      - critical-reasoning-q27
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -30,8 +30,8 @@ problem_sets:
       "725": 100
     question_ids:
       - critical-reasoning-q157
-      - critical-reasoning-q60
-      - critical-reasoning-q61
+      - critical-reasoning-q55
+      - critical-reasoning-q34
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,9 +39,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q62
+      - critical-reasoning-q44
       - critical-reasoning-q63
-      - critical-reasoning-q64
+      - critical-reasoning-q158
 ---
 
 ## @cr-paradox

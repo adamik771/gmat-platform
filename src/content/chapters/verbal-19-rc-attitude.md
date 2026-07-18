@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "RC: Author's Attitude"
     check_question_ids:
-      - reading-comprehension-q43
+      - reading-comprehension-q27
   - id: attitude-from-evaluative-words
     type: reading
     title: "Attitude = the author's evaluative words, not airtime"
@@ -34,8 +34,8 @@ problem_sets:
       "725": 100
     question_ids:
       - reading-comprehension-q182
-      - reading-comprehension-q44
-      - reading-comprehension-q45
+      - reading-comprehension-q36
+      - reading-comprehension-q91
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,8 +43,8 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q46
-      - reading-comprehension-q47
+      - reading-comprehension-q97
+      - reading-comprehension-q103
       - reading-comprehension-q48
 ---
 
