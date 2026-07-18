@@ -22,6 +22,7 @@ import {
   pickFreshOrder,
   type TopicSkillLevel,
 } from "@/lib/topic-skill"
+import { buildLastSeenMap } from "@/lib/question-selection"
 import { TOPIC_TO_SET } from "@/lib/topic-chapter-map"
 import { getUserState } from "@/lib/user-state"
 import { readSavedForReview } from "@/lib/spaced-review"
@@ -147,7 +148,7 @@ export default async function PracticeSessionPage({
   }
   let weakestTopic: WeakTopicHint | null = null
   // question id -> most recent attempt (epoch ms), for seen-aware ordering.
-  const lastSeenAtMs = new Map<string, number>()
+  let lastSeenAtMs: ReadonlyMap<string, number> = new Map()
   // Already-saved-for-review ids so the per-question save button reflects
   // server truth instead of remounting as "unsaved" on every navigation.
   let savedForReview: string[] = []
@@ -175,12 +176,7 @@ export default async function PracticeSessionPage({
         .limit(2000)
 
       if (attempts && attempts.length > 0) {
-        for (const row of attempts) {
-          const qid = row.question_id as string | null
-          if (!qid || lastSeenAtMs.has(qid)) continue
-          const at = new Date(row.created_at as string).getTime()
-          if (!Number.isNaN(at)) lastSeenAtMs.set(qid, at)
-        }
+        lastSeenAtMs = buildLastSeenMap(attempts)
         const stats = new Map<string, { total: number; correct: number }>()
         for (const row of attempts) {
           const t = row.topic as string | null
