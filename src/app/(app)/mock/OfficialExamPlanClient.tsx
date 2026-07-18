@@ -16,6 +16,8 @@ import {
   MS_PER_DAY,
   parseIsoDate,
   deriveScheduleSlots,
+  deriveExamRoadmap,
+  FREE_OFFICIAL_EXAMS,
 } from "@/lib/official-exams"
 
 /**
@@ -82,10 +84,13 @@ export default function OfficialExamPlanClient({
   examDate,
   entries: initialEntries,
   targetScore,
+  siteMockCount = 0,
 }: {
   examDate: string | null
   entries: OfficialExamEntry[]
   targetScore: number | null
+  /** Completed in-platform mocks (distinct mock dates) — roadmap input. */
+  siteMockCount?: number
 }) {
   const router = useRouter()
   const [, startTransition] = useTransition()
@@ -132,6 +137,20 @@ export default function OfficialExamPlanClient({
   const slots = useMemo(
     () => (examDate ? deriveScheduleSlots(examDate) : []),
     [examDate]
+  )
+
+  // Shared "which exam next" derivation — single source of truth in
+  // src/lib/official-exams.ts, so /mock never disagrees with the dashboard
+  // reminder or the study plan about what to sit next.
+  const roadmap = useMemo(
+    () =>
+      deriveExamRoadmap({
+        todayIso,
+        examDate,
+        officialCount: entries.length,
+        siteMockCount,
+      }),
+    [todayIso, examDate, entries.length, siteMockCount]
   )
 
   const examInFuture = examDate !== null && examDate > todayIso
@@ -288,6 +307,140 @@ export default function OfficialExamPlanClient({
           </div>
         </div>
 
+        {/* Next recommended exam — the roadmap's single clear answer. */}
+        <div
+          className="rounded-xl border p-4 sm:p-5"
+          style={{
+            borderColor:
+              roadmap.kind === "official"
+                ? "rgba(201,168,76,0.32)"
+                : "rgba(255,255,255,0.08)",
+            backgroundColor:
+              roadmap.kind === "official"
+                ? "rgba(201,168,76,0.06)"
+                : "rgba(255,255,255,0.015)",
+          }}
+        >
+          <div className="flex flex-wrap items-center gap-2 mb-2.5">
+            <p className={EYEBROW}>Next recommended exam</p>
+            <span
+              className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.14em] font-semibold"
+              style={
+                roadmap.kind === "official"
+                  ? {
+                      color: "#C9A84C",
+                      backgroundColor: "rgba(201,168,76,0.10)",
+                      border: "1px solid rgba(201,168,76,0.32)",
+                    }
+                  : {
+                      color: "#888888",
+                      backgroundColor: "rgba(255,255,255,0.03)",
+                      border: "1px solid rgba(255,255,255,0.10)",
+                    }
+              }
+            >
+              {roadmap.kind === "official"
+                ? "Official exam"
+                : roadmap.kind === "site-mock"
+                  ? "In-platform mock"
+                  : "Setup"}
+            </span>
+            {roadmap.kind === "official" &&
+              roadmap.officialNumber !== null &&
+              !roadmap.isRetake && (
+                <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[#555555]">
+                  {roadmap.officialNumber <= FREE_OFFICIAL_EXAMS
+                    ? "Free on mba.com"
+                    : "Paid · Exams 3-6"}
+                </span>
+              )}
+            {roadmap.isRetake && (
+              <span
+                className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.14em] font-semibold"
+                style={{
+                  color: "#FF8888",
+                  backgroundColor: "rgba(255,68,68,0.08)",
+                  border: "1px solid rgba(255,68,68,0.28)",
+                }}
+              >
+                Retake
+              </span>
+            )}
+            {roadmap.officialTargetDate && (
+              <span className="text-[11px] tabular-nums text-[#888888]">
+                {roadmap.kind === "official" ? "" : "Official next up "}
+                {formatDisplayDate(roadmap.officialTargetDate)}
+              </span>
+            )}
+          </div>
+          <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
+            {roadmap.title}
+          </p>
+          <p className="text-[12px] text-[#C0C0C0] leading-relaxed mt-1.5">
+            {roadmap.reason}
+          </p>
+          {roadmap.prereq && (
+            <p className="text-[12px] text-[#888888] leading-relaxed mt-1.5">
+              First: {roadmap.prereq}
+            </p>
+          )}
+          {roadmap.caution && (
+            <p
+              className="text-[12px] leading-relaxed mt-1.5"
+              style={{ color: "#FF8888" }}
+            >
+              {roadmap.caution}
+            </p>
+          )}
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            {roadmap.kind === "official" && (
+              <>
+                <button
+                  type="button"
+                  onClick={openForm}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  {entries.length === 0
+                    ? "Log your baseline score"
+                    : "Log the score when done"}
+                </button>
+                <a
+                  href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[12px] font-semibold transition-colors hover:opacity-80"
+                  style={{ color: "#C9A84C" }}
+                >
+                  Take it on mba.com
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </>
+            )}
+            {roadmap.kind === "site-mock" && (
+              <Link
+                href="/mock/run?mode=full"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Start an in-platform mock
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
+            {roadmap.kind === "setup" && (
+              <Link
+                href="/settings"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Update test date in Settings
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
+          </div>
+        </div>
+
         {!examDate || !examInFuture ? (
           <div
             className="rounded-xl border p-5"
@@ -333,45 +486,6 @@ export default function OfficialExamPlanClient({
                 )
               </span>
             </div>
-
-            {/* Baseline — the first, unmistakable action for a new account.
-                The baseline official practice exam is what unlocks the
-                dashboard, study plan and analytics, so it gets its own row
-                (rather than only the conditional banner) until one is logged. */}
-            {entries.length === 0 && (
-              <div
-                className="rounded-xl border p-4"
-                style={{
-                  borderColor: "rgba(201,168,76,0.32)",
-                  backgroundColor: "rgba(201,168,76,0.06)",
-                }}
-              >
-                <span
-                  className="inline-block px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.14em] font-semibold"
-                  style={{
-                    color: "#C9A84C",
-                    backgroundColor: "rgba(201,168,76,0.10)",
-                    border: "1px solid rgba(201,168,76,0.32)",
-                  }}
-                >
-                  Baseline — take now
-                </span>
-                <p className="text-[12px] text-[#C0C0C0] leading-relaxed mt-2">
-                  Sit one official practice exam now and log it here — your
-                  baseline score is what unlocks your dashboard, study plan, and
-                  analytics.
-                </p>
-                <button
-                  type="button"
-                  onClick={openForm}
-                  className="inline-flex items-center gap-2 mt-3 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  Log your baseline
-                </button>
-              </div>
-            )}
 
             {moreThanEightWeeksOut && (
               <div
@@ -510,22 +624,59 @@ export default function OfficialExamPlanClient({
           )}
         </div>
 
-        <p className="text-[12px] text-[#888888]">
-          Need exams?{" "}
-          <a
-            href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 font-semibold transition-colors hover:opacity-80"
-            style={{ color: "#C9A84C" }}
-          >
-            Buy official practice exams
-            <ExternalLink className="w-3 h-3" />
-          </a>{" "}
-          <span className="text-[#555555]">
-            — official practice exams 1-6 on mba.com.
-          </span>
-        </p>
+        {/* How the six officials work — facts per GMAC's mba.com product
+            pages (verified 2026-07-18). Kept short; the roadmap panel above
+            applies them. */}
+        <div
+          className="rounded-xl border p-4"
+          style={{
+            borderColor: "rgba(255,255,255,0.06)",
+            backgroundColor: "rgba(255,255,255,0.012)",
+          }}
+        >
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold mb-2.5">
+            How the six officials work
+          </p>
+          <ul className="space-y-1.5 text-[12px] leading-relaxed text-[#888888]">
+            <li>
+              <a
+                href="https://www.mba.com/exam-prep/gmat-official-starter-kit-practice-exams-1-and-2-free"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold transition-colors hover:opacity-80"
+                style={{ color: "#C9A84C" }}
+              >
+                Exams 1-2 are free
+              </a>{" "}
+              (Official Starter Kit);{" "}
+              <a
+                href="https://www.mba.com/exam-prep/gmat-practice-exams-3-6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold transition-colors hover:opacity-80"
+                style={{ color: "#C9A84C" }}
+              >
+                Exams 3-6 are paid
+                <ExternalLink className="w-3 h-3 inline ml-1 align-[-1px]" />
+              </a>
+              .
+            </li>
+            <li>
+              Use unused exams before any reset — a retake can surface
+              questions you have already seen and produce an inflated, less
+              diagnostic score.
+            </li>
+            <li>
+              The paid bundle lets you reset Exams 3-6 and take each one
+              twice, in any order (per mba.com). Any retake reuses the
+              exam&apos;s question pool.
+            </li>
+            <li>
+              Measure on officials, spaced about a week apart; use in-platform
+              mocks for routine checkpoints in between.
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   )

@@ -62,6 +62,7 @@ export default async function MockLandingPage() {
   let targetScore: number | null = null
   let officialEntries: OfficialExamEntry[] = []
   let practiceAttemptsCount = 0
+  let siteMockCount = 0
 
   if (user) {
     const state = await getUserState(supabase, user)
@@ -74,15 +75,30 @@ export default async function MockLandingPage() {
     targetScore = typeof meta.target_score === "number" ? meta.target_score : null
     officialEntries = parseOfficialEntries(state)
 
-    // Adaptive-mode gate signal — any practice attempts at all. Used to
-    // decide whether weak-area / mixed-review site mocks have enough
-    // user data to be meaningful.
-    const { count } = await supabase
-      .from("practice_sessions")
-      .select("id", { count: "exact", head: true })
-      .eq("user_id", user.id)
-      .not("slug", "like", "mock-%")
+    // Two independent signals, fetched in parallel:
+    //   - any practice attempts at all (gates the adaptive site-mock modes)
+    //   - completed in-platform mocks, counted as distinct mock DATES (each
+    //     sitting writes up to three mock-YYYY-MM-DD-{section} rows) — feeds
+    //     the exam-roadmap recommendation.
+    const [{ count }, { data: mockSlugRows }] = await Promise.all([
+      supabase
+        .from("practice_sessions")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", user.id)
+        .not("slug", "like", "mock-%"),
+      supabase
+        .from("practice_sessions")
+        .select("slug")
+        .eq("user_id", user.id)
+        .like("slug", "mock-%"),
+    ])
     practiceAttemptsCount = count ?? 0
+    const mockDates = new Set<string>()
+    for (const r of mockSlugRows ?? []) {
+      const m = /^mock-(\d{4}-\d{2}-\d{2})-/.exec(String(r.slug ?? ""))
+      if (m) mockDates.add(m[1])
+    }
+    siteMockCount = mockDates.size
   }
 
   const adaptiveModesAvailable = practiceAttemptsCount > 0
@@ -151,6 +167,7 @@ export default async function MockLandingPage() {
           examDate={examDate}
           entries={officialEntries}
           targetScore={targetScore}
+          siteMockCount={siteMockCount}
         />
 
         {/* EXAM KIT + CONDITIONS — static advice card. */}

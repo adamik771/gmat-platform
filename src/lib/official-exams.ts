@@ -55,6 +55,209 @@ export interface OfficialExamReminder {
  * slot is next), so off-schedule sittings — e.g. an early baseline — advance
  * the schedule correctly.
  */
+/** GMAC sells six official practice exams on mba.com. 1-2 are free (Starter
+ *  Kit), 3-6 are paid. Sources: mba.com/exam-prep/gmat-official-starter-kit-
+ *  practice-exams-1-and-2-free and mba.com/exam-prep/gmat-practice-exams-3-6. */
+export const TOTAL_OFFICIAL_EXAMS = 6
+export const FREE_OFFICIAL_EXAMS = 2
+
+export interface ExamRoadmapInput {
+  todayIso: string
+  /** Real test date (user_metadata.exam_date), or null. */
+  examDate: string | null
+  /** Official mba.com practice-exam scores entered (consumed exams). */
+  officialCount: number
+  /** Completed in-platform full mocks (distinct mock dates). */
+  siteMockCount: number
+}
+
+export type RoadmapKind = "official" | "site-mock" | "setup"
+
+export interface ExamRoadmap {
+  /** What to sit NEXT: an official exam, an in-platform mock, or fix setup. */
+  kind: RoadmapKind
+  /** Which official (1-6) is next whenever an official is next sat; null when
+   *  none remain or none should be taken. */
+  officialNumber: number | null
+  /** True when officialNumber refers to a reset+retake of a consumed exam. */
+  isRetake: boolean
+  /** The weekly slot the next official is planned for; null = now/unscheduled. */
+  officialTargetDate: string | null
+  title: string
+  reason: string
+  /** What to have done before sitting it. */
+  prereq: string | null
+  caution: string | null
+}
+
+const RETAKE_CAUTION =
+  "A reset official reuses its question pool — expect repeated questions and read the score as optimistic, not calibrated."
+
+/**
+ * One shared derivation for "which exam next" — consumed by the /mock plan
+ * card (and anything else that surfaces exam recommendations), so the app
+ * never gives two conflicting answers.
+ *
+ * Principles encoded here (per GMAC's own guidance on mba.com):
+ *   - unused officials before any reset/retake;
+ *   - officials are scarce (six exist; retakes repeat questions and inflate
+ *     scores), so in-platform mocks cover routine checkpoints between them;
+ *   - officials are spaced weekly via deriveScheduleSlots (final six weeks),
+ *     never more than one per week, none inside the final week;
+ *   - a reset of Exam 1 is reasonable only as a final calibrated rehearsal
+ *     1-3 weeks out after all six are consumed.
+ */
+export function deriveExamRoadmap(input: ExamRoadmapInput): ExamRoadmap {
+  const { todayIso, examDate, siteMockCount } = input
+  const officialCount = Math.max(0, input.officialCount)
+  const remaining = Math.max(0, TOTAL_OFFICIAL_EXAMS - officialCount)
+  const nextNumber = officialCount + 1
+  const exam = examDate ? parseIsoDate(examDate) : null
+  const today = parseIsoDate(todayIso)
+  const daysToExam =
+    exam && today
+      ? Math.round((exam.getTime() - today.getTime()) / MS_PER_DAY)
+      : null
+
+  // Exam date in the past — nothing sensible to schedule until it's fixed.
+  if (daysToExam !== null && daysToExam < 0) {
+    return {
+      kind: "setup",
+      officialNumber: remaining > 0 ? nextNumber : null,
+      isRetake: false,
+      officialTargetDate: null,
+      title: "Update your test date",
+      reason:
+        "Your saved test date has passed. Update it in Settings to rebuild the exam schedule.",
+      prereq: null,
+      caution: null,
+    }
+  }
+
+  // Baseline: no official entered yet. Always the first exam recommendation.
+  if (officialCount === 0) {
+    return {
+      kind: "official",
+      officialNumber: 1,
+      isRetake: false,
+      officialTargetDate: null,
+      title: "Official Practice Exam 1 — your baseline",
+      reason:
+        "One real, adaptively scored data point anchors your study plan and score trend. Exams 1 and 2 are free on mba.com.",
+      prereq: examDate
+        ? "Sit it under full exam conditions, then log the score here."
+        : "Set your test date in Settings so the weekly exam schedule can build around it.",
+      caution: null,
+    }
+  }
+
+  // All six consumed.
+  if (remaining === 0) {
+    if (daysToExam !== null && daysToExam > 7 && daysToExam <= 21) {
+      return {
+        kind: "official",
+        officialNumber: 1,
+        isRetake: true,
+        officialTargetDate: null,
+        title: "Optional: reset and retake Official Practice Exam 1",
+        reason:
+          "All six officials are used. A final calibrated rehearsal 1-3 weeks out is the one good reason to reset — Exam 1 is your oldest, so it has the fewest fresh memories.",
+        prereq: "Only if you want one more full-conditions rehearsal — an in-platform mock covers the pacing rep without spending a reset.",
+        caution: RETAKE_CAUTION,
+      }
+    }
+    return {
+      kind: "site-mock",
+      officialNumber: null,
+      isRetake: false,
+      officialTargetDate: null,
+      title: "In-platform mock for your next checkpoint",
+      reason:
+        daysToExam !== null && daysToExam <= 7
+          ? "Inside the final week — no more full-length exams. Keep sharp with short timed sections and review."
+          : "All six officials are used. Run in-platform mocks for checkpoints; save any reset of an official for a final rehearsal 1-3 weeks before test day.",
+      prereq: null,
+      caution: RETAKE_CAUTION,
+    }
+  }
+
+  // Officials remain, but no test date to space them against.
+  if (!examDate || daysToExam === null) {
+    return {
+      kind: "site-mock",
+      officialNumber: nextNumber,
+      isRetake: false,
+      officialTargetDate: null,
+      title: "In-platform mock for now — save the officials",
+      reason: `You have ${remaining} unused official${remaining === 1 ? "" : "s"} left. Without a test date they can't be spaced across the final six weeks, so use in-platform mocks for checkpoints and keep Exam ${nextNumber} for the schedule.`,
+      prereq: "Set your test date in Settings to schedule the remaining officials.",
+      caution: null,
+    }
+  }
+
+  // Final week: the last weekly slot is exam-minus-7 by design.
+  if (daysToExam <= 7) {
+    return {
+      kind: "site-mock",
+      officialNumber: null,
+      isRetake: false,
+      officialTargetDate: null,
+      title: "Final week — taper, no more full exams",
+      reason:
+        "Full-length exams this close to test day cost more in fatigue than they return in signal. Short timed sections, review queue, and rest.",
+      prereq: null,
+      caution: null,
+    }
+  }
+
+  // Scheduled cadence: next unentered weekly slot (same math as the reminder).
+  const slots = deriveScheduleSlots(examDate)
+  const nextSlot = slots[Math.min(officialCount, slots.length - 1)]
+  const slotDate = nextSlot ? parseIsoDate(nextSlot) : null
+  const daysToSlot =
+    slotDate && today
+      ? Math.round((slotDate.getTime() - today.getTime()) / MS_PER_DAY)
+      : null
+  const slotsLeft = slots.filter((s) => s >= todayIso).length
+  const overbooked = remaining > slotsLeft && slotsLeft > 0
+  const overbookedNote = overbooked
+    ? ` You have more unused officials (${remaining}) than weekly slots left (${slotsLeft}) — you won't use them all, and that's fine; never sit two full exams in one week.`
+    : ""
+
+  if (daysToSlot !== null && daysToSlot <= 7) {
+    return {
+      kind: "official",
+      officialNumber: nextNumber,
+      isRetake: false,
+      officialTargetDate: nextSlot,
+      title: `Official Practice Exam ${nextNumber}`,
+      reason:
+        (daysToSlot < 0
+          ? `Your week-${officialCount + 1} slot has passed — sit it as soon as you can get full exam conditions.`
+          : `Due ${daysToSlot === 0 ? "today" : `in ${daysToSlot} day${daysToSlot === 1 ? "" : "s"}`} on your weekly schedule.`) + overbookedNote,
+      prereq:
+        "Clear your review queue the day before and go in rested — same start time as your real slot.",
+      caution: null,
+    }
+  }
+
+  return {
+    kind: "site-mock",
+    officialNumber: nextNumber,
+    isRetake: false,
+    officialTargetDate: nextSlot ?? null,
+    title: "In-platform mock this week",
+    reason:
+      `Official Practice Exam ${nextNumber} is scheduled for ${nextSlot}${daysToSlot !== null ? ` (${daysToSlot} days out)` : ""}. ` +
+      (siteMockCount === 0
+        ? "Use an in-platform mock for this week's checkpoint so the officials aren't burned early."
+        : "Keep weekly checkpoints on in-platform mocks between officials.") +
+      overbookedNote,
+    prereq: null,
+    caution: null,
+  }
+}
+
 export function officialExamReminder(
   examIso: string | null,
   todayIso: string,
