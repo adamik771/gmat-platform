@@ -30,6 +30,8 @@ import { TRIAL_DAYS, trialDaysLeft, trialStartFor } from "@/lib/entitlements"
 import {
   officialExamReminder,
   parseIsoDate,
+  parseOfficialExamEntries,
+  deriveExamUsage,
   type OfficialExamReminder,
 } from "@/lib/official-exams"
 import {
@@ -45,6 +47,7 @@ import {
 import type { Section } from "@/types"
 import { getUserState, type UserState } from "@/lib/user-state"
 import { isChapterRead } from "@/lib/chapter-progress-merge"
+import { deriveFirst48Steps, first48Complete } from "./first48"
 import { sectionScoresToTotal } from "@/lib/scoring"
 import { accuracyToSectionScore } from "@/lib/score-percentiles"
 import { localDayIso } from "@/lib/utils"
@@ -306,8 +309,13 @@ export default async function DashboardPage() {
   const studySessions: Array<{ t: string; ms: number }> = []
   let badges: Badge[] = []
   let reviewDueCount = 0
-  // First-run guide (fresh accounts only; skippable forever).
+  // First-48-hours guide (skippable forever; collapses when complete).
   let guideDismissed = true
+  let guideExplainerOpened = false
+  /** Distinct local days with any activity — day-2 signal for the guide. */
+  let studyDayCount = 0
+  /** Review loop used: any review-* session or a reviewed error-log entry. */
+  let guideReviewUsed = false
   // Consultation-offer strip — shown to every logged-in user until dismissed.
   let consultDismissed = false
   let guideChapterStarted = false
@@ -398,7 +406,7 @@ export default async function DashboardPage() {
           .maybeSingle(),
         supabase
           .from("practice_sessions")
-          .select("created_at, total_questions, total_time_ms")
+          .select("created_at, total_questions, total_time_ms, slug")
           .eq("user_id", userId),
         supabase
           .from("lesson_completions")
@@ -533,11 +541,15 @@ export default async function DashboardPage() {
       const activeDays = new Set<string>()
       let totalQuestions = 0
       let largestSessionQuestions = 0
+      let hasReviewSession = false
       for (const s of allSessions ?? []) {
         // Local day, not UTC slice — a late-evening Oslo session belongs to
         // the local day's streak, not the next UTC day's.
         const iso = localDayIso(new Date(s.created_at as string))
         activeDays.add(iso)
+        if (String((s as { slug?: unknown }).slug ?? "").startsWith("review-")) {
+          hasReviewSession = true
+        }
         const qCount = (s.total_questions as number) ?? 0
         totalQuestions += qCount
         if (qCount > largestSessionQuestions) largestSessionQuestions = qCount
@@ -551,6 +563,7 @@ export default async function DashboardPage() {
       const streak = computeStreaks(activeDays)
       currentStreak = streak.current
       longestStreak = streak.longest
+      studyDayCount = activeDays.size
 
       // Did the user ever build a custom test? Single-row probe.
       const { data: customProbe } = customProbeRes
@@ -564,6 +577,7 @@ export default async function DashboardPage() {
         taggedMistakeCount++
         if (t.reviewed) reviewedMistakeCount++
       }
+      guideReviewUsed = hasReviewSession || reviewedMistakeCount > 0
 
       // Mistakes still to clear = total wrong attempts − reviewed ones.
       // Matches the study-plan's "pending" definition (the two disagreed:
@@ -615,18 +629,20 @@ export default async function DashboardPage() {
         reviewTopTopic = topTopic?.[0] ?? null
       }
 
-      // Official baseline — how many mba.com practice-exam scores the
-      // student has entered. Drives the "set your baseline" CTA until the
-      // first official score exists.
-      const metaOfficialScores = state.official_exam_scores
-      officialExamCount = Array.isArray(metaOfficialScores)
-        ? metaOfficialScores.length
-        : 0
+      // Official baseline — how many mba.com practice-exam sittings the
+      // student has logged (canonical parser, so this can't drift from the
+      // /mock plan). Drives the "set your baseline" CTA until the first
+      // official score exists.
+      const officialEntriesParsed = parseOfficialExamEntries(state)
+      const officialUsage = deriveExamUsage(officialEntriesParsed)
+      officialExamCount = officialEntriesParsed.length
 
-      // First-run guide state — shown only to genuinely-fresh accounts and
-      // permanently skippable (guide_dismissed_at scalar).
+      // First-48-hours guide state — permanently skippable
+      // (guide_dismissed_at scalar); explainer-opened is its own scalar.
       guideDismissed =
         typeof user.user_metadata?.guide_dismissed_at === "string"
+      guideExplainerOpened =
+        typeof user.user_metadata?.guide_explainer_opened_at === "string"
       consultDismissed =
         typeof user.user_metadata?.consult_offer_dismissed_at === "string"
       const rawChapterProgress = state.chapter_progress as
@@ -654,12 +670,17 @@ export default async function DashboardPage() {
 
       // Official-exam reminder — surfaces only when the next weekly official
       // practice exam is due within a week (or overdue), derived from the
-      // exam date + how many officials have been entered.
-      examReminder = officialExamReminder(
-        typeof metaExamDate === "string" ? metaExamDate : null,
-        new Date().toISOString().slice(0, 10),
-        officialExamCount,
-      )
+      // exam date + how many sittings have been logged. Suppressed while
+      // untagged legacy entries exist: /mock's roadmap asks the student to
+      // tag those first, and "take your next official" would contradict it.
+      examReminder =
+        officialUsage.unclassifiedCount > 0
+          ? null
+          : officialExamReminder(
+              typeof metaExamDate === "string" ? metaExamDate : null,
+              new Date().toISOString().slice(0, 10),
+              officialExamCount,
+            )
 
       // Last-mock flag nudge — take the most recent date with any
       // flags across its three sections. The flags live in the
@@ -776,6 +797,26 @@ export default async function DashboardPage() {
   const courseCompletionPct =
     totalChapters > 0 ? Math.round((completedChapters / totalChapters) * 100) : 0
 
+  // First-48-hours guide — every step derived server-side from real
+  // recorded state (see first48.ts). While it's active it is THE dashboard
+  // checklist; the older setup strips below stay hidden to avoid two
+  // competing lists.
+  const first48Steps = user
+    ? deriveFirst48Steps({
+        profileSet:
+          onboardingIntakeDone || (onboardingTargetSet && onboardingExamDateSet),
+        explainerOpened: guideExplainerOpened,
+        officialExamCount,
+        chapterStarted: guideChapterStarted,
+        practiceSessionCount: totalSessionCount ?? 0,
+        studyDayCount,
+        chaptersRead: completedChapters,
+        reviewUsed: guideReviewUsed,
+      })
+    : null
+  const guideActive =
+    !!first48Steps && !guideDismissed && !first48Complete(first48Steps)
+
   // Onboarding checklist — only rendered while any of the four setup
   // steps are still outstanding. Disappears permanently once complete.
   // The intake survey wizard at /onboarding sets target + exam + a
@@ -884,16 +925,12 @@ export default async function DashboardPage() {
           </div>
         </section>
 
-        {/* First-run guide — the graduated path for a brand-new account
-            (chapter -> short practice -> baseline -> review). The baseline
-            hero below stays as the single big ask; this gives the lighter
-            first moves so day one isn't "go take a 2-hour exam". */}
-        {!guideDismissed && officialExamCount === 0 && (
-          <FirstRunGuide
-            chapterStarted={guideChapterStarted}
-            practiced={false}
-            reviewDue={reviewDueCount}
-          />
+        {/* First-48-hours guide — the graduated two-day path for a brand-new
+            account. The baseline hero below stays as the single big ask; this
+            sequences the lighter moves around it. Collapses to one row when
+            complete or skipped. */}
+        {first48Steps && (
+          <FirstRunGuide steps={first48Steps} dismissed={guideDismissed} />
         )}
 
         {/* Baseline-dominant hero — the single page-level primary
@@ -1066,8 +1103,10 @@ export default async function DashboardPage() {
           </div>
         </section>
 
-        {/* === Onboarding checklist (rebranded for the baseline framing) === */}
-        {!onboardingComplete && (
+        {/* === Onboarding checklist (rebranded for the baseline framing) ===
+            Hidden while the first-48-hours guide is active — its profile step
+            covers the same ground, and two checklists compete. */}
+        {!guideActive && !onboardingComplete && (
           <section>
             <div className="flex items-center gap-3 mb-5">
               <p
@@ -1384,24 +1423,18 @@ export default async function DashboardPage() {
         </div>
       </section>
 
-      {/* First-run guide — what to actually DO first. Fresh accounts only
-          (no baseline, under 3 sessions), skippable forever, retires on its
-          own once the account is rolling. */}
-      {!guideDismissed &&
-        (totalSessionCount ?? 0) < 3 &&
-        officialExamCount === 0 && (
-          <FirstRunGuide
-            chapterStarted={guideChapterStarted}
-            practiced={(totalSessionCount ?? 0) > 0}
-            reviewDue={reviewDueCount}
-          />
-        )}
+      {/* First-48-hours guide — what to actually DO first, derived from real
+          state. Skippable forever; collapses to one row once complete. */}
+      {first48Steps && (
+        <FirstRunGuide steps={first48Steps} dismissed={guideDismissed} />
+      )}
 
       {/* Getting Started — disappears once all setup steps are done */}
       {/* Finish-setup strip — compact. Shows only the steps still left (no
           re-listing completed ones) + a thin progress bar. Disappears once
-          onboarding is complete. */}
-      {!onboardingComplete && (
+          onboarding is complete. Hidden while the first-48 guide is active
+          (its profile step covers setup; no second competing checklist). */}
+      {!guideActive && !onboardingComplete && (
         <section
           className="rounded-2xl border overflow-hidden"
           style={{
@@ -1739,7 +1772,7 @@ export default async function DashboardPage() {
                   ? `Due today (${dueLabel}) — full exam conditions`
                   : `Due ${dueLabel} · ${examReminder.daysUntil} day${
                       examReminder.daysUntil === 1 ? "" : "s"
-                    } · ${examReminder.enteredCount}/${examReminder.totalSlots} done`
+                    } · ${examReminder.enteredCount}/${examReminder.totalSlots} sittings`
               return (
                 <Link
                   href="/mock"

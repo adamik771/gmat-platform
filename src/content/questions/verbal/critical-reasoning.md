@@ -6306,3 +6306,22 @@ A theater added a Sunday afternoon matinee to its weekly schedule. During the fi
 **answer:** A
 **explanation:** The owner leaps from "85 percent of seats were filled" to "adding matinees elsewhere would be profitable." A full house is not the same as a profitable one: profit depends on whether the revenue those seats bring in exceeds the cost of putting on the show. Choice A targets exactly that gap — if revenue exceeded cost, the profitability claim gains support; if it did not, filling seats at low or discounted prices could still lose money, and the conclusion collapses. Because the answer swings the evaluation in opposite directions, it is the most useful thing to determine. Choice B (seat preference) and Choice C (awards) are incidental to profitability. Choice E (relative theater size) has some bearing on how the result might transfer but says nothing about whether the matinee itself made money, and Choice D (transit access) is background that does not test the cost-versus-revenue premise the argument rests on. The correct answer is A.
 **related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q249
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Boldface
+
+**Community-garden advocates claim that converting the vacant lot on Elm Street into a garden will reduce littering on the surrounding block.** Skeptics doubt that a garden could have any effect on littering. However, in the year after a similar vacant lot two neighborhoods away was converted into a community garden, littering complaints on its block fell by half. **The Elm Street conversion is therefore likely to reduce littering, just as its advocates predict.** In the argument above, the two portions in boldface play which of the following roles?
+
+- A) The first is a prediction that the argument as a whole opposes; the second is the argument's main conclusion.
+- B) The first is the argument's main conclusion; the second is evidence offered in support of that conclusion.
+- C) The first is a claim that the argument as a whole supports; the second is the argument's main conclusion.
+- D) The first is evidence offered in support of the skeptics' position; the second is a claim that the argument rejects.
+- E) The first is the argument's main conclusion; the second is an objection that the argument answers.
+
+**answer:** C
+**explanation:** Map the argument. The first boldface states the advocates' claim: the garden will reduce littering. The skeptics' doubt is the opposing view. The evidence about the similar lot two neighborhoods away is offered against the skeptics and in favor of the advocates. The second boldface then draws the argument's own conclusion, endorsing the advocates' prediction. So the first boldface is a claim the argument ultimately supports, and the second is the main conclusion — exactly what Choice C says. Choice A reverses the argument's stance: the author defends the advocates' prediction rather than opposing it. Choice B mislabels both portions: the first is not the author's conclusion (it is the advocates' claim, which the author goes on to endorse), and the second is the conclusion itself, not evidence. Choice D attaches the first boldface to the wrong side — it is the advocates' claim, not support for the skeptics — and the argument accepts rather than rejects the second. Choice E swaps the roles entirely: the conclusion is the second boldface, and the second boldface is not an objection. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types

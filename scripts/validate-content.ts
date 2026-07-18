@@ -467,6 +467,46 @@ for (const c of chapters) {
   }
 }
 
+// ERROR: a Verbal bank question whose topic label is outside the canonical
+// skill vocabulary. Chapter-test routing keyword-matches the topic label
+// (practice-tests-map BANK_RULES), and an off-vocabulary label silently falls
+// through to the bank's catch-all chapter — the question then surfaces in the
+// wrong skill chapter with no visible failure (the 2026-07 student complaint).
+// Variant suffixes after an em dash ("Strengthen — Rule Out Confounder") are
+// allowed; the base label must be canonical.
+{
+  const VERBAL_CANONICAL_TOPICS: Record<string, Set<string>> = {
+    "critical-reasoning": new Set([
+      "Strengthen", "Weaken", "Assumption", "Inference", "Evaluate",
+      "Evaluate the Argument", "Flaw", "Flaw in Reasoning", "Flaw / Logical Error",
+      "Paradox", "Paradox / Resolve the Discrepancy", "Boldface",
+      "Complete the Argument", "Answer-Choice Traps", "Answer Traps",
+      "Main Conclusion", "Method of Reasoning", "Role in Argument",
+    ]),
+    "reading-comprehension": new Set([
+      "Main Idea", "Specific Detail", "Inference", "Application", "Function",
+      "Author's Attitude", "Passage Structure", "Answer Traps",
+    ]),
+    "verbal-foundations": new Set([
+      "Conclusion", "Premise", "Assumption", "Argument Structure", "Active Reading",
+    ]),
+  }
+  for (const q of questions) {
+    const canon = VERBAL_CANONICAL_TOPICS[q.setSlug]
+    if (!canon) continue
+    const base = q.subtopic.split(" — ")[0].trim()
+    if (!canon.has(base)) {
+      push({
+        severity: "ERROR",
+        questionId: q.id,
+        setSlug: q.setSlug,
+        rule: "verbal-topic-noncanonical",
+        detail: `topic "${q.subtopic}" is not in the canonical ${q.setSlug} skill vocabulary — it would route via the bank catch-all into the wrong chapter`,
+      })
+    }
+  }
+}
+
 // WARN: a Data Sufficiency question pinned inside a Quant chapter. On the
 // GMAT Focus Edition DS lives only in Data Insights (the parser already
 // forces q.section to DI), so a DS item in a Quant chapter's pretest/check/

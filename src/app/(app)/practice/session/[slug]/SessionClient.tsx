@@ -30,6 +30,7 @@ import type { ChartSpec } from "@/lib/chart-spec"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import { restoreDeckOrder, serializeDeck } from "@/lib/question-selection"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -1148,6 +1149,16 @@ export default function SessionClient({
   // from the prop.
   const [questions, setQuestions] = useState(questionsProp)
   const [currentIdx, setCurrentIdx] = useState(0)
+  // Active-attempt deck stability. The freeze above protects a MOUNTED
+  // session from RSC refreshes, but a hard browser refresh remounts with a
+  // fresh Date.now()-seeded order from the server — a different deck
+  // mid-attempt. The deck is persisted to sessionStorage once the student
+  // submits an answer, and restored on remount when it passes the guards in
+  // restoreDeckOrder (same id-set, within ACTIVE_DECK_TTL_MS). Per-tab and
+  // order-only by design: repetition control itself stays server-side, and
+  // cross-device mid-attempt resume is out of scope. Cleared on finish and
+  // on restartSession so a deliberate new attempt gets fresh alternatives.
+  const deckKey = `practice-deck:${slug}`
   // Which questions are saved for review — seeded from the server, updated
   // as the student toggles, so the per-question button survives navigation
   // between questions (it remounts per question by key).
@@ -1163,6 +1174,26 @@ export default function SessionClient({
   const [states, setStates] = useState<QuestionState[]>(() =>
     freshStates(questions)
   )
+  // Restore a persisted active-attempt deck on remount (hard refresh /
+  // same-tab resume). Mount-only, before any interaction — states are still
+  // blank, so rebuilding them for the restored order is safe.
+  useEffect(() => {
+    try {
+      const restored = restoreDeckOrder(
+        window.sessionStorage.getItem(deckKey),
+        questionsProp,
+        Date.now()
+      )
+      if (restored) {
+        setQuestions(restored)
+        setStates(freshStates(restored))
+        setCurrentIdx(0)
+      }
+    } catch {
+      // Storage unavailable (private browsing) — fresh deck is fine.
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const [questionStart, setQuestionStart] = useState(() => Date.now())
   const [now, setNow] = useState(() => Date.now())
   const [showResults, setShowResults] = useState(false)
@@ -1288,6 +1319,28 @@ export default function SessionClient({
     return () => window.removeEventListener("beforeunload", onBeforeUnload)
   }, [hasUnsavedAnswers])
 
+  // Persist the active-attempt deck once the first answer lands (that's when
+  // the attempt becomes worth stabilising); clear it on finish so the next
+  // visit starts a fresh attempt with fresh alternatives.
+  useEffect(() => {
+    try {
+      if (finished) {
+        window.sessionStorage.removeItem(deckKey)
+        return
+      }
+      if (!states.some((s) => s.submitted)) return
+      window.sessionStorage.setItem(
+        deckKey,
+        serializeDeck(
+          questions.map((q) => q.id),
+          Date.now()
+        )
+      )
+    } catch {
+      // Storage unavailable — attempt stability degrades gracefully.
+    }
+  }, [states, finished, questions, deckKey])
+
   const goTo = useCallback((idx: number) => {
     setCurrentIdx(idx)
     setQuestionStart(Date.now())
@@ -1306,6 +1359,13 @@ export default function SessionClient({
    */
   function restartSession(qs: SessionQuestion[]) {
     if (qs.length === 0) return
+    // A deliberate new attempt: drop the persisted deck so it can't be
+    // restored over this one (the first submit re-persists the new deck).
+    try {
+      window.sessionStorage.removeItem(deckKey)
+    } catch {
+      // Storage unavailable — nothing to drop.
+    }
     setQuestions(qs)
     setStates(freshStates(qs))
     setCurrentIdx(0)

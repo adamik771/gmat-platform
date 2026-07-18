@@ -16,6 +16,13 @@ import {
   MS_PER_DAY,
   parseIsoDate,
   deriveScheduleSlots,
+  deriveExamRoadmap,
+  deriveExamUsage,
+  deriveAttemptForEntry,
+  planExamTagUpdates,
+  FREE_OFFICIAL_EXAMS,
+  TOTAL_OFFICIAL_EXAMS,
+  type OfficialExamEntry,
 } from "@/lib/official-exams"
 
 /**
@@ -26,18 +33,10 @@ import {
  * it, ending exactly one week before test day (exam Friday 2026-08-14
  * -> Fridays 2026-07-03 .. 2026-08-07). One official mba.com practice
  * exam per week, same weekday and start time as the real slot, full
- * exam conditions. Scores are typed in here and persisted to
- * user_metadata.official_exam_scores via /api/official-exams.
+ * exam conditions. Scores are typed in here — WITH the exam's number
+ * (1-6) and attempt — and persisted to user_state.official_exam_scores
+ * via /api/official-exams (canonical type/parser in lib/official-exams).
  */
-
-export interface OfficialExamEntry {
-  date: string
-  total: number
-  quant?: number | null
-  verbal?: number | null
-  di?: number | null
-  label?: string
-}
 
 type RowStatus = "scored" | "next-up" | "upcoming" | "missed"
 
@@ -82,10 +81,13 @@ export default function OfficialExamPlanClient({
   examDate,
   entries: initialEntries,
   targetScore,
+  siteMockCount = 0,
 }: {
   examDate: string | null
   entries: OfficialExamEntry[]
   targetScore: number | null
+  /** Completed in-platform mocks (distinct mock dates) — roadmap input. */
+  siteMockCount?: number
 }) {
   const router = useRouter()
   const [, startTransition] = useTransition()
@@ -98,6 +100,9 @@ export default function OfficialExamPlanClient({
   // The entry form lives near the bottom of the card; the baseline CTA at the
   // top scrolls to it so opening it has visible feedback.
   const formSectionRef = useRef<HTMLDivElement>(null)
+  // The schedule rows hold the per-entry tag controls for legacy entries —
+  // the "classify" roadmap CTA scrolls here.
+  const rowsSectionRef = useRef<HTMLDivElement>(null)
 
   function openForm() {
     setError(null)
@@ -133,6 +138,25 @@ export default function OfficialExamPlanClient({
     () => (examDate ? deriveScheduleSlots(examDate) : []),
     [examDate]
   )
+
+  // Shared "which exam next" derivation — single source of truth in
+  // src/lib/official-exams.ts, so /mock never disagrees with the dashboard
+  // reminder or the study plan about what to sit next.
+  const roadmap = useMemo(
+    () =>
+      deriveExamRoadmap({
+        todayIso,
+        examDate,
+        entries,
+        siteMockCount,
+      }),
+    [todayIso, examDate, entries, siteMockCount]
+  )
+  const usage = useMemo(() => deriveExamUsage(entries), [entries])
+  // What the entry form preselects: the roadmap's recommendation when it
+  // names an exam, else the lowest unused exam, else free Exam 1 (retake).
+  const defaultExamNumber =
+    roadmap.officialNumber ?? usage.unusedNumbers[0] ?? 1
 
   const examInFuture = examDate !== null && examDate > todayIso
   const daysToExam = useMemo(() => {
@@ -222,6 +246,27 @@ export default function OfficialExamPlanClient({
     }
   }
 
+  /**
+   * Tag a legacy (unclassified) entry with its exam number. The upsert plan
+   * comes from planExamTagUpdates, which re-ranks every entry of that exam
+   * number by date so tagging order can't scramble first-attempt/retake
+   * status. `tagging` locks all row tag controls while the sequential
+   * upserts run, so concurrent taggings can't race a stale entries closure.
+   */
+  const [tagging, setTagging] = useState(false)
+  async function tagEntry(target: OfficialExamEntry, examNumber: number) {
+    if (tagging) return
+    setTagging(true)
+    try {
+      for (const update of planExamTagUpdates(entries, target.date, examNumber)) {
+        const ok = await submitEntry(update)
+        if (!ok) return
+      }
+    } finally {
+      setTagging(false)
+    }
+  }
+
   async function removeEntry(date: string) {
     setError(null)
     const previous = entries
@@ -273,18 +318,179 @@ export default function OfficialExamPlanClient({
             <p className="text-[13px] text-[#C0C0C0] leading-relaxed mt-2 max-w-xl">
               Same weekday and start time as test day (if your slot is
               9:00, start at 9:00), full test conditions, one sitting.
-              Type each score in here — these six results are your real
-              score trajectory.
+              Type each score in here — your first attempt on each of the
+              six exams is your real score trajectory.
             </p>
           </div>
           <div className="flex-shrink-0 text-right">
             <p className="font-display text-3xl font-semibold tabular-nums text-[#F0F0F0] leading-none">
-              {Math.min(entries.length, 6)}
-              <span className="text-[#555555] text-xl"> / 6</span>
+              {usage.usedNumbers.length}
+              <span className="text-[#555555] text-xl">
+                {" "}
+                / {TOTAL_OFFICIAL_EXAMS}
+              </span>
             </p>
             <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold mt-1.5">
-              Officials entered
+              Exams used
             </p>
+            {usage.unclassifiedCount > 0 && (
+              <p className="text-[10px] text-[#C9A84C] font-semibold mt-1">
+                {usage.unclassifiedCount} untagged{" "}
+                {usage.unclassifiedCount === 1 ? "score" : "scores"}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Next recommended exam — the roadmap's single clear answer. */}
+        <div
+          className="rounded-xl border p-4 sm:p-5"
+          style={{
+            borderColor:
+              roadmap.kind === "official"
+                ? "rgba(201,168,76,0.32)"
+                : "rgba(255,255,255,0.08)",
+            backgroundColor:
+              roadmap.kind === "official"
+                ? "rgba(201,168,76,0.06)"
+                : "rgba(255,255,255,0.015)",
+          }}
+        >
+          <div className="flex flex-wrap items-center gap-2 mb-2.5">
+            <p className={EYEBROW}>Next recommended exam</p>
+            <span
+              className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.14em] font-semibold"
+              style={
+                roadmap.kind === "official"
+                  ? {
+                      color: "#C9A84C",
+                      backgroundColor: "rgba(201,168,76,0.10)",
+                      border: "1px solid rgba(201,168,76,0.32)",
+                    }
+                  : {
+                      color: "#888888",
+                      backgroundColor: "rgba(255,255,255,0.03)",
+                      border: "1px solid rgba(255,255,255,0.10)",
+                    }
+              }
+            >
+              {roadmap.kind === "official"
+                ? "Official exam"
+                : roadmap.kind === "site-mock"
+                  ? "In-platform mock"
+                  : roadmap.kind === "classify"
+                    ? "Action needed"
+                    : "Setup"}
+            </span>
+            {roadmap.kind === "official" &&
+              roadmap.officialNumber !== null &&
+              !roadmap.isRetake && (
+                <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[#555555]">
+                  {roadmap.officialNumber <= FREE_OFFICIAL_EXAMS
+                    ? "Free on mba.com"
+                    : "Paid · Exams 3-6"}
+                </span>
+              )}
+            {roadmap.isRetake && (
+              <span
+                className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.14em] font-semibold"
+                style={{
+                  color: "#FF8888",
+                  backgroundColor: "rgba(255,68,68,0.08)",
+                  border: "1px solid rgba(255,68,68,0.28)",
+                }}
+              >
+                Retake
+              </span>
+            )}
+            {roadmap.officialTargetDate && (
+              <span className="text-[11px] tabular-nums text-[#888888]">
+                {roadmap.kind === "official" ? "" : "Official next up "}
+                {formatDisplayDate(roadmap.officialTargetDate)}
+              </span>
+            )}
+          </div>
+          <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
+            {roadmap.title}
+          </p>
+          <p className="text-[12px] text-[#C0C0C0] leading-relaxed mt-1.5">
+            {roadmap.reason}
+          </p>
+          {roadmap.prereq && (
+            <p className="text-[12px] text-[#888888] leading-relaxed mt-1.5">
+              First: {roadmap.prereq}
+            </p>
+          )}
+          {roadmap.caution && (
+            <p
+              className="text-[12px] leading-relaxed mt-1.5"
+              style={{ color: "#FF8888" }}
+            >
+              {roadmap.caution}
+            </p>
+          )}
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            {roadmap.kind === "official" && (
+              <>
+                <button
+                  type="button"
+                  onClick={openForm}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
+                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  {entries.length === 0
+                    ? "Log your baseline score"
+                    : "Log the score when done"}
+                </button>
+                <a
+                  href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[12px] font-semibold transition-colors hover:opacity-80"
+                  style={{ color: "#C9A84C" }}
+                >
+                  Take it on mba.com
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </>
+            )}
+            {roadmap.kind === "site-mock" && (
+              <Link
+                href="/mock/run?mode=full"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Start an in-platform mock
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
+            {roadmap.kind === "setup" && (
+              <Link
+                href="/settings"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Update test date in Settings
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
+            {roadmap.kind === "classify" && (
+              <button
+                type="button"
+                onClick={() =>
+                  rowsSectionRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  })
+                }
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Tag the entries below
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -334,45 +540,6 @@ export default function OfficialExamPlanClient({
               </span>
             </div>
 
-            {/* Baseline — the first, unmistakable action for a new account.
-                The baseline official practice exam is what unlocks the
-                dashboard, study plan and analytics, so it gets its own row
-                (rather than only the conditional banner) until one is logged. */}
-            {entries.length === 0 && (
-              <div
-                className="rounded-xl border p-4"
-                style={{
-                  borderColor: "rgba(201,168,76,0.32)",
-                  backgroundColor: "rgba(201,168,76,0.06)",
-                }}
-              >
-                <span
-                  className="inline-block px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.14em] font-semibold"
-                  style={{
-                    color: "#C9A84C",
-                    backgroundColor: "rgba(201,168,76,0.10)",
-                    border: "1px solid rgba(201,168,76,0.32)",
-                  }}
-                >
-                  Baseline — take now
-                </span>
-                <p className="text-[12px] text-[#C0C0C0] leading-relaxed mt-2">
-                  Sit one official practice exam now and log it here — your
-                  baseline score is what unlocks your dashboard, study plan, and
-                  analytics.
-                </p>
-                <button
-                  type="button"
-                  onClick={openForm}
-                  className="inline-flex items-center gap-2 mt-3 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  Log your baseline
-                </button>
-              </div>
-            )}
-
             {moreThanEightWeeksOut && (
               <div
                 className="rounded-lg border px-4 py-3 text-[12px] leading-relaxed"
@@ -387,25 +554,30 @@ export default function OfficialExamPlanClient({
                 week.
               </div>
             )}
-
-            {/* Schedule rows */}
-            <div className="space-y-2">
-              {rows.map((row) => (
-                <ScheduleRow
-                  key={row.date}
-                  row={row}
-                  onDelete={() => removeEntry(row.date)}
-                />
-              ))}
-              {rows.length === 0 && (
-                <p className="text-[12px] text-[#888888] leading-relaxed">
-                  No weekly slots fit before your exam. Log any official you
-                  take with the form below — off-schedule exams count too.
-                </p>
-              )}
-            </div>
           </>
         )}
+
+        {/* Schedule rows — rendered whenever there is anything to show, so
+            logged entries (and their tag controls) stay visible even
+            without a future exam date. */}
+        {rows.length > 0 ? (
+          <div ref={rowsSectionRef} className="space-y-2">
+            {rows.map((row) => (
+              <ScheduleRow
+                key={row.date}
+                row={row}
+                onDelete={() => removeEntry(row.date)}
+                onTag={(examNumber) => tagEntry(row.entry!, examNumber)}
+                tagDisabled={tagging}
+              />
+            ))}
+          </div>
+        ) : examDate && examInFuture ? (
+          <p className="text-[12px] text-[#888888] leading-relaxed">
+            No weekly slots fit before your exam. Log any official you take
+            with the form below — off-schedule exams count too.
+          </p>
+        ) : null}
 
         {/* Trend strip — official-to-official deltas. */}
         {sortedEntries.length >= 2 && (
@@ -430,6 +602,14 @@ export default function OfficialExamPlanClient({
                     </span>
                     <span className="text-[10px] text-[#555555] tabular-nums mt-1">
                       {e.date.slice(5)}
+                      {(e.attemptNumber ?? 1) >= 2 && (
+                        <span
+                          className="ml-1 font-semibold"
+                          style={{ color: "#FF8888" }}
+                        >
+                          retake
+                        </span>
+                      )}
                     </span>
                     {delta !== null && (
                       <span
@@ -499,6 +679,8 @@ export default function OfficialExamPlanClient({
             <EntryForm
               defaultDate={defaultEntryDate}
               maxDate={todayIso}
+              defaultExamNumber={defaultExamNumber}
+              entries={entries}
               saving={saving}
               onSubmit={submitEntry}
             />
@@ -510,22 +692,70 @@ export default function OfficialExamPlanClient({
           )}
         </div>
 
-        <p className="text-[12px] text-[#888888]">
-          Need exams?{" "}
-          <a
-            href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 font-semibold transition-colors hover:opacity-80"
-            style={{ color: "#C9A84C" }}
-          >
-            Buy official practice exams
-            <ExternalLink className="w-3 h-3" />
-          </a>{" "}
-          <span className="text-[#555555]">
-            — official practice exams 1-6 on mba.com.
-          </span>
-        </p>
+        {/* How the six officials work — facts per GMAC's mba.com product
+            pages and support.mba.com article 52121740753435 ("Using GMAT
+            Practice Exams and EA Practice Assessments"). Kept short; the
+            roadmap panel above applies them. "Reset" is the paid product's
+            mechanism for its second attempt; everything student-facing
+            about sitting an exam again says "retake". */}
+        <div
+          className="rounded-xl border p-4"
+          style={{
+            borderColor: "rgba(255,255,255,0.06)",
+            backgroundColor: "rgba(255,255,255,0.012)",
+          }}
+        >
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold mb-2.5">
+            How the six officials work
+          </p>
+          <ul className="space-y-1.5 text-[12px] leading-relaxed text-[#888888]">
+            <li>
+              <a
+                href="https://www.mba.com/exam-prep/gmat-official-starter-kit-practice-exams-1-and-2-free"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold transition-colors hover:opacity-80"
+                style={{ color: "#C9A84C" }}
+              >
+                Exams 1-2 are free
+              </a>{" "}
+              (Official Starter Kit);{" "}
+              <a
+                href="https://www.mba.com/exam-prep/gmat-practice-exams-3-6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold transition-colors hover:opacity-80"
+                style={{ color: "#C9A84C" }}
+              >
+                Exams 3-6 are paid
+                <ExternalLink className="w-3 h-3 inline ml-1 align-[-1px]" />
+              </a>
+              .
+            </li>
+            <li>
+              Unused first attempts are your measurement signal — take exams
+              you haven&apos;t seen before retaking any exam.
+            </li>
+            <li>
+              Exams 1-2 can be taken multiple times; after your first two
+              attempts, repeated questions become increasingly likely.
+            </li>
+            <li>
+              Paid exams provide two attempts each, in any order — resetting
+              a paid exam in the mba.com product is what unlocks its second
+              attempt.
+            </li>
+            <li>
+              Any retake draws from that exam&apos;s fixed question pool, so
+              it may show mostly questions you have already seen, and a
+              retake score can be inflated and less valid.
+            </li>
+            <li>
+              Measure on officials, spaced about a week apart; use in-platform
+              mocks for routine checkpoints in between.
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   )
@@ -564,14 +794,21 @@ const STATUS_META: Record<
 function ScheduleRow({
   row,
   onDelete,
+  onTag,
+  tagDisabled,
 }: {
   row: PlanRow
   onDelete: () => void
+  /** Tag an unclassified entry with its exam number (legacy entries only). */
+  onTag: (examNumber: number) => void
+  /** True while another tag's upserts are in flight — locks all tag selects. */
+  tagDisabled: boolean
 }) {
   const meta = STATUS_META[row.status]
+  const attempt = row.entry ? (row.entry.attemptNumber ?? 1) : 1
   return (
     <div
-      className="flex items-center gap-3 px-4 py-3 rounded-xl border"
+      className="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 rounded-xl border"
       style={{
         borderColor:
           row.status === "next-up"
@@ -594,6 +831,56 @@ function ScheduleRow({
       >
         {meta.label}
       </span>
+      {row.entry && row.entry.examNumber !== undefined && (
+        <span className="text-[10px] uppercase tracking-[0.14em] text-[#888888] font-semibold flex-shrink-0">
+          Exam {row.entry.examNumber}
+        </span>
+      )}
+      {row.entry && attempt >= 2 && (
+        <span
+          className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.14em] font-semibold flex-shrink-0"
+          style={{
+            color: "#FF8888",
+            backgroundColor: "rgba(255,68,68,0.08)",
+            border: "1px solid rgba(255,68,68,0.28)",
+          }}
+        >
+          Retake · attempt {attempt}
+        </span>
+      )}
+      {row.entry && row.entry.examNumber === undefined && (
+        <label className="flex items-center gap-1.5 flex-shrink-0 text-[10px] uppercase tracking-[0.14em] text-[#C9A84C] font-semibold">
+          <span className="sr-only">
+            Which Official Practice Exam was this entry?
+          </span>
+          <select
+            value=""
+            disabled={tagDisabled}
+            onChange={(e) => {
+              const n = Number(e.target.value)
+              if (n >= 1 && n <= TOTAL_OFFICIAL_EXAMS) onTag(n)
+            }}
+            className="px-2.5 py-2 rounded-md text-[11px] font-semibold outline-none min-h-[40px] disabled:opacity-50"
+            style={{
+              backgroundColor: "#080808",
+              border: "1px solid rgba(201,168,76,0.4)",
+              color: "#C9A84C",
+            }}
+            aria-label={`Tag the ${row.date} entry with its exam number`}
+          >
+            <option value="" disabled>
+              Tag exam
+            </option>
+            {Array.from({ length: TOTAL_OFFICIAL_EXAMS }, (_, i) => i + 1).map(
+              (n) => (
+                <option key={n} value={n}>
+                  Exam {n}
+                </option>
+              )
+            )}
+          </select>
+        </label>
+      )}
       {!row.scheduled && (
         <span className="text-[10px] uppercase tracking-[0.14em] text-[#555555] font-semibold flex-shrink-0">
           Off-schedule
@@ -623,7 +910,7 @@ function ScheduleRow({
           type="button"
           onClick={onDelete}
           aria-label={`Delete official exam entry for ${row.date}`}
-          className="flex-shrink-0 p-1.5 rounded-md transition-colors text-[#555555] hover:text-[#FF4444]"
+          className="flex-shrink-0 p-2.5 -m-1 rounded-md transition-colors text-[#555555] hover:text-[#FF4444]"
         >
           <Trash2 className="w-3.5 h-3.5" />
         </button>
@@ -635,6 +922,8 @@ function ScheduleRow({
 function EntryForm({
   defaultDate,
   maxDate,
+  defaultExamNumber,
+  entries,
   saving,
   onSubmit,
 }: {
@@ -642,15 +931,27 @@ function EntryForm({
   /** Latest selectable date (the student's local today) — an official is
    *  logged after it was taken, never scheduled into a future slot. */
   maxDate: string
+  /** Preselected exam — the roadmap's current recommendation. */
+  defaultExamNumber: number
+  /** All recorded entries — derives the attempt number for the chosen exam. */
+  entries: OfficialExamEntry[]
   saving: boolean
   onSubmit: (entry: OfficialExamEntry) => Promise<boolean>
 }) {
   const [date, setDate] = useState(defaultDate)
+  const [examChoice, setExamChoice] = useState(String(defaultExamNumber))
   const [total, setTotal] = useState("")
   const [quant, setQuant] = useState("")
   const [verbal, setVerbal] = useState("")
   const [di, setDi] = useState("")
   const [localError, setLocalError] = useState<string | null>(null)
+
+  // "" = the student doesn't know which exam it was — stored unclassified,
+  // taggable later from its schedule row. Overwriting an existing same-exam
+  // entry on the same date keeps its attempt (it's an edit, not a retake).
+  const chosenExam = examChoice === "" ? null : Number(examChoice)
+  const attemptPreview =
+    chosenExam !== null ? deriveAttemptForEntry(entries, date, chosenExam) : null
 
   function parseSection(
     value: string,
@@ -696,6 +997,9 @@ function EntryForm({
       quant: q,
       verbal: v,
       di: d,
+      ...(chosenExam !== null && attemptPreview !== null
+        ? { examNumber: chosenExam, attemptNumber: attemptPreview }
+        : {}),
     })
     if (ok) {
       setTotal("")
@@ -714,7 +1018,7 @@ function EntryForm({
         backgroundColor: "#0D0D0D",
       }}
     >
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-6 gap-3">
         <div className="col-span-2 sm:col-span-1">
           <label
             htmlFor="official-exam-date"
@@ -732,6 +1036,31 @@ function EntryForm({
             className={INPUT_CLASS}
             style={INPUT_STYLE}
           />
+        </div>
+        <div className="col-span-2 sm:col-span-1">
+          <label
+            htmlFor="official-exam-number"
+            className="block text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold mb-1.5"
+          >
+            Which exam?
+          </label>
+          <select
+            id="official-exam-number"
+            value={examChoice}
+            onChange={(e) => setExamChoice(e.target.value)}
+            className={INPUT_CLASS}
+            style={INPUT_STYLE}
+          >
+            {Array.from({ length: TOTAL_OFFICIAL_EXAMS }, (_, i) => i + 1).map(
+              (n) => (
+                <option key={n} value={n}>
+                  Exam {n}
+                  {n <= FREE_OFFICIAL_EXAMS ? " (free)" : " (paid)"}
+                </option>
+              )
+            )}
+            <option value="">Not sure</option>
+          </select>
         </div>
         <div>
           <label
@@ -787,6 +1116,22 @@ function EntryForm({
           </div>
         ))}
       </div>
+      {attemptPreview !== null && attemptPreview >= 2 && (
+        <p
+          className="text-[11px] leading-relaxed font-medium"
+          style={{ color: "#FF8888" }}
+        >
+          This will be recorded as attempt {attemptPreview} of Exam{" "}
+          {chosenExam} — a retake. Retake scores can be inflated and less
+          valid; your first attempts stay the real trend.
+        </p>
+      )}
+      {chosenExam === null && (
+        <p className="text-[11px] text-[#888888] leading-relaxed">
+          Not sure is fine — the entry saves untagged and you can tag it to
+          an exam number later from its row.
+        </p>
+      )}
       <p className="text-[11px] text-[#555555] leading-relaxed">
         Off-schedule date? Fine — any official you sit counts. Saving the
         same date again overwrites that entry.

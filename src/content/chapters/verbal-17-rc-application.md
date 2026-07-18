@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "RC: Application"
     check_question_ids:
-      - reading-comprehension-q27
+      - reading-comprehension-q4
   - id: application-extends-the-logic
     type: reading
     title: "Application = extend the author's logic to a new case"
@@ -35,7 +35,7 @@ problem_sets:
     question_ids:
       - reading-comprehension-q84
       - reading-comprehension-q180
-      - reading-comprehension-q29
+      - reading-comprehension-q12
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,9 +43,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q30
-      - reading-comprehension-q31
-      - reading-comprehension-q32
+      - reading-comprehension-q8
+      - reading-comprehension-q16
+      - reading-comprehension-q20
 ---
 
 ## @rc-application

@@ -30,8 +30,8 @@ problem_sets:
       "725": 100
     question_ids:
       - critical-reasoning-q164
-      - critical-reasoning-q76
-      - critical-reasoning-q77
+      - critical-reasoning-q56
+      - critical-reasoning-q166
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,9 +39,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q78
-      - critical-reasoning-q79
-      - critical-reasoning-q80
+      - critical-reasoning-q43
+      - critical-reasoning-q65
+      - critical-reasoning-q167
 ---
 
 ## @cr-complete

@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "RC: Function"
     check_question_ids:
-      - reading-comprehension-q35
+      - reading-comprehension-q31
   - id: function-is-your-purpose-tag
     type: reading
     title: "Function = your paragraph-purpose tag, as a question"
@@ -34,8 +34,8 @@ problem_sets:
       "725": 100
     question_ids:
       - reading-comprehension-q181
-      - reading-comprehension-q36
-      - reading-comprehension-q37
+      - reading-comprehension-q44
+      - reading-comprehension-q125
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,9 +43,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q38
-      - reading-comprehension-q39
-      - reading-comprehension-q40
+      - reading-comprehension-q132
+      - reading-comprehension-q136
+      - reading-comprehension-q149
 ---
 
 ## @rc-function

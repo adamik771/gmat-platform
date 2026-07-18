@@ -34,8 +34,8 @@ problem_sets:
       "725": 100
     question_ids:
       - reading-comprehension-q54
-      - reading-comprehension-q20
-      - reading-comprehension-q21
+      - reading-comprehension-q60
+      - reading-comprehension-q39
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,9 +43,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q22
+      - reading-comprehension-q7
       - reading-comprehension-q23
-      - reading-comprehension-q24
+      - reading-comprehension-q32
 ---
 
 ## @rc-inference

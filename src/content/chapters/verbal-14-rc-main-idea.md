@@ -34,7 +34,7 @@ problem_sets:
       "725": 100
     question_ids:
       - reading-comprehension-q179
-      - reading-comprehension-q4
+      - reading-comprehension-q29
       - reading-comprehension-q126
   medium:
     target_accuracy_by_score:
@@ -43,9 +43,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q112
-      - reading-comprehension-q7
-      - reading-comprehension-q8
+      - reading-comprehension-q21
+      - reading-comprehension-q37
+      - reading-comprehension-q45
 ---
 
 ## @rc-main-idea

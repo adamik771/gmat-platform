@@ -20,7 +20,7 @@ sections:
     type: reading
     title: "CR: Weaken"
     check_question_ids:
-      - critical-reasoning-q27
+      - critical-reasoning-q36
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +29,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q158
-      - critical-reasoning-q28
-      - critical-reasoning-q26
+      - critical-reasoning-q52
+      - critical-reasoning-q200
+      - critical-reasoning-q77
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,9 +39,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q30
+      - critical-reasoning-q69
       - critical-reasoning-q31
-      - critical-reasoning-q32
+      - critical-reasoning-q9
 ---
 
 ## @cr-weaken

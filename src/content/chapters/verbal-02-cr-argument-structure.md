@@ -14,13 +14,13 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q131
-      - critical-reasoning-q189
+      - critical-reasoning-q179
+      - critical-reasoning-q182
   - id: cr-argument-structure
     type: reading
     title: "CR: Argument Structure"
     check_question_ids:
-      - critical-reasoning-q3
+      - critical-reasoning-q185
 problem_sets:
   easy:
     target_accuracy_by_score:

@@ -129,6 +129,9 @@ export const BANK_RULES: Record<string, SubtopicRule[]> = {
     { match: ["boldface", "bold-face", "bold face"], chapter: "verbal-10-cr-boldface" },
     { match: ["complete"], chapter: "verbal-11-cr-complete" },
     { match: ["trap"], chapter: "verbal-12-cr-answer-traps" },
+    // Structure-skill labels route to verbal-02 explicitly (not via the
+    // catch-all) so the default stays a true safety net for unrecognized tags.
+    { match: ["main conclusion", "method of reasoning", "role in argument"], chapter: "verbal-02-cr-argument-structure" },
     { match: [], chapter: "verbal-02-cr-argument-structure" },
   ],
 }
