@@ -1,6 +1,7 @@
 import { getSupabaseService } from "@/lib/supabase/service"
 import { recordConsent } from "@/lib/outreach/consent"
 import { enqueueDrip } from "@/lib/outreach/queue"
+import { sendEmail } from "@/lib/email"
 
 /**
  * POST /api/lead-capture — collect a prospect email from public marketing
@@ -144,6 +145,23 @@ export async function POST(request: Request) {
     )
   }
 
+  // Duplicate-send guard for the founding confirmation below: only the FIRST
+  // capture of (email, source) may send mail. Re-submissions still upsert
+  // captured_at, but re-mailing on every POST would hand an unauthenticated
+  // route with an unverified address a bounded mail-bomb primitive (the IP
+  // throttle above is per warm instance only) — and double-submitting humans
+  // would get duplicate confirmations.
+  let firstCapture = true
+  if (source === "founding-member") {
+    const { data: existing } = await supabase
+      .from("lead_captures")
+      .select("email")
+      .eq("email", email)
+      .eq("source", source)
+      .maybeSingle()
+    firstCapture = !existing
+  }
+
   const { error } = await supabase.from("lead_captures").upsert(
     {
       email,
@@ -165,6 +183,46 @@ export async function POST(request: Request) {
       { ok: false, error: "Could not save that right now. Please try again." },
       { status: 503 },
     )
+  }
+
+  // Founding reservation: send the transactional confirmation immediately.
+  // This fulfils the transaction the visitor just requested (a reservation +
+  // exactly one code email at flip time), so it is deliberately NOT gated on
+  // the marketing checkbox — and it goes out directly, not via the queue,
+  // whose consent gate stays authoritative for every marketing send. The
+  // founding drip below remains strictly opt-in. Strictly transactional
+  // content only (no promotional lines): sent without marketing consent,
+  // and first capture only (see firstCapture above).
+  if (source === "founding-member" && firstCapture) {
+    try {
+      const lines = [
+        "Hi there,",
+        "Your founding rate is reserved to this address. No charge today, nothing to cancel, no obligation.",
+        "What happens next: when paid checkout opens, you'll get one email here with your founding code. Unless you also ticked the optional updates box, that is the only email this reservation triggers.",
+        "Changed your mind? Reply to this email and I'll remove the reservation.",
+        "- Adam, Zakarian GMAT",
+        "GMAT is a registered trademark of the Graduate Management Admission Council (GMAC), which does not endorse and is not affiliated with Zakarian GMAT.",
+      ]
+      const sent = await sendEmail({
+        to: email,
+        subject: "Your founding rate is reserved",
+        text: lines.join("\n\n"),
+        html: lines
+          .map(
+            (l) =>
+              `<p style="margin:0 0 14px;font:14px/1.6 -apple-system,Segoe UI,Arial,sans-serif;color:#222;">${l}</p>`,
+          )
+          .join(""),
+      })
+      if (!sent.ok && !sent.skipped) {
+        console.error(
+          "[lead-capture] founding confirmation send failed:",
+          sent.reason,
+        )
+      }
+    } catch {
+      /* confirmation is best-effort; the reservation row is the durable record */
+    }
   }
 
   // Consent + sequence enrolment require EXPLICIT opt-in (the form's unticked

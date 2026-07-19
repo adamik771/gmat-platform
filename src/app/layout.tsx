@@ -5,6 +5,7 @@ import "./globals.css"
 import JsonLd from "@/components/seo/JsonLd"
 import AdPixels from "@/components/analytics/AdPixels"
 import AttributionCapture from "@/components/analytics/AttributionCapture"
+import ConsentBanner from "@/components/analytics/ConsentBanner"
 import { organizationLd, websiteLd } from "@/lib/structured-data"
 
 const inter = Inter({
@@ -106,11 +107,16 @@ export default function RootLayout({
         {/* Vercel Web Analytics — page views + custom conversion events
             (see lib/analytics.ts). No-op until enabled on Vercel. */}
         <Analytics />
+        {/* Consent banner — Google/Meta tags and advertising attribution are
+            deny-by-default until the visitor accepts (Consent Mode v2). */}
+        <ConsentBanner />
         {/* Meta Pixel + Google tag — dormant until NEXT_PUBLIC_META_PIXEL_ID /
-            NEXT_PUBLIC_GOOGLE_TAG_ID are set; trackEvent forwards conversions. */}
+            NEXT_PUBLIC_GOOGLE_TAG_ID are set AND the visitor consents;
+            trackEvent forwards conversions. */}
         <AdPixels />
         {/* First-touch campaign attribution — stores utm_* / ref from the
-            landing URL so every conversion event is traceable to its source. */}
+            landing URL (only after consent) so conversion events are
+            traceable to their source. */}
         <AttributionCapture />
       </body>
     </html>

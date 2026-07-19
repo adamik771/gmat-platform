@@ -65,14 +65,28 @@ export default function ReserveInterceptButton({
             this exact plan — we&apos;ll email you your code when checkout
             opens.
           </p>
-          <Link
-            href="#founding"
-            className="inline-flex items-center gap-1.5 text-[12px] font-semibold mt-2.5 hover:underline"
-            style={{ color: "#C9A84C" }}
-          >
-            Reserve my founding rate
-            <ArrowRight className="w-3 h-3" />
-          </Link>
+          {/* Two next steps, trial first: the clicker showed purchase intent
+              and previously hit a dead end here (no signup path at all).
+              Stacked with per-link padding so each stays a comfortable tap
+              target at mobile card widths. */}
+          <div className="flex flex-col gap-1 mt-2.5">
+            <Link
+              href="/signup"
+              className="inline-flex items-center gap-1.5 text-[12px] font-semibold py-1.5 hover:underline"
+              style={{ color: "#C9A84C" }}
+            >
+              Start your 7-day trial &mdash; no card
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link
+              href="#founding"
+              className="inline-flex items-center gap-1.5 text-[12px] font-semibold py-1.5 hover:underline"
+              style={{ color: "#C9A84C" }}
+            >
+              Reserve my founding rate
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
         </div>
       )}
     </div>

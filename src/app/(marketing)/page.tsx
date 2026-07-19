@@ -74,7 +74,7 @@ const pillars = [
     icon: TrendingUp,
     title: "Built on a Real Jump",
     description:
-      "A verified founder jump from 565 to 735 (+170 points). Real student results coming soon — no averages until they're verified.",
+      "The founder's own jump from 565 to 735 (+170 points). Real student results coming soon — no averages until they're verified.",
   },
 ]
 
@@ -157,7 +157,7 @@ export default function HomePage() {
                 }}
               >
                 <Flame className="w-3 h-3" />
-                565 → 735 · 100th Percentile
+                565 → 735 · Top 1%
               </div>
 
               <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-[-0.02em] mb-6">
@@ -219,7 +219,7 @@ export default function HomePage() {
                   { label: "→", color: "#555555", bg: "transparent" },
                   { label: "735 Final Score", color: "#C9A84C", bg: "rgba(201,168,76,0.1)" },
                   { label: "→", color: "#555555", bg: "transparent" },
-                  { label: "100th Percentile", color: "#3ECF8E", bg: "rgba(62,207,142,0.1)" },
+                  { label: "Top 1%", color: "#3ECF8E", bg: "rgba(62,207,142,0.1)" },
                 ].map((chip, i) => (
                   <span
                     key={i}
@@ -290,7 +290,7 @@ export default function HomePage() {
           <FeatureCard
             icon={BarChart3}
             title="Smart Analytics"
-            description="Track every question, every mistake, every trend. Know your score before exam day."
+            description="Track every question, every mistake, every trend — and watch your mock scores move."
           />
           <FeatureCard
             icon={Users}
@@ -389,7 +389,7 @@ export default function HomePage() {
             The numbers speak for themselves.
           </h2>
 
-          {/* Score display — the founder's own verified result. Student
+          {/* Score display — the founder's own result. Student
               testimonials were removed: the product has no real students yet,
               so invented named testimonials were a false-advertising risk.
               Re-add a TestimonialCard grid here once real, attributable
@@ -418,14 +418,14 @@ export default function HomePage() {
               that doesn&apos;t.
             </p>
             <p className="text-[#888888] leading-relaxed mb-8">
-              In 8 months, I went from 565 to 735 — 100th percentile. This platform is the
+              In 8 months, I went from 565 to 735 — top 1% of test-takers. This platform is the
               exact system I built for myself, packaged for every ambitious student facing the
               same obstacles I did.
             </p>
 
             <div className="flex flex-wrap gap-3">
               {[
-                { label: "Scored 100th Percentile", color: "#C9A84C" },
+                { label: "Scored in the Top 1%", color: "#C9A84C" },
                 { label: "Non-Native Speaker", color: "#3ECF8E" },
                 { label: "Non-Technical Background", color: "#888888" },
               ].map((badge) => (
@@ -596,8 +596,11 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
+              {/* Primary card CTA goes straight to /signup — "Get Started"
+                  must start something. Plan comparison stays one link away
+                  via the "See full pricing & comparison" link below. */}
               <Link
-                href="/pricing"
+                href="/signup"
                 className="block text-center py-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
                 style={
                   plan.highlighted

@@ -60,7 +60,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       heading: "How the trial works — and what happens when it ends",
-      body: `Create an account with your name, email, and a password — no payment details, no card on file, so there is nothing that silently converts into a charge. For ${TRIAL_DAYS} days you get the complete product, not a limited tier: there is no locked content inside the trial.\n\nAfter the trial, access continues through a one-time plan purchase, not a subscription. The plans and prices are public on the pricing page — Self-Study and Self-Study + Mentorship for self-paced prep, plus coaching packages — and every self-study plan carries a 14-day money-back guarantee.\n\nWhat you should not expect: a promised score, a magic number, or a guarantee about how much you'll improve. The only performance claim here is the founder's own — Adam Zakarian self-studied from 565 to 735 (100th percentile on his official score report) and built this platform solo to be the system he wished he'd had. Results vary with your baseline, your hours, and your consistency; your results are your own.`,
+      body: `Create an account with your name, email, and a password — no payment details, no card on file, so there is nothing that silently converts into a charge. For ${TRIAL_DAYS} days you get the complete product, not a limited tier: there is no locked content inside the trial.\n\nAfter the trial, access continues through a one-time plan purchase, not a subscription. The plans and prices are public on the pricing page — Self-Study and Self-Study + Mentorship for self-paced prep, plus coaching packages — and every self-study plan carries a 14-day money-back guarantee.\n\nWhat you should not expect: a promised score, a magic number, or a guarantee about how much you'll improve. The only performance claim here is the founder's own — Adam Zakarian self-studied from 565 to 735 (top 1% of test-takers) and built this platform solo to be the system he wished he'd had. Results vary with your baseline, your hours, and your consistency; your results are your own.`,
     },
   ],
   faq: [
@@ -78,7 +78,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       q: "Will this guarantee me a specific score increase?",
-      a: "No. No honest GMAT product can promise a number, and this one won't. The only performance claim made anywhere is the founder's own: Adam Zakarian went from 565 to 735 (100th percentile on his official report) through self-study and built the platform around that method. Your outcome depends on your starting point, your weak areas, and the work you put in.",
+      a: "No. No honest GMAT product can promise a number, and this one won't. The only performance claim made anywhere is the founder's own: Adam Zakarian went from 565 to 735 (top 1% of test-takers) through self-study and built the platform around that method. Your outcome depends on your starting point, your weak areas, and the work you put in.",
     },
   ],
   lead: {

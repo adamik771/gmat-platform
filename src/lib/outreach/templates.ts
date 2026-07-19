@@ -71,7 +71,7 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
     heading: "Welcome to Zakarian GMAT",
     paragraphs: [
       greeting(c),
-      "Quick story first. My first GMAT Focus score was a 565. I rebuilt my prep from scratch — pretest, reading, recall checks, graded problem sets, every miss logged and reviewed until it stopped repeating. I finished at 735, the 100th percentile. This platform is that system, chapter by chapter.",
+      "Quick story first. My first GMAT Focus score was a 565. I rebuilt my prep from scratch — pretest, reading, recall checks, graded problem sets, every miss logged and reviewed until it stopped repeating. I finished at 735 — top 1% of test-takers. This platform is that system, chapter by chapter.",
       "Your free 7-day trial gives you all of it: " + CHAPTER_COUNT_CLAIM + " interactive chapters, " + QUESTION_CLAIM_SHORT + ", full-length mocks, the six-tag error log, and daily spaced review.",
       "One thing before you dive in: your study plan calibrates from a real baseline — an official mba.com practice exam. If you have a recent official score, start your plan from it. If not, take one this week. Honest baseline first, everything else second.",
       "Last thing: I'm a solo founder. There's no support team behind this address — replies come to me, and I answer them personally.",
