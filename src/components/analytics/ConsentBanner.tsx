@@ -24,23 +24,29 @@ import {
  * so SSR renders nothing and the banner appears after hydration for
  * visitors without a stored choice — no setState-in-effect, no mismatch.
  */
+// Client-readiness store for useSyncExternalStore: the value never changes
+// after hydration, so subscribe is a no-op. Server snapshot false / client
+// snapshot true makes the no-choice banner render only after hydration —
+// no setState-in-effect, no hydration mismatch, and (unlike an rAF-gated
+// flag) it also works in hidden/background tabs where rAF is throttled.
+const subscribeNever = () => () => {}
+const getHydrated = () => true
+const getServerHydrated = () => false
+
 export default function ConsentBanner() {
   const consent = useSyncExternalStore(subscribeConsent, getConsent, () => null)
+  const hydrated = useSyncExternalStore(
+    subscribeNever,
+    getHydrated,
+    getServerHydrated,
+  )
   // The reopen affordance ("Privacy settings") — setState inside an event
-  // listener callback only.
+  // listener callback only, which the set-state-in-effect rule permits.
   const [reopened, setReopened] = useState(false)
-  // Post-hydration flag so the no-choice banner only renders on the client.
-  const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
     const reopen = () => setReopened(true)
     window.addEventListener(CONSENT_OPEN_EVENT, reopen)
-    // Plain post-mount setState, deliberately NOT requestAnimationFrame:
-    // rAF is throttled or suspended entirely in hidden/background tabs, so
-    // an rAF-gated flag can leave the banner unopened for a visitor who
-    // loads the site in a background tab. The standard mounted-flag effect
-    // runs after hydration unconditionally.
-    setHydrated(true)
     return () => window.removeEventListener(CONSENT_OPEN_EVENT, reopen)
   }, [])
 

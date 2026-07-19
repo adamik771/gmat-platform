@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Zakarian GMAT — Launch Assets (Master LinkedIn + Landing Copy Library)
 
 ## How to use this file
@@ -6,7 +8,7 @@ This is the founder's own copy library for launching Zakarian GMAT. Read these r
 
 - Personalize before you post. Adjust every draft to the specific person, audience, or moment. Nothing here should go out word-for-word without a human pass.
 - No emojis. Anywhere. Keep the voice plain and human without them.
-- No fake claims. Never promise a specific score or a guaranteed improvement. The only verified result you may cite is your own (565 to 735, 100th percentile). The product has no students yet besides you, so do not invent quotes or named results. Where a testimonial belongs, paste the bracketed placeholder and fill it only once you have a real, attributable quote with permission.
+- No fake claims. Never promise a specific score or a guaranteed improvement. The only citable result you may cite is your own (565 to 735, top 1%). The product has no students yet besides you, so do not invent quotes or named results. Where a testimonial belongs, paste the bracketed placeholder and fill it only once you have a real, attributable quote with permission.
 - Helpful before selling. Lead with something useful. Keep links out of the post body and in the first comment. Outreach is always manual and personal.
 
 ---
@@ -14,17 +16,17 @@ This is the founder's own copy library for launching Zakarian GMAT. Read these r
 ## 2. POSITIONING
 
 **One-sentence positioning statement**
-Zakarian GMAT is a premium GMAT Focus Edition prep platform built by someone who went from 565 to a 735 (100th percentile) as a non-native English speaker, designed to teach the method behind a top score rather than just hand you more questions.
+Zakarian GMAT is a premium GMAT Focus Edition prep platform built by someone who went from 565 to a 735 (top 1%) as a non-native English speaker, designed to teach the method behind a top score rather than just hand you more questions.
 
 **Elevator pitch (30 words)**
 I built Zakarian GMAT after taking my own score from 565 to 735. It is a full Focus Edition platform: 50+ chapters, 1,900+ original questions, error log, and adaptive study plan.
 
 **Longer pitch (60 words)**
-Zakarian GMAT is a GMAT Focus Edition prep platform I built solo after raising my own score from 565 to 735, a 100th-percentile result, as a non-native English speaker. It includes 50+ chapters across Quant, Verbal, and Data Insights, 1,900+ original practice questions, an error log with a six-tag taxonomy, a spaced-retrieval review queue, full-length mocks, analytics, and an adaptive study plan.
+Zakarian GMAT is a GMAT Focus Edition prep platform I built solo after raising my own score from 565 to 735, a top-1% result, as a non-native English speaker. It includes 50+ chapters across Quant, Verbal, and Data Insights, 1,900+ original practice questions, an error log with a six-tag taxonomy, a spaced-retrieval review queue, full-length mocks, analytics, and an adaptive study plan.
 
 **Five value-prop one-liners**
 - The method that took me from 565 to 735, turned into a platform.
-- Built by a non-native English speaker who scored in the 100th percentile.
+- Built by a non-native English speaker who scored in the top 1%.
 - An error log that tells you why you missed a question, not just that you did.
 - 50+ chapters and 1,900+ original questions across Quant, Verbal, and Data Insights.
 - A study plan that adapts to your weak areas and your real official-exam baseline.
@@ -34,7 +36,7 @@ Zakarian GMAT is a GMAT Focus Edition prep platform I built solo after raising m
 ## 3. FOUNDER PROFILE COPY
 
 **LinkedIn headline option A** (under 220 chars)
-Founder, Zakarian GMAT | Went 565 to 735 (100th percentile) on the GMAT Focus as a non-native speaker | BBA at BI Norway, incoming MSc Banking & Finance at HSG St. Gallen
+Founder, Zakarian GMAT | Went 565 to 735 (top 1%) on the GMAT Focus as a non-native speaker | BBA at BI Norway, incoming MSc Banking & Finance at HSG St. Gallen
 
 **LinkedIn headline option B** (under 220 chars)
 Building Zakarian GMAT, a GMAT Focus prep platform | GMAT Focus 735, Q88/V86/DI85 | Final-year BBA at BI, headed to HSG St. Gallen for MSc Banking & Finance
@@ -42,12 +44,12 @@ Building Zakarian GMAT, a GMAT Focus prep platform | GMAT Focus 735, Q88/V86/DI8
 **LinkedIn "About" section draft (~150 words)**
 I am a final-year BBA student at BI Norwegian Business School, graduating in June 2026, and starting an MSc in Banking & Finance at the University of St. Gallen this September. I grew up in Armenia until I was eighteen and now live in Oslo.
 
-A while ago I scored 565 on the GMAT Focus. About eight months later I scored 735, Q88 / V86 / DI85, a 100th-percentile result, and I did it as a non-native English speaker. The jump did not come from doing thousands of random questions. It came from a method: an honest error log, deliberate review, and a study plan built around my actual weak areas.
+A while ago I scored 565 on the GMAT Focus. About eight months later I scored 735, Q88 / V86 / DI85, a top-1% result, and I did it as a non-native English speaker. The jump did not come from doing thousands of random questions. It came from a method: an honest error log, deliberate review, and a study plan built around my actual weak areas.
 
 I turned that method into Zakarian GMAT, a Focus Edition prep platform I built solo. If you are preparing for the GMAT, I am genuinely happy to help, whether or not you ever use the platform.
 
 **One-line credibility blurb for DMs**
-Quick context on me: I took my own GMAT Focus from 565 to 735 (100th percentile) as a non-native English speaker, and I built a prep platform around the method I used.
+Quick context on me: I took my own GMAT Focus from 565 to 735 (top 1%) as a non-native English speaker, and I built a prep platform around the method I used.
 
 ---
 
@@ -59,7 +61,7 @@ Quick context on me: I took my own GMAT Focus from 565 to 735 (100th percentile)
 
 **Subhead:** Tell me your target score, where you feel weakest, and your most recent official mba.com practice exam result. I will turn that into a study plan built around your real gaps. No credit card. Full platform access while we are in beta.
 
-**Supporting line:** Built by someone who went from 565 to 735 (100th percentile) on the GMAT Focus as a non-native English speaker.
+**Supporting line:** Built by someone who went from 565 to 735 (top 1%) on the GMAT Focus as a non-native English speaker.
 
 **Primary button:** Get my free study plan
 **Secondary link:** Read sample chapters first, no signup needed
@@ -83,7 +85,7 @@ Use this section once you have real, attributable feedback. Until then, leave it
 - "[Real beta-user quote goes here once collected — attributable, with permission]"
 - "[Real beta-user quote goes here once collected — attributable, with permission]"
 
-The only result currently citable is the founder's own: 565 to 735, a +170 jump, 100th percentile, as a non-native English speaker.
+The only result currently citable is the founder's own: 565 to 735, a +170 jump, top 1%, as a non-native English speaker.
 
 ### FAQ block
 
@@ -103,7 +105,7 @@ No. Zakarian GMAT is an independent product. GMAT is a registered trademark of G
 People preparing for the GMAT Focus Edition: MBA and MiM applicants, business school students, and anyone serious about raising their score. It works whether you are starting near 500 or pushing for the top end.
 
 **What makes it different?**
-Most prep gives you more questions. This gives you a method. The error log uses a six-tag taxonomy so you learn why you miss questions, the review queue brings weak topics back on a spaced schedule, and the study plan adapts to your actual official-exam baseline. It is built by someone who used this exact approach to reach the 100th percentile.
+Most prep gives you more questions. This gives you a method. The error log uses a six-tag taxonomy so you learn why you miss questions, the review queue brings weak topics back on a spaced schedule, and the study plan adapts to your actual official-exam baseline. It is built by someone who used this exact approach to reach the top 1%.
 
 > GMAT is a registered trademark of GMAC, which does not endorse and is not affiliated with this product.
 
@@ -120,7 +122,7 @@ The first time I sat a GMAT Focus practice exam, I scored 565.
 
 I remember the quiet panic. I was a non-native English speaker aiming for a top finance master's, and the number on the screen said that was not happening.
 
-About eight months later I scored 735. Q88, V86, DI85. 100th percentile.
+About eight months later I scored 735. Q88, V86, DI85. top 1%.
 
 The gap between those two numbers was not talent or extra hours. It was method. I stopped collecting questions and started studying my own mistakes.
 
@@ -168,7 +170,7 @@ It started because people kept asking how I went from 565 to 735. I gave the sam
 
 Funny how the side project teaches you as much as the degree.
 
-**Founder 6 — What 100th percentile actually felt like**
+**Founder 6 — What the top 1% actually felt like**
 People assume a 735 felt like fireworks. It did not.
 
 It felt like relief, and then a strange flatness. The score was just the receipt for eight months of unglamorous work: reviewing wrong answers, redoing topics I hated, sitting full-length mocks on Saturday mornings.
@@ -455,7 +457,7 @@ GMAT is a registered trademark of GMAC, which does not endorse and is not affili
 5. The pattern: my misses clustered, and the clusters became my study plan.
 6. The system: spaced review so weak topics came back before I forgot them.
 7. The mocks: sat fewer, reviewed harder, focused on pacing not the score.
-8. The result and the offer: 735, 100th percentile, and a free study plan built on the same method. Link in the comments.
+8. The result and the offer: 735, top 1%, and a free study plan built on the same method. Link in the comments.
 
 **Script 2 — Carousel: "The six tags that fixed my GMAT prep" (7 slides)**
 1. Title: I tagged every wrong answer with one of six reasons. It changed everything.

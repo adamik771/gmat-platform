@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # UTM and Conversion Map
 
 The single source of truth for how paid and organic traffic is tagged, how that tag survives until the user converts, and how each conversion event maps to the ad platforms. Every ad, every shareable link, and every email link MUST follow the scheme below. If a link is not tagged to this spec, its conversions land in the wrong bucket (or no bucket) and the channel looks dead when it is not.

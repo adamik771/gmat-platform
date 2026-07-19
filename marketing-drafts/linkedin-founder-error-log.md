@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # LinkedIn — Founder / Building in Public (error log)
 
 **Status:** draft, awaiting Adam's review.
@@ -34,7 +36,7 @@ After 60 days, I could see my actual patterns. Five error types were responsible
 
 Once I started fixing those five things instead of "doing more practice," my mock scores moved fast.
 
-Final score: 735. 100th percentile.
+Final score: 735. top 1%.
 
 Eight months from 565 to 735, as a non-native English speaker, with no engineering background, while working full-time.
 

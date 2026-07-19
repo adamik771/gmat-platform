@@ -2,7 +2,11 @@
 
 import { useSyncExternalStore } from "react"
 import Script from "next/script"
-import { getConsent, subscribeConsent } from "@/lib/analytics"
+import {
+  flushPendingAdEvents,
+  getConsent,
+  subscribeConsent,
+} from "@/lib/analytics"
 
 /**
  * Ad-platform pixels (Meta Pixel + Google tag), consent-gated.
@@ -40,7 +44,11 @@ export default function AdPixels() {
   return (
     <>
       {META_PIXEL_ID && (
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+          onReady={flushPendingAdEvents}
+        >
           {`!function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -62,7 +70,14 @@ fbq('track', 'PageView');`}
             src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`}
             strategy="afterInteractive"
           />
-          <Script id="google-tag-init" strategy="afterInteractive">
+          {/* onReady runs after this inline snippet has installed window.gtag,
+              draining any event that fired before tag readiness (e.g. the
+              purchase conversion racing Script initialization on mount). */}
+          <Script
+            id="google-tag-init"
+            strategy="afterInteractive"
+            onReady={flushPendingAdEvents}
+          >
             {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('consent', 'default', {

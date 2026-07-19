@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { trackEvent } from "@/lib/analytics"
+import { markPurchaseTracked, trackEvent } from "@/lib/analytics"
 
 /**
  * Fires the purchase_completed conversion exactly once for a purchase the
@@ -32,16 +32,11 @@ export default function PurchaseTracker({
   useEffect(() => {
     if (fired.current) return
     fired.current = true
-    let alreadyTracked = false
-    const key = `zg_purchase_tracked:${sessionId}`
-    try {
-      alreadyTracked = window.localStorage.getItem(key) !== null
-      if (!alreadyTracked) window.localStorage.setItem(key, "1")
-    } catch {
-      // Storage blocked (private mode) — fall through and fire; the ref
-      // still prevents double-fires within this page view.
-    }
-    if (!alreadyTracked) {
+    // markPurchaseTracked is true exactly once per session id (reload-safe);
+    // trackEvent parks the Google/Meta legs until the tag scripts are ready
+    // (AdPixels flushes on Script onReady), so a mount-effect fire can't
+    // race tag initialization and vanish.
+    if (markPurchaseTracked(sessionId)) {
       trackEvent("purchase_completed", { plan })
     }
     const t = window.setTimeout(() => router.replace("/dashboard"), 1500)

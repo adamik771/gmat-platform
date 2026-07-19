@@ -145,34 +145,26 @@ export async function POST(request: Request) {
     )
   }
 
-  // Duplicate-send guard for the founding confirmation below: only the FIRST
-  // capture of (email, source) may send mail. Re-submissions still upsert
-  // captured_at, but re-mailing on every POST would hand an unauthenticated
-  // route with an unverified address a bounded mail-bomb primitive (the IP
-  // throttle above is per warm instance only) — and double-submitting humans
-  // would get duplicate confirmations.
-  let firstCapture = true
-  if (source === "founding-member") {
-    const { data: existing } = await supabase
-      .from("lead_captures")
-      .select("email")
-      .eq("email", email)
-      .eq("source", source)
-      .maybeSingle()
-    firstCapture = !existing
+  // ATOMIC first-capture decision (drives the founding confirmation email
+  // below): insert-winner via upsert with ignoreDuplicates + select — the
+  // unique (email, source) constraint lets exactly ONE of two concurrent
+  // first requests get its row back; every other request gets an empty
+  // result. A SELECT-then-write here would let both concurrent requests see
+  // "no row" and both send mail — an unauthenticated route with an
+  // unverified address must never re-send (mail-bomb primitive; duplicate
+  // confirmations for double-submitting humans).
+  const row = {
+    email,
+    source,
+    lead_magnet: leadMagnet,
+    captured_at: new Date().toISOString(),
+    user_agent: userAgent,
+    referer,
   }
-
-  const { error } = await supabase.from("lead_captures").upsert(
-    {
-      email,
-      source,
-      lead_magnet: leadMagnet,
-      captured_at: new Date().toISOString(),
-      user_agent: userAgent,
-      referer,
-    },
-    { onConflict: "email,source" },
-  )
+  const { data: inserted, error } = await supabase
+    .from("lead_captures")
+    .upsert(row, { onConflict: "email,source", ignoreDuplicates: true })
+    .select("email")
 
   if (error) {
     // Persistence failed (e.g. the CHECK-constraint migration hasn't run, or
@@ -183,6 +175,30 @@ export async function POST(request: Request) {
       { ok: false, error: "Could not save that right now. Please try again." },
       { status: 503 },
     )
+  }
+
+  const firstCapture = (inserted?.length ?? 0) > 0
+
+  if (!firstCapture) {
+    // Re-submission: refresh the capture metadata (previous merge-duplicates
+    // behavior), but the atomic decision above already ruled out any resend.
+    const { error: refreshError } = await supabase
+      .from("lead_captures")
+      .update({
+        lead_magnet: row.lead_magnet,
+        captured_at: row.captured_at,
+        user_agent: row.user_agent,
+        referer: row.referer,
+      })
+      .eq("email", email)
+      .eq("source", source)
+    if (refreshError) {
+      console.error("[lead-capture] refresh failed:", refreshError.message)
+      return Response.json(
+        { ok: false, error: "Could not save that right now. Please try again." },
+        { status: 503 },
+      )
+    }
   }
 
   // Founding reservation: send the transactional confirmation immediately.

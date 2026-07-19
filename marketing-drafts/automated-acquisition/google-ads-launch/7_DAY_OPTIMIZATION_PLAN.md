@@ -74,5 +74,5 @@ Make explicit keep/cut/scale calls and log them:
 ## Standing rules for the whole week
 - Never turn on Search Partners, Display, or PMax to "use up" budget. Underspend is fine and expected.
 - Never exceed a keyword's KEYWORDS.csv max CPC without a CPA justification.
-- Never edit copy in a way that adds a score/percentile/timeline guarantee or implies GMAC affiliation. The only allowed performance claim is the founder's own 565 -> 735 (100th percentile), framed as his result.
+- Never edit copy in a way that adds a score/percentile/timeline guarantee or implies GMAC affiliation. The only allowed performance claim is the founder's own 565 -> 735 (top 1%), framed as his result.
 - Make ONE category of change per day where possible (negatives, then CTR, then cost) so you can attribute what moved the numbers.

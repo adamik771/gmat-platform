@@ -131,11 +131,102 @@ export function setConsent(status: "granted" | "denied"): void {
     } catch {
       /* ignore */
     }
+    // Nothing parked may survive a denial.
+    parkedGtag.length = 0
+    parkedFbq.length = 0
   }
   try {
     window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: status }))
   } catch {
     /* ignore */
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Reliable ad-event delivery.
+//
+// next/script installs the gtag/fbq globals asynchronously after hydration,
+// so a consent-granted event fired from a mount effect (e.g. the server-
+// verified purchase conversion on /purchase-success) can race tag readiness
+// and silently vanish. When consent is granted but a CONFIGURED tag's global
+// is not installed yet, the event parks here and AdPixels flushes it from
+// each tag script's onReady — exactly once per page load. Bounded, cleared
+// on consent denial, in-memory only (a reload between park and flush drops
+// the event; the per-session purchase marker below is what guarantees
+// at-most-once across reloads).
+// ---------------------------------------------------------------------------
+interface ParkedAdEvent {
+  name: string
+  props: EventProps
+}
+const MAX_PARKED = 20
+const parkedGtag: ParkedAdEvent[] = []
+const parkedFbq: ParkedAdEvent[] = []
+
+// Literal member expressions so Next can inline them in client bundles;
+// call-time reads so node tests can stub the env.
+function googleTagConfigured(): boolean {
+  return !!process.env.NEXT_PUBLIC_GOOGLE_TAG_ID
+}
+function metaPixelConfigured(): boolean {
+  return !!process.env.NEXT_PUBLIC_META_PIXEL_ID
+}
+
+function sendToMeta(name: string, props: EventProps): void {
+  const mapped = META_EVENT_MAP[name]
+  if (mapped) window.fbq?.("track", mapped, props)
+  else window.fbq?.("trackCustom", name, props)
+}
+
+/**
+ * Deliver any parked ad events to tags that are now installed. Called from
+ * AdPixels' Script onReady handlers; safe to call repeatedly (each parked
+ * event is delivered at most once). Consent is re-checked at flush time —
+ * a denial in the park-to-flush window empties the queues instead.
+ */
+export function flushPendingAdEvents(): void {
+  if (typeof window === "undefined") return
+  if (getConsent() !== "granted") {
+    parkedGtag.length = 0
+    parkedFbq.length = 0
+    return
+  }
+  if (typeof window.fbq === "function") {
+    for (const e of parkedFbq.splice(0)) {
+      try {
+        sendToMeta(e.name, e.props)
+      } catch {
+        /* pixel blocked */
+      }
+    }
+  }
+  if (typeof window.gtag === "function") {
+    for (const e of parkedGtag.splice(0)) {
+      try {
+        window.gtag?.("event", e.name, e.props)
+      } catch {
+        /* tag blocked */
+      }
+    }
+  }
+}
+
+/**
+ * At-most-once marker for the purchase conversion, keyed by the Stripe
+ * session id. Returns true exactly once per session id; a reload of the
+ * verified confirmation page returns false thereafter. If storage is
+ * blocked (private mode) it returns true each call — the caller's ref
+ * still dedupes within a single page view.
+ */
+export function markPurchaseTracked(sessionId: string): boolean {
+  if (typeof window === "undefined") return false
+  const key = `zg_purchase_tracked:${sessionId}`
+  try {
+    if (window.localStorage.getItem(key) !== null) return false
+    window.localStorage.setItem(key, "1")
+    return true
+  } catch {
+    return true
   }
 }
 
@@ -247,20 +338,24 @@ export function trackEvent(name: string, props?: EventProps): void {
   if (getConsent() !== "granted") return
 
   // Meta Pixel — mapped to a standard event when we have one, else custom.
+  // If the pixel is configured but its global isn't installed yet (Script
+  // still initializing), park the event; AdPixels flushes on readiness.
   try {
     if (typeof window.fbq === "function") {
-      const mapped = META_EVENT_MAP[name]
-      if (mapped) window.fbq("track", mapped, merged)
-      else window.fbq("trackCustom", name, merged)
+      sendToMeta(name, merged)
+    } else if (metaPixelConfigured() && parkedFbq.length < MAX_PARKED) {
+      parkedFbq.push({ name, props: merged })
     }
   } catch {
     // ignore — pixel blocked/absent
   }
 
-  // Google tag (GA4 / Google Ads via gtag.js).
+  // Google tag (GA4 / Google Ads via gtag.js) — same park-until-ready rule.
   try {
     if (typeof window.gtag === "function") {
       window.gtag("event", name, merged)
+    } else if (googleTagConfigured() && parkedGtag.length < MAX_PARKED) {
+      parkedGtag.push({ name, props: merged })
     }
   } catch {
     // ignore — tag blocked/absent
