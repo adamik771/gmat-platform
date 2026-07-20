@@ -1,3 +1,5 @@
+> **ARCHIVED (2026-07-19)** - historical snapshot; wording predates the current claim rules (offer: free 7-day full-access trial, no card; founder result: 565 to 735, top 1%, framed only as Adam's personal result; no "verified"/proof framing until the redacted score report actually ships). Reference only - do not build campaigns from this file.
+
 # Public Offer Audit — Acquisition Cleanup (2026-07-13)
 
 Scope: make every public surface carry ONE offer — **"7-day full-access GMAT prep trial. No credit card. Then choose a paid plan."** — ahead of low-cost acquisition and Google Ads. Driven by the Deep Research report (`~/Downloads/deep-research-report (2).md`) and a full claim scan of the repo.

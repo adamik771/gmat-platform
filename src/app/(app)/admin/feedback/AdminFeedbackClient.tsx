@@ -126,7 +126,7 @@ export default function AdminFeedbackClient({
         <p className="text-[11px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold">
           Admin
         </p>
-        <h1 className="text-xl text-[#F0F0F0] font-semibold">Beta-feedback triage</h1>
+        <h1 className="text-xl text-[#F0F0F0] font-semibold">Feedback triage</h1>
         <p className="text-sm text-[#888888]">
           {rows.length} total entries — {tableRowCount} from the dedicated table,{" "}
           {metadataRowCount} from user_metadata fallback.

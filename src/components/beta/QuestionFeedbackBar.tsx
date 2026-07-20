@@ -117,7 +117,7 @@ export default function QuestionFeedbackBar({
         </p>
       </div>
       <p className="text-[12px] text-[#888888] mb-4 leading-relaxed">
-        One tap files a beta-feedback row for this question. Adam reads every flag in the triage queue.
+        One tap files a feedback row for this question. Adam reads every flag in the triage queue.
       </p>
 
       {/* Tag buttons */}

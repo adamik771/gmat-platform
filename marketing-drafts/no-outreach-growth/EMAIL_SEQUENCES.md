@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Email Sequences
 
 Five lifecycle email copies for Zakarian GMAT, written for the no-outreach growth system. These are triggered lifecycle and transactional emails that a user opted into by signing up for the free private beta. They are not cold bulk email. Each one ends with a compliant footer (sender identity plus a one-line unsubscribe), carries no guaranteed-score or diagnostic claims, and is emoji-free.

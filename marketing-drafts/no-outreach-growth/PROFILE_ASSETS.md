@@ -1,10 +1,12 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Profile Assets
 
 Reusable, copy-paste profile and intro copy for Zakarian GMAT. Everything here is honest, emoji-free, and free of guaranteed-score or diagnostic claims. The point is passive inbound: these assets work even when Adam does nothing. Posting on LinkedIn is optional. The headlines, About, bio, and signature do their job quietly in the background; the pinned post and beta-invite text are there if and when sharing happens.
 
 For the lifecycle emails that pair with these assets, see `EMAIL_SEQUENCES.md`. For the broader plan and the 55 ready-made posts, see the sibling files in `../` (`GROWTH_PLAN.md`, `LAUNCH_ASSETS.md`, `CONTENT_CALENDAR.md`, `REFERRAL_AND_DISCOUNT_PLAN.md`).
 
-Product facts used below: Zakarian GMAT is a premium GMAT Focus Edition prep platform in private beta, free during beta with full access and no credit card. Founder Adam Zakarian scored GMAT Focus 735 (100th percentile) as a non-native English speaker, going from 565 to 735, and built it solo. Final-year BBA at BI Norwegian Business School; admitted to the MSc in Banking and Finance at the University of St. Gallen. Website: https://www.zakariangmat.com
+Product facts used below: Zakarian GMAT is a premium GMAT Focus Edition prep platform in private beta, free during beta with full access and no credit card. Founder Adam Zakarian scored GMAT Focus 735 (top 1%) as a non-native English speaker, going from 565 to 735, and built it solo. Final-year BBA at BI Norwegian Business School; admitted to the MSc in Banking and Finance at the University of St. Gallen. Website: https://www.zakariangmat.com
 
 ---
 
@@ -13,7 +15,7 @@ Product facts used below: Zakarian GMAT is a premium GMAT Focus Edition prep pla
 Each is under 220 characters. Pick one; both are honest and avoid score promises.
 
 **Option A (founder-forward)**
-> Founder, Zakarian GMAT | Went 565 to 735 (100th percentile) on the GMAT Focus, then built the prep platform I wish I had | Free during private beta at zakariangmat.com
+> Founder, Zakarian GMAT | Went 565 to 735 (top 1%) on the GMAT Focus, then built the prep platform I wish I had | Free during private beta at zakariangmat.com
 
 **Option B (student-forward)**
 > Building Zakarian GMAT, a focused GMAT Focus Edition prep platform | BBA at BI Norway, incoming MSc Banking and Finance at St. Gallen | Free private beta, no credit card
@@ -24,7 +26,7 @@ Each is under 220 characters. Pick one; both are honest and avoid score promises
 
 First person, roughly 150 words.
 
-> I scored 735 (100th percentile) on the GMAT Focus Edition as a non-native English speaker, after starting at 565. The gap between those two numbers was not talent. It was structure: knowing what to study, tracking my own mistakes honestly, and reviewing the right things at the right time.
+> I scored 735 (top 1%) on the GMAT Focus Edition as a non-native English speaker, after starting at 565. The gap between those two numbers was not talent. It was structure: knowing what to study, tracking my own mistakes honestly, and reviewing the right things at the right time.
 >
 > I could not find a prep tool that did that well, so I built one. Zakarian GMAT is a GMAT Focus Edition platform with 50+ chapters across Quant, Verbal, and Data Insights, 1,900+ original practice questions, full-length mocks, an error log with spaced review, analytics on accuracy and pacing, and adaptive study planning.
 >
@@ -40,7 +42,7 @@ A founder/origin post that works as an evergreen pinned intro. Honest, no hype, 
 
 > I scored 565 the first time I sat a full GMAT Focus practice exam.
 >
-> Eight months later I scored 735, which is the 100th percentile. English is not my first language, so I want to be clear about what actually moved the number: it was not a secret. It was structure.
+> Eight months later I scored 735, which is the top 1%. English is not my first language, so I want to be clear about what actually moved the number: it was not a secret. It was structure.
 >
 > Three things did most of the work. First, an error log I actually kept, so I could see the patterns in how I got questions wrong instead of guessing. Second, spaced review, so the mistakes I made in week two came back in week five before I could forget them. Third, honest pacing data, because feeling fast and being fast are not the same thing.
 >
@@ -70,7 +72,7 @@ No affiliation claim, short and honest.
 
 About 50 words. Reusable for guest posts, directory listings, podcast intros, and speaker blurbs.
 
-> Adam Zakarian is the founder of Zakarian GMAT, a GMAT Focus Edition prep platform. He scored 735 (100th percentile) as a non-native English speaker after starting at 565, and built the platform solo. He is a final-year BBA student at BI Norway, heading to the MSc in Banking and Finance at St. Gallen.
+> Adam Zakarian is the founder of Zakarian GMAT, a GMAT Focus Edition prep platform. He scored 735 (top 1%) as a non-native English speaker after starting at 565, and built the platform solo. He is a final-year BBA student at BI Norway, heading to the MSc in Banking and Finance at St. Gallen.
 
 ---
 

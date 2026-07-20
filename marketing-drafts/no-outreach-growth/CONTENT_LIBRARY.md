@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Content Library (Optional, Low-Effort Posts)
 
 Status: draft, ready to paste. Owner: Adam.
@@ -22,7 +24,7 @@ Everything here is deliberately **shorter and lower-effort** than `../LAUNCH_ASS
 - **Soft CTA or none.** Most posts end with an invitation to reply, or nothing at all. That is intentional — replies to the original post help reach more than outbound links do.
 - **Put any link in the first comment, not the body.** LinkedIn down-ranks posts with outbound links in the body. If you want to point somewhere, drop `https://www.zakariangmat.com` (or `https://www.zakariangmat.com/refer`) as the first reply within a few minutes of posting. A ready first-comment line is at the bottom of this file.
 - **0-2 hashtags max**, e.g. `#GMAT #MBA`. Optional.
-- These are written so you never need to invent a claim. They cite only your own verified result (565 to 735, 100th percentile, non-native English speaker). No guaranteed scores, no diagnostic, no GMAC affiliation.
+- These are written so you never need to invent a claim. They cite only your own result (565 to 735, top 1%, non-native English speaker). No guaranteed scores, no diagnostic, no GMAC affiliation.
 
 When a post makes a public claim worth qualifying, you can append the standard disclaimer line:
 
@@ -192,7 +194,7 @@ I am building a GMAT prep platform solo, and it is free during its private beta.
 The single most useful thing I owned during my prep was a messy spreadsheet of every question I missed, tagged by why. That spreadsheet was the seed of the product I am building now.
 
 ### B4
-A 100th-percentile GMAT score did not make me smarter. It made me a more honest reviewer of my own mistakes. That is a skill, and it transfers far past the test.
+A top-1% GMAT score did not make me smarter. It made me a more honest reviewer of my own mistakes. That is a skill, and it transfers far past the test.
 
 ### B5
 People keep asking what changed between my 565 and my 735. Three things: I started an error log, I stopped cramming, and I built my study plan around my actual weak areas instead of a generic syllabus.

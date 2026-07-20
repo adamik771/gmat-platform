@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Lead Reply Decision Tree
 
 How to handle any reply you get. Replies are color-coded: **GREEN** (you handle it with approved
@@ -43,7 +45,7 @@ These are routine. Handle them yourself with the snippets below, then log in the
 **Snippet GREEN-A:**
 
 > Glad it caught your eye. Zakarian GMAT is a GMAT Focus prep platform built by Adam Zakarian, who
-> went from 565 to 735 (100th percentile) as a non-native speaker. Right now it's free during a
+> went from 565 to 735 (top 1%) as a non-native speaker. Right now it's free during a
 > private beta — full access, no card: 50+ chapters, 1,900+ practice questions, mock exams, and a
 > personalized study plan.
 >
@@ -65,7 +67,7 @@ question is not covered here, treat it as RED and escalate.
 - **"What's in it?"** -> "50+ chapters across Quant, Verbal, and Data Insights, 1,900+ original
   practice questions, full-length mock exams, analytics, an adaptive study plan, and an error log
   with spaced review. There's an optional AI tutor too."
-- **"Who made it?"** -> "Adam Zakarian — he scored 735 (100th percentile) on the GMAT Focus as a
+- **"Who made it?"** -> "Adam Zakarian — he scored 735 (top 1%) on the GMAT Focus as a
   non-native English speaker and built the platform solo from the system he used to go from 565 to
   735."
 - **"Is there a diagnostic / placement test?"** -> "There's no scored diagnostic. You set your

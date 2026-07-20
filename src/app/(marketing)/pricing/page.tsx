@@ -116,13 +116,31 @@ export default function PricingPage() {
                 </p>
               ) : (
                 <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
-                  <span className="font-semibold text-[#F0F0F0]">Start with the free trial.</span>{" "}
+                  <span className="font-semibold text-[#F0F0F0]">
+                    <Link href="/signup" className="underline hover:opacity-80">
+                      Start with the free trial.
+                    </Link>
+                  </span>{" "}
                   Every new account begins with a free 7-day full-access trial &mdash;
                   no credit card. Paid checkout hasn&apos;t opened yet; the plans below
                   show exactly what each tier costs when it does, and every price is a
                   one-time payment, not a subscription.
                 </p>
               )}
+            </div>
+            {/* The page's primary conversion action — previously /pricing had
+                no in-page path to /signup at all (the top leak in the pre-auth
+                funnel). Rendered above the cards so it is visible at 375px
+                without opening the nav. */}
+            <div className="mt-6">
+              <Link
+                href="/signup"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Start your 7-day trial &mdash; no card
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
 

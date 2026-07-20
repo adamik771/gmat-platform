@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Growth Assumptions
 
 Every non-obvious decision behind the launch/growth system, with the reasoning. If a fact below is wrong, correct it here first and the rest of the assets follow.
@@ -55,18 +57,18 @@ There is **no automatic checkout-to-access** today. Do not flip the paywall to s
 - Did not flip `PAYWALL_ENABLED`, touch live Stripe keys/prices, or run any payment.
 - No LinkedIn scraping. No automated LinkedIn DMs. All outreach is manual and personal.
 - No fabricated testimonials, no student-count claims, no fake urgency, no implied GMAC/mba.com affiliation.
-- The only performance claim is the founder's own **565 to 735** climb (and "100th percentile" on the official score report, which the /about proof image backs once `public/score-report.png` is added). Never generalized to "students improve X".
+- The only performance claim is the founder's own **565 to 735** climb (and "top 1%" on the official score report, which the /about proof image backs once `public/score-report.png` is added). Never generalized to "students improve X".
 - No emojis anywhere.
 
 ## 7. Founder facts used (verify if any are stale)
 
 - Adam Zakarian. BBA at BI Norwegian Business School (Oslo), graduating June 2026; starting the Master in Banking & Finance at the University of St. Gallen (HSG) in Sept 2026.
-- GMAT 735, 100th percentile on the official score report, self-studied up from a 565 baseline. Built the platform and wrote all content solo.
+- GMAT 735, top 1%, self-studied up from a 565 baseline. Built the platform and wrote all content solo.
 
 ## 8. Open risks / things that still need you
 
 - **Run the migration** (section 5) before outreach.
 - **Pixels are dormant** until you set `NEXT_PUBLIC_META_PIXEL_ID` / `NEXT_PUBLIC_GOOGLE_TAG_ID` in Vercel. Events still flow to Vercel Analytics without them.
-- `public/score-report.png` is missing, so the /about 100th-percentile proof stays hidden. Add a redacted image to activate it.
+- `public/score-report.png` is missing, so the /about top-1% proof stays hidden. Add a redacted image to activate it.
 - `hello@zakariangmat.com` must actually receive mail before you point people at it (provision MX or forwarding).
 - See `DAILY_LAUNCH_CHECKLIST.md` for the one-time pre-launch list and the daily/weekly rhythm.

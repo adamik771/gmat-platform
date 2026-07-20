@@ -21,7 +21,7 @@ Never use, paraphrase, or imply any of the following:
 - The baseline is always the user's OWN official mba.com practice exam, entered by them. Phrase as "your official practice-exam score" or "your baseline" — never as something we measure or assign.
 
 **The only allowed performance claim**
-- The founder's own climb: 565 → 735, 100th percentile on his official score report. Always attributed to Adam personally. Never generalized ("you can too", "replicate his score") as a promise.
+- The founder's own climb: 565 → 735, top 1%. Always attributed to Adam personally. Never generalized ("you can too", "replicate his score") as a promise.
 
 **Other**
 - No fabricated urgency ("only 3 spots left", fake countdowns), no invented student counts, no fake testimonials, no fake reviews.
@@ -333,10 +333,10 @@ Audience: visitors who fired `landing_view` or `lead_captured` but not `signup`.
 
 ## FOUNDER-STORY HOOK BANK (reusable across channels)
 
-The 565 → 735, 100th-percentile claim is the only performance claim allowed and is always about Adam. Drop-in lines:
+The 565 → 735, top-1% claim is the only performance claim allowed and is always about Adam. Drop-in lines:
 
 - "Self-studied from 565 to 735. Built the platform solo."
-- "Built by Adam Zakarian — 565 to 735, 100th percentile on his official report."
+- "Built by Adam Zakarian — 565 to 735, top 1%."
 - "Made by one person who took the GMAT Focus seriously, not a content mill."
 - "The GMAT Focus platform I wish I'd had when I started at 565."
 

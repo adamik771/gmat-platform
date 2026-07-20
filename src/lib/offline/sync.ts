@@ -27,6 +27,9 @@ interface DrainResult {
   error?: string
 }
 
+// Note: this replay persists a practice_sessions row but deliberately does
+// NOT fire the practice_completed analytics event — activation is measured
+// on the online SessionClient path only (see lib/analytics.ts).
 export async function drainPendingAttempts(
   userId: string
 ): Promise<DrainResult> {

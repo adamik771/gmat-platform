@@ -1,4 +1,5 @@
 import Link from "next/link"
+import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -68,6 +69,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <Link href="/refund" className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors">
             Refund Policy
           </Link>
+          <ConsentSettingsButton className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors" />
         </div>
         <p className="max-w-xl mx-auto text-center text-[11px] text-[#555555] leading-relaxed">
           GMAT™ is a registered trademark of the Graduate Management Admission

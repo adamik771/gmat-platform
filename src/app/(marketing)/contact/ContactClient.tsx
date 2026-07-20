@@ -8,25 +8,34 @@ import { trackEvent } from "@/lib/analytics"
 export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
+    setError(false)
     const form = e.currentTarget
     const data = new FormData(form)
 
     try {
-      await fetch("https://formspree.io/f/xvzdgpyg", {
+      const res = await fetch("https://formspree.io/f/xvzdgpyg", {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },
       })
-      setSubmitted(true)
-      // The free-consult booking is the highest-intent conversion that is
-      // live today; without this event it has zero telemetry anywhere.
-      trackEvent("consult_request")
+      // Success UI and the conversion event only on a real 2xx — a Formspree
+      // rate-limit or validation 4xx must not show "Message received" or
+      // count a consult_request.
+      if (res.ok) {
+        setSubmitted(true)
+        // The free-consult booking is the highest-intent conversion that is
+        // live today; without this event it has zero telemetry anywhere.
+        trackEvent("consult_request")
+      } else {
+        setError(true)
+      }
     } catch {
-      // silent
+      setError(true)
     } finally {
       setLoading(false)
     }
@@ -199,6 +208,16 @@ export default function ContactClient() {
                       </>
                     )}
                   </button>
+                  {error && (
+                    <p
+                      role="alert"
+                      className="text-[13px] text-center"
+                      style={{ color: "#FF4444" }}
+                    >
+                      Your message didn&apos;t send &mdash; please try again in a
+                      moment, or email {SITE_CONTACT_EMAIL} directly.
+                    </p>
+                  )}
                 </form>
               )}
             </div>

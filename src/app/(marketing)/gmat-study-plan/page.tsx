@@ -3,6 +3,7 @@ import AcquisitionLanding, {
   type AcquisitionLandingProps,
 } from "@/components/marketing/AcquisitionLanding"
 import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
+import { TRIAL_DAYS } from "@/lib/entitlements"
 
 export const metadata: Metadata = {
   title: "GMAT Study Plan: Build One That Actually Works",
@@ -14,6 +15,15 @@ const DATA: AcquisitionLandingProps = {
   "slug": "gmat-study-plan",
   "eyebrow": "GMAT study plan",
   "h1": "How to Build a GMAT Study Plan Around Your Own Baseline",
+  // Conversion-hero variant: chips + CTA above the intro so a commercial-
+  // intent visitor sees an action above the mobile fold (same pattern as
+  // /gmat-free-trial and /gmat-practice-questions-free).
+  "heroChips": [
+    `${TRIAL_DAYS}-day full-access trial`,
+    "No credit card",
+    "Adaptive plan from your official baseline",
+    "Built by a 565 → 735 founder",
+  ],
   "intro": "Most GMAT study plans fail for the same reason: they are a list of topics on a calendar, not a system that reacts to your mistakes. A plan that says \"Week 3: Geometry, Week 4: Critical Reasoning\" assumes your weaknesses are evenly spaced and never change. They aren't. Real score movement comes from three things working together — an honest baseline, a ruthless focus on your worst-performing topics, and a review schedule that re-tests what you got wrong before you forget it.\n\nThe single most important input is a number you cannot fake: your score on a full-length official GMAT Focus practice exam from mba.com. Everything downstream — which chapters to read, which question types to drill, how aggressive your timeline can be — should be derived from that baseline and updated every time you take another full-length. This page walks through how to build that loop by hand, and how Zakarian GMAT builds an adaptive version of it for you automatically. It's useful either way.",
   "sections": [
     {
@@ -40,7 +50,7 @@ const DATA: AcquisitionLandingProps = {
   "faq": [
     {
       "q": "How long should a GMAT study plan be?",
-      "a": "It depends entirely on the gap between your baseline and your target, and how many hours per week you can commit — there is no universal number, and anyone who quotes one without seeing your baseline is guessing. As a frame of reference, the founder of Zakarian GMAT, Adam Zakarian, self-studied from a 565 (56th percentile) to a 735 (100th percentile on his official report) over about eight months as a non-native English speaker, and his gains were uneven: long flat stretches punctuated by jumps. The honest answer is to set your timeline from your own baseline, then re-check it after every full-length mock and adjust. This is the founder's own result and is not a prediction of what any other student will score."
+      "a": "It depends entirely on the gap between your baseline and your target, and how many hours per week you can commit — there is no universal number, and anyone who quotes one without seeing your baseline is guessing. As a frame of reference, the founder of Zakarian GMAT, Adam Zakarian, self-studied from a 565 (56th percentile) to a 735 (top 1% of test-takers) over about eight months as a non-native English speaker, and his gains were uneven: long flat stretches punctuated by jumps. The honest answer is to set your timeline from your own baseline, then re-check it after every full-length mock and adjust. This is the founder's own result and is not a prediction of what any other student will score."
     },
     {
       "q": "Do I need to pay for a study plan to improve?",
