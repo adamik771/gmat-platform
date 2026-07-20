@@ -333,10 +333,23 @@ function ChapterTestRow({
       : null
   // A locked test never counts as "attempted" (it can't have been run).
   const lastAttempt = locked ? null : attempt
+  // A stored attempt's total can disagree with the CURRENT test size: content
+  // edits recompose the tests under the same positional slugs (the pool is
+  // re-dealt), and early exits record only the answered count. Comparing a
+  // stale fraction against today's composition produced "6 questions, last
+  // 8/8" — so when the totals disagree, show the historical score as a
+  // percentage and skip the aim comparison (it would compare across decks).
+  const staleTotal =
+    lastAttempt !== null && lastAttempt.lastTotal !== test.count
   const metAim =
-    lastAttempt && aimCount !== null
+    lastAttempt && aimCount !== null && !staleTotal
       ? lastAttempt.lastCorrect >= aimCount
       : null
+  const lastScoreLabel = lastAttempt
+    ? staleTotal
+      ? `${Math.round((100 * lastAttempt.lastCorrect) / Math.max(1, lastAttempt.lastTotal))}%`
+      : `${lastAttempt.lastCorrect}/${lastAttempt.lastTotal}`
+    : null
   return (
     <Link
       href={locked ? "/pricing" : `/practice/session/${test.id}`}
@@ -344,7 +357,7 @@ function ChapterTestRow({
         locked
           ? `${test.label} — locked, see plans to unlock`
           : lastAttempt
-            ? `Review ${test.label} — last score ${lastAttempt.lastCorrect} of ${lastAttempt.lastTotal}`
+            ? `Review ${test.label} — last score ${lastScoreLabel}`
             : `Start ${test.label} — ${test.count} questions`
       }
       className={
@@ -414,7 +427,7 @@ function ChapterTestRow({
             ) : (
               <Target className="w-3 h-3" aria-hidden />
             )}
-            last {lastAttempt.lastCorrect}/{lastAttempt.lastTotal}
+            last {lastScoreLabel}
           </span>
         ) : aimCount !== null && !locked ? (
           <span

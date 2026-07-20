@@ -205,7 +205,7 @@ If 3^x + 3^x + 3^x = 3^10, what is the value of x?
 
 3^x + 3^x + 3^x = 3 × 3^x = 3^1 × 3^x = 3^(x+1). So 3^(x+1) = 3^10. x + 1 = 10. x = 9. Answer (C).
 
-*Recognition cue:* sum of identical exponential terms should trigger "factor out, combine with an additional multiplication." The trap answer (D) is the answer for a student who wrote 3^x + 3^x + 3^x = 3^3x and did 3x = 10 or similar.
+*Recognition cue:* sum of identical exponential terms should trigger "factor out, combine with an additional multiplication." The trap answer (D) is the answer for a student who wrote 3^x + 3^x + 3^x = 3^(3x) and did 3x = 10 or similar.
 
 ### Algebraic manipulation and linear equations
 
