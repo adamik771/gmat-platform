@@ -67,7 +67,7 @@ export default function ChapterMobileTOC({
         aria-label="Open chapter contents"
         aria-expanded={open}
         aria-controls="chapter-mobile-toc"
-        className="lg:hidden fixed bottom-5 right-4 z-30 flex items-center gap-2 px-4 py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+        className="lg:hidden fixed bottom-[4.5rem] right-4 z-30 flex items-center gap-2 px-4 py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
         style={{
           backgroundColor: "var(--read-gold)",
           color: "var(--read-bg-inset)",

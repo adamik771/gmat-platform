@@ -383,7 +383,7 @@ export default async function MockReportPage() {
             />
           </div>
 
-          <p className="text-[11px] uppercase tracking-[0.22em] text-[#555555] mb-3 font-medium">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-[#888888] mb-3 font-medium">
             {targetDate ?? "most recent"}
           </p>
           <div className="mb-10">
@@ -414,7 +414,7 @@ export default async function MockReportPage() {
                   <p className="font-display text-5xl sm:text-7xl font-semibold text-[#888888] tracking-[-0.03em] leading-none">
                     {previousTotal}
                   </p>
-                  <p className="text-[10px] tracking-[0.18em] uppercase text-[#555555] mt-3 font-medium">
+                  <p className="text-[10px] tracking-[0.18em] uppercase text-[#888888] mt-3 font-medium">
                     Previous
                   </p>
                 </div>
@@ -593,7 +593,7 @@ export default async function MockReportPage() {
                         <span className="mx-1.5 text-[#333333]">·</span>
                         {Math.round(r.avgTimePerQuestionMs / 1000)}s avg/q
                       </p>
-                      <p className="text-[11px] text-[#555555] mt-2 uppercase tracking-[0.16em] font-medium">
+                      <p className="text-[11px] text-[#888888] mt-2 uppercase tracking-[0.16em] font-medium">
                         ~{sectionPercentile(section, accuracyToSectionScore(r.accuracy))}th percentile (est.)
                       </p>
                     </>
@@ -602,7 +602,7 @@ export default async function MockReportPage() {
                       <p className="font-display text-[2.75rem] font-semibold text-[#333333] tracking-[-0.02em] leading-none mb-3">
                         —
                       </p>
-                      <p className="text-[13px] text-[#555555]">Not yet taken</p>
+                      <p className="text-[13px] text-[#888888]">Not yet taken</p>
                     </>
                   )}
                 </div>
@@ -686,7 +686,7 @@ export default async function MockReportPage() {
                           >
                             {row.section}
                           </span>
-                          <span className="text-[12px] text-[#555555]">
+                          <span className="text-[12px] text-[#888888]">
                             {Math.round(row.accuracy * 100)}% on {row.attempts} question
                             {row.attempts === 1 ? "" : "s"}
                           </span>
@@ -897,7 +897,7 @@ export default async function MockReportPage() {
                           >
                             {row.section}
                           </span>
-                          <span className="text-[12px] text-[#555555]">{row.topic}</span>
+                          <span className="text-[12px] text-[#888888]">{row.topic}</span>
                         </div>
                         <p className="text-[15px] text-[#F0F0F0] truncate tracking-tight">
                           {row.preview}
@@ -1203,7 +1203,7 @@ function RecommendedChaptersSection({
                 </p>
               </div>
               <ArrowRight
-                className="w-4 h-4 flex-shrink-0 text-[#555555] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
+                className="w-4 h-4 flex-shrink-0 text-[#888888] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
                 aria-hidden
               />
             </Link>

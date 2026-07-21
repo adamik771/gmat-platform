@@ -340,7 +340,7 @@ function MissionHero({
             </div>
             <p className="mt-2 font-display text-2xl font-semibold tabular-nums leading-none text-[#F0F0F0]">
               {completedCore}
-              <span className="text-base font-normal text-[#555555]">
+              <span className="text-base font-normal text-[#888888]">
                 {" "}
                 / {totalCore}
               </span>

@@ -236,7 +236,7 @@ export default function AnalyticsClient({
                 return (
                   <div key={`${t.section}|${t.topic}`} className="flex items-center gap-4">
                     <p className="text-[13px] text-[#C0C0C0] w-40 flex-shrink-0 truncate">
-                      <span className="text-[#555555] mr-1.5 text-[11px] uppercase tracking-wider">
+                      <span className="text-[#888888] mr-1.5 text-[11px] uppercase tracking-wider">
                         {t.section}
                       </span>
                       {t.topic}
@@ -257,7 +257,7 @@ export default function AnalyticsClient({
                       >
                         {t.accuracy}
                       </span>
-                      <span className="text-[11px] text-[#555555] tabular-nums">
+                      <span className="text-[11px] text-[#888888] tabular-nums">
                         · {t.attempts}q
                       </span>
                     </div>
@@ -320,7 +320,7 @@ export default function AnalyticsClient({
                         >
                           {p.avgMin.toFixed(1)}m
                         </span>
-                        <span className="text-[10px] text-[#555555] tabular-nums">
+                        <span className="text-[10px] text-[#888888] tabular-nums">
                           / {p.targetMin}m
                         </span>
                         {p.over ? (
@@ -434,7 +434,7 @@ export default function AnalyticsClient({
                     {tier.label} confidence
                   </p>
                   {tier.total === 0 ? (
-                    <p className="font-display text-3xl font-semibold text-[#555555]">
+                    <p className="font-display text-3xl font-semibold text-[#888888]">
                       —
                     </p>
                   ) : !enough ? (
@@ -469,7 +469,7 @@ export default function AnalyticsClient({
                     <>
                       <p className="font-display text-4xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
                         {pct}
-                        <span className="text-lg font-normal text-[#555555]">
+                        <span className="text-lg font-normal text-[#888888]">
                           %
                         </span>
                       </p>
@@ -498,7 +498,7 @@ export default function AnalyticsClient({
               )
             })}
           </div>
-          <p className="text-[11px] text-[#555555] mt-4 leading-relaxed italic">
+          <p className="text-[11px] text-[#888888] mt-4 leading-relaxed italic">
             Well-calibrated benchmarks: High ≈ 85%, Medium ≈ 65%, Low ≈ 45%.
             Close to those numbers = you know what you know. Far below on High
             = overconfident; far above on Low = second-guessing yourself.
@@ -580,19 +580,19 @@ export default function AnalyticsClient({
                   className="text-left border-b border-white/[0.05]"
                   style={{ backgroundColor: "#0A0A0A" }}
                 >
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555]">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888]">
                     Section
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555]">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888]">
                     Difficulty
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555] text-right">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-right">
                     Attempts
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555] text-right">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-right">
                     Avg Time
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555] text-right">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-right">
                     Accuracy
                   </th>
                 </tr>
@@ -713,7 +713,7 @@ function PredictionMAECard({ mae }: { mae: PredictionMAE }) {
           <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
             {readinessTotal}
           </p>
-          <p className="text-[10px] text-[#555555] mt-2">
+          <p className="text-[10px] text-[#888888] mt-2">
             from all practice accuracy
           </p>
         </div>
@@ -724,7 +724,7 @@ function PredictionMAECard({ mae }: { mae: PredictionMAE }) {
           <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
             {mockTotal}
           </p>
-          <p className="text-[10px] text-[#555555] mt-2 tabular-nums">{mockDate}</p>
+          <p className="text-[10px] text-[#888888] mt-2 tabular-nums">{mockDate}</p>
         </div>
       </div>
     </div>
@@ -815,7 +815,7 @@ function PatternCard({
       </div>
       <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
         {count}
-        <span className="text-sm font-normal text-[#555555]">
+        <span className="text-sm font-normal text-[#888888]">
           {" · "}
           {pct}%
         </span>

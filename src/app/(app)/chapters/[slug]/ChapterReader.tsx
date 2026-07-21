@@ -1740,7 +1740,7 @@ function SectionNotes({
         onChange={(e) => setNote(e.target.value)}
         placeholder="What clicked? Where did you struggle? Notes save automatically."
         rows={3}
-        className="w-full bg-transparent border-0 outline-none resize-y text-[14px] leading-[1.6]"
+        className="w-full bg-transparent border-0 outline-none resize-y text-[16px] leading-[1.6]"
         style={{ color: "var(--read-text-body)" }}
       />
     </div>
@@ -2104,13 +2104,25 @@ function ReaderTwoPartGrid({
                   backgroundColor = "var(--read-gold-soft)"
                 }
 
+                // Accessible name carries both axes + outcome (same
+                // pattern as the practice runner's TPA grid).
+                const rowText = row.replace(/\*\*/g, "").replace(/\s+/g, " ").trim()
+                const outcome = submitted
+                  ? isCorrectCell
+                    ? " — correct answer"
+                    : isSelected
+                    ? " — your selection, incorrect"
+                    : ""
+                  : ""
                 return (
                   <td key={ci} className="py-3 px-4 text-center">
                     <button
                       type="button"
                       onClick={() => onSelect(ci, ri)}
                       disabled={submitted}
-                      className="w-6 h-6 rounded-full border-2 mx-auto flex items-center justify-center transition-colors disabled:cursor-default"
+                      aria-label={`${cols[ci]}: ${rowText}${outcome}`}
+                      aria-pressed={isSelected}
+                      className="w-6 h-6 rounded-full border-2 mx-auto flex items-center justify-center transition-colors disabled:cursor-default tpa-radio"
                       style={{ borderColor, backgroundColor }}
                     >
                       {isSelected && (
@@ -2171,6 +2183,26 @@ function InlineQuestion({
       },
     [progress.questions, q.id]
   )
+
+  // Local draft for the self-explanation textarea. Writing every
+  // keystroke into chapter-level progress re-rendered EVERY section's
+  // markdown per character (~27ms/keystroke on the largest chapters,
+  // multiples of that on mobile). The draft commits on blur and submit.
+  const [draftExplanation, setDraftExplanation] = useState(
+    state.selfExplanation
+  )
+  // Render-time resync when the stored value changes underneath
+  // (cross-device hydrate) and the student isn't mid-edit — same
+  // prev-state pattern as SaveForReviewButton.
+  const [prevStoredExplanation, setPrevStoredExplanation] = useState(
+    state.selfExplanation
+  )
+  if (prevStoredExplanation !== state.selfExplanation) {
+    setPrevStoredExplanation(state.selfExplanation)
+    if (draftExplanation === "" && state.selfExplanation !== "") {
+      setDraftExplanation(state.selfExplanation)
+    }
+  }
 
   const patch = useCallback(
     (fields: Partial<QuestionProgress>) => {
@@ -2312,7 +2344,7 @@ function InlineQuestion({
                 >
                   {String.fromCharCode(65 + idx)}
                 </span>
-                <div className="flex-1 text-[14px]" style={{ color: "var(--read-text-body)" }}>
+                <div className="flex-1 min-w-0 text-[14px]" style={{ color: "var(--read-text-body)" }}>
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
                     components={mdComponents}
@@ -2380,11 +2412,16 @@ function InlineQuestion({
                 </span>
               </p>
               <textarea
-                value={state.selfExplanation}
-                onChange={(e) => patch({ selfExplanation: e.target.value })}
+                value={draftExplanation}
+                onChange={(e) => setDraftExplanation(e.target.value)}
+                onBlur={() => {
+                  if (draftExplanation !== state.selfExplanation) {
+                    patch({ selfExplanation: draftExplanation })
+                  }
+                }}
                 rows={2}
                 placeholder="e.g., Order matters here because president ≠ VP, so I used P(n, k)"
-                className="w-full border rounded-xl p-3 text-[13px] leading-[1.6] focus:outline-none focus:ring-2 resize-none transition-all"
+                className="w-full border rounded-xl p-3 text-[16px] leading-[1.6] focus:outline-none focus:ring-2 resize-none transition-all"
                 style={{
                   backgroundColor: "var(--read-bg-elevated)",
                   borderColor: "var(--read-border-strong)",
@@ -2393,7 +2430,9 @@ function InlineQuestion({
               />
             </div>
             <button
-              onClick={() => patch({ submitted: true })}
+              onClick={() =>
+                patch({ submitted: true, selfExplanation: draftExplanation })
+              }
               disabled={!canSubmit}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
               style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
@@ -3016,7 +3055,7 @@ function ProblemSetRunner({
                     >
                       {String.fromCharCode(65 + i)}
                     </span>
-                    <div className="flex-1 text-[14px]" style={{ color: "var(--read-text-body)" }}>
+                    <div className="flex-1 min-w-0 text-[14px]" style={{ color: "var(--read-text-body)" }}>
                       <ReactMarkdown
                         remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
                         components={mdComponents}

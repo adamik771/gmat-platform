@@ -325,7 +325,7 @@ export default function OfficialExamPlanClient({
           <div className="flex-shrink-0 text-right">
             <p className="font-display text-3xl font-semibold tabular-nums text-[#F0F0F0] leading-none">
               {usage.usedNumbers.length}
-              <span className="text-[#555555] text-xl">
+              <span className="text-[#888888] text-xl">
                 {" "}
                 / {TOTAL_OFFICIAL_EXAMS}
               </span>
@@ -385,7 +385,7 @@ export default function OfficialExamPlanClient({
             {roadmap.kind === "official" &&
               roadmap.officialNumber !== null &&
               !roadmap.isRetake && (
-                <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[#555555]">
+                <span className="text-[10px] uppercase tracking-[0.14em] font-semibold text-[#888888]">
                   {roadmap.officialNumber <= FREE_OFFICIAL_EXAMS
                     ? "Free on mba.com"
                     : "Paid · Exams 3-6"}
@@ -532,7 +532,7 @@ export default function OfficialExamPlanClient({
                 {daysToExam !== null && (
                   <>
                     {" "}
-                    <span className="text-[#555555]">·</span>{" "}
+                    <span className="text-[#888888]">·</span>{" "}
                     <span className="tabular-nums">{daysToExam}</span> days out
                   </>
                 )}
@@ -600,7 +600,7 @@ export default function OfficialExamPlanClient({
                     <span className="font-display text-lg font-semibold tabular-nums text-[#F0F0F0] leading-none">
                       {e.total}
                     </span>
-                    <span className="text-[10px] text-[#555555] tabular-nums mt-1">
+                    <span className="text-[10px] text-[#888888] tabular-nums mt-1">
                       {e.date.slice(5)}
                       {(e.attemptNumber ?? 1) >= 2 && (
                         <span
@@ -637,7 +637,7 @@ export default function OfficialExamPlanClient({
                   <span className="font-display text-lg font-semibold tabular-nums leading-none text-[#C9A84C]">
                     {targetScore}
                   </span>
-                  <span className="text-[10px] text-[#555555] mt-1">target</span>
+                  <span className="text-[10px] text-[#888888] mt-1">target</span>
                   <span
                     className="text-[10px] font-semibold tabular-nums mt-0.5"
                     style={{
@@ -882,7 +882,7 @@ function ScheduleRow({
         </label>
       )}
       {!row.scheduled && (
-        <span className="text-[10px] uppercase tracking-[0.14em] text-[#555555] font-semibold flex-shrink-0">
+        <span className="text-[10px] uppercase tracking-[0.14em] text-[#888888] font-semibold flex-shrink-0">
           Off-schedule
         </span>
       )}
@@ -902,7 +902,7 @@ function ScheduleRow({
             )}
           </span>
         ) : (
-          <span className="text-[12px] text-[#555555]">—</span>
+          <span className="text-[12px] text-[#888888]">—</span>
         )}
       </span>
       {row.entry && (
@@ -910,7 +910,7 @@ function ScheduleRow({
           type="button"
           onClick={onDelete}
           aria-label={`Delete official exam entry for ${row.date}`}
-          className="flex-shrink-0 p-2.5 -m-1 rounded-md transition-colors text-[#555555] hover:text-[#FF4444]"
+          className="flex-shrink-0 p-2.5 -m-1 rounded-md transition-colors text-[#888888] hover:text-[#FF4444]"
         >
           <Trash2 className="w-3.5 h-3.5" />
         </button>
@@ -1097,7 +1097,7 @@ function EntryForm({
               className="block text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold mb-1.5"
             >
               {label}{" "}
-              <span className="normal-case tracking-normal text-[#555555]">
+              <span className="normal-case tracking-normal text-[#888888]">
                 (opt.)
               </span>
             </label>
@@ -1132,7 +1132,7 @@ function EntryForm({
           an exam number later from its row.
         </p>
       )}
-      <p className="text-[11px] text-[#555555] leading-relaxed">
+      <p className="text-[11px] text-[#888888] leading-relaxed">
         Off-schedule date? Fine — any official you sit counts. Saving the
         same date again overwrites that entry.
       </p>

@@ -1473,7 +1473,7 @@ export default async function DashboardPage() {
               {today}
               {trialLine && (
                 <>
-                  <span className="mx-1.5 text-[#444444]">·</span>
+                  <span className="mx-1.5 text-[#888888]">·</span>
                   <span style={{ color: "#C9A84C" }}>{trialLine}</span>
                 </>
               )}
@@ -1820,7 +1820,7 @@ export default async function DashboardPage() {
             }}
             aria-hidden
           />
-          <span className="text-[11px]" style={{ color: "#555555" }}>
+          <span className="text-[11px]" style={{ color: "#888888" }}>
             Time in sessions, per day
           </span>
         </div>
@@ -1868,7 +1868,7 @@ export default async function DashboardPage() {
             }}
             aria-hidden
           />
-          <span className="text-[11px]" style={{ color: "#555555" }}>
+          <span className="text-[11px]" style={{ color: "#888888" }}>
             Pick up where you left off
           </span>
         </div>
@@ -1921,7 +1921,7 @@ export default async function DashboardPage() {
                     <p className="text-[12px] text-[#888888] truncate">{detail}</p>
                   </div>
                   <ChevronRight
-                    className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                    className="w-4 h-4 flex-shrink-0 text-[#888888] transition-transform group-hover:translate-x-0.5"
                     aria-hidden
                   />
                 </Link>
@@ -1950,7 +1950,7 @@ export default async function DashboardPage() {
                 </p>
               </div>
               <ChevronRight
-                className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                className="w-4 h-4 flex-shrink-0 text-[#888888] transition-transform group-hover:translate-x-0.5"
                 aria-hidden
               />
             </Link>
@@ -1981,7 +1981,7 @@ export default async function DashboardPage() {
                 </p>
               </div>
               <ChevronRight
-                className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                className="w-4 h-4 flex-shrink-0 text-[#888888] transition-transform group-hover:translate-x-0.5"
                 aria-hidden
               />
             </Link>
@@ -2010,7 +2010,7 @@ export default async function DashboardPage() {
                 </p>
               </div>
               <ChevronRight
-                className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                className="w-4 h-4 flex-shrink-0 text-[#888888] transition-transform group-hover:translate-x-0.5"
                 aria-hidden
               />
             </Link>
@@ -2037,7 +2037,7 @@ export default async function DashboardPage() {
                 </p>
               </div>
               <ChevronRight
-                className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                className="w-4 h-4 flex-shrink-0 text-[#888888] transition-transform group-hover:translate-x-0.5"
                 aria-hidden
               />
             </Link>
@@ -2050,7 +2050,7 @@ export default async function DashboardPage() {
                 className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
               >
-                <AlertCircle className="w-3.5 h-3.5" style={{ color: "#555555" }} />
+                <AlertCircle className="w-3.5 h-3.5" style={{ color: "#888888" }} />
               </span>
               <p className="text-[13px] text-[#888888]">No mistakes logged yet</p>
             </div>
@@ -2076,7 +2076,7 @@ export default async function DashboardPage() {
                   </p>
                 </div>
                 <ChevronRight
-                  className="w-4 h-4 flex-shrink-0 text-[#555555] transition-transform group-hover:translate-x-0.5"
+                  className="w-4 h-4 flex-shrink-0 text-[#888888] transition-transform group-hover:translate-x-0.5"
                   aria-hidden
                 />
               </Link>
@@ -2119,7 +2119,7 @@ export default async function DashboardPage() {
             </span>
           )}
         </span>
-        <span className="text-[10px] uppercase tracking-[0.22em] font-semibold flex-shrink-0" style={{ color: "#555555" }}>
+        <span className="text-[10px] uppercase tracking-[0.22em] font-semibold flex-shrink-0" style={{ color: "#888888" }}>
           Achievements
         </span>
       </div>

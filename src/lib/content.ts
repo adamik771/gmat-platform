@@ -360,6 +360,37 @@ function parseQuestionBlock(
     prompt = prompt.replace(chartMatch[0], "").replace(/\n{3,}/g, "\n\n").trim()
   }
 
+  // "Continued" GI questions carry the set's chart in their shared CONTEXT
+  // (the lead question's body), not their own prompt. Extract it the same
+  // way: strip the fence from the context — it used to render as a
+  // multi-thousand-pixel raw-JSON strip in every runner — and adopt the
+  // parsed spec when this question has no chart of its own.
+  if (context) {
+    const ctxChartMatch = context.match(/```chart\s*\n([\s\S]*?)\n```/)
+    if (ctxChartMatch) {
+      if (!chartSpec) {
+        try {
+          const parsed = JSON.parse(ctxChartMatch[1]) as Partial<ChartSpec>
+          if (
+            parsed &&
+            typeof parsed.type === "string" &&
+            Array.isArray(parsed.data) &&
+            parsed.data.length > 0
+          ) {
+            chartSpec = parsed as ChartSpec
+          }
+        } catch {
+          // Malformed chart JSON — leave chartSpec undefined.
+        }
+      }
+      context = context
+        .replace(ctxChartMatch[0], "")
+        .replace(/\n{3,}/g, "\n\n")
+        .trim()
+      if (context.length === 0) context = undefined
+    }
+  }
+
   // ---------- Two-Part Analysis table detection ----------
   // TPA questions have a pipe table in the prompt instead of - A) through - E)
   // options. When detected, we parse the table into structured data, strip it

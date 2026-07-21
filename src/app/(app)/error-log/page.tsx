@@ -447,7 +447,7 @@ export default async function ErrorLogPage({
               <span className="tabular-nums">
                 Viewing one session
               </span>
-              <span className="text-[#444444]">·</span>
+              <span className="text-[#888888]">·</span>
               <Link
                 href="/error-log"
                 className="inline-flex items-center gap-1 font-semibold hover:text-[#F0F0F0] transition-colors"

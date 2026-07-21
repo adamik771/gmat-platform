@@ -100,7 +100,39 @@ const MAX_REVIEW_EDITS = 3
 // shallow compare keeps parsing tied to the actual question changing.
 const MockMarkdown = memo(function MockMarkdown({ text }: { text: string }) {
   return (
-    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      rehypePlugins={[rehypeCaretSup]}
+      components={{
+        // DI pipe tables and code blocks need their own scroll container —
+        // unwrapped, a wide table panned the WHOLE page mid-exam at
+        // 375/390px (mirrors SessionClient's PromptBlock overrides).
+        table: (props) => (
+          <div className="my-3 overflow-x-auto rounded-lg border border-white/[0.08]">
+            <table {...props} className="w-full border-collapse text-xs" />
+          </div>
+        ),
+        thead: (props) => <thead {...props} className="bg-[#0D0D0D]" />,
+        th: (props) => (
+          <th
+            {...props}
+            className="text-left py-2 px-3 text-[11px] font-semibold uppercase tracking-wide text-[#888888] border-b border-white/[0.08]"
+          />
+        ),
+        td: (props) => (
+          <td
+            {...props}
+            className="py-2 px-3 text-xs text-[#C0C0C0] border-b border-white/[0.04]"
+          />
+        ),
+        pre: (props) => (
+          <pre
+            {...props}
+            className="my-3 p-3 rounded-lg bg-[#0A0A0A] border border-white/[0.06] overflow-x-auto text-xs"
+          />
+        ),
+      }}
+    >
       {text}
     </ReactMarkdown>
   )
@@ -965,7 +997,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
       <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111] space-y-4">
         {question.context && (
           <div className="p-4 rounded-lg bg-[#0D0D0D] border border-white/[0.04]">
-            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+            <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-2">
               Passage
             </p>
             <div className="text-sm text-[#C0C0C0] leading-relaxed max-h-64 overflow-y-auto">
@@ -981,7 +1013,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           >
             {question.topic}
           </span>
-          <span className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <span className="text-[10px] uppercase tracking-widest text-[#888888]">
             {question.difficulty} · {question.type}
           </span>
         </div>
@@ -1008,6 +1040,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
                   key={i}
                   onClick={() => handleSelect(i)}
                   disabled={optionsDisabled}
+                  data-kb-space="submit"
                   className="w-full text-left p-3 rounded-lg border transition-colors disabled:cursor-not-allowed"
                   style={{
                     borderColor: selected
@@ -1042,7 +1075,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
         )}
 
         <div className="flex items-center justify-between gap-3 pt-2 flex-wrap">
-          <p className="text-xs text-[#555555]">
+          <p className="text-xs text-[#888888]">
             {phase === "review"
               ? "Results are revealed on the report once the full mock is complete."
               : "Answers are revealed only after the mock is complete."}
@@ -1101,7 +1134,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           </div>
         </div>
         {phase === "running" && !question.twoPartColumns && (
-          <p className="text-[11px] text-[#555555] text-center">
+          <p className="text-[11px] text-[#888888] text-center">
             Shortcuts: <kbd className="px-1 rounded bg-white/[0.06] font-mono">1</kbd>–<kbd className="px-1 rounded bg-white/[0.06] font-mono">{Math.min(question.options.length, 5)}</kbd> select · <kbd className="px-1 rounded bg-white/[0.06] font-mono">space</kbd> {state.submitted ? "next" : "submit"} · <kbd className="px-1 rounded bg-white/[0.06] font-mono">f</kbd> flag
           </p>
         )}
@@ -1228,7 +1261,7 @@ function IntroCard({
         Start mock
       </button>
 
-      <p className="text-xs text-[#555555] text-center">
+      <p className="text-xs text-[#888888] text-center">
         Leaving this page during a section ends the attempt — answers save only when each section finishes. Plan to sit the full mock in one go.
       </p>
     </div>
@@ -1267,9 +1300,9 @@ function SectionHeader({
   const danger = remainingMs < dangerThresholdMs
   const isReview = phase === "review"
   return (
-    <div className="flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D]">
+    <div className="flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D] flex-wrap gap-y-2">
       <div>
-        <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+        <p className="text-[10px] uppercase tracking-widest text-[#888888]">
           {isReview
             ? `Review — Section ${sectionIdx + 1} of ${totalSections}`
             : `Section ${sectionIdx + 1} of ${totalSections}`}
@@ -1333,6 +1366,7 @@ function SectionHeader({
         <span
           className="text-lg font-bold tabular-nums"
           style={{ color: danger ? "#FF4444" : "#F0F0F0" }}
+          aria-label={`Section time remaining ${formatClock(remainingMs)}${danger ? " — running low" : ""}`}
         >
           {formatClock(remainingMs)}
         </span>
@@ -1416,9 +1450,9 @@ function SectionReviewGrid({
 
   return (
     <div className="max-w-3xl mx-auto space-y-4">
-      <div className="flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D]">
+      <div className="flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D] flex-wrap gap-y-2">
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <p className="text-[10px] uppercase tracking-widest text-[#888888]">
             Review — Section {sectionIdx + 1} of {totalSections}
           </p>
           <p className="text-base font-semibold text-[#F0F0F0]">
@@ -1520,7 +1554,7 @@ function SectionReviewGrid({
               aria-label={`Question ${i + 1}, ${answered ? `answered ${letter}` : "unanswered"}${s.flagged ? ", flagged" : ""}${edited ? ", edited" : ""}`}
             >
               <div className="flex items-center justify-center gap-1">
-                <span className="text-[10px] uppercase tracking-wider text-[#555555]">
+                <span className="text-[10px] uppercase tracking-wider text-[#888888]">
                   Q{i + 1}
                 </span>
                 {s.flagged && (
@@ -1590,7 +1624,7 @@ function BreakCard({
       </div>
 
       <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111] text-center">
-        <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+        <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-2">
           Break time remaining
         </p>
         <p className="text-4xl font-bold text-[#F0F0F0] tabular-nums mb-4">
@@ -1604,7 +1638,7 @@ function BreakCard({
           <Play className="w-4 h-4" />
           Start {nextSection} now
         </button>
-        <p className="text-xs text-[#555555] mt-3">
+        <p className="text-xs text-[#888888] mt-3">
           You can start the next section whenever you&apos;re ready — no need to wait out the clock.
         </p>
       </div>

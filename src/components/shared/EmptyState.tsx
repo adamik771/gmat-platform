@@ -47,7 +47,7 @@ export default function EmptyState({
       )}
       <p className="text-sm font-semibold text-[#D8D8D8]">{title}</p>
       {description && (
-        <p className="text-xs text-[#555555] mt-1.5 max-w-xs leading-relaxed">
+        <p className="text-xs text-[#888888] mt-1.5 max-w-xs leading-relaxed">
           {description}
         </p>
       )}

@@ -1035,11 +1035,11 @@ export default async function StudyPlanPage({
               <div key={day.key} className="flex flex-col gap-2">
                 <p
                   className={`text-[10px] text-center font-semibold uppercase tracking-[0.18em] ${
-                    isToday ? "text-[#C9A84C]" : "text-[#555555]"
+                    isToday ? "text-[#C9A84C]" : "text-[#888888]"
                   }`}
                 >
                   {weekdayLabel}{" "}
-                  <span className="font-display text-[11px] normal-case tracking-normal text-[#444444] tabular-nums">
+                  <span className="font-display text-[11px] normal-case tracking-normal text-[#888888] tabular-nums">
                     {date.getDate()}
                   </span>
                 </p>
@@ -1071,7 +1071,7 @@ export default async function StudyPlanPage({
                       </p>
                     </>
                   ) : isPast ? (
-                    <p className="text-xs text-[#444444]">No activity</p>
+                    <p className="text-xs text-[#888888]">No activity</p>
                   ) : (
                     <SuggestionCell suggestion={suggestionByKey.get(day.key) ?? null} />
                   )}
@@ -1336,7 +1336,7 @@ export default async function StudyPlanPage({
                       className="flex items-center gap-4 p-4 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
                     >
                       <p className="text-[13px] text-[#C0C0C0] w-32 sm:w-44 flex-shrink-0 truncate">
-                        <span className="text-[#555555] mr-1.5 text-[11px] uppercase tracking-wider">
+                        <span className="text-[#888888] mr-1.5 text-[11px] uppercase tracking-wider">
                           {m.section}
                         </span>
                         {m.topic}
@@ -1363,7 +1363,7 @@ export default async function StudyPlanPage({
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0 justify-end">
                         {nextGate && (
-                          <span className="text-[11px] text-[#555555] truncate hidden md:inline max-w-[12rem]">
+                          <span className="text-[11px] text-[#888888] truncate hidden md:inline max-w-[12rem]">
                             {nextGate.evidence}
                           </span>
                         )}
@@ -1466,7 +1466,7 @@ export default async function StudyPlanPage({
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#555555]">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#888888]">
                         {chapterLabel}
                       </span>
                       <span
@@ -1500,7 +1500,7 @@ export default async function StudyPlanPage({
                       </p>
                     )}
                     <div className="flex items-center gap-1.5 mt-2">
-                      <Clock className="w-3 h-3 text-[#444444]" />
+                      <Clock className="w-3 h-3 text-[#888888]" />
                       <span className="text-[11px] text-[#888888] tabular-nums">
                         {chapter.estimatedPages} pages
                       </span>
@@ -1528,7 +1528,7 @@ function SuggestionCell({
   suggestion: DailySuggestion | null
 }) {
   if (!suggestion) {
-    return <p className="text-xs text-[#444444]">Open</p>
+    return <p className="text-xs text-[#888888]">Open</p>
   }
 
   const iconMap: Record<DailySuggestion["type"], typeof BookOpen> = {
@@ -1558,7 +1558,7 @@ function SuggestionCell({
       className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
     >
       <Icon className="w-3 h-3" style={{ color }} />
-      <p className="text-[9px] uppercase tracking-[0.22em] text-[#555555] font-semibold">
+      <p className="text-[9px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
         {typeLabel[suggestion.type]}
       </p>
       <p className="text-[11px] text-[#C0C0C0] leading-snug line-clamp-2">
@@ -1736,7 +1736,7 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
             <ArrowRight className="w-3 h-3" />
           </Link>
         ) : (
-          <span className="text-[11px] text-[#555555] italic">Keep practicing</span>
+          <span className="text-[11px] text-[#888888] italic">Keep practicing</span>
         )}
       </div>
     </div>
@@ -2112,7 +2112,7 @@ function PersonaPathCard({
                     {step.why}
                   </p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-[#555555] flex-shrink-0 mt-1.5 group-hover:text-[#C9A84C] transition-colors" />
+                <ArrowRight className="w-4 h-4 text-[#888888] flex-shrink-0 mt-1.5 group-hover:text-[#C9A84C] transition-colors" />
               </Link>
             </li>
           )
@@ -2179,7 +2179,7 @@ function OfficialReadyCard({ summary }: { summary: OfficialReadySummary }) {
       </p>
       <div className="grid grid-cols-2 gap-3">
         <div className="p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#555555] font-semibold">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
             Last week
           </p>
           <p className="font-display text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-[-0.02em]">
@@ -2190,7 +2190,7 @@ function OfficialReadyCard({ summary }: { summary: OfficialReadySummary }) {
           </p>
         </div>
         <div className="p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#555555] font-semibold">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
             This week
           </p>
           <p className="font-display text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-[-0.02em]">

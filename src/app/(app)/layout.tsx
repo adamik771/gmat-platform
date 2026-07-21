@@ -74,11 +74,12 @@ function SidebarLink({
     <Link
       href={item.href}
       onClick={onClick}
+      aria-current={active ? "page" : undefined}
       className={cn(
         "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors group",
         active
           ? "text-[#F0F0F0]"
-          : "text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+          : "text-[#888888] hover:text-[#C0C0C0] hover:bg-white/[0.03]"
       )}
       style={active ? { backgroundColor: "rgba(201,168,76,0.08)" } : {}}
     >
@@ -141,7 +142,7 @@ function Sidebar({
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-[#888888] hover:text-[#C0C0C0] hover:bg-white/[0.03]"
           >
             <MessageCircle className="w-4 h-4 flex-shrink-0" />
             <span>Community</span>
@@ -160,7 +161,7 @@ function Sidebar({
             "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
             pathname.startsWith("/settings")
               ? "text-[#F0F0F0]"
-              : "text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+              : "text-[#888888] hover:text-[#C0C0C0] hover:bg-white/[0.03]"
           )}
         >
           <Settings className="w-4 h-4 flex-shrink-0" />
@@ -267,7 +268,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className="flex h-screen overflow-hidden"
+      className="flex h-dvh overflow-hidden"
       style={{ backgroundColor: "#0A0A0A" }}
     >
       <a href="#main-content" className="skip-to-content">
@@ -310,13 +311,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-1.5 rounded-lg text-[#555555] hover:text-[#888888]"
+              className="lg:hidden p-1.5 rounded-lg text-[#888888] hover:text-[#C0C0C0]"
               aria-label="Open navigation menu"
             >
               <Menu className="w-5 h-5" aria-hidden="true" />
             </button>
             <p className="text-sm text-[#888888]">
-              <span className="text-[#555555]">App</span>
+              <span className="text-[#888888]">App</span>
               <span className="mx-1.5 text-[#333333]">/</span>
               <span className="text-[#F0F0F0]">{currentLabel}</span>
             </p>
@@ -346,7 +347,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               {userName && (
                 <span className="hidden sm:block text-sm text-[#888888]">{userName}</span>
               )}
-              <ChevronDown className="w-3.5 h-3.5 text-[#555555]" />
+              <ChevronDown className="w-3.5 h-3.5 text-[#888888]" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"

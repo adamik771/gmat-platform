@@ -197,7 +197,7 @@ const PromptBlock = memo(function PromptBlock({ text, className = "" }: { text: 
             <ol {...props} className="list-decimal pl-5 my-2 space-y-1 first:mt-0 last:mb-0" />
           ),
           li: (props) => (
-            <li {...props} className="leading-relaxed marker:text-[#555555]" />
+            <li {...props} className="leading-relaxed marker:text-[#888888]" />
           ),
           a: (props) => (
             <a
@@ -418,9 +418,9 @@ function ConfidencePanel({
   return (
     <div className="mt-5 p-4 rounded-lg border" style={{ borderColor: "rgba(201,168,76,0.12)", backgroundColor: "rgba(201,168,76,0.02)" }}>
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+        <p className="text-[10px] uppercase tracking-widest text-[#888888]">
           {submitted ? "Your confidence" : "How confident are you?"}
-          <span className="text-[#444444] normal-case tracking-normal ml-2">
+          <span className="text-[#888888] normal-case tracking-normal ml-2">
             (optional — trains metacognition)
           </span>
         </p>
@@ -546,10 +546,10 @@ function PostSubmitUnderstandingRow({
     >
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <p className="text-[10px] uppercase tracking-widest text-[#888888]">
             How well do you understand this now?
           </p>
-          <p className="text-[10px] text-[#444444] mt-0.5">
+          <p className="text-[10px] text-[#888888] mt-0.5">
             (feeds your spaced-review schedule)
           </p>
         </div>
@@ -677,10 +677,10 @@ function HintPanel({
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div className="flex items-center gap-2">
           <Lightbulb className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
-          <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <p className="text-[10px] uppercase tracking-widest text-[#888888]">
             Hints
           </p>
-          <span className="text-[10px] text-[#555555]">
+          <span className="text-[10px] text-[#888888]">
             {revealed} / {total}
           </span>
         </div>
@@ -749,7 +749,7 @@ function ContextPanel({ text }: { text: string }) {
     .replace(/^###\s+Tab\s+\d+:\s*/gm, "")
   return (
     <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111] max-h-[70vh] overflow-y-auto">
-      <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">Reference</p>
+      <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-3">Reference</p>
       <PromptBlock text={cleaned} />
     </div>
   )
@@ -953,12 +953,27 @@ function TwoPartGrid({
                   }
                 }
 
+                // Accessible name carries both axes ("column: row"), plus
+                // the outcome once revealed — without it these were
+                // nameless stateless buttons and TPA questions were
+                // unanswerable with a screen reader.
+                const rowText = row.replace(/\*\*/g, "").replace(/\s+/g, " ").trim()
+                const outcome = showResult
+                  ? isCorrectCell
+                    ? " — correct answer"
+                    : isSelected
+                    ? " — your selection, incorrect"
+                    : ""
+                  : ""
                 return (
                   <td key={ci} className="py-3 px-4 text-center">
                     <button
                       onClick={() => onSelect(ci, ri)}
                       disabled={state.submitted}
-                      className="w-6 h-6 rounded-full border-2 mx-auto flex items-center justify-center transition-colors disabled:cursor-default"
+                      aria-label={`${cols[ci]}: ${rowText}${outcome}`}
+                      aria-pressed={isSelected}
+                      data-kb-space="submit"
+                      className="w-6 h-6 rounded-full border-2 mx-auto flex items-center justify-center transition-colors disabled:cursor-default tpa-radio"
                       style={circleStyle}
                     >
                       {isSelected && (
@@ -1634,9 +1649,14 @@ export default function SessionClient({
         h.handleNext()
         return
       }
-      // Previous: ArrowLeft (only when submitted — avoid accidentally
-      // bailing out of an unanswered question).
-      if (event.key === "ArrowLeft" && h.currentIdx > 0) {
+      // Previous: ArrowLeft, only when the current question is submitted
+      // — the guard the comment always claimed: without it a stray arrow
+      // press mid-question navigated away and reset the question timer.
+      if (
+        event.key === "ArrowLeft" &&
+        h.currentIdx > 0 &&
+        h.currentState.submitted
+      ) {
         event.preventDefault()
         h.handlePrev()
       }
@@ -1745,7 +1765,7 @@ export default function SessionClient({
             Back to Practice
           </Link>
           <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">{headline}</h1>
-          <p className="text-sm text-[#555555] mt-1">
+          <p className="text-sm text-[#888888] mt-1">
             {topic} · {section}
           </p>
         </div>
@@ -1753,7 +1773,7 @@ export default function SessionClient({
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
 
         {savedSessionId && (
-          <p className="text-[11px] text-[#555555]">
+          <p className="text-[11px] text-[#888888]">
             Session saved — revisit these results anytime at{" "}
             <Link
               href={`/practice/history/${savedSessionId}`}
@@ -1776,20 +1796,20 @@ export default function SessionClient({
         >
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#888888]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
                 {accuracy}%
               </p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Correct</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#888888]">Correct</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">
                 {correctCount}
-                <span className="text-base font-normal text-[#555555]"> / {total}</span>
+                <span className="text-base font-normal text-[#888888]"> / {total}</span>
               </p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#888888]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
           </div>
@@ -1797,7 +1817,7 @@ export default function SessionClient({
           {/* Difficulty breakdown — only when questions span 2+ levels */}
           {difficultyBreakdown.length >= 2 && (
             <div className="mt-6 pt-5 border-t border-white/[0.06]">
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+              <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-3">
                 By difficulty
               </p>
               <div className="space-y-2.5">
@@ -1889,11 +1909,11 @@ export default function SessionClient({
               return (
                 <div className="mt-6 pt-5 border-t border-white/[0.06]">
                   <div className="flex items-center justify-between mb-3">
-                    <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                    <p className="text-[10px] uppercase tracking-widest text-[#888888]">
                       {topic} level
                     </p>
                     {!hasEnoughData && (
-                      <p className="text-[10px] text-[#555555]">
+                      <p className="text-[10px] text-[#888888]">
                         calibrating &middot; {skillAttempts} attempt{skillAttempts === 1 ? "" : "s"}
                       </p>
                     )}
@@ -1974,12 +1994,12 @@ export default function SessionClient({
           if (!insight) return null
           return (
             <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+              <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-3">
                 {insight.label}
               </p>
               <p className="text-sm text-[#C0C0C0] leading-relaxed">{insight.observation}</p>
               <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-start gap-2">
-                <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#555555]" />
+                <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#888888]" />
                 <p className="text-xs text-[#888888] leading-relaxed">{insight.nextStep}</p>
               </div>
             </div>
@@ -2092,7 +2112,7 @@ export default function SessionClient({
           if (top.length === 0) return null
           return (
             <div className="p-5 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+              <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-3">
                 Where the mistakes fell
               </p>
               <div className="space-y-2.5">
@@ -2112,7 +2132,7 @@ export default function SessionClient({
                           />
                         ))}
                       </div>
-                      <span className="text-xs text-[#555555] w-4 text-right tabular-nums">
+                      <span className="text-xs text-[#888888] w-4 text-right tabular-nums">
                         {n}
                       </span>
                     </div>
@@ -2181,7 +2201,7 @@ export default function SessionClient({
                   <button
                     onClick={() => setShowAllReview((v) => !v)}
                     className="text-[11px] transition-colors"
-                    style={{ color: "#555555" }}
+                    style={{ color: "#888888" }}
                   >
                     {showAllReview ? "Wrong only" : `Show all ${questions.length}`}
                   </button>
@@ -2194,7 +2214,7 @@ export default function SessionClient({
                   style={{ backgroundColor: "rgba(62,207,142,0.03)" }}
                 >
                   <p className="text-sm text-[#3ECF8E] font-semibold">All correct</p>
-                  <p className="text-xs text-[#555555] mt-1">Nothing to review here.</p>
+                  <p className="text-xs text-[#888888] mt-1">Nothing to review here.</p>
                 </div>
               ) : (
                 <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
@@ -2232,7 +2252,7 @@ export default function SessionClient({
                                 <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
                               )
                             ) : (
-                              <span className="text-[10px] text-[#555555]">—</span>
+                              <span className="text-[10px] text-[#888888]">—</span>
                             )}
                           </div>
                           <div className="min-w-0">
@@ -2247,7 +2267,7 @@ export default function SessionClient({
                                   style={
                                     state.confidence === "high"
                                       ? { backgroundColor: "rgba(255,153,102,0.15)", color: "#FF9966" }
-                                      : { backgroundColor: "rgba(255,255,255,0.05)", color: "#555555" }
+                                      : { backgroundColor: "rgba(255,255,255,0.05)", color: "#888888" }
                                   }
                                 >
                                   {state.confidence === "high" ? "Confident" : "Unsure"}
@@ -2524,7 +2544,10 @@ export default function SessionClient({
           <ArrowLeft className="w-3 h-3" />
           Exit Session
         </Link>
-        <div className="flex items-center justify-between mt-3">
+        {/* flex-wrap: the mode toggle + pacing badge + clock + tutor cluster
+            has ~395px min-content — without wrapping it panned the whole
+            page horizontally at 375/390px. */}
+        <div className="flex items-center justify-between mt-3 flex-wrap gap-y-2">
           <div>
             {setLabel ? (
               <p className="text-[10px] uppercase tracking-widest text-[#C9A84C] mb-1">
@@ -2532,7 +2555,7 @@ export default function SessionClient({
               </p>
             ) : null}
             <h1 className="text-xl font-bold text-[#F0F0F0]">{topic}</h1>
-            <p className="text-xs text-[#555555] mt-0.5">
+            <p className="text-xs text-[#888888] mt-0.5">
               Question{" "}
               <span className="font-display tabular-nums text-[#C0C0C0]">
                 {currentIdx + 1}
@@ -2698,6 +2721,7 @@ export default function SessionClient({
                       key={i}
                       onClick={() => handleSelect(i)}
                       disabled={currentState.submitted}
+                      data-kb-space="submit"
                       className="w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-colors hover:bg-white/[0.02] disabled:cursor-default"
                       style={{ borderColor, backgroundColor: bgColor }}
                     >
@@ -2716,12 +2740,25 @@ export default function SessionClient({
                       >
                         {letterFor(i)}
                       </div>
-                      <PromptBlock text={option} className="flex-1" />
+                      <PromptBlock text={option} className="flex-1 min-w-0" />
+                      {/* sr-only outcome text: the Check/X icons are
+                          aria-hidden and the colors carry the only signal
+                          — screen readers heard nothing. */}
                       {showCorrect && (
-                        <Check className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#3ECF8E" }} />
+                        <>
+                          <span className="sr-only">
+                            {isSelected
+                              ? " — your answer, correct"
+                              : " — correct answer"}
+                          </span>
+                          <Check className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#3ECF8E" }} />
+                        </>
                       )}
                       {showIncorrect && (
-                        <X className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#FF4444" }} />
+                        <>
+                          <span className="sr-only"> — your answer, incorrect</span>
+                          <X className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#FF4444" }} />
+                        </>
                       )}
                     </button>
                   )
@@ -2755,7 +2792,7 @@ export default function SessionClient({
                 }}
               >
                 <div className="flex items-center gap-2.5 mb-3">
-                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                  <p className="text-[10px] uppercase tracking-widest text-[#888888]">
                     Explanation
                   </p>
                   {!isQuestionCorrect(current, currentState) &&
@@ -2906,7 +2943,7 @@ export default function SessionClient({
             )}
           </div>
           {!isTwoPart && (
-            <p className="text-[11px] text-[#555555] mt-3 text-center">
+            <p className="text-[11px] text-[#888888] mt-3 text-center">
               Shortcuts: <kbd className="px-1 rounded bg-white/[0.06] font-mono">1</kbd>–<kbd className="px-1 rounded bg-white/[0.06] font-mono">{Math.min(current.options.length, 5)}</kbd> select · <kbd className="px-1 rounded bg-white/[0.06] font-mono">space</kbd> {currentState.submitted ? "next" : "submit"} · <kbd className="px-1 rounded bg-white/[0.06] font-mono">←</kbd>/<kbd className="px-1 rounded bg-white/[0.06] font-mono">→</kbd> nav
             </p>
           )}

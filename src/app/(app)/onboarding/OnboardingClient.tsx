@@ -681,7 +681,7 @@ function WeeklyHoursStep({
         className="w-full"
         aria-label="Weekly study hours"
       />
-      <div className="flex justify-between text-[11px] text-[#555555] mt-2 uppercase tracking-[0.16em] font-medium">
+      <div className="flex justify-between text-[11px] text-[#888888] mt-2 uppercase tracking-[0.16em] font-medium">
         <span>{WEEKLY_HOURS_MIN} hr</span>
         <span>14 hr</span>
         <span>{WEEKLY_HOURS_MAX} hr</span>
@@ -691,7 +691,7 @@ function WeeklyHoursStep({
         <span className="text-[#C0C0C0]">{perDayMinutes(value)} min/day</span>.{" "}
         {weeklyHoursAdvice(value)}
       </p>
-      <p className="text-[11px] text-[#555555] leading-relaxed mt-2">
+      <p className="text-[11px] text-[#888888] leading-relaxed mt-2">
         This shapes your weekly study plan — what each day of the week
         prioritizes. You can change it here anytime.
       </p>
@@ -751,7 +751,7 @@ function WeakAreasStep({
           </div>
         )
       })}
-      <p className="text-[11px] text-[#555555] italic">
+      <p className="text-[11px] text-[#888888] italic">
         Pick anywhere from 0 to 8. Empty is fine — practice data surfaces the real weak spots.
       </p>
     </div>

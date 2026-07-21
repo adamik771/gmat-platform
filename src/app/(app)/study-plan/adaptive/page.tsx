@@ -356,7 +356,7 @@ function SignalCell({
       >
         {value}
       </p>
-      <p className="text-[11px] text-[#555555] leading-snug truncate">{sub}</p>
+      <p className="text-[11px] text-[#888888] leading-snug truncate">{sub}</p>
     </div>
   )
 }
@@ -373,7 +373,7 @@ function SectionOrderPanel({ plan }: { plan: AdaptivePlan }) {
       <div className="flex items-center gap-3 flex-wrap mb-4">
         {plan.sectionOrder.map((sec, i) => (
           <span key={sec} className="inline-flex items-center gap-2">
-            {i > 0 && <ArrowRight className="w-3.5 h-3.5 text-[#555555]" />}
+            {i > 0 && <ArrowRight className="w-3.5 h-3.5 text-[#888888]" />}
             <span
               className="px-3 py-1.5 rounded-lg text-[12px] font-semibold tracking-tight"
               style={{
@@ -457,12 +457,12 @@ function DayCard({ day }: { day: AdaptiveDay }) {
         <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
           {day.weekday}
         </p>
-        <p className="text-[10px] text-[#555555]">
+        <p className="text-[10px] text-[#888888]">
           {day.estimatedMinutes > 0 ? `${day.estimatedMinutes}m` : "rest"}
         </p>
       </div>
       {isRest ? (
-        <p className="text-[12px] text-[#555555] italic">Rest day.</p>
+        <p className="text-[12px] text-[#888888] italic">Rest day.</p>
       ) : (
         <div className="space-y-1.5">
           {day.activities.map((a, i) => (

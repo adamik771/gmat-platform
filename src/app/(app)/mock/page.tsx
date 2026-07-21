@@ -436,7 +436,7 @@ function SiteMocksSection({
         </div>
       </div>
 
-      <p className="text-[12px] text-[#555555]">
+      <p className="text-[12px] text-[#888888]">
         Past site-mock results and section breakdowns live in the{" "}
         <Link
           href="/mock/report"

@@ -859,7 +859,7 @@ function SectionGroup({
         >
           {section}
         </p>
-        <span className="text-[12px] text-[#555555] tracking-tight">
+        <span className="text-[12px] text-[#888888] tracking-tight">
           {count} chapter{count === 1 ? "" : "s"}
         </span>
       </div>

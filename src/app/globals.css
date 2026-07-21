@@ -219,9 +219,11 @@
    so it reads as a calm brand accent rather than a loud box — while staying
    clearly visible for keyboard accessibility / WCAG. */
 :focus-visible {
-  outline: 2px solid rgba(201, 168, 76, 0.45);
+  /* 0.6 alpha: composites to ≥3.68:1 on every app surface (0.45 sat at
+     2.55:1, below the 3:1 non-text minimum). No border-radius override —
+     forcing 4px visibly deformed the ring on rounded-full pills/circles. */
+  outline: 2px solid rgba(201, 168, 76, 0.6);
   outline-offset: 1px;
-  border-radius: 4px;
 }
 /* Remove outline on mouse focus to avoid visual noise;
    :focus-visible handles keyboard focus. */
@@ -263,7 +265,9 @@
   top: 8px;
 }
 
-/* WCAG SC 1.4.8 — minimum touch target on small pointers */
+/* WCAG SC 1.4.8 — minimum touch target on small pointers.
+   .tpa-radio opts out of the height floor (a 24px circle stretched into
+   a 24x44 pill) and gets an invisible ≥44px hit area instead. */
 @media (pointer: coarse) {
   button,
   a[role="button"],
@@ -271,6 +275,17 @@
   input[type="button"] {
     min-height: 44px;
   }
+  button.tpa-radio {
+    min-height: 0;
+  }
+}
+.tpa-radio {
+  position: relative;
+}
+.tpa-radio::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
 }
 
 /* WCAG SC 1.4.12 — text-spacing override.
@@ -301,17 +316,22 @@ p {
   --read-bg-elevated: #f5efdb;
   --read-text: #1c1c1c;
   --read-text-body: #3c3c3c;
-  --read-text-muted: #6b6b6b;
-  --read-text-faint: #9a9a9a;
+  --read-text-muted: #616161;
+  --read-text-faint: #6f6f6f;
   --read-border: rgba(0, 0, 0, 0.1);
   --read-border-strong: rgba(0, 0, 0, 0.18);
-  --read-gold: #a88434;
-  --read-gold-soft: rgba(168, 132, 52, 0.2);
-  --read-gold-strong: #a88434;
-  --read-success: #16a34a;
-  --read-success-soft: rgba(22, 163, 74, 0.14);
-  --read-error: #dc2626;
-  --read-error-soft: rgba(220, 38, 38, 0.1);
+  /* Contrast-computed against the worst-case inset (#e3d9bf): gold
+     4.75:1, success 5.07:1, error 4.60:1 — the previous values (#a88434
+     2.48:1, #16a34a 2.62:1) failed AA on body-prose links, labels, and
+     correctness marks for every reader on the default light theme. Hue
+     kept warm/antique so the paper feel survives. */
+  --read-gold: #6f5a14;
+  --read-gold-soft: rgba(111, 90, 20, 0.18);
+  --read-gold-strong: #6f5a14;
+  --read-success: #166534;
+  --read-success-soft: rgba(22, 101, 52, 0.14);
+  --read-error: #b91c1c;
+  --read-error-soft: rgba(185, 28, 28, 0.1);
   transition: background-color 200ms var(--easing-out),
     color 200ms var(--easing-out), border-color 200ms var(--easing-out);
 }

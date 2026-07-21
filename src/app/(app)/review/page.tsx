@@ -272,7 +272,7 @@ export default async function ReviewPage() {
                     )}
                     <RungDistribution counts={rungCounts} />
                   </div>
-                  <ArrowRight className="w-4 h-4 text-[#555555] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-1" />
+                  <ArrowRight className="w-4 h-4 text-[#888888] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-1" />
                 </div>
               </Link>
             )

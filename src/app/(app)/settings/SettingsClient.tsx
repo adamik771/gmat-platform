@@ -502,7 +502,7 @@ function ProfileTab({
                   className={
                     targetScore !== null
                       ? "text-[#F0F0F0] font-medium"
-                      : "text-[#555555] italic"
+                      : "text-[#888888] italic"
                   }
                 >
                   {targetScore !== null ? targetScore : "Not set"}
@@ -655,7 +655,7 @@ function TriStateRow({
           )
         })}
         {value === null && (
-          <span className="text-[11px] text-[#555555] self-center italic ml-1">
+          <span className="text-[11px] text-[#888888] self-center italic ml-1">
             Not answered
           </span>
         )}
@@ -791,7 +791,7 @@ function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
               </tbody>
             </table>
           </div>
-          <p className="text-[12px] text-[#555555] mt-4 italic">
+          <p className="text-[12px] text-[#888888] mt-4 italic">
             Need an invoice or refund? Reply to your purchase confirmation
             email — we&apos;ll sort it.
           </p>
