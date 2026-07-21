@@ -32,3 +32,19 @@ export function daysUntil(isoDate: string | null | undefined): number | null {
   const todayLocal = new Date(new Date().toDateString()).getTime()
   return Math.ceil((targetLocal - todayLocal) / 86400000)
 }
+
+/**
+ * Sessions that replay previously-seen questions — spaced-review runs
+ * (`review-*`), redo-missed restarts (`redo-*`), and mixed-review sets
+ * (slug `custom`, topic "Mixed Review…"). Excluded from accuracy metrics
+ * so doing the right thing (reviewing your misses) never drags down the
+ * numbers it exists to improve.
+ */
+export function isReplaySession(
+  slug: string | null | undefined,
+  topic?: string | null
+): boolean {
+  const s = String(slug ?? "")
+  if (s.startsWith("review-") || s.startsWith("redo-")) return true
+  return String(topic ?? "").toLowerCase().startsWith("mixed review")
+}

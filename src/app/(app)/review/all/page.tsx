@@ -199,7 +199,7 @@ function Header() {
         </span>
       </h1>
       <p className="text-[15px] text-[#C0C0C0] leading-relaxed max-w-3xl">
-        Four item types schedule independently — questions on a 0/2/7/21/42 ladder, concepts slower (3/10/28/56), drills on the question ladder, recall checkpoints fastest (1/4/14/30). Confidence and mistake-type modifiers shift each item up or down.
+        Missed questions and weak concepts on one spacing ladder — same day, then 2, 7, 21 and 42 days. Confidence and mistake-type modifiers shift each item up or down; saved and mock-flagged items jump the queue.
       </p>
     </section>
   )

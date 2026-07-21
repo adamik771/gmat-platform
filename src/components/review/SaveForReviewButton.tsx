@@ -20,6 +20,22 @@ import { Bookmark, BookmarkCheck, Loader2 } from "lucide-react"
  *   - "compact" — icon-only, ~24px square (for inline rows)
  *   - "ghost"   — outlined, no fill (for cards that have other CTAs)
  */
+/**
+ * Module-level write chain. The API route read-modify-writes the WHOLE
+ * saved_for_review array, so two in-flight toggles from different button
+ * instances (e.g. two rows on the history page) could drop each other's
+ * writes — the second request's read predates the first's write.
+ * Serializing this client's requests kills the same-tab race; the
+ * durable cross-device fix is an atomic server-side op (owner task,
+ * documented in PRODUCT_EXCELLENCE_AUDIT.md).
+ */
+let writeChain: Promise<unknown> = Promise.resolve()
+function enqueueWrite<T>(op: () => Promise<T>): Promise<T> {
+  const run = writeChain.then(op, op)
+  writeChain = run.catch(() => undefined)
+  return run
+}
+
 export default function SaveForReviewButton({
   questionId,
   initialSaved,
@@ -52,14 +68,16 @@ export default function SaveForReviewButton({
     setError(null)
     startTransition(async () => {
       try {
-        const res = await fetch("/api/saved-for-review", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            questionId,
-            action: nextSaved ? "add" : "remove",
-          }),
-        })
+        const res = await enqueueWrite(() =>
+          fetch("/api/saved-for-review", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              questionId,
+              action: nextSaved ? "add" : "remove",
+            }),
+          })
+        )
         const data = (await res.json()) as { ok?: boolean; error?: string }
         if (!res.ok || !data.ok) {
           setSaved(!nextSaved) // roll back
@@ -83,13 +101,31 @@ export default function SaveForReviewButton({
         type="button"
         onClick={toggle}
         disabled={pending}
-        aria-label={saved ? "Remove from review queue" : "Save for review"}
-        title={saved ? "Saved — click to remove" : "Save for review"}
+        aria-label={
+          error
+            ? `Save failed — ${error}. Click to retry.`
+            : saved
+            ? "Remove from review queue"
+            : "Save for review"
+        }
+        title={
+          error
+            ? `Save failed — ${error}. Click to retry.`
+            : saved
+            ? "Saved — click to remove"
+            : "Save for review"
+        }
         className="inline-flex items-center justify-center w-7 h-7 rounded-md transition-colors disabled:opacity-50"
         style={{
           backgroundColor: saved ? "rgba(201,168,76,0.18)" : "rgba(201,168,76,0.06)",
-          color: saved ? "#C9A84C" : "#888888",
-          border: `1px solid ${saved ? "rgba(201,168,76,0.4)" : "rgba(255,255,255,0.08)"}`,
+          color: error ? "#FF8888" : saved ? "#C9A84C" : "#888888",
+          border: `1px solid ${
+            error
+              ? "rgba(255,68,68,0.5)"
+              : saved
+              ? "rgba(201,168,76,0.4)"
+              : "rgba(255,255,255,0.08)"
+          }`,
         }}
       >
         {pending ? (

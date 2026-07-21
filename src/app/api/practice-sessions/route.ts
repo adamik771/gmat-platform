@@ -189,6 +189,7 @@ export async function POST(request: Request) {
     !body.slug.startsWith("mock-") &&
     !body.slug.startsWith("diagnostic-") &&
     !body.slug.startsWith("review-") &&
+    !body.slug.startsWith("redo-") &&
     body.slug !== "custom"
   ) {
     try {

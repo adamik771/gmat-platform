@@ -50,7 +50,7 @@ import { isChapterRead } from "@/lib/chapter-progress-merge"
 import { deriveFirst48Steps, first48Complete } from "./first48"
 import { sectionScoresToTotal } from "@/lib/scoring"
 import { accuracyToSectionScore } from "@/lib/score-percentiles"
-import { localDayIso } from "@/lib/utils"
+import { isReplaySession, localDayIso } from "@/lib/utils"
 import TargetScoreControl from "./TargetScoreControl"
 
 const PLAN_LABELS: Record<string, string> = {
@@ -169,10 +169,11 @@ export default async function DashboardPage() {
             // review widget below (this was a duplicate 12-week
             // practice_attempts scan). Passing it into the engine stops it
             // from refetching the same rows.
-            reviewQueue = await getReviewQueue(supabase, user.id, {
-              limit: 60,
-              flaggedQuestionIds,
-            })
+            reviewQueue =
+              (await getReviewQueue(supabase, user.id, {
+                limit: 60,
+                flaggedQuestionIds,
+              })) ?? []
             // Start the study-plan compute but don't block on it here — it
             // runs concurrently with the metrics batch and is awaited there.
             // The hero's topFocus is derived once the result lands. Non-fatal:
@@ -362,7 +363,7 @@ export default async function DashboardPage() {
       ] = await Promise.all([
         supabase
           .from("practice_sessions")
-          .select("slug, total_questions, correct_count, total_time_ms, accuracy")
+          .select("slug, topic, total_questions, correct_count, total_time_ms, accuracy")
           .eq("user_id", userId)
           .gte("created_at", weekAgo),
         supabase
@@ -465,13 +466,13 @@ export default async function DashboardPage() {
       questionsToday =
         todaySessions?.reduce((s, r) => s + r.total_questions, 0) ?? 0
 
-      // Question-weighted, and review sessions excluded: an unweighted mean
+      // Question-weighted, and replay sessions excluded: an unweighted mean
       // of session accuracies let a 2-question review at 50% count the same
-      // as a 45-question set at 80% — and review-{section} sessions replay
-      // previously-missed questions, so they dragged the number down right
-      // after the student did the right thing (reviewing).
+      // as a 45-question set at 80% — and review/redo/mixed-review sessions
+      // replay previously-missed questions, so they dragged the number down
+      // right after the student did the right thing (reviewing).
       const scoredWeek = (weekSessions ?? []).filter(
-        (r) => !String(r.slug ?? "").startsWith("review-")
+        (r) => !isReplaySession(r.slug as string, (r as { topic?: string }).topic)
       )
       const weekQTotal = scoredWeek.reduce((s, r) => s + r.total_questions, 0)
       const weekQCorrect = scoredWeek.reduce(

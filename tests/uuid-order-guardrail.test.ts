@@ -25,7 +25,7 @@ function tsFiles(dir: string, acc: string[] = []): string[] {
 describe("uuid-order guardrail", () => {
   it("no query orders by a UUID id column", () => {
     const offenders: string[] = []
-    const re = /\.order\("(session_id|id)"/
+    const re = /\.order\("(session_id|id|attempt_id)"/
     for (const file of tsFiles("src")) {
       const code = readFileSync(file, "utf8")
       const m = code.match(re)

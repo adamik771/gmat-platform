@@ -352,7 +352,8 @@ export default async function StudyPlanPage({
           s.slug !== "custom" &&
           !s.slug?.startsWith("mock-") &&
           !s.slug?.startsWith("diagnostic-") &&
-          !s.slug?.startsWith("review-")
+          !s.slug?.startsWith("review-") &&
+          !s.slug?.startsWith("redo-")
         ) {
           completedTags.add("drilled-recently")
         }

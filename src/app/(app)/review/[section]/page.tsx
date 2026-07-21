@@ -7,6 +7,7 @@ import { getReviewQueue, type ReviewCandidate } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { getUserState } from "@/lib/user-state"
 import { readSavedForReview } from "@/lib/spaced-review"
+import { daysUntil } from "@/lib/utils"
 import SessionClient, {
   type SessionQuestion,
 } from "../../practice/session/[slug]/SessionClient"
@@ -53,19 +54,36 @@ export default async function ReviewSectionPage({
   }
 
   const state = await getUserState(supabase, user)
+  const saved = readSavedForReview(state)
+  const examDate =
+    (user.user_metadata?.exam_date as string | null | undefined) ?? null
   const queue = await getReviewQueue(supabase, user.id, {
     section,
     limit: SESSION_SIZE,
     flaggedQuestionIds: gatherFlaggedQuestionIds(state),
+    savedQuestionIds: saved,
+    daysUntilExam: daysUntil(examDate),
   })
+
+  // Failed read ≠ empty queue — don't tell the student nothing is due.
+  if (queue === null) {
+    return (
+      <EmptyFrame
+        title={`Couldn't load your ${section} queue`}
+        body="Something went wrong reading your practice history. Your data is safe — reload the page to try again."
+      />
+    )
+  }
 
   if (queue.length === 0) {
     return (
       <EmptyFrame
-        title={`Nothing to review in ${section} yet`}
+        title={`Nothing due in ${section} right now`}
         body={
           <>
-            Answer some {section} questions in{" "}
+            Reviewed questions return when their spacing gap elapses — that
+            pause is the spacing working, not your attempts being ignored. New
+            misses in{" "}
             <Link
               href="/practice"
               className="underline underline-offset-2"
@@ -73,7 +91,7 @@ export default async function ReviewSectionPage({
             >
               Practice
             </Link>{" "}
-            first — once you&apos;ve attempted them, they become eligible for review here.
+            arrive here the same day.
           </>
         }
       />
@@ -124,19 +142,27 @@ export default async function ReviewSectionPage({
 
   return (
     <div className="space-y-5">
-      <Link
-        href="/review"
-        className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#888888] hover:text-[#C9A84C] transition-colors"
-      >
-        <ArrowLeft className="w-3 h-3" />
-        Back to review
-      </Link>
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <Link
+          href="/review"
+          className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#888888] hover:text-[#C9A84C] transition-colors"
+        >
+          <ArrowLeft className="w-3 h-3" />
+          Back to review
+        </Link>
+        {/* Session-cap transparency: this is the top slice by priority,
+            not the whole backlog. */}
+        <p className="text-[12px] text-[#888888]">
+          Your top {playable.length} {section} questions by priority
+        </p>
+      </div>
       <SessionClient
         slug={slug}
         topic="Daily Review"
         section={section}
         questions={playable}
-        initialSavedForReview={Array.from(readSavedForReview(state))}
+        defaultMode="study"
+        initialSavedForReview={Array.from(saved)}
       />
     </div>
   )

@@ -177,13 +177,16 @@ export async function computeStudyPlan(
 
   // Review queue — the spaced-retrieval queue's length drives one arm of
   // the "what to do today" decision. Reuse a caller-provided queue when given
-  // (the params match), otherwise fetch it here.
+  // (the params match), otherwise fetch it here. A failed read degrades to
+  // an empty queue: the plan still renders, and the review surfaces carry
+  // the honest error state.
   const queue =
     opts.reviewQueue ??
     (await getReviewQueue(supabase, userId, {
       limit: 60,
       flaggedQuestionIds: opts.flaggedQuestionIds,
-    }))
+    })) ??
+    []
   const reviewDueCount = queue.length
 
   // Topic-level accuracy from all attempts. Bounded to 5k rows via the

@@ -12,6 +12,7 @@ import {
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getUserState } from "@/lib/user-state"
+import { isReplaySession } from "@/lib/utils"
 import {
   computeCalibration,
   type CalibrationReport,
@@ -144,7 +145,7 @@ export default async function AnalyticsPage() {
       const [{ data: sessions }, { data: aggRaw }] = await Promise.all([
         supabase
           .from("practice_sessions")
-          .select("slug, section, created_at, total_questions, correct_count")
+          .select("slug, topic, section, created_at, total_questions, correct_count")
           .eq("user_id", user.id)
           .gte("created_at", eightWeeksAgo)
           .order("created_at", { ascending: true }),
@@ -162,7 +163,8 @@ export default async function AnalyticsPage() {
         const newTally = (): Tally => ({ correct: 0, total: 0 })
         const weeks = new Map<string, Bucket>()
         for (const s of sessions) {
-          if (String(s.slug ?? "").startsWith("review-")) continue
+          if (isReplaySession(s.slug as string, (s as { topic?: string }).topic))
+            continue
           const d = new Date(s.created_at as string)
           const weekStart = new Date(d)
           weekStart.setDate(d.getDate() - d.getDay())

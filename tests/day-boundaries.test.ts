@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { daysUntil, localDayIso } from "@/lib/utils"
+import { daysUntil, isReplaySession, localDayIso } from "@/lib/utils"
 
 describe("localDayIso — the shared local day boundary", () => {
   it("formats the LOCAL calendar day, not the UTC one", () => {
@@ -29,5 +29,22 @@ describe("daysUntil — local-midnight exam countdown", () => {
     expect(daysUntil(null)).toBeNull()
     expect(daysUntil("not-a-date")).toBeNull()
     expect(daysUntil("2026-1-5")).toBeNull()
+  })
+})
+
+describe("isReplaySession", () => {
+  it("marks review, redo, and mixed-review sessions as replays", () => {
+    expect(isReplaySession("review-quant-2026-07-21")).toBe(true)
+    expect(isReplaySession("redo-algebra")).toBe(true)
+    expect(isReplaySession("redo-review-quant-2026-07-21")).toBe(true)
+    expect(isReplaySession("custom", "Mixed Review — Quant")).toBe(true)
+    expect(isReplaySession("custom", "Mixed Review: Algebra Foundations")).toBe(true)
+  })
+
+  it("keeps fresh work in scope", () => {
+    expect(isReplaySession("algebra")).toBe(false)
+    expect(isReplaySession("custom", "Custom set")).toBe(false)
+    expect(isReplaySession("ch-quant-05-t1")).toBe(false)
+    expect(isReplaySession(null)).toBe(false)
   })
 })

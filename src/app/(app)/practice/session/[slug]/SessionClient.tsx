@@ -20,7 +20,8 @@ import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
 import { summarizeAnsweredAttempts } from "@/lib/practice-save"
 import { isAnswerCorrect, pickMissed } from "@/lib/practice-retry"
 import { activeSessionMs } from "@/lib/practice-timing"
-import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
+import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "@/lib/topic-chapter-map"
+import { buildMixedReviewUrl } from "@/components/shared/MixedReviewCard"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
@@ -118,6 +119,11 @@ interface SessionClientProps {
    *  saved_for_review). Without this the save button remounted per question
    *  with a hardcoded unsaved state and looked like it "forgot" the save. */
   initialSavedForReview?: string[]
+  /** Surface-imposed feedback mode. Review sessions pass "study" so the
+   *  corrective-feedback surface actually delivers immediate feedback
+   *  (Rowland 2014); when set it wins over the stored preference, but
+   *  the in-session toggle still allows a per-session opt-out. */
+  defaultMode?: "exam" | "study"
 }
 
 function formatDuration(ms: number): string {
@@ -1136,6 +1142,7 @@ export default function SessionClient({
   weakestTopic,
   setLabel,
   initialSavedForReview,
+  defaultMode,
 }: SessionClientProps) {
   // Freeze the question list this mount was born with. The server page
   // re-shuffles topic drills on every render (Date.now()-seeded adaptive
@@ -1197,16 +1204,32 @@ export default function SessionClient({
   const [questionStart, setQuestionStart] = useState(() => Date.now())
   const [now, setNow] = useState(() => Date.now())
   const [showResults, setShowResults] = useState(false)
-  // Exam vs study feedback mode. Exam (the default) defers correctness,
-  // explanations, and hints to the end-of-session review — like test day.
-  // Study reveals the explanation after each submit. The choice persists
-  // across sessions; switching mid-session is allowed.
-  const [mode, setMode] = useState<"exam" | "study">(() => {
-    if (typeof window === "undefined") return "exam"
-    return window.localStorage.getItem("session-feedback-mode") === "study"
-      ? "study"
-      : "exam"
-  })
+  // Exam vs study feedback mode. Exam defers correctness, explanations,
+  // and hints to the end-of-session review; study reveals the explanation
+  // after each submit — the evidence-preferred default for learning
+  // sessions (immediate corrective feedback, Rowland 2014). Precedence:
+  // surface prop > stored preference > study for plain topic drills /
+  // exam for assessment-shaped sets (chapter tests, custom builds).
+  // The initializer must NOT read localStorage — that produced a
+  // server/client hydration mismatch whenever the stored value differed
+  // from the SSR fallback. The stored preference applies in the mount
+  // effect below instead.
+  const [mode, setMode] = useState<"exam" | "study">(defaultMode ?? "exam")
+  useEffect(() => {
+    if (defaultMode) return // surface-imposed mode wins; toggle still works
+    try {
+      const stored = window.localStorage.getItem("session-feedback-mode")
+      if (stored === "study" || stored === "exam") {
+        setMode(stored)
+        return
+      }
+    } catch {
+      // Private browsing — fall through to the shape-based default.
+    }
+    const isTopicDrill = !setLabel && slug !== "custom"
+    if (isTopicDrill) setMode("study")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   // Once the results screen has been reached, per-question feedback is
   // visible regardless of mode so the review list can jump back into
   // fully-explained questions.
@@ -1225,6 +1248,8 @@ export default function SessionClient({
     "idle" | "saving" | "saved" | "error" | "unauthorized"
   >("idle")
   const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
+  /** True while running a redo-missed replay — the save marks the slug. */
+  const [isReplay, setIsReplay] = useState(false)
   const [showAllReview, setShowAllReview] = useState(false)
 
   // Tick the timer once a second for the header readouts. Stops on the
@@ -1270,7 +1295,7 @@ export default function SessionClient({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          slug,
+          slug: isReplay ? `redo-${slug}` : slug,
           topic,
           section,
           totalQuestions: summary.totalQuestions,
@@ -1357,8 +1382,12 @@ export default function SessionClient({
    * attempt is already saved; the fresh one saves as its own session when
    * it finishes.
    */
-  function restartSession(qs: SessionQuestion[]) {
+  function restartSession(qs: SessionQuestion[], opts: { replay?: boolean } = {}) {
     if (qs.length === 0) return
+    // Redo-missed runs replay questions the student just saw — real for
+    // reinforcement, but not fresh evidence. Marking the saved slug
+    // (`redo-…`) lets accuracy metrics and adaptivity exclude them.
+    setIsReplay(opts.replay ?? false)
     // A deliberate new attempt: drop the persisted deck so it can't be
     // restored over this one (the first submit re-persists the new deck).
     try {
@@ -2227,14 +2256,49 @@ export default function SessionClient({
           if (missed.length > 0) {
             actions.push({
               label: `Redo ${missed.length} missed`,
-              onClick: () => restartSession(missed),
+              onClick: () => restartSession(missed, { replay: true }),
               // Below the concept-gap line the chapter is the better first
               // move; otherwise redoing the misses is.
               variant: accuracy < LOW_ACCURACY ? "secondary" : "primary",
             })
           }
 
-          if (isMixedReview) {
+          const isReviewSession = slug.startsWith("review-")
+
+          if (isReviewSession) {
+            // Close the loop: a finished review session routes back to the
+            // remaining queue, not off to unrelated surfaces. When the
+            // session went well, add ONE near-transfer CTA — fresh
+            // same-topic questions are where the practiced retrieval pays
+            // off on novel items (Pan & Rickard 2018).
+            actions.push({
+              label: "Back to your queue",
+              href: "/review",
+              variant: "primary",
+            })
+            if (accuracy >= SOLID_ACCURACY) {
+              const correctTopicCounts = new Map<string, number>()
+              questions.forEach((q, i) => {
+                if (states[i]?.submitted && isAnswerCorrect(q, states[i])) {
+                  correctTopicCounts.set(
+                    q.topic,
+                    (correctTopicCounts.get(q.topic) ?? 0) + 1
+                  )
+                }
+              })
+              const topCorrect = [...correctTopicCounts.entries()].sort(
+                (a, b) => b[1] - a[1]
+              )[0]?.[0]
+              const transferSet = topCorrect ? TOPIC_TO_SET[topCorrect] : undefined
+              if (topCorrect && transferSet) {
+                actions.push({
+                  label: `Prove it on fresh ${topCorrect}`,
+                  href: `/practice/session/${transferSet}`,
+                  variant: "secondary",
+                })
+              }
+            }
+          } else if (isMixedReview) {
             actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
             actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
           } else if (accuracy < LOW_ACCURACY) {
@@ -2268,28 +2332,42 @@ export default function SessionClient({
                 variant: "secondary",
               })
             }
-          } else if (weakestTopic) {
-            // Strong session + known weak topic: point directly to the gap
-            actions.push({
-              label: `Practice ${weakestTopic.topic}`,
-              href: `/practice/session/${weakestTopic.practiceSlug}`,
-              variant: "primary",
-            })
-            const wtChapter = TOPIC_TO_CHAPTER[weakestTopic.topic]
-            actions.push({
-              label: wtChapter ? "Review the chapter" : "Go to chapters",
-              href: wtChapter ? `/chapters/${wtChapter}` : "/chapters",
-              variant: "secondary",
-            })
           } else {
-            // Strong session, no known weak topic: the highest-leverage move
-            // is no longer this topic — point at the macro plan first, then
-            // offer chapters / a repeat as escape hatches.
-            actions.push({ label: "View your study plan", href: "/study-plan", variant: "primary" })
-            actions.push({ label: "Go to chapters", href: "/chapters", variant: "secondary" })
+            // Strong blocked session: the evidence-backed next step is
+            // interleaved practice, not another blocked drill — once a
+            // topic holds up in isolation, mixed sets are where method
+            // selection (the exam skill) gets trained (Rohrer & Taylor
+            // 2007; Brunmair & Richter 2019).
             if (isPractice) {
-              actions.push(practiceAgain)
+              actions.push({
+                label: "Start mixed review",
+                onClick: () => {
+                  void buildMixedReviewUrl(chapterSlug ?? null).then(
+                    (url) => {
+                      window.location.href = url
+                    },
+                    () => {
+                      window.location.href = "/review"
+                    }
+                  )
+                },
+                variant: "primary",
+              })
             }
+            if (weakestTopic) {
+              actions.push({
+                label: `Practice ${weakestTopic.topic}`,
+                href: `/practice/session/${weakestTopic.practiceSlug}`,
+                variant: isPractice ? "secondary" : "primary",
+              })
+            } else {
+              actions.push({
+                label: "View your study plan",
+                href: "/study-plan",
+                variant: isPractice ? "secondary" : "primary",
+              })
+            }
+            actions.push({ label: "Go to chapters", href: "/chapters", variant: "secondary" })
           }
 
           return (
@@ -2300,12 +2378,19 @@ export default function SessionClient({
                 backgroundColor: "#0D0D0D",
               }}
             >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+              <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-2">
                 What to do next
               </p>
               <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
                 {nextStepNote}
               </p>
+              {isMixedReview && accuracy < SOLID_ACCURACY && (
+                <p className="text-[13px] text-[#888888] leading-relaxed -mt-3 mb-5">
+                  Mixed sets score lower than single-topic drills for everyone
+                  — picking the method is the skill, and this is where it gets
+                  trained.
+                </p>
+              )}
               <div className="flex flex-wrap gap-3">
                 {actions.map((action) => {
                   const primary = action.variant === "primary"
@@ -2427,8 +2512,9 @@ export default function SessionClient({
             </p>
           </div>
           <div className="flex items-center gap-2 text-sm text-[#888888]">
-            {/* Exam/Study feedback-mode toggle. Exam is the default and the
-                recommended skill test; study reveals each explanation. */}
+            {/* Exam/Study feedback-mode toggle. Study reveals each
+                explanation (the default for learning drills); exam defers
+                feedback to the end for assessment-shaped sets. */}
             <div
               className="inline-flex rounded-lg border overflow-hidden"
               style={{ borderColor: "rgba(255,255,255,0.10)" }}
@@ -2450,7 +2536,7 @@ export default function SessionClient({
                   }
                   title={
                     m === "exam"
-                      ? "Explanations at the end, like test day (recommended)"
+                      ? "Explanations at the end — answers lock as you go"
                       : "Explanation after each question"
                   }
                   aria-pressed={mode === m}
@@ -2507,8 +2593,8 @@ export default function SessionClient({
         {!finished && (
           <p className="text-[11px] mt-2" style={{ color: "#666666" }}>
             {mode === "exam"
-              ? "Exam mode: answers and explanations come at the end, like test day."
-              : "Study mode: explanation after every question. Exam mode is the truer skill test — the chapters are where you learn."}
+              ? "Exam mode: explanations come at the end — answers lock as you go."
+              : "Study mode: explanation after every question — immediate feedback is how corrections stick. Use exam mode to rehearse timed conditions."}
           </p>
         )}
       </div>
