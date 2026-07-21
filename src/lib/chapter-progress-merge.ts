@@ -27,11 +27,15 @@ export interface MergeableQuestion {
 interface SetResult {
   correct: number
   total: number
+  /** Epoch ms of the finish. Optional — legacy results predate it. */
+  at?: number
 }
 
 interface SetRun {
   idx: number
   answers: boolean[]
+  /** Epoch ms of the last checkpoint. Optional — legacy runs predate it. */
+  at?: number
 }
 
 export interface MergeableProgress {
@@ -77,13 +81,21 @@ function questionScore(q: MergeableQuestion | undefined): number {
   )
 }
 
-/** Keep the graded-set result with more attempts (a finished set beats a partial). */
+/**
+ * Pick the graded-set result to keep across a two-device merge. When
+ * either side carries a finish timestamp, the newer finish wins — a
+ * retake's score must replace the old one regardless of which device
+ * merges it (equal-total ties used to keep the LOCAL side, so a stale
+ * device flip-flopped the recorded score forever). Legacy results
+ * without `at` fall back to the more-attempts rule.
+ */
 function pickSetResult(
   a: SetResult | undefined,
   b: SetResult | undefined
 ): SetResult | undefined {
   if (!a) return b
   if (!b) return a
+  if ((a.at ?? 0) !== (b.at ?? 0)) return (b.at ?? 0) > (a.at ?? 0) ? b : a
   return b.total > a.total ? b : a
 }
 
@@ -104,17 +116,24 @@ export function mergeProgress<T extends MergeableProgress>(a: T, b: T): T {
     hard: pickSetResult(a.problemSetResults?.hard, b.problemSetResults?.hard),
   }
 
-  // Keep the in-flight run that has graded more questions (a longer run is
-  // strictly more progress; a cleared run — undefined — never resurrects a
-  // stale one from the other side ONLY when the other side is also behind
-  // the recorded result, which pickSetResult already reflects).
+  // Keep the in-flight run that has graded more questions (a longer run
+  // is strictly more progress) — then kill the zombie: a checkpoint from
+  // BEFORE the set's recorded finish is not an in-flight run, it's the
+  // stale leftovers of the run that produced the result. Without this, a
+  // finished set regressed to a "Resume · Qn" chip whenever another
+  // device merged in its old checkpoint, and re-running it overwrote the
+  // genuine score. Timestamps are required on BOTH sides of that
+  // comparison so legacy (unstamped) runs are never deleted.
   const problemSetRuns: MergeableProgress["problemSetRuns"] = {}
   for (const d of ["easy", "medium", "hard"] as const) {
     const ra = a.problemSetRuns?.[d]
     const rb = b.problemSetRuns?.[d]
     const winner =
       (rb?.answers.length ?? -1) > (ra?.answers.length ?? -1) ? rb : ra
-    if (winner) problemSetRuns[d] = winner
+    if (!winner) continue
+    const result = problemSetResults[d]
+    if (result?.at && winner.at && result.at > winner.at) continue
+    problemSetRuns[d] = winner
   }
 
   const notes: Record<string, string> = { ...(a.notes ?? {}) }

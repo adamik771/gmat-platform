@@ -220,6 +220,41 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
     return () => window.clearInterval(id)
   }, [phase])
 
+  // The whole mock lives in React state — there is no resume. Guard every
+  // exit path during an active attempt: (a) beforeunload covers tab close /
+  // hard refresh / external nav; (b) App Router client-side navigations
+  // (sidebar links) never fire beforeunload, so a capture-phase click
+  // listener confirms anchor clicks too. Off on intro (nothing to lose)
+  // and done (everything saved).
+  const attemptActive =
+    phase === "running" || phase === "review" || phase === "break" || phase === "posting"
+  useEffect(() => {
+    if (!attemptActive) return
+    const onBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+    }
+    const onDocClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement | null)?.closest?.("a")
+      if (!anchor) return
+      const href = anchor.getAttribute("href")
+      if (!href || href.startsWith("#") || anchor.target === "_blank") return
+      if (
+        !window.confirm(
+          "Leave the mock? This attempt can't be resumed — unsaved sections will be lost."
+        )
+      ) {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    }
+    window.addEventListener("beforeunload", onBeforeUnload)
+    document.addEventListener("click", onDocClick, true)
+    return () => {
+      window.removeEventListener("beforeunload", onBeforeUnload)
+      document.removeEventListener("click", onDocClick, true)
+    }
+  }, [attemptActive])
+
   // Timer hit zero mid-section — send the student to the review screen,
   // which kicks off its own 3-min countdown. Real GMAT gives the review
   // window even if you ran out of time on the section itself.
@@ -245,6 +280,16 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [now, phase, reviewStartMs])
+
+  // Break timer auto-continues at zero — the real exam does not offer an
+  // unlimited pause, and a countdown parked at 00:00 was a dead end.
+  useEffect(() => {
+    if (phase !== "break" || !breakStartMs) return
+    if (now - breakStartMs >= BREAK_SECONDS * 1000) {
+      endBreak()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [now, phase, breakStartMs])
 
   // Redirect to the report once the last section is done — but only
   // if every section saved cleanly. If any save failed we hold the user
@@ -412,8 +457,10 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
       // Flags are saved to user_metadata via a separate endpoint so they
       // survive a retake and can be read by the report + review-queue.
       // Always POST (even if empty) so a re-attempt that clears flags
-      // replaces the stored list cleanly.
-      await fetch("/api/mock-flags", {
+      // replaces the stored list cleanly. A non-2xx here must surface as
+      // a save error — "section saved" with silently-dropped flags/edits
+      // showed the student a clean state that didn't exist.
+      const flagsRes = await fetch("/api/mock-flags", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -422,9 +469,13 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           flaggedQuestionIds,
         }),
       })
+      if (!flagsRes.ok) {
+        recordSaveError(section, flagsRes.status === 401 ? "unauthorized" : "error")
+        return
+      }
       // Review-edit outcomes — persist the pre/post snapshot per edited
       // question so the mock report can compute helped/hurt.
-      await fetch("/api/mock-review-edits", {
+      const editsRes = await fetch("/api/mock-review-edits", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -433,6 +484,10 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           edits: reviewEditEntries,
         }),
       })
+      if (!editsRes.ok) {
+        recordSaveError(section, editsRes.status === 401 ? "unauthorized" : "error")
+        return
+      }
       clearSaveError(section)
     } catch {
       recordSaveError(section, "error")
@@ -623,7 +678,11 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
     const q = activeSectionConfig.questions[questionIdx]
     const state = statesBySection[activeSection][questionIdx]
     if (!canSubmit(q, state)) return
-    const elapsed = questionStartMs ? Date.now() - questionStartMs : 0
+    // Clamp: background-tab throttling can inflate one question toward the
+    // whole section length, and a clock step can go negative.
+    const elapsed = questionStartMs
+      ? Math.min(Math.max(Date.now() - questionStartMs, 0), 30 * 60_000)
+      : 0
     setStatesBySection((prev) => {
       const states = prev[activeSection].slice()
       states[questionIdx] = { ...states[questionIdx], submitted: true, elapsedMs: elapsed }
@@ -670,7 +729,19 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
   // ---------- Render ----------
 
   if (phase === "intro") {
-    return <IntroCard sectionOrder={sectionOrder} onUp={moveSectionUp} onStart={startMock} />
+    return (
+      <div className="space-y-4">
+        {/* Safe to leave from here — nothing has been attempted yet. This
+            link deliberately does NOT render during an active attempt. */}
+        <a
+          href="/mock"
+          className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
+        >
+          ← Back to Mock
+        </a>
+        <IntroCard sectionOrder={sectionOrder} onUp={moveSectionUp} onStart={startMock} />
+      </div>
+    )
   }
 
   if (phase === "break") {
@@ -703,7 +774,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           </h1>
           <p className="text-sm text-[#C0C0C0] leading-relaxed">
             {hasUnauthorized
-              ? "Your sign-in expired during the mock. Sign back in, then retry the failed sections — your answers are still in this tab."
+              ? "Your sign-in expired during the mock. Sign in in the new tab, then come back here and retry the failed sections — your answers are still in this tab."
               : "One or more sections failed to save. Retry below before leaving — your answers are still in this tab."}
           </p>
           <ul className="space-y-2">
@@ -718,19 +789,25 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
                     ({err.reason === "unauthorized" ? "sign-in expired" : "save failed"})
                   </span>
                 </div>
-                {err.reason === "unauthorized" ? (
-                  <a
-                    href="/login"
-                    className="px-3 py-1.5 rounded-md text-xs font-medium"
-                    style={{
-                      backgroundColor: "rgba(201,168,76,0.12)",
-                      color: "#C9A84C",
-                      border: "1px solid rgba(201,168,76,0.3)",
-                    }}
-                  >
-                    Sign in
-                  </a>
-                ) : (
+                <span className="flex items-center gap-2">
+                  {err.reason === "unauthorized" && (
+                    /* New tab on purpose: same-tab navigation destroys the
+                       in-memory answers this screen promises are safe. Auth
+                       cookies refresh across tabs, re-arming Retry here. */
+                    <a
+                      href="/login"
+                      target="_blank"
+                      rel="noopener"
+                      className="px-3 py-1.5 rounded-md text-xs font-medium"
+                      style={{
+                        backgroundColor: "rgba(201,168,76,0.12)",
+                        color: "#C9A84C",
+                        border: "1px solid rgba(201,168,76,0.3)",
+                      }}
+                    >
+                      Sign in (new tab)
+                    </a>
+                  )}
                   <button
                     type="button"
                     onClick={() => retrySave(err.section)}
@@ -744,7 +821,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
                   >
                     {retrying === err.section ? "Retrying…" : "Retry save"}
                   </button>
-                )}
+                </span>
               </li>
             ))}
           </ul>
@@ -1152,7 +1229,7 @@ function IntroCard({
       </button>
 
       <p className="text-xs text-[#555555] text-center">
-        Once you start, the 45-minute timer runs even if you navigate away. Plan to sit the full mock in one go.
+        Leaving this page during a section ends the attempt — answers save only when each section finishes. Plan to sit the full mock in one go.
       </p>
     </div>
   )

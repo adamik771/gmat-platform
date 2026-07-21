@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import {
@@ -24,6 +24,17 @@ import {
 
 const EYEBROW = "text-[10px] font-semibold uppercase tracking-[0.22em]"
 const STEPS = ["target", "exam-date", "baseline-info", "current-score", "weekly-hours", "weak-areas", "prep-history", "review"] as const
+
+/** sessionStorage key for the mid-flight wizard draft. */
+const DRAFT_KEY = "onboarding-draft"
+
+function clearDraft() {
+  try {
+    window.sessionStorage.removeItem(DRAFT_KEY)
+  } catch {
+    // Nothing to clear.
+  }
+}
 type StepId = (typeof STEPS)[number]
 
 interface OnboardingState {
@@ -83,15 +94,62 @@ const PREP_HISTORY_OPTIONS = [
 export default function OnboardingClient({
   initial,
   firstName,
+  existingOnboarding = {},
+  alreadyCompleted = false,
 }: {
   initial: OnboardingState
   firstName: string | null
+  /** Raw stored user_metadata.onboarding — the skip write spreads it so a
+   *  nested-object replace can't wipe a completed intake. */
+  existingOnboarding?: Record<string, unknown>
+  /** True when the intake was already completed — the wizard is then an
+   *  editor, and "Skip" becomes a plain no-write way back. */
+  alreadyCompleted?: boolean
 }) {
   const router = useRouter()
   const [stepIdx, setStepIdx] = useState(0)
   const [state, setState] = useState<OnboardingState>(initial)
   const [error, setError] = useState<string | null>(null)
   const [submitting, startSubmit] = useTransition()
+
+  // Mid-flight draft: the wizard used to hold 7 steps of answers in pure
+  // React state, so any sidebar click or refresh wiped everything.
+  // sessionStorage keeps the draft for the tab's lifetime; submit/skip
+  // clears it. Restored once on mount (hydration-safe).
+  useEffect(() => {
+    try {
+      const raw = window.sessionStorage.getItem(DRAFT_KEY)
+      if (!raw) return
+      const draft = JSON.parse(raw) as {
+        state?: OnboardingState
+        stepIdx?: number
+      }
+      // Reads sessionStorage (browser-only) — must run in an effect, not
+      // during render, to avoid an SSR hydration mismatch (same pattern
+      // as ChapterReader's progress hydration).
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      if (draft.state) setState((s) => ({ ...s, ...draft.state }))
+      if (
+        typeof draft.stepIdx === "number" &&
+        draft.stepIdx > 0 &&
+        draft.stepIdx < STEPS.length
+      ) {
+        setStepIdx(draft.stepIdx)
+      }
+    } catch {
+      // Corrupt/unavailable storage — start fresh.
+    }
+  }, [])
+  useEffect(() => {
+    try {
+      window.sessionStorage.setItem(
+        DRAFT_KEY,
+        JSON.stringify({ state, stepIdx })
+      )
+    } catch {
+      // Storage full/unavailable — the draft just won't survive.
+    }
+  }, [state, stepIdx])
 
   const step = STEPS[stepIdx]
   const isLastStep = stepIdx === STEPS.length - 1
@@ -114,32 +172,57 @@ export default function OnboardingClient({
   const submit = () => {
     setError(null)
     startSubmit(async () => {
-      const res = await fetch("/api/onboarding", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(state),
-      })
-      const data = (await res.json()) as { ok?: boolean; error?: string; nextHref?: string }
-      if (!res.ok || !data.ok) {
-        setError(data.error ?? "Something went wrong saving your answers.")
-        return
+      try {
+        const res = await fetch("/api/onboarding", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(state),
+        })
+        const data = (await res.json()) as { ok?: boolean; error?: string; nextHref?: string }
+        if (!res.ok || !data.ok) {
+          setError(data.error ?? "Something went wrong saving your answers.")
+          return
+        }
+        clearDraft()
+        router.push(data.nextHref ?? "/mock")
+      } catch {
+        // Network failure — without this catch the rejection was silent
+        // and the button just un-stuck with no explanation.
+        setError("Network error — your answers weren't saved. Check your connection and try again.")
       }
-      router.push(data.nextHref ?? "/mock")
     })
   }
 
   // "Skip for now" — record that onboarding was dismissed so the dashboard's
-  // first-run guard stops redirecting here, then go into the app. Best-effort.
+  // first-run guard stops redirecting here, then go into the app. For a
+  // COMPLETED intake this is a pure navigation: no write at all (the old
+  // bare { skippedAt } write replaced the whole nested object and wiped
+  // completedAt/weeklyHours/weakAreas for anyone who revisited).
   const [skipping, setSkipping] = useState(false)
   const handleSkip = async () => {
+    clearDraft()
+    if (alreadyCompleted) {
+      router.push("/dashboard")
+      return
+    }
     setSkipping(true)
     try {
       const supabase = createSupabaseBrowser()
-      await supabase.auth.updateUser({
-        data: { onboarding: { skippedAt: new Date().toISOString() } },
+      const { error: skipError } = await supabase.auth.updateUser({
+        data: {
+          onboarding: {
+            ...existingOnboarding,
+            skippedAt: new Date().toISOString(),
+          },
+        },
       })
+      if (skipError) {
+        // Surface it — a silently-failed skip bounces the user straight
+        // back into the wizard on the next dashboard visit.
+        setError("Couldn't save the skip — you may see this wizard again. You can still continue to the dashboard.")
+      }
     } catch {
-      // Non-fatal — worst case the guard shows onboarding again next visit.
+      setError("Couldn't save the skip — you may see this wizard again. You can still continue to the dashboard.")
     }
     router.push("/dashboard")
   }
@@ -162,7 +245,11 @@ export default function OnboardingClient({
             disabled={skipping}
             className="text-[12px] text-[#888888] hover:text-[#C0C0C0] transition-colors disabled:opacity-50"
           >
-            {skipping ? "Skipping…" : "Skip for now"}
+            {alreadyCompleted
+              ? "Back to dashboard"
+              : skipping
+              ? "Skipping…"
+              : "Skip for now"}
           </button>
         </div>
         {/* Stepper */}

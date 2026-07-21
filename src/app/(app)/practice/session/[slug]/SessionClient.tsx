@@ -126,6 +126,10 @@ interface SessionClientProps {
   defaultMode?: "exam" | "study"
 }
 
+/** Per-question time clamp: nobody legitimately spends 30+ minutes on one
+ *  GMAT item — beyond that it's a suspended tab, not solving time. */
+const MAX_QUESTION_MS = 30 * 60_000
+
 function formatDuration(ms: number): string {
   const totalSeconds = Math.floor(ms / 1000)
   const mm = Math.floor(totalSeconds / 60).toString().padStart(2, "0")
@@ -1011,7 +1015,8 @@ function SaveStatusBanner({
         {status === "error" && "We couldn't save this session. Your answers are still on screen — retry to persist them."}
         {status === "unauthorized" && (
           <>
-            Your sign-in has expired. Sign in again to save this session — your answers are still on screen.
+            Your sign-in has expired. Sign in in the new tab, then come back
+            here and retry — your answers are still on screen.
           </>
         )}
       </p>
@@ -1030,17 +1035,37 @@ function SaveStatusBanner({
         </button>
       )}
       {status === "unauthorized" && (
-        <Link
-          href="/login"
-          className="px-3 py-1.5 rounded-md text-xs font-medium transition-colors"
-          style={{
-            backgroundColor: "rgba(201,168,76,0.12)",
-            color: "#C9A84C",
-            border: "1px solid rgba(201,168,76,0.3)",
-          }}
-        >
-          Sign in
-        </Link>
+        <span className="flex items-center gap-2">
+          {/* New tab on purpose: a same-tab navigation unmounts the runner
+              and destroys the very answers this banner promises are safe.
+              Auth is cookie-based, so signing in over there re-arms the
+              retry here. */}
+          <Link
+            href="/login"
+            target="_blank"
+            rel="noopener"
+            className="px-3 py-1.5 rounded-md text-xs font-medium transition-colors"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.12)",
+              color: "#C9A84C",
+              border: "1px solid rgba(201,168,76,0.3)",
+            }}
+          >
+            Sign in (new tab)
+          </Link>
+          <button
+            type="button"
+            onClick={onRetry}
+            className="px-3 py-1.5 rounded-md text-xs font-medium transition-colors"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.12)",
+              color: "#C9A84C",
+              border: "1px solid rgba(201,168,76,0.3)",
+            }}
+          >
+            Retry save
+          </button>
+        </span>
       )}
     </div>
   )
@@ -1262,6 +1287,10 @@ export default function SessionClient({
   }, [showResults])
 
   const saveSession = async () => {
+    // In-flight guard: a double-click on "Retry save" fired two identical
+    // POSTs (duplicate sessions). The server's recent-duplicate check is
+    // the backstop; this kills the common path.
+    if (saveStatus === "saving") return
     // Persist SUBMITTED questions only — see summarizeAnsweredAttempts for the
     // why (blanks used to be recorded as wrong answers and the stored totals
     // were inconsistent).
@@ -1384,6 +1413,17 @@ export default function SessionClient({
    */
   function restartSession(qs: SessionQuestion[], opts: { replay?: boolean } = {}) {
     if (qs.length === 0) return
+    // The finished attempt is normally already saved — but when the save
+    // failed, this reset would silently destroy the only copy of it while
+    // the error banner is still promising the answers are recoverable.
+    if (
+      (saveStatus === "error" || saveStatus === "unauthorized") &&
+      !window.confirm(
+        "This session hasn't been saved yet. Starting a new attempt discards it — continue?"
+      )
+    ) {
+      return
+    }
     // Redo-missed runs replay questions the student just saw — real for
     // reinforcement, but not fresh evidence. Marking the saved slug
     // (`redo-…`) lets accuracy metrics and adaptivity exclude them.
@@ -1432,7 +1472,7 @@ export default function SessionClient({
   }
 
   function handleSelect(index: number) {
-    if (currentState.submitted) return
+    if (currentState.submitted || finished) return
     setStates((prev) => {
       const next = prev.slice()
       next[currentIdx] = markFirstInteraction({
@@ -1444,7 +1484,7 @@ export default function SessionClient({
   }
 
   function handleTwoPartSelect(colIdx: number, rowIdx: number) {
-    if (currentState.submitted) return
+    if (currentState.submitted || finished) return
     setStates((prev) => {
       const next = prev.slice()
       const selections = [...(next[currentIdx].twoPartSelections ?? [])]
@@ -1458,8 +1498,20 @@ export default function SessionClient({
   }
 
   function handleSubmit() {
+    // Post-finish answering is blocked, not re-saved: the session row is
+    // already persisted and there is no update endpoint, so a submit here
+    // would silently diverge the screen from the DB. Skipped questions
+    // stay skipped once the session is finished.
+    if (finished) return
     if (!canSubmit(current, currentState)) return
-    const elapsed = Date.now() - questionStart
+    // Clamp: a laptop that slept overnight on an open question would
+    // otherwise bank hours into this attempt (and the hours metrics);
+    // a system-clock step backwards would bank a negative value that
+    // makes the save fail permanently.
+    const elapsed = Math.min(
+      Math.max(Date.now() - questionStart, 0),
+      MAX_QUESTION_MS
+    )
     setStates((prev) => {
       const next = prev.slice()
       next[currentIdx] = { ...next[currentIdx], submitted: true, elapsedMs: elapsed }
@@ -2808,6 +2860,18 @@ export default function SessionClient({
               >
                 {currentIdx < total - 1 ? "Next Question" : "Finish Session"}
               </button>
+            ) : finished ? (
+              /* Post-finish, unsubmitted question (reached via the results
+                 review list): the session is saved and closed — answering
+                 now would never persist, so offer the way back instead of
+                 a Submit that silently diverges screen from DB. */
+              <button
+                onClick={() => setShowResults(true)}
+                className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Back to results
+              </button>
             ) : (
               <button
                 onClick={handleSubmit}
@@ -2819,15 +2883,27 @@ export default function SessionClient({
               </button>
             )}
 
-            <button
-              onClick={() => {
-                setFinished(true)
-                setShowResults(true)
-              }}
-              className="px-4 py-2 rounded-lg text-sm font-medium border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16] transition-colors"
-            >
-              End
-            </button>
+            {!finished && (
+              <button
+                onClick={() => {
+                  if (
+                    answeredCount < total &&
+                    !window.confirm(
+                      `End the session now? ${total - answeredCount} unanswered question${
+                        total - answeredCount === 1 ? "" : "s"
+                      } will be recorded as skipped.`
+                    )
+                  ) {
+                    return
+                  }
+                  setFinished(true)
+                  setShowResults(true)
+                }}
+                className="px-4 py-2 rounded-lg text-sm font-medium border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16] transition-colors"
+              >
+                End
+              </button>
+            )}
           </div>
           {!isTwoPart && (
             <p className="text-[11px] text-[#555555] mt-3 text-center">

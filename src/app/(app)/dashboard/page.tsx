@@ -331,6 +331,9 @@ export default async function DashboardPage() {
    *  (across all 3 sections of that date). Drives a dashboard nudge card. */
   let lastMockFlagCount = 0
   let lastMockDate: string | null = null
+  /** True when the metrics batch failed — render an honest error instead
+   *  of the pre-data onboarding view (which reads as lost history). */
+  let metricsLoadFailed = false
 
   try {
     if (user) {
@@ -708,10 +711,35 @@ export default async function DashboardPage() {
       }
     }
   } catch {
-    // Supabase query failed — render with empty state
+    // Supabase query failed. Flag it: rendering the pre-data onboarding
+    // view here told a veteran student their history was gone.
+    metricsLoadFailed = true
   }
 
   const hasData = (totalSessionCount ?? 0) > 0
+
+  // Honest failure state — keep the shell, say what happened, offer the
+  // retry. Rendering the baseline/onboarding branch on a transient DB
+  // error reads as total data loss.
+  if (user && metricsLoadFailed && !hasData) {
+    return (
+      <div className="max-w-2xl mx-auto mt-16 p-8 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] text-center">
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
+          style={{ color: "#C9A84C" }}
+        >
+          Dashboard
+        </p>
+        <h1 className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.15] mb-3">
+          Couldn&apos;t load your data.
+        </h1>
+        <p className="text-[14px] text-[#C0C0C0] leading-[1.75]">
+          Your history is safe — this is a loading problem, not a data
+          problem. Refresh to retry.
+        </p>
+      </div>
+    )
+  }
 
   // ---------- Derive section / total scores ----------
   // A section score (60-90) is only shown once the user has a minimum sample

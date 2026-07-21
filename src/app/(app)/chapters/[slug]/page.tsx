@@ -11,7 +11,7 @@ import {
   type ParsedQuestion,
 } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
-import { getUserState } from "@/lib/user-state"
+import { getUserStateForWrite } from "@/lib/user-state"
 import ChapterReader, {
   type ReaderQuestion,
   type ReaderSection,
@@ -115,6 +115,7 @@ export default async function ChapterDetailPage({
   // where to re-enter.
   let targetScore: number | null = null
   let initialProgress: unknown = null
+  let initialProgressErrored = false
   // Signed-in user id, so the reader scopes its localStorage cache per account.
   // Without this, progress bleeds across accounts on a shared browser (a new
   // account showed the previous account's completed chapters).
@@ -137,7 +138,12 @@ export default async function ChapterDetailPage({
 
     if (user) {
       userId = user.id
-      const state = await getUserState(supabase, user)
+      // Error-aware read: a FAILED state read must be distinguishable
+      // from an empty one — the reader would otherwise hydrate empty on
+      // a cold device and its first push would wholesale-replace this
+      // chapter's real server progress.
+      const { state, errored } = await getUserStateForWrite(supabase, user)
+      initialProgressErrored = errored
       const chapterProgress = state.chapter_progress as
         | Record<string, unknown>
         | undefined
@@ -207,7 +213,9 @@ export default async function ChapterDetailPage({
       }
     }
   } catch {
-    // Supabase unavailable — reader falls back to the lenient tier + empty progress.
+    // Supabase unavailable — reader falls back to the lenient tier + empty
+    // progress, and must not push that emptiness back to the server.
+    initialProgressErrored = true
   }
 
   return (
@@ -230,6 +238,7 @@ export default async function ChapterDetailPage({
         problemSets={problemSets}
         targetScore={targetScore}
         initialProgress={initialProgress}
+        initialProgressErrored={initialProgressErrored}
         weakestSection={weakestSection}
         firstPracticeTestSlug={firstPracticeTestSlug}
         prevChapter={prevChapter}

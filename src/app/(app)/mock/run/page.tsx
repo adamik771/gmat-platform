@@ -150,13 +150,10 @@ export default async function MockRunPage({
 
   return (
     <div className="space-y-4">
-      <Link
-        href="/mock"
-        className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
-      >
-        <ArrowLeft className="w-3 h-3" />
-        Back to Mock
-      </Link>
+      {/* No always-visible Back link here: one misclick above a 45-minute
+          in-memory section used to destroy the whole attempt. In-run exits
+          are guarded inside MockRunner (confirm + beforeunload); the intro
+          screen still allows leaving freely. */}
       <p className="text-[11px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold">
         {def.label}
       </p>

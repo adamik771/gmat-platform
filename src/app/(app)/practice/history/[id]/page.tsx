@@ -85,11 +85,11 @@ export default async function SessionHistoryPage({
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
         <Link
-          href="/test-builder"
+          href="/practice/history"
           className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
         >
           <ArrowLeft className="w-3 h-3" />
-          Back to Test Builder
+          All sessions
         </Link>
         <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">
           {(session.topic as string) || "Practice session"}
@@ -190,6 +190,12 @@ export default async function SessionHistoryPage({
                         >
                           You: {selectedLetter}
                         </span>
+                      ) : q?.twoPartColumns?.length ? (
+                        /* TPA selections aren't persisted (needs an
+                           attempts column — owner task); say so honestly
+                           instead of rendering an answered question as
+                           "You: —" (which read as unanswered). */
+                        <span>Two-part answer (selections not stored)</span>
                       ) : (
                         <span>You: —</span>
                       )}

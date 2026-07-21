@@ -219,21 +219,18 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     const uid = user?.id
 
     // Best-effort: sync any unsynced offline drill attempts to the
-    // server before we wipe local state. If we're offline or the API
-    // is unreachable, the drain is a no-op and the attempts get cleared
-    // below — that's the same trade-off we apply in the existing
-    // OfflineSyncTrigger flow. Sign-out on a shared device beats
-    // leaking another user's data into the next session.
+    // server before we wipe local state.
     if (uid) {
+      // Only clear the queue when the drain actually landed: the queue is
+      // keyed by user id (no cross-account leak), so on a failed drain the
+      // unsynced attempts are kept for this user's next sign-in instead of
+      // being silently destroyed.
       try {
-        await drainPendingAttempts(uid)
+        const result = await drainPendingAttempts(uid)
+        if (result.drained) await clearPendingAttempts(uid)
       } catch {
-        // Swallow — sign-out should not block on a sync failure.
-      }
-      try {
-        await clearPendingAttempts(uid)
-      } catch {
-        // Swallow — IDB errors should not block sign-out.
+        // Swallow — sign-out should not block on a sync failure; the
+        // user-scoped queue stays for the next session.
       }
     }
     try {

@@ -1,7 +1,7 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { blockIfNoAccess } from "@/lib/entitlements"
 import { dropBlankAttempts } from "@/lib/practice-save"
-import { getUserState, patchUserState } from "@/lib/user-state"
+import { getUserStateForWrite, patchUserState } from "@/lib/user-state"
 import {
   applySessionAttempts,
   getTopicSkillLevels,
@@ -86,11 +86,28 @@ export async function POST(request: Request) {
     body.accuracy < 0 ||
     body.accuracy > 100 ||
     typeof body.totalTimeMs !== "number" ||
-    body.totalTimeMs < 0 ||
+    !Number.isFinite(body.totalTimeMs) ||
     !Array.isArray(body.attempts) ||
     body.attempts.length > 100
   ) {
     return Response.json({ error: "Invalid session payload" }, { status: 400 })
+  }
+
+  // Time bounds are CLAMPED, not rejected: a suspended tab can bank hours
+  // into one question and a clock step can go negative — rejecting would
+  // fail the same payload on every retry and lose the student's session.
+  const MAX_ATTEMPT_MS = 2 * 60 * 60_000
+  const MAX_SESSION_MS = 12 * 60 * 60_000
+  body = {
+    ...body,
+    totalTimeMs: Math.min(Math.max(body.totalTimeMs, 0), MAX_SESSION_MS),
+    attempts: body.attempts.map((a) => ({
+      ...a,
+      timeSpentMs:
+        typeof a.timeSpentMs === "number" && Number.isFinite(a.timeSpentMs)
+          ? Math.min(Math.max(a.timeSpentMs, 0), MAX_ATTEMPT_MS)
+          : 0,
+    })),
   }
 
   // Stale-client guard: SessionClient now persists only submitted questions,
@@ -112,6 +129,42 @@ export async function POST(request: Request) {
       accuracy: summary.accuracy,
       attempts: summary.attempts,
     }
+  }
+
+  // Idempotency: a committed save whose RESPONSE was lost (network drop)
+  // leads the client to retry the identical payload — without this check
+  // every retry duplicated the session AND its attempts, inflating each
+  // downstream metric. Identical (slug, totals, time) within 60s is that
+  // retry, not a new session: total_time_ms is a ms-precision sum, so a
+  // genuine collision is negligible.
+  const dupeCutoff = new Date(Date.now() - 60_000).toISOString()
+  const { data: recentDupe } = await supabase
+    .from("practice_sessions")
+    .select("id")
+    .eq("user_id", user.id)
+    .eq("slug", body.slug)
+    .eq("total_questions", body.totalQuestions)
+    .eq("correct_count", body.correctCount)
+    .eq("total_time_ms", body.totalTimeMs)
+    .gte("created_at", dupeCutoff)
+    .limit(1)
+    .maybeSingle()
+  if (recentDupe) {
+    // Guard against matching an attemptless orphan (a prior save whose
+    // attempts insert failed after the session row landed): treating THAT
+    // as the duplicate would silently discard this retry's attempts.
+    const { count: dupeAttempts } = await supabase
+      .from("practice_attempts")
+      .select("id", { count: "exact", head: true })
+      .eq("session_id", recentDupe.id)
+    if ((dupeAttempts ?? 0) > 0) {
+      return Response.json({ sessionId: recentDupe.id })
+    }
+    await supabase
+      .from("practice_sessions")
+      .delete()
+      .eq("id", recentDupe.id)
+      .eq("user_id", user.id)
   }
 
   // Insert the session-level record.
@@ -193,7 +246,11 @@ export async function POST(request: Request) {
     body.slug !== "custom"
   ) {
     try {
-      const state = await getUserState(supabase, user)
+      // Error-aware read: skill levels are read-modify-written as one key.
+      // On a failed read, skip the update (adaptivity just doesn't move this
+      // session) rather than rebuilding the whole skill map from empty.
+      const { state, errored } = await getUserStateForWrite(supabase, user)
+      if (errored) throw new Error("state read failed")
       const currentLevels = getTopicSkillLevels(state)
       const updateAttempts = body.attempts
         .filter(

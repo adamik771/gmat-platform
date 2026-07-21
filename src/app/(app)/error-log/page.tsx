@@ -81,15 +81,25 @@ export default async function ErrorLogPage({
       // The wrong-attempts read and the error-tags read are independent (both
       // key on user.id) — run them concurrently. The legacy-column fallback
       // below stays sequential since it only fires on a schema-mismatch error.
-      const [{ data: attempts }, withConfidence] = await Promise.all([
-        attemptsQuery,
-        supabase
-          .from("error_tags")
-          .select(
-            "attempt_id, tag, root_cause, contributing_causes, notes, reviewed, remediation_assigned_at, remediation_completed_at, confidence",
-          )
-          .eq("user_id", user.id),
-      ])
+      const [{ data: attempts, error: attemptsError }, withConfidence] =
+        await Promise.all([
+          attemptsQuery,
+          supabase
+            .from("error_tags")
+            .select(
+              "attempt_id, tag, root_cause, contributing_causes, notes, reviewed, remediation_assigned_at, remediation_completed_at, confidence",
+            )
+            .eq("user_id", user.id),
+        ])
+
+      // A failed attempts read must not render as an empty error log
+      // ("no mistakes — nice work") — throw to the (app) error boundary
+      // instead, which keeps the shell and offers a retry.
+      if (attemptsError) {
+        throw new Error(
+          `error log: attempts read failed (${attemptsError.message})`
+        )
+      }
 
       // Pull tags for the same user in a second query and merge by id. Doing
       // this separately (vs an FK join) avoids Supabase relationship-cache
@@ -157,7 +167,7 @@ export default async function ErrorLogPage({
         practice_sessions: { slug: string; created_at: string } | null
       }
 
-      mistakes = ((attempts as AttemptRow[] | null) ?? []).map((a) => {
+      mistakes = ((attempts as unknown as AttemptRow[] | null) ?? []).map((a) => {
         const q = byId.get(a.question_id)
         const t = tagMap.get(a.id)
         return {
@@ -203,8 +213,11 @@ export default async function ErrorLogPage({
       mistakes.sort(byMostRecent)
       mistakes = mistakes.slice(0, 200)
     }
-  } catch {
-    // Supabase unavailable — render empty state below.
+  } catch (e) {
+    // A FAILED read must not render as an empty error log ("no mistakes")
+    // — rethrow to the (app) error boundary, which keeps the shell and
+    // offers a retry.
+    throw e instanceof Error ? e : new Error("error log: load failed")
   }
 
   // Per-family breakdown. Groups tagged mistakes by their error family

@@ -142,4 +142,52 @@ describe("mergeProgress (chapter progress union — fixes lost graded tests)", (
     const b = { ...empty(), lastSeenAt: 999, firstSeenAt: 0 }
     expect(progressContentSig(a)).toBe(progressContentSig(b))
   })
+
+  it("a NEWER retake result wins the merge in both directions (no flip-flop)", () => {
+    // Old rule: equal totals kept the local side, so the recorded score
+    // depended on which device merged last — forever.
+    const stale = empty()
+    stale.problemSetResults.medium = { correct: 8, total: 10, at: 1000 }
+    const fresh = empty()
+    fresh.problemSetResults.medium = { correct: 3, total: 10, at: 2000 }
+
+    expect(mergeProgress(stale, fresh).problemSetResults.medium?.correct).toBe(3)
+    expect(mergeProgress(fresh, stale).problemSetResults.medium?.correct).toBe(3)
+  })
+
+  it("legacy results without timestamps keep the more-attempts rule", () => {
+    const a = empty()
+    a.problemSetResults.medium = { correct: 5, total: 6 }
+    const b = empty()
+    b.problemSetResults.medium = { correct: 7, total: 10 }
+    expect(mergeProgress(a, b).problemSetResults.medium?.total).toBe(10)
+  })
+
+  it("a checkpoint older than the set's recorded finish does not resurrect (zombie resume)", () => {
+    // Device A finished the set (result at t=2000, checkpoint cleared);
+    // device B still holds the mid-run checkpoint from t=1000. The merge
+    // must not bring the finished set back to a "Resume · Qn" state.
+    const finished = empty()
+    finished.problemSetResults.medium = { correct: 9, total: 10, at: 2000 }
+    const staleDevice = empty()
+    staleDevice.problemSetResults.medium = { correct: 9, total: 10, at: 2000 }
+    staleDevice.problemSetRuns = { medium: { idx: 4, answers: [true, false, true, true], at: 1000 } }
+
+    expect(mergeProgress(finished, staleDevice).problemSetRuns?.medium).toBeUndefined()
+    expect(mergeProgress(staleDevice, finished).problemSetRuns?.medium).toBeUndefined()
+  })
+
+  it("a checkpoint NEWER than the recorded finish survives (genuine retake in progress)", () => {
+    const p = empty()
+    p.problemSetResults.medium = { correct: 9, total: 10, at: 1000 }
+    p.problemSetRuns = { medium: { idx: 2, answers: [true, true], at: 5000 } }
+    expect(mergeProgress(p, empty()).problemSetRuns?.medium?.idx).toBe(2)
+  })
+
+  it("legacy (unstamped) runs are never deleted by the zombie rule", () => {
+    const p = empty()
+    p.problemSetResults.medium = { correct: 9, total: 10, at: 2000 }
+    p.problemSetRuns = { medium: { idx: 3, answers: [true, true, false] } }
+    expect(mergeProgress(p, empty()).problemSetRuns?.medium?.idx).toBe(3)
+  })
 })

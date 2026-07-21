@@ -1,6 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { blockIfNoAccess } from "@/lib/entitlements"
-import { getUserState, patchUserState } from "@/lib/user-state"
+import { getUserStateForWrite, patchUserState } from "@/lib/user-state"
 import {
   MAX_OFFICIAL_ENTRIES,
   parseOfficialExamEntries,
@@ -65,7 +65,13 @@ export async function POST(request: Request) {
     )
   }
 
-  const state = await getUserState(supabase, user)
+  // Error-aware read: this route read-modify-writes a whole user_state key.
+  // Proceeding after a FAILED read would rebuild the key from empty and
+  // destroy the stored history (same class as the chapter-progress guard).
+  const { state, errored } = await getUserStateForWrite(supabase, user)
+  if (errored) {
+    return Response.json({ error: "state read failed; retry" }, { status: 503 })
+  }
   const entries = parseOfficialExamEntries(state)
 
   if (body.action === "remove") {

@@ -121,7 +121,17 @@ export default function PracticeClient({
                 color: "#C0C0C0",
               }}
             >
-              Run mixed review
+              Review queue
+            </Link>
+            <Link
+              href="/practice/history"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
+              style={{
+                borderColor: "rgba(255,255,255,0.10)",
+                color: "#C0C0C0",
+              }}
+            >
+              Session history
             </Link>
           </div>
         </div>

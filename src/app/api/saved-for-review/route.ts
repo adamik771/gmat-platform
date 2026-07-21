@@ -1,6 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { blockIfNoAccess } from "@/lib/entitlements"
-import { getUserState, patchUserState } from "@/lib/user-state"
+import { getUserStateForWrite, patchUserState } from "@/lib/user-state"
 
 /**
  * POST /api/saved-for-review — toggle a question's "save for review" flag.
@@ -58,7 +58,13 @@ export async function POST(request: Request) {
 
   // Read existing list with defensive parsing (state is user-controlled —
   // never throw on a malformed shape).
-  const state = await getUserState(supabase, user)
+  // Error-aware read: this route read-modify-writes a whole user_state key.
+  // Proceeding after a FAILED read would rebuild the key from empty and
+  // destroy the stored history (same class as the chapter-progress guard).
+  const { state, errored } = await getUserStateForWrite(supabase, user)
+  if (errored) {
+    return Response.json({ error: "state read failed; retry" }, { status: 503 })
+  }
   const rawList = state.saved_for_review
   const existing: string[] = Array.isArray(rawList)
     ? rawList.filter((x): x is string => typeof x === "string")

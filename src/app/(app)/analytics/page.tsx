@@ -80,6 +80,9 @@ export default async function AnalyticsPage() {
   let calibration: CalibrationReport | null = null
   let predictionMAE: PredictionMAE | null = null
   let hasData = false
+  /** True when the analytics reads failed — a failed read must not render
+   *  as the "take your baseline" empty state. */
+  let loadFailed = false
 
   // Baseline gate — the only pre-data signal the locked view needs.
   let officialExamCount = 0
@@ -460,7 +463,31 @@ export default async function AnalyticsPage() {
       }
     }
   } catch {
-    // Supabase unavailable — render empty state.
+    // Supabase unavailable — flag it; the baseline view below would tell
+    // a student with months of history to go take their baseline exam.
+    loadFailed = true
+  }
+
+  // Honest failure state before the stage gate: a failed read is NOT
+  // "no data yet".
+  if (loadFailed && !hasData) {
+    return (
+      <div className="max-w-2xl mx-auto mt-16 p-8 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] text-center">
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
+          style={{ color: "#C9A84C" }}
+        >
+          Analytics
+        </p>
+        <h1 className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.15] mb-3">
+          Couldn&apos;t load your analytics.
+        </h1>
+        <p className="text-[14px] text-[#C0C0C0] leading-[1.75]">
+          Your history is safe — this is a loading problem, not a data
+          problem. Refresh to retry.
+        </p>
+      </div>
+    )
   }
 
   // === Stage gate ===

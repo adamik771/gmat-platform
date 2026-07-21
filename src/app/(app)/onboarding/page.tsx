@@ -63,5 +63,21 @@ export default async function OnboardingPage() {
     user.email?.split("@")[0] ||
     null
 
-  return <OnboardingClient initial={initial} firstName={firstName} />
+  // The RAW stored onboarding record. The skip write must spread this —
+  // supabase.auth.updateUser replaces nested objects wholesale, so a bare
+  // { skippedAt } used to wipe a completed intake (completedAt,
+  // weeklyHours, weakAreas…) for anyone who revisited the wizard.
+  const existingOnboarding =
+    typeof meta.onboarding === "object" && meta.onboarding
+      ? (meta.onboarding as Record<string, unknown>)
+      : {}
+
+  return (
+    <OnboardingClient
+      initial={initial}
+      firstName={firstName}
+      existingOnboarding={existingOnboarding}
+      alreadyCompleted={typeof existingOnboarding.completedAt === "string"}
+    />
+  )
 }

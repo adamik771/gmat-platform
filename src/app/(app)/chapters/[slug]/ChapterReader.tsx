@@ -119,16 +119,23 @@ interface ChapterProgress {
   sectionsRead: Record<string, boolean>
   /** Map of question id → per-question state. */
   questions: Record<string, QuestionProgress>
-  /** Difficulty → { correct, total } for end-of-chapter problem set attempts. */
+  /** Difficulty → { correct, total, at } for end-of-chapter problem set
+   *  attempts. `at` (finish epoch ms) lets the cross-device merge prefer
+   *  the newer retake; legacy entries without it fall back to more-total. */
   problemSetResults: Record<
     "easy" | "medium" | "hard",
-    { correct: number; total: number } | undefined
+    { correct: number; total: number; at?: number } | undefined
   >
   /** Difficulty → mid-set progress for a graded run the student left before
    *  finishing (idx = next question, answers = graded so far). Lets a
-   *  student resume instead of silently losing the run; cleared on finish. */
+   *  student resume instead of silently losing the run; cleared on finish.
+   *  `at` (checkpoint epoch ms) lets the merge drop checkpoints that
+   *  predate the set's recorded finish (zombie-resume fix). */
   problemSetRuns?: Partial<
-    Record<"easy" | "medium" | "hard", { idx: number; answers: boolean[] }>
+    Record<
+      "easy" | "medium" | "hard",
+      { idx: number; answers: boolean[]; at?: number }
+    >
   >
   /** Free-text per-section notes the student writes while reading. Keyed
    *  by section id; empty entries are pruned by the UI. */
@@ -211,20 +218,30 @@ function normalizeServerProgress(input: unknown): ChapterProgress {
 }
 
 /**
- * Fire-and-forget POST to /api/chapter-progress. Debounced by the caller.
- * Failures are silent — localStorage is still the source of truth for the
- * current session, so the user never sees a data-loss toast.
+ * POST to /api/chapter-progress. Returns whether the write actually
+ * landed (network AND status) so the caller can surface a sync indicator
+ * and retry — a 401/500 counted as success here used to silently diverge
+ * the reader from every server-rendered surface.
+ *
+ * `keepalive` lets the pagehide/unmount flush outlive the page; without
+ * it the browser could abort the final push on tab close. (keepalive
+ * bodies cap at ~64KB — a chapter entry is a few KB.)
  */
-async function pushProgress(slug: string, progress: ChapterProgress) {
-  if (typeof window === "undefined") return
+async function pushProgress(
+  slug: string,
+  progress: ChapterProgress
+): Promise<boolean> {
+  if (typeof window === "undefined") return false
   try {
-    await fetch("/api/chapter-progress", {
+    const res = await fetch("/api/chapter-progress", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ slug, progress }),
+      keepalive: true,
     })
+    return res.ok
   } catch {
-    // Offline or auth expired — try again on the next update.
+    return false
   }
 }
 
@@ -691,6 +708,7 @@ export default function ChapterReader({
   problemSets,
   targetScore,
   initialProgress,
+  initialProgressErrored,
   weakestSection,
   firstPracticeTestSlug,
   prevChapter,
@@ -706,6 +724,11 @@ export default function ChapterReader({
   problemSets: ReaderProblemSet[]
   targetScore: number | null
   initialProgress?: unknown
+  /** True when the server-side progress read FAILED (vs. genuinely
+   *  absent). This mount then hydrates from a possibly-empty snapshot and
+   *  must not push — its first write would wholesale-replace this
+   *  chapter's real server progress. */
+  initialProgressErrored?: boolean
   /** Adjacent chapters in guided-path order, for the end-of-chapter
    *  "Previous / Next chapter" navigation. Null at the path ends. */
   prevChapter?: { slug: string; title: string } | null
@@ -769,6 +792,29 @@ export default function ChapterReader({
   function toggleFocusMode() {
     setFocusModeStore(!focusMode)
   }
+  // Sync-failure indicator: localStorage remains the on-device source of
+  // truth, but the student deserves to KNOW the server copy is behind
+  // (it feeds /chapters, the dashboard, and other devices). Retries on
+  // the next update and when the browser comes back online.
+  const [syncFailed, setSyncFailed] = useState(false)
+
+  // When the page's own progress read failed, this mount must not push:
+  // it hydrated from a possibly-empty snapshot, and its first push would
+  // wholesale-replace this chapter's real server progress.
+  const pushSuppressed = initialProgressErrored === true
+
+  const pushNow = useCallback(
+    async (next: ChapterProgress) => {
+      if (pushSuppressed) {
+        setSyncFailed(true)
+        return
+      }
+      const ok = await pushProgress(slug, next)
+      setSyncFailed(!ok)
+    },
+    [slug, pushSuppressed]
+  )
+
   useEffect(() => {
     const local = loadProgress(userId ?? null, slug)
     const server = normalizeServerProgress(initialProgress)
@@ -787,9 +833,9 @@ export default function ChapterReader({
     // write on every open) — this makes a locally-saved-but-unsynced result stick.
     saveProgress(userId ?? null, slug, merged)
     if (progressContentSig(merged) !== progressContentSig(server)) {
-      void pushProgress(slug, merged)
+      void pushNow(merged)
     }
-  }, [slug, initialProgress, userId])
+  }, [slug, initialProgress, userId, pushNow])
 
   // Debounce server pushes so free-text self-explanation typing doesn't
   // hammer the API once per keystroke. 800ms covers a typical typing burst
@@ -799,14 +845,17 @@ export default function ChapterReader({
     (next: ChapterProgress) => {
       if (pushTimer.current) clearTimeout(pushTimer.current)
       pushTimer.current = setTimeout(() => {
-        void pushProgress(slug, next)
+        void pushNow(next)
       }, 800)
     },
-    [slug]
+    [pushNow]
   )
 
   const update = useCallback(
-    (updater: (prev: ChapterProgress) => ChapterProgress) => {
+    (
+      updater: (prev: ChapterProgress) => ChapterProgress,
+      opts: { immediate?: boolean } = {}
+    ) => {
       setProgress((prev) => {
         const next: ChapterProgress = {
           ...updater(prev),
@@ -820,11 +869,25 @@ export default function ChapterReader({
           firstSeenAt: prev.firstSeenAt ?? Date.now(),
         }
         saveProgress(userId ?? null, slug, next)
-        queueServerPush(next)
+        // Milestones (section read, problem-set checkpoint/finish, question
+        // submit) push immediately: App Router renders a navigation's
+        // destination BEFORE unmounting this page, so a debounced push
+        // landed after /chapters had already read the old state — the core
+        // "finish section → list still shows old %" gesture. Free-text
+        // keeps the debounce.
+        if (opts.immediate) {
+          if (pushTimer.current) {
+            clearTimeout(pushTimer.current)
+            pushTimer.current = null
+          }
+          void pushNow(next)
+        } else {
+          queueServerPush(next)
+        }
         return next
       })
     },
-    [slug, queueServerPush, userId]
+    [slug, queueServerPush, pushNow, userId]
   )
 
   // Flush a pending debounced push when the tab is hidden or the user
@@ -841,12 +904,23 @@ export default function ChapterReader({
   useEffect(() => {
     progressRef.current = progress
   }, [progress])
+
+  // Come-back-online retry for a failed sync.
+  useEffect(() => {
+    if (!syncFailed) return
+    const onOnline = () => void pushNow(progressRef.current)
+    window.addEventListener("online", onOnline)
+    return () => window.removeEventListener("online", onOnline)
+  }, [syncFailed, pushNow])
+
   useEffect(() => {
     function flushIfPending() {
       if (pushTimer.current) {
         clearTimeout(pushTimer.current)
         pushTimer.current = null
-        void pushProgress(slug, progressRef.current)
+        // Module fn on purpose (keepalive matters here; a setState after
+        // unmount would be moot). Still respects push suppression.
+        if (!pushSuppressed) void pushProgress(slug, progressRef.current)
       }
     }
     window.addEventListener("pagehide", flushIfPending)
@@ -854,7 +928,7 @@ export default function ChapterReader({
       window.removeEventListener("pagehide", flushIfPending)
       flushIfPending()
     }
-  }, [slug])
+  }, [slug, pushSuppressed])
 
   const totalSections = sections.length
   const completedSections = sections.filter(
@@ -1052,6 +1126,27 @@ export default function ChapterReader({
               }}
             />
           </div>
+        </div>
+      )}
+
+      {/* Sync-failure notice — progress is safe on this device
+          (localStorage write-through) but the server copy is behind, so
+          other devices and the chapter list won't reflect it yet. */}
+      {syncFailed && (
+        <div
+          role="status"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-lg border text-[12px]"
+          style={{
+            borderColor: "rgba(201,168,76,0.3)",
+            backgroundColor: "rgba(201,168,76,0.06)",
+            color: "var(--read-text-body)",
+          }}
+        >
+          <span aria-hidden style={{ color: "var(--read-gold)" }}>
+            ●
+          </span>
+          Progress is saved on this device but hasn&apos;t synced yet — it
+          will retry automatically.
         </div>
       )}
 
@@ -1577,7 +1672,10 @@ function SectionNotes({
 }: {
   sectionId: string
   notes: Record<string, string>
-  update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  update: (
+    u: (prev: ChapterProgress) => ChapterProgress,
+    opts?: { immediate?: boolean }
+  ) => void
 }) {
   const value = notes[sectionId] ?? ""
   const hasNote = value.trim().length > 0
@@ -1656,7 +1754,10 @@ function SectionCard({
   section: ReaderSection
   hydrated: boolean
   progress: ChapterProgress
-  update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  update: (
+    u: (prev: ChapterProgress) => ChapterProgress,
+    opts?: { immediate?: boolean }
+  ) => void
   nextSectionId: string | null
   nextSectionTitle: string | null
   hasProblemSets: boolean
@@ -1822,10 +1923,13 @@ function SectionCard({
         {!read && hydrated && (
           <button
             onClick={() =>
-              update((prev) => ({
-                ...prev,
-                sectionsRead: { ...prev.sectionsRead, [s.id]: true },
-              }))
+              update(
+                (prev) => ({
+                  ...prev,
+                  sectionsRead: { ...prev.sectionsRead, [s.id]: true },
+                }),
+                { immediate: true }
+              )
             }
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold tracking-tight hover:opacity-90 hover:scale-[1.02] transition-all duration-200"
             style={{ backgroundColor: "var(--read-gold)", color: "var(--read-bg-inset)" }}
@@ -2041,7 +2145,10 @@ function InlineQuestion({
   question: ReaderQuestion
   label: string
   progress: ChapterProgress
-  update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  update: (
+    u: (prev: ChapterProgress) => ChapterProgress,
+    opts?: { immediate?: boolean }
+  ) => void
 }) {
   // Memoized so `state`'s identity is stable across renders when the
   // underlying progress entry hasn't changed. Without this, every
@@ -2060,13 +2167,18 @@ function InlineQuestion({
 
   const patch = useCallback(
     (fields: Partial<QuestionProgress>) => {
-      update((prev) => ({
-        ...prev,
-        questions: {
-          ...prev.questions,
-          [q.id]: { ...state, ...fields },
-        },
-      }))
+      // A submit is a milestone (push straight away); selections and
+      // self-explanation typing stay on the debounce.
+      update(
+        (prev) => ({
+          ...prev,
+          questions: {
+            ...prev.questions,
+            [q.id]: { ...state, ...fields },
+          },
+        }),
+        { immediate: fields.submitted === true }
+      )
     },
     [q.id, state, update]
   )
@@ -2430,7 +2542,10 @@ function ProblemSetsBlock({
   sets: ReaderProblemSet[]
   targetScore: number | null
   progress: ChapterProgress
-  update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  update: (
+    u: (prev: ChapterProgress) => ChapterProgress,
+    opts?: { immediate?: boolean }
+  ) => void
 }) {
   const readySets = useMemo(
     () => sets.filter((s) => s.questions.length > 0),
@@ -2533,7 +2648,10 @@ function ProblemSetCard({
   set: ReaderProblemSet
   targetScore: number | null
   progress: ChapterProgress
-  update: (u: (prev: ChapterProgress) => ChapterProgress) => void
+  update: (
+    u: (prev: ChapterProgress) => ChapterProgress,
+    opts?: { immediate?: boolean }
+  ) => void
 }) {
   const [running, setRunning] = useState(false)
   const result = progress.problemSetResults[set.difficulty]
@@ -2636,27 +2754,35 @@ function ProblemSetCard({
           initialRun={progress.problemSetRuns?.[set.difficulty]}
           onClose={() => setRunning(false)}
           onProgress={(idx, answers) =>
-            update((prev) => ({
-              ...prev,
-              problemSetRuns: {
-                ...prev.problemSetRuns,
-                [set.difficulty]: { idx, answers },
-              },
-            }))
+            // `at` lets the merge tell a live checkpoint from the stale
+            // leftovers of an already-finished run (zombie-resume fix).
+            update(
+              (prev) => ({
+                ...prev,
+                problemSetRuns: {
+                  ...prev.problemSetRuns,
+                  [set.difficulty]: { idx, answers, at: Date.now() },
+                },
+              }),
+              { immediate: true }
+            )
           }
           onFinish={(correct, total) =>
-            update((prev) => ({
-              ...prev,
-              problemSetResults: {
-                ...prev.problemSetResults,
-                [set.difficulty]: { correct, total },
-              },
-              // The run is complete — drop the mid-set checkpoint.
-              problemSetRuns: {
-                ...prev.problemSetRuns,
-                [set.difficulty]: undefined,
-              },
-            }))
+            update(
+              (prev) => ({
+                ...prev,
+                problemSetResults: {
+                  ...prev.problemSetResults,
+                  [set.difficulty]: { correct, total, at: Date.now() },
+                },
+                // The run is complete — drop the mid-set checkpoint.
+                problemSetRuns: {
+                  ...prev.problemSetRuns,
+                  [set.difficulty]: undefined,
+                },
+              }),
+              { immediate: true }
+            )
           }
         />
       )}
@@ -2700,6 +2826,31 @@ function ProblemSetRunner({
   const [submitted, setSubmitted] = useState(false)
   const [answers, setAnswers] = useState<boolean[]>(resume?.answers ?? [])
   const [done, setDone] = useState(false)
+
+  // Dialog semantics: Escape closes (an intentional gesture — the
+  // per-question checkpoint bounds the loss to the in-flight selection),
+  // body scroll locks, initial focus lands on the close button and
+  // returns to the trigger on close. Same proven pattern as
+  // ChapterMobileTOC. The backdrop deliberately does NOT close — a
+  // stray click mid-set used to abandon the run.
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null)
+  useEffect(() => {
+    const trigger = document.activeElement as HTMLElement | null
+    closeButtonRef.current?.focus()
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose()
+    }
+    window.addEventListener("keydown", onKey)
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      document.body.style.overflow = previousOverflow
+      trigger?.focus?.()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const current = set.questions[idx]
   const isTwoPart = !!current.twoPartColumns?.length
   const twoSel = isTwoPart
@@ -2735,10 +2886,11 @@ function ProblemSetRunner({
     <div
       className="fixed inset-0 z-40 flex items-start justify-center overflow-y-auto"
       style={{ backgroundColor: "rgba(0,0,0,0.75)" }}
-      onClick={onClose}
     >
       <div
-        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${set.difficulty} problem set`}
         className="w-full max-w-2xl my-8 mx-4 rounded-2xl border"
         style={{
           backgroundColor: "var(--read-bg-elevated)",
@@ -2766,8 +2918,9 @@ function ProblemSetRunner({
             </p>
           </div>
           <button
+            ref={closeButtonRef}
             onClick={onClose}
-            aria-label="Close"
+            aria-label="Close problem set"
             className="p-1.5 rounded transition-colors"
             style={{ color: "var(--read-text-faint)" }}
           >
