@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { AlertCircle, X } from "lucide-react"
-import { createSupabaseServer } from "@/lib/supabase/server"
+import { createSupabaseServer, getRequestUser } from "@/lib/supabase/server"
 import { getAllQuestions, getChapterTest, type ParsedQuestion } from "@/lib/content"
 import {
   classifyMistakes,
@@ -354,9 +354,9 @@ export default async function ErrorLogPage({
   if (mistakes.length > 0) {
     try {
       const supabase = await createSupabaseServer()
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
+      // Request-memoized — this page already resolved the user above; a
+      // second auth round-trip here was pure latency.
+      const user = await getRequestUser()
       if (user) {
         const untagged = mistakes
           .map((m, i) => ({ entry: m, classification: classifications[i] }))

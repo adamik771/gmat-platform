@@ -20,6 +20,10 @@ import type { Section } from "@/types"
  */
 
 const MIN_ATTEMPTS_FOR_WEAKNESS = 3
+/** A topic needs at least this many MISSES before it can be called weak —
+ *  one wrong answer out of three used to flag the topic and could headline
+ *  Today's Focus off a single slip. */
+const MIN_MISSES_FOR_WEAKNESS = 2
 const WEAK_TOPIC_THRESHOLD = 0.7 // accuracy below this = flag as weak
 const REVIEW_QUEUE_URGENT = 10 // if ≥ this many due, review-first
 
@@ -214,7 +218,11 @@ export async function computeStudyPlan(
   }
 
   const weakAreas: WeakArea[] = [...topicStats.entries()]
-    .filter(([, v]) => v.total >= MIN_ATTEMPTS_FOR_WEAKNESS)
+    .filter(
+      ([, v]) =>
+        v.total >= MIN_ATTEMPTS_FOR_WEAKNESS &&
+        v.total - v.correct >= MIN_MISSES_FOR_WEAKNESS
+    )
     .map(([topic, v]) => ({
       topic,
       section: v.section,
@@ -334,18 +342,27 @@ export async function computeStudyPlan(
     })
   }
 
-  // 4. Late-stage emphasis on mocks — if exam is close, nudge toward
-  // full-length timed practice.
-  if (daysUntilExam !== null && daysUntilExam > 0 && daysUntilExam <= 21) {
+  // 4. Late-stage emphasis on mocks — but only until the final week.
+  // Inside 7 days the advice flips to taper: GMAC's own guidance and the
+  // product's exam roadmap both say no full-length mocks in the final
+  // week (this card used to contradict the roadmap one click away).
+  if (daysUntilExam !== null && daysUntilExam > 0 && daysUntilExam <= 7) {
+    todaysFocus.push({
+      type: "review",
+      title: "Final week — taper",
+      subtitle:
+        "No more full-length mocks (matches your exam plan). Short timed sections and your review queue only.",
+      href: "/review",
+      cta: "Open review",
+      priority: 55,
+    })
+  } else if (daysUntilExam !== null && daysUntilExam > 7 && daysUntilExam <= 21) {
     todaysFocus.push({
       type: "mock",
-      title: `Build a timed mock`,
-      subtitle:
-        daysUntilExam <= 7
-          ? "Under a week out — simulate exam conditions every few days."
-          : `${daysUntilExam} days to go. Mix timed mocks into your rotation.`,
-      href: "/test-builder",
-      cta: "Build test",
+      title: `Run a timed mock`,
+      subtitle: `${daysUntilExam} days to go. Mix timed mocks into your rotation.`,
+      href: "/mock",
+      cta: "Go to mocks",
       priority: 55,
     })
   }
@@ -408,6 +425,12 @@ export function buildWeeklyCadence(
   if (hasReview) pool.push("review")
   if (hasWeakTopic) pool.push("chapter")
   pool.push("reading", "practice")
+  // An urgent queue earns a second weekly review slot — one slot in a
+  // 4-item rotation means ~2 review days/week, which can't drain a
+  // backlog that regrows on the ladder's 2-day rung.
+  if (hasReview && plan.reviewDueCount >= REVIEW_QUEUE_URGENT) {
+    pool.push("review")
+  }
   if (band === "low" && hasWeakTopic) {
     pool.splice(pool.indexOf("chapter"), 1)
     pool.unshift("chapter")

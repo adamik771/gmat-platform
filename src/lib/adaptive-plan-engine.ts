@@ -24,7 +24,7 @@ import {
   getCurriculumOutline,
   type OutlineEntry,
 } from "./curriculum-outline"
-import { getQuestionsByIds, type ParsedQuestion } from "./content"
+import { getAllChapters, getQuestionsByIds, type ParsedQuestion } from "./content"
 import { totalPercentile } from "./score-percentiles"
 import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "./topic-chapter-map"
 import type { Difficulty, QuestionType, Section } from "@/types"
@@ -188,6 +188,23 @@ export interface MockActivity {
 
 export type Weekday = "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun"
 
+/** Real per-chapter reading estimate (slug → estimated_minutes). Guides
+ *  and unknown slugs fall back to 25. Lazy so the pure planner stays
+ *  testable without touching the content loader until needed. */
+let chapterMinutesMap: Map<string, number> | null = null
+function chapterMinutes(slug: string): number {
+  if (!chapterMinutesMap) {
+    try {
+      chapterMinutesMap = new Map(
+        getAllChapters().map((c) => [c.slug, c.estimatedMinutes ?? 25])
+      )
+    } catch {
+      chapterMinutesMap = new Map()
+    }
+  }
+  return chapterMinutesMap.get(slug) ?? 25
+}
+
 export interface AdaptiveDay {
   day: number
   weekday: Weekday
@@ -264,6 +281,9 @@ export interface CollectSignalsOptions {
   practiceWindowDays?: number
   /** Optional flagged-question-id set for the spaced queue. */
   flaggedQuestionIds?: Set<string>
+  /** Self-reported weak areas from the onboarding intake — used only as
+   *  a cold-start seed when no attempt-derived signal exists yet. */
+  intakeWeakAreas?: string[]
 }
 
 /**
@@ -293,13 +313,18 @@ export async function collectAdaptiveSignals(
   // ---- All practice attempts (window-bounded) ----
   const cutoff = new Date()
   cutoff.setDate(cutoff.getDate() - practiceWindowDays)
+  // `!inner` is load-bearing: without it PostgREST keeps parent rows
+  // that fail the embedded date filter (it only nulls the embed), so the
+  // "window" silently matched ALL-TIME attempts; the order keeps the
+  // 5000-row cap on the RECENT slice (same pattern as review-queue.ts).
   const { data: rawAttempts } = await supabase
     .from("practice_attempts")
     .select(
-      "question_id, section, topic, subtopic, difficulty, question_type, is_correct, time_spent_ms, practice_sessions(created_at)"
+      "question_id, section, topic, subtopic, difficulty, question_type, is_correct, time_spent_ms, practice_sessions!inner(created_at)"
     )
     .eq("user_id", userId)
     .gte("practice_sessions.created_at", cutoff.toISOString())
+    .order("practice_sessions(created_at)", { ascending: false })
     .limit(5000)
 
   const attempts = (rawAttempts ?? []) as unknown as Array<{
@@ -568,9 +593,49 @@ export async function collectAdaptiveSignals(
       drivingQuestionIds: c.drivingMisses,
     })
   }
-  const recommendedChapters = [...recMap.values()]
+  let recommendedChapters = [...recMap.values()]
     .sort((a, b) => b.priority - a.priority)
     .slice(0, 8)
+
+  // Cold-start seed: a baseline-only student (official score entered, no
+  // practice attempts yet) has zero weakness signals, and every activity
+  // in the day planner is gated on them — the first two plan weeks
+  // rendered as 14 consecutive rest days. Seed from the intake's
+  // self-reported weak areas first (the wizard promises they shape week
+  // one), then the front of the guided path.
+  if (recommendedChapters.length === 0) {
+    const chapters = getAllChapters()
+    const bySlug = new Map(chapters.map((c) => [c.slug, c]))
+    const seeds: ChapterRecommendation[] = []
+    for (const area of options?.intakeWeakAreas ?? []) {
+      const slug = TOPIC_TO_CHAPTER[area]
+      const ch = slug ? bySlug.get(slug) : undefined
+      if (ch && ch.section !== "General" && !seeds.some((s) => s.chapterSlug === ch.slug)) {
+        seeds.push({
+          chapterSlug: ch.slug,
+          title: ch.title,
+          section: ch.section,
+          reason: "You flagged this area in onboarding",
+          priority: 60,
+          drivingQuestionIds: [],
+        })
+      }
+    }
+    for (const ch of chapters) {
+      if (seeds.length >= 6) break
+      if (ch.section === "General") continue
+      if (seeds.some((s) => s.chapterSlug === ch.slug)) continue
+      seeds.push({
+        chapterSlug: ch.slug,
+        title: ch.title,
+        section: ch.section,
+        reason: "Start of the guided path — practice data will refine this",
+        priority: 40,
+        drivingQuestionIds: [],
+      })
+    }
+    recommendedChapters = seeds
+  }
 
   // ---- Score baselines ----
   // Baseline total: the latest official mba.com practice-exam score the
@@ -774,7 +839,8 @@ export function inferProfile(
   signals: AdaptiveSignals,
   daysAvailable: number | null
 ): InferredProfile {
-  const baseline = signals.latestMockTotalScore ?? signals.diagnosticTotalScore
+  // Official-first, matching buildHeadline and /study-plan.
+  const baseline = signals.diagnosticTotalScore ?? signals.latestMockTotalScore
   let level: SkillLevel = "beginner"
   if (baseline !== null) {
     if (baseline >= 685) level = "advanced"
@@ -845,7 +911,9 @@ function buildProfileRationale(
   if (modifiers.includes("di-weak"))
     parts.push("DI accuracy ≥15 pts below your other sections — extra DI emphasis.")
   if (modifiers.includes("time-constrained") && daysAvailable !== null)
-    parts.push(`${daysAvailable} days to exam — skipping foundation week.`)
+    parts.push(
+      `${daysAvailable} days to exam — below the typical runway (most high scorers prep 7+ weeks), so this plan triages: drills and mocks on your highest-yield gaps, not the full curriculum.`
+    )
   if (modifiers.includes("long-prep") && daysAvailable !== null)
     parts.push(`${daysAvailable}+ days to exam — extended cadence with two mock cycles.`)
   return parts.join(" ")
@@ -936,8 +1004,13 @@ function buildHeadline(
   targetScore: number | null,
   weeks: number
 ): string {
-  const baseline = signals.latestMockTotalScore ?? signals.diagnosticTotalScore
-  const baselineSource = signals.latestMockTotalScore !== null ? "mock" : "diagnostic"
+  // Official-first: the official mba.com score IS the product's baseline
+  // anchor (matching /study-plan) — the in-app mock is the fallback, and
+  // labeling an official score "(diagnostic)" read as the product
+  // forgetting what it was told.
+  const baseline = signals.diagnosticTotalScore ?? signals.latestMockTotalScore
+  const baselineSource =
+    signals.diagnosticTotalScore !== null ? "baseline" : "mock"
   if (baseline === null) {
     return `Adaptive ${weeks}-week plan — enter an official practice-exam score to set the baseline.`
   }
@@ -1142,9 +1215,12 @@ function activitiesForDay(ctx: DayCtx): AdaptiveActivity[] {
     return []
   }
 
-  // Mock days — placed midweek (Wed) of mock weeks. Once per ~2 weeks
-  // when totalWeeks ≥ 3; or in the final week's Tuesday otherwise.
-  if (isMockWeek && weekday === "Wed") {
+  // Mock days — placed midweek (Wed) of mock weeks, EXCEPT the final
+  // week, where the last full mock moves to Monday: taper thereafter
+  // (short timed sets + review), matching the exam roadmap's no-mocks-in
+  // -the-final-days guidance instead of contradicting it.
+  const mockWeekday: Weekday = isLastWeek ? "Mon" : "Wed"
+  if (isMockWeek && weekday === mockWeekday) {
     activities.push({
       kind: "mock",
       section: null,
@@ -1187,7 +1263,10 @@ function activitiesForDay(ctx: DayCtx): AdaptiveActivity[] {
       title: ch.title,
       section: ch.section,
       rationale: ch.reason,
-      estimatedMinutes: 25,
+      // Real per-chapter estimate — chapters run 8-90 min and the flat
+      // 25 both under- and over-budgeted days. Guides (not in the
+      // chapter index) keep the old default.
+      estimatedMinutes: chapterMinutes(ch.chapterSlug),
     })
   }
 

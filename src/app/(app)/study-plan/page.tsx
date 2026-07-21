@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { perDayMinutes, weeklyHoursAdvice } from "@/lib/study-hours"
 import { daysUntil, localDayIso } from "@/lib/utils"
+import { getUserTz } from "@/lib/tz"
 import { isChapterRead } from "@/lib/chapter-progress-merge"
 import {
   ArrowRight,
@@ -61,6 +62,7 @@ export default async function StudyPlanPage({
   // Rendered in BOTH the pre-baseline early-return and the full plan below, so
   // a brand-new user (officialExamCount === 0) still sees it.
   const justOnboarded = (await searchParams).welcome === "1"
+  const tz = await getUserTz()
   const welcomeBanner = justOnboarded ? (
     <div
       className="flex items-start gap-3 px-5 py-4 rounded-2xl border"
@@ -184,7 +186,8 @@ export default async function StudyPlanPage({
       const [
         { data: weekSessions },
         { data: monthSessions },
-        { data: wrongAttempts },
+        { count: totalWrongCount },
+        { count: reviewedTagCount },
         planResult,
       ] = await Promise.all([
         supabase
@@ -197,11 +200,20 @@ export default async function StudyPlanPage({
           .select("created_at")
           .eq("user_id", user.id)
           .gte("created_at", thirtyAgo),
+        // Head-counts, not row transfer: the old full-id fetch fed a
+        // .in() filter whose GET URL blew past the proxy limit at the
+        // 1000-id cap — the query silently failed and the pending count
+        // inflated for exactly the heavy users it mattered to.
         supabase
           .from("practice_attempts")
-          .select("id")
+          .select("id", { count: "exact", head: true })
           .eq("user_id", user.id)
           .eq("is_correct", false),
+        supabase
+          .from("error_tags")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", user.id)
+          .eq("reviewed", true),
         computeStudyPlan(supabase, user.id, {
           targetScore,
           examDate,
@@ -215,34 +227,24 @@ export default async function StudyPlanPage({
       // session must land on the local day's dot, not the next UTC day's.
       for (const s of weekSessions ?? []) {
         const d = new Date(s.created_at as string)
-        activityDays.add(localDayIso(d))
+        activityDays.add(localDayIso(d, tz))
         studyHoursWeek += ((s.total_time_ms as number) ?? 0) / 3600000
       }
 
       // Past-30-day activity days for "days practiced" — streak proxy.
       const monthDays = new Set<string>()
       for (const s of monthSessions ?? []) {
-        monthDays.add(localDayIso(new Date(s.created_at as string)))
+        monthDays.add(localDayIso(new Date(s.created_at as string), tz))
       }
       studyDays30Count = monthDays.size
 
       // Pending-mistake count drives the error-review suggestion in the
-      // weekly schedule. Counts wrong attempts whose error_tags row either
-      // doesn't exist OR has reviewed=false — anything the user hasn't
-      // cleared through the error log yet.
-      const wrongIds = (wrongAttempts ?? []).map((a) => a.id as string)
-      if (wrongIds.length > 0) {
-        const { data: reviewedTags } = await supabase
-          .from("error_tags")
-          .select("attempt_id")
-          .eq("user_id", user.id)
-          .eq("reviewed", true)
-          .in("attempt_id", wrongIds)
-        const reviewedSet = new Set(
-          (reviewedTags ?? []).map((t) => t.attempt_id as string)
-        )
-        pendingMistakeCount = wrongIds.filter((id) => !reviewedSet.has(id)).length
-      }
+      // weekly schedule: wrong attempts minus reviewed ones — the same
+      // definition the dashboard chip uses.
+      pendingMistakeCount = Math.max(
+        0,
+        (totalWrongCount ?? 0) - (reviewedTagCount ?? 0)
+      )
 
       // Adaptive plan (Today's focus + weak areas + queue counts) — computed
       // concurrently in the Promise.all above.
@@ -423,7 +425,6 @@ export default async function StudyPlanPage({
   // student has touched, so a single unread section in chapter 1 no longer pins
   // "Welcome to the GMAT" as next after they've moved on (see pickNextChapters).
   const {
-    nextUp: nextChapterUp,
     upcoming: upcomingChapters,
     readingQueue: nextReadingQueue,
   } = pickNextChapters(pathChapters, isChapterReadHere, isChapterEngaged)
@@ -449,28 +450,23 @@ export default async function StudyPlanPage({
   const suggestionByKey = new Map<string, DailySuggestion>()
 
   // ---------- Derived: calendar for the current week (Sun → Sat) ----------
-  const today = new Date()
-  const sunday = new Date(today)
-  sunday.setHours(0, 0, 0, 0)
-  sunday.setDate(today.getDate() - today.getDay())
-  const todayStart = new Date(today)
-  todayStart.setHours(0, 0, 0, 0)
-  const todayStartMs = todayStart.getTime()
+  // The USER's current week (tz cookie), not the server's — on UTC
+  // production servers the whole calendar could sit on the wrong day for
+  // evening users. Day arithmetic runs on date-only ISO strings parsed
+  // as UTC midnights, which is exact.
+  const todayIso = localDayIso(new Date(), tz)
+  const todayMs = Date.parse(todayIso)
+  const DAY_MS = 86400000
+  const todayDow = new Date(todayMs).getUTCDay()
   const weekDays = Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(sunday)
-    d.setDate(sunday.getDate() + i)
-    // Same local-day key as activityDays — toISOString() on a local-midnight
-    // date shifts to the previous UTC day in positive-offset timezones,
-    // which would leave every dot one cell off (or missing entirely).
-    const key = localDayIso(d)
-    const isToday = d.getTime() === todayStartMs
-    const isPast = d.getTime() < todayStartMs
+    const dMs = todayMs + (i - todayDow) * DAY_MS
+    const key = new Date(dMs).toISOString().slice(0, 10)
     return {
       weekdayLabel: WEEKDAY_LABELS[i],
-      date: d,
+      date: new Date(dMs),
       key,
-      isToday,
-      isPast,
+      isToday: dMs === todayMs,
+      isPast: dMs < todayMs,
       hasActivity: activityDays.has(key),
     }
   })
@@ -478,19 +474,25 @@ export default async function StudyPlanPage({
   // Walk future days and assign a pre-computed suggestion from the
   // adaptive cadence. Today isn't given a calendar suggestion — the
   // "Today's focus" card above owns that.
-  let cadenceIdx = 0
-  for (const day of weekDays) {
-    if (day.isPast || day.isToday) continue
-    const suggestion = weeklyCadence[cadenceIdx % weeklyCadence.length]
-    cadenceIdx++
+  //
+  // Index by WEEKDAY POSITION, not a running counter: the counter version
+  // gave the first future day cadence[0] every day, so the whole week's
+  // suggestions silently shifted forward one cell each real day ("Wed:
+  // Practice set" became "Wed: read chapter X" when Wednesday arrived),
+  // and slot 6 — the high-band "Light review + rest" day — was
+  // unreachable (max 6 future days). Weekday-anchored, a given day keeps
+  // its suggestion all week and the rest day lands on Saturday.
+  weekDays.forEach((day, i) => {
+    if (day.isPast || day.isToday) return
+    const suggestion = weeklyCadence[i]
     if (suggestion) suggestionByKey.set(day.key, suggestion)
-  }
+  })
 
   // ---------- Derived: exam readiness ----------
   // Shared local-midnight parse — the naive new Date("YYYY-MM-DD") (UTC)
   // version read a day short in positive-offset timezones and disagreed
   // with the engine's own countdown.
-  const daysUntilExam = daysUntil(examDate)
+  const daysUntilExam = daysUntil(examDate, tz)
 
   // === Stage gate ===
   // The page promises an "adaptive plan" but the engine has no real
@@ -613,7 +615,7 @@ export default async function StudyPlanPage({
                 {
                   label: "Target score",
                   done: targetScore !== null,
-                  href: "/dashboard#score-goal",
+                  href: "/onboarding",
                 },
                 {
                   label: "Exam date",
@@ -1061,10 +1063,11 @@ export default async function StudyPlanPage({
                         className="w-2 h-2 rounded-full"
                         style={{ backgroundColor: "#C9A84C" }}
                       />
+                      {/* Defer to Today's Focus instead of prescribing a
+                          chapter here — the two used to disagree on the
+                          same page. */}
                       <p className="text-xs text-[#C0C0C0] leading-snug">
-                        {nextChapterUp
-                          ? `Next: ${nextChapterUp.title}`
-                          : "Run a practice set"}
+                        See Today&apos;s focus above
                       </p>
                     </>
                   ) : isPast ? (

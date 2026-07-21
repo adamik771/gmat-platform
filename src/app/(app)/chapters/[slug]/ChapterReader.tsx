@@ -930,8 +930,15 @@ export default function ChapterReader({
     }
   }, [slug, pushSuppressed])
 
-  const totalSections = sections.length
-  const completedSections = sections.filter(
+  // Readings-only — THE shared completion rule (isChapterRead). The reader
+  // used to count pretest + summary cards in its %, so 60 of 62 chapters
+  // showed 50-83% here at the exact moment /chapters, the dashboard, and
+  // the study plan called them complete — and the completion card (the
+  // only prev/next-chapter navigation) never unlocked. Pretest and
+  // summary stay visible as TOC check-ins; they just don't gate.
+  const readingSections = sections.filter((s) => s.type === "reading")
+  const totalSections = readingSections.length
+  const completedSections = readingSections.filter(
     (s) => progress.sectionsRead[s.id]
   ).length
   const percentComplete =
@@ -1105,7 +1112,7 @@ export default function ChapterReader({
             style={{ color: "var(--read-text-faint)" }}
           >
             <span>
-              {completedSections} of {totalSections} sections complete
+              {completedSections} of {totalSections} readings complete
             </span>
             <span
               className="font-display tabular-nums normal-case tracking-normal text-[13px]"

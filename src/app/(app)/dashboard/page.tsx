@@ -23,7 +23,7 @@ import StudyHoursChart from "./StudyHoursChart"
 import FirstRunGuide from "./FirstRunGuide"
 import ConsultOffer from "./ConsultOffer"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
-import { createSupabaseServer } from "@/lib/supabase/server"
+import { createSupabaseServer, getRequestUser } from "@/lib/supabase/server"
 import { getReviewQueue, type ReviewCandidate } from "@/lib/review-queue"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { TRIAL_DAYS, trialDaysLeft, trialStartFor } from "@/lib/entitlements"
@@ -48,9 +48,10 @@ import type { Section } from "@/types"
 import { getUserState, type UserState } from "@/lib/user-state"
 import { isChapterRead } from "@/lib/chapter-progress-merge"
 import { deriveFirst48Steps, first48Complete } from "./first48"
-import { sectionScoresToTotal } from "@/lib/scoring"
+import { SECTION_TOTAL_ESTIMATE_SWING, sectionScoresToTotal } from "@/lib/scoring"
 import { accuracyToSectionScore } from "@/lib/score-percentiles"
 import { isReplaySession, localDayIso } from "@/lib/utils"
+import { getUserTz } from "@/lib/tz"
 import TargetScoreControl from "./TargetScoreControl"
 
 const PLAN_LABELS: Record<string, string> = {
@@ -64,8 +65,23 @@ function planLabel(id: string): string {
   return PLAN_LABELS[id] ?? id
 }
 
-function timeOfDayGreeting(): string {
-  const hour = new Date().getHours()
+function timeOfDayGreeting(tz?: string | null): string {
+  // The USER's clock, not the server's — a UTC server told evening
+  // students "Good afternoon".
+  let hour = new Date().getHours()
+  if (tz) {
+    try {
+      hour = Number(
+        new Intl.DateTimeFormat("en-US", {
+          timeZone: tz,
+          hour: "numeric",
+          hour12: false,
+        }).format(new Date())
+      )
+    } catch {
+      // Invalid tz — server hour stands.
+    }
+  }
   if (hour < 12) return "Good morning"
   if (hour < 18) return "Good afternoon"
   return "Good evening"
@@ -80,10 +96,7 @@ export default async function DashboardPage() {
   {
     let needsOnboarding = false
     try {
-      const supabaseGuard = await createSupabaseServer()
-      const {
-        data: { user: guardUser },
-      } = await supabaseGuard.auth.getUser()
+      const guardUser = await getRequestUser()
       const ob = guardUser?.user_metadata?.onboarding as
         | { completedAt?: unknown; skippedAt?: unknown }
         | undefined
@@ -142,8 +155,7 @@ export default async function DashboardPage() {
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     if (supabaseUrl && supabaseKey && supabaseUrl !== "your_supabase_url") {
       const supabase = await createSupabaseServer()
-      const { data } = await supabase.auth.getUser()
-      user = data.user
+      user = await getRequestUser()
 
       if (user) {
         state = await getUserState(supabase, user)
@@ -161,10 +173,10 @@ export default async function DashboardPage() {
           // and `flaggedQuestionIds` inputs. Failures are non-fatal:
           // the hero card just doesn't render.
           try {
-            const metaOfficialEarly = state.official_exam_scores
-            const officialCount = Array.isArray(metaOfficialEarly)
-              ? metaOfficialEarly.length
-              : 0
+            // Canonical derivation — the raw-array length disagreed with
+            // the parser (malformed entries counted), so this surface and
+            // study-plan could disagree about whether a baseline exists.
+            const officialCount = parseOfficialExamEntries(state).length
             // Single review-queue fetch, shared with the metrics batch's
             // review widget below (this was a duplicate 12-week
             // practice_attempts scan). Passing it into the engine stops it
@@ -221,10 +233,19 @@ export default async function DashboardPage() {
               const chapter = allChapters.find((c) => c.slug === bestSlug)
               const entry = rawProgress[bestSlug]
               if (chapter && entry) {
-                const total = chapter.sections.length
-                const read = chapter.sections.filter(
+                // Readings-only, the shared completion rule (isChapterRead)
+                // — this card used to require pretest+summary clicks and
+                // could show an in-progress % for a chapter every other
+                // surface already called complete.
+                const readingSections = chapter.sections.filter(
+                  (s) => s.type === "reading"
+                )
+                const total = readingSections.length
+                const read = readingSections.filter(
                   (s) => entry.sectionsRead?.[s.id]
                 ).length
+                // Scroll anchor still walks ALL sections so it can't jump
+                // past an untouched pretest (matches /chapters).
                 const firstUnread = chapter.sections.find(
                   (s) => !entry.sectionsRead?.[s.id]
                 )
@@ -274,13 +295,15 @@ export default async function DashboardPage() {
   const firstName: string | null =
     fullName && fullName.trim().length > 0 ? fullName.trim().split(/\s+/)[0] : null
 
+  const tz = await getUserTz()
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
+    ...(tz ? { timeZone: tz } : {}),
   })
 
-  const greeting = timeOfDayGreeting()
+  const greeting = timeOfDayGreeting(tz)
 
   // ---------- Query progress data from Supabase ----------
   let questionsThisWeek = 0
@@ -341,10 +364,11 @@ export default async function DashboardPage() {
       const userId = user.id
 
       // Time windows for the per-user reads below (computed once).
+      // (Rolling 7-day windows are timezone-independent; the "today"
+      // count is derived below from allSessions using the USER's day
+      // boundary — a dedicated server-midnight query was UTC-midnight
+      // in production and counted the wrong sessions.)
       const weekAgo = new Date(Date.now() - 7 * 86400000).toISOString()
-      const localMidnightIso = new Date(
-        new Date(new Date().toDateString()).getTime()
-      ).toISOString()
 
       // Fire every independent per-user read in ONE parallel batch instead of
       // ~13 sequential round-trips. Each query depends only on userId/time —
@@ -352,7 +376,6 @@ export default async function DashboardPage() {
       // behaviour-preserving and just collapses the latency.
       const [
         weekSessionsRes,
-        todaySessionsRes,
         totalSessionRes,
         sectionAttemptsRes,
         completedCountRes,
@@ -361,7 +384,8 @@ export default async function DashboardPage() {
         allSessionsRes,
         allCompletionsRes,
         customProbeRes,
-        tagRowsRes,
+        allTagCountRes,
+        reviewedTagCountRes,
         totalWrongRes,
       ] = await Promise.all([
         supabase
@@ -371,16 +395,14 @@ export default async function DashboardPage() {
           .gte("created_at", weekAgo),
         supabase
           .from("practice_sessions")
-          .select("total_questions, created_at")
-          .eq("user_id", userId)
-          .gte("created_at", localMidnightIso),
-        supabase
-          .from("practice_sessions")
           .select("id", { count: "exact", head: true })
           .eq("user_id", userId),
         supabase
           .from("practice_attempts")
-          .select("section, is_correct")
+          // The embedded slug/topic let the est-score inputs exclude
+          // replay sessions (review/redo/mixed) — the page's own rule
+          // for accuracy metrics, previously violated only here.
+          .select("section, is_correct, practice_sessions!inner(slug, topic)")
           .eq("user_id", userId)
           // Safety cap against an unbounded multi-year history. The section
           // stats below aggregate order-independently; created_at (not a
@@ -411,11 +433,20 @@ export default async function DashboardPage() {
         supabase
           .from("practice_sessions")
           .select("created_at, total_questions, total_time_ms, slug")
-          .eq("user_id", userId),
+          .eq("user_id", userId)
+          // ponytail: 5000 newest sessions ≈ years of daily use. Without
+          // order+limit, PostgREST's ~1000-row cap silently returned an
+          // ARBITRARY slice for power users — feeding streaks, badges,
+          // and the hours chart. All-time badges saturate long before
+          // this ceiling; revisit only if someone truly exceeds it.
+          .order("created_at", { ascending: false })
+          .limit(5000),
         supabase
           .from("lesson_completions")
           .select("completed_at")
-          .eq("user_id", userId),
+          .eq("user_id", userId)
+          .order("completed_at", { ascending: false })
+          .limit(5000),
         supabase
           .from("practice_sessions")
           .select("id")
@@ -423,7 +454,17 @@ export default async function DashboardPage() {
           .eq("slug", "custom")
           .limit(1)
           .maybeSingle(),
-        supabase.from("error_tags").select("reviewed").eq("user_id", userId),
+        // Head-counts instead of full-row transfer — the page only needs
+        // the two numbers.
+        supabase
+          .from("error_tags")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", userId),
+        supabase
+          .from("error_tags")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", userId)
+          .eq("reviewed", true),
         supabase
           .from("practice_attempts")
           .select("id", { count: "exact", head: true })
@@ -465,9 +506,8 @@ export default async function DashboardPage() {
       questionsThisWeek =
         weekSessions?.reduce((s, r) => s + r.total_questions, 0) ?? 0
 
-      const { data: todaySessions } = todaySessionsRes
-      questionsToday =
-        todaySessions?.reduce((s, r) => s + r.total_questions, 0) ?? 0
+      // questionsToday is derived from allSessions below, using the
+      // USER's day boundary (tz cookie) instead of server midnight.
 
       // Question-weighted, and replay sessions excluded: an unweighted mean
       // of session accuracies let a 2-question review at 50% count the same
@@ -494,10 +534,20 @@ export default async function DashboardPage() {
       // buckets for trend calculations.
       const { data: sectionAttempts } = sectionAttemptsRes
 
-      for (const a of (sectionAttempts as Array<{
+      for (const a of (sectionAttempts as unknown as Array<{
         section: string
         is_correct: boolean
+        practice_sessions: { slug?: string; topic?: string } | null
       }> | null) ?? []) {
+        // Replay sessions (review/redo/mixed) are excluded from the
+        // est-score inputs — the same rule every other accuracy metric
+        // on this page follows. Replaying your misses should never drag
+        // the estimate down.
+        if (
+          isReplaySession(a.practice_sessions?.slug, a.practice_sessions?.topic)
+        ) {
+          continue
+        }
         const sec = a.section as Section
         if (!sectionStats[sec]) continue
         sectionStats[sec].overall.total++
@@ -542,15 +592,21 @@ export default async function DashboardPage() {
       const { data: allSessions } = allSessionsRes
       const { data: allCompletions } = allCompletionsRes
 
+      const todayKey = localDayIso(new Date(), tz)
       const activeDays = new Set<string>()
       let totalQuestions = 0
       let largestSessionQuestions = 0
       let hasReviewSession = false
       for (const s of allSessions ?? []) {
-        // Local day, not UTC slice — a late-evening Oslo session belongs to
-        // the local day's streak, not the next UTC day's.
-        const iso = localDayIso(new Date(s.created_at as string))
+        // The USER's local day (tz cookie), not the server's — on UTC
+        // production servers a late-evening Oslo session used to land on
+        // the next day's streak dot while the client-rendered hours
+        // chart showed it on the right day.
+        const iso = localDayIso(new Date(s.created_at as string), tz)
         activeDays.add(iso)
+        if (iso === todayKey) {
+          questionsToday += (s.total_questions as number) ?? 0
+        }
         if (String((s as { slug?: unknown }).slug ?? "").startsWith("review-")) {
           hasReviewSession = true
         }
@@ -561,10 +617,26 @@ export default async function DashboardPage() {
         if (ms > 0) studySessions.push({ t: s.created_at as string, ms })
       }
       for (const c of allCompletions ?? []) {
-        activeDays.add(localDayIso(new Date(c.completed_at as string)))
+        activeDays.add(localDayIso(new Date(c.completed_at as string), tz))
+      }
+      // ponytail: chapter reading days are only partially recoverable —
+      // each chapter stores just firstSeenAt/lastSeenAt, so this keeps
+      // TODAY's chapter work counting toward the streak but cannot
+      // reconstruct intermediate reading days. Real fix = per-day keys
+      // in the chapter-progress route (deferred).
+      const chapterDayEntries = (state.chapter_progress ?? null) as
+        | Record<string, { firstSeenAt?: number; lastSeenAt?: number }>
+        | null
+      for (const entry of Object.values(chapterDayEntries ?? {})) {
+        if (typeof entry?.firstSeenAt === "number") {
+          activeDays.add(localDayIso(new Date(entry.firstSeenAt), tz))
+        }
+        if (typeof entry?.lastSeenAt === "number") {
+          activeDays.add(localDayIso(new Date(entry.lastSeenAt), tz))
+        }
       }
 
-      const streak = computeStreaks(activeDays)
+      const streak = computeStreaks(activeDays, tz)
       currentStreak = streak.current
       longestStreak = streak.longest
       studyDayCount = activeDays.size
@@ -573,14 +645,9 @@ export default async function DashboardPage() {
       const { data: customProbe } = customProbeRes
       const hasCustomTest = !!customProbe
 
-      // Reviewed vs tagged mistakes — badge progress.
-      const { data: tagRows } = tagRowsRes
-      let taggedMistakeCount = 0
-      let reviewedMistakeCount = 0
-      for (const t of tagRows ?? []) {
-        taggedMistakeCount++
-        if (t.reviewed) reviewedMistakeCount++
-      }
+      // Reviewed vs tagged mistakes — badge progress (head-counts).
+      const taggedMistakeCount = allTagCountRes.count ?? 0
+      const reviewedMistakeCount = reviewedTagCountRes.count ?? 0
       guideReviewUsed = hasReviewSession || reviewedMistakeCount > 0
 
       // Mistakes still to clear = total wrong attempts − reviewed ones.
@@ -612,6 +679,9 @@ export default async function DashboardPage() {
         totalSessions: totalSessionCount ?? 0,
         totalQuestions,
         lessonsCompleted: lessonsCompletedCount + chaptersReadForBadges,
+        // "Curriculum Complete" means the whole course, not the legacy
+        // 8-lesson library it was originally sized for.
+        curriculumSize: getAllChapters().length,
         longestStreak,
         currentStreak,
         taggedMistakeCount,
@@ -796,7 +866,9 @@ export default async function DashboardPage() {
   // the app ever mentioned it again; a student who took the framing literally
   // hit day 8 with no signal. One honest line: day counter while it runs, and
   // the over-delivery message after (paywall is off, access continues free).
-  const trialStart = user ? trialStartFor(user) : null
+  // Users with a purchased plan are not on a trial — the "Trial period
+  // over" line used to render 30px from their paid-plan chip.
+  const trialStart = user && !currentPlan ? trialStartFor(user) : null
   const trialLeft = trialStart ? trialDaysLeft(trialStart, new Date()) : null
   const trialLine =
     trialLeft === null
@@ -865,7 +937,10 @@ export default async function DashboardPage() {
       key: "target",
       label: "Set your target score",
       description: "Drives every accuracy target across the app.",
-      href: "/dashboard#score-goal",
+      // /onboarding, not the #score-goal anchor: the anchor (and its
+      // editor) only exists on the has-data dashboard branch, so for the
+      // zero-data users this checklist serves, the link went nowhere.
+      href: "/onboarding",
       done: onboardingTargetSet,
       cta: "Set target",
     },
@@ -1628,26 +1703,24 @@ export default async function DashboardPage() {
               {courseCompletionPct}%
             </p>
             <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mt-2">
-              <span className="text-[11px] text-[#888888]">
-                {completedChapters}/{totalChapters} chapters
-              </span>
-              <span className="text-[11px] text-[#555555]" aria-hidden>
-                ·
-              </span>
+              {/* The N/62 fraction was a pure restatement of the big %
+                  four lines up — one representation is enough. */}
               <TargetScoreControl
                 initialTarget={targetScore}
                 estimate={estimatedTotal}
               />
               {/* The one on-dashboard readiness readout — the pre-data locked
                   tile promises a 205-805 estimate, and this is where it lands
-                  once every section clears the 10-attempt sample gate. */}
+                  once every section clears the 10-attempt sample gate. The
+                  ±band is the mapping's own documented swing (scoring.ts) —
+                  a bare point number overstated the precision. */}
               {estimatedTotal !== null && (
                 <>
-                  <span className="text-[11px] text-[#555555]" aria-hidden>
+                  <span className="text-[11px] text-[#888888]" aria-hidden>
                     ·
                   </span>
                   <span className="text-[11px] tabular-nums" style={{ color: "#C9A84C" }}>
-                    est. {estimatedTotal}
+                    est. {estimatedTotal} ±{SECTION_TOTAL_ESTIMATE_SWING}
                   </span>
                 </>
               )}
@@ -1659,28 +1732,47 @@ export default async function DashboardPage() {
             <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
               Streak
             </p>
-            <p
-              className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
-              style={{ color: currentStreak > 0 ? "#F0F0F0" : "#555555" }}
-            >
-              {currentStreak > 0 ? currentStreak : "—"}
-              {currentStreak > 0 && (
-                <span className="text-[12px] font-medium text-[#888888] ml-1.5">
-                  {currentStreak === 1 ? "day" : "days"}
-                </span>
-              )}
-            </p>
-            {longestStreak > currentStreak && (
-              <p className="text-[11px] mt-1.5" style={{ color: "#555555" }}>
-                best {longestStreak}d
-              </p>
+            {currentStreak === 0 && longestStreak > 0 ? (
+              /* Recovery framing beats a dimmed dash: a broken streak
+                 shown as loss discourages exactly the lapsed student who
+                 needs a reason to restart (fresh-start framing). */
+              <>
+                <p className="font-display text-[1.35rem] font-semibold tracking-[-0.02em] leading-none mt-2 text-[#F0F0F0]">
+                  Fresh start
+                </p>
+                <p className="text-[11px] mt-1.5 text-[#888888]">
+                  best run {longestStreak}d — one session restarts it
+                </p>
+              </>
+            ) : (
+              <>
+                <p
+                  className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
+                  style={{ color: currentStreak > 0 ? "#F0F0F0" : "#555555" }}
+                >
+                  {currentStreak > 0 ? currentStreak : "—"}
+                  {currentStreak > 0 && (
+                    <span className="text-[12px] font-medium text-[#888888] ml-1.5">
+                      {currentStreak === 1 ? "day" : "days"}
+                    </span>
+                  )}
+                </p>
+                {longestStreak > currentStreak && (
+                  <p className="text-[11px] mt-1.5" style={{ color: "#888888" }}>
+                    best {longestStreak}d
+                  </p>
+                )}
+              </>
             )}
           </div>
 
-          {/* This week — questions */}
+          {/* Last 7 days — questions. Labeled honestly: this is a rolling
+              window, while the hours chart's "This week" below is a
+              Mon–Sun calendar week — two different windows must not share
+              one name. */}
           <div className="px-1 py-3 sm:px-4 sm:py-1">
             <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
-              This week
+              Last 7 days
             </p>
             <p
               className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"

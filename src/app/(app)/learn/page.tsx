@@ -339,7 +339,7 @@ export default async function CoursePage() {
               </p>
               {[
                 { label: "Baseline exam", done: baselineEntered, href: "/mock" },
-                { label: "Target score", done: targetScore !== null, href: "/dashboard#score-goal" },
+                { label: "Target score", done: targetScore !== null, href: "/onboarding" },
                 { label: "Exam date", done: examDate !== null, href: "/settings" },
               ].map((row) => (
                 <Link

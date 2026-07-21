@@ -288,7 +288,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
     if (now - breakStartMs >= BREAK_SECONDS * 1000) {
       endBreak()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [now, phase, breakStartMs])
 
   // Redirect to the report once the last section is done — but only

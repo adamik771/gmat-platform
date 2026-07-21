@@ -182,6 +182,24 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   // online. Empty until auth resolves; the trigger no-ops on empty.
   const [userId, setUserId] = useState("")
 
+  // Publish the browser's IANA timezone as a cookie so server components
+  // can compute the USER's day boundaries (streaks, "today" counts,
+  // calendar dots). Production servers run UTC — without this, every
+  // "local day" was a UTC day and late-evening sessions broke streaks.
+  useEffect(() => {
+    try {
+      // IANA names (letters/digits/_ / + -) are cookie-safe unencoded —
+      // encoding would percent-escape the slash and break the server's
+      // validation regex.
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+      if (tz && /^[A-Za-z0-9_+/-]{1,64}$/.test(tz) && !document.cookie.includes(`tz=${tz}`)) {
+        document.cookie = `tz=${tz}; path=/; max-age=31536000; samesite=lax`
+      }
+    } catch {
+      // No Intl or cookies blocked — server-timezone math remains.
+    }
+  }, [])
+
   useEffect(() => {
     const supabase = createSupabaseBrowser()
     supabase.auth.getUser().then(({ data: { user } }) => {

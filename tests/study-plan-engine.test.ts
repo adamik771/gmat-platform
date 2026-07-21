@@ -247,15 +247,30 @@ describe("buildWeeklyCadence — output varies with inputs (not a fixed rotation
     expect(types(heavy)).not.toEqual(types(empty))
   })
 
-  it("review count changes only labels, not the type pattern, for same structure", () => {
+  it("review count below the urgent threshold changes only labels, not the type pattern", () => {
     const a = buildWeeklyCadence(plan({ reviewDueCount: 5 }), [])
-    const b = buildWeeklyCadence(plan({ reviewDueCount: 25 }), [])
+    const b = buildWeeklyCadence(plan({ reviewDueCount: 9 }), [])
     expect(types(a)).toEqual(types(b))
     const la = a.find((d) => d.type === "review")!.label
     const lb = b.find((d) => d.type === "review")!.label
     expect(la).toBe("Review 5 due")
-    expect(lb).toBe("Review 25 due")
+    expect(lb).toBe("Review 9 due")
     expect(la).not.toBe(lb)
+  })
+
+  it("an urgent review backlog (>= 10 due) earns a second weekly review slot", () => {
+    const readings = [reading("r1", "R1"), reading("r2", "R2")]
+    const calm = buildWeeklyCadence(
+      plan({ reviewDueCount: 5, weakAreas: [weakArea("W", "w")] }),
+      readings
+    )
+    const urgent = buildWeeklyCadence(
+      plan({ reviewDueCount: 25, weakAreas: [weakArea("W", "w")] }),
+      readings
+    )
+    const reviewDays = (days: typeof calm) =>
+      days.filter((d) => d.type === "review").length
+    expect(reviewDays(urgent)).toBeGreaterThan(reviewDays(calm))
   })
 
   it("full pool (review + weak chapter + reading + practice) yields review, chapter, and practice days", () => {

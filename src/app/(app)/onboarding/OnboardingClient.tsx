@@ -419,15 +419,15 @@ function stepDescription(step: StepId): string {
     case "baseline-info":
       return "The single data point the whole plan calibrates from. Here's how to get it."
     case "current-score":
-      return "If you've taken the test or a recent mock, paste the score in — it seeds your first week. Skip if not. (Your official baseline still gets logged on the Mock page.)"
+      return "Optional context for your records. Skip freely — the plan runs on your official baseline, which gets logged on the Mock page."
     case "weekly-hours":
       return "Honest answer here. The plan only works if it fits your real schedule, not your aspirational one."
     case "weak-areas":
-      return "What you say here only seeds the first week. Your baseline exam + ongoing data refine it from there."
+      return "These seed your multi-week plan until real practice data takes over — the chapters you flag here lead week one."
     case "prep-history":
       return "Different starting points need different first weeks. The baseline exam anchors it either way."
     case "review":
-      return "Confirm your answers — you can change them anytime in Settings."
+      return "Confirm your answers — you can reopen this wizard from your study plan to change them."
   }
 }
 
@@ -442,7 +442,10 @@ function isStepValid(step: StepId, state: OnboardingState): boolean {
     case "current-score":
       return true // null OK
     case "weekly-hours":
-      return state.weeklyHours >= 1 && state.weeklyHours <= 40
+      return (
+        state.weeklyHours >= WEEKLY_HOURS_MIN &&
+        state.weeklyHours <= WEEKLY_HOURS_MAX
+      )
     case "weak-areas":
       return true // empty OK
     case "prep-history":
@@ -503,8 +506,8 @@ function BaselineInfoStep() {
       <p className="text-[13px] text-[#888888] leading-relaxed">
         When you have your score, log it on the{" "}
         <span className="text-[#C0C0C0]">Mock</span> page — that entry is
-        what unlocks your study plan and analytics. The next step only asks
-        for a rough prior score so the first week isn&apos;t flying blind.
+        what unlocks your study plan and analytics. The next step&apos;s
+        rough prior score is optional context only.
       </p>
     </div>
   )
@@ -680,7 +683,7 @@ function WeeklyHoursStep({
       />
       <div className="flex justify-between text-[11px] text-[#555555] mt-2 uppercase tracking-[0.16em] font-medium">
         <span>{WEEKLY_HOURS_MIN} hr</span>
-        <span>20 hr</span>
+        <span>14 hr</span>
         <span>{WEEKLY_HOURS_MAX} hr</span>
       </div>
       <p className="text-[12px] text-[#888888] leading-relaxed mt-5">
@@ -847,9 +850,12 @@ function ReviewStep({ state }: { state: OnboardingState }) {
         PREP_HISTORY_OPTIONS.find((o) => o.id === state.prepHistory)?.label ?? state.prepHistory,
     },
   ]
+  // Retakers land on the same locked plan as everyone else until an
+  // official score is LOGGED — promising "open your adaptive plan" here
+  // read as the product forgetting the score they just typed in.
   const next =
     state.prepHistory === "retake"
-      ? "Open your adaptive plan."
+      ? "Log your existing official score on the Mock page — that entry unlocks your adaptive plan."
       : "Take an official mba.com practice exam to set your baseline."
   return (
     <div>

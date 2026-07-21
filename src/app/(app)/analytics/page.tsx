@@ -323,7 +323,10 @@ export default async function AnalyticsPage() {
         const ep = agg.error_patterns
         if (ep) {
           const totalLabelled = ep.efficient + ep.labored + ep.rushed + ep.stuck
-          if (totalLabelled > 0) {
+          // n >= 30: tempo-pattern shares at a handful of labelled
+          // attempts are noise presented as diagnosis ("you rush") —
+          // hold the card back until the sample can carry it.
+          if (totalLabelled >= 30) {
             errorPatterns = {
               efficient: ep.efficient,
               labored: ep.labored,
