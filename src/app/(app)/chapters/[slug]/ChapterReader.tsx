@@ -1152,8 +1152,9 @@ export default function ChapterReader({
           <span aria-hidden style={{ color: "var(--read-gold)" }}>
             ●
           </span>
-          Progress is saved on this device but hasn&apos;t synced yet — it
-          will retry automatically.
+          {pushSuppressed
+            ? "Couldn't load your saved progress for this chapter, so changes are staying on this device only — reload the page before continuing so it can sync."
+            : "Progress is saved on this device but hasn't synced yet — it will retry automatically."}
         </div>
       )}
 
@@ -2191,6 +2192,22 @@ function InlineQuestion({
   const [draftExplanation, setDraftExplanation] = useState(
     state.selfExplanation
   )
+  // Commit the draft into chapter progress (localStorage + queued push).
+  // Runs on blur AND on tab-hide: without the pagehide path, text typed
+  // and never blurred (Cmd+W with focus still in the box) was lost —
+  // pre-draft every keystroke persisted.
+  // Latest draft/stored/update in refs so the tab-hide listener
+  // (registered once) reads current values without re-subscribing on
+  // every keystroke. Writes happen in an effect, not during render.
+  const draftRef = useRef(draftExplanation)
+  const storedRef = useRef(state.selfExplanation)
+  const updateRef = useRef(update)
+  useEffect(() => {
+    draftRef.current = draftExplanation
+    storedRef.current = state.selfExplanation
+    updateRef.current = update
+  }, [draftExplanation, state.selfExplanation, update])
+
   // Render-time resync when the stored value changes underneath
   // (cross-device hydrate) and the student isn't mid-edit — same
   // prev-state pattern as SaveForReviewButton.
@@ -2221,6 +2238,33 @@ function InlineQuestion({
     },
     [q.id, state, update]
   )
+
+  /** Persist the draft into chapter progress. Called on blur, on submit,
+   *  and on tab-hide — without the last one, text typed and never
+   *  blurred (Cmd+W with focus still in the box) was silently lost. */
+  const commitDraft = useCallback(() => {
+    if (draftRef.current === storedRef.current) return
+    updateRef.current((prev) => ({
+      ...prev,
+      questions: {
+        ...prev.questions,
+        [q.id]: {
+          ...(prev.questions[q.id] ?? state),
+          selfExplanation: draftRef.current,
+        },
+      },
+    }))
+  }, [q.id, state])
+  useEffect(() => {
+    const onHide = () => commitDraft()
+    window.addEventListener("pagehide", onHide)
+    document.addEventListener("visibilitychange", onHide)
+    return () => {
+      window.removeEventListener("pagehide", onHide)
+      document.removeEventListener("visibilitychange", onHide)
+      commitDraft()
+    }
+  }, [commitDraft])
 
   const isTwoPart = !!q.twoPartColumns?.length
   // Normalize to one slot per column so a partially-answered TPA (or a stale
@@ -2414,11 +2458,7 @@ function InlineQuestion({
               <textarea
                 value={draftExplanation}
                 onChange={(e) => setDraftExplanation(e.target.value)}
-                onBlur={() => {
-                  if (draftExplanation !== state.selfExplanation) {
-                    patch({ selfExplanation: draftExplanation })
-                  }
-                }}
+                onBlur={commitDraft}
                 rows={2}
                 placeholder="e.g., Order matters here because president ≠ VP, so I used P(n, k)"
                 className="w-full border rounded-xl p-3 text-[16px] leading-[1.6] focus:outline-none focus:ring-2 resize-none transition-all"

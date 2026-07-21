@@ -31,10 +31,13 @@ describe("user_state read-modify-write guardrail", () => {
     for (const file of routeFiles("src/app/api")) {
       const code = readFileSync(file, "utf8")
       if (!code.includes("patchUserState(")) continue
-      // `getUserState(` must not appear except as `getUserStateForWrite(`.
-      const blind = code.match(/getUserState\((?!.*ForWrite)/) !== null &&
-        /(?<!ForWrite)\bgetUserState\(/.test(code)
-      if (blind) {
+      // Catch the import, not just the call — an aliased import
+      // (`getUserState as readState`) would slip past a call-site regex.
+      const importsBlindRead =
+        /import\s*\{[^}]*\bgetUserState\b(?!ForWrite)[^}]*\}\s*from\s*["'][^"']*user-state["']/.test(
+          code
+        )
+      if (importsBlindRead) {
         offenders.push(file.split(`${process.cwd()}/`).pop() ?? file)
       }
     }
@@ -44,15 +47,28 @@ describe("user_state read-modify-write guardrail", () => {
     ).toEqual([])
   })
 
-  it("every patching route aborts when the state read errored", () => {
+  it("every patching route actually ABORTS when the state read errored", () => {
     const offenders: string[] = []
     for (const file of routeFiles("src/app/api")) {
       const code = readFileSync(file, "utf8")
       if (!code.includes("getUserStateForWrite(")) continue
-      if (!code.includes("errored")) {
+      // Destructuring `errored` is not enough — there must be a guard that
+      // branches on it AND bails (503/throw/return) so the write is
+      // genuinely skipped on a failed read.
+      // Accept an aliased binding too (`errored: stateErrored`).
+      const alias =
+        code.match(/errored\s*:\s*(\w+)/)?.[1] ?? "errored"
+      const guardsOnErrored = new RegExp(
+        `if\\s*\\(\\s*${alias}\\s*\\)`
+      ).test(code)
+      const bails = /503|throw |return Response\.json/.test(code)
+      if (!guardsOnErrored || !bails) {
         offenders.push(file.split(`${process.cwd()}/`).pop() ?? file)
       }
     }
-    expect(offenders).toEqual([])
+    expect(
+      offenders,
+      `These routes read error-aware state but never abort on it:\n  ${offenders.join("\n  ")}`
+    ).toEqual([])
   })
 })

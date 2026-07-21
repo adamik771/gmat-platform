@@ -972,7 +972,6 @@ function TwoPartGrid({
                       disabled={state.submitted}
                       aria-label={`${cols[ci]}: ${rowText}${outcome}`}
                       aria-pressed={isSelected}
-                      data-kb-space="submit"
                       className="w-6 h-6 rounded-full border-2 mx-auto flex items-center justify-center transition-colors disabled:cursor-default tpa-radio"
                       style={circleStyle}
                     >
@@ -1195,6 +1194,11 @@ export default function SessionClient({
   // only ever changes through restartSession below (retry flows) — never
   // from the prop.
   const [questions, setQuestions] = useState(questionsProp)
+  /** Mirror of `questions` for callbacks declared before `total`. */
+  const questionsRef = useRef(questions)
+  useEffect(() => {
+    questionsRef.current = questions
+  }, [questions])
   const [currentIdx, setCurrentIdx] = useState(0)
   // Active-attempt deck stability. The freeze above protects a MOUNTED
   // session from RSC refreshes, but a hard browser refresh remounts with a
@@ -1278,6 +1282,10 @@ export default function SessionClient({
 
   function switchMode(next: "exam" | "study") {
     setMode(next)
+    // Don't persist when the surface imposed the mode (review sessions):
+    // flipping one review session to exam mode is a per-session opt-out,
+    // not a decision to change the global default for every drill.
+    if (defaultMode) return
     try {
       window.localStorage.setItem("session-feedback-mode", next)
     } catch {
@@ -1290,6 +1298,12 @@ export default function SessionClient({
   const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
   /** True while running a redo-missed replay — the save marks the slug. */
   const [isReplay, setIsReplay] = useState(false)
+  /** Single polite live region for the runner: question transitions and
+   *  submit outcomes announced nothing, so a screen-reader user had no
+   *  idea the view had changed or whether they were right. */
+  const [announcement, setAnnouncement] = useState("")
+  const [mixedReviewPending, setMixedReviewPending] = useState(false)
+  const [mixedReviewError, setMixedReviewError] = useState<string | null>(null)
   const [showAllReview, setShowAllReview] = useState(false)
 
   // Tick the timer once a second for the header readouts. Stops on the
@@ -1410,10 +1424,15 @@ export default function SessionClient({
     }
   }, [states, finished, questions, deckKey])
 
-  const goTo = useCallback((idx: number) => {
-    setCurrentIdx(idx)
-    setQuestionStart(Date.now())
-  }, [])
+  const goTo = useCallback(
+    (idx: number) => {
+      setCurrentIdx(idx)
+      setQuestionStart(Date.now())
+      // questionsRef avoids a declaration-order dependency on `total`.
+      setAnnouncement(`Question ${idx + 1} of ${questionsRef.current.length}`)
+    },
+    []
+  )
 
   /**
    * Start a clean attempt over `qs` — the full set ("Practice again") or
@@ -1532,6 +1551,21 @@ export default function SessionClient({
       next[currentIdx] = { ...next[currentIdx], submitted: true, elapsedMs: elapsed }
       return next
     })
+    if (mode === "study") {
+      const right = isAnswerCorrect(current, {
+        ...currentState,
+        submitted: true,
+      })
+      setAnnouncement(
+        right
+          ? "Correct."
+          : `Incorrect. The correct answer is ${current.correctAnswerLetter || "shown below"}.`
+      )
+    } else {
+      setAnnouncement(
+        `Answer recorded. Question ${Math.min(currentIdx + 2, total)} of ${total}`
+      )
+    }
     // Exam mode has no per-question reveal, so move straight on. The last
     // question still requires an explicit "Finish Session" click — finishing
     // is irreversible feedback-wise, so it shouldn't happen by surprise.
@@ -2310,6 +2344,7 @@ export default function SessionClient({
             variant: "primary" | "secondary"
             href?: string
             onClick?: () => void
+            disabled?: boolean
           }
           const actions: NextAction[] = []
 
@@ -2412,14 +2447,27 @@ export default function SessionClient({
             // 2007; Brunmair & Richter 2019).
             if (isPractice) {
               actions.push({
-                label: "Start mixed review",
+                label: mixedReviewPending
+                  ? "Building your mix…"
+                  : "Start mixed review",
+                disabled: mixedReviewPending,
                 onClick: () => {
+                  if (mixedReviewPending) return
+                  setMixedReviewPending(true)
+                  setMixedReviewError(null)
                   void buildMixedReviewUrl(chapterSlug ?? null).then(
                     (url) => {
                       window.location.href = url
                     },
-                    () => {
-                      window.location.href = "/review"
+                    (e: unknown) => {
+                      // Say what happened instead of silently landing the
+                      // student somewhere they didn't ask for.
+                      setMixedReviewPending(false)
+                      setMixedReviewError(
+                        e instanceof Error
+                          ? e.message
+                          : "Couldn't build a mixed set right now."
+                      )
                     }
                   )
                 },
@@ -2482,11 +2530,14 @@ export default function SessionClient({
                         key={key}
                         type="button"
                         onClick={action.onClick}
-                        className={className}
+                        disabled={action.disabled}
+                        className={className + " disabled:opacity-60"}
                         style={style}
                       >
                         {action.label}
-                        {primary && <ArrowRight className="w-3.5 h-3.5" />}
+                        {primary && !action.disabled && (
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        )}
                       </button>
                     )
                   }
@@ -2503,6 +2554,11 @@ export default function SessionClient({
                   )
                 })}
               </div>
+              {mixedReviewError && (
+                <p className="text-[12px] mt-3" style={{ color: "#FF8888" }} role="alert">
+                  {mixedReviewError}
+                </p>
+              )}
             </div>
           )
         })()}
@@ -2524,6 +2580,12 @@ export default function SessionClient({
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
+      {/* One persistently-mounted polite live region for the whole runner
+          (question moves, submit outcomes). Mounted always — a region
+          inserted on demand is announced unreliably. */}
+      <div className="sr-only" role="status" aria-live="polite">
+        {announcement}
+      </div>
       {/* Header */}
       <div>
         <Link
@@ -2586,7 +2648,7 @@ export default function SessionClient({
                 )}
             </p>
           </div>
-          <div className="flex items-center gap-2 text-sm text-[#888888]">
+          <div className="flex items-center gap-2 text-sm text-[#888888] flex-wrap justify-end">
             {/* Exam/Study feedback-mode toggle. Study reveals each
                 explanation (the default for learning drills); exam defers
                 feedback to the end for assessment-shaped sets. */}
@@ -2620,7 +2682,10 @@ export default function SessionClient({
                 </button>
               ))}
             </div>
+            {/* compact: drops the "· on pace" label (~50px) — the header
+                cluster is the tightest row on the 375px runner. */}
             <PacingBadge
+              compact
               section={section}
               elapsedMs={
                 currentState.submitted

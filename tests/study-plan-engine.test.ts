@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest"
+import { perDayMinutes } from "@/lib/study-hours"
 import { buildWeeklyCadence, pickNextChapters } from "@/lib/study-plan-engine"
 import type {
   StudyPlanOutput,
@@ -342,5 +343,22 @@ describe("pickNextChapters — recency-aware recommendation", () => {
     const r = run([ch("a", true, true), ch("b", true, true)])
     expect(r.nextUp).toBeNull()
     expect(r.upcoming).toEqual([])
+  })
+})
+
+describe("perDayMinutes — honest per-STUDY-day budget", () => {
+  it("divides the high band by 6 days (the plan reserves a rest day)", () => {
+    // 18 hrs = 1080 min. Over 7 days that reads 155/day, but the high-band
+    // plan schedules only 6 study days — the honest figure is 180.
+    expect(perDayMinutes(18)).toBe(180)
+  })
+
+  it("divides low and medium bands by all 7 days", () => {
+    expect(perDayMinutes(7)).toBe(60) // 420 / 7
+    expect(perDayMinutes(3.5)).toBe(30) // 210 / 7
+  })
+
+  it("never returns less than a 10-minute floor", () => {
+    expect(perDayMinutes(0)).toBe(10)
   })
 })

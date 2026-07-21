@@ -31,7 +31,6 @@ import OfflineBanner from "@/components/offline/OfflineBanner"
 import OfflineSyncTrigger from "@/components/offline/OfflineSyncTrigger"
 import ConversionTracker from "@/components/analytics/ConversionTracker"
 import { clearReviewCache } from "@/lib/offline/review-cache"
-import { clearPendingAttempts } from "@/lib/offline/pending-attempts"
 import { drainPendingAttempts } from "@/lib/offline/sync"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
@@ -245,8 +244,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       // unsynced attempts are kept for this user's next sign-in instead of
       // being silently destroyed.
       try {
-        const result = await drainPendingAttempts(uid)
-        if (result.drained) await clearPendingAttempts(uid)
+        // No follow-up whole-key clear: a successful drain already removed
+        // exactly the attempts it sent, so clearing here would delete only
+        // attempts appended DURING the drain (e.g. a drill finishing in
+        // another tab). A failed drain must keep the queue, and the key is
+        // user-scoped so nothing leaks into the next account.
+        await drainPendingAttempts(uid)
       } catch {
         // Swallow — sign-out should not block on a sync failure; the
         // user-scoped queue stays for the next session.

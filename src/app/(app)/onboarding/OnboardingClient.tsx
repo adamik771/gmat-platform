@@ -25,12 +25,15 @@ import {
 const EYEBROW = "text-[10px] font-semibold uppercase tracking-[0.22em]"
 const STEPS = ["target", "exam-date", "baseline-info", "current-score", "weekly-hours", "weak-areas", "prep-history", "review"] as const
 
-/** sessionStorage key for the mid-flight wizard draft. */
-const DRAFT_KEY = "onboarding-draft"
+/** sessionStorage key for the mid-flight wizard draft — user-scoped so a
+ *  shared device can't restore one account's answers into another's. */
+function draftKey(userId: string): string {
+  return `onboarding-draft:${userId}`
+}
 
-function clearDraft() {
+function clearDraft(userId: string) {
   try {
-    window.sessionStorage.removeItem(DRAFT_KEY)
+    window.sessionStorage.removeItem(draftKey(userId))
   } catch {
     // Nothing to clear.
   }
@@ -96,9 +99,12 @@ export default function OnboardingClient({
   firstName,
   existingOnboarding = {},
   alreadyCompleted = false,
+  userId,
 }: {
   initial: OnboardingState
   firstName: string | null
+  /** Scopes the sessionStorage draft to this account. */
+  userId: string
   /** Raw stored user_metadata.onboarding — the skip write spreads it so a
    *  nested-object replace can't wipe a completed intake. */
   existingOnboarding?: Record<string, unknown>
@@ -118,7 +124,11 @@ export default function OnboardingClient({
   // clears it. Restored once on mount (hydration-safe).
   useEffect(() => {
     try {
-      const raw = window.sessionStorage.getItem(DRAFT_KEY)
+      // A completed intake is edited from server state, not a stale
+      // draft that may predate changes made elsewhere (e.g. the
+      // dashboard target control).
+      if (alreadyCompleted) return
+      const raw = window.sessionStorage.getItem(draftKey(userId))
       if (!raw) return
       const draft = JSON.parse(raw) as {
         state?: OnboardingState
@@ -127,7 +137,6 @@ export default function OnboardingClient({
       // Reads sessionStorage (browser-only) — must run in an effect, not
       // during render, to avoid an SSR hydration mismatch (same pattern
       // as ChapterReader's progress hydration).
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (draft.state) setState((s) => ({ ...s, ...draft.state }))
       if (
         typeof draft.stepIdx === "number" &&
@@ -139,17 +148,20 @@ export default function OnboardingClient({
     } catch {
       // Corrupt/unavailable storage — start fresh.
     }
+    // Mount-only restore: alreadyCompleted/userId are fixed for a mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   useEffect(() => {
     try {
+      if (alreadyCompleted) return
       window.sessionStorage.setItem(
-        DRAFT_KEY,
+        draftKey(userId),
         JSON.stringify({ state, stepIdx })
       )
     } catch {
       // Storage full/unavailable — the draft just won't survive.
     }
-  }, [state, stepIdx])
+  }, [state, stepIdx, alreadyCompleted, userId])
 
   const step = STEPS[stepIdx]
   const isLastStep = stepIdx === STEPS.length - 1
@@ -183,7 +195,7 @@ export default function OnboardingClient({
           setError(data.error ?? "Something went wrong saving your answers.")
           return
         }
-        clearDraft()
+        clearDraft(userId)
         router.push(data.nextHref ?? "/mock")
       } catch {
         // Network failure — without this catch the rejection was silent
@@ -200,7 +212,7 @@ export default function OnboardingClient({
   // completedAt/weeklyHours/weakAreas for anyone who revisited).
   const [skipping, setSkipping] = useState(false)
   const handleSkip = async () => {
-    clearDraft()
+    clearDraft(userId)
     if (alreadyCompleted) {
       router.push("/dashboard")
       return

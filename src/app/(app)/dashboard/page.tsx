@@ -46,11 +46,12 @@ import {
 } from "@/lib/gamification"
 import type { Section } from "@/types"
 import { getUserState, type UserState } from "@/lib/user-state"
+import { readSavedForReview } from "@/lib/spaced-review"
 import { isChapterRead } from "@/lib/chapter-progress-merge"
 import { deriveFirst48Steps, first48Complete } from "./first48"
 import { SECTION_TOTAL_ESTIMATE_SWING, sectionScoresToTotal } from "@/lib/scoring"
 import { accuracyToSectionScore } from "@/lib/score-percentiles"
-import { isReplaySession, localDayIso } from "@/lib/utils"
+import { daysUntil, isReplaySession, localDayIso } from "@/lib/utils"
 import { getUserTz } from "@/lib/tz"
 import TargetScoreControl from "./TargetScoreControl"
 
@@ -110,6 +111,10 @@ export default async function DashboardPage() {
     // redirect() outside the try so its control-flow throw isn't swallowed.
     if (needsOnboarding) redirect("/onboarding")
   }
+
+  // User timezone (cookie) — resolved before the data block because the
+  // review-queue options and every day-boundary computation below use it.
+  const tz = await getUserTz()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let user: any = null
@@ -181,10 +186,15 @@ export default async function DashboardPage() {
             // review widget below (this was a duplicate 12-week
             // practice_attempts scan). Passing it into the engine stops it
             // from refetching the same rows.
+            // Same options as /review — without savedQuestionIds and the
+            // exam-window cap this surface counted a DIFFERENT queue than
+            // the page it links to.
             reviewQueue =
               (await getReviewQueue(supabase, user.id, {
                 limit: 60,
                 flaggedQuestionIds,
+                savedQuestionIds: readSavedForReview(state),
+                daysUntilExam: daysUntil(examDate, tz),
               })) ?? []
             // Start the study-plan compute but don't block on it here — it
             // runs concurrently with the metrics batch and is awaited there.
@@ -295,7 +305,6 @@ export default async function DashboardPage() {
   const firstName: string | null =
     fullName && fullName.trim().length > 0 ? fullName.trim().split(/\s+/)[0] : null
 
-  const tz = await getUserTz()
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",

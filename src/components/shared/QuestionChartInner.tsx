@@ -146,7 +146,7 @@ export default function QuestionChart({ spec }: { spec: ChartSpec }) {
 
   return (
     <figure
-      className="my-4 rounded-xl border p-4"
+      className="my-4 rounded-xl border p-4 overflow-hidden"
       style={{ borderColor: "rgba(255,255,255,0.08)", backgroundColor: "#0D0D0D" }}
     >
       {spec.title && (

@@ -153,18 +153,29 @@ export async function POST(request: Request) {
     // Guard against matching an attemptless orphan (a prior save whose
     // attempts insert failed after the session row landed): treating THAT
     // as the duplicate would silently discard this retry's attempts.
-    const { count: dupeAttempts } = await supabase
+    const { count: dupeAttempts, error: dupeCountError } = await supabase
       .from("practice_attempts")
       .select("id", { count: "exact", head: true })
       .eq("session_id", recentDupe.id)
-    if ((dupeAttempts ?? 0) > 0) {
+    // Fail SAFE on an errored count: treat the row as a real duplicate
+    // rather than deleting a session that may well have attempts.
+    if (dupeCountError || (dupeAttempts ?? 0) > 0) {
       return Response.json({ sessionId: recentDupe.id })
     }
-    await supabase
+    // Attemptless orphan — remove it so this payload can land cleanly.
+    // If the delete fails (FK restrict, policy), abort instead of
+    // inserting a second session row.
+    const { error: orphanDeleteError } = await supabase
       .from("practice_sessions")
       .delete()
       .eq("id", recentDupe.id)
       .eq("user_id", user.id)
+    if (orphanDeleteError) {
+      return Response.json(
+        { error: "could not clear a stale session row; retry" },
+        { status: 503 }
+      )
+    }
   }
 
   // Insert the session-level record.

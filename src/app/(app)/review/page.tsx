@@ -18,6 +18,7 @@ import { getUserState } from "@/lib/user-state"
 import { getQuestionsByIds } from "@/lib/content"
 import { readSavedForReview } from "@/lib/spaced-review"
 import { daysUntil } from "@/lib/utils"
+import { getUserTz } from "@/lib/tz"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
 import ReviewCachePrimer from "@/components/offline/ReviewCachePrimer"
 import type { CachedQuestion } from "@/lib/offline/review-cache"
@@ -73,6 +74,7 @@ export default async function ReviewPage() {
   }
 
   const state = await getUserState(supabase, user)
+  const tz = await getUserTz()
   const flaggedQuestionIds = gatherFlaggedQuestionIds(state)
   const savedQuestionIds = readSavedForReview(state)
   const examDate =
@@ -81,7 +83,7 @@ export default async function ReviewPage() {
     limit: 60,
     flaggedQuestionIds,
     savedQuestionIds,
-    daysUntilExam: daysUntil(examDate),
+    daysUntilExam: daysUntil(examDate, tz),
   })
 
   // A failed read is NOT an empty queue — saying "all caught up" here

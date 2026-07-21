@@ -259,7 +259,14 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
   // listener confirms anchor clicks too. Off on intro (nothing to lose)
   // and done (everything saved).
   const attemptActive =
-    phase === "running" || phase === "review" || phase === "break" || phase === "posting"
+    phase === "running" ||
+    phase === "review" ||
+    phase === "break" ||
+    phase === "posting" ||
+    // The failed-save hold screen tells the student their answers are
+    // still in this tab — leaving there destroys them, so it needs the
+    // same guard as an in-progress section.
+    (phase === "done" && saveErrors.length > 0)
   useEffect(() => {
     if (!attemptActive) return
     const onBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -389,6 +396,11 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
   // flight. Keyed by section: a repeat call for the SAME section dedupes onto
   // the in-flight promise; a different section is never blocked.
   const inFlightRef = useRef<Map<Section, Promise<void>>>(new Map())
+  /** Sections whose practice_sessions row already committed. A retry after
+   *  a flags/edits failure must NOT re-POST the session — the server's
+   *  60s dedupe window can't absorb a retry minutes later, so the mock
+   *  section would be counted twice. */
+  const savedSectionsRef = useRef<Set<Section>>(new Set())
   // Per-section measured duration, snapshotted at finalize time so a later
   // retry (on the done screen) records the section's real elapsed time rather
   // than `Date.now() - sectionStartMs`, which by then points at a later
@@ -465,26 +477,36 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           v !== null
       )
     try {
-      const sessionRes = await fetch("/api/practice-sessions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          slug: `mock-${dateIso.slice(0, 10)}-${section.toLowerCase()}`,
-          topic: modeLabel,
-          section,
-          totalQuestions: cfg.questions.length,
-          correctCount: correctTotal,
-          accuracy:
-            answeredTotal === 0 ? 0 : Math.round((correctTotal / answeredTotal) * 100),
-          totalTimeMs:
-            sectionDurationsRef.current.get(section) ??
-            (sectionStartMs ? Date.now() - sectionStartMs : 0),
-          attempts,
-        }),
-      })
-      if (!sessionRes.ok) {
-        recordSaveError(section, sessionRes.status === 401 ? "unauthorized" : "error")
-        return
+      // Skip when this section's row already committed — a retry after a
+      // flags/edits failure must not insert a second mock section.
+      if (!savedSectionsRef.current.has(section)) {
+        const sessionRes = await fetch("/api/practice-sessions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            slug: `mock-${dateIso.slice(0, 10)}-${section.toLowerCase()}`,
+            topic: modeLabel,
+            section,
+            totalQuestions: cfg.questions.length,
+            correctCount: correctTotal,
+            accuracy:
+              answeredTotal === 0
+                ? 0
+                : Math.round((correctTotal / answeredTotal) * 100),
+            totalTimeMs:
+              sectionDurationsRef.current.get(section) ??
+              (sectionStartMs ? Date.now() - sectionStartMs : 0),
+            attempts,
+          }),
+        })
+        if (!sessionRes.ok) {
+          recordSaveError(
+            section,
+            sessionRes.status === 401 ? "unauthorized" : "error"
+          )
+          return
+        }
+        savedSectionsRef.current.add(section)
       }
       // Flags are saved to user_metadata via a separate endpoint so they
       // survive a retake and can be read by the report + review-queue.

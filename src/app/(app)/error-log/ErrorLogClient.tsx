@@ -549,7 +549,7 @@ export default function ErrorLogClient({
                       {entry.correctAnswerLetter ?? "—"}
                     </span>
                   </div>
-                  <div className="col-span-1 flex items-center justify-center gap-1 flex-wrap">
+                  <div className="col-span-1 flex items-center gap-1 flex-wrap sm:justify-center">
                     {entry.tag ? (
                       (() => {
                         const p = paletteForTag(entry.tag)
@@ -610,7 +610,7 @@ export default function ErrorLogClient({
                       </span>
                     )}
                   </div>
-                  <div className="col-span-1 flex items-center justify-end gap-1.5">
+                  <div className="col-span-1 flex items-center gap-1.5 sm:justify-end">
                     <RemediationCycle
                       entry={entry}
                       onCycle={() => cycleRemediation(entry)}

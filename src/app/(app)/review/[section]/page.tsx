@@ -8,6 +8,7 @@ import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { getUserState } from "@/lib/user-state"
 import { readSavedForReview } from "@/lib/spaced-review"
 import { daysUntil } from "@/lib/utils"
+import { getUserTz } from "@/lib/tz"
 import SessionClient, {
   type SessionQuestion,
 } from "../../practice/session/[slug]/SessionClient"
@@ -54,6 +55,7 @@ export default async function ReviewSectionPage({
   }
 
   const state = await getUserState(supabase, user)
+  const tz = await getUserTz()
   const saved = readSavedForReview(state)
   const examDate =
     (user.user_metadata?.exam_date as string | null | undefined) ?? null
@@ -62,7 +64,7 @@ export default async function ReviewSectionPage({
     limit: SESSION_SIZE,
     flaggedQuestionIds: gatherFlaggedQuestionIds(state),
     savedQuestionIds: saved,
-    daysUntilExam: daysUntil(examDate),
+    daysUntilExam: daysUntil(examDate, tz),
   })
 
   // Failed read ≠ empty queue — don't tell the student nothing is due.
