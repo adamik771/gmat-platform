@@ -157,7 +157,8 @@ export default function AboutPage() {
                 <span className="font-display font-semibold" style={{ color: "#C9A84C" }}>
                   735.
                 </span>{" "}
-                Q88, V86, DI85. Top 1% of test-takers.
+                Q88, V86, DI85 — displayed as the 100th percentile on my
+                official GMAT score report.
               </p>
               <p>
                 The arc wasn&apos;t linear. The biggest gain &mdash;
