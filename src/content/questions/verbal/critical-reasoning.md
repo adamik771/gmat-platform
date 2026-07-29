@@ -12,10 +12,10 @@ A regional grocery chain recently introduced a loyalty program that offers custo
 
 Which of the following, if true, most strengthens the argument above?
 
-- A) The grocery chain spent a significant amount on advertising the loyalty program during the three-month period.
+- A) The grocery chain spent a significant amount on television and social media advertising to promote the loyalty program during the three-month period.
 - B) A competing grocery chain in the same region that did not introduce a loyalty program experienced a 2% decline in revenue over the same period.
 - C) Most of the chain's customers were already shopping there more than ten times per quarter before the program was introduced.
-- D) The average transaction size at the chain has remained the same since the loyalty program began.
+- D) The average transaction size at the chain has remained the same for both new and returning customers since the loyalty program began.
 - E) The chain also expanded its organic produce section at the same time as launching the loyalty program.
 
 **answer:** B
@@ -70,10 +70,10 @@ A software company switched from annual performance reviews to quarterly feedbac
 
 Which of the following, if true, most strengthens the claim that the new feedback system, rather than the job market, was responsible for the lower turnover?
 
-- A) Employee satisfaction surveys showed a marked improvement in scores related to managerial communication after the switch.
-- B) The company also increased its base salaries by 3% during the same period.
+- A) Employee satisfaction surveys conducted after the switch showed a marked improvement in scores related to managerial communication and trust in leadership.
+- B) During the same one-year period, the company also raised the base salaries of its employees by an average of 3%.
 - C) Companies in the same industry that maintained annual reviews experienced no significant change in turnover during the same period.
-- D) The quarterly feedback sessions cost the company significantly more in managerial time than the annual reviews had.
+- D) The quarterly feedback sessions cost the company significantly more in managerial time and administrative overhead than the annual reviews had.
 - E) Employees who participated most actively in the quarterly sessions were the least likely to leave the company.
 
 **answer:** C
@@ -126,10 +126,10 @@ A pharmaceutical company argues that its new migraine medication is more effecti
 
 Which of the following, if true, most strengthens the company's argument that its medication is more effective?
 
-- A) The market leader has been available for over a decade and has a well-established safety profile.
+- A) The market leader has been available for over a decade and has a well-established safety profile backed by extensive post-market surveillance.
 - B) Patients with treatment-resistant migraines typically show smaller absolute differences in response rates between competing medications.
 - C) The new medication uses a different biochemical mechanism than the market leader to interrupt the migraine process.
-- D) Both medications were administered at their recommended dosages during the trial.
+- D) Both medications were administered at their manufacturer-recommended dosages and on identical dosing schedules throughout the trial.
 - E) The trial lasted six months, during which patients experienced an average of four migraine episodes each.
 
 **answer:** B
@@ -184,11 +184,11 @@ A fitness app company reports that users who log their workouts in the app at le
 
 Which of the following, if true, most weakens the company's conclusion?
 
-- A) The app includes a calorie-tracking feature that most users do not use.
-- B) People who are more motivated to lose weight are more likely both to exercise frequently and to log their activities consistently.
-- C) The app's interface was redesigned during the three-month study period.
-- D) Some users who log five or more times per week did not lose any weight.
-- E) The app is free to download and has over two million active users.
+- A) The app includes a calorie-tracking feature and a meal-planning tool that most users report they rarely or never use.
+- B) People who are more motivated to lose weight are more likely both to exercise frequently and to log consistently.
+- C) The app's interface was substantially redesigned midway through the three-month period during which the data were collected.
+- D) Some users who logged their workouts five or more times per week over the full three months did not lose any weight at all.
+- E) The app is free to download and currently has over two million active users worldwide.
 
 **answer:** B
 **explanation:** **Situation.** A fitness app company observes that users who log their workouts at least five times per week lose an average of 12 pounds over three months, whereas users who log fewer than five times per week lose an average of only 3 pounds. From this difference the company concludes that using the app more frequently causes greater weight loss.
@@ -196,7 +196,7 @@ Which of the following, if true, most weakens the company's conclusion?
 **Reasoning.** The task is to identify the statement that, if true, most weakens the company's conclusion. The conclusion treats a correlation drawn from observational data (frequent logging is associated with greater weight loss) as evidence of causation (logging more causes greater loss). The most effective way to weaken such a claim is to identify a third factor that independently produces both observed behaviors, so that the correlation is explained without the proposed causal link. Choice B does exactly this: people who are more motivated to lose weight are more likely both to exercise and log frequently and to lose weight. If pre-existing motivation drives both the heavy logging and the larger weight loss, then frequent logging and greater loss are two effects of a common cause rather than cause and effect, and the company's conclusion no longer follows from the data. This undermines the inference that the app's frequent use is what produces the additional weight loss.
 
 The correct answer is B.
-**mistake_a:** Choice A notes that most users do not use the calorie-tracking feature. Which feature users do or do not use says nothing about whether logging frequency causes weight loss, so it leaves the company's causal inference untouched.
+**mistake_a:** Choice A notes that most users report rarely or never using the app's calorie-tracking and meal-planning features. Which features users do or do not use says nothing about whether logging frequency causes weight loss, so it leaves the company's causal inference untouched.
 **mistake_c:** Choice C reports that the app's interface was redesigned during the study period. A redesign affecting all users does not explain why the more frequent loggers lost more weight than the less frequent ones, so it does not bear on the correlation underlying the conclusion.
 **mistake_d:** Choice D observes that some frequent loggers did not lose any weight. Individual exceptions are fully consistent with a group average of 12 pounds, so this does not undermine the reported pattern or the conclusion drawn from it.
 **mistake_e:** Choice E provides background about the app being free with over two million active users. The size of the user base and the price are irrelevant to whether frequent logging causes greater weight loss, so this choice has no effect on the conclusion.
@@ -213,11 +213,11 @@ A city council is considering banning single-use plastic bags at all retail stor
 
 Which of the following, if true, most weakens the proponents' argument?
 
-- A) Several other cities that implemented similar bans reported reductions in overall landfill waste.
-- B) Studies show that after plastic bag bans, consumers purchase significantly more thick plastic trash bags, which occupy more landfill space per unit than the single-use bags they replace.
-- C) Reusable bags are more expensive for consumers than single-use plastic bags.
-- D) Single-use plastic bags are a major source of litter in the city's waterways and parks.
-- E) The proposed ban would not apply to plastic bags used for packaging raw meat and produce within stores.
+- A) Several other cities that implemented similar bans on single-use plastic bags subsequently reported measurable reductions in overall landfill waste within two years.
+- B) Consumers in cities with such bans buy significantly more thick plastic trash bags, which occupy more landfill space per unit than the single-use bags they replace.
+- C) Reusable cloth bags cost consumers considerably more per bag than the single-use plastic bags they would replace.
+- D) Single-use plastic bags are among the most common items of litter found in the city's waterways, parks, and storm drains.
+- E) The proposed ban would not apply to the thin plastic bags used within stores for packaging raw meat, seafood, and loose produce.
 
 **answer:** B
 **explanation:** **Situation.** A city council is weighing a ban on single-use plastic bags at retail stores. Proponents claim the ban will significantly reduce plastic waste in the city's landfills because such bags currently make up roughly 12 percent of total landfill volume.
@@ -227,7 +227,7 @@ Which of the following, if true, most weakens the proponents' argument?
 The correct answer is B.
 **mistake_a:** Choice A reports that other cities implementing similar bans saw reductions in overall landfill waste. Far from weakening the argument, this strengthens it by providing evidence that such bans actually produce the reduction the proponents predict.
 **mistake_c:** Choice C states that reusable bags cost consumers more than single-use bags. The relative price of reusable bags speaks to consumer expense, not to landfill volume, and so has no bearing on whether the ban reduces plastic waste in landfills.
-**mistake_d:** Choice D notes that single-use plastic bags are a major source of litter in the city's waterways and parks. This points to an additional harm the bags cause and, if anything, bolsters the broader case for the ban; it does not address the specific claim that the ban will reduce landfill volume.
+**mistake_d:** Choice D notes that single-use plastic bags are among the most common items of litter found in the city's waterways, parks, and storm drains. This points to an additional harm the bags cause and, if anything, bolsters the broader case for the ban; it does not address the specific claim that the ban will reduce landfill volume.
 **mistake_e:** Choice E observes that the ban would not cover bags used for raw meat and produce within stores. This carve-out merely limits the ban's scope; it says nothing that contradicts the prediction that landfill volume from the bags that are banned will fall, so it does not undermine the reasoning.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -242,11 +242,11 @@ A technology company's CEO argues that the company should invest heavily in arti
 
 Which of the following, if true, most weakens the CEO's reasoning?
 
-- A) The company's existing product lines have been losing market share to competitors for the past two years.
-- B) The companies that spent heavily on R&D were predominantly large firms with diversified revenue streams that could absorb the financial risk of high R&D spending.
-- C) Artificial intelligence is widely considered to be the most transformative technology of the coming decade.
+- A) The company's existing product lines have been steadily losing market share to lower-priced competitors for the past two years.
+- B) The companies that spent heavily on R&D were predominantly large firms whose diversified revenue streams could absorb the financial risk of such spending.
+- C) Artificial intelligence is widely considered by industry analysts and investors to be the most transformative technology of the coming decade.
 - D) Several companies that invested heavily in R&D saw their stock prices decline sharply before eventually recovering.
-- E) The company currently spends 9% of its revenue on research and development.
+- E) The company currently spends about 9% of its annual revenue on research and development across all of its divisions.
 
 **answer:** B
 **explanation:** **Situation.** A technology company's CEO recommends investing heavily in artificial intelligence research instead of expanding existing product lines. She supports this by noting that, over the past decade, technology firms spending more than 15 percent of revenue on research and development achieved average stock price growth of 340 percent, compared with only 120 percent for firms spending less.
@@ -271,16 +271,16 @@ Environmental scientists have observed that coral reefs near coastal cities with
 
 Which of the following, if true, most weakens the scientists' conclusion?
 
-- A) Coral reef biodiversity is influenced by many factors, including water temperature and ocean acidification.
-- B) Cities with advanced wastewater treatment facilities also tend to enforce stricter regulations on industrial runoff, agricultural pesticide use, and coastal development, all of which independently affect reef health.
-- C) The cost of upgrading wastewater treatment infrastructure has decreased significantly in recent years.
-- D) Some coral reefs far from any coastal city also show declining biodiversity.
-- E) Advanced wastewater treatment facilities remove not only harmful pollutants but also certain nutrients that some coral species depend on.
+- A) Coral reef biodiversity is influenced by many global factors, including water temperature, ocean acidification, salinity fluctuations, and seasonal storm frequency.
+- B) Cities with advanced wastewater treatment also tend to enforce stricter rules on industrial runoff, pesticide use, and coastal development, all of which independently affect reef health.
+- C) The cost of upgrading municipal wastewater treatment infrastructure to advanced standards has decreased significantly over the past several years.
+- D) Some coral reefs located far from any coastal city or other human settlement have also shown declining biodiversity over the same period.
+- E) Advanced wastewater treatment facilities remove not only harmful pollutants but also certain dissolved nutrients that some coral species depend on for growth.
 
 **answer:** B
 **explanation:** **Situation.** Environmental scientists note that coral reefs near coastal cities with advanced wastewater treatment show higher biodiversity than reefs near cities with outdated treatment, and they conclude that upgrading wastewater treatment is the most cost-effective intervention for preserving reef biodiversity.
 
-**Reasoning.** The task is to identify the statement that most weakens this conclusion. The argument moves from an observed correlation between advanced treatment and higher biodiversity to a causal, comparative claim that the treatment upgrade is the single most cost-effective way to preserve reefs. The conclusion is vulnerable if some other factor present in the same cities could account for the higher biodiversity, because then the biodiversity gain cannot be attributed to wastewater treatment alone, and treatment cannot be established as the most cost-effective lever. The credited choice supplies exactly such an alternative: the cities with advanced treatment also enforce stricter rules on industrial runoff, agricultural pesticide use, and coastal development, each of which independently affects reef health. Because these reef-protective policies are bundled together with the treatment upgrade, the observed biodiversity advantage may stem partly or entirely from them rather than from the treatment, which directly undercuts the claim that upgrading treatment is the most cost-effective intervention.
+**Reasoning.** The task is to identify the statement that most weakens this conclusion. The argument moves from an observed correlation between advanced treatment and higher biodiversity to a causal, comparative claim that the treatment upgrade is the single most cost-effective way to preserve reefs. The conclusion is vulnerable if some other factor present in the same cities could account for the higher biodiversity, because then the biodiversity gain cannot be attributed to wastewater treatment alone, and treatment cannot be established as the most cost-effective lever. The credited choice supplies exactly such an alternative: the cities with advanced treatment also enforce stricter rules on industrial runoff, pesticide use, and coastal development, each of which independently affects reef health. Because these reef-protective policies are bundled together with the treatment upgrade, the observed biodiversity advantage may stem partly or entirely from them rather than from the treatment, which directly undercuts the claim that upgrading treatment is the most cost-effective intervention.
 
 The correct answer is B.
 **mistake_a:** Choice A notes that reef biodiversity depends on many factors, such as water temperature and ocean acidification, but these are general background drivers that are not tied to the difference between the two groups of cities. Because it identifies no factor that distinguishes cities with advanced treatment from cities with outdated treatment, it fails to provide an alternative explanation for the observed difference and does not weaken the conclusion.
@@ -300,11 +300,11 @@ A restaurant chain plans to boost profits by replacing its beef burgers with pla
 
 Which of the following is an assumption on which the executives' plan depends?
 
-- A) The restaurant chain currently sells more burgers than any other menu item.
-- B) Plant-based patties are healthier than beef patties for the average consumer.
+- A) The restaurant chain currently sells more burgers per month than any other single item on its menu.
+- B) Plant-based patties are generally healthier than beef patties for the average consumer in terms of saturated fat, cholesterol, and sodium content.
 - C) Customers will not switch to competing restaurants that still offer beef burgers in sufficient numbers to offset the cost savings.
-- D) The price of plant-based patty ingredients will decrease further in the coming years.
-- E) The restaurant chain has previously experimented with other menu changes.
+- D) The wholesale price of plant-based patty ingredients will continue to decrease over the coming years.
+- E) The restaurant chain has previously experimented with other significant menu changes at selected locations.
 
 **answer:** C
 **explanation:** **Situation.** A restaurant chain intends to increase profits by replacing its beef burgers with plant-based patties that cost 30 percent less to produce, on the expectation that total burger sales volume will not change after the switch.
@@ -329,10 +329,10 @@ A city's transportation department plans to reduce traffic congestion by convert
 
 Which of the following is an assumption that the traffic engineers' argument requires?
 
-- A) The two roads selected for conversion currently experience the worst congestion in the city.
+- A) The two roads selected for conversion currently experience the worst rush-hour congestion of any roads in the city.
 - B) Drivers who currently use the two roads will not divert in large numbers to alternative routes, creating new congestion elsewhere.
-- C) One-way streets are safer for pedestrians than two-way streets.
-- D) The city has sufficient budget to implement the signal coordination upgrades needed for the conversion.
+- C) One-way streets are generally safer for pedestrians to cross than comparable two-way streets.
+- D) The city's transportation budget for the coming fiscal year is sufficient to fund the signal coordination upgrades the conversion would require.
 - E) Public transportation ridership will not change as a result of the road conversion.
 
 **answer:** B
@@ -358,11 +358,11 @@ A marketing firm found that social media advertisements featuring user-generated
 
 Which of the following is an assumption underlying the firm's advice?
 
-- A) User-generated content is less expensive to produce than professionally produced advertisements.
-- B) Customer engagement with advertisements on social media translates into meaningful business outcomes such as increased sales or brand loyalty.
-- C) Social media platforms will continue to grow in popularity over the next several years.
+- A) User-generated content is typically far less expensive to source and produce than advertisements created by professional agencies.
+- B) Customer engagement with social media advertisements translates into meaningful business outcomes such as increased sales or brand loyalty.
+- C) Social media platforms will continue to grow in popularity among key consumer demographics over the next several years.
 - D) The firm's clients currently spend more on professionally produced advertisements than on user-generated content campaigns.
-- E) Engagement rates on social media are the most important metric for measuring advertising success.
+- E) Engagement rates on social media are the single most important metric for measuring the success of any advertising campaign.
 
 **answer:** B
 **explanation:** **Situation.** A marketing firm has found that social media advertisements featuring user-generated content receive 40 percent more engagement than advertisements produced by professional agencies, and on this basis the firm advises its clients to direct their entire advertising budget toward user-generated content campaigns in order to maximize customer engagement.
@@ -387,11 +387,11 @@ Economists studying a developing nation's agricultural sector found that farms t
 
 Which of the following is an assumption on which the economists' recommendation depends?
 
-- A) The farms that adopted genetically modified varieties did not also benefit from superior irrigation, richer soil, or greater access to capital that independently contributed to their higher yields.
-- B) Genetically modified crops are safe for human consumption according to the nation's food safety standards.
-- C) The nation's agricultural sector is the largest contributor to its gross domestic product.
-- D) Traditional crop varieties cannot be improved through conventional selective breeding techniques.
-- E) Other developing nations that have subsidized genetically modified seeds have seen increases in agricultural output.
+- A) The farms that adopted genetically modified varieties did not also benefit from superior irrigation, richer soil, or greater access to capital.
+- B) Genetically modified crops have been certified as safe for human consumption under the nation's food safety standards.
+- C) The nation's agricultural sector is currently the largest single contributor to its gross domestic product.
+- D) Traditional crop varieties cannot be significantly improved through conventional selective breeding techniques within a comparable time frame.
+- E) Several other developing nations that have subsidized genetically modified seeds have subsequently recorded increases in their total agricultural output.
 
 **answer:** A
 **explanation:** **Situation.** Economists found that farms in a developing nation that adopted genetically modified crop varieties produced 25 percent higher yields per hectare than farms using traditional varieties, and on that basis they recommend that the government subsidize the purchase of genetically modified seeds to raise total agricultural output.
@@ -416,11 +416,11 @@ A hospital network found that patients admitted on weekends had a 15% higher mor
 
 Which of the following is an assumption that the chief medical officer's proposal requires?
 
-- A) The hospital network has sufficient financial resources to hire additional weekend specialist physicians.
-- B) The higher weekend mortality rate is not primarily explained by the fact that patients admitted on weekends tend to have more severe conditions requiring emergency care.
-- C) Specialist physicians are more effective at treating patients than general practitioners.
+- A) The hospital network has sufficient financial resources in its operating budget to hire the additional specialist physicians needed for weekend shifts.
+- B) The higher weekend mortality rate is not primarily explained by weekend patients tending to have more severe conditions that require emergency care.
+- C) Specialist physicians are more effective than general practitioners at treating the kinds of patients admitted on weekends.
 - D) Other hospital networks with higher weekend specialist staffing levels do not experience a similar mortality gap.
-- E) The mortality rate for patients admitted on weekdays has remained stable over the past five years.
+- E) The mortality rate for patients admitted on weekdays has remained essentially stable over the past five years.
 
 **answer:** B
 **explanation:** **Situation.** A hospital network observes that patients admitted on weekends die at a 15 percent higher rate than those admitted on weekdays, and the chief medical officer proposes hiring additional weekend specialist physicians on the grounds that reduced specialist availability on weekends causes the gap.
@@ -445,11 +445,11 @@ A car manufacturer claims that its new electric vehicle model will be profitable
 
 Which of the following would be most useful to evaluate in order to assess the manufacturer's claim?
 
-- A) Whether the manufacturer has experience producing other types of vehicles profitably.
-- B) Whether the rate of battery cost decline is expected to slow as the technology matures and cost reductions become harder to achieve.
-- C) Whether electric vehicles are more popular with urban consumers than rural consumers.
-- D) Whether the manufacturer plans to export the vehicle to international markets.
-- E) Whether government incentives for electric vehicles currently exist.
+- A) Whether the manufacturer has prior experience producing gasoline-powered or hybrid vehicles profitably.
+- B) Whether the rate of battery cost decline is expected to slow as the technology matures.
+- C) Whether electric vehicles are more popular with urban consumers than with rural consumers.
+- D) Whether the manufacturer plans to export the new vehicle to international markets.
+- E) Whether government purchase incentives for electric vehicles currently exist in the manufacturer's main markets.
 
 **answer:** B
 **explanation:** **Situation.** A car manufacturer claims that its new electric vehicle will become profitable within two years on the grounds that battery costs have fallen 50 percent over the past three years, and it expects this declining-cost trend to continue.
@@ -474,11 +474,11 @@ A university recently switched from in-person final exams to take-home essays fo
 
 Which of the following would be most useful to evaluate in order to determine which explanation is more likely?
 
-- A) Whether the university's graduate programs also switched to take-home essays.
-- B) Whether students in courses that use plagiarism detection software showed the same grade increase as students in courses that do not use such software.
-- C) Whether the university's tuition increased during the same period as the format change.
+- A) Whether the university's graduate and professional programs also switched from in-person exams to take-home essays.
+- B) Whether courses that use plagiarism detection software showed the same grade increase as courses that do not use such software.
+- C) Whether the university's tuition and fees increased during the same period as the format change.
 - D) Whether faculty spent more time grading take-home essays than they had spent grading in-person exams.
-- E) Whether students preferred the take-home format to the in-person exam format.
+- E) Whether most students said they preferred the take-home essay format to the in-person exam format.
 
 **answer:** B
 **explanation:** **Situation.** After a university replaced in-person final exams with take-home essays in all undergraduate courses, average grades rose by half a letter grade. Some faculty attribute the rise to higher-quality work made possible by the take-home format, while others attribute it to increased academic dishonesty.
@@ -503,11 +503,11 @@ A tech startup claims that its new algorithm for matching job seekers with emplo
 
 Which of the following would be most important to know in order to evaluate the startup's claim?
 
-- A) Whether the startup's founders have prior experience in the recruiting industry.
+- A) Whether the startup's founders have prior experience working in the recruiting industry or in human-resources technology.
 - B) Whether the companies that volunteered for the study were already faster than average at hiring before adopting the algorithm.
-- C) Whether the algorithm uses machine learning or rule-based logic.
-- D) Whether the startup plans to offer the algorithm as a subscription service or a one-time purchase.
-- E) Whether the companies in the study primarily hire for technical or non-technical roles.
+- C) Whether the algorithm relies on machine learning or instead on a set of rule-based matching criteria developed by the startup's engineers.
+- D) Whether the startup plans to offer the algorithm as a monthly subscription service or as a one-time software purchase.
+- E) Whether the companies in the study primarily hire for technical roles or for non-technical roles.
 
 **answer:** B
 **explanation:** **Situation.** A tech startup reports that its job-matching algorithm reduces average time-to-hire by 35 percent relative to traditional methods, a figure from a six-month trial of 50 companies that volunteered to use the platform.
@@ -516,7 +516,7 @@ Which of the following would be most important to know in order to evaluate the 
 
 The correct answer is B.
 **mistake_a:** Choice A is tempting because the founders' recruiting experience seems to bear on credibility, but it concerns the people behind the algorithm, not whether the algorithm produced the measured reduction. Its answer leaves the trial data and the self-selection concern untouched.
-**mistake_c:** Choice C invites the assumption that a sophisticated method would validate the result, but the algorithm's internal mechanism is irrelevant to whether the observed effect is genuine. Machine learning or rule-based logic, the self-selection question remains unanswered.
+**mistake_c:** Choice C invites the assumption that a sophisticated method would validate the result, but the algorithm's internal mechanism is irrelevant to whether the observed effect is genuine. Machine learning or rule-based criteria, the self-selection question remains unanswered.
 **mistake_d:** Choice D concerns the commercial model, which has surface appeal as a business matter but no bearing on the performance claim. Subscription or one-time purchase does nothing to confirm or undercut the reduction in time-to-hire.
 **mistake_e:** Choice E is the most tempting wrong answer because role mix sounds like it could affect hiring speed, but it is a secondary factor that misses the central weakness. Even knowing the role composition, whether the volunteers were already faster-than-average hirers would stay unresolved, whereas B addresses that flaw directly.
 **related_reading:** reading-verbal-04-cr-question-types
@@ -532,10 +532,10 @@ A government health agency recommends that adults consume at least three serving
 
 Which of the following would be most useful in evaluating whether whole grains themselves reduce cardiovascular risk?
 
-- A) Whether the recommended daily intake of whole grains has changed over the past two decades.
+- A) Whether the agency's recommended daily intake of whole grains has changed substantially at any point over the past two decades.
 - B) Whether the studies controlled for differences in exercise, smoking, and other health behaviors between high and low whole grain consumers.
-- C) Whether whole grains are more expensive than refined grains in most grocery stores.
-- D) Whether other dietary guidelines also recommend whole grain consumption.
+- C) Whether whole grains are more expensive than refined grains in most grocery stores, and whether their price has risen faster than that of refined grains.
+- D) Whether dietary guidelines issued by government health agencies in other countries also recommend consuming whole grains daily.
 - E) Whether individuals who consume exactly two servings of whole grains per day also have reduced cardiovascular risk.
 
 **answer:** B
@@ -561,11 +561,11 @@ An educational technology company found that students who used its adaptive lear
 
 Which of the following would be most useful in evaluating the company's argument?
 
-- A) Whether the software is compatible with all major operating systems used in schools.
-- B) Whether students who were initially low performers but who used the software for 30 minutes per day showed comparable assessment gains to the high performers who used it.
-- C) Whether the company offers volume discounts to school districts that purchase multiple licenses.
-- D) Whether the software covers all subjects tested on the end-of-year assessments.
-- E) Whether teachers who encouraged software use had higher overall class averages regardless of individual student usage.
+- A) Whether the software is fully compatible with all of the major operating systems, devices, and network configurations currently used in schools.
+- B) Whether initially low-performing students who used the software for 30 minutes per day showed gains comparable to the high performers who used it.
+- C) Whether the company offers volume discounts to school districts that purchase software licenses for multiple schools at once.
+- D) Whether the software's adaptive lessons cover all of the academic subjects tested on the end-of-year assessments.
+- E) Whether teachers who actively encouraged use of the software also had higher overall class averages regardless of how much individual students used it.
 
 **answer:** B
 **explanation:** **Situation.** An educational technology company observes that students who voluntarily used its adaptive learning software for at least 30 minutes per day scored 18 percent higher on end-of-year assessments than nonusers, and it concludes that schools should purchase the software to improve student outcomes. Teachers report, however, that the heaviest users were already among the highest performers before the software was introduced.
@@ -592,7 +592,7 @@ Which of the following can be most reasonably inferred from the information abov
 
 - A) Small businesses are less profitable now than they were five years ago.
 - B) The labor market conditions have made it more difficult for small businesses to keep their workers.
-- C) Large corporations do not experience the same retention challenges as small businesses.
+- C) Large corporations, which can offer higher pay, do not experience the retention challenges that small businesses face.
 - D) The increase in wages has not been sufficient to solve small businesses' retention problems.
 - E) Small business owners are less skilled at management than they were five years ago.
 
@@ -619,11 +619,11 @@ A consumer electronics company discontinued its tablet product line last year, c
 
 Which of the following can be most reasonably inferred from the information above?
 
-- A) Consumers prefer smartphones and laptops to tablets.
+- A) Consumers now generally prefer purchasing smartphones and laptops to purchasing tablets.
 - B) The tablet product line was reducing the company's overall profit margin before it was discontinued.
 - C) The company's competitors also experienced increased revenue this year.
-- D) The company will never re-enter the tablet market.
-- E) Smartphones and laptops are more innovative products than tablets.
+- D) The company will never re-enter the tablet market, regardless of how consumer demand for tablets evolves in the future.
+- E) Smartphones and laptops are inherently more innovative products than tablets are.
 
 **answer:** B
 **explanation:** **Situation.** A consumer electronics company discontinued its tablet product line last year because of declining sales. This year the company reported a 15 percent increase in overall revenue and a 20 percent increase in profit margin, while its smartphone and laptop divisions both posted record sales.
@@ -649,7 +649,7 @@ A nationwide study of hospital readmission rates found that patients discharged 
 Which of the following can be most reasonably inferred from the study's findings?
 
 - A) Reducing hospital readmissions is primarily a matter of providing more thorough discharge counseling.
-- B) Hospitals should prohibit patient discharges on Fridays.
+- B) Hospitals should prohibit patient discharges on Fridays until counseling staffing improves.
 - C) The amount of discharge counseling a patient receives may be a factor in whether that patient is readmitted.
 - D) Nursing staff are less competent on Fridays than on other days of the week.
 - E) Patients discharged on other weekdays have readmission rates identical to those of Tuesday-discharged patients.
@@ -677,11 +677,11 @@ A commercial real estate firm observed that office buildings located within one 
 
 Which of the following can be most reasonably inferred from the information above?
 
-- A) Companies are willing to pay a significant premium for transit-accessible locations because the benefits of such locations outweigh the additional cost.
-- B) Office buildings near transit stations are newer and more modern than those farther away.
-- C) The commercial real estate market is experiencing a downturn in areas not served by public transit.
-- D) Employees who use public transit are more productive than those who drive to work.
-- E) All commercial real estate firms prefer to develop properties near transit stations.
+- A) Companies are willing to pay a premium for transit-accessible locations because the benefits of such locations outweigh the additional cost.
+- B) Office buildings located near transit stations are newer and offer more modern amenities than comparable buildings farther away.
+- C) The commercial real estate market is experiencing a broad downturn in the areas of the region not served by public transit.
+- D) Employees who commute by public transit are more productive at work than employees who drive to work each day.
+- E) All commercial real estate firms now prefer to develop new properties near transit stations rather than in outlying areas.
 
 **answer:** A
 **explanation:** **Situation.** Office buildings within one mile of a major public transit station rent for 30 percent more per square foot than comparable buildings more than three miles away, yet the transit-adjacent buildings average only 4 percent vacancy compared with 11 percent for the more distant buildings.
@@ -735,11 +735,11 @@ A company's CEO noted that employee satisfaction scores increased by 20% after t
 
 Which of the following best describes a flaw in the CEO's reasoning?
 
-- A) He fails to consider that the satisfaction increase might be temporary as employees adjust to the new schedule.
-- B) He assumes that what worked at one specific company will necessarily work at all companies regardless of industry, size, or workforce composition.
-- C) He does not provide data on whether the company's productivity changed after the switch.
-- D) He ignores the possibility that employees were dissatisfied before the change.
-- E) He does not specify how employee satisfaction was measured.
+- A) He fails to consider that the increase in satisfaction might prove temporary, fading as employees adjust to the novelty of the new schedule.
+- B) He assumes that what worked at one company will necessarily work at all companies regardless of industry, size, or workforce composition.
+- C) He does not provide data on whether the company's productivity changed after the switch to the four-day schedule.
+- D) He ignores the possibility that many employees were deeply dissatisfied with their schedules before the change.
+- E) He does not specify how employee satisfaction was measured or which employees responded.
 
 **answer:** B
 **explanation:** **Situation.** A CEO observes that employee satisfaction scores at his company rose by 20 percent after the company adopted a four-day workweek, and on that basis he concludes that all companies should adopt a four-day workweek in order to improve employee satisfaction.
@@ -764,11 +764,11 @@ Despite a 40% increase in the number of organic farms in a certain region over t
 
 Which of the following, if true, most helps to resolve the apparent paradox described above?
 
-- A) Consumer demand for organic produce has grown steadily over the past decade.
-- B) Many large conventional farms in the region have converted some of their acreage to organic production.
+- A) Consumer demand for organic produce in the region has grown steadily and substantially over the past decade.
+- B) Many of the region's large conventional farms have responded to growing market demand by converting a significant portion of their existing acreage to organic production.
 - C) Several large organic farms in the region were subdivided and sold as residential developments, while the new organic farms tend to be small, specialty operations.
-- D) Organic farming methods require more labor per acre than conventional farming methods.
-- E) The region's climate has become less favorable for certain organic crops over the past decade.
+- D) Organic farming methods require considerably more labor and closer management attention per acre than conventional farming methods do.
+- E) The region's climate has gradually become less favorable over the past decade for several of the organic crops most widely grown there.
 
 **answer:** C
 **explanation:** **Situation.** Over the past decade, the number of organic farms in a certain region rose by 40 percent, yet the total acreage devoted to organic farming in that region fell by 15 percent during the same period.
@@ -777,7 +777,7 @@ Which of the following, if true, most helps to resolve the apparent paradox desc
 
 The correct answer is C.
 **mistake_a:** Choice A reports that consumer demand for organic produce grew steadily, but rising demand would, if anything, lead one to expect more land devoted to organic farming, not less; it offers no explanation for the 15 percent decline in acreage and therefore does nothing to resolve the paradox.
-**mistake_b:** Choice B states that many large conventional farms converted some acreage to organic production. This would increase organic acreage rather than reduce it, pushing acreage and farm count in the same direction and deepening rather than resolving the contradiction between rising farm numbers and falling acreage.
+**mistake_b:** Choice B states that many large conventional farms converted a significant portion of their acreage to organic production. This would increase organic acreage rather than reduce it, pushing acreage and farm count in the same direction and deepening rather than resolving the contradiction between rising farm numbers and falling acreage.
 **mistake_d:** Choice D notes that organic methods require more labor per acre than conventional methods. Labor intensity bears on the cost of farming but says nothing about why the number of organic farms would rise while their total acreage fell, so it leaves the paradox unexplained.
 **mistake_e:** Choice E observes that the climate became less favorable for certain organic crops. While this might help account for a decline in organic acreage, it provides no reason for the 40 percent increase in the number of organic farms, and so it explains only one of the two facts rather than reconciling both.
 **related_reading:** reading-verbal-04-cr-question-types
@@ -793,11 +793,11 @@ A health policy analyst argues that the government should cut funding for preven
 
 Which of the following best describes a flaw in the analyst's reasoning?
 
-- A) The analyst does not consider that preventive programs may have benefits beyond reducing hospital admissions, such as improving quality of life.
+- A) The analyst does not consider that preventive programs may have important benefits beyond reducing hospital admissions, such as improving patients' quality of life.
 - B) The analyst ignores the possibility that hospital admissions for preventable diseases would have increased even more without the preventive programs.
-- C) The analyst fails to specify which preventable diseases are included in the hospital admission data.
-- D) The analyst does not compare the government's spending on prevention with spending in other countries.
-- E) The analyst assumes that all preventive health programs are equally effective.
+- C) The analyst fails to specify which preventable diseases are included in the hospital admission data cited in the argument.
+- D) The analyst does not compare the government's spending on prevention with the corresponding spending levels in other countries.
+- E) The analyst assumes that all preventive health programs, regardless of design or target population, are equally effective.
 
 **answer:** B
 **explanation:** **Situation.** A health policy analyst observes that hospital admissions for preventable diseases have not declined over a decade despite increased spending on preventive programs, and on that basis concludes that the programs are ineffective and recommends cutting their funding.
@@ -822,11 +822,11 @@ A financial advisor argues that index funds are always superior to actively mana
 
 Which of the following best describes a flaw in the financial advisor's reasoning?
 
-- A) She does not define what constitutes a "rational" investor.
-- B) She ignores the possibility that the 15% of actively managed funds that outperformed may be identifiable in advance using certain criteria, making it rational for some investors to select them.
-- C) She fails to acknowledge that past performance does not guarantee future results.
-- D) She does not consider that some investors enjoy the process of researching and selecting actively managed funds.
-- E) She assumes that all index funds have identical fee structures.
+- A) She does not define what constitutes a "rational" investor or explain how rationality should be assessed for investors with differing goals.
+- B) She ignores the possibility that the 15% of actively managed funds that outperformed may be identifiable in advance, making it rational for some investors to select them.
+- C) She fails to acknowledge that past performance, however consistent it has been over the past century, does not guarantee future results.
+- D) She does not consider that some investors genuinely enjoy the process of researching, comparing, and ultimately selecting actively managed funds for their portfolios.
+- E) She assumes that all index funds available to individual investors carry essentially identical fee structures and expense ratios.
 
 **answer:** B
 **explanation:** **Situation.** A financial advisor observes that, over any 15-year period in the past century, index funds outperformed 85 percent of actively managed funds after fees, and she concludes that no rational investor should ever choose an actively managed fund.
@@ -851,11 +851,11 @@ A country that introduced a carbon tax five years ago has seen its total carbon 
 
 Which of the following, if true, most helps to explain the apparent discrepancy described above?
 
-- A) The carbon tax rate has been gradually increased each year since its introduction.
-- B) The country's population has declined slightly over the five-year period.
-- C) The carbon tax prompted domestic manufacturers to relocate production to countries without carbon pricing, so that emissions from goods consumed domestically are now generated offshore rather than within the country's borders.
-- D) Renewable energy sources now account for a larger share of the country's electricity generation than they did five years ago.
-- E) Other countries that have introduced carbon taxes have experienced similar declines in domestic emissions.
+- A) The carbon tax rate has been increased gradually each year since its introduction, rising considerably more quickly than the schedule originally announced.
+- B) The country's population has declined slightly over the five-year period, as emigration has modestly outpaced both births and immigration.
+- C) The carbon tax prompted domestic manufacturers to relocate production to countries without carbon pricing, so that emissions from goods consumed domestically are now generated offshore.
+- D) Renewable energy sources, including wind and solar, now account for a considerably larger share of the country's electricity generation than they did five years ago.
+- E) Several other industrialized countries that introduced carbon taxes during the same period have experienced similar declines in their domestic emissions.
 
 **answer:** C
 **explanation:** **Situation.** A country that adopted a carbon tax five years ago has reduced its total domestic carbon emissions by 20 percent, yet its per capita consumption-based carbon footprint, which counts emissions generated abroad to make goods the country imports, has risen by 8 percent over the same span.
@@ -909,11 +909,11 @@ A mid-sized city is considering installing LED streetlights to replace its exist
 
 The argument above depends on which of the following assumptions?
 
-- A) LED streetlights last longer than sodium-vapor lamps.
-- B) Residents of the city support the switch to LED streetlights.
-- C) The cost of electricity will not decrease by more than 60% in the near future.
-- D) Expenses other than electricity, such as the purchase and installation of the new lamps, will not offset the savings from reduced electricity use.
-- E) Other cities that have switched to LED streetlights have reported lower lighting costs.
+- A) LED streetlights last significantly longer than sodium-vapor lamps and therefore need replacement less often.
+- B) A clear majority of the city's residents support the proposed switch from sodium-vapor lamps to LED streetlights.
+- C) The cost of electricity in the city will not decrease by more than 60% at any point in the near future.
+- D) Expenses other than electricity, such as purchasing and installing the new lamps, will not offset the savings from reduced electricity use.
+- E) Numerous other cities of comparable size that have switched their streetlights to LEDs have reported significantly lower annual lighting costs.
 
 **answer:** D
 **explanation:** **Situation.** A city is deciding whether to replace its sodium-vapor streetlights with LED lights. Proponents conclude that because LEDs consume 60 percent less electricity than equally bright sodium-vapor lamps, switching will significantly reduce the city's annual street-lighting costs.
@@ -938,7 +938,7 @@ A study of employees at a large technology firm found that workers who took at l
 
 Which of the following can be properly inferred from the information above?
 
-- A) Taking consecutive vacation days causes higher job satisfaction than taking scattered days off.
+- A) Taking consecutive vacation days causes employees to experience higher job satisfaction than taking the same number of scattered days off.
 - B) Among employees at this firm, the pattern of vacation use is associated with reported job satisfaction.
 - C) Most employees at the firm prefer consecutive vacation weeks to scattered days off.
 - D) Employees who report higher job satisfaction perform better at their jobs.
@@ -967,11 +967,11 @@ A popular online retailer reduced the price of its most popular wireless headpho
 
 Which of the following, if true, best explains the discrepancy described above?
 
-- A) The retailer heavily advertised the sale on social media platforms.
+- A) The retailer heavily advertised the weeklong sale on several social media platforms and through email messages sent to all of its registered customers.
 - B) Many customers who intended to buy the headphones had purchased them during a similar sale two weeks earlier, having anticipated the price drop.
-- C) The retailer's competitors also offered discounts on wireless headphones during the same week.
-- D) The headphones have been the retailer's best-selling electronic product for the past year.
-- E) The retailer's shipping times were slightly longer during the sale week due to high overall order volume.
+- C) The retailer's competitors also offered discounts on wireless headphones and other audio equipment during the same weeklong period.
+- D) The headphones have been the retailer's best-selling electronic product in every month for more than a year.
+- E) The retailer's shipping times were slightly longer than usual during the sale week due to the high overall volume of orders placed.
 
 **answer:** B
 **explanation:** **Situation.** An online retailer cut the price of its most popular wireless headphones by 25 percent during a weeklong sale, yet total revenue from those headphones during the sale week was lower than in a typical non-sale week.
@@ -979,7 +979,7 @@ Which of the following, if true, best explains the discrepancy described above?
 **Reasoning.** The task is to find the option that best explains this discrepancy: a price cut would ordinarily increase the number of units sold, and lower revenue is surprising even allowing for the reduced unit price. An adequate explanation must account for why so few units sold during the sale that the lower per-unit price could not be offset by greater volume. The claim that many customers who intended to buy the headphones had already purchased them two weeks earlier, during a similar sale they anticipated, supplies exactly this mechanism. The pool of would-be buyers was drained before the sale week began, so demand during the sale was unusually thin. With far fewer units sold and each sold at a discount, total revenue falls below the non-sale baseline. This resolves the apparent paradox by explaining both the depressed volume and the resulting drop in revenue.
 
 The correct answer is B.
-**mistake_a:** Choice A states that the retailer heavily advertised the sale on social media. Advertising would be expected to draw more buyers and thereby raise revenue, which deepens rather than resolves the discrepancy of why revenue fell.
+**mistake_a:** Choice A states that the retailer heavily advertised the sale on social media and by email. Advertising would be expected to draw more buyers and thereby raise revenue, which deepens rather than resolves the discrepancy of why revenue fell.
 **mistake_c:** Choice C notes that competitors also discounted wireless headphones that week. While competitive pressure could reduce sales somewhat, discounts in an ordinary market still tend to increase volume; this does not explain why revenue dropped below a typical non-sale week, when no such competing discounts were present.
 **mistake_d:** Choice D reports that the headphones have been the retailer's best-selling electronic product for the past year. This is background information about the product's standing and says nothing about why revenue during the sale week declined relative to a normal week.
 **mistake_e:** Choice E points to slightly longer shipping times caused by high overall order volume. High order volume suggests robust demand, which runs contrary to the premise that revenue from the headphones fell, and so fails to explain the discrepancy.
@@ -996,11 +996,11 @@ A biotech company's new drug candidate reduced tumor size in 70% of mice in a pr
 
 Which of the following, if true, most strengthens the research director's conclusion?
 
-- A) The drug candidate was developed using a computational model validated on human cell lines.
+- A) The drug candidate was developed and optimized using a sophisticated computational model that had been validated on several human cell lines.
 - B) In three previous cases, drugs that produced this specific biological mechanism in mice later showed comparable efficacy in human trials for the same tumor type.
-- C) The mice used in the trial were bred specifically to develop tumors that mimic human disease.
-- D) The placebo used in the trial was chemically inert and had no known biological effect.
-- E) The biotech company has successfully brought two other drugs to market in the past decade.
+- C) The mice used in the trial belonged to a strain specially bred to develop tumors that closely mimic the progression of the human disease.
+- D) The placebo administered to the control mice in the trial was chemically inert and had no known biological effect on tumor growth.
+- E) The biotech company has successfully brought two other oncology drugs from preclinical testing through to market in the past decade.
 
 **answer:** B
 **explanation:** **Situation.** A new drug candidate shrank tumors in 70 percent of mice in a preclinical trial, versus 20 percent of mice given a placebo, and the company's research director concluded that the drug will likely be effective against similar tumors in human patients.
@@ -1025,11 +1025,11 @@ The editor of a weekly news magazine argues that the magazine should shift its d
 
 Which of the following, if true, most seriously weakens the editor's argument?
 
-- A) The magazine's mobile app was launched three years ago and has received generally positive reviews.
-- B) Advertisers pay the magazine significantly higher rates for full-page print advertisements than for digital banner ads, and those print-ad revenues currently exceed the magazine's total production costs.
-- C) Other news magazines that went digital-only reported subscriber growth within two years of the transition.
-- D) The magazine's print readership skews older than its digital readership.
-- E) Producing the print edition requires a specialized printing partner with whom the magazine has a five-year contract.
+- A) The magazine's mobile app was launched three years ago, has been downloaded by a large majority of subscribers, and has received generally positive reviews in the technology press.
+- B) Advertisers pay significantly higher rates for full-page print ads than for digital banner ads, and the magazine's print-ad revenues currently exceed its total production costs.
+- C) Several other weekly news magazines that shifted to digital-only distribution reported steady subscriber growth within two years of completing the transition.
+- D) The magazine's print readership skews considerably older than its digital readership and is concentrated in a handful of metropolitan areas.
+- E) Producing the print edition requires the magazine to work with a specialized printing partner with whom it has a five-year contract.
 
 **answer:** B
 **explanation:** **Situation.** A magazine editor recommends abandoning print in favor of digital-only distribution, noting that 80 percent of subscribers already read most articles on the mobile app and that eliminating print would reduce production costs by 40 percent.
@@ -1054,11 +1054,11 @@ The city council of Riverton is considering a proposal to build a new light-rail
 
 The supporters' argument depends on which of the following assumptions?
 
-- A) The light-rail line will be completed within the originally projected budget.
-- B) The reduction in highway traffic caused by commuters switching to light rail will not be offset by other drivers who begin using the highway because it has become less congested.
-- C) Most commuters who drive on the highway during rush hour travel between downtown and the western suburbs.
-- D) Light-rail systems in other cities have reduced highway congestion in those cities.
-- E) The light-rail line will be cheaper to maintain than the highway.
+- A) The light-rail line will be completed on schedule and within the budget originally projected for the project.
+- B) The reduction in highway traffic from commuters switching to light rail will not be offset by other drivers who begin using the highway once it becomes less congested.
+- C) Most of the commuters who drive on the highway during rush hour are traveling between the downtown business district and the western suburbs rather than to other destinations.
+- D) Light-rail systems constructed in several other cities of comparable size have measurably reduced rush-hour highway congestion in those cities.
+- E) Over its lifetime, the light-rail line will be cheaper to maintain and operate than the highway it is intended to relieve.
 
 **answer:** B
 **explanation:** **Situation.** Supporters of a proposed light-rail line connecting downtown Riverton to its western suburbs argue that the line will reduce rush-hour congestion on the main highway between the two areas, because many commuters who now drive will switch to the rail.
@@ -1066,10 +1066,10 @@ The supporters' argument depends on which of the following assumptions?
 **Reasoning.** The task is to identify an assumption on which the argument depends, that is, a statement that must be true for the conclusion to follow. The argument moves from a premise about behavior (many drivers will switch to rail) to a conclusion about a net outcome (highway congestion will fall). This inference holds only if the road space freed by the switchers is not simply reclaimed by other drivers. Choice B states exactly that condition: the reduction caused by switchers will not be offset by other drivers who start using the now-less-congested highway. Applying the negation test confirms its necessity. If B is false, then other drivers do move onto the highway in response to the freed space, replacing the departed commuters and restoring congestion to its former level; in that case congestion would not be reduced and the conclusion would fail. Because negating B destroys the argument, B is a required assumption.
 
 The correct answer is B.
-**mistake_a:** Choice A concerns whether the line is built within budget, which bears on the project's financial feasibility, not on whether a completed line would reduce congestion. The argument can succeed or fail regardless of cost, so this is not an assumption the reasoning depends on.
+**mistake_a:** Choice A concerns whether the line is completed on schedule and within budget, which bears on the project's feasibility, not on whether a completed line would reduce congestion. The argument can succeed or fail regardless of cost or timing, so this is not an assumption the reasoning depends on.
 **mistake_c:** Choice C is tempting, but it overshoots what the argument requires. The supporters claim only that many commuters will switch, not that most highway drivers travel that particular route. The conclusion can hold even if the downtown-to-suburb commuters are merely a sizable share rather than a majority of highway traffic, so this statement need not be true.
 **mistake_d:** Choice D offers evidence from other cities. Such an analogy might lend support to the proposal, but a successful prediction elsewhere is not something the argument must presuppose. The reasoning about Riverton can stand even if no other city's experience is known, so this is supporting evidence at most, not a necessary assumption.
-**mistake_e:** Choice E compares the maintenance costs of the rail line and the highway. Relative maintenance expense is a budgetary consideration that has no bearing on whether commuters switching to rail will reduce traffic congestion, so it is irrelevant to the argument's logic.
+**mistake_e:** Choice E compares the lifetime maintenance and operating costs of the rail line and the highway. Relative expense is a budgetary consideration that has no bearing on whether commuters switching to rail will reduce traffic congestion, so it is irrelevant to the argument's logic.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1083,11 +1083,11 @@ A consulting firm examined the 50 fastest-growing technology startups of the pas
 
 Which of the following best describes a flaw in the firm's reasoning?
 
-- A) The firm assumes that the five large technology companies will continue to exist in their current form.
+- A) The firm assumes that the five large technology companies will continue to exist in their current form and to hire at their current scale.
 - B) The firm fails to consider that the vast majority of employees at these five large companies never found startups, let alone fast-growing ones.
-- C) The firm does not specify what counts as a "fast-growing" startup.
-- D) The firm ignores that some founders of fast-growing startups did not work at the five largest technology companies.
-- E) The firm relies on data that may have been reported inaccurately by the startups themselves.
+- C) The firm does not specify what rate of growth a startup must achieve in order to count as "fast-growing."
+- D) The firm ignores the fact that some founders of highly successful, fast-growing startups did not work at any of the five largest technology companies.
+- E) The firm relies on employment-history data that may have been reported inaccurately by the startups themselves.
 
 **answer:** B
 **explanation:** **Situation.** A consulting firm found that 42 of the 50 fastest-growing technology startups of the past decade had founders who had previously worked at one of the five largest technology companies, and on that basis concluded that aspiring entrepreneurs should seek employment at one of those five companies to maximize their chances of later founding a fast-growing startup.
@@ -1095,7 +1095,7 @@ Which of the following best describes a flaw in the firm's reasoning?
 **Reasoning.** The task is to identify a flaw in the firm's reasoning. The firm's evidence establishes the proportion of successful founders who came from these five companies, but its recommendation depends on a different and unestablished quantity: the proportion of people who work at these companies who go on to found a fast-growing startup. These two figures are not interchangeable. Even if nearly every successful founder came from one of the five firms, the chance that any given employee of those firms becomes such a founder could be negligibly small if those companies employ enormous numbers of people. Drawing a recommendation for aspiring entrepreneurs from the share of successes that share a trait, while ignoring how rarely that trait actually leads to success, is base-rate neglect, and the firm's advice is therefore unsupported. Choice B identifies exactly this gap: it points out that the vast majority of employees at the five companies never found startups, let alone fast-growing ones, which is the missing base rate that undermines the conclusion.
 
 The correct answer is B.
-**mistake_a:** Choice A raises a speculative concern about whether the five companies will persist in their current form. This has no bearing on the logical gap between the share of successful founders who worked at those companies and the chance that an employee of those companies will succeed, so it does not describe the flaw in the argument.
+**mistake_a:** Choice A raises a speculative concern about whether the five companies will persist in their current form and hiring scale. This has no bearing on the logical gap between the share of successful founders who worked at those companies and the chance that an employee of those companies will succeed, so it does not describe the flaw in the argument.
 **mistake_c:** Choice C is a definitional quibble about what counts as a "fast-growing" startup. However the term is defined, the firm's reasoning still infers a recommendation for employees from data about founders, so clarifying the definition would not repair or address the underlying flaw.
 **mistake_d:** Choice D notes that some founders of fast-growing startups did not work at the five largest companies. This is tempting because it points to exceptions, but the firm's argument is statistical rather than absolute; a handful of founders from elsewhere does not refute a claim about maximizing chances. The genuine flaw is the neglected base rate, not the existence of exceptions.
 **mistake_e:** Choice E offers a generic challenge to data quality, suggesting the startups may have reported inaccurately. The argument's defect persists even if every reported figure is perfectly accurate, because the flaw lies in reasoning from the wrong proportion, so this does not describe the relevant error.
@@ -1112,11 +1112,11 @@ A university is considering whether to require all first-year students to live i
 
 The answer to which of the following questions would be most useful in evaluating the supporters' argument?
 
-- A) What is the average rent for off-campus housing near the university?
+- A) What is the average monthly rent for off-campus apartments within easy commuting distance of the university's campus?
 - B) How do the demographic and academic profiles of first-year students who chose to live in dorms compare with those who chose to live off-campus?
-- C) Do upper-class students who live in dorms also have higher GPAs than upper-class students who live off-campus?
-- D) Has the university's overall GPA increased over the past decade?
-- E) What percentage of first-year students currently live in dorms?
+- C) Do upper-class students who live in campus dormitories also earn higher average GPAs than the upper-class students who live in off-campus housing?
+- D) Has the university's overall average GPA, measured across all class years and majors, increased over the past decade?
+- E) What percentage of the university's first-year students currently choose to live in on-campus dormitories rather than off-campus?
 
 **answer:** B
 **explanation:** **Situation.** A university is weighing a requirement that all first-year students live in on-campus dormitories. Supporters claim this will improve first-year academic performance, pointing to an internal study in which first-year dorm residents had an average GPA 0.3 points higher than first-year students living off-campus.
@@ -1141,11 +1141,11 @@ A horticulturalist observed that in her greenhouse, tomato plants grown under re
 
 Which of the following must be true on the basis of the information above?
 
-- A) Red-spectrum light is the optimal light source for all tomato cultivation.
-- B) Taller tomato plants always produce more fruit than shorter ones.
+- A) Red-spectrum light is the optimal light source for all tomato cultivation, indoors and outdoors alike.
+- B) Taller tomato plants always produce more fruit by weight than shorter tomato plants of the same variety.
 - C) Under the conditions tested, the additional leaves produced by plants under white light did not translate into greater fruit yield.
-- D) Tomato plants grown under blue-spectrum light would produce even more fruit than those grown under red light.
-- E) The red-spectrum light caused the tomato plants to grow taller.
+- D) Tomato plants grown under blue-spectrum LED lights would have produced even more fruit by weight than the plants grown under red-spectrum lights.
+- E) The red-spectrum light was what caused the tomato plants in the greenhouse to grow taller than the others.
 
 **answer:** C
 **explanation:** **Situation.** A horticulturalist observed that, with all other growing conditions held constant, tomato plants grown under red-spectrum LED lights produced 25 percent more fruit by weight than plants grown under white LED lights, while the red-light plants grew taller and had fewer leaves.
@@ -1170,10 +1170,10 @@ A pharmaceutical company claims that its new cholesterol-lowering drug, StatinX,
 
 Which of the following, if true, most strengthens the company's claim?
 
-- A) StatinX costs approximately 15% more per monthly prescription than the competitor's drug.
+- A) StatinX costs approximately 15% more per monthly prescription than the competitor's drug and is not yet covered by several major insurance plans.
 - B) Patients in both arms of the trial were randomly assigned, had similar baseline cholesterol levels, and were matched on age, sex, and cardiovascular risk factors.
-- C) StatinX was developed using a novel chemical pathway that the company has patented.
-- D) The competitor's drug has been on the market for over fifteen years and is widely prescribed.
+- C) StatinX was developed using a novel chemical pathway that the company patented after a decade of research into cholesterol synthesis.
+- D) The competitor's drug has been on the market for over fifteen years and remains one of the most widely prescribed cholesterol medications in the country.
 - E) Side effects reported in the StatinX arm of the trial were comparable in frequency to those reported in the competitor arm.
 
 **answer:** B
@@ -1182,7 +1182,7 @@ Which of the following, if true, most strengthens the company's claim?
 **Reasoning.** The task is to identify the statement that, if true, most strengthens the conclusion that StatinX is more effective. The argument infers superiority from a 7-percentage-point gap in average LDL reduction between the two trial arms. That gap supports the conclusion only if it reflects a true difference in the drugs' effects rather than a difference between the groups of patients. If the StatinX patients had, for instance, higher baseline cholesterol or a more favorable risk profile, the larger reduction could be attributed to the patients rather than to the drug, undermining the comparison. The statement that the patients in both arms were randomly assigned, had similar baseline cholesterol levels, and were matched on age, sex, and cardiovascular risk factors directly removes these alternative explanations. By establishing that the two groups were comparable at the outset, it makes the observed difference in outcomes credibly attributable to the drugs themselves, so the comparison genuinely supports the superiority claim.
 
 The correct answer is B.
-**mistake_a:** Choice A addresses the relative cost of StatinX, but price is irrelevant to whether the drug is more effective at lowering cholesterol. A higher cost neither supports nor undermines the efficacy claim and, if anything, is a reason to doubt the drug's value rather than to accept its superiority.
+**mistake_a:** Choice A addresses the cost of StatinX and its insurance coverage, but neither price nor coverage bears on whether the drug is more effective at lowering cholesterol. These facts neither support nor undermine the efficacy claim and, if anything, are reasons to doubt the drug's value rather than to accept its superiority.
 **mistake_c:** Choice C notes that StatinX was developed through a novel, patented chemical pathway, but novelty of mechanism does not establish that the drug works better. A new pathway could produce greater, equal, or lesser efficacy, so this fact does nothing to make the observed difference in LDL reduction more credible.
 **mistake_d:** Choice D provides background about the competitor's long market presence and wide use, but the competitor's history says nothing about whether the trial comparison was valid or whether StatinX actually produced the greater reduction. It leaves the efficacy claim no better supported.
 **mistake_e:** Choice E reports that side effects were comparable across the two arms, which speaks to safety rather than efficacy. The company's claim is specifically that StatinX is more effective, and comparable safety does not show that the larger LDL reduction reflects a real difference in the drugs' effectiveness, so it fails to strengthen the stated claim.
@@ -1199,11 +1199,11 @@ A large manufacturing firm is considering adopting a four-day workweek, in which
 
 Which of the following, if true, most seriously weakens the HR managers' argument?
 
-- A) The three pilot firms had offered other incentives, such as signing bonuses, during the pilot period.
-- B) Employees at the manufacturing firm already report high satisfaction with the current schedule.
+- A) During the pilot period, the three pilot firms had also offered employees other incentives, such as signing bonuses and performance awards, that could have boosted output.
+- B) Employees at the manufacturing firm already report high satisfaction with the current five-day schedule in annual workplace surveys.
 - C) The manufacturing firm's production process requires continuous machine operation that cannot be efficiently compressed into four days.
 - D) The manufacturing firm has approximately ten times as many employees as the largest of the three pilot firms.
-- E) A four-day workweek is becoming increasingly common in the manufacturing industry globally.
+- E) A four-day workweek is becoming increasingly common among manufacturing firms globally, particularly in Europe and Japan.
 
 **answer:** C
 **explanation:** **Situation.** A large manufacturing firm is weighing a four-day workweek of four 10-hour days. Its human resources managers contend that the switch will raise productivity, basing the claim on pilot programs at three smaller firms in unrelated industries where output per employee rose by an average of 12 percent after the change.
@@ -1211,7 +1211,7 @@ Which of the following, if true, most seriously weakens the HR managers' argumen
 **Reasoning.** The task is to identify the statement that most seriously weakens the HR managers' argument. The argument is a transplant-the-policy plan: because a schedule change produced gains at three other firms, the same change is predicted to produce gains here. Such an argument depends on the assumption that the mechanism responsible for the gains elsewhere can actually operate at this firm. The most damaging objection is therefore one that shows the proposed schedule is infeasible given this firm's own process. The credited statement reports that the manufacturing firm's production requires continuous machine operation that cannot be efficiently compressed into four days. If the work simply cannot be rearranged into four 10-hour days without loss of efficiency, then the very compression that the plan relies on is blocked, and the predicted productivity gain cannot be expected to materialize here regardless of what happened at the pilot firms. This attacks the plan's feasibility in context, which is a more decisive weakening than merely casting doubt on the pilot evidence.
 
 The correct answer is C.
-**mistake_a:** Choice A offers an alternative explanation for the 12 percent gain at the pilot firms, since signing bonuses rather than the schedule change might have driven the improvement. This weakens only the strength of the supporting evidence, not the feasibility of the plan at the manufacturing firm itself. A statement showing that the plan cannot work in this firm's context is a stronger objection, so Choice A is not the best answer.
+**mistake_a:** Choice A offers an alternative explanation for the 12 percent gain at the pilot firms, since incentives such as signing bonuses and performance awards, rather than the schedule change, might have driven the improvement. This weakens only the strength of the supporting evidence, not the feasibility of the plan at the manufacturing firm itself. A statement showing that the plan cannot work in this firm's context is a stronger objection, so Choice A is not the best answer.
 **mistake_b:** Choice B states that employees are already satisfied with the current schedule. Current satisfaction does not establish that a four-day workweek would fail to raise productivity, and the argument concerns output rather than morale. This is at most a weak objection and does not undermine the productivity claim.
 **mistake_d:** Choice D notes only that the manufacturing firm is roughly ten times larger than the largest pilot firm. Scale alone does not demonstrate that the schedule change would fail to increase productivity here; a difference in size is not by itself a reason the underlying mechanism would not operate. This consideration is not decisive.
 **mistake_e:** Choice E reports that a four-day workweek is becoming increasingly common in the manufacturing industry. This tends to support, rather than weaken, the case for adopting the change, since an industry trend suggests the move is viable in manufacturing. A statement that strengthens the argument cannot be the answer to a weaken question.
@@ -1228,16 +1228,16 @@ Some economists have argued that a moderate increase in the minimum wage reduces
 
 Which of the following most logically completes the argument?
 
-- A) increased profits even if the higher wages are not fully offset by productivity gains, because reduced turnover costs will compensate for a significant portion of the wage increase.
-- B) a decrease in profits following a minimum-wage increase, because wages are the largest single operating expense in most businesses.
-- C) little change in their hiring practices, since turnover is determined primarily by factors other than wages.
-- D) difficulty recruiting new employees after a minimum-wage increase, because the labor pool will shrink.
-- E) higher employee turnover, because employees will seek even higher-paying jobs after receiving a raise.
+- A) increased profits even if the higher wages are not fully offset by productivity gains, because reduced turnover costs will compensate for much of the wage increase.
+- B) a decrease in profits following a minimum-wage increase, because wages are typically the largest single operating expense in labor-intensive businesses.
+- C) little change in their hiring practices, since turnover in such industries is determined primarily by working conditions and scheduling rather than by wages.
+- D) difficulty recruiting new employees after a minimum-wage increase, because the pool of workers willing to take entry-level jobs will shrink.
+- E) higher employee turnover, because employees who receive a raise will be encouraged to seek out even higher-paying jobs elsewhere.
 
 **answer:** A
 **explanation:** **Situation.** Some economists hold that a moderate rise in the minimum wage reduces employee turnover, which in turn lowers the hiring and training costs that employers must pay. The argument applies this idea specifically to industries that have high turnover rates.
 
-**Reasoning.** The task is to identify the option that most logically completes the argument, that is, the conclusion that follows most directly from the stated chain when applied to high-turnover industries. The premises form a sequence: a higher wage leads to lower turnover, which leads to lower hiring and training costs. Because high-turnover industries are precisely the ones that incur the most turnover-related cost, they stand to capture the largest savings from this mechanism. The conclusion that follows is therefore that those savings cushion the wage increase, so employers can preserve or improve profitability even when productivity gains alone do not cover the higher wages. Choice A states exactly this: profits can hold up because reduced turnover costs compensate for a significant portion of the wage increase, which is the direct consequence of the argument's own chain rather than a new mechanism introduced from outside.
+**Reasoning.** The task is to identify the option that most logically completes the argument, that is, the conclusion that follows most directly from the stated chain when applied to high-turnover industries. The premises form a sequence: a higher wage leads to lower turnover, which leads to lower hiring and training costs. Because high-turnover industries are precisely the ones that incur the most turnover-related cost, they stand to capture the largest savings from this mechanism. The conclusion that follows is therefore that those savings cushion the wage increase, so employers can preserve or improve profitability even when productivity gains alone do not cover the higher wages. Choice A states exactly this: profits can hold up because reduced turnover costs compensate for much of the wage increase, which is the direct consequence of the argument's own chain rather than a new mechanism introduced from outside.
 
 The correct answer is A.
 **mistake_b:** Choice B reverses the argument's logic. It predicts a decrease in profits after a minimum-wage increase because wages are the largest operating expense, but in doing so it simply ignores the offset mechanism the argument has just established, namely that lower turnover costs compensate for part of the wage increase. The claim that wages are the largest expense is not part of the stated chain and does not complete it.
@@ -1257,11 +1257,11 @@ Over the past ten years, the average fuel efficiency of new passenger vehicles s
 
 Which of the following, if true, best helps explain the apparent discrepancy?
 
-- A) Gasoline prices in Velora have remained roughly constant over the past ten years when adjusted for inflation.
+- A) Gasoline prices in Velora have remained roughly constant over the past ten years when adjusted for inflation, despite substantial fluctuations in global crude oil markets.
 - B) The total number of passenger vehicles on Velora's roads has grown by 45% over the past ten years, and the average miles driven per vehicle has also increased.
-- C) Velora has invested heavily in public transportation infrastructure over the past decade.
-- D) Fuel efficiency standards in Velora are stricter than those in neighboring countries.
-- E) Electric vehicles now account for approximately 5% of new passenger vehicle sales in Velora.
+- C) Velora has invested heavily in expanding public transportation infrastructure in its major metropolitan areas over the past decade.
+- D) Fuel efficiency standards for new vehicles in Velora are stricter than those in any of its neighboring countries.
+- E) Electric vehicles now account for approximately 5% of new passenger vehicle sales in Velora, up from less than 1% a decade ago.
 
 **answer:** B
 **explanation:** **Situation.** Over the past ten years the average fuel efficiency of new passenger vehicles sold in Velora has improved by 30 percent, yet the total amount of gasoline consumed by passenger vehicles in Velora has risen by 12 percent over the same period.
@@ -1287,10 +1287,10 @@ The correct answer is B.
 In the argument above, the two statements in boldface play which of the following roles?
 
 - A) The first states a general principle; the second identifies an exception to that principle and offers an explanation for the exception.
-- B) The first is the conclusion of the argument; the second is evidence supporting that conclusion.
-- C) The first is a position the author ultimately endorses; the second is a position the author rejects.
-- D) The first describes an observation; the second describes a prediction based on that observation.
-- E) The first states a claim that the argument disputes; the second states an assumption that the argument relies on.
+- B) The first is the main conclusion of the argument; the second is evidence offered in direct support of that conclusion.
+- C) The first is a position that the author ultimately endorses; the second is a competing position that the author considers and rejects.
+- D) The first describes an observation drawn from a decade of data; the second describes a prediction about future pricing behavior based on that observation.
+- E) The first states a claim that the argument as a whole disputes; the second states an unstated assumption on which the argument relies.
 
 **answer:** A
 **explanation:** **Situation.** Traditional economic theory maintains that a firm facing increased competition should lower its prices to retain market share, yet an analysis of luxury handbag manufacturers shows that several leading brands raised prices amid intensifying competition and gained market share, apparently because higher prices signal exclusivity and status to affluent buyers.
@@ -1315,16 +1315,16 @@ A state transportation agency plans to reduce highway fatalities by installing a
 
 The agency's projection depends on which of the following assumptions?
 
-- A) Drivers in the state will be informed in advance about the locations of the new speed cameras.
-- B) The 200 locations chosen are representative of the locations where cameras were installed in the neighboring state, at least with respect to the factors that make speed cameras effective at reducing fatalities.
-- C) Automated speed cameras are the most cost-effective method of reducing highway fatalities.
-- D) The state legislature will approve the funding necessary to install the cameras.
-- E) Drivers who receive speeding tickets from automated cameras will subsequently drive more cautiously for the rest of their lives.
+- A) Drivers in the state will be informed well in advance, through road signage and public awareness campaigns, about the exact locations of the new speed cameras.
+- B) The 200 chosen locations resemble the neighboring state's camera locations with respect to the factors that make speed cameras effective at reducing fatalities.
+- C) Automated speed cameras are the most cost-effective method available for reducing highway fatalities on high-accident roads.
+- D) The state legislature will approve the full funding necessary to purchase and install cameras at all 200 locations.
+- E) Drivers who receive speeding tickets from the automated cameras will subsequently drive more cautiously for the rest of their lives.
 
 **answer:** B
 **explanation:** **Situation.** A state transportation agency plans to install automated speed cameras at the 200 locations with historically the highest accident rates, and it projects that fatalities at those locations will fall by at least 15 percent within two years. That projection is based on the results of a similar camera program in a neighboring state.
 
-**Reasoning.** The task is to identify an assumption on which the agency's projection depends. The projection takes a result obtained at the locations where cameras were installed in the neighboring state and transfers it to the 200 locations chosen in this state. For that transfer to be legitimate, the new locations must resemble the neighboring state's locations on whatever characteristics actually cause speed cameras to reduce fatalities; otherwise the prior result provides no basis for predicting the same outcome here. Applying the negation test confirms that choice B supplies this needed link. If the 200 chosen locations are not representative of the neighboring state's camera locations with respect to the factors that make cameras effective, then the neighboring state's outcome cannot reasonably be expected to recur, and the 15 percent projection loses its support. Because negating choice B undermines the projection, choice B is an assumption the argument requires. The correct answer is B.
+**Reasoning.** The task is to identify an assumption on which the agency's projection depends. The projection takes a result obtained at the locations where cameras were installed in the neighboring state and transfers it to the 200 locations chosen in this state. For that transfer to be legitimate, the new locations must resemble the neighboring state's locations on whatever characteristics actually cause speed cameras to reduce fatalities; otherwise the prior result provides no basis for predicting the same outcome here. Applying the negation test confirms that choice B supplies this needed link. If the 200 chosen locations do not resemble the neighboring state's camera locations with respect to the factors that make cameras effective, then the neighboring state's outcome cannot reasonably be expected to recur, and the 15 percent projection loses its support. Because negating choice B undermines the projection, choice B is an assumption the argument requires. The correct answer is B.
 **mistake_a:** Choice A concerns whether drivers are told in advance where the cameras are. This is an operational design choice rather than a logical premise of the projection. The agency bases its forecast on the neighboring state's outcome, and the argument can succeed whether or not locations are publicized; negating this statement does not undermine the projected reduction.
 **mistake_c:** Choice C asserts that speed cameras are the most cost-effective way to reduce highway fatalities. Whether cameras are the cheapest option is a separate question from whether the cameras will produce the projected 15 percent reduction. The projection is about effectiveness at these locations, not about comparative cost, so this statement is not something the argument must assume.
 **mistake_d:** Choice D addresses whether the legislature will fund the installation. This is a practical precondition for carrying out the plan, not a logical assumption underlying the projected size of the reduction. The agency's reasoning about the expected effect of installed cameras neither depends on nor establishes that funding will be approved.
@@ -1342,11 +1342,11 @@ A columnist argues that reading fiction improves empathy. As evidence, she cites
 
 The columnist's argument is most vulnerable to which of the following criticisms?
 
-- A) It fails to define "empathy" in a way that all readers would accept.
-- B) It draws a conclusion about long-term behavioral change from evidence of a short-term effect measured immediately after a single reading session.
-- C) It assumes that schools currently do not assign any fiction reading.
-- D) It relies on a study that used random assignment rather than observational data.
-- E) It does not consider the possibility that some nonfiction articles could also increase empathy.
+- A) It fails to define "empathy" in a way that all readers and researchers would be likely to accept.
+- B) It draws a conclusion about long-term behavioral change from a short-term effect measured immediately after a single reading session.
+- C) It assumes that schools currently do not assign any fiction reading as part of their standard curricula.
+- D) It relies on a study that used random assignment of participants rather than observational data drawn from real classrooms.
+- E) It does not consider the possibility that some nonfiction articles could also increase empathy scores if they were tested in the same way.
 
 **answer:** B
 **explanation:** **Situation.** A columnist cites a study in which participants assigned to read a literary short story scored higher on an empathy assessment given immediately afterward than participants assigned to read a comparable nonfiction article, and she concludes that schools should require daily fiction reading to produce more empathetic graduates.
@@ -1369,11 +1369,11 @@ A hospital administrator is evaluating a proposal to switch all surgical teams f
 
 The answer to which of the following questions would be most useful for the administrator in evaluating the proposal?
 
-- A) How much does the tablet-based system cost compared with the paper-based system?
+- A) How much would the tablet-based system cost to purchase and maintain compared with the current paper-based system?
 - B) Did the method used to record and classify surgical errors change between the two six-month periods being compared?
-- C) Are surgeons in the pilot department generally younger than those in other departments?
-- D) How long does it take a surgical team to complete the digital checklist compared with the paper checklist?
-- E) Does the hospital currently have sufficient Wi-Fi coverage in all operating rooms?
+- C) Are surgeons in the pilot department generally younger, on average, than surgeons in the hospital's other departments?
+- D) How long does it take a typical surgical team to complete the digital checklist compared with the paper checklist?
+- E) Does the hospital currently have sufficient Wi-Fi coverage in all of its operating rooms?
 
 **answer:** B
 **explanation:** **Situation.** A hospital administrator is weighing a proposal to replace paper surgical checklists with tablet-based digital ones. Proponents support the switch by pointing to a single department whose recorded errors fell 40 percent during a six-month digital pilot relative to the prior six months on paper.
@@ -1398,11 +1398,11 @@ The correct answer is B.
 
 In the argument above, the two statements in boldface play which of the following roles?
 
-- A) The first is the main conclusion of the argument; the second provides evidence for it.
-- B) The first is a widely held view that the argument challenges; the second provides the reasoning that explains why that view fails in the specific case described.
-- C) The first is a prediction; the second is an observation that confirms the prediction.
-- D) The first is an assumption; the second is a conclusion drawn from that assumption.
-- E) The first and second both serve as evidence for the same conclusion.
+- A) The first is the main conclusion of the argument; the second provides the principal evidence offered in support of it.
+- B) The first is a widely held view that the argument challenges; the second explains why that view fails in the case described.
+- C) The first is a prediction made by many economists; the second is an observation that the argument takes to confirm the prediction.
+- D) The first is an assumption on which the argument depends; the second is an intermediate conclusion drawn from that assumption.
+- E) The first and the second both serve as pieces of evidence supporting the same conclusion about monetary policy.
 
 **answer:** B
 **explanation:** **Situation.** Many economists hold that raising interest rates is the most reliable way to reduce inflation. The argument counters this with the case of Marisol, where the central bank raised rates aggressively from 2022 to 2024 yet inflation stayed high, because that inflation was driven primarily by global commodity supply shocks that domestic monetary policy cannot directly address.
@@ -1427,16 +1427,16 @@ The CEO of a large software company announced a new policy requiring all employe
 
 Which of the following, if true, most seriously weakens the CEO's argument?
 
-- A) Patent filings at the company's largest competitor also declined during the remote-work period.
-- B) Employees at the company have generally expressed a preference for continuing to work remotely at least part of the time.
-- C) Three years before the pandemic, the company had approximately twice as many R&D employees as it does now, following major layoffs in the research division during the pandemic.
-- D) Some of the most innovative products the company has released were developed partly during the remote-work period.
-- E) Patent applications are only one measure of innovation, and not necessarily the best one.
+- A) Patent filings at the company's largest competitor also declined significantly during the industry-wide shift to remote work.
+- B) Employees at the company have generally expressed a strong preference for continuing to work remotely at least part of the time.
+- C) Before the pandemic, the company had roughly twice as many R&D employees as it does now, owing to major layoffs in its research division.
+- D) Several of the most innovative and commercially successful products the company has released were developed partly during the remote-work period.
+- E) Patent applications are only one measure of a company's innovation, and not necessarily the most reliable one.
 
 **answer:** C
 **explanation:** **Situation.** A software company's CEO is requiring all employees to return to the office five days per week, claiming the change will increase innovation. Her evidence is that in the three years before the pandemic, when everyone worked in the office, the company filed 40 percent more patents per year on average than it has in the three years since remote work began.
 
-**Reasoning.** The task is to identify the statement that most seriously weakens the argument. The CEO's reasoning treats the location of work as the cause of the decline in patent filings: because office work coincided with more patents and remote work coincided with fewer, she concludes that returning to the office will restore innovation. This is a causal inference drawn from a correlation between two periods, and it can be undermined by identifying another difference between the two periods that better explains the drop in patents. Choice (C) supplies exactly such an alternative explanation: during the earlier period the company employed roughly twice as many research-and-development workers, because major layoffs cut the research division in half during the pandemic. Patent output depends heavily on the number of people doing research, so halving the R&D workforce would be expected to reduce patent filings substantially regardless of where those workers were located. This shows that a factor other than work location plausibly accounts for the 40 percent decline, severing the link the CEO needs between remote work and reduced innovation and casting serious doubt on her conclusion that returning to the office will reverse the trend.
+**Reasoning.** The task is to identify the statement that most seriously weakens the argument. The CEO's reasoning treats the location of work as the cause of the decline in patent filings: because office work coincided with more patents and remote work coincided with fewer, she concludes that returning to the office will restore innovation. This is a causal inference drawn from a correlation between two periods, and it can be undermined by identifying another difference between the two periods that better explains the drop in patents. Choice (C) supplies exactly such an alternative explanation: during the earlier period the company employed roughly twice as many research-and-development workers, because major layoffs cut the research division in half. Patent output depends heavily on the number of people doing research, so halving the R&D workforce would be expected to reduce patent filings substantially regardless of where those workers were located. This shows that a factor other than work location plausibly accounts for the 40 percent decline, severing the link the CEO needs between remote work and reduced innovation and casting serious doubt on her conclusion that returning to the office will reverse the trend.
 
 The correct answer is C.
 **mistake_a:** Choice A states that the largest competitor's patent filings also declined during the remote-work period. If anything, an industry-wide decline points to broad external factors affecting everyone, but it does not pinpoint what caused this company's specific drop, and it does not identify an alternative within-company explanation that displaces work location. It leaves the CEO's causal claim essentially untouched and so does not seriously weaken the argument.
@@ -1456,11 +1456,11 @@ A regional grocery chain recently introduced a loyalty app that offers personali
 
 Which of the following, if true, most strengthens the marketing director's argument?
 
-- A) The app was promoted heavily on social media during its first month.
-- B) App users' spending per visit rose by 15% after they began using the app, compared with their own spending in the six months before they signed up.
-- C) Most app users are between the ages of 25 and 44.
-- D) The chain's competitors have not yet launched similar loyalty apps.
-- E) Customers who shop more frequently tend to try new features earlier.
+- A) The app was promoted heavily on social media and through in-store signage during its first month after launch.
+- B) App users' spending per visit rose by 15% after they began using the app, compared with their own spending in the prior six months.
+- C) Most of the app's users are between the ages of 25 and 44, a demographic segment that the chain's marketing team has long sought to attract.
+- D) The chain's regional competitors have not yet launched loyalty apps with similar personalized-discount features.
+- E) Customers who already shop at the chain most frequently tend to be the first to try newly introduced features.
 
 **answer:** B
 **explanation:** **Situation.** A grocery chain's loyalty-app users have spent, on average, 22 percent more per visit than non-users in the six months since launch. The marketing director concludes that the app itself causes customers to spend more.
@@ -1485,11 +1485,11 @@ The city council of Brenton has proposed installing speed cameras on Maple Avenu
 
 Which of the following, if true, most seriously weakens the council's argument?
 
-- A) Oakdale's police chief publicly endorsed the camera program before the installation.
-- B) The cost of installing speed cameras on Maple Avenue would exceed the council's annual traffic safety budget.
+- A) Oakdale's police chief publicly endorsed the camera program at several community meetings before the installation.
+- B) The cost of purchasing, installing, and maintaining speed cameras on Maple Avenue would exceed the council's entire annual traffic safety budget.
 - C) In the same twelve-month period, Oakdale also reduced the speed limit on the road in question by 10 miles per hour and added new crosswalks.
-- D) Some Oakdale drivers have complained that the cameras are unfair.
-- E) Speed cameras in other cities have sometimes been vandalized.
+- D) Some Oakdale drivers have complained to the city that the cameras are an unfair way to enforce speed limits.
+- E) Speed cameras installed in other cities have sometimes been vandalized within months of their installation.
 
 **answer:** C
 **explanation:** **Situation.** Brenton's city council proposes installing speed cameras on Maple Avenue to reduce traffic accidents, citing the fact that neighboring Oakdale installed speed cameras on a similar road last year and recorded a 30 percent drop in reported accidents over the following twelve months.
@@ -1514,11 +1514,11 @@ A pharmaceutical company claims that its new once-daily pill for hypertension is
 
 The conclusion above depends on which of the following assumptions?
 
-- A) The new pill is cheaper to manufacture than the standard pill.
-- B) Patients in the trial who took the new pill did not differ from patients taking the standard pill in ways that independently affect blood pressure control.
-- C) No patient in the trial experienced any side effects from either medication.
-- D) Most patients prefer once-daily dosing to twice-daily dosing.
-- E) The company has conducted multiple prior trials of other hypertension medications.
+- A) The new once-daily pill is cheaper to manufacture and distribute than the standard twice-daily pill.
+- B) Patients who took the new pill did not differ from those taking the standard pill in ways that independently affect blood pressure control.
+- C) No patient in either arm of the 12-week trial experienced any adverse side effects whatsoever from the medication he or she was assigned.
+- D) Most patients being treated for hypertension say they prefer once-daily dosing schedules to twice-daily ones.
+- E) The company has previously conducted multiple large clinical trials of other hypertension medications.
 
 **answer:** B
 **explanation:** **Situation.** A pharmaceutical company observes that in a 12-week trial, 68 percent of patients on its new once-daily hypertension pill reached target blood pressure versus 52 percent on the standard twice-daily pill, and it concludes that doctors should prescribe the new pill as first-line treatment.
@@ -1572,11 +1572,11 @@ A public health agency reports that the national rate of hospitalizations for se
 
 Which of the following, if true, best resolves the apparent paradox?
 
-- A) Flu vaccines have become more widely available and more effective over the past decade.
-- B) The national population has grown substantially over the decade, and the share of elderly residents — who are hospitalized for flu at much higher rates — has grown faster than the population as a whole.
-- C) Hospitals have become more cautious about admitting patients with mild flu symptoms.
-- D) Public awareness of flu prevention has increased significantly.
-- E) Some patients who were previously hospitalized for flu are now treated at home.
+- A) Flu vaccines have become both more widely available and considerably more effective over the past decade, especially among elderly patients, who account for most flu hospitalizations.
+- B) The national population has grown substantially, and the share of elderly residents — who are hospitalized for flu at much higher rates — has grown even faster.
+- C) Hospitals in most regions have become more cautious about admitting patients who arrive with only mild or moderate flu symptoms.
+- D) Public awareness of flu prevention measures, such as handwashing and staying home when ill, has increased significantly over the decade.
+- E) Some patients who would previously have been hospitalized for flu are now treated at home with antiviral medications instead.
 
 **answer:** B
 **explanation:** **Situation.** A public health agency reports that the per-person rate of seasonal flu hospitalizations fell 25 percent over a decade, yet over the same decade the total annual number of flu-related hospitalizations rose by nearly 15 percent.
@@ -1601,11 +1601,11 @@ A recent analysis of consumer behavior found that shoppers exposed to in-store p
 
 Which of the following most logically completes the argument?
 
-- A) stores that offer samples often hire additional staff to distribute them.
-- B) in-store samples are more common in grocery stores than in clothing stores.
-- C) shoppers who seek out samples may already be shoppers inclined to spend more, meaning samples may not be what causes the higher spending.
-- D) some customers dislike being approached by sample distributors.
-- E) sample distribution requires coordination with product suppliers.
+- A) stores that offer samples must often hire additional staff to distribute them, adding to labor costs.
+- B) in-store samples are far more common in grocery and specialty-food stores than in clothing or electronics stores.
+- C) shoppers who seek out samples may already be inclined to spend more, meaning samples may not be what causes the higher spending.
+- D) some customers dislike being approached by employees distributing samples while they are shopping.
+- E) distributing samples on a larger scale requires close coordination with each of the product suppliers involved.
 
 **answer:** C
 **explanation:** **Situation.** An analysis found that shoppers who were exposed to in-store product samples spent 18 percent more per visit than shoppers who were not, and a retail consultant used this finding to recommend that stores offer more samples in order to boost revenue.
@@ -1614,7 +1614,7 @@ Which of the following most logically completes the argument?
 
 The correct answer is C.
 **mistake_a:** Choice A raises a cost consideration rather than a causal one. That stores offering samples often hire additional staff bears on the expense of the recommendation, but it does not address whether the samples themselves cause the higher spending, which is the inference the argument rests on.
-**mistake_b:** Choice B describes how sample distribution varies across store segments, noting that samples are more common in grocery stores than in clothing stores. This concerns where samples appear, not whether samples cause higher spending, so it does not expose the gap in the consultant's reasoning.
+**mistake_b:** Choice B describes how sample distribution varies across store segments, noting that samples are far more common in grocery and specialty-food stores than in clothing or electronics stores. This concerns where samples appear, not whether samples cause higher spending, so it does not expose the gap in the consultant's reasoning.
 **mistake_d:** Choice D points to a minor matter of customer preference, namely that some customers dislike being approached by sample distributors. This might bear marginally on the experience of sampling but does not undermine the causal link between samples and increased spending that the recommendation depends on.
 **mistake_e:** Choice E identifies a logistical requirement, that sample distribution must be coordinated with product suppliers. Like the cost consideration, this speaks to the difficulty of carrying out the recommendation, not to whether offering more samples would actually produce more revenue.
 **related_reading:** reading-verbal-04-cr-question-types
@@ -1630,11 +1630,11 @@ A venture capital firm noticed that, of the 60 startups in its portfolio, the 20
 
 Which of the following, if true, most strengthens the partners' conclusion?
 
-- A) The firm's first-time-CEO startups received, on average, larger funding rounds than the repeat-founder startups.
-- B) Repeat and first-time founders in the portfolio operated in similar industries, raised comparable amounts, and faced similar market conditions.
-- C) Repeat founders tend to have stronger personal networks in the venture capital community.
-- D) Some of the most celebrated tech companies were founded by first-time CEOs.
-- E) The firm's portfolio includes companies at various stages of maturity.
+- A) The firm's first-time-CEO startups received, on average, substantially larger early funding rounds than the repeat-founder startups did.
+- B) Repeat and first-time founders operated in similar industries, raised comparable amounts, and faced similar market conditions.
+- C) Repeat founders tend to have stronger personal networks among venture investors and experienced startup executives.
+- D) Some of the most celebrated technology companies of the past two decades were founded by first-time CEOs.
+- E) The firm's portfolio includes companies at widely varying stages of maturity and growth.
 
 **answer:** B
 **explanation:** **Situation.** Among a venture firm's 60 portfolio startups, those led by CEOs with prior founding experience reached profitability at 55 percent, while first-time-CEO startups did so at only 25 percent. The partners concluded that founding experience causes the higher success rate and shifted future investment toward repeat founders.
@@ -1643,7 +1643,7 @@ Which of the following, if true, most strengthens the partners' conclusion?
 
 The correct answer is B.
 **mistake_a:** Choice A states that the first-time-CEO startups received, on average, larger funding rounds than the repeat-founder startups. This does not strengthen the conclusion and arguably undermines it: if the less successful group actually had more capital, then funding cannot account for the repeat founders' edge, but the point also introduces a difference between the groups that complicates a clean attribution to experience rather than supporting it.
-**mistake_c:** Choice C observes that repeat founders tend to have stronger personal networks in the venture capital community. Rather than strengthening the conclusion, this supplies an alternative cause for the higher success rate. If superior networks, not founding experience as such, drive the better outcomes, the partners' specific causal claim is weakened.
+**mistake_c:** Choice C observes that repeat founders tend to have stronger personal networks among venture investors and experienced startup executives. Rather than strengthening the conclusion, this supplies an alternative cause for the higher success rate. If superior networks, not founding experience as such, drive the better outcomes, the partners' specific causal claim is weakened.
 **mistake_d:** Choice D notes that some of the most celebrated tech companies were founded by first-time CEOs. This is an anecdotal counterexample about a handful of standout firms; it speaks to extreme outliers rather than to overall rates of reaching profitability, and it does nothing to support the claim that founding experience causes higher success across the portfolio.
 **mistake_e:** Choice E says the portfolio includes companies at various stages of maturity. This is neutral with respect to the conclusion. It does not show that the two groups were matched on maturity or any other potential confounder, so it neither rules out competing explanations nor otherwise reinforces the causal inference.
 **related_reading:** reading-verbal-04-cr-question-types
@@ -1659,19 +1659,19 @@ A consumer technology columnist argues that standalone digital cameras will soon
 
 Which of the following, if true, most seriously weakens the columnist's argument?
 
-- A) Smartphone cameras still cannot match the image quality of high-end standalone cameras in low-light conditions.
-- B) Revenue from standalone cameras has actually grown over the past three years, driven by a shift toward premium models purchased by professionals and serious enthusiasts — a segment that smartphones do not serve.
-- C) Some consumers use both a smartphone and a standalone camera depending on the occasion.
-- D) Digital camera manufacturers have reduced their marketing budgets significantly.
-- E) New smartphone models are released every year with improved camera features.
+- A) Smartphone cameras still cannot match the image quality that high-end standalone cameras deliver in low-light, telephoto, or fast-action shooting conditions.
+- B) Revenue from standalone cameras has grown over the past three years, driven by premium models aimed at professionals — a segment smartphones do not serve.
+- C) Some consumers continue to use both a smartphone and a standalone camera, choosing between the two depending on the occasion.
+- D) Digital camera manufacturers have reduced their marketing budgets significantly over the past several years.
+- E) New smartphone models with substantially improved camera features are released every year by multiple manufacturers.
 
 **answer:** B
 **explanation:** **Situation.** A consumer technology columnist predicts that standalone digital cameras will soon vanish from the market entirely, citing a decade-long decline in annual unit sales from 120 million in 2014 to 8 million in 2024 alongside dramatic improvements in smartphone cameras.
 
-**Reasoning.** The task is to identify the statement that, if true, most seriously weakens the columnist's argument. The columnist infers that a category facing total extinction follows from falling unit volumes and improving substitutes. To weaken this prediction, the correct choice must supply evidence that the standalone-camera category remains commercially viable rather than headed for disappearance. The credited statement reports that revenue from standalone cameras has actually grown over the past three years, driven by premium models purchased by professionals and serious enthusiasts, a segment that smartphones do not serve. This directly undercuts the prediction in two ways: it shows the category is generating rising revenue rather than collapsing, and it identifies a defensible buyer segment that smartphones cannot capture, giving manufacturers a reason to keep producing the cameras. Declining unit counts are thus consistent with a market that has restructured around a durable, profitable niche rather than one disappearing entirely.
+**Reasoning.** The task is to identify the statement that, if true, most seriously weakens the columnist's argument. The columnist infers that a category facing total extinction follows from falling unit volumes and improving substitutes. To weaken this prediction, the correct choice must supply evidence that the standalone-camera category remains commercially viable rather than headed for disappearance. The credited statement reports that revenue from standalone cameras has grown over the past three years, driven by premium models aimed at professionals, a segment that smartphones do not serve. This directly undercuts the prediction in two ways: it shows the category is generating rising revenue rather than collapsing, and it identifies a defensible buyer segment that smartphones cannot capture, giving manufacturers a reason to keep producing the cameras. Declining unit counts are thus consistent with a market that has restructured around a durable, profitable niche rather than one disappearing entirely.
 
 The correct answer is B.
-**mistake_a:** Choice A notes that smartphones cannot match high-end cameras in low-light image quality, but a capability gap alone does not establish that the standalone-camera category will remain commercially viable. A superior product can still be discontinued if no profitable demand sustains it, so this does not undermine the prediction of disappearance.
+**mistake_a:** Choice A notes that smartphones cannot match high-end cameras in low-light, telephoto, or fast-action image quality, but a capability gap alone does not establish that the standalone-camera category will remain commercially viable. A superior product can still be discontinued if no profitable demand sustains it, so this does not undermine the prediction of disappearance.
 **mistake_c:** Choice C observes only that some consumers use both a smartphone and a standalone camera depending on the occasion. This mild dual-use point says nothing about whether such use is widespread or commercially sufficient to keep the category alive, so it does little to counter the columnist's prediction.
 **mistake_d:** Choice D states that manufacturers have significantly cut their marketing budgets. Reduced marketing investment is consistent with a category that is winding down, so this tends to strengthen, not weaken, the prediction that standalone cameras will disappear.
 **mistake_e:** Choice E reports that new smartphone models are released yearly with improved camera features. This reinforces the substitution pressure the columnist cites and therefore strengthens the argument for disappearance rather than weakening it.
@@ -1688,11 +1688,11 @@ The planning committee of Lakeview College is considering requiring all incoming
 
 The committee's argument depends on which of the following assumptions?
 
-- A) The seminar is inexpensive to offer.
-- B) Students who voluntarily enrolled in the seminar did not differ from non-enrollees in levels of motivation or academic preparation in ways that would independently affect retention.
-- C) All freshmen who enroll in the seminar will complete it successfully.
-- D) Sophomore retention is the most important measure of freshman success.
-- E) The seminar is taught by faculty members rather than graduate students.
+- A) Offering the seminar to every incoming freshman would be relatively inexpensive compared with the college's other retention initiatives.
+- B) Students who enrolled did not differ from non-enrollees in motivation or academic preparation in ways that independently affect retention.
+- C) All freshmen who are required to enroll in the seminar will complete it successfully in their first semester.
+- D) Retention into sophomore year is the single most important measure of freshman success at Lakeview College.
+- E) The seminar will be taught by full-time faculty members rather than by graduate teaching assistants.
 
 **answer:** B
 **explanation:** **Situation.** A college planning committee proposes requiring all incoming freshmen to take a study skills seminar, arguing that it will improve retention because, in a voluntary pilot program, 92 percent of students who enrolled returned for their sophomore year, compared with only 78 percent of students who did not enroll.
@@ -1717,11 +1717,11 @@ A survey of 2,000 remote workers at mid-size firms found that 64% reported highe
 
 Which of the following can be most reliably concluded from the information above?
 
-- A) Remote workers are less honest about their productivity than office workers.
+- A) Remote workers at these firms are less honest about their productivity than their office-based counterparts.
 - B) Self-reported individual productivity gains at these firms have not translated into measurable team-level output gains.
-- C) Managers at mid-size firms oppose remote work.
-- D) Team-level output would have declined more without remote work.
-- E) Most workers exaggerate their own productivity when surveyed.
+- C) Managers at mid-size firms oppose remote work and would prefer that their teams return to the office.
+- D) Team-level output at these firms would have declined significantly over the same period if the shift to remote work had never occurred.
+- E) Most workers exaggerate their own productivity when responding to workplace surveys.
 
 **answer:** B
 **explanation:** **Situation.** A survey of remote workers found that a large majority reported higher individual productivity working from home, yet managers at the same firms reported that team-level output had not increased overall and had slightly declined in some teams.
@@ -1747,10 +1747,10 @@ Editorial: Our state's universities have seen a 30% increase in the number of st
 The editorial's reasoning is most vulnerable to which of the following criticisms?
 
 - A) It fails to consider that computer science majors may accept jobs outside the state or outside software engineering.
-- B) It assumes that all unfilled software engineering positions could be filled by recent graduates.
+- B) It assumes that every one of the unfilled software engineering positions could be filled by recent graduates rather than by experienced engineers.
 - C) It ignores the possibility that universities in other states are producing fewer graduates.
 - D) It treats the growth in unfilled positions as more important than the growth in majors.
-- E) It does not specify which universities are responsible for the shortfall.
+- E) It does not specify which of the state's universities bear the most responsibility for the shortfall in qualified graduates.
 
 **answer:** A
 **explanation:** **Situation.** An editorial observes that the number of computer science majors at the state's universities rose by 30 percent over five years while the number of unfilled software engineering positions at state employers rose by 40 percent over the same period. The editorial concludes that the universities are failing to prepare students adequately for those jobs.
@@ -1775,11 +1775,11 @@ A mid-size accounting firm is considering replacing its annual performance revie
 
 The answer to which of the following questions would be most useful in evaluating the HR director's conclusion?
 
-- A) What is the average cost of running a quarterly feedback system?
+- A) What is the average annual cost of designing, administering, and maintaining a quarterly feedback system at a mid-size firm?
 - B) Did the study control for firm size, industry, and compensation levels, which independently affect turnover?
-- C) Do employees prefer receiving more frequent feedback?
-- D) How long has the accounting firm been using annual reviews?
-- E) Have any other accounting firms adopted quarterly feedback recently?
+- C) Do employees at accounting firms generally prefer receiving feedback more frequently than once a year?
+- D) How long has the accounting firm been using its current annual performance review process?
+- E) Have any other mid-size accounting firms in the region adopted quarterly feedback recently?
 
 **answer:** B
 **explanation:** **Situation.** An accounting firm is weighing a switch from annual performance reviews to quarterly feedback, and the HR director points to a 2023 study in which firms using quarterly feedback had 18 percent lower voluntary turnover than firms using annual reviews. The director concludes that adopting quarterly feedback will reduce the firm's turnover.
@@ -1804,11 +1804,11 @@ A transportation analyst notes that over the past five years, the average commut
 
 Which of the following, if true, most helps to resolve the paradox?
 
-- A) Gasoline prices in Harpen have fluctuated significantly over the past five years.
+- A) Gasoline prices in Harpen have fluctuated significantly over the past five years, rising sharply in some years and falling in others, with no sustained trend in either direction.
 - B) Over the past five years, Harpen's employment has grown 20%, and many new jobs are concentrated in a downtown core whose road and rail capacity was already near its limit.
-- C) The two new subway lines opened only in the past year.
-- D) Some former Harpen drivers have switched to biking.
-- E) Harpen's city government has increased spending on road maintenance.
+- C) The two new subway lines opened only within the past year, well after most of the five-year period over which commute times were measured.
+- D) Some former Harpen drivers have given up their cars over the past five years and switched to biking or walking for their daily commutes.
+- E) Harpen's city government has increased its spending on road maintenance and repaving projects throughout the metropolitan area in each of the past five years.
 
 **answer:** B
 **explanation:** **Situation.** Over the past five years, the average commute time in Harpen has risen by seven minutes, even though the number of registered cars has fallen by 12 percent and two new subway lines have opened.
@@ -1833,11 +1833,11 @@ The correct answer is B.
 
 In the argument above, the two portions in boldface play which of the following roles?
 
-- A) The first is a hypothesis that the author endorses; the second is evidence in its favor.
+- A) The first is a hypothesis that the author ultimately endorses; the second provides empirical evidence that the author offers in its favor.
 - B) The first is a popular position that the argument seeks to rebut; the second identifies the mechanism by which that position fails in the case described.
-- C) The first is evidence for the main conclusion; the second is the main conclusion.
-- D) The first is a policy proposal; the second is the author's preferred alternative.
-- E) The first and second both support the same general principle.
+- C) The first is evidence offered in support of the argument's main conclusion; the second is the main conclusion that this evidence supports.
+- D) The first is a policy proposal advanced by municipal leaders; the second describes an alternative policy that the author prefers.
+- E) The first and the second are both offered in support of the same general principle about municipal tax incentives.
 
 **answer:** B
 **explanation:** **Situation.** Many municipal leaders hold that tax incentives to tech companies are the most effective way for mid-size cities to grow local employment, but the city of Ridgemont granted more than $200 million in tax breaks to relocate three tech firms and saw local employment grow no faster than the regional average. The argument adds that those breaks mainly subsidized jobs the firms would have created in the region regardless of which city they chose.
@@ -1862,11 +1862,11 @@ A consumer advocacy group recently tested 12 brands of bottled "spring water" an
 
 Which of the following most logically completes the argument?
 
-- A) the group tested only 12 of the dozens of bottled water brands on the market.
+- A) the group tested only 12 of the dozens of bottled water brands on the market, and other brands might be free of microplastics.
 - B) consumers may buy bottled water for reasons other than purity, such as convenience or taste, which the microplastic data does not address.
-- C) the group's testing methods were not described in detail.
-- D) microplastics are present in many foods besides water.
-- E) some consumers drink bottled water only occasionally.
+- C) the group did not describe its testing methods in detail or explain how microplastic levels were measured against tap water.
+- D) microplastics are present in many common foods and beverages besides water, including some consumed far more frequently than bottled water.
+- E) some consumers drink bottled water only occasionally rather than as their primary source of drinking water.
 
 **answer:** B
 **explanation:** **Situation.** A consumer advocacy group tested 12 brands of bottled "spring water" and found that 9 of them contained trace microplastics at levels comparable to ordinary tap water. From this the group concluded that consumers who buy bottled water for its purported purity are wasting their money.
@@ -1892,11 +1892,11 @@ A nonprofit that runs a summer coding bootcamp reports that its 2024 cohort achi
 
 Which of the following, if true, most strengthens the director's conclusion?
 
-- A) The bootcamp charges students significantly less than a two-year program does.
+- A) The bootcamp charges its students significantly less in total tuition than a traditional two-year computing program does.
 - B) Bootcamp and two-year-program students in the region did not differ in prior programming experience, educational background, or employer-screening criteria.
-- C) The bootcamp's graduates are generally older than two-year-program graduates.
-- D) Several graduates of the bootcamp have been featured in local news stories.
-- E) Employers in the region have increased their overall hiring of entry-level tech workers.
+- C) The bootcamp's graduates are generally several years older than two-year-program graduates and often have prior work experience.
+- D) Several graduates of the bootcamp's 2024 cohort have been featured in local news stories about the region's tech sector.
+- E) Employers throughout the region have substantially increased their overall hiring of entry-level tech workers during the period covered by the placement figures.
 
 **answer:** B
 **explanation:** **Situation.** A nonprofit reports that its 2024 coding-bootcamp cohort had an 81 percent job-placement rate within six months of graduation, compared with 58 percent for graduates of traditional two-year computing programs in the same region. The director concludes that the bootcamp's accelerated, project-based curriculum is more effective than traditional instruction at preparing students for entry-level tech jobs.
@@ -1921,11 +1921,11 @@ A wellness columnist writes: People who drink two or more cups of green tea per 
 
 The columnist's reasoning is most vulnerable to which of the following criticisms?
 
-- A) It fails to consider that green tea may taste unpleasant to some people.
+- A) It fails to consider that green tea may taste unpleasant to some people who would otherwise follow the recommendation.
 - B) It treats a correlation observed in observational studies as if it established that green tea itself causes the lower risk.
-- C) It assumes that cardiovascular disease is the most important health risk to reduce.
-- D) It does not consider whether drinking more than two cups per day provides additional benefit.
-- E) It overlooks that green tea contains caffeine.
+- C) It assumes that cardiovascular disease is the most important health risk for a typical person to try to reduce.
+- D) It does not consider whether drinking more than two cups per day would provide additional benefit beyond the observed 20% risk reduction.
+- E) It overlooks the fact that green tea contains caffeine as well as other biologically active compounds.
 
 **answer:** B
 **explanation:** **Situation.** A wellness columnist notes that multiple studies have found that people who drink two or more cups of green tea per day have a 20 percent lower risk of cardiovascular disease than people who drink less, and concludes that anyone wishing to reduce cardiovascular risk should begin drinking at least two cups of green tea per day.
@@ -1950,11 +1950,11 @@ A regional airline is deciding whether to invest in lighter composite seats that
 
 The answer to which of the following questions would be most useful in evaluating the CFO's plan?
 
-- A) How many airlines have already purchased the composite seats?
+- A) How many other airlines, including major national carriers, have already purchased and installed the composite seats in their fleets?
 - B) Were the manufacturer's 2% fuel-savings figures derived from real-world operation by airlines with flight profiles similar to the regional airline's?
-- C) What color are the new seats?
-- D) Do passengers find the new seats more comfortable?
-- E) How long has the seat manufacturer been in business?
+- C) What range of color and upholstery options does the manufacturer offer for the new composite seats, and can the upholstery be matched to the airline's cabin branding?
+- D) Do passengers on the airline's typical routes find the new composite seats more comfortable than the current seats?
+- E) How long has the seat manufacturer been in business supplying seats and other cabin equipment to commercial airlines?
 
 **answer:** B
 **explanation:** **Situation.** A regional airline is considering buying lighter composite seats that, according to the seat manufacturer, would cut fuel costs by roughly 2 percent per flight. The CFO endorses the switch and projects multi-million-dollar annual savings on the basis of that manufacturer's figure.
@@ -1963,7 +1963,7 @@ The answer to which of the following questions would be most useful in evaluatin
 
 The correct answer is B.
 **mistake_a:** Choice A appeals to how many other airlines have already purchased the seats. This is a form of social proof and says nothing about whether the manufacturer's 2 percent fuel-savings figure applies to this airline's flight profile, so its answer would not help evaluate the projection.
-**mistake_c:** Choice C asks about the color of the new seats. This detail is irrelevant to fuel costs or projected savings, so its answer could not affect an evaluation of the CFO's plan.
+**mistake_c:** Choice C asks about the color and upholstery options for the new seats. These aesthetic details are irrelevant to fuel costs or projected savings, so their answers could not affect an evaluation of the CFO's plan.
 **mistake_d:** Choice D concerns whether passengers find the seats more comfortable. Passenger comfort relates to customer experience, not to the fuel-savings figure on which the CFO's financial projection depends, so its answer would not help test that projection.
 **mistake_e:** Choice E asks how long the manufacturer has been in business. Although vendor longevity may bear loosely on general credibility, it does not reveal whether the specific 2 percent figure was measured under conditions comparable to this airline's operations, so its answer would not let one evaluate the projection itself.
 **related_reading:** reading-verbal-04-cr-question-types
@@ -1979,11 +1979,11 @@ An agricultural economist argues that government subsidies for small family farm
 
 Which of the following, if true, most seriously weakens the economist's argument?
 
-- A) Large farms receive some subsidies as well.
+- A) Large corporate farms receive some agricultural subsidies as well, though at lower per-acre rates than small family farms.
 - B) Without the subsidies, projections indicate that the decline in small family farms would have been approximately 70% rather than 40%.
-- C) Some small family farms are located in regions where land is expensive.
-- D) The government has also provided grants for organic farming.
-- E) Consumer demand for locally grown food has increased.
+- C) Some small family farms are located in regions where farmland has become too expensive for new farmers to purchase.
+- D) Over the same period, the government has also provided separate grants supporting organic farming operations.
+- E) Consumer demand for locally grown food from small producers has increased steadily over the past 20 years.
 
 **answer:** B
 **explanation:** **Situation.** An agricultural economist notes that over the past 20 years, even though small family farms received more than $50 billion in subsidies, their number fell by over 40% while the average size of remaining farms grew. He concludes that the subsidies failed at their stated purpose of preserving the small farm sector.
@@ -2008,11 +2008,11 @@ A clean-energy startup claims its new solar panel design will be commercially vi
 
 The startup's claim depends on which of the following assumptions?
 
-- A) No commercial solar panel has ever achieved an efficiency above 30%.
-- B) The higher efficiency observed in the laboratory prototypes can be preserved, or substantially preserved, in large-scale manufacturing at a cost structure that allows the panels to be sold competitively.
-- C) Venture capital investment guarantees commercial success.
-- D) The panels will be purchased primarily by residential rather than commercial customers.
-- E) Government subsidies for solar panels will continue at their current level.
+- A) No commercial solar panel currently on the market has ever achieved a sustained energy conversion efficiency above 30% in real-world operation.
+- B) The higher efficiency observed in the laboratory prototypes can be substantially preserved in large-scale manufacturing at a cost that allows competitive pricing.
+- C) Raising a large amount of venture capital is itself sufficient to guarantee that a startup's product will achieve commercial success.
+- D) The panels will be purchased primarily by individual residential customers rather than by commercial or utility-scale customers.
+- E) Government subsidies and tax incentives for solar panel purchases will continue at roughly their current levels for the next three years.
 
 **answer:** B
 **explanation:** **Situation.** A clean-energy startup argues that its new solar panel design will be commercially viable within three years on the grounds that laboratory prototypes reached a 34% energy conversion efficiency, exceeding the 22% of the best commercial panels now on the market.
@@ -2037,11 +2037,11 @@ A survey of 5,000 full-time knowledge workers found the following: 72% reported 
 
 Which of the following can be most reliably concluded from the information above?
 
-- A) Generative AI tools do not produce any real productivity benefit for any individual worker.
+- A) Generative AI tools do not produce any real productivity benefit for any of the individual workers who use them, however frequently the tools are used.
 - B) Reported individual efficiency gains from generative AI at these firms have not translated into measured team-level output-per-worker gains.
-- C) Managers at the surveyed firms are biased against generative AI.
-- D) Knowledge workers systematically overstate the benefits of new technology.
-- E) Most workers use generative AI tools daily.
+- C) Managers at the surveyed firms are biased against generative AI and unwilling to credit it for output gains.
+- D) Knowledge workers systematically overstate the benefits of newly introduced workplace technology when responding to surveys.
+- E) Most of the surveyed knowledge workers use generative AI tools daily rather than merely weekly.
 
 **answer:** B
 **explanation:** **Situation.** A survey of 5,000 full-time knowledge workers found that 72 percent use generative AI tools at work at least weekly, and of those users a majority (61 percent) reported that the tools made their work more efficient. Separately, managers at the same firms reported that team-level output per worker had not measurably increased since generative AI adoption began.
@@ -2064,11 +2064,11 @@ A state's department of motor vehicles reports that over the past decade the num
 
 Which of the following, if true, best resolves the apparent discrepancy?
 
-- A) The state has raised the minimum age for unrestricted driving licenses.
-- B) The number of miles driven per licensed teenage driver has more than doubled, as the smaller population of teen drivers skews toward those who live in rural areas with long commutes and fewer public transportation options.
-- C) Teenagers today are less likely to own a car than teenagers a decade ago.
-- D) The state has added new road safety campaigns targeted at teenagers.
-- E) Some teenage drivers are involved in more than one accident per year.
+- A) Midway through the decade, the state raised the minimum age for an unrestricted driving license and imposed a mandatory supervised-practice requirement on all new teenage drivers.
+- B) Miles driven per licensed teenage driver have more than doubled, as the remaining teen drivers skew toward rural areas with long commutes and fewer public transportation options.
+- C) Teenagers in the state today are considerably less likely to own their own cars than teenagers were a decade ago, and many delay licensing until age eighteen.
+- D) Over the past decade, the state has funded several road safety campaigns targeted at teenagers, including school programs on distracted driving.
+- E) A small number of teenage drivers in the state are involved in more than one reportable accident in a single year.
 
 **answer:** B
 **explanation:** **Situation.** Over the past decade the number of licensed teenage drivers in the state fell by 35 percent, yet the annual number of accidents involving teenage drivers rose by 12 percent.
@@ -2093,11 +2093,11 @@ The correct answer is B.
 
 In the argument above, the two statements in boldface play which of the following roles?
 
-- A) The first is a prediction that the argument endorses; the second is a counterexample to that prediction.
+- A) The first is a prediction that the argument ultimately endorses; the second presents a counterexample that narrows the scope within which the prediction applies.
 - B) The first is a common view that the argument calls into question; the second explains the mechanism by which, in the cited case, the prediction of the first did not hold.
-- C) The first is the argument's main conclusion; the second is evidence for the main conclusion.
-- D) The first is a conditional claim; the second is a restatement of the first.
-- E) The first and second describe the same phenomenon from different perspectives.
+- C) The first is the main conclusion of the argument; the second is evidence offered in direct support of that conclusion.
+- D) The first is a conditional claim about the relationship between wages and prices; the second is a restatement of that claim in more specific terms.
+- E) The first and the second describe the same economic phenomenon from the differing perspectives of executives and of a single retail chain.
 
 **answer:** B
 **explanation:** **Situation.** Many retail executives hold that raising cashier wages must push prices up, since the added labor cost is passed to consumers. The argument cites Brantco, which raised its starting cashier wage by 18 percent in 2023 yet held prices flat and maintained operating margins by recovering savings from lower turnover-related training costs and from reduced theft and error.
@@ -2123,10 +2123,10 @@ A technology analyst writes: Over the past three years, the share price of compa
 The analyst's reasoning is most vulnerable to which of the following criticisms?
 
 - A) The reasoning assumes that share-price movement following an announcement reflects lasting economic value rather than short-term investor sentiment about a fashionable trend.
-- B) The reasoning ignores the possibility that CEOs dislike making public announcements.
-- C) The reasoning fails to specify which AI technologies are most effective.
-- D) The reasoning assumes that all companies have equal access to AI technology.
-- E) The reasoning does not consider that some companies operate internationally.
+- B) The reasoning ignores the possibility that many CEOs dislike making public announcements about their companies' strategic initiatives, even successful ones.
+- C) The reasoning fails to specify which particular AI technologies are most effective at improving companies' underlying operating performance.
+- D) The reasoning assumes that all companies in the industries examined have equal access to advanced AI technology and to the specialized engineering talent needed to deploy that technology effectively.
+- E) The reasoning does not consider that some of the companies examined operate internationally across multiple regulatory environments.
 
 **answer:** A
 **explanation:** **Situation.** A technology analyst observes that over the past three years, the shares of companies that publicly announced artificial intelligence initiatives rose, on average, 22% more than the shares of comparable companies in the same industries that made no such announcement. From this, the analyst concludes that adopting AI creates substantial shareholder value and that CEOs should therefore prioritize AI initiatives.
@@ -2151,11 +2151,11 @@ A government auditor is reviewing a proposed regulation that would require finan
 
 Which of the following most logically completes the critics' argument?
 
-- A) many financial advisers already consider themselves to act in clients' best interests.
-- B) some retirees prefer to manage their own investments without professional help.
-- C) if the rule's compliance burden is high enough, many advisers will stop serving smaller retirement accounts altogether, leaving those retirees with no advice rather than imperfect advice.
-- D) the $17 billion estimate was produced by an advocacy organization.
-- E) financial markets have generally performed well over the past decade.
+- A) many financial advisers already consider themselves ethically bound to act in their clients' best interests when recommending retirement investments, even without a formal rule.
+- B) some retirees prefer to research and manage their own retirement investments rather than pay for professional financial advice.
+- C) if the rule's compliance burden is high enough, many advisers will stop serving smaller retirement accounts, leaving those retirees with no advice rather than imperfect advice.
+- D) the $17 billion estimate of annual losses to conflicted advice was produced by an advocacy organization that campaigned for the rule.
+- E) financial markets have generally performed well over the past decade, lifting the value of most retirement accounts regardless of how they were advised.
 
 **answer:** C
 **explanation:** **Situation.** A proposed regulation would require financial advisers to act in their clients' best interest when recommending retirement investments, and supporters argue it will reduce the fees retirees pay. Critics, however, contend that the rule will backfire.
@@ -2183,16 +2183,16 @@ A midsize logistics firm installed solar panels on the roofs of its 12 regional 
 
 Which of the following, if true, most strengthens the argument above?
 
-- A) The firm's warehouses are located in sunlight-rich states where solar output exceeds the national average.
-- B) A recent industry report shows that regional logistics warehouses across North America have comparable roof area, similar typical annual sunlight hours, and similar electricity rates.
-- C) The firm received a one-time tax credit that covered half its installation cost.
-- D) Solar panel prices have declined by roughly 40% over the past five years.
-- E) The firm has also reduced energy usage by upgrading to LED lighting across its warehouses.
+- A) The firm's warehouses are located in sunlight-rich southwestern states where average annual solar output exceeds the national average.
+- B) Regional logistics warehouses across North America generally have comparable roof area, similar annual sunlight hours, and similar electricity rates.
+- C) The firm received a one-time state tax credit, no longer available to new applicants, that covered roughly half its installation cost.
+- D) Prices for commercial solar panel systems have declined by roughly 40% over the past five years and are projected to fall further.
+- E) The firm has also reduced energy usage by upgrading to LED lighting across its 12 warehouses during the same two-year period.
 
 **answer:** B
 **explanation:** **Situation.** A logistics firm installed solar panels on its 12 regional warehouses and saw average monthly electricity costs fall 38 percent, with projected cumulative savings expected to cover the installation cost by the end of next year. On this basis the firm concludes that installing solar panels is a sound financial decision for any logistics company operating regional warehouses.
 
-**Reasoning.** The task is to identify the choice that most strengthens this argument. The argument generalizes from the experience of one firm's 12 sites to every logistics company with regional warehouses, so it succeeds only if the factors that produced the 38 percent savings at this firm are also present at warehouses elsewhere. Those factors are the amount of roof area available for panels, the quantity of sunlight the panels receive, and the electricity rates that determine how much each saved kilowatt-hour is worth. The choice that confirms these driver inputs are comparable across the industry makes the generalization more secure, because it establishes that the conditions which generated the firm's results transfer to other firms. The choice reporting that regional logistics warehouses across North America have comparable roof area, similar typical annual sunlight hours, and similar electricity rates confirms all three of these inputs, and therefore most strengthens the conclusion that the result will hold broadly.
+**Reasoning.** The task is to identify the choice that most strengthens this argument. The argument generalizes from the experience of one firm's 12 sites to every logistics company with regional warehouses, so it succeeds only if the factors that produced the 38 percent savings at this firm are also present at warehouses elsewhere. Those factors are the amount of roof area available for panels, the quantity of sunlight the panels receive, and the electricity rates that determine how much each saved kilowatt-hour is worth. The choice that confirms these driver inputs are comparable across the industry makes the generalization more secure, because it establishes that the conditions which generated the firm's results transfer to other firms. The choice reporting that regional logistics warehouses across North America generally have comparable roof area, similar annual sunlight hours, and similar electricity rates confirms all three of these inputs, and therefore most strengthens the conclusion that the result will hold broadly.
 
 The correct answer is B.
 **mistake_a:** Choice A weakens the argument rather than strengthening it. Stating that the firm's warehouses sit in sunlight-rich states where solar output exceeds the national average makes this firm's conditions atypical, which undermines the inference that the same savings would occur at the typical warehouse elsewhere.
@@ -2212,11 +2212,11 @@ A regional bank observed that customers who enrolled in its new mobile banking a
 
 Which of the following, if true, most weakens management's conclusion?
 
-- A) The mobile banking app is available only to customers with account balances above $5,000.
+- A) The mobile banking app is currently available only to customers who maintain account balances above $5,000.
 - B) Customers who enrolled in the app had been depositing more, on average, than non-enrolled customers in the 12 months before the app launched.
-- C) Several of the bank's competitors have introduced similar apps with comparable features.
-- D) Customer surveys show that in-person branch service is still valued alongside digital tools.
-- E) Developing new app features would cost the bank approximately $2 million.
+- C) Several of the bank's regional competitors have recently introduced similar mobile banking apps with comparable deposit and transfer features.
+- D) Customer surveys conducted by the bank show that many customers still value in-person branch service alongside digital tools.
+- E) Developing and marketing the new app features would cost the bank approximately $2 million over the next two years.
 
 **answer:** B
 **explanation:** **Situation.** A regional bank found that customers who enrolled in its new mobile banking app made 40 percent more deposits per month than customers who did not enroll. Management concludes that expanding the app's features and encouraging enrollment will increase the bank's overall deposit volume.
@@ -2241,11 +2241,11 @@ The city council of Larksville has proposed building a new bike path along the r
 
 The argument above depends on which of the following assumptions?
 
-- A) Larksville has more cyclists per capita than most comparable cities.
-- B) The bike path will be completed within two years.
+- A) Larksville has more recreational cyclists per capita than most comparable cities of its size in the region.
+- B) The bike path will be fully completed and open to commuters within two years of the council's approval of the proposal.
 - C) A significant number of commuters are physically able to cycle and live within cycling distance of their workplaces.
-- D) Riverfront bike paths are safer than on-street bike paths.
-- E) Public transit ridership in Larksville has declined in recent years.
+- D) Riverfront bike paths are safer for commuters than on-street bike paths that run alongside automobile traffic.
+- E) Public transit ridership in Larksville has declined steadily in each of the past several years.
 
 **answer:** C
 **explanation:** **Situation.** The Larksville city council proposes a riverfront bike path to cut rush-hour automobile traffic, arguing that once it opens a significant number of current drivers will switch to cycling.
@@ -2270,11 +2270,11 @@ A six-month study of adult language learners found that those who studied 45 min
 
 Which of the following is most strongly supported by the statements above?
 
-- A) Adults who study less than 45 minutes per day cannot achieve high language proficiency.
-- B) Every weekend-only language-study program is ineffective.
+- A) Adults who study for less than 45 minutes per day cannot achieve high language proficiency, no matter how many months they continue studying.
+- B) Every language-study program that concentrates instruction on weekends alone is ineffective for adult learners.
 - C) Daily brief language study is likely to produce greater retention than equivalent weekly blocks of study, at least among adults.
 - D) The study's researchers did not adequately control for individual differences in learning ability.
-- E) No language-learning strategy is as effective as spaced daily practice.
+- E) No language-learning strategy of any kind is as effective for adults as spaced daily practice sessions.
 
 **answer:** C
 **explanation:** **Situation.** A six-month study found that adult learners who studied 45 minutes daily scored higher in proficiency than those who studied three hours each Saturday for the same total instructional time, leading researchers to conclude that daily spaced practice yields more durable learning than equivalent weekly massed practice. Separately, independent research has shown that short daily reviews of previously learned material significantly slow the rate of forgetting.
@@ -2300,9 +2300,9 @@ A coffee roastery installed a new automated packaging line last quarter to reduc
 Which of the following, if true, most helps to explain the drop in profit?
 
 - A) The roastery's coffee bean supplier raised prices by 25% during the quarter, affecting the cost of every bag produced.
-- B) A competing roastery installed an even faster packaging line during the same quarter.
-- C) Regional coffee consumption rose 3% over the past year.
-- D) The automated packaging line requires regular maintenance performed by the manufacturer.
+- B) A competing roastery in the same regional market installed an even faster automated packaging line during the same quarter.
+- C) Regional coffee consumption rose by about 3% over the past year, continuing a slow but steady upward trend.
+- D) The automated packaging line requires regular scheduled maintenance visits performed by technicians from the manufacturer.
 - E) Customers have praised the consistency of the roastery's packaging since the automation began.
 
 **answer:** A
@@ -2312,7 +2312,7 @@ Which of the following, if true, most helps to explain the drop in profit?
 
 The correct answer is A.
 **mistake_b:** Choice B describes a competing roastery's faster packaging line, but a rival's equipment does not appear on this firm's profit and loss statement. Without a stated effect on this roastery's revenue or costs, it cannot explain why this roastery's profit fell.
-**mistake_c:** Choice C reports that regional coffee consumption rose 3 percent. A rise in demand would tend to support, not depress, the roastery's revenue and profit, so it runs in the wrong direction and deepens rather than resolves the paradox.
+**mistake_c:** Choice C reports that regional coffee consumption rose by about 3 percent over the past year. A rise in demand would tend to support, not depress, the roastery's revenue and profit, so it runs in the wrong direction and deepens rather than resolves the paradox.
 **mistake_d:** Choice D notes that the new line requires regular maintenance by the manufacturer. Although maintenance is a plausible cost, the option leaves its magnitude entirely unspecified, so it cannot establish a cost large enough to outweigh the 35 percent reduction in labor hours and account for the profit drop.
 **mistake_e:** Choice E states that customers have praised the consistency of the packaging. Customer praise is a soft, favorable factor that, if anything, would tend to help sales; it does not introduce any cost increase or revenue loss and so does not explain the decline in profit.
 **related_reading:** reading-verbal-04-cr-question-types
@@ -2328,11 +2328,11 @@ A pharmaceutical company is deciding whether to advance HypZ, a new hypertension
 
 The answer to which of the following questions would be most useful in evaluating the scientist's argument?
 
-- A) Does HypZ cost less to manufacture than the current market leader?
-- B) Were HypZ's Phase 2 patients comparable in baseline blood pressure, age, and other health factors to the patients in the market leader's original Phase 2 trial?
-- C) Can regulatory approval for Phase 3 trials be expedited?
-- D) Was HypZ tested against a placebo in Phase 2?
-- E) Did patients on HypZ report any side effects?
+- A) Does HypZ cost less per dose to manufacture and distribute at commercial scale than the current market leader costs its manufacturer?
+- B) Were HypZ's Phase 2 patients comparable in baseline blood pressure, age, and other health factors to those in the market leader's Phase 2 trial?
+- C) Can regulatory approval for the planned Phase 3 trials be expedited under the agency's accelerated review procedures?
+- D) Was HypZ tested against a placebo arm in its Phase 2 trial, as is standard practice for hypertension drugs?
+- E) Did any of the patients taking HypZ during the eight-week Phase 2 trial report clinically significant side effects?
 
 **answer:** B
 **explanation:** **Situation.** A pharmaceutical company's chief scientist contends that HypZ should advance to Phase 3 because, in its Phase 2 trial, it lowered average systolic blood pressure by 12 mmHg, exceeding the 7-mmHg reduction the current market leader achieved in that drug's own earlier Phase 2 trial.
@@ -2340,7 +2340,7 @@ The answer to which of the following questions would be most useful in evaluatin
 **Reasoning.** The task is to identify the question whose answer would be most useful in evaluating the scientist's argument. The argument rests on a cross-trial comparison: it treats the larger reduction observed for HypZ as evidence that HypZ is more effective than the market leader. That inference is sound only if the two trials measured comparable groups of patients. If HypZ's Phase 2 patients differed at baseline, for instance by having milder hypertension, younger ages, or fewer complicating conditions, then the larger drop could reflect the makeup of the sample rather than any superiority of the drug. The answer to choice B bears directly on this. If the populations were comparable, the 12-versus-7 gap supports the conclusion; if they were not, the gap is attributable to sample differences and the comparison collapses. Because the answer can either reinforce or undermine the argument, this question is the most useful for evaluating it.
 
 The correct answer is B.
-**mistake_a:** Choice A raises manufacturing cost, which concerns the drug's commercial appeal rather than whether the trial results show it to be more effective. The scientist's argument is strictly about efficacy, so the answer to this question would neither strengthen nor weaken the comparison and would not help evaluate the reasoning.
+**mistake_a:** Choice A raises manufacturing and distribution costs, which concern the drug's commercial appeal rather than whether the trial results show it to be more effective. The scientist's argument is strictly about efficacy, so the answer to this question would neither strengthen nor weaken the comparison and would not help evaluate the reasoning.
 **mistake_c:** Choice C asks about the logistics of expediting regulatory approval. Whether the approval process can be sped up has no bearing on whether the Phase 2 efficacy comparison between HypZ and the market leader is valid, so its answer does not help assess the argument.
 **mistake_d:** Choice D asks whether HypZ was tested against a placebo. The argument does not compare HypZ to a placebo; it compares HypZ's reduction to the market leader's reduction. Knowing whether a placebo arm existed would not address whether the two drugs' trial populations were comparable, which is the point on which the cross-trial comparison turns.
 **mistake_e:** Choice E concerns side effects. Safety is a separate consideration from the efficacy claim the scientist advances, and the answer to this question would not affect whether the 12-versus-7 mmHg comparison demonstrates greater effectiveness, so it does not help evaluate the argument.
@@ -2357,11 +2357,11 @@ An online retailer found that product pages featuring short video demonstrations
 
 Which of the following, if true, most strengthens the marketing team's conclusion?
 
-- A) Producing videos is more expensive than taking still images.
-- B) Customers spend significantly more time on pages with videos than on pages without.
+- A) Producing professional-quality product videos is considerably more expensive and time-consuming than taking still images.
+- B) Customers spend significantly more time browsing on pages that include video demos than on pages without them.
 - C) The products that currently feature video demos were hand-picked by the marketing team as the most easily demonstrated products, typically with broader market appeal.
 - D) A recent pilot that added videos to a randomly selected cross-section of other product categories produced a similar 16% conversion increase.
-- E) Several of the retailer's competitors have begun adding video demos to their product pages.
+- E) Several of the retailer's largest competitors have recently begun adding short video demos to their own product pages.
 
 **answer:** D
 **explanation:** **Situation.** An online retailer observed that product pages with short video demonstrations had an 18 percent higher conversion rate than pages with still images only, and the marketing team concludes that adding short video demos to every product page will increase overall sales.
@@ -2388,10 +2388,10 @@ A medical research institute claims that regular consumption of a specific plant
 Which of the following, if true, most strengthens the institute's claim?
 
 - A) The volunteers were randomly assigned to the extract and control groups by a computer-generated list.
-- B) The plant extract is widely available in health food stores.
-- C) The researchers received a grant from a government health agency.
-- D) Other plant-based extracts have shown similar effects in past studies.
-- E) Influenza rates have been declining globally over the past decade.
+- B) The plant extract is widely available without a prescription in health food stores across the country.
+- C) The researchers who conducted the study received a substantial grant from a government health agency.
+- D) Several other plant-based extracts have shown similar protective effects against influenza in past studies.
+- E) Overall influenza rates have been declining globally over the course of the past decade.
 
 **answer:** A
 **explanation:** **Situation.** A medical research institute claims that regularly consuming a particular plant extract reduces the incidence of seasonal influenza, citing a study in which 500 volunteers who took the extract daily had a 35 percent lower flu rate than 500 control volunteers. Critics counter that lifestyle differences between the two groups, rather than the extract, explain the lower rate.
@@ -2416,7 +2416,7 @@ A city council has proposed banning a popular brand of electric scooter from cit
 
 Which of the following, if true, most weakens the council's argument?
 
-- A) Scooter rentals in the city tripled over the past year.
+- A) The number of scooter rentals in the city tripled over the past year.
 - B) Other cities have not experienced similar increases in scooter injuries.
 - C) The brand of scooter in question has received safety certifications from multiple jurisdictions.
 - D) Helmet use among scooter riders in the city has been declining.
@@ -2445,11 +2445,11 @@ A consumer group plans to recommend Smart Cleaner, a new laundry detergent, on t
 
 The argument above depends on which of the following assumptions?
 
-- A) Smart Cleaner is priced lower per bottle than the leading competitor.
-- B) Stain removal is the most important factor for most laundry customers.
+- A) Smart Cleaner is priced lower per bottle than the leading competitor at every major retailer where both detergents are sold.
+- B) Stain removal is the single most important factor for the majority of laundry customers when they decide which detergent brand to purchase.
 - C) Smart Cleaner is not priced so much higher per load than the leading competitor that the effectiveness advantage fails to reduce overall laundry expenses.
-- D) Customers currently using the leading competitor are dissatisfied with their results.
-- E) Most households use laundry detergent in amounts similar to those tested in the lab.
+- D) Most customers currently using the leading competitor are dissatisfied with the results it delivers on tough stains.
+- E) Most households use laundry detergent in per-load amounts roughly similar to the standard doses that were tested in the lab study.
 
 **answer:** C
 **explanation:** **Situation.** A consumer group plans to recommend a new detergent, Smart Cleaner, because lab tests show a standard dose removes 25% more stains than the leading competitor's standard dose, and the group claims that consumers who switch will see their household laundry expenses decrease.
@@ -2474,11 +2474,11 @@ Between 2010 and 2020, the average price of a single-family home in the country 
 
 Which of the following is most strongly supported by the information above?
 
-- A) Households under age 35 became less interested in homeownership during the decade.
-- B) Most households under age 35 currently rent their homes.
+- A) Households under age 35 became substantially less interested in the goal of owning their own homes over the course of the decade.
+- B) Most households under age 35 in the country currently rent rather than own their homes.
 - C) Rising home prices relative to household incomes likely contributed to the decline in homeownership among younger households.
-- D) Government policy discouraged homeownership among younger households.
-- E) Home prices will continue to rise faster than household incomes.
+- D) Changes in government policy during the decade actively discouraged homeownership among younger households.
+- E) Home prices in the country will continue to rise faster than average household incomes over the coming decade.
 
 **answer:** C
 **explanation:** **Situation.** Between 2010 and 2020, the average price of a single-family home rose by 78 percent while average household income rose by only 22 percent, and over the same decade the homeownership rate among households under age 35 fell from 42 percent to 36 percent.
@@ -2503,11 +2503,11 @@ The correct answer is C.
 
 In the argument above, the two portions in boldface play which of the following roles?
 
-- A) The first is the position being supported; the second is evidence used to support that position.
-- B) The first is the conclusion of the argument; the second is evidence used to weaken that conclusion.
+- A) The first is the position that the argument as a whole is designed to support; the second is evidence offered as freestanding support for that position.
+- B) The first is the main conclusion of the argument; the second is evidence used to weaken that conclusion by casting doubt on it.
 - C) The first is a claim that industry representatives dispute; the second is evidence supporting a rebuttal to the industry representatives' dispute.
-- D) The first is a claim supported by the argument; the second is a claim the argument opposes.
-- E) The first is a hypothesis; the second is evidence against that hypothesis.
+- D) The first is a claim supported by the argument; the second is a claim that the argument as a whole opposes.
+- E) The first is a hypothesis advanced tentatively; the second is evidence that counts against that hypothesis.
 
 **answer:** C
 **explanation:** **Situation.** Consumer rights advocates claim that requiring food manufacturers to disclose artificial sweeteners will help consumers avoid ingredients they wish to avoid. Industry representatives dispute this, arguing that disclosure will merely confuse consumers because the sweeteners have been tested and certified safe, and the argument then offers cross-country evidence that such labels measurably reduce consumer use of artificial sweeteners.
@@ -2532,16 +2532,16 @@ Since the introduction of a new workplace wellness program at a large firm, empl
 
 Which of the following best identifies a flaw in the HR director's reasoning?
 
-- A) The director assumes that self-reported stress scores are reliable measures of actual stress.
-- B) The director does not account for the possibility of seasonal fluctuation in workplace stress.
-- C) The director does not consider whether the employees participating in the program constitute a representative sample of the firm's workforce.
-- D) The director does not account for the possibility that other factors — such as changes in broader economic conditions or firm-wide policy changes — contributed to the decline in self-reported stress.
-- E) The director does not specify the statistical significance of the 15 percent decline.
+- A) The director assumes without justification that employees' self-reported stress scores are reliable measures of their actual stress levels.
+- B) The director does not account for the possibility that ordinary seasonal fluctuation in workplace stress explains the decline in scores.
+- C) The director does not consider whether the employees participating in the wellness program constitute a truly representative sample of the firm's overall workforce.
+- D) The director does not account for the possibility that other factors — such as economic conditions or firm-wide policy changes — contributed to the decline in self-reported stress.
+- E) The director does not specify whether the reported 15 percent decline in average stress scores is large enough to be statistically significant.
 
 **answer:** D
 **explanation:** **Situation.** After a new workplace wellness program was introduced at a large firm, employees' self-reported stress scores fell an average of 15 percent over six months, and the HR director concludes that the program effectively reduces workplace stress.
 
-**Reasoning.** The task is to identify the flaw in the director's reasoning. The director observes that stress scores declined during the period following the program's introduction and treats that decline as evidence that the program caused the reduction in stress. This is a correlation-to-causation leap: an outcome that merely coincided in time with the program is attributed to the program itself. Such reasoning is sound only if alternative explanations for the decline have been ruled out. Yet many other things could have occurred during those same six months, such as changes in broader economic conditions or firm-wide policy changes, any of which could independently have lowered stress and accounted for the lower scores. Because the director never eliminates these competing causes, the conclusion that the program is responsible is not justified. Choice D names exactly this reasoning error.
+**Reasoning.** The task is to identify the flaw in the director's reasoning. The director observes that stress scores declined during the period following the program's introduction and treats that decline as evidence that the program caused the reduction in stress. This is a correlation-to-causation leap: an outcome that merely coincided in time with the program is attributed to the program itself. Such reasoning is sound only if alternative explanations for the decline have been ruled out. Yet many other things could have occurred during those same six months, such as shifts in economic conditions or firm-wide policy changes, any of which could independently have lowered stress and accounted for the lower scores. Because the director never eliminates these competing causes, the conclusion that the program is responsible is not justified. Choice D names exactly this reasoning error.
 
 The correct answer is D.
 **mistake_a:** Choice A raises a legitimate concern about whether self-reported scores accurately capture actual stress, but this is a measurement-reliability worry, not the central defect. Even granting that the scores reliably reflect stress, the director still has not shown that the program, rather than some other factor, caused the measured decline.
@@ -2561,11 +2561,11 @@ An energy company that produces natural gas is considering acquiring a specific 
 
 The answer to which of the following questions would be most useful in evaluating the CFO's argument?
 
-- A) What is the current market price of natural gas compared with prices five years ago?
+- A) What is the current market price of natural gas compared with the prices that prevailed in the sector five years ago?
 - B) Whether the competing company's customers are likely to remain with the combined firm after the acquisition rather than switch to other competitors.
-- C) Whether the energy company has sufficient cash reserves to finance the acquisition without borrowing.
+- C) Whether the energy company currently holds sufficient cash reserves to finance the entire cost of the acquisition without taking on any new borrowing.
 - D) Whether the competing company's production facilities use the same type of drilling technology as the energy company's.
-- E) Whether there are regulatory barriers to mergers in the natural gas sector.
+- E) Whether there are significant regulatory barriers to mergers between producers in the natural gas sector.
 
 **answer:** B
 **explanation:** **Situation.** An energy company that produces natural gas is weighing the acquisition of a competing producer. The CFO argues that the acquisition will raise the firm's revenue and market share because the target has loyal customers and because its production facilities are more efficient than the acquiring company's.
@@ -2592,8 +2592,8 @@ In the argument above, the two portions in boldface play which of the following 
 - A) The first is evidence used to weaken a claim; the second provides a rebuttal to that weakening evidence.
 - B) The first is a position held by biologists; the second is evidence supporting that position.
 - C) The first is evidence presented by the author; the second is evidence against the author's view.
-- D) The first is a hypothesis; the second is evidence that confirms the hypothesis.
-- E) The first is a recommendation; the second is the reasoning behind that recommendation.
+- D) The first is a hypothesis; the second is evidence that confirms the predictions of that hypothesis.
+- E) The first is a recommendation made by biologists; the second is the reasoning offered in support of that recommendation.
 
 **answer:** A
 **explanation:** **Situation.** Some biologists recommend expanding an endangered bird species' protected habitat. Recent population studies show the species' numbers grew steadily over the past decade without any habitat expansion, but other biologists respond that this growth was driven by unusually favorable weather that is unlikely to persist.
@@ -2619,9 +2619,9 @@ A researcher surveyed 100 residents of a small town about a proposed recycling c
 Which of the following best identifies a flaw in the researcher's reasoning?
 
 - A) The researcher assumes that the residents of the small town are representative of residents across the wider region.
-- B) The researcher does not specify whether the recycling center would be near residents' homes.
-- C) The researcher does not account for the cost of building a recycling center.
-- D) The researcher assumes that residents' opinions will remain stable over time.
+- B) The researcher does not specify whether the proposed recycling center would be located near residents' homes.
+- C) The researcher does not account for the substantial cost of building and operating a recycling center in each town.
+- D) The researcher assumes that residents' opinions about the proposal will remain stable over an extended period of time.
 - E) The researcher did not ask residents about their views on other environmental policies.
 
 **answer:** A
@@ -2631,7 +2631,7 @@ Which of the following best identifies a flaw in the researcher's reasoning?
 
 The correct answer is A.
 **mistake_b:** Choice B raises a question of survey design rather than the logical gap in the argument. Whether the proposed center would be near residents' homes might affect how individuals answer, but it does not address the unjustified jump from one town's results to a conclusion about all towns in the region, which is the actual reasoning error.
-**mistake_c:** Choice C concerns the cost of building a recycling center, which is irrelevant to the argument's conclusion. The conclusion is about the level of support for such centers, not about whether they are affordable; the cost of construction does not bear on whether one town's opinions predict the region's opinions.
+**mistake_c:** Choice C concerns the cost of building and operating recycling centers, which is irrelevant to the argument's conclusion. The conclusion is about the level of support for such centers, not about whether they are affordable; construction and operating costs do not bear on whether one town's opinions predict the region's opinions.
 **mistake_d:** Choice D points to the stability of residents' opinions over time, but timing is not at issue. The conclusion generalizes across places (from one town to all towns in the region), not across time, so a possible change in opinion later does not identify the flaw in this reasoning.
 **mistake_e:** Choice E notes that residents were not asked about other environmental policies, but those other policies fall outside the argument's claim. The conclusion is limited to support for recycling centers, so failing to survey unrelated views does nothing to expose the leap from a single sample to the entire region.
 **related_reading:** reading-verbal-04-cr-question-types
@@ -2647,11 +2647,11 @@ A consumer advocacy group mailed 10,000 surveys asking respondents to rate their
 
 Which of the following best identifies a flaw in the group's reasoning?
 
-- A) The group assumes that all appliances are equally likely to break down during the survey period.
-- B) The group does not take into account the price of the appliances.
-- C) The group may be drawing its conclusion based on a self-selected subset of consumers who do not represent all consumers of household appliances.
-- D) The group did not include certain popular brands in its survey.
-- E) The group did not weight ratings by how long each respondent had owned the appliance.
+- A) The group assumes without evidence that all brands of appliances are equally likely to break down during the period covered by the survey.
+- B) The group does not take into account the prices consumers paid for the appliances they rated.
+- C) The group may be drawing its conclusion from a self-selected subset of consumers who do not represent all consumers of household appliances.
+- D) The group did not include certain popular appliance brands in the list of brands respondents were asked to rate.
+- E) The group did not weight the satisfaction ratings by how long each respondent had owned the appliance being rated.
 
 **answer:** C
 **explanation:** **Situation.** A consumer advocacy group mailed 10,000 satisfaction surveys and received only 1,200 back. On the basis of those returned surveys, it found that Brand X earned the highest rating and concluded that Brand X is the most satisfying household appliance brand on the market.
@@ -2676,7 +2676,7 @@ The correct answer is C.
 
 In the argument above, the two portions in boldface play which of the following roles?
 
-- A) The first is a plan; the second is a counterproposal.
+- A) The first is a plan put forward by the company; the second is a counterproposal to that plan.
 - B) The first is a conclusion that the argument opposes; the second is the argument's own conclusion.
 - C) The first is a fact; the second is a claim that the argument uses the fact to support.
 - D) The first is an observation; the second is a consequence that follows from that observation.
@@ -2706,10 +2706,10 @@ A city council is proposing to install streetlights along Pine Road, which curre
 Which of the following, if true, most strengthens the council's proposal?
 
 - A) Nighttime accidents on Pine Road are frequently caused by drivers losing their way in the dark rather than by driver carelessness.
-- B) Streetlights on nearby roads were installed more than ten years ago.
-- C) Drivers who are most likely to cause accidents are not deterred by improved lighting.
-- D) Pine Road currently has less traffic than any of the nearby roads.
-- E) Studies of other cities show that streetlights have varied effects on nighttime accident rates.
+- B) The streetlights on the nearby roads were installed by the city more than ten years ago at considerable expense.
+- C) The drivers who are most likely to cause nighttime accidents are generally not deterred from driving carelessly by improved lighting.
+- D) Pine Road currently carries less traffic at night than any of the nearby roads that already have streetlights.
+- E) Studies of other cities show that streetlights have had varied effects on nighttime accident rates.
 
 **answer:** A
 **explanation:** **Situation.** A city council proposes installing streetlights along the currently unlit Pine Road in order to reduce the nighttime accident rate there. Opponents counter that drivers on nearby lit roads did not become more careful after streetlights were installed.
@@ -2717,7 +2717,7 @@ Which of the following, if true, most strengthens the council's proposal?
 **Reasoning.** The task is to identify the choice that most strengthens the council's proposal that lighting Pine Road will reduce nighttime accidents. The opponents' objection rests on a single assumption about how lighting could work: that it must reduce accidents by making drivers more careful. If that were the only possible mechanism, the absence of improved carefulness on nearby roads would undermine the proposal. The proposal is strengthened by showing that lighting can reduce Pine Road's accidents through a different mechanism, one that does not depend on changing driver behavior. The credited choice establishes that Pine Road's nighttime accidents are frequently caused by drivers losing their way in the dark rather than by carelessness. Lighting directly addresses a wayfinding and visibility problem of exactly that kind, so it can lower the accident rate on Pine Road even though drivers' carefulness is unchanged. This both supplies a working causal channel for the proposal and shows that the opponents' carefulness objection is beside the point for this particular road.
 
 The correct answer is A.
-**mistake_b:** Choice B states only that the streetlights on nearby roads were installed more than ten years ago. The timing of those earlier installations says nothing about whether lighting will reduce nighttime accidents on Pine Road, so it neither answers the opponents' objection nor supports the council's proposal.
+**mistake_b:** Choice B states that the streetlights on nearby roads were installed by the city more than ten years ago at considerable expense. Neither the timing nor the cost of those earlier installations says anything about whether lighting will reduce nighttime accidents on Pine Road, so it neither answers the opponents' objection nor supports the council's proposal.
 **mistake_c:** Choice C asserts that the drivers most likely to cause accidents are not deterred by improved lighting. Far from strengthening the proposal, this weakens it: it reinforces the opponents' point that better lighting fails to change the behavior of the very drivers who cause accidents, giving the council's plan less reason to succeed.
 **mistake_d:** Choice D notes that Pine Road currently has less traffic than any nearby road. The relative volume of traffic does not bear on whether installing streetlights will lower the nighttime accident rate, so it does nothing to support the council's proposal.
 **mistake_e:** Choice E reports that studies of other cities show streetlights have varied effects on nighttime accident rates. A finding that effects vary is neutral at best; it gives no reason to expect that lighting will reduce accidents specifically on Pine Road, and so does not strengthen the proposal.
@@ -2734,11 +2734,11 @@ Researchers studying remote work found that employees who work from home report 
 
 Which of the following is most strongly supported by the statements above?
 
-- A) All remote workers should seek more in-person time with their managers.
+- A) All remote workers should actively seek more regular in-person time with their managers.
 - B) Regular in-person contact with managers may be an important factor in the promotion rates of remote workers.
-- C) Employees who are promoted report higher job satisfaction than those who are not.
-- D) Remote work is generally bad for career advancement.
-- E) Companies should end their remote work policies.
+- C) Employees who receive promotions consistently report higher job satisfaction than employees who are passed over for them.
+- D) Remote work is generally bad for the long-term career advancement of employees who choose it.
+- E) Companies should end their remote work policies and require employees to return to the office.
 
 **answer:** B
 **explanation:** **Situation.** Researchers found that home-based employees report higher job satisfaction than office workers but are, on average, 30 percent less likely to be promoted than comparable office workers; however, remote workers who maintain regular in-person contact with their managers are promoted at nearly the rate of office workers.
@@ -2794,10 +2794,10 @@ The correct answer is D.
 In the argument above, the two portions in boldface play which of the following roles?
 
 - A) The first is a plan under consideration; the second is evidence that supports the plan against a specific criticism.
-- B) The first is a recommendation; the second is a reason the recommendation should be reconsidered.
-- C) The first is a policy; the second is evidence against the policy.
-- D) The first is a question the argument resolves; the second is the resolution.
-- E) The first is the conclusion; the second is the evidence used to derive it.
+- B) The first is a recommendation the argument endorses; the second is a reason that recommendation should be reconsidered.
+- C) The first is a policy already in force; the second is evidence that the policy is failing to achieve its aims.
+- D) The first is a question that the argument raises and then resolves; the second is the resolution it reaches.
+- E) The first is the argument's main conclusion; the second is the evidence used to derive that conclusion.
 
 **answer:** A
 **explanation:** **Situation.** A public library is weighing a digital lending system that would cut the costs of physical books. Opponents warn that such a system would reduce foot traffic, and thus engagement, but studies of libraries that have already made the switch show that overall patron engagement has held steady or risen slightly even as physical visits dip modestly.
@@ -2823,10 +2823,10 @@ Researchers at a marine biology institute report that the incidence of a specifi
 In the argument, the two portions in boldface play which of the following roles?
 
 - A) The first is the researchers' hypothesis; the second is a defense of that hypothesis against a competing explanation.
-- B) The first is a claim the critics endorse; the second is the critics' supporting evidence.
-- C) The first is a research finding; the second is a model prediction that supports the finding.
-- D) The first is a specific observation; the second is a general theory that follows from it.
-- E) The first is a conclusion; the second is a restatement of that conclusion.
+- B) The first is a claim that the critics themselves endorse; the second is the supporting evidence the critics offer for it.
+- C) The first is a research finding; the second is a model prediction that supports and confirms the finding.
+- D) The first is a specific observation that the researchers made; the second is a general theory that follows directly from it.
+- E) The first is a conclusion; the second is simply a restatement of that same conclusion in different words.
 
 **answer:** A
 **explanation:** **Situation.** Researchers report that a jellyfish species has become significantly more common in coastal waters over the past decade and propose that warming ocean temperatures, by expanding the species' habitable range, are the main reason. Critics suggest that pollution and the loss of natural predators could instead explain the rise, and the researchers reply that their statistical models, which already treat those factors as separate variables, still credit roughly 70 percent of the increase to temperature.
@@ -2851,11 +2851,11 @@ A regional hospital reports that patients admitted through its emergency departm
 
 Assuming no additional information, which of the following is most strongly supported?
 
-- A) Patients admitted on Monday are, on average, more ill than patients admitted on Wednesday.
-- B) Monday admissions involve a different mix of medical conditions, different in-hospital workflow factors, or both, compared with Wednesday admissions.
-- C) Hospital staffing on Monday is less efficient than on Wednesday.
-- D) Patients admitted on weekends stay longer than patients admitted on weekdays.
-- E) The hospital should reduce the number of Monday admissions.
+- A) Patients admitted on Monday are, on average, more seriously ill at the time they are admitted than patients admitted on Wednesday.
+- B) Monday admissions differ from Wednesday admissions in the mix of medical conditions, in in-hospital workflow factors, or in both.
+- C) Hospital staffing in the emergency department is thinner and less efficient on Mondays than on Wednesdays.
+- D) Patients admitted on weekends stay longer, on average, than patients admitted on any of the five weekdays.
+- E) The hospital should reduce the number of patients it admits through the emergency department on Mondays.
 
 **answer:** B
 **explanation:** **Situation.** A regional hospital reports that patients admitted through its emergency department on Monday stay an average of 4.8 days, while those admitted on Wednesday stay an average of 3.6 days. The two groups are demographically similar, and the department is staffed similarly on both days.
@@ -2910,10 +2910,10 @@ A fitness app that tracks users' workouts reports that users who complete at lea
 Which of the following, if true, most weakens the developers' claim?
 
 - A) Users who complete 20 or more workouts per month tend to adopt other healthy habits, such as improved diet, at the same time they increase workout frequency.
-- B) The fitness app is used by several million people across dozens of countries.
-- C) Some users who complete more workouts each month do not weigh themselves regularly.
-- D) The app's workout-tracking feature is available free to all users.
-- E) Weight loss is often difficult to sustain over time without ongoing effort.
+- B) The fitness app is used by several million people across dozens of countries and consistently ranks among the most downloaded health and fitness apps worldwide.
+- C) Some users who complete 20 or more workouts each month do not weigh themselves regularly or update their weight in the app.
+- D) The app's workout-tracking feature is available free of charge to all users, regardless of subscription tier.
+- E) Weight loss achieved in the first six months is often difficult to sustain over the long term without ongoing effort.
 
 **answer:** A
 **explanation:** **Situation.** A fitness app reports that users completing at least 20 workouts per month lose, on average, 2 pounds more over six months than users completing fewer workouts. The app's developers conclude that completing more workouts each month causes greater weight loss.
@@ -2969,9 +2969,9 @@ The supporters' argument above relies on which of the following assumptions?
 
 - A) Accident rates among 18-year-old experienced drivers are lower than among 18-year-old new drivers.
 - B) Raising the driving age will not significantly increase the number of unlicensed young people who drive without proper training.
-- C) Most 16-year-olds currently drive more cautiously than most 18-year-olds do.
-- D) Parents generally discourage teenagers from learning to drive at age 16.
-- E) Cognitive skill development is the only factor that influences traffic accident rates.
+- C) Most 16-year-olds currently drive more cautiously in everyday traffic than most 18-year-olds do.
+- D) Parents generally discourage their teenagers from learning to drive at age 16 rather than waiting until age 18.
+- E) Cognitive skill development is the only factor that has any influence on traffic accident rates among young drivers.
 
 **answer:** B
 **fastest_path:** Find the conclusion (raising the age cuts young-driver accidents) and ask what *must* hold for the policy to work. A necessary assumption is the minimal bridge — here, that drivers don't just shift into a worse category (unlicensed, untrained). Confirm with the negation test.
@@ -3000,11 +3000,11 @@ A city council announced that crime in the downtown commercial district had decr
 
 Which of the following best identifies a flaw in the safety director's reasoning?
 
-- A) The director assumes that a decrease reported by the public-safety department accurately reflects a decrease in actual crime.
+- A) The director assumes that a decrease reported by the city's public-safety department accurately reflects a decrease in the amount of crime actually committed.
 - B) The director shifts from a claim about crime specifically in the downtown commercial district to a claim about crime citywide.
-- C) The director does not account for possible changes in how crime is defined by the department.
+- C) The director does not account for possible changes over the year in how the department defines and records crime.
 - D) The director does not specify whether the neighborhood policing program has also been implemented in nearby cities.
-- E) The director assumes that the decline in crime will continue in future years.
+- E) The director assumes that the decline in crime observed over the past year will continue in future years.
 
 **answer:** B
 **explanation:** **Situation.** A city council reported that crime in the downtown commercial district fell by 22 percent over the past year, and the safety director concluded from this figure that the city's new neighborhood policing program, begun a year ago, has been effective at reducing crime citywide.
@@ -3029,11 +3029,11 @@ A study of dog owners found that owners who walk their dogs daily report lower r
 
 Which of the following best identifies a flaw in the researchers' reasoning?
 
-- A) The researchers did not measure anxiety levels before the owners acquired their dogs.
-- B) The researchers assume that daily dog walking causes lower anxiety, but the direction of causation could be reversed — owners with less anxiety may be more likely to walk their dogs daily.
-- C) The researchers did not include owners of cats or other pets in the study.
-- D) The researchers did not account for differences in dog breed or size.
-- E) The researchers assume that self-reported anxiety rates accurately reflect actual anxiety levels.
+- A) The researchers did not measure the anxiety levels of the owners at any point before those owners acquired their dogs.
+- B) The researchers overlook the possibility that the causation runs in reverse — owners with less anxiety may be more likely to walk their dogs daily.
+- C) The researchers did not include owners of cats, birds, or other companion animals in the study as a comparison group for the dog owners.
+- D) The researchers did not account for differences in dog breed, size, or temperament across the many households in the study.
+- E) The researchers assume that the owners' self-reported anxiety rates accurately reflect the owners' actual anxiety levels.
 
 **answer:** B
 **explanation:** **Situation.** A study found that dog owners who walk their dogs daily report lower rates of chronic anxiety than owners who do not walk daily. From this the researchers concluded that walking dogs daily reduces anxiety in dog owners.
@@ -3058,11 +3058,11 @@ A technology company attributes a 40 percent increase in its customer retention 
 
 Which of the following, if true, most strengthens the company's attribution?
 
-- A) Customer retention was stable for the three years prior to both the service expansion and the price reduction.
-- B) In post-renewal surveys, the majority of retained customers cited "helpful customer support" as a key reason they continued their subscription, while "lower price" was cited by a much smaller share.
-- C) The price reduction was modest, amounting to only a 3 percent cut in the average subscription cost.
-- D) The company's competitors have recently expanded their own customer-service operations.
-- E) Overall customer satisfaction with the company's products is high.
+- A) Customer retention rates were essentially stable during the three years immediately prior to the introduction of both the service expansion and the price reduction.
+- B) In post-renewal surveys, most retained customers cited "helpful customer support" as a key reason they continued, while far fewer cited "lower price."
+- C) The price reduction was relatively modest, amounting to only a 3 percent cut in the average monthly subscription cost paid by customers.
+- D) Several of the company's largest competitors have recently expanded and retrained their own customer-service and technical-support operations.
+- E) Overall customer satisfaction with the quality of the company's core products has remained high in recent years.
 
 **answer:** B
 **explanation:** **Situation.** A technology company credits a 40 percent rise in its customer retention rate to an expanded, retrained customer-service team, while critics contend that a simultaneous reduction in subscription prices is the more likely cause.
@@ -3087,11 +3087,11 @@ A regional bakery observed that sales of its new sourdough loaf were 35 percent 
 
 Which of the following, if true, most weakens management's conclusion?
 
-- A) The baking demonstrations typically last only three hours and are held in the back of the store.
+- A) The baking demonstrations typically last only about three hours and are held near the ovens at the back of the store, away from the main entrance.
 - B) The bakery's local newspaper ran a featured article on the sourdough loaf during the same week as the demonstration event.
-- C) The bakery's customer-loyalty program grew by 8 percent during the demonstration week.
+- C) The bakery's customer-loyalty program membership grew by 8 percent during the week of the demonstration event.
 - D) Demonstration attendees represented roughly 5 percent of all store visitors during the event week.
-- E) Several other bakeries in the region also reported strong sourdough sales during that week.
+- E) Several other bakeries in the region also reported strong sourdough sales during that same week.
 
 **answer:** B
 **explanation:** **Situation.** A bakery sold 35 percent more of its new sourdough loaf during the week it held an in-store baking demonstration than during a comparable week without one, and management concluded that the demonstration itself caused the increase.
@@ -3116,16 +3116,16 @@ A manufacturer of industrial sensors argues that switching from quarterly to mon
 
 The chief engineer's argument depends on which of the following assumptions?
 
-- A) The cost of monthly calibration is significantly higher than the cost of quarterly calibration.
-- B) The additional calibration checks will not introduce new sources of error — such as measurement variability caused by the checks themselves — that outweigh the benefit of catching drift earlier.
+- A) The cost of performing monthly calibration checks is significantly higher than the cost of the current quarterly checks.
+- B) The additional calibration checks will not themselves introduce new sources of error that outweigh the benefit of catching drift earlier.
 - C) Most customers of the manufacturer use the sensors for applications requiring highly accurate measurements.
-- D) The current quarterly calibration schedule was established by industry convention rather than empirical measurement.
-- E) Monthly calibration checks can be automated to reduce operational labor costs.
+- D) The current quarterly calibration schedule was originally established by industry convention rather than by empirical measurement of drift.
+- E) Monthly calibration checks can be largely automated, reducing the operational labor costs of the more frequent schedule.
 
 **answer:** B
 **explanation:** **Situation.** A sensor manufacturer's chief engineer concludes that switching from quarterly to monthly calibration checks will improve long-term accuracy and reduce measurement errors. The support offered is that most significant calibration drift occurs over periods of two to three months, so more frequent checks will catch drift before it affects critical readings.
 
-**Reasoning.** The task is to identify an assumption on which the argument depends. The engineer reasons that catching drift earlier yields a net improvement in accuracy, but this holds only if the additional checks do not themselves degrade accuracy by more than they preserve. The relevant comparison is between the error prevented by catching drift sooner and any error introduced by performing the extra checks. Choice B supplies the bridge between the premise and the conclusion: that the additional checks will not introduce new sources of error that outweigh the benefit of catching drift earlier. Applying the negation test confirms that B is required. If the additional calibration checks did introduce measurement variability that outweighed the benefit of catching drift earlier, then performing them more frequently would not produce a net improvement in accuracy, and the conclusion would collapse. Because negating B destroys the argument, B is an assumption on which the argument depends.
+**Reasoning.** The task is to identify an assumption on which the argument depends. The engineer reasons that catching drift earlier yields a net improvement in accuracy, but this holds only if the additional checks do not themselves degrade accuracy by more than they preserve. The relevant comparison is between the error prevented by catching drift sooner and any error introduced by performing the extra checks. Choice B supplies the bridge between the premise and the conclusion: that the additional checks will not introduce new sources of error that outweigh the benefit of catching drift earlier. Applying the negation test confirms that B is required. If the additional calibration checks did introduce new sources of error that outweighed the benefit of catching drift earlier, then performing them more frequently would not produce a net improvement in accuracy, and the conclusion would collapse. Because negating B destroys the argument, B is an assumption on which the argument depends.
 
 The correct answer is B.
 **mistake_a:** Choice A addresses the relative cost of monthly versus quarterly calibration. Cost is irrelevant to the engineer's conclusion, which concerns accuracy and measurement error, not expense. The argument can stand or fall regardless of whether monthly checks cost more, so this is not a required assumption.
@@ -3145,11 +3145,11 @@ A public health department introduced a free flu vaccination program in a city l
 
 Which of the following, if true, most helps to explain the unexpected increase in reported flu cases?
 
-- A) The flu vaccine provided by the program was approximately 60 percent effective at preventing infection.
-- B) The total number of residents in the city increased by approximately 3 percent over the same period.
-- C) As part of the vaccination program, the public health department significantly expanded its flu-testing and case-reporting capacity, leading to identification of many cases that would previously have gone undetected.
-- D) Some residents skipped the vaccine because they believed (incorrectly) that it would cause flu symptoms.
-- E) The previous year had an unusually mild flu season relative to historical norms.
+- A) The flu vaccine provided free through the program was approximately 60 percent effective at preventing infection.
+- B) The total number of residents living in the city increased by approximately 3 percent over the same period.
+- C) The program greatly expanded flu testing and case reporting, identifying many infections that would previously have gone undetected.
+- D) Some residents refused to get the vaccine because they believed, incorrectly, that receiving it would itself cause them to develop flu symptoms.
+- E) The previous year's flu season had been unusually mild relative to the city's historical norms.
 
 **answer:** C
 **explanation:** **Situation.** A city introduced a free flu vaccination program last September, yet by the following March the number of reported flu cases had risen 18 percent over the same period a year earlier, contrary to officials' expectation that the program would reduce cases.
@@ -3174,11 +3174,11 @@ A city proposes to install solar panels on the rooftops of all its municipal bui
 
 The answer to which of the following questions would be most useful in evaluating the city's argument?
 
-- A) How many municipal buildings are in the city in total?
-- B) What is the expected useful life of the solar panels that would be installed?
-- C) Whether the roofs of the city's municipal buildings actually receive sunlight exposure comparable to the assumptions used in the 10-year payback projection.
-- D) Whether other cities have successfully installed solar panels on their own municipal buildings.
-- E) What electricity rate the city currently pays for its municipal buildings.
+- A) How many municipal buildings in total does the city currently own and operate across its various districts?
+- B) What is the expected useful operating life of the specific model of solar panels that the city would install?
+- C) Whether the municipal buildings' roofs actually receive sunlight comparable to the assumptions used in the 10-year payback projection.
+- D) Whether other cities in the region have successfully installed solar panels on the rooftops of their own municipal buildings and recouped the cost.
+- E) What electricity rate the city currently pays, on average, to power each of its municipal buildings.
 
 **answer:** C
 **explanation:** **Situation.** A city proposes installing solar panels on all municipal-building rooftops, claiming the project will pay for itself within 10 years through electricity savings; opponents counter that the roofs are poorly oriented and so will not generate enough electricity to justify the investment.
@@ -3204,11 +3204,11 @@ A city's department of transportation recently replaced several mid-sized traffi
 
 If both the department's measurement and the residents' complaints are accurate, which of the following is most strongly supported?
 
-- A) Roundabouts always worsen overall commute times.
-- B) The department's throughput measurements capture only the intersections themselves and do not reflect the effect on side streets and the broader road network.
-- C) Residents' complaints are exaggerated relative to the data.
-- D) The department should revert all roundabouts to signalized intersections.
-- E) Throughput on side streets is equal to throughput at roundabouts.
+- A) Converting signalized intersections to roundabouts always worsens overall commute times for residents of surrounding neighborhoods.
+- B) The department's throughput measurements capture only the intersections themselves, not the effect on side streets and the broader road network.
+- C) The residents' complaints about their commute times are exaggerated relative to what the department's traffic data actually show.
+- D) The department should revert all of the converted roundabouts to signalized intersections in order to reduce backups on the surrounding side streets.
+- E) Vehicle throughput on the side streets feeding the roundabouts is equal to vehicle throughput at the roundabouts themselves.
 
 **answer:** B
 **explanation:** **Situation.** A city's transportation department converted several mid-sized intersections to roundabouts and reports that vehicle throughput at those intersections rose 22 percent, even at peak hours. Residents of surrounding neighborhoods, however, say that traffic now backs up on the side streets feeding the roundabouts and that their full-route commute times have increased.
@@ -3234,10 +3234,10 @@ A biology teacher reported that, based on 30 corn plants grown in her laboratory
 Which of the following best identifies a flaw in the parks department's reasoning?
 
 - A) The parks department assumes that outdoor growing conditions in the public gardens will be comparable to the controlled conditions of the teacher's laboratory.
-- B) The parks department does not verify the accuracy of the teacher's measurement instruments.
-- C) The parks department does not specify how many corn plants will be grown in each public garden.
-- D) The parks department does not account for variations in soil quality between different gardens.
-- E) The parks department assumes that all corn plants grow to similar heights.
+- B) The parks department does not independently verify the accuracy of the measurement instruments that the teacher used to record the heights of her laboratory plants.
+- C) The parks department does not specify how many corn plants will be planted in each of the many public gardens across the city.
+- D) The parks department does not account for variations in soil quality between the different gardens where the corn would be planted.
+- E) The parks department assumes that every individual corn plant in the public gardens will grow to roughly the same height.
 
 **answer:** A
 **explanation:** **Situation.** A biology teacher reports that 30 corn plants grown in her laboratory reached an average height of 8 feet, and the city's parks department concludes that corn planted in its public gardens can also be expected to average 8 feet.
@@ -3262,11 +3262,11 @@ A regional logistics firm is launching a free office shuttle program from three 
 
 Which of the following, if true, most strengthens management's argument?
 
-- A) The firm's employee base is demographically similar to that of peer firms where shuttles have successfully eased parking demand.
-- B) Employer-sponsored commuter programs are growing in popularity among large North American firms.
-- C) An anonymous internal survey of solo-driving employees at the firm found that approximately 35 percent said they would switch to the shuttle if it served their suburban hub on their schedule.
-- D) Operating the shuttle program is significantly less expensive than expanding the headquarters parking structure.
-- E) Launching the shuttle would not require eliminating any existing parking spaces at the suburban hubs.
+- A) The firm's employee base is demographically similar to the employee bases of peer firms where shuttle programs have successfully eased parking demand.
+- B) Employer-sponsored commuter benefit programs have been growing steadily in popularity among large North American firms.
+- C) In an anonymous internal survey, roughly 35 percent of the firm's solo-driving employees said they would switch to a shuttle serving their hub on their schedule.
+- D) Operating the shuttle program would be significantly less expensive for the firm than expanding the parking structure at headquarters.
+- E) Launching the shuttle program would not require eliminating any of the existing parking spaces at the three suburban hubs.
 
 **answer:** C
 **explanation:** **Situation.** A logistics firm plans a free office shuttle from three suburban hubs to its downtown headquarters, with management contending that the shuttle will relieve parking-lot overcrowding at headquarters by drawing solo drivers onto the shuttle. Critics counter that, on the basis of failed shuttle experiments at peer firms, few employees will actually switch modes.
@@ -3291,11 +3291,11 @@ A health insurance company's data show that policyholders who participate in its
 
 Which of the following, if true, most weakens the company's argument?
 
-- A) The wellness program is currently optional, and policyholders who voluntarily enroll tend to be healthier and more health-conscious to begin with than those who do not.
-- B) The company's policyholders are primarily between 25 and 55 years of age.
-- C) Other insurance companies have seen similar results from their wellness programs.
-- D) The company's total medical claims have been rising modestly over the past three years.
-- E) Some elements of the wellness program require participation in specific activities like exercise or nutrition counseling.
+- A) The wellness program is optional, and policyholders who choose to enroll tend to be healthier and more health-conscious to begin with than those who do not.
+- B) The company's policyholders are primarily working adults between 25 and 55 years of age, spread across many regions.
+- C) Several other large insurance companies have reported broadly similar results from their own wellness programs.
+- D) The company's total annual medical claims have been rising modestly and steadily over each of the past three years.
+- E) Some elements of the wellness program require sustained participation in scheduled activities, such as regular exercise classes or one-on-one nutrition counseling.
 
 **answer:** A
 **explanation:** **Situation.** A health insurance company observes that policyholders who participate in its wellness program file 20 percent lower annual medical claims than those who do not, and it concludes that expanding the program will significantly reduce total claims across its entire policyholder population.
@@ -3320,10 +3320,10 @@ A restaurant chain is considering eliminating all of its "luxury" menu items —
 
 Management's argument relies on which of the following assumptions?
 
-- A) The chain's current "luxury" menu items have been unpopular with all customer segments.
+- A) The chain's current "luxury" menu items have been unpopular with every one of its customer segments, including the most affluent and most frequent diners.
 - B) The incremental revenue from new family customers will more than compensate for the revenue loss from eliminating the "luxury" menu items.
-- C) The chain's competitors do not offer any "luxury" menu items.
-- D) Most families currently avoid the chain specifically because of its "luxury" menu items.
+- C) None of the chain's direct competitors currently offers "luxury" menu items priced above $30.
+- D) Most families with children currently avoid the chain specifically because of the presence of its "luxury" menu items.
 - E) The chain's existing customers will continue patronizing the restaurant at the same frequency after the menu change.
 
 **answer:** B
@@ -3349,11 +3349,11 @@ Over the past decade, smartphone battery capacity has roughly doubled, yet the a
 
 Which of the following, if true, best explains why the increase in battery capacity has not produced a proportional increase in screen-on time?
 
-- A) Most users charge their phones multiple times per day and have done so throughout the decade.
-- B) Smartphone applications and features have become more computationally demanding over the decade, causing phones to drain battery more quickly per hour of use, offsetting much of the added capacity.
-- C) Manufacturers have added battery-saving modes that automatically reduce screen brightness.
-- D) Users spend more time on social media than at any previous point.
-- E) Newer smartphone processors are more energy-efficient than older ones.
+- A) Most users have charged their phones at least twice a day throughout the decade, and that charging routine has changed little as batteries have improved.
+- B) Smartphone applications and features have become far more computationally demanding over the decade, draining batteries more quickly per hour of use.
+- C) Manufacturers have added battery-saving modes that automatically reduce screen brightness when the remaining charge runs low.
+- D) Users now spend more time on social media applications each day than they did at any previous point in the decade.
+- E) Newer smartphone processors are considerably more energy-efficient than the processors of a decade ago.
 
 **answer:** B
 **explanation:** **Situation.** Over the past decade smartphone battery capacity has roughly doubled, yet average daily screen-on time has risen only about 15 percent, so consumers are not using their phones for significantly more hours per day than before.
@@ -3378,11 +3378,11 @@ A university is considering implementing a four-day school week to reduce operat
 
 The answer to which of the following questions would be most useful in evaluating the administrators' argument?
 
-- A) How much would the university save in operating costs by eliminating one day of classes per week?
-- B) Whether students will use the extended class hours and independent-study time effectively to achieve the same learning outcomes as under the current schedule.
-- C) Whether other universities have implemented a four-day school week.
-- D) What percentage of the university's operating costs are fixed versus variable?
-- E) How many total class hours per week would students have under the new schedule?
+- A) How much money in total would the university save in operating and maintenance costs each year by eliminating one full day of classes per week?
+- B) Whether students will use the extended class hours and independent-study time effectively enough to achieve the same learning outcomes.
+- C) Whether any other universities in the region have implemented a four-day school week to reduce their own operating costs in recent years.
+- D) What percentage of the university's annual operating costs are fixed costs rather than costs that vary with the number of class days?
+- E) How many total scheduled class hours per week students would have under the proposed four-day schedule compared with the current one?
 
 **answer:** B
 **explanation:** **Situation.** A university is weighing a four-day week to cut operating costs, and administrators contend that educational quality will be preserved because the class hours lost on the eliminated day will be redistributed into longer days and structured independent-study time.
@@ -3408,11 +3408,11 @@ The correct answer is B.
 
 In the argument above, the three portions in boldface play which of the following roles?
 
-- A) The first is the proposal; the second is data that rebuts a specific objection to the proposal; the third is an additional argument supporting the proposal.
-- B) The first is the proposal; the second is the main argument against it; the third is a concession.
-- C) The first is a conclusion; the second is a subconclusion; the third is evidence that supports both.
-- D) The first is an observation; the second is a counterexample; the third is a hypothesis.
-- E) The first is a recommendation; the second is the reason it should be rejected; the third is the main opposing argument.
+- A) The first is the proposal; the second is data rebutting a specific objection to it; the third is an additional argument in its favor.
+- B) The first is the proposal under consideration; the second is the main argument advanced against it; the third is a concession made to its opponents.
+- C) The first is a conclusion; the second is a subconclusion drawn from it; the third is evidence offered in support of both of the first two.
+- D) The first is a neutral observation; the second is a counterexample to it; the third is a hypothesis that has yet to be tested.
+- E) The first is a recommendation; the second is the principal reason that recommendation should be rejected; the third is the main opposing argument.
 
 **answer:** A
 **explanation:** **Situation.** The city council has proposed an ordinance requiring older commercial buildings to install modern fire-suppression systems. Opponents claim the costs would displace small businesses, but an analysis of comparable buildings shows the costs were absorbed through modest rent adjustments rather than relocation, and proponents further note that rising fire-damage rates make the safety benefits likely to outweigh the economic pressure.
@@ -3437,11 +3437,11 @@ A manufacturer of plant-based alternative meat products reports that sales in it
 
 Which of the following, if true, most strengthens the CEO's argument?
 
-- A) The manufacturer's competitors also reported double-digit growth in alternative-meat sales over the past year.
-- B) A recent survey of grocery shoppers in the manufacturer's markets found that the share of shoppers who actively seek out plant-based alternatives rose from 22 percent to 38 percent over the past year.
-- C) The manufacturer's products are generally priced higher per unit than comparable animal-meat products.
-- D) The manufacturer's advertising spending increased significantly in the retail grocery channel over the past year.
-- E) New shelf-space regulations in the European Union have required some grocery stores to add more plant-based products.
+- A) Several of the manufacturer's competitors also reported double-digit growth in alternative-meat sales in their own retail grocery channels over the past year.
+- B) A survey of grocery shoppers in the manufacturer's markets found that the share who actively seek out plant-based alternatives rose from 22 percent to 38 percent over the past year.
+- C) The manufacturer's products are generally priced higher per unit than comparable animal-meat products sold in the same grocery stores.
+- D) The manufacturer's advertising spending in the retail grocery channel increased significantly over the past year, especially in the final two quarters.
+- E) New shelf-space regulations adopted in the European Union have required some grocery stores there to devote more shelf space to plant-based products.
 
 **answer:** B
 **explanation:** **Situation.** A maker of plant-based alternative meat saw its retail grocery sales grow 25 percent over the past year, and its CEO concludes that this growth reflects a genuine, increasing consumer preference for plant-based diets, planning to expand distribution on that basis.
@@ -3466,11 +3466,11 @@ A university's career services office reports that students who attend at least 
 
 Which of the following, if true, most weakens the office's conclusion?
 
-- A) Networking events are often held in the late afternoon or evening, when many students have class or work commitments.
-- B) Most students who voluntarily attend three or more networking events are already highly motivated to seek employment and possess strong interview and résumé skills.
-- C) Some students attend networking events for reasons unrelated to job-seeking, such as to meet alumni.
-- D) The university's career services office also offers resume-review and interview-coaching services to all seniors.
-- E) The average starting salary of students who receive multiple job offers is higher than the average starting salary of students who receive only one offer.
+- A) Networking events are often held in the late afternoon or evening, times when many students have class schedules or part-time work commitments.
+- B) Most students who voluntarily attend three or more networking events are already highly motivated job-seekers with strong interview and résumé skills.
+- C) Some students attend networking events for reasons unrelated to job-seeking, such as meeting alumni or socializing with their classmates.
+- D) The university's career services office also offers résumé-review and interview-coaching services to every senior, regardless of how many networking events the senior attends.
+- E) The average starting salary of students who receive multiple job offers is higher than that of students who receive only one offer.
 
 **answer:** B
 **explanation:** **Situation.** A career services office observes that seniors who attend at least three networking events receive, on average, 30 percent more job offers than seniors who attend fewer such events, and it concludes that attending more events causes the additional offers.
@@ -3495,11 +3495,11 @@ A biotech executive argues that a new therapy for a rare disease has strong evid
 
 Which of the following best identifies a flaw in the executive's reasoning?
 
-- A) The executive selectively cites results from trials that support his claim while dismissing earlier trials that may have shown different results, with no objective justification for the dismissal.
-- B) The executive does not specify the number of patients in each trial's treatment and placebo groups.
-- C) The executive assumes that "effective" means the same thing across all three trials.
-- D) The executive does not consider the cost of administering the therapy.
-- E) The executive assumes that Phase 2 results will generalize directly to Phase 3.
+- A) The executive cites only the trials that support his claim, dismissing earlier trials that may have shown different results without objective justification.
+- B) The executive does not specify how many patients were enrolled in the treatment and placebo groups of each of the three recent trials.
+- C) The executive assumes that "effective" was defined and measured in exactly the same way across all three of the recent trials.
+- D) The executive does not fully consider the cost of administering the new therapy or the price it is likely to carry upon approval.
+- E) The executive assumes that favorable Phase 2 results will generalize directly to the larger patient populations of Phase 3 trials.
 
 **answer:** A
 **explanation:** **Situation.** A biotech executive contends that a new therapy for a rare disease is strongly supported by evidence, citing three recent Phase 2 trials in which the treatment group outperformed placebo. He omits earlier Phase 2 trials of the same therapy, dismissing them as preliminary and not statistically powerful enough to be meaningful.
@@ -3524,11 +3524,11 @@ A city's health department has proposed mandatory annual flu vaccination for all
 
 The supporters' argument relies on which of the following assumptions?
 
-- A) Hospital staff are currently the primary source of flu-related patient infections.
-- B) If hospital staff are vaccinated, they are less likely to transmit the flu virus to patients than unvaccinated staff would be, even when both groups follow standard infection-control protocols.
-- C) Employees will comply with the mandate rather than seek employment elsewhere.
-- D) Flu vaccines are safe for all hospital employees to receive.
-- E) Patient infection rates during flu season are higher than at other times of year.
+- A) Hospital staff, rather than visitors or other patients, are currently the primary source of the flu-related infections that patients acquire.
+- B) Vaccinated staff are less likely than unvaccinated staff to transmit flu to patients, even when both groups follow standard infection-control protocols.
+- C) Most hospital employees will comply with the vaccination mandate rather than resign or seek employment at hospitals that have no such requirement.
+- D) Annual flu vaccines are safe for every hospital employee to receive, including those with underlying health conditions.
+- E) Patient infection rates during flu season are substantially higher than patient infection rates at other times of the year.
 
 **answer:** B
 **explanation:** **Situation.** A city's health department has proposed requiring all hospital staff to be vaccinated against the flu each year, with refusal (absent a documented medical contraindication) leading to termination. Supporters claim the policy will significantly reduce flu-related patient infections during flu season.
@@ -3555,9 +3555,9 @@ Which of the following is most strongly supported by the statements above?
 
 - A) All employees at Firm X who have worked there for five or more years are eligible for the retention bonus.
 - B) Approximately 80 percent of Firm X's employees with five or more years of tenure are eligible for the retention bonus.
-- C) Employees with less than five years at Firm X are not eligible for any bonus.
-- D) Most employees at Firm X receive positive performance reviews each year, regardless of tenure.
-- E) Firm X designed its retention bonus specifically to retain employees who might otherwise leave.
+- C) Employees who have worked at Firm X for less than five years are not eligible for any bonus the firm offers.
+- D) Most employees at Firm X receive positive performance reviews each year, regardless of how long they have worked there.
+- E) Firm X designed its retention bonus specifically in order to retain experienced employees who might otherwise leave for competitors.
 
 **answer:** B
 **explanation:** **Situation.** At Firm X, the retention bonus requires both that an employee has worked at the firm for at least five years and that the employee has received positive performance reviews in every year of employment. Among current employees with five or more years of tenure, approximately 80 percent have received positive reviews every year so far.
@@ -3607,14 +3607,14 @@ The correct answer is B.
 
 A regional bakery chain found that loaves baked with a new sourdough starter stayed fresh two days longer than loaves made with the old starter. The chain has therefore decided to switch entirely to the new starter, confident that the change will reduce the amount of unsold bread it must discard each week. Which of the following is an assumption on which the bakery's plan depends?
 
-- A) Customers prefer the taste of bread made with the new sourdough starter over that of the old starter.
-- B) The new starter does not cost substantially more per loaf than the old starter.
-- C) A meaningful portion of the bread currently discarded each week is thrown out because it has gone stale rather than for some other reason.
-- D) The new starter can be produced in quantities large enough to supply every location in the chain.
-- E) Other bakery chains in the region have not already adopted a similar long-lasting starter.
+- A) Customers prefer the taste and texture of bread made with the new sourdough starter to that of bread made with the old one.
+- B) The new starter does not cost the bakery substantially more per loaf to produce and maintain than the old starter does.
+- C) A meaningful portion of the bread discarded each week is thrown out because it has gone stale rather than for some other reason.
+- D) The new starter can be produced reliably in quantities large enough to supply every bakery location in the chain.
+- E) Other bakery chains in the region have not already adopted a similar long-lasting starter for their own loaves.
 
 **answer:** C
-**explanation:** The bakery reasons that longer-lasting loaves will cut weekly waste. This presupposes that staleness is actually responsible for at least some of the discarded bread; if bread is discarded for unrelated reasons (e.g., overproduction, damage, or surplus regardless of freshness), extra shelf life would not reduce waste. Negating choice C—none of the discarded bread is thrown out for going stale—severs the link between longer freshness and reduced waste, so C is necessary. Choice A (taste) and B (cost) concern desirability and profitability, not whether the waste-reduction goal is achieved. Choice D (production capacity) and E (competitors) are irrelevant to the causal claim about waste. The correct answer is C.
+**explanation:** The bakery reasons that longer-lasting loaves will cut weekly waste. This presupposes that staleness is actually responsible for at least some of the discarded bread; if bread is discarded for unrelated reasons (e.g., overproduction, damage, or surplus regardless of freshness), extra shelf life would not reduce waste. Negating choice C—none of the discarded bread is thrown out for going stale—severs the link between longer freshness and reduced waste, so C is necessary. Choice A (taste and texture) and B (cost) concern desirability and profitability, not whether the waste-reduction goal is achieved. Choice D (production capacity) and E (competitors) are irrelevant to the causal claim about waste. The correct answer is C.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -3626,11 +3626,11 @@ A regional bakery chain found that loaves baked with a new sourdough starter sta
 
 The city's transit authority installed real-time arrival displays at 40 of its busiest bus stops last year. Over the following twelve months, average rider satisfaction scores at those stops rose sharply. The authority concludes that installing the displays caused the increase in satisfaction and plans to add them at hundreds of additional stops. Which of the following is an assumption required by the authority's conclusion?
 
-- A) Riders at the 40 stops were less satisfied before the displays were installed than riders at stops without displays.
-- B) The cost of installing displays at hundreds of additional stops will be offset by increased ridership revenue.
+- A) Riders at the 40 stops were less satisfied before the displays were installed than riders at stops without displays were.
+- B) The cost of installing displays at hundreds of additional stops will be fully offset by increased ridership revenue within a few years.
 - C) Real-time arrival information is the single most important factor determining how satisfied bus riders are.
-- D) Satisfaction scores at the 40 stops did not rise primarily because of other service improvements introduced at those same stops during the year.
-- E) Riders who use stops with displays take the bus more frequently than riders who use stops without displays.
+- D) Satisfaction scores at the 40 stops did not rise primarily because of other service improvements introduced at those same stops that year.
+- E) Riders who use stops that have displays take the bus more frequently than riders who use stops without displays take it.
 
 **answer:** D
 **explanation:** The authority infers causation (displays caused higher satisfaction) from a correlation observed at the 40 stops. This requires ruling out alternative causes operating at the same stops during the same period. If other service improvements drove the satisfaction gains, the displays' causal role collapses; negating D—the rise was primarily due to other improvements—destroys the argument, so D is necessary. Choice C is too strong: the displays need not be the single most important factor, only a contributing cause, so C is sufficient-but-not-necessary and overstated. Choice B concerns financial justification, not the causal claim. Choices A and E introduce comparisons that the conclusion does not rely on. The correct answer is D.
@@ -3645,11 +3645,11 @@ The city's transit authority installed real-time arrival displays at 40 of its b
 
 A pharmaceutical company's new allergy tablet relieves symptoms within fifteen minutes, far faster than the thirty minutes required by its leading competitor. The company's marketing team argues that, because speed of relief is what allergy sufferers value most, advertising the faster onset will allow the new tablet to capture a large share of the competitor's customers. Which of the following is an assumption on which the marketing team's argument depends?
 
-- A) The new tablet relieves a wider range of allergy symptoms than the competitor's tablet does.
-- B) Allergy sufferers who currently use the competitor's tablet are aware that a faster-acting alternative now exists, or can be made aware of it.
-- C) The new tablet produces fewer side effects than the competitor's tablet.
-- D) The fifteen-minute onset time was measured under conditions identical to those used to measure the competitor's tablet.
-- E) No third allergy product on the market offers relief faster than fifteen minutes.
+- A) The new tablet relieves a wider range of allergy symptoms, including congestion and watery eyes, than the competitor's tablet does.
+- B) Allergy sufferers who currently use the competitor's tablet are aware, or can be made aware, that a faster-acting alternative exists.
+- C) The new tablet produces fewer and milder side effects, such as drowsiness, than the competitor's tablet produces.
+- D) The fifteen-minute onset time was measured under testing conditions identical to those used to measure the competitor's thirty-minute time.
+- E) No third allergy product currently on the market offers symptom relief in less than fifteen minutes.
 
 **answer:** B
 **explanation:** The plan is to win over the competitor's customers by advertising faster onset. For advertising to shift those customers, they must be reachable—aware, or capable of being made aware, that the faster option exists. Negating B—the competitor's customers cannot be made aware of the faster alternative—means the advertising cannot reach them and the plan fails, so B is necessary. Choice E would strengthen the competitive position but is not required: capturing the competitor's customers does not depend on being the absolute fastest, only on being faster than that competitor. Choices A and C introduce other product attributes the argument does not invoke. Choice D addresses measurement validity but the argument already stipulates the faster onset as a premise. The correct answer is B.
@@ -3664,14 +3664,14 @@ A pharmaceutical company's new allergy tablet relieves symptoms within fifteen m
 
 An agricultural economist notes that in the three counties that adopted drip irrigation, total water use by farms fell by roughly 15 percent over five years. She argues that if the neighboring water-scarce county mandates drip irrigation for all its farms, that county will likewise see its total agricultural water use decline by a comparable amount. Which of the following is an assumption on which the economist's argument depends?
 
-- A) Drip irrigation systems are no more expensive to install in the neighboring county than they were in the three counties that adopted them.
-- B) A 15 percent reduction in agricultural water use would be sufficient to resolve the neighboring county's water scarcity.
+- A) Drip irrigation systems are no more expensive to install and maintain in the neighboring county than they were in the three counties that already adopted them.
+- B) A 15 percent reduction in agricultural water use would be sufficient by itself to resolve the neighboring county's water scarcity.
 - C) The three counties that adopted drip irrigation had higher agricultural water use before adoption than the neighboring county does now.
-- D) Crops grown in the neighboring county require the same amount of water per acre as crops grown in the three counties.
-- E) Farmers in the neighboring county will not respond to the more efficient irrigation by expanding their planted acreage enough to offset the per-acre water savings.
+- D) Crops grown in the neighboring county require roughly the same amount of irrigation water per acre as crops grown in the three counties.
+- E) Farmers in the neighboring county will not respond to more efficient irrigation by expanding planted acreage enough to offset the per-acre water savings.
 
 **answer:** E
-**explanation:** The economist projects a comparable drop in TOTAL water use from a mandate that improves per-acre efficiency. A standard rebound effect threatens this: if farmers, facing lower water cost per acre, expand acreage, the efficiency gains can be absorbed and total use need not fall. Negating E—farmers will expand acreage enough to offset the savings—means total use would not decline as predicted, breaking the argument, so E is necessary. Choice A (installation cost) bears on feasibility of the mandate, not on whether water use falls once adopted. Choice B sets a separate sufficiency standard the conclusion never claims. Choices C and D add comparability conditions that are not required: the argument concerns the percentage change in total use, which can hold even if baseline levels or per-acre needs differ. The correct answer is E.
+**explanation:** The economist projects a comparable drop in TOTAL water use from a mandate that improves per-acre efficiency. A standard rebound effect threatens this: if farmers, facing lower water cost per acre, expand acreage, the efficiency gains can be absorbed and total use need not fall. Negating E—farmers will expand acreage enough to offset the savings—means total use would not decline as predicted, breaking the argument, so E is necessary. Choice A (installation and maintenance cost) bears on feasibility of the mandate, not on whether water use falls once adopted. Choice B sets a separate sufficiency standard the conclusion never claims. Choices C and D add comparability conditions that are not required: the argument concerns the percentage change in total use, which can hold even if baseline levels or per-acre needs differ. The correct answer is E.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -3683,11 +3683,11 @@ An agricultural economist notes that in the three counties that adopted drip irr
 
 A software firm replaced its annual employee performance reviews with brief weekly check-ins between managers and their reports. In the year after the change, voluntary employee turnover dropped by a third. The head of human resources concluded that the more frequent feedback improved employee retention and recommended that the company keep the new system permanently. Which of the following is an assumption on which the head of human resources' conclusion depends?
 
-- A) Weekly check-ins take less total manager time over a year than annual reviews did.
-- B) Employees who left the firm before the change cited infrequent feedback as their primary reason for leaving.
-- C) The decline in voluntary turnover was not caused mainly by a deterioration of job opportunities in the broader labor market during that year.
-- D) Every manager at the firm conducted the weekly check-ins exactly as the new system prescribed.
-- E) The weekly check-ins increased measured employee productivity as well as retention.
+- A) Weekly check-ins take less total manager time over the course of a full year than the annual review process did.
+- B) Employees who left the firm in the years before the change cited infrequent feedback from managers as their primary reason for leaving.
+- C) The decline in voluntary turnover was not caused mainly by worsening job opportunities in the broader labor market during that year.
+- D) Every manager at the firm conducted the weekly check-ins exactly as the new system prescribed throughout the year.
+- E) The weekly check-ins increased measured employee productivity as well as employee retention during the year after the change.
 
 **answer:** C
 **explanation:** The HR head attributes lower turnover to the new feedback system. But voluntary turnover also depends on outside opportunities: in a weak labor market, fewer employees leave regardless of internal practices. The conclusion thus assumes that such an external cause did not mainly account for the drop. Negating C—the decline was mainly due to a worsening labor market—removes the feedback system as the explanation, defeating the argument, so C is necessary. Choice D is too strong: perfect compliance by every manager is not required for the system overall to have improved retention. Choice A (manager time) and E (productivity) concern other benefits or costs, not whether feedback caused the retention gain. Choice B describes earlier leavers and does not establish the cause of the observed drop. The correct answer is C.
@@ -3702,11 +3702,11 @@ A software firm replaced its annual employee performance reviews with brief week
 
 A national park introduced a timed-entry reservation system to reduce overcrowding at its most popular trailheads. Park officials report that, after the system began, the number of visitors recorded at those trailheads during peak hours fell substantially. They conclude that the reservation system has succeeded in easing congestion on the trails. Which of the following is an assumption on which the officials' conclusion depends?
 
-- A) Visitors who were unable to obtain reservations did not simply shift their hikes to the same trails during off-peak hours, leaving total trail congestion unchanged.
-- B) The reservation system generated enough revenue to cover the cost of administering it.
-- C) Most visitors found the reservation system easy to use.
-- D) The trailheads in question were more crowded than trailheads elsewhere in the park before the system began.
-- E) Visitor satisfaction with the park increased after the reservation system was introduced.
+- A) Visitors unable to obtain reservations did not simply shift their hikes to the same trails during off-peak hours, leaving total congestion unchanged.
+- B) The reservation system generated enough revenue from booking fees to cover the full cost of administering it throughout the season.
+- C) Most visitors to the park found the new reservation system straightforward to use when booking their timed-entry slots.
+- D) The trailheads covered by the system were more crowded than trailheads elsewhere in the park before the reservation system began.
+- E) Overall visitor satisfaction with the park increased in the season after the reservation system was introduced.
 
 **answer:** A
 **explanation:** Officials infer eased trail congestion from a drop in peak-hour trailhead counts. But a lower peak-hour count does not ease overall congestion if the same visitors merely moved to off-peak hours on the same trails, keeping the trails just as crowded across the day. The conclusion therefore assumes no such time-shifting occurred. Negating A—visitors shifted to off-peak hours and total congestion was unchanged—shows the trails were not actually less congested, breaking the argument, so A is necessary. Choices B (revenue) and C (ease of use) and E (satisfaction) address other measures of the system's value, not whether congestion fell. Choice D is a comparison to other trailheads that the conclusion about these trails does not require. The correct answer is A.
@@ -3722,10 +3722,10 @@ A national park introduced a timed-entry reservation system to reduce overcrowdi
 A municipal library introduced a self-checkout kiosk last year, and the average time patrons spend waiting in line has fallen by 40 percent since then. The library director concludes that the kiosk is responsible for the shorter wait times. Which of the following, if true, most strengthens the director's conclusion?
 
 - A) The library has not changed its hours of operation or its total number of patrons over the past year.
-- B) Some patrons say they prefer interacting with a human librarian rather than using the kiosk.
-- C) The kiosk occasionally malfunctions and must be restarted by staff.
+- B) Some patrons say they prefer interacting with a human librarian at the front desk rather than using the kiosk.
+- C) The kiosk occasionally malfunctions during busy periods and must be restarted by a staff member before patrons can use it again.
 - D) A nearby library that did not install a kiosk saw its wait times remain essentially unchanged over the same period.
-- E) The library spent a substantial portion of its annual budget purchasing and installing the kiosk.
+- E) The library spent a substantial portion of its annual budget on purchasing, installing, and maintaining the kiosk.
 
 **answer:** D
 **explanation:** The director attributes the 40 percent drop in wait times to the new kiosk. To strengthen a causal claim, the best support rules out alternative explanations or shows the effect tracks the cause. Choice D does exactly this: a comparable library without a kiosk experienced no change over the same period, which makes it far more likely that the kiosk, not some broader trend, caused the improvement. Choice A removes one alternative (changes in patron volume or hours), which offers mild support but does not connect the improvement to the kiosk as directly as a controlled comparison does. Choices B and C describe drawbacks of the kiosk and weaken rather than strengthen. Choice E concerns cost, which is irrelevant to whether the kiosk caused shorter waits. The correct answer is D.
@@ -3740,11 +3740,11 @@ A municipal library introduced a self-checkout kiosk last year, and the average 
 
 A beverage company reformulated its flagship soda to use a natural sweetener instead of high-fructose corn syrup. In a blind taste test conducted at three of its retail partners, 68 percent of participants preferred the new formula. The marketing team concludes that switching every product in the company's lineup to the natural sweetener will increase overall sales. Which of the following, if true, most strengthens the marketing team's conclusion?
 
-- A) The natural sweetener costs slightly more per unit than high-fructose corn syrup.
-- B) Taste preference in blind tests has historically been a reliable predictor of which formulations consumers actually buy more of.
-- C) Some participants in the taste test had never previously purchased the company's flagship soda.
-- D) A rival firm recently reformulated one of its drinks and saw no measurable change in sales.
-- E) The flagship soda accounts for roughly one-tenth of the company's total product lineup.
+- A) The natural sweetener costs slightly more per unit than high-fructose corn syrup and is available from fewer suppliers.
+- B) Taste preference in blind tests has historically been a reliable predictor of which formulations consumers buy more of.
+- C) Some participants in the taste test had never previously purchased the company's flagship soda or any of its other beverages.
+- D) A rival firm recently reformulated one of its own drinks with a natural sweetener and saw no measurable change in that drink's sales.
+- E) The flagship soda accounts for roughly one-tenth of the beverages in the company's total product lineup.
 
 **answer:** B
 **explanation:** The team infers that a preferred taste in a blind test will translate into higher sales across the lineup. The argument depends on a link between stated taste preference and actual purchasing behavior. Choice B supplies exactly that link by stating that blind-test preference has reliably predicted real buying patterns, which directly supports the leap from preference to sales. Choice A (higher cost) is neutral to slightly weakening. Choice C is neutral and arguably weakens, since it raises doubt about whether testers represent buyers. Choice D offers a counterexample that, if anything, weakens the conclusion. Choice E points out that the flagship is only a small share of the lineup, which undercuts generalizing to all products rather than supporting it. The correct answer is B.
@@ -3759,11 +3759,11 @@ A beverage company reformulated its flagship soda to use a natural sweetener ins
 
 Researchers observed that office workers who keep a small plant on their desks report lower stress levels than workers with no desk plant. The researchers conclude that the presence of the plant reduces workplace stress. Which of the following, if true, most strengthens the researchers' conclusion?
 
-- A) When workers who previously had no plant were given one to keep at their desks, their self-reported stress declined over the following weeks.
-- B) Plants on desks require occasional watering and exposure to light.
-- C) Workers who report lower stress tend to be more productive throughout the day.
-- D) Workers with desk plants are, on average, no older than workers without them.
-- E) Many workers choose desk plants whose colors match their office decor.
+- A) When previously plant-less workers were given a desk plant, their self-reported stress declined over the following weeks.
+- B) Plants kept on office desks require occasional watering and regular exposure to natural light to stay healthy.
+- C) Workers who report lower stress levels tend to be more productive and to take fewer sick days over the course of the year.
+- D) Workers with desk plants are, on average, neither older nor younger than workers who do not keep plants.
+- E) Many workers choose desk plants whose colors and shapes complement their office decor and personal taste.
 
 **answer:** A
 **explanation:** The researchers move from a correlation (plant owners report less stress) to a causal claim (the plant reduces stress). A key vulnerability is reverse causation or self-selection: perhaps less-stressed workers simply choose to keep plants. Choice A addresses this directly with an intervention: when plant-less workers were given plants, their stress fell afterward, which supports the plant as the cause rather than the effect. Choice C discusses a downstream consequence of low stress and does nothing to establish the plant as the cause. Choices B and E describe incidental features of desk plants and are irrelevant to causation. Choice D rules out age as a confounder, which provides only weak support compared with the experimental evidence in A. The correct answer is A.
@@ -3778,11 +3778,11 @@ Researchers observed that office workers who keep a small plant on their desks r
 
 To reduce bicycle theft, a university installed high-security bike racks in its central quad. In the year after installation, reported bike thefts on campus fell by 30 percent. Administrators concluded that the new racks deterred thieves. Which of the following, if true, most strengthens the administrators' conclusion?
 
-- A) Surveillance cameras installed elsewhere on campus the same year recorded fewer incidents of all kinds.
-- B) The number of bicycles brought to campus by students rose modestly during the year in question.
+- A) Surveillance cameras installed elsewhere on campus during the same year recorded fewer incidents of all kinds.
+- B) The number of bicycles brought to campus by students and staff rose modestly during the year in question.
 - C) Bike thefts in the surrounding city neighborhoods, which received no new racks, rose by 10 percent during the same year.
-- D) Students who used the new racks reported feeling more confident leaving their bikes unattended.
-- E) The new racks were more expensive to install than the standard racks they replaced.
+- D) Students who used the new racks reported feeling much more confident leaving their bikes unattended on campus.
+- E) The new high-security racks were considerably more expensive to purchase and install than the standard racks they replaced.
 
 **answer:** C
 **explanation:** The administrators credit the new racks for the 30 percent decline. The chief threat to this causal claim is that some campus-wide or regional factor reduced theft generally. Choice C strengthens by showing that in nearby areas without the new racks, theft actually rose, which makes a general downward trend an unlikely explanation and isolates the racks as the differentiating factor. Choice A introduces a confounder (new cameras could explain the drop), which weakens rather than strengthens. Choice B notes more bikes were present, which makes the decline more impressive but does not tie it to the racks. Choice D reports a subjective feeling, not actual deterrence of thieves. Choice E concerns cost and is irrelevant. The correct answer is C.
@@ -3797,11 +3797,11 @@ To reduce bicycle theft, a university installed high-security bike racks in its 
 
 A software firm requires all engineers to write automated tests for their code. Last quarter the firm allowed one team to skip mandatory testing to meet a tight deadline, and that team shipped its feature two weeks faster than a comparable team that followed the testing requirement. A manager argues that dropping the testing requirement firm-wide would let the company ship features faster overall. Which of the following, if true, most strengthens the manager's argument?
 
-- A) The team that skipped testing was widely regarded as the firm's most experienced engineering team.
-- B) Customers rarely notice whether a feature was developed with or without automated tests.
-- C) Writing automated tests typically accounts for about a quarter of the total time engineers spend on a feature.
-- D) The firm's largest competitor also requires automated testing for all of its engineering teams.
-- E) The feature shipped without tests generated the same number of post-release defects as features that were tested, and those defects required no additional engineering time to address.
+- A) The team that was allowed to skip testing was widely regarded as the firm's most experienced engineering team, staffed largely with senior engineers.
+- B) Customers rarely notice or care whether a feature was developed with or without automated tests behind it.
+- C) Writing automated tests typically accounts for about a quarter of the total time the firm's engineers spend on a feature.
+- D) The firm's largest competitor also requires comprehensive automated testing for every one of its engineering teams.
+- E) The feature shipped without tests had no more post-release defects than tested features did, and its defects required no extra engineering time.
 
 **answer:** E
 **explanation:** The manager concludes that eliminating testing firm-wide would speed up delivery overall. The obvious objection is that skipping tests may save time upfront but cost more time later fixing defects, so net delivery speed might not improve. Choice E neutralizes this objection by showing the untested feature produced no extra defects and required no additional remediation time, meaning the time saved is a genuine net gain that could plausibly generalize. Choice A undercuts the argument: if the faster team was unusually experienced, the speed may stem from skill, not from skipping tests, so it weakens generalization. Choice B addresses customer perception, not delivery speed. Choice D is irrelevant to whether dropping tests helps this firm. Choice C quantifies testing time but, without addressing downstream defect costs, does not establish a net speed gain. The correct answer is E.
@@ -3816,11 +3816,11 @@ A software firm requires all engineers to write automated tests for their code. 
 
 A city council proposes extending bus service to midnight on weekends, arguing this will reduce drunk driving because more late-night patrons leaving bars will have a sober way home. Which of the following, if true, most strengthens the council's argument?
 
-- A) The extended service would require hiring additional drivers at premium overtime rates.
+- A) The extended weekend service would require the transit agency to hire and train several additional late-night drivers at premium overtime rates.
 - B) In a comparable city that extended weekend bus hours to midnight, late-night alcohol-related driving incidents subsequently declined.
-- C) Most bars in the city are located within a short walk of one another.
-- D) Some late-night bus routes in the city currently carry few passengers.
-- E) Ride-hailing apps already operate in the city around the clock.
+- C) Most bars in the city are located within a short walk of one another in the downtown entertainment district.
+- D) Some late-night bus routes in the city currently carry only a handful of passengers on weekend evenings.
+- E) Ride-hailing apps already operate in the city around the clock, including during late-night weekend hours.
 
 **answer:** B
 **explanation:** The council argues that later buses will cut drunk driving by giving bar patrons a sober transportation option. The argument assumes patrons will actually use the buses instead of driving impaired, and that this shift reduces drunk-driving incidents. Choice B provides strong empirical support by pointing to a comparable city where the same policy was followed by a decline in late-night alcohol-related driving incidents, directly linking the intervention to the intended effect. Choice A raises a cost concern irrelevant to whether the policy reduces drunk driving. Choice C suggests patrons might walk between bars, which does not bear on driving home. Choice D weakens by implying low demand for late buses. Choice E points to an existing alternative (ride-hailing), which undercuts the need for buses rather than supporting the council's claim. The correct answer is B.
@@ -3835,11 +3835,11 @@ A city council proposes extending bus service to midnight on weekends, arguing t
 
 The municipal library recently extended its weekday hours, staying open until 10 p.m. instead of closing at 6 p.m. In the three months since the change, the total number of books checked out each month has risen by 18 percent compared with the same months last year. The library director concludes that the extended evening hours caused the increase in checkouts. Which of the following, if true, most weakens the director's conclusion?
 
-- A) The library hired two additional part-time staff members to cover the new evening shifts.
+- A) The library hired two additional part-time staff members and rearranged custodial schedules to cover the new evening shifts.
 - B) During the same three-month period, the library waived all late-return fines for the first time in its history, a change widely publicized in local media.
-- C) Most patrons who visit the library in the evening also use its public computers.
-- D) The library's collection of newly published titles grew by about 5 percent over the past year.
-- E) Some patrons have complained that the parking lot is poorly lit after sunset.
+- C) Most patrons who visit the library during the evening hours also use its public computers or study rooms while there.
+- D) The library's collection of newly published titles grew by about 5 percent over the past year, consistent with its growth in prior years.
+- E) Some patrons have complained that the library's parking lot is poorly lit after sunset and difficult to navigate in the dark.
 
 **answer:** B
 **explanation:** The director infers that extended evening hours caused an 18 percent rise in monthly checkouts. The argument assumes no other change occurring in the same window could account for the increase. The fine waiver, introduced during the same three months and heavily publicized, is a plausible alternative cause that could independently drive more borrowing, undermining the causal claim. Hiring staff merely supports operating the new hours and does not explain increased demand. Evening computer use, modest collection growth, and parking complaints neither rival the causal explanation nor address the timing of the spike. The correct answer is B.
@@ -3854,11 +3854,11 @@ The municipal library recently extended its weekday hours, staying open until 10
 
 NovaBrew, a regional coffee chain, replaced the disposable cups at half of its locations with reusable ceramic mugs for dine-in customers, keeping disposable cups at the other half. After six months, the locations using ceramic mugs reported 12 percent lower per-store waste-disposal costs than the locations that kept disposable cups. NovaBrew's operations manager argues that switching all remaining locations to ceramic mugs will likewise cut their waste-disposal costs by about 12 percent. Which of the following, if true, most weakens the operations manager's argument?
 
-- A) The ceramic mugs cost NovaBrew more to purchase initially than a comparable supply of disposable cups.
-- B) Customers at the ceramic-mug locations reported slightly higher satisfaction with their visits.
-- C) The locations selected for ceramic mugs were those with the highest proportion of dine-in customers, whereas the remaining locations serve mostly takeout orders.
-- D) Washing the ceramic mugs requires additional water and detergent at each location.
-- E) A competing chain recently adopted compostable cups at all of its stores.
+- A) The ceramic mugs cost NovaBrew considerably more to purchase initially than a comparable six-month supply of disposable cups would have cost.
+- B) Customers at the ceramic-mug locations reported slightly higher satisfaction with the overall atmosphere of their visits.
+- C) The locations selected for ceramic mugs had the highest proportions of dine-in customers, whereas the remaining locations serve mostly takeout orders.
+- D) Washing the ceramic mugs after each use requires additional water, detergent, and staff time at every location that adopts them.
+- E) A competing regional chain recently adopted compostable paper cups at all of its stores to reduce landfill waste.
 
 **answer:** C
 **explanation:** The manager generalizes the 12 percent savings from the ceramic-mug stores to the remaining stores. This assumes the two groups are comparable in the relevant respect: how much disposable-cup waste they generate. If the ceramic-mug locations were chosen precisely because they had the most dine-in traffic, while the remaining stores are mostly takeout, the remaining stores generate far less cup waste that mugs could displace, so the savings would not transfer. Higher purchase cost or washing costs concern net benefit, not whether disposal costs fall, and could even be raised against adoption generally without addressing the projection's flawed comparison. Satisfaction and a competitor's choice are irrelevant to disposal-cost savings. The correct answer is C.
@@ -3874,10 +3874,10 @@ NovaBrew, a regional coffee chain, replaced the disposable cups at half of its l
 A health agency observed that adults who drink at least one cup of green tea daily have, on average, lower blood pressure than adults who never drink green tea. The agency issued a recommendation that adults with elevated blood pressure begin drinking green tea daily in order to lower it. Which of the following, if true, most weakens the agency's recommendation?
 
 - A) People who drink green tea daily are far more likely than non-drinkers to also exercise regularly and limit their salt intake, both of which lower blood pressure.
-- B) Green tea contains compounds that have been shown in laboratory settings to relax blood-vessel walls.
-- C) Some adults find the taste of green tea unpleasant and prefer black tea or coffee.
-- D) The blood-pressure difference between the two groups was measured using standardized equipment.
-- E) Green tea consumption has increased among adults over the past decade.
+- B) Green tea contains several naturally occurring compounds that have been shown in controlled laboratory settings to relax the walls of blood vessels.
+- C) Some adults with elevated blood pressure find the taste of green tea unpleasant and prefer to drink black tea or coffee instead.
+- D) The blood-pressure difference between the two groups was measured by trained clinic staff using standardized equipment that was calibrated regularly throughout the study.
+- E) Green tea consumption among adults has increased steadily over the past decade in most regions where the agency gathered its data.
 
 **answer:** A
 **explanation:** The agency moves from an observed correlation between green-tea drinking and lower blood pressure to a recommendation that drinking it will lower blood pressure, assuming the tea itself produces the effect. If daily green-tea drinkers also tend to exercise and limit salt, those confounding behaviors could explain their lower blood pressure, so adopting only the tea need not yield the benefit. This directly attacks the causal assumption. The laboratory finding about vessel relaxation would strengthen, not weaken, the causal link. Taste preferences, measurement standardization, and consumption trends do not bear on whether the tea causes the reduction. The correct answer is A.
@@ -3892,11 +3892,11 @@ A health agency observed that adults who drink at least one cup of green tea dai
 
 To reduce on-site injuries, FreightCo installed bright warning lights and audible alarms on all of its warehouse forklifts last year. In the twelve months following installation, the number of reported forklift-related injuries at FreightCo warehouses fell by 30 percent compared with the previous twelve months. FreightCo's safety officer concludes that the new lights and alarms were responsible for the decline and recommends installing identical devices on the company's loading-dock vehicles. Which of the following, if true, most weakens the safety officer's conclusion that the devices caused the decline?
 
-- A) The loading-dock vehicles operate in areas with more pedestrian traffic than the warehouse aisles do.
-- B) The warning lights and alarms required periodic maintenance that added modestly to operating costs.
-- C) Workers initially found the audible alarms distracting but adjusted to them within a few weeks.
-- D) In the same twelve-month period, FreightCo also reduced average warehouse forklift speed limits and required all forklift operators to complete a new certification course.
-- E) Industry-wide, forklift injuries have remained roughly constant over the past several years.
+- A) The loading-dock vehicles operate in areas with considerably more pedestrian traffic than the warehouse aisles where the forklifts are used.
+- B) The warning lights and alarms required periodic inspection and maintenance that added modestly to the warehouses' operating costs.
+- C) Workers initially found the audible alarms distracting during their shifts but adjusted to them within a few weeks of installation.
+- D) In the same twelve-month period, FreightCo also reduced warehouse forklift speed limits and required all forklift operators to complete a new certification course.
+- E) Industry-wide, the rate of forklift-related injuries at comparable warehouses has remained roughly constant over the past several years.
 
 **answer:** D
 **explanation:** The safety officer attributes a 30 percent injury decline to the lights and alarms, assuming nothing else changed that could account for it. If FreightCo simultaneously lowered forklift speed limits and mandated new operator certification, those measures are plausible alternative causes of the reduction, weakening the claim that the devices were responsible. Greater pedestrian traffic at loading docks bears on whether the recommendation will transfer, not on what caused the warehouse decline. The distraction that workers overcame, maintenance costs, and the stable industry-wide rate do not undercut the causal claim; the flat industry trend, if anything, makes FreightCo's drop look more attributable to its own actions collectively. The correct answer is D.
@@ -3911,10 +3911,10 @@ To reduce on-site injuries, FreightCo installed bright warning lights and audibl
 
 A publisher found that, among the novels it released last year, those with covers featuring a single human face sold on average 25 percent more copies than novels with abstract or landscape covers. The marketing department concludes that putting a single human face on the cover of each forthcoming novel will raise that novel's sales. Which of the following, if true, most weakens the marketing department's conclusion?
 
-- A) Readers surveyed said they often notice a book's cover before reading its description.
-- B) Competing publishers also use human faces on some of their covers.
-- C) Producing a cover with a human face costs slightly more than producing an abstract cover.
-- D) A few of last year's best-selling novels had landscape covers.
+- A) Readers surveyed at bookstores said they often notice a book's cover before reading its description or opening its first pages.
+- B) Competing publishers in the same market also use photographs of human faces on some of their fiction covers.
+- C) Producing a cover featuring a commissioned photograph of a human face costs the publisher slightly more than producing an abstract or landscape cover.
+- D) A few of the novels that sold best for the publisher last year featured landscape covers rather than human faces.
 - E) The publisher reserves single-face covers for novels by already-famous authors, whose books tend to sell well regardless of cover design.
 
 **answer:** E
@@ -3930,11 +3930,11 @@ A publisher found that, among the novels it released last year, those with cover
 
 GreenField Farms switched from chemical pesticides to releasing ladybugs to control aphids in its strawberry fields. In the first season after the switch, aphid damage to the strawberry crop dropped to its lowest level in five years. The farm's manager concludes that releasing ladybugs is a more effective aphid-control method than the chemical pesticides the farm previously used. Which of the following, if true, most weakens the manager's conclusion?
 
-- A) Ladybugs are less expensive to obtain than the chemical pesticides the farm formerly purchased.
-- B) Strawberries grown without chemical pesticides can sometimes be sold at a higher price.
-- C) Some neighboring farms have also begun experimenting with ladybugs for pest control.
+- A) Ladybugs are considerably less expensive for the farm to obtain each growing season than the chemical pesticides it formerly purchased from suppliers.
+- B) Strawberries grown without chemical pesticides can sometimes be sold to health-conscious consumers at a noticeably higher price per basket.
+- C) Some neighboring farms in the region have also begun experimenting with ladybugs and other beneficial insects to control pests in their fields.
 - D) The season in which the ladybugs were released was unusually cool and dry, conditions under which aphid populations naturally remain very low regardless of any control method.
-- E) Ladybugs occasionally migrate out of the fields where they are released.
+- E) Ladybugs released for aphid control occasionally migrate out of the fields where they are released and into the surrounding vegetation.
 
 **answer:** D
 **explanation:** The manager concludes that ladybugs are more effective than the old pesticides because aphid damage hit a five-year low after the switch. The argument assumes the low damage resulted from the ladybugs rather than from other conditions present that season. If the season was unusually cool and dry, naturally suppressing aphids no matter what method was used, then the low damage may owe to the weather, not the ladybugs, undermining the comparative-effectiveness claim. Lower cost and higher selling prices concern economics, not control effectiveness, and could even be used to favor ladybugs without addressing the confound. Neighbors adopting ladybugs and occasional migration do not bear on whether ladybugs caused the reduced damage. The correct answer is D.
@@ -3972,11 +3972,11 @@ A regional bakery chain found that whenever it lowers the price of its sourdough
 
 Which of the following can be properly inferred from the statements above?
 
-- A) The chain's most profitable price for sourdough is exactly four dollars.
-- B) Lowering the price of any product the chain sells reduces that product's profit.
+- A) The most profitable price at which the chain can sell its sourdough loaf is exactly four dollars.
+- B) Lowering the price of any product the chain sells reduces the total weekly profit earned from that product.
 - C) Last week the chain sold more sourdough loaves than in a week priced at five dollars.
 - D) Last week's total profit from sourdough was lower than it would have been at a price of four dollars.
-- E) Customers buy sourdough only when it is priced below four dollars.
+- E) Customers of the chain buy sourdough loaves only when the loaves are priced below four dollars.
 
 **answer:** D
 **explanation:** The passage states a reliable pattern: pricing below four dollars raises sales but lowers total sourdough profit relative to the four-dollar baseline. Last week's price of $3.50 is below four dollars, so by the stated regularity total profit was lower than it would have been at a price of four dollars. (A) is not supported; the passage says profit falls when the price drops below four dollars but says nothing about behavior at prices above four, so four dollars need not be the maximum-profit price. (B) generalizes to all products, which the passage never licenses. (C) compares last week to a $5.00 week, but the rule only describes the change associated with crossing the four-dollar threshold, not a direct comparison of two specific high prices. (E) is an unsupported claim about exclusivity of purchase. The correct answer is D.
@@ -3993,11 +3993,11 @@ All of the delivery drones operated by Corventa that fly routes over the harbor 
 
 If the statements above are true, which of the following must be true?
 
-- A) Some drones that fly over the harbor district are prohibited from carrying medical cargo.
-- B) At least one drone flying over the harbor district carries medical cargo.
-- C) If a Corventa drone carries medical cargo, it does not fly over the harbor district.
+- A) Some of the drones that fly routes over the harbor district are currently prohibited from carrying medical cargo.
+- B) At least one Corventa drone flying routes over the harbor district regularly carries medical cargo.
+- C) If a Corventa drone carries medical cargo, then it does not fly any routes over the harbor district.
 - D) Any harbor-district drone that has an unreplaced pre-recall battery is prohibited from carrying medical cargo.
-- E) Every drone with an extended-range battery flies over the harbor district.
+- E) Every Corventa drone equipped with an extended-range battery flies routes over the harbor district.
 
 **answer:** D
 **explanation:** The safety policy bars any drone with an unreplaced pre-recall battery from carrying medical cargo. A harbor-district drone is just one kind of Corventa drone, so if such a drone has an unreplaced pre-recall battery it falls squarely under the policy and is prohibited from carrying medical cargo. That conditional, stated by (D), follows necessarily regardless of whether any harbor drone actually has such a battery. (A) overstates: because only SOME extended-range batteries are pre-recall, we cannot guarantee that any particular harbor-district drone has one, so we cannot assert that some harbor drone is actually prohibited. (B) asserts an unsupported existence of medical cargo. (C) reverses the relationship without warrant; carrying medical cargo does not entail anything about flying over the harbor district. (E) wrongly converts the all-statement, since drones outside the harbor district could also have extended-range batteries. The correct answer is D.
@@ -4014,11 +4014,11 @@ In the Larkfield school district, the number of students enrolled in the after-s
 
 Which of the following is most strongly supported by the information above?
 
-- A) By 2025 a majority of Larkfield students were enrolled in the robotics program.
-- B) The decline in total student population was caused by factors unrelated to the robotics program.
+- A) By 2025 a majority of the students enrolled in the Larkfield district were participating in the robotics program.
+- B) The decline in the district's total student population was caused by factors unrelated to the robotics program.
 - C) The fraction of Larkfield students enrolled in the robotics program was higher in 2025 than in 2018.
-- D) Interest in robotics among Larkfield students has risen because of better instruction.
-- E) The robotics program will continue to grow after 2025.
+- D) Interest in robotics among Larkfield students has risen because the program's quality of instruction improved.
+- E) The robotics program's enrollment will continue to grow in the years after 2025.
 
 **answer:** C
 **explanation:** Robotics enrollment rose every year while the total student population fell every year. A growing numerator over a shrinking denominator yields a strictly increasing ratio, so the fraction of students in robotics was higher in 2025 than in 2018. (A) confuses an increasing fraction with a majority; the fraction could still be well under half. (B) makes a causal claim about why the population fell, which the data do not establish. (D) attributes rising interest to instruction quality, an unsupported cause. (E) projects the trend into the future, which the premises do not warrant. The correct answer is C.
@@ -4035,7 +4035,7 @@ A pharmaceutical reviewer noted that among the drugs her agency approved last ye
 
 If the statements above are true, which of the following must be true of the drugs the agency approved last year?
 
-- A) Halcyn did not complete a Phase III trial.
+- A) Halcyn did not complete a Phase III trial before it was approved.
 - B) Halcyn reported no serious adverse events during testing.
 - C) Every drug that reported a serious adverse event completed a Phase III trial.
 - D) No drug approved on an accelerated pathway reported a serious adverse event.
@@ -4056,10 +4056,10 @@ A logistics analyst reported that for the firm's three warehouses, the one with 
 
 Which of the following conclusions is most strongly supported by the information above?
 
-- A) Faster fulfillment causes a higher rate of mis-shipped orders.
-- B) If the fastest warehouse slowed down, its mis-shipment rate would fall.
-- C) The slowest warehouse is the most cost-effective of the three.
-- D) Differences in inventory software explain the differences in mis-shipment rates.
+- A) Faster average order-fulfillment directly causes a warehouse to experience a higher rate of mis-shipped orders.
+- B) If the fastest warehouse deliberately slowed its average fulfillment time, its rate of mis-shipped orders would fall.
+- C) The warehouse with the slowest average fulfillment time is also the most cost-effective of the three to operate.
+- D) Differences in the inventory software used at each warehouse explain the differences in their mis-shipment rates.
 - E) Across the three warehouses, ranking faster on fulfillment speed never coincided with ranking lower on mis-shipment rate.
 
 **answer:** E
@@ -4077,8 +4077,8 @@ A regional coffee chain replaced the disposable paper cups at its busiest locati
 
 - A) Whether the busiest location's customers were satisfied with drinking from ceramic mugs rather than paper cups
 - B) Whether the other locations serve a comparable proportion of customers who drink their coffee in the store rather than taking it to go
-- C) Whether the cost of purchasing ceramic mugs exceeds the savings in waste-disposal costs over the first year
-- D) Whether the chain's competitors have also begun offering reusable mugs at some of their locations
+- C) Whether the cost of purchasing and replacing ceramic mugs exceeds the savings in waste-disposal costs over the first year of the program
+- D) Whether the chain's competitors have also begun offering reusable ceramic mugs to dine-in customers at some of their locations
 - E) Whether the busiest location had higher waste-disposal costs than the chain's other locations before the switch
 
 **answer:** B
@@ -4095,10 +4095,10 @@ A regional coffee chain replaced the disposable paper cups at its busiest locati
 The city of Harrowgate installed automated speed cameras on Route 9 last year, and the number of reported speeding violations on that road dropped by 40 percent over the following twelve months. A city council member argues that the cameras have successfully made drivers slow down and that the council should therefore install identical cameras on every major road in the city. Which of the following would be most useful to investigate in evaluating the council member's argument?
 
 - A) Whether the cost of installing cameras on every major road would exceed the revenue generated by the fines collected
-- B) Whether drivers on Route 9 were aware that the speed cameras had been installed there
+- B) Whether most drivers who regularly use Route 9 were aware that the speed cameras had been installed along that road
 - C) Whether a substantial portion of drivers who previously sped on Route 9 simply began using alternate roads that have no cameras
-- D) Whether the speed cameras on Route 9 occasionally malfunction and fail to record violations
-- E) Whether the number of traffic accidents on Route 9 also declined during the same twelve-month period
+- D) Whether the speed cameras installed on Route 9 occasionally malfunction and fail to record some of the violations that actually occur
+- E) Whether the number of traffic accidents reported on Route 9 also declined during the same twelve-month period
 
 **answer:** C
 **explanation:** The council member infers from a 40 percent drop in violations on Route 9 that the cameras actually caused drivers to slow down, and projects this success citywide. The hidden assumption is that the reduction reflects genuinely reduced speeding rather than displacement. Option C is the variance test: if many speeders merely rerouted to camera-free roads, then drivers did not slow down (they relocated), and citywide installation could simply shift the problem rather than solve it; if few rerouted, the slowing interpretation holds. Option A concerns financial feasibility, not whether the cameras work. Option D, occasional malfunction, would if anything mean even more violations occurred, not undercut the slowing claim cleanly. Option E (accidents) measures a different outcome than speeding behavior, and Option B's awareness does not by itself swing the conclusion. The correct answer is C.
@@ -4133,10 +4133,10 @@ A software company introduced a four-day workweek for its engineering team, keep
 Nutuna, a maker of breakfast cereals, found that consumers who tried free samples of its new high-fiber cereal at supermarket demonstration stands purchased the cereal at three times the rate of shoppers who merely walked past the product on the shelf. Nutuna's marketing team concluded that funding sample-tasting stands in additional supermarkets is the most cost-effective way to increase the cereal's overall sales. Which of the following would be most useful to establish in order to evaluate the marketing team's conclusion?
 
 - A) Whether shoppers who accept free samples tend to be those already inclined to buy new health-oriented products
-- B) Whether the high-fiber cereal is priced higher than Nutuna's other cereals
-- C) Whether the supermarkets hosting the demonstration stands are located in affluent neighborhoods
-- D) Whether competing cereal brands also offer free samples in supermarkets
-- E) Whether the cereal received favorable reviews from nutrition experts
+- B) Whether the high-fiber cereal is priced substantially higher than Nutuna's other breakfast cereals
+- C) Whether the supermarkets hosting the demonstration stands are located predominantly in affluent urban neighborhoods
+- D) Whether competing cereal brands also offer free samples of their products in the same supermarkets
+- E) Whether the new cereal received favorable reviews from nutrition experts and consumer magazines
 
 **answer:** A
 **explanation:** The team treats the higher purchase rate among samplers as evidence that sampling causes purchases, and concludes that funding more stands is the most cost-effective way to lift sales. The conclusion assumes the sampling itself drives the purchases rather than reflecting a self-selected group. Option A is the variance test: if samplers are disproportionately people already predisposed to buy health products, the stands may merely attract likely buyers rather than convert browsers, so expanding stands would not yield proportional new sales; if samplers are representative, the causal story and the recommendation hold. Option B (price) and Option E (expert reviews) do not address whether the stands cause incremental purchases. Option C narrows store demographics but does not isolate the self-selection issue. Option D concerns competitors, not the causal mechanism. The correct answer is A.
@@ -4151,11 +4151,11 @@ Nutuna, a maker of breakfast cereals, found that consumers who tried free sample
 
 A pharmaceutical firm tested a new drug intended to lower patients' resting heart rate. In a clinical trial, patients who received the drug had an average resting heart rate 12 beats per minute lower at the end of the study than at the start. The firm's lead researcher concluded that the drug is effective at lowering resting heart rate and should be submitted for regulatory approval on that basis. Which of the following would be most useful to determine in order to evaluate the researcher's conclusion?
 
-- A) Whether the patients in the trial also reported feeling less anxious while taking the drug
-- B) Whether the patients in the trial had unusually high resting heart rates when they enrolled
-- C) Whether the drug produced any side effects serious enough to require discontinuing treatment
-- D) Whether a resting-heart-rate reduction of 12 beats per minute is large enough to benefit patients clinically
-- E) Whether patients in a comparison group who received an inactive placebo experienced a similar decrease in resting heart rate over the study period
+- A) Whether the patients in the trial also reported feeling significantly less anxious during the weeks they were taking the drug
+- B) Whether the patients enrolled in the trial had unusually high resting heart rates at the time they entered the study
+- C) Whether the drug produced side effects serious enough to require some patients to discontinue treatment before the study ended
+- D) Whether a resting-heart-rate reduction of 12 beats per minute is large enough to produce a meaningful clinical benefit for patients
+- E) Whether patients in a comparison group who received an inactive placebo experienced a similar decrease in resting heart rate
 
 **answer:** E
 **explanation:** The researcher infers drug efficacy solely from a before-after drop of 12 bpm in treated patients. The inference assumes the drop is attributable to the drug rather than to other factors operating over time, such as regression to the mean, acclimation to the study, or placebo effects. Option E is the variance test: if a placebo group showed a similar decrease, the drop cannot be credited to the drug and efficacy is not established; if the placebo group did not decline, the drug-attribution is supported. Option D concerns the magnitude's clinical relevance, a separate issue from whether the drug caused the change. Option C (side effects) bears on approval generally but not on the efficacy claim itself. Option A (anxiety) and Option B (baseline levels) do not isolate the drug's causal contribution to the observed change. The correct answer is E.
@@ -4170,11 +4170,11 @@ A pharmaceutical firm tested a new drug intended to lower patients' resting hear
 
 Greenfield University requires all incoming students to take a placement exam, and students who score in the top quartile are placed directly into advanced mathematics courses. Records show that students placed into advanced courses graduate with higher overall grade-point averages than students placed into standard courses. The dean argues that placing more students directly into advanced courses would raise the graduating GPAs of those additional students. Which of the following would be most useful to investigate in order to evaluate the dean's argument?
 
-- A) Whether advanced mathematics courses are graded more leniently than standard mathematics courses
-- B) Whether the university has enough qualified instructors to expand its advanced course offerings
+- A) Whether advanced mathematics courses at the university are graded more leniently than the standard mathematics courses
+- B) Whether the university employs enough qualified instructors and classroom space to expand its advanced course offerings to additional students
 - C) Whether students who scored just below the top quartile would perform as well in advanced courses as the top-quartile students who currently take them
-- D) Whether students placed into advanced courses tend to major in mathematics-related fields
-- E) Whether the placement exam accurately measures students' mathematical knowledge at the time of enrollment
+- D) Whether students placed into advanced mathematics courses tend to go on to major in mathematics-related fields
+- E) Whether the placement exam accurately measures incoming students' mathematical knowledge at the time they enroll
 
 **answer:** C
 **explanation:** The dean reasons that because advanced-course students graduate with higher GPAs, placing more students into advanced courses would raise those additional students' GPAs. This assumes the higher GPAs are caused by the placement rather than by the superior preparation that earned top-quartile students their placement. Option C is the variance test: if students just below the cutoff would perform as well in advanced courses, expanded placement could raise their GPAs as predicted; if they would not, the GPA advantage reflects pre-existing ability and expansion would not produce the promised gains. Option A (lenient grading) might partly explain the GPA gap but, even granting it, the policy would still raise GPAs, so it does not cleanly swing the conclusion the way C does. Option E concerns exam accuracy at enrollment, not the outcome of reassigning marginal students. Options B and D address feasibility and major choice, not whether reassigned students would benefit. The correct answer is C.
@@ -4189,11 +4189,11 @@ Greenfield University requires all incoming students to take a placement exam, a
 
 To reduce employee turnover, the management of a call center began offering a one-time bonus to any representative who remained employed for a full year. In the year after the bonus was introduced, the proportion of representatives who stayed for at least twelve months rose from 55 percent to 70 percent. Management concluded that the bonus was responsible for the improved retention and plans to continue funding it indefinitely. Which of the following would be most useful to determine in order to evaluate management's conclusion?
 
-- A) Whether the bonus amount was large relative to a representative's typical annual earnings
+- A) Whether the one-time bonus amount was large relative to a representative's typical annual earnings at the call center
 - B) Whether call centers operated by other companies in the same labor market experienced comparable increases in twelve-month retention during the same year
-- C) Whether representatives who received the bonus reported higher job satisfaction than those who did not
-- D) Whether the call center reduced its hiring of representatives during the year the bonus was offered
-- E) Whether the cost of the bonus program was offset by the savings from reduced hiring and training of replacements
+- C) Whether representatives who stayed long enough to receive the bonus reported higher job satisfaction than those who left before qualifying
+- D) Whether the call center reduced its overall hiring of new representatives during the year in which the bonus was offered
+- E) Whether the cost of funding the bonus program over time was fully offset by the savings realized from reduced hiring and training of replacement representatives
 
 **answer:** B
 **explanation:** Management attributes a rise in twelve-month retention (55 to 70 percent) to the new bonus. The causal claim assumes that broader labor-market conditions did not independently improve retention during that period. Option B is the variance test: if comparable call centers without any bonus saw similar retention gains, the improvement likely stemmed from market-wide forces (e.g., scarce alternative jobs), undercutting the bonus attribution; if other centers saw no such gain, the bonus explanation is strengthened. Option E concerns cost-effectiveness, a different question from whether the bonus caused the retention rise. Option A (bonus size) and Option C (satisfaction) are suggestive but do not isolate the causal effect against external explanations. Option D, reduced hiring, does not bear directly on whether existing representatives stayed because of the bonus. The correct answer is B.
@@ -4209,9 +4209,9 @@ To reduce employee turnover, the management of a call center began offering a on
 An online bookstore added a feature that displays, for each book, a list of titles frequently bought together with it. In the three months after the feature launched, the average number of books per customer order increased noticeably. The bookstore's analyst concluded that the new feature caused customers to add more books to their orders and recommends keeping it permanently. Which of the following would be most useful to know in order to evaluate the analyst's conclusion?
 
 - A) Whether the bookstore launched a major site-wide discount promotion at the same time the feature went live
-- B) Whether customers found the recommended titles relevant to the books they were viewing
+- B) Whether customers who saw the lists found the recommended titles relevant to the specific books they were viewing at the time
 - C) Whether the bookstore's main competitor offers a similar recommendation feature
-- D) Whether the feature increased the amount of time customers spent browsing the site
+- D) Whether the feature increased the amount of time the average customer spent browsing the site during each visit
 - E) Whether the books recommended by the feature were generally more expensive than average
 
 **answer:** A
@@ -4227,11 +4227,11 @@ An online bookstore added a feature that displays, for each book, a list of titl
 
 A regional grocery chain replaced all of its older incandescent store lighting with energy-efficient LED fixtures, expecting its monthly electricity bills to fall noticeably. After the switch, however, the chain's total monthly electricity costs were actually higher than before. Which of the following, if true, best explains the unexpected increase in electricity costs?
 
-- A) The LED fixtures emit far less heat than the incandescent lighting they replaced, so during colder months the stores' electric heating systems ran much longer to maintain a comfortable temperature.
-- B) The chain's competitors also switched to LED lighting at roughly the same time, gaining similar energy savings.
-- C) LED fixtures last several times longer than incandescent bulbs, reducing the chain's spending on replacement bulbs.
+- A) The LED fixtures emit far less heat than the incandescent lighting they replaced, so the stores' electric heating ran much longer in colder months.
+- B) Most of the chain's regional competitors also switched their stores to LED lighting at roughly the same time and reported similar savings on energy.
+- C) LED fixtures last several times longer than incandescent bulbs, substantially reducing the chain's annual spending on replacement bulbs and maintenance labor.
 - D) Customers reported that the new LED lighting made the produce section appear brighter and more appealing.
-- E) The electricity provider offered a one-time rebate to businesses that installed LED lighting.
+- E) The electricity provider offered a one-time rebate to businesses in the region that installed LED lighting before the end of the year.
 
 **answer:** A
 **explanation:** The paradox is that switching to lower-wattage LED lighting raised, rather than lowered, total electricity costs. The credited choice resolves this by introducing a second electricity-consuming system: incandescent bulbs gave off substantial heat that had helped warm the stores, and removing that heat source forced the electric heating to work harder and draw more power, so total electricity use rose even as lighting use fell. Both facts are then true. The competitor switch and the longer LED lifespan are irrelevant to this chain's electricity bill or concern non-electricity costs. Customer perceptions and a rebate would, if anything, reduce costs or be irrelevant, deepening rather than resolving the paradox. The correct answer is A.
@@ -4246,11 +4246,11 @@ A regional grocery chain replaced all of its older incandescent store lighting w
 
 The city of Bradenton lowered the speed limit on its main downtown avenue from 40 to 25 kilometers per hour, anticipating fewer traffic collisions. In the year following the change, the number of reported collisions on that avenue rose by nearly 20 percent compared with the previous year, even though traffic volume was essentially unchanged. Which of the following, if true, does most to explain the rise in reported collisions?
 
-- A) During the same year, the city installed numerous additional traffic signals along the avenue, lengthening average travel times.
+- A) During the same year, the city installed numerous additional traffic signals and crosswalks along the avenue, lengthening average travel times for commuters.
 - B) The lower speed limit was accompanied by a public-awareness campaign emphasizing pedestrian safety.
 - C) Drivers on a parallel avenue, where the speed limit was unchanged, experienced a slight decrease in collisions over the same period.
-- D) Before the speed-limit change, many minor collisions on the avenue went unreported, but the city simultaneously launched a program requiring that all collisions, however minor, be reported to authorities.
-- E) Collisions occurring at speeds below 25 kilometers per hour tend to cause less severe injuries than those at higher speeds.
+- D) Many minor collisions on the avenue previously went unreported, but the city simultaneously began requiring that all collisions, however minor, be reported.
+- E) Collisions occurring at speeds below 25 kilometers per hour tend to cause considerably less severe injuries to occupants than collisions at higher speeds.
 
 **answer:** D
 **explanation:** The apparent tension is that a lower speed limit, expected to reduce collisions, coincided with a roughly 20 percent rise in reported collisions despite stable traffic. The credited choice dissolves the paradox by attacking the measure itself: a new mandatory-reporting program captured many minor collisions that previously went unrecorded, so the count of reported collisions could rise even if the actual number of collisions stayed flat or fell. The added traffic signals might plausibly increase or decrease collisions but do not explain a reporting-driven jump and are speculative. The parallel-avenue decrease, the awareness campaign, and the lower injury severity all concern other roads or outcomes and do nothing to explain why reported collisions on this avenue increased. The correct answer is D.
@@ -4265,9 +4265,9 @@ The city of Bradenton lowered the speed limit on its main downtown avenue from 4
 
 Nuvora, a software firm, introduced a generous policy allowing employees to take unlimited paid vacation days, expecting that workers would take more time off and report higher job satisfaction. A year later, the firm found that, on average, employees took fewer vacation days than they had under the previous policy of a fixed 20 days per year. Which of the following, if true, most helps to account for this result?
 
-- A) Under the previous policy, unused vacation days could be exchanged for a cash payout at the end of the year.
-- B) With no fixed allotment to anchor expectations and no formal limit, employees became uncertain about how much time off was acceptable and tended to err on the side of taking less.
-- C) The firm's revenue increased substantially during the year the new policy was in effect.
+- A) Under the previous policy, employees could exchange unused vacation days for a cash payout at the end of each calendar year, and many did so.
+- B) With no fixed allotment to anchor expectations, employees became uncertain how much time off was acceptable and erred on the side of taking less.
+- C) The firm's revenue and overall headcount both increased substantially during the year in which the new vacation policy was in effect.
 - D) Most employees at Nuvora reported that they valued flexible working hours more than additional vacation time.
 - E) A competing firm in the same industry retained its fixed-allotment vacation policy during the same period.
 
@@ -4284,11 +4284,11 @@ Nuvora, a software firm, introduced a generous policy allowing employees to take
 
 In a controlled greenhouse study, agronomists applied a new soil fungus to one group of tomato plants and left a second, otherwise identical group untreated. The treated plants grew measurably taller and produced more leaves than the untreated plants, yet at harvest the treated plants yielded significantly fewer ripe tomatoes per plant than the untreated ones. Which of the following, if true, most helps to reconcile these findings?
 
-- A) The soil fungus is known to protect tomato roots from several common pathogens that stunt plant growth.
+- A) The soil fungus is known to protect tomato roots from several common soilborne pathogens that can stunt plant growth and reduce leaf production.
 - B) The untreated plants were watered on exactly the same schedule as the treated plants throughout the study.
-- C) The fungus diverts a large share of each plant's sugars toward vegetative growth, leaving less energy available for the plant to develop and ripen fruit.
+- C) The fungus diverts much of each plant's sugars toward vegetative growth, leaving less energy for developing and ripening fruit.
 - D) Tomato plants that are taller and leafier are generally more resistant to wind damage in open fields.
-- E) The agronomists measured plant height weekly but counted ripe tomatoes only once, at the end of the study.
+- E) The agronomists measured plant height and leaf counts weekly throughout the study but counted ripe tomatoes only once, at the final harvest.
 
 **answer:** C
 **explanation:** The discrepancy is that the fungus made plants larger and leafier yet they produced fewer ripe tomatoes than untreated plants. The credited choice supplies a trade-off mechanism: a plant has a finite energy budget, and if the fungus channels sugars into stems and leaves (vegetative growth), less energy remains for setting and ripening fruit, so vigorous foliage and poor fruiting occur together. This makes both observations true. The pathogen-protection and wind-resistance options explain only why treated plants might grow larger, not why they bore fewer tomatoes, so they deepen the puzzle. Identical watering merely rules out a confound without explaining the yield gap, and the measurement-frequency option does not show the count was wrong. The correct answer is C.
@@ -4303,11 +4303,11 @@ In a controlled greenhouse study, agronomists applied a new soil fungus to one g
 
 An online retailer began displaying detailed customer reviews on every product page, confident that doing so would raise overall sales by helping shoppers choose products with confidence. After the reviews were added, the conversion rate (the share of site visitors who made a purchase) indeed climbed sharply, yet the retailer's total monthly revenue fell. The number of visitors to the site remained roughly constant throughout. Which of the following, if true, most helps to explain why total revenue declined despite the higher conversion rate?
 
-- A) The reviews steered many shoppers away from the retailer's expensive, high-margin items toward cheaper, well-reviewed alternatives, so each completed purchase was for a much smaller amount.
-- B) After the reviews were added, the average rating displayed across the retailer's products was 4.3 out of 5 stars.
-- C) Competing retailers also added customer reviews to their product pages during the same period.
-- D) Shoppers who read reviews before buying were less likely to return their purchases afterward.
-- E) Writing and moderating the customer reviews required the retailer to hire additional staff.
+- A) The reviews steered many shoppers from expensive, high-margin items toward cheaper, well-reviewed alternatives, so each purchase was for a much smaller amount.
+- B) After the reviews were added, the average rating displayed across the retailer's product catalog was 4.3 out of 5 stars, higher than the industry norm.
+- C) Several competing online retailers also added customer reviews to their product pages during the same period.
+- D) Shoppers who read several reviews before buying were considerably less likely to return their purchases for a refund afterward.
+- E) Writing, moderating, and responding to the customer reviews required the retailer to hire several additional full-time staff members.
 
 **answer:** A
 **explanation:** Revenue equals visitors times conversion rate times average order value, and visitor numbers are stated as roughly constant. The paradox is that the conversion rate rose sharply but total revenue fell. The credited choice supplies the missing variable: reviews redirected buyers from costly items to cheaper well-reviewed ones, slashing the average order value enough to outweigh the higher conversion rate, so revenue dropped. This makes both facts consistent. The 4.3-star average and competitors adding reviews are irrelevant to this retailer's revenue arithmetic. Fewer returns would raise net revenue, deepening the paradox, and added staffing affects costs, not revenue. The correct answer is A.
@@ -4323,7 +4323,7 @@ An online retailer began displaying detailed customer reviews on every product p
 Public-health officials in Caldera County expanded free vaccination clinics for a seasonal respiratory virus, and the proportion of residents vaccinated rose substantially over two years. Surprisingly, the total number of residents hospitalized with that virus each season was higher after the expansion than before it. Which of the following, if true, best resolves this apparent contradiction?
 
 - A) The vaccine reduces the severity of illness even in those who still become infected after being vaccinated.
-- B) The free clinics were most heavily used by residents under the age of 40.
+- B) The free clinics were most heavily used by residents under the age of 40 who lived within a short drive of a clinic location.
 - C) Vaccinated residents were somewhat less likely than unvaccinated residents to seek hospital care for mild symptoms.
 - D) The county's neighboring regions did not expand their vaccination programs during this period.
 - E) Over the same two years, a far more transmissible strain of the virus emerged and spread widely throughout the county.
@@ -4344,8 +4344,8 @@ A regional bakery chain found that its downtown location sells far more pastries
 - A) the suburban locations also experience a morning surge in pastry sales
 - B) a meaningful number of office commuters pass the downtown store before its current opening time
 - C) the bakery's pastries are more profitable than its coffee and other beverages
-- D) the downtown store has enough oven capacity to bake additional pastries each morning
-- E) commuters who buy pastries also tend to buy coffee at the same visit
+- D) the downtown store has enough oven and staffing capacity to bake additional pastries each morning without delaying its regular output
+- E) commuters who stop in for pastries also tend to purchase coffee or another beverage during the same visit
 
 **answer:** B
 **explanation:** The plan assumes that opening an hour earlier will capture additional sales from commuting office workers. This only works if some commuters actually pass the store during that newly added earlier hour. The connector 'only if' demands a necessary condition for the plan to boost sales. Choice B supplies exactly that: there must be commuters arriving before the current opening time who could buy during the new hour. Choice A is irrelevant to the downtown store's hours. Choices C and E concern profitability and bundled purchases, not whether the earlier hour captures new customers. Choice D addresses supply capacity, which matters only after demand in the early hour is established. The correct answer is B.
@@ -4361,10 +4361,10 @@ A regional bakery chain found that its downtown location sells far more pastries
 The city of Marwick installed sensors that automatically dim streetlights when no pedestrians or vehicles are detected nearby. Officials expect the system to lower the city's electricity bill, because ___________.
 
 - A) many of Marwick's streets are empty for long stretches during the late-night hours
-- B) streetlights in Marwick are switched off entirely during daylight hours
+- B) streetlights in Marwick are switched off entirely during daylight hours throughout the year
 - C) the sensors themselves consume a small amount of electricity to operate
 - D) residents have complained that some streets feel less safe when lights are dimmed
-- E) the upfront cost of installing the sensors was substantial
+- E) the upfront cost of purchasing and installing the sensors on every streetlight was substantial
 
 **answer:** A
 **explanation:** The conclusion is that the dimming system will lower the electricity bill. The connector 'because' requires a premise that supports lower electricity consumption. Choice A does this: if streets are empty for long stretches at night, the lights will dim often, cutting electricity use. Choice C works against the conclusion by adding consumption. Choice B describes behavior unrelated to the dimming feature and would happen regardless. Choice D raises a safety concern but does not bear on electricity savings. Choice E concerns capital cost, not the ongoing electricity bill the conclusion addresses. The correct answer is A.
@@ -4398,7 +4398,7 @@ A software company requires every new feature to pass an automated test suite be
 
 A nonprofit that distributes free textbooks noticed that schools in its program report higher reading scores than comparable schools outside it. A skeptic argues that the textbooks themselves may not be the cause of the higher scores, because ___________.
 
-- A) the textbooks are written by experienced educators and reviewed for accuracy
+- A) the textbooks are written by experienced educators and are carefully reviewed for factual accuracy before publication
 - B) schools must apply to join the program, and only those with unusually motivated staff tend to apply
 - C) students in the program schools spend more total hours reading than they did before joining
 - D) the nonprofit has expanded the program to twice as many schools over the past three years
@@ -4418,9 +4418,9 @@ A nonprofit that distributes free textbooks noticed that schools in its program 
 Greenfield Transit plans to replace its diesel buses with electric ones, claiming the switch will reduce the total greenhouse-gas emissions associated with its operations. Critics counter that the claimed reduction may fail to materialize, since ___________.
 
 - A) electric buses are quieter and produce no tailpipe emissions while in service
-- B) the upfront purchase price of electric buses exceeds that of diesel buses
+- B) the upfront purchase price of each electric bus substantially exceeds that of a comparable diesel bus
 - C) electric buses require less frequent maintenance than diesel buses
-- D) Greenfield's ridership is expected to grow modestly over the next decade
+- D) Greenfield's overall transit ridership is expected to grow modestly over the course of the next decade
 - E) the electricity in Greenfield's region is generated almost entirely by burning coal
 
 **answer:** E
@@ -4436,8 +4436,8 @@ Greenfield Transit plans to replace its diesel buses with electric ones, claimin
 
 A pharmaceutical firm observed that patients who took its new cholesterol drug for a full year had fewer heart attacks than those who stopped taking it within three months. The firm intends to cite this as evidence that taking the drug longer provides greater cardiovascular protection. This inference would be most seriously undermined if it were established that ___________.
 
-- A) patients who continued the drug for a full year also reported fewer headaches than those who stopped
-- B) the drug lowers cholesterol measurably within the first month of use
+- A) patients who continued the drug for a full year also reported fewer headaches and less joint pain than those who stopped taking it
+- B) the drug lowers patients' measured cholesterol levels noticeably within the first month of use
 - C) the drug is more expensive than competing cholesterol medications taken over a comparable period
 - D) the full-year group and the early-stopping group had similar average cholesterol levels at the start of the study
 - E) patients who stopped within three months did so largely because side effects signaled they were already in poor cardiovascular health
@@ -4455,11 +4455,11 @@ A pharmaceutical firm observed that patients who took its new cholesterol drug f
 
 An insurer found that drivers who installed its optional dashboard camera filed 30 percent fewer at-fault accident claims than drivers without one. The insurer plans to offer premium discounts to all customers who install the camera, expecting this to lower its total claim payouts. However, the expected savings could fail to occur, because ___________.
 
-- A) the cameras record footage that can help resolve disputes about who was at fault
-- B) installing the cameras requires customers to visit an authorized service center
-- C) the drivers who voluntarily chose to install the camera were already unusually cautious, and offering discounts to all customers would mainly attract less cautious drivers
-- D) drivers with cameras file slightly more not-at-fault claims than drivers without them
-- E) the cost of manufacturing each camera has declined over the past two years
+- A) the cameras record continuous footage that can help insurers and courts resolve disputes about which driver was actually at fault in a collision
+- B) installing the cameras requires customers to schedule a visit to an authorized service center
+- C) the drivers who chose to install the camera were already unusually cautious, so the discount would mainly attract less cautious drivers
+- D) drivers with cameras file slightly more not-at-fault claims than drivers without them, often to document minor damage
+- E) the cost of manufacturing each dashboard camera has declined steadily over the past two years as production volumes have grown
 
 **answer:** C
 **explanation:** The insurer expects that subsidizing cameras for everyone will reproduce the 30 percent reduction in at-fault claims and thus cut payouts. The connector 'because' requires a fact explaining why the savings might not appear. Choice C identifies a self-selection problem: the original camera adopters were already cautious, so their low claim rate may stem from their caution rather than the camera; extending discounts broadly would draw less cautious drivers, for whom the camera may not reduce claims, while the insurer pays out discounts to all. This threatens the savings. Choice A suggests the camera genuinely helps, supporting the insurer. Choice B is a minor inconvenience, not a savings issue. Choice D concerns not-at-fault claims, which the discount rationale does not target, and the effect is described as slight. Choice E lowers the insurer's costs, not its payouts, and supports feasibility. The correct answer is C.
@@ -4475,10 +4475,10 @@ An insurer found that drivers who installed its optional dashboard camera filed 
 A coastal town requires that any new seawall be at least as tall as the highest tide recorded in the past fifty years. A coastal engineer argues that meeting this standard will not guarantee that the seawalls protect the town from flooding over their expected lifetimes, since ___________.
 
 - A) the town has not experienced a flood that overtopped a seawall in the past fifty years
-- B) seawalls built to the standard are more expensive than shorter ones
+- B) seawalls built to the required standard are considerably more expensive to construct than shorter walls
 - C) projected sea-level rise is expected to push future high tides well above the highest tide of the past fifty years
-- D) some residents prefer wooden seawalls to concrete ones for aesthetic reasons
-- E) the highest tide of the past fifty years occurred during an unusually severe storm
+- D) some longtime residents prefer wooden seawalls to concrete ones for aesthetic and historical reasons
+- E) the highest tide recorded in the past fifty years occurred during a single unusually severe storm that struck the coast
 
 **answer:** C
 **explanation:** The engineer's claim is that satisfying the historical-tide standard will not ensure future flood protection. The connector 'since' requires a fact showing why a wall built to past highs could still be overtopped later. Choice C supplies it directly: if sea-level rise will drive future tides above the highest past tide, then a wall sized only to the past record will eventually be too short, so protection is not guaranteed. Choice A actually suggests the standard has worked historically, weakening the engineer's point. Choice B concerns cost, not flood protection. Choice D about aesthetics is irrelevant. Choice E explains how the record high arose but does not show future tides will exceed it; on its own it does not establish future vulnerability. The correct answer is C.
@@ -4493,14 +4493,14 @@ A coastal town requires that any new seawall be at least as tall as the highest 
 
 A regional bakery chain introduced a new sourdough loaf and saw its overall bread sales rise by 12 percent in the following quarter. The marketing director concluded that the new sourdough was responsible for the increase and recommended expanding the sourdough line. Which of the following, if true, most seriously weakens the marketing director's conclusion?
 
-- A) During the same quarter, a competing bakery across town closed permanently, sending its former customers to the chain to buy their usual bread.
-- B) The new sourdough loaf was priced slightly higher than the chain's other bread varieties.
-- C) Customers who bought the new sourdough reported high satisfaction with its flavor and texture.
-- D) The bakery chain has been operating in the region for more than twenty years.
-- E) Sourdough bread generally takes longer to bake than other types of bread sold by the chain.
+- A) During the same quarter, a competing bakery across town closed, sending its former customers to the chain for their usual bread.
+- B) The new sourdough loaf was priced slightly higher per loaf than the chain's other bread varieties.
+- C) Customers who bought the new sourdough loaf reported high satisfaction with its flavor, texture, and overall quality.
+- D) The bakery chain has been operating multiple locations in the region for more than twenty years.
+- E) Sourdough bread generally takes longer to bake and requires considerably more oven space than the other types of bread sold by the chain.
 
 **answer:** A
-**explanation:** The director infers that the new sourdough caused the 12 percent sales rise. To weaken, we need an alternative cause for the increase. Choice A supplies exactly that: a competitor's closure drove an influx of customers buying their 'usual' bread, meaning the rise could be unrelated to sourdough. Choice C is the true-but-irrelevant trap: customer satisfaction with sourdough is consistent with the conclusion and does not undermine it. Choice B is out of scope (price difference does not address what caused the overall rise) and arguably supports demand rather than weakening it. Choice D is irrelevant operational detail, and Choice E (longevity of the chain) is true-but-irrelevant background. The correct answer is A.
+**explanation:** The director infers that the new sourdough caused the 12 percent sales rise. To weaken, we need an alternative cause for the increase. Choice A supplies exactly that: a competitor's closure drove an influx of customers buying their 'usual' bread, meaning the rise could be unrelated to sourdough. Choice C is the true-but-irrelevant trap: customer satisfaction with sourdough is consistent with the conclusion and does not undermine it. Choice B is out of scope (price difference does not address what caused the overall rise) and arguably supports demand rather than weakening it. Choice E is irrelevant operational detail, and Choice D (longevity of the chain) is true-but-irrelevant background. The correct answer is A.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -4512,11 +4512,11 @@ A regional bakery chain introduced a new sourdough loaf and saw its overall brea
 
 City transit officials noted that on days when bus ridership is high, traffic accidents in the city are relatively low. They concluded that encouraging more people to ride the bus would reduce the number of traffic accidents. Which of the following best identifies a flaw in the officials' reasoning?
 
-- A) The officials assume that buses are a safer mode of transportation than private automobiles.
-- B) The officials assume that all bus routes pass through high-accident areas of the city.
-- C) The officials treat a correlation between two factors as evidence that one factor causes the other, without ruling out that both are influenced by a third factor such as bad weather keeping cars and accidents down together.
-- D) The officials fail to consider that bus ridership could be increased through lower fares.
-- E) The officials overlook the possibility that buses themselves are occasionally involved in traffic accidents.
+- A) The officials assume, without offering any justification, that traveling by bus is a considerably safer mode of transportation than traveling by private automobile.
+- B) The officials assume that all of the city's bus routes pass through the areas of the city where traffic accidents most frequently occur.
+- C) The officials treat a correlation between two factors as evidence that one causes the other, without ruling out a third factor, such as bad weather, influencing both.
+- D) The officials fail to consider that bus ridership could be increased more effectively through lower fares than through other measures.
+- E) The officials overlook the possibility that city buses themselves are occasionally involved in the traffic accidents being counted.
 
 **answer:** C
 **explanation:** The argument moves from an observed correlation (high ridership coincides with fewer accidents) to a causal claim (more ridership would cause fewer accidents). The classic flaw is treating correlation as causation while ignoring a common cause. Choice C names this precisely, offering bad weather as a third factor that could depress both driving and accidents while raising bus use. Choice A misstates the assumption: the argument never compares bus versus car safety, so this is out of scope. Choice E is the true-but-irrelevant trap; that buses occasionally crash does not address the correlation-causation gap. Choices B and D introduce unsupported or off-target considerations. The correct answer is C.
@@ -4531,11 +4531,11 @@ City transit officials noted that on days when bus ridership is high, traffic ac
 
 A pharmaceutical company claims that its new sleep aid is superior to the leading competitor because, in a clinical trial, patients taking the new drug fell asleep an average of 18 minutes faster than patients taking the competitor's drug. Therefore, the company argues, doctors should prescribe the new drug instead of the competitor's. Which of the following, if true, most seriously undermines the company's argument?
 
-- A) The new drug costs substantially more per dose than the competitor's drug.
-- B) Some patients in the trial had a history of chronic insomnia before enrolling.
-- C) The clinical trial for the new drug enrolled more than two thousand participants.
-- D) Patients taking the new drug woke up an average of four times per night, compared with once per night for those taking the competitor's drug, leaving them far more fatigued the next day.
-- E) The competitor's drug has been on the market for over a decade.
+- A) The new drug costs substantially more per dose than the competitor's drug and is not yet covered by many of the largest insurance plans.
+- B) Some patients enrolled in the trial had a history of chronic insomnia stretching back many years before enrolling.
+- C) The clinical trial for the new drug enrolled more than two thousand participants across several research hospitals in three countries.
+- D) Patients on the new drug woke an average of four times per night, versus once on the competitor's, and were far more fatigued the next day.
+- E) The competitor's drug has been available on the market for over a decade and is widely prescribed by physicians.
 
 **answer:** D
 **explanation:** The company's argument equates 'falls asleep faster' with 'superior sleep aid' and recommends switching drugs on that basis. To undermine it, we attack the leap from one narrow metric to overall superiority. Choice D does this devastatingly: the new drug produces fragmented, lower-quality sleep that leaves patients more fatigued, so faster onset does not make it better. Choice A is the true-but-irrelevant/out-of-scope trap: higher cost may matter to budgets, but the claim is about clinical superiority, not price. Choice C strengthens rather than weakens (larger sample = more reliable result). Choices B and E are background details that do not bear on whether the new drug is genuinely superior. The correct answer is D.
@@ -4550,11 +4550,11 @@ A pharmaceutical company claims that its new sleep aid is superior to the leadin
 
 To reduce employee turnover, a software firm began offering all engineers the option to work remotely four days per week. In the year after the policy took effect, the firm's annual turnover among engineers fell from 22 percent to 9 percent. The human-resources head concluded that the remote-work option was the cause of the decline and urged the firm to extend the same option to its sales staff to reduce their turnover as well. Which of the following, if true, most weakens the argument that extending the remote-work option to sales staff will similarly reduce their turnover?
 
-- A) Engineers at the firm reported higher job satisfaction after the remote-work policy was introduced.
+- A) Engineers throughout the firm reported noticeably higher job satisfaction in surveys taken after the remote-work policy was introduced.
 - B) Sales staff at the firm tend to have shorter average tenures than engineers.
-- C) The remote-work policy increased the firm's spending on collaboration software.
-- D) Turnover among engineers at competing firms also declined somewhat over the same year.
-- E) The firm's sales staff already worked remotely four days per week before the policy was introduced, and their turnover has remained persistently high.
+- C) The remote-work policy increased the firm's annual spending on collaboration software and home-office equipment.
+- D) Turnover among engineers at several competing software firms also declined somewhat over the same one-year period.
+- E) The firm's sales staff already worked remotely four days per week before the policy, and their turnover has stayed persistently high.
 
 **answer:** E
 **explanation:** The HR head reasons that because remote work apparently cut engineer turnover, the same option will cut sales-staff turnover. The argument assumes sales staff are relevantly similar and lack the benefit. Choice E breaks this: sales staff already had the remote option, yet their turnover stayed high, so extending what they already have cannot reduce it. Choice A is the true-but-irrelevant trap, consistent with the conclusion and offering no reason the sales extension would fail. Choice D slightly weakens the engineer causal claim but does not address the sales prediction, and is weaker than E. Choice B is suggestive background but does not show the policy would fail. Choice C is out of scope (cost, not turnover). The correct answer is E.
@@ -4569,11 +4569,11 @@ To reduce employee turnover, a software firm began offering all engineers the op
 
 A nutrition columnist wrote: "People who eat dark chocolate regularly tend to have lower blood pressure than people who never eat it. Since high blood pressure is a major risk factor for heart disease, everyone concerned about heart health should add dark chocolate to their daily diet." Which of the following, if true, most weakens the columnist's recommendation?
 
-- A) Dark chocolate contains more antioxidants than milk chocolate.
-- B) People who eat dark chocolate regularly also tend to exercise more and eat more vegetables than those who never eat it, and these habits independently lower blood pressure.
-- C) Some people dislike the bitter taste of dark chocolate.
-- D) Heart disease can also be caused by factors unrelated to blood pressure, such as smoking.
-- E) Dark chocolate has been consumed by humans for several centuries.
+- A) Dark chocolate contains a higher concentration of antioxidants and flavonoids than milk chocolate or most other confections.
+- B) Regular dark-chocolate eaters also tend to exercise more and eat more vegetables than people who never eat it, habits that independently lower blood pressure.
+- C) Some people strongly dislike the characteristically bitter taste of dark chocolate and prefer sweeter varieties such as milk chocolate.
+- D) Heart disease can also be caused by factors unrelated to blood pressure, such as smoking, genetic predisposition, chronic stress, poor sleep, and elevated cholesterol.
+- E) Dark chocolate has been consumed by humans for several centuries in Europe and for far longer in the Americas.
 
 **answer:** B
 **explanation:** The columnist infers, from an association between dark-chocolate eating and lower blood pressure, that adding dark chocolate will improve heart health. The hidden assumption is that the chocolate itself lowers blood pressure. Choice B undermines this by identifying confounding variables: regular dark-chocolate eaters also exercise more and eat more vegetables, which independently lower blood pressure, so the chocolate may deserve no credit. Choice D is the true-but-irrelevant trap: that heart disease has other causes does not show dark chocolate fails to help via blood pressure. Choice A is out of scope (comparison to milk chocolate), Choice C concerns preference not efficacy, and Choice E is irrelevant historical background. The correct answer is B.
@@ -4588,11 +4588,11 @@ A nutrition columnist wrote: "People who eat dark chocolate regularly tend to ha
 
 An environmental agency proposes a tax on single-use plastic bags, arguing that the tax will sharply cut the number of such bags entering local landfills. A retail association objects, stating that in a neighboring province that imposed an identical tax, total plastic waste sent to landfills actually rose in the following year, so the proposed tax will not reduce plastic landfill waste here. Which of the following, if true, most seriously weakens the retail association's objection?
 
-- A) The neighboring province's population grew by nearly 15 percent that year, and the resulting surge in overall consumption increased every category of landfill waste, while plastic-bag waste per resident fell substantially after the tax.
-- B) The neighboring province used the revenue from its plastic-bag tax to fund recycling programs.
-- C) Single-use plastic bags make up only a small fraction of all plastic waste.
-- D) Some shoppers in the neighboring province switched to paper bags after the tax was imposed.
-- E) The proposed tax would be collected at the point of sale rather than billed later.
+- A) The neighboring province's population grew nearly 15 percent that year, raising every category of landfill waste, while plastic-bag waste per resident fell substantially after the tax.
+- B) The neighboring province used the revenue collected from its plastic-bag tax to fund municipal recycling programs, coastal cleanups, and public-awareness campaigns about waste reduction.
+- C) Single-use plastic bags make up only a small fraction of all the plastic waste that is sent to landfills in either province.
+- D) Some shoppers in the neighboring province switched from plastic bags to paper or reusable cloth bags in the months immediately after the tax was imposed.
+- E) The proposed tax would be collected from shoppers directly at the point of sale rather than billed to retailers at the end of each quarter.
 
 **answer:** A
 **explanation:** The retail association argues from one statistic (total plastic landfill waste rose after an identical tax) that the tax does not cut plastic landfill waste. The agency's claim, however, concerns plastic-bag waste specifically and the tax's per-unit effect. Choice A weakens the objection by showing the rise in total waste was driven by a 15 percent population surge raising all waste categories, even as plastic-bag waste per resident fell sharply, exactly the effect the tax is meant to produce. Choice C is the true-but-irrelevant trap: bags being a small fraction does not rebut the claim that the tax fails. Choice D is consistent with the tax working but is too narrow and unquantified to overturn the aggregate figure. Choice B (revenue use) and Choice E (collection mechanics) are out of scope. The correct answer is A.
@@ -4607,11 +4607,11 @@ An environmental agency proposes a tax on single-use plastic bags, arguing that 
 
 A university committee argues that requiring all first-year students to live in campus dormitories will improve their academic performance. As evidence, the committee notes that at the university, first-year students who currently live in dormitories have, on average, higher grade point averages than first-year students who live off campus. Which of the following is an assumption on which the committee's argument depends?
 
-- A) Off-campus housing near the university is more expensive than dormitory housing.
-- B) Every first-year student who lives in a dormitory has a higher grade point average than every first-year student who lives off campus.
-- C) The higher average grades of current dormitory residents are not due primarily to pre-existing differences between students who choose dormitories and those who choose off-campus housing.
-- D) Dormitory residents spend more hours per week studying than off-campus residents.
-- E) Most universities require first-year students to live in dormitories.
+- A) Off-campus housing within walking distance of the university is considerably more expensive per semester than dormitory housing.
+- B) Every first-year student who currently lives in a dormitory has a higher grade point average than every first-year student who lives off campus.
+- C) The higher average grades of dormitory residents are not due primarily to pre-existing differences between students who choose each type of housing.
+- D) First-year dormitory residents spend more hours per week studying, on average, than their counterparts who live off campus.
+- E) Most universities comparable to this one already require first-year students to live in campus dormitories.
 
 **answer:** C
 **explanation:** The committee infers that mandating dormitory living will improve performance from the fact that current dorm residents outperform off-campus residents. This causal leap depends on the residence, not some other trait, driving the grade gap. Choice C states the needed assumption: the observed advantage is not merely a selection effect from pre-existing differences among students who self-select into dorms. If it were, forcing everyone into dorms would not replicate the benefit; negating C destroys the argument. Choice B is the too-extreme trap, demanding a universal individual-level gap that the average-based argument never needs. Choice D overstates into a specific causal mechanism the argument does not require as an assumption (it would help, but is not necessary, and asserts more than the argument needs). Choices A and E are out of scope. The correct answer is C.
@@ -4626,11 +4626,11 @@ A university committee argues that requiring all first-year students to live in 
 
 A consumer-electronics maker found that customers who contacted its phone support line reported lower satisfaction with their devices than customers who never contacted support. A consultant concluded that the phone support line was damaging customer satisfaction and recommended shutting it down to keep satisfaction high. Which of the following, if true, most seriously weakens the consultant's recommendation?
 
-- A) Customers contact the phone support line only when their devices are already malfunctioning, and without the line those customers would be left with unresolved problems and even lower satisfaction.
-- B) The phone support line is more costly to operate than the company's online help center.
-- C) Most customers who contact the phone support line do so within the first month of owning their device.
-- D) Some customers prefer online chat support to phone support.
-- E) The company has operated its phone support line for many years.
+- A) Customers call the line only when their devices are already malfunctioning, and without it they would be left with unresolved problems and even lower satisfaction.
+- B) The phone support line costs considerably more per customer contact to operate than the company's self-service online help center.
+- C) Most customers who contact the phone support line do so within the first month of owning their device, while it is still under warranty.
+- D) Some customers report that they would rather resolve device problems through online chat support than by telephoning the support line.
+- E) The company has operated its phone support line continuously for many years, far longer than most of its competitors have offered any comparable service.
 
 **answer:** A
 **explanation:** The consultant treats the correlation (support-line callers are less satisfied) as evidence that the line causes dissatisfaction, then recommends shutting it down. This reverses the actual direction of causation. Choice A exposes the reversal: customers call because their devices already malfunctioned, so low satisfaction precedes and prompts the call rather than resulting from it; removing the line would leave those customers worse off. Choice B is the true-but-irrelevant/out-of-scope cost trap, irrelevant to whether the line harms satisfaction. Choice D is irrelevant preference data, Choice C is unquantified timing detail that does not address causation, and Choice E is irrelevant background. The correct answer is A.
@@ -4691,7 +4691,7 @@ Which of the following most accurately expresses the main conclusion of the argu
 - B) Visitors to Pellmar report being highly satisfied with the renovated promenade in the surveys conducted by the municipal council.
 - C) A renovated promenade can improve the experience of tourists who have already decided to visit a town, even if it does not influence their decision to come.
 - D) Towns that invest in beautification programs will not see tourism gains any larger than those of towns that make no such investment.
-- E) The beautification program is not what brought about the rise in summer tourism that the council attributes to it.
+- E) Pellmar's beautification program is not what brought about the rise in summer tourism that the town council attributes to it.
 
 **answer:** E
 **explanation:** Structure: The council's claim (beautification caused the tourism rise) is the position the author opposes; the rail-line evidence and the comparison towns are premises offered to undercut it; the final sentence delivers the author's main conclusion that the promenade cannot explain why tourists came. Choice E paraphrases exactly that main conclusion: the beautification program is not the cause of the tourism increase the council credits to it. Choice A is a too-broad overgeneralization; the author uses the rail line to rebut the council's causal claim about Pellmar but does not actually conclude that the rail line, singularly, caused region-wide tourism increases (it is presented as the common factor, a premise, not the argument's destination). Choice B merely restates a premise about the survey results the council relies on. Choice C restates the concession in the final sentence's first clause (a sub-point the author grants), not the conclusion the argument drives toward. Choice D is an unsupported overgeneralization about all beautification programs everywhere, going well beyond the argument's claim about Pellmar's program specifically. The correct answer is E.
@@ -4777,10 +4777,10 @@ At Marlow Public Library, the number of physical books checked out each month ha
 
 In the argument, the statement that "the decline in checkouts coincides almost exactly with the period during which the library's parking lot was closed for construction" plays which of the following roles?
 
-- A) It is the main conclusion that the argument is structured to establish.
-- B) It is a proposal that the author endorses and urges the library to adopt.
-- C) It states a position that the author goes on to reject as shortsighted.
-- D) It is an assumption on which the board members' proposal explicitly depends.
+- A) It is the main conclusion that the argument as a whole is designed to establish.
+- B) It is a proposal that the author endorses and explicitly urges the library's board to adopt.
+- C) It states a position, held by some members of the library board, that the author goes on to reject as shortsighted.
+- D) It is an assumption on which the board members' proposal to cut the purchasing budget depends.
 - E) It is evidence offered to support the author's claim that physical checkouts are likely to recover.
 
 **answer:** E
@@ -4840,11 +4840,11 @@ Owner of a coffee roastery: Last month we began printing the farm of origin on e
 
 Which of the following, if true, most weakens the owner's argument?
 
-- A) A competing roastery across town also prints farm-of-origin information on its bags.
-- B) The roastery began the origin-labeling program at the start of the month in which it also cut its bean prices by 20 percent.
-- C) Some customers say they do not read the information printed on the bags.
-- D) The farms named on the labels have all been verified by an independent certification body.
-- E) The roastery's sales of brewing equipment did not change over the same period.
+- A) A competing roastery across town also prints farm-of-origin information on every bag of beans it sells.
+- B) The roastery cut its bean prices by 20 percent in the same month that it began the origin-labeling program.
+- C) Some customers say they do not read any of the information that is printed on the bags of beans they buy.
+- D) The farms named on the labels have all been verified as authentic sources by an independent certification body.
+- E) The roastery's sales of brewing equipment and other merchandise did not change over the same period.
 
 **answer:** B
 **explanation:** The owner concludes that origin labeling caused the 18 percent sales increase. To weaken a causal claim, find an alternative explanation for the same effect. Choice B supplies one: a simultaneous 20 percent price cut could easily account for higher bean sales, so the rise need not be due to the labels at all. Choice A is irrelevant to whether the labels caused this roastery's increase. Choice C is too weak; that some customers ignore the labels does not show the labels failed to drive overall sales. Choice D, by lending the labels credibility, mildly strengthens rather than weakens the claim. Choice E concerns a different product line and does nothing to explain the bean-sales jump. The correct answer is B.
@@ -4861,14 +4861,14 @@ A regional hospital introduced a checklist that surgical teams must complete alo
 
 Which of the following, if true, most strengthens the administrators' conclusion?
 
-- A) The checklist takes surgical teams only about three minutes to complete.
-- B) Most members of the surgical teams said they found the checklist easy to follow.
-- C) Several neighboring hospitals that did not adopt any such checklist saw no change in their post-surgical infection rates over the same year.
-- D) The hospital's overall number of surgeries increased slightly during the year the checklist was used.
-- E) The checklist includes a step in which the team confirms the patient's identity.
+- A) The checklist takes most surgical teams only about three minutes to complete before each operation begins.
+- B) Most members of the hospital's surgical teams said that they found the checklist clear and easy to follow.
+- C) Several neighboring hospitals that did not adopt such a checklist saw no change in their post-surgical infection rates over the same year.
+- D) The hospital's overall number of surgeries performed increased slightly during the year in which the checklist was used.
+- E) The checklist includes a step in which the surgical team confirms aloud both the patient's identity and the procedure to be performed.
 
 **answer:** C
-**explanation:** The administrators claim the checklist caused the drop in infections. A causal claim is strengthened by ruling out alternative causes and by showing the effect tracks the cause. Choice C does both: comparable neighboring hospitals without the checklist showed no decline over the same period, which makes it more likely the checklist, rather than some broader regional trend, produced the improvement. Choice A (time required) and Choice B (ease of use) speak to convenience, not to whether the checklist reduced infections. Choice D, if anything, raises an unrelated variable and does not support causation. Choice E describes a checklist step about patient identity, which is unrelated to infection control. The correct answer is C.
+**explanation:** The administrators claim the checklist caused the drop in infections. A causal claim is strengthened by ruling out alternative causes and by showing the effect tracks the cause. Choice C does both: comparable neighboring hospitals without the checklist showed no decline over the same period, which makes it more likely the checklist, rather than some broader regional trend, produced the improvement. Choice A (time required) and Choice B (ease of use) speak to convenience, not to whether the checklist reduced infections. Choice D, if anything, raises an unrelated variable and does not support causation. Choice E describes a checklist step confirming the patient's identity and the planned procedure, which is unrelated to infection control. The correct answer is C.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -4882,11 +4882,11 @@ The town of Brightwater added a second lane to its main commuter bridge, doublin
 
 Which of the following, if true, most helps to explain the unexpected result?
 
-- A) The construction work on the bridge was completed ahead of schedule and under budget.
-- B) The wider bridge is repainted on the same maintenance schedule as before the expansion.
-- C) Word that the bridge was now faster drew many commuters who had previously used a distant alternate route, raising the number of cars crossing each morning.
-- D) The town council financed the expansion partly through a temporary increase in property taxes.
-- E) Crossing times in the evening rush were measured separately from those in the morning rush.
+- A) The construction work on the expansion was completed several weeks ahead of its original schedule and slightly under its projected construction budget.
+- B) The wider bridge is repainted on the same maintenance schedule that was in place before the expansion.
+- C) Word that the bridge was faster drew many commuters who had previously used other routes, raising the number of cars crossing each morning.
+- D) The town council financed the expansion partly through a temporary five-year increase in local property taxes.
+- E) Crossing times during the evening rush were measured separately from crossing times during the morning rush.
 
 **answer:** C
 **explanation:** The paradox is that doubling capacity did not shorten morning crossing times. To resolve it, find something that increased demand to fill the added capacity. Choice C does exactly this: the reputation of a faster bridge attracted commuters who used to take another route, so the larger flow of cars consumed the new capacity and kept crossing times flat. This is the classic "induced demand" mechanism. Choice A (schedule and budget) and Choice D (financing) concern the project's cost, not crossing times. Choice B (repainting schedule) is irrelevant to congestion. Choice E describes a measurement detail that does not explain why morning times failed to improve. The correct answer is C.
@@ -4903,11 +4903,11 @@ Marketing director: Our company should sponsor the city marathon this year. Last
 
 The director's argument depends on assuming which of the following?
 
-- A) The city marathon attracts more spectators than any other local sporting event.
-- B) Sponsoring the marathon will cost the company less than other forms of advertising.
+- A) The city marathon attracts more spectators and more media coverage than any other sporting or cultural event held in the region.
+- B) Sponsoring the marathon will cost the company considerably less than other forms of advertising of comparable reach.
 - C) The rival firm did not also launch a major television advertising campaign that drove its rise in brand recognition.
-- D) The company's current brand-recognition scores are lower than the rival firm's were last year.
-- E) The company has enough budget to sponsor the marathon for several consecutive years.
+- D) The company's current brand-recognition scores are lower than the rival firm's scores were before last year's marathon.
+- E) The company's marketing budget is large enough to sponsor the marathon for several consecutive years if necessary.
 
 **answer:** C
 **explanation:** The director reasons that because the rival's brand recognition rose after it sponsored the marathon, the company's will rise similarly if it sponsors. This assumes the sponsorship, not some other factor, caused the rival's rise. Choice C states the needed assumption: if the rival's gain actually came from a separate television campaign, the marathon sponsorship would not reliably produce the same effect, and the argument collapses; so the argument must assume no such alternative cause was at work. Negating C breaks the argument, confirming it is required. Choices A, B, D, and E concern spectator counts, cost, relative starting scores, and multi-year budgets, none of which the inference from the rival's experience to the company's depends on. The correct answer is C.
@@ -4924,11 +4924,11 @@ Editor: Our magazine moved its entire archive behind a paywall six months ago. S
 
 Which of the following, if true, most seriously undermines the editor's conclusion?
 
-- A) Several other magazines have placed their archives behind paywalls in recent years.
-- B) During the same six months, the magazine ran an aggressive discount promotion that offered first-year subscriptions at half price, an offer it had never run before.
-- C) The magazine's archive contains articles dating back more than forty years.
-- D) A small number of longtime subscribers canceled in protest when the paywall was introduced.
-- E) The magazine's editorial staff supported the decision to introduce the paywall.
+- A) Several other magazines competing in the same market have placed their complete archives behind paywalls within the past few years.
+- B) During the same six months, the magazine ran a discount promotion offering first-year subscriptions at half price, an offer it had never run before.
+- C) The magazine's online archive contains articles, interviews, and complete back issues dating back more than forty years.
+- D) A small number of longtime subscribers canceled their subscriptions in protest shortly after the paywall was first introduced.
+- E) The magazine's editorial staff broadly supported the management's decision to move the archive behind a paywall.
 
 **answer:** B
 **explanation:** The editor concludes the paywall is the most effective subscription-conversion tool, inferring this from a 25 percent rise in new paid subscriptions after the paywall went up. To weaken, introduce another cause that could explain the same rise. Choice B does this powerfully: an unprecedented half-price first-year promotion ran during exactly the same period and is a strong independent driver of new subscriptions, so the increase cannot be confidently credited to the paywall. Choice A is irrelevant to this magazine's results. Choice C (archive depth) does not address what caused the subscription rise. Choice D mentions a few cancellations, which does not undercut the net 25 percent gain or its attribution. Choice E (staff support) is about internal opinion, not causation. The correct answer is B.
@@ -4966,11 +4966,11 @@ A survey of office workers found that those who took a 20-minute walk during the
 
 If the statements above are true, which of the following must also be true?
 
-- A) Taking a lunchtime walk causes office workers to be more productive in the afternoon.
+- A) Taking a 20-minute walk during the lunch break directly causes office workers to be substantially more productive throughout the afternoon.
 - B) Office workers who are more physically fit are not necessarily more productive than those who are less fit.
 - C) The difference in reported afternoon productivity between the two groups cannot be explained by differences in physical fitness or in nightly sleep duration.
-- D) Most office workers would become more productive if they began walking during lunch.
-- E) Eating lunch at one's desk reduces an office worker's afternoon productivity.
+- D) Most office workers who currently eat lunch at their desks would become more productive in the afternoon if they instead began taking 20-minute walks during their lunch breaks.
+- E) Eating lunch at one's desk reduces an office worker's afternoon productivity by depriving the worker of midday physical activity.
 
 **answer:** C
 **explanation:** This is an inference question, so the answer must follow strictly from the stated facts: the walkers reported higher productivity, yet the groups were equal in physical fitness and in nightly sleep. From this, it follows that whatever explains the productivity gap, it is not a difference in fitness or sleep, since the groups did not differ on those measures, exactly what Choice C states. Choice A overreaches: the survey shows an association, not that walking causes productivity. Choice B makes an unsupported general claim comparing fit and unfit workers. Choice D predicts results for "most office workers," which the data on these two groups do not establish. Choice E asserts a causal effect of desk eating that the survey does not demonstrate. The correct answer is C.
@@ -5010,7 +5010,7 @@ Which of the following most logically completes the manager's argument?
 
 - A) the cost of providing free coffee and seating is lower than the revenue from a single book sale
 - B) customers who linger longer in the store become more likely to buy books there rather than ordering them elsewhere
-- C) online retailers do not respond by lowering their prices even further
+- C) online retailers do not respond to the bookstore's new amenities by cutting their own prices even further
 - D) the store has enough floor space to install comfortable seating without removing any shelves
 - E) most customers who photograph book covers are aware that the same books are available online
 
@@ -5051,10 +5051,10 @@ Columnist: A recent poll conducted by mailing questionnaires to subscribers of a
 The columnist's reasoning is most vulnerable to criticism on the grounds that it
 
 - A) relies on a sample of people who are unrepresentative of adults in the country as a whole
-- B) confuses a cause with an effect
-- C) assumes that what is true of a group must be true of each of its members
-- D) draws a conclusion about the past from evidence about the present
-- E) fails to define precisely what counts as "tending" a garden
+- B) confuses the cause of a phenomenon with one of that phenomenon's effects
+- C) assumes that what is true of a group of people must also be true of each individual member of that group
+- D) draws a conclusion about people's past behavior solely from evidence concerning their present behavior
+- E) fails to define with sufficient precision what activities count as "tending" a garden
 
 **answer:** A
 **explanation:** The columnist generalizes from subscribers of a gardening magazine to all adults in the country. Gardening-magazine subscribers are far more likely than the general public to be avid gardeners, so the sample is not representative of the broader population, which is the central flaw, captured by Choice A. Choice B (cause and effect) does not fit, because the argument makes no causal claim. Choice C describes a division fallacy from group to member, but here the error runs from an unrepresentative sample to a population, not from whole to part. Choice D is wrong because the argument is not about past versus present. Choice E raises a definitional quibble that is not the reasoning's principal weakness; even with "tending" precisely defined, the unrepresentative sample would still doom the inference. The correct answer is A.
@@ -5071,11 +5071,11 @@ Researcher: We compared two groups of employees at our firm. Those who participa
 
 Which of the following, if true, most calls into question the researcher's conclusion?
 
-- A) Some employees who attended the workshops said they would have preferred online materials to in-person sessions.
+- A) Some employees who attended the workshops said afterward that they would have preferred self-paced online materials to the in-person sessions the company scheduled during working hours.
 - B) Employees who chose to attend the workshops were, before attending, already managing their finances more carefully and feeling less financial stress than those who did not attend.
-- C) The financial-wellness workshops covered budgeting, debt management, and retirement saving.
-- D) A few employees who did not attend the workshops nonetheless reported low levels of financial stress one year later.
-- E) The firm spent a considerable sum developing and running the workshops.
+- C) The financial-wellness workshops covered budgeting, debt management, retirement saving, and strategies for building an emergency fund over several months.
+- D) A few employees who did not attend the workshops nonetheless reported low levels of money-related stress one year later, despite making no changes to their financial habits.
+- E) The firm spent a considerable sum developing the workshop curriculum and hiring outside financial advisers to lead the sessions.
 
 **answer:** B
 **explanation:** The researcher infers that the workshops reduced stress from a comparison of self-selected attendees with non-attendees, then recommends making the workshops mandatory. The hidden danger is self-selection: if attendees differed from non-attendees before the workshops, the later difference may reflect that pre-existing gap rather than any effect of the workshops. Choice B exposes exactly this confounder, attendees were already more careful with money and less stressed, so the later difference need not be caused by the workshops, and forcing them on everyone may not help. The other choices are classic traps: Choice A (delivery-format preference) and Choice C (workshop topics) are irrelevant to causation; Choice D notes a few low-stress non-attendees, which does not overturn the group average; Choice E (cost) speaks to expense, not to whether the workshops actually reduce stress. The correct answer is B.
@@ -5092,14 +5092,14 @@ Café owner: Since we replaced our paper cups with reusable ceramic mugs for cus
 
 Which of the following, if true, most weakens the owner's argument?
 
-- A) The ceramic mugs must be washed after each use, which has slightly raised the café's water bill.
-- B) Several nearby cafés have also begun offering reusable containers to their customers.
+- A) The ceramic mugs must be washed and sanitized after each use, which has slightly raised the café's monthly water and electricity bills.
+- B) Several nearby cafés have also begun offering reusable containers to their customers in response to a local campaign against single-use packaging.
 - C) To-go customers rarely bring the steel tumblers back, so the café would have to keep buying and discarding replacement tumblers.
-- D) The reusable steel tumblers cost more to purchase than the paper cups they would replace.
+- D) The reusable steel tumblers cost considerably more to purchase than a year's supply of the paper cups they would replace.
 - E) Most of the café's customers say they support efforts to reduce single-use waste.
 
 **answer:** C
-**explanation:** The owner reasons that because switching in-store customers to ceramic mugs cut disposal costs by 30 percent, switching to-go customers to steel tumblers will cut costs by a similar amount. This assumes the tumblers will be reused the way the in-store mugs are: ceramic mugs never leave the café, so they reliably remove disposable cups from the waste stream. Choice C undercuts that assumption directly: if to-go customers rarely return the tumblers, the café must keep buying and throwing away replacements, so the projected disposal-cost reduction would not materialize — and disposal costs could even rise. Choice A (water bill) and Choice D (tumbler purchase cost) raise other costs but do not bear on whether disposal costs will fall. Choice B (competitors) and Choice E (customer attitudes) are irrelevant to the size of the disposal-cost reduction. The correct answer is C.
+**explanation:** The owner reasons that because switching in-store customers to ceramic mugs cut disposal costs by 30 percent, switching to-go customers to steel tumblers will cut costs by a similar amount. This assumes the tumblers will be reused the way the in-store mugs are: ceramic mugs never leave the café, so they reliably remove disposable cups from the waste stream. Choice C undercuts that assumption directly: if to-go customers rarely return the tumblers, the café must keep buying and throwing away replacements, so the projected disposal-cost reduction would not materialize — and disposal costs could even rise. Choice A (utility bills) and Choice D (tumbler purchase cost) raise other costs but do not bear on whether disposal costs will fall. Choice B (competitors) and Choice E (customer attitudes) are irrelevant to the size of the disposal-cost reduction. The correct answer is C.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -5113,11 +5113,11 @@ Health columnist: People who eat breakfast within an hour of waking tend to cons
 
 Which of the following, if true, most strengthens the columnist's argument?
 
-- A) Many people who skip breakfast do so because they are trying to lose weight.
+- A) Many people who habitually skip breakfast do so precisely because they are already dieting and trying to reduce their overall calorie intake.
 - B) The calories in a typical breakfast are roughly equal to the calories in a typical lunch.
-- C) People who eat breakfast report feeling more alert in the morning than people who skip it.
+- C) People who eat breakfast within an hour of waking report feeling considerably more alert and focused in the morning than people who skip it.
 - D) When habitual breakfast-skippers were assigned to start eating breakfast soon after waking, their total daily calorie intake decreased.
-- E) Some foods commonly eaten at breakfast are high in sugar and fat.
+- E) Some foods commonly eaten at breakfast, such as pastries and sweetened cereals, are high in sugar and fat.
 
 **answer:** D
 **explanation:** The columnist moves from a correlation, breakfast-eaters consume fewer total calories, to a causal claim, eating breakfast helps control intake. To strengthen a causal conclusion drawn from a correlation, the best evidence shows that introducing the cause produces the effect. Choice D does exactly this: when breakfast-skippers were made to eat breakfast, their daily calorie intake fell, supporting the causal direction the columnist asserts. Choice A actually suggests reverse causation or a confounder (dieters skip breakfast), which would weaken the argument. Choice B (calorie comparison) and Choice E (some breakfast foods are unhealthy) cut against or are neutral to the conclusion. Choice C (alertness) concerns a different benefit, not calorie control. The correct answer is D.
@@ -5134,10 +5134,10 @@ Manager: Our software team consistently misses deadlines. To fix this, we will s
 
 The manager's argument depends on which of the following assumptions?
 
-- A) The team has never used weekly reviews in the past.
+- A) The team has never before experimented with weekly reviews or any schedule more frequent than monthly reviews.
 - B) Catching delays sooner makes it possible to correct them in time to meet deadlines.
-- C) Weekly reviews take less total time to conduct than monthly reviews.
-- D) The software team is larger than other teams at the company.
+- C) Weekly reviews will take less total time to conduct over the course of a project than monthly reviews would.
+- D) The software team is larger than most other development teams at the company.
 - E) Missed deadlines are the most serious problem the company faces.
 
 **answer:** B
@@ -5176,11 +5176,11 @@ After a coastal town installed bright new streetlights along its beachfront to i
 
 Which of the following, if true, most helps to resolve the apparent discrepancy described above?
 
-- A) The new streetlights were equipped with sensors that switched them off automatically during the hours when hatchlings typically emerge.
+- A) The new streetlights switched off automatically during the hours when hatchlings typically emerge.
 - B) Sea turtles return to the same beaches where they themselves hatched in order to lay their eggs.
-- C) The streetlights were considerably brighter than the lights they replaced.
-- D) Conservation groups had opposed the installation of the streetlights before construction began.
-- E) The number of nests laid on the beach was higher that season than in the previous season.
+- C) The new streetlights were considerably brighter and more numerous than the aging fixtures they replaced along the beachfront.
+- D) Conservation groups had publicly opposed the installation of the streetlights before construction began.
+- E) The number of nests laid on the beach that season was somewhat higher than the number recorded the previous season.
 
 **answer:** A
 **explanation:** The puzzle is that hatchlings crawl toward the brightest light and bright beachfront streetlights would be expected to lure them inland away from the ocean, yet more hatchlings reached the sea after the lights went in. Choice A dissolves the paradox: if the lights automatically shut off during the hours hatchlings emerge, then they were dark when it mattered, so they did not misdirect the hatchlings, and some other improvement (or simply the absence of the old harmful lights) let more reach the water. Choice C deepens the paradox by making the misdirecting light stronger. Choice E would raise nest numbers but not the success rate of reaching the ocean and does not explain why bright lights failed to mislead. Choice B (nesting site fidelity) and Choice D (group opposition) are background facts that do nothing to reconcile the outcome. The correct answer is A.
@@ -5198,9 +5198,9 @@ Consultant: Companies that offer their employees unlimited paid vacation report 
 The consultant's reasoning is most vulnerable to criticism on the grounds that it
 
 - A) treats a correlation between two factors as though it established that one of them causes the other
-- B) relies on a sample of companies that is too small to support a general conclusion
+- B) relies on a sample of companies that is too small and too narrowly drawn to support any general conclusion
 - C) assumes without warrant that employee satisfaction can be measured accurately
-- D) takes for granted that all employees value vacation time equally
+- D) takes for granted that all employees, whatever their role or seniority, place equal value on vacation time
 - E) overlooks the possibility that satisfied employees are more productive
 
 **answer:** A
@@ -5239,11 +5239,11 @@ Editor: Our magazine should stop publishing a print edition and go entirely digi
 
 Which of the following, if true, most seriously weakens the editor's argument?
 
-- A) Producing the print edition accounts for a substantial share of the magazine's annual expenses.
-- B) The survey was sent only by email, and print-only subscribers, who rarely check the email account tied to their subscription, were far less likely to respond.
-- C) Several competing magazines have recently launched digital-only editions of their own.
-- D) Some subscribers who read articles digitally also keep their print copies for archival purposes.
-- E) The magazine's digital articles are formatted to display well on both phones and tablets.
+- A) Producing and mailing the print edition accounts for a substantial and growing share of the magazine's annual operating expenses.
+- B) The survey was sent only by email, and print-only subscribers, who rarely check the email tied to their subscription, were far less likely to respond.
+- C) Several competing magazines have recently discontinued their print editions and launched digital-only replacements aimed at readers of all ages.
+- D) Some subscribers who read most articles digitally say they also keep their print copies for archival or reference purposes.
+- E) The magazine's digital articles are formatted to display well on phones, tablets, and desktop browsers alike.
 
 **answer:** B
 **explanation:** The editor concludes that most readers no longer need print because 62 percent of survey respondents read mostly on devices. This inference is sound only if the respondents fairly represent the full subscriber base. Choice B breaks that link: if the survey reached only email users and print-only subscribers were systematically underrepresented among respondents, then the 62 percent figure is biased toward digital readers and cannot support a claim about the majority of all readers, so dropping print could abandon a large, unmeasured print-dependent group. Choice A (print cost) actually supports going digital. Choice C (competitors) is irrelevant to this magazine's reader needs. Choice D (some keep print copies) is a minor point that does not overturn a 62 percent majority. Choice E (formatting) supports the digital plan rather than weakening it. The correct answer is B.
@@ -5261,9 +5261,9 @@ Agronomist: A new strain of wheat has been engineered to survive with 40 percent
 Which of the following most logically completes the agronomist's argument?
 
 - A) the new strain of wheat sells for a higher price than conventional wheat does
-- B) the new strain is no more susceptible to common wheat diseases than conventional wheat is
-- C) farmers in the valley are willing to learn new cultivation techniques
-- D) the valley's aquifer is the only source of irrigation water available to the farmers
+- B) the new strain is no more susceptible than conventional wheat to the fungal diseases that periodically damage the valley's harvests
+- C) farmers in the valley are willing to invest the time needed to learn the cultivation techniques the new strain requires
+- D) the valley's overstressed aquifer is the only source of irrigation water available to the farmers who work there
 - E) farmers do not respond to the lower water requirement by planting enough additional wheat to use as much water as before
 
 **answer:** E
@@ -5303,13 +5303,13 @@ Archaeologist: Pottery shards found at the ancient settlement of Kelara bear dec
 Which of the following, if true, most strengthens the archaeologist's hypothesis over the trade-contact explanation?
 
 - A) Pottery bearing the same decorative patterns has been found at several older sites located between, and predating, both Kelara and Morath.
-- B) The clay used in Kelara's pottery came from local deposits rather than from the region around Morath.
+- B) The clay used to make Kelara's pottery came from deposits near the settlement itself rather than from the region surrounding Morath.
 - C) Trade routes connecting Kelara and Morath were in regular use during the period when both settlements flourished.
-- D) The decorative patterns required considerable skill to produce and were applied before the pottery was fired.
-- E) Morath was a substantially larger settlement than Kelara during the period in question.
+- D) The decorative patterns required considerable skill to produce and were applied to each vessel before the pottery was fired.
+- E) Morath was a substantially larger and wealthier settlement than Kelara during the period in question.
 
 **answer:** A
-**explanation:** The archaeologist argues that the shared patterns came from a common ancestral culture predating both settlements, rather than from trade between them. To favor the ancestral-inheritance hypothesis over trade contact, the strongest support is evidence that the patterns existed earlier than either site and in places that could have been a shared source. Choice A provides this: the same patterns appear at older sites situated between and predating both settlements, exactly what a common-ancestor explanation predicts and what mere trade between Kelara and Morath would not require. Choice B (local clay) shows the pots were made locally but is consistent with either hypothesis, since trade transfers techniques, not necessarily clay. Choice C (active trade routes) supports the rival trade explanation. Choice D (skill and timing of application) and Choice E (relative size) do not distinguish between the two hypotheses. The correct answer is A.
+**explanation:** The archaeologist argues that the shared patterns came from a common ancestral culture predating both settlements, rather than from trade between them. To favor the ancestral-inheritance hypothesis over trade contact, the strongest support is evidence that the patterns existed earlier than either site and in places that could have been a shared source. Choice A provides this: the same patterns appear at older sites situated between and predating both settlements, exactly what a common-ancestor explanation predicts and what mere trade between Kelara and Morath would not require. Choice B (local clay) shows the pots were made locally but is consistent with either hypothesis, since trade transfers techniques, not necessarily clay. Choice C (active trade routes) supports the rival trade explanation. Choice D (skill and timing of application) and Choice E (relative size and wealth) do not distinguish between the two hypotheses. The correct answer is A.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -5323,14 +5323,14 @@ Nutrition official: A study tracked two groups of adults over five years. Those 
 
 Which of the following is an assumption on which the official's recommendation depends?
 
-- A) Green tea is more effective at preventing heart disease than any other beverage.
+- A) Green tea is more effective at preventing heart disease than any other beverage or dietary supplement that adults regularly consume.
 - B) The adults who drank green tea did not also follow other habits, common among them but rare among non-drinkers, that independently lower heart-disease risk.
-- C) Heart disease is the leading cause of death among adults in the population studied.
-- D) Drinking more than three cups of green tea daily would lower heart-disease risk even further.
-- E) The adults in the study who drank no green tea were aware that green tea might benefit their health.
+- C) Heart disease is the leading cause of death among adults in the population studied, accounting for more deaths than any other single condition.
+- D) Drinking more than three cups of green tea daily would lower an adult's heart-disease risk even further than three cups do.
+- E) The adults in the study who drank no green tea at all were aware that green tea might benefit their cardiovascular health.
 
 **answer:** B
-**explanation:** The official recommends green tea for everyone based on an observed association between heavy green-tea drinking and lower heart-disease rates. For that recommendation to follow, the lower rate must be attributable to the tea itself rather than to confounding habits that happen to accompany tea drinking. Choice B is the required assumption: if green-tea drinkers also shared other risk-lowering habits uncommon among non-drinkers, the 25 percent difference could stem from those habits, and the tea recommendation would not be supported; negating B destroys the argument, the hallmark of a necessary assumption. The trap answers fail standard tests: Choice A (more effective than any other beverage) is far stronger than needed, the argument never claims superiority. Choice C (leading cause of death) overstates what is required, the recommendation needs only that tea lowers risk. Choice D (even more benefit beyond three cups) is unnecessary to a three-cup recommendation. Choice E (non-drinkers' awareness) is irrelevant to whether the tea caused the effect. The correct answer is B.
+**explanation:** The official recommends green tea for everyone based on an observed association between heavy green-tea drinking and lower heart-disease rates. For that recommendation to follow, the lower rate must be attributable to the tea itself rather than to confounding habits that happen to accompany tea drinking. Choice B is the required assumption: if green-tea drinkers also shared other risk-lowering habits uncommon among non-drinkers, the 25 percent difference could stem from those habits, and the tea recommendation would not be supported; negating B destroys the argument, the hallmark of a necessary assumption. The trap answers fail standard tests: Choice A (more effective than any other beverage or supplement) is far stronger than needed, the argument never claims superiority. Choice C (leading cause of death) overstates what is required, the recommendation needs only that tea lowers risk. Choice D (even more benefit beyond three cups) is unnecessary to a three-cup recommendation. Choice E (non-drinkers' awareness) is irrelevant to whether the tea caused the effect. The correct answer is B.
 **related_reading:** reading-verbal-04-cr-question-types
 
 
@@ -5345,14 +5345,14 @@ City transit director: Last year we replaced the fare-card readers on our buses 
 
 The transit director's argument depends on which of the following assumptions?
 
-- A) The faster contactless readers cost less to maintain than the fare-card readers they replaced.
-- B) Passengers on the 12 route board more frequently than passengers on the transit system's other routes.
-- C) The time the 12 buses spend stopped to let passengers board accounts for enough of each loop's total time that shaving four seconds per passenger meaningfully shortens the loop.
-- D) Most passengers on the 12 route had complained about slow boarding before the new readers were installed.
-- E) The contactless readers will not need to be replaced again for at least several years.
+- A) The faster contactless readers cost less to purchase and maintain than the aging fare-card readers they replaced.
+- B) Passengers on the 12 route board and exit more frequently per loop than passengers on any of the transit system's other routes.
+- C) Boarding time accounts for enough of each loop's total time on the 12 route that shaving four seconds per passenger meaningfully shortens the loop.
+- D) Most passengers on the 12 route had formally complained to the transit agency about slow boarding during the year before the new contactless readers were installed.
+- E) The contactless readers will not need to be replaced or substantially upgraded again for at least several more years.
 
 **answer:** C
-**explanation:** The director reasons from a four-second-per-passenger reduction in boarding time to the conclusion that the 12 route's loops will run noticeably faster, enough to drop a bus. This holds only if boarding time is a large enough share of total loop time that the per-passenger savings translate into a meaningful reduction; if loop time is dominated by driving and traffic, four seconds per boarding passenger could be negligible. Choice C states exactly this required link; negate it (boarding is too small a share of loop time to matter) and the conclusion collapses, the mark of a necessary assumption. Choice A (maintenance cost) bears on budget, not loop speed. Choice B (relative boarding frequency) compares routes but does not establish that the saving matters in absolute terms on the 12. Choice D (prior complaints) is about perception, not whether loops actually shorten. Choice E (longevity) concerns future replacement, not the present conclusion. The correct answer is C.
+**explanation:** The director reasons from a four-second-per-passenger reduction in boarding time to the conclusion that the 12 route's loops will run noticeably faster, enough to drop a bus. This holds only if boarding time is a large enough share of total loop time that the per-passenger savings translate into a meaningful reduction; if loop time is dominated by driving and traffic, four seconds per boarding passenger could be negligible. Choice C states exactly this required link; negate it (boarding is too small a share of loop time to matter) and the conclusion collapses, the mark of a necessary assumption. Choice A (equipment costs) bears on budget, not loop speed. Choice B (relative boarding frequency) compares routes but does not establish that the saving matters in absolute terms on the 12. Choice D (prior complaints) is about perception, not whether loops actually shorten. Choice E (longevity) concerns future replacement, not the present conclusion. The correct answer is C.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -5367,10 +5367,10 @@ A pharmaceutical firm tested a new cholesterol drug by recruiting volunteers and
 Which of the following, if true, most seriously weakens the firm's conclusion?
 
 - A) The reduction in cholesterol observed in the drug group was larger than that produced by any drug previously on the market.
-- B) People who agree to take a daily pill for a year tend to be more health-conscious overall and more likely to also improve their diet and exercise than people who decline.
-- C) A small number of volunteers in the drug group stopped taking the pill partway through the study.
-- D) The placebo pills were identical in appearance to the drug pills, so volunteers could not tell them apart.
-- E) Cholesterol levels in the general population rose slightly over the year the study was conducted.
+- B) People who agree to take a daily pill for a year tend to be more health-conscious and more likely to improve their diet and exercise than people who decline.
+- C) A small number of volunteers in the drug group stopped taking their pills partway through the study, citing mild digestive side effects.
+- D) The placebo pills were manufactured to be identical in size, color, and taste to the drug pills, so volunteers could not tell which they had received.
+- E) Average cholesterol levels in the general adult population rose slightly over the year during which the study was conducted.
 
 **answer:** B
 **explanation:** Because volunteers were not randomly assigned but instead sorted themselves into the drug group (those who agreed) and the placebo group (those who declined), the two groups may differ systematically apart from the drug. Choice B exposes exactly this self-selection confounder: if those willing to commit to a daily pill are also more likely to eat better and exercise, then diet and exercise, not the drug, could explain the greater cholesterol reduction, badly undermining the causal conclusion. Choice A strengthens the result by emphasizing its magnitude. Choice C (a few dropouts) would, if anything, dilute the drug group's measured effect, not explain it away. Choice D (matched appearance) supports blinding and thus the study's validity. Choice E (population-wide rise) applies to both groups and does not explain the difference between them. The correct answer is B.
@@ -5387,11 +5387,11 @@ A regional airline introduced a policy of boarding passengers from the back rows
 
 Which of the following, if true, most strengthens the airline's claim?
 
-- A) The airline added two new destinations to its network during the same three-month period.
-- B) Passenger surveys showed that travelers found the new boarding process more orderly than the old one.
+- A) The airline added service to two new destinations in its route network during the same three-month period in which the new boarding order took effect.
+- B) Passenger surveys conducted after the change showed that travelers found the new boarding process more orderly than the old one.
 - C) Competing airlines that did not change their boarding procedures saw their on-time departure rates hold steady over the same three months.
 - D) The new boarding order was announced to passengers through signs at the gate and onboard announcements.
-- E) The airline's on-time arrival rate, measured at the destination, also improved during the period.
+- E) The airline's on-time arrival rate, measured at each destination airport, also improved over the same three-month period.
 
 **answer:** C
 **explanation:** The airline draws a causal conclusion, that the new back-to-front boarding order improved on-time departures. Such a claim is strengthened most by ruling out the leading alternative explanation, namely that broader conditions (weather, air-traffic patterns, scheduling) lifted on-time rates industry-wide. Choice C does this: competitors facing the same external conditions but keeping their old boarding procedures saw no change, isolating the boarding-order switch as the factor that distinguishes this airline. Choice A introduces a confound (new routes could affect timing) and does not support the claim. Choice B (passengers found it orderly) is about perception, not departure times. Choice D (how the change was communicated) does not bear on whether boarding order caused faster departures. Choice E (better on-time arrivals) could result from many in-flight or routing factors and does not isolate boarding as the cause of faster departures. The correct answer is C.
@@ -5408,10 +5408,10 @@ A national park introduced a strict carry-in, carry-out trash policy and removed
 
 Which of the following, if true, most helps to resolve the apparent discrepancy?
 
-- A) The park increased the number of rangers patrolling the trails after the policy took effect.
+- A) The park modestly increased the number of rangers patrolling the trails in the months after the policy took effect.
 - B) Many visitors, finding no bins available, left their trash beside the spots where the bins used to stand rather than carrying it out.
-- C) The park posted signs at every trailhead explaining the new carry-in, carry-out policy.
-- D) Litter at the park's picnic areas, which still had bins, decreased over the same period.
+- C) The park posted prominent signs at every trailhead explaining the new carry-in, carry-out policy and the environmental reasons for adopting it.
+- D) Litter at the park's picnic areas, where garbage bins were still provided, decreased slightly over the same period.
 - E) The total number of visitors to the park rose modestly in the year after the policy change.
 
 **answer:** B
@@ -5429,10 +5429,10 @@ Columnist: A recent survey of our newspaper's online readers found that 70 perce
 
 The columnist's reasoning is most vulnerable to criticism on the grounds that it
 
-- A) presumes that the city's residents are well informed about how library funding works
-- B) treats the opinions of those who responded to a survey of one newspaper's online readers as representative of the city's residents generally
-- C) fails to consider whether the new libraries would be used by a majority of residents
-- D) assumes that raising the property tax is the only way to fund new libraries
+- A) presumes that the city's residents are well informed about how the city currently funds its public libraries
+- B) treats respondents to a survey of one newspaper's online readers as representative of the city's residents generally
+- C) fails to consider whether the proposed new libraries would actually be used by a majority of the city's residents
+- D) assumes that raising the property tax is the only feasible way for the city to fund the construction of new libraries
 - E) overlooks the possibility that supporting new libraries is different from supporting a tax increase
 
 **answer:** B
@@ -5473,9 +5473,9 @@ The answer to which of the following questions would be most useful in evaluatin
 
 - A) How much did the company spend in total on advertising last quarter compared with the previous quarter?
 - B) Of the 12 percent sales increase, how much can be attributed to customers who saw the social-media ads versus those who saw the television ads?
-- C) Do the company's competitors advertise more heavily on social media or on television?
-- D) Has the flagship product's price changed over the past several quarters?
-- E) What share of the company's target customers use the social-media platforms on which the ads ran?
+- C) Do the company's principal competitors currently advertise more heavily on social-media platforms or on television, and how much do they spend on each channel?
+- D) Has the retail price of the company's flagship product changed at any point over the past several quarters?
+- E) What share of the company's target customers regularly use the particular social-media platforms on which the ads ran during the quarter?
 
 **answer:** B
 **explanation:** The director concludes that social media is more cost-effective and should absorb the rest of the TV budget, but the 12 percent rise occurred while both channels ran simultaneously, so the data cannot tell which channel produced the gain. Choice B targets precisely this gap: knowing how much of the increase came from social-media exposure versus television exposure is decisive, because if television drove most of the rise, cutting it entirely could reduce sales rather than improve cost-effectiveness. Choice A (total spend) bears on overall budget changes but not on which channel was responsible. Choice C (competitors' channels) is context, not a test of this firm's results. Choice D (price changes) is worth knowing generally but the stem gives no indication price moved, and it does not directly resolve the channel comparison. Choice E (target customers' platform use) is suggestive but does not measure the channels' actual contribution to the observed sales. The correct answer is B.
@@ -5513,11 +5513,11 @@ Consumer advocate: A popular brand of "energy-saving" space heater is advertised
 
 Which of the following most logically completes the advocate's argument?
 
-- A) the energy-saving heater is sold at a higher purchase price than ordinary electric heaters
-- B) electricity rates have risen in most regions over the past several years
+- A) the energy-saving heater is typically sold at a retail purchase price nearly twice that of an ordinary electric heater of comparable size
+- B) residential electricity rates have risen substantially in most regions of the country over the past several years and are expected to keep rising
 - C) the lower-wattage heater produces only half as much heat, so it must run twice as long to warm a room to the same temperature, consuming the same total energy
-- D) many consumers leave space heaters running in rooms they are not currently occupying
-- E) the energy-saving heater is more expensive to repair than ordinary electric heaters
+- D) many consumers routinely leave their space heaters running for hours at a time in rooms that no one is currently occupying
+- E) the energy-saving heater is considerably more expensive to repair than an ordinary electric heater when its heating element fails
 
 **answer:** C
 **explanation:** The advocate claims the advertised operating saving is illusory and needs a completion explaining why drawing half the wattage does not actually cut energy used. Choice C supplies exactly that: because the heater outputs only half the heat, it must run twice as long to reach the same temperature, so total energy consumed (watts multiplied by time) is the same, making the operating cost identical and the advertised saving illusory. Choice A (higher purchase price) concerns upfront cost, not the operating saving the ad touts. Choice B (rising electricity rates) applies equally to both heaters and does not erase the wattage difference. Choice D (heaters left running unoccupied) is a user behavior that does not bear on the comparison between the two heaters. Choice E (repair cost) is a separate expense, not the operating-cost claim at issue. The correct answer is C.
@@ -5534,14 +5534,14 @@ Restaurant owner: We installed a large outdoor patio last spring, and our total 
 
 Which of the following, if true, most seriously weakens the owner's reasoning?
 
-- A) The patio can be used only during the warmer months and must be closed during winter.
-- B) The 20 percent revenue increase was driven mainly by a citywide surge in summer tourism, which also lifted revenue at nearby restaurants that have no outdoor patio.
-- C) Several other restaurants in the area also added outdoor seating last spring.
-- D) The cost of building the patio was recovered within the first two months of summer.
-- E) Customers seated on the patio tended to order more expensive drinks than indoor customers did.
+- A) The patio can be used only during the warmer months of the year and must be shut down and covered completely throughout the winter season.
+- B) The 20 percent revenue increase was driven mainly by a citywide surge in summer tourism that also lifted revenue at nearby restaurants with no patio.
+- C) Several other restaurants in the neighborhood also added or expanded their outdoor seating areas last spring.
+- D) The full cost of designing and building the patio was recovered within the first two months of the summer.
+- E) Customers seated on the patio tended to order more expensive drinks and appetizers than customers seated in the indoor dining room did.
 
 **answer:** B
-**explanation:** The owner infers that the patio caused the 20 percent revenue gain and is therefore worth expanding. Choice B undercuts this by supplying an alternative cause for the gain: if a citywide summer tourism surge drove the increase — and that surge also lifted revenue at nearby restaurants with no patio — then the patio may deserve little credit for the rise, and spending more to expand it would not reliably produce further gains. Choice A (seasonal use) is a known limitation but does not explain away the observed summer gain or argue against expanding usable-season capacity. Choice C (competitors also added seating) does not directly weaken the claim that this patio drove this restaurant's revenue. Choice D (fast cost recovery) strengthens the investment case. Choice E (patio customers spend more on drinks) also supports, not weakens, the value of the patio. The correct answer is B.
+**explanation:** The owner infers that the patio caused the 20 percent revenue gain and is therefore worth expanding. Choice B undercuts this by supplying an alternative cause for the gain: if a citywide summer tourism surge drove the increase — and that surge also lifted revenue at nearby restaurants with no patio — then the patio may deserve little credit for the rise, and spending more to expand it would not reliably produce further gains. Choice A (seasonal use) is a known limitation but does not explain away the observed summer gain or argue against expanding usable-season capacity. Choice C (competitors also added seating) does not directly weaken the claim that this patio drove this restaurant's revenue. Choice D (fast cost recovery) strengthens the investment case. Choice E (patio customers spend more on drinks and appetizers) also supports, not weakens, the value of the patio. The correct answer is B.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -5555,10 +5555,10 @@ A municipal transit authority plans to reduce subway delays by replacing its old
 
 The engineer's conclusion depends on which of the following assumptions?
 
-- A) The new digital signal system will cost less to maintain over its lifetime than the existing system has cost.
-- B) Signal failures will not become more frequent before the new system is fully installed.
+- A) The new digital signal system will cost less to purchase and maintain over its lifetime than continuing to repair the aging 1970s-era equipment would.
+- B) Signal failures on the oldest equipment will not become more frequent during the period before the new system is fully installed.
 - C) The causes of long delays other than signal failures will not increase enough to offset the reduction in signal-related delays.
-- D) Riders consider long delays to be the most serious deficiency in the subway's service.
+- D) Riders consider long delays, rather than crowding or fares, to be the most serious deficiency in the subway's service.
 - E) The new digital signal system has already been adopted successfully by transit authorities in other cities.
 
 **answer:** C
@@ -5567,7 +5567,7 @@ The engineer's conclusion depends on which of the following assumptions?
 **Reasoning.** The task is to find the assumption on which the conclusion depends. The conclusion is about the *total* number of long delays, but the evidence concerns only the signal-related share of them. Eliminating most signal failures lowers the total only if the remaining categories of delay do not grow enough to cancel out that reduction. Choice C states precisely this necessary condition: that non-signal causes of long delays will not increase enough to offset the gains from the new system. If this assumption fails, the total could stay flat or even rise despite fewer signal failures, so the conclusion collapses. The negation test confirms it: if the other causes *did* increase enough to offset the reduction, the total would not fall, and the engineer's conclusion would be unsupported. This is a necessary assumption bridging a scope shift from one category of delays to the total.
 
 The correct answer is C.
-**mistake_a:** Choice A concerns maintenance cost, not the number of delays. Whether the new system is cheaper to maintain has no bearing on whether it reduces long delays, which is the sole claim the conclusion makes.
+**mistake_a:** Choice A concerns acquisition and maintenance costs, not the number of delays. Whether the new system is cheaper to buy and keep running than the old equipment has no bearing on whether it reduces long delays, which is the sole claim the conclusion makes.
 **mistake_b:** Choice B addresses the transitional period before installation is complete. The conclusion is about the steady-state effect once the new system is in place, so a temporary rise in failures during installation does not have to be ruled out for the conclusion to hold.
 **mistake_d:** Choice D is about riders' priorities, an evaluative judgment irrelevant to whether the number of long delays will actually fall. The argument is causal, not about user perception.
 **mistake_e:** Choice E offers outside corroboration that the system works elsewhere. While such evidence might strengthen the argument, the conclusion does not *depend* on it; the engineer could be right about this subway even if no other city had adopted the system. A necessary assumption must be required, and this is not.
@@ -5584,11 +5584,11 @@ A pharmaceutical company tested a new drug intended to lower blood pressure. In 
 
 Which of the following, if true, most seriously weakens the company's conclusion?
 
-- A) The patients who received the drug were, on average, slightly older than those who received the placebo.
-- B) A 10-point reduction in systolic blood pressure is generally considered clinically meaningful.
+- A) The patients who received the drug were, on average, slightly older than the patients who received the placebo, although all participants met the same enrollment criteria.
+- B) A reduction of 10 points in systolic blood pressure is generally considered clinically meaningful by physicians who treat hypertension.
 - C) Patients in the drug group were told to follow a low-sodium diet during the trial, whereas patients in the placebo group received no dietary instructions.
-- D) The drug produced mild side effects in a small number of patients.
-- E) Some patients in the placebo group also experienced reductions in blood pressure greater than 14 points.
+- D) The drug produced mild side effects, such as headaches and dizziness, in a small number of the patients who took it.
+- E) Some patients in the placebo group also experienced blood-pressure reductions greater than 14 points over the twelve weeks of the trial.
 
 **answer:** C
 **explanation:** **Situation.** In a twelve-week trial, the drug group's systolic blood pressure fell by an average of 14 points versus 4 points in the placebo group, and the company concludes that the drug's active ingredient is effective at lowering blood pressure.
@@ -5613,11 +5613,11 @@ Columnist: Every successful technology startup I have studied was founded by som
 
 The columnist's reasoning is most vulnerable to criticism on the grounds that it
 
-- A) relies on a sample of startups that may be too small to support any general conclusion
+- A) relies on a sample of successful technology startups that may be far too small to support any general conclusion about what founders should do
 - B) takes a condition present in past successes to be something that will produce success, while overlooking the many who dropped out and failed
-- C) assumes without justification that founding a startup is the only worthwhile use of a college education
-- D) fails to define what counts as a "successful" technology startup
-- E) confuses the founding of a startup with its long-term profitability
+- C) assumes without justification that founding a technology startup is the only worthwhile use of the years a student would otherwise spend in college
+- D) fails to specify what level of revenue, growth, or longevity counts as a "successful" technology startup
+- E) confuses the initial founding of a technology startup with its long-term profitability as a business
 
 **answer:** B
 **explanation:** **Situation.** The columnist observes that every successful startup studied was founded by a college dropout and concludes that anyone seeking to found a successful startup should drop out of college.
@@ -5701,10 +5701,10 @@ Economist: **Conventional wisdom holds that raising the minimum wage in a region
 In the economist's argument, the two portions in boldface play which of the following roles?
 
 - A) The first is a generalization that the economist's argument calls into question; the second is evidence offered to address an objection to the case against that generalization.
-- B) The first is the economist's main conclusion; the second is a premise supporting that conclusion.
-- C) The first is an objection the economist later rebuts; the second is the economist's main conclusion.
-- D) The first is evidence supporting the economist's conclusion; the second is a competing explanation the economist rejects.
-- E) The first is a claim the economist accepts; the second is a consequence predicted from that claim.
+- B) The first is the main conclusion of the economist's argument; the second is a premise offered in direct support of that conclusion.
+- C) The first is an objection that the economist's argument later rebuts; the second is the main conclusion the argument as a whole is meant to establish.
+- D) The first is evidence supporting the economist's conclusion; the second is a competing explanation of that evidence that the economist considers and rejects.
+- E) The first is a claim whose truth the economist accepts; the second is a consequence that the economist predicts will follow from that claim.
 
 **answer:** A
 **explanation:** **Situation.** The economist presents the conventional claim that raising the minimum wage inevitably increases low-wage unemployment, then cites a study of two counties finding no employment difference, notes critics' objection that one year is too short, and finally reports that the no-difference result held over three years.
@@ -5729,11 +5729,11 @@ A regional airline is deciding whether to add a direct route between two mid-siz
 
 Which of the following would be most useful to know in evaluating the planners' argument?
 
-- A) Whether the two cities are served by any high-speed rail connection
-- B) What the average age of the airline's current fleet is
-- C) Whether other airlines have considered adding a similar direct route in the past
+- A) Whether the two cities are currently linked by a high-speed rail connection that offers journey times competitive with flying
+- B) What the average age of the aircraft in the airline's current fleet is, and when those aircraft are scheduled for replacement
+- C) Whether any other airlines have seriously considered adding a similar direct route between the two cities in recent years
 - D) How many of the 40,000 connecting passengers would switch to the direct route at the fares the airline would need to charge to cover the route's costs
-- E) Whether the airline's frequent-flyer members prefer direct routes to connecting routes in general
+- E) Whether the airline's frequent-flyer members say they prefer direct routes to connecting routes when both options are available
 
 **answer:** D
 **explanation:** **Situation.** An airline considers a new nonstop route between two cities. Researchers estimate 40,000 passengers per year currently connect between them, and planners argue the time savings of a direct route would attract enough of these travelers to be profitable.
@@ -5758,11 +5758,11 @@ A vineyard owner noticed that the rows of grapevines planted nearest to a row of
 
 Which of the following, if true, most strengthens the vineyard owner's hypothesis?
 
-- A) Cypress trees are commonly planted as windbreaks in many of the world's wine-growing regions.
-- B) The vines nearest the cypress trees receive the same amount of irrigation as the vines in the open.
-- C) Soil samples taken from beside the cypress trees and from the open rows contain identical concentrations of nutrients, and temperature sensors record afternoon air temperatures several degrees higher among the sheltered vines than among the open vines.
-- D) Grapes with higher sugar content generally produce wine with a higher alcohol level.
-- E) The vineyard's overall grape yield has increased in each of the past three years.
+- A) Cypress trees are commonly planted as windbreaks in many of the world's wine-growing regions, where growers have long valued their dense evergreen foliage for sheltering crops from prevailing winds.
+- B) The vines nearest the cypress trees receive exactly the same amount of irrigation water, delivered on the same schedule, as the vines planted in the open rows.
+- C) Soil in the sheltered and open rows contains identical nutrient concentrations, and sensors record afternoon air temperatures several degrees higher among the sheltered vines than in the open rows.
+- D) Grapes with higher sugar content generally produce wines with higher alcohol levels, which many of the region's winemakers particularly prize.
+- E) The vineyard's overall grape yield, measured across all of its rows, has increased steadily in each of the past three growing seasons.
 
 **answer:** C
 **explanation:** **Situation.** Vines nearest a row of cypress trees yield grapes with higher sugar content than vines in the open. The owner hypothesizes that the trees block the afternoon wind, creating a warmer microclimate that ripens those grapes more fully.
@@ -5787,11 +5787,11 @@ A consumer-electronics manufacturer found that customers who registered their pr
 
 Which of the following, if true, most seriously weakens the marketing director's conclusion?
 
-- A) The online registration process takes most customers fewer than five minutes to complete.
+- A) The online registration process is simple and takes most customers fewer than five minutes to complete.
 - B) Customers who register are typically those who are already most pleased with the product and most engaged with the brand.
-- C) Some customers who did not register reported that they were unaware registration was available.
-- D) The follow-up surveys were conducted by email, which not all customers regularly check.
-- E) Registered customers are slightly more likely to purchase extended warranties than unregistered customers.
+- C) Some customers who did not register their products reported that they had been unaware that registration was available to them.
+- D) The follow-up surveys were conducted by email, a channel that not all customers check regularly.
+- E) Registered customers are slightly more likely than unregistered customers to purchase extended warranties for their products.
 
 **answer:** B
 **explanation:** **Situation.** Registered customers report much higher satisfaction than unregistered ones, and the marketing director concludes that getting more customers to register will raise overall satisfaction.
@@ -5816,11 +5816,11 @@ A publishing house is launching a line of audiobooks narrated entirely by synthe
 
 The director's argument relies on which of the following assumptions?
 
-- A) Listeners prefer audiobooks narrated by synthetic voices to those narrated by humans.
-- B) Producing audiobooks with synthetic voices costs less per title than producing them with human narrators.
-- C) The synthetic-voice system can reproduce regional accents as accurately as human narrators can.
+- A) Listeners generally prefer audiobooks narrated by synthetic voices to comparable audiobooks narrated by professional human narrators.
+- B) Producing an audiobook with the synthetic-voice system costs the house considerably less per title than producing one with a human narrator does.
+- C) The synthetic-voice system can reproduce regional accents and shifts in emotional tone as convincingly as experienced human narrators can.
 - D) The number of titles the house can bring to market is currently constrained primarily by narration time rather than by some other stage of production.
-- E) The house will discontinue its use of human narrators once the synthetic-voice line is established.
+- E) The house will phase out its use of human narrators entirely once the synthetic-voice line is established in the market.
 
 **answer:** D
 **explanation:** **Situation.** The house will use a synthetic-voice system that produces an audiobook in a day rather than the weeks a human narrator needs, and the director concludes this will let the house bring far more titles to market each year.
@@ -5845,11 +5845,11 @@ Spokesperson: Our critics claim that our company's new packaging is wasteful. Bu
 
 The reasoning in the spokesperson's argument is flawed because it
 
-- A) treats the absence of evidence that the packaging is wasteful as proof that it is not
+- A) treats the absence of conclusive evidence that the packaging is wasteful as proof that the packaging is not wasteful
 - B) rejects a claim about the packaging solely by impugning the motives of those who make it, without addressing the claim's merits
-- C) generalizes about all of the company's products from a single instance of packaging
-- D) assumes that what benefits a rival manufacturer must harm consumers
-- E) relies on the testimony of a source whose expertise has not been established
+- C) generalizes about the wastefulness of all of the company's products from a single instance of packaging
+- D) assumes that any development that benefits a rival manufacturer must necessarily harm the company's own customers
+- E) relies on the testimony of a source whose expertise in evaluating packaging and its environmental costs has never been established
 
 **answer:** B
 **explanation:** **Situation.** Critics call the company's new packaging wasteful. The spokesperson responds that the critics are funded by a rival who would profit if customers lost confidence, and concludes the packaging is not wasteful and the criticism should be disregarded.
@@ -5874,11 +5874,11 @@ In a certain manufacturing plant, every machine that is serviced on a regular sc
 
 If the statements above are true, which of the following must also be true?
 
-- A) Every machine equipped with an automatic shutoff is serviced on a regular schedule.
+- A) Every machine that has an automatic shutoff is serviced on a regular schedule.
 - B) Some of the plant's older machines lack an automatic shutoff.
 - C) No regularly serviced machine has ever caused a workplace injury.
 - D) Any machine without an automatic shutoff is one of the plant's older machines.
-- E) Some machines equipped with automatic shutoffs are not serviced on a regular schedule.
+- E) Some machines with automatic shutoffs are not serviced on a regular schedule.
 
 **answer:** C
 **explanation:** **Situation.** Three premises: (1) every regularly serviced machine has an automatic shutoff; (2) no machine with an automatic shutoff has ever caused an injury; (3) some older machines are not regularly serviced.
@@ -5903,16 +5903,16 @@ A retailer introduced a generous return policy allowing customers to return any 
 
 Which of the following, if true, does most to explain the surprising result?
 
-- A) The cost of processing each return increased slightly after the new policy took effect.
-- B) A few competitors adopted similar return policies during the same year.
-- C) Most customers who returned items did so within the first month of purchase rather than later in the year.
-- D) The retailer advertised the new return policy heavily in the months after it took effect.
-- E) The reassurance provided by the lenient return policy led customers to buy considerably more, and more expensive, items than they had before, far outweighing the cost of the additional returns.
+- A) The retailer's cost of processing each returned item increased slightly after the new policy took effect, owing to the additional staff needed to inspect and restock returned merchandise.
+- B) A few of the retailer's major competitors adopted similarly generous no-questions-asked return policies of their own during the same year.
+- C) Most customers who returned items under the new policy did so within the first month of purchase rather than waiting until later in the year.
+- D) The retailer advertised the new return policy heavily in newspapers and on television in the months after it took effect.
+- E) The reassurance of the lenient return policy led customers to buy considerably more, and more expensive, items than before, far outweighing the cost of the added returns.
 
 **answer:** E
 **explanation:** **Situation.** A no-questions-asked, year-long return policy caused returns to rise sharply, as expected, yet net profit *per customer* also rose substantially. This is surprising because more returns would seem to erode profit.
 
-**Reasoning.** The task is to explain how profit per customer could rise despite more returns. The resolution must show a profit-boosting effect of the policy that exceeds the added return costs. Choice E supplies it: the reassurance of easy returns led customers to buy considerably more, and more expensive, items, and that extra purchasing far outweighed the cost of the additional returns. So although returns went up, total purchasing per customer went up even more, lifting net profit per customer. This reconciles both observed facts, the higher return rate and the higher per-customer profit, by identifying a larger countervailing revenue effect, without contradicting any premise.
+**Reasoning.** The task is to explain how profit per customer could rise despite more returns. The resolution must show a profit-boosting effect of the policy that exceeds the added return costs. Choice E supplies it: the reassurance of easy returns led customers to buy considerably more, and more expensive, items, and that extra purchasing far outweighed the cost of the added returns. So although returns went up, total purchasing per customer went up even more, lifting net profit per customer. This reconciles both observed facts, the higher return rate and the higher per-customer profit, by identifying a larger countervailing revenue effect, without contradicting any premise.
 
 The correct answer is E.
 **mistake_a:** Choice A says per-return processing cost rose slightly. That makes higher profit *harder* to explain, deepening the paradox rather than resolving it.
@@ -5933,10 +5933,10 @@ A historian argues that the rapid spread of a particular printing technique acro
 Which of the following, if true, most strengthens the historian's argument?
 
 - A) Printed manuals describing the technique in detail circulated widely among print shops during the same period.
-- B) Some skilled printers did relocate from one city to another during the late fifteenth century.
-- C) The printing technique required specialized equipment that was expensive to acquire.
-- D) Competition among printers was less intense in cities where the technique appeared latest.
-- E) The technique was eventually replaced by a superior method in the following century.
+- B) Some skilled printers are known to have relocated from one European city to another during the late fifteenth century.
+- C) The printing technique required specialized equipment that was expensive for a print shop to acquire.
+- D) Competition among printers was less intense in the cities where the technique appeared latest.
+- E) The technique was eventually replaced by a superior printing method during the following century.
 
 **answer:** A
 **explanation:** **Situation.** A historian claims a printing technique spread across European cities mainly through competition among printers rather than migration of craftsmen, citing that it appeared in distant cities within months, faster than craftsmen could have traveled.
@@ -5962,10 +5962,10 @@ Town planner: **The most effective way to reduce traffic congestion downtown wou
 In the planner's argument, the two boldface portions play which of the following roles?
 
 - A) The first is the conclusion the argument ultimately defends; the second is evidence offered to rebut an objection to that conclusion.
-- B) The first is a premise; the second is the conclusion drawn from that premise.
-- C) The first is an objection the argument rejects; the second is the consideration on which that rejection rests.
-- D) The first is the conclusion of the argument; the second is an objection that the argument concedes.
-- E) The first is a prediction; the second is the assumption underlying that prediction.
+- B) The first is a premise of the argument; the second is the main conclusion that the argument draws from that premise.
+- C) The first is an objection that the argument goes on to reject; the second is the principal consideration on which the argument's rejection of it rests.
+- D) The first is the conclusion of the argument as a whole; the second is an objection to that conclusion that the argument concedes.
+- E) The first is a prediction that the argument makes; the second is the assumption on which that prediction ultimately rests.
 
 **answer:** A
 **explanation:** **Situation.** The planner proposes converting two avenues into bus-only corridors as the most effective way to cut congestion, notes merchants' objection that this would hurt sales by limiting car access, then cites three comparable downtowns where retail sales rose after such conversions, and concludes the town should proceed.
@@ -5990,11 +5990,11 @@ A school district replaced its standard textbooks with tablet computers loaded w
 
 Which of the following, if true, most seriously weakens the officials' conclusion?
 
-- A) The interactive software on the tablets was developed by a well-regarded educational publisher.
-- B) Students reported that they found the interactive software more engaging than the textbooks.
-- C) Some teachers in the district required additional training to use the tablets effectively.
-- D) The tablets cost the district more per student than the textbooks they replaced.
-- E) The standardized test given at the end of the year was substantially easier than the one given the previous year, and statewide average scores rose by a comparable amount.
+- A) The interactive software loaded on the tablets was developed by a well-regarded educational publisher with decades of curriculum experience.
+- B) Students across all grade levels reported that they found the interactive software considerably more engaging than the printed textbooks it replaced.
+- C) Some teachers in the district required several weeks of additional training before they could use the tablets effectively in their classrooms.
+- D) The tablets cost the district substantially more per student than the printed textbooks they replaced had cost.
+- E) The standardized test given at the end of the year was substantially easier than the previous year's test, and statewide average scores rose by a comparable amount.
 
 **answer:** E
 **explanation:** **Situation.** After replacing textbooks with tablets running interactive software, the district's average standardized-test score rose 11 points, and officials concluded the tablets caused the gain and should be expanded.
@@ -6019,11 +6019,11 @@ A nonprofit organization that provides free legal aid to low-income tenants repo
 
 The director's argument assumes which of the following?
 
-- A) The organization's lawyers are more skilled than the lawyers typically available to low-income tenants.
+- A) The organization's staff lawyers are more skilled in eviction defense than the private lawyers typically available to low-income tenants.
 - B) Without free legal representation, substantially fewer than 70 percent of comparable tenants would have remained in their homes.
-- C) All low-income tenants facing eviction are eligible for the organization's services.
-- D) The organization could represent every low-income tenant facing eviction if its funding were increased.
-- E) Landlords are less likely to pursue eviction against tenants who have legal representation.
+- C) All low-income tenants facing eviction in the area that the organization serves are eligible for its free services.
+- D) The organization could afford to represent every low-income tenant facing eviction if its funding were modestly increased.
+- E) Landlords are generally far less likely to pursue an eviction case all the way to completion against tenants who have legal representation.
 
 **answer:** B
 **explanation:** **Situation.** The nonprofit reports that 70 percent of the tenants it represented in eviction cases stayed in their homes, and the director concludes this shows free legal representation effectively prevents evictions among low-income tenants generally.
@@ -6048,11 +6048,11 @@ Critic: The mayor argues that the new stadium will benefit the city because it w
 
 The critic's reasoning is most vulnerable to the objection that it
 
-- A) assumes that the only possible benefit of the stadium is job creation
+- A) assumes that the creation of hundreds of construction jobs during the building phase is the only possible benefit the stadium could bring to the city
 - B) treats the mayor's argument as unsound merely because the mayor may have a personal interest in the conclusion, without showing that the argument's reasoning is faulty
-- C) overlooks the possibility that the construction firm is well qualified to build the stadium
-- D) fails to consider whether other cities have benefited from building stadiums
-- E) presumes that creating construction jobs cannot benefit a city
+- C) overlooks the possibility that the brother's construction firm is in fact well qualified to build the stadium at a competitive cost
+- D) fails to consider whether other cities that have built comparable stadiums experienced lasting economic benefits from doing so
+- E) presumes, without offering any justification of its own, that the creation of hundreds of temporary construction jobs cannot genuinely benefit a city or the residents who live there
 
 **answer:** B
 **explanation:** **Situation.** The mayor argues the stadium will benefit the city by creating construction jobs. The critic responds that the mayor's brother owns the chosen construction firm and concludes the mayor's argument must be rejected.
@@ -6077,11 +6077,11 @@ A city council is considering a proposal to install LED streetlights throughout 
 
 The answer to which of the following questions would be most useful in evaluating the proponents' argument?
 
-- A) Whether residents prefer the color of light produced by LED lamps to that of sodium lamps
-- B) Whether the manufacturer of the LED lamps offers a warranty on its products
-- C) Whether nearby cities have already switched to LED streetlights
+- A) Whether residents generally prefer the color and quality of the light produced by LED lamps to that produced by sodium lamps
+- B) Whether the manufacturer of the LED lamps offers an extended warranty covering the replacement of any lamps that fail prematurely during their first years of service
+- C) Whether several nearby cities of comparable size have already switched their streetlights to LED lamps
 - D) Whether the LED lamps would be left on for substantially more hours per night than the sodium lamps they replace
-- E) Whether the initial cost of purchasing and installing the LED lamps is high
+- E) Whether the initial cost of purchasing and installing the LED lamps throughout the city would be high
 
 **answer:** D
 **explanation:** **Situation.** Proponents argue that because LED lamps use far less electricity per hour than sodium lamps, switching will significantly cut the city's annual street-lighting electricity *spending*.
@@ -6107,7 +6107,7 @@ A logistics firm's records show the following about its delivery drivers: any dr
 If the statements above are true, which of the following must be true of a driver who has completed the advanced safety course?
 
 - A) The driver has been with the firm for more than five years.
-- B) The driver receives the higher pay grade.
+- B) The driver receives the higher of the firm's two pay grades.
 - C) The driver is the firm's most experienced long-haul driver.
 - D) The driver was assigned to the long-haul routes before completing the course.
 - E) The driver is not eligible for any route other than the long-haul routes.
@@ -6135,11 +6135,11 @@ A government agency offered a tax credit to homeowners who installed rooftop sol
 
 Which of the following, if true, most helps to explain the decline in installations?
 
-- A) The tax credit applied only to homeowners, not to owners of commercial buildings.
+- A) The tax credit applied only to homeowners, and neither commercial building owners nor operators of utility-scale solar farms were eligible to claim it.
 - B) Some homeowners who installed solar panels did so primarily for environmental reasons rather than financial ones.
-- C) The cost of solar panels had been gradually declining for several years before the credit was introduced.
+- C) The cost of solar panels had been gradually declining for several years before the credit was introduced, as manufacturing capacity expanded worldwide.
 - D) The agency announced that the tax credit would increase further the following year, leading many homeowners to postpone installation until then.
-- E) Installers in the region reported that demand for their services exceeded their capacity in previous years.
+- E) Installers in the region reported that demand for their services had exceeded their staffing capacity in each of the several years before the credit took effect.
 
 **answer:** D
 **explanation:** **Situation.** A tax credit meant to spur rooftop solar installations coincided with a *fall* in new installations in its first year, even as public interest hit an all-time high. The puzzle is why a cost-lowering credit and surging interest would accompany fewer installations.
@@ -6164,11 +6164,11 @@ A team of biologists observed that a species of cleaner fish removes parasites f
 
 Which of the following, if true, most strengthens the biologists' hypothesis?
 
-- A) Cleaner fish consume the parasites they remove, gaining nutrition from the cleaning.
-- B) Larger reef fish can choose among several cleaner-fish territories within the reef.
+- A) Cleaner fish consume the parasites they remove from client fish, obtaining a substantial share of their daily nutrition directly from the act of cleaning.
+- B) Larger reef fish can choose among several cleaner-fish territories within the reef and can travel between them with little effort.
 - C) Cleaner fish provide noticeably more careful service when other potential client fish are nearby watching than when no observers are present.
-- D) Parasite loads on reef fish are higher in areas where cleaner fish are scarce.
-- E) Cleaner fish are smaller and more vulnerable to predators than the reef fish they clean.
+- D) Parasite loads on reef fish are markedly higher in areas of the reef where cleaner fish are scarce or entirely absent.
+- E) Cleaner fish are smaller and considerably more vulnerable to predators than the reef fish they clean.
 
 **answer:** C
 **explanation:** **Situation.** Cleaner fish remove parasites from larger reef fish that visit them. The biologists hypothesize that cleaners deliberately give good service to first-time visitors *to build a reputation that attracts more clients*.
@@ -6193,11 +6193,11 @@ A wellness company markets a daily herbal supplement that it claims improves mem
 
 Which of the following, if true, most seriously weakens the company's conclusion?
 
-- A) The volunteers were paid a modest fee for participating in the study.
-- B) A few volunteers dropped out of the study before it was completed.
-- C) The supplement contains several herbs that have been used in traditional remedies for centuries.
-- D) People who take a similar memory test a second time typically score about 12 percent higher than on their first attempt, simply from familiarity with the test format.
-- E) The memory test used at the end of the study was developed by an independent research institute.
+- A) The volunteers were paid a modest fee for participating in the study and completing the full six weeks of supplement use.
+- B) A few volunteers dropped out of the study before it was completed, most of them within the first two weeks.
+- C) The supplement contains several herbs that have been used in traditional herbal remedies in various parts of the world for centuries.
+- D) People retaking a similar memory test typically score about 12 percent higher than on the first attempt, simply from familiarity with the format.
+- E) The memory test administered at the end of the study was developed and scored by an independent research institute with no ties to the company.
 
 **answer:** D
 **explanation:** **Situation.** Volunteers who took the supplement for six weeks scored 12 percent higher on a memory test at the end than at the start, and the company concludes the supplement improves memory.
@@ -6222,16 +6222,16 @@ Economist: A country's exports are healthy only if its currency is not overvalue
 
 The economist's argument is flawed because it
 
-- A) treats a condition required for healthy exports as though that condition by itself guarantees healthy exports
-- B) relies on data about the currency that may be out of date
-- C) assumes that exports are the only measure of economic health
-- D) confuses the value of the currency with the volume of exports
-- E) generalizes about all exports from data about a single industry
+- A) treats a condition that is required for healthy exports as if it alone guaranteed healthy exports
+- B) relies on currency valuation data that may have been out of date when the argument was made
+- C) assumes that the health of a country's exports is the only reliable measure of its overall economic health
+- D) confuses the market value of the country's currency with the total volume of its exports
+- E) generalizes about the health of all the country's exports from data concerning a single industry
 
 **answer:** A
 **explanation:** **Situation.** The economist states that a country's exports are healthy *only if* its currency is not overvalued, observes that the currency is not overvalued, and concludes that exports are healthy.
 
-**Reasoning.** The task is to identify the logical flaw. "Exports are healthy only if the currency is not overvalued" means a non-overvalued currency is a *necessary* condition for healthy exports, not a sufficient one. From "healthy exports require a non-overvalued currency" and "the currency is not overvalued," nothing follows about whether exports are actually healthy, because many other things (demand, productivity, trade policy) could still make exports unhealthy even with a properly valued currency. The economist treats the satisfaction of a necessary condition as if it guaranteed the outcome, confusing necessary with sufficient conditions. Choice A names this exactly: it treats a condition merely *required* for healthy exports as though that condition by itself *guarantees* healthy exports.
+**Reasoning.** The task is to identify the logical flaw. "Exports are healthy only if the currency is not overvalued" means a non-overvalued currency is a *necessary* condition for healthy exports, not a sufficient one. From "healthy exports require a non-overvalued currency" and "the currency is not overvalued," nothing follows about whether exports are actually healthy, because many other things (demand, productivity, trade policy) could still make exports unhealthy even with a properly valued currency. The economist treats the satisfaction of a necessary condition as if it guaranteed the outcome, confusing necessary with sufficient conditions. Choice A names this exactly: it treats a condition that is merely *required* for healthy exports as if it alone *guaranteed* them.
 
 The correct answer is A.
 **mistake_b:** Choice B questions whether the currency data are current. Even granting perfectly up-to-date data showing the currency is not overvalued, the inference would still be invalid, so timeliness of the data is not the flaw.
@@ -6251,11 +6251,11 @@ Analyst: A widely held view is that **a company can maximize long-term sharehold
 
 In the analyst's argument, the two boldface portions play which of the following roles?
 
-- A) The first is a claim the analyst's argument seeks to refute; the second is an explanation that supports the analyst's own contrary conclusion.
-- B) The first is the analyst's conclusion; the second is evidence that supports it.
-- C) The first is evidence for the analyst's conclusion; the second is an objection to that conclusion.
-- D) The first is an assumption the analyst makes; the second is the conclusion drawn from that assumption.
-- E) Both portions are claims the analyst rejects in reaching the conclusion.
+- A) The first is a claim the argument seeks to refute; the second is an explanation supporting the analyst's contrary conclusion.
+- B) The first is the analyst's main conclusion; the second is evidence offered in support of that conclusion.
+- C) The first is evidence offered for the analyst's conclusion; the second is an objection raised against that conclusion.
+- D) The first is an assumption on which the analyst's argument depends; the second is the conclusion drawn from that assumption.
+- E) Both portions are claims that the analyst rejects in the course of reaching the argument's main conclusion.
 
 **answer:** A
 **explanation:** **Situation.** The analyst cites a widely held view that maximizing shareholder value requires minimizing training spending, then presents a decade-long comparison in which the heavy-training firm outperformed the cost-cutting rival, offers an explanation for that outcome, and concludes that cutting training can actually undermine long-term shareholder value.
@@ -6279,10 +6279,10 @@ The correct answer is A.
 A community center began offering free yoga classes on weekday evenings. In the three months after the classes started, new memberships at the center rose by 25 percent. The center's director concludes that the free evening classes were responsible for the increase in memberships. Which of the following, if true, most strengthens the director's conclusion?
 
 - A) A similar community center nearby that did not add any new classes saw its new memberships stay flat over the same three-month period.
-- B) The yoga instructor hired by the center holds a widely recognized teaching certification.
-- C) The center spent a substantial part of its annual budget to launch the free classes.
-- D) Some longtime members of the center have said they prefer weightlifting to yoga.
-- E) Yoga has become a more popular form of exercise nationwide over the past several years.
+- B) The yoga instructor hired by the center holds a widely recognized teaching certification and has taught at several other fitness facilities.
+- C) The center spent a substantial part of its annual programming budget on launching the free evening classes.
+- D) Some longtime members of the center have said that they personally prefer weightlifting sessions to yoga classes.
+- E) Yoga has become a steadily more popular form of exercise nationwide over the past several years, according to industry surveys.
 
 **answer:** A
 **explanation:** The director attributes the 25 percent rise in memberships to the new free evening classes. Strengthening a causal claim of this kind is done most powerfully by ruling out other explanations — showing the effect tracks the supposed cause. Choice A does exactly that: a comparable center that added no classes saw no change over the same period, which makes it far more likely that the classes, rather than some broader trend, drove the increase. Choice E points to a general nationwide trend, which if anything supplies a competing explanation and does not strengthen. Choice B (instructor credentials) and Choice C (cost of launching) say nothing about whether the classes caused the membership rise, and Choice D describes a preference of existing members, which is irrelevant to new memberships. The correct answer is A.
@@ -6298,10 +6298,10 @@ A community center began offering free yoga classes on weekday evenings. In the 
 A theater added a Sunday afternoon matinee to its weekly schedule. During the first month, the matinee filled 85 percent of its seats. On this basis, the theater's owner concludes that adding Sunday matinees at the company's other theaters would be profitable. Which of the following would be most useful to determine in evaluating the owner's conclusion?
 
 - A) Whether the ticket revenue from the matinee exceeded the cost of staffing and running the extra show.
-- B) Whether the audience at the matinee preferred seats in the balcony or on the main floor.
-- C) Whether the play performed at the matinee had won any awards.
-- D) Whether the theater is located within walking distance of public transit.
-- E) Whether the other theaters are larger or smaller than the one that added the matinee.
+- B) Whether members of the audience at the matinee preferred seats in the balcony or seats on the main floor.
+- C) Whether the play performed at the Sunday matinee had won any major awards in recent seasons.
+- D) Whether the theater that added the matinee is located within easy walking distance of public transit lines.
+- E) Whether the company's other theaters are larger or smaller than the theater that added the Sunday matinee.
 
 **answer:** A
 **explanation:** The owner leaps from "85 percent of seats were filled" to "adding matinees elsewhere would be profitable." A full house is not the same as a profitable one: profit depends on whether the revenue those seats bring in exceeds the cost of putting on the show. Choice A targets exactly that gap — if revenue exceeded cost, the profitability claim gains support; if it did not, filling seats at low or discounted prices could still lose money, and the conclusion collapses. Because the answer swings the evaluation in opposite directions, it is the most useful thing to determine. Choice B (seat preference) and Choice C (awards) are incidental to profitability. Choice E (relative theater size) has some bearing on how the result might transfer but says nothing about whether the matinee itself made money, and Choice D (transit access) is background that does not test the cost-versus-revenue premise the argument rests on. The correct answer is A.
