@@ -13,21 +13,21 @@ A regional grocery chain recently introduced a loyalty program that offers custo
 Which of the following, if true, most strengthens the argument above?
 
 - A) The grocery chain spent a significant amount on television and social media advertising to promote the loyalty program during the three-month period.
-- B) A competing grocery chain in the same region that did not introduce a loyalty program experienced a 2% decline in revenue over the same period.
+- B) The chain also expanded its organic produce section at the same time as launching the loyalty program.
 - C) Most of the chain's customers were already shopping there more than ten times per quarter before the program was introduced.
 - D) The average transaction size at the chain has remained the same for both new and returning customers since the loyalty program began.
-- E) The chain also expanded its organic produce section at the same time as launching the loyalty program.
+- E) A competing grocery chain in the same region that did not introduce a loyalty program experienced a 2% decline in revenue over the same period.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A regional grocery chain launched a loyalty program offering a 5% discount after a customer's tenth visit, and over the three months since launch the chain's overall revenue rose by 8%. Management concludes that the loyalty program is responsible for the revenue increase.
 
-**Reasoning.** The task is to find the statement that most strengthens this argument. The conclusion is causal: it asserts that the loyalty program, rather than anything else, produced the 8% revenue gain. A causal claim of this kind is strengthened by evidence that rules out the most plausible alternative explanation, namely that broader market conditions lifted revenue regardless of the program. Choice B supplies exactly such evidence. A competing chain in the same region, operating under the same market conditions but without a loyalty program, saw revenue decline by 2% over the identical period. Because the comparable competitor lacked the program and lost revenue while the chain that introduced the program gained revenue, the program emerges as the differentiating factor and the general-market explanation is undercut. This makes management's causal conclusion more likely to be correct.
+**Reasoning.** The task is to find the statement that most strengthens this argument. The conclusion is causal: it asserts that the loyalty program, rather than anything else, produced the 8% revenue gain. A causal claim of this kind is strengthened by evidence that rules out the most plausible alternative explanation, namely that broader market conditions lifted revenue regardless of the program. Choice E supplies exactly such evidence. A competing chain in the same region, operating under the same market conditions but without a loyalty program, saw revenue decline by 2% over the identical period. Because the comparable competitor lacked the program and lost revenue while the chain that introduced the program gained revenue, the program emerges as the differentiating factor and the general-market explanation is undercut. This makes management's causal conclusion more likely to be correct.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A states that the chain spent heavily on advertising the program during the period. Rather than strengthening the conclusion, this introduces a competing cause: the increased revenue might have resulted from the advertising itself rather than from the loyalty program, leaving the causal claim no better supported and arguably weaker.
 **mistake_c:** Choice C states that most customers were already shopping there more than ten times per quarter before the program began. This weakens the argument, because if customers were already past the tenth-visit threshold, the program's discount would have done little to change their behavior, making it harder to credit the program with the revenue gain.
 **mistake_d:** Choice D states that the average transaction size has remained unchanged since the program began. This is neutral with respect to the causal claim. An unchanged average transaction size is consistent with revenue rising from a larger number of customers, but it provides no evidence that the loyalty program, rather than some other factor, caused the increase.
-**mistake_e:** Choice E states that the chain expanded its organic produce section at the same time it launched the program. This introduces an alternative cause for the revenue increase: the produce expansion could itself have driven the additional sales. By offering a competing explanation, it undermines rather than strengthens the conclusion that the program was responsible.
+**mistake_b:** Choice B states that the chain expanded its organic produce section at the same time it launched the program. This introduces an alternative cause for the revenue increase: the produce expansion could itself have driven the additional sales. By offering a competing explanation, it undermines rather than strengthens the conclusion that the program was responsible.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -42,21 +42,21 @@ A city's public health department found that neighborhoods with more parks and g
 Which of the following, if true, most strengthens the department's conclusion?
 
 - A) Many families move to neighborhoods with more green space specifically because their children have asthma.
-- B) Vegetation in parks and green spaces absorbs airborne particulate matter, a known trigger for asthma attacks.
+- B) Childhood asthma rates have been increasing nationwide over the past decade regardless of green space availability.
 - C) Neighborhoods with more green space also tend to have higher median household incomes.
 - D) Children who live near parks spend more time outdoors than children who do not.
-- E) Childhood asthma rates have been increasing nationwide over the past decade regardless of green space availability.
+- E) Vegetation in parks and green spaces absorbs airborne particulate matter, a known trigger for asthma attacks.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A city's public health department observed that neighborhoods with more parks and green spaces had lower childhood asthma rates than neighborhoods with fewer green spaces, and it concluded that increasing urban green space would reduce childhood asthma rates.
 
-**Reasoning.** The task is to identify the statement that, if true, most strengthens this conclusion. The department's evidence is merely a correlation between green space and lower asthma rates, but its conclusion is causal: that adding green space would actually cause asthma rates to fall. An observed correlation can support a causal conclusion only if the proposed cause can plausibly produce the observed effect, so the conclusion is most strengthened by evidence supplying a credible mechanism by which green space reduces asthma. Choice B does exactly this: it states that vegetation in parks and green spaces absorbs airborne particulate matter, a known trigger for asthma attacks. This identifies a concrete physical pathway through which more green space would lower exposure to an asthma trigger and therefore reduce asthma, making the causal inference from correlation to causation considerably more credible.
+**Reasoning.** The task is to identify the statement that, if true, most strengthens this conclusion. The department's evidence is merely a correlation between green space and lower asthma rates, but its conclusion is causal: that adding green space would actually cause asthma rates to fall. An observed correlation can support a causal conclusion only if the proposed cause can plausibly produce the observed effect, so the conclusion is most strengthened by evidence supplying a credible mechanism by which green space reduces asthma. Choice E does exactly this: it states that vegetation in parks and green spaces absorbs airborne particulate matter, a known trigger for asthma attacks. This identifies a concrete physical pathway through which more green space would lower exposure to an asthma trigger and therefore reduce asthma, making the causal inference from correlation to causation considerably more credible.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A weakens the conclusion rather than strengthening it. If families move to greener neighborhoods specifically because their children have asthma, this points to reverse causation, suggesting that asthma influences where families live rather than that green space reduces asthma, and it offers no support for the claim that adding green space would lower asthma rates.
 **mistake_c:** Choice C weakens the conclusion by raising a confounding variable. If greener neighborhoods also tend to have higher median household incomes, then income, with its associated access to better healthcare, housing, and air quality, could be the true cause of the lower asthma rates, undermining rather than supporting the claim that green space itself is responsible.
 **mistake_d:** Choice D does not clearly strengthen the conclusion. That children living near parks spend more time outdoors is ambiguous in its effect on asthma, since additional outdoor time could either reduce or increase exposure to asthma triggers depending on the environment, so it fails to provide clean support for the claim that green space lowers asthma rates.
-**mistake_e:** Choice E weakens the conclusion. The fact that childhood asthma rates have been rising nationwide regardless of green space availability cuts against the idea that increasing green space would reduce asthma, suggesting that green space has little bearing on asthma trends and thereby undermining the department's causal claim.
+**mistake_b:** Choice B weakens the conclusion. The fact that childhood asthma rates have been rising nationwide regardless of green space availability cuts against the idea that increasing green space would reduce asthma, suggesting that green space has little bearing on asthma trends and thereby undermining the department's causal claim.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -127,21 +127,21 @@ A pharmaceutical company argues that its new migraine medication is more effecti
 Which of the following, if true, most strengthens the company's argument that its medication is more effective?
 
 - A) The market leader has been available for over a decade and has a well-established safety profile backed by extensive post-market surveillance.
-- B) Patients with treatment-resistant migraines typically show smaller absolute differences in response rates between competing medications.
+- B) The trial lasted six months, during which patients experienced an average of four migraine episodes each.
 - C) The new medication uses a different biochemical mechanism than the market leader to interrupt the migraine process.
 - D) Both medications were administered at their manufacturer-recommended dosages and on identical dosing schedules throughout the trial.
-- E) The trial lasted six months, during which patients experienced an average of four migraine episodes each.
+- E) Patients with treatment-resistant migraines typically show smaller absolute differences in response rates between competing medications.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A pharmaceutical company contends that its new migraine medication is more effective than the market leader, citing a clinical trial in which 68 percent of patients on the new drug reported significant pain relief within two hours, versus 61 percent for the market leader. Critics observe that the trial recruited patients from specialty headache clinics, where migraines tend to be more severe and treatment-resistant than in the general population of migraine sufferers.
 
 **Reasoning.** The task is to identify the statement that most strengthens the company's argument that its medication is more effective. The critics raise a specific objection: because the sample was drawn from a population with unusually severe, treatment-resistant migraines, the trial's results may not extend to ordinary migraine sufferers, casting doubt on the general claim of superior effectiveness. A choice strengthens the argument most powerfully if it directly neutralizes this objection and shows that the observed advantage understates the drug's true edge. The correct choice establishes that treatment-resistant patients typically show smaller absolute differences in response rates between competing medications. If that is so, then the 7-percentage-point gap observed in the harder-to-treat clinic population is occurring precisely where differences between drugs are usually compressed. It follows that in the general population, where differences between drugs tend to be larger, the new medication's advantage over the market leader would be at least as large and most likely greater. The very feature the critics flagged as a weakness thus becomes evidence that the company's claim is, if anything, conservative, which strengthens the argument that the medication is more effective.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A addresses the market leader's safety profile and its long availability, but the argument concerns relative effectiveness in providing pain relief, not safety or longevity. A well-established safety record bears on neither the trial's findings nor the critics' population objection, so it does nothing to strengthen the company's claim of greater effectiveness.
 **mistake_c:** Choice C states that the new medication uses a different biochemical mechanism than the market leader. That the drugs work differently may explain how the new drug acts, but it does not respond to the critics' concern that the trial population was unrepresentative, nor does it establish that the new drug is more effective in the general population. A different mechanism is as consistent with inferior effectiveness as with superior effectiveness, so the choice provides no support.
 **mistake_d:** Choice D confirms that both medications were given at their recommended dosages, which removes one possible alternative explanation for the gap but does not engage the specific objection the critics raised. Proper dosing leaves untouched the worry that results from a severe, treatment-resistant clinic population may not generalize, so it fails to strengthen the argument in the way the question requires.
-**mistake_e:** Choice E supplies background detail about the trial's six-month duration and the average number of migraine episodes per patient. This information describes the study's design but says nothing about whether the sample's severity bias inflates or deflates the measured advantage, and so it neither rebuts the critics nor supports the company's conclusion of greater effectiveness.
+**mistake_b:** Choice B supplies background detail about the trial's six-month duration and the average number of migraine episodes per patient. This information describes the study's design but says nothing about whether the sample's severity bias inflates or deflates the measured advantage, and so it neither rebuts the critics nor supports the company's conclusion of greater effectiveness.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -156,21 +156,21 @@ A school district implemented a mandatory breakfast program at all elementary sc
 Which of the following, if true, most weakens the district officials' argument?
 
 - A) Some students reported that they did not enjoy the meals provided by the breakfast program.
-- B) The district also adopted a new mathematics curriculum and hired additional reading specialists during the same year.
+- B) Several neighboring districts that did not implement breakfast programs saw test scores remain flat during the same period.
 - C) Students in the district scored below the national average on standardized tests prior to the breakfast program.
 - D) The breakfast program cost the district significantly more than originally budgeted.
-- E) Several neighboring districts that did not implement breakfast programs saw test scores remain flat during the same period.
+- E) The district also adopted a new mathematics curriculum and hired additional reading specialists during the same year.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A school district introduced a mandatory free-breakfast program at all elementary schools, and after one year district-wide standardized test scores rose by an average of 6 percent. District officials credit this improvement to the breakfast program, reasoning that well-nourished students learn more effectively.
 
-**Reasoning.** The task is to identify the choice that most weakens the officials' argument. The argument is causal: it claims that one factor, the breakfast program, produced the observed effect, the 6 percent rise in scores. A causal claim of this kind is weakened most directly when an alternative cause is shown to have been operating at the same time, because such an alternative makes it impossible to attribute the gain to the breakfast program alone. Choice B states that during the very same year the district also adopted a new mathematics curriculum and hired additional reading specialists. Each of these interventions could plausibly raise standardized test scores, and because they occurred simultaneously with the breakfast program, the data can no longer single out the breakfast program as the cause. The alternative explanation undercuts the officials' inference that the program drove the improvement.
+**Reasoning.** The task is to identify the choice that most weakens the officials' argument. The argument is causal: it claims that one factor, the breakfast program, produced the observed effect, the 6 percent rise in scores. A causal claim of this kind is weakened most directly when an alternative cause is shown to have been operating at the same time, because such an alternative makes it impossible to attribute the gain to the breakfast program alone. Choice E states that during the very same year the district also adopted a new mathematics curriculum and hired additional reading specialists. Each of these interventions could plausibly raise standardized test scores, and because they occurred simultaneously with the breakfast program, the data can no longer single out the breakfast program as the cause. The alternative explanation undercuts the officials' inference that the program drove the improvement.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A is irrelevant to the causal claim. Whether some students enjoyed the meals has no bearing on whether the breakfast program improved learning or test scores, so it neither strengthens nor weakens the officials' argument.
 **mistake_c:** Choice C provides only background information. That the district scored below the national average before the program says nothing about whether the program, rather than something else, produced the subsequent gain, so it does not weaken the argument.
 **mistake_d:** Choice D addresses cost rather than effectiveness. That the program exceeded its budget concerns its expense, not whether it caused the rise in scores, so it leaves the causal claim untouched.
-**mistake_e:** Choice E strengthens rather than weakens the argument. Neighboring districts without breakfast programs saw scores remain flat over the same period, which makes the program look like the factor that distinguished this district and produced its gain, supporting the officials' conclusion.
+**mistake_b:** Choice B strengthens rather than weakens the argument. Neighboring districts without breakfast programs saw scores remain flat over the same period, which makes the program look like the factor that distinguished this district and produced its gain, supporting the officials' conclusion.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -185,21 +185,21 @@ A fitness app company reports that users who log their workouts in the app at le
 Which of the following, if true, most weakens the company's conclusion?
 
 - A) The app includes a calorie-tracking feature and a meal-planning tool that most users report they rarely or never use.
-- B) People who are more motivated to lose weight are more likely both to exercise frequently and to log consistently.
+- B) The app is free to download and currently has over two million active users worldwide.
 - C) The app's interface was substantially redesigned midway through the three-month period during which the data were collected.
 - D) Some users who logged their workouts five or more times per week over the full three months did not lose any weight at all.
-- E) The app is free to download and currently has over two million active users worldwide.
+- E) People who are more motivated to lose weight are more likely both to exercise frequently and to log consistently.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A fitness app company observes that users who log their workouts at least five times per week lose an average of 12 pounds over three months, whereas users who log fewer than five times per week lose an average of only 3 pounds. From this difference the company concludes that using the app more frequently causes greater weight loss.
 
-**Reasoning.** The task is to identify the statement that, if true, most weakens the company's conclusion. The conclusion treats a correlation drawn from observational data (frequent logging is associated with greater weight loss) as evidence of causation (logging more causes greater loss). The most effective way to weaken such a claim is to identify a third factor that independently produces both observed behaviors, so that the correlation is explained without the proposed causal link. Choice B does exactly this: people who are more motivated to lose weight are more likely both to exercise and log frequently and to lose weight. If pre-existing motivation drives both the heavy logging and the larger weight loss, then frequent logging and greater loss are two effects of a common cause rather than cause and effect, and the company's conclusion no longer follows from the data. This undermines the inference that the app's frequent use is what produces the additional weight loss.
+**Reasoning.** The task is to identify the statement that, if true, most weakens the company's conclusion. The conclusion treats a correlation drawn from observational data (frequent logging is associated with greater weight loss) as evidence of causation (logging more causes greater loss). The most effective way to weaken such a claim is to identify a third factor that independently produces both observed behaviors, so that the correlation is explained without the proposed causal link. Choice E does exactly this: people who are more motivated to lose weight are more likely both to exercise and log frequently and to lose weight. If pre-existing motivation drives both the heavy logging and the larger weight loss, then frequent logging and greater loss are two effects of a common cause rather than cause and effect, and the company's conclusion no longer follows from the data. This undermines the inference that the app's frequent use is what produces the additional weight loss.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A notes that most users report rarely or never using the app's calorie-tracking and meal-planning features. Which features users do or do not use says nothing about whether logging frequency causes weight loss, so it leaves the company's causal inference untouched.
 **mistake_c:** Choice C reports that the app's interface was redesigned during the study period. A redesign affecting all users does not explain why the more frequent loggers lost more weight than the less frequent ones, so it does not bear on the correlation underlying the conclusion.
 **mistake_d:** Choice D observes that some frequent loggers did not lose any weight. Individual exceptions are fully consistent with a group average of 12 pounds, so this does not undermine the reported pattern or the conclusion drawn from it.
-**mistake_e:** Choice E provides background about the app being free with over two million active users. The size of the user base and the price are irrelevant to whether frequent logging causes greater weight loss, so this choice has no effect on the conclusion.
+**mistake_b:** Choice B provides background about the app being free with over two million active users. The size of the user base and the price are irrelevant to whether frequent logging causes greater weight loss, so this choice has no effect on the conclusion.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -214,21 +214,21 @@ A city council is considering banning single-use plastic bags at all retail stor
 Which of the following, if true, most weakens the proponents' argument?
 
 - A) Several other cities that implemented similar bans on single-use plastic bags subsequently reported measurable reductions in overall landfill waste within two years.
-- B) Consumers in cities with such bans buy significantly more thick plastic trash bags, which occupy more landfill space per unit than the single-use bags they replace.
+- B) The proposed ban would not apply to the thin plastic bags used within stores for packaging raw meat, seafood, and loose produce.
 - C) Reusable cloth bags cost consumers considerably more per bag than the single-use plastic bags they would replace.
 - D) Single-use plastic bags are among the most common items of litter found in the city's waterways, parks, and storm drains.
-- E) The proposed ban would not apply to the thin plastic bags used within stores for packaging raw meat, seafood, and loose produce.
+- E) Consumers in cities with such bans buy significantly more thick plastic trash bags, which occupy more landfill space per unit than the single-use bags they replace.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A city council is weighing a ban on single-use plastic bags at retail stores. Proponents claim the ban will significantly reduce plastic waste in the city's landfills because such bags currently make up roughly 12 percent of total landfill volume.
 
 **Reasoning.** The task is to find the choice that most weakens the proponents' argument. The conclusion is that banning single-use bags will reduce the volume of plastic waste in landfills, and it rests on the premise that those bags presently occupy about 12 percent of landfill volume. The argument implicitly assumes that removing single-use bags will not be offset by an increase in some other form of landfill waste. A choice weakens the argument if it shows that the ban could fail to reduce, or could even increase, total landfill volume. This is a substitution effect: if banning the bags causes consumers to behave in a way that adds at least as much waste as is removed, the projected reduction does not follow. The claim that consumers respond to such bans by buying significantly more thick plastic trash bags that occupy more landfill space per unit than the single-use bags they replace identifies exactly such an offsetting consequence. The waste eliminated by removing single-use bags is replaced by a larger volume of trash-bag waste, so the ban may not achieve the promised reduction and could increase landfill volume. This directly undermines the causal link between the ban and the predicted outcome.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A reports that other cities implementing similar bans saw reductions in overall landfill waste. Far from weakening the argument, this strengthens it by providing evidence that such bans actually produce the reduction the proponents predict.
 **mistake_c:** Choice C states that reusable bags cost consumers more than single-use bags. The relative price of reusable bags speaks to consumer expense, not to landfill volume, and so has no bearing on whether the ban reduces plastic waste in landfills.
 **mistake_d:** Choice D notes that single-use plastic bags are among the most common items of litter found in the city's waterways, parks, and storm drains. This points to an additional harm the bags cause and, if anything, bolsters the broader case for the ban; it does not address the specific claim that the ban will reduce landfill volume.
-**mistake_e:** Choice E observes that the ban would not cover bags used for raw meat and produce within stores. This carve-out merely limits the ban's scope; it says nothing that contradicts the prediction that landfill volume from the bags that are banned will fall, so it does not undermine the reasoning.
+**mistake_b:** Choice B observes that the ban would not cover bags used for raw meat and produce within stores. This carve-out merely limits the ban's scope; it says nothing that contradicts the prediction that landfill volume from the bags that are banned will fall, so it does not undermine the reasoning.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -243,20 +243,20 @@ A technology company's CEO argues that the company should invest heavily in arti
 Which of the following, if true, most weakens the CEO's reasoning?
 
 - A) The company's existing product lines have been steadily losing market share to lower-priced competitors for the past two years.
-- B) The companies that spent heavily on R&D were predominantly large firms whose diversified revenue streams could absorb the financial risk of such spending.
+- B) Several companies that invested heavily in R&D saw their stock prices decline sharply before eventually recovering.
 - C) Artificial intelligence is widely considered by industry analysts and investors to be the most transformative technology of the coming decade.
-- D) Several companies that invested heavily in R&D saw their stock prices decline sharply before eventually recovering.
+- D) The companies that spent heavily on R&D were predominantly large firms whose diversified revenue streams could absorb the financial risk of such spending.
 - E) The company currently spends about 9% of its annual revenue on research and development across all of its divisions.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A technology company's CEO recommends investing heavily in artificial intelligence research instead of expanding existing product lines. She supports this by noting that, over the past decade, technology firms spending more than 15 percent of revenue on research and development achieved average stock price growth of 340 percent, compared with only 120 percent for firms spending less.
 
 **Reasoning.** The task is to find the statement that most weakens the CEO's reasoning. The argument moves from a correlation, that firms with higher R&D spending also had higher stock price growth, to a causal recommendation, that increasing this company's own R&D spending will produce comparable growth. Such reasoning is undermined by any evidence that the high-spending firms differed from the recommending company in some other respect that could independently account for their superior growth. The credited statement establishes exactly such a confounding factor: the firms that spent heavily on R&D were predominantly large, diversified companies whose revenue streams could absorb the financial risk of that spending. This indicates that size and diversification, rather than the R&D spending itself, may have driven the observed growth, and it signals that this particular company, which need not share those characteristics, cannot safely expect the same result from raising its R&D spending. The connection between heavy R&D investment and stock growth is thereby called into question.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A states that the company's existing product lines have been losing market share, which gives the company a reason to shift away from those lines and toward new research. Rather than weakening the CEO's recommendation, this strengthens the case for it, so it cannot be the answer to a question asking what weakens her reasoning.
 **mistake_c:** Choice C asserts that artificial intelligence is widely considered the most transformative technology of the coming decade. If anything, this lends additional support to investing in AI research, and in any case it says nothing about whether the cited correlation between R&D spending and stock growth reflects a genuine causal relationship. It does not weaken the argument.
-**mistake_d:** Choice D observes that several heavily investing firms saw their stock prices decline sharply before eventually recovering. Temporary volatility on the way to growth is fully consistent with the CEO's premise that high-R&D firms ultimately achieved 340 percent growth, so this neither contradicts the data nor breaks the link between spending and growth.
+**mistake_b:** Choice B observes that several heavily investing firms saw their stock prices decline sharply before eventually recovering. Temporary volatility on the way to growth is fully consistent with the CEO's premise that high-R&D firms ultimately achieved 340 percent growth, so this neither contradicts the data nor breaks the link between spending and growth.
 **mistake_e:** Choice E reports that the company currently spends 9 percent of its revenue on R&D. This merely supplies background context about the company's present position and does not address whether increasing R&D spending would actually produce the growth the CEO predicts. It leaves the correlation-to-causation inference untouched.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -272,21 +272,21 @@ Environmental scientists have observed that coral reefs near coastal cities with
 Which of the following, if true, most weakens the scientists' conclusion?
 
 - A) Coral reef biodiversity is influenced by many global factors, including water temperature, ocean acidification, salinity fluctuations, and seasonal storm frequency.
-- B) Cities with advanced wastewater treatment also tend to enforce stricter rules on industrial runoff, pesticide use, and coastal development, all of which independently affect reef health.
+- B) Advanced wastewater treatment facilities remove not only harmful pollutants but also certain dissolved nutrients that some coral species depend on for growth.
 - C) The cost of upgrading municipal wastewater treatment infrastructure to advanced standards has decreased significantly over the past several years.
 - D) Some coral reefs located far from any coastal city or other human settlement have also shown declining biodiversity over the same period.
-- E) Advanced wastewater treatment facilities remove not only harmful pollutants but also certain dissolved nutrients that some coral species depend on for growth.
+- E) Cities with advanced wastewater treatment also tend to enforce stricter rules on industrial runoff, pesticide use, and coastal development, all of which independently affect reef health.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** Environmental scientists note that coral reefs near coastal cities with advanced wastewater treatment show higher biodiversity than reefs near cities with outdated treatment, and they conclude that upgrading wastewater treatment is the most cost-effective intervention for preserving reef biodiversity.
 
 **Reasoning.** The task is to identify the statement that most weakens this conclusion. The argument moves from an observed correlation between advanced treatment and higher biodiversity to a causal, comparative claim that the treatment upgrade is the single most cost-effective way to preserve reefs. The conclusion is vulnerable if some other factor present in the same cities could account for the higher biodiversity, because then the biodiversity gain cannot be attributed to wastewater treatment alone, and treatment cannot be established as the most cost-effective lever. The credited choice supplies exactly such an alternative: the cities with advanced treatment also enforce stricter rules on industrial runoff, pesticide use, and coastal development, each of which independently affects reef health. Because these reef-protective policies are bundled together with the treatment upgrade, the observed biodiversity advantage may stem partly or entirely from them rather than from the treatment, which directly undercuts the claim that upgrading treatment is the most cost-effective intervention.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A notes that reef biodiversity depends on many factors, such as water temperature and ocean acidification, but these are general background drivers that are not tied to the difference between the two groups of cities. Because it identifies no factor that distinguishes cities with advanced treatment from cities with outdated treatment, it fails to provide an alternative explanation for the observed difference and does not weaken the conclusion.
 **mistake_c:** Choice C states that the cost of upgrading treatment infrastructure has fallen significantly. If anything, a lower cost makes the upgrade easier to justify and tends to strengthen, not weaken, the claim that treatment is the most cost-effective intervention.
 **mistake_d:** Choice D observes that some reefs far from any coastal city also show declining biodiversity. This concerns reefs outside the comparison entirely and says nothing about why reefs near upgraded cities fare better than reefs near outdated ones, so it leaves the argument's comparative reasoning untouched.
-**mistake_e:** Choice E points out that advanced treatment removes certain nutrients some coral species depend on, suggesting a possible downside of treatment. This is tempting, but it conflicts with the observation on which the argument rests, namely that reefs near upgraded cities actually show higher biodiversity. It therefore does not explain away the observed correlation and does not weaken the conclusion drawn from it.
+**mistake_b:** Choice B points out that advanced treatment removes certain nutrients some coral species depend on, suggesting a possible downside of treatment. This is tempting, but it conflicts with the observation on which the argument rests, namely that reefs near upgraded cities actually show higher biodiversity. It therefore does not explain away the observed correlation and does not weaken the conclusion drawn from it.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -330,20 +330,20 @@ A city's transportation department plans to reduce traffic congestion by convert
 Which of the following is an assumption that the traffic engineers' argument requires?
 
 - A) The two roads selected for conversion currently experience the worst rush-hour congestion of any roads in the city.
-- B) Drivers who currently use the two roads will not divert in large numbers to alternative routes, creating new congestion elsewhere.
+- B) The city's transportation budget for the coming fiscal year is sufficient to fund the signal coordination upgrades the conversion would require.
 - C) One-way streets are generally safer for pedestrians to cross than comparable two-way streets.
-- D) The city's transportation budget for the coming fiscal year is sufficient to fund the signal coordination upgrades the conversion would require.
+- D) Drivers who currently use the two roads will not divert in large numbers to alternative routes, creating new congestion elsewhere.
 - E) Public transportation ridership will not change as a result of the road conversion.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A city transportation department proposes converting two major downtown roads into one-way streets, and its traffic engineers contend that this will permit better signal coordination, raising average vehicle speeds and reducing the time drivers spend idling at intersections.
 
-**Reasoning.** The task is to identify an assumption the engineers' argument requires. The argument moves from a mechanism operating on the two converted roads (one-way configuration enables coordinated signals, which increases speeds and cuts idling on those roads) to the stated goal of reducing traffic congestion. That conclusion holds only if the traffic the engineers expect to move faster actually remains on the converted roads rather than relocating its congestion elsewhere. Choice B supplies exactly this link by asserting that drivers currently using the two roads will not divert in large numbers to alternative routes and create new congestion elsewhere. Applying the negation test confirms the assumption is required: if drivers did divert in large numbers to alternative routes, then any improved flow on the converted streets would be offset by fresh congestion on the routes those drivers shifted to, so overall congestion would not be reduced and the argument would collapse. Because negating choice B destroys the argument, it is an assumption the argument depends on.
+**Reasoning.** The task is to identify an assumption the engineers' argument requires. The argument moves from a mechanism operating on the two converted roads (one-way configuration enables coordinated signals, which increases speeds and cuts idling on those roads) to the stated goal of reducing traffic congestion. That conclusion holds only if the traffic the engineers expect to move faster actually remains on the converted roads rather than relocating its congestion elsewhere. Choice D supplies exactly this link by asserting that drivers currently using the two roads will not divert in large numbers to alternative routes and create new congestion elsewhere. Applying the negation test confirms the assumption is required: if drivers did divert in large numbers to alternative routes, then any improved flow on the converted streets would be offset by fresh congestion on the routes those drivers shifted to, so overall congestion would not be reduced and the argument would collapse. Because negating choice D destroys the argument, it is an assumption the argument depends on.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A states that the two selected roads currently experience the worst congestion in the city, but the argument does not depend on these roads being the worst; it depends only on whether converting them will reduce congestion. The engineers could be right about the effect of the conversion even if other roads are more congested, so this is not a required assumption. Negating it leaves the argument intact.
 **mistake_c:** Choice C concerns pedestrian safety, which is a separate consideration from the engineers' claim about signal coordination, vehicle speeds, and idling time. Whether one-way streets are safer for pedestrians has no bearing on whether the conversion reduces congestion, so the argument does not require it. Negating it does not weaken the reasoning.
-**mistake_d:** Choice D addresses whether the city has sufficient budget to implement the needed signal upgrades. This is a practical question of feasibility, not a logical premise of the mechanism the engineers describe. The argument concerns whether the conversion would work as intended, not whether it can be funded, so budget adequacy is not an assumption the reasoning requires. Negating it raises an implementation obstacle but does not break the causal claim itself.
+**mistake_b:** Choice B addresses whether the city has sufficient budget to implement the needed signal upgrades. This is a practical question of feasibility, not a logical premise of the mechanism the engineers describe. The argument concerns whether the conversion would work as intended, not whether it can be funded, so budget adequacy is not an assumption the reasoning requires. Negating it raises an implementation obstacle but does not break the causal claim itself.
 **mistake_e:** Choice E asserts that public transportation ridership will not change as a result of the conversion. The engineers' argument is about vehicle flow on the converted roads and makes no claim that depends on transit ridership staying constant; in fact, if some drivers switched to transit, that would tend to ease rather than undermine congestion reduction. Because the argument does not rely on it, this is not a required assumption, and negating it does not damage the reasoning.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -359,21 +359,21 @@ A marketing firm found that social media advertisements featuring user-generated
 Which of the following is an assumption underlying the firm's advice?
 
 - A) User-generated content is typically far less expensive to source and produce than advertisements created by professional agencies.
-- B) Customer engagement with social media advertisements translates into meaningful business outcomes such as increased sales or brand loyalty.
+- B) Engagement rates on social media are the single most important metric for measuring the success of any advertising campaign.
 - C) Social media platforms will continue to grow in popularity among key consumer demographics over the next several years.
 - D) The firm's clients currently spend more on professionally produced advertisements than on user-generated content campaigns.
-- E) Engagement rates on social media are the single most important metric for measuring the success of any advertising campaign.
+- E) Customer engagement with social media advertisements translates into meaningful business outcomes such as increased sales or brand loyalty.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A marketing firm has found that social media advertisements featuring user-generated content receive 40 percent more engagement than advertisements produced by professional agencies, and on this basis the firm advises its clients to direct their entire advertising budget toward user-generated content campaigns in order to maximize customer engagement.
 
-**Reasoning.** The task is to identify an assumption on which the firm's advice depends. The firm reasons from a single piece of evidence, higher engagement, to a sweeping recommendation about how clients should spend their money. That recommendation is sensible only if maximizing engagement is in fact worth doing, that is, only if greater engagement actually produces something the client values. The argument therefore rests on a bridge between the measured outcome, engagement, and the client's underlying goal. Choice B supplies precisely that bridge: it holds that engagement with advertisements translates into meaningful business outcomes such as increased sales or brand loyalty. Applying the negation test confirms that this assumption is necessary. If engagement does not translate into meaningful business outcomes, then chasing engagement accomplishes nothing of value for the client, and the advice to pour the entire budget into the higher-engagement format collapses. Because negating choice B destroys the argument, choice B is an assumption the argument requires.
+**Reasoning.** The task is to identify an assumption on which the firm's advice depends. The firm reasons from a single piece of evidence, higher engagement, to a sweeping recommendation about how clients should spend their money. That recommendation is sensible only if maximizing engagement is in fact worth doing, that is, only if greater engagement actually produces something the client values. The argument therefore rests on a bridge between the measured outcome, engagement, and the client's underlying goal. Choice E supplies precisely that bridge: it holds that engagement with advertisements translates into meaningful business outcomes such as increased sales or brand loyalty. Applying the negation test confirms that this assumption is necessary. If engagement does not translate into meaningful business outcomes, then chasing engagement accomplishes nothing of value for the client, and the advice to pour the entire budget into the higher-engagement format collapses. Because negating choice E destroys the argument, choice E is an assumption the argument requires.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A addresses the relative cost of producing user-generated content, but the firm's argument is built entirely on engagement, not on expense. The advice would follow from the engagement evidence whether or not user-generated content is cheaper, so this claim is not something the argument must assume.
 **mistake_c:** Choice C concerns whether social media platforms will keep growing in popularity over the coming years, yet the recommendation is about how clients should allocate their budget now, given current engagement figures. Future platform growth is not required for the present advice to make sense, so it is not an assumption of the argument.
 **mistake_d:** Choice D describes the clients' existing spending pattern, asserting that they currently spend more on professional advertisements than on user-generated content. This background fact about prior allocation has no bearing on whether shifting the entire budget to the higher-engagement format will achieve the firm's stated goal, so the argument does not depend on it.
-**mistake_e:** Choice E is too strong. The argument needs only that engagement is valuable enough to be worth maximizing, not that it is the single most important metric for measuring advertising success. Negating choice E, so that engagement is merely one valuable metric among several, leaves the recommendation intact, which shows the argument does not require this claim.
+**mistake_b:** Choice B is too strong. The argument needs only that engagement is valuable enough to be worth maximizing, not that it is the single most important metric for measuring advertising success. Negating choice B, so that engagement is merely one valuable metric among several, leaves the recommendation intact, which shows the argument does not require this claim.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -417,20 +417,20 @@ A hospital network found that patients admitted on weekends had a 15% higher mor
 Which of the following is an assumption that the chief medical officer's proposal requires?
 
 - A) The hospital network has sufficient financial resources in its operating budget to hire the additional specialist physicians needed for weekend shifts.
-- B) The higher weekend mortality rate is not primarily explained by weekend patients tending to have more severe conditions that require emergency care.
+- B) Other hospital networks with higher weekend specialist staffing levels do not experience a similar mortality gap.
 - C) Specialist physicians are more effective than general practitioners at treating the kinds of patients admitted on weekends.
-- D) Other hospital networks with higher weekend specialist staffing levels do not experience a similar mortality gap.
+- D) The higher weekend mortality rate is not primarily explained by weekend patients tending to have more severe conditions that require emergency care.
 - E) The mortality rate for patients admitted on weekdays has remained essentially stable over the past five years.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A hospital network observes that patients admitted on weekends die at a 15 percent higher rate than those admitted on weekdays, and the chief medical officer proposes hiring additional weekend specialist physicians on the grounds that reduced specialist availability on weekends causes the gap.
 
-**Reasoning.** The task is to identify an assumption the proposal requires. The chief medical officer attributes the higher weekend mortality specifically to a shortage of specialists and concludes that adding specialists will close the gap. This reasoning depends on ruling out alternative explanations for the gap; in particular, it depends on the difference not being caused by some other factor that hiring specialists would not address. Choice B states that the higher weekend mortality is not primarily explained by weekend patients having more severe conditions requiring emergency care. Applying the negation test, suppose instead that weekend admissions are disproportionately severe emergency cases. Then the mortality gap would be driven by patient severity rather than by staffing, and hiring more specialists would not be expected to eliminate it, so the proposal would fail. Because negating B undermines the proposal, B is an assumption the proposal requires.
+**Reasoning.** The task is to identify an assumption the proposal requires. The chief medical officer attributes the higher weekend mortality specifically to a shortage of specialists and concludes that adding specialists will close the gap. This reasoning depends on ruling out alternative explanations for the gap; in particular, it depends on the difference not being caused by some other factor that hiring specialists would not address. Choice D states that the higher weekend mortality is not primarily explained by weekend patients having more severe conditions requiring emergency care. Applying the negation test, suppose instead that weekend admissions are disproportionately severe emergency cases. Then the mortality gap would be driven by patient severity rather than by staffing, and hiring more specialists would not be expected to eliminate it, so the proposal would fail. Because negating D undermines the proposal, D is an assumption the proposal requires.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A addresses whether the network can afford to hire the additional specialists, which is a question of feasibility rather than of the argument's logic. The chief medical officer's reasoning that the staffing shortage causes the mortality gap can hold whether or not the funds are available, so this is not an assumption the proposal requires.
-**mistake_c:** Choice C claims that specialists are more effective than general practitioners. While this may seem supportive, it is not required: the proposal can succeed as long as the gap is caused by specialist availability, and the argument does not depend on a specific comparison between specialists and generalists. Even if specialists were no more effective than general practitioners, the proposal would still require that severity, addressed by choice B, not be the real driver of the gap.
-**mistake_d:** Choice D offers evidence from other hospital networks with higher weekend specialist staffing. Such a comparison could support the chief medical officer's conclusion, but the argument does not need this external evidence to be true in order to hold. It is therefore supporting information rather than a necessary assumption.
+**mistake_c:** Choice C claims that specialists are more effective than general practitioners. While this may seem supportive, it is not required: the proposal can succeed as long as the gap is caused by specialist availability, and the argument does not depend on a specific comparison between specialists and generalists. Even if specialists were no more effective than general practitioners, the proposal would still require that severity, addressed by choice D, not be the real driver of the gap.
+**mistake_b:** Choice B offers evidence from other hospital networks with higher weekend specialist staffing. Such a comparison could support the chief medical officer's conclusion, but the argument does not need this external evidence to be true in order to hold. It is therefore supporting information rather than a necessary assumption.
 **mistake_e:** Choice E concerns whether the weekday mortality rate has remained stable over five years. The argument is about the gap between weekend and weekday mortality, not about the absolute level of weekday mortality or its trend over time, so this fact is irrelevant to whether the proposal's reasoning holds.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -446,21 +446,21 @@ A car manufacturer claims that its new electric vehicle model will be profitable
 Which of the following would be most useful to evaluate in order to assess the manufacturer's claim?
 
 - A) Whether the manufacturer has prior experience producing gasoline-powered or hybrid vehicles profitably.
-- B) Whether the rate of battery cost decline is expected to slow as the technology matures.
+- B) Whether government purchase incentives for electric vehicles currently exist in the manufacturer's main markets.
 - C) Whether electric vehicles are more popular with urban consumers than with rural consumers.
 - D) Whether the manufacturer plans to export the new vehicle to international markets.
-- E) Whether government purchase incentives for electric vehicles currently exist in the manufacturer's main markets.
+- E) Whether the rate of battery cost decline is expected to slow as the technology matures.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A car manufacturer claims that its new electric vehicle will become profitable within two years on the grounds that battery costs have fallen 50 percent over the past three years, and it expects this declining-cost trend to continue.
 
-**Reasoning.** The task is to identify the question whose answer would be most useful in assessing the manufacturer's claim, which means finding the issue whose resolution could swing the conclusion in either direction. The argument is supply-side: its profitability forecast rests entirely on the load-bearing premise that battery costs will keep falling at the recent pace. The most useful point to evaluate is therefore whether that premise holds. Choice B asks precisely this. If the answer is that the rate of cost decline is expected to slow as the technology matures, the expectation of continued cheap production is undercut and the profitability claim weakens. If the answer is that declines are expected to continue, the premise holds and the claim is supported. Because B is the only choice whose answer can move the assessment in both directions, it is the most useful question to evaluate.
+**Reasoning.** The task is to identify the question whose answer would be most useful in assessing the manufacturer's claim, which means finding the issue whose resolution could swing the conclusion in either direction. The argument is supply-side: its profitability forecast rests entirely on the load-bearing premise that battery costs will keep falling at the recent pace. The most useful point to evaluate is therefore whether that premise holds. Choice E asks precisely this. If the answer is that the rate of cost decline is expected to slow as the technology matures, the expectation of continued cheap production is undercut and the profitability claim weakens. If the answer is that declines are expected to continue, the premise holds and the claim is supported. Because E is the only choice whose answer can move the assessment in both directions, it is the most useful question to evaluate.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A is tangential to the argument. The manufacturer's prediction depends on the future trend in battery costs, not on its track record with other vehicles; experience producing other models profitably neither confirms nor disproves that battery costs will keep falling, so the answer to this question would not help assess the claim.
 **mistake_c:** Choice C addresses demand rather than cost. Whether electric vehicles are more popular with urban or rural consumers says nothing about whether battery costs will continue to decline, which is the premise the profitability claim rests on, so its answer would not move the assessment in either direction.
 **mistake_d:** Choice D also concerns demand and market reach rather than production cost. Whether the manufacturer plans to export the vehicle internationally does not bear on the trajectory of battery costs, the supply-side premise underlying the claim, so resolving it would not help evaluate the argument.
-**mistake_e:** Choice E raises a demand-side affordability factor rather than the cost trend the argument relies on. The existence of government incentives affects what buyers pay, not what it costs the manufacturer to produce the vehicle; because the claim turns on continued production-cost declines, the answer to this question would not change the assessment.
+**mistake_b:** Choice B raises a demand-side affordability factor rather than the cost trend the argument relies on. The existence of government incentives affects what buyers pay, not what it costs the manufacturer to produce the vehicle; because the claim turns on continued production-cost declines, the answer to this question would not change the assessment.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -475,20 +475,20 @@ A university recently switched from in-person final exams to take-home essays fo
 Which of the following would be most useful to evaluate in order to determine which explanation is more likely?
 
 - A) Whether the university's graduate and professional programs also switched from in-person exams to take-home essays.
-- B) Whether courses that use plagiarism detection software showed the same grade increase as courses that do not use such software.
+- B) Whether faculty spent more time grading take-home essays than they had spent grading in-person exams.
 - C) Whether the university's tuition and fees increased during the same period as the format change.
-- D) Whether faculty spent more time grading take-home essays than they had spent grading in-person exams.
+- D) Whether courses that use plagiarism detection software showed the same grade increase as courses that do not use such software.
 - E) Whether most students said they preferred the take-home essay format to the in-person exam format.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** After a university replaced in-person final exams with take-home essays in all undergraduate courses, average grades rose by half a letter grade. Some faculty attribute the rise to higher-quality work made possible by the take-home format, while others attribute it to increased academic dishonesty.
 
 **Reasoning.** The task is to identify the consideration that would be most useful in determining which of the two competing explanations is more likely. A useful item to evaluate is one whose answer would point toward one explanation and away from the other. The two hypotheses make different predictions about courses that use plagiarism detection software: if the grade increase stems from genuinely better work, that software should have little effect on the increase, so courses with and without it would show comparable gains; but if the increase stems from cheating, detection software should suppress dishonesty and therefore dampen the gain in courses that use it relative to courses that do not. Determining whether courses with plagiarism detection showed the same grade increase as courses without it thus discriminates between the explanations: matching increases would undercut the dishonesty explanation, whereas a smaller increase where detection is used would support it. Because the answer either way favors one hypothesis over the other, this is the most useful point to evaluate.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A concerns a different population. Whether graduate programs also adopted take-home essays says nothing about why undergraduate grades rose, and either answer leaves both explanations equally tenable.
 **mistake_c:** Choice C is irrelevant to the causal question. A change in tuition during the same period has no bearing on whether the grade increase resulted from better work or from cheating; its answer would not favor either explanation.
-**mistake_d:** Choice D addresses faculty effort rather than the source of student performance. How much time instructors spent grading does not indicate whether the higher grades reflect superior work or dishonesty, so evaluating it cannot decide between the two hypotheses.
+**mistake_b:** Choice B addresses faculty effort rather than the source of student performance. How much time instructors spent grading does not indicate whether the higher grades reflect superior work or dishonesty, so evaluating it cannot decide between the two hypotheses.
 **mistake_e:** Choice E is about student preference, not cause. Whether students liked the take-home format better does not reveal whether the grade increase came from improved work or from academic dishonesty, so it fails to discriminate between the explanations.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -504,21 +504,21 @@ A tech startup claims that its new algorithm for matching job seekers with emplo
 Which of the following would be most important to know in order to evaluate the startup's claim?
 
 - A) Whether the startup's founders have prior experience working in the recruiting industry or in human-resources technology.
-- B) Whether the companies that volunteered for the study were already faster than average at hiring before adopting the algorithm.
+- B) Whether the companies in the study primarily hire for technical roles or for non-technical roles.
 - C) Whether the algorithm relies on machine learning or instead on a set of rule-based matching criteria developed by the startup's engineers.
 - D) Whether the startup plans to offer the algorithm as a monthly subscription service or as a one-time software purchase.
-- E) Whether the companies in the study primarily hire for technical roles or for non-technical roles.
+- E) Whether the companies that volunteered for the study were already faster than average at hiring before adopting the algorithm.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A tech startup reports that its job-matching algorithm reduces average time-to-hire by 35 percent relative to traditional methods, a figure from a six-month trial of 50 companies that volunteered to use the platform.
 
-**Reasoning.** The task is to find the question whose answer would most help evaluate the claim that the algorithm itself produced the 35 percent reduction. Because the 50 companies were not chosen at random but volunteered, the study is open to self-selection: the participants may differ systematically from companies in general on the very outcome being measured. The most useful question is one whose possible answers pull the conclusion in opposite directions. Choice B does this: if the volunteers were already faster than average at hiring before adopting the algorithm, the reported gain may reflect who signed up rather than the algorithm, undermining the claim; if they were typical, the reduction is more plausibly the algorithm's effect, supporting it.
+**Reasoning.** The task is to find the question whose answer would most help evaluate the claim that the algorithm itself produced the 35 percent reduction. Because the 50 companies were not chosen at random but volunteered, the study is open to self-selection: the participants may differ systematically from companies in general on the very outcome being measured. The most useful question is one whose possible answers pull the conclusion in opposite directions. Choice E does this: if the volunteers were already faster than average at hiring before adopting the algorithm, the reported gain may reflect who signed up rather than the algorithm, undermining the claim; if they were typical, the reduction is more plausibly the algorithm's effect, supporting it.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A is tempting because the founders' recruiting experience seems to bear on credibility, but it concerns the people behind the algorithm, not whether the algorithm produced the measured reduction. Its answer leaves the trial data and the self-selection concern untouched.
 **mistake_c:** Choice C invites the assumption that a sophisticated method would validate the result, but the algorithm's internal mechanism is irrelevant to whether the observed effect is genuine. Machine learning or rule-based criteria, the self-selection question remains unanswered.
 **mistake_d:** Choice D concerns the commercial model, which has surface appeal as a business matter but no bearing on the performance claim. Subscription or one-time purchase does nothing to confirm or undercut the reduction in time-to-hire.
-**mistake_e:** Choice E is the most tempting wrong answer because role mix sounds like it could affect hiring speed, but it is a secondary factor that misses the central weakness. Even knowing the role composition, whether the volunteers were already faster-than-average hirers would stay unresolved, whereas B addresses that flaw directly.
+**mistake_b:** Choice B is the most tempting wrong answer because role mix sounds like it could affect hiring speed, but it is a secondary factor that misses the central weakness. Even knowing the role composition, whether the volunteers were already faster-than-average hirers would stay unresolved, whereas E addresses that flaw directly.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -533,20 +533,20 @@ A government health agency recommends that adults consume at least three serving
 Which of the following would be most useful in evaluating whether whole grains themselves reduce cardiovascular risk?
 
 - A) Whether the agency's recommended daily intake of whole grains has changed substantially at any point over the past two decades.
-- B) Whether the studies controlled for differences in exercise, smoking, and other health behaviors between high and low whole grain consumers.
+- B) Whether dietary guidelines issued by government health agencies in other countries also recommend consuming whole grains daily.
 - C) Whether whole grains are more expensive than refined grains in most grocery stores, and whether their price has risen faster than that of refined grains.
-- D) Whether dietary guidelines issued by government health agencies in other countries also recommend consuming whole grains daily.
+- D) Whether the studies controlled for differences in exercise, smoking, and other health behaviors between high and low whole grain consumers.
 - E) Whether individuals who consume exactly two servings of whole grains per day also have reduced cardiovascular risk.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A government health agency recommends at least three daily servings of whole grains, citing studies in which people eating that amount had a 25 percent lower cardiovascular risk than people eating fewer than one serving. Critics observe that whole grain consumption correlates with other health-conscious behaviors, such as regular exercise and lower smoking rates.
 
 **Reasoning.** The task is to identify the question whose answer would be most useful in evaluating whether whole grains themselves, rather than something accompanying their consumption, reduce cardiovascular risk. The critics raise a confounding-variable objection: the observed correlation may reflect the other healthy habits of whole grain eaters rather than any effect of the grains. A useful evaluative question must therefore bear directly on whether that confound has been ruled out, because the answer should be able to swing the conclusion in either direction. Asking whether the studies controlled for differences in exercise, smoking, and other health behaviors does exactly this. If the studies did control for those factors and the 25 percent reduction persisted, the case that whole grains themselves lower risk is strengthened. If the studies did not control for them, the critics' alternative explanation remains live and the causal claim is undermined. Because the two possible answers point toward opposite conclusions about causation, the question is decisive for the evaluation.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A asks about changes in the recommended intake over the past two decades. The history of the guideline says nothing about whether the grains themselves cause the reduction in risk; whether the recommendation rose, fell, or held steady, the confounding objection would be neither addressed nor resolved.
 **mistake_c:** Choice C asks whether whole grains cost more than refined grains. Relative price concerns affordability and purchasing behavior, not biological cause and effect, so no answer to it would help determine whether the grains themselves reduce cardiovascular risk.
-**mistake_d:** Choice D asks whether other dietary guidelines also recommend whole grains. Agreement among guidelines reflects shared recommendations, not independent evidence about causation; the other guidelines could rest on the very same uncontrolled studies, so this does nothing to address the critics' confounding objection.
+**mistake_b:** Choice B asks whether other dietary guidelines also recommend whole grains. Agreement among guidelines reflects shared recommendations, not independent evidence about causation; the other guidelines could rest on the very same uncontrolled studies, so this does nothing to address the critics' confounding objection.
 **mistake_e:** Choice E asks whether people eating exactly two servings also show reduced risk. While a dose-response pattern can be scientifically interesting, it does not test whether the association is causal rather than the product of the eaters' other healthy habits; any intermediate-dose benefit could itself be explained by the same confounding behaviors the critics name.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -562,21 +562,21 @@ An educational technology company found that students who used its adaptive lear
 Which of the following would be most useful in evaluating the company's argument?
 
 - A) Whether the software is fully compatible with all of the major operating systems, devices, and network configurations currently used in schools.
-- B) Whether initially low-performing students who used the software for 30 minutes per day showed gains comparable to the high performers who used it.
+- B) Whether teachers who actively encouraged use of the software also had higher overall class averages regardless of how much individual students used it.
 - C) Whether the company offers volume discounts to school districts that purchase software licenses for multiple schools at once.
 - D) Whether the software's adaptive lessons cover all of the academic subjects tested on the end-of-year assessments.
-- E) Whether teachers who actively encouraged use of the software also had higher overall class averages regardless of how much individual students used it.
+- E) Whether initially low-performing students who used the software for 30 minutes per day showed gains comparable to the high performers who used it.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** An educational technology company observes that students who voluntarily used its adaptive learning software for at least 30 minutes per day scored 18 percent higher on end-of-year assessments than nonusers, and it concludes that schools should purchase the software to improve student outcomes. Teachers report, however, that the heaviest users were already among the highest performers before the software was introduced.
 
-**Reasoning.** The task is to identify the information that would be most useful in evaluating the company's argument, which means finding the consideration whose answer would most affect whether the conclusion holds. The argument treats software use as the cause of the higher scores, but because use was voluntary and the most frequent users were already top performers, the observed gap may reflect preexisting ability rather than any effect of the software. To evaluate the causal claim, one must determine whether the software produces gains independent of who chooses to use it. Choice B does exactly this by directing attention to students who were initially low performers yet used the software for the same 30 minutes per day. Knowing whether these students achieved gains comparable to the high performers is decisive: if they did, the software appears to cause improvement, supporting the recommendation; if they did not, the 18 percent advantage is better explained by the selection of already-strong students, and the argument collapses. Because the answer to this question swings the evaluation in opposite directions, it is the most useful information.
+**Reasoning.** The task is to identify the information that would be most useful in evaluating the company's argument, which means finding the consideration whose answer would most affect whether the conclusion holds. The argument treats software use as the cause of the higher scores, but because use was voluntary and the most frequent users were already top performers, the observed gap may reflect preexisting ability rather than any effect of the software. To evaluate the causal claim, one must determine whether the software produces gains independent of who chooses to use it. Choice E does exactly this by directing attention to students who were initially low performers yet used the software for the same 30 minutes per day. Knowing whether these students achieved gains comparable to the high performers is decisive: if they did, the software appears to cause improvement, supporting the recommendation; if they did not, the 18 percent advantage is better explained by the selection of already-strong students, and the argument collapses. Because the answer to this question swings the evaluation in opposite directions, it is the most useful information.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A raises a question of technical logistics. Whether the software runs on all major operating systems bears on whether schools can deploy it, not on whether it actually causes higher assessment scores, so its answer would not help evaluate the causal reasoning at issue.
 **mistake_c:** Choice C concerns pricing. Whether the company offers volume discounts affects the cost of purchasing licenses but says nothing about whether the software improves outcomes, so it cannot help determine whether the observed gains are real effects or a selection artifact.
 **mistake_d:** Choice D addresses subject coverage. Although whether the software covers every tested subject has some bearing on its usefulness, it does not confront the central problem that the heaviest users were already high performers; even full coverage would leave the selection-bias objection unanswered, so this information is secondary.
-**mistake_e:** Choice E shifts attention to teacher quality. Whether teachers who encouraged software use had higher class averages tests a different possible confound rather than the student-level confound the passage explicitly names, namely that the users were already top students. It therefore does not isolate whether the software itself causes gains as directly as the credited choice does.
+**mistake_b:** Choice B shifts attention to teacher quality. Whether teachers who encouraged software use had higher class averages tests a different possible confound rather than the student-level confound the passage explicitly names, namely that the users were already top students. It therefore does not isolate whether the software itself causes gains as directly as the credited choice does.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -591,20 +591,20 @@ A recent survey of 500 small business owners found that 78% consider employee re
 Which of the following can be most reasonably inferred from the information above?
 
 - A) Small businesses are less profitable now than they were five years ago.
-- B) The labor market conditions have made it more difficult for small businesses to keep their workers.
+- B) The increase in wages has not been sufficient to solve small businesses' retention problems.
 - C) Large corporations, which can offer higher pay, do not experience the retention challenges that small businesses face.
-- D) The increase in wages has not been sufficient to solve small businesses' retention problems.
+- D) The labor market conditions have made it more difficult for small businesses to keep their workers.
 - E) Small business owners are less skilled at management than they were five years ago.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A survey of small business owners shows that the share citing employee retention as their biggest challenge rose sharply over five years, a period during which the national unemployment rate fell substantially and entry-level wages rose by 22 percent.
 
 **Reasoning.** The task is to identify the statement that is most reasonably inferred from the information given, meaning the statement that the stated facts most directly support. Two facts move together over the same five-year span: the labor market tightened, as shown by falling unemployment and rising entry-level wages, and the difficulty of retaining employees grew, as shown by the jump from 54 percent to 78 percent of owners naming retention their biggest challenge. A tighter labor market gives workers more outside opportunities and bargaining power, which makes keeping them harder. The statement that labor market conditions have made it more difficult for small businesses to keep their workers connects these co-varying facts in the manner the data most directly support, without asserting anything the figures do not contain. It is therefore the most reasonable inference.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A is not supported by the information given. The passage reports rising retention concerns and rising entry-level wages, but it says nothing about small business revenues, costs, or profitability. Higher wages or retention difficulty cannot, by themselves, establish that small businesses are less profitable than they were five years ago.
 **mistake_c:** Choice C introduces a comparison the data do not address. The survey covers only small business owners; it provides no information about whether large corporations face the same retention challenges, so no inference about large corporations can be drawn.
-**mistake_d:** Choice D goes beyond what the facts force. The 22 percent figure is an average increase in entry-level wages across the period; the passage does not state what any individual small business did with wages or whether those actions were aimed at retention. Concluding that wage increases were insufficient to solve the retention problem requires information about specific retention efforts and their results that the passage does not supply.
+**mistake_b:** Choice B goes beyond what the facts force. The 22 percent figure is an average increase in entry-level wages across the period; the passage does not state what any individual small business did with wages or whether those actions were aimed at retention. Concluding that wage increases were insufficient to solve the retention problem requires information about specific retention efforts and their results that the passage does not supply.
 **mistake_e:** Choice E rests on an unfounded value judgment. The passage offers no information about owners' management skill, and a rise in retention difficulty driven by external labor market conditions does not imply that owners have become less skilled managers.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -620,21 +620,21 @@ A consumer electronics company discontinued its tablet product line last year, c
 Which of the following can be most reasonably inferred from the information above?
 
 - A) Consumers now generally prefer purchasing smartphones and laptops to purchasing tablets.
-- B) The tablet product line was reducing the company's overall profit margin before it was discontinued.
+- B) Smartphones and laptops are inherently more innovative products than tablets are.
 - C) The company's competitors also experienced increased revenue this year.
 - D) The company will never re-enter the tablet market, regardless of how consumer demand for tablets evolves in the future.
-- E) Smartphones and laptops are inherently more innovative products than tablets are.
+- E) The tablet product line was reducing the company's overall profit margin before it was discontinued.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A consumer electronics company discontinued its tablet product line last year because of declining sales. This year the company reported a 15 percent increase in overall revenue and a 20 percent increase in profit margin, while its smartphone and laptop divisions both posted record sales.
 
 **Reasoning.** The task is to identify the statement that can most reasonably be inferred from the information given, so the credited answer must follow from the passage without requiring outside assumptions. The passage establishes a clear sequence: the tablet line was removed, and afterward the profit margin rose by 20 percent even as the remaining divisions performed at record levels. Because the surviving smartphone and laptop divisions account for the company's record sales, the improvement in overall margin cannot be attributed to those divisions suddenly becoming less efficient, and the only structural change identified is the elimination of the tablet line. The most reasonable explanation that the text itself supports is therefore that the discontinued tablet line had been depressing the company's overall profit margin while it was still in operation; removing a lower-margin or unprofitable line raises the company-wide average. This conclusion stays within the bounds of the evidence and does not overreach into predictions, comparisons with competitors, or value judgments.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A generalizes from the results of a single company to a claim about consumer preferences in general. The passage reports one firm's sales and margin figures and says nothing about what consumers as a whole prefer, so this statement is not supported.
 **mistake_c:** Choice C introduces information about the company's competitors, which the passage never mentions. Nothing in the stimulus addresses whether other firms experienced increased revenue, so this cannot be inferred.
 **mistake_d:** Choice D is too absolute. The passage states only that the tablet line was discontinued; it provides no basis for the extreme prediction that the company will never re-enter the tablet market, and a future return is not ruled out.
-**mistake_e:** Choice E is an unsupported value judgment. The passage offers no comparison of how innovative the various products are, so the claim that smartphones and laptops are more innovative than tablets does not follow from the information given.
+**mistake_b:** Choice B is an unsupported value judgment. The passage offers no comparison of how innovative the various products are, so the claim that smartphones and laptops are more innovative than tablets does not follow from the information given.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -707,20 +707,20 @@ A pharmaceutical regulatory agency recently shortened the average drug approval 
 Which of the following can be most reasonably inferred from the information above?
 
 - A) The additional reviewers hired by the agency were less experienced than the existing staff.
-- B) The shortened review timeline may have resulted in less thorough evaluation of some drugs' safety profiles.
+- B) All drugs approved under the new timeline pose a greater safety risk than those approved under the old timeline.
 - C) The pharmaceutical industry pressured the agency to shorten the approval timeline.
-- D) All drugs approved under the new timeline pose a greater safety risk than those approved under the old timeline.
+- D) The shortened review timeline may have resulted in less thorough evaluation of some drugs' safety profiles.
 - E) The agency should return to the 14-month approval timeline.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A regulatory agency shortened its average drug-approval timeline from 14 months to 9 months and, in the year that followed, approved 40 percent more drugs than the previous year. Within two years of approval, 12 percent of these newly approved drugs required safety-related label revisions, compared with a historical average of 4 percent under the longer timeline.
 
 **Reasoning.** The task is to identify the statement that can most reasonably be inferred, meaning the conclusion that the passage best supports without overreaching. The passage establishes a correlation: the period of faster review coincided with a tripling of the safety-revision rate, from 4 percent to 12 percent. A defensible inference must remain within the strength of this evidence. The credited statement notes only that the shortened timeline may have resulted in less thorough evaluation of some drugs' safety profiles. The hedged language, may have and some, matches the evidence precisely. The marked rise in safety revisions is consistent with the possibility that compressed review left certain safety issues undetected, and the qualifiers avoid asserting a definitive cause or a universal effect that the data cannot establish. Because the statement claims no more than the correlation supports, it is the conclusion most reasonably drawn from the information given.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A identifies a specific cause, the relative inexperience of the newly hired reviewers, that the passage never addresses. The passage states that additional reviewers were hired but provides no information about their experience, so this is only one of several possible explanations rather than an inference the text supports.
 **mistake_c:** Choice C introduces external pressure from the pharmaceutical industry as the reason for shortening the timeline. The passage offers no information about who or what prompted the change, so this claim is brought in from outside the text and cannot be inferred.
-**mistake_d:** Choice D overstates the evidence by asserting that all drugs approved under the new timeline pose a greater safety risk. The passage indicates that only 12 percent of the new approvals required safety revisions, meaning 88 percent did not; the data therefore cannot support a claim about every drug.
+**mistake_b:** Choice B overstates the evidence by asserting that all drugs approved under the new timeline pose a greater safety risk. The passage indicates that only 12 percent of the new approvals required safety revisions, meaning 88 percent did not; the data therefore cannot support a claim about every drug.
 **mistake_e:** Choice E is a policy recommendation to return to the 14-month timeline, not an inference. The passage presents data about outcomes but does not weigh the benefits of faster, more numerous approvals against the higher revision rate, so it provides no basis for recommending a particular course of action.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -736,21 +736,21 @@ A company's CEO noted that employee satisfaction scores increased by 20% after t
 Which of the following best describes a flaw in the CEO's reasoning?
 
 - A) He fails to consider that the increase in satisfaction might prove temporary, fading as employees adjust to the novelty of the new schedule.
-- B) He assumes that what worked at one company will necessarily work at all companies regardless of industry, size, or workforce composition.
+- B) He does not specify how employee satisfaction was measured or which employees responded.
 - C) He does not provide data on whether the company's productivity changed after the switch to the four-day schedule.
 - D) He ignores the possibility that many employees were deeply dissatisfied with their schedules before the change.
-- E) He does not specify how employee satisfaction was measured or which employees responded.
+- E) He assumes that what worked at one company will necessarily work at all companies regardless of industry, size, or workforce composition.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A CEO observes that employee satisfaction scores at his company rose by 20 percent after the company adopted a four-day workweek, and on that basis he concludes that all companies should adopt a four-day workweek in order to improve employee satisfaction.
 
 **Reasoning.** The task is to identify the flaw in the CEO's reasoning. The evidence concerns the experience of a single company, yet the conclusion is a sweeping prescription applying to every company. This is a hasty generalization: the argument treats one favorable outcome at one organization as sufficient grounds for a universal claim. Companies differ in industry, size, and workforce composition, and any of these differences could determine whether a four-day workweek produces the same effect elsewhere. Because the CEO assumes that a result observed in one specific setting will necessarily hold across all settings, the inferential leap from the single case to the universal recommendation is unjustified, and the choice that names this unwarranted assumption identifies the flaw.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A raises the methodological concern that the measured increase in satisfaction could fade as employees grow accustomed to the new schedule. This questions whether the observed effect is durable, but it does not address the structural error of generalizing from a single company to all companies, which is the actual flaw in the reasoning.
 **mistake_c:** Choice C faults the CEO for omitting data on productivity. The argument, however, concerns employee satisfaction, not productivity, so the absence of productivity data is beside the point and is not the logical flaw in moving from one company's result to a recommendation for every company.
 **mistake_d:** Choice D suggests the CEO ignores the possibility that employees were dissatisfied before the change. A reported 20 percent increase necessarily presupposes some earlier baseline level of satisfaction, so this introduces no contradiction and identifies no error in the argument's reasoning.
-**mistake_e:** Choice E objects that the CEO does not specify how satisfaction was measured. This is a detail about measurement methodology rather than a defect in the argument's logic, and it does not capture the unwarranted leap from a single company's experience to a conclusion about all companies.
+**mistake_b:** Choice B objects that the CEO does not specify how satisfaction was measured. This is a detail about measurement methodology rather than a defect in the argument's logic, and it does not capture the unwarranted leap from a single company's experience to a conclusion about all companies.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -794,20 +794,20 @@ A health policy analyst argues that the government should cut funding for preven
 Which of the following best describes a flaw in the analyst's reasoning?
 
 - A) The analyst does not consider that preventive programs may have important benefits beyond reducing hospital admissions, such as improving patients' quality of life.
-- B) The analyst ignores the possibility that hospital admissions for preventable diseases would have increased even more without the preventive programs.
+- B) The analyst does not compare the government's spending on prevention with the corresponding spending levels in other countries.
 - C) The analyst fails to specify which preventable diseases are included in the hospital admission data cited in the argument.
-- D) The analyst does not compare the government's spending on prevention with the corresponding spending levels in other countries.
+- D) The analyst ignores the possibility that hospital admissions for preventable diseases would have increased even more without the preventive programs.
 - E) The analyst assumes that all preventive health programs, regardless of design or target population, are equally effective.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A health policy analyst observes that hospital admissions for preventable diseases have not declined over a decade despite increased spending on preventive programs, and on that basis concludes that the programs are ineffective and recommends cutting their funding.
 
-**Reasoning.** The task is to identify the flaw in the analyst's reasoning. The argument treats the absence of a decline in admissions as proof that the programs accomplished nothing. This inference is sound only if admissions would have remained the same had the programs not existed. The analyst never establishes that baseline. If admissions for preventable diseases would have risen without the programs, then steady admissions would actually represent a successful outcome, with the programs holding the number down rather than failing. By comparing the observed figures only against their own earlier level, and never against what would have occurred in the absence of the programs, the analyst overlooks this counterfactual and so cannot legitimately conclude that the programs are ineffective. Choice B names exactly this overlooked possibility, that admissions would have increased even more without the programs, and therefore identifies the flaw.
+**Reasoning.** The task is to identify the flaw in the analyst's reasoning. The argument treats the absence of a decline in admissions as proof that the programs accomplished nothing. This inference is sound only if admissions would have remained the same had the programs not existed. The analyst never establishes that baseline. If admissions for preventable diseases would have risen without the programs, then steady admissions would actually represent a successful outcome, with the programs holding the number down rather than failing. By comparing the observed figures only against their own earlier level, and never against what would have occurred in the absence of the programs, the analyst overlooks this counterfactual and so cannot legitimately conclude that the programs are ineffective. Choice D names exactly this overlooked possibility, that admissions would have increased even more without the programs, and therefore identifies the flaw.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A raises a benefit outside the scope of the argument. The analyst's claim concerns whether the programs reduce hospital admissions, not whether they produce other advantages such as improved quality of life. Pointing to additional benefits does not expose the error in reasoning from unchanged admissions to ineffectiveness, so this does not describe the flaw.
 **mistake_c:** Choice C points to a methodological detail. Specifying which preventable diseases appear in the admission data might refine the analysis, but the analyst's core mistake is treating flat admissions as proof of failure without a counterfactual baseline. The reasoning would remain flawed in the same way even if every disease were specified, so this is not the flaw.
-**mistake_d:** Choice D introduces an irrelevant comparison. How the government's prevention spending compares with that of other countries has no bearing on whether the steady admissions figures demonstrate that the programs are ineffective. The argument's defect lies in its missing counterfactual, not in any failure to benchmark against other countries.
+**mistake_b:** Choice B introduces an irrelevant comparison. How the government's prevention spending compares with that of other countries has no bearing on whether the steady admissions figures demonstrate that the programs are ineffective. The argument's defect lies in its missing counterfactual, not in any failure to benchmark against other countries.
 **mistake_e:** Choice E describes an assumption the argument does not depend on. Whether all preventive programs are equally effective is a question of variation among programs, but the analyst's conclusion turns on the aggregate effect on admissions. The reasoning error is the failure to consider what admissions would have been without the programs, not an assumption about uniform effectiveness, so this does not capture the flaw.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -823,21 +823,21 @@ A financial advisor argues that index funds are always superior to actively mana
 Which of the following best describes a flaw in the financial advisor's reasoning?
 
 - A) She does not define what constitutes a "rational" investor or explain how rationality should be assessed for investors with differing goals.
-- B) She ignores the possibility that the 15% of actively managed funds that outperformed may be identifiable in advance, making it rational for some investors to select them.
+- B) She assumes that all index funds available to individual investors carry essentially identical fee structures and expense ratios.
 - C) She fails to acknowledge that past performance, however consistent it has been over the past century, does not guarantee future results.
 - D) She does not consider that some investors genuinely enjoy the process of researching, comparing, and ultimately selecting actively managed funds for their portfolios.
-- E) She assumes that all index funds available to individual investors carry essentially identical fee structures and expense ratios.
+- E) She ignores the possibility that the 15% of actively managed funds that outperformed may be identifiable in advance, making it rational for some investors to select them.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A financial advisor observes that, over any 15-year period in the past century, index funds outperformed 85 percent of actively managed funds after fees, and she concludes that no rational investor should ever choose an actively managed fund.
 
-**Reasoning.** The task is to identify the flaw in the advisor's reasoning. The cited evidence is a statement about the aggregate: across the population of actively managed funds, most are beaten by index funds. From this the advisor draws a universal conclusion about every individual investor's choice. The reasoning error is that it treats a fact true on average as if it dictated the correct decision in every individual case. The data themselves concede that 15 percent of actively managed funds outperform. If an investor could reliably identify those outperforming funds in advance, then choosing an actively managed fund could be perfectly rational, and the universal conclusion would fail. The advisor never rules out this possibility, so her inference from "most active funds underperform" to "no rational investor should ever pick active" is unwarranted. Choice B names precisely this gap: the overlooked possibility that the outperforming minority may be identifiable beforehand.
+**Reasoning.** The task is to identify the flaw in the advisor's reasoning. The cited evidence is a statement about the aggregate: across the population of actively managed funds, most are beaten by index funds. From this the advisor draws a universal conclusion about every individual investor's choice. The reasoning error is that it treats a fact true on average as if it dictated the correct decision in every individual case. The data themselves concede that 15 percent of actively managed funds outperform. If an investor could reliably identify those outperforming funds in advance, then choosing an actively managed fund could be perfectly rational, and the universal conclusion would fail. The advisor never rules out this possibility, so her inference from "most active funds underperform" to "no rational investor should ever pick active" is unwarranted. Choice E names precisely this gap: the overlooked possibility that the outperforming minority may be identifiable beforehand.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A raises a definitional quibble about the word "rational." The advisor's argument does not turn on a precise definition of a rational investor; even granting an ordinary sense of the term, the inference from an average to a universal prescription still fails. This semantic objection does not expose the actual reasoning gap.
 **mistake_c:** Choice C offers a generic caution that past performance does not guarantee future results. This objection applies equally to both index funds and actively managed funds, so it does not undermine the comparison between them, and it does not address the specific leap from "most active funds underperform" to "no investor should ever choose one."
 **mistake_d:** Choice D points to investors who enjoy researching and selecting active funds. The advisor's claim concerns financial rationality, not personal enjoyment, so introducing a non-financial motive does not identify a flaw in her financial argument.
-**mistake_e:** Choice E faults the advisor for assuming all index funds share identical fee structures. The argument does not depend on any such assumption; the study already accounts for fees, and uniformity of index-fund fees is irrelevant to the leap from an aggregate result to a universal prescription.
+**mistake_b:** Choice B faults the advisor for assuming all index funds share identical fee structures. The argument does not depend on any such assumption; the study already accounts for fees, and uniformity of index-fund fees is irrelevant to the leap from an aggregate result to a universal prescription.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -881,20 +881,20 @@ A regional airline recently replaced its fleet of older turboprop aircraft with 
 Which of the following, if true, most weakens the CFO's conclusion?
 
 - A) The new jet aircraft require less frequent maintenance than the turboprops they replaced.
-- B) Fuel prices industry-wide increased by approximately 20% during the same six-month period.
+- B) Competing regional airlines continue to operate turboprop aircraft on similar routes.
 - C) Passenger loads on the airline's short-haul routes have remained roughly constant since the fleet change.
-- D) Competing regional airlines continue to operate turboprop aircraft on similar routes.
+- D) Fuel prices industry-wide increased by approximately 20% during the same six-month period.
 - E) The airline's marketing campaign emphasized the comfort of the new jets over the turboprops.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A regional airline replaced its older turboprops with newer jets on all short-haul routes, and in the six months since, its fuel costs per passenger rose by 15 percent. The CFO concludes that switching to jets was a financial mistake.
 
 **Reasoning.** The task is to identify the statement that most weakens the CFO's conclusion. The conclusion rests on the implicit assumption that the fleet change is responsible for the 15 percent increase in fuel costs per passenger; if some other factor accounts for that increase, the inference that the switch was a mistake is undermined. The statement that fuel prices across the entire industry rose by approximately 20 percent during the same six-month period supplies exactly such an alternative cause. Against a 20 percent industry-wide increase in fuel prices, an airline whose fuel costs per passenger rose by only 15 percent actually fared better than the baseline, which suggests the jets restrained costs rather than inflating them. This reframing directly attacks the causal claim underlying the conclusion that the switch was a financial mistake.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A points to lower maintenance frequency for the jets. Maintenance is a separate cost category and does not address the fuel-cost claim on which the CFO's conclusion is built; if anything it would support keeping the jets, but it leaves the cited 15 percent fuel increase unexplained and so does not weaken the specific reasoning.
 **mistake_c:** Choice C states that passenger loads remained roughly constant. This merely confirms that the per-passenger cost metric is not distorted by changing traffic, leaving the comparison clean. It is neutral with respect to the conclusion and provides no reason to doubt that the switch was a mistake.
-**mistake_d:** Choice D notes that competing airlines still fly turboprops. The choices made by other carriers say nothing about whether this airline's switch caused its fuel-cost increase or whether that increase reflects a poor financial decision, so this information is irrelevant to the conclusion.
+**mistake_b:** Choice B notes that competing airlines still fly turboprops. The choices made by other carriers say nothing about whether this airline's switch caused its fuel-cost increase or whether that increase reflects a poor financial decision, so this information is irrelevant to the conclusion.
 **mistake_e:** Choice E describes a marketing campaign emphasizing the comfort of the jets. Marketing positioning is not a fuel-cost driver and does not bear on the causal claim about the 15 percent increase, so it neither strengthens nor weakens the CFO's conclusion.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -939,21 +939,21 @@ A study of employees at a large technology firm found that workers who took at l
 Which of the following can be properly inferred from the information above?
 
 - A) Taking consecutive vacation days causes employees to experience higher job satisfaction than taking the same number of scattered days off.
-- B) Among employees at this firm, the pattern of vacation use is associated with reported job satisfaction.
+- B) The firm should require all employees to take at least two weeks of consecutive vacation each year.
 - C) Most employees at the firm prefer consecutive vacation weeks to scattered days off.
 - D) Employees who report higher job satisfaction perform better at their jobs.
-- E) The firm should require all employees to take at least two weeks of consecutive vacation each year.
+- E) Among employees at this firm, the pattern of vacation use is associated with reported job satisfaction.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A study at a large technology firm found that employees who took at least two consecutive weeks of vacation reported 30 percent higher job satisfaction than employees who took only scattered days off, even though the two groups used the same total number of vacation days and had comparable workloads and tenure.
 
 **Reasoning.** The task is to identify the statement that can be properly inferred, meaning a statement that must be true given only the information provided. The study is observational: it compares two groups of employees who chose their own vacation patterns, and it records a difference in reported satisfaction between them. From such data one can establish only that a relationship exists between the two measured variables, not the direction of any causal influence or any fact about variables that were never measured. A properly inferred statement therefore cannot go beyond the reported correlation. The credited answer states that, among employees at this firm, the pattern of vacation use is associated with reported job satisfaction. This is exactly what the data show: one pattern of vacation use coincides with a measurably different level of reported satisfaction, with total vacation days held equal. Because the firm verified comparable workloads and tenure, the observed difference is genuinely tied to the vacation pattern itself, so the association claim is forced by the evidence and introduces no unsupported assumption about causation, preference, performance, or policy.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A overstates the evidence by asserting causation. The study is observational and compares two self-selected groups, so it can establish only that consecutive vacations and higher satisfaction occur together, not that the vacation pattern causes the higher satisfaction. An undetected factor could lead some employees both to take consecutive weeks and to report greater satisfaction.
 **mistake_c:** Choice C concerns employee preferences, which the study never measured. The data report levels of satisfaction for two vacation patterns; they say nothing about which arrangement most employees would prefer, so this claim cannot be inferred.
 **mistake_d:** Choice D introduces job performance, a variable the study did not examine. The information links vacation patterns to reported satisfaction only, providing no basis for any conclusion about how satisfaction relates to performance.
-**mistake_e:** Choice E is a policy recommendation rather than an inference. Even granting the reported association, the passage gives no grounds for prescribing what the firm should do, and recommending a mandatory policy would presuppose the very causal claim the observational data cannot support.
+**mistake_b:** Choice B is a policy recommendation rather than an inference. Even granting the reported association, the passage gives no grounds for prescribing what the firm should do, and recommending a mandatory policy would presuppose the very causal claim the observational data cannot support.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -968,20 +968,20 @@ A popular online retailer reduced the price of its most popular wireless headpho
 Which of the following, if true, best explains the discrepancy described above?
 
 - A) The retailer heavily advertised the weeklong sale on several social media platforms and through email messages sent to all of its registered customers.
-- B) Many customers who intended to buy the headphones had purchased them during a similar sale two weeks earlier, having anticipated the price drop.
+- B) The headphones have been the retailer's best-selling electronic product in every month for more than a year.
 - C) The retailer's competitors also offered discounts on wireless headphones and other audio equipment during the same weeklong period.
-- D) The headphones have been the retailer's best-selling electronic product in every month for more than a year.
+- D) Many customers who intended to buy the headphones had purchased them during a similar sale two weeks earlier, having anticipated the price drop.
 - E) The retailer's shipping times were slightly longer than usual during the sale week due to the high overall volume of orders placed.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** An online retailer cut the price of its most popular wireless headphones by 25 percent during a weeklong sale, yet total revenue from those headphones during the sale week was lower than in a typical non-sale week.
 
 **Reasoning.** The task is to find the option that best explains this discrepancy: a price cut would ordinarily increase the number of units sold, and lower revenue is surprising even allowing for the reduced unit price. An adequate explanation must account for why so few units sold during the sale that the lower per-unit price could not be offset by greater volume. The claim that many customers who intended to buy the headphones had already purchased them two weeks earlier, during a similar sale they anticipated, supplies exactly this mechanism. The pool of would-be buyers was drained before the sale week began, so demand during the sale was unusually thin. With far fewer units sold and each sold at a discount, total revenue falls below the non-sale baseline. This resolves the apparent paradox by explaining both the depressed volume and the resulting drop in revenue.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A states that the retailer heavily advertised the sale on social media and by email. Advertising would be expected to draw more buyers and thereby raise revenue, which deepens rather than resolves the discrepancy of why revenue fell.
 **mistake_c:** Choice C notes that competitors also discounted wireless headphones that week. While competitive pressure could reduce sales somewhat, discounts in an ordinary market still tend to increase volume; this does not explain why revenue dropped below a typical non-sale week, when no such competing discounts were present.
-**mistake_d:** Choice D reports that the headphones have been the retailer's best-selling electronic product for the past year. This is background information about the product's standing and says nothing about why revenue during the sale week declined relative to a normal week.
+**mistake_b:** Choice B reports that the headphones have been the retailer's best-selling electronic product for the past year. This is background information about the product's standing and says nothing about why revenue during the sale week declined relative to a normal week.
 **mistake_e:** Choice E points to slightly longer shipping times caused by high overall order volume. High order volume suggests robust demand, which runs contrary to the premise that revenue from the headphones fell, and so fails to explain the discrepancy.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -997,21 +997,21 @@ A biotech company's new drug candidate reduced tumor size in 70% of mice in a pr
 Which of the following, if true, most strengthens the research director's conclusion?
 
 - A) The drug candidate was developed and optimized using a sophisticated computational model that had been validated on several human cell lines.
-- B) In three previous cases, drugs that produced this specific biological mechanism in mice later showed comparable efficacy in human trials for the same tumor type.
+- B) The biotech company has successfully brought two other oncology drugs from preclinical testing through to market in the past decade.
 - C) The mice used in the trial belonged to a strain specially bred to develop tumors that closely mimic the progression of the human disease.
 - D) The placebo administered to the control mice in the trial was chemically inert and had no known biological effect on tumor growth.
-- E) The biotech company has successfully brought two other oncology drugs from preclinical testing through to market in the past decade.
+- E) In three previous cases, drugs that produced this specific biological mechanism in mice later showed comparable efficacy in human trials for the same tumor type.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A new drug candidate shrank tumors in 70 percent of mice in a preclinical trial, versus 20 percent of mice given a placebo, and the company's research director concluded that the drug will likely be effective against similar tumors in human patients.
 
-**Reasoning.** The task is to identify the choice that most strengthens the research director's conclusion. The evidence concerns results observed in mice, but the conclusion is a claim about humans, so the argument depends on the assumption that a result obtained in mice will carry over to human patients. The weakest link is therefore this cross-species jump, and the strongest support is direct evidence that such a jump is reliable. Choice B supplies exactly that: in three previous cases, drugs producing this specific biological mechanism in mice went on to show comparable efficacy in human trials for the same tumor type. This establishes a track record for the very inference the director is making, namely that this mechanism translates from mice to humans, and so it makes the conclusion more likely to be true. The support is matched to the exact step that is in doubt rather than to the internal quality of the mouse trial or to facts about either species considered alone.
+**Reasoning.** The task is to identify the choice that most strengthens the research director's conclusion. The evidence concerns results observed in mice, but the conclusion is a claim about humans, so the argument depends on the assumption that a result obtained in mice will carry over to human patients. The weakest link is therefore this cross-species jump, and the strongest support is direct evidence that such a jump is reliable. Choice E supplies exactly that: in three previous cases, drugs producing this specific biological mechanism in mice went on to show comparable efficacy in human trials for the same tumor type. This establishes a track record for the very inference the director is making, namely that this mechanism translates from mice to humans, and so it makes the conclusion more likely to be true. The support is matched to the exact step that is in doubt rather than to the internal quality of the mouse trial or to facts about either species considered alone.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A reports that the candidate was designed using a computational model validated on human cell lines, but this concerns how the drug was developed before the trial and says nothing about whether the observed mouse results will reproduce in human patients. It does not address the cross-species inference on which the conclusion depends.
 **mistake_c:** Choice C notes that the mice were bred to develop tumors mimicking human disease, which lends some plausibility to the model. However, it only suggests that the test conditions resemble human disease; it provides no evidence that drug responses actually translate from mice to humans, and so it is weaker than direct precedent for that translation.
 **mistake_d:** Choice D states that the placebo was chemically inert with no known biological effect. This bears on the internal validity of the mouse trial by confirming that the comparison was fair, but it does not address whether results in mice will hold in human patients, which is the gap in the argument.
-**mistake_e:** Choice E cites the company's success in bringing two other drugs to market over the past decade. This speaks to the company's general reputation and capability, not to the biological likelihood that this drug's mouse results will translate to humans, and therefore does not strengthen the specific conclusion drawn.
+**mistake_b:** Choice B cites the company's success in bringing two other drugs to market over the past decade. This speaks to the company's general reputation and capability, not to the biological likelihood that this drug's mouse results will translate to humans, and therefore does not strengthen the specific conclusion drawn.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1026,20 +1026,20 @@ The editor of a weekly news magazine argues that the magazine should shift its d
 Which of the following, if true, most seriously weakens the editor's argument?
 
 - A) The magazine's mobile app was launched three years ago, has been downloaded by a large majority of subscribers, and has received generally positive reviews in the technology press.
-- B) Advertisers pay significantly higher rates for full-page print ads than for digital banner ads, and the magazine's print-ad revenues currently exceed its total production costs.
+- B) The magazine's print readership skews considerably older than its digital readership and is concentrated in a handful of metropolitan areas.
 - C) Several other weekly news magazines that shifted to digital-only distribution reported steady subscriber growth within two years of completing the transition.
-- D) The magazine's print readership skews considerably older than its digital readership and is concentrated in a handful of metropolitan areas.
+- D) Advertisers pay significantly higher rates for full-page print ads than for digital banner ads, and the magazine's print-ad revenues currently exceed its total production costs.
 - E) Producing the print edition requires the magazine to work with a specialized printing partner with whom it has a five-year contract.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A magazine editor recommends abandoning print in favor of digital-only distribution, noting that 80 percent of subscribers already read most articles on the mobile app and that eliminating print would reduce production costs by 40 percent.
 
 **Reasoning.** The task is to identify the statement that most seriously weakens the editor's argument. The editor's case rests entirely on the cost side of the ledger: dropping print saves money, so dropping print is advisable. This reasoning treats the print edition purely as an expense and ignores any revenue the print edition might generate. To weaken the argument, the correct answer must supply a consideration that makes eliminating print financially worse, not better. The statement that print advertisements command much higher rates than digital banner ads, and that print-ad revenue currently exceeds the magazine's total production costs, does exactly that. If the print edition brings in more revenue than the entire production budget, then eliminating print forfeits revenue that outweighs the 40 percent cost savings. The supposed benefit of the editor's proposal is reversed: the magazine would lose more than it saves, so the digital-only conclusion is undermined.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A reports that the mobile app is several years old and well reviewed. The quality and age of the app say nothing about whether eliminating print is financially sound, and a favorable reception for the app would tend to support, not weaken, the editor's preference for digital. It therefore does not undermine the argument.
 **mistake_c:** Choice C states that other magazines that went digital-only gained subscribers within two years. This evidence suggests that the transition can succeed, which strengthens rather than weakens the editor's recommendation. A consideration that supports the conclusion cannot be the answer to a question asking what most seriously weakens it.
-**mistake_d:** Choice D observes that print readers tend to be older than digital readers. This is a demographic detail with no clear bearing on the cost-and-revenue comparison underlying the decision, and it gives no reason to believe that eliminating print would harm the magazine. It does not weaken the argument.
+**mistake_b:** Choice B observes that print readers tend to be older than digital readers. This is a demographic detail with no clear bearing on the cost-and-revenue comparison underlying the decision, and it gives no reason to believe that eliminating print would harm the magazine. It does not weaken the argument.
 **mistake_e:** Choice E notes that producing print requires a five-year contract with a specialized printer. While such a contract is a practical obstacle, it does not show that going digital-only is the wrong choice on the merits; a contract is a temporary, renegotiable constraint rather than a flaw in the editor's economic reasoning. It therefore does not most seriously weaken the argument.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1055,21 +1055,21 @@ The city council of Riverton is considering a proposal to build a new light-rail
 The supporters' argument depends on which of the following assumptions?
 
 - A) The light-rail line will be completed on schedule and within the budget originally projected for the project.
-- B) The reduction in highway traffic from commuters switching to light rail will not be offset by other drivers who begin using the highway once it becomes less congested.
+- B) Over its lifetime, the light-rail line will be cheaper to maintain and operate than the highway it is intended to relieve.
 - C) Most of the commuters who drive on the highway during rush hour are traveling between the downtown business district and the western suburbs rather than to other destinations.
 - D) Light-rail systems constructed in several other cities of comparable size have measurably reduced rush-hour highway congestion in those cities.
-- E) Over its lifetime, the light-rail line will be cheaper to maintain and operate than the highway it is intended to relieve.
+- E) The reduction in highway traffic from commuters switching to light rail will not be offset by other drivers who begin using the highway once it becomes less congested.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** Supporters of a proposed light-rail line connecting downtown Riverton to its western suburbs argue that the line will reduce rush-hour congestion on the main highway between the two areas, because many commuters who now drive will switch to the rail.
 
-**Reasoning.** The task is to identify an assumption on which the argument depends, that is, a statement that must be true for the conclusion to follow. The argument moves from a premise about behavior (many drivers will switch to rail) to a conclusion about a net outcome (highway congestion will fall). This inference holds only if the road space freed by the switchers is not simply reclaimed by other drivers. Choice B states exactly that condition: the reduction caused by switchers will not be offset by other drivers who start using the now-less-congested highway. Applying the negation test confirms its necessity. If B is false, then other drivers do move onto the highway in response to the freed space, replacing the departed commuters and restoring congestion to its former level; in that case congestion would not be reduced and the conclusion would fail. Because negating B destroys the argument, B is a required assumption.
+**Reasoning.** The task is to identify an assumption on which the argument depends, that is, a statement that must be true for the conclusion to follow. The argument moves from a premise about behavior (many drivers will switch to rail) to a conclusion about a net outcome (highway congestion will fall). This inference holds only if the road space freed by the switchers is not simply reclaimed by other drivers. Choice E states exactly that condition: the reduction caused by switchers will not be offset by other drivers who start using the now-less-congested highway. Applying the negation test confirms its necessity. If E is false, then other drivers do move onto the highway in response to the freed space, replacing the departed commuters and restoring congestion to its former level; in that case congestion would not be reduced and the conclusion would fail. Because negating E destroys the argument, E is a required assumption.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A concerns whether the line is completed on schedule and within budget, which bears on the project's feasibility, not on whether a completed line would reduce congestion. The argument can succeed or fail regardless of cost or timing, so this is not an assumption the reasoning depends on.
 **mistake_c:** Choice C is tempting, but it overshoots what the argument requires. The supporters claim only that many commuters will switch, not that most highway drivers travel that particular route. The conclusion can hold even if the downtown-to-suburb commuters are merely a sizable share rather than a majority of highway traffic, so this statement need not be true.
 **mistake_d:** Choice D offers evidence from other cities. Such an analogy might lend support to the proposal, but a successful prediction elsewhere is not something the argument must presuppose. The reasoning about Riverton can stand even if no other city's experience is known, so this is supporting evidence at most, not a necessary assumption.
-**mistake_e:** Choice E compares the lifetime maintenance and operating costs of the rail line and the highway. Relative expense is a budgetary consideration that has no bearing on whether commuters switching to rail will reduce traffic congestion, so it is irrelevant to the argument's logic.
+**mistake_b:** Choice B compares the lifetime maintenance and operating costs of the rail line and the highway. Relative expense is a budgetary consideration that has no bearing on whether commuters switching to rail will reduce traffic congestion, so it is irrelevant to the argument's logic.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1084,20 +1084,20 @@ A consulting firm examined the 50 fastest-growing technology startups of the pas
 Which of the following best describes a flaw in the firm's reasoning?
 
 - A) The firm assumes that the five large technology companies will continue to exist in their current form and to hire at their current scale.
-- B) The firm fails to consider that the vast majority of employees at these five large companies never found startups, let alone fast-growing ones.
+- B) The firm ignores the fact that some founders of highly successful, fast-growing startups did not work at any of the five largest technology companies.
 - C) The firm does not specify what rate of growth a startup must achieve in order to count as "fast-growing."
-- D) The firm ignores the fact that some founders of highly successful, fast-growing startups did not work at any of the five largest technology companies.
+- D) The firm fails to consider that the vast majority of employees at these five large companies never found startups, let alone fast-growing ones.
 - E) The firm relies on employment-history data that may have been reported inaccurately by the startups themselves.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A consulting firm found that 42 of the 50 fastest-growing technology startups of the past decade had founders who had previously worked at one of the five largest technology companies, and on that basis concluded that aspiring entrepreneurs should seek employment at one of those five companies to maximize their chances of later founding a fast-growing startup.
 
-**Reasoning.** The task is to identify a flaw in the firm's reasoning. The firm's evidence establishes the proportion of successful founders who came from these five companies, but its recommendation depends on a different and unestablished quantity: the proportion of people who work at these companies who go on to found a fast-growing startup. These two figures are not interchangeable. Even if nearly every successful founder came from one of the five firms, the chance that any given employee of those firms becomes such a founder could be negligibly small if those companies employ enormous numbers of people. Drawing a recommendation for aspiring entrepreneurs from the share of successes that share a trait, while ignoring how rarely that trait actually leads to success, is base-rate neglect, and the firm's advice is therefore unsupported. Choice B identifies exactly this gap: it points out that the vast majority of employees at the five companies never found startups, let alone fast-growing ones, which is the missing base rate that undermines the conclusion.
+**Reasoning.** The task is to identify a flaw in the firm's reasoning. The firm's evidence establishes the proportion of successful founders who came from these five companies, but its recommendation depends on a different and unestablished quantity: the proportion of people who work at these companies who go on to found a fast-growing startup. These two figures are not interchangeable. Even if nearly every successful founder came from one of the five firms, the chance that any given employee of those firms becomes such a founder could be negligibly small if those companies employ enormous numbers of people. Drawing a recommendation for aspiring entrepreneurs from the share of successes that share a trait, while ignoring how rarely that trait actually leads to success, is base-rate neglect, and the firm's advice is therefore unsupported. Choice D identifies exactly this gap: it points out that the vast majority of employees at the five companies never found startups, let alone fast-growing ones, which is the missing base rate that undermines the conclusion.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A raises a speculative concern about whether the five companies will persist in their current form and hiring scale. This has no bearing on the logical gap between the share of successful founders who worked at those companies and the chance that an employee of those companies will succeed, so it does not describe the flaw in the argument.
 **mistake_c:** Choice C is a definitional quibble about what counts as a "fast-growing" startup. However the term is defined, the firm's reasoning still infers a recommendation for employees from data about founders, so clarifying the definition would not repair or address the underlying flaw.
-**mistake_d:** Choice D notes that some founders of fast-growing startups did not work at the five largest companies. This is tempting because it points to exceptions, but the firm's argument is statistical rather than absolute; a handful of founders from elsewhere does not refute a claim about maximizing chances. The genuine flaw is the neglected base rate, not the existence of exceptions.
+**mistake_b:** Choice B notes that some founders of fast-growing startups did not work at the five largest companies. This is tempting because it points to exceptions, but the firm's argument is statistical rather than absolute; a handful of founders from elsewhere does not refute a claim about maximizing chances. The genuine flaw is the neglected base rate, not the existence of exceptions.
 **mistake_e:** Choice E offers a generic challenge to data quality, suggesting the startups may have reported inaccurately. The argument's defect persists even if every reported figure is perfectly accurate, because the flaw lies in reasoning from the wrong proportion, so this does not describe the relevant error.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1113,21 +1113,21 @@ A university is considering whether to require all first-year students to live i
 The answer to which of the following questions would be most useful in evaluating the supporters' argument?
 
 - A) What is the average monthly rent for off-campus apartments within easy commuting distance of the university's campus?
-- B) How do the demographic and academic profiles of first-year students who chose to live in dorms compare with those who chose to live off-campus?
+- B) What percentage of the university's first-year students currently choose to live in on-campus dormitories rather than off-campus?
 - C) Do upper-class students who live in campus dormitories also earn higher average GPAs than the upper-class students who live in off-campus housing?
 - D) Has the university's overall average GPA, measured across all class years and majors, increased over the past decade?
-- E) What percentage of the university's first-year students currently choose to live in on-campus dormitories rather than off-campus?
+- E) How do the demographic and academic profiles of first-year students who chose to live in dorms compare with those who chose to live off-campus?
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A university is weighing a requirement that all first-year students live in on-campus dormitories. Supporters claim this will improve first-year academic performance, pointing to an internal study in which first-year dorm residents had an average GPA 0.3 points higher than first-year students living off-campus.
 
 **Reasoning.** The task is to identify the question whose answer would be most useful in evaluating the supporters' argument. The argument treats a correlation as evidence of causation: because dorm residents had higher GPAs, living in a dorm is assumed to cause higher GPAs. This inference is sound only if the two groups were otherwise comparable before the difference in residence. The students, however, chose where to live, so the groups may have differed at the outset in ways that independently affect GPA, such as family income, high-school preparation, or age. An evaluation question is useful when its possible answers pull the conclusion in opposite directions. The question in the credited choice does exactly this: if the demographic and academic profiles of the dorm group and the off-campus group are essentially the same, the GPA gap is more plausibly attributable to dormitory life and the argument is strengthened; if the profiles differ markedly, the gap likely reflects those preexisting differences rather than residence, and the argument is undermined. Probing baseline comparability between the self-selected groups is therefore the decisive test of whether the cited study supports the supporters' causal claim.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A asks about the cost of off-campus housing. Affordability is downstream of the residence decision and says nothing about whether dorm life itself raises GPA; its answer would not push the supporters' causal conclusion in either direction, so it is not useful for evaluating the argument.
 **mistake_c:** Choice C asks whether upper-class dorm residents also have higher GPAs than their off-campus peers. This concerns a different population from the one at issue, namely first-year students, and any pattern among upper-class students is at best indirect evidence. It does not test whether the first-year groups were comparable at baseline, so it cannot decisively bear on the supporters' claim.
 **mistake_d:** Choice D asks whether the university's overall GPA has risen over the past decade. This is aggregate trend data spanning all students and many years; it does not isolate the effect of dorm residence on first-year students or address whether the compared groups differed beforehand, so its answer would not help evaluate the specific causal claim.
-**mistake_e:** Choice E asks what percentage of first-year students currently live in dorms. This is merely descriptive information about how many students are affected; knowing the proportion does nothing to reveal whether dorm life caused the GPA difference or whether the two groups were comparable to begin with, so it has no evaluative force here.
+**mistake_b:** Choice B asks what percentage of first-year students currently live in dorms. This is merely descriptive information about how many students are affected; knowing the proportion does nothing to reveal whether dorm life caused the GPA difference or whether the two groups were comparable to begin with, so it has no evaluative force here.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1171,20 +1171,20 @@ A pharmaceutical company claims that its new cholesterol-lowering drug, StatinX,
 Which of the following, if true, most strengthens the company's claim?
 
 - A) StatinX costs approximately 15% more per monthly prescription than the competitor's drug and is not yet covered by several major insurance plans.
-- B) Patients in both arms of the trial were randomly assigned, had similar baseline cholesterol levels, and were matched on age, sex, and cardiovascular risk factors.
+- B) The competitor's drug has been on the market for over fifteen years and remains one of the most widely prescribed cholesterol medications in the country.
 - C) StatinX was developed using a novel chemical pathway that the company patented after a decade of research into cholesterol synthesis.
-- D) The competitor's drug has been on the market for over fifteen years and remains one of the most widely prescribed cholesterol medications in the country.
+- D) Patients in both arms of the trial were randomly assigned, had similar baseline cholesterol levels, and were matched on age, sex, and cardiovascular risk factors.
 - E) Side effects reported in the StatinX arm of the trial were comparable in frequency to those reported in the competitor arm.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A pharmaceutical company claims that its new drug, StatinX, is more effective than the leading competitor's drug, citing a clinical trial in which StatinX patients averaged a 35 percent reduction in LDL cholesterol versus 28 percent for the competitor's drug.
 
 **Reasoning.** The task is to identify the statement that, if true, most strengthens the conclusion that StatinX is more effective. The argument infers superiority from a 7-percentage-point gap in average LDL reduction between the two trial arms. That gap supports the conclusion only if it reflects a true difference in the drugs' effects rather than a difference between the groups of patients. If the StatinX patients had, for instance, higher baseline cholesterol or a more favorable risk profile, the larger reduction could be attributed to the patients rather than to the drug, undermining the comparison. The statement that the patients in both arms were randomly assigned, had similar baseline cholesterol levels, and were matched on age, sex, and cardiovascular risk factors directly removes these alternative explanations. By establishing that the two groups were comparable at the outset, it makes the observed difference in outcomes credibly attributable to the drugs themselves, so the comparison genuinely supports the superiority claim.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A addresses the cost of StatinX and its insurance coverage, but neither price nor coverage bears on whether the drug is more effective at lowering cholesterol. These facts neither support nor undermine the efficacy claim and, if anything, are reasons to doubt the drug's value rather than to accept its superiority.
 **mistake_c:** Choice C notes that StatinX was developed through a novel, patented chemical pathway, but novelty of mechanism does not establish that the drug works better. A new pathway could produce greater, equal, or lesser efficacy, so this fact does nothing to make the observed difference in LDL reduction more credible.
-**mistake_d:** Choice D provides background about the competitor's long market presence and wide use, but the competitor's history says nothing about whether the trial comparison was valid or whether StatinX actually produced the greater reduction. It leaves the efficacy claim no better supported.
+**mistake_b:** Choice B provides background about the competitor's long market presence and wide use, but the competitor's history says nothing about whether the trial comparison was valid or whether StatinX actually produced the greater reduction. It leaves the efficacy claim no better supported.
 **mistake_e:** Choice E reports that side effects were comparable across the two arms, which speaks to safety rather than efficacy. The company's claim is specifically that StatinX is more effective, and comparable safety does not show that the larger LDL reduction reflects a real difference in the drugs' effectiveness, so it fails to strengthen the stated claim.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1258,21 +1258,21 @@ Over the past ten years, the average fuel efficiency of new passenger vehicles s
 Which of the following, if true, best helps explain the apparent discrepancy?
 
 - A) Gasoline prices in Velora have remained roughly constant over the past ten years when adjusted for inflation, despite substantial fluctuations in global crude oil markets.
-- B) The total number of passenger vehicles on Velora's roads has grown by 45% over the past ten years, and the average miles driven per vehicle has also increased.
+- B) Electric vehicles now account for approximately 5% of new passenger vehicle sales in Velora, up from less than 1% a decade ago.
 - C) Velora has invested heavily in expanding public transportation infrastructure in its major metropolitan areas over the past decade.
 - D) Fuel efficiency standards for new vehicles in Velora are stricter than those in any of its neighboring countries.
-- E) Electric vehicles now account for approximately 5% of new passenger vehicle sales in Velora, up from less than 1% a decade ago.
+- E) The total number of passenger vehicles on Velora's roads has grown by 45% over the past ten years, and the average miles driven per vehicle has also increased.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** Over the past ten years the average fuel efficiency of new passenger vehicles sold in Velora has improved by 30 percent, yet the total amount of gasoline consumed by passenger vehicles in Velora has risen by 12 percent over the same period.
 
-**Reasoning.** The task is to find the option that, if true, best explains this apparent discrepancy. The total gasoline consumed by passenger vehicles is a product of how many vehicles are on the road, how far each is driven, and how much fuel each burns per mile. An improvement in fuel efficiency lowers the fuel burned per mile and, considered alone, would push total consumption down. For total consumption to rise instead, some other factor must have grown enough to outweigh the per-vehicle efficiency gain. Choice B supplies exactly such a factor, and it supplies both relevant pieces: the number of passenger vehicles on Velora's roads has grown by 45 percent, and the average distance driven per vehicle has also increased. Far more vehicles, each driven farther, generate far more total mileage; even though each mile now consumes less gasoline, the large increase in total miles driven more than offsets the 30 percent efficiency improvement, leaving total consumption higher. A single mechanism thus accounts for both observed trends, reconciling the rise in consumption with the rise in efficiency.
+**Reasoning.** The task is to find the option that, if true, best explains this apparent discrepancy. The total gasoline consumed by passenger vehicles is a product of how many vehicles are on the road, how far each is driven, and how much fuel each burns per mile. An improvement in fuel efficiency lowers the fuel burned per mile and, considered alone, would push total consumption down. For total consumption to rise instead, some other factor must have grown enough to outweigh the per-vehicle efficiency gain. Choice E supplies exactly such a factor, and it supplies both relevant pieces: the number of passenger vehicles on Velora's roads has grown by 45 percent, and the average distance driven per vehicle has also increased. Far more vehicles, each driven farther, generate far more total mileage; even though each mile now consumes less gasoline, the large increase in total miles driven more than offsets the 30 percent efficiency improvement, leaving total consumption higher. A single mechanism thus accounts for both observed trends, reconciling the rise in consumption with the rise in efficiency.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A states that inflation-adjusted gasoline prices have stayed roughly constant. Stable prices remove a reason consumption might have fallen but do not establish that any factor actually increased; the statement neither quantifies additional driving nor identifies more vehicles, so it does not explain why total consumption rose despite better efficiency.
 **mistake_c:** Choice C reports heavy investment in public transportation. Greater use of public transit would tend to reduce reliance on passenger vehicles and thereby lower gasoline consumption, which deepens rather than resolves the discrepancy of rising consumption alongside improving efficiency.
 **mistake_d:** Choice D compares Velora's fuel-efficiency standards with those of neighboring countries. Conditions in other countries are irrelevant to why gasoline consumption within Velora increased, and this cross-country comparison provides no factor that could outweigh the domestic efficiency gain.
-**mistake_e:** Choice E notes that electric vehicles now make up about 5 percent of new vehicle sales. Electric vehicles consume no gasoline, so their growing share would tend to push total gasoline consumption down, which intensifies the paradox instead of explaining the observed increase.
+**mistake_b:** Choice B notes that electric vehicles now make up about 5 percent of new vehicle sales. Electric vehicles consume no gasoline, so their growing share would tend to push total gasoline consumption down, which intensifies the paradox instead of explaining the observed increase.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1316,18 +1316,18 @@ A state transportation agency plans to reduce highway fatalities by installing a
 The agency's projection depends on which of the following assumptions?
 
 - A) Drivers in the state will be informed well in advance, through road signage and public awareness campaigns, about the exact locations of the new speed cameras.
-- B) The 200 chosen locations resemble the neighboring state's camera locations with respect to the factors that make speed cameras effective at reducing fatalities.
+- B) The state legislature will approve the full funding necessary to purchase and install cameras at all 200 locations.
 - C) Automated speed cameras are the most cost-effective method available for reducing highway fatalities on high-accident roads.
-- D) The state legislature will approve the full funding necessary to purchase and install cameras at all 200 locations.
+- D) The 200 chosen locations resemble the neighboring state's camera locations with respect to the factors that make speed cameras effective at reducing fatalities.
 - E) Drivers who receive speeding tickets from the automated cameras will subsequently drive more cautiously for the rest of their lives.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A state transportation agency plans to install automated speed cameras at the 200 locations with historically the highest accident rates, and it projects that fatalities at those locations will fall by at least 15 percent within two years. That projection is based on the results of a similar camera program in a neighboring state.
 
-**Reasoning.** The task is to identify an assumption on which the agency's projection depends. The projection takes a result obtained at the locations where cameras were installed in the neighboring state and transfers it to the 200 locations chosen in this state. For that transfer to be legitimate, the new locations must resemble the neighboring state's locations on whatever characteristics actually cause speed cameras to reduce fatalities; otherwise the prior result provides no basis for predicting the same outcome here. Applying the negation test confirms that choice B supplies this needed link. If the 200 chosen locations do not resemble the neighboring state's camera locations with respect to the factors that make cameras effective, then the neighboring state's outcome cannot reasonably be expected to recur, and the 15 percent projection loses its support. Because negating choice B undermines the projection, choice B is an assumption the argument requires. The correct answer is B.
+**Reasoning.** The task is to identify an assumption on which the agency's projection depends. The projection takes a result obtained at the locations where cameras were installed in the neighboring state and transfers it to the 200 locations chosen in this state. For that transfer to be legitimate, the new locations must resemble the neighboring state's locations on whatever characteristics actually cause speed cameras to reduce fatalities; otherwise the prior result provides no basis for predicting the same outcome here. Applying the negation test confirms that choice D supplies this needed link. If the 200 chosen locations do not resemble the neighboring state's camera locations with respect to the factors that make cameras effective, then the neighboring state's outcome cannot reasonably be expected to recur, and the 15 percent projection loses its support. Because negating choice D undermines the projection, choice D is an assumption the argument requires. The correct answer is D.
 **mistake_a:** Choice A concerns whether drivers are told in advance where the cameras are. This is an operational design choice rather than a logical premise of the projection. The agency bases its forecast on the neighboring state's outcome, and the argument can succeed whether or not locations are publicized; negating this statement does not undermine the projected reduction.
 **mistake_c:** Choice C asserts that speed cameras are the most cost-effective way to reduce highway fatalities. Whether cameras are the cheapest option is a separate question from whether the cameras will produce the projected 15 percent reduction. The projection is about effectiveness at these locations, not about comparative cost, so this statement is not something the argument must assume.
-**mistake_d:** Choice D addresses whether the legislature will fund the installation. This is a practical precondition for carrying out the plan, not a logical assumption underlying the projected size of the reduction. The agency's reasoning about the expected effect of installed cameras neither depends on nor establishes that funding will be approved.
+**mistake_b:** Choice B addresses whether the legislature will fund the installation. This is a practical precondition for carrying out the plan, not a logical assumption underlying the projected size of the reduction. The agency's reasoning about the expected effect of installed cameras neither depends on nor establishes that funding will be approved.
 **mistake_e:** Choice E claims that drivers ticketed by the cameras will drive more cautiously for the rest of their lives. This overstates what the argument needs: the projection covers only a two-year window, so a lifelong change in behavior is far more than the conclusion requires. An assumption must be necessary to the argument, and this extreme, long-term claim is not.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1343,19 +1343,19 @@ A columnist argues that reading fiction improves empathy. As evidence, she cites
 The columnist's argument is most vulnerable to which of the following criticisms?
 
 - A) It fails to define "empathy" in a way that all readers and researchers would be likely to accept.
-- B) It draws a conclusion about long-term behavioral change from a short-term effect measured immediately after a single reading session.
+- B) It does not consider the possibility that some nonfiction articles could also increase empathy scores if they were tested in the same way.
 - C) It assumes that schools currently do not assign any fiction reading as part of their standard curricula.
 - D) It relies on a study that used random assignment of participants rather than observational data drawn from real classrooms.
-- E) It does not consider the possibility that some nonfiction articles could also increase empathy scores if they were tested in the same way.
+- E) It draws a conclusion about long-term behavioral change from a short-term effect measured immediately after a single reading session.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A columnist cites a study in which participants assigned to read a literary short story scored higher on an empathy assessment given immediately afterward than participants assigned to read a comparable nonfiction article, and she concludes that schools should require daily fiction reading to produce more empathetic graduates.
 
-**Reasoning.** The task is to identify the criticism to which the argument is most vulnerable, that is, the reasoning error the columnist commits. The study's evidence is narrow in scope and timeframe: it measured a single reading session and an empathy score taken immediately afterward. The conclusion, however, is broad in scope and timeframe: it claims that daily fiction reading, sustained throughout schooling, will yield graduates who are more empathetic over the long term. Nothing in the evidence shows that a brief, immediately measured bump in an assessment score persists beyond the moment of reading, accumulates through repeated daily sessions, or translates into the durable disposition of more empathetic graduates. The argument thus leaps from a short-term, momentary effect to a long-term behavioral outcome without support for that leap, and this gap is precisely the vulnerability the criticism must name. The correct answer is B.
+**Reasoning.** The task is to identify the criticism to which the argument is most vulnerable, that is, the reasoning error the columnist commits. The study's evidence is narrow in scope and timeframe: it measured a single reading session and an empathy score taken immediately afterward. The conclusion, however, is broad in scope and timeframe: it claims that daily fiction reading, sustained throughout schooling, will yield graduates who are more empathetic over the long term. Nothing in the evidence shows that a brief, immediately measured bump in an assessment score persists beyond the moment of reading, accumulates through repeated daily sessions, or translates into the durable disposition of more empathetic graduates. The argument thus leaps from a short-term, momentary effect to a long-term behavioral outcome without support for that leap, and this gap is precisely the vulnerability the criticism must name. The correct answer is E.
 **mistake_a:** Choice A raises a definitional quibble rather than a logical flaw. The columnist's reasoning does not depend on offering a universally accepted definition of empathy, and the inference from short-term study result to long-term policy outcome would remain equally questionable even if every reader agreed on what empathy means, so this does not identify the argument's central weakness.
 **mistake_c:** Choice C describes a factual assumption that the argument does not actually require. The recommendation that schools require daily fiction reading does not presuppose that schools currently assign no fiction; the policy could call for more, or for required daily, reading regardless of existing practice. Even granting the assumption, it leaves the causal leap from a momentary effect to durable empathetic graduates untouched.
 **mistake_d:** Choice D reverses the relationship between the cited feature and the argument's quality. Random assignment is a methodological strength that supports causal inference, not a vulnerability; the study's use of randomization actually bolsters the claim that fiction reading caused the higher scores. Pointing to it as a criticism mistakes an asset for a flaw.
-**mistake_e:** Choice E identifies a point that, even if true, does not undermine the argument. If some nonfiction articles could also increase empathy, that would bear only on the comparison between fiction and nonfiction; it would not show that fiction fails to increase empathy or that the study's finding about fiction is wrong. The columnist's conclusion concerns the effect of fiction reading, which this possibility leaves standing.
+**mistake_b:** Choice B identifies a point that, even if true, does not undermine the argument. If some nonfiction articles could also increase empathy, that would bear only on the comparison between fiction and nonfiction; it would not show that fiction fails to increase empathy or that the study's finding about fiction is wrong. The columnist's conclusion concerns the effect of fiction reading, which this possibility leaves standing.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1370,20 +1370,20 @@ A hospital administrator is evaluating a proposal to switch all surgical teams f
 The answer to which of the following questions would be most useful for the administrator in evaluating the proposal?
 
 - A) How much would the tablet-based system cost to purchase and maintain compared with the current paper-based system?
-- B) Did the method used to record and classify surgical errors change between the two six-month periods being compared?
+- B) How long does it take a typical surgical team to complete the digital checklist compared with the paper checklist?
 - C) Are surgeons in the pilot department generally younger, on average, than surgeons in the hospital's other departments?
-- D) How long does it take a typical surgical team to complete the digital checklist compared with the paper checklist?
+- D) Did the method used to record and classify surgical errors change between the two six-month periods being compared?
 - E) Does the hospital currently have sufficient Wi-Fi coverage in all of its operating rooms?
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A hospital administrator is weighing a proposal to replace paper surgical checklists with tablet-based digital ones. Proponents support the switch by pointing to a single department whose recorded errors fell 40 percent during a six-month digital pilot relative to the prior six months on paper.
 
 **Reasoning.** The task is to identify the question whose answer would be most useful in evaluating this proposal, which means finding the question that most directly tests whether the cited evidence actually supports the conclusion that the digital checklist reduces surgical errors. The argument rests entirely on a before-and-after comparison at one site, and such a comparison is only meaningful if the two periods are measured the same way. If the way errors were recorded and classified changed when the digital checklist was introduced, then a drop in recorded errors could be a mere artifact of altered measurement rather than a genuine improvement in safety. An answer of "yes, the method changed" would expose the 40 percent figure as potentially misleading and undermine the proposal, whereas an answer of "no, the method stayed constant" would leave the favorable result intact and strengthen the case. Because its answer can swing the evaluation in either direction, the question of whether the error-recording method changed between the two periods is the most useful one for assessing the argument.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A raises the relative cost of the two systems. Cost may matter to a final purchasing decision, but it is downstream of, and irrelevant to, the central claim being evaluated, namely whether the digital checklist actually reduces surgical errors. Its answer does nothing to confirm or undermine the 40 percent figure.
 **mistake_c:** Choice C points toward a possible confounder, the relative age of the surgeons. While differing surgeon characteristics could in principle affect outcomes, this question is far less decisive than measurement consistency: even a difference in age would not by itself explain a 40 percent change, and the answer would not directly reveal whether the cited reduction is real or an artifact. It is at best a secondary concern.
-**mistake_d:** Choice D concerns how long each checklist takes to complete. This addresses efficiency or workflow, not safety. Whatever the answer, it neither supports nor casts doubt on the claim that errors were genuinely reduced, so it is not useful for evaluating the proposal's core rationale.
+**mistake_b:** Choice B concerns how long each checklist takes to complete. This addresses efficiency or workflow, not safety. Whatever the answer, it neither supports nor casts doubt on the claim that errors were genuinely reduced, so it is not useful for evaluating the proposal's core rationale.
 **mistake_e:** Choice E asks about Wi-Fi coverage in the operating rooms. This is an implementation detail relevant only to whether the system could be deployed, not to whether the system reduces errors. Its answer has no bearing on the validity of the 40 percent reduction cited in support of the switch.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1399,21 +1399,21 @@ The correct answer is B.
 In the argument above, the two statements in boldface play which of the following roles?
 
 - A) The first is the main conclusion of the argument; the second provides the principal evidence offered in support of it.
-- B) The first is a widely held view that the argument challenges; the second explains why that view fails in the case described.
+- B) The first and the second both serve as pieces of evidence supporting the same conclusion about monetary policy.
 - C) The first is a prediction made by many economists; the second is an observation that the argument takes to confirm the prediction.
 - D) The first is an assumption on which the argument depends; the second is an intermediate conclusion drawn from that assumption.
-- E) The first and the second both serve as pieces of evidence supporting the same conclusion about monetary policy.
+- E) The first is a widely held view that the argument challenges; the second explains why that view fails in the case described.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** Many economists hold that raising interest rates is the most reliable way to reduce inflation. The argument counters this with the case of Marisol, where the central bank raised rates aggressively from 2022 to 2024 yet inflation stayed high, because that inflation was driven primarily by global commodity supply shocks that domestic monetary policy cannot directly address.
 
 **Reasoning.** The task is to identify the roles played by the two boldface statements within the argument's structure. The first boldface statement reports a position attributed to many economists, and the word "However" that follows signals that the argument disagrees with it; the Marisol case is then offered as a counterexample to that position. The first boldface thus functions as a widely held view that the argument challenges, not as a claim the argument endorses. The second boldface statement, introduced by "This is because," supplies the mechanism that accounts for the counterexample: it explains why higher rates failed to curb inflation in Marisol specifically, namely that the inflation originated in supply shocks beyond the reach of monetary policy. The second boldface therefore provides the reasoning that explains why the challenged view fails in the particular case described. The choice that captures this pairing of a challenged view with an explanation of its failure is the credited response.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A inverts the role of the first boldface statement. The argument does not endorse the economists' view as its main conclusion; the word "However" marks that view as the target of the critique. The argument's own conclusion is that the Marisol experience shows the view does not always hold, and the first boldface is the position being opposed, not the point being argued for.
 **mistake_c:** Choice C mischaracterizes both statements. The first boldface is a general principle that many economists endorse, not a prediction about a future event. The second boldface does not confirm any prediction; it explains why the rate increases in Marisol failed to reduce inflation, so it works against the principle stated first rather than confirming it.
 **mistake_d:** Choice D mislabels both statements. The first boldface is an explicit claim that the argument states and then disputes, not an unstated assumption on which the argument depends. The second boldface is an explanation of why the Marisol case turned out as it did, not a conclusion logically derived from the first statement; indeed it is used to undercut the first statement rather than to follow from it.
-**mistake_e:** Choice E claims the two statements support a single conclusion, but they serve opposing functions. The first states the view the argument rejects, while the second supplies the reasoning the argument uses to reject it in the Marisol case. Because one is the target of the critique and the other powers the critique, they cannot both be evidence for the same conclusion.
+**mistake_b:** Choice B claims the two statements support a single conclusion, but they serve opposing functions. The first states the view the argument rejects, while the second supplies the reasoning the argument uses to reject it in the Marisol case. Because one is the target of the critique and the other powers the critique, they cannot both be evidence for the same conclusion.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1457,20 +1457,20 @@ A regional grocery chain recently introduced a loyalty app that offers personali
 Which of the following, if true, most strengthens the marketing director's argument?
 
 - A) The app was promoted heavily on social media and through in-store signage during its first month after launch.
-- B) App users' spending per visit rose by 15% after they began using the app, compared with their own spending in the prior six months.
+- B) The chain's regional competitors have not yet launched loyalty apps with similar personalized-discount features.
 - C) Most of the app's users are between the ages of 25 and 44, a demographic segment that the chain's marketing team has long sought to attract.
-- D) The chain's regional competitors have not yet launched loyalty apps with similar personalized-discount features.
+- D) App users' spending per visit rose by 15% after they began using the app, compared with their own spending in the prior six months.
 - E) Customers who already shop at the chain most frequently tend to be the first to try newly introduced features.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A grocery chain's loyalty-app users have spent, on average, 22 percent more per visit than non-users in the six months since launch. The marketing director concludes that the app itself causes customers to spend more.
 
-**Reasoning.** The task is to find the choice that most strengthens the director's causal conclusion. The argument compares two different groups of people, app users and non-users, and infers causation from the gap between them. This comparison is vulnerable to self-selection: customers who already spend more may simply be the ones who chose to adopt the app, in which case the higher spending reflects who signed up rather than any effect of the app. To strengthen the causal claim, an answer should provide evidence that controls for this confound. Choice B does exactly that. It reports a within-person comparison: the same shoppers spent 15 percent more per visit after they began using the app than they had in the six months before signing up. Because the comparison holds the customers constant and measures their behavior before and after adoption, it removes the possibility that high spenders were merely high spenders all along, and it ties the increase to the period when app use began. This bolsters the inference that the app, rather than a preexisting tendency, drove the additional spending.
+**Reasoning.** The task is to find the choice that most strengthens the director's causal conclusion. The argument compares two different groups of people, app users and non-users, and infers causation from the gap between them. This comparison is vulnerable to self-selection: customers who already spend more may simply be the ones who chose to adopt the app, in which case the higher spending reflects who signed up rather than any effect of the app. To strengthen the causal claim, an answer should provide evidence that controls for this confound. Choice D does exactly that. It reports a within-person comparison: the same shoppers spent 15 percent more per visit after they began using the app than they had in the six months before signing up. Because the comparison holds the customers constant and measures their behavior before and after adoption, it removes the possibility that high spenders were merely high spenders all along, and it ties the increase to the period when app use began. This bolsters the inference that the app, rather than a preexisting tendency, drove the additional spending.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A notes that the app was promoted heavily on social media during its first month. This describes a promotional detail and, if anything, introduces an alternative cause for any spending change rather than supporting the claim that the app itself drives the increase. It does nothing to rule out self-selection.
 **mistake_c:** Choice C states that most app users are between 25 and 44 years old. This is demographic information about who uses the app and says nothing about whether the app causes higher spending. It neither addresses the selection concern nor links the app to the spending increase.
-**mistake_d:** Choice D observes that competitors have not yet launched similar apps. This supplies competitive context but offers no evidence about the causal mechanism behind the spending gap. Whether rivals have such apps is irrelevant to whether this chain's app causes its own customers to spend more.
+**mistake_b:** Choice B observes that competitors have not yet launched similar apps. This supplies competitive context but offers no evidence about the causal mechanism behind the spending gap. Whether rivals have such apps is irrelevant to whether this chain's app causes its own customers to spend more.
 **mistake_e:** Choice E says that customers who shop more frequently tend to try new features earlier. Far from strengthening the argument, this reinforces the self-selection worry: if heavier, more engaged shoppers are the ones who adopt the app first, then their higher spending may stem from their preexisting habits rather than from the app, which undermines the director's causal claim.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1515,21 +1515,21 @@ A pharmaceutical company claims that its new once-daily pill for hypertension is
 The conclusion above depends on which of the following assumptions?
 
 - A) The new once-daily pill is cheaper to manufacture and distribute than the standard twice-daily pill.
-- B) Patients who took the new pill did not differ from those taking the standard pill in ways that independently affect blood pressure control.
+- B) The company has previously conducted multiple large clinical trials of other hypertension medications.
 - C) No patient in either arm of the 12-week trial experienced any adverse side effects whatsoever from the medication he or she was assigned.
 - D) Most patients being treated for hypertension say they prefer once-daily dosing schedules to twice-daily ones.
-- E) The company has previously conducted multiple large clinical trials of other hypertension medications.
+- E) Patients who took the new pill did not differ from those taking the standard pill in ways that independently affect blood pressure control.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A pharmaceutical company observes that in a 12-week trial, 68 percent of patients on its new once-daily hypertension pill reached target blood pressure versus 52 percent on the standard twice-daily pill, and it concludes that doctors should prescribe the new pill as first-line treatment.
 
 **Reasoning.** The task is to identify an assumption on which the conclusion depends. The argument treats the difference in success rates as evidence that the new pill is itself responsible for better blood pressure control. That inference holds only if the two groups of patients were otherwise comparable; if the group taking the new pill differed in some characteristic that independently affects blood pressure, the observed gap could be attributed to that characteristic rather than to the drug. The correct answer must supply that missing link. Applying the negation test to the credited choice: if the patients taking the new pill did differ from those taking the standard pill in ways that independently affect blood pressure control, then the 68-percent-versus-52-percent gap could reflect those differences rather than the medication, and the conclusion that the new pill is superior would no longer follow. Because negating the statement destroys the argument, the argument depends on it.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A concerns the cost of manufacturing the pill, which bears on the company's economics, not on whether the pill is more effective at controlling blood pressure. The conclusion about efficacy can hold whether or not the new pill is cheaper to produce, so the argument does not depend on this statement.
 **mistake_c:** Choice C is far too strong. The argument concludes that the new pill is superior on the basis of blood pressure control, and that conclusion does not require that no patient experienced any side effect from either medication. An efficacy comparison can stand even if side effects occurred, so this is not a necessary assumption.
 **mistake_d:** Choice D addresses patient preference for once-daily dosing, but the conclusion rests on the drug's efficacy in lowering blood pressure, not on what patients prefer. Even if patients had no preference between dosing schedules, the efficacy-based conclusion could still follow, so the argument does not depend on this statement.
-**mistake_e:** Choice E points to the company's history of conducting prior trials of other medications, which speaks to the firm's experience or reputation rather than to whether this trial's result establishes the new pill's superiority. The conclusion can hold whether or not such prior trials exist, so the argument does not depend on this statement.
+**mistake_b:** Choice B points to the company's history of conducting prior trials of other medications, which speaks to the firm's experience or reputation rather than to whether this trial's result establishes the new pill's superiority. The conclusion can hold whether or not such prior trials exist, so the argument does not depend on this statement.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1544,20 +1544,20 @@ Between 2015 and 2023, the percentage of households in the country of Verida tha
 Which of the following can be most reliably concluded from the information above?
 
 - A) Households that own electric vehicles consume less electricity overall than households that do not.
-- B) Households in Verida have on average become more efficient in their non-vehicle electricity use.
+- B) Most Verida households are planning to purchase an electric vehicle in the next five years.
 - C) Electric vehicles in Verida consume less electricity per mile than electric vehicles in other countries.
-- D) Most Verida households are planning to purchase an electric vehicle in the next five years.
+- D) Households in Verida have on average become more efficient in their non-vehicle electricity use.
 - E) The price of gasoline in Verida fell between 2015 and 2023.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** Between 2015 and 2023 in Verida, the share of households owning at least one electric vehicle climbed from 2% to 18%, yet total residential electricity consumption rose by only 4%, while household size, weather, and electricity pricing all stayed essentially unchanged.
 
 **Reasoning.** The task is to identify what can be most reliably concluded from the stated facts. A jump in electric-vehicle ownership from 2% to 18% of households introduces a substantial new charging load to the residential sector, yet total residential consumption rose by only 4%. The passage explicitly rules out changes in household size, weather, and electricity pricing, so the most natural way to reconcile a large new charging load with such a small rise in the total is that households' non-vehicle electricity use declined — that is, became more efficient — absorbing much of the new demand. The passage does not quantify how much electricity the vehicles drew, so this is not a strict logical entailment; but among the options it is by far the best supported, and the soft stem asks only for what can be *most reliably* concluded. Each rival option instead asserts something the passage gives no evidence for at all.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A overstates what the information supports. The passage describes aggregate residential consumption across all households, not a comparison of total electricity use between electric-vehicle owners and non-owners. Because vehicle charging is itself electricity consumption, there is no basis for concluding that electric-vehicle households use less overall, and the claim cannot be reliably drawn.
 **mistake_c:** Choice C relies on information outside the passage. The argument concerns electricity use within Verida and never compares the per-mile consumption of Verida's electric vehicles with those of any other country, so no such comparison can be concluded.
-**mistake_d:** Choice D is a prediction about future household behavior, whereas the passage reports only past adoption rates and consumption figures. Nothing in the information speaks to what most households are planning to do in the next five years.
+**mistake_b:** Choice B is a prediction about future household behavior, whereas the passage reports only past adoption rates and consumption figures. Nothing in the information speaks to what most households are planning to do in the next five years.
 **mistake_e:** Choice E falls outside the scope of the evidence. The passage addresses electricity consumption and pricing; it offers no information about the price of gasoline, so a conclusion about gasoline prices cannot be supported.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1573,21 +1573,21 @@ A public health agency reports that the national rate of hospitalizations for se
 Which of the following, if true, best resolves the apparent paradox?
 
 - A) Flu vaccines have become both more widely available and considerably more effective over the past decade, especially among elderly patients, who account for most flu hospitalizations.
-- B) The national population has grown substantially, and the share of elderly residents — who are hospitalized for flu at much higher rates — has grown even faster.
+- B) Some patients who would previously have been hospitalized for flu are now treated at home with antiviral medications instead.
 - C) Hospitals in most regions have become more cautious about admitting patients who arrive with only mild or moderate flu symptoms.
 - D) Public awareness of flu prevention measures, such as handwashing and staying home when ill, has increased significantly over the decade.
-- E) Some patients who would previously have been hospitalized for flu are now treated at home with antiviral medications instead.
+- E) The national population has grown substantially, and the share of elderly residents — who are hospitalized for flu at much higher rates — has grown even faster.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A public health agency reports that the per-person rate of seasonal flu hospitalizations fell 25 percent over a decade, yet over the same decade the total annual number of flu-related hospitalizations rose by nearly 15 percent.
 
-**Reasoning.** The task is to identify the statement that, if true, best resolves the apparent paradox. The paradox is that a measure expressed as a rate (hospitalizations per person) declined while the corresponding raw count increased. Because a count equals the rate multiplied by the size and composition of the underlying population, the count can rise even as the rate falls if the population grows or shifts toward subgroups that are hospitalized at higher rates. Choice B supplies both mechanisms: the national population grew substantially, so more people are exposed even at a lower per-person rate, and the share of elderly residents, who are hospitalized for flu at much higher rates, grew faster than the population as a whole, shifting the mix toward the highest-risk group. Together these forces push the total count upward while the average per-person rate still declines, reconciling the two reported figures.
+**Reasoning.** The task is to identify the statement that, if true, best resolves the apparent paradox. The paradox is that a measure expressed as a rate (hospitalizations per person) declined while the corresponding raw count increased. Because a count equals the rate multiplied by the size and composition of the underlying population, the count can rise even as the rate falls if the population grows or shifts toward subgroups that are hospitalized at higher rates. Choice E supplies both mechanisms: the national population grew substantially, so more people are exposed even at a lower per-person rate, and the share of elderly residents, who are hospitalized for flu at much higher rates, grew faster than the population as a whole, shifting the mix toward the highest-risk group. Together these forces push the total count upward while the average per-person rate still declines, reconciling the two reported figures.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A states that flu vaccines became more widely available and more effective. This would push both the per-person rate and the total count downward, which deepens the paradox rather than resolving it, since the stimulus reports that the total count rose.
 **mistake_c:** Choice C states that hospitals became more cautious about admitting patients with mild flu symptoms. Fewer admissions would lower the total count, again moving the figure in the wrong direction and worsening the contradiction the question asks to explain.
 **mistake_d:** Choice D states that public awareness of flu prevention increased significantly. This is vague and, to the extent it has any effect, would tend to reduce flu cases and thus push both the rate and the count downward, so it fails to account for the rising total count.
-**mistake_e:** Choice E states that some patients previously hospitalized for flu are now treated at home. Shifting patients out of hospitals lowers the hospitalization count, the opposite of the increase reported in the stimulus, so it cannot resolve the paradox.
+**mistake_b:** Choice B states that some patients previously hospitalized for flu are now treated at home. Shifting patients out of hospitals lowers the hospitalization count, the opposite of the increase reported in the stimulus, so it cannot resolve the paradox.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1631,20 +1631,20 @@ A venture capital firm noticed that, of the 60 startups in its portfolio, the 20
 Which of the following, if true, most strengthens the partners' conclusion?
 
 - A) The firm's first-time-CEO startups received, on average, substantially larger early funding rounds than the repeat-founder startups did.
-- B) Repeat and first-time founders operated in similar industries, raised comparable amounts, and faced similar market conditions.
+- B) Some of the most celebrated technology companies of the past two decades were founded by first-time CEOs.
 - C) Repeat founders tend to have stronger personal networks among venture investors and experienced startup executives.
-- D) Some of the most celebrated technology companies of the past two decades were founded by first-time CEOs.
+- D) Repeat and first-time founders operated in similar industries, raised comparable amounts, and faced similar market conditions.
 - E) The firm's portfolio includes companies at widely varying stages of maturity and growth.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** Among a venture firm's 60 portfolio startups, those led by CEOs with prior founding experience reached profitability at 55 percent, while first-time-CEO startups did so at only 25 percent. The partners concluded that founding experience causes the higher success rate and shifted future investment toward repeat founders.
 
 **Reasoning.** The task is to identify the statement that most strengthens the partners' causal conclusion. The argument moves from an observed correlation between founding experience and profitability to the claim that the experience itself causes the higher rate. A correlation supports a causal conclusion only to the extent that other factors capable of producing the same gap have been ruled out; if the two groups differed systematically in industry, funding, or market conditions, any of those differences could be the true cause rather than founding experience. The choice that establishes that the repeat-founder and first-time-founder groups were alike on these dimensions removes the most plausible competing explanations and isolates founding experience as the operative variable, thereby reinforcing the inference from correlation to cause. Showing that the groups operated in similar industries, raised comparable amounts, and faced similar market conditions does exactly this, leaving founding experience as the principal remaining difference to which the gap can be attributed.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A states that the first-time-CEO startups received, on average, larger funding rounds than the repeat-founder startups. This does not strengthen the conclusion and arguably undermines it: if the less successful group actually had more capital, then funding cannot account for the repeat founders' edge, but the point also introduces a difference between the groups that complicates a clean attribution to experience rather than supporting it.
 **mistake_c:** Choice C observes that repeat founders tend to have stronger personal networks among venture investors and experienced startup executives. Rather than strengthening the conclusion, this supplies an alternative cause for the higher success rate. If superior networks, not founding experience as such, drive the better outcomes, the partners' specific causal claim is weakened.
-**mistake_d:** Choice D notes that some of the most celebrated tech companies were founded by first-time CEOs. This is an anecdotal counterexample about a handful of standout firms; it speaks to extreme outliers rather than to overall rates of reaching profitability, and it does nothing to support the claim that founding experience causes higher success across the portfolio.
+**mistake_b:** Choice B notes that some of the most celebrated tech companies were founded by first-time CEOs. This is an anecdotal counterexample about a handful of standout firms; it speaks to extreme outliers rather than to overall rates of reaching profitability, and it does nothing to support the claim that founding experience causes higher success across the portfolio.
 **mistake_e:** Choice E says the portfolio includes companies at various stages of maturity. This is neutral with respect to the conclusion. It does not show that the two groups were matched on maturity or any other potential confounder, so it neither rules out competing explanations nor otherwise reinforces the causal inference.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1660,21 +1660,21 @@ A consumer technology columnist argues that standalone digital cameras will soon
 Which of the following, if true, most seriously weakens the columnist's argument?
 
 - A) Smartphone cameras still cannot match the image quality that high-end standalone cameras deliver in low-light, telephoto, or fast-action shooting conditions.
-- B) Revenue from standalone cameras has grown over the past three years, driven by premium models aimed at professionals — a segment smartphones do not serve.
+- B) New smartphone models with substantially improved camera features are released every year by multiple manufacturers.
 - C) Some consumers continue to use both a smartphone and a standalone camera, choosing between the two depending on the occasion.
 - D) Digital camera manufacturers have reduced their marketing budgets significantly over the past several years.
-- E) New smartphone models with substantially improved camera features are released every year by multiple manufacturers.
+- E) Revenue from standalone cameras has grown over the past three years, driven by premium models aimed at professionals — a segment smartphones do not serve.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A consumer technology columnist predicts that standalone digital cameras will soon vanish from the market entirely, citing a decade-long decline in annual unit sales from 120 million in 2014 to 8 million in 2024 alongside dramatic improvements in smartphone cameras.
 
 **Reasoning.** The task is to identify the statement that, if true, most seriously weakens the columnist's argument. The columnist infers that a category facing total extinction follows from falling unit volumes and improving substitutes. To weaken this prediction, the correct choice must supply evidence that the standalone-camera category remains commercially viable rather than headed for disappearance. The credited statement reports that revenue from standalone cameras has grown over the past three years, driven by premium models aimed at professionals, a segment that smartphones do not serve. This directly undercuts the prediction in two ways: it shows the category is generating rising revenue rather than collapsing, and it identifies a defensible buyer segment that smartphones cannot capture, giving manufacturers a reason to keep producing the cameras. Declining unit counts are thus consistent with a market that has restructured around a durable, profitable niche rather than one disappearing entirely.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A notes that smartphones cannot match high-end cameras in low-light, telephoto, or fast-action image quality, but a capability gap alone does not establish that the standalone-camera category will remain commercially viable. A superior product can still be discontinued if no profitable demand sustains it, so this does not undermine the prediction of disappearance.
 **mistake_c:** Choice C observes only that some consumers use both a smartphone and a standalone camera depending on the occasion. This mild dual-use point says nothing about whether such use is widespread or commercially sufficient to keep the category alive, so it does little to counter the columnist's prediction.
 **mistake_d:** Choice D states that manufacturers have significantly cut their marketing budgets. Reduced marketing investment is consistent with a category that is winding down, so this tends to strengthen, not weaken, the prediction that standalone cameras will disappear.
-**mistake_e:** Choice E reports that new smartphone models are released yearly with improved camera features. This reinforces the substitution pressure the columnist cites and therefore strengthens the argument for disappearance rather than weakening it.
+**mistake_b:** Choice B reports that new smartphone models are released yearly with improved camera features. This reinforces the substitution pressure the columnist cites and therefore strengthens the argument for disappearance rather than weakening it.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1689,20 +1689,20 @@ The planning committee of Lakeview College is considering requiring all incoming
 The committee's argument depends on which of the following assumptions?
 
 - A) Offering the seminar to every incoming freshman would be relatively inexpensive compared with the college's other retention initiatives.
-- B) Students who enrolled did not differ from non-enrollees in motivation or academic preparation in ways that independently affect retention.
+- B) Retention into sophomore year is the single most important measure of freshman success at Lakeview College.
 - C) All freshmen who are required to enroll in the seminar will complete it successfully in their first semester.
-- D) Retention into sophomore year is the single most important measure of freshman success at Lakeview College.
+- D) Students who enrolled did not differ from non-enrollees in motivation or academic preparation in ways that independently affect retention.
 - E) The seminar will be taught by full-time faculty members rather than by graduate teaching assistants.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A college planning committee proposes requiring all incoming freshmen to take a study skills seminar, arguing that it will improve retention because, in a voluntary pilot program, 92 percent of students who enrolled returned for their sophomore year, compared with only 78 percent of students who did not enroll.
 
-**Reasoning.** The task is to identify the assumption on which the committee's argument depends. The committee infers that the seminar caused the higher return rate, but the pilot was voluntary, so the students who enrolled chose to do so themselves. For the comparison of return rates to support the conclusion that the seminar improves retention, the committee must assume that the two groups were otherwise alike, that those who enrolled were not already more likely to return for reasons such as greater motivation or stronger academic preparation. This is precisely what choice B states. Applying the negation test confirms B is required: if the enrollees did differ from the non-enrollees in motivation or preparation in ways that would independently affect retention, then the 92 percent versus 78 percent gap could be explained by that preexisting difference rather than by the seminar, and the argument that requiring the seminar will improve retention collapses. Because negating B destroys the argument, B is an assumption on which the argument depends.
+**Reasoning.** The task is to identify the assumption on which the committee's argument depends. The committee infers that the seminar caused the higher return rate, but the pilot was voluntary, so the students who enrolled chose to do so themselves. For the comparison of return rates to support the conclusion that the seminar improves retention, the committee must assume that the two groups were otherwise alike, that those who enrolled were not already more likely to return for reasons such as greater motivation or stronger academic preparation. This is precisely what choice D states. Applying the negation test confirms D is required: if the enrollees did differ from the non-enrollees in motivation or preparation in ways that would independently affect retention, then the 92 percent versus 78 percent gap could be explained by that preexisting difference rather than by the seminar, and the argument that requiring the seminar will improve retention collapses. Because negating D destroys the argument, D is an assumption on which the argument depends.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A concerns whether the seminar is inexpensive to offer. Cost may bear on whether the program is practical to adopt, but the argument is solely about whether the seminar improves retention, so its affordability is not something the reasoning must assume. Negating it, by supposing the seminar is expensive, leaves the claim that it improves retention untouched.
 **mistake_c:** Choice C asserts that all freshmen who enroll will complete the seminar successfully. The argument needs only that the seminar tends to raise the return rate on average, not that every single enrollee completes it. This universal claim is far stronger than the argument requires, so it is not a necessary assumption.
-**mistake_d:** Choice D claims that sophomore retention is the most important measure of freshman success. The committee already takes retention as its stated goal, so the argument need not assume that retention is the most important measure of success; it assumes only that the seminar will improve retention. This is a value judgment that the argument does not rely upon.
+**mistake_b:** Choice B claims that sophomore retention is the most important measure of freshman success. The committee already takes retention as its stated goal, so the argument need not assume that retention is the most important measure of success; it assumes only that the seminar will improve retention. This is a value judgment that the argument does not rely upon.
 **mistake_e:** Choice E concerns whether the seminar is taught by faculty members rather than graduate students. The identity of the instructors is a detail about how the seminar is delivered and has no bearing on whether the pilot comparison supports the conclusion. Negating it leaves the argument unaffected, so it is not a required assumption.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1718,21 +1718,21 @@ A survey of 2,000 remote workers at mid-size firms found that 64% reported highe
 Which of the following can be most reliably concluded from the information above?
 
 - A) Remote workers at these firms are less honest about their productivity than their office-based counterparts.
-- B) Self-reported individual productivity gains at these firms have not translated into measurable team-level output gains.
+- B) Most workers exaggerate their own productivity when responding to workplace surveys.
 - C) Managers at mid-size firms oppose remote work and would prefer that their teams return to the office.
 - D) Team-level output at these firms would have declined significantly over the same period if the shift to remote work had never occurred.
-- E) Most workers exaggerate their own productivity when responding to workplace surveys.
+- E) Self-reported individual productivity gains at these firms have not translated into measurable team-level output gains.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A survey of remote workers found that a large majority reported higher individual productivity working from home, yet managers at the same firms reported that team-level output had not increased overall and had slightly declined in some teams.
 
-**Reasoning.** The task is to identify what can be most reliably concluded from the stated information, so the correct answer must be forced by the passage rather than merely consistent with it or plausibly explanatory of it. The passage supplies two facts that can be combined without adding any outside premise: workers reported gains in their own productivity, and managers measured no overall gain in team-level output. Placing these side by side yields exactly one conclusion that requires nothing beyond the text, namely that the self-reported individual gains did not show up as measurable gains in team-level output. This statement neither speculates about why the gap exists nor attributes any motive, characteristic, or attitude to any party; it simply restates the disconnect the two facts establish. The correct answer is B.
+**Reasoning.** The task is to identify what can be most reliably concluded from the stated information, so the correct answer must be forced by the passage rather than merely consistent with it or plausibly explanatory of it. The passage supplies two facts that can be combined without adding any outside premise: workers reported gains in their own productivity, and managers measured no overall gain in team-level output. Placing these side by side yields exactly one conclusion that requires nothing beyond the text, namely that the self-reported individual gains did not show up as measurable gains in team-level output. This statement neither speculates about why the gap exists nor attributes any motive, characteristic, or attitude to any party; it simply restates the disconnect the two facts establish. The correct answer is E.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A introduces a character judgment about honesty that the passage does not support. The information reports what workers said about their productivity and what managers measured about output, but it offers no comparison of the honesty of remote workers and office workers, so this conclusion relies on outside assumptions.
 **mistake_c:** Choice C asserts an attitude that is never stated. The passage reports only the managers' measurement that team-level output did not rise; it says nothing about whether managers favor or oppose remote work, so their opposition cannot be concluded from the text.
 **mistake_d:** Choice D draws a counterfactual claim about what output would have been without remote work. The passage provides no comparison to a no-remote-work scenario, so there is no basis for concluding that output would have declined more under different circumstances.
-**mistake_e:** Choice E overstates the evidence by concluding that most workers exaggerate their own productivity. The passage establishes what workers reported and that team output did not rise, but a gap between self-report and measurement does not establish exaggeration; this is at most a possible explanation, not a forced inference.
+**mistake_b:** Choice B overstates the evidence by concluding that most workers exaggerate their own productivity. The passage establishes what workers reported and that team output did not rise, but a gap between self-report and measurement does not establish exaggeration; this is at most a possible explanation, not a forced inference.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1776,20 +1776,20 @@ A mid-size accounting firm is considering replacing its annual performance revie
 The answer to which of the following questions would be most useful in evaluating the HR director's conclusion?
 
 - A) What is the average annual cost of designing, administering, and maintaining a quarterly feedback system at a mid-size firm?
-- B) Did the study control for firm size, industry, and compensation levels, which independently affect turnover?
+- B) How long has the accounting firm been using its current annual performance review process?
 - C) Do employees at accounting firms generally prefer receiving feedback more frequently than once a year?
-- D) How long has the accounting firm been using its current annual performance review process?
+- D) Did the study control for firm size, industry, and compensation levels, which independently affect turnover?
 - E) Have any other mid-size accounting firms in the region adopted quarterly feedback recently?
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** An accounting firm is weighing a switch from annual performance reviews to quarterly feedback, and the HR director points to a 2023 study in which firms using quarterly feedback had 18 percent lower voluntary turnover than firms using annual reviews. The director concludes that adopting quarterly feedback will reduce the firm's turnover.
 
-**Reasoning.** The task is to identify the question whose answer would be most useful in evaluating this conclusion. The director's reasoning is causal: it treats a difference observed across two groups of firms as evidence that the feedback cadence itself produces the lower turnover. That inference holds only if the two groups of firms were otherwise comparable on the factors that drive turnover. If the firms using quarterly feedback also differed systematically in size, industry, or compensation, the 18 percent gap could reflect those differences rather than the feedback schedule. Choice B asks precisely whether the study controlled for size, industry, and compensation, which the stem notes independently affect turnover. An answer of yes would close off the main alternative explanation and strengthen the causal claim; an answer of no would reveal that the gap may be an artifact of how the compared firms differ, undermining the recommendation. Because the answer pulls the argument's force in opposite directions depending on which way it comes out, it is the most useful question for testing the conclusion.
+**Reasoning.** The task is to identify the question whose answer would be most useful in evaluating this conclusion. The director's reasoning is causal: it treats a difference observed across two groups of firms as evidence that the feedback cadence itself produces the lower turnover. That inference holds only if the two groups of firms were otherwise comparable on the factors that drive turnover. If the firms using quarterly feedback also differed systematically in size, industry, or compensation, the 18 percent gap could reflect those differences rather than the feedback schedule. Choice D asks precisely whether the study controlled for size, industry, and compensation, which the stem notes independently affect turnover. An answer of yes would close off the main alternative explanation and strengthen the causal claim; an answer of no would reveal that the gap may be an artifact of how the compared firms differ, undermining the recommendation. Because the answer pulls the argument's force in opposite directions depending on which way it comes out, it is the most useful question for testing the conclusion.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A asks about the cost of running a quarterly feedback system. Cost is a practical consideration in deciding whether the change is worthwhile, but the director's conclusion is specifically that the change will reduce turnover. Knowing the cost neither supports nor undercuts that causal claim, so it does not help evaluate the conclusion as stated.
 **mistake_c:** Choice C asks whether employees prefer more frequent feedback. Employee preference is an attitude, not an outcome, and the conclusion concerns actual turnover rather than satisfaction. A preference for frequent feedback would not establish that the cadence lowers turnover, so the answer does little to evaluate the causal claim.
-**mistake_d:** Choice D asks how long the firm has used annual reviews. The duration of the current practice is background context about this one firm and has no bearing on whether the cross-firm difference in the study reflects a genuine effect of feedback cadence. The answer therefore does not test the conclusion.
+**mistake_b:** Choice B asks how long the firm has used annual reviews. The duration of the current practice is background context about this one firm and has no bearing on whether the cross-firm difference in the study reflects a genuine effect of feedback cadence. The answer therefore does not test the conclusion.
 **mistake_e:** Choice E asks whether other accounting firms have recently adopted quarterly feedback. That other firms have made the switch is a form of social proof, not evidence about whether the switch reduces turnover. The answer would not reveal whether the observed difference is caused by the feedback system, so it does not help evaluate the conclusion.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1805,21 +1805,21 @@ A transportation analyst notes that over the past five years, the average commut
 Which of the following, if true, most helps to resolve the paradox?
 
 - A) Gasoline prices in Harpen have fluctuated significantly over the past five years, rising sharply in some years and falling in others, with no sustained trend in either direction.
-- B) Over the past five years, Harpen's employment has grown 20%, and many new jobs are concentrated in a downtown core whose road and rail capacity was already near its limit.
+- B) Harpen's city government has increased its spending on road maintenance and repaving projects throughout the metropolitan area in each of the past five years.
 - C) The two new subway lines opened only within the past year, well after most of the five-year period over which commute times were measured.
 - D) Some former Harpen drivers have given up their cars over the past five years and switched to biking or walking for their daily commutes.
-- E) Harpen's city government has increased its spending on road maintenance and repaving projects throughout the metropolitan area in each of the past five years.
+- E) Over the past five years, Harpen's employment has grown 20%, and many new jobs are concentrated in a downtown core whose road and rail capacity was already near its limit.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** Over the past five years, the average commute time in Harpen has risen by seven minutes, even though the number of registered cars has fallen by 12 percent and two new subway lines have opened.
 
 **Reasoning.** The task is to find the statement that, if true, most helps resolve the apparent paradox: factors that should ease congestion (fewer cars, more rail capacity) have coincided with longer commutes rather than shorter ones. A satisfying resolution must supply a countervailing force strong enough to outweigh the reduced car count and added transit. A drop in registered cars and an increase in subway lines speak to capacity, but commute time depends on how that capacity is matched against demand. If the number of people commuting grew sharply while that demand was funneled into a place that could not absorb it, commutes could lengthen even as per-vehicle car use declined and rail expanded. The credited answer states that employment grew 20 percent and that many new jobs are concentrated in a downtown core whose road and rail capacity was already near its limit. This furnishes both missing pieces. The 20 percent employment growth means far more commuters overall, so a 12 percent fall in registered cars need not translate into fewer trips, and the spatial concentration of those new jobs forces the added demand onto a bottleneck that was already saturated, so the extra subway lines cannot relieve it. Demand surging into a capacity-constrained chokepoint explains how aggregate commute time can worsen despite the favorable car and rail trends.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A is too vague to resolve the paradox. Fluctuating gasoline prices give no consistent direction and, in any case, do not explain why commute time would increase even as cars decreased and rail expanded.
 **mistake_c:** Choice C explains, at most, why the benefits of the new subway lines have not yet fully materialized, since the lines opened only recently. It does not account for the increase in commute time, which would require a force pushing commutes upward, not merely the absence of one of the expected improvements.
 **mistake_d:** Choice D deepens the paradox rather than resolving it. Former drivers switching to biking would tend to reduce road congestion and shorten commute times, making the observed increase harder, not easier, to explain.
-**mistake_e:** Choice E points in the wrong direction as well. Increased spending on road maintenance would, if anything, improve road conditions and reduce commute times, so it does not explain why average commute time rose.
+**mistake_b:** Choice B points in the wrong direction as well. Increased spending on road maintenance would, if anything, improve road conditions and reduce commute times, so it does not explain why average commute time rose.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1834,20 +1834,20 @@ The correct answer is B.
 In the argument above, the two portions in boldface play which of the following roles?
 
 - A) The first is a hypothesis that the author ultimately endorses; the second provides empirical evidence that the author offers in its favor.
-- B) The first is a popular position that the argument seeks to rebut; the second identifies the mechanism by which that position fails in the case described.
+- B) The first is a policy proposal advanced by municipal leaders; the second describes an alternative policy that the author prefers.
 - C) The first is evidence offered in support of the argument's main conclusion; the second is the main conclusion that this evidence supports.
-- D) The first is a policy proposal advanced by municipal leaders; the second describes an alternative policy that the author prefers.
+- D) The first is a popular position that the argument seeks to rebut; the second identifies the mechanism by which that position fails in the case described.
 - E) The first and the second are both offered in support of the same general principle about municipal tax incentives.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** Many municipal leaders hold that tax incentives to tech companies are the most effective way for mid-size cities to grow local employment, but the city of Ridgemont granted more than $200 million in tax breaks to relocate three tech firms and saw local employment grow no faster than the regional average. The argument adds that those breaks mainly subsidized jobs the firms would have created in the region regardless of which city they chose.
 
 **Reasoning.** The task is to identify the roles the two boldface portions play. The first boldface portion states the claim attributed to a growing number of municipal leaders, that tax incentives are the most effective way to grow local employment. The argument does not adopt this claim; it offers Ridgemont as a counterexample, noting that despite large tax breaks employment grew no faster than the regional average, so the argument is working to rebut the claim. The second boldface portion states that the tax breaks primarily subsidized jobs that the firms would have created in the region regardless of which specific city they chose. This is not a separate conclusion or a new proposal; it explains why the incentives failed to produce above-average growth, namely that the jobs were coming to the region anyway and the incentives merely shifted where within the region they landed. It therefore identifies the mechanism by which the popular position fails in the Ridgemont case. The choice that captures both roles, the first as a popular position the argument seeks to rebut and the second as the mechanism of its failure in the case described, is the correct one.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A reverses the author's stance toward the first boldface portion. The author does not endorse the municipal leaders' claim as a hypothesis; the entire argument, built on the Ridgemont counterexample, is designed to undercut it. Because the first portion is opposed rather than endorsed, the second portion cannot be evidence in its favor, and this description fails.
 **mistake_c:** Choice C mislabels both portions. The first boldface portion is the popular view being rebutted, not evidence offered in support of the author's conclusion. The second portion explains why the incentives did not boost employment, but it is the diagnostic mechanism behind the counterexample rather than the argument's main conclusion, so this pairing is incorrect.
-**mistake_d:** Choice D introduces elements not present in the argument. The first boldface portion is a claim about which approach is most effective, attributed to municipal leaders, not a policy proposal advanced by the author. The second portion explains why the tax breaks failed; it offers no alternative course of action that the author prefers, so describing it as a preferred alternative misreads the passage.
+**mistake_b:** Choice B introduces elements not present in the argument. The first boldface portion is a claim about which approach is most effective, attributed to municipal leaders, not a policy proposal advanced by the author. The second portion explains why the tax breaks failed; it offers no alternative course of action that the author prefers, so describing it as a preferred alternative misreads the passage.
 **mistake_e:** Choice E ignores the opposition between the two portions. The first states the popular position, while the second helps explain why that position does not hold in the Ridgemont case. Rather than jointly supporting one general principle, the second portion works against the first, so this description is incorrect.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1863,21 +1863,21 @@ A consumer advocacy group recently tested 12 brands of bottled "spring water" an
 Which of the following most logically completes the argument?
 
 - A) the group tested only 12 of the dozens of bottled water brands on the market, and other brands might be free of microplastics.
-- B) consumers may buy bottled water for reasons other than purity, such as convenience or taste, which the microplastic data does not address.
+- B) some consumers drink bottled water only occasionally rather than as their primary source of drinking water.
 - C) the group did not describe its testing methods in detail or explain how microplastic levels were measured against tap water.
 - D) microplastics are present in many common foods and beverages besides water, including some consumed far more frequently than bottled water.
-- E) some consumers drink bottled water only occasionally rather than as their primary source of drinking water.
+- E) consumers may buy bottled water for reasons other than purity, such as convenience or taste, which the microplastic data does not address.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A consumer advocacy group tested 12 brands of bottled "spring water" and found that 9 of them contained trace microplastics at levels comparable to ordinary tap water. From this the group concluded that consumers who buy bottled water for its purported purity are wasting their money.
 
-**Reasoning.** The task is to identify the statement that most logically completes the argument by explaining why the group's conclusion goes beyond what the evidence supports. The evidence concerns only purity: it shows that bottled spring water is no purer than tap water. The verdict that consumers are "wasting money," however, is a judgment about whether the purchase is worthwhile overall. That verdict holds only if purity is the sole reason a consumer would pay for bottled water. If consumers value bottled water for other reasons, the microplastic finding leaves those reasons untouched and cannot establish that the money is wasted. The correct completion must therefore expose this gap between purity evidence and the broader purchase verdict. Choice B does exactly that: it points out that consumers may buy bottled water for reasons other than purity, such as convenience or taste, which the microplastic data does not address. Because the evidence speaks only to purity, it cannot show that purchases made for these other reasons are wasteful, so the conclusion overreaches.
+**Reasoning.** The task is to identify the statement that most logically completes the argument by explaining why the group's conclusion goes beyond what the evidence supports. The evidence concerns only purity: it shows that bottled spring water is no purer than tap water. The verdict that consumers are "wasting money," however, is a judgment about whether the purchase is worthwhile overall. That verdict holds only if purity is the sole reason a consumer would pay for bottled water. If consumers value bottled water for other reasons, the microplastic finding leaves those reasons untouched and cannot establish that the money is wasted. The correct completion must therefore expose this gap between purity evidence and the broader purchase verdict. Choice E does exactly that: it points out that consumers may buy bottled water for reasons other than purity, such as convenience or taste, which the microplastic data does not address. Because the evidence speaks only to purity, it cannot show that purchases made for these other reasons are wasteful, so the conclusion overreaches.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A raises a sampling concern, but a result of 9 out of 12 brands is strong enough to support the claim that bottled spring water is generally no purer than tap water. The flaw in the argument is not the size of the sample; it is the leap from a purity finding to a verdict about whether the purchase is worthwhile. This choice does not identify that gap.
 **mistake_c:** Choice C complains that the testing methods were not described in detail, but the argument's overreach does not depend on the rigor of the testing. Even granting that the purity results are accurate, the conclusion that consumers are wasting money would still go beyond the evidence. This choice fails to address the mismatch between purity data and the purchase verdict.
 **mistake_d:** Choice D notes that microplastics are present in many foods besides water. This broadens the discussion of microplastics generally but does nothing to show why the group's conclusion about wasted money exceeds its evidence. It does not connect to the reasons consumers buy bottled water, so it cannot complete the argument.
-**mistake_e:** Choice E observes that some consumers drink bottled water only occasionally. Frequency of consumption is irrelevant to whether the purchase is justified by purity or by some other motive. This choice addresses how often the product is used rather than why it is bought, and so it does not expose the conclusion's overreach.
+**mistake_b:** Choice B observes that some consumers drink bottled water only occasionally. Frequency of consumption is irrelevant to whether the purchase is justified by purity or by some other motive. This choice addresses how often the product is used rather than why it is bought, and so it does not expose the conclusion's overreach.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1893,20 +1893,20 @@ A nonprofit that runs a summer coding bootcamp reports that its 2024 cohort achi
 Which of the following, if true, most strengthens the director's conclusion?
 
 - A) The bootcamp charges its students significantly less in total tuition than a traditional two-year computing program does.
-- B) Bootcamp and two-year-program students in the region did not differ in prior programming experience, educational background, or employer-screening criteria.
+- B) Several graduates of the bootcamp's 2024 cohort have been featured in local news stories about the region's tech sector.
 - C) The bootcamp's graduates are generally several years older than two-year-program graduates and often have prior work experience.
-- D) Several graduates of the bootcamp's 2024 cohort have been featured in local news stories about the region's tech sector.
+- D) Bootcamp and two-year-program students in the region did not differ in prior programming experience, educational background, or employer-screening criteria.
 - E) Employers throughout the region have substantially increased their overall hiring of entry-level tech workers during the period covered by the placement figures.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A nonprofit reports that its 2024 coding-bootcamp cohort had an 81 percent job-placement rate within six months of graduation, compared with 58 percent for graduates of traditional two-year computing programs in the same region. The director concludes that the bootcamp's accelerated, project-based curriculum is more effective than traditional instruction at preparing students for entry-level tech jobs.
 
-**Reasoning.** The task is to find the statement that most strengthens the director's conclusion. The conclusion is causal: it attributes the higher placement rate to the curriculum itself. A higher placement rate, however, could arise for reasons unrelated to the curriculum. If the bootcamp's students entered with more programming experience, stronger educational backgrounds, or an advantage in the criteria employers use to screen candidates, then their superior placement might reflect who the students were rather than what they were taught. Such differences are confounding factors that offer rival explanations for the gap. The conclusion is strengthened by any statement that removes these rival explanations and thereby leaves the curriculum as the credible cause of the difference. Choice B does exactly this: it establishes that the two groups did not differ in prior programming experience, educational background, or employer-screening criteria. With the students matched on these major confounders, the difference in outcomes can no longer be attributed to differences in the students, and the curriculum stands out as the remaining explanation for the bootcamp's advantage. This directly supports the causal claim.
+**Reasoning.** The task is to find the statement that most strengthens the director's conclusion. The conclusion is causal: it attributes the higher placement rate to the curriculum itself. A higher placement rate, however, could arise for reasons unrelated to the curriculum. If the bootcamp's students entered with more programming experience, stronger educational backgrounds, or an advantage in the criteria employers use to screen candidates, then their superior placement might reflect who the students were rather than what they were taught. Such differences are confounding factors that offer rival explanations for the gap. The conclusion is strengthened by any statement that removes these rival explanations and thereby leaves the curriculum as the credible cause of the difference. Choice D does exactly this: it establishes that the two groups did not differ in prior programming experience, educational background, or employer-screening criteria. With the students matched on these major confounders, the difference in outcomes can no longer be attributed to differences in the students, and the curriculum stands out as the remaining explanation for the bootcamp's advantage. This directly supports the causal claim.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A reports that the bootcamp costs students much less than a two-year program. Cost is a separate consideration from instructional effectiveness; a lower price says nothing about why bootcamp graduates were placed in jobs more often, so it does not support the claim that the curriculum is the cause of the higher placement rate.
 **mistake_c:** Choice C states that the bootcamp's graduates are generally older than two-year-program graduates. Rather than strengthening the conclusion, this introduces an alternative explanation for the placement gap: greater age may bring more work experience or maturity that appeals to employers. Because it offers a rival cause for the higher placement rate, it weakens the director's curriculum-based conclusion instead of supporting it.
-**mistake_d:** Choice D notes that several bootcamp graduates have been featured in local news stories. This is merely anecdotal publicity about a few individuals; it provides no evidence that the curriculum produced the higher placement rate and does not address the comparison between the two programs.
+**mistake_b:** Choice B notes that several bootcamp graduates have been featured in local news stories. This is merely anecdotal publicity about a few individuals; it provides no evidence that the curriculum produced the higher placement rate and does not address the comparison between the two programs.
 **mistake_e:** Choice E states that regional employers have increased their overall hiring of entry-level tech workers. A general rise in hiring would tend to lift placement rates for both groups of graduates rather than for the bootcamp alone. Because it affects both programs, it does nothing to isolate the curriculum as the reason the bootcamp's rate exceeds the two-year program's rate.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1922,21 +1922,21 @@ A wellness columnist writes: People who drink two or more cups of green tea per 
 The columnist's reasoning is most vulnerable to which of the following criticisms?
 
 - A) It fails to consider that green tea may taste unpleasant to some people who would otherwise follow the recommendation.
-- B) It treats a correlation observed in observational studies as if it established that green tea itself causes the lower risk.
+- B) It overlooks the fact that green tea contains caffeine as well as other biologically active compounds.
 - C) It assumes that cardiovascular disease is the most important health risk for a typical person to try to reduce.
 - D) It does not consider whether drinking more than two cups per day would provide additional benefit beyond the observed 20% risk reduction.
-- E) It overlooks the fact that green tea contains caffeine as well as other biologically active compounds.
+- E) It treats a correlation observed in observational studies as if it established that green tea itself causes the lower risk.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A wellness columnist notes that multiple studies have found that people who drink two or more cups of green tea per day have a 20 percent lower risk of cardiovascular disease than people who drink less, and concludes that anyone wishing to reduce cardiovascular risk should begin drinking at least two cups of green tea per day.
 
-**Reasoning.** The task is to identify the criticism to which the columnist's reasoning is most vulnerable, that is, the central flaw in the argument. The studies cited establish only that heavy green-tea consumption is associated with lower cardiovascular risk; being observational, they document a correlation between two characteristics within a population. The columnist's recommendation, however, treats the green tea itself as the cause of the reduced risk, advising people to drink it precisely so that their own risk will fall. That step is unwarranted, because a correlation can arise without any direct causal link: the people who drink more green tea may differ systematically from those who drink less in other respects, such as exercising more, smoking less, or having greater means, and one of those other factors could be responsible for the lower risk. The columnist offers nothing to rule out such alternative explanations and thus mistakes an observed association for a demonstrated causal relationship. Choice B names exactly this error, identifying that the argument treats a correlation found in observational studies as if it had established that green tea itself produces the lower risk.
+**Reasoning.** The task is to identify the criticism to which the columnist's reasoning is most vulnerable, that is, the central flaw in the argument. The studies cited establish only that heavy green-tea consumption is associated with lower cardiovascular risk; being observational, they document a correlation between two characteristics within a population. The columnist's recommendation, however, treats the green tea itself as the cause of the reduced risk, advising people to drink it precisely so that their own risk will fall. That step is unwarranted, because a correlation can arise without any direct causal link: the people who drink more green tea may differ systematically from those who drink less in other respects, such as exercising more, smoking less, or having greater means, and one of those other factors could be responsible for the lower risk. The columnist offers nothing to rule out such alternative explanations and thus mistakes an observed association for a demonstrated causal relationship. Choice E names exactly this error, identifying that the argument treats a correlation found in observational studies as if it had established that green tea itself produces the lower risk.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A raises a matter of personal taste rather than a defect in the argument's logic. Whether some people find green tea unpleasant has no bearing on whether the columnist has correctly inferred that drinking it will reduce cardiovascular risk, so this is not the reasoning the argument is most vulnerable to.
 **mistake_c:** Choice C concerns a value judgment about which health risk most deserves attention. The columnist's stated aim is to address those who already want to reduce their cardiovascular risk, so the relative importance of that goal is beside the point and does not expose any error in the inference drawn from the studies.
 **mistake_d:** Choice D points to an unexamined question about dose, namely whether drinking more than two cups per day yields additional benefit. That is a separate issue from the argument's core, which is the unsupported leap from a correlation to the claim that green tea causes the reduced risk; the argument can be faulted without regard to higher doses.
-**mistake_e:** Choice E notes that green tea contains caffeine, but it supplies no link between that fact and any weakness in the columnist's reasoning. Without showing how caffeine bears on the inference from the studies to the recommendation, this observation identifies no flaw in the argument.
+**mistake_b:** Choice B notes that green tea contains caffeine, but it supplies no link between that fact and any weakness in the columnist's reasoning. Without showing how caffeine bears on the inference from the studies to the recommendation, this observation identifies no flaw in the argument.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -1951,20 +1951,20 @@ A regional airline is deciding whether to invest in lighter composite seats that
 The answer to which of the following questions would be most useful in evaluating the CFO's plan?
 
 - A) How many other airlines, including major national carriers, have already purchased and installed the composite seats in their fleets?
-- B) Were the manufacturer's 2% fuel-savings figures derived from real-world operation by airlines with flight profiles similar to the regional airline's?
+- B) Do passengers on the airline's typical routes find the new composite seats more comfortable than the current seats?
 - C) What range of color and upholstery options does the manufacturer offer for the new composite seats, and can the upholstery be matched to the airline's cabin branding?
-- D) Do passengers on the airline's typical routes find the new composite seats more comfortable than the current seats?
+- D) Were the manufacturer's 2% fuel-savings figures derived from real-world operation by airlines with flight profiles similar to the regional airline's?
 - E) How long has the seat manufacturer been in business supplying seats and other cabin equipment to commercial airlines?
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A regional airline is considering buying lighter composite seats that, according to the seat manufacturer, would cut fuel costs by roughly 2 percent per flight. The CFO endorses the switch and projects multi-million-dollar annual savings on the basis of that manufacturer's figure.
 
-**Reasoning.** The task is to identify the question whose answer would be most useful in evaluating the CFO's plan. The CFO's projection rests entirely on the manufacturer's 2 percent figure, so the value of that projection depends on whether the figure actually applies to this airline's operations. Fuel savings from a given weight reduction are sensitive to the operating profile: flight length, number of takeoffs and landings, cruise patterns, and similar factors all affect how much fuel a lighter aircraft actually saves. A figure obtained under conditions unlike this airline's could overstate or understate the real savings. The question in choice B asks precisely whether the 2 percent figure was derived from real-world operation by airlines with flight profiles similar to this airline's. An answer of yes would confirm that the figure transfers and the projection holds; an answer of no would reveal that the projected savings may be much smaller or larger than claimed, undermining the CFO's reasoning. Because its answer points the evaluation in opposite directions depending on how it comes out, choice B is the most useful question to ask.
+**Reasoning.** The task is to identify the question whose answer would be most useful in evaluating the CFO's plan. The CFO's projection rests entirely on the manufacturer's 2 percent figure, so the value of that projection depends on whether the figure actually applies to this airline's operations. Fuel savings from a given weight reduction are sensitive to the operating profile: flight length, number of takeoffs and landings, cruise patterns, and similar factors all affect how much fuel a lighter aircraft actually saves. A figure obtained under conditions unlike this airline's could overstate or understate the real savings. The question in choice D asks precisely whether the 2 percent figure was derived from real-world operation by airlines with flight profiles similar to this airline's. An answer of yes would confirm that the figure transfers and the projection holds; an answer of no would reveal that the projected savings may be much smaller or larger than claimed, undermining the CFO's reasoning. Because its answer points the evaluation in opposite directions depending on how it comes out, choice D is the most useful question to ask.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A appeals to how many other airlines have already purchased the seats. This is a form of social proof and says nothing about whether the manufacturer's 2 percent fuel-savings figure applies to this airline's flight profile, so its answer would not help evaluate the projection.
 **mistake_c:** Choice C asks about the color and upholstery options for the new seats. These aesthetic details are irrelevant to fuel costs or projected savings, so their answers could not affect an evaluation of the CFO's plan.
-**mistake_d:** Choice D concerns whether passengers find the seats more comfortable. Passenger comfort relates to customer experience, not to the fuel-savings figure on which the CFO's financial projection depends, so its answer would not help test that projection.
+**mistake_b:** Choice B concerns whether passengers find the seats more comfortable. Passenger comfort relates to customer experience, not to the fuel-savings figure on which the CFO's financial projection depends, so its answer would not help test that projection.
 **mistake_e:** Choice E asks how long the manufacturer has been in business. Although vendor longevity may bear loosely on general credibility, it does not reveal whether the specific 2 percent figure was measured under conditions comparable to this airline's operations, so its answer would not let one evaluate the projection itself.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -1980,21 +1980,21 @@ An agricultural economist argues that government subsidies for small family farm
 Which of the following, if true, most seriously weakens the economist's argument?
 
 - A) Large corporate farms receive some agricultural subsidies as well, though at lower per-acre rates than small family farms.
-- B) Without the subsidies, projections indicate that the decline in small family farms would have been approximately 70% rather than 40%.
+- B) Consumer demand for locally grown food from small producers has increased steadily over the past 20 years.
 - C) Some small family farms are located in regions where farmland has become too expensive for new farmers to purchase.
 - D) Over the same period, the government has also provided separate grants supporting organic farming operations.
-- E) Consumer demand for locally grown food from small producers has increased steadily over the past 20 years.
+- E) Without the subsidies, projections indicate that the decline in small family farms would have been approximately 70% rather than 40%.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** An agricultural economist notes that over the past 20 years, even though small family farms received more than $50 billion in subsidies, their number fell by over 40% while the average size of remaining farms grew. He concludes that the subsidies failed at their stated purpose of preserving the small farm sector.
 
 **Reasoning.** The task is to identify the statement that, if true, most seriously weakens the conclusion that the subsidies failed. The economist's reasoning rests on a single observed outcome -- a decline in small family farms -- and treats that decline as proof that the subsidies accomplished nothing. This evaluation depends entirely on the baseline against which the outcome is measured. The economist implicitly compares the actual world to a world in which the subsidies succeeded fully (no decline at all), but the proper comparison is to a world in which the subsidies had never been provided. To weaken the argument, a choice must supply that counterfactual and show that the subsidies in fact made a difference. The credited choice states that without the subsidies, projections indicate the decline would have been roughly 70% rather than the observed 40%. This directly undercuts the conclusion: rather than failing, the subsidies prevented a substantial portion of the loss, softening a projected 70% decline into a 40% decline. The presence of a decline is therefore consistent with the subsidies having partially preserved the sector, which is precisely what the economist denies.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A merely addresses how subsidy money is distributed, noting that large farms also receive some. This says nothing about whether the subsidies to small family farms helped preserve them, so it does not supply the counterfactual baseline needed to challenge the conclusion that the subsidies failed.
 **mistake_c:** Choice C offers a background fact about land cost in some regions. It provides no information about what would have happened to small family farms without the subsidies and does not bear on whether the subsidies achieved their preservation purpose, so it leaves the economist's conclusion untouched.
 **mistake_d:** Choice D introduces a separate program of grants for organic farming. This tangential policy is not the subsidy at issue and tells us nothing about the effect of the small-farm subsidies relative to a no-subsidy world, so it does not weaken the argument.
-**mistake_e:** Choice E cites a market force -- rising consumer demand for locally grown food -- rather than the effect of the policy. If anything, this would suggest small farms had a non-policy reason to survive, which does not rebut the claim that the subsidies failed and may even complicate the case for them; it supplies no counterfactual showing the subsidies reduced the decline.
+**mistake_b:** Choice B cites a market force -- rising consumer demand for locally grown food -- rather than the effect of the policy. If anything, this would suggest small farms had a non-policy reason to survive, which does not rebut the claim that the subsidies failed and may even complicate the case for them; it supplies no counterfactual showing the subsidies reduced the decline.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -2009,20 +2009,20 @@ A clean-energy startup claims its new solar panel design will be commercially vi
 The startup's claim depends on which of the following assumptions?
 
 - A) No commercial solar panel currently on the market has ever achieved a sustained energy conversion efficiency above 30% in real-world operation.
-- B) The higher efficiency observed in the laboratory prototypes can be substantially preserved in large-scale manufacturing at a cost that allows competitive pricing.
+- B) The panels will be purchased primarily by individual residential customers rather than by commercial or utility-scale customers.
 - C) Raising a large amount of venture capital is itself sufficient to guarantee that a startup's product will achieve commercial success.
-- D) The panels will be purchased primarily by individual residential customers rather than by commercial or utility-scale customers.
+- D) The higher efficiency observed in the laboratory prototypes can be substantially preserved in large-scale manufacturing at a cost that allows competitive pricing.
 - E) Government subsidies and tax incentives for solar panel purchases will continue at roughly their current levels for the next three years.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A clean-energy startup argues that its new solar panel design will be commercially viable within three years on the grounds that laboratory prototypes reached a 34% energy conversion efficiency, exceeding the 22% of the best commercial panels now on the market.
 
-**Reasoning.** The task is to identify an assumption on which the startup's claim depends. The argument moves from a laboratory result to a conclusion about commercial viability, treating high prototype efficiency as sufficient grounds for success in the market. That leap is sound only if the efficiency demonstrated in the lab can be carried over into mass production and if the panels can then be made and sold at a competitive price; otherwise a high lab figure says nothing about commercial viability. Choice B supplies exactly this bridge, asserting that the higher efficiency can be substantially preserved in large-scale manufacturing at a cost structure permitting competitive sale. The negation test confirms its necessity: if the efficiency could not be preserved at scale, or could be preserved only at a cost that made the panels uncompetitive, then a strong laboratory result would not yield a commercially viable product and the conclusion would collapse. Because denying the statement destroys the argument, it is a required assumption.
+**Reasoning.** The task is to identify an assumption on which the startup's claim depends. The argument moves from a laboratory result to a conclusion about commercial viability, treating high prototype efficiency as sufficient grounds for success in the market. That leap is sound only if the efficiency demonstrated in the lab can be carried over into mass production and if the panels can then be made and sold at a competitive price; otherwise a high lab figure says nothing about commercial viability. Choice D supplies exactly this bridge, asserting that the higher efficiency can be substantially preserved in large-scale manufacturing at a cost structure permitting competitive sale. The negation test confirms its necessity: if the efficiency could not be preserved at scale, or could be preserved only at a cost that made the panels uncompetitive, then a strong laboratory result would not yield a commercially viable product and the conclusion would collapse. Because denying the statement destroys the argument, it is a required assumption.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A states a historical absolute about whether any commercial panel has ever exceeded 30% efficiency. The argument compares the prototype only with the best panels currently on the market, and its conclusion about future viability does not rest on what has or has not been achieved in the past, so this is not something the claim assumes.
 **mistake_c:** Choice C asserts that venture capital investment guarantees commercial success. This is a non sequitur; the $80 million raised is offered as context, not as a basis for the conclusion, and the startup's claim does not depend on the unfounded premise that funding ensures success.
-**mistake_d:** Choice D claims the panels will be bought primarily by residential rather than commercial customers. The argument says nothing about which segment of buyers will purchase the panels, and commercial viability does not require any particular customer mix, so this is an unsupported narrowing that the claim does not assume.
+**mistake_b:** Choice B claims the panels will be bought primarily by residential rather than commercial customers. The argument says nothing about which segment of buyers will purchase the panels, and commercial viability does not require any particular customer mix, so this is an unsupported narrowing that the claim does not assume.
 **mistake_e:** Choice E supposes that government subsidies for solar panels will continue at their current level. The argument grounds viability in the panel's superior efficiency, not in policy support; nothing in the reasoning relies on subsidies, so their continuation is not a necessary assumption.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -2038,19 +2038,19 @@ A survey of 5,000 full-time knowledge workers found the following: 72% reported 
 Which of the following can be most reliably concluded from the information above?
 
 - A) Generative AI tools do not produce any real productivity benefit for any of the individual workers who use them, however frequently the tools are used.
-- B) Reported individual efficiency gains from generative AI at these firms have not translated into measured team-level output-per-worker gains.
+- B) Most of the surveyed knowledge workers use generative AI tools daily rather than merely weekly.
 - C) Managers at the surveyed firms are biased against generative AI and unwilling to credit it for output gains.
 - D) Knowledge workers systematically overstate the benefits of newly introduced workplace technology when responding to surveys.
-- E) Most of the surveyed knowledge workers use generative AI tools daily rather than merely weekly.
+- E) Reported individual efficiency gains from generative AI at these firms have not translated into measured team-level output-per-worker gains.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A survey of 5,000 full-time knowledge workers found that 72 percent use generative AI tools at work at least weekly, and of those users a majority (61 percent) reported that the tools made their work more efficient. Separately, managers at the same firms reported that team-level output per worker had not measurably increased since generative AI adoption began.
 
-**Reasoning.** The task is to identify what can be most reliably concluded from the stated information. A valid inference must be fully supported by the premises and cannot introduce claims about motive, character, or magnitudes that the passage does not establish. The passage juxtaposes two facts: individual workers report personal efficiency gains, and managers measure no increase in team-level output per worker. The only conclusion the text forces is a restatement of this gap, namely that the reported individual efficiency gains have not shown up as measured team-level output-per-worker gains. This conclusion adds nothing beyond what the two premises jointly assert and therefore must be true if those premises are true. The correct answer is B.
+**Reasoning.** The task is to identify what can be most reliably concluded from the stated information. A valid inference must be fully supported by the premises and cannot introduce claims about motive, character, or magnitudes that the passage does not establish. The passage juxtaposes two facts: individual workers report personal efficiency gains, and managers measure no increase in team-level output per worker. The only conclusion the text forces is a restatement of this gap, namely that the reported individual efficiency gains have not shown up as measured team-level output-per-worker gains. This conclusion adds nothing beyond what the two premises jointly assert and therefore must be true if those premises are true. The correct answer is E.
 **mistake_a:** Choice A overstates the evidence. The claim that the tools produce no real productivity benefit for any individual worker is far stronger than the passage supports. Flat team-level metrics are consistent with genuine individual gains that are offset, redistributed, or simply not captured at the team level, so the reported gains could be real for individuals even though output per worker did not rise.
 **mistake_c:** Choice C imports a motive the passage never establishes. The text reports only that managers measured no increase in team-level output per worker; it provides no information about the managers' attitudes toward generative AI, so a charge of bias cannot be concluded from the information given.
 **mistake_d:** Choice D makes an unsupported character claim. The passage does not state that the workers' reports are inflated, nor does it address how these workers respond to new technology in general. Concluding that knowledge workers systematically overstate the benefits of new technology goes well beyond the single survey result described.
-**mistake_e:** Choice E misreads the data. The passage states that 72 percent of workers use generative AI tools at least weekly, which does not establish that most workers use the tools daily. Weekly use does not entail daily use, so this conclusion is not supported.
+**mistake_b:** Choice B misreads the data. The passage states that 72 percent of workers use generative AI tools at least weekly, which does not establish that most workers use the tools daily. Weekly use does not entail daily use, so this conclusion is not supported.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -2065,20 +2065,20 @@ A state's department of motor vehicles reports that over the past decade the num
 Which of the following, if true, best resolves the apparent discrepancy?
 
 - A) Midway through the decade, the state raised the minimum age for an unrestricted driving license and imposed a mandatory supervised-practice requirement on all new teenage drivers.
-- B) Miles driven per licensed teenage driver have more than doubled, as the remaining teen drivers skew toward rural areas with long commutes and fewer public transportation options.
+- B) Over the past decade, the state has funded several road safety campaigns targeted at teenagers, including school programs on distracted driving.
 - C) Teenagers in the state today are considerably less likely to own their own cars than teenagers were a decade ago, and many delay licensing until age eighteen.
-- D) Over the past decade, the state has funded several road safety campaigns targeted at teenagers, including school programs on distracted driving.
+- D) Miles driven per licensed teenage driver have more than doubled, as the remaining teen drivers skew toward rural areas with long commutes and fewer public transportation options.
 - E) A small number of teenage drivers in the state are involved in more than one reportable accident in a single year.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** Over the past decade the number of licensed teenage drivers in the state fell by 35 percent, yet the annual number of accidents involving teenage drivers rose by 12 percent.
 
 **Reasoning.** The task is to find the choice that, if true, best resolves the apparent discrepancy between a shrinking population of teenage drivers and a growing number of accidents involving them. The number of accidents is not determined by how many teenagers hold licenses but by how much those teenagers actually drive, since accident exposure scales with miles driven rather than with headcount. The correct choice must therefore supply a mechanism by which fewer drivers can nonetheless produce more accidents. The choice stating that the miles driven per licensed teenage driver have more than doubled does exactly this: it identifies both a compositional shift, in which the remaining teenage drivers skew toward rural areas with long commutes and few transit alternatives, and a corresponding increase in exposure. A teenage population reduced by 35 percent but each driving more than twice as far yields a net increase in total miles driven, and thus more accidents, fully reconciling the two reported figures.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A indicates that the state raised the minimum age for unrestricted licenses. This helps explain why the number of licensed teenage drivers fell, but it gives no reason why the number of accidents rose; if anything, fewer and more restricted young drivers would tend to push accidents down, so it deepens rather than resolves the discrepancy.
 **mistake_c:** Choice C states that teenagers today are less likely to own a car than a decade ago. This is consistent with the declining number of teenage drivers and would tend to reduce driving and therefore accidents, moving in the same direction as the falling headcount rather than explaining the rise in accidents.
-**mistake_d:** Choice D notes that the state added road safety campaigns targeted at teenagers. Such campaigns are intended to reduce accidents, so this choice predicts the opposite of the observed 12 percent increase and fails to resolve the paradox.
+**mistake_b:** Choice B notes that the state added road safety campaigns targeted at teenagers. Such campaigns are intended to reduce accidents, so this choice predicts the opposite of the observed 12 percent increase and fails to resolve the paradox.
 **mistake_e:** Choice E observes that some teenage drivers are involved in more than one accident per year. While this could marginally inflate the accident count, it is a static feature that presumably held a decade ago as well; it offers no change over the period and no mechanism large enough to overcome a 35 percent drop in drivers, so it does not account for the direction or size of the increase.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -2094,21 +2094,21 @@ The correct answer is B.
 In the argument above, the two statements in boldface play which of the following roles?
 
 - A) The first is a prediction that the argument ultimately endorses; the second presents a counterexample that narrows the scope within which the prediction applies.
-- B) The first is a common view that the argument calls into question; the second explains the mechanism by which, in the cited case, the prediction of the first did not hold.
+- B) The first and the second describe the same economic phenomenon from the differing perspectives of executives and of a single retail chain.
 - C) The first is the main conclusion of the argument; the second is evidence offered in direct support of that conclusion.
 - D) The first is a conditional claim about the relationship between wages and prices; the second is a restatement of that claim in more specific terms.
-- E) The first and the second describe the same economic phenomenon from the differing perspectives of executives and of a single retail chain.
+- E) The first is a common view that the argument calls into question; the second explains the mechanism by which, in the cited case, the prediction of the first did not hold.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** Many retail executives hold that raising cashier wages must push prices up, since the added labor cost is passed to consumers. The argument cites Brantco, which raised its starting cashier wage by 18 percent in 2023 yet held prices flat and maintained operating margins by recovering savings from lower turnover-related training costs and from reduced theft and error.
 
-**Reasoning.** The task is to identify the roles played by the two boldface portions. The first boldface states the executives' position that higher wages will inevitably raise prices. The argument does not adopt this position; it introduces Brantco with the word "however" and says the chain's experience "complicates this claim," signaling that the argument is questioning, not endorsing, the first statement. The first boldface therefore functions as a common view that the argument calls into question. The second boldface does not assert that prices rose; instead it identifies how Brantco offset the wage increase, namely by reducing training costs tied to turnover and by redirecting savings from lower theft and error rates. That is, the second boldface supplies the mechanism explaining why, in this particular case, the prediction embedded in the first statement failed to hold. Choice B captures exactly this pairing: a challenged common view followed by the mechanism that accounts for the counterexample.
+**Reasoning.** The task is to identify the roles played by the two boldface portions. The first boldface states the executives' position that higher wages will inevitably raise prices. The argument does not adopt this position; it introduces Brantco with the word "however" and says the chain's experience "complicates this claim," signaling that the argument is questioning, not endorsing, the first statement. The first boldface therefore functions as a common view that the argument calls into question. The second boldface does not assert that prices rose; instead it identifies how Brantco offset the wage increase, namely by reducing training costs tied to turnover and by redirecting savings from lower theft and error rates. That is, the second boldface supplies the mechanism explaining why, in this particular case, the prediction embedded in the first statement failed to hold. Choice E captures exactly this pairing: a challenged common view followed by the mechanism that accounts for the counterexample.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A claims the argument endorses the first statement's prediction, but the argument introduces Brantco to complicate that prediction rather than to support it, so the first boldface is questioned, not endorsed. It also mislabels the second boldface as a counterexample to the prediction; the counterexample is Brantco's flat prices, while the second boldface instead explains the mechanism behind that outcome.
 **mistake_c:** Choice C reverses the structure by calling the first boldface the argument's main conclusion and the second its supporting evidence. The first statement is the executives' view that the argument disputes, not the author's own conclusion, and the author's point is rather that the wage-to-price claim does not always hold.
 **mistake_d:** Choice D invents a relationship that is not present. The first boldface is not phrased as a conditional claim, and the second boldface does not restate the first; the second instead describes a distinct mechanism, cost and loss savings, that explains why prices stayed flat.
-**mistake_e:** Choice E asserts that both boldface statements describe the same phenomenon from different perspectives, which flattens the opposition between them. The first predicts that higher wages force higher prices, while the second explains how Brantco avoided exactly that outcome, so they stand in tension rather than describing one shared phenomenon.
+**mistake_b:** Choice B asserts that both boldface statements describe the same phenomenon from different perspectives, which flattens the opposition between them. The first predicts that higher wages force higher prices, while the second explains how Brantco avoided exactly that outcome, so they stand in tension rather than describing one shared phenomenon.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -2183,19 +2183,19 @@ A midsize logistics firm installed solar panels on the roofs of its 12 regional 
 
 Which of the following, if true, most strengthens the argument above?
 
-- A) The firm's warehouses are located in sunlight-rich southwestern states where average annual solar output exceeds the national average.
-- B) Regional logistics warehouses across North America generally have comparable roof area, similar annual sunlight hours, and similar electricity rates.
+- A) Regional logistics warehouses across North America generally have comparable roof area, similar annual sunlight hours, and similar electricity rates.
+- B) The firm's warehouses are located in sunlight-rich southwestern states where average annual solar output exceeds the national average.
 - C) The firm received a one-time state tax credit, no longer available to new applicants, that covered roughly half its installation cost.
 - D) Prices for commercial solar panel systems have declined by roughly 40% over the past five years and are projected to fall further.
 - E) The firm has also reduced energy usage by upgrading to LED lighting across its 12 warehouses during the same two-year period.
 
-**answer:** B
+**answer:** A
 **explanation:** **Situation.** A logistics firm installed solar panels on its 12 regional warehouses and saw average monthly electricity costs fall 38 percent, with projected cumulative savings expected to cover the installation cost by the end of next year. On this basis the firm concludes that installing solar panels is a sound financial decision for any logistics company operating regional warehouses.
 
 **Reasoning.** The task is to identify the choice that most strengthens this argument. The argument generalizes from the experience of one firm's 12 sites to every logistics company with regional warehouses, so it succeeds only if the factors that produced the 38 percent savings at this firm are also present at warehouses elsewhere. Those factors are the amount of roof area available for panels, the quantity of sunlight the panels receive, and the electricity rates that determine how much each saved kilowatt-hour is worth. The choice that confirms these driver inputs are comparable across the industry makes the generalization more secure, because it establishes that the conditions which generated the firm's results transfer to other firms. The choice reporting that regional logistics warehouses across North America generally have comparable roof area, similar annual sunlight hours, and similar electricity rates confirms all three of these inputs, and therefore most strengthens the conclusion that the result will hold broadly.
 
-The correct answer is B.
-**mistake_a:** Choice A weakens the argument rather than strengthening it. Stating that the firm's warehouses sit in sunlight-rich states where solar output exceeds the national average makes this firm's conditions atypical, which undermines the inference that the same savings would occur at the typical warehouse elsewhere.
+The correct answer is A.
+**mistake_b:** Choice B weakens the argument rather than strengthening it. Stating that the firm's warehouses sit in sunlight-rich states where solar output exceeds the national average makes this firm's conditions atypical, which undermines the inference that the same savings would occur at the typical warehouse elsewhere.
 **mistake_c:** Choice C weakens the argument. A one-time tax credit that covered half the installation cost is specific to this firm and helps explain why the payback was so favorable here; it gives a reason to doubt that other companies, lacking that credit, would see an equally sound financial outcome.
 **mistake_d:** Choice D provides only peripheral cost context. That solar panel prices have declined about 40 percent over the past five years speaks to general market trends, not to whether this firm's specific savings result would generalize to other logistics companies' warehouses, so it does not meaningfully support the conclusion.
 **mistake_e:** Choice E introduces a confounding factor that weakens, rather than strengthens, the argument. If the firm also upgraded to LED lighting, then part of the 38 percent reduction may be attributable to that change rather than to the solar panels, blurring how much benefit the panels alone produced and casting doubt on the claim that panels are responsible for the savings.
@@ -2213,20 +2213,20 @@ A regional bank observed that customers who enrolled in its new mobile banking a
 Which of the following, if true, most weakens management's conclusion?
 
 - A) The mobile banking app is currently available only to customers who maintain account balances above $5,000.
-- B) Customers who enrolled in the app had been depositing more, on average, than non-enrolled customers in the 12 months before the app launched.
+- B) Customer surveys conducted by the bank show that many customers still value in-person branch service alongside digital tools.
 - C) Several of the bank's regional competitors have recently introduced similar mobile banking apps with comparable deposit and transfer features.
-- D) Customer surveys conducted by the bank show that many customers still value in-person branch service alongside digital tools.
+- D) Customers who enrolled in the app had been depositing more, on average, than non-enrolled customers in the 12 months before the app launched.
 - E) Developing and marketing the new app features would cost the bank approximately $2 million over the next two years.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** A regional bank found that customers who enrolled in its new mobile banking app made 40 percent more deposits per month than customers who did not enroll. Management concludes that expanding the app's features and encouraging enrollment will increase the bank's overall deposit volume.
 
 **Reasoning.** The task is to identify the statement that, if true, most weakens management's conclusion. The conclusion rests on a causal interpretation of a correlation: management treats the observed deposit gap as evidence that enrollment causes higher deposits, so that driving more enrollment will raise overall deposit volume. Any statement that offers an alternative explanation for the gap, one that does not depend on the app causing the behavior, undermines that inference. The correct choice shows that the two groups already differed before the app existed: enrolled customers had been depositing more, on average, than non-enrolled customers in the 12 months before the app launched. This is a classic case of selection bias. If the enrollees were heavier depositors to begin with, the 40 percent gap reflects who chose to enroll rather than any effect of enrolling, and there is no reason to expect that expanding features or pushing enrollment would lift the deposits of customers who do not already behave that way. The pre-existing difference severs the causal link on which the conclusion depends.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A states that the app is available only to customers with balances above $5,000. This restricts who can use the app, but it does not show that enrollment fails to cause higher deposits; high-balance customers might still deposit more because of the app. It addresses the sample's composition rather than the causal claim, and so does not weaken the conclusion.
 **mistake_c:** Choice C reports that competitors have introduced similar apps with comparable features. This concerns the competitive landscape and is peripheral to whether this bank's app causes its own customers to deposit more. It neither offers an alternative explanation for the 40 percent gap nor challenges the causal inference, so it leaves the conclusion intact.
-**mistake_d:** Choice D notes that customers still value in-person branch service alongside digital tools. This is general customer-preference color that says nothing about whether app enrollment caused the higher deposits. It does not provide a competing cause for the observed gap and therefore does not weaken the conclusion.
+**mistake_b:** Choice B notes that customers still value in-person branch service alongside digital tools. This is general customer-preference color that says nothing about whether app enrollment caused the higher deposits. It does not provide a competing cause for the observed gap and therefore does not weaken the conclusion.
 **mistake_e:** Choice E observes that developing new features would cost roughly $2 million. This bears on whether the plan is worth the expense, not on whether enrollment actually drives deposits. Cost is irrelevant to the causal reasoning behind the conclusion, so it does not weaken it.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -2329,21 +2329,21 @@ A pharmaceutical company is deciding whether to advance HypZ, a new hypertension
 The answer to which of the following questions would be most useful in evaluating the scientist's argument?
 
 - A) Does HypZ cost less per dose to manufacture and distribute at commercial scale than the current market leader costs its manufacturer?
-- B) Were HypZ's Phase 2 patients comparable in baseline blood pressure, age, and other health factors to those in the market leader's Phase 2 trial?
+- B) Did any of the patients taking HypZ during the eight-week Phase 2 trial report clinically significant side effects?
 - C) Can regulatory approval for the planned Phase 3 trials be expedited under the agency's accelerated review procedures?
 - D) Was HypZ tested against a placebo arm in its Phase 2 trial, as is standard practice for hypertension drugs?
-- E) Did any of the patients taking HypZ during the eight-week Phase 2 trial report clinically significant side effects?
+- E) Were HypZ's Phase 2 patients comparable in baseline blood pressure, age, and other health factors to those in the market leader's Phase 2 trial?
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A pharmaceutical company's chief scientist contends that HypZ should advance to Phase 3 because, in its Phase 2 trial, it lowered average systolic blood pressure by 12 mmHg, exceeding the 7-mmHg reduction the current market leader achieved in that drug's own earlier Phase 2 trial.
 
-**Reasoning.** The task is to identify the question whose answer would be most useful in evaluating the scientist's argument. The argument rests on a cross-trial comparison: it treats the larger reduction observed for HypZ as evidence that HypZ is more effective than the market leader. That inference is sound only if the two trials measured comparable groups of patients. If HypZ's Phase 2 patients differed at baseline, for instance by having milder hypertension, younger ages, or fewer complicating conditions, then the larger drop could reflect the makeup of the sample rather than any superiority of the drug. The answer to choice B bears directly on this. If the populations were comparable, the 12-versus-7 gap supports the conclusion; if they were not, the gap is attributable to sample differences and the comparison collapses. Because the answer can either reinforce or undermine the argument, this question is the most useful for evaluating it.
+**Reasoning.** The task is to identify the question whose answer would be most useful in evaluating the scientist's argument. The argument rests on a cross-trial comparison: it treats the larger reduction observed for HypZ as evidence that HypZ is more effective than the market leader. That inference is sound only if the two trials measured comparable groups of patients. If HypZ's Phase 2 patients differed at baseline, for instance by having milder hypertension, younger ages, or fewer complicating conditions, then the larger drop could reflect the makeup of the sample rather than any superiority of the drug. The answer to choice E bears directly on this. If the populations were comparable, the 12-versus-7 gap supports the conclusion; if they were not, the gap is attributable to sample differences and the comparison collapses. Because the answer can either reinforce or undermine the argument, this question is the most useful for evaluating it.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A raises manufacturing and distribution costs, which concern the drug's commercial appeal rather than whether the trial results show it to be more effective. The scientist's argument is strictly about efficacy, so the answer to this question would neither strengthen nor weaken the comparison and would not help evaluate the reasoning.
 **mistake_c:** Choice C asks about the logistics of expediting regulatory approval. Whether the approval process can be sped up has no bearing on whether the Phase 2 efficacy comparison between HypZ and the market leader is valid, so its answer does not help assess the argument.
 **mistake_d:** Choice D asks whether HypZ was tested against a placebo. The argument does not compare HypZ to a placebo; it compares HypZ's reduction to the market leader's reduction. Knowing whether a placebo arm existed would not address whether the two drugs' trial populations were comparable, which is the point on which the cross-trial comparison turns.
-**mistake_e:** Choice E concerns side effects. Safety is a separate consideration from the efficacy claim the scientist advances, and the answer to this question would not affect whether the 12-versus-7 mmHg comparison demonstrates greater effectiveness, so it does not help evaluate the argument.
+**mistake_b:** Choice B concerns side effects. Safety is a separate consideration from the efficacy claim the scientist advances, and the answer to this question would not affect whether the 12-versus-7 mmHg comparison demonstrates greater effectiveness, so it does not help evaluate the argument.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -2561,17 +2561,17 @@ An energy company that produces natural gas is considering acquiring a specific 
 
 The answer to which of the following questions would be most useful in evaluating the CFO's argument?
 
-- A) What is the current market price of natural gas compared with the prices that prevailed in the sector five years ago?
-- B) Whether the competing company's customers are likely to remain with the combined firm after the acquisition rather than switch to other competitors.
+- A) Whether the competing company's customers are likely to remain with the combined firm after the acquisition rather than switch to other competitors.
+- B) What is the current market price of natural gas compared with the prices that prevailed in the sector five years ago?
 - C) Whether the energy company currently holds sufficient cash reserves to finance the entire cost of the acquisition without taking on any new borrowing.
 - D) Whether the competing company's production facilities use the same type of drilling technology as the energy company's.
 - E) Whether there are significant regulatory barriers to mergers between producers in the natural gas sector.
 
-**answer:** B
+**answer:** A
 **explanation:** **Situation.** An energy company that produces natural gas is weighing the acquisition of a competing producer. The CFO argues that the acquisition will raise the firm's revenue and market share because the target has loyal customers and because its production facilities are more efficient than the acquiring company's.
 
-**Reasoning.** The task is to identify the question whose answer would be most useful in evaluating the CFO's argument. A useful evaluation question is one whose possible answers point in opposite directions: one answer would strengthen the argument while another would weaken it. The CFO's revenue and market-share conclusion depends on the target's loyal customers actually becoming, and remaining, customers of the combined firm. If those customers are likely to stay with the combined firm after the acquisition, the loyalty premise transfers and the projected revenue gain is supported. If, instead, those customers are likely to switch to other competitors once the two firms combine, then the loyalty the CFO is counting on evaporates and the expected revenue increase does not materialize. Because each answer to this question moves the assessment in a different direction, it is exactly the kind of question that tests the argument's central support. The correct answer is B.
-**mistake_a:** Choice A asks about the broad market price of natural gas now versus five years ago. This addresses general market conditions, not whether acquiring this particular competitor will deliver the revenue and market-share gains the CFO claims; the price trend would affect both firms equally and does not bear on the argument's reasoning.
+**Reasoning.** The task is to identify the question whose answer would be most useful in evaluating the CFO's argument. A useful evaluation question is one whose possible answers point in opposite directions: one answer would strengthen the argument while another would weaken it. The CFO's revenue and market-share conclusion depends on the target's loyal customers actually becoming, and remaining, customers of the combined firm. If those customers are likely to stay with the combined firm after the acquisition, the loyalty premise transfers and the projected revenue gain is supported. If, instead, those customers are likely to switch to other competitors once the two firms combine, then the loyalty the CFO is counting on evaporates and the expected revenue increase does not materialize. Because each answer to this question moves the assessment in a different direction, it is exactly the kind of question that tests the argument's central support. The correct answer is A.
+**mistake_b:** Choice B asks about the broad market price of natural gas now versus five years ago. This addresses general market conditions, not whether acquiring this particular competitor will deliver the revenue and market-share gains the CFO claims; the price trend would affect both firms equally and does not bear on the argument's reasoning.
 **mistake_c:** Choice C asks whether the energy company can finance the acquisition without borrowing. This concerns affordability, a separate matter from whether the deal will produce the promised revenue and market-share benefits. The argument is about the value the acquisition would create, not about how it would be paid for, so the answer does not help evaluate the CFO's reasoning.
 **mistake_d:** Choice D asks whether the two firms use the same drilling technology. This goes to operational compatibility rather than to the revenue claim. Even a definite answer either way would not tell us whether revenue and market share will rise, since the CFO already credits the target's facilities with being more efficient, so this question does not test the argument's support.
 **mistake_e:** Choice E asks whether regulatory barriers to mergers exist in the sector. This bears on whether the acquisition can be completed at all, not on whether, if completed, it would deliver the claimed revenue and market-share gains. The CFO's argument concerns the benefits of the deal, so a regulatory obstacle is tangential to evaluating that reasoning.
@@ -2735,20 +2735,20 @@ Researchers studying remote work found that employees who work from home report 
 Which of the following is most strongly supported by the statements above?
 
 - A) All remote workers should actively seek more regular in-person time with their managers.
-- B) Regular in-person contact with managers may be an important factor in the promotion rates of remote workers.
+- B) Remote work is generally bad for the long-term career advancement of employees who choose it.
 - C) Employees who receive promotions consistently report higher job satisfaction than employees who are passed over for them.
-- D) Remote work is generally bad for the long-term career advancement of employees who choose it.
+- D) Regular in-person contact with managers may be an important factor in the promotion rates of remote workers.
 - E) Companies should end their remote work policies and require employees to return to the office.
 
-**answer:** B
+**answer:** D
 **explanation:** **Situation.** Researchers found that home-based employees report higher job satisfaction than office workers but are, on average, 30 percent less likely to be promoted than comparable office workers; however, remote workers who maintain regular in-person contact with their managers are promoted at nearly the rate of office workers.
 
 **Reasoning.** The task is to identify the statement most strongly supported by the information given, so the credited answer must follow from the stated facts without adding any claim that goes beyond them. The findings establish a correlation: the promotion gap that separates remote workers from office workers largely disappears for the subset of remote workers who keep up regular in-person contact with their managers. The conclusion that this contact may be an important factor in the promotion rates of remote workers stays within that descriptive, correlational scope. It is appropriately hedged with may be, asserting only that the contact could matter, which is exactly what an association between in-person contact and restored promotion rates supports. It introduces no recommendation, no causal certainty, and no claim about anyone outside the group described.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A makes a prescriptive leap. The data describe an association between in-person manager contact and higher promotion rates, but they do not support the recommendation that all remote workers should seek more such contact. An inference must remain descriptive; what employees should do is a separate matter the statements do not establish.
 **mistake_c:** Choice C asserts a link between being promoted and reporting higher job satisfaction. The passage relates job satisfaction to working from home and promotion to manager contact, but it never connects promotion itself to satisfaction. This relationship is not supported by anything stated.
-**mistake_d:** Choice D is too extreme. While remote workers are on average less likely to be promoted, the passage also states that remote workers who maintain regular in-person manager contact are promoted at nearly the same rate as office workers. The claim that remote work is generally bad for career advancement overstates the evidence and ignores this qualifying finding.
+**mistake_b:** Choice B is too extreme. While remote workers are on average less likely to be promoted, the passage also states that remote workers who maintain regular in-person manager contact are promoted at nearly the same rate as office workers. The claim that remote work is generally bad for career advancement overstates the evidence and ignores this qualifying finding.
 **mistake_e:** Choice E offers a policy recommendation rather than an inference. The statements report findings about satisfaction, promotion rates, and manager contact; they provide no basis for concluding that companies should end their remote work policies, especially given that the promotion gap can be closed through in-person contact.
 **related_reading:** reading-verbal-04-cr-question-types
 
@@ -2852,21 +2852,21 @@ A regional hospital reports that patients admitted through its emergency departm
 Assuming no additional information, which of the following is most strongly supported?
 
 - A) Patients admitted on Monday are, on average, more seriously ill at the time they are admitted than patients admitted on Wednesday.
-- B) Monday admissions differ from Wednesday admissions in the mix of medical conditions, in in-hospital workflow factors, or in both.
+- B) The hospital should reduce the number of patients it admits through the emergency department on Mondays.
 - C) Hospital staffing in the emergency department is thinner and less efficient on Mondays than on Wednesdays.
 - D) Patients admitted on weekends stay longer, on average, than patients admitted on any of the five weekdays.
-- E) The hospital should reduce the number of patients it admits through the emergency department on Mondays.
+- E) Monday admissions differ from Wednesday admissions in the mix of medical conditions, in in-hospital workflow factors, or in both.
 
-**answer:** B
+**answer:** E
 **explanation:** **Situation.** A regional hospital reports that patients admitted through its emergency department on Monday stay an average of 4.8 days, while those admitted on Wednesday stay an average of 3.6 days. The two groups are demographically similar, and the department is staffed similarly on both days.
 
 **Reasoning.** The task is to identify the statement most strongly supported by the information given, assuming no additional information. An average length of stay that differs by 1.2 days cannot be attributed to patient demographics or to staffing levels, because the passage stipulates that both of those factors are alike on the two days. With those explanations ruled out, the difference must trace to some other systematic factor. The factors that remain available are the kinds of conditions patients present with and the in-hospital processes that govern how long a patient remains, such as discharge timing or referral patterns. A claim is forced only if it follows necessarily from the premises, and the only claim that does is that the two days differ in the mix of medical conditions, in workflow factors, or in both. This statement commits to neither a single named cause nor a quantity beyond what the data establish; it asserts merely that something systematic differs, which the constrained comparison guarantees.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A names a single specific cause, greater illness, that the passage does not single out. Differing severity is only one of several possible condition or workflow differences that could produce the gap, so the information does not establish that Monday patients are on average more ill rather than differing in some other respect.
 **mistake_c:** Choice C is contradicted by the passage, which states that the emergency department is staffed similarly on both days. The difference in length of stay therefore cannot be supported as evidence that Monday staffing is less efficient.
 **mistake_d:** Choice D extends the comparison to weekend admissions, but the passage provides data only for Monday and Wednesday. No information about weekend length of stay appears, so the claim cannot be supported.
-**mistake_e:** Choice E offers a policy recommendation rather than an inference drawn from the data. The passage describes a difference in average length of stay but provides no basis for concluding that the hospital should reduce the number of Monday admissions.
+**mistake_b:** Choice B offers a policy recommendation rather than an inference drawn from the data. The passage describes a difference in average length of stay but provides no basis for concluding that the hospital should reduce the number of Monday admissions.
 **related_reading:** reading-verbal-04-cr-question-types
 
 ---
@@ -2938,19 +2938,19 @@ A pharmaceutical company has concluded a six-month trial of a new anti-hypertens
 
 Which of the following, if true, most strengthens the company's conclusion?
 
-- A) Patients receiving the medication were, on average, slightly more motivated to improve their blood pressure than patients in the control group.
-- B) Blood-pressure readings for both groups were taken with calibrated equipment by the same medical staff throughout the trial.
+- A) Blood-pressure readings for both groups were taken with calibrated equipment by the same medical staff throughout the trial.
+- B) Patients receiving the medication were, on average, slightly more motivated to improve their blood pressure than patients in the control group.
 - C) The medication is significantly more expensive to produce than the placebo.
 - D) Patients receiving the medication were selected from volunteers who had previously been unable to control their blood pressure through lifestyle changes.
 - E) Patients in the control group were informed that they were receiving a placebo.
 
-**answer:** B
+**answer:** A
 **explanation:** **Situation.** In a six-month trial, 100 patients given a new anti-hypertensive medication showed an average systolic blood-pressure reduction of 14 mmHg, whereas 100 placebo patients showed a reduction of 5 mmHg. The company concludes that the medication caused the additional 9 mmHg reduction in the treatment group.
 
 **Reasoning.** The task is to identify the choice that most strengthens this causal conclusion. The argument compares a treatment group with a control group and attributes the 9 mmHg gap to the drug. A causal conclusion drawn from such a comparison is more secure when alternative explanations for the difference are eliminated, and one alternative explanation is that the measured difference is an artifact of how the two groups were assessed rather than a real physiological effect. If the blood-pressure readings for the treatment group had been taken with different equipment or by different staff than those for the control group, the observed gap could reflect inconsistent or biased measurement rather than the medication. The correct choice removes that possibility by establishing that both groups were measured with calibrated equipment by the same medical staff throughout the trial. By holding the measurement system constant across the two groups, this choice makes it more likely that the 9 mmHg difference reflects a genuine effect of the medication, which strengthens the causal conclusion.
 
-The correct answer is B.
-**mistake_a:** Choice A weakens the argument rather than strengthening it. If the treatment-group patients were more motivated to improve their blood pressure than the control-group patients, then their greater motivation, not the medication, could account for some or all of the additional 9 mmHg reduction. This introduces a confounding variable that competes with the company's causal explanation.
+The correct answer is A.
+**mistake_b:** Choice B weakens the argument rather than strengthening it. If the treatment-group patients were more motivated to improve their blood pressure than the control-group patients, then their greater motivation, not the medication, could account for some or all of the additional 9 mmHg reduction. This introduces a confounding variable that competes with the company's causal explanation.
 **mistake_c:** Choice C is irrelevant to the causal conclusion. That the medication is more expensive to produce than the placebo says nothing about whether the medication actually caused the additional reduction in blood pressure. Cost of production bears on economics, not on causality.
 **mistake_d:** Choice D narrows the description of the treatment-group population but does not strengthen the causal claim. Knowing that the treatment patients were volunteers who had previously failed to control their blood pressure through lifestyle changes neither rules out alternative explanations for the 9 mmHg gap nor provides additional support that the medication produced the difference; if anything, it raises questions about whether the two groups were comparable.
 **mistake_e:** Choice E does not strengthen the conclusion and is at best ambiguous. Informing the control-group patients that they were receiving a placebo unblinds that group, which could dampen their placebo response and thereby distort the comparison between the two groups. Rather than securing the causal inference, this introduces a difference in how the groups were treated that could bias the observed gap.
@@ -2968,23 +2968,23 @@ A state legislature has proposed raising the minimum driving age from 16 to 18 i
 The supporters' argument above relies on which of the following assumptions?
 
 - A) Accident rates among 18-year-old experienced drivers are lower than among 18-year-old new drivers.
-- B) Raising the driving age will not significantly increase the number of unlicensed young people who drive without proper training.
+- B) Parents generally discourage their teenagers from learning to drive at age 16 rather than waiting until age 18.
 - C) Most 16-year-olds currently drive more cautiously in everyday traffic than most 18-year-olds do.
-- D) Parents generally discourage their teenagers from learning to drive at age 16 rather than waiting until age 18.
+- D) Raising the driving age will not significantly increase the number of unlicensed young people who drive without proper training.
 - E) Cognitive skill development is the only factor that has any influence on traffic accident rates among young drivers.
 
-**answer:** B
+**answer:** D
 **fastest_path:** Find the conclusion (raising the age cuts young-driver accidents) and ask what *must* hold for the policy to work. A necessary assumption is the minimal bridge — here, that drivers don't just shift into a worse category (unlicensed, untrained). Confirm with the negation test.
 **explanation:** **Situation.** Supporters want to raise the minimum driving age from 16 to 18 to reduce traffic accidents involving young drivers, arguing that 18-year-old new drivers are safer than 16-year-old new drivers because their cognitive skills are more developed.
 
-**Reasoning.** *What must the supporters assume for raising the age to reduce the total number of accidents involving young drivers?* The evidence compares licensed new drivers at each age, but the conclusion is about all young drivers on the road after the change. For the conclusion to hold, raising the age must not simply convert relatively safe licensed 16-year-olds into a group of unlicensed, untrained drivers. Test this by negation: if raising the age did significantly increase the number of young people driving unlicensed and untrained, the total number of accidents could rise rather than fall, and the conclusion would collapse. The argument therefore depends on this assumption, which is precisely what choice B states.
+**Reasoning.** *What must the supporters assume for raising the age to reduce the total number of accidents involving young drivers?* The evidence compares licensed new drivers at each age, but the conclusion is about all young drivers on the road after the change. For the conclusion to hold, raising the age must not simply convert relatively safe licensed 16-year-olds into a group of unlicensed, untrained drivers. Test this by negation: if raising the age did significantly increase the number of young people driving unlicensed and untrained, the total number of accidents could rise rather than fall, and the conclusion would collapse. The argument therefore depends on this assumption, which is precisely what choice D states.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A compares 18-year-old experienced drivers with 18-year-old new drivers, a comparison the argument never relies on; its claim concerns 16-year-old versus 18-year-old new drivers. The argument does not depend on A.
 **mistake_c:** Choice C works against the supporters: if 16-year-olds already drive more cautiously than 18-year-olds, that undercuts the case for raising the age. A necessary assumption cannot weaken the conclusion it is meant to support.
-**mistake_d:** Choice D is irrelevant to whether the law itself reduces accidents. Negating it—parents do not discourage 16-year-olds—leaves the argument intact, so it is not required.
+**mistake_b:** Choice B is irrelevant to whether the law itself reduces accidents. Negating it—parents do not discourage 16-year-olds—leaves the argument intact, so it is not required.
 **mistake_e:** Choice E is too strong. The supporters treat cognitive development as one factor, not the only factor. Negating E—other factors also affect accident rates—leaves the conclusion standing, so E is not a necessary assumption.
-**common_trap:** Picking the choice that restates the argument's mechanism (E, cognitive development) over the one that protects the conclusion from a side effect (B). Necessary-assumption answers are usually *defensive and minimal* — they rule out a way the plan backfires, not restate the premise.
+**common_trap:** Picking the choice that restates the argument's mechanism (E, cognitive development) over the one that protects the conclusion from a side effect (D). Necessary-assumption answers are usually *defensive and minimal* — they rule out a way the plan backfires, not restate the premise.
 **takeaway:** On Necessary Assumption, use the negation test: negate the choice; if the argument falls apart, it's required. And in any policy or ban argument, watch for *substitution effects* — the plan must not push people into an equally-bad alternative.
 **related_reading:** reading-verbal-04-cr-question-types
 

@@ -972,12 +972,12 @@ The correct answer is D.
 Which company is projected to have the largest year-over-year increase in Q1 revenue in absolute dollar terms?
 
 - A) Lyton Apparel
-- B) MorningShade Cosmetics
+- B) Cannot be determined from the information provided
 - C) NorthCrest Outdoors
 - D) Lyton Apparel and MorningShade are tied
-- E) Cannot be determined from the information provided
+- E) MorningShade Cosmetics
 
-**answer:** B
+**answer:** E
 **explanation:** The year-over-year absolute dollar increase in revenue equals current-period revenue minus prior-period revenue. Let r denote the Q1 revenue estimate and g denote the stated year-over-year growth rate for a given company. Because r represents the result after applying g to the prior-year base, the prior-year revenue equals r / (1 + g), and the absolute dollar increase equals r - r / (1 + g), which simplifies to r * g / (1 + g).
 
 Tab 1 (Analyst Memo) supplies the growth rates; Tab 2 (Financial Model Summary) supplies the current Q1 revenue estimates. Tab 3 is not required for this calculation.
@@ -990,11 +990,11 @@ NorthCrest Outdoors: r = 310, g = 0.02. Prior-year revenue = 310 / 1.02 = 303.92
 
 Ranking the three absolute increases: MorningShade $61.0M > Lyton $50.4M > NorthCrest $6.1M.
 
-Choice A (Lyton Apparel) is tempting because Lyton carries the largest revenue base and a solid 8% growth rate, but the narrower percentage gain applied to $680M yields only approximately $50.4M, which falls short of MorningShade's approximately $61.0M. Choice D (a tie between Lyton and MorningShade) can be ruled out because the two figures differ by roughly $10.6M. Choice E is incorrect because both the current estimates and the growth rates are explicitly provided, making the calculation fully determinable.
+Choice A (Lyton Apparel) is tempting because Lyton carries the largest revenue base and a solid 8% growth rate, but the narrower percentage gain applied to $680M yields only approximately $50.4M, which falls short of MorningShade's approximately $61.0M. Choice D (a tie between Lyton and MorningShade) can be ruled out because the two figures differ by roughly $10.6M. Choice B is incorrect because both the current estimates and the growth rates are explicitly provided, making the calculation fully determinable.
 
 The absolute increase for MorningShade Cosmetics, at approximately $61.0M, exceeds that of every other company in the coverage set.
 
-The correct answer is B.
+The correct answer is E.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1008,11 +1008,11 @@ Suppose the FX headwind disappears entirely during Q1, so MorningShade grows at 
 
 - A) $172M
 - B) $174M
-- C) $176M
+- C) $180M
 - D) $178M
-- E) $180M
+- E) $176M
 
-**answer:** C
+**answer:** E
 **explanation:** **Governing principle.** Operating profit equals revenue multiplied by operating margin. To forecast a revised total, recompute only the line item affected by the changed assumption, hold all other line items fixed, and sum.
 
 **Identifying the relevant source.** The question modifies the revenue growth assumption for MorningShade only. Tab 1 (Analyst Memo) establishes that the reported 17% year-over-year growth already embeds a 3-percentage-point FX drag, implying an underlying constant-currency growth rate of 20%. Tab 2 (Financial Model Summary) supplies the base Q1 revenue of $420M and the projected operating margin of 17.0% for MorningShade, as well as the unchanged figures for Lyton Apparel ($74.8M operating profit) and NorthCrest Outdoors ($27.9M operating profit).
@@ -1047,7 +1047,7 @@ Total = 74.8 + 73.23 + 27.9 = 175.93M ≈ 176M
 
 A tempting trap is to use MorningShade's original $420M revenue, which produces $174M (choice B) and ignores the instruction to substitute the constant-currency growth rate. Another near-miss would be to apply a higher margin alongside the higher revenue; however, the question explicitly holds margins constant, so no margin adjustment is warranted.
 
-The correct answer is C.
+The correct answer is E.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -1089,16 +1089,16 @@ Based on the data presented in the three tabs, which of the following must be tr
 
 - A) PalliMed-X is more effective than the control in every subgroup of patients.
 - B) The difference in primary-endpoint achievement between the two groups is statistically significant.
-- C) More patients in the PalliMed-X group than in the control group achieved the primary endpoint.
+- C) The control group had a higher rate of prior opioid use than the PalliMed-X group.
 - D) PalliMed-X causes nausea in the majority of patients who receive it.
-- E) The control group had a higher rate of prior opioid use than the PalliMed-X group.
+- E) More patients in the PalliMed-X group than in the control group achieved the primary endpoint.
 
-**answer:** C
+**answer:** E
 **explanation:** **Governing principle.** A "must be true" question in Multi-Source Reasoning requires that the credited statement be directly verifiable — and necessarily accurate — from the data as presented, without any inference beyond what the exhibits explicitly supply. Statements that require subgroup data not shown, statistical computations not reported, or a causal claim not established by the trial design cannot "must be true."
 
 **Locating the relevant data.** The primary quantitative result lives in Tab 1 (Trial Summary). Tab 2 (Baseline Characteristics) and Tab 3 (Adverse Events) supply ancillary figures needed to evaluate the distractors.
 
-**Evaluating the credited answer (C).** Tab 1 states: 182 of 300 patients in the PalliMed-X arm met the primary endpoint, versus 141 of 300 patients in the control arm. Comparing the raw counts directly: 182 > 141. Therefore, more patients in the PalliMed-X group achieved the primary endpoint than in the control group. This is a direct reading of reported numerators; no calculation beyond a simple integer comparison is required, and no assumption is needed. Statement C must be true.
+**Evaluating the credited answer (E).** Tab 1 states: 182 of 300 patients in the PalliMed-X arm met the primary endpoint, versus 141 of 300 patients in the control arm. Comparing the raw counts directly: 182 > 141. Therefore, more patients in the PalliMed-X group achieved the primary endpoint than in the control group. This is a direct reading of reported numerators; no calculation beyond a simple integer comparison is required, and no assumption is needed. Statement E must be true.
 
 **Ruling out the distractors.**
 
@@ -1108,11 +1108,11 @@ Choice B asserts statistical significance of the 14-percentage-point difference.
 
 Choice D asserts that PalliMed-X causes nausea in the majority (> 50%) of patients who receive it. Tab 3 shows: nausea events in the PalliMed-X group = 48 out of 300 patients. Computing the rate: 48/300 = 0.16, or 16%. Because 16% < 50%, fewer than a majority experienced nausea, so this statement is false on the data as given — quite apart from the separate problem that correlation in an adverse-event table does not establish causation.
 
-Choice E claims the control group had a higher rate of prior opioid use. Tab 2 shows: prior opioid use in the PalliMed-X group = 26%; prior opioid use in the control group = 23%. Because 26% > 23%, it is the PalliMed-X group, not the control group, that had the higher rate. Statement E is directly contradicted by Tab 2.
+Choice C claims the control group had a higher rate of prior opioid use. Tab 2 shows: prior opioid use in the PalliMed-X group = 26%; prior opioid use in the control group = 23%. Because 26% > 23%, it is the PalliMed-X group, not the control group, that had the higher rate. Statement C is directly contradicted by Tab 2.
 
-**Conclusion.** Only statement C is directly and necessarily supported by the reported data: 182 (PalliMed-X) > 141 (control) is an arithmetic fact read straight from Tab 1.
+**Conclusion.** Only statement E is directly and necessarily supported by the reported data: 182 (PalliMed-X) > 141 (control) is an arithmetic fact read straight from Tab 1.
 
-The correct answer is C.
+The correct answer is E.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1163,21 +1163,21 @@ The correct answer is B.
 Assume that the differences in primary-endpoint achievement and discontinuation rates observed in the trial would persist in a broader population. For every 100 patients treated with PalliMed-X instead of the control, approximately how many additional patients would be expected to achieve the primary endpoint, and how many additional patients would be expected to discontinue due to adverse events?
 
 - A) 10 additional successes, 2 additional discontinuations
-- B) 14 additional successes, 4 additional discontinuations
+- B) 20 additional successes, 10 additional discontinuations
 - C) 14 additional successes, 7 additional discontinuations
 - D) 7 additional successes, 4 additional discontinuations
-- E) 20 additional successes, 10 additional discontinuations
+- E) 14 additional successes, 4 additional discontinuations
 
-**answer:** B
+**answer:** E
 **explanation:** The relevant data come from two tabs. Tab 1 supplies the primary-endpoint rates; Tab 3 supplies the discontinuation-due-to-adverse-event rates.
 
-For the primary endpoint, the PalliMed-X group had 182 of 300 patients achieve the endpoint, giving a rate of approximately 61%. The control group had 141 of 300, giving a rate of exactly 47%. The absolute difference is 61% minus 47%, which equals 14 percentage points. Applied to a population of 100 patients, this translates to 14 additional patients expected to achieve the primary endpoint under PalliMed-X relative to the control. This rules out choices A (10 additional successes), D (7 additional successes), and E (20 additional successes), leaving only B and C as candidates.
+For the primary endpoint, the PalliMed-X group had 182 of 300 patients achieve the endpoint, giving a rate of approximately 61%. The control group had 141 of 300, giving a rate of exactly 47%. The absolute difference is 61% minus 47%, which equals 14 percentage points. Applied to a population of 100 patients, this translates to 14 additional patients expected to achieve the primary endpoint under PalliMed-X relative to the control. This rules out choices A (10 additional successes), D (7 additional successes), and B (20 additional successes), leaving only E and C as candidates.
 
-For discontinuations due to adverse events, Tab 3 shows that 36 of 300 patients in the PalliMed-X group discontinued due to an adverse event, a rate of 12%. In the control group, 24 of 300 discontinued, a rate of 8%. The absolute difference is 12% minus 8%, which equals 4 percentage points. Applied to 100 patients, this yields 4 additional patients expected to discontinue. This rules out choice C, which overstates the discontinuation difference as 7 percentage points. The value 7% appears in Tab 3 as the serious adverse event rate for PalliMed-X alone, not as an incremental discontinuation difference, making C a plausible but incorrect distractor. Choice E overstates both figures and was already eliminated.
+For discontinuations due to adverse events, Tab 3 shows that 36 of 300 patients in the PalliMed-X group discontinued due to an adverse event, a rate of 12%. In the control group, 24 of 300 discontinued, a rate of 8%. The absolute difference is 12% minus 8%, which equals 4 percentage points. Applied to 100 patients, this yields 4 additional patients expected to discontinue. This rules out choice C, which overstates the discontinuation difference as 7 percentage points. The value 7% appears in Tab 3 as the serious adverse event rate for PalliMed-X alone, not as an incremental discontinuation difference, making C a plausible but incorrect distractor. Choice B overstates both figures and was already eliminated.
 
 The conclusion is that for every 100 patients treated with PalliMed-X instead of the control, approximately 14 additional patients are expected to achieve meaningful pain relief and approximately 4 additional patients are expected to discontinue due to adverse events.
 
-The correct answer is B.
+The correct answer is E.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -1290,11 +1290,11 @@ Suppose Stellar decides to retrofit all existing SA-200 aircraft in the US fleet
 
 - A) $120M
 - B) $150M
-- C) $180M
+- C) $300M
 - D) $240M
-- E) $300M
+- E) $180M
 
-**answer:** C
+**answer:** E
 **explanation:** **Governing principle.** A total-cost calculation takes the form Total Cost = (Cost per Unit) x (Number of Units). The relevant figures are drawn from two sources: Tab 3 supplies the per-aircraft retrofit cost, and the question stem supplies the fleet count.
 
 **Identifying the data.** Tab 3 states that retrofitting one SA-200 to meet the proposed FAA standard costs approximately $1.2 million per aircraft. The question stem specifies that 150 SA-200 aircraft are currently in the US fleet. No data from Tab 1 or Tab 2 is required for this arithmetic step; those tabs establish the regulatory threshold and fleet fuel-burn figures, which are background context here.
@@ -1309,7 +1309,7 @@ Therefore T = $180,000,000, or approximately $180 million.
 
 **Ruling out tempting alternatives.** A result of $120M would require only 100 aircraft (100 x 1,200,000 = 120,000,000), not 150. A result of $150M would require a per-aircraft cost of exactly $1.0 million (150 x 1,000,000), not $1.2 million. A result of $240M would require 200 aircraft, and $300M would require 250 aircraft — neither matches the 150-aircraft figure given in the stem. Only 150 x 1,200,000 = 180,000,000 is consistent with both data points simultaneously.
 
-The correct answer is C.
+The correct answer is E.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -1345,21 +1345,21 @@ Orion uses the following simple performance-attribution framework:
 Based on the three tabs, which of the following must be true?
 
 - A) Orion outperformed its benchmark in every asset class.
-- B) Equities contributed positively to Orion's excess return.
+- B) Orion's 2024 total portfolio return was 11%.
 - C) Fixed Income contributed positively to Orion's excess return.
-- D) Orion's 2024 total portfolio return was 11%.
+- D) Equities contributed positively to Orion's excess return.
 - E) Orion weighted its three asset classes approximately equally.
 
-**answer:** B
+**answer:** D
 **explanation:** Tab 3 defines each asset class's contribution to excess return as (weight) × (Orion's return in that class minus the benchmark's return in that class). Applying this formula to the figures in Tab 2 gives the following results.
 
 For Equities: 0.60 × (16% − 13%) = 0.60 × 3 = +1.8 percentage points. For Fixed Income: 0.30 × (7% − 8%) = 0.30 × (−1) = −0.3 percentage points. For Alternatives: 0.10 × (12% − 10%) = 0.10 × 2 = +0.2 percentage points. Total excess return = 1.8 + (−0.3) + 0.2 = +1.7 percentage points.
 
 Tab 3 also states that the total portfolio return equals the weighted sum of asset-class returns: 0.60 × 16 + 0.30 × 7 + 0.10 × 12 = 9.6 + 2.1 + 1.2 = 12.9%. The same formula applied to benchmark figures gives 0.60 × 13 + 0.30 × 8 + 0.10 × 10 = 7.8 + 2.4 + 1.0 = 11.2%. Both values match Tab 1 exactly, confirming that the data across all three tabs are internally consistent.
 
-Turning to the choices: Choice A is false because Tab 2 shows Fixed Income returned 7% for Orion against 8% for the benchmark, meaning Orion underperformed in that class. Choice C is false because the Fixed Income contribution is −0.3 percentage points, a negative value. Choice D is false because Tab 1 explicitly states Orion's total return was 12.9%, confirmed by the weighted computation above, not 11%. Choice E is false because Tab 1 and Tab 2 both state weights of 60%, 30%, and 10%, which are materially unequal. Choice B must be true: the Equities contribution equals +1.8 percentage points, which is strictly positive, following directly and necessarily from the Tab 2 figures and the Tab 3 formula.
+Turning to the choices: Choice A is false because Tab 2 shows Fixed Income returned 7% for Orion against 8% for the benchmark, meaning Orion underperformed in that class. Choice C is false because the Fixed Income contribution is −0.3 percentage points, a negative value. Choice B is false because Tab 1 explicitly states Orion's total return was 12.9%, confirmed by the weighted computation above, not 11%. Choice E is false because Tab 1 and Tab 2 both state weights of 60%, 30%, and 10%, which are materially unequal. Choice D must be true: the Equities contribution equals +1.8 percentage points, which is strictly positive, following directly and necessarily from the Tab 2 figures and the Tab 3 formula.
 
-The correct answer is B.
+The correct answer is D.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1372,12 +1372,12 @@ The correct answer is B.
 What was Alternatives' approximate contribution to Orion's excess return in 2024?
 
 - A) 0.1 percentage points
-- B) 0.2 percentage points
+- B) 2.0 percentage points
 - C) 0.5 percentage points
 - D) 1.0 percentage points
-- E) 2.0 percentage points
+- E) 0.2 percentage points
 
-**answer:** B
+**answer:** E
 **explanation:** **Relevant source.** Tab 3 defines the attribution framework, and Tab 2 supplies the required figures. Tab 1 is not needed for this calculation, though its reported total returns serve as a useful consistency check.
 
 **Governing definition.** Under the framework in Tab 3, each asset class's contribution to excess return equals
@@ -1388,9 +1388,9 @@ Let w_A = 0.10 (the portfolio weight of Alternatives), r_A = 12% (Orion's Altern
 
 Contribution_Alternatives = w_A x (r_A - b_A) = 0.10 x (12 - 10) = 0.10 x 2 = 0.20 percentage points.
 
-The result is 0.2 percentage points, which corresponds to choice B.
+The result is 0.2 percentage points, which corresponds to choice E.
 
-**Ruling out the other choices.** Choice A (0.1 pp) would require either a weight of 5% or a return differential of only 1 percentage point; neither matches the data. Choice C (0.5 pp) would require a differential of 5 percentage points or a weight of 25%, both inconsistent with Tab 2. Choice D (1.0 pp) and choice E (2.0 pp) are far too large for a 10%-weighted asset class outperforming by 2 percentage points.
+**Ruling out the other choices.** Choice A (0.1 pp) would require either a weight of 5% or a return differential of only 1 percentage point; neither matches the data. Choice C (0.5 pp) would require a differential of 5 percentage points or a weight of 25%, both inconsistent with Tab 2. Choice D (1.0 pp) and choice B (2.0 pp) are far too large for a 10%-weighted asset class outperforming by 2 percentage points.
 
 **Cross-check via total returns.** One can verify the full attribution. Let contributions from Equities, Fixed Income, and Alternatives be computed as:
 
@@ -1400,7 +1400,7 @@ The result is 0.2 percentage points, which corresponds to choice B.
 
 Summing: 1.80 + (-0.30) + 0.20 = 1.70 pp total excess return. Tab 1 reports Orion's total return as 12.9% and the benchmark as 11.2%, a difference of 12.9 - 11.2 = 1.7 percentage points. The attribution sum matches exactly, confirming the arithmetic is correct and that Alternatives' isolated contribution is 0.20 pp.
 
-The correct answer is B.
+The correct answer is E.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1414,11 +1414,11 @@ Using the attribution framework, what was Orion's approximate total excess retur
 
 - A) 1.0 percentage points
 - B) 1.5 percentage points
-- C) 1.7 percentage points
-- D) 2.0 percentage points
+- C) 2.0 percentage points
+- D) 1.7 percentage points
 - E) 2.5 percentage points
 
-**answer:** C
+**answer:** D
 **explanation:** **Governing principle.** Under the attribution framework defined in Tab 3, a portfolio's total return equals the weighted sum of asset-class returns: total return = sum of (weight × asset-class return). Excess return then equals Orion's total return minus the benchmark's total return. These two definitions are sufficient to answer the question.
 
 **Computing Orion's total return.** Using the weights and Orion returns from Tab 2:
@@ -1449,9 +1449,9 @@ Excess return = 12.9 - 11.2 = 1.7 percentage points
 
 Total attributed excess = 1.8 + (-0.3) + 0.2 = 1.7 percentage points
 
-Both methods yield the same figure. Choice A (1.0) and choice B (1.5) are too small; a test-taker might arrive at 1.5 by incorrectly omitting the Alternatives class or by applying weights inconsistently. Choice D (2.0) could result from rounding 12.9 up to 13.0 before subtracting, and choice E (2.5) likely reflects an error in which the Fixed Income underperformance is ignored and only the two outperforming classes are summed. None of those paths follows the framework correctly.
+Both methods yield the same figure. Choice A (1.0) and choice B (1.5) are too small; a test-taker might arrive at 1.5 by incorrectly omitting the Alternatives class or by applying weights inconsistently. Choice C (2.0) could result from rounding 12.9 up to 13.0 before subtracting, and choice E (2.5) likely reflects an error in which the Fixed Income underperformance is ignored and only the two outperforming classes are summed. None of those paths follows the framework correctly.
 
-The correct answer is C.
+The correct answer is D.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -1490,14 +1490,14 @@ Which variant has the highest Average Revenue per converted Customer?
 
 - A) A
 - B) B
-- C) C
+- C) Cannot be determined
 - D) A and C are tied
-- E) Cannot be determined
+- E) C
 
-**answer:** C
-**explanation:** Tab 2 (Pilot Campaign Results) is the operative source; it presents the "Avg Revenue per Customer ($)" column directly. The recorded values are $400 for Variant A, $250 for Variant B, and $500 for Variant C. No computation is required. Ranking the three figures in descending order gives 500 > 400 > 250, which corresponds to C > A > B. Choice D (A and C are tied) would require 400 to equal 500, which is false, so D is eliminated. Choice E (Cannot be determined) would apply only if the necessary data were absent or ambiguous; the column is fully populated with unambiguous figures, so E is eliminated. Choice B is the weakest of the three at $250 and is eliminated on inspection. Because 500 > 400 > 250, Variant C carries the highest Average Revenue per converted Customer among the three variants tested.
+**answer:** E
+**explanation:** Tab 2 (Pilot Campaign Results) is the operative source; it presents the "Avg Revenue per Customer ($)" column directly. The recorded values are $400 for Variant A, $250 for Variant B, and $500 for Variant C. No computation is required. Ranking the three figures in descending order gives 500 > 400 > 250, which corresponds to C > A > B. Choice D (A and C are tied) would require 400 to equal 500, which is false, so D is eliminated. Choice C (Cannot be determined) would apply only if the necessary data were absent or ambiguous; the column is fully populated with unambiguous figures, so C is eliminated. Choice B is the weakest of the three at $250 and is eliminated on inspection. Because 500 > 400 > 250, Variant C carries the highest Average Revenue per converted Customer among the three variants tested.
 
-The correct answer is C.
+The correct answer is E.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
