@@ -519,7 +519,7 @@ The following table shows the number of respondents in a 500-person survey who r
 |-----------|------------|------------|------------|----------|
 | StreamA   | 60         | 45         | 30         | 15       |
 | StreamB   | 25         | 40         | 35         | 20       |
-| StreamC   | 40         | 30         | 25         | 10       |
+| StreamC   | 30         | 30         | 25         | 10       |
 | StreamD   | 20         | 15         | 30         | 45       |
 | StreamE   | 5          | 10         | 5          | 5        |
 
@@ -538,11 +538,11 @@ Let T(s) denote the total respondents for service s, where T(s) = (Ages 18-29) +
 
 - StreamA: T(A) = 60 + 45 + 30 + 15 = 150
 - StreamB: T(B) = 25 + 40 + 35 + 20 = 120
-- StreamC: T(C) = 40 + 30 + 25 + 10 = 105
+- StreamC: T(C) = 30 + 30 + 25 + 10 = 95
 - StreamD: T(D) = 20 + 15 + 30 + 45 = 110
 - StreamE: T(E) = 5 + 10 + 5 + 5 = 25
 
-Ranking the totals in descending order: T(A) = 150 > T(B) = 120 > T(D) = 110 > T(C) = 105 > T(E) = 25. StreamA's total of 150 is strictly greater than that of every other service.
+Ranking the totals in descending order: T(A) = 150 > T(B) = 120 > T(D) = 110 > T(C) = 95 > T(E) = 25, and the totals sum to the survey's 500 respondents. StreamA's total of 150 is strictly greater than that of every other service.
 
 The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
@@ -1159,7 +1159,7 @@ The following table shows stats for six soccer strikers over a season:
 | Cruz      | 32      | 24    | 120   | 4       |
 | Duarte    | 25      | 15    | 60    | 7       |
 | Esposito  | 30      | 12    | 80    | 10      |
-| Fofana    | 27      | 18    | 72    | 8       |
+| Fofana    | 27      | 18    | 80    | 8       |
 
 Which striker had the highest shot-conversion rate (goals / shots)?
 
@@ -1179,9 +1179,9 @@ Which striker had the highest shot-conversion rate (goals / shots)?
 | Cruz     | 24    | 120   | 24/120 = 0.200 (20.0%) |
 | Duarte   | 15    | 60    | 15/60 = 0.250 (25.0%)  |
 | Esposito | 12    | 80    | 12/80 = 0.150 (15.0%)  |
-| Fofana   | 18    | 72    | 18/72 = 0.250 (25.0%)  |
+| Fofana   | 18    | 80    | 18/80 = 0.225 (22.5%)  |
 
-Alvarez, Bako, and Cruz each convert exactly 20.0% of their shots; Esposito trails at 15.0%. Duarte and Fofana both reach 25.0%, the highest figure in the table. Of those two, only Duarte appears among the answer choices (Fofana is not listed as an option), making Duarte the uniquely selectable striker with the highest shot-conversion rate. Duarte's rate of 15/60 = 0.25 exceeds every other listed choice: Alvarez (0.20), Bako (0.20), Cruz (0.20), and Esposito (0.15).
+Alvarez, Bako, and Cruz each convert exactly 20.0% of their shots; Esposito trails at 15.0%, and Fofana reaches 22.5%. Duarte's 25.0% is the single highest figure in the table, so Duarte has the highest shot-conversion rate. Duarte's rate of 15/60 = 0.25 exceeds every other listed choice: Alvarez (0.20), Bako (0.20), Cruz (0.20), and Esposito (0.15).
 
 The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
