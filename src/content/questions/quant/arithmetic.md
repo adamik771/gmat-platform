@@ -2301,7 +2301,7 @@ A delivery van drives 120 miles from a warehouse to a depot at an average speed 
 If n is a positive integer, what is the remainder when n is divided by 5?
 
 (1) n + 1 is divisible by 5.
-(2) n is divisible by 10.
+(2) n − 4 is divisible by 10.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
@@ -2310,7 +2310,7 @@ If n is a positive integer, what is the remainder when n is divided by 5?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** The question asks for a single fixed value: the remainder when the positive integer n is divided by 5. The governing principle is that two integers leave the same remainder upon division by 5 if and only if their difference is a multiple of 5, so any statement that pins n to a fixed residue class modulo 5 is sufficient. Consider statement (1), which says n + 1 is divisible by 5. Then n + 1 = 5k for some integer k, so n = 5k − 1 = 5(k − 1) + 4, which always leaves a remainder of 4 when divided by 5; statement (1) alone gives a unique remainder and is therefore sufficient. Consider statement (2), which says n is divisible by 10. Any multiple of 10 is also a multiple of 5, so n leaves a remainder of 0 when divided by 5; statement (2) alone also gives a unique remainder and is sufficient. Because each statement independently determines the remainder, each alone is sufficient. The correct answer is D.
+**explanation:** The question asks for a single fixed value: the remainder when the positive integer n is divided by 5. The governing principle is that two integers leave the same remainder upon division by 5 if and only if their difference is a multiple of 5, so any statement that pins n to a fixed residue class modulo 5 is sufficient. Consider statement (1), which says n + 1 is divisible by 5. Then n + 1 = 5k for some integer k, so n = 5k − 1 = 5(k − 1) + 4, which always leaves a remainder of 4 when divided by 5; statement (1) alone gives a unique remainder and is therefore sufficient. Consider statement (2), which says n − 4 is divisible by 10. Then n − 4 = 10m for some integer m, so n = 10m + 4 = 5(2m) + 4, which always leaves a remainder of 4 when divided by 5; statement (2) alone also gives a unique remainder and is sufficient. Because each statement independently determines the remainder, each alone is sufficient. The correct answer is D.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -2556,7 +2556,7 @@ A group of 50 employees has an overall average productivity score of 80. The emp
 
 If k is a positive integer, what is the remainder when k is divided by 4?
 
-(1) k is odd.
+(1) k is even.
 (2) k + 2 is divisible by 4.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
@@ -2566,7 +2566,7 @@ If k is a positive integer, what is the remainder when k is divided by 4?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**explanation:** The question asks for a single fixed value: the remainder when the positive integer k is divided by 4. The governing principle is that any statement which pins k to a single residue class modulo 4 is sufficient, whereas a statement consistent with more than one residue is not. Consider statement (1), which says k is odd. An odd integer divided by 4 can leave a remainder of either 1 or 3; for instance, 5 leaves remainder 1 while 7 leaves remainder 3. Because more than one remainder is possible, statement (1) alone is not sufficient. Consider statement (2), which says k + 2 is divisible by 4. Then k + 2 = 4m for some integer m, so k = 4m − 2 = 4(m − 1) + 2, which always leaves a remainder of 2 when divided by 4; testing k = 2, 6, 10 confirms each leaves remainder 2. Statement (2) alone determines a unique remainder and is therefore sufficient. The correct answer is B.
+**explanation:** The question asks for a single fixed value: the remainder when the positive integer k is divided by 4. The governing principle is that any statement which pins k to a single residue class modulo 4 is sufficient, whereas a statement consistent with more than one residue is not. Consider statement (1), which says k is even. An even integer divided by 4 can leave a remainder of either 0 or 2; for instance, 8 leaves remainder 0 while 6 leaves remainder 2. Because more than one remainder is possible, statement (1) alone is not sufficient. Consider statement (2), which says k + 2 is divisible by 4. Then k + 2 = 4m for some integer m, so k = 4m − 2 = 4(m − 1) + 2, which always leaves a remainder of 2 when divided by 4; testing k = 2, 6, 10 confirms each leaves remainder 2. Statement (2) alone determines a unique remainder and is therefore sufficient. The correct answer is B.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
