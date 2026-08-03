@@ -2114,7 +2114,7 @@ The correct answer is E.
 ---
 
 ## Q74
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Flaw
 
@@ -2992,7 +2992,7 @@ The correct answer is D.
 ---
 
 ## Q104
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Flaw — Scope Shift
 
@@ -5044,7 +5044,7 @@ In the analyst's argument, the two portions in boldface play which of the follow
 ---
 
 ## Q198
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Flaw
 

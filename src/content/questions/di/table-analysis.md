@@ -172,7 +172,7 @@ The following sortable table shows employee data at a consulting firm.
 | G        | Strategy   | 10    | 150        | 40  |
 | H        | Finance    | 6     | 115        | 33  |
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Table Analysis
 **topic:** Multi-variable Correlation
 
@@ -2212,7 +2212,7 @@ The following table summarizes five companies:
 | Delta   | 250          | 25                | 6               | 600       |
 | Epsilon | 420          | 20                | 10              | 950       |
 
-**difficulty:** Hard
+**difficulty:** Easy
 **type:** Table Analysis
 **topic:** Multi-Criterion Filter
 
