@@ -12,14 +12,14 @@ The new bridge across the river cut the average commute between the two towns fr
 
 Which of the following is the main conclusion of the argument?
 
-- A) The average commute between the two towns was forty minutes before the bridge was built.
+- A) Building the bridge was a worthwhile investment for the region.
 - B) The bridge reduced the average commute to fifteen minutes.
-- C) Building the bridge was a worthwhile investment for the region.
+- C) The average commute between the two towns was forty minutes before the bridge was built.
 - D) The two towns are separated by a river.
 - E) Commuting between the two towns used to take a long time.
 
-**answer:** C
-**explanation:** The conclusion is the claim the argument is trying to establish; everything else is offered as support for it. Here the word "Therefore" signals that what follows is the point the speaker wants you to accept, namely that building the bridge was a worthwhile investment. Choices A and B describe the commute times, which are the factual premises used as evidence rather than the point being argued. Choices D and E restate background detail that is not even explicitly claimed as the takeaway. Only C is the judgment the rest of the statement is meant to justify, so C is the conclusion.
+**answer:** A
+**explanation:** The conclusion is the claim the argument is trying to establish; everything else is offered as support for it. Here the word "Therefore" signals that what follows is the point the speaker wants you to accept, namely that building the bridge was a worthwhile investment. Choices C and B describe the commute times, which are the factual premises used as evidence rather than the point being argued. Choices D and E restate background detail that is not even explicitly claimed as the takeaway. Only A is the judgment the rest of the statement is meant to justify, so A is the conclusion.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -34,13 +34,13 @@ Maria should switch to the express train. The express train reaches downtown twe
 Which of the following functions as a premise supporting the recommendation?
 
 - A) Maria should switch from the local train she currently takes to the express train.
-- B) The express train reaches downtown twenty minutes faster than the local train.
+- B) Faster trains are always better than slower ones for every commuter.
 - C) Maria currently takes the local train on her commute downtown.
 - D) Downtown is the place where Maria works each day.
-- E) Faster trains are always better than slower ones for every commuter.
+- E) The express train reaches downtown twenty minutes faster than the local train.
 
-**answer:** B
-**explanation:** A premise is the stated evidence offered to support the conclusion. The conclusion here is the recommendation that Maria should switch trains, so the premise is the reason given for that recommendation: the express is twenty minutes faster. Choice A is the conclusion itself, not its support. Choice C is true background but is not the reason offered for switching; it merely identifies her current train. Choice D adds information never stated, and E is a sweeping generalization the argument never asserts. Choice B is the explicit supporting reason, so it is the premise.
+**answer:** E
+**explanation:** A premise is the stated evidence offered to support the conclusion. The conclusion here is the recommendation that Maria should switch trains, so the premise is the reason given for that recommendation: the express is twenty minutes faster. Choice A is the conclusion itself, not its support. Choice C is true background but is not the reason offered for switching; it merely identifies her current train. Choice D adds information never stated, and B is a sweeping generalization the argument never asserts. Choice E is the explicit supporting reason, so it is the premise.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -54,14 +54,14 @@ A small bakery noticed that customers often left without buying anything because
 
 Which of the following best expresses the main point of the paragraph?
 
-- A) The bakery is small and has limited counter space behind its register area.
+- A) Adding a second register sped up the line and reduced the number of customers who left without buying.
 - B) Customers generally prefer to visit bakeries where the lines are short.
-- C) Adding a second register sped up the line and reduced the number of customers who left without buying.
+- C) The bakery is small and has limited counter space behind its register area.
 - D) A single register cannot adequately serve any busy bakery, no matter how it is staffed.
 - E) The bakery's baked goods were simply not appealing enough to keep waiting customers from leaving without buying.
 
-**answer:** C
-**explanation:** The main point of a short paragraph is the central idea that ties its sentences together, not a single detail or an outside generalization. The paragraph describes a problem (slow line, lost customers) and its resolution (a second register that sped the line and kept customers), so its main point is that the second register fixed the slow-line problem. Choice A is a minor detail. Choices B and D are broad generalizations the paragraph does not make. Choice E contradicts the paragraph, which blames the slow line rather than the products. Choice C captures the cause-and-effect summary the paragraph builds toward.
+**answer:** A
+**explanation:** The main point of a short paragraph is the central idea that ties its sentences together, not a single detail or an outside generalization. The paragraph describes a problem (slow line, lost customers) and its resolution (a second register that sped the line and kept customers), so its main point is that the second register fixed the slow-line problem. Choice C is a minor detail. Choices B and D are broad generalizations the paragraph does not make. Choice E contradicts the paragraph, which blames the slow line rather than the products. Choice A captures the cause-and-effect summary the paragraph builds toward.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -77,12 +77,12 @@ Which of the following states the conclusion of the argument?
 
 - A) The laptop has twice the memory of last year's model.
 - B) The new laptop costs the same as last year's model.
-- C) The new laptop is clearly the better value.
+- C) More memory makes a laptop better.
 - D) The speaker bought a laptop last year.
-- E) More memory makes a laptop better.
+- E) The new laptop is clearly the better value.
 
-**answer:** C
-**explanation:** The conclusion is the evaluative claim the speaker wants the listener to accept, and here that claim is signaled by "clearly": the new laptop is the better value. Choices A and B are the two factual premises (more memory, equal price) offered to justify that verdict. Choice D is background context. Choice E is an unstated assumption the argument relies on rather than the point it asserts. Because C is the judgment the premises are meant to support, C is the conclusion.
+**answer:** E
+**explanation:** The conclusion is the evaluative claim the speaker wants the listener to accept, and here that claim is signaled by "clearly": the new laptop is the better value. Choices A and B are the two factual premises (more memory, equal price) offered to justify that verdict. Choice D is background context. Choice C is an unstated assumption the argument relies on rather than the point it asserts. Because E is the judgment the premises are meant to support, E is the conclusion.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -96,14 +96,14 @@ The community center should extend its evening hours. Many local residents work 
 
 Which of the following is offered as evidence for the recommendation?
 
-- A) The community center should extend its operating hours into the evening.
-- B) Many local residents work until six and cannot arrive before the five-thirty closing.
+- A) Many local residents work until six and cannot arrive before the five-thirty closing.
+- B) The community center should extend its operating hours into the evening.
 - C) The community center is a popular gathering place for local residents.
 - D) Extending evening hours would increase the center's staffing and utility costs.
 - E) The center should also begin opening earlier in the morning.
 
-**answer:** B
-**explanation:** The recommendation that the center should extend its hours is the conclusion, so the evidence is the reason offered for it: residents work until six and miss the five-thirty closing. Choice A simply repeats the conclusion, which is the claim being supported rather than the support itself. Choice C introduces a fact never stated. Choice D raises a consideration that, if anything, cuts against the recommendation rather than supporting it. Choice E proposes a different change the argument does not make. Choice B is the stated reason backing the recommendation, so it is the premise.
+**answer:** A
+**explanation:** The recommendation that the center should extend its hours is the conclusion, so the evidence is the reason offered for it: residents work until six and miss the five-thirty closing. Choice B simply repeats the conclusion, which is the claim being supported rather than the support itself. Choice C introduces a fact never stated. Choice D raises a consideration that, if anything, cuts against the recommendation rather than supporting it. Choice E proposes a different change the argument does not make. Choice A is the stated reason backing the recommendation, so it is the premise.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -119,12 +119,12 @@ In the argument, the statement that the program diverts thousands of tons of was
 
 - A) It is the main conclusion the argument seeks to establish.
 - B) It is an objection the argument concedes is correct.
-- C) It is evidence offered to rebut the critics' claim.
+- C) It is an assumption the argument leaves unstated.
 - D) It restates the critics' position in different words.
-- E) It is an assumption the argument leaves unstated.
+- E) It is evidence offered to rebut the critics' claim.
 
-**answer:** C
-**explanation:** Identifying a statement's role means asking what job it does in the reasoning. The argument's purpose is to push back against critics who call the program too expensive, and the diversion of waste is brought in as a benefit that offsets the cost, so it functions as evidence rebutting the critics. Choice A is wrong because the unstated main point is that the program is worth its cost, not the waste figure itself. Choice B mischaracterizes it, since the diversion fact supports the program rather than conceding the objection. Choice D is incorrect because the statement opposes, rather than restates, the critics. Choice E fails because the statement is explicitly given, not unstated. Choice C correctly names its role as supporting evidence.
+**answer:** E
+**explanation:** Identifying a statement's role means asking what job it does in the reasoning. The argument's purpose is to push back against critics who call the program too expensive, and the diversion of waste is brought in as a benefit that offsets the cost, so it functions as evidence rebutting the critics. Choice A is wrong because the unstated main point is that the program is worth its cost, not the waste figure itself. Choice B mischaracterizes it, since the diversion fact supports the program rather than conceding the objection. Choice D is incorrect because the statement opposes, rather than restates, the critics. Choice C fails because the statement is explicitly given, not unstated. Choice E correctly names its role as supporting evidence.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -138,14 +138,14 @@ The marketing team launched a redesigned homepage last month, and online sales r
 
 The argument depends on assuming which of the following?
 
-- A) The redesigned homepage was more expensive to build than the previous one.
-- B) No other significant factor was responsible for the rise in online sales during that month.
+- A) No other significant factor was responsible for the rise in online sales during that month.
+- B) The redesigned homepage was more expensive to build than the previous one.
 - C) Online sales had already been falling steadily for several months before the redesign was launched.
 - D) The marketing team will redesign the homepage again at some point next year.
 - E) Fifteen percent is a large increase compared with the company's past monthly results.
 
-**answer:** B
-**explanation:** An assumption is an unstated belief the argument needs in order for its conclusion to hold. The team moves from a correlation (redesign, then higher sales) to a causal claim (the redesign caused the rise), which only works if nothing else explains the increase, exactly what B states. Choice A about cost is irrelevant to whether the redesign drove sales. Choice C is not required; sales could have been flat or rising before, and the causal claim would still need defending. Choice D concerns future plans and has no bearing on the past cause. Choice E about the size of the increase does not address what produced it. Only B is the gap the conclusion silently relies on.
+**answer:** A
+**explanation:** An assumption is an unstated belief the argument needs in order for its conclusion to hold. The team moves from a correlation (redesign, then higher sales) to a causal claim (the redesign caused the rise), which only works if nothing else explains the increase, exactly what A states. Choice B about cost is irrelevant to whether the redesign drove sales. Choice C is not required; sales could have been flat or rising before, and the causal claim would still need defending. Choice D concerns future plans and has no bearing on the past cause. Choice E about the size of the increase does not address what produced it. Only A is the gap the conclusion silently relies on.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -161,12 +161,12 @@ Which of the following is the main conclusion of the argument?
 
 - A) Students who eat breakfast score higher on morning exams than students who skip it.
 - B) The school does not currently offer any breakfast to its students.
-- C) The school should start a free breakfast program to improve exam performance.
-- D) Exam performance is the most important measure of a school's success.
+- C) Exam performance is the most important measure of a school's success.
+- D) The school should start a free breakfast program to improve exam performance.
 - E) Skipping breakfast harms students in many aspects of their lives.
 
-**answer:** C
-**explanation:** When an argument stacks several statements, the conclusion is the recommendation everything else builds toward, and here "therefore" marks it: the school should start a free breakfast program. Choice A is the research premise that motivates the idea, and choice B is a second premise describing the current gap, but neither is the point being argued. Choice D is a value claim the argument never makes. Choice E overstates the study, which speaks to exam scores rather than general harm. Choice C is the proposed action the premises are meant to justify, making it the main conclusion.
+**answer:** D
+**explanation:** When an argument stacks several statements, the conclusion is the recommendation everything else builds toward, and here "therefore" marks it: the school should start a free breakfast program. Choice A is the research premise that motivates the idea, and choice B is a second premise describing the current gap, but neither is the point being argued. Choice C is a value claim the argument never makes. Choice E overstates the study, which speaks to exam scores rather than general harm. Choice D is the proposed action the premises are meant to justify, making it the main conclusion.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -181,13 +181,13 @@ Some shareholders argue that the company should cut its research budget to boost
 The statement that the company's last three best-selling products came out of its research division serves which of the following functions in the argument?
 
 - A) It is the final conclusion that the rest of the argument is meant to establish.
-- B) It is a premise used to argue against cutting the research budget.
+- B) It is a prediction about how well the company's products will sell in the future.
 - C) It states the position the shareholders are defending.
 - D) It is a counterexample to the author's position that the argument ultimately dismisses.
-- E) It is a prediction about how well the company's products will sell in the future.
+- E) It is a premise used to argue against cutting the research budget.
 
-**answer:** B
-**explanation:** The role of a statement depends on how the argument uses it. The author opposes the shareholders' proposed budget cut, and the fact that recent best-sellers came from research is the evidence offered to show why cutting would be harmful, so it acts as a premise against the cut. Choice A is wrong because the conclusion is that cutting would jeopardize future growth, not this factual claim. Choice C misreads it, since the statement undercuts rather than states the shareholders' position. Choice D is incorrect because the author embraces this fact rather than rejecting it. Choice E mislabels a statement about past products as a future prediction. Choice B names its true function as supporting evidence.
+**answer:** E
+**explanation:** The role of a statement depends on how the argument uses it. The author opposes the shareholders' proposed budget cut, and the fact that recent best-sellers came from research is the evidence offered to show why cutting would be harmful, so it acts as a premise against the cut. Choice A is wrong because the conclusion is that cutting would jeopardize future growth, not this factual claim. Choice C misreads it, since the statement undercuts rather than states the shareholders' position. Choice D is incorrect because the author embraces this fact rather than rejecting it. Choice B mislabels a statement about past products as a future prediction. Choice E names its true function as supporting evidence.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -201,14 +201,14 @@ A publisher found that its e-books generate higher profit per copy than its prin
 
 The plan relies on which of the following assumptions?
 
-- A) E-books are considerably less expensive to produce and distribute than printed books are.
-- B) Readers who now buy printed books will not stop buying altogether once printed editions disappear.
+- A) Readers who now buy printed books will not stop buying altogether once printed editions disappear.
+- B) E-books are considerably less expensive to produce and distribute than printed books are.
 - C) Most of the publisher's major competitors also sell e-books alongside their printed editions.
 - D) E-books have generated higher profit per copy for several years in a row.
 - E) Printed books are the publisher's oldest and most established product line.
 
-**answer:** B
-**explanation:** The plan jumps from higher profit per e-book copy to higher total profit, and total profit depends on how many copies sell, not just the margin on each one. So the plan must assume that the readers who buy print will not abandon the publisher when print vanishes; if many of them buy nothing rather than switch to e-books, total profit could fall even with a better per-copy margin, which is exactly the gap B fills. Choice A may explain why per-copy profit is higher but does nothing to secure the leap to total profit. Choice C about competitors is irrelevant to this publisher's own profit. Choice D about a multi-year track record is not needed; one period of higher margins already grounds the comparison. Choice E about product age is beside the point. Only B is the assumption the conclusion cannot do without.
+**answer:** A
+**explanation:** The plan jumps from higher profit per e-book copy to higher total profit, and total profit depends on how many copies sell, not just the margin on each one. So the plan must assume that the readers who buy print will not abandon the publisher when print vanishes; if many of them buy nothing rather than switch to e-books, total profit could fall even with a better per-copy margin, which is exactly the gap A fills. Choice B may explain why per-copy profit is higher but does nothing to secure the leap to total profit. Choice C about competitors is irrelevant to this publisher's own profit. Choice D about a multi-year track record is not needed; one period of higher margins already grounds the comparison. Choice E about product age is beside the point. Only A is the assumption the conclusion cannot do without.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -224,12 +224,12 @@ Which of the following best captures the main point of the paragraph?
 
 - A) The clothing retailer holds its storewide sales very frequently throughout the year.
 - B) Shoppers generally prefer to buy their clothing at discounted prices whenever they have the chance.
-- C) The frequent sales were eroding margins rather than driving the revenue gains the retailer had assumed.
-- D) The store should stop holding its frequent storewide sales immediately.
+- C) The store should stop holding its frequent storewide sales immediately.
+- D) The frequent sales were eroding margins rather than driving the revenue gains the retailer had assumed.
 - E) Purchases made at full price are more profitable for the store than purchases made at discounted prices.
 
-**answer:** C
-**explanation:** The main point is the overall conclusion the paragraph develops, not a supporting detail or a claim that goes beyond the text. The paragraph sets up an assumption (sales boost revenue) and then dismantles it, showing that the sales mostly cut margins on purchases customers would have made anyway, so its central message is that the sales were eroding margins rather than driving gains. Choice A is just a setup detail. Choice B is a general truism the paragraph uses but does not center on. Choice D recommends an action the paragraph never states. Choice E is a true background fact but not the conclusion the passage reaches. Choice C states the paragraph's actual takeaway.
+**answer:** D
+**explanation:** The main point is the overall conclusion the paragraph develops, not a supporting detail or a claim that goes beyond the text. The paragraph sets up an assumption (sales boost revenue) and then dismantles it, showing that the sales mostly cut margins on purchases customers would have made anyway, so its central message is that the sales were eroding margins rather than driving gains. Choice A is just a setup detail. Choice B is a general truism the paragraph uses but does not center on. Choice C recommends an action the paragraph never states. Choice E is a true background fact but not the conclusion the passage reaches. Choice D states the paragraph's actual takeaway.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -245,12 +245,12 @@ The claim that the building's monitors cannot detect ultrafine particles plays w
 
 - A) It is the main conclusion that the air filters were worthwhile.
 - B) It is the objection that the author sets out to defend.
-- C) It explains away the evidence cited for the view the author opposes.
+- C) It is a concession that the filters were a waste of money.
 - D) It is an unrelated fact included only as background.
-- E) It is a concession that the filters were a waste of money.
+- E) It explains away the evidence cited for the view the author opposes.
 
-**answer:** C
-**explanation:** To find a statement's role, trace how it interacts with the opposing view. The author challenges the claim that the filters were wasteful, a claim resting on the fact that monitor readings barely changed; pointing out that the monitors cannot detect the ultrafine particles the filters target neutralizes that evidence by showing the unchanged readings prove nothing about the filters' real effect. Choice A is wrong because the unstated main conclusion is that the filters were worthwhile, not this detector fact. Choice B reverses the author's stance, since the author attacks rather than defends the objection. Choice D is incorrect because the statement is central, not unrelated background. Choice E is the opposite of the author's view. Choice C correctly identifies it as the move that defuses the opposing evidence.
+**answer:** E
+**explanation:** To find a statement's role, trace how it interacts with the opposing view. The author challenges the claim that the filters were wasteful, a claim resting on the fact that monitor readings barely changed; pointing out that the monitors cannot detect the ultrafine particles the filters target neutralizes that evidence by showing the unchanged readings prove nothing about the filters' real effect. Choice A is wrong because the unstated main conclusion is that the filters were worthwhile, not this detector fact. Choice B reverses the author's stance, since the author attacks rather than defends the objection. Choice D is incorrect because the statement is central, not unrelated background. Choice C is the opposite of the author's view. Choice E correctly identifies it as the move that defuses the opposing evidence.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -264,14 +264,14 @@ A regional airline added a nonstop route between two mid-sized cities last sprin
 
 Which of the following is the main conclusion of the argument?
 
-- A) The airline added a nonstop route between two mid-sized cities last spring.
+- A) Travelers between these cities had always preferred nonstop service and were waiting for it to be offered.
 - B) The nonstop route carried more weekly passengers than any earlier connecting itinerary between the cities.
-- C) Travelers between these cities had always preferred nonstop service and were waiting for it to be offered.
+- C) The airline added a nonstop route between two mid-sized cities last spring.
 - D) Connecting itineraries are generally less convenient for travelers than nonstop flights between the same cities.
 - E) The airline's planners study passenger data carefully before drawing conclusions about routes.
 
-**answer:** C
-**explanation:** The conclusion is the interpretive claim the planners reached on the basis of the evidence, not the evidence itself. The first sentence reports an action, and the second reports a passenger figure; both are premises. The third sentence draws an inference about traveler preferences from those facts, and that inference is the point the argument advances. Choice A is the opening factual premise. Choice B is the supporting passenger statistic. Choice D is a general claim the argument never asserts as its takeaway. Choice E is an unstated characterization of the planners. Only C is the conclusion the premises are offered to support.
+**answer:** A
+**explanation:** The conclusion is the interpretive claim the planners reached on the basis of the evidence, not the evidence itself. The first sentence reports an action, and the second reports a passenger figure; both are premises. The third sentence draws an inference about traveler preferences from those facts, and that inference is the point the argument advances. Choice C is the opening factual premise. Choice B is the supporting passenger statistic. Choice D is a general claim the argument never asserts as its takeaway. Choice E is an unstated characterization of the planners. Only A is the conclusion the premises are offered to support.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -286,13 +286,13 @@ The city should install protected bike lanes on Elm Street. In every comparable 
 Which of the following functions as the premise supporting the recommendation?
 
 - A) The city should install protected bike lanes on Elm Street.
-- B) In comparable cities that added such lanes, cycling injuries on the affected streets fell sharply within a year.
+- B) Protected bike lanes are considerably more expensive to install and maintain than simple painted lane markings are.
 - C) Elm Street is one of the busiest and most dangerous streets for cyclists anywhere in the city.
-- D) Protected bike lanes are considerably more expensive to install and maintain than simple painted lane markings are.
+- D) In comparable cities that added such lanes, cycling injuries on the affected streets fell sharply within a year.
 - E) Cyclists deserve the same level of safety protection on city streets that drivers already receive.
 
-**answer:** B
-**explanation:** A premise is the stated reason given in support of the conclusion. The recommendation to install the lanes is the conclusion, so the premise is the evidence offered for it: comparable cities saw injuries drop after adding such lanes. Choice A merely restates the conclusion. Choice C introduces a fact about Elm Street that the argument never states. Choice D raises a cost consideration that, if anything, works against the proposal rather than supporting it. Choice E is a value claim the argument does not invoke. Choice B is the explicit evidence backing the recommendation, so it is the premise.
+**answer:** D
+**explanation:** A premise is the stated reason given in support of the conclusion. The recommendation to install the lanes is the conclusion, so the premise is the evidence offered for it: comparable cities saw injuries drop after adding such lanes. Choice A merely restates the conclusion. Choice C introduces a fact about Elm Street that the argument never states. Choice B raises a cost consideration that, if anything, works against the proposal rather than supporting it. Choice E is a value claim the argument does not invoke. Choice D is the explicit evidence backing the recommendation, so it is the premise.
 **related_reading:** verbal-01-foundations
 
 ---
@@ -307,13 +307,13 @@ A hospital introduced a checklist that surgical teams must complete before every
 The administrators' reasoning depends on assuming which of the following?
 
 - A) The checklist takes only a few minutes for surgical teams to complete.
-- B) No other change that could lower infection rates was introduced at the hospital during that year.
+- B) The checklist had been used successfully at other hospitals before being adopted here.
 - C) The hospital's other departments perform operations similar to those in the surgical unit.
 - D) Surgical infections are the most dangerous complications a hospital faces.
-- E) The checklist had been used successfully at other hospitals before being adopted here.
+- E) No other change that could lower infection rates was introduced at the hospital during that year.
 
-**answer:** B
-**explanation:** An assumption is the unstated condition the argument needs in order for its causal conclusion to hold. The administrators move from a correlation (checklist adopted, then infections fell) to a cause (the checklist produced the drop), which only follows if nothing else that could lower infections changed in the same period. If, say, the hospital also upgraded its sterilization equipment that year, the checklist might deserve none of the credit, so B is required. Choice A about time cost does not bear on whether the checklist caused the decline. Choice C concerns the separate recommendation to expand the checklist, not the causal claim itself. Choice D is a value ranking the argument never needs. Choice E about prior use elsewhere is not necessary to support the causal inference at this hospital. Only B is the gap the conclusion silently relies on.
+**answer:** E
+**explanation:** An assumption is the unstated condition the argument needs in order for its causal conclusion to hold. The administrators move from a correlation (checklist adopted, then infections fell) to a cause (the checklist produced the drop), which only follows if nothing else that could lower infections changed in the same period. If, say, the hospital also upgraded its sterilization equipment that year, the checklist might deserve none of the credit, so E is required. Choice A about time cost does not bear on whether the checklist caused the decline. Choice C concerns the separate recommendation to expand the checklist, not the causal claim itself. Choice D is a value ranking the argument never needs. Choice B about prior use elsewhere is not necessary to support the causal inference at this hospital. Only E is the gap the conclusion silently relies on.
 **related_reading:** verbal-01-foundations
 
 ---

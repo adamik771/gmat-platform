@@ -19,23 +19,23 @@ Some companies have responded by making cancellation processes deliberately cumb
 The primary purpose of the passage is to:
 
 - A) advocate for subscription-based business models over traditional transaction-based models
-- B) examine the retention challenges subscription businesses face and the strategies they use to address them
+- B) compare the revenue predictability of subscription models with that of traditional sales models
 - C) criticize companies that use manipulative dark patterns to trap customers and prevent them from canceling their subscriptions
 - D) argue that subscription businesses are ultimately unsustainable because rising acquisition costs outpace revenue
-- E) compare the revenue predictability of subscription models with that of traditional sales models
+- E) examine the retention challenges subscription businesses face and the strategies they use to address them
 
-**answer:** B
+**answer:** E
 **explanation:** A "primary purpose" question asks for the central aim of the passage as a whole — not a detail, not the conclusion of a single paragraph, but the organizing function that accounts for all three paragraphs together.
 
 Paragraph 1 introduces the subscription economy and the optimistic case made by its advocates: predictable revenue and incentive alignment. Paragraph 2 complicates that picture by presenting two concrete challenges — rising customer acquisition costs (up 60% over five years) and a retention rate of roughly 70% annually, which together produce what analysts call the "leaky bucket" problem. The pivot is announced explicitly by the word "however" at the opening of paragraph 2. Paragraph 3 shifts to the strategic responses companies have developed: making cancellation deliberately difficult ("dark patterns"), investing in personalization, or — the path the passage identifies as most effective — building genuine switching costs through network effects, proprietary content, or ecosystem integration.
 
-The governing movement is: here is the model and its claimed benefits — here are the challenges it produces — here are the responses companies have adopted. A purpose statement must cover all three paragraphs. The passage neither defends the model as superior to alternatives, nor condemns any single practice, nor concludes that the model is unviable. It examines a set of challenges and the business strategies deployed in response to them. That is precisely what answer choice B captures.
+The governing movement is: here is the model and its claimed benefits — here are the challenges it produces — here are the responses companies have adopted. A purpose statement must cover all three paragraphs. The passage neither defends the model as superior to alternatives, nor condemns any single practice, nor concludes that the model is unviable. It examines a set of challenges and the business strategies deployed in response to them. That is precisely what answer choice E captures.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice misreads the passage's tone as advocacy. The passage does note the advocates' position — predictable revenue and aligned incentives — but the word 'however' at the opening of paragraph 2 signals a deliberate pivot away from that position toward a critical analysis of challenges. A passage that advocates for a model does not immediately complicate the case for it with data on rising acquisition costs and a 30% annual customer loss rate. Choice A therefore reverses the overall stance of the passage.
 **mistake_c:** This choice is too narrow. Dark patterns appear in exactly one sentence of the third paragraph, presented as one of three strategic responses companies have adopted. The passage does not dwell on the practice, develop a critique of it, or call for any remedy. To say the primary purpose is to criticize dark patterns is to elevate a single illustrative detail to the status of the passage's central concern, which the structure and proportion of the text do not support.
 **mistake_d:** This choice overstates and distorts the passage's conclusion. The passage documents real challenges — particularly the leaky bucket problem — but it does not conclude that subscription businesses are ultimately unsustainable. On the contrary, paragraph 3 identifies a class of companies that have found effective long-term approaches through genuine switching costs. Presenting unsustainability as the primary purpose introduces a conclusion that does not appear in the passage; the choice is therefore fabricated as a purpose.
-**mistake_e:** This choice is too narrow and mischaracterizes the scope of the passage. Revenue predictability is mentioned once, in paragraph 1, as one claimed benefit that advocates cite. The passage never develops a systematic comparison between subscription models and traditional sales models; no data, no framework, and no evaluative language is devoted to such a comparison. Treating a single clause in the opening paragraph as the primary purpose ignores the challenges and strategies that occupy the majority of the passage.
+**mistake_b:** This choice is too narrow and mischaracterizes the scope of the passage. Revenue predictability is mentioned once, in paragraph 1, as one claimed benefit that advocates cite. The passage never develops a systematic comparison between subscription models and traditional sales models; no data, no framework, and no evaluative language is devoted to such a comparison. Treating a single clause in the opening paragraph as the primary purpose ignores the challenges and strategies that occupy the majority of the passage.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -49,22 +49,22 @@ According to the passage, the "leaky bucket" problem refers to the fact that:
 
 - A) subscription companies spend far more on product development each year than they ever manage to recover in revenue
 - B) customers increasingly share subscription accounts, reducing per-user revenue
-- C) subscription businesses must continuously acquire new customers to replace those who cancel, just to maintain revenue
+- C) companies that offer subscriptions tend to lose money on each subscriber during the first year of that subscriber's tenure
 - D) subscription pricing models often undervalue the products being offered
-- E) companies that offer subscriptions tend to lose money on each subscriber during the first year of that subscriber's tenure
+- E) subscription businesses must continuously acquire new customers to replace those who cancel, just to maintain revenue
 
-**answer:** C
+**answer:** E
 **explanation:** **Question task.** This is a specific detail question. The stem asks "According to the passage," signaling that the answer must be grounded in explicit passage text rather than inference or outside knowledge. The task is to locate the passage's own definition of the term "leaky bucket" and match it to the credited answer choice.
 
 **Locating the governing text.** The term appears in the second paragraph: "This creates a phenomenon that industry analysts call the 'leaky bucket' problem: companies must continuously pour new customers into the top of the funnel simply to maintain flat revenue, let alone grow." Two supporting facts precede this definition and are essential to understanding it. First, the average subscriber retention rate across industries is approximately 70% annually, meaning that roughly 30% of a company's customer base departs each year. Second, customer acquisition costs have risen by an average of 60% over the prior five years. Together these facts establish the structural pressure the leaky bucket label describes: attrition is constant and significant, and replacing lost customers is increasingly expensive. The passage then names the consequence — a company must perpetually refill its customer base simply to hold revenue flat.
 
-**Ruling in choice C.** Choice C states that "subscription businesses must continuously acquire new customers to replace those who cancel, just to maintain revenue." This is a precise restatement of the passage's own definition. The phrase "continuously pour new customers into the top of the funnel" maps directly to "must continuously acquire new customers"; "simply to maintain flat revenue" maps directly to "just to maintain revenue"; and the implicit cause — the 30% annual attrition rate — maps to "to replace those who cancel." No inference or outside knowledge is required; the passage supplies each element of the definition explicitly.
+**Ruling in choice E.** Choice E states that "subscription businesses must continuously acquire new customers to replace those who cancel, just to maintain revenue." This is a precise restatement of the passage's own definition. The phrase "continuously pour new customers into the top of the funnel" maps directly to "must continuously acquire new customers"; "simply to maintain flat revenue" maps directly to "just to maintain revenue"; and the implicit cause — the 30% annual attrition rate — maps to "to replace those who cancel." No inference or outside knowledge is required; the passage supplies each element of the definition explicitly.
 
-The correct answer is C.
+The correct answer is E.
 **mistake_a:** Choice A states that subscription companies spend far more on product development each year than they ever manage to recover in revenue. This is unsupported: the passage does not discuss product development expenditure, nor does it compare any cost category to total recovered revenue. The leaky bucket definition concerns customer attrition and the need for constant acquisition, not a product-cost imbalance. Choice A fabricates a financial relationship that does not appear anywhere in the passage.
 **mistake_b:** Choice B states that customers increasingly share subscription accounts, reducing per-user revenue. Account sharing does not appear anywhere in the passage. The passage attributes revenue pressure to a high cancellation rate and rising acquisition costs, not to multi-user account sharing. Choice B introduces outside knowledge of a phenomenon sometimes discussed in the media context of streaming services, but that phenomenon is entirely absent from the passage text and therefore cannot be the passage's definition of the leaky bucket problem.
 **mistake_d:** Choice D states that subscription pricing models often undervalue the products being offered. The passage contains no discussion of pricing strategy, price levels, or the relationship between price and product value. The leaky bucket problem is defined in terms of customer attrition and the resulting acquisition treadmill, not pricing adequacy. Choice D is unsupported: it imports a concept the passage never mentions.
-**mistake_e:** Choice E states that companies that offer subscriptions tend to lose money on each subscriber during the first year of that subscriber's tenure. The passage does not discuss per-cohort profitability by year, nor does it reference a first-year loss period. While high customer acquisition costs are mentioned, the passage never claims those costs produce a first-year net loss for the average subscriber. Choice E conflates a known industry concept — the payback period on acquisition costs — with the specific definition the passage provides for the leaky bucket problem, making this choice unsupported by the passage text.
+**mistake_c:** Choice C states that companies that offer subscriptions tend to lose money on each subscriber during the first year of that subscriber's tenure. The passage does not discuss per-cohort profitability by year, nor does it reference a first-year loss period. While high customer acquisition costs are mentioned, the passage never claims those costs produce a first-year net loss for the average subscriber. Choice C conflates a known industry concept — the payback period on acquisition costs — with the specific definition the passage provides for the leaky bucket problem, making this choice unsupported by the passage text.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -77,25 +77,25 @@ The correct answer is C.
 The passage implies that companies relying on dark patterns to retain subscribers are:
 
 - A) more profitable in the long run than companies that invest in personalization
-- B) addressing a symptom of customer dissatisfaction rather than its underlying cause
+- B) unaware of alternative strategies for improving customer retention
 - C) violating established consumer protection regulations
 - D) likely to attract more new subscribers than companies using other retention strategies
-- E) unaware of alternative strategies for improving customer retention
+- E) addressing a symptom of customer dissatisfaction rather than its underlying cause
 
-**answer:** B
+**answer:** E
 **explanation:** This is an inference question. The stem asks what the passage implies about companies using dark patterns, meaning the task is to identify a conclusion that follows logically from the passage's statements even if not stated directly.
 
 The third paragraph introduces dark patterns as one of three corporate responses to the "leaky bucket" problem described in paragraph two. Paragraph two establishes that high customer acquisition costs and a roughly 30% annual churn rate force subscription businesses to replenish their subscriber base continuously. Paragraph three then describes three types of responses: dark patterns that make cancellation cumbersome, personalization algorithms that increase perceived value, and genuine switching costs built through network effects, proprietary content, or ecosystem integration.
 
 The passage arranges these three responses in a hierarchy. Dark patterns are described first and without endorsement; they address only the act of leaving — the cancellation process itself — rather than the reason for leaving, which is low perceived value or dissatisfaction. Personalization algorithms are presented as an attempt to increase perceived value, a step closer to the root issue. The "most successful" companies are those that build genuine switching costs that make the service "more valuable the longer a customer uses it rather than merely more difficult to leave." That final phrase is the key inferential anchor: the passage draws an explicit contrast between making a service harder to leave and making it more genuinely valuable. Companies that make cancellation cumbersome are implicitly addressing only the exit mechanism, not the customer's underlying reason for wanting to leave in the first place. A customer who is dissatisfied but trapped by a cumbersome cancellation process remains dissatisfied; the dissatisfaction — the underlying cause — has not been addressed. The passage therefore implies that dark patterns treat a symptom, the cancellation event, rather than the root cause, the customer dissatisfaction that motivates cancellation.
 
-Choice B states that companies using dark patterns are "addressing a symptom of customer dissatisfaction rather than its underlying cause." This maps precisely onto the passage's contrast. The symptom is the act of cancellation; the underlying cause is the dissatisfaction that motivates it. The passage's own language — "more difficult to leave" versus "more valuable" — provides the inferential support without requiring any information outside the text.
+Choice E states that companies using dark patterns are "addressing a symptom of customer dissatisfaction rather than its underlying cause." This maps precisely onto the passage's contrast. The symptom is the act of cancellation; the underlying cause is the dissatisfaction that motivates it. The passage's own language — "more difficult to leave" versus "more valuable" — provides the inferential support without requiring any information outside the text.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice introduces a comparison the passage never makes. The passage presents dark patterns as the least endorsed of the three retention strategies and places the most emphasis on genuine switching costs, but it does not compare the profitability of dark-pattern companies to personalization-focused companies. Asserting a long-run profit advantage for dark-pattern firms is therefore unsupported — no such comparison appears anywhere in the text.
 **mistake_c:** This choice relies on outside knowledge. The passage uses the term "dark patterns" descriptively and notes that the practice makes cancellation "deliberately cumbersome," but it makes no mention of consumer protection regulations, legal violations, or any regulatory framework. Inferring a legal violation goes beyond what the passage states and constitutes a claim based on information outside the text.
 **mistake_d:** This choice is unsupported and directionally inconsistent with the passage. The passage describes dark patterns as a retention tool aimed at keeping existing subscribers, not as a mechanism for attracting new ones. The passage says nothing about the effect of dark patterns on new subscriber acquisition, and there is no basis in the text for concluding that dark-pattern companies would outperform others in attracting new subscribers.
-**mistake_e:** This choice is directly contradicted by the passage. The paragraph that introduces dark patterns also describes alternative strategies — personalization algorithms and genuine switching costs through network effects, proprietary content, and ecosystem integration — as known options within the same industry context. The passage presents all three approaches together, making it impossible to infer that companies using dark patterns are unaware of the alternatives.
+**mistake_b:** This choice is directly contradicted by the passage. The paragraph that introduces dark patterns also describes alternative strategies — personalization algorithms and genuine switching costs through network effects, proprietary content, and ecosystem integration — as known options within the same industry context. The passage presents all three approaches together, making it impossible to infer that companies using dark patterns are unaware of the alternatives.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -109,24 +109,24 @@ Based on the passage, which of the following business strategies would the autho
 
 - A) Offering steep introductory discounts and generous free trial periods to attract the largest possible number of new subscribers
 - B) Requiring subscribers to commit to annual contracts with early termination fees
-- C) Building a platform whose accumulated data, connections, and customizations make it more valuable the longer a customer uses it
+- C) Reducing the subscription price below competitors' rates to undercut them and win price-sensitive customers
 - D) Investing heavily in television and streaming advertising campaigns to increase overall brand awareness
-- E) Reducing the subscription price below competitors' rates to undercut them and win price-sensitive customers
+- E) Building a platform whose accumulated data, connections, and customizations make it more valuable the longer a customer uses it
 
-**answer:** C
+**answer:** E
 **explanation:** **Question Task.** This is an inference question of the application subtype. The stem asks which strategy the author would "most likely consider the most effective approach to reducing subscriber churn." The task is not to locate a fact stated directly in the passage but to apply the author's evaluative framework — the hierarchy of retention strategies the passage explicitly establishes — to the five answer choices.
 
 **Governing Principle.** When a passage explicitly ranks or contrasts strategies by effectiveness, the correct inference answer will mirror that hierarchy. The passage does not merely list approaches; it uses graduated language ("Some companies have responded… Others have invested… The most successful subscription businesses, however, appear to be those that…") to signal a clear evaluative ranking. The phrase "the most successful… however… rather than merely" constitutes the author's verdict.
 
 **Anchoring the Reasoning in the Passage.** The third paragraph is the decisive locus. The author identifies three responses to churn: dark patterns (making cancellation cumbersome), described neutrally as something "some companies" do with no endorsement; personalization algorithms (increasing perceived value), described as a competing response by "others" and presented as an improvement over dark patterns but still not the author's preferred model; and genuine switching costs through network effects, proprietary content, or ecosystem integration, labeled the approach of "the most successful subscription businesses" and described as making the service "more valuable the longer a customer uses it rather than merely more difficult to leave." The author's superlative — "the most successful" — combined with the contrast word "rather than merely" draws a sharp line: true value accumulation beats artificial friction. Any recommended strategy must therefore align with the third category to reflect the author's view.
 
-**Why C is Correct.** Answer choice C describes building a platform whose accumulated data, connections, and customizations make it more valuable the longer a customer uses it. This is a direct application of the passage's third and highest-ranked category: building genuine switching costs through ecosystem integration and network-like personalization that compounds with usage. The service becomes "more valuable the longer a customer uses it" — the author's own criterion — because accumulated data and customizations are proprietary to that user's history on the platform. This matches the passage's explicit endorsement of value-building over friction-building.
+**Why E is Correct.** Answer choice E describes building a platform whose accumulated data, connections, and customizations make it more valuable the longer a customer uses it. This is a direct application of the passage's third and highest-ranked category: building genuine switching costs through ecosystem integration and network-like personalization that compounds with usage. The service becomes "more valuable the longer a customer uses it" — the author's own criterion — because accumulated data and customizations are proprietary to that user's history on the platform. This matches the passage's explicit endorsement of value-building over friction-building.
 
-The correct answer is C.
+The correct answer is E.
 **mistake_a:** Choice A is unsupported by the passage. Steep introductory discounts address customer acquisition, not retention. The passage explicitly identifies high customer acquisition costs as a symptom of the underlying problem, not a solution to churn. Recommending discounts to attract new subscribers addresses the wrong side of the leaky bucket: it adds water at the top while the hole at the bottom goes unrepaired. The passage provides no basis for inferring that the author would regard acquisition incentives as an effective churn-reduction strategy.
 **mistake_b:** Choice B conflates artificial friction with genuine value — precisely the distinction the author draws against dark patterns. Annual contracts with early termination fees make the service more difficult to leave, not more valuable to stay with. The passage explicitly contrasts strategies that create genuine switching costs with those that merely make cancellation harder, and the author's language ('rather than merely more difficult to leave') treats friction-based lock-in as an inferior approach. Choice B therefore describes a strategy closer to the condemned dark patterns than to the endorsed value-building model, reversing the passage's evaluative hierarchy.
 **mistake_d:** Choice D falls outside the scope of the passage. The passage never discusses advertising or brand awareness as a retention mechanism; it focuses entirely on the structural economics of subscription relationships and the design of the product experience. Television advertising is an acquisition tactic with no connection to the switching-cost framework the author uses to evaluate retention strategies. Selecting this choice requires importing outside knowledge about marketing strategy that the passage neither provides nor implies.
-**mistake_e:** Choice E is unsupported by the passage. The passage notes that competition is intense and that customer acquisition costs have risen due to market saturation, but it never suggests that price reduction is an effective response to churn. Cutting price addresses competitive positioning, not the fundamental retention problem the author diagnoses. Moreover, the author's preferred strategies — network effects, proprietary content, ecosystem integration — are value-based, not price-based. There is no textual warrant for inferring that the author would endorse a price-reduction strategy as the most effective approach to subscriber retention.
+**mistake_c:** Choice C is unsupported by the passage. The passage notes that competition is intense and that customer acquisition costs have risen due to market saturation, but it never suggests that price reduction is an effective response to churn. Cutting price addresses competitive positioning, not the fundamental retention problem the author diagnoses. Moreover, the author's preferred strategies — network effects, proprietary content, ecosystem integration — are value-based, not price-based. There is no textual warrant for inferring that the author would endorse a price-reduction strategy as the most effective approach to subscriber retention.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -148,23 +148,23 @@ Which of the following best describes the main point of the passage?
 
 - A) Microplastics are a newly discovered form of ocean pollution that scientists are only beginning to study in real depth.
 - B) The primary danger of microplastics is that marine animals frequently mistake the drifting particles for food and consequently suffer severe malnutrition.
-- C) Microplastics pose a multifaceted and escalating threat to marine ecosystems through direct ingestion, chemical contamination, and biomagnification.
-- D) Government regulation has so far failed to address the rapidly growing problem of microplastic pollution in the world's oceans.
+- C) Government regulation has so far failed to address the rapidly growing problem of microplastic pollution in the world's oceans.
+- D) Microplastics pose a multifaceted and escalating threat to marine ecosystems through direct ingestion, chemical contamination, and biomagnification.
 - E) The fishing industry is the single leading contributor to microplastic contamination in marine environments worldwide.
 
-**answer:** C
+**answer:** D
 **explanation:** This is a Main Idea question. The task is to identify the central claim that the passage as a whole advances, not merely a detail from one paragraph or an unstated inference that goes beyond the text.
 
 On Main Idea questions, the correct answer must encompass every major section of the passage without overstating or understating the author's scope. A choice that captures only one paragraph's content is too narrow; a choice that introduces information absent from the passage is unsupported.
 
 Paragraph 1 establishes that microplastics have only recently received serious scientific attention and describes their two primary origins. Paragraph 2 shifts to ecological consequences, covering two distinct mechanisms: direct physical and satiation harm from ingestion, and the vector function by which hydrophobic microplastic surfaces concentrate persistent organic pollutants — PCBs, DDT — and deliver them as a concentrated chemical dose to organisms. Paragraph 3 introduces a third and escalating dimension: biomagnification, the process by which toxin concentrations multiply at each trophic level, placing apex predators and, by extension, human seafood consumers at disproportionate risk.
 
-The passage therefore develops a single, progressive argument: microplastics are dangerous in multiple reinforcing ways — ingestion, chemical contamination, and biomagnification — and the problem grows more severe as it moves up the food chain. The word "multifaceted" in choice C corresponds to the three distinct harm mechanisms distributed across paragraphs 2 and 3; "escalating" corresponds to the biomagnification dynamic described in paragraph 3; and "marine ecosystems" accurately captures the full scope, from zooplankton to apex predators. Choice C synthesizes all three paragraphs without importing any claim the author does not make.
+The passage therefore develops a single, progressive argument: microplastics are dangerous in multiple reinforcing ways — ingestion, chemical contamination, and biomagnification — and the problem grows more severe as it moves up the food chain. The word "multifaceted" in choice D corresponds to the three distinct harm mechanisms distributed across paragraphs 2 and 3; "escalating" corresponds to the biomagnification dynamic described in paragraph 3; and "marine ecosystems" accurately captures the full scope, from zooplankton to apex predators. Choice D synthesizes all three paragraphs without importing any claim the author does not make.
 
-The correct answer is C.
+The correct answer is D.
 **mistake_a:** Too narrow and partially inaccurate. The phrase 'only beginning to study' misreads paragraph 1, which states that serious scientific attention began 'in the past fifteen years' and that research has already progressed through multiple stages — from early ingestion studies to vector and biomagnification findings. More critically, this choice addresses only the background framing of the first paragraph and ignores the ecological-consequences argument that occupies the bulk of the passage, making it far too narrow to qualify as the main point.
 **mistake_b:** Too narrow. This choice accurately reflects one finding reported in paragraph 2 — that ingestion can cause physical damage and a false sense of satiation leading to malnutrition — but it elevates a single subordinate detail to the status of the passage's primary claim. Paragraph 2 explicitly signals that malnutrition is only the earlier, incomplete picture ('Early research focused on ingestion'), and the remainder of the passage develops two additional and arguably more serious mechanisms. Selecting B ignores the vector and biomagnification dimensions entirely.
-**mistake_d:** Unsupported; outside the scope of the passage. The author never mentions government regulation, regulatory failure, or policy responses of any kind. The passage is a scientific account of the origins, mechanisms, and ecological consequences of microplastic contamination; it contains no normative or policy argument. Introducing government failure as the main point fabricates a claim that cannot be anchored to any line of the text.
+**mistake_c:** Unsupported; outside the scope of the passage. The author never mentions government regulation, regulatory failure, or policy responses of any kind. The passage is a scientific account of the origins, mechanisms, and ecological consequences of microplastic contamination; it contains no normative or policy argument. Introducing government failure as the main point fabricates a claim that cannot be anchored to any line of the text.
 **mistake_e:** Unsupported and contradicted by the passage's content. Paragraph 1 identifies two sources of microplastics — fragmentation of larger plastic items and direct release from personal care products, synthetic textile fibers, and industrial abrasives — none of which is the fishing industry. The fishing industry is not mentioned anywhere in the passage. This choice introduces outside information that directly contradicts the sourcing described in the text and therefore cannot represent the passage's main point.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -178,23 +178,23 @@ The correct answer is C.
 According to the passage, microplastics act as vectors for other pollutants because:
 
 - A) they are manufactured with toxic industrial chemicals that are permanently embedded throughout the plastic material itself
-- B) their hydrophobic surfaces attract and concentrate persistent organic pollutants from the surrounding water
+- B) ultraviolet radiation triggers chemical reactions on the surface of the particles that release pollutants
 - C) they dissolve in seawater and release the chemical compounds that were used to manufacture them
 - D) marine organisms preferentially consume particles that already contain toxins
-- E) ultraviolet radiation triggers chemical reactions on the surface of the particles that release pollutants
+- E) their hydrophobic surfaces attract and concentrate persistent organic pollutants from the surrounding water
 
-**answer:** B
+**answer:** E
 **explanation:** This is a specific-detail question. The stem asks for the passage's stated reason that microplastics act as vectors for other pollutants. For such questions, the credited answer must be directly supported by passage text; inference or outside knowledge does not qualify.
 
 The answer is grounded in paragraph 2: "More recent studies, however, have revealed that microplastics also act as vectors for other pollutants. Their hydrophobic surfaces attract and concentrate persistent organic pollutants such as PCBs and DDT from surrounding seawater, often at concentrations millions of times higher than ambient levels." The passage provides an explicit, one-sentence causal explanation: the surface chemistry of the particles — specifically their hydrophobic (water-repelling) character — draws dissolved organic pollutants out of the surrounding water and holds them at high concentration on the particle surface. When a marine organism ingests the particle, it receives a concentrated chemical dose. The vector function is entirely a consequence of this surface-chemistry mechanism.
 
-Choice B states that microplastics act as vectors because "their hydrophobic surfaces attract and concentrate persistent organic pollutants from the surrounding water." This is a direct, accurate paraphrase of the passage's own language. No inference is required; the passage states the mechanism in explicit terms.
+Choice E states that microplastics act as vectors because "their hydrophobic surfaces attract and concentrate persistent organic pollutants from the surrounding water." This is a direct, accurate paraphrase of the passage's own language. No inference is required; the passage states the mechanism in explicit terms.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice introduces a fabricated mechanism not found anywhere in the passage. The passage never states that microplastics are manufactured with embedded toxic chemicals; on the contrary, it attributes the vector function to the passive surface chemistry of the particles, which attracts pollutants already present in the surrounding seawater. Choice A therefore relies on information outside the passage.
 **mistake_c:** This choice directly contradicts the passage. The passage describes microplastics concentrating pollutants on their surfaces; it does not describe the particles themselves dissolving or releasing chemical compounds into the water. Choice C reverses the direction of the mechanism described in the passage and is unsupported.
 **mistake_d:** This choice confuses cause and effect and introduces an unsupported claim. The passage does not state that marine organisms selectively seek out or preferentially consume toxin-containing particles; it states only that organisms ingest microplastics, and that those microplastics carry concentrated toxins as a consequence of surface chemistry. The preference attributed to organisms in choice D has no basis in the passage.
-**mistake_e:** Although the passage mentions ultraviolet radiation in paragraph 1, it does so only as a cause of the physical fragmentation of larger plastics into microplastic particles — not as a cause of any chemical reaction that enables pollutant concentration. Applying the UV detail to the vector mechanism described in paragraph 2 conflates two separate and unrelated processes; this is an outside-knowledge intrusion that the passage does not support.
+**mistake_b:** Although the passage mentions ultraviolet radiation in paragraph 1, it does so only as a cause of the physical fragmentation of larger plastics into microplastic particles — not as a cause of any chemical reaction that enables pollutant concentration. Applying the UV detail to the vector mechanism described in paragraph 2 conflates two separate and unrelated processes; this is an outside-knowledge intrusion that the passage does not support.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -207,24 +207,24 @@ The correct answer is B.
 The passage suggests that the threat microplastics pose to apex marine predators is particularly concerning because:
 
 - A) apex predators consume substantially more plastic per unit of body weight than the smaller organisms beneath them in the food chain
-- B) biomagnification delivers the highest toxin concentrations to apex predators, compounding existing threats to species already vulnerable
+- B) removing accumulated microplastics from the ocean habitats of apex predators is technically and practically impossible
 - C) apex predators are unable to distinguish microplastic particles from their natural prey when feeding
-- D) removing accumulated microplastics from the ocean habitats of apex predators is technically and practically impossible
+- D) biomagnification delivers the highest toxin concentrations to apex predators, compounding existing threats to species already vulnerable
 - E) apex predators reproduce more slowly than other marine organisms, making population recovery difficult
 
-**answer:** B
+**answer:** D
 **explanation:** This is an inference question. The stem asks what the passage suggests, meaning the credited answer must follow logically from the text rather than be stated word for word. The relevant anchor is the third paragraph, which introduces biomagnification and its consequences for apex predators.
 
 On inference questions, the credited answer must be directly supported by the passage's explicit content or by a logical step the passage itself invites. Answers that introduce facts not derivable from the passage, or that distort the passage's stated reasoning, are incorrect regardless of whether they might be true in the real world.
 
 The third paragraph states: "As microplastics and their associated toxins move up the food chain, from filter-feeding bivalves to predatory fish to marine mammals, the concentration of harmful chemicals increases at each trophic level." It then adds that this process means "apex predators, many of which are already endangered, face disproportionately high exposure." Two distinct concerns are therefore joined: biomagnification delivers the highest toxin concentrations to the top of the food chain, and many of the species occupying that position are already endangered, meaning they enter this additional threat in an already-compromised state.
 
-Choice B restates precisely this two-part reasoning from the passage: biomagnification causes apex predators to accumulate the highest toxin concentrations, and those predators are already vulnerable — the passage's own phrase is "already endangered." No inference beyond the passage is required; both components are explicit in paragraph three. The phrasing "compounding existing threats" is a faithful paraphrase of the passage's logic that a disproportionate new burden falls on species already under pressure.
+Choice D restates precisely this two-part reasoning from the passage: biomagnification causes apex predators to accumulate the highest toxin concentrations, and those predators are already vulnerable — the passage's own phrase is "already endangered." No inference beyond the passage is required; both components are explicit in paragraph three. The phrasing "compounding existing threats" is a faithful paraphrase of the passage's logic that a disproportionate new burden falls on species already under pressure.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Unsupported and fabricated detail. The passage makes no comparison of plastic consumption per unit of body weight between apex predators and smaller organisms. The passage's concern centers on toxin concentration via biomagnification, not on the relative volume of plastic ingested at different size classes. Selecting A requires importing a premise the passage never supplies.
 **mistake_c:** Outside the passage's scope. The passage does not discuss whether apex predators can or cannot distinguish microplastic particles from natural prey. The ingestion mechanism described in paragraph two is attributed to organisms broadly — from zooplankton to whales — and is not offered as the specific reason apex predators face a distinctive threat. Choice C confuses a general ingestion observation with the targeted concern about apex predators and introduces a sensory-discrimination claim the passage never makes.
-**mistake_d:** Extreme and unsupported. The passage contains no statement about the technical feasibility of removing microplastics from any habitat. Introducing a claim about the impossibility of remediation goes well beyond what the passage asserts or implies; this choice relies on outside knowledge or assumption rather than passage evidence.
+**mistake_b:** Extreme and unsupported. The passage contains no statement about the technical feasibility of removing microplastics from any habitat. Introducing a claim about the impossibility of remediation goes well beyond what the passage asserts or implies; this choice relies on outside knowledge or assumption rather than passage evidence.
 **mistake_e:** Unsupported inference. While slow reproduction is a recognized ecological vulnerability of many large marine predators, the passage does not mention reproductive rates at all. The passage's stated reason for concern is biomagnification of chemical toxins compounded by the predators' already-endangered status — not reproductive biology. Choice E substitutes a plausible real-world fact for the passage's actual reasoning, making it an unsupported inference from the text provided.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -275,12 +275,12 @@ However, the relationship between urbanization and mental health is not uniforml
 The passage is primarily concerned with:
 
 - A) arguing that the overall pace of urbanization should be deliberately slowed in order to protect the public's mental health
-- B) presenting evidence that urban living affects mental health and exploring both its neurological basis and its mitigation through urban design
+- B) advocating for a substantial increase in accessible green space across all urban environments worldwide
 - C) comparing the mental health outcomes of urban and rural populations across several different countries and world regions
 - D) describing in detail the neurological mechanisms by which chronic urban stress gradually leads to mental illness
-- E) advocating for a substantial increase in accessible green space across all urban environments worldwide
+- E) presenting evidence that urban living affects mental health and exploring both its neurological basis and its mitigation through urban design
 
-**answer:** B
+**answer:** E
 **explanation:** This is a main idea question. The task is to identify the primary concern of the passage as a whole — the central purpose that governs all three paragraphs, not merely a detail or sub-theme drawn from one section.
 
 For main idea questions, the correct answer must encompass the full scope of the passage. An answer that covers only one paragraph, even accurately, is too narrow. An answer that introduces a prescription or advocacy the passage does not make is distorted.
@@ -289,13 +289,13 @@ The passage opens by establishing that urbanization is associated with measurabl
 
 The passage therefore moves through three linked steps: presenting epidemiological evidence of an urban mental health effect, explaining the neurological mechanisms, and introducing mitigating factors tied to how cities are designed and governed. The correct answer must capture all three steps.
 
-Choice B states that the passage presents evidence that urban living affects mental health and explores both the neurological basis and the potential for mitigation through urban design. This characterization maps onto all three paragraphs in sequence: the effect is established in paragraph 1, the neurological basis is developed in paragraph 2, and the mitigation potential is introduced in paragraph 3. Choice B therefore accurately represents the passage's full scope and governing argument.
+Choice E states that the passage presents evidence that urban living affects mental health and explores both the neurological basis and the potential for mitigation through urban design. This characterization maps onto all three paragraphs in sequence: the effect is established in paragraph 1, the neurological basis is developed in paragraph 2, and the mitigation potential is introduced in paragraph 3. Choice E therefore accurately represents the passage's full scope and governing argument.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice distorts the passage's purpose by converting evidence and analysis into a policy prescription. The passage reports research findings and explains mechanisms; it does not argue that urbanization should be slowed. Nowhere does the author advocate for any particular rate of urbanization. This is an unsupported conclusion — a recommendation the passage never makes.
 **mistake_c:** This choice is too narrow. Although paragraph 1 notes that studies have been conducted across Europe, North America, and East Asia, cross-country comparison is not the passage's organizing purpose; it is incidental context used to establish the breadth of the evidence base. The passage devotes its remaining two paragraphs to neurological mechanisms and urban design, neither of which is addressed by choice C. A detail drawn from one clause of paragraph 1 cannot represent the primary concern of a three-paragraph passage.
 **mistake_d:** This choice is too narrow. Paragraph 2 does describe neurological mechanisms — amygdala activation, cortisol elevation, hippocampal impairment — but this material is one component of a larger argument, not the passage's primary concern. Choice D ignores the epidemiological evidence in paragraph 1 and the turn toward mitigation through urban design in paragraph 3. Selecting a single paragraph's content as the main idea of the whole passage is the classic too-narrow flaw.
-**mistake_e:** This choice distorts the passage by imputing advocacy where none exists. The passage notes that proximity to green space is associated with lower stress and better psychological well-being, using this as one empirical example of how urban design can mitigate mental health costs. It does not advocate for increased green space in all urban environments worldwide. The passage raises green space as an observed data point; choice E converts that observation into a global policy recommendation the author never makes.
+**mistake_b:** This choice distorts the passage by imputing advocacy where none exists. The passage notes that proximity to green space is associated with lower stress and better psychological well-being, using this as one empirical example of how urban design can mitigate mental health costs. It does not advocate for increased green space in all urban environments worldwide. The passage raises green space as an observed data point; choice B converts that observation into a global policy recommendation the author never makes.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -309,21 +309,21 @@ According to the passage, chronic activation of the amygdala in urban residents 
 
 - A) improved ability to navigate the complex social hierarchies that characterize dense urban environments
 - B) reduced sensitivity to the noise and light pollution that are so common throughout large cities
-- C) elevated cortisol levels that can impair hippocampal function, reducing memory consolidation and emotional regulation
-- D) increased resistance to anxiety and depression developing only gradually over a long period of time
+- C) increased resistance to anxiety and depression developing only gradually over a long period of time
+- D) elevated cortisol levels that can impair hippocampal function, reducing memory consolidation and emotional regulation
 - E) heightened creativity and markedly enhanced problem-solving ability, especially under acute pressure
 
-**answer:** C
+**answer:** D
 **explanation:** This is a specific detail question. The stem asks what the passage explicitly associates with chronic activation of the amygdala in urban residents. The correct answer must be directly stated in the passage; inference or outside knowledge is not required and is, in fact, disqualifying.
 
 The governing statement appears in paragraph 2: "Chronic activation of this stress circuitry is associated with elevated cortisol levels, which over time can impair hippocampal function, reducing memory consolidation and emotional regulation." The referent "this stress circuitry" points back to the immediately preceding sentence, which identifies the amygdala as the brain region exhibiting heightened activity in urban dwellers exposed to social stressors. The chain of causation the passage presents is therefore: chronic amygdala activation leads to elevated cortisol, which leads to impaired hippocampal function, which in turn reduces memory consolidation and emotional regulation.
 
-Choice C restates this chain with no distortion: "elevated cortisol levels that can impair hippocampal function, reducing memory consolidation and emotional regulation." Every element of this answer — elevated cortisol, hippocampal impairment, reduced memory consolidation, reduced emotional regulation — is present in the passage and is presented as a direct consequence of chronic stress-circuit activation. No inference beyond what the passage explicitly states is necessary.
+Choice D restates this chain with no distortion: "elevated cortisol levels that can impair hippocampal function, reducing memory consolidation and emotional regulation." Every element of this answer — elevated cortisol, hippocampal impairment, reduced memory consolidation, reduced emotional regulation — is present in the passage and is presented as a direct consequence of chronic stress-circuit activation. No inference beyond what the passage explicitly states is necessary.
 
-The correct answer is C.
+The correct answer is D.
 **mistake_a:** This choice reverses the passage's causal logic. The passage presents navigating complex social hierarchies as one of the cognitive demands that drives chronic amygdala activation; it is listed as a stressor contributing to the urban mental health penalty, not as a benefit produced by amygdala activation. Selecting this choice requires inverting the causal direction the passage establishes.
 **mistake_b:** This choice is unsupported by the passage. The passage states that noise and light pollution contribute to persistent stress-system activation; it makes no claim that chronic amygdala activation produces reduced sensitivity to these stimuli. Introducing such a consequence goes beyond what the passage states and contradicts its general thrust.
-**mistake_d:** This choice is directly contradicted by the passage. The passage associates chronic stress-circuit activation with higher rates of anxiety disorders and depression in urban residents, not with increased resistance to them. Selecting this choice requires ignoring the passage's explicit claims about the urban mental health penalty.
+**mistake_c:** This choice is directly contradicted by the passage. The passage associates chronic stress-circuit activation with higher rates of anxiety disorders and depression in urban residents, not with increased resistance to them. Selecting this choice requires ignoring the passage's explicit claims about the urban mental health penalty.
 **mistake_e:** This choice has no basis anywhere in the passage. The passage does not discuss creativity or problem-solving ability in connection with amygdala activation or urban living. This is outside-knowledge reasoning that the passage does not support.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -338,24 +338,24 @@ The passage implies that the mental health differences observed between urban an
 
 - A) are primarily genetic in origin and therefore largely unlikely to be altered by any environmental interventions at all
 - B) will inevitably continue to worsen as urbanization proceeds, regardless of whatever policy choices individual cities make
-- C) may reflect deficiencies in how cities have been designed rather than an inherent psychological cost of living in dense populations
+- C) can be fully and permanently eliminated simply by giving urban residents convenient access to nearby green space
 - D) are exaggerated by studies that fail to properly account for underlying differences in healthcare access
-- E) can be fully and permanently eliminated simply by giving urban residents convenient access to nearby green space
+- E) may reflect deficiencies in how cities have been designed rather than an inherent psychological cost of living in dense populations
 
-**answer:** C
+**answer:** E
 **explanation:** This is an inference question: the passage *implies* what the mental health differences observed between urban and rural populations suggest about the underlying cause of those differences. Inference questions require identifying a conclusion that follows necessarily from the passage's explicit statements, without importing outside knowledge or overstating what the text establishes.
 
 The first paragraph establishes that urban residents experience measurably higher rates of depression, anxiety, and schizophrenia than rural counterparts, even after controlling for socioeconomic status and access to healthcare. The second paragraph identifies plausible biological mechanisms — heightened amygdala activation, chronic cortisol elevation — driven by the sensory and social demands of urban environments. These two paragraphs might suggest a bleak, irreversible picture.
 
 The third paragraph introduces a critical qualification. Proximity to green space, walkable neighborhoods, robust transit, and strong community organizations are all associated with lower mental health disparities. The paragraph closes with an explicit authorial inference: "these findings suggest that urban design choices can substantially mitigate the psychological costs of city living, raising the possibility that the mental health burden of urbanization is not an inevitable consequence of density but rather a product of how cities are built and governed."
 
-Choice C states that the observed mental health differences "may reflect deficiencies in how cities have been designed rather than an inherent psychological cost of living in dense populations." This paraphrases the passage's own conclusion almost verbatim. The hedged phrasing "may reflect" precisely mirrors the passage's own hedged claim "raising the possibility that." The phrase "deficiencies in how cities have been designed" maps directly onto "a product of how cities are built and governed." The phrase "not an inherent psychological cost of living in dense populations" maps directly onto "not an inevitable consequence of density." The inference is fully grounded in the text and neither overstates nor understates the passage's position.
+Choice E states that the observed mental health differences "may reflect deficiencies in how cities have been designed rather than an inherent psychological cost of living in dense populations." This paraphrases the passage's own conclusion almost verbatim. The hedged phrasing "may reflect" precisely mirrors the passage's own hedged claim "raising the possibility that." The phrase "deficiencies in how cities have been designed" maps directly onto "a product of how cities are built and governed." The phrase "not an inherent psychological cost of living in dense populations" maps directly onto "not an inevitable consequence of density." The inference is fully grounded in the text and neither overstates nor understates the passage's position.
 
-The correct answer is C.
+The correct answer is E.
 **mistake_a:** Choice A introduces a genetic origin for the mental health differences. The passage attributes the urban penalty to environmental stressors — sensory overload, chronic amygdala activation, cortisol elevation — and to design features that can be altered by policy. Genetics are never mentioned. This choice is therefore unsupported: it imports a causal mechanism the passage does not raise and is irreconcilable with the passage's central claim that design interventions can mitigate the disparity.
 **mistake_b:** Choice B asserts that worsening mental health disparities are inevitable regardless of policy choices. This directly reverses the passage's argument. The third paragraph explicitly states that design choices can substantially mitigate the psychological costs of city living and that the burden is not an inevitable consequence of density. Selecting B requires ignoring or contradicting the passage's own stated conclusion.
 **mistake_d:** Choice D claims the mental health differences are exaggerated by studies that fail to properly account for underlying differences in healthcare access. The passage states in the first paragraph that the elevated rates of depression, anxiety, and schizophrenia persist even after controlling for socioeconomic status and access to healthcare. Choice D therefore contradicts an explicit methodological statement in the passage: the confound in question has already been addressed by the studies the passage cites.
-**mistake_e:** Choice E states that urban mental health disparities can be fully eliminated by providing access to green space. The passage reports only that residents living within 300 meters of green space report significantly lower stress levels and better psychological well-being — a reduction in burden, not its complete removal. The claim is too extreme and overstates what the passage establishes. Moreover, the passage identifies multiple contributing factors beyond green space, including transit, walkability, and community organizations, so treating green space alone as a complete solution further extends the claim beyond any textual support.
+**mistake_c:** Choice C states that urban mental health disparities can be fully eliminated by providing access to green space. The passage reports only that residents living within 300 meters of green space report significantly lower stress levels and better psychological well-being — a reduction in burden, not its complete removal. The claim is too extreme and overstates what the passage establishes. Moreover, the passage identifies multiple contributing factors beyond green space, including transit, walkability, and community organizations, so treating green space alone as a complete solution further extends the claim beyond any textual support.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -369,21 +369,21 @@ Based on the passage, a city planner seeking to reduce the mental health impact 
 
 - A) increasing the number of hospitals and psychiatric clinics available to residents across the city
 - B) reducing the city's overall population density by actively encouraging new suburban development on the outskirts
-- C) designing neighborhoods with accessible green spaces, walkable streets, and strong community infrastructure
-- D) restricting immigration in order to slow the city's overall population growth
+- C) restricting immigration in order to slow the city's overall population growth
+- D) designing neighborhoods with accessible green spaces, walkable streets, and strong community infrastructure
 - E) implementing noise ordinances that prohibit all commercial activity in the city after 8 PM
 
-**answer:** C
+**answer:** D
 **explanation:** This is an Application question. The task is to identify the action a city planner would most logically prioritize given the passage's stated findings — not to apply outside knowledge, but to match the evidence the author presents to one of the five choices.
 
 The governing evidence comes from the third paragraph. The author writes that "urban residents who live within 300 meters of green space report significantly lower stress levels and better psychological well-being," and that "cities with robust public transportation systems, walkable neighborhoods, and strong community organizations tend to show smaller mental health disparities." These findings lead the author to an explicit conclusion: "urban design choices can substantially mitigate the psychological costs of city living," and the mental health burden of urbanization is "not an inevitable consequence of density but rather a product of how cities are built and governed."
 
-A city planner acting on this evidence would therefore prioritize the design elements the passage names: accessible green space, walkable streets, and strong community infrastructure. Choice C restates exactly this cluster of features. The passage does not mention them as minor supporting details; it deploys them as the evidentiary foundation for its central prescriptive claim. No inference beyond the text is required to reach choice C.
+A city planner acting on this evidence would therefore prioritize the design elements the passage names: accessible green space, walkable streets, and strong community infrastructure. Choice D restates exactly this cluster of features. The passage does not mention them as minor supporting details; it deploys them as the evidentiary foundation for its central prescriptive claim. No inference beyond the text is required to reach choice D.
 
-The correct answer is C.
+The correct answer is D.
 **mistake_a:** Choice A is unsupported. The passage does not mention hospitals, psychiatric clinics, or any expansion of clinical infrastructure at any point. Although the passage documents elevated rates of depression, anxiety, and schizophrenia among urban residents, it locates the solution in environmental design choices, not in healthcare capacity. Selecting choice A requires importing a premise that is neither stated nor inferable from the passage — a classic unsupported inference.
 **mistake_b:** Choice B reverses the passage's explicit conclusion. The author states directly that the mental health burden of urbanization is "not an inevitable consequence of density but rather a product of how cities are built and governed." Encouraging suburban development to reduce overall population density treats density itself as the root cause — the precise position the passage argues against. This choice contradicts rather than applies the passage's reasoning.
-**mistake_d:** Choice D falls entirely outside the scope of the passage. The passage discusses urbanization as a global demographic trend and frames solutions in terms of design and governance; it never raises immigration, population inflows, or immigration restriction in any form. Choosing D requires reasoning that has no basis anywhere in the text and cannot be inferred from anything the author states.
+**mistake_c:** Choice C falls entirely outside the scope of the passage. The passage discusses urbanization as a global demographic trend and frames solutions in terms of design and governance; it never raises immigration, population inflows, or immigration restriction in any form. Choosing C requires reasoning that has no basis anywhere in the text and cannot be inferred from anything the author states.
 **mistake_e:** Choice E is too narrow and unsupported. The passage does mention noise pollution as one element of the "constant sensory stimulation" that keeps the stress system in a state of persistent activation, but the passage never recommends noise ordinances or the restriction of commercial activity as a remedy. The passage's proposed solutions operate at the level of urban design and community infrastructure. Elevating a single peripheral detail from the second paragraph into a sweeping regulatory prohibition goes well beyond what the passage supports.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -405,23 +405,23 @@ The Kenyan experiment, conducted by the nonprofit GiveDirectly, offered a differ
 The primary purpose of the passage is to:
 
 - A) argue that universal basic income has become a proven and highly effective tool for reducing poverty across the world
-- B) compare two basic income experiments and highlight how their differing results reveal the context-dependent nature of the policy
+- B) explain why universal basic income has recently gained popularity among policymakers and academic economists
 - C) criticize the Finnish basic income experiment for its flawed design and its largely inconclusive employment results
 - D) demonstrate that basic income reliably increases entrepreneurial activity across developing economies
-- E) explain why universal basic income has recently gained popularity among policymakers and academic economists
+- E) compare two basic income experiments and highlight how their differing results reveal the context-dependent nature of the policy
 
-**answer:** B
+**answer:** E
 **explanation:** This is a Primary Purpose question. The task is to identify the author's central reason for writing the passage as a whole — not the topic of a single paragraph, and not a claim drawn from only one part of the text.
 
 The passage is organized in three movements. The opening paragraph introduces UBI, notes that pilot programs have produced data, and signals that the results have been "nuanced," challenging both supporters and critics. The second paragraph examines the Finnish experiment in detail, presenting its well-being and employment findings and then reproducing the disagreement between critics and supporters — without resolving that disagreement in either direction. The third paragraph turns to the Kenyan experiment, which produced markedly different results, and concludes with an explicit authorial statement: "The divergent results from Finland and Kenya underscore a central challenge facing basic income advocates: designing a single policy framework that performs well across vastly different economic conditions." That closing sentence is the passage's thesis, stated in the author's own voice. It frames both preceding paragraphs as evidence for a single comparative point: the effects of UBI are heavily context-dependent, as demonstrated by the contrast between two experiments.
 
-Choice B states that the passage compares two basic income experiments and highlights how their differing results reveal the context-dependent nature of the policy. This maps precisely onto the passage's structure and its explicit closing thesis. The comparison of Finland and Kenya occupies paragraphs 2 and 3; the phrase "context-dependent nature" restates the author's own language ("the effects of basic income may depend heavily on local economic context"). Choice B is therefore directly supported by both the organizational pattern and the stated conclusion of the passage.
+Choice E states that the passage compares two basic income experiments and highlights how their differing results reveal the context-dependent nature of the policy. This maps precisely onto the passage's structure and its explicit closing thesis. The comparison of Finland and Kenya occupies paragraphs 2 and 3; the phrase "context-dependent nature" restates the author's own language ("the effects of basic income may depend heavily on local economic context"). Choice E is therefore directly supported by both the organizational pattern and the stated conclusion of the passage.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice is too broad and reverses the passage's tone. The passage explicitly states that results were 'nuanced' and challenged proponents who predicted 'transformative reductions in poverty.' At no point does the author assert that UBI is effective worldwide; the passage instead foregrounds the policy's uncertain and context-dependent performance.
 **mistake_c:** This choice is unsupported and too narrow. The passage does not criticize the Finnish experiment's design, nor does it characterize its results as flawed. The author presents the Finnish data neutrally, reproduces the dispute between critics and supporters without taking a side, and uses the Finnish experiment as one of two data points in a broader comparative argument.
 **mistake_d:** This choice is too narrow. The finding that Kenyan recipients started businesses at twice the rate of non-recipients appears only in the third paragraph and functions as supporting evidence within the larger comparative argument. Selecting D mistakes a single illustrative detail for the passage's overall purpose, ignoring the Finnish experiment and the explicit cross-experiment conclusion entirely.
-**mistake_e:** This choice is outside the scope of the passage. Although the opening sentence notes that UBI has 'moved from the fringes of economic theory into the realm of active policy experimentation,' the passage devotes no further attention to explaining the reasons for this shift in popularity. The author's interest is in what the experimental data reveal about UBI's effects, not in the political or intellectual forces that elevated the policy's profile.
+**mistake_b:** This choice is outside the scope of the passage. Although the opening sentence notes that UBI has 'moved from the fringes of economic theory into the realm of active policy experimentation,' the passage devotes no further attention to explaining the reasons for this shift in popularity. The author's interest is in what the experimental data reveal about UBI's effects, not in the political or intellectual forces that elevated the policy's profile.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -435,21 +435,21 @@ According to the passage, recipients of the Kenyan basic income experiment:
 
 - A) experienced higher well-being but no measurable change in employment
 - B) used the funds mainly to increase household consumption of food and goods
-- C) started small businesses at twice the rate of non-recipients
-- D) worked an average of six more days than the control group during the trial
+- C) worked an average of six more days than the control group during the trial
+- D) started small businesses at twice the rate of non-recipients
 - E) spent most of the payments on education for their children
 
-**answer:** C
+**answer:** D
 **explanation:** This is a Specific Detail question. The stem asks what the passage states about recipients of the Kenyan basic income experiment, directing attention to a particular part of the text. The task is to locate the relevant sentence and match it precisely to one of the five answer choices without inference or outside knowledge.
 
 The relevant evidence appears in the third paragraph: "monthly payments equivalent to roughly 75% of typical household consumption led to significant increases in entrepreneurial activity, with recipients starting small businesses at twice the rate of non-recipients." This sentence directly and unambiguously describes the Kenyan recipients' behavior. No inference is required; the passage states the finding in plain language.
 
-Choice C reads "started small businesses at twice the rate of non-recipients." This is a direct paraphrase of the passage's phrasing. The match is exact in both the activity described (starting small businesses) and the magnitude stated (twice the rate). Choice C is therefore fully supported by the passage text.
+Choice D reads "started small businesses at twice the rate of non-recipients." This is a direct paraphrase of the passage's phrasing. The match is exact in both the activity described (starting small businesses) and the magnitude stated (twice the rate). Choice D is therefore fully supported by the passage text.
 
-The correct answer is C.
+The correct answer is D.
 **mistake_a:** This choice misattributes a finding from the wrong experiment. It was the Finnish experiment, not the Kenyan one, in which recipients reported significantly higher levels of well-being. The Kenyan paragraph makes no mention of well-being improvements; attributing that finding to Kenya conflates two distinct experiments discussed in separate paragraphs.
 **mistake_b:** This choice is unsupported by the passage. The passage states that payments were equivalent to roughly 75% of typical household consumption as a way of expressing payment size, not as a description of how recipients allocated the funds. No portion of the passage states or implies that recipients used the money primarily to increase consumption of food and goods.
-**mistake_d:** This choice draws a result from the wrong experiment. The passage attributes the finding that recipients worked an average of six more days than the control group to the Finnish experiment, not the Kenyan one. Applying a result from one experiment to a different experiment misreads the passage's structure.
+**mistake_c:** This choice draws a result from the wrong experiment. The passage attributes the finding that recipients worked an average of six more days than the control group to the Finnish experiment, not the Kenyan one. Applying a result from one experiment to a different experiment misreads the passage's structure.
 **mistake_e:** This choice introduces information that appears nowhere in the passage. The passage does not mention educational spending, children, or any allocation of funds to schooling in connection with either the Finnish or the Kenyan experiment. Selecting this choice requires importing outside assumptions that are entirely unsupported by the text.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -464,22 +464,22 @@ The passage suggests that the modest employment gains in the Finnish experiment 
 
 - A) the relatively modest size of the monthly cash payments that were provided to each of the trial's participants
 - B) prevailing cultural attitudes in Finland that discourage unemployed individuals from actively seeking new work
-- C) the limited availability of jobs in the Finnish labor market during the trial period, which constrained recipients' ability to find employment
+- C) the fact that recipients stood to lose their unconditional basic income payments the moment they found paid employment
 - D) the comparatively short two-year duration of the trial, which did not allow sufficient time for lasting employment effects to emerge and stabilize
-- E) the fact that recipients stood to lose their unconditional basic income payments the moment they found paid employment
+- E) the limited availability of jobs in the Finnish labor market during the trial period, which constrained recipients' ability to find employment
 
-**answer:** C
+**answer:** E
 **explanation:** This is an inference question: the stem asks what the passage "suggests" about the modest employment gains in the Finnish experiment. Inference questions require selecting the answer most directly supported by passage text, without importing outside knowledge or overstating what the passage actually says.
 
 The Finnish experiment is discussed in the second paragraph. The passage reports that recipients "worked an average of six more days during the trial period than the control group," a result the passage characterizes as showing "only modest gains." The passage then records the supporters' rebuttal: "the modest employment gains were unsurprising given that the Finnish labor market offered few available positions during the trial period." This sentence is the direct textual anchor for the inference the question asks about. The passage frames limited job availability not as a peripheral detail but as the central explanatory counter-argument put forward by basic income supporters. Because the passage presents this explanation without rebutting it, and in the context of a discussion that treats both sides' arguments as substantively reasonable, the passage implies that limited job availability is a plausible and passage-supported account of why employment gains were modest.
 
-Choice C states that the limited availability of jobs in the Finnish labor market during the trial period constrained recipients' ability to find employment. This is a close and accurate paraphrase of the passage's own language: "the Finnish labor market offered few available positions during the trial period." The passage's logic makes the point plain: if positions are simply unavailable, motivation alone cannot produce employment outcomes. Nothing in the passage contradicts this reading, and the passage provides no alternative structural explanation for the Finnish result.
+Choice E states that the limited availability of jobs in the Finnish labor market during the trial period constrained recipients' ability to find employment. This is a close and accurate paraphrase of the passage's own language: "the Finnish labor market offered few available positions during the trial period." The passage's logic makes the point plain: if positions are simply unavailable, motivation alone cannot produce employment outcomes. Nothing in the passage contradicts this reading, and the passage provides no alternative structural explanation for the Finnish result.
 
-The correct answer is C.
+The correct answer is E.
 **mistake_a:** This choice is unsupported by the passage. The payment amount of 560 euros per month is recorded as a factual parameter of the Finnish trial, but the passage never suggests that the size of the payment was responsible for the modest employment gains. Selecting this answer requires importing an assumption — that the payment was too small to affect labor supply — that the passage does not make. The flaw is that this choice fabricates a causal link between payment size and employment outcomes that no passage evidence supports.
 **mistake_b:** This choice introduces a claim the passage never raises. The passage makes no reference to cultural attitudes, norms, or values in Finland or their effect on unemployed individuals' willingness to seek work. Introducing such a generalization as a passage-supported inference exceeds what the text authorizes. The flaw is that this choice lies entirely outside the scope of the passage.
 **mistake_d:** This choice is unsupported by the passage. The two-year duration of the Finnish trial is mentioned as a factual parameter, but the passage never suggests that this timeframe was insufficient for employment effects to emerge. No argument in the passage turns on the length of the experiment as a constraint on the observed result. The flaw is that this choice fabricates a causal mechanism — inadequate trial duration — that the passage does not put forward.
-**mistake_e:** This choice contradicts the passage's own description of the program design. The passage states in the opening paragraph that universal basic income consists of "unconditional" cash payments, and nothing in the description of the Finnish experiment indicates that recipients lost their payments upon finding employment. The flaw is that this choice introduces a conditional benefit-reduction rule that the passage never mentions, directly contradicting the unconditional nature of the payments as described.
+**mistake_c:** This choice contradicts the passage's own description of the program design. The passage states in the opening paragraph that universal basic income consists of "unconditional" cash payments, and nothing in the description of the Finnish experiment indicates that recipients lost their payments upon finding employment. The flaw is that this choice introduces a conditional benefit-reduction rule that the passage never mentions, directly contradicting the unconditional nature of the payments as described.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -492,24 +492,24 @@ The correct answer is C.
 Based on the passage's analysis, in which of the following settings would a basic income program most likely stimulate entrepreneurial activity?
 
 - A) A country with high formal employment and a well-developed social safety net
-- B) A rural region with limited formal employment but abundant natural resources and market access for small-scale producers
+- B) A wealthy suburb where most residents are already employed in high-paying professional occupations
 - C) An urban area with high unemployment and strict business licensing regulations that make it difficult to start new enterprises
-- D) A wealthy suburb where most residents are already employed in high-paying professional occupations
+- D) A rural region with limited formal employment but abundant natural resources and market access for small-scale producers
 - E) A country experiencing severe hyperinflation that erodes the purchasing power of cash transfers
 
-**answer:** B
+**answer:** D
 **explanation:** This is an Application question. The task is to take an analytical principle that the passage explicitly articulates and apply it to a new scenario not described in the passage itself.
 
 **Governing principle from the passage.** The third paragraph states: "in economies where formal employment is scarce but entrepreneurial opportunities exist, cash transfers may unlock productive activity that was previously constrained by a lack of startup capital." This two-part condition — (1) scarce formal employment AND (2) accessible entrepreneurial opportunity previously blocked only by capital constraints — is the passage's own explanatory framework for why the Kenyan program stimulated business formation at twice the baseline rate.
 
 **Applying the principle.** The setting most likely to replicate that outcome must satisfy both conditions simultaneously: limited formal employment, which makes cash transfers more decisive to economic activity, and a viable pathway for small-scale enterprise that is constrained by startup capital rather than by regulation, demand absence, or macroeconomic instability.
 
-Choice B describes a rural region with limited formal employment, abundant natural resources, and market access for small-scale producers. Limited formal employment satisfies condition (1). Abundant natural resources combined with existing market access for small producers satisfies condition (2): the entrepreneurial opportunity is structurally present, and the implied binding constraint is capital rather than market absence or regulatory barrier. This profile mirrors the passage's own description of the Kenyan villages — rural, low formal employment, latent productive potential awaiting capital — more closely than any other choice.
+Choice D describes a rural region with limited formal employment, abundant natural resources, and market access for small-scale producers. Limited formal employment satisfies condition (1). Abundant natural resources combined with existing market access for small producers satisfies condition (2): the entrepreneurial opportunity is structurally present, and the implied binding constraint is capital rather than market absence or regulatory barrier. This profile mirrors the passage's own description of the Kenyan villages — rural, low formal employment, latent productive potential awaiting capital — more closely than any other choice.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** This choice describes conditions that are the near-opposite of the Kenyan profile to which the passage attributes entrepreneurial gains. The passage's framework requires that formal employment be scarce; where it is high and a social safety net already exists, cash transfers are unlikely to be the binding constraint on productive activity. Selecting A would require ignoring the passage's explicit first condition and substituting reasoning about wealthy, well-insured economies that the passage does not support.
 **mistake_c:** Although high unemployment superficially resembles scarce formal employment, the passage's principle requires that entrepreneurial opportunity be accessible — constrained only by capital. Strict business licensing regulations introduce a barrier that is entirely independent of whether recipients have startup funds; removing the capital constraint does not remove the regulatory one. This choice therefore fails the passage's second condition, and selecting it would require overlooking the qualifier 'entrepreneurial opportunities exist' that the passage treats as essential to the mechanism.
-**mistake_d:** A wealthy suburb where most residents already hold high-paying professional positions satisfies neither condition in the passage's framework. Formal employment is abundant, and residents are not capital-constrained in a way that would redirect behavior toward small-business formation. The passage provides no support for the prediction that cash transfers stimulate entrepreneurship among already-employed, high-income populations; this choice is unsupported by the passage.
+**mistake_b:** A wealthy suburb where most residents already hold high-paying professional positions satisfies neither condition in the passage's framework. Formal employment is abundant, and residents are not capital-constrained in a way that would redirect behavior toward small-business formation. The passage provides no support for the prediction that cash transfers stimulate entrepreneurship among already-employed, high-income populations; this choice is unsupported by the passage.
 **mistake_e:** The passage's causal mechanism depends on cash transfers providing usable purchasing power that recipients can direct toward startup capital. Severe hyperinflation erodes the real value of any fixed cash payment, undermining the very mechanism the passage identifies. Nothing in the passage suggests that nominally equal transfers under inflationary conditions replicate the Kenyan outcome; selecting E introduces a macroeconomic condition that directly contradicts the passage's premise rather than extending it.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -531,12 +531,12 @@ This pattern of adaptive transmission suggests that the Silk Road functioned les
 The passage is primarily concerned with:
 
 - A) cataloging in careful detail each of the specific technologies and techniques that were transmitted westward along the various Silk Road trade routes
-- B) arguing that the Silk Road's greatest significance lay in technological transmission rather than commodity trade, and that this transmission involved creative adaptation rather than simple copying
+- B) questioning whether the so-called Chinese inventions had truly originated in China itself rather than in one of the several Central Asian intermediary cultures through which they later passed
 - C) comparing the relative quality of the papermaking that was practiced in China, in the Islamic world, and later in medieval Europe
 - D) demonstrating that European technology proved ultimately superior to Chinese technology because of the many improvements introduced during its westward transmission
-- E) questioning whether the so-called Chinese inventions had truly originated in China itself rather than in one of the several Central Asian intermediary cultures through which they later passed
+- E) arguing that the Silk Road's greatest significance lay in technological transmission rather than commodity trade, and that this transmission involved creative adaptation rather than simple copying
 
-**answer:** B
+**answer:** E
 **explanation:** This is a primary concern question. The task is to identify the central argument that governs the passage as a whole, not a supporting detail, not a subordinate example, but the thesis the author builds across all three paragraphs.
 
 In a primary concern question, the correct answer must account for the entire passage. An answer that captures only one paragraph, one example, or one subsidiary point is too narrow. An answer that introduces a claim the passage does not make is unsupported. The correct answer must reflect both what the passage argues and how it argues it.
@@ -549,13 +549,13 @@ The third paragraph draws the explicit conclusion: the Silk Road "functioned les
 
 The passage therefore makes two interlocking claims: (1) technological transmission mattered more than commodity trade, and (2) that transmission was adaptive rather than direct. The correct answer must capture both claims.
 
-Choice B states that the passage argues "the Silk Road's greatest significance lay in technological transmission rather than commodity trade, and that this transmission involved creative adaptation rather than simple copying." This formulation maps precisely onto the two claims identified above. The first clause corresponds to paragraph one's contrast between goods and technologies. The second clause corresponds to paragraphs two and three's argument about adaptive modification. No other choice accounts for both halves of the author's thesis.
+Choice E states that the passage argues "the Silk Road's greatest significance lay in technological transmission rather than commodity trade, and that this transmission involved creative adaptation rather than simple copying." This formulation maps precisely onto the two claims identified above. The first clause corresponds to paragraph one's contrast between goods and technologies. The second clause corresponds to paragraphs two and three's argument about adaptive modification. No other choice accounts for both halves of the author's thesis.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Too narrow. The passage does mention specific technologies — papermaking, gunpowder, the compass, and printing — but cataloging them is not the author's purpose; they serve as evidence for the broader argument about how transmission worked. An answer that reduces the passage to a list of items ignores the analytical thesis developed in paragraphs two and three.
 **mistake_c:** Too narrow and a distortion of the evidence. The papermaking example in paragraph two is offered to illustrate a general pattern of adaptive transmission, not to compare the relative quality of paper across three civilizations. The passage makes no evaluative claim about which tradition produced superior paper; it uses the differences to demonstrate recombination, not to rank outcomes.
 **mistake_d:** Unsupported and contradicts the passage. The passage explicitly rejects linear narratives in which one civilization supersedes another, describing the process instead as 'a distributed process of innovation in which multiple civilizations contributed essential modifications.' No claim of European superiority appears anywhere in the text; introducing it inverts the author's stated conclusion.
-**mistake_e:** Outside the scope of the passage. The passage never raises doubts about the Chinese origin of the Four Great Inventions; it takes that origin as given and focuses on what happened to those inventions as they moved along trade networks. Questioning the geographic attribution of Chinese inventions is a different inquiry entirely, one the author does not pursue.
+**mistake_b:** Outside the scope of the passage. The passage never raises doubts about the Chinese origin of the Four Great Inventions; it takes that origin as given and focuses on what happened to those inventions as they moved along trade networks. Questioning the geographic attribution of Chinese inventions is a different inquiry entirely, one the author does not pursue.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -568,24 +568,24 @@ The correct answer is B.
 According to the passage, papermaking is believed to have reached the Islamic world:
 
 - A) through diplomatic exchanges between the Chinese and Arab empires during a period of peaceful trade
-- B) following the Battle of Talas in 751 CE, when Arab forces captured Chinese papermakers
+- B) when Chinese monks traveling westward shared the technique at Islamic centers of learning
 - C) through merchant caravans that carried paper samples along with silk and spices
-- D) when Chinese monks traveling westward shared the technique at Islamic centers of learning
+- D) following the Battle of Talas in 751 CE, when Arab forces captured Chinese papermakers
 - E) after European Crusaders brought the technology back from the Middle East
 
-**answer:** B
+**answer:** D
 **explanation:** This is a specific detail question. The stem asks what the passage states "according to" the text, signaling that the answer is directly retrievable from the passage rather than inferred. The task is to locate the explicit claim about how papermaking reached the Islamic world and match it to one of the answer choices.
 
 The second paragraph of the passage contains the directly pertinent sentence: "Papermaking, for example, is believed to have reached the Islamic world following the Battle of Talas in 751 CE, when Arab forces captured Chinese papermakers." This sentence is precise, attributing the transmission to a specific historical event (the Battle of Talas, 751 CE) and a specific mechanism (the capture of Chinese papermakers by Arab forces). The passage offers no alternative or qualifying account of this transmission route; it presents this claim as the accepted historical view, qualified only by "is believed to have," which reflects scholarly consensus rather than doubt.
 
-Choice B reads: "following the Battle of Talas in 751 CE, when Arab forces captured Chinese papermakers." This language mirrors the passage with near-verbatim precision. The event, the date, and the mechanism all correspond exactly to the passage's statement. No interpretation or inference is required. Choice B is therefore correct.
+Choice D reads: "following the Battle of Talas in 751 CE, when Arab forces captured Chinese papermakers." This language mirrors the passage with near-verbatim precision. The event, the date, and the mechanism all correspond exactly to the passage's statement. No interpretation or inference is required. Choice D is therefore correct.
 
 The four incorrect choices introduce mechanisms or agents that are either explicitly absent from the passage or directly contradicted by it.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Unsupported or fabricated detail. The passage makes no mention of diplomatic exchanges or any period of peaceful trade between China and the Arab world as the vehicle for transmitting papermaking. Choice A introduces a mechanism — formal diplomacy — that has no basis anywhere in the passage. Selecting it requires importing outside knowledge or invention, which is the defining flaw of this distractor type.
 **mistake_c:** Unsupported or fabricated detail. The passage does note that merchant caravans carried luxury commodities such as silk and spices, but it never states or implies that paper samples were transported by those caravans as the means by which the technique reached the Islamic world. Choice C conflates the passage's general description of trade goods with the specific transmission of papermaking, which the passage attributes exclusively to the Battle of Talas.
-**mistake_d:** Unsupported or fabricated detail. The passage contains no reference to Chinese monks traveling westward or to Islamic centers of learning as a channel for transmitting papermaking. This scenario is wholly invented relative to the passage's account and cannot be derived from any statement in the text.
+**mistake_b:** Unsupported or fabricated detail. The passage contains no reference to Chinese monks traveling westward or to Islamic centers of learning as a channel for transmitting papermaking. This scenario is wholly invented relative to the passage's account and cannot be derived from any statement in the text.
 **mistake_e:** Contradicts the passage's chronology. The passage states that papermaking reached Europe in the twelfth century, after it had already become widespread in the Islamic world. Choice E inverts this sequence by suggesting that European Crusaders brought the technology back from the Middle East, implying Europe encountered the technology before or independently of the Islamic world, which is the opposite of the sequence the passage describes.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -599,27 +599,27 @@ The correct answer is B.
 The passage implies that the common understanding of the Silk Road's historical importance is incomplete because it:
 
 - A) overemphasizes the role of China while largely ignoring the essential contributions of Persia, Rome, and other civilizations
-- B) focuses on the movement of tangible goods while undervaluing the more transformative flow of knowledge and techniques that each culture actively reshaped
+- B) fails to recognize that most technologies commonly attributed to China actually originated in Central Asian intermediary cultures
 - C) assumes that trade along the Silk Road was primarily conducted by large merchant caravans when in fact it consisted of countless small, local exchanges between neighbors
 - D) neglects the frequent military conflicts that repeatedly disrupted and rerouted commerce along the trade routes
-- E) fails to recognize that most technologies commonly attributed to China actually originated in Central Asian intermediary cultures
+- E) focuses on the movement of tangible goods while undervaluing the more transformative flow of knowledge and techniques that each culture actively reshaped
 
-**answer:** B
+**answer:** E
 **explanation:** This is an inference question. The stem asks what the passage implies about why the common understanding of the Silk Road's historical importance is incomplete. An inference question requires identifying a conclusion that the passage strongly supports but does not state outright; the credited answer must be grounded in specific passage language rather than in outside knowledge or speculation.
 
 For inference questions, the correct answer is the option most directly supported by the text. Any option that introduces information absent from the passage, distorts the passage's stated contrast, or represents only a fragment of the argument the passage actually makes must be eliminated.
 
 The passage opens by acknowledging that popular accounts "tend to emphasize the movement of luxury commodities … between the great civilizations." It then immediately pivots: "historians increasingly recognize that the Silk Road's most consequential exports were not physical objects but rather technologies and techniques." This contrast between the popular focus on tangible goods and the historians' recognition of technology transfer is the controlling idea. The second paragraph deepens the critique by demonstrating that technologies were "repeatedly adapted, modified, and sometimes fundamentally reconceived by the intermediary cultures through which they passed," illustrated at length with the papermaking example. The third paragraph consolidates the argument: the Silk Road functioned "less as a conveyor belt for finished innovations and more as a catalyst for creative recombination," producing "a distributed process of innovation in which multiple civilizations contributed essential modifications."
 
-The passage therefore implies that the common understanding is incomplete on two compounding grounds: it focuses on tangible goods while undervaluing technology transfer, and it implicitly treats that technology transfer as passive or linear when the passage shows it was an active, culture-by-culture process of transformation. Choice B captures both dimensions — "focuses on the movement of tangible goods while undervaluing the more transformative flow of knowledge and techniques that each culture actively reshaped" — making it the answer most fully grounded in the passage's argument.
+The passage therefore implies that the common understanding is incomplete on two compounding grounds: it focuses on tangible goods while undervaluing technology transfer, and it implicitly treats that technology transfer as passive or linear when the passage shows it was an active, culture-by-culture process of transformation. Choice E captures both dimensions — "focuses on the movement of tangible goods while undervaluing the more transformative flow of knowledge and techniques that each culture actively reshaped" — making it the answer most fully grounded in the passage's argument.
 
-The phrase "focuses on the movement of tangible goods" maps directly onto "popular accounts … tend to emphasize the movement of luxury commodities." The phrase "undervaluing the more transformative flow of knowledge and techniques" maps onto "the Silk Road's most consequential exports were not physical objects but rather technologies and techniques." The phrase "that each culture actively reshaped" maps onto "repeatedly adapted, modified, and sometimes fundamentally reconceived by the intermediary cultures." No element of B requires going beyond the passage; every element has explicit textual support.
+The phrase "focuses on the movement of tangible goods" maps directly onto "popular accounts … tend to emphasize the movement of luxury commodities." The phrase "undervaluing the more transformative flow of knowledge and techniques" maps onto "the Silk Road's most consequential exports were not physical objects but rather technologies and techniques." The phrase "that each culture actively reshaped" maps onto "repeatedly adapted, modified, and sometimes fundamentally reconceived by the intermediary cultures." No element of E requires going beyond the passage; every element has explicit textual support.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice introduces a comparison among specific civilizations — China versus Persia and Rome — that the passage never makes. The passage does not argue that China receives disproportionate credit or that Persia and Rome are neglected contributors; its critique is directed at the popular emphasis on commodities rather than technology, not at the geographic or civilizational framing of the narrative. The flaw is unsupported: no part of the passage attributes the incompleteness of the popular view to a China-centric bias.
 **mistake_c:** The passage makes no reference to the size or organizational structure of merchant caravans, large or small. This choice imports speculation about trade logistics that is entirely absent from the text. The flaw is that the choice is fabricated relative to the passage: the passage's argument about incompleteness concerns the type of goods and processes that mattered most, not the commercial mechanics of how goods moved.
 **mistake_d:** Although the passage mentions the Battle of Talas in 751 CE as the occasion by which papermaking reached the Islamic world, it cites this military event only as a vehicle for illustrating how technology was transmitted and transformed — not as evidence that military conflict is a neglected feature of the popular narrative. The passage nowhere argues that disruptions to trade from conflict are overlooked. The flaw is that this choice is too narrow: it elevates a single peripheral detail into a claim that the text does not support as a primary source of incompleteness in the common understanding.
-**mistake_e:** The passage consistently treats the Four Great Inventions — papermaking, gunpowder, the magnetic compass, and printing — as Chinese in origin, noting that they 'traveled westward along Silk Road networks.' At no point does the passage suggest, imply, or hint that these technologies actually originated in Central Asia. The flaw is that this choice is contradicted by the text: accepting it would require reading the passage as asserting the opposite of what it explicitly states.
+**mistake_b:** The passage consistently treats the Four Great Inventions — papermaking, gunpowder, the magnetic compass, and printing — as Chinese in origin, noting that they 'traveled westward along Silk Road networks.' At no point does the passage suggest, imply, or hint that these technologies actually originated in Central Asia. The flaw is that this choice is contradicted by the text: accepting it would require reading the passage as asserting the opposite of what it explicitly states.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -632,12 +632,12 @@ The correct answer is B.
 The passage's characterization of the Silk Road as a "catalyst for creative recombination" would be most analogous to which of the following modern phenomena?
 
 - A) A multinational corporation that manufactures identical, standardized products in factories located across many different countries around the world
-- B) An open-source software project in which developers worldwide adapt the code to local users' needs, producing regional versions that diverge sharply from the original
+- B) A commercial translation service that converts documents from one language into another while carefully preserving the exact original meaning
 - C) A large, well-curated museum exhibition that displays artifacts from many cultures side by side without any interaction between them
-- D) A commercial translation service that converts documents from one language into another while carefully preserving the exact original meaning
+- D) An open-source software project in which developers worldwide adapt the code to local users' needs, producing regional versions that diverge sharply from the original
 - E) A shipping company that transports finished goods from manufacturers to retail stores without altering the products in any way
 
-**answer:** B
+**answer:** D
 **explanation:** This is an Application question: the task is to identify which modern phenomenon is structurally analogous to the mechanism the passage describes. The correct analogy must mirror the same functional logic, not merely touch the same subject matter.
 
 The passage's central claim is that the Silk Road was not a "conveyor belt for finished innovations" but rather a "catalyst for creative recombination." Three structural features define this mechanism, all stated explicitly in the third paragraph and illustrated at length in the second:
@@ -648,13 +648,13 @@ The passage's central claim is that the Silk Road was not a "conveyor belt for f
 
 The papermaking example anchors the analogy: Chinese papermaking reached the Islamic world, where Arab artisans replaced mulberry bark and hemp with linen and cotton to suit Arabic calligraphy; by the time the technology reached Europe it had been transformed again, with water-powered mills enabling mass production. The defining feature is that each intermediate actor introduced locally driven modification, not mere transportation or faithful relay.
 
-An open-source software project in which developers worldwide adapt the code to local users' needs, producing regional versions that diverge sharply from the original reproduces all three structural features. The code is the originating technology; developers in multiple cultures independently adapt it to local requirements; the regional versions diverge substantially from the original codebase. This matches the passage's definition of "catalyst for creative recombination" exactly. Choice B is therefore correct.
+An open-source software project in which developers worldwide adapt the code to local users' needs, producing regional versions that diverge sharply from the original reproduces all three structural features. The code is the originating technology; developers in multiple cultures independently adapt it to local requirements; the regional versions diverge substantially from the original codebase. This matches the passage's definition of "catalyst for creative recombination" exactly. Choice D is therefore correct.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** This choice describes the opposite of the passage's model. A multinational corporation that manufactures identical products in different countries depicts a process in which no local modification occurs — the output is uniform across all locations. The passage explicitly contrasts its model with exactly this kind of replication, stating that the Silk Road did not transmit technologies 'intact.' Choice A therefore describes the 'conveyor belt' model the passage rejects, not the 'catalyst for creative recombination' it defends.
 **mistake_c:** This choice is unsupported because it depicts parallel display without any transmission or interaction. The passage's mechanism requires that one culture's technology be received and actively reworked by another. A museum that displays artifacts 'side by side without any interaction between them' captures only co-existence, not the adaptive transmission process the passage describes. The analogy fails at the most basic structural level.
-**mistake_d:** This choice describes the opposite of the passage's model. A translation service that preserves the exact original meaning is by definition a faithful relay with no creative modification — the translator's purpose is to leave content unchanged. The passage explicitly states that technologies were 'repeatedly adapted, modified, and sometimes fundamentally reconceived,' which is incompatible with exact preservation of meaning. Choice D therefore describes unmodified transmission — the 'conveyor belt' model the passage rejects — rather than adaptive recombination.
-**mistake_e:** This choice, like A and D, describes unmodified transmission. A shipping company that transports goods without altering them is the passage's own negative example made literal: the passage states that the Silk Road functioned 'less as a conveyor belt for finished innovations,' and a shipping company is precisely such a conveyor belt. No local adaptation, no creative recombination, and no divergence from the original occur in this scenario, so Choice E fails to capture any of the three defining structural features of the passage's mechanism.
+**mistake_b:** This choice describes the opposite of the passage's model. A translation service that preserves the exact original meaning is by definition a faithful relay with no creative modification — the translator's purpose is to leave content unchanged. The passage explicitly states that technologies were 'repeatedly adapted, modified, and sometimes fundamentally reconceived,' which is incompatible with exact preservation of meaning. Choice B therefore describes unmodified transmission — the 'conveyor belt' model the passage rejects — rather than adaptive recombination.
+**mistake_e:** This choice, like A and B, describes unmodified transmission. A shipping company that transports goods without altering them is the passage's own negative example made literal: the passage states that the Silk Road functioned 'less as a conveyor belt for finished innovations,' and a shipping company is precisely such a conveyor belt. No local adaptation, no creative recombination, and no divergence from the original occur in this scenario, so Choice E fails to capture any of the three defining structural features of the passage's mechanism.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -675,12 +675,12 @@ Critics of this research caution against overgeneralizing its conclusions. Choic
 The primary purpose of the passage is to:
 
 - A) argue that consumer choice ought to be restricted by government regulation in order to protect overall consumer welfare
-- B) describe how recent behavioral research has complicated the traditional economic view that more choice is always better, while noting the limits of this critique
+- B) advocate for sharply reducing the number of retirement savings plan options that are made available to ordinary workers
 - C) demonstrate that the well-known supermarket jam experiment is the single definitive study on how consumers make decisions when faced with abundant options on a store shelf
 - D) criticize twentieth-century economists for largely ignoring the psychology that in fact governs everyday consumer behavior
-- E) advocate for sharply reducing the number of retirement savings plan options that are made available to ordinary workers
+- E) describe how recent behavioral research has complicated the traditional economic view that more choice is always better, while noting the limits of this critique
 
-**answer:** B
+**answer:** E
 **explanation:** This is a primary purpose question. The task is to identify the author's central aim across the entire passage, not merely the subject of one paragraph or the conclusion of one argument. Primary purpose questions require tracing the passage's argumentative arc from opening claim through development to closing qualification.
 
 The first paragraph establishes the traditional economic orthodoxy: greater consumer choice was "unambiguously beneficial," a view that underpinned decades of deregulation and product proliferation. The passage then pivots with "Recent research in behavioral economics, however, has complicated this orthodoxy." This pivot signals that the author's purpose is not simply to restate received wisdom but to introduce a challenge to it.
@@ -689,13 +689,13 @@ The second paragraph develops that challenge by surveying behavioral research �
 
 The third paragraph qualifies the behavioral critique. Critics caution against "overgeneralizing"; the effects are context-dependent; some scholars contend the costs have been "exaggerated by selective publication." Yet the paragraph does not abandon the critique — it ends by endorsing an "emerging consensus" that the structure, not merely the quantity, of choice matters for consumer outcomes.
 
-The passage therefore executes a three-part movement: state the orthodox view, introduce the behavioral complication, then note the limits of that complication while affirming its core insight. Answer choice B precisely mirrors this structure: it names the complication of the traditional view as the central purpose and explicitly appends "while noting the limits of this critique," matching paragraph 3.
+The passage therefore executes a three-part movement: state the orthodox view, introduce the behavioral complication, then note the limits of that complication while affirming its core insight. Answer choice E precisely mirrors this structure: it names the complication of the traditional view as the central purpose and explicitly appends "while noting the limits of this critique," matching paragraph 3.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice distorts the passage's purpose by introducing government regulation, a policy prescription the passage never advances. The author describes market and institutional design in the final sentence but does not argue that regulation should restrict consumer choice. Importing a policy advocacy position not present in the passage makes this choice unsupported.
 **mistake_c:** This choice is too narrow. The jam experiment appears in the second paragraph as one illustrative example among several, including retirement savings plans and medical decision-making. The passage neither claims that this single study is "definitive" nor limits its scope to that one field experiment. A choice that elevates a supporting detail to the level of the passage's central purpose commits the too-narrow flaw.
 **mistake_d:** This choice misrepresents the passage's tone toward twentieth-century economists. The first paragraph presents their assumption neutrally — "economists operated under the assumption" — and the passage attributes the shift to new empirical research, not to a moral or intellectual failure on the part of earlier scholars. Characterizing the passage as a criticism of those economists reverses the measured, descriptive tone and fabricates an adversarial stance the author does not adopt.
-**mistake_e:** This choice is too narrow and overstates the passage's claims. Retirement savings plans appear as a single domain among multiple examples used to illustrate choice overload. The passage draws no policy conclusion about reducing the number of available funds; it cites the participation-rate data only as evidence for a broader behavioral phenomenon. Treating one supporting data point as the passage's advocacy position is an unsupported inference.
+**mistake_b:** This choice is too narrow and overstates the passage's claims. Retirement savings plans appear as a single domain among multiple examples used to illustrate choice overload. The passage draws no policy conclusion about reducing the number of available funds; it cites the participation-rate data only as evidence for a broader behavioral phenomenon. Treating one supporting data point as the passage's advocacy position is an unsupported inference.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -707,21 +707,21 @@ The correct answer is B.
 
 According to the passage, consumers in the supermarket jam experiment who saw a large assortment of jams:
 
-- A) purchased noticeably more jam overall than the consumers who were shown a much smaller selection
-- B) were more likely to browse the display but less likely to make a purchase than those shown fewer options
+- A) were more likely to browse the display but less likely to make a purchase than those shown fewer options
+- B) purchased noticeably more jam overall than the consumers who were shown a much smaller selection
 - C) reported substantially higher satisfaction with the particular jam they eventually chose to buy
 - D) spent noticeably less time examining each individual jar of jam than did those consumers who were shown fewer options
 - E) were considerably more likely to purchase the premium-priced jams on offer
 
-**answer:** B
+**answer:** A
 **explanation:** This is a specific detail question. The stem asks what "the passage" states about consumers in the jam experiment, signaling that the answer must be a direct restatement or close paraphrase of a claim the author makes explicitly — not an inference, not an application, and not outside knowledge.
 
 The controlling sentence appears in the second paragraph: "researchers found that consumers presented with a large assortment of jams at a supermarket display were more likely to stop and browse but significantly less likely to make a purchase than those shown a smaller selection." Two distinct outcomes are recorded for the large-assortment group relative to the smaller-assortment group: (1) browsing likelihood was higher, and (2) purchase likelihood was lower. A correct answer must capture both of these directional claims without distortion.
 
-Choice B reads: "were more likely to browse the display but less likely to make a purchase than those shown fewer options." This is a near-verbatim paraphrase of the passage sentence identified above. "More likely to stop and browse" corresponds to "more likely to browse the display"; "significantly less likely to make a purchase than those shown a smaller selection" corresponds to "less likely to make a purchase than those shown fewer options." No inference is required; the passage states this explicitly.
+Choice A reads: "were more likely to browse the display but less likely to make a purchase than those shown fewer options." This is a near-verbatim paraphrase of the passage sentence identified above. "More likely to stop and browse" corresponds to "more likely to browse the display"; "significantly less likely to make a purchase than those shown a smaller selection" corresponds to "less likely to make a purchase than those shown fewer options." No inference is required; the passage states this explicitly.
 
-The correct answer is B.
-**mistake_a:** This choice reverses the passage's finding. The passage states that large-assortment consumers were 'significantly less likely to make a purchase,' not more likely. Choice A directly contradicts the stated outcome and is therefore incorrect.
+The correct answer is A.
+**mistake_b:** This choice reverses the passage's finding. The passage states that large-assortment consumers were 'significantly less likely to make a purchase,' not more likely. Choice B directly contradicts the stated outcome and is therefore incorrect.
 **mistake_c:** This choice is unsupported by and contrary to the passage. The jam study records only browsing and purchasing rates, not satisfaction. The passage's sole satisfaction finding appears in the medical decision-making context, where patients offered many treatment options 'report lower satisfaction with their eventual choice' — the opposite direction from what this choice asserts. Attributing higher satisfaction to the jam experiment imports a finding from a different study and inverts its direction.
 **mistake_d:** This choice is unsupported by the passage. The passage records that large-assortment consumers were 'more likely to stop and browse,' indicating greater engagement with the display, not reduced time spent examining individual items. The passage provides no data about time spent per individual option; this choice introduces a detail that does not appear anywhere in the text.
 **mistake_e:** This choice is unsupported by the passage. The passage makes no mention of premium pricing, price tiers, or any relationship between assortment size and the type or price of product purchased. Selecting this choice requires importing assumptions not found in the text.
@@ -737,22 +737,22 @@ The correct answer is B.
 The passage suggests that the effect of increased choice on consumer welfare:
 
 - A) is uniformly negative across virtually all types of purchasing decisions and across nearly every category of consumer
-- B) depends on contextual factors such as the decision-maker's expertise and the comparability of options, so that larger assortments sometimes help and sometimes hurt
+- B) is primarily a problem for lower-income consumers, who cannot easily afford the financial cost of making a poor choice
 - C) has by now been conclusively and definitively established, beyond any reasonable doubt, by the numerous field experiments that have been conducted over the past several decades
-- D) is primarily a problem for lower-income consumers, who cannot easily afford the financial cost of making a poor choice
+- D) depends on contextual factors such as the decision-maker's expertise and the comparability of options, so that larger assortments sometimes help and sometimes hurt
 - E) will steadily diminish over time as consumers gradually grow more accustomed to navigating unusually large assortments of options
 
-**answer:** B
+**answer:** D
 **explanation:** This is an inference question: "the passage suggests" requires identifying a claim implied by the passage and grounded in explicit textual evidence, not stated verbatim.
 
 The passage develops its argument in three stages. Paragraph 1 establishes that the traditional economic orthodoxy treated greater choice as "unambiguously beneficial," but that recent behavioral-economics research "has complicated this orthodoxy," making the choice-welfare relationship "far from linear." Paragraph 2 documents the choice-overload phenomenon across multiple domains, including supermarket purchases, retirement savings participation rates, and medical decision-making. Paragraph 3 directly qualifies that finding: "Choice overload effects are not universal; they depend on factors such as the decision-maker's prior knowledge, the difficulty of comparing options, and the perceived stakes of the decision. When consumers have well-defined preferences or when options are easily differentiated, larger assortments can enhance rather than diminish satisfaction."
 
-Answer choice B states that the effect "depends on contextual factors such as the decision-maker's expertise and the comparability of options, so that larger assortments sometimes help and sometimes hurt." This maps precisely onto the passage's own language. "The decision-maker's prior knowledge" in paragraph 3 corresponds to "the decision-maker's expertise" in B; "options are easily differentiated" corresponds to "comparability of options." The phrase "sometimes help and sometimes hurt" is a direct inference from the passage's statement that larger assortments can "enhance rather than diminish satisfaction" under some conditions while producing choice overload under others. No outside knowledge is required; the answer is fully supported by paragraph 3.
+Answer choice D states that the effect "depends on contextual factors such as the decision-maker's expertise and the comparability of options, so that larger assortments sometimes help and sometimes hurt." This maps precisely onto the passage's own language. "The decision-maker's prior knowledge" in paragraph 3 corresponds to "the decision-maker's expertise" in D; "options are easily differentiated" corresponds to "comparability of options." The phrase "sometimes help and sometimes hurt" is a direct inference from the passage's statement that larger assortments can "enhance rather than diminish satisfaction" under some conditions while producing choice overload under others. No outside knowledge is required; the answer is fully supported by paragraph 3.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** This choice reverses the passage's explicit qualification. Paragraph 3 states that choice overload effects are 'not universal' and that larger assortments can 'enhance rather than diminish satisfaction' when consumers have well-defined preferences or options are easily differentiated. A claim of uniformly negative effects contradicts the passage directly.
 **mistake_c:** This choice overstates the state of the evidence. The passage describes only an 'emerging consensus' and explicitly notes that 'some scholars argue that the costs of choice overload have been exaggerated by selective publication of striking results.' Characterizing the findings as conclusively established is unsupported by and inconsistent with the passage's own framing of an ongoing scholarly debate.
-**mistake_d:** This choice is fabricated. The passage makes no mention of income level, affordability, or the financial cost of mistaken decisions at any point. Introducing low-income consumers as a distinct category subject to choice overload draws entirely on outside knowledge and has no basis in the text.
+**mistake_b:** This choice is fabricated. The passage makes no mention of income level, affordability, or the financial cost of mistaken decisions at any point. Introducing low-income consumers as a distinct category subject to choice overload draws entirely on outside knowledge and has no basis in the text.
 **mistake_e:** This choice is unsupported. The passage contains no reference to consumer adaptation, habituation, or any temporal dynamic by which the negative effects of large assortments might diminish over time. This claim imports reasoning from outside the passage and cannot be inferred from anything the author states.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -807,25 +807,25 @@ What, then, should we make of the naturalists' repeated claims to scientific aut
 The primary purpose of the passage is to:
 
 - A) demonstrate that the naturalist novelists were, on the whole, considerably less talented and less original as writers than their realist predecessors had been
-- B) reinterpret the naturalist novel by arguing that its claims to scientific objectivity functioned as cultural strategy rather than as a description of actual literary method
+- B) trace the considerable influence that nineteenth-century biology and sociology together exerted on the literary practice of the whole period
 - C) compare in careful detail the literary work of the French novelist Emile Zola with that of the American novelist Frank Norris in his major novels
 - D) argue that the naturalist novel ought properly to be reclassified as a late variety of romantic rather than strictly realist literature
-- E) trace the considerable influence that nineteenth-century biology and sociology together exerted on the literary practice of the whole period
+- E) reinterpret the naturalist novel by arguing that its claims to scientific objectivity functioned as cultural strategy rather than as a description of actual literary method
 
-**answer:** B
+**answer:** E
 **explanation:** The primary purpose question asks what the passage as a whole is trying to accomplish — not merely what it mentions in passing, but the central argument it builds from beginning to end.
 
 The passage moves through three distinct stages. The first paragraph presents the traditional view: that the naturalist novel is defined by scientific objectivity, with writers such as Zola and Norris applying biological and sociological methods to produce detached, clinical fiction. The second paragraph introduces recent scholarship that challenges this view, offering specific textual evidence — the mythic imagery in Germinal, the apocalyptic flood scene, the "titanic struggle" framing in The Octopus — to show that naturalist fiction is saturated with symbolism and emotional intensity inconsistent with genuine scientific detachment. The third paragraph then provides an interpretive resolution: the naturalists' claims to scientific authority functioned as rhetorical positioning, a cultural strategy to justify engagement with taboo subjects by borrowing the prestige of empirical science.
 
 The passage does not merely report a debate. It advances a thesis: the naturalist novel is best understood not as a failed science experiment but as "a sophisticated negotiation between artistic ambition and the cultural authority of empirical inquiry." Every paragraph contributes to this reinterpretation — the traditional view is stated only to be overturned, textual evidence is marshaled to undermine it, and an alternative framework is offered as the productive interpretation. The primary purpose is therefore to reinterpret the naturalist novel by arguing that its appeals to scientific objectivity were strategic rather than methodologically accurate.
 
-Choice B captures both the scope and the substance of the passage's argument. The word "reinterpret" reflects the passage's movement from an established view to a revised one. The phrase "cultural strategy" maps directly onto the third paragraph's claim that the claims to scientific authority served as "rhetorical positioning" to gain "cultural legitimacy." The phrase "rather than as a description of actual literary method" reflects the second paragraph's demonstration that the actual texts do not conform to scientific detachment. No narrowing or distortion occurs; B restates the passage's central argument at the appropriate level of generality.
+Choice E captures both the scope and the substance of the passage's argument. The word "reinterpret" reflects the passage's movement from an established view to a revised one. The phrase "cultural strategy" maps directly onto the third paragraph's claim that the claims to scientific authority served as "rhetorical positioning" to gain "cultural legitimacy." The phrase "rather than as a description of actual literary method" reflects the second paragraph's demonstration that the actual texts do not conform to scientific detachment. No narrowing or distortion occurs; E restates the passage's central argument at the appropriate level of generality.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice is unsupported and introduces a fabricated value judgment. The passage never evaluates the relative talent of naturalist versus realist writers; its argument concerns how the naturalists' claims to scientific authority should be interpreted, not whether those writers were more or less skilled than their predecessors. Choice A attributes to the passage a dismissive stance toward the naturalists that directly contradicts the passage's conclusion that their work represents "a sophisticated negotiation."
 **mistake_c:** This choice is too narrow. The passage does mention both Zola and Norris, but only as illustrative examples in service of a broader argument about the naturalist novel as a category. The passage never sets the two authors side by side for comparative analysis, nor does it identify differences or similarities between them as its organizing concern. A choice that correctly identifies the primary purpose must account for the entire passage, including the third paragraph's interpretive thesis, which has nothing to do with a Zola-Norris comparison.
 **mistake_d:** This choice goes beyond what the passage argues. The passage argues that naturalist novels contain symbolism, mythic structures, and emotional intensity inconsistent with scientific detachment, but it never proposes reclassifying those novels as romantic literature. The conclusion in the third paragraph is that the naturalist novel represents a "sophisticated negotiation" between artistic ambition and scientific authority, not that it belongs to a different genre. Choice D imposes a categorical claim the passage explicitly does not make.
-**mistake_e:** This choice describes the traditional view that the passage sets out to challenge, rather than the passage's own argument. The passage acknowledges that naturalist writers claimed to apply biological and sociological methods, but its entire thrust is that those claims did not accurately describe actual literary practice. The passage traces not the influence of biology on literature but rather the rhetorical use of scientific prestige as a cultural positioning tool. Choice E thus mistakes the position being overturned for the position being advanced.
+**mistake_b:** This choice describes the traditional view that the passage sets out to challenge, rather than the passage's own argument. The passage acknowledges that naturalist writers claimed to apply biological and sociological methods, but its entire thrust is that those claims did not accurately describe actual literary practice. The passage traces not the influence of biology on literature but rather the rhetorical use of scientific prestige as a cultural positioning tool. Choice B thus mistakes the position being overturned for the position being advanced.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -837,21 +837,21 @@ The correct answer is B.
 
 The passage cites the climactic flood scene in Zola's Germinal as evidence that:
 
-- A) Zola evidently had only a limited firsthand knowledge of the actual working conditions inside nineteenth-century French coal mines
-- B) naturalist novels often contain passages whose imagery draws more from myth or religion than from detached observation
+- A) naturalist novels often contain passages whose imagery draws more from myth or religion than from detached observation
+- B) Zola evidently had only a limited firsthand knowledge of the actual working conditions inside nineteenth-century French coal mines
 - C) French naturalism differed substantially in its methods and aims from its American counterpart
 - D) Zola's later work gradually abandoned the naturalist project he had championed earlier
 - E) dramatic flood imagery was a common feature of late nineteenth-century French realist fiction
 
-**answer:** B
+**answer:** A
 **explanation:** This is a specific-detail question. The task is to identify what the passage explicitly offers as evidence when it cites the climactic flood scene in Zola's Germinal. The correct answer must be supported by what the passage states about that scene, not by inference or outside knowledge.
 
 The flood scene is discussed in the second paragraph: "its climactic flood scene owes more to apocalyptic religious imagery than to sober reportage." This sentence appears within a broader argument that naturalist novels are "saturated with symbolism, mythic structures, and passages of near-operatic emotional intensity that sit uneasily alongside any claim of scientific detachment." The flood scene is one of two examples the passage marshals to show that Zola's actual literary practice departs from the scientific-objectivity model attributed to naturalism by earlier scholars.
 
-Choice B states that naturalist novels often contain passages whose imagery draws more from myth or religion than from detached observation. This maps directly onto the passage's language. "Apocalyptic religious imagery" corresponds to "myth or religion," and "sober reportage" corresponds to "detached observation." The passage's general claim that the novels are saturated with symbolism and mythic structures confirms the word "often." Choice B is fully anchored in the passage text and correctly captures why the flood scene is cited.
+Choice A states that naturalist novels often contain passages whose imagery draws more from myth or religion than from detached observation. This maps directly onto the passage's language. "Apocalyptic religious imagery" corresponds to "myth or religion," and "sober reportage" corresponds to "detached observation." The passage's general claim that the novels are saturated with symbolism and mythic structures confirms the word "often." Choice A is fully anchored in the passage text and correctly captures why the flood scene is cited.
 
-The correct answer is B.
-**mistake_a:** This choice is unsupported. The passage makes no mention of Zola's personal knowledge of coal-mine working conditions; the flood scene is cited as evidence of religious and mythic imagery in the novel's prose, not as evidence of any gap in the author's factual research. Selecting A requires importing information from outside the passage.
+The correct answer is A.
+**mistake_b:** This choice is unsupported. The passage makes no mention of Zola's personal knowledge of coal-mine working conditions; the flood scene is cited as evidence of religious and mythic imagery in the novel's prose, not as evidence of any gap in the author's factual research. Selecting B requires importing information from outside the passage.
 **mistake_c:** This choice distorts the passage's structure. The passage pairs Zola with Norris to illustrate the same phenomenon — that both French and American naturalism employ non-scientific imagery — rather than to contrast the two national traditions. Nothing in the passage supports a claim that French and American naturalism differed substantially from each other.
 **mistake_d:** This choice introduces a temporal claim the passage never makes. The passage discusses Germinal as a representative naturalist text without distinguishing early from late periods of Zola's career or suggesting that his later work moved away from the naturalist project. This information is fabricated relative to the passage.
 **mistake_e:** This choice is unsupported. The passage cites the flood scene to illustrate a point about the imagery within a single novel, not to make any generalization about the prevalence of flood imagery across late nineteenth-century French fiction as a whole. No such comparative claim appears anywhere in the passage.
@@ -933,12 +933,12 @@ These findings have prompted a reconsideration of long-standing assumptions abou
 Which of the following best summarizes the main point of the passage?
 
 - A) Mycorrhizal fungi are ultimately far more important to the overall health and continued functioning of forest ecosystems than the trees growing within them are.
-- B) Recent research on mycorrhizal networks reveals that forests function as complex systems in which fungi mediate both cooperation and regulation among trees, complicating earlier competition-based views.
+- B) Twentieth-century ecologists turned out to be mistaken in very nearly all of the major conclusions that they had reached about the underlying dynamics of forests.
 - C) Genetic relatedness among neighboring trees is the single most important factor that determines whether or not the young trees around them will survive in temperate forests.
-- D) Twentieth-century ecologists turned out to be mistaken in very nearly all of the major conclusions that they had reached about the underlying dynamics of forests.
+- D) Recent research on mycorrhizal networks reveals that forests function as complex systems in which fungi mediate both cooperation and regulation among trees, complicating earlier competition-based views.
 - E) Because they are so fragile and so easily disrupted by ongoing human activity, mycorrhizal networks ought to be protected by much stronger environmental regulations.
 
-**answer:** B
+**answer:** D
 **explanation:** **Question task.** This is a Main Idea question. The task is to identify the single statement that captures the central argument of the entire passage — not a detail, not an inference beyond the text, and not a restatement of only one paragraph.
 
 **Governing principle.** On a Main Idea question, the correct answer must be (1) broad enough to encompass the full scope of the passage, (2) narrow enough to be supported by specific textual evidence, and (3) consistent in tone and degree with the author's actual claims. Any choice that covers only a portion of the passage, overstates the author's position, or introduces content absent from the passage is incorrect.
@@ -947,12 +947,12 @@ Which of the following best summarizes the main point of the passage?
 
 This closing sentence integrates all three paragraphs and makes the author's central point unmistakable. The main point contains three interlocking claims: (i) recent research on fungal networks is the source of the revision, (ii) forests involve both cooperative and regulatory dynamics mediated by fungi, and (iii) these findings complicate the earlier competition-based model.
 
-**Why B is correct.** Choice B states: "Recent research on mycorrhizal networks reveals that forests function as complex systems in which fungi mediate both cooperation and regulation among trees, complicating earlier competition-based views." This maps precisely onto the passage's thesis. The phrase "recent research" aligns with the author's repeated temporal framing ("only in the past two decades," "emerging from this research"). "Both cooperation and regulation" captures the two-sided role of fungi described in paragraph 3 — cooperative carbon transfer and self-interested regulatory behavior. "Complicating earlier competition-based views" echoes the explicit contrast drawn between the twentieth-century competitive model and the newer evidence. No element of B overstates or fabricates; every component is anchored to specific passage language.
+**Why D is correct.** Choice D states: "Recent research on mycorrhizal networks reveals that forests function as complex systems in which fungi mediate both cooperation and regulation among trees, complicating earlier competition-based views." This maps precisely onto the passage's thesis. The phrase "recent research" aligns with the author's repeated temporal framing ("only in the past two decades," "emerging from this research"). "Both cooperation and regulation" captures the two-sided role of fungi described in paragraph 3 — cooperative carbon transfer and self-interested regulatory behavior. "Complicating earlier competition-based views" echoes the explicit contrast drawn between the twentieth-century competitive model and the newer evidence. No element of D overstates or fabricates; every component is anchored to specific passage language.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Choice A is unsupported and too extreme. The passage describes a symbiotic exchange in which fungi and trees are mutually dependent; it never ranks one party above the other in importance to the ecosystem. The claim that fungi are "more important than the trees themselves" has no textual basis and contradicts the passage's framing of the relationship as reciprocal.
 **mistake_c:** Choice C is too narrow and misrepresents degree. Kin-preferential carbon transfer is a single detail introduced in paragraph 2 to illustrate one aspect of fungal mediation. The passage does not assert that genetic relatedness is the primary factor in young-tree survival, nor does it subordinate light, nutrients, or hub-tree subsidies to kinship. Selecting a supporting detail and elevating it to the status of the passage's central claim is the classic too-narrow flaw.
-**mistake_d:** Choice D is too extreme and misrepresents the author's measured tone. The passage states that mycorrhizal evidence "suggests that cooperation...may be equally important" — hedged language that questions one assumption, not the entire body of twentieth-century forest ecology. The author explicitly acknowledges that the basic fungal-root exchange "has been understood for more than a century," indicating continuity with earlier science. Characterizing prior ecologists as mistaken in "nearly all" of their conclusions far exceeds anything the passage supports.
+**mistake_b:** Choice B is too extreme and misrepresents the author's measured tone. The passage states that mycorrhizal evidence "suggests that cooperation...may be equally important" — hedged language that questions one assumption, not the entire body of twentieth-century forest ecology. The author explicitly acknowledges that the basic fungal-root exchange "has been understood for more than a century," indicating continuity with earlier science. Characterizing prior ecologists as mistaken in "nearly all" of their conclusions far exceeds anything the passage supports.
 **mistake_e:** Choice E introduces content that is entirely absent from the passage. The passage is a scientific account of mycorrhizal research and forest dynamics; it contains no discussion of environmental law, conservation policy, or regulatory frameworks of any kind. A choice that requires the reader to supply an agenda not present in the text fails on the criterion that main-idea answers must be grounded in the passage as written.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -966,25 +966,25 @@ The correct answer is B.
 According to the passage, isotope-labeling studies have demonstrated that:
 
 - A) mycorrhizal fungi are perfectly able to survive indefinitely on their own without ever forming any symbiotic relationship with host trees
-- B) photosynthates flow between trees along fungal pathways, with larger trees transferring carbon to smaller, shaded trees, and with transfer favoring genetically related recipients
+- B) younger trees consistently produce considerably more carbohydrates per unit of leaf area than the fully mature trees around them are able to
 - C) trees growing in most temperate forests actually compete for the available soil nitrogen far more intensely than they ever manage to compete for the much scarcer supply of soil phosphorus
 - D) mycorrhizal networks typically extend only a few short meters outward, barely reaching beyond the spread of the tree's own root system
-- E) younger trees consistently produce considerably more carbohydrates per unit of leaf area than the fully mature trees around them are able to
+- E) photosynthates flow between trees along fungal pathways, with larger trees transferring carbon to smaller, shaded trees, and with transfer favoring genetically related recipients
 
-**answer:** B
+**answer:** E
 **explanation:** This is a specific-detail question. The stem asks what the isotope-labeling studies have demonstrated according to the passage, so the task is to locate the precise claim the passage attributes to those studies and match it to an answer choice. No inference beyond what the text states is required or permitted.
 
 The second paragraph contains the governing sentence: "Using isotope-labeled carbon, ecologists have demonstrated that photosynthates flow between trees along fungal pathways, with larger, sun-exposed trees transferring significant quantities of carbon to smaller, shaded individuals nearby. Remarkably, this transfer appears to favor genetically related trees over unrelated ones of the same species."
 
 Two findings are explicitly attributed to the isotope-labeling work: (1) carbon flows from larger, sun-exposed trees to smaller, shaded trees via fungal pathways, and (2) this transfer preferentially benefits genetically related recipients. The passage introduces the second finding with "appears to favor," a hedged but still passage-attributed observation. Any credited answer must capture both elements, because the passage joins them in a single discussion of what the studies demonstrated.
 
-Choice B states that photosynthates flow between trees along fungal pathways, with larger trees transferring carbon to smaller, shaded trees, and with transfer favoring genetically related recipients. This paraphrases the passage's two-part finding with precision. Every element — direction of flow (larger to smaller and shaded), medium (fungal pathways), and the kin-preference feature — is grounded in the text. No element in Choice B is drawn from outside the passage or distorted in scope. Choice B is therefore the credited answer.
+Choice E states that photosynthates flow between trees along fungal pathways, with larger trees transferring carbon to smaller, shaded trees, and with transfer favoring genetically related recipients. This paraphrases the passage's two-part finding with precision. Every element — direction of flow (larger to smaller and shaded), medium (fungal pathways), and the kin-preference feature — is grounded in the text. No element in Choice E is drawn from outside the passage or distorted in scope. Choice E is therefore the credited answer.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A states that mycorrhizal fungi can survive without forming symbiotic relationships with trees. The passage never addresses whether the fungi can exist independently of host trees. The passage describes the symbiosis as a mutual exchange but makes no claim about the fungi's capacity to survive outside it. Selecting Choice A requires importing outside knowledge, a flaw the passage-based specific-detail format does not permit.
 **mistake_c:** Choice C asserts that trees compete for nitrogen more intensely than for phosphorus in most temperate forests. The passage mentions phosphorus and nitrogen as nutrients the fungi supply to trees, but it draws no comparison between the intensity of competition for one nutrient versus the other, nor does it characterize either as a primary object of competition among trees. This choice fabricates a comparative claim that has no basis in the passage text.
 **mistake_d:** Choice D states that mycorrhizal networks extend only a few meters beyond the tree root system. This directly contradicts the passage, which states that the networks extend for hundreds of meters underground. A choice that reverses an explicit passage statement cannot be credited.
-**mistake_e:** Choice E claims that younger trees produce more carbohydrates per unit of leaf area than mature trees. The passage contains no data on carbohydrate production rates per unit of leaf area for any age class of tree. The passage states that mature hub trees transfer carbon to younger, shaded trees, but it addresses only the direction of carbon flow, not comparative photosynthetic productivity. This choice is wholly unsupported by the passage.
+**mistake_b:** Choice B claims that younger trees produce more carbohydrates per unit of leaf area than mature trees. The passage contains no data on carbohydrate production rates per unit of leaf area for any age class of tree. The passage states that mature hub trees transfer carbon to younger, shaded trees, but it addresses only the direction of carbon flow, not comparative photosynthetic productivity. This choice is wholly unsupported by the passage.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -996,21 +996,21 @@ The correct answer is B.
 
 The author's observation that fungi "appear to regulate nutrient flows in ways that serve their own reproductive interests, sometimes at the expense of particular host trees" functions primarily to:
 
-- A) prove, contrary to the symbiotic account given earlier in the passage, that mycorrhizal relationships are at bottom fundamentally parasitic rather than genuinely mutual
-- B) qualify the emerging picture of forest cooperation by showing that fungi have their own agendas, reinforcing the passage's claim that forests are neither purely competitive nor purely cooperative
+- A) qualify the emerging picture of forest cooperation by showing that fungi have their own agendas, reinforcing the passage's claim that forests are neither purely competitive nor purely cooperative
+- B) prove, contrary to the symbiotic account given earlier in the passage, that mycorrhizal relationships are at bottom fundamentally parasitic rather than genuinely mutual
 - C) argue that responsible forest management ought, wherever it is practical, to aim at eliminating mycorrhizal fungi altogether from cultivated commercial forests
 - D) dismiss the earlier isotope-based findings on carbon transfer between neighboring trees as being little more than crude misinterpretations of ordinary fungal behavior
 - E) demonstrate that most trees in a forest would ultimately be considerably better off growing entirely without any fungal partners at all
 
-**answer:** B
+**answer:** A
 **explanation:** This is a rhetorical-function question: it asks what role a specific sentence plays within the author's argument, not merely what the sentence asserts. The correct approach is to locate the sentence in the passage, identify what the surrounding argument is doing, and determine how the sentence advances or modifies that argument.
 
 The sentence under examination appears in the final paragraph. That paragraph opens by acknowledging that mycorrhizal findings have forced a "reconsideration of long-standing assumptions" — specifically, the traditional view of forests as purely competitive. The author then introduces cooperation as an equally important dynamic. Immediately afterward, however, the author inserts a caveat: "It is worth emphasizing, however, that the fungi themselves are not passive conduits." The sentence at issue follows directly from that caveat, specifying that fungi regulate nutrient flows in ways that serve their own reproductive interests, sometimes at the expense of host trees. The paragraph closes with the thesis statement: the forest "is neither a simple competitive arena nor a harmonious cooperative, but rather a complex, partly-regulated economy in which fungal intermediaries play a surprisingly active role."
 
-The function of the sentence is precisely to qualify the emerging cooperative picture. The author has just established that cooperation, not only competition, shapes forests. Rather than allowing that conclusion to stand unmodified, the author immediately complicates it: fungi are active agents with their own interests, not mere facilitators of tree cooperation. This qualification reinforces the passage's governing claim — articulated in the final sentence of the passage — that the forest is neither purely competitive nor purely cooperative. Choice B captures both moves: the sentence qualifies the cooperation narrative and does so in a way that supports the "neither/nor" thesis. The phrase "fungi have their own agendas" in choice B accurately reflects "serve their own reproductive interests," and "reinforcing the passage's claim that forests are neither purely competitive nor purely cooperative" maps directly onto the passage's closing sentence.
+The function of the sentence is precisely to qualify the emerging cooperative picture. The author has just established that cooperation, not only competition, shapes forests. Rather than allowing that conclusion to stand unmodified, the author immediately complicates it: fungi are active agents with their own interests, not mere facilitators of tree cooperation. This qualification reinforces the passage's governing claim — articulated in the final sentence of the passage — that the forest is neither purely competitive nor purely cooperative. Choice A captures both moves: the sentence qualifies the cooperation narrative and does so in a way that supports the "neither/nor" thesis. The phrase "fungi have their own agendas" in choice A accurately reflects "serve their own reproductive interests," and "reinforcing the passage's claim that forests are neither purely competitive nor purely cooperative" maps directly onto the passage's closing sentence.
 
-The correct answer is B.
-**mistake_a:** This choice imposes a conclusion the passage explicitly does not draw. The passage describes the fungus-tree association as symbiotic in the first paragraph — fungi supply water and mineral nutrients, trees supply carbohydrates — and never withdraws that characterization. The sentence in question adds nuance by noting that fungi have their own reproductive interests, but the author does not conclude from this that the relationship is parasitic rather than symbiotic. Selecting A requires an extreme inference the passage neither states nor implies; the flaw is an unsupported extreme that reverses the passage's own framing of the relationship.
+The correct answer is A.
+**mistake_b:** This choice imposes a conclusion the passage explicitly does not draw. The passage describes the fungus-tree association as symbiotic in the first paragraph — fungi supply water and mineral nutrients, trees supply carbohydrates — and never withdraws that characterization. The sentence in question adds nuance by noting that fungi have their own reproductive interests, but the author does not conclude from this that the relationship is parasitic rather than symbiotic. Selecting B requires an extreme inference the passage neither states nor implies; the flaw is an unsupported extreme that reverses the passage's own framing of the relationship.
 **mistake_c:** This choice introduces content that is entirely outside the scope of the passage. Nothing in the passage addresses forest management policy, cultivated forests, or any prescriptive recommendation about the desirability of eliminating mycorrhizal fungi. The author's purpose throughout is descriptive and analytical. Inferring a policy argument from a sentence about fungal self-interest is a fabricated implication with no basis in the passage.
 **mistake_d:** This choice misrepresents the logical relationship between the sentence in question and the carbon-transfer findings presented in paragraph two. Those findings — demonstrated through isotope-labeled carbon — are treated as established throughout the passage and remain uncontested in paragraph three. The sentence about fungal self-interest does not cast doubt on the isotope-tracing evidence or suggest that ecologists have misread fungal behavior; it draws on that evidence to characterize fungi as active regulators rather than passive conduits. The flaw is that this choice distorts the sentence's function by reading a dismissal of prior findings into a sentence that in fact builds upon them.
 **mistake_e:** This choice draws an inference the passage never supports and that the passage's own evidence contradicts. Paragraph one establishes that fungi supply trees with water and mineral nutrients from soil volumes that roots alone could not access, representing a clear net benefit to the trees. Paragraph three describes complexity and partial fungal self-interest, not net harm to tree fitness. Concluding that trees would be better off without fungal partners is an extreme unsupported inference that the passage's content does not warrant.
@@ -1026,12 +1026,12 @@ The correct answer is B.
 The passage implies that the twentieth-century view of forests as primarily sites of competition:
 
 - A) was entirely and completely wrong from the very outset, and has since been decisively and permanently replaced by a fully cooperative model of the forest
-- B) captured a real aspect of forest dynamics but missed the substantial role of fungal-mediated interactions, including cooperative transfers among trees
+- B) applies only to tropical forests and does not really hold for the temperate ones of the kind discussed here
 - C) was based on a deliberate and self-serving misinterpretation of the available evidence by a handful of influential ecologists
-- D) applies only to tropical forests and does not really hold for the temperate ones of the kind discussed here
+- D) captured a real aspect of forest dynamics but missed the substantial role of fungal-mediated interactions, including cooperative transfers among trees
 - E) will soon regain its former prominence once the current research on mycorrhizal networks has been independently replicated
 
-**answer:** B
+**answer:** D
 **explanation:** This is an inference question. It asks what the passage implies about the twentieth-century competitive view of forests — a conclusion that must be grounded in specific textual evidence and follow with high confidence from what the passage states, without overstating or distorting the author's meaning.
 
 **Identifying the Relevant Passage Evidence**
@@ -1042,14 +1042,14 @@ Two features of this language are decisive. First, the author describes the comp
 
 This tells us that the traditional view captured something real — competition is a genuine forest dynamic — but was incomplete because it overlooked the mycorrhizal network and the cooperative carbon transfers it enables.
 
-**Ruling In Choice B**
+**Ruling In Choice D**
 
-Choice B states that the twentieth-century view "captured a real aspect of forest dynamics but missed the substantial role of fungal-mediated interactions, including cooperative transfers among trees." This is directly supported by the author's presentation of the competitive view as a legitimate scientific paradigm rather than an error, and by the finding that mycorrhizal-mediated carbon transfers — described in detail in the second paragraph — were simply unknown to researchers working within that earlier framework. The passage's opening sentence, noting that these networks have "only recently begun to receive the scientific attention they deserve," further confirms that the fungal network was genuinely overlooked, not willfully ignored.
+Choice D states that the twentieth-century view "captured a real aspect of forest dynamics but missed the substantial role of fungal-mediated interactions, including cooperative transfers among trees." This is directly supported by the author's presentation of the competitive view as a legitimate scientific paradigm rather than an error, and by the finding that mycorrhizal-mediated carbon transfers — described in detail in the second paragraph — were simply unknown to researchers working within that earlier framework. The passage's opening sentence, noting that these networks have "only recently begun to receive the scientific attention they deserve," further confirms that the fungal network was genuinely overlooked, not willfully ignored.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Too extreme and reverses the passage's nuance. The passage explicitly states that the forest 'is neither a simple competitive arena nor a harmonious cooperative,' indicating that competition has not been eliminated as a relevant dynamic. The author does not say the competitive view was 'entirely wrong,' nor that it has been 'decisively replaced'; the language of the third paragraph is careful and qualified throughout.
 **mistake_c:** Unsupported and introduces a charge the passage never makes. The passage attributes the traditional competitive view to a dominant scientific consensus, not to deliberate misinterpretation. No suggestion of bad faith, ideological motivation, or intellectual dishonesty on the part of earlier ecologists appears anywhere in the passage; this choice imports a charge the author does not level.
-**mistake_d:** Outside the scope of the passage and contradicts its framing. The passage specifies that the mycorrhizal networks under discussion lie beneath 'nearly every temperate forest,' making temperate forests the explicit subject of the research. The passage makes no comparative claim about tropical forests, and no inference about a tropical-versus-temperate distinction can be drawn from the text provided.
+**mistake_b:** Outside the scope of the passage and contradicts its framing. The passage specifies that the mycorrhizal networks under discussion lie beneath 'nearly every temperate forest,' making temperate forests the explicit subject of the research. The passage makes no comparative claim about tropical forests, and no inference about a tropical-versus-temperate distinction can be drawn from the text provided.
 **mistake_e:** Speculative and contrary to the passage's direction. The passage presents the mycorrhizal findings as an established body of evidence — citing isotope-labeling experiments, carbon flow measurements, and kin-recognition results — that has already prompted reconsideration of prior assumptions. Nothing in the passage suggests these findings are preliminary, contested, or awaiting replication before acceptance; the author's tone indicates that the revision of the competitive model is already underway, not pending future validation.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -1071,25 +1071,25 @@ These findings complicate standard policy debates about whether to invest in peo
 The primary purpose of the passage is to:
 
 - A) argue that residential relocation vouchers are a distinctly more effective anti-poverty tool than any form of direct place-based investment in struggling communities
-- B) describe research indicating that geographic context during childhood has a causal effect on economic mobility, and consider the policy implications of that finding
+- B) compare intergenerational mobility rates across different regions of the United States and rank them from highest to lowest
 - C) demonstrate that individual-level factors such as family structure and educational attainment matter far less than researchers had previously assumed
 - D) criticize economists for focusing narrowly on individual attributes rather than the community-level conditions that actually shape mobility
-- E) compare intergenerational mobility rates across different regions of the United States and rank them from highest to lowest
+- E) describe research indicating that geographic context during childhood has a causal effect on economic mobility, and consider the policy implications of that finding
 
-**answer:** B
+**answer:** E
 **explanation:** The question asks for the primary purpose of the passage, which is a main idea and author's purpose task. The correct answer must account for the full scope of the passage — its opening research context, its central empirical findings, and its closing policy discussion — rather than capturing only one section or misrepresenting the author's stance.
 
 The passage unfolds in three moves. The first paragraph introduces a long-standing question in economics about why children born into poverty escape it at higher rates in some regions than others, and presents a newer research finding: place itself causally influences economic trajectories, with each additional year spent in a high-mobility county during formative years increasing a child's eventual earnings by roughly four percent. The second paragraph describes what distinguishes high-mobility from low-mobility places — a cluster of structural and social characteristics including lower residential segregation, stronger primary and secondary schools as measured by test-score gains, greater social capital, and lower income inequality, with geographic integration of wealthy and lower-income residents identified as the operative mechanism. The third paragraph considers the policy implications, presenting place-based investment and residential-relocation vouchers as two strategies supported by the same body of evidence and concluding that both are warranted and neither is sufficient on its own.
 
 The author's stance throughout is descriptive and analytical rather than polemical. The passage summarizes a body of research, elaborates its core empirical content, and draws out what it means for a standing policy debate. No single policy strategy is advocated over another.
 
-Choice B states that the passage describes research indicating that geographic context during childhood has a causal effect on economic mobility and considers the policy implications of that finding. This maps precisely onto all three paragraphs. The first paragraph establishes the causal claim. The second paragraph describes the research findings in detail. The third paragraph considers the policy implications. The word "describe" matches the author's largely expository tone, and "consider the policy implications" matches the balanced, concluding paragraph. No part of the passage is left unaccounted for by this answer.
+Choice E states that the passage describes research indicating that geographic context during childhood has a causal effect on economic mobility and considers the policy implications of that finding. This maps precisely onto all three paragraphs. The first paragraph establishes the causal claim. The second paragraph describes the research findings in detail. The third paragraph considers the policy implications. The word "describe" matches the author's largely expository tone, and "consider the policy implications" matches the balanced, concluding paragraph. No part of the passage is left unaccounted for by this answer.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice reverses the author's conclusion. The passage explicitly states that the most defensible reading of the evidence is that both strategies are warranted and that neither is sufficient on its own, treating relocation vouchers and place-based investment as complements rather than competitors. Presenting vouchers as the more effective tool directly contradicts the passage's own summary judgment and attributes an advocacy position to the author that the passage does not support.
 **mistake_c:** This choice overstates the degree of the passage's claim. The first paragraph notes that prior explanations centered on individual-level factors and that newer research shows place exerts a causal influence that is at least as significant as these individual attributes — a statement of parity, not a demotion. The passage does not argue that individual factors are less important than previously assumed; it argues that place belongs alongside those factors as an equally significant determinant. An answer that converts a finding of comparable significance into a claim about diminished importance of individual factors misrepresents the passage's empirical conclusion.
 **mistake_d:** The passage does not criticize economists. It opens by noting that economists have long sought to identify the causes of regional mobility differences and then presents newer research as a constructive development within that tradition. The tone toward the research community is neutral and descriptive throughout. Attributing a critical or adversarial purpose to the author is unsupported by any sentence in the passage.
-**mistake_e:** Although the passage mentions differences between high-mobility and low-mobility counties, it does not compare mobility rates across specific American regions, cite regional statistics, or rank regions against one another. Regional variation serves as the background motivation for the research question rather than as the substantive focus of the passage. This choice is too narrow and misidentifies a framing device as the primary subject.
+**mistake_b:** Although the passage mentions differences between high-mobility and low-mobility counties, it does not compare mobility rates across specific American regions, cite regional statistics, or rank regions against one another. Regional variation serves as the background motivation for the research question rather than as the substantive focus of the passage. This choice is too narrow and misidentifies a framing device as the primary subject.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -1134,23 +1134,23 @@ The correct answer is C.
 
 The passage suggests that a county containing both very wealthy and very poor residents who attend separate schools and live in separate neighborhoods would likely:
 
-- A) produce better mobility outcomes than a uniformly poor county because the presence of affluent residents brings a supply of local jobs within reach
-- B) produce mobility outcomes similar to those of a uniformly poor county, because integration, not mere proximity, drives poor children's outcomes
+- A) produce mobility outcomes similar to those of a uniformly poor county, because integration, not mere proximity, drives poor children's outcomes
+- B) produce better mobility outcomes than a uniformly poor county because the presence of affluent residents brings a supply of local jobs within reach
 - C) exhibit the highest rates of intergenerational mobility observed anywhere in the research literature to date
 - D) demonstrate that income inequality within a local area has essentially no measurable effect on a child's eventual economic mobility
 - E) be effectively indistinguishable from a genuine high-mobility county in its long-term earnings outcomes for poor children
 
-**answer:** B
+**answer:** A
 **explanation:** This is an inference question. The stem presents a hypothetical scenario and asks what the passage "suggests" about it. The correct answer must follow directly from a principle the passage states, applied to the described conditions.
 
 Paragraph 2 states explicitly: "the presence of wealthy residents alone does little to improve outcomes for poor children unless those wealthy residents are geographically integrated with lower-income neighborhoods, attending the same schools and participating in the same civic institutions." The passage thereby distinguishes between two types of economic heterogeneity: integration, in which wealthy and poor residents share schools and civic institutions, and mere co-presence, in which wealthy and poor residents live in separate enclaves and attend separate schools. Only the first type correlates with high intergenerational mobility.
 
 The county described in the question stem contains both wealthy and poor residents but keeps them separated — different schools, different neighborhoods. This is precisely the condition the passage identifies as insufficient to generate mobility gains. Because integration is absent, the wealthy residents' presence confers no advantage to poor children. A uniformly poor county would similarly lack the integrative mechanisms that drive mobility. The passage therefore supports the inference that both counties would produce comparably low mobility outcomes.
 
-Choice B states that such a county would "produce mobility outcomes similar to those of a uniformly poor county, because integration, not mere proximity, drives poor children's outcomes." This maps directly onto the passage's explicit language. The passage does not say that wealth nearby improves outcomes; it says that integrated wealth does. A county with segregated wealth therefore resembles, in its effect on poor children, a county with no wealth at all. The passage directly supports this inference, and no additional evidence or outside knowledge is required.
+Choice A states that such a county would "produce mobility outcomes similar to those of a uniformly poor county, because integration, not mere proximity, drives poor children's outcomes." This maps directly onto the passage's explicit language. The passage does not say that wealth nearby improves outcomes; it says that integrated wealth does. A county with segregated wealth therefore resembles, in its effect on poor children, a county with no wealth at all. The passage directly supports this inference, and no additional evidence or outside knowledge is required.
 
-The correct answer is B.
-**mistake_a:** Choice A introduces the idea that local job availability — stemming from the presence of wealthy residents — would improve mobility outcomes. The passage explicitly rejects this reasoning: it states that what distinguishes high-mobility places from low-mobility ones is "not, as one might expect, simply the presence of good jobs or affluent neighbors." The passage therefore directly contradicts the premise of choice A. This is a reversal of passage logic.
+The correct answer is A.
+**mistake_b:** Choice B introduces the idea that local job availability — stemming from the presence of wealthy residents — would improve mobility outcomes. The passage explicitly rejects this reasoning: it states that what distinguishes high-mobility places from low-mobility ones is "not, as one might expect, simply the presence of good jobs or affluent neighbors." The passage therefore directly contradicts the premise of choice B. This is a reversal of passage logic.
 **mistake_c:** Choice C claims the described county would exhibit the highest mobility rates observed in the research. The passage's framework predicts the opposite: a county with high residential segregation by income and race — which is precisely what the stem describes — is associated with low, not high, mobility. High-mobility counties are characterized by lower residential segregation. Choice C is therefore unsupported by and inconsistent with the passage. This is an unsupported inference.
 **mistake_d:** Choice D asserts that the hypothetical county would demonstrate that income inequality has no effect on economic mobility. The passage does not make this claim; it identifies lower levels of income inequality within the local area as one of the characteristics of high-mobility counties, implying that inequality does matter. More fundamentally, the passage's point about the county described in the stem concerns the absence of integration, not the irrelevance of inequality as a factor. Choice D misattributes the causal mechanism the passage identifies and is not supported by anything in the passage. This is a fabricated inference.
 **mistake_e:** Choice E states the described county would be indistinguishable from a high-mobility county in its long-term outcomes. This directly contradicts the passage. High-mobility counties are characterized by lower residential segregation by income and race and by shared civic institutions and schools. The county in the stem exhibits the opposite: segregation by neighborhood and school. Choice E is therefore directly contradicted by the passage's description of what makes a county high in mobility. This is a reversal of passage logic.
@@ -1238,24 +1238,24 @@ The correct answer is C.
 The passage cites Melville and Dickinson in order to illustrate:
 
 - A) that the most important writers are almost always left unrecognized during their own lifetimes
-- B) how authors can enter the canon long after their deaths through the efforts of later critics and editors
+- B) the superiority of poetry to prose within the established canonical tradition
 - C) that nineteenth-century American literature remains distinctly underrepresented in the modern literary canon
-- D) the superiority of poetry to prose within the established canonical tradition
+- D) how authors can enter the canon long after their deaths through the efforts of later critics and editors
 - E) the fundamental arbitrariness of the judgments that confer canonical status
 
-**answer:** B
+**answer:** D
 **explanation:** This is a Rhetorical Purpose question. The stem asks what argumentative function the citation of Melville and Dickinson serves within the passage, not merely what the cited sentence says.
 
 The governing principle for Rhetorical Purpose questions is that the correct answer must match both the literal content of the cited example and the role the example plays in the surrounding argument. An answer that accurately describes the example but misidentifies its purpose, or that accurately identifies a theme but imports a claim the passage never makes, is wrong.
 
 The Melville-Dickinson example appears in paragraph 2: "Authors such as Herman Melville and Emily Dickinson, largely neglected in their own lifetimes, entered the canon decades after their deaths through concerted efforts by critics and editors." The surrounding argument is the processual view — canonical status is not a fixed property of texts but is produced through ongoing institutional activity: "scholarly interpretation, classroom teaching, translation, reprinting, and public commemoration." Melville and Dickinson are offered as concrete historical instances of posthumous canonical entry driven by the active work of later critics and editors, directly supporting the claim that the canon is a set of practices rather than a stable list.
 
-Choice B states that the example illustrates "how authors can enter the canon long after their deaths through the efforts of later critics and editors." This matches the passage language with precision. The phrase "entered the canon decades after their deaths" corresponds directly to the passage, and "through the efforts of later critics and editors" corresponds to "through concerted efforts by critics and editors." The example serves exactly this illustrative function within the processual-view argument.
+Choice D states that the example illustrates "how authors can enter the canon long after their deaths through the efforts of later critics and editors." This matches the passage language with precision. The phrase "entered the canon decades after their deaths" corresponds directly to the passage, and "through the efforts of later critics and editors" corresponds to "through concerted efforts by critics and editors." The example serves exactly this illustrative function within the processual-view argument.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Too broad and unsupported. The passage states that Melville and Dickinson were 'largely neglected in their own lifetimes,' but it does not generalize this pattern to important writers as a class. Choice A converts a specific historical observation about two authors into a universal claim the passage never advances; that overgeneralization is unsupported by the text.
 **mistake_c:** Outside the scope of the passage. Both authors cited happen to be nineteenth-century Americans, but the passage draws no inference about whether that literary tradition is underrepresented in the canon. The example is deployed to illustrate posthumous canonical entry through institutional effort, not to make any argument about national or period-based representation gaps. This choice introduces a claim fabricated from incidental biographical details.
-**mistake_d:** Fabricated distinction not present in the passage. The passage cites Dickinson (poetry) and Melville (prose fiction) together, in a single sentence, as parallel examples of the same phenomenon. No comparison between genres is drawn, and no claim about the relative standing of poetry versus prose in the canonical tradition appears anywhere in the passage. This choice is entirely unsupported.
+**mistake_b:** Fabricated distinction not present in the passage. The passage cites Dickinson (poetry) and Melville (prose fiction) together, in a single sentence, as parallel examples of the same phenomenon. No comparison between genres is drawn, and no claim about the relative standing of poetry versus prose in the canonical tradition appears anywhere in the passage. This choice is entirely unsupported.
 **mistake_e:** Reverses the precise mechanism the passage describes. The processual view holds that canonical status is 'produced rather than discovered,' but the passage attributes Melville's and Dickinson's canonical elevation specifically to 'concerted efforts by critics and editors' — that is, deliberate, sustained institutional action. Deliberate effort is not the same as arbitrariness. Choice E conflates the passage's rejection of a fixed, inherent canon with a stronger and unsupported claim that canonical judgments are random or capricious.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -1269,19 +1269,19 @@ The correct answer is B.
 The passage implies that Longfellow's declining canonical standing demonstrates that:
 
 - A) his works were never of especially high aesthetic quality to begin with and therefore merit no canonical standing
-- B) canonical status can erode as tastes and curricula change, just as it can be acquired through similar shifts
+- B) only works translated into multiple languages can maintain their canonical status over time
 - C) nineteenth-century poetry as a whole has been systematically excluded from modern literary canons
 - D) contemporary readers are considerably less sophisticated than the readers of Longfellow's own era
-- E) only works translated into multiple languages can maintain their canonical status over time
+- E) canonical status can erode as tastes and curricula change, just as it can be acquired through similar shifts
 
-**answer:** B
+**answer:** E
 **explanation:** **Question task.** This is an inference question. The stem asks what the passage implies from the Longfellow example, so the reasoning must stay anchored to what the passage states about Longfellow and draw only the inference the text licenses.
 
 **Locating the evidence.** The Longfellow reference appears in paragraph two, which develops the processual view of canons. The passage states: "figures like Longfellow, once considered indispensable, have seen their standing erode as tastes shifted and educational curricula changed." This sentence is the direct counterpart to the immediately preceding one about Melville and Dickinson, who "entered the canon decades after their deaths through concerted efforts by critics and editors." Together, the two sentences function as parallel illustrations of a single principle: canonical status is not fixed but moves in both directions — upward and downward — in response to the same forces (shifting tastes, changing curricula, institutional decisions).
 
-**Applying the principle.** Because the passage presents Longfellow's decline and Melville's ascent as symmetric examples of the same processual dynamic, the implication licensed by the Longfellow case is that canonical status can erode through the same kind of cultural and institutional shifts that originally produced it. The passage draws no distinction in kind between the mechanisms of entry and the mechanisms of exit; both are driven by "a continuous interplay of scholarly interpretation, classroom teaching, translation, reprinting, and public commemoration." Longfellow's trajectory therefore demonstrates that canonical status, however entrenched, is reversible — the claim captured in answer choice B.
+**Applying the principle.** Because the passage presents Longfellow's decline and Melville's ascent as symmetric examples of the same processual dynamic, the implication licensed by the Longfellow case is that canonical status can erode through the same kind of cultural and institutional shifts that originally produced it. The passage draws no distinction in kind between the mechanisms of entry and the mechanisms of exit; both are driven by "a continuous interplay of scholarly interpretation, classroom teaching, translation, reprinting, and public commemoration." Longfellow's trajectory therefore demonstrates that canonical status, however entrenched, is reversible — the claim captured in answer choice E.
 
-**Ruling in choice B.** Choice B states that canonical status can erode as tastes and curricula change, just as it can be acquired through similar shifts. This matches the passage's own language ("tastes shifted and educational curricula changed") and the structural logic of the two-sentence comparison. The inference does not exceed what the text licenses, and no detail is misread.
+**Ruling in choice E.** Choice E states that canonical status can erode as tastes and curricula change, just as it can be acquired through similar shifts. This matches the passage's own language ("tastes shifted and educational curricula changed") and the structural logic of the two-sentence comparison. The inference does not exceed what the text licenses, and no detail is misread.
 
 **Per-choice analysis of the wrong options.**
 
@@ -1291,13 +1291,13 @@ Choice C is too broad and unsupported. The passage cites Longfellow as a single 
 
 Choice D introduces outside knowledge and is unsupported by the passage. The passage nowhere evaluates the relative sophistication of contemporary versus earlier readers. This choice imports a value judgment the passage is careful to avoid; the text frames canonical change as a function of institutional processes, not of audience intelligence or cultural decline.
 
-Choice E is fabricated. The passage mentions translation as one element in the machinery of canonical circulation, but it never claims that translation into multiple languages is a necessary condition for maintaining canonical status. Longfellow's case is explained by taste and curriculum, not by translation patterns. This choice conflates an incidental detail with a causal requirement the passage does not assert.
+Choice B is fabricated. The passage mentions translation as one element in the machinery of canonical circulation, but it never claims that translation into multiple languages is a necessary condition for maintaining canonical status. Longfellow's case is explained by taste and curriculum, not by translation patterns. This choice conflates an incidental detail with a causal requirement the passage does not assert.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Reverses the passage's logic. The passage attributes Longfellow's declining standing to shifts in tastes and curricula, not to a deficiency in the work itself. Selecting A requires an inference the passage explicitly does not support — and one that contradicts the text's stated position that canonical change reflects institutional processes rather than the discovery of true aesthetic merit.
 **mistake_c:** Too broad and unsupported. The passage cites Longfellow as a single illustrative case; it makes no claim about nineteenth-century poetry as a class. Generalizing from one poet's trajectory to the systematic exclusion of an entire century's poetic output goes well beyond what the passage licenses.
 **mistake_d:** Introduces outside knowledge and is unsupported by the passage. The passage nowhere evaluates the relative sophistication of contemporary versus earlier readers. This choice imports a value judgment the passage is careful to avoid; the text frames canonical change as a function of institutional processes, not of audience intelligence or cultural decline.
-**mistake_e:** Fabricated. The passage mentions translation as one element in the machinery of canonical circulation, but it never claims that translation into multiple languages is a necessary condition for maintaining canonical status. Longfellow's case is explained by taste and curriculum, not by translation patterns. This choice conflates an incidental detail with a causal requirement the passage does not assert.
+**mistake_b:** Fabricated. The passage mentions translation as one element in the machinery of canonical circulation, but it never claims that translation into multiple languages is a necessary condition for maintaining canonical status. Longfellow's case is explained by taste and curriculum, not by translation patterns. This choice conflates an incidental detail with a causal requirement the passage does not assert.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -1377,21 +1377,21 @@ The correct answer is C.
 
 According to the passage, traditional methods of dating stars perform poorly for isolated field stars primarily because:
 
-- A) isolated stars emit considerably less light than stars in clusters, leaving their measured brightness too faint to pin down reliably
-- B) small measurement errors translate into very large uncertainties in age, and the evolutionary state of an individual star is often ambiguous
+- A) small measurement errors translate into very large uncertainties in age, and the evolutionary state of an individual star is often ambiguous
+- B) isolated stars emit considerably less light than stars in clusters, leaving their measured brightness too faint to pin down reliably
 - C) isolated stars have chemical compositions markedly unlike those of stars in clusters, so models calibrated on clusters fit them poorly
 - D) theoretical models of stellar evolution do not apply to isolated field stars at all, no matter how carefully those stars are observed
 - E) isolated stars are simply too far away for their brightness, temperature, and composition to be measured with the needed accuracy
 
-**answer:** B
+**answer:** A
 **explanation:** This is a specific-detail question. The task is to locate the passage's explicit statement about why traditional dating methods perform poorly for isolated field stars and match it to the credited answer choice.
 
 The first paragraph states that traditional methods "perform poorly for isolated stars, where the evolutionary state is ambiguous and small errors in measured properties can translate into age uncertainties of billions of years." Two distinct reasons are given: the evolutionary state of a single star is ambiguous, and small measurement errors compound into enormous age uncertainties. The credited answer must capture both elements.
 
-Choice B states that "small measurement errors translate into very large uncertainties in age, and the evolutionary state of an individual star is often ambiguous." This is a near-verbatim paraphrase of the passage's own language. The phrase "small errors in measured properties can translate into age uncertainties of billions of years" maps directly onto the first clause of B, and "the evolutionary state is ambiguous" maps directly onto the second clause. Choice B is therefore fully supported by the passage without any inference beyond what the text explicitly states.
+Choice A states that "small measurement errors translate into very large uncertainties in age, and the evolutionary state of an individual star is often ambiguous." This is a near-verbatim paraphrase of the passage's own language. The phrase "small errors in measured properties can translate into age uncertainties of billions of years" maps directly onto the first clause of A, and "the evolutionary state is ambiguous" maps directly onto the second clause. Choice A is therefore fully supported by the passage without any inference beyond what the text explicitly states.
 
-The correct answer is B.
-**mistake_a:** This choice introduces a claim about relative brightness that the passage never makes. The passage distinguishes isolated stars from cluster stars on the grounds of measurement ambiguity and evolutionary uncertainty, not on the grounds that isolated stars emit less light. Selecting A requires importing outside knowledge or fabricating a detail not found in the passage.
+The correct answer is A.
+**mistake_b:** This choice introduces a claim about relative brightness that the passage never makes. The passage distinguishes isolated stars from cluster stars on the grounds of measurement ambiguity and evolutionary uncertainty, not on the grounds that isolated stars emit less light. Selecting B requires importing outside knowledge or fabricating a detail not found in the passage.
 **mistake_c:** The passage does not assert that isolated stars have chemical compositions unlike those of cluster stars. Chemical composition is mentioned as one input to traditional dating methods, but the passage draws no comparison of compositions between isolated and cluster stars. This choice is therefore unsupported by the passage and introduces a distinction the text does not draw.
 **mistake_d:** This choice overstates and distorts what the passage says. The passage states that traditional models work well for stars in clusters and perform poorly for isolated stars, but it never claims that theoretical models of stellar evolution do not apply to field stars at all. The difficulty lies in measurement uncertainty and ambiguous evolutionary state, not in the inapplicability of the underlying theory. Choice D is therefore too extreme and contradicts the passage's actual explanation.
 **mistake_e:** The passage never mentions the distance of isolated stars or any difficulty in observing them at a distance. Distance is entirely outside the scope of the passage's explanation. Choosing E requires importing outside knowledge rather than drawing on what the passage explicitly states, making it an unsupported choice.
@@ -1407,26 +1407,26 @@ The correct answer is B.
 The passage suggests that asteroseismology is most likely to contribute to progress on which of the following questions?
 
 - A) whether planets orbiting cool, low-mass stars are likely to be habitable, since such stars are the ones the technique dates least precisely
-- B) whether the galactic disk formed through gradual accretion or during an early burst, a question that requires reliable ages for many individual stars
+- B) whether limited public funding for space telescopes should be prioritized over investment in ground-based observatories
 - C) whether the fundamental laws of physics differ between the dense interiors of stars and the diffuse gas of the surrounding interstellar medium
-- D) whether limited public funding for space telescopes should be prioritized over investment in ground-based observatories
+- D) whether the galactic disk formed through gradual accretion or during an early burst, a question that requires reliable ages for many individual stars
 - E) whether the stellar oscillations the technique measures cause significant variations in a star's output of ionizing radiation
 
-**answer:** B
+**answer:** D
 **explanation:** **Question task.** This is an inference question. The stem asks to what question asteroseismology is "most likely to contribute," requiring identification of a conclusion the passage supports through a chain of connected claims. The answer must be anchored in what the passage says asteroseismology achieves and what that achievement enables.
 
 **Governing principle.** For an inference question, the credited answer must follow necessarily from the passage's explicit statements; it may not introduce information the passage neither states nor implies. A choice is wrong if the passage does not supply the logical bridge between the method and the claimed application, or if the passage actively contradicts the scope of the claim.
 
-**Locating the support for B.** The second paragraph establishes that asteroseismology can constrain a star's age "with uncertainties as small as ten percent in favorable cases, a dramatic improvement over traditional methods." The third paragraph then states: "Many questions in Galactic archaeology, the study of how our Milky Way assembled over cosmic time, depend on being able to order stars chronologically. Whether the galactic disk formed gradually through ongoing accretion or rapidly during an early burst...are all questions that become tractable only when reliable ages for large samples of stars are available." The logical structure is therefore:
+**Locating the support for D.** The second paragraph establishes that asteroseismology can constrain a star's age "with uncertainties as small as ten percent in favorable cases, a dramatic improvement over traditional methods." The third paragraph then states: "Many questions in Galactic archaeology, the study of how our Milky Way assembled over cosmic time, depend on being able to order stars chronologically. Whether the galactic disk formed gradually through ongoing accretion or rapidly during an early burst...are all questions that become tractable only when reliable ages for large samples of stars are available." The logical structure is therefore:
 
 Premise 1 (paragraph 2): asteroseismology supplies reliable ages for individual stars.
 Premise 2 (paragraph 3): the galactic-disk formation question becomes tractable only when reliable ages for large samples of stars are available.
 Conclusion: asteroseismology is likely to contribute to progress on the galactic-disk formation question.
 
-Choice B names that question verbatim and correctly supplies the bridging premise that the question "requires reliable ages for many individual stars," which mirrors the passage's own language. No inference beyond what the passage explicitly lays out is required. The correct answer is B.
+Choice D names that question verbatim and correctly supplies the bridging premise that the question "requires reliable ages for many individual stars," which mirrors the passage's own language. No inference beyond what the passage explicitly lays out is required. The correct answer is D.
 **mistake_a:** Outside the passage's scope. The passage does not discuss planets, habitability, or cool low-mass stars in the context of any question that asteroseismology can address. The third paragraph notes that 'cooler, smaller stars remain difficult to date precisely,' which, if anything, suggests the technique is least suited to questions centered on those stars. Choice A introduces subject matter the passage never connects to asteroseismology.
 **mistake_c:** Unsupported and fabricated. The passage makes no mention of whether the laws of physics differ between stellar interiors and the interstellar medium. Asteroseismology is described as a tool for measuring stellar ages by probing internal structure; no claim about comparative physics across cosmic environments is made or implied anywhere in the passage. This choice introduces subject matter that has no basis in the text.
-**mistake_d:** Outside the passage's scope. The passage observes that modern space telescopes detect brightness variations with 'extraordinary precision,' but this is offered to explain the mechanism of asteroseismology, not to argue that space telescopes should be prioritized over ground-based observatories. The passage takes no position on telescope-funding or design priorities. Inferring a policy recommendation from a methodological description goes beyond what the passage supports.
+**mistake_b:** Outside the passage's scope. The passage observes that modern space telescopes detect brightness variations with 'extraordinary precision,' but this is offered to explain the mechanism of asteroseismology, not to argue that space telescopes should be prioritized over ground-based observatories. The passage takes no position on telescope-funding or design priorities. Inferring a policy recommendation from a methodological description goes beyond what the passage supports.
 **mistake_e:** Unsupported. The passage states that stars pulsate and that these oscillations allow age measurements, but it says nothing about whether oscillations affect a star's output of ionizing radiation. This choice conflates the physical phenomenon the passage describes — stellar oscillations as a dating mechanism — with a specific radiative consequence the passage never raises or implies. It extends passage vocabulary into territory the passage does not address.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -1440,23 +1440,23 @@ Choice B names that question verbatim and correctly supplies the bridging premis
 The author's acknowledgment in the final paragraph that asteroseismic dating "works best for stars in a particular evolutionary phase" serves primarily to:
 
 - A) undermine the passage's earlier claim that asteroseismology now offers dramatically improved estimates of individual stellar ages
-- B) qualify the technique's applicability, supporting the conclusion that it complements rather than replaces traditional methods
+- B) imply that most of the stars in the galaxy cannot be studied by any age-dating method at all
 - C) argue that the technique ought to be abandoned altogether in favor of older chemical-composition dating methods
 - D) suggest that the next generation of space telescopes will eventually overcome this particular limitation
-- E) imply that most of the stars in the galaxy cannot be studied by any age-dating method at all
+- E) qualify the technique's applicability, supporting the conclusion that it complements rather than replaces traditional methods
 
-**answer:** B
+**answer:** E
 **explanation:** This is a rhetorical-function question. The task is to identify why the author includes a specific sentence — not what the sentence literally says, but what logical work it performs within the passage's argument. To answer such questions, the sentence must be located in its paragraph-level context, its structural role determined, and each answer choice tested against both the sentence and the surrounding text.
 
 The sentence in question — asteroseismic dating "works best for stars in a particular evolutionary phase" — appears in the final paragraph, which opens by describing the broader scientific implications of asteroseismology: questions in Galactic archaeology about disk formation, halo remnants, and the Sun's birth environment. After presenting these expansive possibilities, the author pivots with "Yet the method has limits." The limitation sentence follows immediately, accompanied by a second detail — "cooler, smaller stars remain difficult to date precisely" — and the paragraph closes with the explicit statement that the technique "has not replaced older methods so much as complemented them, expanding the range of stars for which reliable ages are accessible."
 
-The structural logic is therefore: broad promise of the technique, acknowledgment of limits, conclusion that it complements rather than replaces traditional methods. The limitation sentence is a premise that feeds directly into that conclusion. It narrows the scope of the technique's applicability, which is precisely what allows the author to draw the "complements, not replaces" conclusion with logical support. The function of the sentence is to qualify the technique — to establish that it does not apply equally to all stars — thereby grounding the passage's concluding judgment that asteroseismology expands rather than supersedes the toolkit of stellar dating. This matches choice B exactly.
+The structural logic is therefore: broad promise of the technique, acknowledgment of limits, conclusion that it complements rather than replaces traditional methods. The limitation sentence is a premise that feeds directly into that conclusion. It narrows the scope of the technique's applicability, which is precisely what allows the author to draw the "complements, not replaces" conclusion with logical support. The function of the sentence is to qualify the technique — to establish that it does not apply equally to all stars — thereby grounding the passage's concluding judgment that asteroseismology expands rather than supersedes the toolkit of stellar dating. This matches choice E exactly.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice reverses the passage's logic. The earlier claim is not undermined but rather bounded: the passage distinguishes between contexts in which asteroseismology succeeds and contexts in which it is less effective. Noting a domain of limited applicability is not the same as disproving the technique's advantages within its effective range. A passage that presents a limitation as a qualification is not the same as a passage that uses that limitation to retract a previous assertion.
 **mistake_c:** This choice is unsupported by the passage. The author makes no argument that the technique should be abandoned, nor does the passage mention chemical methods as an alternative to be preferred. The final sentence of the passage explicitly frames the situation as one of complementarity, not replacement or abandonment. Introducing the idea that the author recommends discarding the method imports a position the passage does not hold.
 **mistake_d:** This choice is outside the scope of the passage. The author makes no prediction about future space telescopes overcoming the stated limitation. The passage describes what current technology can and cannot accomplish; it contains no forward-looking speculation about instrumentation. Selecting this choice requires reading into the text a claim that is simply not present.
-**mistake_e:** This choice is too extreme and distorts the passage. The author states that cooler, smaller stars are difficult to date precisely with this technique, not that most stars in the galaxy cannot be studied at all. The passage does not characterize the majority of galactic stars as inaccessible to any method; it states only that asteroseismic dating has a narrower effective range than might be ideal. Generalizing a specific technical limitation into a sweeping claim about the galaxy's stellar population goes well beyond what the text supports.
+**mistake_b:** This choice is too extreme and distorts the passage. The author states that cooler, smaller stars are difficult to date precisely with this technique, not that most stars in the galaxy cannot be studied at all. The passage does not characterize the majority of galactic stars as inaccessible to any method; it states only that asteroseismic dating has a narrower effective range than might be ideal. Generalizing a specific technical limitation into a sweeping claim about the galaxy's stellar population goes well beyond what the text supports.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -1505,21 +1505,21 @@ The correct answer is C.
 
 The passage cites studies of pharmaceutical research laboratories in order to illustrate that:
 
-- A) pharmaceutical firms are typically far less efficient, judged on conventional productivity metrics, than comparable firms that operate in other research-intensive industries
-- B) groups with moderate unstructured time produce more breakthrough discoveries than those whose schedules are fully allocated, even though the latter seem more productive on conventional metrics
+- A) groups with moderate unstructured time produce more breakthrough discoveries than those whose schedules are fully allocated, even though the latter seem more productive on conventional metrics
+- B) pharmaceutical firms are typically far less efficient, judged on conventional productivity metrics, than comparable firms that operate in other research-intensive industries
 - C) innovation is primarily a function of the sheer level of financial investment a laboratory receives rather than of how its researchers' working time is allocated
 - D) tightly scheduled research programs tend to produce more reliable and reproducible results than loosely structured, open-ended exploration does
 - E) pharmaceutical research depends on highly specialized forms of slack that are essentially unavailable to firms operating in any other industry
 
-**answer:** B
+**answer:** A
 **explanation:** This is a specific-detail question with a function-of-evidence dimension: the task is to identify the purpose for which the author introduces the pharmaceutical laboratory studies, not merely to describe what those studies found in isolation.
 
 The pharmaceutical studies appear in the second paragraph, which opens by asserting that organizations operating at maximum efficiency are "surprisingly fragile" and that lean organizations "tend to be poor at innovation, since exploring novel ideas requires time and resources that a maximally lean organization cannot spare." The studies are then introduced with the construction "for example," signaling that they serve as an illustration of this broader claim about innovation and leanness. The passage reports that "groups with moderate levels of unstructured time produce substantially more breakthrough discoveries than those whose schedules are fully allocated to assigned projects, even though the latter appear more productive on conventional metrics."
 
-In purpose-of-evidence questions, the credited answer must satisfy two conditions simultaneously: it accurately describes what the studies found, and it reflects the role those findings play in the argument. Choice B satisfies both conditions. It accurately restates the empirical finding — that moderate unstructured time yields more breakthrough discoveries than fully allocated schedules — and the qualifying clause "even though the latter seem more productive on conventional metrics" captures the rhetorical force of the example: surface-level efficiency measures can mask innovation deficits. This is precisely the point the author needs the studies to establish in order to support the paragraph's claim that lean organizations are innovation-poor despite appearing efficient.
+In purpose-of-evidence questions, the credited answer must satisfy two conditions simultaneously: it accurately describes what the studies found, and it reflects the role those findings play in the argument. Choice A satisfies both conditions. It accurately restates the empirical finding — that moderate unstructured time yields more breakthrough discoveries than fully allocated schedules — and the qualifying clause "even though the latter seem more productive on conventional metrics" captures the rhetorical force of the example: surface-level efficiency measures can mask innovation deficits. This is precisely the point the author needs the studies to establish in order to support the paragraph's claim that lean organizations are innovation-poor despite appearing efficient.
 
-The correct answer is B.
-**mistake_a:** This choice distorts the scope of the evidence. The passage does not compare pharmaceutical firms to firms in other industries with respect to efficiency; the studies are cited narrowly to illustrate that fully allocated schedules suppress breakthrough discoveries relative to schedules with moderate unstructured time. Inferring an industry-wide efficiency ranking from this evidence goes beyond anything the passage supports and introduces a comparison the author never makes. The flaw is that the choice is unsupported: the passage simply does not draw this conclusion.
+The correct answer is A.
+**mistake_b:** This choice distorts the scope of the evidence. The passage does not compare pharmaceutical firms to firms in other industries with respect to efficiency; the studies are cited narrowly to illustrate that fully allocated schedules suppress breakthrough discoveries relative to schedules with moderate unstructured time. Inferring an industry-wide efficiency ranking from this evidence goes beyond anything the passage supports and introduces a comparison the author never makes. The flaw is that the choice is unsupported: the passage simply does not draw this conclusion.
 **mistake_c:** This choice is unsupported and contrary to the passage's stated reasoning. The pharmaceutical studies are cited specifically to show that time allocation — not financial investment — is the operative variable distinguishing high-innovation groups from low-innovation groups. The passage never mentions financial investment in connection with these studies. Selecting this choice would require importing a premise the passage not only omits but implicitly contradicts by foregrounding unstructured time rather than funding as the explanatory factor.
 **mistake_d:** This choice directly inverts the passage's finding. The studies report that groups with fully allocated, scheduled research produce fewer breakthrough discoveries than groups with moderate unstructured time, even though the scheduled groups appear more productive on conventional metrics. A choice stating that scheduled research produces more reliable results reverses the passage's evidence rather than reflecting it. The flaw is that the choice contradicts the passage.
 **mistake_e:** This choice fabricates a specificity the passage does not assert. The author uses the pharmaceutical laboratory findings as a representative example of a general principle about human slack and innovation; nowhere does the passage suggest that the relevant form of slack is unique to pharmaceutical research or unavailable in other industries. On the contrary, the third paragraph discusses multiple types of slack across organizational contexts without any industry restriction. The flaw is that the choice introduces an industry-exclusive limitation that has no basis in the passage.
@@ -1611,12 +1611,12 @@ When these policy supports eroded, beginning in the late 1970s, the patterns tha
 The passage primarily aims to:
 
 - A) argue that the postwar American middle class did not actually experience the broad prosperity the conventional narrative attributes to the era
-- B) revise the standard account of midcentury American prosperity by emphasizing the role of specific policy choices in creating and sustaining the broad middle class
+- B) document the racial discrimination that pervaded the administration of the GI Bill and federal mortgage programs after the war
 - C) criticize contemporary politicians who invoke the postwar economy in their campaign rhetoric without understanding how it was built
-- D) document the racial discrimination that pervaded the administration of the GI Bill and federal mortgage programs after the war
+- D) revise the standard account of midcentury American prosperity by emphasizing the role of specific policy choices in creating and sustaining the broad middle class
 - E) compare midcentury American wage compression with the parallel patterns seen in other industrialized countries during the same decades
 
-**answer:** B
+**answer:** D
 **explanation:** This is a primary purpose question. The task is to identify what the passage as a whole is trying to accomplish — not merely what it mentions or implies in one section, but its overarching argumentative aim.
 
 For primary purpose questions, the correct answer must account for the full arc of the passage: the opening framing, the central development, and the closing conclusion. An answer that captures only one paragraph or one illustrative detail is too narrow, even if that detail is accurate.
@@ -1625,12 +1625,12 @@ The passage moves through three stages. Paragraph 1 states the traditional view 
 
 The passage therefore performs a recognizable scholarly move: concede that the standard narrative has merit, then argue it is incomplete by foregrounding a mechanism — policy intervention — that the standard narrative underweights. The purpose is revisionary, not purely descriptive and not purely polemical.
 
-Answer B — "revise the standard account of midcentury American prosperity by emphasizing the role of specific policy choices in creating and sustaining the broad middle class" — maps precisely onto all three paragraphs. "Revise the standard account" corresponds to the concession-and-qualification in paragraph 1. "Emphasizing the role of specific policy choices" corresponds to the policy catalog in paragraph 2. "Creating and sustaining the broad middle class" corresponds to the conclusion in paragraph 3 that the middle class was a political achievement. No part of the passage is left unaccounted for, and no element of B imports material the passage does not support.
+Answer D — "revise the standard account of midcentury American prosperity by emphasizing the role of specific policy choices in creating and sustaining the broad middle class" — maps precisely onto all three paragraphs. "Revise the standard account" corresponds to the concession-and-qualification in paragraph 1. "Emphasizing the role of specific policy choices" corresponds to the policy catalog in paragraph 2. "Creating and sustaining the broad middle class" corresponds to the conclusion in paragraph 3 that the middle class was a political achievement. No part of the passage is left unaccounted for, and no element of D imports material the passage does not support.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** This choice reverses the passage's position. The passage explicitly states that the standard narrative of broad postwar prosperity is 'not wrong' — it accepts that rising wages, homeownership, and material well-being were real. The passage's objection is that the narrative is incomplete, not that the prosperity itself was illusory or fabricated. Choice A therefore contradicts the passage's opening concession.
 **mistake_c:** This choice is too narrow and imports an evaluative stance the passage does not adopt. Although the final paragraph notes that appeals to 'restore' the postwar economy have 'limited purchase,' the passage frames this as an explanatory consequence of its historical argument, not as a criticism of specific politicians or political rhetoric. The passage names no political figures, takes no partisan position, and attributes no failure to any contemporary actor. Characterizing its aim as 'criticize contemporary politicians' attributes a polemical purpose unsupported by the text.
-**mistake_d:** This choice is too narrow. Racial discrimination in the administration of the GI Bill is introduced in paragraph 2 as one piece of evidence — a qualification within the larger argument that policy was the operative mechanism — but the passage devotes only two sentences to that point before moving on to federal mortgage insurance, minimum wage policy, unions, and tax rates. A passage whose primary aim were to document GI Bill discrimination would develop that subject at length; this passage uses it as a supporting illustration. Choice D confuses a supporting detail for the main purpose.
+**mistake_b:** This choice is too narrow. Racial discrimination in the administration of the GI Bill is introduced in paragraph 2 as one piece of evidence — a qualification within the larger argument that policy was the operative mechanism — but the passage devotes only two sentences to that point before moving on to federal mortgage insurance, minimum wage policy, unions, and tax rates. A passage whose primary aim were to document GI Bill discrimination would develop that subject at length; this passage uses it as a supporting illustration. Choice B confuses a supporting detail for the main purpose.
 **mistake_e:** This choice is entirely unsupported. The passage contains no reference to other industrialized countries, no comparative data on wage compression abroad, and no cross-national analysis of any kind. The entire argument is confined to United States domestic history and policy. Choice E therefore introduces material the passage never invokes, which is a fabricated-scope flaw.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -1764,25 +1764,25 @@ Most independent empirical studies, however, have struggled to quantify the effe
 The primary purpose of the passage is to:
 
 - A) argue for the revival of the well-funded corporate research laboratory as the principal engine of future technological innovation
-- B) describe a shift in corporate research and development practice and examine a debate about its consequences for fundamental innovation
+- B) demonstrate that the rate of fundamental innovation cannot be measured reliably with any of the empirical methods now available
 - C) criticize venture-funded startups and academic laboratories for consistently failing to produce the genuinely transformative breakthroughs that firms once did
 - D) trace the influence of shareholder pressure and quarterly earnings expectations on short-term corporate decision making
-- E) demonstrate that the rate of fundamental innovation cannot be measured reliably with any of the empirical methods now available
+- E) describe a shift in corporate research and development practice and examine a debate about its consequences for fundamental innovation
 
-**answer:** B
+**answer:** E
 **explanation:** The question asks for the "primary purpose" of the passage — a main-idea task. The governing principle is that the primary purpose describes what the passage as a whole is doing, not merely what one section discusses. A correct answer must account for all three paragraphs and the overall rhetorical arc.
 
 Paragraph 1 establishes historical context: corporate research laboratories of the late twentieth century produced foundational innovations under a model of patient, generously funded, speculative research. Paragraph 2 describes a shift away from that model since the late 1990s, then immediately opens a two-sided debate. One side holds that the torch has simply been passed to startups, academic labs, and public consortia. The other side contends that the old institutional combination — abundant funding, patient timelines, proximity to manufacturing — is hard to replicate elsewhere, and that the new distributed system may produce incremental rather than transformative breakthroughs. Paragraph 3 notes that empirical studies have struggled to resolve the debate, citing difficulties of definition and the long lag between research and visible impact.
 
 The passage therefore performs two distinct functions: it describes a real-world shift in corporate R&D practice, and it presents and examines competing views about what that shift means for fundamental innovation. No single paragraph is privileged; the third paragraph explicitly leaves the debate unresolved. The passage neither endorses nor rejects either side.
 
-Choice B reads: "describe a shift in corporate research and development practice and examine a debate about its consequences for fundamental innovation." This maps precisely onto the two-part structure identified above. The word "describe" captures paragraph 1 and the opening of paragraph 2. The phrase "examine a debate" captures the two-sided presentation in paragraph 2 and the empirical uncertainty noted in paragraph 3. The passage never resolves the debate, which is consistent with "examine" rather than "resolve" or "argue." Choice B is confirmed as correct.
+Choice E reads: "describe a shift in corporate research and development practice and examine a debate about its consequences for fundamental innovation." This maps precisely onto the two-part structure identified above. The word "describe" captures paragraph 1 and the opening of paragraph 2. The phrase "examine a debate" captures the two-sided presentation in paragraph 2 and the empirical uncertainty noted in paragraph 3. The passage never resolves the debate, which is consistent with "examine" rather than "resolve" or "argue." Choice E is confirmed as correct.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** Choice A attributes to the passage an argumentative stance it never takes. The passage is descriptive and balanced; it presents one side of a debate that holds the old model may be irreplaceable, but it also presents the opposing view and concludes that empirical studies cannot yet quantify the effect. No advocacy for revival appears anywhere in the text. This choice misrepresents the passage's purpose by converting a neutral description into a one-sided prescription — a flaw of fabricating a position unsupported by the passage.
 **mistake_c:** Choice C is a distortion of the passage's treatment of startups and academic labs. The passage identifies these entities as one side of a genuine debate — specifically, the side that holds the torch has simply been passed to them — and presents that view without criticism. The passage does not criticize these institutions for failing to produce transformative breakthroughs; rather, it notes that the opposing side of the debate raises that concern, leaving the question empirically unresolved. This choice imposes a critical tone that is absent from the text and attributes to the passage a one-sided conclusion it explicitly declines to reach.
 **mistake_d:** Choice D is too narrow. Shareholder pressure is mentioned once in paragraph 2, as one of three forces — alongside quarterly earnings expectations and the rise of open-source software — that contributed to the shift in corporate R&D. The passage does not analyze shareholder pressure in depth, trace its broader influence on corporate decision-making, or develop it as a central theme. A choice that elevates a single supporting detail to the level of primary purpose commits the too-narrow flaw.
-**mistake_e:** Choice E overstates and distorts the conclusion of paragraph 3. The passage states that independent empirical studies have struggled to quantify the effect and offers two reasons: definitional contestation and the long productive lag of research. The passage does not assert that fundamental innovation cannot be measured under any circumstances or with any future methods — it describes a current empirical difficulty, not a permanent logical impossibility. This choice therefore extends the passage's measured observation into an absolute claim the passage never makes, committing the too-broad-or-extreme flaw.
+**mistake_b:** Choice B overstates and distorts the conclusion of paragraph 3. The passage states that independent empirical studies have struggled to quantify the effect and offers two reasons: definitional contestation and the long productive lag of research. The passage does not assert that fundamental innovation cannot be measured under any circumstances or with any future methods — it describes a current empirical difficulty, not a permanent logical impossibility. This choice therefore extends the passage's measured observation into an absolute claim the passage never makes, committing the too-broad-or-extreme flaw.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -1823,23 +1823,23 @@ The correct answer is C.
 
 In the second paragraph, the reference to the "particular institutional combination" of the old corporate labs primarily serves to:
 
-- A) argue that the old corporate laboratories produced a distinctly higher quality of science than any modern research organization manages to produce in the present day
-- B) explain why some analysts doubt that the exploratory work of the old laboratories is being fully replicated in today's distributed research system
+- A) explain why some analysts doubt that the exploratory work of the old laboratories is being fully replicated in today's distributed research system
+- B) argue that the old corporate laboratories produced a distinctly higher quality of science than any modern research organization manages to produce in the present day
 - C) contrast the research cultures of private industrial firms with those of universities and other academic institutions
 - D) suggest that proximity to large-scale manufacturing is the single most important factor in producing fundamental innovation
 - E) refute the view that the torch of exploratory research has already been passed to startups and academic laboratories
 
-**answer:** B
+**answer:** A
 **explanation:** This is a rhetorical-function question. The stem asks what role a specific phrase — "particular institutional combination" — plays within the paragraph's argument. The correct approach is to locate the phrase in context, identify the argumentative move it supports, and then match that move to the answer choices.
 
 The second paragraph introduces a debate among analysts. The first position holds that venture-funded startups, academic laboratories, and public research consortia have assumed the exploratory role that corporate labs once filled — "the torch has simply been passed." The second position is introduced by "Others observe." Those analysts cite three features of the old labs — abundant funding, patient timelines, and proximity to large-scale manufacturing — and group them under the label "the particular institutional combination." They then draw an inference: this combination "is hard to replicate elsewhere," and therefore the current distributed system "may yield plenty of incremental progress but fewer genuinely transformative breakthroughs."
 
-The phrase "particular institutional combination" therefore functions as the analytical foundation for the skeptical analysts' doubt. It names the bundle of properties they believe is absent from today's research ecosystem, which is precisely what makes them skeptical that the exploratory work is being fully replicated. That function corresponds to answer choice B.
+The phrase "particular institutional combination" therefore functions as the analytical foundation for the skeptical analysts' doubt. It names the bundle of properties they believe is absent from today's research ecosystem, which is precisely what makes them skeptical that the exploratory work is being fully replicated. That function corresponds to answer choice A.
 
-B states that the phrase explains why some analysts doubt that the exploratory work of the old laboratories is being fully replicated in today's distributed research system. This matches the passage exactly. The sentence containing the phrase opens with "Others observe" — the "Others" being the skeptical analysts — and the "particular institutional combination" is the reason those analysts give for their doubt. The passage does not assert the doubt as the author's own view; it attributes it to a group of analysts. B preserves that attribution accurately and captures the functional role of the phrase without overstating the passage's claims.
+A states that the phrase explains why some analysts doubt that the exploratory work of the old laboratories is being fully replicated in today's distributed research system. This matches the passage exactly. The sentence containing the phrase opens with "Others observe" — the "Others" being the skeptical analysts — and the "particular institutional combination" is the reason those analysts give for their doubt. The passage does not assert the doubt as the author's own view; it attributes it to a group of analysts. A preserves that attribution accurately and captures the functional role of the phrase without overstating the passage's claims.
 
-The correct answer is B.
-**mistake_a:** This choice distorts the passage's content and overstates its scope. The passage does not compare the quality of science produced by the old labs against that produced by modern research organizations; it discusses whether the institutional conditions for exploratory work can be replicated. The phrase 'particular institutional combination' addresses structural prerequisites, not scientific quality or rigor. Choice A introduces an evaluative judgment — 'higher quality of science' — that is unsupported anywhere in the passage and therefore constitutes fabricated content outside the scope of what the text asserts.
+The correct answer is A.
+**mistake_b:** This choice distorts the passage's content and overstates its scope. The passage does not compare the quality of science produced by the old labs against that produced by modern research organizations; it discusses whether the institutional conditions for exploratory work can be replicated. The phrase 'particular institutional combination' addresses structural prerequisites, not scientific quality or rigor. Choice B introduces an evaluative judgment — 'higher quality of science' — that is unsupported anywhere in the passage and therefore constitutes fabricated content outside the scope of what the text asserts.
 **mistake_c:** This choice misidentifies the contrast being drawn. The passage does not contrast the research cultures of private firms and academic institutions; rather, it groups academic laboratories together with startups and public research consortia as part of the distributed system that some analysts believe has assumed the old labs' exploratory role. The phrase 'particular institutional combination' is used to characterize what the old corporate labs possessed, not to draw a cultural comparison between two types of organization. Choice C is therefore misdirected with respect to the passage's actual argumentative structure.
 **mistake_d:** This choice is too extreme. The passage lists proximity to manufacturing as one of three elements — alongside abundant funding and patient timelines — in the 'particular institutional combination.' Nowhere does the passage rank these elements or designate any single factor as the most important. Choice D imposes a hierarchy that the passage explicitly does not establish, making it an unsupported inference that goes beyond what the text states.
 **mistake_e:** This choice mischaracterizes the logical relationship. The phrase 'particular institutional combination' supports the skeptical analysts' position, but the passage presents that position as one side of an ongoing debate, not as a refutation. The first-position view — that the torch has been passed — is left standing as a live alternative; the passage does not adjudicate between the two views, and the third paragraph reinforces that empirical studies have struggled to resolve the question. 'Refute' implies a decisive logical defeat of the opposing view, which the passage does not perform. This choice therefore overstates the passage's claims and misrepresents its tone of genuine analytical uncertainty.
@@ -1864,24 +1864,24 @@ Automatic enrollment alone, however, does not resolve all savings shortfalls. De
 The primary purpose of the passage is to:
 
 - A) criticize traditional economic theory for overstating the rationality of financial decision-makers
-- B) describe the adoption and limitations of automatic enrollment in employer retirement plans
+- B) explain the psychological factors that cause workers to undersave for retirement
 - C) argue that default contribution rates should be raised to at least 10 percent of wages
-- D) explain the psychological factors that cause workers to undersave for retirement
+- D) describe the adoption and limitations of automatic enrollment in employer retirement plans
 - E) compare the effectiveness of different retirement savings policies across industries
 
-**answer:** B
+**answer:** D
 **explanation:** The primary purpose question asks what the passage as a whole is doing — not what any single paragraph argues, but the overarching function of the text from first sentence to last. The governing principle is that the correct answer must account for all three paragraphs, not merely one section.
 
 Surveying the passage's structure: the first paragraph establishes the behavioral-economics backdrop — workers undersave due to documented biases — and introduces automatic enrollment as a policy response. The second paragraph presents evidence that automatic enrollment substantially raises participation rates (roughly 60 percent to over 85 percent) and addresses initial skepticism about whether enrollment would hold. The third paragraph complicates the picture: automatic enrollment is shown to be insufficient on its own because default contribution rates (typically 3 percent) fall far below the 10–15 percent that advisors recommend, and newer tools such as automatic escalation address this gap but have been adopted slowly.
 
-The passage therefore moves through a coherent arc: a problem is identified (undersaving), a policy response is described (automatic enrollment), evidence for its effectiveness is presented, and then its limitations are noted, along with partial further innovations. That arc — adoption of a mechanism, evidence for it, and its remaining shortfalls — is precisely what answer choice B captures: "describe the adoption and limitations of automatic enrollment in employer retirement plans."
+The passage therefore moves through a coherent arc: a problem is identified (undersaving), a policy response is described (automatic enrollment), evidence for its effectiveness is presented, and then its limitations are noted, along with partial further innovations. That arc — adoption of a mechanism, evidence for it, and its remaining shortfalls — is precisely what answer choice D captures: "describe the adoption and limitations of automatic enrollment in employer retirement plans."
 
 The passage confirms this framing at every stage. The first paragraph introduces automatic enrollment explicitly ("One prominent response has been the adoption of automatic enrollment"). The second paragraph supplies evidence of adoption and its effects. The third paragraph establishes the central limitation in substance: "Automatic enrollment alone, however, does not resolve all savings shortfalls." No paragraph departs from this organizational logic.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** Too narrow and mischaracterizes the focus. While the first paragraph briefly notes that traditional economic theory assumed rational decision-making, the passage does not develop a sustained critique of that theory; it uses the theoretical backdrop only to motivate the discussion of automatic enrollment. Selecting A mistakes a framing device in one sentence for the primary purpose of the entire passage.
 **mistake_c:** Presents an argument the passage does not make. The passage reports that financial advisors consider 10 to 15 percent an appropriate savings target, but it does not advocate raising default contribution rates to that level. The passage is descriptive and analytical, not prescriptive; attributing an argumentative recommendation to it imposes a position the author never takes.
-**mistake_d:** Too narrow. The passage does mention procrastination, inertia, and overreaction to short-term losses in the opening paragraph, but those psychological factors are background context, not the central subject. The passage quickly moves to automatic enrollment as its sustained topic. An answer that limits the scope to psychological explanation omits the majority of the passage's content.
+**mistake_b:** Too narrow. The passage does mention procrastination, inertia, and overreaction to short-term losses in the opening paragraph, but those psychological factors are background context, not the central subject. The passage quickly moves to automatic enrollment as its sustained topic. An answer that limits the scope to psychological explanation omits the majority of the passage's content.
 **mistake_e:** Unsupported. The passage never compares retirement savings policies across industries; it draws on studies from several large employers but makes no industry-by-industry comparison. Introducing an industry-comparison frame imports a structure that does not exist in the text.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -1972,12 +1972,12 @@ Other scholars are more skeptical. They note that each new medium in history has
 The primary purpose of the passage is to:
 
 - A) argue that digital short-form media should be actively restricted in order to preserve deep reading habits
-- B) describe a shift in reading habits and examine a debate about the cognitive implications of that shift
+- B) compare the relative cognitive effectiveness of different formats of digital content
 - C) demonstrate that extended reading of long-form texts reliably improves empathy and perspective-taking
 - D) refute the claim that each new communication medium inevitably causes cognitive decline
-- E) compare the relative cognitive effectiveness of different formats of digital content
+- E) describe a shift in reading habits and examine a debate about the cognitive implications of that shift
 
-**answer:** B
+**answer:** E
 **explanation:** **Question task.** This is a Primary Purpose question. The task is to identify the author's overarching goal in writing the passage — not to identify any single claim the author endorses, but to characterize what the passage as a whole is doing.
 
 **Governing principle.** For Primary Purpose questions, the correct answer must account for the entire passage, not merely one paragraph or one side of a discussion. An answer that captures only a part of the passage, or that attributes an argumentative stance the author does not take, will be wrong regardless of how well it fits a single sentence in the text.
@@ -1990,13 +1990,13 @@ Paragraph 2 introduces one position in a debate: cognitive scientists who argue 
 
 Paragraph 3 introduces the opposing position: scholars who are skeptical, who note the historical pattern of unfounded medium-panic, and who observe that short-form reading can require genuine analytical skill. The paragraph closes by explicitly stating that the net cognitive effect "remains empirically unresolved."
 
-The author does not endorse either side. No prescriptive recommendation appears. No single finding is held up as a conclusion. The passage describes (Paragraph 1) and then examines a two-sided, unresolved debate (Paragraphs 2–3). Answer choice B — "describe a shift in reading habits and examine a debate about the cognitive implications of that shift" — maps precisely onto this structure: the first clause corresponds to Paragraph 1, the second to Paragraphs 2 and 3.
+The author does not endorse either side. No prescriptive recommendation appears. No single finding is held up as a conclusion. The passage describes (Paragraph 1) and then examines a two-sided, unresolved debate (Paragraphs 2–3). Answer choice E — "describe a shift in reading habits and examine a debate about the cognitive implications of that shift" — maps precisely onto this structure: the first clause corresponds to Paragraph 1, the second to Paragraphs 2 and 3.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice introduces a prescriptive recommendation — that digital media should be restricted — that appears nowhere in the passage. The author describes the shift and the debate surrounding it without advocating any policy response. Choosing A attributes an argumentative stance the passage explicitly does not take; it is therefore unsupported by the text.
 **mistake_c:** This choice is too narrow. The claim that extended reading improves empathy and perspective-taking is drawn from the brain-imaging evidence cited in Paragraph 2, which represents only one side of a two-sided debate. Treating one piece of supporting detail from one camp as the purpose of the whole passage ignores Paragraph 3 entirely and misrepresents the author's balanced, descriptive stance.
 **mistake_d:** This choice misattributes a scholarly position to the author. The passage does not refute the claim that new media cause cognitive decline; rather, the skeptics in Paragraph 3 raise the historical pattern of unfounded medium-panic as a reason to doubt the alarmist view. The author presents this as one scholarly position within an unresolved debate, not as a conclusion the passage itself establishes. Selecting D confuses an argument attributed to one group of scholars with the author's own purpose.
-**mistake_e:** This choice is outside the scope of the passage. The passage does not compare different formats of digital content against one another; it contrasts extended long-form reading with short-form digital reading in general. No evaluation of which digital formats are more or less effective appears anywhere in the text.
+**mistake_b:** This choice is outside the scope of the passage. The passage does not compare different formats of digital content against one another; it contrasts extended long-form reading with short-form digital reading in general. No evaluation of which digital formats are more or less effective appears anywhere in the text.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -2079,23 +2079,23 @@ Germline editing raises distinct ethical and technical concerns. Because germlin
 
 The primary purpose of the passage is to:
 
-- A) advocate for a permanent and comprehensive ban on every existing form of germline gene editing
-- B) describe both the therapeutic promise and the technical and ethical complications of CRISPR gene editing
+- A) describe both the therapeutic promise and the technical and ethical complications of CRISPR gene editing
+- B) advocate for a permanent and comprehensive ban on every existing form of germline gene editing
 - C) criticize regulators for approving the 2023 sickle-cell CRISPR therapy before its risks were understood
 - D) explain the biochemistry of CRISPR-based editing in close mechanistic and molecular detail
 - E) argue that germline editing is indistinguishable from somatic editing in its overall risk profile
 
-**answer:** B
+**answer:** A
 **explanation:** This is a primary purpose question. The task is to identify the central aim of the passage as a whole — not just one paragraph or one detail — by examining what the author does across all three paragraphs.
 
 For primary purpose questions, the correct answer must account for the entire passage. An answer that captures only a portion of the text — one paragraph, one example, or one side of a debate — is too narrow. An answer that introduces a stance or conclusion not present in the text is unsupported.
 
 The first paragraph establishes CRISPR's therapeutic potential and notes the 2023 regulatory approval for sickle-cell anemia, signaling genuine promise. The second paragraph pivots ("Yet the same decade has also revealed a more complex picture") to document technical limitations: off-target edits and chromosomal rearrangements. It then distinguishes somatic from germline editing, noting that the technical findings "have complicated debates about germline editing." The third paragraph extends this by cataloguing the distinct ethical and technical concerns specific to germline editing, noting majority and minority views among researchers. Across all three paragraphs, the author neither advocates for a policy position nor attacks any actor; the author describes a technology, its promise, and the complications — both technical and ethical — that have emerged.
 
-Choice B — "describe both the therapeutic promise and the technical and ethical complications of CRISPR gene editing" — maps precisely onto this three-part structure: promise (paragraph 1), technical complications (paragraph 2), ethical and technical complications of germline editing (paragraph 3). No distortion, no missing section of the passage, and no fabricated stance appears in choice B.
+Choice A — "describe both the therapeutic promise and the technical and ethical complications of CRISPR gene editing" — maps precisely onto this three-part structure: promise (paragraph 1), technical complications (paragraph 2), ethical and technical complications of germline editing (paragraph 3). No distortion, no missing section of the passage, and no fabricated stance appears in choice A.
 
-The correct answer is B.
-**mistake_a:** This choice reverses the passage's tone and overstates its conclusion. The passage does not advocate for a ban of any kind, let alone a permanent, comprehensive one. The author reports that 'many scientific bodies and regulators have called for a moratorium,' but reporting a position held by others is not the same as endorsing it. The passage explicitly notes that a minority of researchers find some germline editing justifiable, and no paragraph issues or endorses a prohibition on all forms of germline editing. Choice A therefore attributes to the author a policy advocacy position that is unsupported by the text.
+The correct answer is A.
+**mistake_b:** This choice reverses the passage's tone and overstates its conclusion. The passage does not advocate for a ban of any kind, let alone a permanent, comprehensive one. The author reports that 'many scientific bodies and regulators have called for a moratorium,' but reporting a position held by others is not the same as endorsing it. The passage explicitly notes that a minority of researchers find some germline editing justifiable, and no paragraph issues or endorses a prohibition on all forms of germline editing. Choice B therefore attributes to the author a policy advocacy position that is unsupported by the text.
 **mistake_c:** This choice fabricates a critical stance toward regulators that is absent from the passage. The 2023 sickle-cell approval is mentioned in a single clause in the first paragraph as evidence of CRISPR's therapeutic progress; the author neither questions the decision nor implies it was premature. Furthermore, the passage explicitly states that technical concerns about off-target editing 'have not diminished enthusiasm for somatic-cell therapies,' which is precisely the category into which the sickle-cell treatment falls. Selecting C requires importing a critical inference the passage takes no steps to support.
 **mistake_d:** This choice is too narrow and mischaracterizes the passage's register. The passage does not explain the biochemistry of CRISPR in technical detail; it does not describe the molecular mechanism of guide RNA, Cas9 enzymatic function, or DNA cleavage chemistry. The author assumes the reader understands what CRISPR does and instead addresses therapeutic promise and its complications at a policy and scientific-consensus level. A passage whose primary purpose were biochemical explanation would contain the definitional and mechanistic content that this passage deliberately omits.
 **mistake_e:** This choice directly contradicts the passage. The second and third paragraphs are organized around the distinction between somatic and germline editing — specifically to show that germline editing raises concerns that somatic editing does not, because germline edits 'propagate to offspring' and could be 'transmitted indefinitely through the gene pool.' The author explicitly states that technical findings 'have not diminished enthusiasm for somatic-cell therapies' while simultaneously noting that those same findings 'have complicated debates about germline editing.' Choice E therefore inverts a structural distinction the passage treats as central.
@@ -2111,22 +2111,22 @@ The correct answer is B.
 The passage most strongly suggests that the author would agree with which of the following statements?
 
 - A) Somatic-cell CRISPR therapies should be subject to the same clinical restrictions that germline therapies face.
-- B) The technical risks of germline editing make its clinical use premature for most applications today.
+- B) The 2023 sickle-cell treatment is likely to fail once it reaches routine clinical practice.
 - C) Off-target CRISPR edits, wherever they happen to occur, always produce clinically significant harm.
-- D) The 2023 sickle-cell treatment is likely to fail once it reaches routine clinical practice.
+- D) The technical risks of germline editing make its clinical use premature for most applications today.
 - E) Scientific enthusiasm for CRISPR has faded significantly over the course of the past decade.
 
-**answer:** B
+**answer:** D
 **explanation:** This is an inference question: the task is to identify the statement the author would most strongly agree with based on the passage's reasoning and implied stance, without going beyond what the text warrants.
 
 The passage moves in three stages. The first paragraph establishes CRISPR's transformative role and notes the first approved somatic therapy — a treatment for sickle-cell anemia that received regulatory clearance in 2023 — framing the decade as one of genuine clinical progress. The second paragraph introduces complicating evidence, specifically off-target edits and chromosomal rearrangements, then draws a precise and structurally important distinction: these findings "have not diminished enthusiasm for somatic-cell therapies" but "have complicated debates about germline editing." The third paragraph deepens that distinction, explaining that germline edits propagate to offspring and could transmit errors "indefinitely through the gene pool," and reporting that the prevailing scientific and regulatory response has been to call for a moratorium on clinical germline editing "until the technical risks are better understood." A minority view holds that some narrow forms of germline editing might be justifiable "even today," but the passage explicitly labels this a minority position.
 
-Choice B states that the technical risks of germline editing make its clinical use premature for most applications today. Every element maps directly onto the passage. The technical risks — off-target edits and chromosomal rearrangements — are the explicit evidentiary basis for the moratorium described in paragraph three. The word "premature" precisely reflects the passage's temporal framing: the moratorium is to hold "until the technical risks are better understood," signaling that current clinical use is insufficiently supported rather than permanently impermissible. The phrase "most applications today" accurately reflects the passage's structure: the moratorium is the dominant consensus position, while the minority view carves out only a narrow exception for removing "well-characterized disease-causing mutations." The author presents the moratorium as the mainstream scientific and regulatory response, grounds it in documented evidence, and characterizes the contrary view as a minority — a combination that strongly implies authorial agreement with the cautious position. Choice B captures this inference accurately and without overreach.
+Choice D states that the technical risks of germline editing make its clinical use premature for most applications today. Every element maps directly onto the passage. The technical risks — off-target edits and chromosomal rearrangements — are the explicit evidentiary basis for the moratorium described in paragraph three. The word "premature" precisely reflects the passage's temporal framing: the moratorium is to hold "until the technical risks are better understood," signaling that current clinical use is insufficiently supported rather than permanently impermissible. The phrase "most applications today" accurately reflects the passage's structure: the moratorium is the dominant consensus position, while the minority view carves out only a narrow exception for removing "well-characterized disease-causing mutations." The author presents the moratorium as the mainstream scientific and regulatory response, grounds it in documented evidence, and characterizes the contrary view as a minority — a combination that strongly implies authorial agreement with the cautious position. Choice D captures this inference accurately and without overreach.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** This choice reverses the passage's explicit and structurally central distinction. Paragraph two states directly that the documented technical problems 'have not diminished enthusiasm for somatic-cell therapies' while specifying that these same findings 'have complicated debates about germline editing.' The passage draws a sharp line between the two categories; choice A collapses a distinction the author takes care to establish and maintain throughout the second and third paragraphs.
 **mistake_c:** This choice is too extreme. The passage states that the consequences of off-target edits 'can be unpredictable' — a qualified probabilistic observation that allows for variability in outcome. The word 'always' in choice C converts that qualified statement into an absolute universal claim the passage never makes and does not support. The difference between 'can be unpredictable' and 'always produce clinically significant harm' is not a matter of degree but of logical kind.
-**mistake_d:** This choice is unsupported by the passage. The 2023 sickle-cell approval is cited in paragraph one as evidence of CRISPR's clinical progress, presented without qualification or skepticism about real-world performance. The passage offers no basis for predicting that the treatment is likely to fail; on the contrary, its framing of the approval as a milestone of the past decade's progress points in the opposite direction.
+**mistake_b:** This choice is unsupported by the passage. The 2023 sickle-cell approval is cited in paragraph one as evidence of CRISPR's clinical progress, presented without qualification or skepticism about real-world performance. The passage offers no basis for predicting that the treatment is likely to fail; on the contrary, its framing of the approval as a milestone of the past decade's progress points in the opposite direction.
 **mistake_e:** This choice is directly contradicted by the passage. Paragraph two states explicitly that the documented technical problems 'have not diminished enthusiasm for somatic-cell therapies,' and paragraph one characterizes the past decade as a period of transformative progress culminating in regulatory approval. The passage acknowledges complications but consistently distinguishes them from any decline in overall enthusiasm for CRISPR research and development.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -2180,12 +2180,12 @@ Critics of the current enforcement regime argue that the penalties remain too sm
 The primary purpose of the passage is to:
 
 - A) criticize the Federal Trade Commission for issuing only limited and piecemeal enforcement actions against dark patterns
-- B) describe a common category of deceptive digital-design techniques and survey the current regulatory response to them
+- B) demonstrate that voluntary corporate redesign is ultimately more effective than any formal regulation
 - C) argue that fines of 6 percent of annual revenue are the optimal deterrent against dark patterns
 - D) compare the effectiveness of state-level and federal consumer-protection legislation
-- E) demonstrate that voluntary corporate redesign is ultimately more effective than any formal regulation
+- E) describe a common category of deceptive digital-design techniques and survey the current regulatory response to them
 
-**answer:** B
+**answer:** E
 **explanation:** This is a primary-purpose question, which asks what the passage as a whole is doing — its organizing aim — rather than what any single paragraph argues. The correct answer must account for all three paragraphs.
 
 Paragraph 1 introduces dark patterns, defines the term, and provides four specific examples — hidden fees, deliberately tedious cancellation flows, pre-checked consent boxes, and false scarcity claims. The paragraph establishes that these techniques exist and that they systematically disadvantage consumers.
@@ -2194,13 +2194,13 @@ Paragraph 2 surveys the regulatory landscape. The EU's Digital Services Act, the
 
 Paragraph 3 presents two opposing perspectives — critics who find current penalties too small to deter large platforms, and defenders who cite voluntary corporate redesign and the risks of over-regulation. The passage does not resolve the debate or endorse either side.
 
-Taken together, the three paragraphs accomplish two things: they describe dark patterns as a category of deceptive design, and they survey the regulatory responses that have emerged. Neither objective tips into advocacy. The author reports; the author does not argue. Choice B — "describe a common category of deceptive digital-design techniques and survey the current regulatory response to them" — matches both objectives and the neutral, informational tone of all three paragraphs.
+Taken together, the three paragraphs accomplish two things: they describe dark patterns as a category of deceptive design, and they survey the regulatory responses that have emerged. Neither objective tips into advocacy. The author reports; the author does not argue. Choice E — "describe a common category of deceptive digital-design techniques and survey the current regulatory response to them" — matches both objectives and the neutral, informational tone of all three paragraphs.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice distorts the passage's tone toward the FTC. The passage states neutrally that the FTC has issued enforcement actions against specific companies and notes only that no comprehensive federal legislation has yet been enacted — it does not characterize the FTC's actions as inadequate or criticize the agency in any way. Attributing a critical stance to the author where none exists is the flaw of reversing or distorting passage tone.
 **mistake_c:** This choice is too narrow. The 6 percent revenue threshold of the EU's Digital Services Act is mentioned once, as one factual detail within the regulatory survey. The passage never evaluates that figure as optimal, insufficient, or superior to any alternative penalty structure. Selecting a single supporting detail and elevating it to the author's central argument is the flaw of being too narrow.
 **mistake_d:** This choice is unsupported. The passage does describe both state-level statutes (California and Colorado) and federal activity (FTC enforcement), but it never evaluates or compares the effectiveness of one level of government against the other. No such evaluative judgment appears anywhere in the text. Inferring a comparative assessment the author never draws is the flaw of being unsupported.
-**mistake_e:** This choice is unsupported. The passage notes in paragraph 3 that defenders of the current approach point out that many companies have voluntarily redesigned interfaces, but this observation is presented as one argument raised by one side in an ongoing debate — not as a conclusion the passage reaches or a claim it sets out to demonstrate. The author neither endorses this view nor marshals evidence to establish it as proven. Treating a contested viewpoint reported in passing as the passage's demonstrated thesis is the flaw of being unsupported.
+**mistake_b:** This choice is unsupported. The passage notes in paragraph 3 that defenders of the current approach point out that many companies have voluntarily redesigned interfaces, but this observation is presented as one argument raised by one side in an ongoing debate — not as a conclusion the passage reaches or a claim it sets out to demonstrate. The author neither endorses this view nor marshals evidence to establish it as proven. Treating a contested viewpoint reported in passing as the passage's demonstrated thesis is the flaw of being unsupported.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -2283,21 +2283,21 @@ These findings have spurred interest in complement-targeted therapies: drugs des
 
 The primary purpose of the passage is to:
 
-- A) advocate for a large increase in government funding of complement-system research programs
-- B) describe the complement system's role in immunity, its involvement in autoimmune disease, and the state of therapeutic development
+- A) describe the complement system's role in immunity, its involvement in autoimmune disease, and the state of therapeutic development
+- B) advocate for a large increase in government funding of complement-system research programs
 - C) compare the clinical effectiveness of eculizumab with that of other autoimmune treatments now in common clinical use
 - D) argue that the complement system's regulatory proteins are the single primary cause of most autoimmune disease
 - E) demonstrate that essentially all autoimmune diseases result directly from complement-system dysregulation
 
-**answer:** B
+**answer:** A
 **explanation:** This is a primary-purpose question. Such questions ask what the passage as a whole is doing rhetorically and informationally — not what a single paragraph says, not what the author implies about one detail, but the overarching organizational goal that unifies every paragraph.
 
 The passage divides into three distinct movements. The first paragraph establishes what the complement system is and enumerates its normal protective functions: pathogen clearance, opsonization, inflammatory signaling, and membrane-attack-complex assembly. The second paragraph shifts to pathology, explaining how complement dysregulation is implicated in autoimmune and inflammatory diseases and citing genetic evidence linking complement-regulatory mutations to elevated disease risk. The third paragraph follows the logical consequence of that pathology: therapeutic interest, the specific example of eculizumab, the difficulties facing broader applications, and the direction of next-generation research.
 
-Choice B states that the passage describes the complement system's role in immunity, its involvement in autoimmune disease, and the state of therapeutic development. This characterization maps with precision onto each of the three paragraphs in sequence. The word "describe" is the correct register: the passage presents information and traces a logical chain from normal function to dysfunction to treatment; it does not argue, compare, or advocate. No part of the passage is left unaccounted for by choice B, and choice B introduces no claim that exceeds what the passage supports.
+Choice A states that the passage describes the complement system's role in immunity, its involvement in autoimmune disease, and the state of therapeutic development. This characterization maps with precision onto each of the three paragraphs in sequence. The word "describe" is the correct register: the passage presents information and traces a logical chain from normal function to dysfunction to treatment; it does not argue, compare, or advocate. No part of the passage is left unaccounted for by choice A, and choice A introduces no claim that exceeds what the passage supports.
 
-The correct answer is B.
-**mistake_a:** Choice A is unsupported. Nowhere in the passage does the author call for increased government funding or any form of funding at all. The third paragraph discusses therapeutic challenges and research directions in a descriptive register, not an advocacy register. Selecting A requires importing a purpose the passage never expresses — a textbook example of a fabricated-inference flaw.
+The correct answer is A.
+**mistake_b:** Choice B is unsupported. Nowhere in the passage does the author call for increased government funding or any form of funding at all. The third paragraph discusses therapeutic challenges and research directions in a descriptive register, not an advocacy register. Selecting B requires importing a purpose the passage never expresses — a textbook example of a fabricated-inference flaw.
 **mistake_c:** Choice C is too narrow and misrepresents the passage. The passage mentions eculizumab as a single illustrative example of a complement-targeted therapy; it does not compare eculizumab's effectiveness to that of other autoimmune treatments in common use. No other named drug or treatment regimen appears in the passage, so a head-to-head comparison cannot be the primary purpose. This choice confuses a supporting example for the passage's central aim.
 **mistake_d:** Choice D distorts the passage's claims and is too extreme. The passage states that mutations affecting complement-regulatory proteins 'are often associated with elevated disease risk' — a hedged probabilistic correlation, not a causal assertion that regulatory proteins are 'the primary cause' of autoimmune disease. The passage also identifies multiple complement proteins and pathways as implicated; singling out regulatory proteins as the primary cause reverses the passage's measured, multi-factor presentation and upgrades a hedged association into an absolute causal claim.
 **mistake_e:** Choice E is too broad and extreme. The passage states that complement dysregulation 'has been implicated in a wide range of autoimmune and inflammatory diseases,' listing several examples, but it never asserts that all autoimmune diseases result from complement dysregulation. Extending a claim about a wide range of specific conditions to a universal claim about all autoimmune diseases is precisely the too-broad-or-extreme flaw that the GMAT Official Guide identifies as a common trap in primary-purpose and inference questions.
@@ -2313,22 +2313,22 @@ The correct answer is B.
 The passage most strongly suggests that the author would agree with which of the following statements?
 
 - A) Eculizumab will very likely become the accepted standard treatment for systemic lupus erythematosus patients.
-- B) The primary challenge of broader complement-targeted therapies is distinguishing pathologic complement activation from protective complement activation.
+- B) The discovery of complement factor H polymorphisms has already led directly to a definitive and complete cure for age-related macular degeneration in patients.
 - C) Most autoimmune diseases can be fully and reliably treated simply by inhibiting a single complement protein.
-- D) The discovery of complement factor H polymorphisms has already led directly to a definitive and complete cure for age-related macular degeneration in patients.
+- D) The primary challenge of broader complement-targeted therapies is distinguishing pathologic complement activation from protective complement activation.
 - E) Complement regulatory proteins, taken as a whole, typically cause the human body considerably more harm than benefit overall.
 
-**answer:** B
+**answer:** D
 **explanation:** This is an inference question: the prompt asks what the author "would agree with," requiring a statement that follows logically from the passage without overstating or distorting its claims.
 
 The passage's third paragraph contains the load-bearing sentence for this question: "The complement system's multiple activation pathways and feedback loops make it challenging to inhibit the pathologic branch of activation without also undermining the system's protective functions against infection." This sentence explicitly frames the central obstacle facing complement-targeted therapies as the difficulty of separating harmful (pathologic) activation from beneficial (protective) activation. The paragraph's final sentence reinforces the same idea: "The next generation of therapies seeks to target components that are selectively active in disease while preserving those needed for ordinary defense against pathogens." The entire structure of the third paragraph builds toward this distinction — therefore, the author's implied view is that this separation problem is the defining challenge of broader complement-targeted therapy development.
 
-Choice B states: "The primary challenge of broader complement-targeted therapies is distinguishing pathologic complement activation from protective complement activation." This maps precisely onto the passage's language. The word "primary" is justified because the passage does not enumerate other challenges of equal or greater weight — the multiple-pathways problem is the one difficulty the author explains at length, and it directly concerns the pathologic/protective distinction. The passage therefore most strongly suggests the author endorses this statement.
+Choice D states: "The primary challenge of broader complement-targeted therapies is distinguishing pathologic complement activation from protective complement activation." This maps precisely onto the passage's language. The word "primary" is justified because the passage does not enumerate other challenges of equal or greater weight — the multiple-pathways problem is the one difficulty the author explains at length, and it directly concerns the pathologic/protective distinction. The passage therefore most strongly suggests the author endorses this statement.
 
-The correct answer is B.
+The correct answer is D.
 **mistake_a:** This choice is unsupported and contradicted by the passage's cautionary tone. The passage states that eculizumab was approved specifically for paroxysmal nocturnal hemoglobinuria, a rare blood disorder, and that complement-targeted therapies for broader autoimmune diseases have faced greater difficulty. Systemic lupus erythematosus is listed as one such broader autoimmune disease. Projecting eculizumab as a likely standard treatment for lupus therefore reverses the passage's explicitly cautious framing and introduces a prediction the author never makes.
 **mistake_c:** This choice is directly contradicted by the passage. The passage explains that the complement system operates through multiple activation pathways and feedback loops, making targeted inhibition inherently complex. Nothing in the passage supports the claim that a single protein target could fully treat most autoimmune diseases; on the contrary, the difficulty of selectively disabling pathologic activity without compromising protective functions implies that single-target inhibition is insufficient for broad autoimmune conditions. The word fully also introduces an extreme claim the passage nowhere approaches.
-**mistake_d:** This choice confuses a risk-association finding with a clinical outcome and attributes to the author a conclusion that is entirely outside the passage's scope. The passage states that certain polymorphisms in the complement factor H gene significantly increase susceptibility to age-related macular degeneration. It makes no claim that this genetic discovery produced a cure or any effective treatment for AMD. Presenting that discovery as having led to a cure goes far beyond what the passage asserts and is unsupported by anything in the text.
+**mistake_b:** This choice confuses a risk-association finding with a clinical outcome and attributes to the author a conclusion that is entirely outside the passage's scope. The passage states that certain polymorphisms in the complement factor H gene significantly increase susceptibility to age-related macular degeneration. It makes no claim that this genetic discovery produced a cure or any effective treatment for AMD. Presenting that discovery as having led to a cure goes far beyond what the passage asserts and is unsupported by anything in the text.
 **mistake_e:** This choice reverses the passage's characterization of complement regulatory proteins. The first paragraph states that in healthy individuals, complement activation is tightly regulated by inhibitory proteins that prevent the system from turning on the body's own cells — a plainly protective function. The second paragraph further confirms their beneficial role by noting that mutations affecting these regulatory proteins are associated with elevated disease risk. The passage therefore describes regulatory proteins as safeguards, not sources of harm, making this choice a direct inversion of the passage's stated position.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -2380,25 +2380,25 @@ The new approach did not displace the older methodology immediately or uniformly
 The primary purpose of the passage is to:
 
 - A) argue that Aristotle's entire system of natural philosophy was fundamentally and irredeemably flawed in its underlying logical structure
-- B) trace the historical transition from deductive natural philosophy to the experimental-mathematical methodology that became dominant
+- B) demonstrate that the inductive method is the only genuinely valid approach to all scientific inquiry
 - C) claim that Isaac Newton essentially single-handedly created all of modern scientific methodology on his own
 - D) contrast the individual scientific careers of Francis Bacon and Galileo Galilei in biographical detail
-- E) demonstrate that the inductive method is the only genuinely valid approach to all scientific inquiry
+- E) trace the historical transition from deductive natural philosophy to the experimental-mathematical methodology that became dominant
 
-**answer:** B
+**answer:** E
 **explanation:** This is a primary purpose question — a variant of the main-idea task. The goal is to identify the function that governs the passage as a whole, not merely a detail that appears in one paragraph. A correct answer must be broad enough to encompass every paragraph yet specific enough to reflect the passage's actual argument rather than a generic paraphrase.
 
 The passage is organized chronologically across three paragraphs. Paragraph 1 describes the pre-modern state of natural philosophy: deductive reasoning from first principles, grounded in Aristotle, with limited systematic testing of predictions against observation. Paragraph 2 introduces the seventeenth-century shift, naming Francis Bacon's inductive method and Galileo's experimental-mathematical combination, and notes the durability of the results that method produced. Paragraph 3 explains that the transition was neither immediate nor uniform, culminating in Newton's Principia Mathematica (1687) as the moment when the integrated experimental-mathematical framework became dominant — while carefully noting that the older approach was not formally refuted but simply proved less productive.
 
 The passage thus narrates a historical arc: it begins at a "before" state (Aristotelian deduction), traces the agents and mechanisms of change (Bacon, Galileo), and arrives at an "after" state (Newtonian synthesis as the dominant model). The author is not advocating for one methodology, attacking Aristotle, or profiling any single figure; the purpose is descriptive and historical — to explain how and why the transition occurred.
 
-Answer B states that the passage traces "the historical transition from deductive natural philosophy to the experimental-mathematical methodology that became dominant." This language maps precisely onto the three-paragraph arc described above. The word "trace" matches the chronological, explanatory structure; "historical transition" captures the movement from one methodology to another; "experimental-mathematical" reflects the specific formulation the author emphasizes (not merely "inductive," which would make Bacon alone sufficient); and "became dominant" echoes the passage's own phrasing in paragraph 3. No paragraph falls outside this description.
+Answer E states that the passage traces "the historical transition from deductive natural philosophy to the experimental-mathematical methodology that became dominant." This language maps precisely onto the three-paragraph arc described above. The word "trace" matches the chronological, explanatory structure; "historical transition" captures the movement from one methodology to another; "experimental-mathematical" reflects the specific formulation the author emphasizes (not merely "inductive," which would make Bacon alone sufficient); and "became dominant" echoes the passage's own phrasing in paragraph 3. No paragraph falls outside this description.
 
-The correct answer is B.
+The correct answer is E.
 **mistake_a:** This choice distorts the passage's tone toward Aristotle's system. The passage does not characterize Aristotelian natural philosophy as fundamentally flawed in its logical structure; paragraph 3 states explicitly that the older, deductive approach was not refuted in any formal sense. The passage treats the pre-modern methodology as historically dominant and coherent on its own terms, not as logically defective. Answer A therefore misrepresents the author's stated position.
 **mistake_c:** This choice overstates Newton's individual role and contradicts the passage's multi-figure narrative. The passage introduces Bacon and Galileo in paragraph 2 as the originators of the new approach before Newton appears in paragraph 3; Newton's Principia is presented as the moment of consolidation and dominance, not as the origin of the methodology. The word single-handedly has no support anywhere in the passage — a specific flaw of fabrication and overstatement.
 **mistake_d:** Bacon and Galileo each appear in a single paragraph and are used as illustrations of a broader methodological shift, not as subjects of biographical or career analysis. The passage does not describe the arc of either man's career, compare their professional circumstances, or frame their differences as a contrast worth exploring in its own right. This choice is too narrow — it reduces a passage about a centuries-long methodological transition to a comparison of two individuals who occupy only supporting roles in the argument.
-**mistake_e:** The passage never claims that the inductive method is the only valid approach to scientific inquiry. Paragraph 3 states that the older deductive approach was not formally refuted and that the new methodology simply proved more productive. This careful hedging is the opposite of an exclusive claim about validity. Answer E introduces a normative absolute — the only valid approach — that the passage explicitly avoids, a specific flaw of fabrication combined with distortion of the author's deliberately measured conclusion.
+**mistake_b:** The passage never claims that the inductive method is the only valid approach to scientific inquiry. Paragraph 3 states that the older deductive approach was not formally refuted and that the new methodology simply proved more productive. This careful hedging is the opposite of an exclusive claim about validity. Answer B introduces a normative absolute — the only valid approach — that the passage explicitly avoids, a specific flaw of fabrication combined with distortion of the author's deliberately measured conclusion.
 **related_reading:** reading-verbal-06-rc-question-types
 
 ---
@@ -2508,15 +2508,15 @@ Which of the following best describes the organization of the passage?
 
 In the third paragraph, the author concedes that 'the distributionists have the better of the specific quarrel over jar-opening.' What is the primary function of this concession within the paragraph's overall argument?
 
-- A) It signals that the author has by now abandoned the integrationist view altogether and entirely in favor of the distributionist account of octopus problem-solving behavior.
-- B) It grants one camp a narrow point in order to set up the larger claim that neither camp's case is yet decisive and that the debate's chief value lies elsewhere.
+- A) It grants one camp a narrow point in order to set up the larger claim that neither camp's case is yet decisive and that the debate's chief value lies elsewhere.
+- B) It signals that the author has by now abandoned the integrationist view altogether and entirely in favor of the distributionist account of octopus problem-solving behavior.
 - C) It introduces new experimental evidence about arm autonomy that the preceding paragraph had entirely omitted.
 - D) It restates the passage's central main conclusion, which the rest of the paragraph then merely goes on to illustrate.
 - E) It concedes only a minor objection so that the author can then proceed to defend the integrationist view as fundamentally and basically correct.
 
-**answer:** B
-**explanation:** The concession is immediately qualified: 'But it would be a mistake to let this local victory settle the larger question.' The author grants the distributionists the jar-opening point precisely in order to argue that the Vesalius transfer results remain unexplained by any distributionist model, so neither camp has won the broader contest. The paragraph then pivots to what the debate 'most usefully exposes' — the human tendency to project our own mental architecture onto octopuses — which the author frames as more important than which camp is right. Thus the concession functions as a setup for the larger, even-handed claim and the methodological lesson, not as a surrender or a defense of either side. Option B states exactly this function. The correct answer is B.
-**mistake_a:** The author does not abandon integrationism; the very next sentences defend the unexplained integrationist-friendly transfer results, and the conclusion treats both camps as unresolved.
+**answer:** A
+**explanation:** The concession is immediately qualified: 'But it would be a mistake to let this local victory settle the larger question.' The author grants the distributionists the jar-opening point precisely in order to argue that the Vesalius transfer results remain unexplained by any distributionist model, so neither camp has won the broader contest. The paragraph then pivots to what the debate 'most usefully exposes' — the human tendency to project our own mental architecture onto octopuses — which the author frames as more important than which camp is right. Thus the concession functions as a setup for the larger, even-handed claim and the methodological lesson, not as a surrender or a defense of either side. Option A states exactly this function. The correct answer is A.
+**mistake_b:** The author does not abandon integrationism; the very next sentences defend the unexplained integrationist-friendly transfer results, and the conclusion treats both camps as unresolved.
 **mistake_c:** The concession introduces no new evidence; the jar-opening behavior and the Vesalius study were both already on the table from earlier paragraphs.
 **mistake_d:** The concession is a narrow point about one behavior, not a restatement of the passage's main conclusion, which concerns projection and experimental design and comes later.
 **mistake_e:** The author does not go on to defend integrationism as 'fundamentally correct'; the paragraph's thrust is that no confident verdict for either side is yet warranted.
@@ -2635,16 +2635,16 @@ The lesson is not that one instrument should displace the others. Reflective sur
 Which of the following best describes the organization of the passage?
 
 - A) A single mitigation strategy is introduced, systematically defended against three separate objections, and then firmly endorsed as clearly superior to all competing alternatives.
-- B) Two widely adopted approaches are presented, each is complicated by a drawback, a third approach is introduced and defended against an objection, and the strategies are recast as complementary.
+- B) A detailed historical account of municipal heat policy over time is given, followed by a confident forecast of how that policy is likely to evolve in future.
 - C) A scientific phenomenon is carefully defined, its underlying causes are disputed at length by two rival camps, and the dispute is ultimately left entirely unresolved.
-- D) A detailed historical account of municipal heat policy over time is given, followed by a confident forecast of how that policy is likely to evolve in future.
+- D) Two widely adopted approaches are presented, each is complicated by a drawback, a third approach is introduced and defended against an objection, and the strategies are recast as complementary.
 - E) A single empirical study is summarized in detail, its methodology is sharply criticized, and an alternative replacement methodology is then proposed.
 
-**answer:** B
-**explanation:** The passage opens by defining the urban heat-island effect and presenting the two remedies planners have converged on—reflective surfaces and tree canopy (paragraph 1). The second paragraph complicates each: reflective surfaces raise pedestrian-level radiant heat (the Halvorsen and Pradhan finding), while canopy, though richer in benefits, takes years and competes with density. The third paragraph introduces a third lever, zoning reform, and explicitly defends it against the critics' objection that density concentrates heat. The final paragraph recasts all three not as rivals but as a calibrated sequence. Option B tracks exactly this movement: two approaches, each complicated, a third introduced and defended, and a closing synthesis. The correct answer is B.
+**answer:** D
+**explanation:** The passage opens by defining the urban heat-island effect and presenting the two remedies planners have converged on—reflective surfaces and tree canopy (paragraph 1). The second paragraph complicates each: reflective surfaces raise pedestrian-level radiant heat (the Halvorsen and Pradhan finding), while canopy, though richer in benefits, takes years and competes with density. The third paragraph introduces a third lever, zoning reform, and explicitly defends it against the critics' objection that density concentrates heat. The final paragraph recasts all three not as rivals but as a calibrated sequence. Option D tracks exactly this movement: two approaches, each complicated, a third introduced and defended, and a closing synthesis. The correct answer is D.
 **mistake_a:** This describes a single strategy defended and crowned superior, but the passage presents three instruments and its closing point is explicitly that none should displace the others. It misrepresents both the number of approaches and the non-hierarchical conclusion.
 **mistake_c:** The causes of the heat island are not the subject of a two-camp dispute, and the passage does not end unresolved—it offers a clear synthesizing judgment. This option imports a structure the text never adopts.
-**mistake_d:** The passage is analytical, not chronological; it offers no historical narrative of policy and no dated forecast of policy evolution. The 'history-plus-forecast' frame does not fit.
+**mistake_b:** The passage is analytical, not chronological; it offers no historical narrative of policy and no dated forecast of policy evolution. The 'history-plus-forecast' frame does not fit.
 **mistake_e:** Although one study is cited, the passage neither criticizes its methodology nor proposes a replacement method; the study is used as evidence for a substantive point about radiant heat, not as a methodological target.
 **related_reading:** reading-verbal-06-rc-question-types
 
@@ -2750,17 +2750,17 @@ Which of the following hypothetical municipal decisions best illustrates the aut
 The author's attitude toward zoning reform as a heat-mitigation tool is best described as
 
 - A) unqualified enthusiasm, treating zoning reform as an entirely guaranteed cure for the whole problem of urban heat in dense cities
-- B) cautious endorsement, regarding it as a valuable but indirect contributor whose critics raise a serious yet answerable objection
+- B) resigned dismissal, conceding its surface appeal while ultimately judging it impractical and unworkable
 - C) open skepticism, seriously doubting that zoning reform can play any genuinely constructive role at all in mitigation
 - D) strict neutrality, pointedly declining to take any real position on its merits as a mitigation tool
-- E) resigned dismissal, conceding its surface appeal while ultimately judging it impractical and unworkable
+- E) cautious endorsement, regarding it as a valuable but indirect contributor whose critics raise a serious yet answerable objection
 
-**answer:** B
-**explanation:** The author clearly values zoning reform, calling it a 'third, less-discussed lever' that can 'free up land for canopy and permeable ground' and arguing it 'may warm a district on paper while cooling it in fact.' That is endorsement. But the endorsement is qualified: the author concedes zoning 'does not cool the air directly,' grants that the critics' objection 'is not frivolous,' and only then redirects it. This combination—genuine support, an acknowledged limitation, and a serious but answerable objection—is cautious endorsement. Option B states exactly that posture. The correct answer is B.
+**answer:** E
+**explanation:** The author clearly values zoning reform, calling it a 'third, less-discussed lever' that can 'free up land for canopy and permeable ground' and arguing it 'may warm a district on paper while cooling it in fact.' That is endorsement. But the endorsement is qualified: the author concedes zoning 'does not cool the air directly,' grants that the critics' objection 'is not frivolous,' and only then redirects it. This combination—genuine support, an acknowledged limitation, and a serious but answerable objection—is cautious endorsement. Option E states exactly that posture. The correct answer is E.
 **mistake_a:** 'Unqualified enthusiasm' and 'guaranteed cure' overstate the stance. The author explicitly notes zoning does not cool air directly and takes the critics' objection seriously, so the endorsement is qualified, not unconditional.
 **mistake_c:** Open skepticism misreads the tone; the author affirmatively defends zoning reform against its critics and assigns it a real role in the closing synthesis, which is incompatible with doubting it can contribute at all.
 **mistake_d:** The author is not neutral—taking a side by reframing the critics' objection and praising what reform can accomplish is an evaluative stance, not abstention. 'Strict neutrality' is the cop-out answer the text rules out.
-**mistake_e:** Nothing in the passage judges zoning reform impractical or dismisses it; the author treats it as workable and beneficial. 'Resigned dismissal' contradicts the supportive language.
+**mistake_b:** Nothing in the passage judges zoning reform impractical or dismisses it; the author treats it as workable and beneficial. 'Resigned dismissal' contradicts the supportive language.
 **related_reading:** reading-verbal-06-rc-question-types
 
 

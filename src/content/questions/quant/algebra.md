@@ -1514,7 +1514,7 @@ The correct answer is D.
 ---
 
 ## Q40
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Sequences — Recursive
 
@@ -1935,7 +1935,7 @@ Two positive integers a and b satisfy a + b = 15 and a − b = 4. What is the va
 ---
 
 ## Q62
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics
 
@@ -3014,7 +3014,7 @@ Maria's age is 4 years more than twice Lena's age. If the sum of their ages is 3
 ---
 
 ## Q119
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics
 
@@ -3098,16 +3098,16 @@ A boat travels 36 kilometers downstream in 2 hours and the same 36 kilometers up
 **type:** Problem Solving
 **topic:** Quadratics
 
-If r and s are the two solutions of x² - 7x + 10 = 0, what is the value of r² + s²?
+If r and s are the two solutions of x² - 11x + 24 = 0, what is the value of r² + s²?
 
-- A) 9
-- B) 29
-- C) 39
-- D) 49
-- E) 69
+- A) 25
+- B) 73
+- C) 97
+- D) 121
+- E) 145
 
 **answer:** B
-**explanation:** Rather than finding r and s individually, we use Vieta's formulas together with an algebraic identity. For x² - 7x + 10 = 0, the sum of the roots is r + s = -(-7)/1 = 7 and the product is r·s = 10/1 = 10. The identity (r + s)² = r² + 2rs + s² can be rearranged to r² + s² = (r + s)² - 2rs. Substituting the known values gives r² + s² = 7² - 2(10) = 49 - 20 = 29. As a check, the equation factors as (x - 2)(x - 5) = 0, so the roots are 2 and 5, and 2² + 5² = 4 + 25 = 29, confirming the result. The correct answer is B.
+**explanation:** Rather than finding r and s individually, we use Vieta's formulas together with an algebraic identity. For x² - 11x + 24 = 0, the sum of the roots is r + s = -(-11)/1 = 11 and the product is r·s = 24/1 = 24. The identity (r + s)² = r² + 2rs + s² can be rearranged to r² + s² = (r + s)² - 2rs. Substituting the known values gives r² + s² = 11² - 2(24) = 121 - 48 = 73. As a check, the equation factors as (x - 3)(x - 8) = 0, so the roots are 3 and 8, and 3² + 8² = 9 + 64 = 73, confirming the result. Among the wrong answers, 121 is (r + s)² with the correction term forgotten, 97 subtracts rs only once, 145 adds rs to (r + s)² instead of subtracting 2rs, and 25 is (r - s)². The correct answer is B.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
