@@ -55,6 +55,9 @@ function SignupFallback() {
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
           Free 7-day full-access trial. No credit card needed.
         </p>
+        <p className="text-[12px] text-[#888888] mt-2">
+          Built by a 565 → 735 founder
+        </p>
       </div>
     </div>
   )
@@ -305,6 +308,9 @@ function SignupForm() {
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
           Free 7-day full-access trial. No credit card needed.
+        </p>
+        <p className="text-[12px] text-[#888888] mt-2">
+          Built by a 565 → 735 founder
         </p>
       </div>
 

@@ -122,14 +122,29 @@ const MAX_PER_TOPIC = 4
  *     incrementing index so the picker walks the pool from a different
  *     starting slice each time, drawing fresh questions across mocks.
  *     Caller-supplied: typically the count of prior mock sessions.
+ *   - `excludeIds`: question ids already served in prior mocks. Excluded
+ *     from the pool up front so repeat mocks measure skill, not item
+ *     memory (rotation alone re-served most of the pool: a 3-position
+ *     shift over ~900 questions barely moved the quota walk). Falls back
+ *     to the full pool when exclusion would leave fewer questions than
+ *     the section target — old heavy users keep getting full mocks.
  */
 export function pickMockQuestions(
   section: Section,
   mixOverride?: Record<Difficulty, number>,
   countOverride?: number,
-  mockIndex: number = 0
+  mockIndex: number = 0,
+  excludeIds?: ReadonlySet<string>
 ): ParsedQuestion[] {
-  const pool = getQuestionsBySection(section).filter((q) => q.options.length > 0)
+  const fullPool = getQuestionsBySection(section).filter(
+    (q) => q.options.length > 0
+  )
+  const targetCount = countOverride ?? MOCK_QUESTION_COUNT[section]
+  let pool = fullPool
+  if (excludeIds && excludeIds.size > 0) {
+    const fresh = fullPool.filter((q) => !excludeIds.has(q.id))
+    if (fresh.length >= targetCount) pool = fresh
+  }
   if (pool.length === 0) return []
 
   // Rotate the pool by mockIndex so successive mocks start the walk
@@ -141,7 +156,7 @@ export function pickMockQuestions(
       ? pool
       : [...pool.slice(offset), ...pool.slice(0, offset)]
 
-  const target = countOverride ?? MOCK_QUESTION_COUNT[section]
+  const target = targetCount
   const mix = mixOverride ?? DIFFICULTY_MIX[section]
   const picked: ParsedQuestion[] = []
   const pickedIds = new Set<string>()

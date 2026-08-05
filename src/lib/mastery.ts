@@ -102,11 +102,22 @@ export function computeTopicMastery(
   chapterProgress: ChapterProgressShape | undefined | null,
   questionIndex: Map<string, ParsedQuestion>,
   overrides: PersonaThresholdOverrides = {},
+  chapterInlineSupplyBySlug?: Map<string, number>,
 ): TopicMastery {
   const chapterSlug = TOPIC_TO_CHAPTER[topic] ?? null
   const conceptAccuracyFloor = overrides.conceptAccuracy ?? CONCEPT_ACCURACY
   const timedAccuracyFloor = overrides.timedAccuracy ?? TIMED_ACCURACY
   const medianCap = overrides.timedMedianCap ?? TIMED_MEDIAN_CAP
+  // Cap the untimed requirement at the chapter's actual countable inline
+  // supply — several mapped chapters carry fewer than MIN_UNTIMED inline
+  // questions (and the TPA chapter carries zero countable ones), which
+  // made the gate permanently unmeetable with a stuck "need N more
+  // chapter attempts" message.
+  const inlineSupply = chapterSlug
+    ? chapterInlineSupplyBySlug?.get(chapterSlug)
+    : undefined
+  const requiredUntimed =
+    inlineSupply != null ? Math.min(MIN_UNTIMED, inlineSupply) : MIN_UNTIMED
 
   // ---------- Gate 1: Concept-ready ----------
   // Untimed chapter check-questions. Source: user_metadata.chapter_progress.
@@ -125,21 +136,24 @@ export function computeTopicMastery(
   }
   const conceptAccuracy = conceptTotal > 0 ? conceptCorrect / conceptTotal : 0
   const conceptSatisfied =
-    conceptTotal >= MIN_UNTIMED && conceptAccuracy >= conceptAccuracyFloor
+    requiredUntimed === 0 ||
+    (conceptTotal >= requiredUntimed && conceptAccuracy >= conceptAccuracyFloor)
   const conceptGate: MasteryGate = {
     id: "concept",
     label: "Concept-ready",
     satisfied: conceptSatisfied,
     evidence:
-      conceptTotal === 0
-        ? "Open the chapter and work its check questions"
-        : conceptTotal < MIN_UNTIMED
-          ? `${conceptCorrect}/${conceptTotal} correct — need ${
-              MIN_UNTIMED - conceptTotal
-            } more chapter attempt${MIN_UNTIMED - conceptTotal === 1 ? "" : "s"}`
-          : conceptAccuracy < conceptAccuracyFloor
-            ? `${Math.round(conceptAccuracy * 100)}% untimed — need ${Math.round(conceptAccuracyFloor * 100)}%+`
-            : `${Math.round(conceptAccuracy * 100)}% untimed (${conceptCorrect}/${conceptTotal})`,
+      requiredUntimed === 0
+        ? "This chapter has no scoreable inline checks — concept readiness is assessed by the timed gate"
+        : conceptTotal === 0
+          ? "Open the chapter and work its check questions"
+          : conceptTotal < requiredUntimed
+            ? `${conceptCorrect}/${conceptTotal} correct — need ${
+                requiredUntimed - conceptTotal
+              } more chapter attempt${requiredUntimed - conceptTotal === 1 ? "" : "s"}`
+            : conceptAccuracy < conceptAccuracyFloor
+              ? `${Math.round(conceptAccuracy * 100)}% untimed — need ${Math.round(conceptAccuracyFloor * 100)}%+`
+              : `${Math.round(conceptAccuracy * 100)}% untimed (${conceptCorrect}/${conceptTotal})`,
   }
 
   // ---------- Gate 2: Timed-ready ----------
@@ -429,6 +443,7 @@ export function computeEngagedTopicMasteries(
   chapterProgress: ChapterProgressShape | undefined | null,
   questionIndex: Map<string, ParsedQuestion>,
   overrides: PersonaThresholdOverrides = {},
+  chapterInlineSupplyBySlug?: Map<string, number>,
 ): TopicMastery[] {
   // Collect candidate topics from both attempts and chapter_progress.
   const candidates = new Map<string, Section>()
@@ -475,6 +490,7 @@ export function computeEngagedTopicMasteries(
         chapterProgress,
         questionIndex,
         overrides,
+        chapterInlineSupplyBySlug,
       ),
     )
     .sort((a, b) => {

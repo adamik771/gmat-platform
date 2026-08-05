@@ -307,6 +307,13 @@ p {
    Default (no attribute) resolves to light — the "brighten content"
    default for long-form reading.
 --------------------------------------------------------------- */
+/* Keyboard focus on the light paper theme: the global translucent gold
+   ring composites to ~1.35:1 on #ede5d0 — effectively invisible. A solid
+   dark-gold ring reads at ~5.5:1 there while keeping the brand hue. */
+.reader-themed:not([data-reading-theme="dark"]) :focus-visible {
+  outline-color: #6b5518;
+}
+
 .reader-themed {
   /* Light = paper-beige editorial default. Darker / warmer than a
      pure-white sheet so the transition into the dark authed chrome

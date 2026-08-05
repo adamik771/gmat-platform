@@ -89,6 +89,28 @@ export default async function MockRunPage({
     // Non-fatal — fall through with mockIndex = 0.
   }
 
+  // Questions already served in prior mocks — excluded by the picker so
+  // a repeat mock measures skill, not item memory (the rotation offset
+  // alone re-served most of the pool). Bounded to the last ~6 mocks'
+  // worth of attempts; failure is non-fatal (empty set = no exclusion).
+  const priorMockQuestionIds = new Set<string>()
+  if (mockIndex > 0) {
+    try {
+      const { data: priorAttempts } = await supabase
+        .from("practice_attempts")
+        .select("question_id, session_id, practice_sessions!inner(slug)")
+        .eq("user_id", user.id)
+        .like("practice_sessions.slug", "mock-%")
+        .order("created_at", { ascending: false })
+        .limit(400)
+      for (const row of priorAttempts ?? []) {
+        if (row.question_id) priorMockQuestionIds.add(row.question_id)
+      }
+    } catch {
+      // Non-fatal — repeat overlap is a quality degradation, not a blocker.
+    }
+  }
+
   // Dispatch through the mode module — handles static + dynamic modes.
   // Pre-pass the existing static picker so mock-modes.ts doesn't need
   // to re-import the mock module (avoids the circular import).
@@ -107,7 +129,8 @@ export default async function MockRunPage({
         section,
         mix ?? getDifficultyMixForTarget(section, targetScore),
         count,
-        mockIndex
+        mockIndex,
+        priorMockQuestionIds
       ),
   })
 

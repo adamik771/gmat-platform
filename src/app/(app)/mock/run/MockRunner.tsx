@@ -1062,6 +1062,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
                   key={i}
                   onClick={() => handleSelect(i)}
                   disabled={optionsDisabled}
+                  aria-pressed={selected}
                   data-kb-space="submit"
                   className="w-full flex items-start text-left p-3 rounded-lg border transition-colors disabled:cursor-not-allowed"
                   style={{

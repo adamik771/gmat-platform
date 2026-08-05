@@ -42,6 +42,11 @@ const faqItems = [
     answer:
       "Life happens. You can reschedule sessions with 24-hour notice. Coaching packages are valid for 6 months from purchase.",
   },
+  {
+    question: "What is your refund policy?",
+    answer:
+      "Self-Study and Self-Study + Mentorship include a 14-day money-back guarantee, no questions asked. Coaching and Intensive are refundable in full any time before your first session; after that, package terms apply — see /refund for the exact conditions of each.",
+  },
 ]
 
 const comparisonFeatures = [
@@ -96,6 +101,16 @@ export default function PricingPage() {
                 pricing.
               </span>
             </h1>
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium mb-4"
+              style={{
+                borderColor: "rgba(201,168,76,0.3)",
+                backgroundColor: "rgba(201,168,76,0.06)",
+                color: "#C9A84C",
+              }}
+            >
+              565 → 735 · Top 1%
+            </div>
             <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed">
               Four paths from self-study to full-service coaching. Choose the plan that
               fits your timeline. Upgrade anytime.
@@ -177,7 +192,11 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
             {[
-              { icon: Shield, label: "14-Day Money-Back on Self-Study" },
+              {
+                icon: Shield,
+                label: "14-Day Money-Back on Self-Study Plans",
+                href: "/refund",
+              },
               { icon: Calendar, label: "Flexible Scheduling" },
               { icon: Globe, label: "Non-Native Speaker Support" },
             ].map((item, i) => {
@@ -189,7 +208,16 @@ export default function PricingPage() {
                   )}
                   <div className="flex items-center gap-2.5">
                     <Icon className="w-4 h-4" style={{ color: "#C9A84C" }} />
-                    <span className="text-sm text-[#C0C0C0] tracking-tight">{item.label}</span>
+                    {"href" in item && item.href ? (
+                      <Link
+                        href={item.href}
+                        className="text-sm text-[#C0C0C0] tracking-tight underline decoration-white/20 underline-offset-4 hover:text-[#F0F0F0]"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <span className="text-sm text-[#C0C0C0] tracking-tight">{item.label}</span>
+                    )}
                   </div>
                 </div>
               )

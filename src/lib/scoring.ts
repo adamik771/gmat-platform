@@ -73,3 +73,22 @@ export function sectionScoresToTotal(
   const snapped = 205 + Math.round((raw - 205) / 10) * 10
   return Math.max(205, Math.min(805, snapped))
 }
+
+/**
+ * Full-set section accuracy for a stored mock session row. The stored
+ * `accuracy` column is answered-only for mock slugs (MockRunner divides by
+ * answered count and the API skips its recompute there), which inflated a
+ * timed-out mock's analytics score vs the mock report's number for the same
+ * mock. Deriving from correct_count/total_questions matches the report; the
+ * stored percentage stays as a fallback for legacy rows missing the counts.
+ */
+export function fullSetAccuracy(
+  correctCount: number | null | undefined,
+  totalQuestions: number | null | undefined,
+  storedAccuracyPct: number | null | undefined
+): number {
+  if (totalQuestions && totalQuestions > 0) {
+    return (correctCount ?? 0) / totalQuestions
+  }
+  return (storedAccuracyPct ?? 0) / 100
+}
