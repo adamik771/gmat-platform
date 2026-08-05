@@ -75,9 +75,11 @@ describe("shouldGuardUnload", () => {
     expect(shouldGuardUnload(true, true, "unauthorized")).toBe(true)
     expect(shouldGuardUnload(true, true, "saving")).toBe(true)
   })
+  it("guards the pre-save idle window on a finished session", () => {
+    expect(shouldGuardUnload(true, true, "idle")).toBe(true)
+  })
   it("releases after a successful save and on untouched sessions", () => {
     expect(shouldGuardUnload(true, true, "saved")).toBe(false)
-    expect(shouldGuardUnload(true, true, "idle")).toBe(false)
     expect(shouldGuardUnload(false, false, "idle")).toBe(false)
     expect(shouldGuardUnload(false, true, "error")).toBe(false)
   })

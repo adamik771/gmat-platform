@@ -20,10 +20,11 @@ const DIFFICULTY_RANK: Record<Difficulty, number> = {
  * 10 minutes of break between sections. Scoring mirrors the other
  * surfaces (accuracy × 600 + 205, snapped to the nearest 10-point tick).
  *
- * The question-picker is deterministic per calendar date + section, so
- * a student who starts the mock, leaves, and comes back within the same
- * day resumes the same set. The `mockKey` parameter lets callers vary
- * the seed (e.g., to regenerate a fresh mock on demand).
+ * The question-picker is deterministic for a given (section, mix, count,
+ * mockIndex, excludeIds) input: the caller passes the count of prior mock
+ * sessions as a rotation offset and the set of previously served question
+ * ids for exclusion, so successive mocks draw fresh questions while the
+ * same inputs always reproduce the same set.
  */
 
 export const MOCK_SECTIONS: Section[] = ["Quant", "Verbal", "DI"]
