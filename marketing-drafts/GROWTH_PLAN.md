@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Zakarian GMAT — Growth Plan (Low-Cost Founder-Led Launch)
 
 The plan for getting the first cohort of real users and founding customers with
@@ -24,7 +26,7 @@ Before strategy, the facts that shape it:
   - Coaching — **$2,500** (8 1:1 sessions)
   - Intensive — **$4,200** (16 1:1 sessions)
 - There is **no in-app "diagnostic" test**. The baseline is an official mba.com practice exam the user enters on `/mock`. We never advertise a "free diagnostic." The honest free hook is a **free personalized study plan + full beta access**.
-- The only verified result is the founder's own: **565 to 735, 100th percentile, as a non-native English speaker.** No student testimonials exist yet — we do not invent any.
+- The only citable result is the founder's own: **565 to 735, top 1%, as a non-native English speaker.** No student testimonials exist yet — we do not invent any.
 
 **Strategic implication:** this is not a "free trial to paid" funnel yet. It is a
 **beta-signup funnel with a founding-conversion layer** on top. Keep beta free to
@@ -183,7 +185,7 @@ offer) before pouring in more traffic.
 ## 10. Guardrails (non-negotiable)
 
 - **Manual and personalized only.** No automation tools, no scraping, no mass-DMs, no bought lists. Respect LinkedIn's rules.
-- **No fabricated proof.** No invented testimonials, no guaranteed scores, no "X% improvement" claims. Cite only Adam's verified 565->735 / 100th percentile.
+- **No fabricated proof.** No invented testimonials, no guaranteed scores, no "X% improvement" claims. Cite only Adam's 565->735 / top 1%.
 - **No fake urgency.** Founding access is genuinely early, not scarce. No countdowns or "last chance."
 - **No implied affiliation** with GMAC / mba.com / the official GMAT. The disclaimer is now site-wide; keep it in any public claim block and ad.
 - **Helpful before selling.** Lead with the free study plan and honest advice. The sale is a natural next step, never the opener.

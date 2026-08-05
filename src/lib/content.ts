@@ -602,7 +602,15 @@ function parseQuestionFile(filePath: string): ParsedQuestion[] {
     const flatSetMatch = block.match(/^##\s+Q\d+\s*\(Set\b(.*)\)/m)
     if (flatSetMatch) {
       if (/continued/i.test(flatSetMatch[1])) {
-        contextForBlock = flatSetReference
+        // Continued questions authored since 2026-06 re-inline the set's
+        // exhibit in their own body (self-contained by design, so a question
+        // renders correctly wherever the test dealer places it). Inheriting
+        // the lead's reference on top of that rendered the same table twice
+        // in one view — so only inherit when the block carries no exhibit of
+        // its own.
+        contextForBlock = extractFlatSetReference(block)
+          ? undefined
+          : flatSetReference
       } else {
         flatSetReference = extractFlatSetReference(block)
         contextForBlock = undefined

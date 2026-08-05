@@ -66,6 +66,9 @@ export function drainPendingAttempts(userId: string): Promise<DrainResult> {
   return drainInFlight
 }
 
+// Note: this replay persists a practice_sessions row but deliberately does
+// NOT fire the practice_completed analytics event — activation is measured
+// on the online SessionClient path only (see lib/analytics.ts).
 async function doDrain(userId: string): Promise<DrainResult> {
   if (!userId) return { drained: false, attemptsSent: 0, error: "No user" }
   const attempts = await loadPendingAttempts(userId)

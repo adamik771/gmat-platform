@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import {
@@ -29,7 +29,6 @@ import StudyTimer from "@/components/shared/StudyTimer"
 import ServiceWorkerRegistrar from "@/components/offline/ServiceWorkerRegistrar"
 import OfflineBanner from "@/components/offline/OfflineBanner"
 import OfflineSyncTrigger from "@/components/offline/OfflineSyncTrigger"
-import ConversionTracker from "@/components/analytics/ConversionTracker"
 import { clearReviewCache } from "@/lib/offline/review-cache"
 import { drainPendingAttempts } from "@/lib/offline/sync"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -389,12 +388,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           every authenticated page. The widget is fixed-position so it
           doesn't disrupt the layout. */}
       <FeedbackWidget />
-      {/* Fires purchase_completed on the Stripe success redirect
-          (?purchase=success). Renders null; Suspense-wrapped for
-          useSearchParams. */}
-      <Suspense fallback={null}>
-        <ConversionTracker />
-      </Suspense>
+      {/* The purchase_completed conversion now fires on /purchase-success
+          itself, AFTER server-side session verification (PurchaseTracker) —
+          never off editable query params, so ?purchase=success spoofing and
+          the old stripe_error false-fire are impossible. */}
       {/* Offline plumbing — all three render null in the common path.
           The registrar attaches /sw.js on mount (production only); the
           sync trigger drains queued offline drills when online; the

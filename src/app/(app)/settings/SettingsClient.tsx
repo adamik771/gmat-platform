@@ -19,6 +19,7 @@ import {
   X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
 export interface PurchaseRow {
@@ -168,6 +169,14 @@ export default function SettingsClient({
         {tab === "billing" && <BillingTab purchases={purchases} />}
 
         {tab === "notifications" && <NotificationsTab initialPrefs={initialPrefs} />}
+
+        {/* Persistent privacy-settings entry point for signed-in users —
+            reopens the consent banner (marketing pages carry it in the
+            footer; the app chrome has no footer, so it lives here). */}
+        <p className="mt-10 text-[12px] text-[#555555]">
+          Cookie and measurement preferences:{" "}
+          <ConsentSettingsButton className="underline hover:text-[#888888] transition-colors" />
+        </p>
       </div>
     </div>
   )

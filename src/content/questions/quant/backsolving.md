@@ -1293,7 +1293,7 @@ A jar contains 30 coins, all of which are dimes (10 cents) and quarters (25 cent
 **type:** Problem Solving
 **topic:** Backsolving
 
-A mother is currently five times as old as her daughter. In 6 years, the mother will be three times as old as her daughter will be then. How old is the mother now?
+A mother is currently three times as old as her daughter. In 10 years, the mother will be twice as old as her daughter will be then. How old is the mother now?
 
 - A) 25
 - B) 30
@@ -1302,7 +1302,7 @@ A mother is currently five times as old as her daughter. In 6 years, the mother 
 - E) 45
 
 **answer:** B
-**explanation:** Each choice is the mother's current age, and since she is five times her daughter's age, the daughter's age is that choice divided by 5. Testing choice B, mother = 30: the daughter is 6 now, so in 6 years the mother is 36 and the daughter is 12, and 36 is exactly three times 12. Both conditions hold, and checking the plain-English future condition against concrete ages avoids the classic mistranslation that forgets the daughter also ages six years.
+**explanation:** Each choice is the mother's current age, and since she is three times her daughter's age, the daughter's age is that choice divided by 3. Testing choice B, mother = 30: the daughter is 10 now, so in 10 years the mother is 40 and the daughter is 20, and 40 is exactly twice 20. Both conditions hold, and several wrong choices announce themselves immediately because dividing by 3 gives a non-integer current age for the daughter. Checking the plain-English future condition against concrete ages avoids the classic mistranslation that forgets the daughter also ages ten years.
 **related_reading:** quant-01-backsolving
 
 ---
@@ -1312,7 +1312,7 @@ A mother is currently five times as old as her daughter. In 6 years, the mother 
 **type:** Problem Solving
 **topic:** Backsolving
 
-Service X charges a one-time setup fee of 36 dollars plus 3 dollars per month. Service Y charges no setup fee and 9 dollars per month. After how many months is the total amount paid to Service X equal to the total amount paid to Service Y?
+A gym charges a one-time enrollment fee of 42 dollars plus 5 dollars per visit. A drop-in studio charges no enrollment fee and 12 dollars per visit. After how many visits is the total amount paid to the gym equal to the total amount paid to the studio?
 
 - A) 2
 - B) 3
@@ -1321,13 +1321,13 @@ Service X charges a one-time setup fee of 36 dollars plus 3 dollars per month. S
 - E) 6
 
 **answer:** E
-**explanation:** Each choice is a candidate number of months; Service X's total is the flat 36 plus 3 per month, and Service Y's total is 9 per month, so compute both and compare. Testing choice E, m = 6: Service X costs 36 + 3(6) = 54, and Service Y costs 9(6) = 54, so the totals are equal. The setup fee is paid once rather than monthly, and the gap between the two totals shrinks by 6 dollars each month, so exactly one month count balances them.
+**explanation:** Each choice is a candidate number of visits; the gym's total is the flat 42 plus 5 per visit, and the studio's total is 12 per visit, so compute both and compare. Testing choice E, v = 6: the gym costs 42 + 5(6) = 72, and the studio costs 12(6) = 72, so the totals are equal. The enrollment fee is paid once rather than per visit, and the gap between the two totals shrinks by 7 dollars each visit, so exactly one visit count balances them.
 **related_reading:** quant-01-backsolving
 
 ---
 
 ## Q50
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Backsolving
 

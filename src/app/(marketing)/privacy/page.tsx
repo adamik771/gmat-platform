@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import LegalPage, { LegalSection } from "@/components/marketing/LegalPage"
+import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
 import { SITE_CONTACT_EMAIL } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 }
 
-const LAST_UPDATED = "July 8, 2026"
+const LAST_UPDATED = "July 19, 2026"
 const CONTACT_EMAIL = SITE_CONTACT_EMAIL
 
 export default function PrivacyPage() {
@@ -68,10 +69,11 @@ export default function PrivacyPage() {
         </ul>
         <p>
           We use Vercel Web Analytics to count page views and key product
-          events in aggregate. We also store the campaign parameters that
-          brought you to the site (for example, utm_source) in your
-          browser&apos;s local storage so we can attribute signups to a
-          campaign. Emails from our marketing sequences include an
+          events in aggregate. If you accept measurement in the consent
+          banner, we also store the campaign parameters that brought you to
+          the site (for example, utm_source) in your browser&apos;s local
+          storage so we can attribute signups to a campaign; if you decline,
+          nothing is stored. Emails from our marketing sequences include an
           open-tracking pixel and links that pass through our own
           click-tracking redirect so we can tell which emails are useful;
           unsubscribing stops those emails. When our advertising measurement
@@ -133,9 +135,14 @@ export default function PrivacyPage() {
           that are necessary for the Platform to function — primarily to keep
           you signed in and to remember session state such as your study timer
           and offline cache. Our analytics does not use advertising cookies.
-          Advertising measurement tags (Meta Pixel, Google tag), when active,
-          may set cookies to attribute ad performance; beyond that we do not
-          use cross-site tracking cookies.
+          Advertising measurement tags (Meta Pixel, Google tag) and
+          advertising attribution are loaded and stored only if you accept
+          them in the consent banner; they stay off by default and when you
+          reject. Beyond that we do not use cross-site tracking cookies. You
+          can change your choice at any time:
+        </p>
+        <p>
+          <ConsentSettingsButton className="underline hover:opacity-80" />
         </p>
       </LegalSection>
 

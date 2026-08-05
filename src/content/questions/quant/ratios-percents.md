@@ -1021,7 +1021,7 @@ The correct answer is C.
 A store sells only two products, P and Q. What fraction of the store's total revenue comes from Product Q?
 
 (1) Revenue from Product P is 20% less than revenue from Product Q.
-(2) Revenue from Product P increased by 10% this year while revenue from Product Q decreased by 10%, and total revenue remained the same as last year.
+(2) If revenue from Product P were 25% greater than it is, it would equal revenue from Product Q.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -1034,7 +1034,7 @@ A store sells only two products, P and Q. What fraction of the store's total rev
 
 Statement (1) states that the revenue from Product P is 20% less than the revenue from Product Q, which translates to P = 0.80Q. Substituting gives a total revenue of P + Q = 0.80Q + Q = 1.80Q. The fraction from Product Q is therefore Q / (1.80Q) = 1 / 1.80 = 5/9. This is a single determined value, so statement (1) alone is sufficient.
 
-Statement (2) describes the change from last year to this year. Let last year's revenues be P and Q. This year the revenue from Product P increased by 10%, becoming 1.10P, and the revenue from Product Q decreased by 10%, becoming 0.90Q. The condition that total revenue remained the same yields the equation 1.10P + 0.90Q = P + Q. Subtracting P + Q from both sides gives 0.10P - 0.10Q = 0, hence 0.10P = 0.10Q, so P = Q. With equal revenues, the fraction from Product Q is Q / (Q + Q) = Q / (2Q) = 1/2. This is a single determined value, so statement (2) alone is sufficient.
+Statement (2) states that increasing the revenue from Product P by 25% would make it equal to the revenue from Product Q, which translates to 1.25P = Q, or P = 0.80Q. This is the same relative relationship expressed from the other direction — a quantity 20% below another must grow by 25%, not 20%, to catch up, because the percentage base shifts from the larger quantity to the smaller one. Substituting gives P + Q = 0.80Q + Q = 1.80Q, so the fraction from Product Q is Q / (1.80Q) = 5/9. This is a single determined value, so statement (2) alone is sufficient.
 
 Because each statement alone determines the fraction of total revenue coming from Product Q, each statement alone is sufficient.
 
@@ -1780,7 +1780,7 @@ The correct answer is C.
 A garden contains only rose bushes and tulip beds in the ratio of 4 rose bushes to 5 tulip beds. How many rose bushes are in the garden?
 
 (1) There are 12 more tulip beds than rose bushes.
-(2) There are 90 plantings in the garden in total.
+(2) There are 108 plantings in the garden in total.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -1793,7 +1793,7 @@ A garden contains only rose bushes and tulip beds in the ratio of 4 rose bushes 
 
 Statement (1): There are 12 more tulip beds than rose bushes, so 5k - 4k = k = 12. This gives k = 12 directly, so the number of rose bushes is 4k = 48. The value is uniquely determined, so statement (1) alone is sufficient.
 
-Statement (2): There are 90 plantings in total, so 4k + 5k = 9k = 90, which gives k = 10. The number of rose bushes is 4k = 40. The value is uniquely determined, so statement (2) alone is sufficient.
+Statement (2): There are 108 plantings in total, so 4k + 5k = 9k = 108, which gives k = 12. The number of rose bushes is 4k = 48. The value is uniquely determined, so statement (2) alone is sufficient.
 
 Since each statement alone fixes k and therefore the number of rose bushes, each statement alone is sufficient.
 

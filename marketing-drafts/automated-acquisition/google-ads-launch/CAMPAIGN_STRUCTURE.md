@@ -101,6 +101,6 @@ See GOOGLE_ADS_SETUP_STEPS.md for whether to **import these from GA4** (preferre
 
 - No score/percentile/timeline guarantees anywhere.
 - No implied affiliation with GMAC / GMAT / GMAT Focus Edition / mba.com.
-- Only permitted performance claim: founder's own 565 -> 735 (100th percentile), framed as his personal result. (Generally kept OUT of tight character-limited ad copy to avoid any "typical result" reading; used only where there's room to frame it as his own.)
+- Only permitted performance claim: founder's own 565 -> 735 (top 1%), framed as his personal result. (Generally kept OUT of tight character-limited ad copy to avoid any "typical result" reading; used only where there's room to frame it as his own.)
 - Honest framing: every account starts a free 7-day full-access trial — no card.
 - No emojis anywhere.

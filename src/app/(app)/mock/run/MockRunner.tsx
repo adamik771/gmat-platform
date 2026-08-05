@@ -1063,7 +1063,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
                   onClick={() => handleSelect(i)}
                   disabled={optionsDisabled}
                   data-kb-space="submit"
-                  className="w-full text-left p-3 rounded-lg border transition-colors disabled:cursor-not-allowed"
+                  className="w-full flex items-start text-left p-3 rounded-lg border transition-colors disabled:cursor-not-allowed"
                   style={{
                     borderColor: selected
                       ? "rgba(201,168,76,0.35)"
@@ -1079,7 +1079,11 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
                   >
                     {String.fromCharCode(65 + i)}
                   </span>
-                  <span className="text-sm text-[#F0F0F0]">{option}</span>
+                  {/* Through MockMarkdown so caret exponents (n^2, 2^9)
+                      render as real superscripts, matching practice. */}
+                  <div className="text-sm text-[#F0F0F0] [&_p]:my-0">
+                    <MockMarkdown text={option} />
+                  </div>
                 </button>
               )
             })}
@@ -1691,9 +1695,9 @@ function TwoPartGrid({
             {question.twoPartColumns.map((col) => (
               <th
                 key={col}
-                className="p-2 text-center text-[#888888] font-medium"
+                className="p-2 text-center text-[#888888] font-medium [&_p]:my-0"
               >
-                {col}
+                <MockMarkdown text={col} />
               </th>
             ))}
           </tr>
@@ -1701,7 +1705,9 @@ function TwoPartGrid({
         <tbody>
           {question.options.map((option, rowIdx) => (
             <tr key={rowIdx} className="border-t border-white/[0.04]">
-              <td className="p-2 text-[#F0F0F0]">{option}</td>
+              <td className="p-2 text-[#F0F0F0] [&_p]:my-0">
+                <MockMarkdown text={option} />
+              </td>
               {question.twoPartColumns?.map((_col, colIdx) => (
                 <td key={colIdx} className="p-2 text-center">
                   <input

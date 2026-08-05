@@ -18,6 +18,7 @@ import {
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
 import { summarizeAnsweredAttempts } from "@/lib/practice-save"
+import { trackEvent } from "@/lib/analytics"
 import { isAnswerCorrect, pickMissed } from "@/lib/practice-retry"
 import { activeSessionMs } from "@/lib/practice-timing"
 import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "@/lib/topic-chapter-map"
@@ -1367,13 +1368,27 @@ export default function SessionClient({
       })
       if (res.ok) {
         setSaveStatus("saved")
+        let sessionId: string | null = null
         try {
           const json = (await res.json()) as { sessionId?: string }
-          if (json.sessionId) setSavedSessionId(json.sessionId)
+          if (json.sessionId) {
+            sessionId = json.sessionId
+            setSavedSessionId(json.sessionId)
+          }
         } catch {
           // Body parse failed — save still succeeded; the session-id-
           // dependent CTA will simply not render.
         }
+        // Activation signal: fires once per successful persist (the effect
+        // below only calls saveSession while saveStatus is "idle", so a
+        // rerender or a results-screen refresh cannot re-fire it). This is
+        // the signup-to-first-study measurement the funnel was missing.
+        trackEvent("practice_completed", {
+          section,
+          topic,
+          questions: summary.totalQuestions,
+          ...(sessionId ? { session_id: sessionId } : {}),
+        })
       } else if (res.status === 401) setSaveStatus("unauthorized")
       else setSaveStatus("error")
     } catch {

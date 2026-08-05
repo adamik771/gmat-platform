@@ -126,4 +126,4 @@ Use the `utm_content` value from UTM_TEMPLATE.md for each ad group (`ag-study-pl
 ## Notes / gotchas
 - If Google warns "your campaign is limited by negative keywords" or impressions are zero on day 1, double-check you didn't accidentally make `[gmat]` a phrase/broad negative.
 - If "Ad strength: Poor," add a few more distinct headlines (don't repeat the same phrase) — but never add a score guarantee or affiliation claim to boost strength.
-- Keep the founder 565 -> 735 (100th percentile) claim only where there's room to frame it as HIS result (it's used in the Error-Log and Prep-Platform headlines as "Built By A 735 Scorer"). Never phrase it as a typical or expected outcome.
+- Keep the founder 565 -> 735 (top 1%) claim only where there's room to frame it as HIS result (it's used in the Error-Log and Prep-Platform headlines as "Built By A 735 Scorer"). Never phrase it as a typical or expected outcome.

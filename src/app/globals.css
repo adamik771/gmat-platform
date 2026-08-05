@@ -394,3 +394,15 @@ p {
     animation: none !important;
   }
 }
+
+/* ---------------------------------------------------------------
+   Exponent superscripts (rehype-caret-sup). The UA default
+   `font-size: smaller` compounds with the app's compact 11-13px
+   data surfaces into ~9px exponents. Keep them readable with a
+   gentler ratio and a hard floor; line-height 0 stops tall
+   superscripts from opening up table-row leading.
+--------------------------------------------------------------- */
+sup {
+  font-size: max(0.85em, 10px);
+  line-height: 0;
+}

@@ -39,7 +39,7 @@ const events: TimelineEvent[] = [
     date: "December 2025",
     title: "Second Official Exam",
     description:
-      "Booked with five days' notice. Three days of pure mistake review, no new content. Q88, V86, DI85. 100th percentile.",
+      "Booked with five days' notice. Three days of pure mistake review, no new content. Q88, V86, DI85. Top 1% of test-takers.",
     score: 735,
     highlight: true,
   },

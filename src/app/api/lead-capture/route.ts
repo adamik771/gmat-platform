@@ -1,6 +1,7 @@
 import { getSupabaseService } from "@/lib/supabase/service"
 import { recordConsent } from "@/lib/outreach/consent"
 import { enqueueDrip } from "@/lib/outreach/queue"
+import { sendEmail } from "@/lib/email"
 
 /**
  * POST /api/lead-capture — collect a prospect email from public marketing
@@ -144,17 +145,26 @@ export async function POST(request: Request) {
     )
   }
 
-  const { error } = await supabase.from("lead_captures").upsert(
-    {
-      email,
-      source,
-      lead_magnet: leadMagnet,
-      captured_at: new Date().toISOString(),
-      user_agent: userAgent,
-      referer,
-    },
-    { onConflict: "email,source" },
-  )
+  // ATOMIC first-capture decision (drives the founding confirmation email
+  // below): insert-winner via upsert with ignoreDuplicates + select — the
+  // unique (email, source) constraint lets exactly ONE of two concurrent
+  // first requests get its row back; every other request gets an empty
+  // result. A SELECT-then-write here would let both concurrent requests see
+  // "no row" and both send mail — an unauthenticated route with an
+  // unverified address must never re-send (mail-bomb primitive; duplicate
+  // confirmations for double-submitting humans).
+  const row = {
+    email,
+    source,
+    lead_magnet: leadMagnet,
+    captured_at: new Date().toISOString(),
+    user_agent: userAgent,
+    referer,
+  }
+  const { data: inserted, error } = await supabase
+    .from("lead_captures")
+    .upsert(row, { onConflict: "email,source", ignoreDuplicates: true })
+    .select("email")
 
   if (error) {
     // Persistence failed (e.g. the CHECK-constraint migration hasn't run, or
@@ -165,6 +175,70 @@ export async function POST(request: Request) {
       { ok: false, error: "Could not save that right now. Please try again." },
       { status: 503 },
     )
+  }
+
+  const firstCapture = (inserted?.length ?? 0) > 0
+
+  if (!firstCapture) {
+    // Re-submission: refresh the capture metadata (previous merge-duplicates
+    // behavior), but the atomic decision above already ruled out any resend.
+    const { error: refreshError } = await supabase
+      .from("lead_captures")
+      .update({
+        lead_magnet: row.lead_magnet,
+        captured_at: row.captured_at,
+        user_agent: row.user_agent,
+        referer: row.referer,
+      })
+      .eq("email", email)
+      .eq("source", source)
+    if (refreshError) {
+      console.error("[lead-capture] refresh failed:", refreshError.message)
+      return Response.json(
+        { ok: false, error: "Could not save that right now. Please try again." },
+        { status: 503 },
+      )
+    }
+  }
+
+  // Founding reservation: send the transactional confirmation immediately.
+  // This fulfils the transaction the visitor just requested (a reservation +
+  // exactly one code email at flip time), so it is deliberately NOT gated on
+  // the marketing checkbox — and it goes out directly, not via the queue,
+  // whose consent gate stays authoritative for every marketing send. The
+  // founding drip below remains strictly opt-in. Strictly transactional
+  // content only (no promotional lines): sent without marketing consent,
+  // and first capture only (see firstCapture above).
+  if (source === "founding-member" && firstCapture) {
+    try {
+      const lines = [
+        "Hi there,",
+        "Your founding rate is reserved to this address. No charge today, nothing to cancel, no obligation.",
+        "What happens next: when paid checkout opens, you'll get one email here with your founding code. Unless you also ticked the optional updates box, that is the only email this reservation triggers.",
+        "Changed your mind? Reply to this email and I'll remove the reservation.",
+        "- Adam, Zakarian GMAT",
+        "GMAT is a registered trademark of the Graduate Management Admission Council (GMAC), which does not endorse and is not affiliated with Zakarian GMAT.",
+      ]
+      const sent = await sendEmail({
+        to: email,
+        subject: "Your founding rate is reserved",
+        text: lines.join("\n\n"),
+        html: lines
+          .map(
+            (l) =>
+              `<p style="margin:0 0 14px;font:14px/1.6 -apple-system,Segoe UI,Arial,sans-serif;color:#222;">${l}</p>`,
+          )
+          .join(""),
+      })
+      if (!sent.ok && !sent.skipped) {
+        console.error(
+          "[lead-capture] founding confirmation send failed:",
+          sent.reason,
+        )
+      }
+    } catch {
+      /* confirmation is best-effort; the reservation row is the durable record */
+    }
   }
 
   // Consent + sequence enrolment require EXPLICIT opt-in (the form's unticked

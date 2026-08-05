@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Delegated Growth System — Start Here
 
 This folder is the operating system a hired helper uses to grow Zakarian GMAT
@@ -85,7 +87,7 @@ Both roles follow the same absolute rules (below) and the same CRM.
 > - **Never** call anything a "free diagnostic" or claim a scored diagnostic /
 >   placement test exists — there is none.
 > - **Never** promise or imply a guaranteed score or specific improvement. The
->   only result anyone may cite is Adam's own verified **565 to 735 (100th
+>   only result anyone may cite is Adam's own **565 to 735 (100th
 >   percentile)**.
 > - **Never** imply affiliation with, endorsement by, or partnership with GMAC,
 >   mba.com, or the official GMAT. Any public claim block must include:

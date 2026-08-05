@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Mail } from "lucide-react"
 import LeadCapture from "@/components/marketing/LeadCapture"
+import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
 import { SITE_CONTACT_EMAIL } from "@/lib/site"
 
 const platformLinks = [
@@ -164,6 +165,12 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                {/* Reopens the consent banner — the persistent privacy-
+                    settings entry point required alongside the one-time
+                    banner choice. */}
+                <ConsentSettingsButton className="text-[13px] text-[#888888] hover:text-[#F0F0F0] transition-colors duration-200" />
+              </li>
             </ul>
           </div>
         </div>
