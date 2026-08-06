@@ -82,59 +82,66 @@ async function doDrain(userId: string): Promise<DrainResult> {
     return { drained: false, attemptsSent: 0, error: "Drain running in another tab" }
   }
 
-  // Aggregate: total time, correct count, dominant section.
-  const totalTimeMs = attempts.reduce((s, a) => s + a.timeSpentMs, 0)
-  const correctCount = attempts.filter((a) => a.isCorrect).length
-  const sectionCounts: Record<string, number> = {}
-  for (const a of attempts) {
-    sectionCounts[a.section] = (sectionCounts[a.section] ?? 0) + 1
-  }
-  const dominantSection =
-    Object.entries(sectionCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ??
-    "Quant"
-
+  // The API rejects sessions with more than 100 questions/attempts, so a
+  // queue past 100 must drain in slices — a single whole-queue POST would
+  // 400 forever and permanently strand every queued attempt.
+  const SLICE_SIZE = 100
   const today = new Date().toISOString().slice(0, 10)
   const slug = `review-offline-${today}`
-
-  const payload = {
-    slug,
-    topic: "Offline review",
-    section: dominantSection,
-    totalQuestions: attempts.length,
-    correctCount,
-    accuracy:
-      attempts.length === 0
-        ? 0
-        : Math.round((correctCount / attempts.length) * 100),
-    totalTimeMs,
-    attempts: attempts.map((a) => stripQueueShape(a)),
-  }
+  let sent = 0
 
   try {
-    const res = await fetch("/api/practice-sessions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    })
-    if (!res.ok) {
-      return {
-        drained: false,
-        attemptsSent: 0,
-        error: `POST failed (${res.status})`,
+    for (let start = 0; start < attempts.length; start += SLICE_SIZE) {
+      const slice = attempts.slice(start, start + SLICE_SIZE)
+      const totalTimeMs = slice.reduce((s, a) => s + a.timeSpentMs, 0)
+      const correctCount = slice.filter((a) => a.isCorrect).length
+      const sectionCounts: Record<string, number> = {}
+      for (const a of slice) {
+        sectionCounts[a.section] = (sectionCounts[a.section] ?? 0) + 1
       }
+      const dominantSection =
+        Object.entries(sectionCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ??
+        "Quant"
+
+      const payload = {
+        slug,
+        topic: "Offline review",
+        section: dominantSection,
+        totalQuestions: slice.length,
+        correctCount,
+        accuracy: Math.round((correctCount / slice.length) * 100),
+        totalTimeMs,
+        attempts: slice.map((a) => stripQueueShape(a)),
+      }
+
+      const res = await fetch("/api/practice-sessions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) {
+        // Earlier slices were already removed per-slice, so nothing sent
+        // is re-sent on the next drain; the remainder stays queued.
+        return {
+          drained: false,
+          attemptsSent: sent,
+          error: `POST failed (${res.status})`,
+        }
+      }
+      // Successful POST → remove exactly the drained slice. A whole-key
+      // clear here would also delete any attempt appended while the POST
+      // was in flight.
+      await removePendingAttempts(
+        userId,
+        slice.map((a) => a.id)
+      )
+      sent += slice.length
     }
-    // Successful POST → remove exactly the drained attempts. A whole-key
-    // clear here would also delete any attempt appended while the POST
-    // was in flight.
-    await removePendingAttempts(
-      userId,
-      attempts.map((a) => a.id)
-    )
-    return { drained: true, attemptsSent: attempts.length }
+    return { drained: true, attemptsSent: sent }
   } catch (e) {
     return {
       drained: false,
-      attemptsSent: 0,
+      attemptsSent: sent,
       error: e instanceof Error ? e.message : "Network error",
     }
   } finally {

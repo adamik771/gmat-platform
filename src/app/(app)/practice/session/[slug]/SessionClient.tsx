@@ -17,7 +17,7 @@ import {
   X,
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
-import { summarizeAnsweredAttempts } from "@/lib/practice-save"
+import { summarizeAnsweredAttempts, shouldGuardUnload } from "@/lib/practice-save"
 import { trackEvent } from "@/lib/analytics"
 import { isAnswerCorrect, pickMissed } from "@/lib/practice-retry"
 import { activeSessionMs } from "@/lib/practice-timing"
@@ -1405,9 +1405,15 @@ export default function SessionClient({
 
   // Answers live only in React state until the finish-time save above — warn
   // before a mid-session unload (tab close, hard refresh, external nav) so a
-  // chapter test or custom set isn't silently lost. Off once finished: the
-  // results screen has already persisted.
-  const hasUnsavedAnswers = !finished && states.some((s) => s.submitted)
+  // chapter test or custom set isn't silently lost. On the results screen the
+  // guard stays armed until the save actually lands — the POST can fail after
+  // finish (dead wifi, expired session), and closing the tab then would lose
+  // the whole session while the banner still offers Retry.
+  const hasUnsavedAnswers = shouldGuardUnload(
+    states.some((s) => s.submitted),
+    finished,
+    saveStatus
+  )
   useEffect(() => {
     if (!hasUnsavedAnswers) return
     const onBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -2801,6 +2807,7 @@ export default function SessionClient({
                       key={i}
                       onClick={() => handleSelect(i)}
                       disabled={currentState.submitted}
+                      aria-pressed={isSelected}
                       data-kb-space="submit"
                       className="w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-colors hover:bg-white/[0.02] disabled:cursor-default"
                       style={{ borderColor, backgroundColor: bgColor }}

@@ -20,10 +20,11 @@ const DIFFICULTY_RANK: Record<Difficulty, number> = {
  * 10 minutes of break between sections. Scoring mirrors the other
  * surfaces (accuracy × 600 + 205, snapped to the nearest 10-point tick).
  *
- * The question-picker is deterministic per calendar date + section, so
- * a student who starts the mock, leaves, and comes back within the same
- * day resumes the same set. The `mockKey` parameter lets callers vary
- * the seed (e.g., to regenerate a fresh mock on demand).
+ * The question-picker is deterministic for a given (section, mix, count,
+ * mockIndex, excludeIds) input: the caller passes the count of prior mock
+ * sessions as a rotation offset and the set of previously served question
+ * ids for exclusion, so successive mocks draw fresh questions while the
+ * same inputs always reproduce the same set.
  */
 
 export const MOCK_SECTIONS: Section[] = ["Quant", "Verbal", "DI"]
@@ -122,14 +123,29 @@ const MAX_PER_TOPIC = 4
  *     incrementing index so the picker walks the pool from a different
  *     starting slice each time, drawing fresh questions across mocks.
  *     Caller-supplied: typically the count of prior mock sessions.
+ *   - `excludeIds`: question ids already served in prior mocks. Excluded
+ *     from the pool up front so repeat mocks measure skill, not item
+ *     memory (rotation alone re-served most of the pool: a 3-position
+ *     shift over ~900 questions barely moved the quota walk). Falls back
+ *     to the full pool when exclusion would leave fewer questions than
+ *     the section target — old heavy users keep getting full mocks.
  */
 export function pickMockQuestions(
   section: Section,
   mixOverride?: Record<Difficulty, number>,
   countOverride?: number,
-  mockIndex: number = 0
+  mockIndex: number = 0,
+  excludeIds?: ReadonlySet<string>
 ): ParsedQuestion[] {
-  const pool = getQuestionsBySection(section).filter((q) => q.options.length > 0)
+  const fullPool = getQuestionsBySection(section).filter(
+    (q) => q.options.length > 0
+  )
+  const targetCount = countOverride ?? MOCK_QUESTION_COUNT[section]
+  let pool = fullPool
+  if (excludeIds && excludeIds.size > 0) {
+    const fresh = fullPool.filter((q) => !excludeIds.has(q.id))
+    if (fresh.length >= targetCount) pool = fresh
+  }
   if (pool.length === 0) return []
 
   // Rotate the pool by mockIndex so successive mocks start the walk
@@ -141,7 +157,7 @@ export function pickMockQuestions(
       ? pool
       : [...pool.slice(offset), ...pool.slice(0, offset)]
 
-  const target = countOverride ?? MOCK_QUESTION_COUNT[section]
+  const target = targetCount
   const mix = mixOverride ?? DIFFICULTY_MIX[section]
   const picked: ParsedQuestion[] = []
   const pickedIds = new Set<string>()

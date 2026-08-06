@@ -77,3 +77,20 @@ export function dropBlankAttempts<A extends BlankFilterable>(
     accuracy: Math.round((correctCount / answered.length) * 100),
   }
 }
+
+/**
+ * Whether the beforeunload guard should be armed. On the results screen the
+ * guard stays on until the save actually lands: the POST can fail after
+ * finish (dead wifi, expired session), and closing the tab then would lose
+ * the whole session while the banner still offers Retry. `idle` with
+ * submitted answers is also guarded — it only occurs in the pre-save
+ * window right after finishing; nothing-answered sessions have
+ * anySubmitted false and stay unguarded either way.
+ */
+export function shouldGuardUnload(
+  anySubmitted: boolean,
+  finished: boolean,
+  saveStatus: string
+): boolean {
+  return anySubmitted && (!finished || saveStatus !== "saved")
+}

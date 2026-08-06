@@ -459,7 +459,7 @@ export default function AnalyticsClient({
                           }}
                         />
                       </div>
-                      <p className="text-[10px] text-[#666666] mt-2 italic leading-snug">
+                      <p className="text-[10px] text-[#888888] mt-2 italic leading-snug">
                         Need {MIN_TIER_SAMPLE - tier.total} more rated answer
                         {MIN_TIER_SAMPLE - tier.total === 1 ? "" : "s"} before
                         this tier reads cleanly.

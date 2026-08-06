@@ -149,7 +149,7 @@ export default function StudyHoursChart({
             <div key={label} className="flex flex-col items-center min-w-0">
               <span
                 className="text-[10px] tabular-nums mb-1.5 h-4"
-                style={{ color: cur.ms > 0 ? "#C9A84C" : "#444444" }}
+                style={{ color: cur.ms > 0 ? "#C9A84C" : "#888888" }}
               >
                 {cur.ms > 0 ? formatHours(cur.ms) : ""}
               </span>

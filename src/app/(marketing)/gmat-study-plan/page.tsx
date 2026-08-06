@@ -54,7 +54,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "Do I need to pay for a study plan to improve?",
-      "a": "No. The method on this page — baseline from an official mba.com exam, rank weak areas by score impact, drill, log mistakes by category, space your reviews, and re-measure with full-lengths — works with a notebook, a free official practice exam, and discipline. The site also offers free tools that need no account: sample chapters, a Focus-to-old-format score converter, a section-to-total score calculator, and a downloadable error-log template. Zakarian GMAT exists to automate the tedious, easy-to-abandon parts (the weak-area ranking, the spaced-review scheduling, the analytics), but this page is meant to be useful whether or not you ever sign up."
+      "a": "No. The method on this page — baseline from an official mba.com exam, rank weak areas by score impact, drill, log mistakes by category, space your reviews, and re-measure with full-lengths — works with a notebook, a free official practice exam, and discipline. The site also offers free tools that need no account: sample chapters, a Focus-to-old-format score converter, and a downloadable error-log template. Zakarian GMAT exists to automate the tedious, easy-to-abandon parts (the weak-area ranking, the spaced-review scheduling, the analytics), but this page is meant to be useful whether or not you ever sign up."
     },
     {
       "q": "What makes Zakarian GMAT's study plan 'adaptive'?",

@@ -1002,6 +1002,12 @@ export default async function DashboardPage() {
             <div className="flex items-center gap-3 mb-4">
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em]" style={{ color: "#C9A84C" }}>
                 {today}
+                {trialLine && (
+                  <span className="normal-case tracking-normal font-normal">
+                    <span className="mx-1.5 text-[#888888]">·</span>
+                    <span style={{ color: "#C9A84C" }}>{trialLine}</span>
+                  </span>
+                )}
               </p>
               <div
                 className="h-px w-12"
@@ -1707,7 +1713,7 @@ export default async function DashboardPage() {
             </p>
             <p
               className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
-              style={{ color: completedChapters > 0 ? "#F0F0F0" : "#555555" }}
+              style={{ color: completedChapters > 0 ? "#F0F0F0" : "#888888" }}
             >
               {courseCompletionPct}%
             </p>
@@ -1757,7 +1763,7 @@ export default async function DashboardPage() {
               <>
                 <p
                   className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
-                  style={{ color: currentStreak > 0 ? "#F0F0F0" : "#555555" }}
+                  style={{ color: currentStreak > 0 ? "#F0F0F0" : "#888888" }}
                 >
                   {currentStreak > 0 ? currentStreak : "—"}
                   {currentStreak > 0 && (
@@ -1785,7 +1791,7 @@ export default async function DashboardPage() {
             </p>
             <p
               className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
-              style={{ color: questionsThisWeek > 0 ? "#F0F0F0" : "#555555" }}
+              style={{ color: questionsThisWeek > 0 ? "#F0F0F0" : "#888888" }}
             >
               {questionsThisWeek > 0 ? questionsThisWeek : "—"}
               <span className="text-[12px] font-medium text-[#888888] ml-1.5">
@@ -1801,7 +1807,7 @@ export default async function DashboardPage() {
             </p>
             <p
               className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
-              style={{ color: weekAccuracy !== null ? "#F0F0F0" : "#555555" }}
+              style={{ color: weekAccuracy !== null ? "#F0F0F0" : "#888888" }}
             >
               {weekAccuracy !== null ? weekAccuracy : "—"}
               {weekAccuracy !== null && (

@@ -279,6 +279,21 @@ export default async function StudyPlanPage({
       const questionIndex = new Map(
         getAllQuestions().map((q) => [q.id, q])
       )
+      // Countable inline supply per chapter: pretest + check questions the
+      // reader can actually score (TPA items record no numeric selection,
+      // so the concept gate skips them). Caps the gate's requirement so
+      // thin chapters aren't permanently "need N more attempts".
+      const chapterInlineSupplyBySlug = new Map<string, number>()
+      for (const ch of getAllChapters()) {
+        let supply = 0
+        for (const sec of ch.sections) {
+          for (const qid of [...sec.pretestQuestionIds, ...sec.checkQuestionIds]) {
+            const q = questionIndex.get(qid)
+            if (q && q.type !== "Two-Part Analysis") supply += 1
+          }
+        }
+        chapterInlineSupplyBySlug.set(ch.slug, supply)
+      }
       masteries = computeEngagedTopicMasteries(
         (masteryAttempts ?? []) as MasteryAttempt[],
         sessionsById,
@@ -286,6 +301,8 @@ export default async function StudyPlanPage({
           | ChapterProgressShape
           | undefined,
         questionIndex,
+        undefined,
+        chapterInlineSupplyBySlug,
       )
 
       persona = computePersona(officialBaseline, targetScore, {
@@ -312,6 +329,7 @@ export default async function StudyPlanPage({
             | undefined,
           questionIndex,
           personaThresholdOverrides(persona.key),
+          chapterInlineSupplyBySlug,
         )
       }
 

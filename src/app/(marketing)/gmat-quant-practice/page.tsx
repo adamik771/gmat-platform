@@ -44,7 +44,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "Is the platform free, and is there a catch?",
-      "a": "Every new account starts with a free 7-day full-access trial, with no credit card required. After the trial, access continues with a one-time plan purchase (no subscription) — current prices are on the pricing page. The free tools (sample chapters, a Focus-to-old score converter, a section-to-total calculator, and the downloadable error-log template) need no account at all."
+      "a": "Every new account starts with a free 7-day full-access trial, with no credit card required. After the trial, access continues with a one-time plan purchase (no subscription) — current prices are on the pricing page. The free tools (sample chapters, a Focus-to-old score converter, and the downloadable error-log template) need no account at all."
     },
     {
       "q": "Does Zakarian GMAT have a diagnostic that tells me my score?",

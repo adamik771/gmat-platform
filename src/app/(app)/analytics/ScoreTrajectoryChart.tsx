@@ -30,13 +30,13 @@ export default function ScoreTrajectoryChart({
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
         <XAxis
           dataKey="weekLabel"
-          tick={{ fill: "#555555", fontSize: 11 }}
+          tick={{ fill: "#888888", fontSize: 11 }}
           axisLine={false}
           tickLine={false}
         />
         <YAxis
           domain={[domainMin, domainMax]}
-          tick={{ fill: "#555555", fontSize: 11 }}
+          tick={{ fill: "#888888", fontSize: 11 }}
           axisLine={false}
           tickLine={false}
         />

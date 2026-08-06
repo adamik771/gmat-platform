@@ -35,6 +35,7 @@ import AnalyticsClient, {
   type TopicRow,
 } from "./AnalyticsClient"
 import { accuracyToScore } from "@/lib/diagnostic"
+import { fullSetAccuracy } from "@/lib/scoring"
 
 // Minimum attempts required to trust a per-topic accuracy — anything below
 // and a couple of lucky / unlucky answers dominate the number.
@@ -373,7 +374,7 @@ export default async function AnalyticsPage() {
         // trend chart (every complete mock).
         const { data: mockRows } = await supabase
           .from("practice_sessions")
-          .select("slug, accuracy, created_at")
+          .select("slug, accuracy, created_at, correct_count, total_questions")
           .eq("user_id", user.id)
           .like("slug", "mock-%")
           .order("created_at", { ascending: false })
@@ -382,7 +383,13 @@ export default async function AnalyticsPage() {
         // Group by YYYY-MM-DD date embedded in the slug
         // (mock-YYYY-MM-DD-section). Section sessions from the same
         // mock have the same date slug prefix.
-        type MockRow = { slug: string; accuracy: number; created_at: string }
+        type MockRow = {
+          slug: string
+          accuracy: number
+          created_at: string
+          correct_count: number | null
+          total_questions: number | null
+        }
         const byDate = new Map<
           string,
           { sections: Partial<Record<Section, MockRow>>; created_at: string }
@@ -418,15 +425,18 @@ export default async function AnalyticsPage() {
             b.created_at.localeCompare(a.created_at)
           )
 
-        // Helper: mock total from the 3-section aggregate.
+        // Helper: mock total from the 3-section aggregate. Full-set
+        // accuracy (correct/total including unanswered) — the stored
+        // `accuracy` column is answered-only for mock slugs, which
+        // inflated timed-out mocks here vs the mock report's number.
+        const mockSectionAccuracy = (r: MockRow) =>
+          fullSetAccuracy(r.correct_count, r.total_questions, r.accuracy)
         const mockTotalFor = (
           group: { sections: Partial<Record<Section, MockRow>> }
         ) =>
           Math.round(
             ((["Quant", "Verbal", "DI"] as const)
-              .map((s) =>
-                accuracyToScore((group.sections[s]!.accuracy ?? 0) / 100)
-              )
+              .map((s) => accuracyToScore(mockSectionAccuracy(group.sections[s]!)))
               .reduce((x, y) => x + y, 0) /
               3 /
               10) *
