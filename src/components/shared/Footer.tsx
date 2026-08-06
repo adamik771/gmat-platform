@@ -97,7 +97,7 @@ export default function Footer() {
                 className="p-2 rounded-full border border-white/[0.08] hover:border-[#C9A84C]/30 transition-colors duration-200"
                 aria-label="Email"
               >
-                <Mail className="w-4 h-4 text-[#555555] hover:text-[#C9A84C] transition-colors" />
+                <Mail className="w-4 h-4 text-[#888888] hover:text-[#C9A84C] transition-colors" />
               </a>
             </div>
           </div>
@@ -186,10 +186,10 @@ export default function Footer() {
         />
 
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[11px] text-[#555555] tracking-tight">
+          <p className="text-[11px] text-[#888888] tracking-tight">
             © {new Date().getFullYear()} Zakarian GMAT. All rights reserved.
           </p>
-          <p className="text-[11px] text-[#555555] tracking-tight">
+          <p className="text-[11px] text-[#888888] tracking-tight">
             <a
               href={`mailto:${SITE_CONTACT_EMAIL}`}
               className="hover:text-[#C9A84C] transition-colors duration-200"
@@ -201,7 +201,7 @@ export default function Footer() {
 
         {/* No-affiliation disclaimer — kept site-wide in the footer so the
             trademark notice is visible on every page, not just /terms. */}
-        <p className="mt-5 text-[11px] text-[#555555] leading-relaxed max-w-3xl">
+        <p className="mt-5 text-[11px] text-[#888888] leading-relaxed max-w-3xl">
           GMAT™ is a registered trademark of the Graduate Management Admission
           Council™ (GMAC™). GMAC does not endorse, nor is it affiliated in any
           way with, the owner or any content of this site. All references to the

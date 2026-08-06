@@ -266,10 +266,10 @@ export default function TestBuilderClient({
                   }}
                   aria-label="Custom number of questions"
                   placeholder="Custom"
-                  className="w-24 px-4 py-2.5 rounded-xl text-[13px] font-semibold tabular-nums border border-white/[0.08] bg-transparent text-[#F0F0F0] placeholder:text-[#555555] placeholder:font-normal focus:border-[rgba(201,168,76,0.45)] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="w-24 px-4 py-2.5 rounded-xl text-[13px] font-semibold tabular-nums border border-white/[0.08] bg-transparent text-[#F0F0F0] placeholder:text-[#888888] placeholder:font-normal focus:border-[rgba(201,168,76,0.45)] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
-              <p className="text-[11px] text-[#555555] mt-2.5">
+              <p className="text-[11px] text-[#888888] mt-2.5">
                 Tap a preset or type any number (1–100). You’ll get up to what
                 the selected sections + difficulty have available.
               </p>

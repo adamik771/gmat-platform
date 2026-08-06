@@ -85,16 +85,16 @@ export default async function SessionHistoryPage({
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
         <Link
-          href="/test-builder"
+          href="/practice/history"
           className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
         >
           <ArrowLeft className="w-3 h-3" />
-          Back to Test Builder
+          All sessions
         </Link>
         <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">
           {(session.topic as string) || "Practice session"}
         </h1>
-        <p className="text-sm text-[#555555] mt-1">
+        <p className="text-sm text-[#888888] mt-1">
           {session.section as string} · {when}
         </p>
       </div>
@@ -107,7 +107,7 @@ export default async function SessionHistoryPage({
         }}
       >
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <p className="text-[10px] uppercase tracking-widest text-[#888888]">
             Accuracy
           </p>
           <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
@@ -115,19 +115,19 @@ export default async function SessionHistoryPage({
           </p>
         </div>
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <p className="text-[10px] uppercase tracking-widest text-[#888888]">
             Correct
           </p>
           <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">
             {session.correct_count as number}
-            <span className="text-base font-normal text-[#555555]">
+            <span className="text-base font-normal text-[#888888]">
               {" "}
               / {session.total_questions as number}
             </span>
           </p>
         </div>
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <p className="text-[10px] uppercase tracking-widest text-[#888888]">
             Total time
           </p>
           <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">
@@ -176,7 +176,7 @@ export default async function SessionHistoryPage({
                     )}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-[#555555]">
+                    <p className="text-xs text-[#888888]">
                       Q{i + 1}
                       {q ? ` · ${q.subtopic} · ${q.difficulty}` : ""}
                       <span className="mx-1.5 text-[#333333]">·</span>
@@ -190,6 +190,12 @@ export default async function SessionHistoryPage({
                         >
                           You: {selectedLetter}
                         </span>
+                      ) : q?.twoPartColumns?.length ? (
+                        /* TPA selections aren't persisted (needs an
+                           attempts column — owner task); say so honestly
+                           instead of rendering an answered question as
+                           "You: —" (which read as unanswered). */
+                        <span>Two-part answer (selections not stored)</span>
                       ) : (
                         <span>You: —</span>
                       )}

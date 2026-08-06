@@ -12,6 +12,7 @@ import {
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getUserState } from "@/lib/user-state"
+import { isReplaySession } from "@/lib/utils"
 import {
   computeCalibration,
   type CalibrationReport,
@@ -79,6 +80,9 @@ export default async function AnalyticsPage() {
   let calibration: CalibrationReport | null = null
   let predictionMAE: PredictionMAE | null = null
   let hasData = false
+  /** True when the analytics reads failed — a failed read must not render
+   *  as the "take your baseline" empty state. */
+  let loadFailed = false
 
   // Baseline gate — the only pre-data signal the locked view needs.
   let officialExamCount = 0
@@ -144,7 +148,7 @@ export default async function AnalyticsPage() {
       const [{ data: sessions }, { data: aggRaw }] = await Promise.all([
         supabase
           .from("practice_sessions")
-          .select("slug, section, created_at, total_questions, correct_count")
+          .select("slug, topic, section, created_at, total_questions, correct_count")
           .eq("user_id", user.id)
           .gte("created_at", eightWeeksAgo)
           .order("created_at", { ascending: true }),
@@ -162,7 +166,8 @@ export default async function AnalyticsPage() {
         const newTally = (): Tally => ({ correct: 0, total: 0 })
         const weeks = new Map<string, Bucket>()
         for (const s of sessions) {
-          if (String(s.slug ?? "").startsWith("review-")) continue
+          if (isReplaySession(s.slug as string, (s as { topic?: string }).topic))
+            continue
           const d = new Date(s.created_at as string)
           const weekStart = new Date(d)
           weekStart.setDate(d.getDate() - d.getDay())
@@ -318,7 +323,10 @@ export default async function AnalyticsPage() {
         const ep = agg.error_patterns
         if (ep) {
           const totalLabelled = ep.efficient + ep.labored + ep.rushed + ep.stuck
-          if (totalLabelled > 0) {
+          // n >= 30: tempo-pattern shares at a handful of labelled
+          // attempts are noise presented as diagnosis ("you rush") —
+          // hold the card back until the sample can carry it.
+          if (totalLabelled >= 30) {
             errorPatterns = {
               efficient: ep.efficient,
               labored: ep.labored,
@@ -458,7 +466,31 @@ export default async function AnalyticsPage() {
       }
     }
   } catch {
-    // Supabase unavailable — render empty state.
+    // Supabase unavailable — flag it; the baseline view below would tell
+    // a student with months of history to go take their baseline exam.
+    loadFailed = true
+  }
+
+  // Honest failure state before the stage gate: a failed read is NOT
+  // "no data yet".
+  if (loadFailed && !hasData) {
+    return (
+      <div className="max-w-2xl mx-auto mt-16 p-8 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] text-center">
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
+          style={{ color: "#C9A84C" }}
+        >
+          Analytics
+        </p>
+        <h1 className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.15] mb-3">
+          Couldn&apos;t load your analytics.
+        </h1>
+        <p className="text-[14px] text-[#C0C0C0] leading-[1.75]">
+          Your history is safe — this is a loading problem, not a data
+          problem. Refresh to retry.
+        </p>
+      </div>
+    )
   }
 
   // === Stage gate ===

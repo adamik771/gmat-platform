@@ -15,6 +15,41 @@ import { ArrowRight, Shuffle } from "lucide-react"
  *   - global: no `chapterSlug` → mixes misses + review queue + any completed
  *     chapter pool. Label reads "Mixed Review."
  */
+/**
+ * Build a runnable mixed-review session URL via the API. Shared by this
+ * card and the session results screen's "Start mixed review" action.
+ * Throws with a user-readable message when no set can be built.
+ */
+export async function buildMixedReviewUrl(
+  chapterSlug?: string | null,
+  count = 10
+): Promise<string> {
+  const res = await fetch("/api/mixed-review", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chapterSlug: chapterSlug ?? undefined, count }),
+  })
+  if (!res.ok) {
+    const j = (await res.json().catch(() => ({}))) as { error?: string }
+    throw new Error(j.error ?? "Couldn't build a mixed review right now.")
+  }
+  const body = (await res.json()) as {
+    ids?: string[]
+    label?: string
+    section?: string
+  }
+  if (!body.ids || body.ids.length === 0) {
+    throw new Error(
+      "Not enough practice history yet — run a few more sets and try again."
+    )
+  }
+  return (
+    `/practice/session/custom?ids=${encodeURIComponent(body.ids.join(","))}` +
+    `&topic=${encodeURIComponent(body.label ?? "Mixed Review")}` +
+    (body.section ? `&section=${encodeURIComponent(body.section)}` : "")
+  )
+}
+
 export default function MixedReviewCard({
   chapterSlug,
   unlocked,
@@ -44,30 +79,7 @@ export default function MixedReviewCard({
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch("/api/mixed-review", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chapterSlug, count }),
-      })
-      if (!res.ok) {
-        const j = (await res.json().catch(() => ({}))) as { error?: string }
-        throw new Error(j.error ?? "Couldn't build a mixed review right now.")
-      }
-      const body = (await res.json()) as {
-        ids?: string[]
-        label?: string
-        section?: string
-      }
-      if (!body.ids || body.ids.length === 0) {
-        throw new Error(
-          "Not enough practice history yet — run a few more sets and try again."
-        )
-      }
-      const url =
-        `/practice/session/custom?ids=${encodeURIComponent(body.ids.join(","))}` +
-        `&topic=${encodeURIComponent(body.label ?? "Mixed Review")}` +
-        (body.section ? `&section=${encodeURIComponent(body.section)}` : "")
-      router.push(url)
+      router.push(await buildMixedReviewUrl(chapterSlug, count))
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong")
       setLoading(false)
@@ -157,8 +169,8 @@ export default function MixedReviewCard({
             </h3>
             <p className="text-xs leading-relaxed" style={{ color: cMuted }}>
               {variant === "chapter"
-                ? "Mixes this chapter with your recent misses and other completed chapters. Interleaving feels harder than blocked practice — that's the point. It forces you to first identify the method before executing, which is the skill the test measures."
-                : "Pulls from your recent misses, the review queue, and chapters you've completed. Better for retention than drilling one topic at a time."}
+                ? "Mixes this chapter with your recent misses and other completed chapters — you have to pick the method before executing it."
+                : "One section, mixed topics — recent misses, queue items, and completed-chapter questions in one interleaved set."}
             </p>
             {error && (
               <p

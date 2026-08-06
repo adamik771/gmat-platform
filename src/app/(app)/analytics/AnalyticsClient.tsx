@@ -236,7 +236,7 @@ export default function AnalyticsClient({
                 return (
                   <div key={`${t.section}|${t.topic}`} className="flex items-center gap-4">
                     <p className="text-[13px] text-[#C0C0C0] w-40 flex-shrink-0 truncate">
-                      <span className="text-[#555555] mr-1.5 text-[11px] uppercase tracking-wider">
+                      <span className="text-[#888888] mr-1.5 text-[11px] uppercase tracking-wider">
                         {t.section}
                       </span>
                       {t.topic}
@@ -257,7 +257,7 @@ export default function AnalyticsClient({
                       >
                         {t.accuracy}
                       </span>
-                      <span className="text-[11px] text-[#555555] tabular-nums">
+                      <span className="text-[11px] text-[#888888] tabular-nums">
                         · {t.attempts}q
                       </span>
                     </div>
@@ -320,7 +320,7 @@ export default function AnalyticsClient({
                         >
                           {p.avgMin.toFixed(1)}m
                         </span>
-                        <span className="text-[10px] text-[#555555] tabular-nums">
+                        <span className="text-[10px] text-[#888888] tabular-nums">
                           / {p.targetMin}m
                         </span>
                         {p.over ? (
@@ -434,7 +434,7 @@ export default function AnalyticsClient({
                     {tier.label} confidence
                   </p>
                   {tier.total === 0 ? (
-                    <p className="font-display text-3xl font-semibold text-[#555555]">
+                    <p className="font-display text-3xl font-semibold text-[#888888]">
                       —
                     </p>
                   ) : !enough ? (
@@ -469,7 +469,7 @@ export default function AnalyticsClient({
                     <>
                       <p className="font-display text-4xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
                         {pct}
-                        <span className="text-lg font-normal text-[#555555]">
+                        <span className="text-lg font-normal text-[#888888]">
                           %
                         </span>
                       </p>
@@ -498,7 +498,7 @@ export default function AnalyticsClient({
               )
             })}
           </div>
-          <p className="text-[11px] text-[#555555] mt-4 leading-relaxed italic">
+          <p className="text-[11px] text-[#888888] mt-4 leading-relaxed italic">
             Well-calibrated benchmarks: High ≈ 85%, Medium ≈ 65%, Low ≈ 45%.
             Close to those numbers = you know what you know. Far below on High
             = overconfident; far above on Low = second-guessing yourself.
@@ -514,7 +514,7 @@ export default function AnalyticsClient({
       {/* Error pattern breakdown — efficient / labored / rushed / stuck */}
       {errorPatterns && errorPatterns.totalLabelled > 0 && (
         <div className={CARD_BASE + " " + CARD_HOVER}>
-          <p className={EYEBROW + " mb-2"}>Behaviour Patterns</p>
+          <p className={EYEBROW + " mb-2"}>Tempo × accuracy</p>
           <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
             How you{" "}
             <span className="font-display-italic" style={{ color: "#C9A84C" }}>
@@ -522,35 +522,36 @@ export default function AnalyticsClient({
             </span>
           </h2>
           <p className="mt-2 text-[13px] text-[#888888] leading-relaxed">
-            Attempts tagged against your own section baseline — fast or slow
-            relative to how long you typically take. Middle-tempo attempts
-            (neither too fast nor too slow) aren&apos;t counted.
+            Descriptive, not diagnostic: each attempt is fast or slow only
+            relative to how long YOU typically take on that section, and
+            middle-tempo attempts aren&apos;t counted. Use it to spot where
+            time went, not as a verdict on how you think.
           </p>
           <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-3">
             <PatternCard
               label="Efficient"
-              description="Correct, fast — exactly what you want."
+              description="Correct and fast for you."
               count={errorPatterns.efficient}
               total={errorPatterns.totalLabelled}
               tone="good"
             />
             <PatternCard
               label="Labored"
-              description="Correct but slow — right answer, wasted time."
+              description="Correct but slow for you."
               count={errorPatterns.labored}
               total={errorPatterns.totalLabelled}
               tone="warn"
             />
             <PatternCard
               label="Rushed"
-              description="Wrong + fast — panic, misread, skipped steps."
+              description="Wrong + fast for you."
               count={errorPatterns.rushed}
               total={errorPatterns.totalLabelled}
               tone="bad"
             />
             <PatternCard
               label="Stuck"
-              description="Wrong + slow — conceptual gap even with extra time."
+              description="Wrong + slow for you."
               count={errorPatterns.stuck}
               total={errorPatterns.totalLabelled}
               tone="bad"
@@ -579,19 +580,19 @@ export default function AnalyticsClient({
                   className="text-left border-b border-white/[0.05]"
                   style={{ backgroundColor: "#0A0A0A" }}
                 >
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555]">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888]">
                     Section
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555]">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888]">
                     Difficulty
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555] text-right">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-right">
                     Attempts
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555] text-right">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-right">
                     Avg Time
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555] text-right">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-right">
                     Accuracy
                   </th>
                 </tr>
@@ -712,7 +713,7 @@ function PredictionMAECard({ mae }: { mae: PredictionMAE }) {
           <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
             {readinessTotal}
           </p>
-          <p className="text-[10px] text-[#555555] mt-2">
+          <p className="text-[10px] text-[#888888] mt-2">
             from all practice accuracy
           </p>
         </div>
@@ -723,7 +724,7 @@ function PredictionMAECard({ mae }: { mae: PredictionMAE }) {
           <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
             {mockTotal}
           </p>
-          <p className="text-[10px] text-[#555555] mt-2 tabular-nums">{mockDate}</p>
+          <p className="text-[10px] text-[#888888] mt-2 tabular-nums">{mockDate}</p>
         </div>
       </div>
     </div>
@@ -814,7 +815,7 @@ function PatternCard({
       </div>
       <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
         {count}
-        <span className="text-sm font-normal text-[#555555]">
+        <span className="text-sm font-normal text-[#888888]">
           {" · "}
           {pct}%
         </span>

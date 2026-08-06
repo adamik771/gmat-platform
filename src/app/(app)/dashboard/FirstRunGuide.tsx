@@ -106,7 +106,7 @@ export default function FirstRunGuide({
           )}
         </span>
         <ChevronRight
-          className="w-3.5 h-3.5 flex-shrink-0 text-[#555555]"
+          className="w-3.5 h-3.5 flex-shrink-0 text-[#888888]"
           aria-hidden
         />
       </button>
@@ -165,7 +165,7 @@ export default function FirstRunGuide({
         <div key={day}>
           <p
             className="px-5 sm:px-6 pt-4 pb-1 text-[10px] font-semibold uppercase tracking-[0.22em]"
-            style={{ color: "#555555" }}
+            style={{ color: "#888888" }}
           >
             Day {day}
           </p>

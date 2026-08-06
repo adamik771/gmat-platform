@@ -121,7 +121,17 @@ export default function PracticeClient({
                 color: "#C0C0C0",
               }}
             >
-              Run mixed review
+              Review queue
+            </Link>
+            <Link
+              href="/practice/history"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
+              style={{
+                borderColor: "rgba(255,255,255,0.10)",
+                color: "#C0C0C0",
+              }}
+            >
+              Session history
             </Link>
           </div>
         </div>
@@ -276,7 +286,7 @@ function ChapterBlock({
       {group.comingSoon ? (
         <div
           className="mt-3 flex items-center gap-2 px-4 py-3 rounded-xl border border-dashed text-[12px]"
-          style={{ borderColor: "rgba(255,255,255,0.06)", color: "#555555" }}
+          style={{ borderColor: "rgba(255,255,255,0.06)", color: "#888888" }}
         >
           <Clock className="w-3.5 h-3.5 flex-shrink-0" aria-hidden />
           Tests coming soon — read the chapter for now.

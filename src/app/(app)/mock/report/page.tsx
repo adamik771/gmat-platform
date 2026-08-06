@@ -81,13 +81,20 @@ export default async function MockReportPage() {
 
   const state = await getUserState(supabase, user)
 
-  const { data: sessionRows } = await supabase
+  const { data: sessionRows, error: sessionsError } = await supabase
     .from("practice_sessions")
     .select("id, slug, section, topic, accuracy, total_questions, correct_count, total_time_ms, created_at")
     .eq("user_id", user.id)
     .like("slug", "mock-%")
     .order("created_at", { ascending: false })
     .limit(20)
+
+  // A failed read is NOT "no mock yet" — minutes after finishing a mock,
+  // that message reads as the attempt being lost. Throw to the (app)
+  // error boundary, which keeps the shell and offers a retry.
+  if (sessionsError) {
+    throw new Error(`mock report: sessions read failed (${sessionsError.message})`)
+  }
 
   if (!sessionRows || sessionRows.length === 0) {
     return (
@@ -376,7 +383,7 @@ export default async function MockReportPage() {
             />
           </div>
 
-          <p className="text-[11px] uppercase tracking-[0.22em] text-[#555555] mb-3 font-medium">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-[#888888] mb-3 font-medium">
             {targetDate ?? "most recent"}
           </p>
           <div className="mb-10">
@@ -407,7 +414,7 @@ export default async function MockReportPage() {
                   <p className="font-display text-5xl sm:text-7xl font-semibold text-[#888888] tracking-[-0.03em] leading-none">
                     {previousTotal}
                   </p>
-                  <p className="text-[10px] tracking-[0.18em] uppercase text-[#555555] mt-3 font-medium">
+                  <p className="text-[10px] tracking-[0.18em] uppercase text-[#888888] mt-3 font-medium">
                     Previous
                   </p>
                 </div>
@@ -586,7 +593,7 @@ export default async function MockReportPage() {
                         <span className="mx-1.5 text-[#333333]">·</span>
                         {Math.round(r.avgTimePerQuestionMs / 1000)}s avg/q
                       </p>
-                      <p className="text-[11px] text-[#555555] mt-2 uppercase tracking-[0.16em] font-medium">
+                      <p className="text-[11px] text-[#888888] mt-2 uppercase tracking-[0.16em] font-medium">
                         ~{sectionPercentile(section, accuracyToSectionScore(r.accuracy))}th percentile (est.)
                       </p>
                     </>
@@ -595,7 +602,7 @@ export default async function MockReportPage() {
                       <p className="font-display text-[2.75rem] font-semibold text-[#333333] tracking-[-0.02em] leading-none mb-3">
                         —
                       </p>
-                      <p className="text-[13px] text-[#555555]">Not yet taken</p>
+                      <p className="text-[13px] text-[#888888]">Not yet taken</p>
                     </>
                   )}
                 </div>
@@ -679,7 +686,7 @@ export default async function MockReportPage() {
                           >
                             {row.section}
                           </span>
-                          <span className="text-[12px] text-[#555555]">
+                          <span className="text-[12px] text-[#888888]">
                             {Math.round(row.accuracy * 100)}% on {row.attempts} question
                             {row.attempts === 1 ? "" : "s"}
                           </span>
@@ -862,8 +869,13 @@ export default async function MockReportPage() {
                     ? "#FF4444"
                     : "#888888"
                 return (
-                  <div
+                  /* A real link, not a hover-styled div: the runner promises
+                     "results are revealed on the report", and the deep-review
+                     page has the answer, correctness, timing, and explanation
+                     for every attempted question. */
+                  <Link
                     key={row.questionId}
+                    href={`/review/question/${row.questionId}`}
                     className="p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] flex items-start justify-between gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12]"
                     style={{
                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
@@ -885,7 +897,7 @@ export default async function MockReportPage() {
                           >
                             {row.section}
                           </span>
-                          <span className="text-[12px] text-[#555555]">{row.topic}</span>
+                          <span className="text-[12px] text-[#888888]">{row.topic}</span>
                         </div>
                         <p className="text-[15px] text-[#F0F0F0] truncate tracking-tight">
                           {row.preview}
@@ -899,7 +911,7 @@ export default async function MockReportPage() {
                       {outcomeIcon}
                       {outcomeLabel}
                     </span>
-                  </div>
+                  </Link>
                 )
               })}
             </div>
@@ -1191,7 +1203,7 @@ function RecommendedChaptersSection({
                 </p>
               </div>
               <ArrowRight
-                className="w-4 h-4 flex-shrink-0 text-[#555555] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
+                className="w-4 h-4 flex-shrink-0 text-[#888888] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
                 aria-hidden
               />
             </Link>

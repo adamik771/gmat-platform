@@ -100,7 +100,39 @@ const MAX_REVIEW_EDITS = 3
 // shallow compare keeps parsing tied to the actual question changing.
 const MockMarkdown = memo(function MockMarkdown({ text }: { text: string }) {
   return (
-    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      rehypePlugins={[rehypeCaretSup]}
+      components={{
+        // DI pipe tables and code blocks need their own scroll container —
+        // unwrapped, a wide table panned the WHOLE page mid-exam at
+        // 375/390px (mirrors SessionClient's PromptBlock overrides).
+        table: (props) => (
+          <div className="my-3 overflow-x-auto rounded-lg border border-white/[0.08]">
+            <table {...props} className="w-full border-collapse text-xs" />
+          </div>
+        ),
+        thead: (props) => <thead {...props} className="bg-[#0D0D0D]" />,
+        th: (props) => (
+          <th
+            {...props}
+            className="text-left py-2 px-3 text-[11px] font-semibold uppercase tracking-wide text-[#888888] border-b border-white/[0.08]"
+          />
+        ),
+        td: (props) => (
+          <td
+            {...props}
+            className="py-2 px-3 text-xs text-[#C0C0C0] border-b border-white/[0.04]"
+          />
+        ),
+        pre: (props) => (
+          <pre
+            {...props}
+            className="my-3 p-3 rounded-lg bg-[#0A0A0A] border border-white/[0.06] overflow-x-auto text-xs"
+          />
+        ),
+      }}
+    >
       {text}
     </ReactMarkdown>
   )
@@ -220,6 +252,48 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
     return () => window.clearInterval(id)
   }, [phase])
 
+  // The whole mock lives in React state — there is no resume. Guard every
+  // exit path during an active attempt: (a) beforeunload covers tab close /
+  // hard refresh / external nav; (b) App Router client-side navigations
+  // (sidebar links) never fire beforeunload, so a capture-phase click
+  // listener confirms anchor clicks too. Off on intro (nothing to lose)
+  // and done (everything saved).
+  const attemptActive =
+    phase === "running" ||
+    phase === "review" ||
+    phase === "break" ||
+    phase === "posting" ||
+    // The failed-save hold screen tells the student their answers are
+    // still in this tab — leaving there destroys them, so it needs the
+    // same guard as an in-progress section.
+    (phase === "done" && saveErrors.length > 0)
+  useEffect(() => {
+    if (!attemptActive) return
+    const onBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+    }
+    const onDocClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement | null)?.closest?.("a")
+      if (!anchor) return
+      const href = anchor.getAttribute("href")
+      if (!href || href.startsWith("#") || anchor.target === "_blank") return
+      if (
+        !window.confirm(
+          "Leave the mock? This attempt can't be resumed — unsaved sections will be lost."
+        )
+      ) {
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    }
+    window.addEventListener("beforeunload", onBeforeUnload)
+    document.addEventListener("click", onDocClick, true)
+    return () => {
+      window.removeEventListener("beforeunload", onBeforeUnload)
+      document.removeEventListener("click", onDocClick, true)
+    }
+  }, [attemptActive])
+
   // Timer hit zero mid-section — send the student to the review screen,
   // which kicks off its own 3-min countdown. Real GMAT gives the review
   // window even if you ran out of time on the section itself.
@@ -245,6 +319,16 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [now, phase, reviewStartMs])
+
+  // Break timer auto-continues at zero — the real exam does not offer an
+  // unlimited pause, and a countdown parked at 00:00 was a dead end.
+  useEffect(() => {
+    if (phase !== "break" || !breakStartMs) return
+    if (now - breakStartMs >= BREAK_SECONDS * 1000) {
+      endBreak()
+    }
+     
+  }, [now, phase, breakStartMs])
 
   // Redirect to the report once the last section is done — but only
   // if every section saved cleanly. If any save failed we hold the user
@@ -312,6 +396,11 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
   // flight. Keyed by section: a repeat call for the SAME section dedupes onto
   // the in-flight promise; a different section is never blocked.
   const inFlightRef = useRef<Map<Section, Promise<void>>>(new Map())
+  /** Sections whose practice_sessions row already committed. A retry after
+   *  a flags/edits failure must NOT re-POST the session — the server's
+   *  60s dedupe window can't absorb a retry minutes later, so the mock
+   *  section would be counted twice. */
+  const savedSectionsRef = useRef<Set<Section>>(new Set())
   // Per-section measured duration, snapshotted at finalize time so a later
   // retry (on the done screen) records the section's real elapsed time rather
   // than `Date.now() - sectionStartMs`, which by then points at a later
@@ -388,32 +477,44 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           v !== null
       )
     try {
-      const sessionRes = await fetch("/api/practice-sessions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          slug: `mock-${dateIso.slice(0, 10)}-${section.toLowerCase()}`,
-          topic: modeLabel,
-          section,
-          totalQuestions: cfg.questions.length,
-          correctCount: correctTotal,
-          accuracy:
-            answeredTotal === 0 ? 0 : Math.round((correctTotal / answeredTotal) * 100),
-          totalTimeMs:
-            sectionDurationsRef.current.get(section) ??
-            (sectionStartMs ? Date.now() - sectionStartMs : 0),
-          attempts,
-        }),
-      })
-      if (!sessionRes.ok) {
-        recordSaveError(section, sessionRes.status === 401 ? "unauthorized" : "error")
-        return
+      // Skip when this section's row already committed — a retry after a
+      // flags/edits failure must not insert a second mock section.
+      if (!savedSectionsRef.current.has(section)) {
+        const sessionRes = await fetch("/api/practice-sessions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            slug: `mock-${dateIso.slice(0, 10)}-${section.toLowerCase()}`,
+            topic: modeLabel,
+            section,
+            totalQuestions: cfg.questions.length,
+            correctCount: correctTotal,
+            accuracy:
+              answeredTotal === 0
+                ? 0
+                : Math.round((correctTotal / answeredTotal) * 100),
+            totalTimeMs:
+              sectionDurationsRef.current.get(section) ??
+              (sectionStartMs ? Date.now() - sectionStartMs : 0),
+            attempts,
+          }),
+        })
+        if (!sessionRes.ok) {
+          recordSaveError(
+            section,
+            sessionRes.status === 401 ? "unauthorized" : "error"
+          )
+          return
+        }
+        savedSectionsRef.current.add(section)
       }
       // Flags are saved to user_metadata via a separate endpoint so they
       // survive a retake and can be read by the report + review-queue.
       // Always POST (even if empty) so a re-attempt that clears flags
-      // replaces the stored list cleanly.
-      await fetch("/api/mock-flags", {
+      // replaces the stored list cleanly. A non-2xx here must surface as
+      // a save error — "section saved" with silently-dropped flags/edits
+      // showed the student a clean state that didn't exist.
+      const flagsRes = await fetch("/api/mock-flags", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -422,9 +523,13 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           flaggedQuestionIds,
         }),
       })
+      if (!flagsRes.ok) {
+        recordSaveError(section, flagsRes.status === 401 ? "unauthorized" : "error")
+        return
+      }
       // Review-edit outcomes — persist the pre/post snapshot per edited
       // question so the mock report can compute helped/hurt.
-      await fetch("/api/mock-review-edits", {
+      const editsRes = await fetch("/api/mock-review-edits", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -433,6 +538,10 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           edits: reviewEditEntries,
         }),
       })
+      if (!editsRes.ok) {
+        recordSaveError(section, editsRes.status === 401 ? "unauthorized" : "error")
+        return
+      }
       clearSaveError(section)
     } catch {
       recordSaveError(section, "error")
@@ -623,7 +732,11 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
     const q = activeSectionConfig.questions[questionIdx]
     const state = statesBySection[activeSection][questionIdx]
     if (!canSubmit(q, state)) return
-    const elapsed = questionStartMs ? Date.now() - questionStartMs : 0
+    // Clamp: background-tab throttling can inflate one question toward the
+    // whole section length, and a clock step can go negative.
+    const elapsed = questionStartMs
+      ? Math.min(Math.max(Date.now() - questionStartMs, 0), 30 * 60_000)
+      : 0
     setStatesBySection((prev) => {
       const states = prev[activeSection].slice()
       states[questionIdx] = { ...states[questionIdx], submitted: true, elapsedMs: elapsed }
@@ -670,7 +783,19 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
   // ---------- Render ----------
 
   if (phase === "intro") {
-    return <IntroCard sectionOrder={sectionOrder} onUp={moveSectionUp} onStart={startMock} />
+    return (
+      <div className="space-y-4">
+        {/* Safe to leave from here — nothing has been attempted yet. This
+            link deliberately does NOT render during an active attempt. */}
+        <a
+          href="/mock"
+          className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
+        >
+          ← Back to Mock
+        </a>
+        <IntroCard sectionOrder={sectionOrder} onUp={moveSectionUp} onStart={startMock} />
+      </div>
+    )
   }
 
   if (phase === "break") {
@@ -703,7 +828,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           </h1>
           <p className="text-sm text-[#C0C0C0] leading-relaxed">
             {hasUnauthorized
-              ? "Your sign-in expired during the mock. Sign back in, then retry the failed sections — your answers are still in this tab."
+              ? "Your sign-in expired during the mock. Sign in in the new tab, then come back here and retry the failed sections — your answers are still in this tab."
               : "One or more sections failed to save. Retry below before leaving — your answers are still in this tab."}
           </p>
           <ul className="space-y-2">
@@ -718,19 +843,25 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
                     ({err.reason === "unauthorized" ? "sign-in expired" : "save failed"})
                   </span>
                 </div>
-                {err.reason === "unauthorized" ? (
-                  <a
-                    href="/login"
-                    className="px-3 py-1.5 rounded-md text-xs font-medium"
-                    style={{
-                      backgroundColor: "rgba(201,168,76,0.12)",
-                      color: "#C9A84C",
-                      border: "1px solid rgba(201,168,76,0.3)",
-                    }}
-                  >
-                    Sign in
-                  </a>
-                ) : (
+                <span className="flex items-center gap-2">
+                  {err.reason === "unauthorized" && (
+                    /* New tab on purpose: same-tab navigation destroys the
+                       in-memory answers this screen promises are safe. Auth
+                       cookies refresh across tabs, re-arming Retry here. */
+                    <a
+                      href="/login"
+                      target="_blank"
+                      rel="noopener"
+                      className="px-3 py-1.5 rounded-md text-xs font-medium"
+                      style={{
+                        backgroundColor: "rgba(201,168,76,0.12)",
+                        color: "#C9A84C",
+                        border: "1px solid rgba(201,168,76,0.3)",
+                      }}
+                    >
+                      Sign in (new tab)
+                    </a>
+                  )}
                   <button
                     type="button"
                     onClick={() => retrySave(err.section)}
@@ -744,7 +875,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
                   >
                     {retrying === err.section ? "Retrying…" : "Retry save"}
                   </button>
-                )}
+                </span>
               </li>
             ))}
           </ul>
@@ -888,7 +1019,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
       <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111] space-y-4">
         {question.context && (
           <div className="p-4 rounded-lg bg-[#0D0D0D] border border-white/[0.04]">
-            <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+            <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-2">
               Passage
             </p>
             <div className="text-sm text-[#C0C0C0] leading-relaxed max-h-64 overflow-y-auto">
@@ -904,7 +1035,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           >
             {question.topic}
           </span>
-          <span className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <span className="text-[10px] uppercase tracking-widest text-[#888888]">
             {question.difficulty} · {question.type}
           </span>
         </div>
@@ -931,6 +1062,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
                   key={i}
                   onClick={() => handleSelect(i)}
                   disabled={optionsDisabled}
+                  data-kb-space="submit"
                   className="w-full flex items-start text-left p-3 rounded-lg border transition-colors disabled:cursor-not-allowed"
                   style={{
                     borderColor: selected
@@ -969,7 +1101,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
         )}
 
         <div className="flex items-center justify-between gap-3 pt-2 flex-wrap">
-          <p className="text-xs text-[#555555]">
+          <p className="text-xs text-[#888888]">
             {phase === "review"
               ? "Results are revealed on the report once the full mock is complete."
               : "Answers are revealed only after the mock is complete."}
@@ -1028,7 +1160,7 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
           </div>
         </div>
         {phase === "running" && !question.twoPartColumns && (
-          <p className="text-[11px] text-[#555555] text-center">
+          <p className="text-[11px] text-[#888888] text-center">
             Shortcuts: <kbd className="px-1 rounded bg-white/[0.06] font-mono">1</kbd>–<kbd className="px-1 rounded bg-white/[0.06] font-mono">{Math.min(question.options.length, 5)}</kbd> select · <kbd className="px-1 rounded bg-white/[0.06] font-mono">space</kbd> {state.submitted ? "next" : "submit"} · <kbd className="px-1 rounded bg-white/[0.06] font-mono">f</kbd> flag
           </p>
         )}
@@ -1155,8 +1287,8 @@ function IntroCard({
         Start mock
       </button>
 
-      <p className="text-xs text-[#555555] text-center">
-        Once you start, the 45-minute timer runs even if you navigate away. Plan to sit the full mock in one go.
+      <p className="text-xs text-[#888888] text-center">
+        Leaving this page during a section ends the attempt — answers save only when each section finishes. Plan to sit the full mock in one go.
       </p>
     </div>
   )
@@ -1194,9 +1326,9 @@ function SectionHeader({
   const danger = remainingMs < dangerThresholdMs
   const isReview = phase === "review"
   return (
-    <div className="flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D]">
+    <div className="flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D] flex-wrap gap-y-2">
       <div>
-        <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+        <p className="text-[10px] uppercase tracking-widest text-[#888888]">
           {isReview
             ? `Review — Section ${sectionIdx + 1} of ${totalSections}`
             : `Section ${sectionIdx + 1} of ${totalSections}`}
@@ -1260,6 +1392,7 @@ function SectionHeader({
         <span
           className="text-lg font-bold tabular-nums"
           style={{ color: danger ? "#FF4444" : "#F0F0F0" }}
+          aria-label={`Section time remaining ${formatClock(remainingMs)}${danger ? " — running low" : ""}`}
         >
           {formatClock(remainingMs)}
         </span>
@@ -1343,9 +1476,9 @@ function SectionReviewGrid({
 
   return (
     <div className="max-w-3xl mx-auto space-y-4">
-      <div className="flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D]">
+      <div className="flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D] flex-wrap gap-y-2">
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <p className="text-[10px] uppercase tracking-widest text-[#888888]">
             Review — Section {sectionIdx + 1} of {totalSections}
           </p>
           <p className="text-base font-semibold text-[#F0F0F0]">
@@ -1447,7 +1580,7 @@ function SectionReviewGrid({
               aria-label={`Question ${i + 1}, ${answered ? `answered ${letter}` : "unanswered"}${s.flagged ? ", flagged" : ""}${edited ? ", edited" : ""}`}
             >
               <div className="flex items-center justify-center gap-1">
-                <span className="text-[10px] uppercase tracking-wider text-[#555555]">
+                <span className="text-[10px] uppercase tracking-wider text-[#888888]">
                   Q{i + 1}
                 </span>
                 {s.flagged && (
@@ -1517,7 +1650,7 @@ function BreakCard({
       </div>
 
       <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111] text-center">
-        <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+        <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-2">
           Break time remaining
         </p>
         <p className="text-4xl font-bold text-[#F0F0F0] tabular-nums mb-4">
@@ -1531,7 +1664,7 @@ function BreakCard({
           <Play className="w-4 h-4" />
           Start {nextSection} now
         </button>
-        <p className="text-xs text-[#555555] mt-3">
+        <p className="text-xs text-[#888888] mt-3">
           You can start the next section whenever you&apos;re ready — no need to wait out the clock.
         </p>
       </div>

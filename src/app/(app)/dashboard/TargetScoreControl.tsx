@@ -110,7 +110,7 @@ export default function TargetScoreControl({
             setError(null)
           }}
           disabled={isPending}
-          className="p-1 rounded text-[#555555] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+          className="p-1 rounded text-[#888888] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
           aria-label="Cancel"
         >
           <X className="w-3.5 h-3.5" />
@@ -120,7 +120,7 @@ export default function TargetScoreControl({
             type="button"
             onClick={() => save(null)}
             disabled={isPending}
-            className="text-xs text-[#555555] hover:text-[#FF4444] transition-colors ml-1"
+            className="text-xs text-[#888888] hover:text-[#FF4444] transition-colors ml-1"
           >
             Clear
           </button>
@@ -146,14 +146,14 @@ export default function TargetScoreControl({
         <>
           <span className="text-xl font-bold text-[#F0F0F0]">
             {target}
-            <span className="text-sm font-normal text-[#555555] ml-1">
+            <span className="text-sm font-normal text-[#888888] ml-1">
               target
             </span>
           </span>
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="p-1 rounded text-[#555555] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded text-[#888888] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
             aria-label="Edit target score"
           >
             <Pencil className="w-3 h-3" />
@@ -161,9 +161,9 @@ export default function TargetScoreControl({
         </>
       ) : (
         <>
-          <span className="text-xl font-bold text-[#555555]">
+          <span className="text-xl font-bold text-[#888888]">
             —
-            <span className="text-sm font-normal text-[#555555] ml-1">
+            <span className="text-sm font-normal text-[#888888] ml-1">
               target
             </span>
           </span>

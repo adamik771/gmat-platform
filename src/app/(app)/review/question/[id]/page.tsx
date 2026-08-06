@@ -266,6 +266,12 @@ function Hero({
   const timeBucket = bucketTime(question.section, attempt?.timeSpentMs ?? null, question.estTimeSeconds)
   return (
     <section>
+      {/* The page had no headings at all — screen-reader users navigate
+          by heading and landed on an unstructured wall. Visually hidden
+          so the quiet chip-row design is unchanged. */}
+      <h1 className="sr-only">
+        Question review — {question.section}: {question.topic}
+      </h1>
       <div className="flex items-center gap-3 mb-5 flex-wrap">
         <span
           className="px-2 py-0.5 rounded text-[10px] uppercase tracking-[0.18em] font-semibold"
@@ -291,7 +297,7 @@ function Hero({
         >
           {question.difficulty}
         </span>
-        <span className="text-[11px] uppercase tracking-[0.16em] text-[#555555] font-medium">
+        <span className="text-[11px] uppercase tracking-[0.16em] text-[#888888] font-medium">
           {question.type}
         </span>
       </div>
@@ -647,7 +653,7 @@ function RelatedDrillsCard({
                   in {d.subchapter}
                 </span>
               </span>
-              <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 text-[#555555] group-hover:text-[#3ECF8E] group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 text-[#888888] group-hover:text-[#3ECF8E] group-hover:translate-x-0.5 transition-all" />
             </Link>
           </li>
         ))}
@@ -692,7 +698,7 @@ function SimilarQuestionsCard({
                   {item.matchedOn.slice(0, 3).join(" · ")}
                 </span>
               </span>
-              <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-1 text-[#555555] group-hover:text-[#B088FF] group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-1 text-[#888888] group-hover:text-[#B088FF] group-hover:translate-x-0.5 transition-all" />
             </Link>
           </li>
         ))}

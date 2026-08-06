@@ -19,6 +19,28 @@ export function shouldIgnoreKeyboardShortcut(event: KeyboardEvent): boolean {
   const tag = target.tagName
   if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return true
   if (target.isContentEditable) return true
+  // Enter/Space on a FOCUSED interactive control must activate that
+  // control, not fire the global shortcut — preventDefault here used to
+  // make every post-submit feature (rating stars, save-for-review, tutor,
+  // hints, exit) keyboard-inoperable and turned Tab+Enter on an answer
+  // option into a surprise submit. Exception: Space keeps the documented
+  // submit/next meaning on answer options (marked data-kb-space="submit"),
+  // because browsers leave a mouse-clicked option focused and
+  // Space-after-click is the primary documented gesture.
+  if (event.key === "Enter" || event.key === " ") {
+    const interactive = target.closest?.(
+      'button, a[href], [role="button"], [role="radio"], [role="menuitem"], summary'
+    )
+    if (interactive) {
+      if (
+        event.key === " " &&
+        (interactive as HTMLElement).dataset?.kbSpace === "submit"
+      ) {
+        return false
+      }
+      return true
+    }
+  }
   return false
 }
 

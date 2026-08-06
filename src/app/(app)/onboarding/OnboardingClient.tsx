@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import {
@@ -24,6 +24,20 @@ import {
 
 const EYEBROW = "text-[10px] font-semibold uppercase tracking-[0.22em]"
 const STEPS = ["target", "exam-date", "baseline-info", "current-score", "weekly-hours", "weak-areas", "prep-history", "review"] as const
+
+/** sessionStorage key for the mid-flight wizard draft — user-scoped so a
+ *  shared device can't restore one account's answers into another's. */
+function draftKey(userId: string): string {
+  return `onboarding-draft:${userId}`
+}
+
+function clearDraft(userId: string) {
+  try {
+    window.sessionStorage.removeItem(draftKey(userId))
+  } catch {
+    // Nothing to clear.
+  }
+}
 type StepId = (typeof STEPS)[number]
 
 interface OnboardingState {
@@ -83,15 +97,71 @@ const PREP_HISTORY_OPTIONS = [
 export default function OnboardingClient({
   initial,
   firstName,
+  existingOnboarding = {},
+  alreadyCompleted = false,
+  userId,
 }: {
   initial: OnboardingState
   firstName: string | null
+  /** Scopes the sessionStorage draft to this account. */
+  userId: string
+  /** Raw stored user_metadata.onboarding — the skip write spreads it so a
+   *  nested-object replace can't wipe a completed intake. */
+  existingOnboarding?: Record<string, unknown>
+  /** True when the intake was already completed — the wizard is then an
+   *  editor, and "Skip" becomes a plain no-write way back. */
+  alreadyCompleted?: boolean
 }) {
   const router = useRouter()
   const [stepIdx, setStepIdx] = useState(0)
   const [state, setState] = useState<OnboardingState>(initial)
   const [error, setError] = useState<string | null>(null)
   const [submitting, startSubmit] = useTransition()
+
+  // Mid-flight draft: the wizard used to hold 7 steps of answers in pure
+  // React state, so any sidebar click or refresh wiped everything.
+  // sessionStorage keeps the draft for the tab's lifetime; submit/skip
+  // clears it. Restored once on mount (hydration-safe).
+  useEffect(() => {
+    try {
+      // A completed intake is edited from server state, not a stale
+      // draft that may predate changes made elsewhere (e.g. the
+      // dashboard target control).
+      if (alreadyCompleted) return
+      const raw = window.sessionStorage.getItem(draftKey(userId))
+      if (!raw) return
+      const draft = JSON.parse(raw) as {
+        state?: OnboardingState
+        stepIdx?: number
+      }
+      // Reads sessionStorage (browser-only) — must run in an effect, not
+      // during render, to avoid an SSR hydration mismatch (same pattern
+      // as ChapterReader's progress hydration).
+      if (draft.state) setState((s) => ({ ...s, ...draft.state }))
+      if (
+        typeof draft.stepIdx === "number" &&
+        draft.stepIdx > 0 &&
+        draft.stepIdx < STEPS.length
+      ) {
+        setStepIdx(draft.stepIdx)
+      }
+    } catch {
+      // Corrupt/unavailable storage — start fresh.
+    }
+    // Mount-only restore: alreadyCompleted/userId are fixed for a mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  useEffect(() => {
+    try {
+      if (alreadyCompleted) return
+      window.sessionStorage.setItem(
+        draftKey(userId),
+        JSON.stringify({ state, stepIdx })
+      )
+    } catch {
+      // Storage full/unavailable — the draft just won't survive.
+    }
+  }, [state, stepIdx, alreadyCompleted, userId])
 
   const step = STEPS[stepIdx]
   const isLastStep = stepIdx === STEPS.length - 1
@@ -114,32 +184,57 @@ export default function OnboardingClient({
   const submit = () => {
     setError(null)
     startSubmit(async () => {
-      const res = await fetch("/api/onboarding", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(state),
-      })
-      const data = (await res.json()) as { ok?: boolean; error?: string; nextHref?: string }
-      if (!res.ok || !data.ok) {
-        setError(data.error ?? "Something went wrong saving your answers.")
-        return
+      try {
+        const res = await fetch("/api/onboarding", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(state),
+        })
+        const data = (await res.json()) as { ok?: boolean; error?: string; nextHref?: string }
+        if (!res.ok || !data.ok) {
+          setError(data.error ?? "Something went wrong saving your answers.")
+          return
+        }
+        clearDraft(userId)
+        router.push(data.nextHref ?? "/mock")
+      } catch {
+        // Network failure — without this catch the rejection was silent
+        // and the button just un-stuck with no explanation.
+        setError("Network error — your answers weren't saved. Check your connection and try again.")
       }
-      router.push(data.nextHref ?? "/mock")
     })
   }
 
   // "Skip for now" — record that onboarding was dismissed so the dashboard's
-  // first-run guard stops redirecting here, then go into the app. Best-effort.
+  // first-run guard stops redirecting here, then go into the app. For a
+  // COMPLETED intake this is a pure navigation: no write at all (the old
+  // bare { skippedAt } write replaced the whole nested object and wiped
+  // completedAt/weeklyHours/weakAreas for anyone who revisited).
   const [skipping, setSkipping] = useState(false)
   const handleSkip = async () => {
+    clearDraft(userId)
+    if (alreadyCompleted) {
+      router.push("/dashboard")
+      return
+    }
     setSkipping(true)
     try {
       const supabase = createSupabaseBrowser()
-      await supabase.auth.updateUser({
-        data: { onboarding: { skippedAt: new Date().toISOString() } },
+      const { error: skipError } = await supabase.auth.updateUser({
+        data: {
+          onboarding: {
+            ...existingOnboarding,
+            skippedAt: new Date().toISOString(),
+          },
+        },
       })
+      if (skipError) {
+        // Surface it — a silently-failed skip bounces the user straight
+        // back into the wizard on the next dashboard visit.
+        setError("Couldn't save the skip — you may see this wizard again. You can still continue to the dashboard.")
+      }
     } catch {
-      // Non-fatal — worst case the guard shows onboarding again next visit.
+      setError("Couldn't save the skip — you may see this wizard again. You can still continue to the dashboard.")
     }
     router.push("/dashboard")
   }
@@ -162,7 +257,11 @@ export default function OnboardingClient({
             disabled={skipping}
             className="text-[12px] text-[#888888] hover:text-[#C0C0C0] transition-colors disabled:opacity-50"
           >
-            {skipping ? "Skipping…" : "Skip for now"}
+            {alreadyCompleted
+              ? "Back to dashboard"
+              : skipping
+              ? "Skipping…"
+              : "Skip for now"}
           </button>
         </div>
         {/* Stepper */}
@@ -332,15 +431,15 @@ function stepDescription(step: StepId): string {
     case "baseline-info":
       return "The single data point the whole plan calibrates from. Here's how to get it."
     case "current-score":
-      return "If you've taken the test or a recent mock, paste the score in — it seeds your first week. Skip if not. (Your official baseline still gets logged on the Mock page.)"
+      return "Optional context for your records. Skip freely — the plan runs on your official baseline, which gets logged on the Mock page."
     case "weekly-hours":
       return "Honest answer here. The plan only works if it fits your real schedule, not your aspirational one."
     case "weak-areas":
-      return "What you say here only seeds the first week. Your baseline exam + ongoing data refine it from there."
+      return "These seed your multi-week plan until real practice data takes over — the chapters you flag here lead week one."
     case "prep-history":
       return "Different starting points need different first weeks. The baseline exam anchors it either way."
     case "review":
-      return "Confirm your answers — you can change them anytime in Settings."
+      return "Confirm your answers — you can reopen this wizard from your study plan to change them."
   }
 }
 
@@ -355,7 +454,10 @@ function isStepValid(step: StepId, state: OnboardingState): boolean {
     case "current-score":
       return true // null OK
     case "weekly-hours":
-      return state.weeklyHours >= 1 && state.weeklyHours <= 40
+      return (
+        state.weeklyHours >= WEEKLY_HOURS_MIN &&
+        state.weeklyHours <= WEEKLY_HOURS_MAX
+      )
     case "weak-areas":
       return true // empty OK
     case "prep-history":
@@ -416,8 +518,8 @@ function BaselineInfoStep() {
       <p className="text-[13px] text-[#888888] leading-relaxed">
         When you have your score, log it on the{" "}
         <span className="text-[#C0C0C0]">Mock</span> page — that entry is
-        what unlocks your study plan and analytics. The next step only asks
-        for a rough prior score so the first week isn&apos;t flying blind.
+        what unlocks your study plan and analytics. The next step&apos;s
+        rough prior score is optional context only.
       </p>
     </div>
   )
@@ -591,9 +693,9 @@ function WeeklyHoursStep({
         className="w-full"
         aria-label="Weekly study hours"
       />
-      <div className="flex justify-between text-[11px] text-[#555555] mt-2 uppercase tracking-[0.16em] font-medium">
+      <div className="flex justify-between text-[11px] text-[#888888] mt-2 uppercase tracking-[0.16em] font-medium">
         <span>{WEEKLY_HOURS_MIN} hr</span>
-        <span>20 hr</span>
+        <span>14 hr</span>
         <span>{WEEKLY_HOURS_MAX} hr</span>
       </div>
       <p className="text-[12px] text-[#888888] leading-relaxed mt-5">
@@ -601,7 +703,7 @@ function WeeklyHoursStep({
         <span className="text-[#C0C0C0]">{perDayMinutes(value)} min/day</span>.{" "}
         {weeklyHoursAdvice(value)}
       </p>
-      <p className="text-[11px] text-[#555555] leading-relaxed mt-2">
+      <p className="text-[11px] text-[#888888] leading-relaxed mt-2">
         This shapes your weekly study plan — what each day of the week
         prioritizes. You can change it here anytime.
       </p>
@@ -661,7 +763,7 @@ function WeakAreasStep({
           </div>
         )
       })}
-      <p className="text-[11px] text-[#555555] italic">
+      <p className="text-[11px] text-[#888888] italic">
         Pick anywhere from 0 to 8. Empty is fine — practice data surfaces the real weak spots.
       </p>
     </div>
@@ -760,9 +862,12 @@ function ReviewStep({ state }: { state: OnboardingState }) {
         PREP_HISTORY_OPTIONS.find((o) => o.id === state.prepHistory)?.label ?? state.prepHistory,
     },
   ]
+  // Retakers land on the same locked plan as everyone else until an
+  // official score is LOGGED — promising "open your adaptive plan" here
+  // read as the product forgetting the score they just typed in.
   const next =
     state.prepHistory === "retake"
-      ? "Open your adaptive plan."
+      ? "Log your existing official score on the Mock page — that entry unlocks your adaptive plan."
       : "Take an official mba.com practice exam to set your baseline."
   return (
     <div>

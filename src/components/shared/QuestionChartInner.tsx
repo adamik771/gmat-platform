@@ -79,13 +79,74 @@ function yAxisLabel(spec: ChartSpec) {
     : undefined
 }
 
+/** Screen-reader data table generated from the chart spec. The chart IS
+ *  the question data on Graphics Interpretation items — without a text
+ *  alternative those questions were unanswerable with a screen reader.
+ *  The spec is fully structured (typed rows, series names, axis labels),
+ *  so the table is deterministic. */
+function SrDataTable({ spec, series }: { spec: ChartSpec; series: ChartSeries[] }) {
+  const unit = spec.y?.unit ? ` ${spec.y.unit}` : ""
+  if (spec.type === "pie") {
+    return (
+      <table className="sr-only">
+        <caption>{spec.title ?? "Chart data"}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{spec.x?.label ?? "Category"}</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {spec.data.map((row, i) => (
+            <tr key={i}>
+              <th scope="row">{String(row.name ?? row.x ?? i + 1)}</th>
+              <td>
+                {String(row.value ?? "")}
+                {unit}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
+  }
+  return (
+    <table className="sr-only">
+      <caption>{spec.title ?? "Chart data"}</caption>
+      <thead>
+        <tr>
+          <th scope="col">{spec.x?.label ?? "x"}</th>
+          {series.map((s) => (
+            <th key={s.key} scope="col">
+              {s.name ?? s.key}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {spec.data.map((row, i) => (
+          <tr key={i}>
+            <th scope="row">{String(row.x ?? i + 1)}</th>
+            {series.map((s) => (
+              <td key={s.key}>
+                {String(row[s.key] ?? "")}
+                {unit}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
 export default function QuestionChart({ spec }: { spec: ChartSpec }) {
   const series = resolveSeries(spec)
   const showLegend = series.length > 1 || spec.type === "pie"
 
   return (
     <figure
-      className="my-4 rounded-xl border p-4"
+      className="my-4 rounded-xl border p-4 overflow-hidden"
       style={{ borderColor: "rgba(255,255,255,0.08)", backgroundColor: "#0D0D0D" }}
     >
       {spec.title && (
@@ -93,11 +154,14 @@ export default function QuestionChart({ spec }: { spec: ChartSpec }) {
           {spec.title}
         </figcaption>
       )}
-      <div className="w-full" style={{ height: 300 }}>
+      {/* The visual chart is hidden from AT; the sr-only table below
+          carries the data. */}
+      <div className="w-full" style={{ height: 300 }} aria-hidden="true">
         <ResponsiveContainer width="100%" height="100%">
           {renderChart(spec, series, showLegend)}
         </ResponsiveContainer>
       </div>
+      <SrDataTable spec={spec} series={series} />
     </figure>
   )
 }

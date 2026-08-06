@@ -217,7 +217,7 @@ export default function StudyHoursChart({
           </span>
         )}
         {currentTotal === 0 && previousTotal === 0 && (
-          <span className="text-[12px]" style={{ color: "#555555" }}>
+          <span className="text-[12px]" style={{ color: "#888888" }}>
             No study time logged in this window yet.
           </span>
         )}

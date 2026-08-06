@@ -13,6 +13,7 @@ import {
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { daysUntil } from "@/lib/utils"
+import { getUserTz } from "@/lib/tz"
 import {
   collectAdaptiveSignals,
   computeAdaptivePlan,
@@ -66,20 +67,55 @@ export default async function AdaptivePlanPage() {
 
   const state = await getUserState(supabase, user)
   const flaggedQuestionIds = gatherFlaggedQuestionIds(state)
-  const signals = await collectAdaptiveSignals(
-    supabase,
-    user.id,
-    state,
-    { flaggedQuestionIds }
+  // Intake weak areas seed the plan's cold start — the wizard promises
+  // they shape week one, and until now nothing read them back.
+  const intakeWeakAreas = Array.isArray(
+    (user.user_metadata?.onboarding as { weakAreas?: unknown } | undefined)
+      ?.weakAreas
   )
+    ? ((user.user_metadata!.onboarding as { weakAreas: string[] }).weakAreas)
+    : []
+  const signals = await collectAdaptiveSignals(supabase, user.id, state, {
+    flaggedQuestionIds,
+    intakeWeakAreas,
+  })
 
-  // Derive days-available from exam_date if it's set. Shared local-midnight
-  // parse — the old mixed UTC/local math here overshot by a day in
-  // positive-offset timezones and disagreed with every other countdown.
+  // Derive days-available from exam_date if it's set (user-tz aware).
+  const tz = await getUserTz()
   const examDate = (user.user_metadata?.exam_date as string | null | undefined) ?? null
   const targetScore = (user.user_metadata?.target_score as number | null | undefined) ?? null
-  const daysAvailable =
-    examDate !== null ? Math.max(0, daysUntil(examDate) ?? 0) : null
+  const rawDaysUntil = examDate !== null ? daysUntil(examDate, tz) : null
+
+  // A passed exam date is not a 0-day runway — planning a fresh 1-week
+  // schedule "for" an exam that already happened, with the day itself
+  // labeled "Exam date past", was nonsense. Say so and point at the
+  // update control instead.
+  if (rawDaysUntil !== null && rawDaysUntil < 0) {
+    return (
+      <Frame>
+        <Header />
+        <div className="p-8 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] text-center">
+          <h2 className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] mb-3">
+            Your exam date has passed.
+          </h2>
+          <p className="text-[14px] text-[#C0C0C0] leading-[1.75] max-w-lg mx-auto mb-6">
+            This plan schedules toward an exam date, and yours (
+            {examDate}) is behind us. Set your next exam date — or clear it —
+            and the multi-week plan will rebuild around the new runway.
+          </p>
+          <Link
+            href="/settings"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90"
+            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+          >
+            Update exam date
+          </Link>
+        </div>
+      </Frame>
+    )
+  }
+
+  const daysAvailable = rawDaysUntil !== null ? Math.max(0, rawDaysUntil) : null
 
   const plan = computeAdaptivePlan(signals, {
     targetScore,
@@ -320,7 +356,7 @@ function SignalCell({
       >
         {value}
       </p>
-      <p className="text-[11px] text-[#555555] leading-snug truncate">{sub}</p>
+      <p className="text-[11px] text-[#888888] leading-snug truncate">{sub}</p>
     </div>
   )
 }
@@ -337,7 +373,7 @@ function SectionOrderPanel({ plan }: { plan: AdaptivePlan }) {
       <div className="flex items-center gap-3 flex-wrap mb-4">
         {plan.sectionOrder.map((sec, i) => (
           <span key={sec} className="inline-flex items-center gap-2">
-            {i > 0 && <ArrowRight className="w-3.5 h-3.5 text-[#555555]" />}
+            {i > 0 && <ArrowRight className="w-3.5 h-3.5 text-[#888888]" />}
             <span
               className="px-3 py-1.5 rounded-lg text-[12px] font-semibold tracking-tight"
               style={{
@@ -421,12 +457,12 @@ function DayCard({ day }: { day: AdaptiveDay }) {
         <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
           {day.weekday}
         </p>
-        <p className="text-[10px] text-[#555555]">
+        <p className="text-[10px] text-[#888888]">
           {day.estimatedMinutes > 0 ? `${day.estimatedMinutes}m` : "rest"}
         </p>
       </div>
       {isRest ? (
-        <p className="text-[12px] text-[#555555] italic">Rest day.</p>
+        <p className="text-[12px] text-[#888888] italic">Rest day.</p>
       ) : (
         <div className="space-y-1.5">
           {day.activities.map((a, i) => (

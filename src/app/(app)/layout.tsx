@@ -30,7 +30,6 @@ import ServiceWorkerRegistrar from "@/components/offline/ServiceWorkerRegistrar"
 import OfflineBanner from "@/components/offline/OfflineBanner"
 import OfflineSyncTrigger from "@/components/offline/OfflineSyncTrigger"
 import { clearReviewCache } from "@/lib/offline/review-cache"
-import { clearPendingAttempts } from "@/lib/offline/pending-attempts"
 import { drainPendingAttempts } from "@/lib/offline/sync"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
@@ -73,11 +72,12 @@ function SidebarLink({
     <Link
       href={item.href}
       onClick={onClick}
+      aria-current={active ? "page" : undefined}
       className={cn(
         "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors group",
         active
           ? "text-[#F0F0F0]"
-          : "text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+          : "text-[#888888] hover:text-[#C0C0C0] hover:bg-white/[0.03]"
       )}
       style={active ? { backgroundColor: "rgba(201,168,76,0.08)" } : {}}
     >
@@ -140,7 +140,7 @@ function Sidebar({
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-[#888888] hover:text-[#C0C0C0] hover:bg-white/[0.03]"
           >
             <MessageCircle className="w-4 h-4 flex-shrink-0" />
             <span>Community</span>
@@ -159,7 +159,7 @@ function Sidebar({
             "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
             pathname.startsWith("/settings")
               ? "text-[#F0F0F0]"
-              : "text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+              : "text-[#888888] hover:text-[#C0C0C0] hover:bg-white/[0.03]"
           )}
         >
           <Settings className="w-4 h-4 flex-shrink-0" />
@@ -180,6 +180,24 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   // drill attempts back to /api/practice-sessions when this user is
   // online. Empty until auth resolves; the trigger no-ops on empty.
   const [userId, setUserId] = useState("")
+
+  // Publish the browser's IANA timezone as a cookie so server components
+  // can compute the USER's day boundaries (streaks, "today" counts,
+  // calendar dots). Production servers run UTC — without this, every
+  // "local day" was a UTC day and late-evening sessions broke streaks.
+  useEffect(() => {
+    try {
+      // IANA names (letters/digits/_ / + -) are cookie-safe unencoded —
+      // encoding would percent-escape the slash and break the server's
+      // validation regex.
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+      if (tz && /^[A-Za-z0-9_+/-]{1,64}$/.test(tz) && !document.cookie.includes(`tz=${tz}`)) {
+        document.cookie = `tz=${tz}; path=/; max-age=31536000; samesite=lax`
+      }
+    } catch {
+      // No Intl or cookies blocked — server-timezone math remains.
+    }
+  }, [])
 
   useEffect(() => {
     const supabase = createSupabaseBrowser()
@@ -218,21 +236,22 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     const uid = user?.id
 
     // Best-effort: sync any unsynced offline drill attempts to the
-    // server before we wipe local state. If we're offline or the API
-    // is unreachable, the drain is a no-op and the attempts get cleared
-    // below — that's the same trade-off we apply in the existing
-    // OfflineSyncTrigger flow. Sign-out on a shared device beats
-    // leaking another user's data into the next session.
+    // server before we wipe local state.
     if (uid) {
+      // Only clear the queue when the drain actually landed: the queue is
+      // keyed by user id (no cross-account leak), so on a failed drain the
+      // unsynced attempts are kept for this user's next sign-in instead of
+      // being silently destroyed.
       try {
+        // No follow-up whole-key clear: a successful drain already removed
+        // exactly the attempts it sent, so clearing here would delete only
+        // attempts appended DURING the drain (e.g. a drill finishing in
+        // another tab). A failed drain must keep the queue, and the key is
+        // user-scoped so nothing leaks into the next account.
         await drainPendingAttempts(uid)
       } catch {
-        // Swallow — sign-out should not block on a sync failure.
-      }
-      try {
-        await clearPendingAttempts(uid)
-      } catch {
-        // Swallow — IDB errors should not block sign-out.
+        // Swallow — sign-out should not block on a sync failure; the
+        // user-scoped queue stays for the next session.
       }
     }
     try {
@@ -251,7 +270,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className="flex h-screen overflow-hidden"
+      className="flex h-dvh overflow-hidden"
       style={{ backgroundColor: "#0A0A0A" }}
     >
       <a href="#main-content" className="skip-to-content">
@@ -294,13 +313,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-1.5 rounded-lg text-[#555555] hover:text-[#888888]"
+              className="lg:hidden p-1.5 rounded-lg text-[#888888] hover:text-[#C0C0C0]"
               aria-label="Open navigation menu"
             >
               <Menu className="w-5 h-5" aria-hidden="true" />
             </button>
             <p className="text-sm text-[#888888]">
-              <span className="text-[#555555]">App</span>
+              <span className="text-[#888888]">App</span>
               <span className="mx-1.5 text-[#333333]">/</span>
               <span className="text-[#F0F0F0]">{currentLabel}</span>
             </p>
@@ -330,7 +349,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               {userName && (
                 <span className="hidden sm:block text-sm text-[#888888]">{userName}</span>
               )}
-              <ChevronDown className="w-3.5 h-3.5 text-[#555555]" />
+              <ChevronDown className="w-3.5 h-3.5 text-[#888888]" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"

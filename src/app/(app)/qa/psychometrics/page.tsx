@@ -224,7 +224,7 @@ export default async function PsychometricsPage() {
               }}
               aria-hidden
             />
-            <span className="text-[11px] tabular-nums text-[#555555]">
+            <span className="text-[11px] tabular-nums text-[#888888]">
               {visible.length} of {items.length}
             </span>
           </div>
@@ -297,7 +297,7 @@ export default async function PsychometricsPage() {
               </table>
             </div>
             {items.length === 0 && !error && (
-              <p className="text-[13px] text-[#555555] italic text-center py-10">
+              <p className="text-[13px] text-[#888888] italic text-center py-10">
                 No attempts in the database yet.
               </p>
             )}
