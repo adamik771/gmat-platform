@@ -17,6 +17,7 @@ A company had 50 employees at the start of the year and 65 employees at the end 
 - E) 33%
 
 **answer:** D
+**fastest_path:** The change is 15 on a base of 50, and 50 doubles to 100 — so 15 doubles to 30%. No long division needed.
 **explanation:** A percent change is computed by dividing the amount of the change by the original quantity and then expressing the result as a percent. The governing relationship is Percent change = (new value − original value) / (original value) × 100, where the denominator is always the starting value.
 
 Let the original headcount be the starting number of employees, 50, and let the new headcount be the ending number of employees, 65. The change in headcount is the difference between these two values: 65 − 50 = 15.
@@ -28,6 +29,12 @@ Applying the formula, we divide the change by the original value:
 Converting this quantity to a percent gives 0.3 × 100 = 30%.
 
 The correct answer is D.
+**mistake_a:** 15% echoes the raw change — 15 employees — as if it were already a percent. A change of 15 is 15% only when the base is 100; here the base is 50, so each employee is worth two percentage points.
+**mistake_b:** 23% divides the change by the NEW headcount (15/65 ≈ 23%). Percent change always measures against where you started — the original 50.
+**mistake_c:** 25% is the eyeball answer for "15 out of about 60." With a base of exactly 50 the conversion is exact and instant: out of 50, double it to get out of 100.
+**mistake_e:** 33% is 15/45 — a garbled base, or a one-third guess. Anchor the fraction first: change of 15, base of 50.
+**common_trap:** Dividing the change by the new value (15/65) instead of the original. The test placed 23% on the list precisely for that error.
+**takeaway:** Percent change = change ÷ ORIGINAL value. When the base is 50, 25, or 20, convert to a per-100 count mentally — out of 50 doubles, out of 25 quadruples, out of 20 multiplies by 5.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -46,6 +53,7 @@ Product B costs $120 and product A costs $80. Product B's price is what percent 
 - E) 150%
 
 **answer:** C
+**fastest_path:** B exceeds A by 40 on a base of A = 80, and 40/80 is one half — 50%.
 **explanation:** To express how much greater one quantity is than another in percent terms, we apply the principle that the percent by which one amount exceeds a reference amount equals the difference between the two amounts divided by the reference amount, then multiplied by 100. The phrase "greater than product A's price" identifies product A's price as the reference, so it must serve as the denominator.
 
 Let B = 120 be the price of product B and A = 80 be the price of product A. The question asks for the percent by which B exceeds A, which is (B - A) / A times 100.
@@ -65,6 +73,12 @@ Finally, we convert this fraction to a percent by multiplying by 100:
 Therefore, product B's price is 50 percent greater than product A's price.
 
 The correct answer is C.
+**mistake_a:** 33% divides the $40 gap by B's price (40/120) instead of A's. That answers a different question — "A is what percent less than B" — because the phrase "greater than A" makes A the base.
+**mistake_b:** 40% echoes the $40 dollar difference as a percent. Dollars are not percents until they are divided by the base.
+**mistake_d:** 67% is A as a fraction of B (80/120) — the wrong direction and the wrong base at once.
+**mistake_e:** 150% is B as a percent OF A (120/80). "B is 150% of A" and "B is 50% greater than A" describe the same prices — the word "greater" strips out the first 100%.
+**common_trap:** Confusing "percent OF" with "percent GREATER THAN." Of = the ratio (150%); greater than = the ratio minus 100 points (50%).
+**takeaway:** In "X is what percent greater than Y," Y is always the base: (X − Y)/Y. If you computed X/Y instead, subtract 100 points before answering.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -83,6 +97,7 @@ A box contains only red and green pens in the ratio 4:7. If there are 44 pens in
 - E) 32
 
 **answer:** D
+**fastest_path:** 4 + 7 = 11 parts, and 44 ÷ 11 = 4 pens per part. Green is 7 parts: 28.
 **explanation:** A ratio partitions a total into equal-sized parts, so the governing method is to find the value of a single part and then multiply by the number of parts assigned to the desired quantity. Let the common multiplier be x, so that the number of red pens is 4x and the number of green pens is 7x. Since the box contains only red and green pens, the total number of pens is the sum of these two quantities.
 
 Translating the total into an equation gives 4x + 7x = 44, which simplifies to 11x = 44. Dividing both sides by 11 yields x = 4; thus each part of the ratio represents 4 pens.
@@ -90,6 +105,12 @@ Translating the total into an equation gives 4x + 7x = 44, which simplifies to 1
 The number of green pens corresponds to 7 parts, so the number of green pens is 7x = 7 times 4 = 28.
 
 The correct answer is D.
+**mistake_a:** 16 is the number of RED pens (4 parts × 4). The ratio's first term catches the eye, but the question asks for green — re-read which part is requested before answering.
+**mistake_b:** 22 is half of 44 — splitting the box evenly as if the ratio were 1:1. The 4:7 ratio says green outnumbers red.
+**mistake_c:** 24 is 6 parts × 4 — a slip in the part count for green (6 instead of 7). Tie each count to its ratio term explicitly.
+**mistake_e:** 32 is 8 parts × 4 — the mirror miscount. After finding the per-part value, multiply by the exact ratio term, not a neighbor.
+**common_trap:** Reporting the red count (16). On every ratio problem one wrong choice is the other part — the stem names which part it wants.
+**takeaway:** For a ratio a:b with a known total, one part = total ÷ (a + b). Then answer the part that was asked — the complement is always among the choices.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -108,6 +129,7 @@ A jacket originally priced at $120 is marked down by 25%. What is the sale price
 - E) $100
 
 **answer:** B
+**fastest_path:** 25% off means paying 3/4. A quarter of 120 is 30, so the price drops to 120 − 30 = 90.
 **explanation:** A markdown of a given percent reduces a price to the complementary percent of the original. When an item is marked down by 25%, the sale price represents 100% minus 25%, that is, 75% of the original price. The governing relationship is therefore: sale price equals (1 minus the discount rate) times the original price.
 
 Let P denote the original price, so that P = 120. Let r denote the discount rate expressed as a decimal, so that r = 0.25. The sale price S is given by S = (1 - r) times P.
@@ -117,6 +139,12 @@ Substituting the values, we obtain S = (1 - 0.25)(120) = (0.75)(120) = 90.
 Equivalently, we may compute the dollar amount of the discount first and then subtract it from the original price. The discount is 25% of 120, that is, (0.25)(120) = 30. The sale price is then 120 - 30 = 90.
 
 The correct answer is B.
+**mistake_a:** $80 takes off a third of the price (120 × 2/3) rather than a quarter — or subtracts a flat $40. 25% of 120 is exactly 30, no more.
+**mistake_c:** $95 subtracts the percent as if it were dollars: 120 − 25. A percent has no size until it is applied to the base.
+**mistake_d:** $96 applies a 20% discount (0.80 × 120) — the wrong complement. 25% off leaves 75%, not 80%.
+**mistake_e:** $100 subtracts only $20 — rounding the discount to a convenient number instead of computing it. One quarter of 120 is 30.
+**common_trap:** Subtracting the percent figure itself ($25) from the price. Convert the percent to dollars on the actual base before subtracting.
+**takeaway:** "X% off" means multiply by (1 − X/100). For landmark percents, think in fractions: 25% off = pay 3/4, 20% off = pay 4/5, 50% off = pay 1/2.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -135,6 +163,7 @@ On a map, 2 inches represents 15 actual miles. If two cities are 7 inches apart 
 - E) 105
 
 **answer:** C
+**fastest_path:** 7 inches is 3.5 of the 2-inch scale units, so the distance is 3.5 × 15 = 52.5 miles.
 **explanation:** Because the map is drawn to a fixed scale, map distance and actual distance are directly proportional, and the relationship can be expressed as a single equation of two equal ratios. The given scale states that 2 inches on the map correspond to 15 actual miles.
 
 Let m represent the actual number of miles between the two cities. The ratio of map inches to actual miles must be the same for the scale as for the two cities, so we write
@@ -148,6 +177,12 @@ m = 105/2 = 52.5.
 Thus the two cities are 52.5 actual miles apart.
 
 The correct answer is C.
+**mistake_a:** 30 doubles the 15 — using the scale backwards (2 × 15) instead of asking how many scale units fit into 7 inches.
+**mistake_b:** 45 multiplies 15 by 3 — rounding the 3.5 scale units down to a whole number. The half unit is worth 7.5 miles, and the choices sit close enough that it decides the answer.
+**mistake_d:** 60 multiplies 15 by 4 — the same rounding error in the other direction.
+**mistake_e:** 105 is 7 × 15 — reading the scale as "1 inch = 15 miles" and never dividing by the 2. A scale is a ratio of TWO numbers; both must be used.
+**common_trap:** Treating the scale as if one inch (rather than two) represents 15 miles. 105 sits on the list waiting for exactly that misread.
+**takeaway:** Set map problems up as a proportion (map/actual = map/actual) or count scale units. Half units count — don't round them away.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -166,6 +201,7 @@ In a class of 40 students, 14 are left-handed. What percent of the class is left
 - E) 40%
 
 **answer:** C
+**fastest_path:** 14/40 = 7/20, and twentieths convert to percents by multiplying by 5: 35%.
 **explanation:** To express one quantity as a percent of another, we compute the ratio of the part to the whole and multiply by 100. Let the part be the number of left-handed students and the whole be the total number of students in the class.
 
 Here the part is 14 left-handed students and the whole is the class of 40 students. The required percent is therefore (part / whole) times 100, which is (14 / 40) times 100.
@@ -175,6 +211,12 @@ We first reduce the fraction. Dividing both the numerator and the denominator by
 Equivalently, performing the division directly yields 14 / 40 = 0.35, and 0.35 times 100 = 35 percent.
 
 The correct answer is C.
+**mistake_a:** 28% doubles the 14 — scaling as if the class had 50 students. Out of 40, each student is worth 2.5 percentage points, not 2.
+**mistake_b:** 32% is an eyeball near-miss. The choices are packed a few points apart precisely to punish estimating a fraction that converts exactly in two steps.
+**mistake_d:** 38% is the same near-miss from the other side — the buffer choices reward exact conversion, not feel.
+**mistake_e:** 40% echoes the class size. A number copied straight from the stem is never the answer to "what percent."
+**common_trap:** Estimating "14 out of 40" loosely when the choices sit only 3 points apart. Tight spacing is the test's signal that exact conversion is required.
+**takeaway:** To convert a fraction to a percent, force the denominator to 100: out of 40, multiply both parts by 2.5 — or reduce to twentieths and multiply by 5.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -193,6 +235,7 @@ The price of a stock increases by 20% in January, then decreases by 20% in Febru
 - E) It increased by 4%
 
 **answer:** A
+**fastest_path:** Multiply the factors: 1.20 × 0.80 = 0.96 — down 4%. (Shortcut: up r then down r nets 1 − r², and 0.2² = 0.04.)
 **explanation:** Successive percent changes do not add; they compound multiplicatively, because each change is applied to the value that results from the previous change rather than to the original value. An increase of 20% multiplies a quantity by 1.20, and a decrease of 20% multiplies a quantity by 0.80.
 
 Let x = the price of the stock at the start of January. After the January increase of 20%, the price is 1.20x. This new price, not the original, is the base for February's decrease. After the February decrease of 20%, the price is 0.80 times the January-end price, namely 0.80(1.20x).
@@ -205,6 +248,12 @@ Thus the end-of-February price equals 0.96x. Since 0.96x = x - 0.04x, the price 
 A concrete check confirms this. Let the starting price be 100. After the 20% increase, the price is 100 + 20 = 120. After the 20% decrease, the price falls by 0.20(120) = 24, giving 120 - 24 = 96. The change from 100 to 96 is a decrease of 4%.
 
 The correct answer is A.
+**mistake_b:** A 2% decrease halves the true loss — a guess at "small loss" without computing it. The loss from a matched up-down pair is the full square of the rate: 0.20² = 4%.
+**mistake_c:** "Unchanged" is the additive trap: +20 − 20 = 0. But February's 20% is taken from a LARGER number than January's 20% was added to, so the decrease removes more dollars than the increase added.
+**mistake_d:** A 2% increase has both the size and the direction wrong. A matched up-down pair always nets a loss, never a gain.
+**mistake_e:** A 4% increase gets the magnitude right and the sign wrong. The product 1.20 × 0.80 = 0.96 lands below 1 — the pair loses in either order.
+**common_trap:** Adding percent changes. Successive changes multiply, and the negative cross term (−r²) is what the question is really testing.
+**takeaway:** Up r% then down r% lands at (1 − r²) of the start — a guaranteed small loss, in either order. At 20%, that loss is 4%.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -223,6 +272,7 @@ A chemist has 30 liters of a 20% salt solution. How many liters of pure water mu
 - E) 15
 
 **answer:** C
+**fastest_path:** The salt never changes: 6 liters. For 6 liters to be 15% of the tank, the tank must hold 40 liters — so add 10.
 **explanation:** When a pure solvent is added to a solution, the amount of the dissolved substance does not change; only the total volume of the solution and hence the concentration change. The governing principle is therefore the conservation of the quantity of salt.
 
 Let x equal the number of liters of pure water added. The original solution contains 30 liters of a 20% salt solution, so the amount of salt present is 0.20 × 30 = 6 liters. Because pure water contains no salt, the amount of salt remains 6 liters after the water is added.
@@ -238,6 +288,12 @@ Subtracting 30 from both sides gives x = 40 − 30 = 10.
 Thus, 10 liters of pure water must be added to produce a 15% salt solution.
 
 The correct answer is C.
+**mistake_a:** 5 treats the 5-point concentration drop (20% → 15%) as 5 liters of water. Percentage points and liters are different units; the bridge between them runs through the fixed 6 liters of salt.
+**mistake_b:** 7.5 is 25% of 30 (or 15% of 50) — percent arithmetic on a base that answers nothing. The question is what total volume makes the fixed salt equal 15%.
+**mistake_d:** 12 is 40% of 30 — proportional-feeling arithmetic with no anchor to the conserved salt. Conservation writes the equation; nothing else does.
+**mistake_e:** 15 echoes the 15% target as liters. Echoed stem numbers are bait, not answers.
+**common_trap:** Operating on the percents directly (20 − 15 = 5) instead of on the conserved quantity. Dilution problems pivot on what does NOT change: the salt.
+**takeaway:** When solvent is added, the solute is conserved. Write solute = (target %) × (new total), solve for the new total, and the added amount falls out by subtraction.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -256,6 +312,7 @@ A retailer marks up a product by 40% over cost, then offers a 25% discount off t
 - E) $20
 
 **answer:** A
+**fastest_path:** Chain the multipliers: 1.40 × 0.75 = 1.05, so the sale nets 5% over cost — and 5% of $80 is $4.
 **explanation:** Successive percent changes are applied multiplicatively, each to the base that immediately precedes it; a markup and a subsequent discount therefore combine as the product of their respective multipliers rather than as the difference of their percentages.
 
 Let C denote the cost, so that C = 80. A markup of 40 percent over cost produces the marked price, which is C multiplied by the factor (1 + 0.40). A discount of 25 percent off the marked price then multiplies that result by (1 - 0.25). The retailer's profit is the final sale price minus the cost.
@@ -279,6 +336,12 @@ Equivalently, the two changes may be chained into a single net multiplier:
 which corresponds to a net gain of 5 percent on cost. Applying this to the cost yields 0.05 * 80 = 4, in agreement with the direct computation.
 
 The correct answer is A.
+**mistake_b:** $8 is 10% of cost — a compromise between the additive guess and the truth. The net multiplier is exactly 1.05; compute it rather than averaging toward it.
+**mistake_c:** $12 is the additive trap: 40 − 25 = 15% of 80. The 25% discount acts on the marked-up price — a bigger base — so it claws back more than 25 points of the original markup.
+**mistake_d:** $16 is 20% of cost — roughly what survives if the discount is taken on cost instead of on the marked price. Each multiplier acts on the result of the previous step.
+**mistake_e:** $20 is 25% of cost — the discount computed on the wrong base entirely.
+**common_trap:** Subtracting percents taken on different bases (40% of cost vs 25% of marked price) as if they were like terms. Convert both to multipliers and multiply.
+**takeaway:** Markup then discount = (1 + m)(1 − d) as one net multiplier on cost. Profit questions then reduce to (net multiplier − 1) × cost.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -293,10 +356,11 @@ The ratio of a to b is 3:5 and the ratio of b to c is 4:7. What is the ratio of 
 - A) 3:7
 - B) 12:35
 - C) 15:28
-- D) 12:28
+- D) 35:12
 - E) 21:20
 
 **answer:** B
+**fastest_path:** Scale both ratios so b matches: b is 5 in one and 4 in the other, so use 20. Then a:b = 12:20 and b:c = 20:35, and a:c reads off as 12:35.
 **explanation:** Two ratios can be combined into a single chained ratio only when the term they share is expressed by the same number in both. Here the shared term is b, so the method is to rescale each ratio so that b carries identical values, after which a and c may be read off directly.
 
 We are given that the ratio of a to b is 3 to 5 and that the ratio of b to c is 4 to 7. In the first ratio b corresponds to 5; in the second ratio b corresponds to 4. To make these agree, we use the least common multiple of 5 and 4, which is 20.
@@ -308,6 +372,12 @@ Multiply the second ratio by 5: b to c becomes 4 times 5 to 7 times 5, that is 2
 Now b equals 20 in both, so the three quantities combine into a single chain: a to b to c equals 12 to 20 to 35. Reading off the first and last terms gives the ratio of a to c as 12 to 35.
 
 The correct answer is B.
+**mistake_a:** 3:7 glues the outer terms of the two given ratios together, ignoring that b means 5 in one ratio and 4 in the other. The shared term must be made identical before anything can be read off.
+**mistake_c:** 15:28 multiplies mismatched terms (3 × 5 and 4 × 7) — crossing the ratios instead of aligning them through b.
+**mistake_d:** 35:12 is the right pair of numbers in the wrong order — c:a instead of a:c. After building the chain a:b:c = 12:20:35, read the terms in the order the question names them.
+**mistake_e:** 21:20 cross-multiplies (3 × 7 against 5 × 4). The only legal move for chaining ratios is rescaling both so the shared term agrees.
+**common_trap:** Combining two ratios without equalizing the shared term. A "5" in one ratio and a "4" in the other are different-sized parts until both are rescaled to a common value of b.
+**takeaway:** To chain a:b and b:c, rescale both to the LCM of the b-values, write the three-term ratio, and read off the requested pair — in the requested order.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -326,6 +396,7 @@ A company's revenue grew by 50% from 2023 to 2024. If 2024 revenue was $900,000,
 - E) $750,000
 
 **answer:** C
+**fastest_path:** $900,000 is 150% of the old revenue — three halves. One half is 300,000, so the original is 600,000.
 **explanation:** A percent increase is represented as multiplication by a growth factor: an increase of p percent corresponds to multiplying the original quantity by (1 + p/100). To recover the original quantity from the increased quantity, we divide by that same growth factor.
 
 Let x denote the company's revenue in 2023. Because revenue grew by 50 percent from 2023 to 2024, the 2024 revenue equals x multiplied by (1 + 50/100), that is, 1.5x. We are told that the 2024 revenue was $900,000, so we have the equation
@@ -339,6 +410,12 @@ x = 900,000 / 1.5 = 600,000.
 Thus the 2023 revenue was $600,000. As a check, increasing $600,000 by 50 percent adds $300,000, giving $900,000, which matches the stated 2024 revenue.
 
 The correct answer is C.
+**mistake_a:** $450,000 takes 50% OFF the new figure. Undoing "up 50%" is not "down 50%" — the original 50% was measured on the smaller, earlier base.
+**mistake_b:** $540,000 is 60% of 900,000 — confusing 1/1.5 (which is exactly 2/3) with 0.6. Dividing by 1.5 is multiplying by two thirds.
+**mistake_d:** $675,000 takes 25% off the new figure — a compromise between "halve it" and "leave it." Reverse percent problems are solved by division, not by a softened discount.
+**mistake_e:** $750,000 divides by 1.2 — undoing a 20% increase instead of the stated 50%.
+**common_trap:** Subtracting 50% of the 2024 figure. Growth of 50% multiplies by 1.5, so undoing it divides by 1.5 — equivalently, multiplies by 2/3.
+**takeaway:** "Grew p% to reach N" means original = N ÷ (1 + p/100). Percent increases and decreases are not inverses, because they act on different bases.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -357,6 +434,7 @@ A 12-liter mixture contains alcohol and water in the ratio 1:3. How many liters 
 - E) 6
 
 **answer:** B
+**fastest_path:** Water is untouched: 9 liters = 3 parts of the target 2:3 ratio, so one part is 3 liters. Alcohol must reach 2 parts = 6 liters; it has 3, so add 3.
 **explanation:** The governing principle is that when a substance is added to a mixture, any component that is not added remains constant in absolute amount; we therefore anchor the solution to the unchanging quantity and express the others relative to it.
 
 Let the initial amounts of alcohol and water be the parts of the 12-liter mixture in the ratio 1:3. The ratio comprises 1 + 3 = 4 parts, so each part equals 12 / 4 = 3 liters. Hence the initial alcohol is 1 × 3 = 3 liters and the initial water is 3 × 3 = 9 liters.
@@ -372,6 +450,12 @@ Multiplying both sides by 9 gives 3 + x = (2 / 3)(9) = 6. Subtracting 3 from bot
 Thus 3 liters of alcohol must be added.
 
 The correct answer is B.
+**mistake_a:** 2 echoes the "2" in the target ratio 2:3. Ratio terms are parts, not liters, until the part size is pinned by a real quantity — here the unchanged 9 liters of water.
+**mistake_c:** 4 is a third of the original 12 liters — proportional arithmetic on the OLD total. The total grows as alcohol is poured in; only the water is fixed.
+**mistake_d:** 5 drifts off the anchor entirely. Lock onto the water: alcohol must end at two thirds of 9 liters, which is 6, and 3 of those liters are already present.
+**mistake_e:** 6 is the FINAL amount of alcohol, not the amount ADDED. The question asks for the addition: 6 − 3 = 3.
+**common_trap:** Reporting the final quantity instead of the change. After solving correctly, the last subtraction is where the answer slips away.
+**takeaway:** When one component is added, anchor the ratio on the component that does NOT change. It fixes the part size, and everything else follows.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -390,6 +474,7 @@ If 30% of x equals 45% of y, what is the ratio of x to y?
 - E) 3:4
 
 **answer:** B
+**fastest_path:** x/y = 45/30 — the percents trade places when you divide. That is 3/2 on sight.
 **explanation:** The governing principle is that a stated percent of a quantity can be expressed as a decimal multiplier, and an equation relating two such expressions can be solved for the ratio of the quantities. We let x and y denote the two quantities in question.
 
 The phrase "30% of x equals 45% of y" translates directly into the equation 0.30x = 0.45y.
@@ -401,6 +486,12 @@ Evaluating the quotient, 0.45/0.30 = 45/30 = 3/2.
 Thus the ratio of x to y is 3:2.
 
 The correct answer is B.
+**mistake_a:** 2:3 keeps the percents on their own sides (30:45 reduced). But for 30% of x to equal 45% of y, the variable carrying the SMALLER percent must be the LARGER quantity — the ratio inverts.
+**mistake_c:** 1:2 compounds the inversion error with rounding 30/45 toward a half.
+**mistake_d:** 2:1 has the right direction but the wrong size — x exceeds y by the factor 45/30 = 1.5, not 2.
+**mistake_e:** 3:4 reduces 30:40 — a misread of 45 as 40 stacked on top of the uninverted setup.
+**common_trap:** Writing x:y = 30:45 because those numbers sit next to x and y in the stem. Solve the equation: 0.30x = 0.45y gives x/y = 0.45/0.30.
+**takeaway:** From a% of x = b% of y, the ratio x:y equals b:a — the percents swap places. Sanity check: the quantity tied to the smaller percent must be the bigger quantity.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -422,6 +513,7 @@ In a bag of marbles containing only red and blue marbles, what is the number of 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
+**fastest_path:** A ratio gives shape, not size; a difference gives size, not shape. Each alone leaves infinitely many bags; together, 2 ratio-parts = 24 fixes everything.
 **explanation:** This is a data sufficiency problem governed by the principle that a ratio fixes only the proportional relationship between quantities, not their absolute sizes; an absolute value is determined only when a ratio is combined with at least one scalar anchor, such as a total, a single part, or a difference between parts. The bag contains only red and blue marbles. Let r denote the number of red marbles and b denote the number of blue marbles. The task is to determine a unique value for r.
 
 Consider statement (1). The ratio of red marbles to blue marbles is 3 to 5, which translates to r : b = 3 : 5. This means r = 3k and b = 5k for some positive integer k. Since k is not constrained, r could be 3, 6, 9, and so on. For example, k = 1 gives r = 3, while k = 2 gives r = 6. Because more than one value of r is possible, statement (1) alone is not sufficient.
@@ -431,6 +523,12 @@ Consider statement (2). There are 24 more blue marbles than red marbles, which t
 Now consider both statements together. From statement (1), r = 3k and b = 5k. Substituting these into the equation from statement (2) gives 5k - 3k = 24, so 2k = 24, which yields k = 12. Therefore r = 3k = 3(12) = 36. This produces a single value for the number of red marbles, so the two statements together are sufficient, while neither statement alone is sufficient.
 
 The correct answer is C.
+**mistake_a:** Statement (1) alone allows any multiple of 3:5 — 3 red, 30 red, 300 red. A ratio with no absolute anchor never yields a count.
+**mistake_b:** Statement (2) alone is one equation in two unknowns: (10, 34) and (20, 44) both satisfy it. A difference without a proportional relationship cannot isolate either count.
+**mistake_d:** D requires EACH statement to work alone. Neither does — each supplies exactly half of what is needed: shape from one, scale from the other.
+**mistake_e:** E claims even the combination fails, but 5k − 3k = 24 forces k = 12 and red = 36 uniquely. A ratio plus any scalar anchor determines everything.
+**common_trap:** Treating a ratio as if it carried quantity information, or a difference as if it carried proportion information. Each is powerless alone and decisive together.
+**takeaway:** Ratio + one scalar anchor (a total, one part, or a difference) = fully determined. Ratio alone or anchor alone = infinitely many solutions.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -452,6 +550,7 @@ A store increased the price of a television by some percent. What was the final 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
+**fastest_path:** (1) gives the rate but no dollars. (2) ties $45 to an unknown gap. Together, $45 must close the gap from 15% to 25% — so 10% of the price is $45, and everything unlocks.
 **explanation:** This problem asks for the final price of the television after the increase. Because the final price equals the original price multiplied by a growth factor, determining a numerical value requires fixing both the percent increase and the original dollar price. We let P denote the original price, so the final price is P together with the dollar amount of the increase.
 
 Statement (1) establishes that the price was increased by 15%, giving a final price of 1.15P. However, the original price P is unknown, so the final price could be any value. For example, an original price of $100 yields a final price of $115, whereas an original price of $200 yields a final price of $230. The final price is not determined, so statement (1) alone is not sufficient.
@@ -461,6 +560,12 @@ Statement (2) states that an additional increase of $45 would have made the tota
 Taking the two statements together, the actual increase is 15% of P from statement (1), namely 0.15P. From statement (2), adding $45 to this increase produces an increase equal to 25% of P. We translate this into the equation 0.15P + 45 = 0.25P. Subtracting 0.15P from both sides gives 45 = 0.10P, so P = 450. The final price is then 450 multiplied by 1.15, which equals 517.50. The final price is uniquely determined, so both statements together are sufficient, while neither statement alone is sufficient.
 
 The correct answer is C.
+**mistake_a:** Statement (1) fixes the multiplier at 1.15 but not the price it multiplies — the final price could be anything. A percent without a base is a rate, not an amount.
+**mistake_b:** Statement (2) alone involves two unknowns: the original price AND the actual percent increase. Without (1), the $45 has nothing definite to measure against.
+**mistake_d:** D demands that each statement work independently; each alone leaves at least one unknown completely free.
+**mistake_e:** Together the statements pin everything: 0.15P + 45 = 0.25P gives P = 450 and a final price of $517.50 — one value, so E overstates the gap.
+**common_trap:** Judging statement (2) useless on its own and forgetting it becomes decisive once (1) names the actual increase. DS rewards re-evaluating the statements jointly after judging them separately.
+**takeaway:** A dollar amount tied to a percentage-point gap (here $45 per 10 points) is an exchange rate between dollars and percents — combined with any percent fact, it prices the whole problem.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -479,6 +584,7 @@ A 50-liter mixture is 40% alcohol. A second mixture, which is 70% alcohol, is ad
 - E) 75
 
 **answer:** C
+**fastest_path:** 55% sits exactly midway between 40% and 70%. Equal distances mean equal volumes — so the amount added equals the 50 liters already there.
 **explanation:** This is a mixture problem in which the quantity of pure alcohol is conserved: the alcohol contributed by each component equals the alcohol present in the final blend. We therefore account for the alcohol in each part separately and set the total equal to the alcohol in the combined mixture.
 
 Let x represent the number of liters of the second mixture that are added.
@@ -508,6 +614,12 @@ x = 50.
 Thus 50 liters of the second mixture were added.
 
 The correct answer is C.
+**mistake_a:** 25 liters of the 70% mixture produces a 50% blend (20 + 17.5 liters of alcohol in 75 liters), not 55%. Using less of the stronger component pulls the blend toward 40%.
+**mistake_b:** 40 echoes the 40% concentration as a volume. Percents and liters live on different axes of this problem.
+**mistake_d:** 60 liters overshoots: (20 + 42)/110 ≈ 56.4%. The target is hit exactly at equal volumes, because 55 is the midpoint of 40 and 70.
+**mistake_e:** 75 weights the stronger mixture as if the target were closer to 70 than to 40. Check the distances: 55 is 15 points from each end — perfectly centered.
+**common_trap:** Grinding through the full conservation equation when the midpoint observation answers instantly. The balance method (distances 15:15, so volumes 1:1) is the fast lane on every two-mixture blend.
+**takeaway:** In a two-component blend, the volumes are inversely proportional to each component's distance from the target concentration (the seesaw rule). A target midway between the components means equal volumes.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -526,6 +638,7 @@ A merchant sells a watch for $140 and earns a 30% profit on the selling price. I
 - E) $140.00
 
 **answer:** C
+**fastest_path:** Profit is 30% of the selling price, so cost is the other 70%: 0.70 × 140 = 98. Then 30% on cost: 98 + 29.40 = 127.40.
 **explanation:** The key principle is that a stated percentage of profit is meaningless until its base is identified, because the same percentage applied to a different base yields a different amount. We must therefore work in two stages: first recover the cost using the base specified in the original sale, then recompute the selling price using the base specified in the new scenario.
 
 Let C denote the cost of the watch. In the original sale, the profit equals 30% of the selling price, and the selling price is $140. Since the cost is the selling price less the profit, we have C = 140 - (0.30)(140) = 140 - 42 = 98. Thus the cost of the watch is $98.
@@ -535,6 +648,12 @@ The new scenario specifies a 30% profit computed on the cost rather than on the 
 The new selling price is therefore $127.40. Although both scenarios use the figure 30%, the results differ because the percentage is applied to different bases: the selling price in the first case and the cost in the second.
 
 The correct answer is C.
+**mistake_a:** $98 is the cost — the halfway point of the solution, not the answer. The question asks for the new selling price after recomputing profit on the cost base.
+**mistake_b:** $117.60 marks the $98 cost up by only 20% — a percent slip in the second step. The new scenario uses the same 30%, just on a different base.
+**mistake_d:** $128 adds a flat $30 to the $98 cost, treating "30%" as thirty dollars. 30% of 98 is $29.40, and the choices sit close enough to catch the shortcut.
+**mistake_e:** $140 assumes the two scenarios price identically — but 30% of the selling price ($42) and 30% of the cost ($29.40) are different profits, so the prices must differ.
+**common_trap:** Believing a percentage means anything before its base is named. "30% profit" is incomplete information until you ask: 30% of WHAT?
+**takeaway:** Profit on selling price (margin) and profit on cost (markup) are different measures. Translate to the stated base first: cost = (1 − margin) × price, and price = (1 + markup) × cost.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -556,6 +675,7 @@ A tank contains a mixture of water and alcohol. What percent of the mixture is a
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
+**fastest_path:** Two unknowns (alcohol, total) and each statement contributes exactly one linear equation — insufficient alone, decisive together: t = 25, a = 7, so 28%.
 **explanation:** The governing principle is that a system of linear equations can be solved for its unknowns only when the number of independent equations equals the number of unknowns. Here there are two unknowns, so we must determine whether each statement supplies enough independent equations to fix the alcohol percentage.
 
 Let a = the number of liters of alcohol in the tank and let t = the total number of liters of the mixture. The quantity sought is the alcohol percentage, a/t expressed as a percent. With two unknowns, a single equation cannot determine this ratio.
@@ -574,6 +694,12 @@ Setting the two expressions for a equal gives 0.20t + 2 = 0.40t - 3. Subtracting
 The alcohol percentage is therefore a/t = 7/25 = 0.28, or 28 percent. Because the two statements together yield a unique value while neither alone does, both statements together are sufficient and neither alone is sufficient.
 
 The correct answer is C.
+**mistake_a:** Statement (1) alone — a = 0.20(t + 10) — admits infinitely many mixtures with different alcohol percents: t = 15, a = 5 gives 33%, while t = 40, a = 10 gives 25%. One equation cannot fix two unknowns.
+**mistake_b:** Statement (2) alone fails the same way: (a, t) = (3, 15) gives 20% alcohol, while (7, 25) gives 28%.
+**mistake_d:** D would require each statement to suffice alone; each is a single equation in two unknowns.
+**mistake_e:** Together the equations are independent (different slopes), so they intersect at exactly one point: t = 25, a = 7 — a unique 28%. The combination works, so E goes too far.
+**common_trap:** Expecting a "what percent" question to need less than a "how many liters" question. Because each statement perturbs the mixture by a FIXED amount rather than proportionally, even the ratio a/t needs both equations.
+**takeaway:** Count unknowns, count independent equations. Each hypothetical change ("if X were added...") contributes one equation; sufficiency arrives when equations match unknowns.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -592,6 +718,7 @@ A merchant marks the price of a watch up 50% above cost, and during a sale disco
 - E) $630
 
 **answer:** A
+**fastest_path:** ×1.5 then ×0.8 is ×1.2 net, so the $84 profit is 20% of cost. Cost = 84 × 5 = 420.
 **explanation:** Successive percent changes must be applied multiplicatively rather than added, because each change operates on the result of the previous one. A markup of p percent corresponds to multiplication by (1 + p/100), and a discount of d percent corresponds to multiplication by (1 - d/100).
 
 Let C denote the cost of the watch. The merchant marks the price up 50% above cost, so the marked price is (1 + 0.50)C = 1.50C. During the sale, the marked price is discounted by 20%, so the sale price is obtained by multiplying the marked price by (1 - 0.20) = 0.80.
@@ -613,6 +740,12 @@ Solving for C, we recognize 0.20 = 1/5, so C = 84 ÷ (1/5) = 84 * 5 = 420.
 Thus the cost of the watch is $420.
 
 The correct answer is A.
+**mistake_b:** $480 comes from garbling the net multiplier. Chain it cleanly — 1.5 × 0.8 = 1.2 — before any dollars enter the problem.
+**mistake_c:** $504 is the final SALE price (1.2 × 420) — the right system solved for the wrong variable. The question asks for cost.
+**mistake_d:** $540 backs out of an invented relationship. There is exactly one equation here: 0.2C = 84.
+**mistake_e:** $630 is the MARKED price (1.5 × 420) — another intermediate quantity wearing the answer's clothes.
+**common_trap:** Solving correctly and then circling an intermediate value — both the marked price (630) and the sale price (504) sit in the choices as landing pads for the almost-finished.
+**takeaway:** Reduce a percent chain to one net multiplier before introducing dollars, and label what each computed number IS — cost, marked, sale — before answering.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -634,6 +767,7 @@ In a class, the ratio of boys to girls is 3 to 5. How many students are in the c
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
+**fastest_path:** The 3:5 ratio means total = 8k, so any single hard number pins k. Both statements offer one: the 12-person gap (2k) or the 30 girls (5k). Each works alone.
 **explanation:** A ratio fixes only the relative sizes of the two groups, not their actual counts; a single additional piece of numerical information that anchors the ratio to a scale is enough to determine every quantity. Because the ratio of boys to girls is 3 to 5, we may write the number of boys as b = 3k and the number of girls as g = 5k for some positive value k, so that the total number of students equals 3k + 5k = 8k. Determining the total therefore reduces to determining k.
 
 Statement (1): There are 12 more girls than boys, so g - b = 5k - 3k = 2k = 12. Solving gives k = 6, so the total number of students is 8k = 48. This value is uniquely determined; statement (1) is sufficient.
@@ -643,12 +777,18 @@ Statement (2): There are 30 girls, so g = 5k = 30. Solving gives k = 6, so the t
 Since each statement alone fixes the value of k and hence the total of 48 students, each statement alone is sufficient.
 
 The correct answer is D.
+**mistake_a:** A undervalues statement (2): 30 girls = 5 parts pins the part size at 6 just as decisively as the difference does.
+**mistake_b:** B undervalues statement (1): a difference is a scalar anchor too — 12 = 2 parts gives a part size of 6 directly.
+**mistake_c:** C is the reflex answer for ratio problems ("need the ratio AND a number") — but the ratio is already in the stem, so each statement only has to supply the one missing ingredient: scale.
+**mistake_e:** E would mean neither anchor pins the class size, yet either one yields 48 students.
+**common_trap:** Forgetting that the stem's ratio is shared information available to BOTH statements. Each statement is evaluated together with the stem, never in a vacuum.
+**takeaway:** With a ratio in the stem, sufficiency needs only one scalar anchor — a part, a total, or a difference. Any of them converts parts into people.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
 
 ## Q21
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Successive Percent Changes
 
@@ -661,6 +801,7 @@ A store raised the price of a product by 20%, then offered a 25% discount on the
 - E) 110%
 
 **answer:** A
+**fastest_path:** ×1.20 then ×0.75 — and 1.2 × 0.75 = 0.9. The final price is 90% of the original. (In fractions: ×6/5 then ×3/4 = ×9/10.)
 **explanation:** Successive percent changes are applied multiplicatively, not additively, because each change operates on the quantity that results from the previous change. A change of p percent corresponds to multiplying by the factor (1 + p/100), where an increase uses a positive p and a decrease uses a negative p.
 
 Let x represent the original price of the product. The first change is an increase of 20 percent, which multiplies the price by 1 + 20/100 = 1.20. The new, higher price is therefore 1.20x.
@@ -674,6 +815,12 @@ We combine the two factors:
 Thus the final price is 0.90x, and 0.90x divided by x equals 0.90, which is 90 percent.
 
 The correct answer is A.
+**mistake_b:** 95% is the additive answer: +20 − 25 = −5. But the 25% discount bites a price already inflated by 20%, so it removes more than 25 points of the original price.
+**mistake_c:** 100% guesses that the changes roughly cancel. They multiply: 1.20 × 0.75 = 0.90 — a real 10-point loss.
+**mistake_d:** 105% adds with the signs flipped (25 − 20). No ordering of these two changes produces a gain; the product is 0.90 either way.
+**mistake_e:** 110% misjudges which change dominates. The discount acts on the larger (marked-up) base, so it wins.
+**common_trap:** Adding successive percents. Each percent acts on the running price, so only the product of the multipliers tells the truth.
+**takeaway:** Convert every percent change to a multiplier and multiply. With friendly fractions it is instant: ×6/5 then ×3/4 = ×9/10, or 90%.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -692,6 +839,7 @@ A jar contains red, blue, and green marbles in the ratio 3 : 4 : 5. If there are
 - E) 84
 
 **answer:** D
+**fastest_path:** Blue is 4 parts = 24 marbles, so one part is 6. The jar holds 3 + 4 + 5 = 12 parts: 72.
 **explanation:** When a quantity is divided according to a ratio, each term of the ratio represents a number of equal parts, and the size of one part can be found by dividing a known quantity by its corresponding number of parts. Once the value of a single part is known, any other quantity, including the total, can be obtained by multiplying the value of one part by the appropriate number of parts.
 
 Let x represent the number of marbles in one part. The marbles are red, blue, and green in the ratio 3 : 4 : 5, so the numbers of red, blue, and green marbles are 3x, 4x, and 5x, respectively.
@@ -701,6 +849,12 @@ Blue corresponds to 4 parts, and there are 24 blue marbles, so we have 4x = 24. 
 The total number of marbles is the sum of all three quantities, which corresponds to 3 + 4 + 5 = 12 parts. Therefore the total is 12x = 12 × 6 = 72.
 
 The correct answer is D.
+**mistake_a:** 48 is the count of NON-blue marbles (red 18 + green 30) — the total minus the part you were given. The question asks for everything, blue included.
+**mistake_b:** 60 uses 10 parts — dropping parts from the sum 3 + 4 + 5 = 12. Write the part sum down; these slips are silent.
+**mistake_c:** 66 is 11 parts × 6 — an off-by-one in the part sum.
+**mistake_e:** 84 is 14 parts × 6 — an overcount of the same kind.
+**common_trap:** Arithmetic slips in the parts total. The per-part value (6) is the easy half; the question is decided by whether 3 + 4 + 5 gets summed correctly under time pressure.
+**takeaway:** Pin the part size from the given part, then multiply by the SUM of all ratio terms for a total — and write that sum down rather than holding it in your head.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -722,6 +876,7 @@ A store raised and then lowered the price of a product. What was the net percent
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
+**fastest_path:** (1) is a multiplier chain — the base cancels, net ×0.96 at any price. (2) hands you both prices. Each alone answers "what percent change."
 **explanation:** The governing principle is that a percent change is multiplicative: increasing a quantity by p% multiplies it by (1 + p/100), and decreasing it by p% multiplies it by (1 - p/100). The net percent change from successive changes is therefore the product of these factors, and this product is independent of the starting amount. The question asks for the net percent change in price.
 
 Let the original price be P, the raised price be R, and the final price be F.
@@ -733,6 +888,12 @@ Consider statement (2). The final price is 144 and the original price is 150. Th
 Since each statement alone determines the net percent change, each statement alone is sufficient.
 
 The correct answer is D.
+**mistake_a:** A discards statement (2), which computes the percent change directly: (144 − 150)/150 = −4%.
+**mistake_b:** B is the deeper trap — believing percent-change questions need actual dollar prices. A net change built from chained percents is price-independent: P(1.20)(0.80)/P strips the P out.
+**mistake_c:** C under-credits both statements; each independently lands on −4%.
+**mistake_e:** E fails twice over — both statements singly determine the change.
+**common_trap:** Believing a starting dollar amount is required to compute a percent change. Chained percent changes produce a pure multiplier; the base divides out.
+**takeaway:** Percent-change questions ask for a RATIO, not an amount. Any information that fixes the ratio — a multiplier chain or both endpoint values — is sufficient on its own.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -751,6 +912,7 @@ A town's population grew by 20% in 2022 and by an additional 25% in 2023. At the
 - E) 500%
 
 **answer:** C
+**fastest_path:** As fractions: ×6/5 then ×5/4. The fives cancel, leaving ×3/2 — up 50%.
 **explanation:** Successive percent changes compound, so the overall growth factor is the product of the individual growth factors, not the sum of the individual percents. A growth of r percent corresponds to multiplication by the factor (1 + r/100).
 
 Let x represent the town's population at the end of 2021. The growth of 20% during 2022 multiplies the population by 1.20, so the population at the end of 2022 is 1.20x. The additional growth of 25% during 2023 applies to this new amount and multiplies it by 1.25, so the population at the end of 2023 is
@@ -762,6 +924,12 @@ The population at the end of 2023 is therefore 1.50x, while the population at th
 Thus the population at the end of 2023 is 50% greater than it was at the end of 2021.
 
 The correct answer is C.
+**mistake_a:** 22.5% averages the two rates ((20 + 25)/2). Averaging is never the rule for successive changes — they compound.
+**mistake_b:** 45% adds the rates. Compounding pays growth on growth: the 25% acts on a population already 20% bigger, contributing the extra 5 points.
+**mistake_d:** 55% adds the rates plus a guessed compounding bonus. The exact cross term is 0.20 × 0.25 = 5 points — computed, not guessed.
+**mistake_e:** 500% misreads the 1.5 multiplier as "5 times." A multiplier of 1.5 means 50% growth — subtract the original 100% before reporting an increase.
+**common_trap:** Adding the percents (45%) or reporting the multiplier as the growth. The fraction form ×6/5 × 5/4 sidesteps both: it visibly collapses to 3/2.
+**takeaway:** Successive growth multiplies: (1.20)(1.25) = 1.50, a 50% increase. Translating percents to clean fractions (6/5, 5/4) often makes the product cancel on sight.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -783,6 +951,7 @@ Is the price of product X greater than the price of product Y?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
+**fastest_path:** The statements chain through Z: x = 1.2z and z = 0.9y give x = 1.08y — an 8% premium, a definite YES. Neither link alone connects X to Y.
 **explanation:** To determine whether the price of product X is greater than the price of product Y, we require enough information to compare the two prices directly. A percent relationship that links one price to another can be translated into an algebraic equation, and statements may be combined when they share a common reference quantity.
 
 Let x denote the price of product X, let y denote the price of product Y, and let z denote the price of product Z. All three are prices and are therefore positive.
@@ -794,6 +963,12 @@ Statement (2) tells us that product Z costs 10% less than product Y, which we tr
 Considering both statements together, the two equations share the common quantity z, which allows them to be chained. Substituting z = 0.90y into x = 1.20z gives x = 1.20(0.90y) = 1.08y. Because y is positive, 1.08y is greater than y, so x = 1.08y > y. This yields a definite answer of YES to the question, so both statements together are sufficient, while neither statement alone is sufficient.
 
 The correct answer is C.
+**mistake_a:** Statement (1) relates X only to Z; Y is completely unconstrained, so X versus Y can go either way.
+**mistake_b:** Statement (2) relates Z only to Y; X is unconstrained.
+**mistake_d:** D requires each statement alone to settle the comparison — each leaves one of the two compared prices entirely free.
+**mistake_e:** E is the trap for those who eyeball "+20% and −10%" and suspect the answer depends on actual prices. The chained multiplier settles it for ALL positive prices: 1.2 × 0.9 = 1.08 > 1, so X > Y always.
+**common_trap:** Hesitating to combine percent statements because the percents have different bases. Multipliers chain cleanly through the shared quantity regardless of base: 20% above times 10% below is 8% above.
+**takeaway:** To compare two quantities linked through a third, multiply the chain's factors. A YES/NO comparison only needs the SIGN of the relationship fixed — and a pure multiplier fixes it for every positive value.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
