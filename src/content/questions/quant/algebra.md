@@ -3390,3 +3390,615 @@ For x < −4, |x − 2| + |x + 4| = (2 − x) + (−4 − x) = −2x − 2. Sett
 
 Combining all three regions, the inequality holds exactly for −6 ≤ x ≤ 4. The integers in this closed interval are −6, −5, −4, −3, −2, −1, 0, 1, 2, 3, and 4, a total of 4 − (−6) + 1 = 11 integers. The correct answer is A.
 **related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q35
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Linear Equations
+
+If 3(x + 4) = x + 20, what is the value of x?
+
+- A) 2
+- B) 4
+- C) 8
+- D) 16
+- E) 20
+
+**answer:** B
+**hint_nudge:** Distribute the 3 across both terms inside the parentheses before you move anything.
+**hint_strategy:** Get all the x-terms on one side and the constants on the other, then divide by the coefficient of x — not by the number in front of the parentheses.
+**hint_setup:** 3(x + 4) = 3x + 12. So 3x + 12 = x + 20 becomes 2x = 8.
+**explanation:** The instinct on a linear equation is to clear the parentheses cleanly first, because most errors here are bookkeeping errors, not conceptual ones. Distributing the 3 across both terms gives 3·x + 3·4 = 3x + 12, so the equation is 3x + 12 = x + 20. Subtract x from both sides to collect the variable: 2x + 12 = 20. Subtract 12 from both sides to isolate the variable term: 2x = 8. Finally divide by 2 — the coefficient of x — to get x = 4.
+
+Substituting back is the cheapest possible check: 3(4 + 4) = 3·8 = 24, and x + 20 = 4 + 20 = 24. Both sides agree, so x = 4 is correct.
+
+The correct answer is B.
+**fastest_path:** Distribute, collect to 2x = 8, divide by 2. Verify by plugging back: both sides should equal 24.
+**common_trap:** Dividing 2x = 8 by the 4 inside the original parentheses, or forgetting to distribute the 3 to the constant. (Error-log tag: Careless.)
+**mistake_a:** You reached 2x = 8 but divided by 4 (the number inside the parentheses) instead of by 2, the actual coefficient of x.
+**mistake_c:** You either stopped at 2x = 8 and read off 8, or distributed only to the x (writing 3x + 4) and got 2x = 16, x = 8 — both skip a step.
+**mistake_d:** You moved +12 to the right as +12 instead of subtracting it, giving 2x = 32 and x = 16. A term changes sign when it crosses the equals sign.
+**mistake_e:** You read the constant 20 straight off the right side instead of solving for x.
+**trap_type:** distribution-and-transposition-slip
+**skill:** solve-linear-equation
+**est_time_seconds:** 75
+**takeaway:** On linear equations, distribute fully first and divide only by the variable's own coefficient. A 5-second back-substitution catches almost every slip.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q36
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Exponents
+
+If 2^x = 8, what is the value of 2^(x + 3)?
+
+- A) 11
+- B) 16
+- C) 24
+- D) 64
+- E) 512
+
+**answer:** D
+**hint_nudge:** You don't need x. The exponent x + 3 means you tack three more factors of 2 onto 2^x.
+**hint_strategy:** 2^(x + 3) = 2^x · 2^3. You already know 2^x.
+**hint_setup:** 2^x = 8 and 2^3 = 8, so 2^(x + 3) = 8 · 8.
+**explanation:** The reliable move on a "find 2^(x+3) given 2^x" problem is to split the exponent with the product rule rather than first solving for x. The rule a^(m+n) = a^m · a^n lets us write 2^(x + 3) = 2^x · 2^3. We are told 2^x = 8, and 2^3 = 8, so 2^(x + 3) = 8 · 8 = 64.
+
+If you prefer to find x: 2^x = 8 = 2^3, so x = 3, and 2^(x + 3) = 2^6 = 64. Either path lands on 64.
+
+The correct answer is D.
+**fastest_path:** Split the exponent: 2^(x + 3) = 2^x · 2^3 = 8 · 8 = 64. No need to solve for x.
+**common_trap:** Treating the "+3" in the exponent as something you add to or multiply onto the value 8, instead of three extra doublings. (Error-log tag: Conceptual.)
+**mistake_a:** You added the 3 to the value 8 (8 + 3 = 11). The 3 lives in the exponent, not the base value.
+**mistake_b:** You doubled 8 only once (8 · 2 = 16), as if the exponent rose by 1 rather than by 3.
+**mistake_c:** You multiplied 8 by 3 (8 · 3 = 24). Adding 3 to an exponent multiplies the value by 2^3 = 8, not by 3.
+**mistake_e:** You read 2^(x + 3) as (2^x)^3 = 8^3 = 512. Adding in an exponent is not the same as raising to a power.
+**trap_type:** exponent-operation-confusion
+**skill:** apply-product-rule-exponents
+**est_time_seconds:** 70
+**takeaway:** Adding inside an exponent splits into a product of like bases; raising an exponent multiplies them. 2^(x+3) = 2^x · 2^3, never 2^x + 3 and never (2^x)^3.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q37
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Inequalities
+
+If −2x + 5 < 11, which of the following describes all values of x?
+
+- A) x < −3
+- B) x > −3
+- C) x < 3
+- D) x > 3
+- E) x > −8
+
+**answer:** B
+**hint_nudge:** Isolate the x-term first, then watch what happens to the inequality sign when you divide.
+**hint_strategy:** Dividing or multiplying both sides of an inequality by a negative number reverses the direction of the inequality.
+**hint_setup:** −2x + 5 < 11 gives −2x < 6. Now divide by −2 and flip the sign.
+**explanation:** The single highest-yield habit on linear inequalities is to isolate the variable term and then pause at the moment you divide by a negative. Subtract 5 from both sides: −2x < 6. Now divide both sides by −2. Because −2 is negative, the inequality sign reverses, turning "<" into ">": x > −3.
+
+A quick sanity check confirms the direction. Try x = 0 (which should satisfy x > −3): −2(0) + 5 = 5, and 5 < 11 is true. Try x = −10 (which should fail): −2(−10) + 5 = 25, and 25 < 11 is false. The solution set x > −3 behaves correctly.
+
+The correct answer is B.
+**fastest_path:** Reduce to −2x < 6, divide by −2, and flip the sign to get x > −3. Test x = 0 to confirm the direction.
+**common_trap:** Dividing by a negative without reversing the inequality, or dropping the negative sign on −2x altogether. (Error-log tag: Conceptual.)
+**mistake_a:** You divided by −2 but kept the "<" sign. Dividing an inequality by a negative number must reverse its direction.
+**mistake_c:** You dropped the negative sign on −2x and solved 2x < 6, getting x < 3.
+**mistake_d:** You dropped the negative sign and also flipped — two errors that don't cancel correctly here.
+**mistake_e:** You added 5 to 11 instead of subtracting it, getting −2x < 16 and then x > −8.
+**trap_type:** negative-coefficient-sign-flip
+**skill:** solve-linear-inequality
+**est_time_seconds:** 75
+**takeaway:** The only special rule for linear inequalities is: multiply or divide by a negative, flip the sign. A single test value catches a flip you forgot.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q38
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Functions
+
+The function f is defined by f(n) = n^2 − 3n for all real numbers n. What is the value of f(5) − f(2)?
+
+- A) 8
+- B) 10
+- C) 12
+- D) 14
+- E) 16
+
+**answer:** C
+**hint_nudge:** Evaluate f(5) and f(2) separately, then subtract — and be careful with the sign of f(2).
+**hint_strategy:** f(2) comes out negative. Subtracting a negative number adds.
+**hint_setup:** f(5) = 25 − 15 = 10 and f(2) = 4 − 6 = −2. Now compute 10 − (−2).
+**explanation:** Function-evaluation problems reward slow, explicit substitution; the errors almost always come from sign handling, not from the algebra. Substitute n = 5: f(5) = 5^2 − 3·5 = 25 − 15 = 10. Substitute n = 2: f(2) = 2^2 − 3·2 = 4 − 6 = −2.
+
+Now subtract, keeping the parentheses around the negative result: f(5) − f(2) = 10 − (−2) = 10 + 2 = 12. The subtraction of a negative value is the place this problem is designed to catch you, so writing f(2) as −2 inside parentheses before subtracting is worth the extra second.
+
+The correct answer is C.
+**fastest_path:** f(5) = 10, f(2) = −2. Then 10 − (−2) = 12. Write f(2) in parentheses so the double negative is visible.
+**common_trap:** Mishandling the sign of f(2), either treating it as +2 or computing it wrong, so the subtraction goes astray. (Error-log tag: Careless.)
+**mistake_a:** You treated f(2) as +2 and computed 10 − 2 = 8. But f(2) = 4 − 6 = −2, so you subtract a negative.
+**mistake_b:** You found f(5) = 10 and forgot to subtract f(2) at all.
+**mistake_d:** You miscomputed f(2) as −4 (for instance by squaring 2 as 2), giving 10 − (−4) = 14.
+**mistake_e:** You dropped the n^2 term in f(2), getting −6, so 10 − (−6) = 16.
+**trap_type:** subtract-a-negative
+**skill:** evaluate-function-difference
+**est_time_seconds:** 75
+**takeaway:** Evaluate each function value fully, write negatives in parentheses, and remember that subtracting a negative adds. f(a) − f(b) is not f(a − b).
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q39
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Word Problem — Linear System
+
+A theater sold adult tickets for $12 each and child tickets for $7 each. It sold 200 tickets in total and collected $1,950 in revenue. How many child tickets were sold?
+
+- A) 90
+- B) 100
+- C) 110
+- D) 130
+- E) 150
+
+**answer:** A
+**hint_nudge:** Imagine every ticket were an adult ticket. How much revenue would that be, and why is the real total lower?
+**hint_strategy:** If all 200 were adult tickets you'd collect 200 × $12 = $2,400. Each child ticket sold instead of an adult ticket costs you $12 − $7 = $5 of revenue.
+**hint_setup:** The revenue is short of the all-adult maximum by 2,400 − 1,950 = 450 dollars. Divide that shortfall by the $5 lost per child ticket.
+**explanation:** The fastest route here is the shortfall method, which avoids setting up and solving a full system. If all 200 tickets had been adult tickets, the theater would have collected 200 × $12 = $2,400. The actual revenue was $1,950, which is 2,400 − 1,950 = $450 short of that maximum. Every child ticket sold in place of an adult ticket reduces revenue by exactly $12 − $7 = $5. So the number of child tickets is 450 ÷ 5 = 90.
+
+To confirm with the standard system: let a be adult tickets and c be child tickets. Then a + c = 200 and 12a + 7c = 1,950. From the first equation a = 200 − c; substituting gives 12(200 − c) + 7c = 1,950, or 2,400 − 5c = 1,950, so 5c = 450 and c = 90. Adult tickets number 200 − 90 = 110, and 110·12 + 90·7 = 1,320 + 630 = 1,950, as required.
+
+The correct answer is A.
+**fastest_path:** All-adult revenue = 2,400. Shortfall = 2,400 − 1,950 = 450. Each child ticket costs $5 of that, so children = 450 ÷ 5 = 90.
+**common_trap:** Solving correctly but reporting the number of adult tickets, since the question quietly asks for child tickets. (Error-log tag: Misread.)
+**mistake_b:** You assumed an even 100/100 split instead of using the revenue equation.
+**mistake_c:** You solved the system correctly but reported the adult tickets (110). The question asks for child tickets.
+**mistake_d:** A sign error in the elimination step pushed you into the complementary part of the split.
+**mistake_e:** You divided the total revenue by a combined or averaged price rather than using the shortfall structure.
+**trap_type:** answer-the-wrong-quantity
+**skill:** translate-and-solve-linear-system
+**est_time_seconds:** 90
+**takeaway:** For two-price mixture counts, the shortfall method is faster than a full system — and always re-read which variable the question wants before bubbling.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Systems of Equations
+
+If 3a + 2b = 19 and 2a + 3b = 16, what is the value of a − b?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 5
+- E) 7
+
+**answer:** C
+**hint_nudge:** You don't have to solve for a and b individually. Look at what subtracting one equation from the other produces.
+**hint_strategy:** Subtracting the second equation from the first cancels nicely: the a-coefficients differ by 1 and so do the b-coefficients, leaving a − b directly.
+**hint_setup:** (3a + 2b) − (2a + 3b) = 19 − 16. Simplify the left side.
+**explanation:** When a question asks for a combination like a − b rather than for a or b separately, the elegant move is to combine the equations to produce that exact combination. Subtract the second equation from the first: (3a + 2b) − (2a + 3b) = 19 − 16. The left side simplifies to 3a − 2a + 2b − 3b = a − b, and the right side is 3. Therefore a − b = 3, with no need to find a or b individually.
+
+If you want the full solution as a check, add the two equations: 5a + 5b = 35, so a + b = 7. Together with a − b = 3, this gives a = 5 and b = 2, and indeed 3·5 + 2·2 = 19 and 2·5 + 3·2 = 16.
+
+The correct answer is C.
+**fastest_path:** Subtract equation 2 from equation 1: the left side collapses to a − b and the right side is 19 − 16 = 3.
+**common_trap:** Reflexively adding the equations (which gives a + b = 7) when the question asks for the difference, or grinding out a and b and then reporting the wrong one. (Error-log tag: Strategy.)
+**mistake_a:** You combined the equations inconsistently — for example, subtracting the constants but adding part of the variable terms.
+**mistake_b:** You solved the full system and reported b = 2 instead of a − b.
+**mistake_d:** You solved the full system and reported a = 5 instead of a − b.
+**mistake_e:** You added the two equations (getting a + b = 7) instead of subtracting them.
+**trap_type:** combine-for-the-asked-expression
+**skill:** solve-system-by-combination
+**est_time_seconds:** 100
+**takeaway:** When a system asks for an expression like a − b or a + b, try adding or subtracting the equations to build that expression directly — it is usually faster than solving for each variable.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q41
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Quadratics — Roots
+
+The quadratic equation x^2 − kx + 18 = 0 has two positive integer roots that differ by 3. What is the value of k?
+
+- A) 3
+- B) 6
+- C) 9
+- D) 11
+- E) 18
+
+**answer:** C
+**hint_nudge:** For x^2 − kx + 18, the two roots multiply to 18 and add to k. Which factor pair of 18 differs by 3?
+**hint_strategy:** List the positive integer factor pairs of 18 and find the one whose two numbers are 3 apart; their sum is k.
+**hint_setup:** Factor pairs of 18: (1, 18), (2, 9), (3, 6). Which pair differs by 3?
+**explanation:** For a monic quadratic x^2 − kx + 18 = 0, Vieta's formulas say the two roots have product equal to the constant term, 18, and sum equal to k (the negative of the x-coefficient). So we need two positive integers whose product is 18 and whose difference is 3.
+
+The positive factor pairs of 18 are (1, 18), (2, 9), and (3, 6). Their differences are 17, 7, and 3 respectively. Only (3, 6) differs by 3, so the roots are 3 and 6. Their sum is k = 3 + 6 = 9. As a check, x^2 − 9x + 18 = (x − 3)(x − 6), which indeed has roots 3 and 6.
+
+The correct answer is C.
+**fastest_path:** Roots multiply to 18 and differ by 3 → the pair (3, 6). Then k = sum of roots = 9.
+**common_trap:** Grabbing the wrong factor pair or confusing k (the sum of the roots) with the constant 18 (their product). (Error-log tag: Conceptual.)
+**mistake_a:** You reported the difference of the roots (3), which is given, rather than k.
+**mistake_b:** You reported just one root (6) instead of the sum of the roots.
+**mistake_d:** You used the factor pair (2, 9) — whose sum is 11 — without checking that it must differ by 3.
+**mistake_e:** You confused k, the sum of the roots, with 18, the product of the roots (the constant term).
+**trap_type:** vieta-sum-vs-product
+**skill:** use-vieta-sum-and-product
+**est_time_seconds:** 110
+**takeaway:** In x^2 − kx + c, the roots sum to k and multiply to c. Translate the given conditions onto those two facts before touching the quadratic formula.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q42
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Absolute Value Equations
+
+How many distinct real values of x satisfy |2x − 5| = |x + 4|?
+
+- A) 0
+- B) 1
+- C) 2
+- D) 3
+- E) Infinitely many
+
+**answer:** C
+**hint_nudge:** When two absolute values are equal, the inside expressions are either equal or exact opposites.
+**hint_strategy:** Split into two linear equations: 2x − 5 = x + 4 and 2x − 5 = −(x + 4). Each may give a solution.
+**hint_setup:** Solve 2x − 5 = x + 4 for one case, and 2x − 5 = −(x + 4) for the other.
+**explanation:** The equation |A| = |B| holds exactly when A = B or A = −B, so two cases must both be examined. Case 1: 2x − 5 = x + 4. Subtracting x and adding 5 gives x = 9. Case 2: 2x − 5 = −(x + 4) = −x − 4. Adding x and 5 to both sides gives 3x = 1, so x = 1/3.
+
+Both candidates are genuine solutions because squaring (the operation that justifies the two-case split) introduces no extraneous roots for |A| = |B|. Verify: at x = 9, |2·9 − 5| = 13 and |9 + 4| = 13. At x = 1/3, |2/3 − 5| = 13/3 and |1/3 + 4| = 13/3. Both check out, so there are exactly 2 distinct solutions.
+
+The correct answer is C.
+**fastest_path:** Set the insides equal (x = 9) and opposite (x = 1/3). Both are valid, so there are 2 solutions.
+**common_trap:** Solving only the "equal" case and missing the "opposite" case, so you undercount the solutions. (Error-log tag: Conceptual.)
+**mistake_a:** You concluded there is no solution, perhaps after mishandling the sign in the second case.
+**mistake_b:** You solved only 2x − 5 = x + 4 and stopped, missing the case 2x − 5 = −(x + 4).
+**mistake_d:** You added a spurious third case; |A| = |B| produces exactly two linear cases.
+**mistake_e:** You treated the equation as an identity true for all x, but the two sides are equal only at the two solution points.
+**trap_type:** missing-the-opposite-case
+**skill:** solve-absolute-value-equation
+**est_time_seconds:** 115
+**takeaway:** |A| = |B| means A = B or A = −B — two cases, both checked. For equalities of absolute values, neither case produces extraneous roots.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q43
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Compound Inequalities
+
+If −3 ≤ 4 − 2x < 7, which of the following gives all possible values of x?
+
+- A) −3/2 < x ≤ 7/2
+- B) −3/2 ≤ x < 7/2
+- C) −7/2 < x ≤ 3/2
+- D) x > −3/2
+- E) x ≥ 7/2 or x < −3/2
+
+**answer:** A
+**hint_nudge:** Work the middle expression toward x by undoing "+4" then "−2x", and remember what dividing by a negative does to both inequality signs.
+**hint_strategy:** Subtract 4 from all three parts, then divide all three parts by −2 — which reverses both inequality signs and swaps which end is open.
+**hint_setup:** −3 ≤ 4 − 2x < 7 becomes −7 ≤ −2x < 3 after subtracting 4. Now divide by −2 and flip.
+**explanation:** A compound inequality is handled by performing the same operation on all three parts while tracking the inequality directions carefully. Start with −3 ≤ 4 − 2x < 7 and subtract 4 from each part: −7 ≤ −2x < 3. Now divide every part by −2. Dividing by a negative reverses both inequality signs, so "≤" becomes "≥" and "<" becomes ">", giving 7/2 ≥ x > −3/2.
+
+Rewriting that chain in increasing order of x: −3/2 < x ≤ 7/2. The endpoint that was "or-equal" stays attached to its original boundary: the −3 (a closed end) came from 4 − 2x and maps to x ≤ 7/2, while the 7 (a strict end) maps to x > −3/2. A test value confirms it: x = 0 gives 4 − 0 = 4, and −3 ≤ 4 < 7 holds, and 0 lies in −3/2 < x ≤ 7/2.
+
+The correct answer is A.
+**fastest_path:** Subtract 4 from all parts (−7 ≤ −2x < 3), divide by −2 and flip both signs, then reorder to −3/2 < x ≤ 7/2.
+**common_trap:** Forgetting to reverse the inequality signs when dividing by −2, or losing track of which endpoint is open versus closed after the flip. (Error-log tag: Conceptual.)
+**mistake_b:** You flipped the signs but attached "or-equal" to the wrong endpoint after dividing by the negative.
+**mistake_c:** You divided by −2 without correctly negating the boundary values, scrambling both endpoints.
+**mistake_d:** You solved only one half of the compound inequality and dropped the other bound.
+**mistake_e:** You failed to reverse the inequality directions when dividing by −2, which split the solution into two rays.
+**trap_type:** compound-inequality-negative-divide
+**skill:** solve-compound-inequality
+**est_time_seconds:** 130
+**takeaway:** Operate on all three parts of a compound inequality at once, flip both signs when dividing by a negative, then reorder so x reads left to right. Track open versus closed ends through the flip.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q44
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Exponential Equations
+
+If 9^(x + 1) = 27^(x − 1), what is the value of x?
+
+- A) 1
+- B) 2
+- C) 3
+- D) 4
+- E) 5
+
+**answer:** E
+**hint_nudge:** 9 and 27 are both powers of the same base. Rewrite each side with that base.
+**hint_strategy:** Write 9 = 3^2 and 27 = 3^3, then use the power-of-a-power rule and set the exponents equal.
+**hint_setup:** 9^(x + 1) = 3^(2(x + 1)) and 27^(x − 1) = 3^(3(x − 1)). Distribute carefully: 2x + 2 and 3x − 3.
+**explanation:** The standard strategy for an exponential equation with different bases is to rewrite both sides over a common base, then equate exponents. Here 9 = 3^2 and 27 = 3^3. Using the power-of-a-power rule (a^m)^n = a^(mn), the left side becomes 9^(x + 1) = (3^2)^(x + 1) = 3^(2(x + 1)) = 3^(2x + 2), and the right side becomes 27^(x − 1) = (3^3)^(x − 1) = 3^(3(x − 1)) = 3^(3x − 3).
+
+Since the bases are now equal and the base 3 is not 0 or 1, the exponents must be equal: 2x + 2 = 3x − 3. Subtracting 2x from both sides gives 2 = x − 3, so x = 5. Check: 9^6 = 3^12 and 27^4 = 3^12, which match.
+
+The correct answer is E.
+**fastest_path:** Rewrite as 3^(2x+2) = 3^(3x−3), set exponents equal, solve 2x + 2 = 3x − 3 → x = 5.
+**common_trap:** Distributing the new exponent onto only the variable and forgetting the constant inside the parentheses, producing a too-small answer. (Error-log tag: Careless.)
+**mistake_a:** An incomplete base conversion left you with mismatched exponents that solved to 1.
+**mistake_b:** You distributed onto only the x on both sides (writing 2x + 1 and 3x − 1), giving x = 2.
+**mistake_c:** You forgot to multiply the −1 by 3 on the right (writing 3x − 1 instead of 3x − 3), giving x = 3.
+**mistake_d:** You forgot to multiply the +1 by 2 on the left (writing 2x + 1 instead of 2x + 2), giving x = 4.
+**trap_type:** exponent-distribution-error
+**skill:** solve-common-base-exponential
+**est_time_seconds:** 115
+**takeaway:** To equate exponents you first need one base. When you raise a power to a power, distribute across the entire exponent — both the variable and the constant.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q45
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rational Equations
+
+Solve for x:  x/(x − 3) − 2 = 3/(x − 3).
+
+- A) x = −3
+- B) x = 0
+- C) x = 3
+- D) x = 6
+- E) No real solution
+
+**answer:** E
+**hint_nudge:** Before you solve, note which value of x would make a denominator zero — that value can never be a solution.
+**hint_strategy:** Multiply every term by (x − 3) to clear the fractions, solve, then check the candidate against the restriction x ≠ 3.
+**hint_setup:** Multiplying through by (x − 3): x − 2(x − 3) = 3. Solve, then test whether the result is allowed.
+**explanation:** Rational equations carry a hidden constraint: any x that makes a denominator zero is excluded from the domain, no matter what the algebra produces. Here the denominator x − 3 forbids x = 3. Multiply every term by (x − 3) to clear the fractions: x − 2(x − 3) = 3. Distribute the −2: x − 2x + 6 = 3, which simplifies to −x + 6 = 3, so −x = −3 and x = 3.
+
+But x = 3 is exactly the value the domain forbids — substituting it makes the original denominators zero, so the expression is undefined there. The candidate is extraneous, and the equation has no valid solution.
+
+The correct answer is E.
+**fastest_path:** Clear denominators, solve to x = 3, then reject it because x = 3 makes the denominator zero. No solution remains.
+**common_trap:** Solving the cleared equation and reporting x = 3 without checking it against the domain restriction. (Error-log tag: Conceptual.)
+**mistake_a:** You solved −x = −3 but flipped the sign of the answer to −3.
+**mistake_b:** You distributed −2(x − 3) incorrectly (as −2x + 3), which collapsed the equation to x = 0.
+**mistake_c:** You solved correctly to x = 3 but never checked it against x ≠ 3 — it is an extraneous root.
+**mistake_d:** You cleared the denominators incompletely, leaving an equation that solved to 6.
+**trap_type:** extraneous-root-from-domain
+**skill:** solve-rational-equation-check-domain
+**est_time_seconds:** 125
+**takeaway:** Always note the forbidden values before solving a rational equation, and test every candidate. An algebraically valid answer that hits a zero denominator is extraneous.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q46
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Defined Operations
+
+For all real numbers a and b, the operation ⊕ is defined by a ⊕ b = a^2 − b. If 3 ⊕ k = k ⊕ 3, what is the sum of all possible values of k?
+
+- A) −4
+- B) −1
+- C) 3
+- D) 7
+- E) 12
+
+**answer:** B
+**hint_nudge:** Apply the definition to each side carefully — the order of the inputs matters because of the squaring.
+**hint_strategy:** Compute 3 ⊕ k and k ⊕ 3 from the rule, set them equal, and you'll get a quadratic in k. The question wants the sum of its roots.
+**hint_setup:** 3 ⊕ k = 3^2 − k = 9 − k, and k ⊕ 3 = k^2 − 3. Set 9 − k = k^2 − 3.
+**explanation:** A defined-operation problem is just substitution into a rule, but the squaring makes the operation non-commutative, so order matters. By the definition a ⊕ b = a^2 − b: 3 ⊕ k = 3^2 − k = 9 − k, while k ⊕ 3 = k^2 − 3. Setting them equal gives 9 − k = k^2 − 3.
+
+Move everything to one side: 0 = k^2 − 3 + k − 9 = k^2 + k − 12, which factors as (k + 4)(k − 3) = 0. So k = −4 or k = 3. The question asks for the sum of all possible values, which is −4 + 3 = −1. (Vieta's shortcut: for k^2 + k − 12 = 0 the sum of roots is −(coefficient of k) = −1, so you needn't even factor.)
+
+The correct answer is B.
+**fastest_path:** Set 9 − k = k^2 − 3, rearrange to k^2 + k − 12 = 0, and read the sum of roots as −1 directly from Vieta.
+**common_trap:** Solving the quadratic correctly but answering with a single root, or reporting the product/constant instead of the sum. (Error-log tag: Misread.)
+**mistake_a:** You found the roots but reported only k = −4.
+**mistake_c:** You found the roots but reported only k = 3.
+**mistake_d:** You added the absolute values of the roots (4 + 3 = 7), dropping the sign on −4.
+**mistake_e:** You reported 12, the constant term, which relates to the product of the roots, not their sum.
+**trap_type:** report-sum-not-a-single-root
+**skill:** evaluate-defined-operation
+**est_time_seconds:** 130
+**takeaway:** Defined operations are substitution plus careful order; once you reach a quadratic, re-read whether the question wants a root, the sum, or the product, and use Vieta to skip factoring.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q47
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Quadratics — Symmetric Functions of Roots
+
+The roots of x^2 − 6x + 7 = 0 are r and s. What is the value of r^3 + s^3?
+
+- A) 90
+- B) 126
+- C) 174
+- D) 195
+- E) 216
+
+**answer:** A
+**hint_nudge:** You can't find r and s as nice numbers, but you don't need to — you only need their sum and product.
+**hint_strategy:** Use the identity r^3 + s^3 = (r + s)^3 − 3rs(r + s), and read r + s and rs straight off the quadratic.
+**hint_setup:** r + s = 6 and rs = 7. Plug into (r + s)^3 − 3rs(r + s) = 6^3 − 3·7·6.
+**explanation:** The roots of x^2 − 6x + 7 are irrational (the discriminant is 36 − 28 = 8), so computing them explicitly is wasteful. Instead use Vieta's formulas: r + s = 6 (the negative of the x-coefficient) and rs = 7 (the constant term). The cubic symmetric sum factors through the identity r^3 + s^3 = (r + s)^3 − 3rs(r + s).
+
+Substitute: (r + s)^3 = 6^3 = 216, and 3rs(r + s) = 3·7·6 = 126. Therefore r^3 + s^3 = 216 − 126 = 90. The correction term 3rs(r + s) is exactly what separates the cube of the sum from the sum of the cubes, and dropping or mis-scaling it is where this problem catches people.
+
+The correct answer is A.
+**fastest_path:** r + s = 6, rs = 7. Then r^3 + s^3 = (r + s)^3 − 3rs(r + s) = 216 − 126 = 90.
+**common_trap:** Forgetting the −3rs(r + s) correction or mis-applying its coefficient, so the cube of the sum is mistaken for the sum of the cubes. (Error-log tag: Conceptual.)
+**mistake_b:** You computed the correction term 3rs(r + s) = 126 itself and reported it instead of subtracting it from 216.
+**mistake_c:** You subtracted rs(r + s) = 42 but forgot the coefficient 3, getting 216 − 42 = 174.
+**mistake_d:** You subtracted 3rs = 21 but forgot the (r + s) factor, getting 216 − 21 = 195.
+**mistake_e:** You computed (r + s)^3 = 216 and forgot the −3rs(r + s) correction entirely.
+**trap_type:** dropped-symmetric-correction-term
+**skill:** symmetric-function-of-roots
+**est_time_seconds:** 155
+**takeaway:** When roots are ugly, work with their sum and product via Vieta. Memorize r^3 + s^3 = (r + s)^3 − 3rs(r + s); the middle term is the whole game.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q48
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Optimization with Constraints
+
+If x and y are real numbers with x + y = 10, x ≥ 7, and y ≥ 1, what is the maximum possible value of xy?
+
+- A) 9
+- B) 16
+- C) 21
+- D) 24
+- E) 25
+
+**answer:** C
+**hint_nudge:** Substitute y = 10 − x so xy becomes a function of x alone, then figure out the actual range of x the constraints allow.
+**hint_strategy:** xy = x(10 − x) is a downward parabola peaking at x = 5 — but check whether x = 5 is even allowed before using it.
+**hint_setup:** From x ≥ 7 and y = 10 − x ≥ 1 you get 7 ≤ x ≤ 9. The parabola's vertex (x = 5) lies outside this interval, so the maximum sits at an endpoint.
+**explanation:** Replace y with 10 − x so the product becomes a single-variable function: xy = x(10 − x) = 10x − x^2. This is a downward-opening parabola whose unconstrained maximum is at the vertex x = 5. The trap is to stop there and report 5·5 = 25 — but the constraints forbid x = 5.
+
+Translate the constraints into a range for x: we need x ≥ 7, and y = 10 − x ≥ 1 forces x ≤ 9. So x is confined to the interval [7, 9]. Because the vertex (x = 5) lies to the left of this interval, the parabola is strictly decreasing across [7, 9], so the product is largest at the left endpoint x = 7. There y = 3 and xy = 7·3 = 21. (At the other endpoint, x = 9, y = 1, the product is only 9.) The maximum is 21.
+
+The correct answer is C.
+**fastest_path:** Constraints give x ∈ [7, 9]; the vertex x = 5 is outside it, so on a decreasing branch the max is at x = 7: xy = 7·3 = 21.
+**common_trap:** Optimizing the parabola at its vertex without checking that the vertex satisfies the constraints. (Error-log tag: Conceptual.)
+**mistake_a:** You evaluated at x = 9, y = 1, which gives the minimum (9) on the interval, not the maximum.
+**mistake_b:** You tried x = 8, y = 2 (a feasible interior point) but didn't test the boundary x = 7, which does better.
+**mistake_d:** You used x = 6, y = 4, which violates the constraint x ≥ 7.
+**mistake_e:** You used the unconstrained vertex x = y = 5, ignoring that x must be at least 7.
+**trap_type:** vertex-outside-feasible-region
+**skill:** constrained-optimization-endpoint-check
+**est_time_seconds:** 165
+**takeaway:** A parabola's vertex is the optimum only if it lies inside the allowed region. When constraints exclude the vertex, the extremum moves to the nearest endpoint — always pin down the feasible interval first.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q49
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Absolute Value — Range
+
+For how many integer values of k does the equation |x − 3| − |x + 1| = k have at least one real solution?
+
+- A) 4
+- B) 5
+- C) 8
+- D) 9
+- E) Infinitely many
+
+**answer:** D
+**hint_nudge:** The left side is a function of x with a limited range. The equation has a solution exactly when k lands inside that range.
+**hint_strategy:** Examine |x − 3| − |x + 1| in three regions split by x = −1 and x = 3. It is constant on the outer regions and a straight line in the middle.
+**hint_setup:** For x ≤ −1 the expression equals 4; for x ≥ 3 it equals −4; in between it slides linearly from 4 down to −4. Find the full range, then count the integers in it.
+**explanation:** The function f(x) = |x − 3| − |x + 1| changes behavior at the points where each absolute value turns, namely x = 3 and x = −1. Break into three regions. For x ≥ 3: f = (x − 3) − (x + 1) = −4. For x ≤ −1: f = (3 − x) − (−(x + 1)) = (3 − x) + (x + 1) = 4. For −1 ≤ x ≤ 3: f = (3 − x) − (x + 1) = 2 − 2x, which decreases continuously from f(−1) = 4 down to f(3) = −4.
+
+So f takes every value between −4 and 4 inclusive and nothing outside that band: its range is [−4, 4]. The equation f(x) = k has at least one solution precisely when −4 ≤ k ≤ 4. The integers in that interval are −4, −3, −2, −1, 0, 1, 2, 3, 4 — exactly 9 values.
+
+The correct answer is D.
+**fastest_path:** The difference of distances |x−3| − |x+1| ranges over [−4, 4]; count integers from −4 to 4 inclusive → 9.
+**common_trap:** Treating the expression as unbounded (so "any k works") or miscounting the integers in a closed interval. (Error-log tag: Conceptual.)
+**mistake_a:** You reported 4, the maximum value of the expression, rather than the count of valid integers k.
+**mistake_b:** You counted only the nonnegative values k = 0, 1, 2, 3, 4, forgetting the expression also reaches negative values.
+**mistake_c:** You found the range [−4, 4] but miscounted, dropping an endpoint (an off-by-one in a closed interval).
+**mistake_e:** You assumed the left side can equal any number, missing that a difference of absolute values is bounded.
+**trap_type:** bounded-range-of-abs-difference
+**skill:** range-of-piecewise-absolute-value
+**est_time_seconds:** 175
+**takeaway:** |x − a| − |x − b| is bounded: it ranges over [−|a − b|, |a − b|]. To count solvable k, find that closed range and count integers inclusive on both ends.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q50
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Exponents — Factoring Common Powers
+
+If 2^(x + 2) + 2^x = 40, what is the value of x?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 5
+- E) 8
+
+**answer:** B
+**hint_nudge:** Both terms share a factor of 2^x. Pull it out.
+**hint_strategy:** Write 2^(x + 2) as 2^x · 2^2, factor 2^x from the left side, and you'll get 2^x times a small constant.
+**hint_setup:** 2^(x + 2) + 2^x = 2^x·4 + 2^x = 2^x(4 + 1) = 5·2^x. Set 5·2^x = 40.
+**explanation:** A sum of powers with the same base is almost always meant to be factored, not expanded. Rewrite the larger term using the product rule: 2^(x + 2) = 2^x · 2^2 = 4·2^x. The left side becomes 4·2^x + 2^x = 2^x(4 + 1) = 5·2^x. The equation is now 5·2^x = 40.
+
+Divide both sides by 5: 2^x = 8. Since 8 = 2^3, we have x = 3. Check the original: 2^(3 + 2) + 2^3 = 2^5 + 2^3 = 32 + 8 = 40, which matches.
+
+The correct answer is B.
+**fastest_path:** Factor: 2^(x+2) + 2^x = 2^x(4 + 1) = 5·2^x = 40, so 2^x = 8 and x = 3.
+**common_trap:** Failing to factor the common power, or solving 2^x = 8 but then reporting the wrong quantity. (Error-log tag: Conceptual.)
+**mistake_a:** You reached 2^x = 8 but mis-solved it (for instance dividing 40 by the wrong factor), landing on 2.
+**mistake_c:** You found 2^x = 8 but mis-evaluated the exponent as 4, as if 2·4 = 8.
+**mistake_d:** You reported x + 2 = 5, the exponent in the first term, rather than x itself.
+**mistake_e:** You stopped at 2^x = 8 and reported 8 instead of solving for x.
+**trap_type:** factor-common-power
+**skill:** factor-sum-of-like-powers
+**est_time_seconds:** 150
+**takeaway:** When like-based powers are added, factor out the smallest power. 2^(x+2) + 2^x = 2^x(2^2 + 1) collapses the sum to a single power equation.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q51
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Difference of Squares — Integer Solutions
+
+How many ordered pairs of positive integers (a, b) satisfy a^2 − b^2 = 60?
+
+- A) 0
+- B) 2
+- C) 4
+- D) 5
+- E) 6
+
+**answer:** B
+**hint_nudge:** Factor the left side. The two factors a − b and a + b have a parity relationship you must respect.
+**hint_strategy:** a^2 − b^2 = (a − b)(a + b) = 60. Because a − b and a + b always share the same parity, and their product 60 is even, they must both be even — so their product is divisible by 4.
+**hint_setup:** Write a − b = 2m and a + b = 2n with m < n. Then 4mn = 60, so mn = 15. Count the factor pairs of 15 with m < n.
+**explanation:** Factor the equation: a^2 − b^2 = (a − b)(a + b) = 60. For a and b to be integers, a − b and a + b must be integers of the same parity (their sum 2a and difference 2b are both even, so the two factors are both even or both odd). Their product is 60, which is even; two odd numbers multiply to an odd product, so they cannot both be odd. Therefore both factors are even.
+
+Write a − b = 2m and a + b = 2n with positive integers m < n (we need a + b > a − b > 0 since a, b are positive with a > b). Then (2m)(2n) = 60, so 4mn = 60 and mn = 15. The factor pairs of 15 with m < n are (1, 15) and (3, 5) — exactly 2 of them. Each yields one valid (a, b): (1, 15) gives a − b = 2, a + b = 30, so a = 16, b = 14; (3, 5) gives a − b = 6, a + b = 10, so a = 8, b = 2. Both satisfy a^2 − b^2 = 60 (256 − 196 = 60 and 64 − 4 = 60). There are 2 ordered pairs.
+
+The correct answer is B.
+**fastest_path:** (a − b)(a + b) = 60 with both factors even → set them 2m, 2n, mn = 15. Factor pairs (1,15), (3,5) → 2 solutions.
+**common_trap:** Counting all factor pairs of 60 and ignoring the same-parity requirement, which inflates the count. (Error-log tag: Conceptual.)
+**mistake_a:** You over-applied the parity rule and wrongly concluded no factorization works, but two even-even pairs exist.
+**mistake_c:** You counted each valid pair twice (both orderings), but a > b is forced, so only one ordering is valid per pair.
+**mistake_d:** You accepted one mixed-parity factor pair that does not yield integer a and b, over-counting by one.
+**mistake_e:** You counted all six factor pairs of 60 (1×60, 2×30, 3×20, 4×15, 5×12, 6×10), ignoring that a − b and a + b must have the same parity.
+**trap_type:** same-parity-constraint
+**skill:** difference-of-squares-integer-count
+**est_time_seconds:** 210
+**takeaway:** a^2 − b^2 = N factors as (a − b)(a + b); the two factors must share parity. When N is even but not a multiple of 4, there are no solutions; otherwise count only the same-parity factor pairs.
+**related_reading:** reading-quant-04-algebra-and-equations
