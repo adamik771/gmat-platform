@@ -3104,3 +3104,457 @@ Taking the statements together, we have the system s + f = 100 and f = s + 20. S
 
 The correct answer is C.
 **related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q28
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work
+
+Three identical machines, each producing 80 units per hour, operate simultaneously. How many hours will it take them to produce 1,200 units?
+
+- A) 3 hours
+- B) 4 hours
+- C) 5 hours
+- D) 6 hours
+- E) 8 hours
+
+**answer:** C
+**fastest_path:** Combined rate = 3 × 80 = 240 units/hr. T = 1200/240 = 5 hr.
+**explanation:** When identical machines work simultaneously their rates add directly: 80 + 80 + 80 = 240 units/hr. Time = 1200 ÷ 240 = 5 hours.
+**mistake_a:** Divided by 3 machines and also divided by production: 1200/80/3 = 5 but then mis-applied → 3.
+**mistake_b:** Used 80 × 3 = 240 but then 1200/300 → 4 (arithmetic slip).
+**mistake_d:** Computed time for one machine only: 1200/80 = 15, then halved incorrectly → 6.
+**mistake_e:** Forgot to multiply by number of machines; used 1200/80/1.5 → 8.
+**common_trap:** Computing how long one machine takes (15 hr) and dividing by 2 or 3 incorrectly, rather than first finding combined rate.
+**takeaway:** n identical machines at rate r each → combined rate = n·r. Total time = total output / (n·r).
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q29
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Rates — Unit Conversion
+
+A printer operates at 360 pages per hour. How many minutes does it take to print a 90-page report?
+
+- A) 10 minutes
+- B) 12 minutes
+- C) 15 minutes
+- D) 18 minutes
+- E) 20 minutes
+
+**answer:** C
+**fastest_path:** 360 pages/hr = 6 pages/min. T = 90/6 = 15 min.
+**explanation:** Convert to pages per minute: 360 ÷ 60 = 6 pages/min. Time = 90 ÷ 6 = 15 minutes.
+**mistake_a:** Divided 90 by 9 from rough mental math → 10.
+**mistake_b:** Used 360/30 = 12 as the rate then divided → 12.
+**mistake_d:** Computed 90/5 = 18 after a unit slip.
+**mistake_e:** Divided 360 by 90 × something → 20.
+**common_trap:** Forgetting to convert the rate from per-hour to per-minute before dividing. Applying 360 directly to 90 gives 0.25 hours (15 minutes), but students often misplace the decimal.
+**takeaway:** Always confirm that output rate and target output are in the same units before dividing. 360 pages/hr → 6 pages/min is the conversion that unlocks the problem.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q30
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combined Work
+
+A gardener can mow a lawn in 3 hours. What fraction of the lawn will she mow in 45 minutes?
+
+- A) 1/6
+- B) 1/5
+- C) 1/4
+- D) 1/3
+- E) 3/8
+
+**answer:** C
+**fastest_path:** Rate = 1/3 lawn per hour. 45 min = 3/4 hr. Fraction = (1/3)(3/4) = 1/4.
+**explanation:** Her rate is 1/3 of the lawn per hour. In 45 minutes = 3/4 of an hour she completes (1/3) × (3/4) = 1/4 of the lawn.
+**mistake_a:** Used 45/60 = 0.75, then divided by something → 1/6.
+**mistake_b:** Divided 1 by 5 from approximate 45/3 ÷ something → 1/5.
+**mistake_d:** Used 60 minutes as a full hour and said 45/60 × 3 ÷ 3 = 1/3.
+**mistake_e:** Computed 45/3 = 15, then 15/40 = 3/8 from confused setup.
+**common_trap:** Working in minutes throughout: rate = 1/180 per minute, fraction = 45/180 = 1/4. The arithmetic trap is simplifying 45/180 incorrectly.
+**takeaway:** Convert time to hours when the rate is per hour. Fraction completed = rate × time, where both are in matching units.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q31
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Distance-Rate-Time
+
+A car drives the first 120 miles of a 240-mile trip at 60 mph, then drives the remaining 120 miles at 40 mph. What is the total time for the trip?
+
+- A) 3.5 hours
+- B) 4 hours
+- C) 4.5 hours
+- D) 5 hours
+- E) 5.5 hours
+
+**answer:** D
+**fastest_path:** T₁ = 120/60 = 2 hr. T₂ = 120/40 = 3 hr. Total = 5 hr.
+**explanation:** First leg: 120/60 = 2 hours. Second leg: 120/40 = 3 hours. Total = 5 hours.
+**mistake_a:** Used harmonic mean as if computing average speed, then divided: 48 → 240/48 ≈ 3.5 (wrongly applied average speed).
+**mistake_b:** Averaged the speeds: (60+40)/2 = 50 → 240/50 = 4.8 → rounded to 4.
+**mistake_c:** Used 240/50 = 4.8 → rounded down → 4.5.
+**mistake_e:** Arithmetic slip: 2 + 3.5 → 5.5.
+**common_trap:** Computing average speed first (48 mph via harmonic mean) and then dividing total distance by that: 240/48 = 5, which happens to be correct here, but that approach only works for equal-distance legs and students often use arithmetic mean (50) instead.
+**takeaway:** For total time, always compute each leg's time separately and sum them. Don't compute average speed first unless you specifically need it.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q32
+**difficulty:** Easy
+**type:** Data Sufficiency
+**topic:** Combined Work
+
+Two printers, X and Y, work together to complete a print job. How long does the job take when both printers work simultaneously?
+
+(1) Printer X alone takes 8 hours to complete the job.
+(2) Printer Y prints at exactly 3 times the speed of Printer X.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** (1) gives X's rate only; Y unknown → insufficient. (2) gives ratio only; no anchor → insufficient. Together: rate_X = 1/8, rate_Y = 3/8 → combined = 1/2 → T = 2 hr.
+**explanation:** Statement (1): rate_X = 1/8 per hour, but Y's rate is unknown → can't find combined time. Insufficient. Statement (2): Y = 3X in speed, but without knowing X's actual rate, the ratio alone doesn't give a time. Insufficient. Together: rate_X = 1/8, rate_Y = 3 × (1/8) = 3/8. Combined rate = 1/8 + 3/8 = 4/8 = 1/2 → T = 2 hours. Sufficient.
+**mistake_a:** Assumed (1) alone is sufficient — rate_X is given but rate_Y is still unknown.
+**mistake_b:** Assumed (2) alone is sufficient — the 3:1 ratio has no numerical anchor without (1).
+**mistake_d:** Assumed each statement independently resolves the question.
+**mistake_e:** Concluded both are insufficient — together they fully determine the time.
+**common_trap:** A ratio statement (Y = 3X) feels complete, but a ratio needs at least one absolute value to anchor it. Combined with (1), the ratio immediately gives Y's rate.
+**takeaway:** Ratio statements are insufficient alone when the absolute scale is unknown. Pair a ratio with one concrete value and the system resolves.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q33
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rates — Scaling Workers and Output
+
+Six machines working together produce 900 units in 5 hours. How many machines of the same type are needed to produce 1,800 units in 6 hours?
+
+- A) 8
+- B) 9
+- C) 10
+- D) 12
+- E) 15
+
+**answer:** C
+**fastest_path:** Rate per machine = 900/(6×5) = 30 units/hr. Required rate = 1800/6 = 300 units/hr. Machines = 300/30 = 10.
+**explanation:** First find the rate of one machine: total output ÷ (machines × hours) = 900 ÷ (6 × 5) = 900 ÷ 30 = 30 units per hour per machine. Required combined rate to hit 1,800 units in 6 hours: 1800 ÷ 6 = 300 units/hr. Number of machines = 300 ÷ 30 = 10.
+**mistake_a:** Doubled machines from 6 to 12, then adjusted down → 8 (wrong scaling).
+**mistake_b:** Used ratio 1800/900 = 2 and 5/6 adjustment: 6×2×(5/6) = 10, then slipped to 9.
+**mistake_d:** Doubled the machines directly: 6 × 2 = 12, ignoring the extra hour.
+**mistake_e:** Divided 900 by 6 and scaled without accounting for new time → 15.
+**common_trap:** Doubling machines to double output (6 → 12) without adjusting for the fact that 6 hours replaces 5 hours, giving extra time so fewer machines are needed.
+**takeaway:** Worker-time framework: per-unit rate per machine = output/(workers × time). Then: new machines = new required rate / per-machine rate.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q34
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Two Objects Moving — Circular Track
+
+Two runners start at the same point on a 400-meter circular track, running in the same direction. Runner A completes a full lap in 8 minutes; Runner B completes a full lap in 12 minutes. How many minutes after the start will A first lap B — that is, be exactly one full lap ahead of B?
+
+- A) 16 minutes
+- B) 20 minutes
+- C) 24 minutes
+- D) 32 minutes
+- E) 48 minutes
+
+**answer:** C
+**fastest_path:** Relative lap rate = 1/8 − 1/12 = 1/24 lap/min. One full-lap lead takes 24 min.
+**explanation:** A gains on B at a relative rate of (1/8 − 1/12) laps per minute = (3 − 2)/24 = 1/24 lap per minute. For A to be exactly one full lap ahead, A must gain a full lap: time = 1 ÷ (1/24) = 24 minutes.
+**mistake_a:** Used 400/(5+something) with speeds confused → 16.
+**mistake_b:** Computed LCM(8,12)/something → 20.
+**mistake_d:** Added lap times: 8 + 12 = 20, then multiplied by some factor → 32.
+**mistake_e:** Took LCM(8,12) = 24, confused it with the answer → then added 24 to some base → 48.
+**common_trap:** Computing LCM(8,12) = 24 then second-guessing it. The LCM is exactly right here: it represents the first time both runners are simultaneously at the start, which is also when A is one full lap ahead of B.
+**takeaway:** Same-direction circular lap problems: gain rate = 1/t_A − 1/t_B. Time for A to lap B = 1 / gain rate = 1/(1/t_A − 1/t_B) = t_A·t_B/(t_B − t_A). This equals LCM(t_A, t_B) when times are integers sharing a simple relationship.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q35
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Average Rate / Harmonic Mean — Three Legs
+
+A delivery truck travels a route divided into three legs of equal distance: the first leg at 20 mph, the second at 30 mph, and the third at 60 mph. What is the truck's average speed for the entire trip?
+
+- A) 25 mph
+- B) 28 mph
+- C) 30 mph
+- D) 35 mph
+- E) 37 mph
+
+**answer:** C
+**fastest_path:** Equal distances → generalized harmonic mean: 3/(1/20 + 1/30 + 1/60) = 3/((3+2+1)/60) = 3/(6/60) = 30 mph.
+**explanation:** For equal-distance legs, average speed = n / (1/v₁ + 1/v₂ + 1/v₃). Here: 3 / (1/20 + 1/30 + 1/60) = 3 / (3/60 + 2/60 + 1/60) = 3 / (6/60) = 3 × 10 = 30 mph. Verify by picking d = 60 miles each leg: times = 3 + 2 + 1 = 6 hr, total distance 180, avg = 180/6 = 30. ✓
+**mistake_a:** Arithmetic mean weighted wrong → 25.
+**mistake_b:** Partial harmonic calculation, slip → 28.
+**mistake_d:** Arithmetic mean of 20 and 60 only: (20+60)/2 = 40, then adjusted → 35.
+**mistake_e:** Arithmetic mean of all three: (20+30+60)/3 = 110/3 ≈ 36.7 → rounded to 37.
+**common_trap:** Taking the arithmetic mean (110/3 ≈ 37). Equal distance requires harmonic averaging because the slow leg consumes more time, pulling the average below the arithmetic mean.
+**takeaway:** Equal-distance legs → harmonic mean. Equal-time legs → arithmetic mean. For three equal-distance legs: avg = n/(Σ1/vᵢ). Always ask "what's equal?" before choosing the formula.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q36
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Work with Different Rates
+
+Worker A, working alone, can complete a project in 10 hours. After A works alone for 3 hours, Worker B joins. Together, A and B finish the remaining work in 2 more hours. How long would B take to complete the entire project working alone?
+
+- A) 4 hours
+- B) 5 hours
+- C) 6 hours
+- D) 8 hours
+- E) 10 hours
+
+**answer:** A
+**fastest_path:** A in 3 hr: 3/10 done. Remaining 7/10 in 2 hr → joint rate = 7/20. 1/10 + 1/b = 7/20 → 1/b = 5/20 = 1/4 → b = 4 hr.
+**explanation:** A's rate = 1/10 per hour. After 3 hours solo, A has completed 3/10 of the project. Remaining = 1 − 3/10 = 7/10. This 7/10 is done jointly in 2 hours, so joint rate = (7/10) ÷ 2 = 7/20 per hour. Solving: 1/10 + 1/b = 7/20 → 1/b = 7/20 − 2/20 = 5/20 = 1/4 → b = 4 hours.
+**mistake_b:** Computed remaining work incorrectly as 1/2 → joint rate 1/4, then solved to get b = 6 → slip → 5.
+**mistake_c:** Took remaining as 1/2 and solved: 1/10 + 1/b = 1/4 → 1/b = 3/20 → b ≈ 6.7, rounded → 6.
+**mistake_d:** Subtracted A's solo time from total: 10 − 3 − 2 = 5 something → 8.
+**mistake_e:** Assumed B has the same rate as A because they finish together → bubbled 10.
+**common_trap:** Forgetting to track how much A completed before B joined. If you incorrectly say "7/10 remains" is wrong and instead use "remaining = 1/2," all downstream calculations are off.
+**takeaway:** Phase-by-phase bookkeeping: (1) compute what each solo phase finishes, (2) find remaining, (3) use remaining ÷ joint time = joint rate, (4) subtract A's rate to get B's rate.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q37
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Rates — Efficiency Change
+
+A machine normally produces 150 units per hour. Due to a malfunction, it runs at 60% of its normal efficiency for 5 hours, then is repaired and runs at full efficiency for 4 more hours. How many units does the machine produce in total?
+
+- A) 900
+- B) 975
+- C) 1,000
+- D) 1,050
+- E) 1,200
+
+**answer:** D
+**fastest_path:** Reduced rate = 0.6×150 = 90/hr. Total = 5×90 + 4×150 = 450 + 600 = 1,050.
+**explanation:** Reduced rate = 60% × 150 = 90 units/hr. Phase 1 (5 hr at 90): 450 units. Phase 2 (4 hr at 150): 600 units. Total = 450 + 600 = 1,050 units.
+**mistake_a:** Used full rate for both phases: 9 × 150 = 1,350, then subtracted 40% of phase 1: 1,350 − 0.4×750 → 900.
+**mistake_b:** Used 65% efficiency instead of 60%: 5×97.5 + 4×150 = 487.5 + 600 = 1,087.5 → rounded → 975.
+**mistake_c:** Used 60% on total hours: 0.6 × 9 × 150 = 810 is wrong, then estimated → 1,000.
+**mistake_e:** Used full rate for all 9 hours: 9 × 150 = 1,350 → confused → 1,200.
+**common_trap:** Applying the efficiency reduction to the total hours rather than only the malfunction window, or using the full rate for both phases.
+**takeaway:** When rate changes mid-problem, segment into phases. Each phase = rate × time. Sum the phases.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q38
+**difficulty:** Medium
+**type:** Data Sufficiency
+**topic:** Two Objects Moving
+
+City P and City Q are d miles apart. A bus departs from P and a car departs from Q simultaneously, traveling toward each other. How many miles from P is the point where they meet?
+
+(1) The bus travels at 60 mph and the car travels at 90 mph.
+(2) d = 300 miles.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** Meeting point from P = d × v_bus/(v_bus + v_car). (1) gives ratio 60:90 = 2:3 but not d → insufficient. (2) gives d but not the speed ratio → insufficient. Together: (2/5) × 300 = 120 miles.
+**explanation:** They meet at a point that divides d in the ratio of their speeds. From P: d × 60/(60+90) = d × 2/5. Statement (1) gives the speed ratio (2:3) but without d the actual mileage is unknown. Insufficient. Statement (2) gives d = 300 but without the speed split, the fraction of d from P is unknown. Insufficient. Together: (2/5) × 300 = 120 miles from P. Sufficient.
+**mistake_a:** Assumed knowing speeds is enough — ratio 2:3 gives a fraction of d, but the question asks for miles, which requires d.
+**mistake_b:** Assumed knowing d is enough — without speed ratio, can't split d between them.
+**mistake_d:** Assumed each statement independently resolves the mileage.
+**mistake_e:** Concluded neither helps — together they provide exactly the two pieces needed.
+**common_trap:** Thinking the speed ratio alone gives a distance. A ratio gives a proportion; you need the total to convert proportion to miles.
+**takeaway:** Meeting-point distance = total distance × (one speed)/(combined speed). This formula needs both the ratio AND the total. One piece alone is never enough.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q39
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Distance-Rate-Time — Time Savings
+
+A driver normally makes a trip at 45 mph. If she increases her speed to 60 mph, the trip takes 30 minutes less. How many miles long is the trip?
+
+- A) 60 miles
+- B) 72 miles
+- C) 90 miles
+- D) 108 miles
+- E) 120 miles
+
+**answer:** C
+**fastest_path:** d/45 − d/60 = 1/2. d(4−3)/180 = 1/2 → d/180 = 1/2 → d = 90.
+**explanation:** Set up: d/45 − d/60 = 30 min = 1/2 hour. Factor out d: d(1/45 − 1/60) = 1/2. Common denominator 180: d(4/180 − 3/180) = 1/2 → d/180 = 1/2 → d = 90 miles. Verify: 90/45 − 90/60 = 2 − 1.5 = 0.5 hr = 30 min. ✓
+**mistake_a:** Set up 60 − 45 = 15 and used 15 × 2 = 30 → d = 60 from confused proportion.
+**mistake_b:** Divided 90 × 0.8 → 72 from arithmetic slip.
+**mistake_d:** Used T = 30 min = 0.5 hr then multiplied 45 × 60 / 15 × something → 108.
+**mistake_e:** Computed 60 × 45 / 30 → 90, then doubled → 120.
+**common_trap:** Using the difference in speeds (15 mph) directly as a rate and dividing distance by it, rather than setting up the difference in travel times.
+**takeaway:** Time-savings problems: set T_slow − T_fast = ΔT, both in the same units. Factor d out of the left side and solve. Backsolving from the answer choices is equally fast on GMAT.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q40
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Average Rate / Equal-Time vs Equal-Distance
+
+A car makes a three-leg trip. What is the car's average speed for the entire trip?
+
+(1) The car spends equal time on each of the three legs, and the speeds are 30 mph, 50 mph, and 70 mph respectively.
+(2) The total trip covers 300 miles and takes 6 hours.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** D
+**fastest_path:** (1) Equal time → arithmetic mean: (30+50+70)/3 = 50 mph. Sufficient. (2) 300/6 = 50 mph. Sufficient. Each alone → D.
+**explanation:** Statement (1): Equal-time legs → average speed = arithmetic mean of speeds = (30 + 50 + 70)/3 = 150/3 = 50 mph. Sufficient. Statement (2): Average speed = total distance / total time = 300/6 = 50 mph directly. Sufficient. Each alone gives 50 mph → D.
+**mistake_a:** Believed (1) gives average speed but doubted sufficiency without total distance — but equal-time average speed is purely the arithmetic mean of speeds, no distance needed.
+**mistake_b:** Accepted (2) but thought (1) required distance — equal-time average = arithmetic mean, so (1) is self-contained.
+**mistake_c:** Required both — each independently suffices.
+**mistake_e:** Concluded neither alone is enough — both independently are.
+**common_trap:** Confusing the equal-time average (arithmetic mean) with the equal-distance average (harmonic mean). When legs take equal time, the time factors cancel perfectly, leaving the arithmetic mean — no distances required.
+**takeaway:** The correct average-speed formula depends on what's equal across legs. Equal time → arithmetic mean (no distances needed). Equal distance → harmonic mean (no times needed). Identify which constraint you have first.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q41
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Combined-Then-Solo Work Rates — Multi-Phase
+
+Workers A, B, and C begin a project together. After 2 hours, A leaves; B and C continue. After 2 more hours, B also leaves; C finishes alone in 3 hours. Given that A's individual rate is twice B's rate and B's rate equals C's rate, how long would C take to complete the entire project working alone?
+
+- A) 10 hours
+- B) 12 hours
+- C) 15 hours
+- D) 18 hours
+- E) 20 hours
+
+**answer:** C
+**fastest_path:** Let B's rate = C's rate = r; A's rate = 2r. Phase work: 4r·2 + 2r·2 + r·3 = 8r + 4r + 3r = 15r = 1 → r = 1/15 → C alone = 15 hr.
+**explanation:** Assign rates: A = 2r, B = r, C = r. Phase 1 (2 hr, A+B+C together): combined rate = 2r + r + r = 4r; work done = 4r × 2 = 8r. Phase 2 (2 hr, B+C together): rate = r + r = 2r; work done = 2r × 2 = 4r. Phase 3 (3 hr, C alone): rate = r; work done = 3r. Total: 8r + 4r + 3r = 15r = 1 job. So r = 1/15. C's solo time = 1/r = 15 hours.
+**mistake_a:** Set up equation wrong, treating A=r and B=C=2r → r = 1/17 → 10 or similar.
+**mistake_b:** Summed phases incorrectly or used wrong rate for phase 2 → 12.
+**mistake_d:** Added all times: 2 + 2 + 3 = 7, multiplied by something → 18.
+**mistake_e:** Estimated from one rate only → 20.
+**common_trap:** Setting up the rates in the wrong order (e.g., C = 2B rather than A = 2B = 2C). Draw a table: write A, B, C rates explicitly, then fill in each phase before summing.
+**takeaway:** Multi-phase work problems: (1) assign symbolic rates, (2) compute each phase's contribution = rate × time, (3) sum to 1, (4) solve for the unknown rate. Never skip the phase table.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q42
+**difficulty:** Hard
+**type:** Data Sufficiency
+**topic:** Work Rates — Staggered Start
+
+Machine P begins a job alone. After working alone for t hours, Machine Q joins, and both machines work together until the job is complete. The entire job, from start to finish, takes 5 hours. What is t?
+
+(1) Machine P alone would take 10 hours to complete the job.
+(2) Machine Q alone would take 6 hours to complete the job.
+
+- A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
+- B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
+- C) BOTH statements TOGETHER are sufficient, but NEITHER statement ALONE is sufficient.
+- D) EACH statement ALONE is sufficient.
+- E) Statements (1) and (2) TOGETHER are NOT sufficient.
+
+**answer:** C
+**fastest_path:** P works all 5 hr; Q works (5−t) hr. Equation: 5/P + (5−t)/Q = 1. (1) alone: P=10 but Q unknown → can't find t. (2) alone: Q=6 but P unknown → can't find t. Together: 5/10 + (5−t)/6 = 1 → t = 2. Sufficient.
+**explanation:** P works all 5 hours (solo + joint); Q works only (5 − t) hours. Total work: 5·(1/P) + (5 − t)·(1/Q) = 1. Statement (1): P = 10 → 1/2 + (5−t)/Q = 1 → (5−t)/Q = 1/2; Q still unknown → cannot determine t. Insufficient. Statement (2): Q = 6 → 5/P + (5−t)/6 = 1; P still unknown → cannot determine t. Insufficient. Together: 5/10 + (5−t)/6 = 1 → 1/2 + (5−t)/6 = 1 → (5−t)/6 = 1/2 → 5−t = 3 → t = 2. Sufficient.
+**mistake_a:** Assumed (1) alone: set up 5/10 alone and tried to force a t from it.
+**mistake_b:** Assumed (2) alone: plugged Q=6 into a wrong equation and got a number.
+**mistake_d:** Assumed each statement independently resolves t.
+**mistake_e:** Concluded neither sufficient — failed to write the scenario's work equation first.
+**common_trap:** Not writing the scenario's constraint equation (5/P + (5−t)/Q = 1) before evaluating statements. Without this equation, neither statement looks useful; with it, you see exactly which unknown is missing.
+**takeaway:** DS with a staggered-start scenario: derive the algebraic work equation from the scenario stem first. That equation has two unknowns (P and Q). Each statement provides one unknown; you need both.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q43
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Work Rates — Fill and Drain
+
+Pipe A fills a tank in 6 hours. Pipe B drains the same tank in 9 hours. Both pipes are opened simultaneously. After some time, Pipe B is closed, and Pipe A alone fills the remainder of the tank in 2 more hours. For how many hours were both pipes open simultaneously?
+
+- A) 6
+- B) 8
+- C) 9
+- D) 12
+- E) 15
+
+**answer:** D
+**fastest_path:** Net fill rate (both open) = 1/6 − 1/9 = 1/18/hr. After B closes, A alone fills 2 × 1/6 = 1/3. So both-open phase filled 2/3. t = (2/3)/(1/18) = 12 hr.
+**explanation:** Net rate when both open: 1/6 − 1/9 = 3/18 − 2/18 = 1/18 per hour. After B is closed, A alone runs for 2 hours, filling 2 × 1/6 = 1/3 of the tank. That means when B closed, the tank was 1 − 1/3 = 2/3 full. Time for both to fill 2/3 at 1/18 per hour: t = (2/3)/(1/18) = (2/3) × 18 = 12 hours. Verify: 12 × 1/18 = 2/3, plus 2 × 1/6 = 1/3 → total = 1. ✓
+**mistake_a:** Used rate 1/6 alone for both phases → 6×(2/3) ÷ something → 6.
+**mistake_b:** Used combined rate 1/18 for the A-alone phase → reversed the phase → 8.
+**mistake_c:** Took harmonic mean of 6 and 9 → 7.2 then scaled → 9.
+**mistake_e:** Added 6 + 9 = 15 (solo times add in some wrong intuition).
+**common_trap:** Not computing how much the A-alone phase contributes (1/3) before solving for the joint-phase time. Students often set t/18 = 1 (filling a full tank) and ignore the A-solo tail.
+**takeaway:** Break into phases. Work backward from the end: what does the final phase accomplish? That tells you what the earlier phase must accomplish. Then use (remaining fraction)/(net rate) for the earlier duration.
+**related_reading:** reading-quant-05-word-problems
+
+---
+
+## Q44
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Rates — Trap Recognition
+
+Two trains depart simultaneously from cities A and B, which are 450 miles apart, heading toward each other. Train A travels at 90 mph and Train B at 60 mph. At the same moment, a messenger pigeon leaves City A flying at 180 mph toward City B. Each time the pigeon reaches a train, it instantly reverses and flies toward the other train. The pigeon continues bouncing between the two trains until they meet. How far from City A is the point where the two trains meet?
+
+- A) 200 miles
+- B) 225 miles
+- C) 250 miles
+- D) 270 miles
+- E) 300 miles
+
+**answer:** D
+**fastest_path:** Ignore the pigeon. Trains close at 150 mph. T = 450/150 = 3 hr. Train A covers 90×3 = 270 miles.
+**explanation:** The pigeon is a distractor. The trains are what the question asks about. Closing rate = 90 + 60 = 150 mph. Time to meet = 450/150 = 3 hours. In 3 hours, Train A covers 90 × 3 = 270 miles. Meeting point is 270 miles from City A.
+**mistake_a:** Computed 450 × 60/150 = 180 (B's share from A), then subtracted → 200.
+**mistake_b:** Split 450 evenly: 450/2 = 225 (ignored speed asymmetry).
+**mistake_c:** Used average speed (90+60)/2 = 75 → 450×90/(90+75) → slip → 250.
+**mistake_e:** Computed B's distance from A's perspective: 60×3 = 180 from B, so 450−180 = 270 but then confused A and B → 300.
+**common_trap:** Attempting to compute each of the pigeon's individual legs (an infinite geometric series), which takes several minutes and is irrelevant. The pigeon's total flying time equals the trains' meeting time — but the question doesn't ask about the pigeon at all.
+**takeaway:** When a problem contains conspicuous extra information (flying pigeon, bouncing ball, additional actor), pause before computing it. Ask: what does the question actually ask? Here the question only needs the trains — the pigeon is designed to derail students who compute every element in the setup.
+**related_reading:** reading-quant-05-word-problems
