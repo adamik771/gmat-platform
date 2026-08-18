@@ -18,6 +18,7 @@ import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
 import QuestionChart from "@/components/shared/QuestionChart"
+import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
 import type { ChartSpec } from "@/lib/chart-spec"
 import {
   digitKeyToOptionIndex,
@@ -98,7 +99,13 @@ const MAX_REVIEW_EDITS = 3
 // MockRunner every tick; without memoization the question prompt + passage
 // re-parse through ReactMarkdown each second. The text prop is a string, so a
 // shallow compare keeps parsing tied to the actual question changing.
-const MockMarkdown = memo(function MockMarkdown({ text }: { text: string }) {
+const MockMarkdown = memo(function MockMarkdown({
+  text,
+  sortableTables = false,
+}: {
+  text: string
+  sortableTables?: boolean
+}) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
@@ -108,9 +115,9 @@ const MockMarkdown = memo(function MockMarkdown({ text }: { text: string }) {
         // unwrapped, a wide table panned the WHOLE page mid-exam at
         // 375/390px (mirrors SessionClient's PromptBlock overrides).
         table: (props) => (
-          <div className="my-3 overflow-x-auto rounded-lg border border-white/[0.08]">
-            <table {...props} className="w-full border-collapse text-xs" />
-          </div>
+          <SortableMarkdownTable sortable={sortableTables} variant="runner">
+            {props.children}
+          </SortableMarkdownTable>
         ),
         thead: (props) => <thead {...props} className="bg-[#0D0D0D]" />,
         th: (props) => (
@@ -1023,7 +1030,10 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
               Passage
             </p>
             <div className="text-sm text-[#C0C0C0] leading-relaxed max-h-64 overflow-y-auto">
-              <MockMarkdown text={question.context} />
+              <MockMarkdown
+                text={question.context}
+                sortableTables={question.type === "Table Analysis"}
+              />
             </div>
           </div>
         )}
@@ -1043,7 +1053,10 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
         {question.chartSpec && <QuestionChart spec={question.chartSpec} />}
 
         <div className="text-[15px] text-[#F0F0F0] leading-relaxed">
-          <MockMarkdown text={question.prompt} />
+          <MockMarkdown
+            text={question.prompt}
+            sortableTables={question.type === "Table Analysis"}
+          />
         </div>
 
         {question.twoPartColumns ? (
