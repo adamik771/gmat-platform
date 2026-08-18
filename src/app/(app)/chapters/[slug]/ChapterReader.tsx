@@ -28,6 +28,7 @@ import { selectChapterCoachingState } from "@/lib/chapter-coaching"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
 import QuestionChart from "@/components/shared/QuestionChart"
+import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
 import type { ChartSpec } from "@/lib/chart-spec"
 import ReaderThemeToggle, { useReadingTheme } from "@/components/shared/ReaderThemeToggle"
 import ChapterSidebarNav from "./ChapterSidebarNav"
@@ -62,6 +63,7 @@ export interface ReaderQuestion {
   topic: string
   subtopic: string
   difficulty: Difficulty
+  type: string
   prompt: string
   options: string[]
   correctAnswer: number
@@ -619,9 +621,9 @@ const mdComponents: Components = {
     />
   ),
   table: (p) => (
-    <div className="my-5 overflow-x-auto rounded-lg border" style={{ borderColor: "var(--read-border-strong)" }}>
-      <table {...p} className="w-full border-collapse text-sm" />
-    </div>
+    <SortableMarkdownTable variant="reader">
+      {p.children}
+    </SortableMarkdownTable>
   ),
   thead: (p) => <thead {...p} style={{ backgroundColor: "var(--read-bg-inset)" }} />,
   th: (p) => (
@@ -639,6 +641,15 @@ const mdComponents: Components = {
     />
   ),
   hr: () => <hr className="my-8 border-0 border-t" style={{ borderColor: "var(--read-border-strong)" }} />,
+}
+
+const sortableQuestionMdComponents: Components = {
+  ...mdComponents,
+  table: (p) => (
+    <SortableMarkdownTable sortable variant="reader">
+      {p.children}
+    </SortableMarkdownTable>
+  ),
 }
 
 // ===== Focus-mode store =====
@@ -1982,7 +1993,13 @@ function SectionCard({
  * RC questions (and MSR sets) ask about "the passage" — without this block the
  * question is unanswerable. Styled as a distinct inset panel.
  */
-function PassageContext({ text }: { text: string }) {
+function PassageContext({
+  text,
+  sortableTables = false,
+}: {
+  text: string
+  sortableTables?: boolean
+}) {
   return (
     <div
       className="rounded-xl border px-4 py-3.5"
@@ -2004,7 +2021,7 @@ function PassageContext({ text }: { text: string }) {
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeCaretSup]}
-          components={mdComponents}
+          components={sortableTables ? sortableQuestionMdComponents : mdComponents}
         >
           {text}
         </ReactMarkdown>
@@ -2310,12 +2327,23 @@ function InlineQuestion({
       </div>
 
       <div className="px-5 py-5 space-y-4">
-        {q.context && <PassageContext text={q.context} />}
+        {q.context && (
+          <PassageContext
+            text={q.context}
+            sortableTables={q.type === "Table Analysis"}
+          />
+        )}
         {/* Graphics Interpretation: the chart the prompt refers to. Without
             this the reader showed "the graph shows..." with no graph. */}
         {q.chartSpec && <QuestionChart spec={q.chartSpec} />}
         <div>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeCaretSup]}
+            components={
+              q.type === "Table Analysis" ? sortableQuestionMdComponents : mdComponents
+            }
+          >
             {q.prompt}
           </ReactMarkdown>
         </div>
@@ -3023,10 +3051,23 @@ function ProblemSetRunner({
           />
         ) : (
           <div className="px-6 py-6 space-y-4">
-            {current.context && <PassageContext text={current.context} />}
+            {current.context && (
+              <PassageContext
+                text={current.context}
+                sortableTables={current.type === "Table Analysis"}
+              />
+            )}
             {current.chartSpec && <QuestionChart spec={current.chartSpec} />}
             <div>
-              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeCaretSup]}
+                components={
+                  current.type === "Table Analysis"
+                    ? sortableQuestionMdComponents
+                    : mdComponents
+                }
+              >
                 {current.prompt}
               </ReactMarkdown>
             </div>

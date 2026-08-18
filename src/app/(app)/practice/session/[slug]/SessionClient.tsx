@@ -28,6 +28,7 @@ import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
 import QuestionChart from "@/components/shared/QuestionChart"
+import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
 import type { ChartSpec } from "@/lib/chart-spec"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
@@ -166,7 +167,15 @@ function detectDeviceType(): DeviceType {
 // question prompt + 5 options + explanation each render through it. Props are
 // primitives (text/className), so a shallow compare lets the per-second timer
 // tick (and other unrelated state changes) re-render without re-parsing.
-const PromptBlock = memo(function PromptBlock({ text, className = "" }: { text: string; className?: string }) {
+const PromptBlock = memo(function PromptBlock({
+  text,
+  className = "",
+  sortableTables = false,
+}: {
+  text: string
+  className?: string
+  sortableTables?: boolean
+}) {
   return (
     <div className={`text-sm leading-relaxed text-[#F0F0F0] ${className}`}>
       <ReactMarkdown
@@ -237,11 +246,10 @@ const PromptBlock = memo(function PromptBlock({ text, className = "" }: { text: 
               className="my-3 p-3 rounded-lg bg-[#0A0A0A] border border-white/[0.06] overflow-x-auto text-xs"
             />
           ),
-          // Real HTML tables — the whole point of this upgrade.
           table: (props) => (
-            <div className="my-3 overflow-x-auto rounded-lg border border-white/[0.08]">
-              <table {...props} className="w-full border-collapse text-xs" />
-            </div>
+            <SortableMarkdownTable sortable={sortableTables} variant="runner">
+              {props.children}
+            </SortableMarkdownTable>
           ),
           thead: (props) => <thead {...props} className="bg-[#0D0D0D]" />,
           th: (props) => (
@@ -742,7 +750,13 @@ function HintPanel({
   )
 }
 
-function ContextPanel({ text }: { text: string }) {
+function ContextPanel({
+  text,
+  sortableTables = false,
+}: {
+  text: string
+  sortableTables?: boolean
+}) {
   // Strip leading passage/set/tab markdown headings so we present the text as
   // the student would see it on the real test.
   const cleaned = text
@@ -751,7 +765,7 @@ function ContextPanel({ text }: { text: string }) {
   return (
     <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111] max-h-[70vh] overflow-y-auto">
       <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-3">Reference</p>
-      <PromptBlock text={cleaned} />
+      <PromptBlock text={cleaned} sortableTables={sortableTables} />
     </div>
   )
 }
@@ -2757,7 +2771,12 @@ export default function SessionClient({
       {/* Body: passage (if grouped) + question. Mobile: stack
           (passage above question); desktop: side-by-side. */}
       <div className={hasContext ? "grid grid-cols-1 lg:grid-cols-2 gap-6" : ""}>
-        {hasContext && current.context && <ContextPanel text={current.context} />}
+        {hasContext && current.context && (
+          <ContextPanel
+            text={current.context}
+            sortableTables={current.type === "Table Analysis"}
+          />
+        )}
 
         <div className="space-y-6">
           <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
@@ -2765,7 +2784,11 @@ export default function SessionClient({
               <DIMethodCardBanner questionType={current.type} />
             )}
             {current.chartSpec && <QuestionChart spec={current.chartSpec} />}
-            <PromptBlock text={current.prompt} className="mb-5" />
+            <PromptBlock
+              text={current.prompt}
+              className="mb-5"
+              sortableTables={current.type === "Table Analysis"}
+            />
 
             {isTwoPart ? (
               <TwoPartGrid

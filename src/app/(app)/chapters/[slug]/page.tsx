@@ -30,6 +30,7 @@ function toReaderQuestion(q: ParsedQuestion): ReaderQuestion {
     topic: q.topic,
     subtopic: q.subtopic,
     difficulty: q.difficulty,
+    type: q.type,
     prompt: q.prompt,
     options: q.options,
     correctAnswer: q.correctAnswer,
