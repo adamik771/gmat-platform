@@ -357,12 +357,16 @@ function cn(...classes: (string | false | null | undefined)[]): string {
 function ConfidencePanel({
   value,
   submitted,
+  hasAnswer,
   wasCorrect,
   revealOutcome = true,
   onSelect,
 }: {
   value: Confidence | null
   submitted: boolean
+  /** Brighten the prompt once an answer has been chosen so confidence is
+   *  captured at the decision point instead of being missed below the card. */
+  hasAnswer: boolean
   wasCorrect: boolean
   /** Exam mode defers correctness to the end — suppress the calibration
    *  copy (it leaks whether the answer was right) until then. */
@@ -424,16 +428,38 @@ function ConfidencePanel({
     }
   }
 
+  const needsConfidence = !submitted && hasAnswer && value === null
+
   return (
-    <div className="mt-5 p-4 rounded-lg border" style={{ borderColor: "rgba(201,168,76,0.12)", backgroundColor: "rgba(201,168,76,0.02)" }}>
+    <div
+      className="mt-4 p-4 rounded-lg border transition-all duration-200"
+      style={{
+        borderColor: needsConfidence
+          ? "rgba(232,201,122,0.62)"
+          : value
+            ? "rgba(201,168,76,0.34)"
+            : "rgba(201,168,76,0.16)",
+        backgroundColor: needsConfidence
+          ? "rgba(201,168,76,0.10)"
+          : value
+            ? "rgba(201,168,76,0.055)"
+            : "rgba(201,168,76,0.025)",
+        boxShadow: needsConfidence
+          ? "inset 3px 0 0 #E8C97A, 0 0 0 1px rgba(232,201,122,0.08)"
+          : "none",
+      }}
+    >
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <p className="text-[10px] uppercase tracking-widest text-[#888888]">
+        <p
+          className="text-[11px] font-semibold uppercase tracking-widest"
+          style={{ color: needsConfidence ? "#F2D98F" : value ? "#E8C97A" : "#A0A0A0" }}
+        >
           {submitted ? "Your confidence" : "How confident are you?"}
-          <span className="text-[#888888] normal-case tracking-normal ml-2">
+          <span className="font-normal normal-case tracking-normal ml-2" style={{ color: "#8E8E8E" }}>
             (optional — trains metacognition)
           </span>
         </p>
-        <div className="flex gap-1.5">
+        <div className="flex gap-2">
           {levels.map((l) => {
             const active = value === l.id
             return (
@@ -442,7 +468,7 @@ function ConfidencePanel({
                 type="button"
                 onClick={() => onSelect(l.id)}
                 disabled={submitted}
-                className="px-2.5 py-1 rounded text-[11px] font-medium border transition-colors disabled:cursor-not-allowed disabled:opacity-80"
+                className="min-w-16 px-3.5 py-2 rounded-md text-xs font-semibold border transition-all hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-80 disabled:hover:translate-y-0"
                 style={
                   active
                     ? {
@@ -451,9 +477,13 @@ function ConfidencePanel({
                         borderColor: l.color + "66",
                       }
                     : {
-                        backgroundColor: "transparent",
-                        color: submitted ? "#444444" : "#888888",
-                        borderColor: "rgba(255,255,255,0.08)",
+                        backgroundColor: needsConfidence
+                          ? "rgba(10,10,10,0.38)"
+                          : "transparent",
+                        color: submitted ? "#444444" : needsConfidence ? "#D0D0D0" : "#929292",
+                        borderColor: needsConfidence
+                          ? "rgba(255,255,255,0.18)"
+                          : "rgba(255,255,255,0.10)",
                       }
                 }
               >
@@ -2872,6 +2902,7 @@ export default function SessionClient({
             <ConfidencePanel
               value={currentState.confidence}
               submitted={currentState.submitted}
+              hasAnswer={canSubmit(current, currentState)}
               wasCorrect={isQuestionCorrect(current, currentState)}
               revealOutcome={reveal}
               onSelect={handleConfidence}

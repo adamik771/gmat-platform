@@ -32,4 +32,15 @@ describe("Graphics Interpretation chart extraction", () => {
     )
     expect(leaks.map((q) => q.id)).toEqual([])
   })
+
+  it("every bubble-chart point has a visible identity label", () => {
+    const bubbles = gi.filter((q) => q.chartSpec?.type === "bubble")
+    expect(bubbles.length).toBeGreaterThan(0)
+    const unlabeled = bubbles.flatMap((q) =>
+      (q.chartSpec?.data ?? [])
+        .map((row, index) => ({ questionId: q.id, index, name: row.name }))
+        .filter((row) => typeof row.name !== "string" || row.name.trim() === "")
+    )
+    expect(unlabeled).toEqual([])
+  })
 })

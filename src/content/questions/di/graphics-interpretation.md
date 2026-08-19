@@ -680,7 +680,7 @@ The correct answer is B.
 **topic:** Bubble Chart
 
 ```chart
-{"type":"bubble","title":"SaaS companies: contract value vs. churn (bubble = ARR)","x":{"label":"Avg contract value ($K)","min":0,"max":60},"y":{"label":"Annual churn (%)","min":0,"max":20},"data":[{"x":10,"y":18,"z":30},{"x":25,"y":12,"z":85},{"x":45,"y":6,"z":140},{"x":55,"y":4,"z":220},{"x":15,"y":15,"z":45},{"x":35,"y":9,"z":110}]}
+{"type":"bubble","title":"SaaS companies: contract value vs. churn (bubble = ARR)","x":{"label":"Avg contract value ($K)","min":0,"max":60},"y":{"label":"Annual churn (%)","min":0,"max":20},"data":[{"name":"Alpha","x":10,"y":18,"z":30},{"name":"Beta","x":25,"y":12,"z":85},{"name":"Gamma","x":45,"y":6,"z":140},{"name":"Delta","x":55,"y":4,"z":220},{"name":"Epsilon","x":15,"y":15,"z":45},{"name":"Zeta","x":35,"y":9,"z":110}]}
 ```
 
 Which statement is best supported by the chart?
@@ -1136,7 +1136,7 @@ The correct answer is B.
 **topic:** Bubble Chart
 
 ```chart
-{"type":"bubble","title":"Warehouses: order volume vs. on-time rate (bubble = headcount)","x":{"label":"Order volume (K/mo)","min":0,"max":40},"y":{"label":"On-time delivery (%)","min":70,"max":100},"data":[{"x":8,"y":95,"z":40},{"x":15,"y":88,"z":90},{"x":22,"y":82,"z":150},{"x":30,"y":76,"z":220},{"x":38,"y":72,"z":310}]}
+{"type":"bubble","title":"Warehouses: order volume vs. on-time rate (bubble = headcount)","x":{"label":"Order volume (K/mo)","min":0,"max":40},"y":{"label":"On-time delivery (%)","min":70,"max":100},"data":[{"name":"W1","x":8,"y":95,"z":40},{"name":"W2","x":15,"y":88,"z":90},{"name":"W3","x":22,"y":82,"z":150},{"name":"W4","x":30,"y":76,"z":220},{"name":"W5","x":38,"y":72,"z":310}]}
 ```
 
 Based on the chart, which statement is best supported?
@@ -1856,7 +1856,7 @@ The correct answer is D.
 ## Q47 (Set 24 — Product Bubble Chart)
 
 ```chart
-{"type":"bubble","title":"Products: sales volume vs. margin (bubble = total profit)","x":{"label":"Sales volume (K units)"},"y":{"label":"Profit margin (%)"},"data":[{"x":50,"y":20,"z":10},{"x":80,"y":15,"z":12},{"x":30,"y":35,"z":10.5},{"x":120,"y":10,"z":12},{"x":40,"y":25,"z":10},{"x":100,"y":18,"z":18}]}
+{"type":"bubble","title":"Products: sales volume vs. margin (bubble = total profit)","x":{"label":"Sales volume (K units)"},"y":{"label":"Profit margin (%)"},"data":[{"name":"A","x":50,"y":20,"z":10},{"name":"B","x":80,"y":15,"z":12},{"name":"C","x":30,"y":35,"z":10.5},{"name":"D","x":120,"y":10,"z":12},{"name":"E","x":40,"y":25,"z":10},{"name":"F","x":100,"y":18,"z":18}]}
 ```
 
 **difficulty:** Hard
@@ -3133,7 +3133,7 @@ The correct answer is B.
 ## Q82 (Set 38 — R&D Spending vs. Patents Bubble Chart)
 
 ```chart
-{"type":"bubble","title":"Pharma firms: R&D spend vs. approval rate (bubble = patents filed)","x":{"label":"R&D spend ($B)","min":0,"max":12},"y":{"label":"Drug approval rate (%)","min":0,"max":40},"data":[{"x":2,"y":12,"z":40},{"x":4,"y":18,"z":75},{"x":6,"y":22,"z":120},{"x":8,"y":28,"z":160},{"x":10,"y":34,"z":210},{"x":3,"y":30,"z":250}]}
+{"type":"bubble","title":"Pharma firms: R&D spend vs. approval rate (bubble = patents filed)","x":{"label":"R&D spend ($B)","min":0,"max":12},"y":{"label":"Drug approval rate (%)","min":0,"max":40},"data":[{"name":"F1","x":2,"y":12,"z":40},{"name":"F2","x":4,"y":18,"z":75},{"name":"F3","x":6,"y":22,"z":120},{"name":"F4","x":8,"y":28,"z":160},{"name":"F5","x":10,"y":34,"z":210},{"name":"F6","x":3,"y":30,"z":250}]}
 ```
 
 **difficulty:** Hard
@@ -3374,7 +3374,7 @@ The correct answer is C.
 ## Q88 (Set 43 — Streaming Hours vs. Churn Bubble Chart)
 
 ```chart
-{"type":"bubble","title":"Streaming plans: monthly hours vs. churn (bubble = subscribers, M)","x":{"label":"Avg monthly hours watched","min":0,"max":60},"y":{"label":"Monthly churn (%)","min":0,"max":12},"data":[{"x":12,"y":10,"z":2.0},{"x":22,"y":8,"z":3.5},{"x":34,"y":6,"z":5.0},{"x":45,"y":4,"z":7.5},{"x":52,"y":3,"z":9.0},{"x":40,"y":9,"z":1.2}]}
+{"type":"bubble","title":"Streaming plans: monthly hours vs. churn (bubble = subscribers, M)","x":{"label":"Avg monthly hours watched","min":0,"max":60},"y":{"label":"Monthly churn (%)","min":0,"max":12},"data":[{"name":"P1","x":12,"y":10,"z":2.0},{"name":"P2","x":22,"y":8,"z":3.5},{"name":"P3","x":34,"y":6,"z":5.0},{"name":"P4","x":45,"y":4,"z":7.5},{"name":"P5","x":52,"y":3,"z":9.0},{"name":"P6","x":40,"y":9,"z":1.2}]}
 ```
 
 **difficulty:** Hard
