@@ -453,7 +453,7 @@ sup {
 
 .editorial-hero {
   min-height: 940px;
-  padding: 148px max(24px, calc((100vw - 1280px) / 2)) 0;
+  padding: 112px max(24px, calc((100vw - 1280px) / 2)) 0;
   border-bottom: 1px solid var(--editorial-line);
   overflow: hidden;
 }
@@ -1250,7 +1250,7 @@ sup {
 @media (max-width: 900px) {
   .editorial-hero {
     min-height: auto;
-    padding-top: 126px;
+    padding-top: 108px;
   }
 
   .editorial-hero h1 {
@@ -1304,7 +1304,7 @@ sup {
 
 @media (max-width: 640px) {
   .editorial-hero {
-    padding: 112px 18px 0;
+    padding: 100px 18px 0;
   }
 
   .editorial-hero h1 {

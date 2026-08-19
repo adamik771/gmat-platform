@@ -228,7 +228,7 @@ export default function CoursePage() {
       </section>
 
       {/* Modules */}
-      <SectionWrapper variant="darker">
+      <SectionWrapper id="curriculum" className="scroll-mt-20" variant="darker">
         <div className="text-center mb-14 max-w-2xl mx-auto">
           <p
             className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3"
