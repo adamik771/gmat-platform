@@ -1232,9 +1232,14 @@ sup {
   box-shadow: none !important;
 }
 
-.app-workbench main .bg-grain,
-.app-workbench main [style*="radial-gradient"] {
+.app-workbench main .bg-grain {
   display: none !important;
+}
+
+/* Remove decorative gradient images without hiding the functional panel that
+   owns them. `display: none` here previously erased the score-calculator result. */
+.app-workbench main [style*="radial-gradient"] {
+  background-image: none !important;
 }
 
 .app-workbench main [class*="uppercase"][class*="tracking-"] {

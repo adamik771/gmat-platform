@@ -144,11 +144,11 @@ export default function ScoreCalculatorClient() {
 
       {/* Result */}
       <div
+        data-testid="score-calculator-result"
         className="rounded-2xl border p-6 sm:p-8 text-center"
         style={{
           borderColor: "rgba(201,168,76,0.25)",
-          background:
-            "radial-gradient(ellipse 80% 120% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%), #0D0D0D",
+          backgroundColor: "#0D0D0D",
         }}
       >
         <p className={EYEBROW + " mb-3"}>Estimated total</p>
