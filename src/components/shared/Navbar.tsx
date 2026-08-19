@@ -1,10 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { cn } from "@/lib/utils"
 
 const navLinks = [
   { label: "Platform", href: "/course" },
@@ -14,53 +13,37 @@ const navLinks = [
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   return (
     <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-[#0A0A0A]/85 backdrop-blur-xl border-b border-white/[0.06]"
-          : "bg-transparent"
-      )}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#0B0B0A]/95"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-[68px]">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1 group">
-            <span className="text-[#F0F0F0] font-bold text-lg tracking-tight">
+          <Link href="/" className="flex items-center gap-2 group" aria-label="Zakarian GMAT home">
+            <span className="text-[#F0F0F0] font-semibold text-[14px]">
               ZAKARIAN
             </span>
             <span
-              className="w-1.5 h-1.5 rounded-full mt-0.5 transition-transform group-hover:scale-125"
+              className="w-1 h-1 rounded-full"
               style={{ backgroundColor: "#C9A84C" }}
             />
-            <span className="text-[#F0F0F0] font-bold text-lg tracking-tight">
+            <span className="text-[#F0F0F0] font-semibold text-[14px]">
               GMAT
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative text-[13px] tracking-tight text-[#888888] hover:text-[#F0F0F0] transition-colors duration-200"
+                className="text-[13px] text-[#8B887F] hover:text-[#F0F0F0] transition-colors duration-150"
               >
                 {link.label}
-                <span
-                  className="absolute left-0 -bottom-1 h-px w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200"
-                  style={{ backgroundColor: "#C9A84C" }}
-                />
               </Link>
             ))}
           </div>
@@ -69,26 +52,26 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/login"
-              className="text-[13px] tracking-tight text-[#888888] hover:text-[#F0F0F0] transition-colors"
+              className="text-[13px] text-[#8B887F] hover:text-[#F0F0F0] transition-colors"
             >
               Sign in
             </Link>
             <Link
               href="/signup"
-              className="px-4 py-2 rounded-xl text-[13px] font-semibold tracking-tight transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+              className="px-4 py-2.5 rounded-[4px] text-[13px] font-semibold transition-colors duration-150 hover:bg-[#D5B765]"
               style={{
                 backgroundColor: "#C9A84C",
                 color: "#0A0A0A",
               }}
             >
-              Start Free
+              Start trial
             </Link>
           </div>
 
           {/* Mobile Hamburger */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
-              className="md:hidden p-2 rounded-lg text-[#888888] hover:text-[#F0F0F0] transition-colors"
+              className="md:hidden p-2 rounded-[4px] text-[#888888] hover:text-[#F0F0F0] transition-colors"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
@@ -102,14 +85,14 @@ export default function Navbar() {
                 <Link
                   href="/"
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-1 mb-8"
+                  className="flex items-center gap-2 mb-8"
                 >
-                  <span className="text-[#F0F0F0] font-bold text-lg">ZAKARIAN</span>
+                  <span className="text-[#F0F0F0] font-semibold text-[14px]">ZAKARIAN</span>
                   <span
                     className="w-1.5 h-1.5 rounded-full mt-0.5"
                     style={{ backgroundColor: "#C9A84C" }}
                   />
-                  <span className="text-[#F0F0F0] font-bold text-lg">GMAT</span>
+                  <span className="text-[#F0F0F0] font-semibold text-[14px]">GMAT</span>
                 </Link>
 
                 <div className="flex flex-col gap-1">
@@ -118,7 +101,7 @@ export default function Navbar() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="px-3 py-3 rounded-lg text-[13px] tracking-tight text-[#888888] hover:text-[#F0F0F0] hover:bg-white/5 transition-colors"
+                      className="px-3 py-3 rounded-[4px] text-[13px] text-[#888888] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -129,17 +112,17 @@ export default function Navbar() {
                   <Link
                     href="/login"
                     onClick={() => setOpen(false)}
-                    className="text-center px-4 py-2.5 rounded-xl text-[13px] tracking-tight text-[#888888] border border-white/[0.08] hover:text-[#F0F0F0] transition-colors"
+                    className="text-center px-4 py-2.5 rounded-[4px] text-[13px] text-[#888888] border border-white/[0.08] hover:text-[#F0F0F0] transition-colors"
                   >
                     Sign in
                   </Link>
                   <Link
                     href="/signup"
                     onClick={() => setOpen(false)}
-                    className="text-center px-4 py-2.5 rounded-xl text-[13px] font-semibold tracking-tight hover:opacity-90 transition-opacity"
+                    className="text-center px-4 py-2.5 rounded-[4px] text-[13px] font-semibold hover:bg-[#D5B765] transition-colors"
                     style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                   >
-                    Start Free
+                    Start trial
                   </Link>
                 </div>
               </div>
