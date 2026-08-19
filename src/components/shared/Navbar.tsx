@@ -7,9 +7,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 const navLinks = [
   { label: "Platform", href: "/course" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "About", href: "/about" },
+  { label: "Curriculum", href: "/course#curriculum" },
   { label: "Results", href: "/#results" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Resources", href: "/resources" },
+  { label: "About", href: "/about" },
 ]
 
 export default function Navbar() {
@@ -20,23 +22,24 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#0B0B0A]/95"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[68px]">
+        <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group" aria-label="Zakarian GMAT home">
-            <span className="text-[#F0F0F0] font-semibold text-[14px]">
-              ZAKARIAN
+          <Link href="/" className="group flex flex-col gap-0.5" aria-label="Zakarian GMAT home">
+            <span className="flex items-center gap-2 text-[#F0F0F0] font-semibold text-[15px] leading-none">
+              <span>ZAKARIAN</span>
+              <span
+                className="w-1 h-1 rounded-full"
+                style={{ backgroundColor: "#C9A84C" }}
+              />
+              <span>GMAT</span>
             </span>
-            <span
-              className="w-1 h-1 rounded-full"
-              style={{ backgroundColor: "#C9A84C" }}
-            />
-            <span className="text-[#F0F0F0] font-semibold text-[14px]">
-              GMAT
+            <span className="text-[10px] leading-none text-[#77746C] group-hover:text-[#A39F95] transition-colors">
+              Preparation system
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -49,7 +52,7 @@ export default function Navbar() {
           </div>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <Link
               href="/login"
               className="text-[13px] text-[#8B887F] hover:text-[#F0F0F0] transition-colors"
@@ -71,7 +74,7 @@ export default function Navbar() {
           {/* Mobile Hamburger */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
-              className="md:hidden p-2 rounded-[4px] text-[#888888] hover:text-[#F0F0F0] transition-colors"
+              className="lg:hidden p-2 rounded-[4px] text-[#888888] hover:text-[#F0F0F0] transition-colors"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
@@ -85,14 +88,19 @@ export default function Navbar() {
                 <Link
                   href="/"
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 mb-8"
+                  className="flex flex-col items-start gap-0.5 mb-8"
                 >
-                  <span className="text-[#F0F0F0] font-semibold text-[14px]">ZAKARIAN</span>
-                  <span
-                    className="w-1.5 h-1.5 rounded-full mt-0.5"
-                    style={{ backgroundColor: "#C9A84C" }}
-                  />
-                  <span className="text-[#F0F0F0] font-semibold text-[14px]">GMAT</span>
+                  <span className="flex items-center gap-2 text-[#F0F0F0] font-semibold text-[15px] leading-none">
+                    <span>ZAKARIAN</span>
+                    <span
+                      className="w-1 h-1 rounded-full"
+                      style={{ backgroundColor: "#C9A84C" }}
+                    />
+                    <span>GMAT</span>
+                  </span>
+                  <span className="text-[10px] leading-none text-[#77746C]">
+                    Preparation system
+                  </span>
                 </Link>
 
                 <div className="flex flex-col gap-1">
