@@ -2356,7 +2356,7 @@ If a and b are integers, is a + b even?
 **type:** Problem Solving
 **topic:** Units Digit Patterns
 
-What is the units digit of 13¹⁷ + 18²²?
+What is the units digit of 13^17 + 18^22?
 
 - A) 1
 - B) 3
@@ -2365,7 +2365,7 @@ What is the units digit of 13¹⁷ + 18²²?
 - E) 9
 
 **answer:** D
-**explanation:** The units digit of a power depends only on the units digit of the base, and the units digits of successive powers repeat in a cycle, so we find the units digit of each term separately and then add, keeping only the units digit of the sum. For 13¹⁷, only the base's units digit 3 matters, and the powers of 3 cycle through units digits 3, 9, 7, 1 with length 4; the position is the remainder when the exponent is divided by 4, with a remainder of 0 meaning the fourth position. Since 17 = 4 times 4 + 1, the remainder is 1, and the first entry of the cycle is 3, so 13¹⁷ ends in 3. For 18²², only the units digit 8 matters, and the powers of 8 cycle through units digits 8, 4, 2, 6 with length 4. Since 22 = 4 times 5 + 2, the remainder is 2, and the second entry of the cycle is 4, so 18²² ends in 4. Adding the two units digits gives 3 + 4 = 7, whose units digit is 7, so the units digit of the entire sum is 7. The correct answer is D.
+**explanation:** The units digit of a power depends only on the units digit of the base, and the units digits of successive powers repeat in a cycle, so we find the units digit of each term separately and then add, keeping only the units digit of the sum. For 13^17, only the base's units digit 3 matters, and the powers of 3 cycle through units digits 3, 9, 7, 1 with length 4; the position is the remainder when the exponent is divided by 4, with a remainder of 0 meaning the fourth position. Since 17 = 4 times 4 + 1, the remainder is 1, and the first entry of the cycle is 3, so 13^17 ends in 3. For 18^22, only the units digit 8 matters, and the powers of 8 cycle through units digits 8, 4, 2, 6 with length 4. Since 22 = 4 times 5 + 2, the remainder is 2, and the second entry of the cycle is 4, so 18^22 ends in 4. Adding the two units digits gives 3 + 4 = 7, whose units digit is 7, so the units digit of the entire sum is 7. The correct answer is D.
 **related_reading:** reading-quant-03-number-properties
 
 ---

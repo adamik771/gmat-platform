@@ -1883,7 +1883,6 @@ The correct answer is E.
 ---
 
 ## Q66
-<!-- question with quantitative / survey context -->
 **difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Strengthen

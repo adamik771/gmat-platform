@@ -11,6 +11,7 @@ import {
   ScatterChart,
   Scatter,
   ZAxis,
+  LabelList,
   PieChart,
   Pie,
   Cell,
@@ -88,55 +89,86 @@ function SrDataTable({ spec, series }: { spec: ChartSpec; series: ChartSeries[] 
   const unit = spec.y?.unit ? ` ${spec.y.unit}` : ""
   if (spec.type === "pie") {
     return (
-      <table className="sr-only">
+      <div className="sr-only">
+        <table>
+          <caption>{spec.title ?? "Chart data"}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{spec.x?.label ?? "Category"}</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {spec.data.map((row, i) => (
+              <tr key={i}>
+                <th scope="row">{String(row.name ?? row.x ?? i + 1)}</th>
+                <td>
+                  {String(row.value ?? "")}
+                  {unit}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+  if (spec.type === "scatter" || spec.type === "bubble") {
+    return (
+      <div className="sr-only">
+        <table>
+          <caption>{spec.title ?? "Chart data"}</caption>
+          <thead>
+            <tr>
+              <th scope="col">Point</th>
+              <th scope="col">{spec.x?.label ?? "x"}</th>
+              <th scope="col">{spec.y?.label ?? "y"}</th>
+              {spec.type === "bubble" && <th scope="col">Bubble size</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {spec.data.map((row, i) => (
+              <tr key={i}>
+                <th scope="row">{String(row.name ?? i + 1)}</th>
+                <td>{String(row.x ?? "")}</td>
+                <td>{String(row.y ?? "")}</td>
+                {spec.type === "bubble" && <td>{String(row.z ?? "")}</td>}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+  return (
+    <div className="sr-only">
+      <table>
         <caption>{spec.title ?? "Chart data"}</caption>
         <thead>
           <tr>
-            <th scope="col">{spec.x?.label ?? "Category"}</th>
-            <th scope="col">Value</th>
+            <th scope="col">{spec.x?.label ?? "x"}</th>
+            {series.map((s) => (
+              <th key={s.key} scope="col">
+                {s.name ?? s.key}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {spec.data.map((row, i) => (
             <tr key={i}>
-              <th scope="row">{String(row.name ?? row.x ?? i + 1)}</th>
-              <td>
-                {String(row.value ?? "")}
-                {unit}
-              </td>
+              <th scope="row">{String(row.x ?? i + 1)}</th>
+              {series.map((s) => (
+                <td key={s.key}>
+                  {String(row[s.key] ?? "")}
+                  {unit}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>
       </table>
-    )
-  }
-  return (
-    <table className="sr-only">
-      <caption>{spec.title ?? "Chart data"}</caption>
-      <thead>
-        <tr>
-          <th scope="col">{spec.x?.label ?? "x"}</th>
-          {series.map((s) => (
-            <th key={s.key} scope="col">
-              {s.name ?? s.key}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {spec.data.map((row, i) => (
-          <tr key={i}>
-            <th scope="row">{String(row.x ?? i + 1)}</th>
-            {series.map((s) => (
-              <td key={s.key}>
-                {String(row[s.key] ?? "")}
-                {unit}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    </div>
   )
 }
 
@@ -228,13 +260,23 @@ function renderChart(spec: ChartSpec, series: ChartSeries[], showLegend: boolean
     case "scatter":
     case "bubble":
       return (
-        <ScatterChart margin={{ top: 8, right: 16, bottom: 16, left: 8 }}>
+        <ScatterChart margin={{ top: 24, right: 28, bottom: 16, left: 8 }}>
           {grid}
           <XAxis type="number" dataKey="x" stroke={AXIS} tick={TICK} domain={[spec.x?.min ?? "auto", spec.x?.max ?? "auto"]} label={xAxisLabel(spec)} />
           <YAxis type="number" dataKey="y" stroke={AXIS} tick={TICK} domain={yDomain(spec)} label={yAxisLabel(spec)} />
           {spec.type === "bubble" && <ZAxis type="number" dataKey="z" range={[60, 420]} />}
           {tooltip}
-          <Scatter data={spec.data} fill={CHART_PALETTE[0]} />
+          <Scatter data={spec.data} fill={CHART_PALETTE[0]}>
+            {spec.data.some((row) => typeof row.name === "string") && (
+              <LabelList
+                dataKey="name"
+                position="top"
+                fill="#F0F0F0"
+                fontSize={11}
+                fontWeight={600}
+              />
+            )}
+          </Scatter>
         </ScatterChart>
       )
     case "pie":
