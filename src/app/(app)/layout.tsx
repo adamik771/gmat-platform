@@ -74,24 +74,17 @@ function SidebarLink({
       onClick={onClick}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors group",
+        "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors group",
         active
-          ? "text-[#F0F0F0]"
-          : "text-[#888888] hover:text-[#C0C0C0] hover:bg-white/[0.03]"
+          ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
+          : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
       )}
-      style={active ? { backgroundColor: "rgba(201,168,76,0.08)" } : {}}
     >
       <Icon
         className="w-4 h-4 flex-shrink-0"
         style={{ color: active ? "#C9A84C" : undefined }}
       />
       <span>{item.label}</span>
-      {active && (
-        <span
-          className="ml-auto w-1 h-1 rounded-full"
-          style={{ backgroundColor: "#C9A84C" }}
-        />
-      )}
     </Link>
   )
 }
@@ -106,19 +99,19 @@ function Sidebar({
   return (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className="px-4 py-5 border-b border-white/[0.06]">
-        <Link href="/" className="flex items-center gap-1">
-          <span className="text-[#F0F0F0] font-bold text-sm">ZAKARIAN</span>
+      <div className="px-5 h-14 flex items-center border-b border-white/[0.07]">
+        <Link href="/" className="flex items-center gap-2" aria-label="Zakarian GMAT home">
+          <span className="text-[#F0F0F0] font-semibold text-[12px]">ZAKARIAN</span>
           <span
-            className="w-1.5 h-1.5 rounded-full"
+            className="w-1 h-1 rounded-full"
             style={{ backgroundColor: "#C9A84C" }}
           />
-          <span className="text-[#F0F0F0] font-bold text-sm">GMAT</span>
+          <span className="text-[#F0F0F0] font-semibold text-[12px]">GMAT</span>
         </Link>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto p-3 space-y-1">
+      <nav className="flex-1 overflow-y-auto px-3 py-5 space-y-0.5">
         {navItems.map((item) => (
           <SidebarLink
             key={item.href}
@@ -140,7 +133,7 @@ function Sidebar({
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-[#888888] hover:text-[#C0C0C0] hover:bg-white/[0.03]"
+            className="flex items-center gap-3 border-l-2 border-transparent px-3 py-2.5 text-[13px] transition-colors text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
           >
             <MessageCircle className="w-4 h-4 flex-shrink-0" />
             <span>Community</span>
@@ -156,10 +149,10 @@ function Sidebar({
           href="/settings"
           onClick={onClose}
           className={cn(
-            "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
+            "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors",
             pathname.startsWith("/settings")
-              ? "text-[#F0F0F0]"
-              : "text-[#888888] hover:text-[#C0C0C0] hover:bg-white/[0.03]"
+              ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
+              : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
           )}
         >
           <Settings className="w-4 h-4 flex-shrink-0" />
@@ -270,7 +263,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className="flex h-dvh overflow-hidden"
+      className="app-workbench flex h-dvh overflow-hidden"
       style={{ backgroundColor: "#0A0A0A" }}
     >
       <a href="#main-content" className="skip-to-content">
@@ -278,8 +271,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </a>
       {/* Desktop sidebar */}
       <aside
-        className="hidden lg:flex flex-col w-56 flex-shrink-0 border-r border-white/[0.06]"
-        style={{ backgroundColor: "#0D0D0D" }}
+        className="hidden lg:flex flex-col w-60 flex-shrink-0 border-r border-white/[0.07]"
+        style={{ backgroundColor: "#0B0B0A" }}
       >
         <Sidebar pathname={pathname} />
       </aside>
@@ -292,8 +285,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             onClick={() => setSidebarOpen(false)}
           />
           <aside
-            className="relative z-10 w-56 flex flex-col border-r border-white/[0.06]"
-            style={{ backgroundColor: "#0D0D0D" }}
+            className="relative z-10 w-60 flex flex-col border-r border-white/[0.07]"
+            style={{ backgroundColor: "#0B0B0A" }}
           >
             <Sidebar
               pathname={pathname}
@@ -307,21 +300,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top bar */}
         <header
-          className="flex items-center justify-between px-4 sm:px-6 h-14 border-b border-white/[0.06] flex-shrink-0"
-          style={{ backgroundColor: "#0A0A0A" }}
+          className="flex items-center justify-between px-4 sm:px-6 h-14 border-b border-white/[0.07] flex-shrink-0"
+          style={{ backgroundColor: "#0B0B0A" }}
         >
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-1.5 rounded-lg text-[#888888] hover:text-[#C0C0C0]"
+              className="lg:hidden p-1.5 rounded-[4px] text-[#888888] hover:text-[#C0C0C0]"
               aria-label="Open navigation menu"
             >
               <Menu className="w-5 h-5" aria-hidden="true" />
             </button>
-            <p className="text-sm text-[#888888]">
-              <span className="text-[#888888]">App</span>
-              <span className="mx-1.5 text-[#333333]">/</span>
-              <span className="text-[#F0F0F0]">{currentLabel}</span>
+            <p className="text-[13px] font-semibold text-[#F0F0F0]">
+              {currentLabel}
             </p>
           </div>
 
@@ -332,7 +323,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           {/* User menu */}
           <DropdownMenu>
             <DropdownMenuTrigger
-              className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-white/[0.04] transition-colors"
+              className="flex items-center gap-2 p-1.5 rounded-[4px] hover:bg-white/[0.04] transition-colors"
               aria-label="Open user menu"
             >
               <Avatar className="w-7 h-7">
@@ -379,8 +370,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Page content */}
-        <main id="main-content" className="flex-1 overflow-y-auto">
-          <div className="p-4 sm:p-6">{children}</div>
+        <main id="main-content" className="flex-1 overflow-y-auto bg-[#0B0B0A]">
+          <div className="p-4 sm:p-6 lg:p-8">{children}</div>
         </main>
       </div>
 

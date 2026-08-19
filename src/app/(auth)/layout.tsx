@@ -4,44 +4,26 @@ import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="relative min-h-screen flex flex-col overflow-hidden"
-      style={{ backgroundColor: "#0A0A0A" }}
+      className="auth-workbench relative min-h-screen flex flex-col overflow-hidden"
+      style={{ backgroundColor: "#0B0B0A" }}
     >
       <a href="#main-content" className="skip-to-content">
         Skip to content
       </a>
-      {/* Atmospheric gold glow — soft, top-centre, focused */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,0.14) 0%, transparent 60%)",
-        }}
-        aria-hidden
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 45% 30% at 50% 110%, rgba(201,168,76,0.05) 0%, transparent 65%)",
-        }}
-        aria-hidden
-      />
-
       {/* Top bar */}
-      <div className="relative px-6 py-5">
+      <div className="relative h-[68px] px-6 flex items-center border-b border-white/[0.08]">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 transition-opacity hover:opacity-80"
+          className="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
         >
-          <span className="text-[#F0F0F0] font-semibold tracking-[0.02em]">
+          <span className="text-[#F0F0F0] text-[13px] font-semibold">
             ZAKARIAN
           </span>
           <span
-            className="w-1.5 h-1.5 rounded-full"
+            className="w-1 h-1 rounded-full"
             style={{ backgroundColor: "#C9A84C" }}
           />
-          <span className="text-[#F0F0F0] font-semibold tracking-[0.02em]">
+          <span className="text-[#F0F0F0] text-[13px] font-semibold">
             GMAT
           </span>
         </Link>
@@ -50,7 +32,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       {/* Main */}
       <main
         id="main-content"
-        className="relative flex-1 flex items-center justify-center px-4 py-12"
+        className="relative flex-1 flex items-center justify-center px-4 py-14"
       >
         {children}
       </main>
