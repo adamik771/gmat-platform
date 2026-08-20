@@ -341,7 +341,15 @@ This DB extension is *optional* for shipping the bank — the question metadata 
 
 ## Originality rule
 
-Every question is original. No question is copied or closely paraphrased from any GMAT prep source. Scenarios, numerical setups, and answer-choice arrangements are written from scratch for each question. Tropey scenarios (Tom-and-Sarah painters, coffee/diabetes correlation, bike-lane traffic) are explicitly avoided.
+**Authoring requirement:** every question must be independently created. No question may be copied, translated, reconstructed, or closely paraphrased from GMAC material, paid prep products, leaked exam content, or any other protected source. Scenarios, numerical setups, answer-choice arrangements, and explanations must be written from scratch. Tropey scenarios (Tom-and-Sarah painters, coffee/diabetes correlation, bike-lane traffic) are explicitly avoided.
+
+**Source isolation:** official questions and competitor content must not be supplied to an AI system as examples, source material, or style references. General skills and syllabus facts may be researched independently. Open educational resources may inform ideas only within their license; protected expression, exercises, examples, and structure must not be carried over. The Athabasca resource listed on `/resources` is CC BY-NC-SA 4.0 and is reference-only for this commercial platform.
+
+Use this instruction in every content-generation task:
+
+> Create independently from the skill specification only. Do not access, reproduce, paraphrase, translate, or reconstruct any official GMAT question, leaked item, paid-prep question, passage, explanation, example, or distinctive framework. Use a new scenario, values, logic path, distractors, and wording. List every external source consulted. If source isolation cannot be confirmed, stop and flag the item instead of drafting it.
+
+**Batch record and human review:** before a new batch is described as original, add an entry to `CONTENT_PROVENANCE.md` with the affected question IDs/files, source list, isolation confirmation, generation method, and review evidence. Adam must read the final wording, independently solve or verify every keyed answer in the batch, and record either substantive editorial changes or explicit approval. Automated validation and model-to-model review are useful QA, but they do not substitute for human authorship or legal provenance.
 
 ## Standardized explanation format
 

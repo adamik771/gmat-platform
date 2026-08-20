@@ -54,10 +54,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <ConsentSettingsButton className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors" />
         </div>
         <p className="max-w-xl mx-auto text-center text-[11px] text-[#555555] leading-relaxed">
-          GMAT™ is a registered trademark of the Graduate Management Admission
-          Council™ (GMAC™). GMAC does not endorse, nor is it affiliated in any
-          way with, the owner or any content of this site. All references to the
-          GMAT exam are for descriptive and educational purposes only.
+          GMAC™, GMAT™, Graduate Management Admission Council™, and Graduate
+          Management Admission Test™ are trademarks of GMAC in the United
+          States and other countries. Zakarian GMAT is independent and is not
+          affiliated with, endorsed by, or sponsored by GMAC.
         </p>
       </footer>
     </div>

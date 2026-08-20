@@ -217,7 +217,7 @@ export async function POST(request: Request) {
         "What happens next: when paid checkout opens, you'll get one email here with your founding code. Unless you also ticked the optional updates box, that is the only email this reservation triggers.",
         "Changed your mind? Reply to this email and I'll remove the reservation.",
         "- Adam, Zakarian GMAT",
-        "GMAT is a registered trademark of the Graduate Management Admission Council (GMAC), which does not endorse and is not affiliated with Zakarian GMAT.",
+        "GMAC, GMAT, Graduate Management Admission Council, and Graduate Management Admission Test are trademarks of GMAC in the United States and other countries. Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC.",
       ]
       const sent = await sendEmail({
         to: email,

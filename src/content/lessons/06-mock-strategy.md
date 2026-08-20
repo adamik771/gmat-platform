@@ -21,23 +21,23 @@ Here is what topical drilling cannot tell you:
 
 So here is the mental reframe I want you to walk into this module with: mocks are not score predictors. They are the single highest-signal learning event in your prep. A student who takes six mocks and analyzes each of them deeply will almost always outperform a student who takes twelve mocks and just looks at the score at the end. The analysis is three times more valuable than the mock itself, which is why we will spend the bulk of this module on the analysis protocol rather than the act of taking the test.
 
-The students who gain 50 to 100 points in their final six weeks are not the students who studied the most. They are the students who used mocks as diagnostic instruments — as a mirror held up to their actual test-day behavior — and then methodically drilled the specific weaknesses that mirror revealed. That is the meta-skill of this module.
+Students get the most value from their final six weeks when they use mocks as diagnostic instruments — as a mirror held up to their actual test-day behavior — and then methodically drill the specific weaknesses that mirror reveals. That is the meta-skill of this module.
 
 ## The Mock Taxonomy: Official vs Third-Party
 
 Not all mocks are created equal, and choosing the wrong mock at the wrong time will corrupt your data. You need to understand the three tiers.
 
-**Official GMAT Focus practice exams (mba.com).** There are six of these available, sold as two sets of three. These are the real test. Same interface, same adaptive algorithm, same item pool flavor, same scoring model. The screen you see on your home laptop when you fire up an official practice exam is, to the pixel, the screen you will see at the test center or on your remote-proctored attempt. When mba.com reports a score, that score is as close to a real predictor as exists on the market. Treat these six mocks like a finite, precious resource, because they are.
+**Official GMAT practice exams (mba.com).** GMAC currently offers six full-length official practice exams. They are the only mocks produced by the exam owner and the only source of official practice scoring, so use them as your primary benchmark. Product packaging and availability can change; confirm the current offering on mba.com before planning your schedule.
 
 My rule: **save at least four of your six official mocks for the final six weeks of prep.** The score from an official mock taken in week 12 of a 12-week plan is vastly more informative than one taken in week 3, because by week 3 you are still in heavy content review and your score is not yet reflective of your eventual ability. Burning an official mock early is like using your best wine to cook a stew — it works, but you have wasted something that cannot be replenished.
 
-**Third-party mocks (Manhattan Prep, Target Test Prep, Kaplan, Veritas, Princeton Review).** These are good supplements. The questions are usually high quality — Manhattan Prep and TTP in particular produce items that rival official questions for diagnostic value — but **their scoring algorithms run significantly harder than the official test.** It is extremely common for a student who is sitting on a genuine 625 in official mocks to post a 515 on a Manhattan Prep exam and panic. The panic is misplaced. The Manhattan score is not wrong, exactly — it is calibrated to a different curve. A 150 to 200 point gap below your official score is within normal range for third-party products.
+**Third-party mocks.** These can supplement official material for endurance, pacing, and structured review. Their interfaces, question pools, adaptive behavior, and scoring models can differ materially from GMAC's practice exams. Treat their scores as provider-specific rather than interchangeable with official scores.
 
-The right way to use third-party mocks: **use their questions for pattern recognition and pacing practice, but do not use their scores for prediction.** Specifically, I want you to:
+The right way to use third-party mocks: **use them for pattern recognition and pacing practice, but do not treat their scores as official predictions.** Specifically, I want you to:
 
 - Take third-party mocks in the early and middle phases of prep, when you need volume and exposure to diverse question styles, but your score prediction does not yet matter.
-- Review the questions with the same rigor as you would an official mock. The educational value is real.
-- Ignore the three-digit score. Look at per-section timing, per-question-type accuracy, and your error clusters. Those data points transfer. The composite score does not.
+- Review your reasoning and pacing with the same rigor as you would after an official mock.
+- Track trends within the same provider, but use mba.com official scores for your primary benchmark.
 
 **In-app and adaptive tools (including the practice page on this platform).** These are drill sets, not mocks. They are phenomenal for targeted skill-building between mocks — narrow, repeatable, and adjustable by topic and difficulty — but a 20-question topic drill is not a mock no matter how adaptive it is. Do not count it in your mock budget. Count it as a drill.
 

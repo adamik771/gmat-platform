@@ -170,15 +170,15 @@ export default function ScoreCalculatorClient() {
         <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#888888]" aria-hidden />
         <p className="text-[12px] text-[#888888] leading-relaxed">
           <span className="text-[#C0C0C0] font-medium">This is an estimate.</span>{" "}
-          GMAC does not publish the official section→total formula. This uses the
-          standard equal-weight approximation{" "}
+          GMAC does not publish the official section→total formula. This
+          calculator applies the transparent equal-weight approximation{" "}
           <span className="text-[#C0C0C0]">
             (Q + V + DI − 180) × 20⁄3 + 205
           </span>
-          , the same basis as major prep calculators (Target Test Prep, Magoosh,
-          e-GMAT). Identical section scores can map to slightly different real
-          totals, so treat the result as a ±{SECTION_TOTAL_ESTIMATE_SWING}-point
-          ballpark — not an official conversion.
+          {". "}Identical section scores can map to different official totals,
+          so treat the result as a ±
+          {SECTION_TOTAL_ESTIMATE_SWING}-point ballpark — not an official
+          conversion.
         </p>
       </div>
     </div>

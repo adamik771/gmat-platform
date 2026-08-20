@@ -133,9 +133,10 @@ export default function ReferPage() {
             <ArrowRight className="w-4 h-4" />
           </Link>
           <p className="text-[11px] text-[#555555] leading-relaxed mt-8 max-w-xl mx-auto">
-            GMAT™ is a registered trademark of the Graduate Management Admission
-            Council™ (GMAC™), which does not endorse and is not affiliated with
-            Zakarian GMAT.
+            GMAC™, GMAT™, Graduate Management Admission Council™, and Graduate
+            Management Admission Test™ are trademarks of GMAC in the United
+            States and other countries. Zakarian GMAT is independent and is not
+            affiliated with, endorsed by, or sponsored by GMAC.
           </p>
         </div>
       </SectionWrapper>

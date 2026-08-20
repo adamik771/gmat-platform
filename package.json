@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "notices:generate": "node scripts/generate-third-party-notices.mjs",
+    "notices:check": "node scripts/generate-third-party-notices.mjs --check",
     "validate:content": "node --experimental-strip-types --no-warnings scripts/validate-content.ts",
     "generate:explanations": "node --experimental-strip-types --no-warnings --env-file=.env.local scripts/generate-explanations.ts",
     "test": "vitest run",

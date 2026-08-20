@@ -189,22 +189,29 @@ export default function Footer() {
           <p className="text-[11px] text-[#888888] tracking-tight">
             © {new Date().getFullYear()} Zakarian GMAT. All rights reserved.
           </p>
-          <p className="text-[11px] text-[#888888] tracking-tight">
+          <div className="flex items-center gap-4 text-[11px] text-[#888888] tracking-tight">
+            <a
+              href="/third-party-notices.txt"
+              className="hover:text-[#C9A84C] transition-colors duration-200"
+            >
+              Third-party notices
+            </a>
             <a
               href={`mailto:${SITE_CONTACT_EMAIL}`}
               className="hover:text-[#C9A84C] transition-colors duration-200"
             >
               {SITE_CONTACT_EMAIL}
             </a>
-          </p>
+          </div>
         </div>
 
         {/* No-affiliation disclaimer — kept site-wide in the footer so the
             trademark notice is visible on every page, not just /terms. */}
         <p className="mt-5 text-[11px] text-[#888888] leading-relaxed max-w-3xl">
-          GMAT™ is a registered trademark of the Graduate Management Admission
-          Council™ (GMAC™). GMAC does not endorse, nor is it affiliated in any
-          way with, the owner or any content of this site. All references to the
+          GMAC™, GMAT™, Graduate Management Admission Council™, and Graduate
+          Management Admission Test™ are trademarks of GMAC in the United
+          States and other countries. Zakarian GMAT is independent and is not
+          affiliated with, endorsed by, or sponsored by GMAC. References to the
           GMAT exam are for descriptive and educational purposes only.
         </p>
       </div>

@@ -258,21 +258,21 @@ const EXTERNAL: ExternalResource[] = [
   },
   {
     title: "forall x: Calgary",
-    publisher: "Open Logic Project",
-    badge: "Open (CC BY)",
+    publisher: "A. Thomas-Bolduc & R. Zach / Open Logic Project",
+    badge: "CC BY 4.0",
     icon: BookOpen,
     href: "https://forallx.openlogicproject.org/",
     description:
-      "A free, openly licensed intro-to-logic textbook — the cleanest grounding for the argument structure behind Critical Reasoning.",
+      "An openly licensed introduction to logic that may be shared and adapted with attribution under CC BY 4.0.",
   },
   {
     title: "Critical Thinking, Logic, and Argument",
     publisher: "Athabasca University Press",
-    badge: "Open",
+    badge: "CC BY-NC-SA 4.0",
     icon: BookOpen,
     href: "https://www.aupress.ca/app/uploads/OER-202403_Dayton_Rodier_2024-Critical-Thinking-Logic-and-Argument.pdf",
     description:
-      "Argument forms, fallacies, and validity, free and openly licensed. Directly useful for Critical Reasoning (PDF).",
+      "An external logic reference that may be shared noncommercially with attribution and share-alike. It is not incorporated into this paid course (PDF).",
   },
   {
     title: "Purdue OWL — Grammar",
