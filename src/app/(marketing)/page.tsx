@@ -71,24 +71,28 @@ const plans = [
     price: "$429",
     detail: "4 months",
     description: "The complete platform for independent preparation.",
+    recommended: false,
   },
   {
     name: "Mentorship",
     price: "$599",
     detail: "6 months",
     description: "The platform plus direct WhatsApp Q&A with Adam.",
+    recommended: true,
   },
   {
     name: "Coaching",
     price: "$2,500",
     detail: "8 sessions",
     description: "Weekly 1:1 work and a tailored preparation plan.",
+    recommended: false,
   },
   {
     name: "Intensive",
     price: "$4,200",
     detail: "16 sessions",
     description: "A full preparation cycle with close, ongoing support.",
+    recommended: false,
   },
 ]
 
@@ -255,21 +259,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="editorial-section">
-        <div className="editorial-section__heading editorial-section__heading--wide">
-          <p className="editorial-kicker">Plans</p>
-          <h2>Begin with the product. Choose support later.</h2>
-          <p>
-            Every account starts with the same {TRIAL_DAYS}-day full-access trial.
-            Plans differ by access length and the amount of direct support.
-          </p>
+      <section id="plans" className="editorial-section editorial-section--plans">
+        <div className="editorial-plans-header">
+          <div className="editorial-section__heading editorial-section__heading--wide">
+            <p className="editorial-kicker">Plans</p>
+            <h2>Begin with the product. Choose support later.</h2>
+            <p>
+              Every account starts with the same {TRIAL_DAYS}-day full-access trial.
+              Plans differ by access length and the amount of direct support.
+            </p>
+          </div>
+          <div className="editorial-plans-trial">
+            <span>Start here</span>
+            <strong>{TRIAL_DAYS} days</strong>
+            <p>Complete platform access. No credit card.</p>
+            <Link href="/signup">
+              Begin the trial
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </div>
         </div>
         <div className="editorial-plan-list">
           {plans.map((plan, index) => (
-            <Link href="/pricing" key={plan.name} className="editorial-plan-row">
+            <Link
+              href="/pricing"
+              key={plan.name}
+              className={`editorial-plan-row${plan.recommended ? " editorial-plan-row--recommended" : ""}`}
+            >
               <span className="editorial-plan-row__index">0{index + 1}</span>
               <div>
-                <h3>{plan.name}</h3>
+                <div className="editorial-plan-row__title">
+                  <h3>{plan.name}</h3>
+                  {plan.recommended && <span>Recommended</span>}
+                </div>
                 <p>{plan.description}</p>
               </div>
               <span className="editorial-plan-row__detail">{plan.detail}</span>
