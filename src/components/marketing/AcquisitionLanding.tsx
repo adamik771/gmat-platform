@@ -239,9 +239,10 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
           </Link>
         </div>
         <p className="text-[11px] text-[#555555] leading-relaxed mt-6 text-center max-w-2xl mx-auto">
-          Zakarian GMAT is an independent prep platform. It is not affiliated with, endorsed by, or
-          sponsored by the Graduate Management Admission Council (GMAC), the GMAT, GMAT Focus Edition,
-          or mba.com, which are trademarks of GMAC. We do not guarantee any score.
+          GMAC, GMAT, Graduate Management Admission Council, and Graduate Management Admission Test
+          are trademarks of GMAC in the United States and other countries. Zakarian GMAT is
+          independent and is not affiliated with, endorsed by, or sponsored by GMAC. We do not
+          guarantee any score.
         </p>
       </section>
     </div>

@@ -62,7 +62,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "Is Zakarian GMAT affiliated with GMAC or mba.com?",
-      "a": "No. Zakarian GMAT is an independent prep platform and is not affiliated with, endorsed by, or sponsored by GMAC, mba.com, or the official GMAT and GMAT Focus Edition exams. Those are trademarks of their owner and are referenced here only to describe the exam the platform helps you prepare for. We recommend official mba.com practice exams as your baseline precisely because they are the most accurate measure of where you stand."
+      "a": "No. GMAC, GMAT, Graduate Management Admission Council, and Graduate Management Admission Test are trademarks of GMAC. Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC. The marks are referenced only to describe the exam the platform helps you prepare for. We recommend official mba.com practice exams as your baseline because they are produced by the exam owner."
     }
   ],
   "lead": {

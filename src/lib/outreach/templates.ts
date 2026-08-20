@@ -367,7 +367,7 @@ function shell(b: BuiltEmail, ctx: TemplateContext): string {
     <p style="margin:0 0 8px;font-size:12px;line-height:1.5;color:#777777;">You're receiving this because ${esc(
       reason
     )}. <a href="${ctx.unsubscribeUrl}" style="color:#999999;text-decoration:underline;">Unsubscribe</a> anytime.</p>
-    <p style="margin:0;font-size:11px;line-height:1.5;color:#555555;">Zakarian GMAT is independent GMAT prep. It is not affiliated with, endorsed by, or sponsored by GMAC, the GMAT, or mba.com. No score is guaranteed.</p>
+    <p style="margin:0;font-size:11px;line-height:1.5;color:#555555;">GMAT and related marks are trademarks of GMAC. Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC. No score is guaranteed.</p>
     ${pixel}
   </div>
 </body></html>`
@@ -384,7 +384,7 @@ function textVersion(b: BuiltEmail, ctx: TemplateContext): string {
     "",
     "—",
     `You're receiving this because ${reason}. Unsubscribe: ${ctx.unsubscribeUrl}`,
-    "Zakarian GMAT is independent GMAT prep — not affiliated with GMAC, the GMAT, or mba.com. No score is guaranteed.",
+    "GMAT and related marks are trademarks of GMAC. Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC. No score is guaranteed.",
   ]
   return lines.filter((l) => l !== undefined).join("\n")
 }

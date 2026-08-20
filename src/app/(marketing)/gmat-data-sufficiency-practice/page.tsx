@@ -54,7 +54,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       q: "Are these official GMAT questions?",
-      a: "No. The questions on the platform are original, written in-house and modeled on the Data Sufficiency format. They are not official GMAT questions, and Zakarian GMAT is not affiliated with or endorsed by GMAC. The GMAT and GMAT Focus Edition are trademarks of GMAC, referenced here only descriptively.",
+      a: "No. The questions on the platform are independently created and modeled on the Data Sufficiency format. They are not official GMAT questions. GMAT and related marks are trademarks of GMAC; Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC.",
     },
     {
       q: "Is it free?",
