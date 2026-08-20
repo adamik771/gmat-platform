@@ -381,11 +381,10 @@ p {
 }
 
 /* ---------------------------------------------------------------
-   View Transitions (experimental.viewTransition in next.config):
-   route navigations animate via the View Transitions API. The
-   universal rule above does NOT match the ::view-transition
-   pseudo-elements, so disable their animation explicitly for
-   reduced-motion users.
+   View Transitions: the universal reduced-motion rule above does
+   not match the ::view-transition pseudo-elements, so disable their
+   animation explicitly for reduced-motion users whenever the native
+   or React API is active.
 --------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),

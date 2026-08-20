@@ -100,21 +100,19 @@ const nextConfig: NextConfig = {
     ]
   },
   // Navigation / runtime performance (2026-06). All keys verified to exist in
-  // the installed next@16.2.3 (see node_modules/next docs/schema):
+  // the installed next@16.3.1 (see node_modules/next docs/schema):
   //  - staleTimes: static-segment reuse only. Dynamic segments stay on the
   //    framework default (0s): a 30s dynamic window served pre-write payloads
   //    on quick back-nav, so saved-for-review / mark-as-reviewed toggles that
   //    HAD persisted in the DB rendered as unchecked, and the client prop
   //    resync then clobbered the correct optimistic state (beta bug, 2026-07).
-  //  - viewTransition: opt route navigations into React 19.2 / the View
-  //    Transitions API for a smooth cross-fade between pages (reduced-motion
-  //    users are exempted via a globals.css guard).
+  //  - Next 16.3 no longer exposes the old experimental.viewTransition flag.
+  //    Keep the reduced-motion CSS guard for native / React view transitions.
   //  - optimizePackageImports: tree-shake heavy barrel-export deps so only used
   //    modules ship. (lucide-react/recharts are already on Next's default list;
   //    the markdown + framer entries are the additive wins.)
   experimental: {
     staleTimes: { static: 180 },
-    viewTransition: true,
     optimizePackageImports: [
       "lucide-react",
       "recharts",
