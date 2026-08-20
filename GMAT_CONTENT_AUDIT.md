@@ -128,3 +128,41 @@ Adam approved decisions on flagged items 1-5; this section records what changed 
 **5. Old-scale score anchors (flagged item 5) — all 49 sites rewritten** scale-free ("top scorers", "the hardest items", "mid-difficulty") per the approved mapping; no numeric old→Focus conversions were made; deliberate old-exam comparisons were left only where the text is explicitly about the old exam. The validator INFO rule now reports zero.
 
 **Still deferred/open from the original flag list:** DI geometry syllabus call (item 1b), the broader Hard-tier calibration re-review (item 4 beyond the 8 relabels), quant-27 duplicate intro sections (item 6), CR/RC split disagreement (item 7), chapter shape gaps (item 8), title-style convention (item 9), minor flags (item 10).
+
+---
+
+## QUESTION-PATTERN CALIBRATION — 2026-08-20
+
+User feedback identified three bank-level signals: Advanced items felt easier
+than official advanced practice, the longest Verbal option appeared unusually
+often correct, and DS answer C (both statements together) appeared too often.
+The full-bank measurement found:
+
+- Verbal overall: the key was uniquely longest on 23.1% of five-choice items,
+  close to the 20% random baseline. Advanced Critical Reasoning was the real
+  pocket of risk at 30.2%.
+- Data Sufficiency: A 20.4%, B 12.9%, C 40.0%, D 18.2%, E 8.4% across 225
+  items. This is a genuine source-bank imbalance, not perception.
+- The prior audit's named difficulty sample still had six unresolved labels
+  judged one tier too high and one judged too low.
+
+Changes applied:
+
+- Eight high-signal Advanced CR items had credible distractors clarified or
+  expanded without changing their keys. Advanced CR's uniquely-longest-key
+  rate is now 23.3%; only 6/116 have a material length gap under the automated
+  definition.
+- The six remaining named over-labels were changed Hard→Medium
+  (word-problems q11, data-sufficiency q83, arithmetic q12, MSR q30, RC q7;
+  backsolving q50 was already Medium), and CR q54 changed Easy→Medium.
+- DS delivery now rotates A-E outcomes within the same freshness and
+  difficulty band. It never moves a seen item ahead of an unseen item and
+  never reletters a DS key. The raw bank remains historically C-heavy and
+  should be improved through future blind-solved reauthoring; an automated
+  ceiling prevents that imbalance from worsening.
+- A reusable calculator now appears only on DI solving surfaces, matching the
+  current exam's section-level calculator policy.
+
+Still open: the larger item-by-item Advanced-tier re-review and source-level DS
+reauthoring. Delivery balancing removes the exploitable short-set pattern but
+does not make the authored bank itself statistically even.

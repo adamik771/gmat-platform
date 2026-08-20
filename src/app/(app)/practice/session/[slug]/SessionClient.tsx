@@ -27,6 +27,7 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
+import DataInsightsCalculator from "@/components/shared/DataInsightsCalculator"
 import QuestionChart from "@/components/shared/QuestionChart"
 import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
 import type { ChartSpec } from "@/lib/chart-spec"
@@ -2708,6 +2709,7 @@ export default function SessionClient({
             </p>
           </div>
           <div className="flex items-center gap-2 text-sm text-[#888888] flex-wrap justify-end">
+            {current.section === "DI" && <DataInsightsCalculator compact />}
             {/* Exam/Study feedback-mode toggle. Study reveals each
                 explanation (the default for learning drills); exam defers
                 feedback to the end for assessment-shaped sets. */}

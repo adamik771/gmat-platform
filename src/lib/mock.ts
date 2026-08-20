@@ -1,5 +1,6 @@
 import { getQuestionsBySection, type ParsedQuestion } from "./content"
 import { groupByContext } from "./topic-skill"
+import { balanceDataSufficiencyOrder } from "./question-selection"
 import type { Difficulty, Section } from "@/types"
 
 const DIFFICULTY_RANK: Record<Difficulty, number> = {
@@ -146,6 +147,7 @@ export function pickMockQuestions(
   const picked: ParsedQuestion[] = []
   const pickedIds = new Set<string>()
   const topicCount = new Map<string, number>()
+  const dsAnswerCount = new Map<string, number>()
   const perDifficulty: Record<Difficulty, number> = {
     Beginner: 0,
     Intermediate: 0,
@@ -155,6 +157,12 @@ export function pickMockQuestions(
   const fits = (q: ParsedQuestion) => {
     if (perDifficulty[q.difficulty] >= mix[q.difficulty]) return false
     if ((topicCount.get(q.topic) ?? 0) >= MAX_PER_TOPIC) return false
+    if (
+      q.type === "Data Sufficiency" &&
+      (dsAnswerCount.get(q.correctAnswerLetter) ?? 0) >= 1
+    ) {
+      return false
+    }
     return true
   }
 
@@ -165,6 +173,12 @@ export function pickMockQuestions(
     pickedIds.add(q.id)
     perDifficulty[q.difficulty] += 1
     topicCount.set(q.topic, (topicCount.get(q.topic) ?? 0) + 1)
+    if (q.type === "Data Sufficiency") {
+      dsAnswerCount.set(
+        q.correctAnswerLetter,
+        (dsAnswerCount.get(q.correctAnswerLetter) ?? 0) + 1
+      )
+    }
   }
 
   // Top up if the strict pass didn't fill the target (small pools for
@@ -178,7 +192,7 @@ export function pickMockQuestions(
     }
   }
 
-  return orderForMock(picked)
+  return balanceDataSufficiencyOrder(orderForMock(picked), { seed: mockIndex })
 }
 
 /**

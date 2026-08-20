@@ -105,6 +105,8 @@ export default async function TestBuilderPage() {
     section: q.section,
     topic: q.topic,
     difficulty: q.difficulty,
+    type: q.type,
+    correctAnswerLetter: q.correctAnswerLetter,
     lastSeenAt: lastSeen.get(q.id),
   }))
 

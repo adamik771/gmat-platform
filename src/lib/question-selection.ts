@@ -121,6 +121,91 @@ function orderFresh<T extends { id: string }>(
   return [...seededShuffle(unseen, seed), ...seen.map((s) => s.item)]
 }
 
+interface AnswerBalanceQuestion {
+  id: string
+  type?: string
+  correctAnswerLetter?: string
+  difficulty?: string
+}
+
+const ANSWER_LETTERS = ["A", "B", "C", "D", "E"] as const
+
+/**
+ * Reorder only Data Sufficiency slots so one sufficiency outcome cannot form
+ * an obvious streak while other answer patterns are available. The source
+ * bank intentionally keeps its authored answers; this is a delivery guard,
+ * not answer-key relabeling.
+ *
+ * Fresh/seen status and difficulty stay fixed at each slot. That matters:
+ * answer balancing must never pull a repeat ahead of an unseen question or
+ * turn an adaptive Foundation-first drill into an Advanced-first one. Within
+ * each such group, answer letters rotate A-E while preserving authored order
+ * inside a letter bucket. Non-DS questions never move.
+ */
+export function balanceDataSufficiencyOrder<Q extends AnswerBalanceQuestion>(
+  ordered: readonly Q[],
+  options: {
+    lastSeenAt?: ReadonlyMap<string, number>
+    seed?: number
+  } = {}
+): Q[] {
+  const lastSeenAt = options.lastSeenAt
+  const seed = options.seed ?? 0
+  const groupKey = (q: Q) =>
+    `${q.difficulty ?? "all"}:${lastSeenAt ? (lastSeenAt.has(q.id) ? "seen" : "unseen") : "all"}`
+
+  const groups = new Map<string, Q[]>()
+  for (const q of ordered) {
+    if (q.type !== "Data Sufficiency") continue
+    const key = groupKey(q)
+    const list = groups.get(key)
+    if (list) list.push(q)
+    else groups.set(key, [q])
+  }
+
+  const balanced = new Map<string, Q[]>()
+  let groupIndex = 0
+  for (const [key, items] of groups) {
+    const buckets = new Map<string, Q[]>(
+      ANSWER_LETTERS.map((letter) => [letter, []])
+    )
+    const unknown: Q[] = []
+    for (const item of items) {
+      const bucket = buckets.get(item.correctAnswerLetter ?? "")
+      if (bucket) bucket.push(item)
+      else unknown.push(item)
+    }
+
+    const out: Q[] = []
+    let cursor = Math.abs(seed + groupIndex) % ANSWER_LETTERS.length
+    while (out.length < items.length - unknown.length) {
+      let found = false
+      for (let step = 0; step < ANSWER_LETTERS.length; step++) {
+        const index = (cursor + step) % ANSWER_LETTERS.length
+        const bucket = buckets.get(ANSWER_LETTERS[index])!
+        const next = bucket.shift()
+        if (!next) continue
+        out.push(next)
+        cursor = (index + 1) % ANSWER_LETTERS.length
+        found = true
+        break
+      }
+      if (!found) break
+    }
+    balanced.set(key, [...out, ...unknown])
+    groupIndex += 1
+  }
+
+  const cursors = new Map<string, number>()
+  return ordered.map((q) => {
+    if (q.type !== "Data Sufficiency") return q
+    const key = groupKey(q)
+    const index = cursors.get(key) ?? 0
+    cursors.set(key, index + 1)
+    return balanced.get(key)?.[index] ?? q
+  })
+}
+
 function countRepeats<T extends { id: string }>(
   picked: readonly T[],
   lastSeenAt: ReadonlyMap<string, number>,
@@ -179,10 +264,13 @@ export function planCustomSet<T extends { id: string; section: string }>(
   for (const [i, sec] of sections.entries()) {
     buckets.set(
       sec,
-      orderFresh(
-        pool.filter((q) => q.section === sec),
-        lastSeenAt,
-        seed + i
+      balanceDataSufficiencyOrder(
+        orderFresh(
+          pool.filter((q) => q.section === sec),
+          lastSeenAt,
+          seed + i
+        ),
+        { lastSeenAt, seed: seed + i }
       )
     )
   }

@@ -1406,7 +1406,7 @@ The correct answer is E.
 ---
 
 ### Q30
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Verifying Total Excess Return
 

@@ -27,6 +27,7 @@ import { mergeProgress, progressContentSig } from "@/lib/chapter-progress-merge"
 import { selectChapterCoachingState } from "@/lib/chapter-coaching"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
+import DataInsightsCalculator from "@/components/shared/DataInsightsCalculator"
 import QuestionChart from "@/components/shared/QuestionChart"
 import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
 import type { ChartSpec } from "@/lib/chart-spec"
@@ -981,6 +982,9 @@ export default function ChapterReader({
           aria-hidden
         />
         <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+          {section === "DI" && (
+            <DataInsightsCalculator compact tone="reader" />
+          )}
           <button
             type="button"
             onClick={toggleFocusMode}
@@ -3031,15 +3035,20 @@ function ProblemSetRunner({
                 : `Question ${idx + 1} of ${set.questions.length}`}
             </p>
           </div>
-          <button
-            ref={closeButtonRef}
-            onClick={onClose}
-            aria-label="Close problem set"
-            className="p-1.5 rounded transition-colors"
-            style={{ color: "var(--read-text-faint)" }}
-          >
-            <X className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-2">
+            {!done && current.section === "DI" && (
+              <DataInsightsCalculator compact tone="reader" />
+            )}
+            <button
+              ref={closeButtonRef}
+              onClick={onClose}
+              aria-label="Close problem set"
+              className="p-1.5 rounded transition-colors"
+              style={{ color: "var(--read-text-faint)" }}
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {done ? (

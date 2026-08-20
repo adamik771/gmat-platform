@@ -271,7 +271,7 @@ Environmental scientists have observed that coral reefs near coastal cities with
 
 Which of the following, if true, most weakens the scientists' conclusion?
 
-- A) Coral reef biodiversity is influenced by many global factors, including water temperature, ocean acidification, salinity fluctuations, and seasonal storm frequency.
+- A) Coral reef biodiversity is influenced by many global factors that vary across regions and over time, including water temperature, ocean acidification, salinity fluctuations, current patterns, and seasonal storm frequency.
 - B) Advanced wastewater treatment facilities remove not only harmful pollutants but also certain dissolved nutrients that some coral species depend on for growth.
 - C) The cost of upgrading municipal wastewater treatment infrastructure to advanced standards has decreased significantly over the past several years.
 - D) Some coral reefs located far from any coastal city or other human settlement have also shown declining biodiversity over the same period.
@@ -854,7 +854,7 @@ Which of the following, if true, most helps to explain the apparent discrepancy 
 - A) The carbon tax rate has been increased gradually each year since its introduction, rising considerably more quickly than the schedule originally announced.
 - B) The country's population has declined slightly over the five-year period, as emigration has modestly outpaced both births and immigration.
 - C) The carbon tax prompted domestic manufacturers to relocate production to countries without carbon pricing, so that emissions from goods consumed domestically are now generated offshore.
-- D) Renewable energy sources, including wind and solar, now account for a considerably larger share of the country's electricity generation than they did five years ago.
+- D) Renewable energy sources, including wind and solar, now account for a considerably larger share of the country's electricity generation than they did five years ago, and several domestic coal-fired plants have closed.
 - E) Several other industrialized countries that introduced carbon taxes during the same period have experienced similar declines in their domestic emissions.
 
 **answer:** C
@@ -1535,7 +1535,7 @@ The correct answer is E.
 ---
 
 ## Q54
-**difficulty:** Easy
+**difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Inference
 
@@ -2007,7 +2007,7 @@ A clean-energy startup claims its new solar panel design will be commercially vi
 
 The startup's claim depends on which of the following assumptions?
 
-- A) No commercial solar panel currently on the market has ever achieved a sustained energy conversion efficiency above 30% in real-world operation.
+- A) No commercial solar panel currently on the market has ever achieved a sustained energy conversion efficiency above 30% in real-world operation, even after extended field testing across different climates and operating conditions.
 - B) The panels will be purchased primarily by individual residential customers rather than by commercial or utility-scale customers.
 - C) Raising a large amount of venture capital is itself sufficient to guarantee that a startup's product will achieve commercial success.
 - D) The higher efficiency observed in the laboratory prototypes can be substantially preserved in large-scale manufacturing at a cost that allows competitive pricing.
@@ -3440,7 +3440,7 @@ Which of the following, if true, most strengthens the CEO's argument?
 - B) A survey of grocery shoppers in the manufacturer's markets found that the share who actively seek out plant-based alternatives rose from 22 percent to 38 percent over the past year.
 - C) The manufacturer's products are generally priced higher per unit than comparable animal-meat products sold in the same grocery stores.
 - D) The manufacturer's advertising spending in the retail grocery channel increased significantly over the past year, especially in the final two quarters.
-- E) New shelf-space regulations adopted in the European Union have required some grocery stores there to devote more shelf space to plant-based products.
+- E) New shelf-space regulations adopted in the European Union have required some grocery stores there, including chains whose alternative-meat sales had previously been flat, to devote substantially more shelf space to plant-based products.
 
 **answer:** B
 **explanation:** **Situation.** A maker of plant-based alternative meat saw its retail grocery sales grow 25 percent over the past year, and its CEO concludes that this growth reflects a genuine, increasing consumer preference for plant-based diets, planning to expand distribution on that basis.
@@ -3495,7 +3495,7 @@ A biotech executive argues that a new therapy for a rare disease has strong evid
 Which of the following best identifies a flaw in the executive's reasoning?
 
 - A) The executive cites only the trials that support his claim, dismissing earlier trials that may have shown different results without objective justification.
-- B) The executive does not specify how many patients were enrolled in the treatment and placebo groups of each of the three recent trials.
+- B) The executive does not specify how many patients were enrolled in the treatment and placebo groups of each recent trial or whether enrollment differed materially across the three trials.
 - C) The executive assumes that "effective" was defined and measured in exactly the same way across all three of the recent trials.
 - D) The executive does not fully consider the cost of administering the new therapy or the price it is likely to carry upon approval.
 - E) The executive assumes that favorable Phase 2 results will generalize directly to the larger patient populations of Phase 3 trials.
@@ -3891,7 +3891,7 @@ A health agency observed that adults who drink at least one cup of green tea dai
 
 To reduce on-site injuries, FreightCo installed bright warning lights and audible alarms on all of its warehouse forklifts last year. In the twelve months following installation, the number of reported forklift-related injuries at FreightCo warehouses fell by 30 percent compared with the previous twelve months. FreightCo's safety officer concludes that the new lights and alarms were responsible for the decline and recommends installing identical devices on the company's loading-dock vehicles. Which of the following, if true, most weakens the safety officer's conclusion that the devices caused the decline?
 
-- A) The loading-dock vehicles operate in areas with considerably more pedestrian traffic than the warehouse aisles where the forklifts are used.
+- A) The loading-dock vehicles operate in areas with considerably more pedestrian traffic than the warehouse aisles where the forklifts are used, carry different loads, and follow routes that cross outdoor staging areas.
 - B) The warning lights and alarms required periodic inspection and maintenance that added modestly to the warehouses' operating costs.
 - C) Workers initially found the audible alarms distracting during their shifts but adjusted to them within a few weeks of installation.
 - D) In the same twelve-month period, FreightCo also reduced warehouse forklift speed limits and required all forklift operators to complete a new certification course.
@@ -5704,7 +5704,7 @@ In the economist's argument, the two portions in boldface play which of the foll
 - A) The first is a generalization that the economist's argument calls into question; the second is evidence offered to address an objection to the case against that generalization.
 - B) The first is the main conclusion of the economist's argument; the second is a premise offered in direct support of that conclusion.
 - C) The first is an objection that the economist's argument later rebuts; the second is the main conclusion the argument as a whole is meant to establish.
-- D) The first is evidence supporting the economist's conclusion; the second is a competing explanation of that evidence that the economist considers and rejects.
+- D) The first is evidence supporting the economist's conclusion; the second is a competing explanation of that evidence that the economist considers and rejects after comparing the study's initial and longer-term findings.
 - E) The first is a claim whose truth the economist accepts; the second is a consequence that the economist predicts will follow from that claim.
 
 **answer:** A
@@ -5731,7 +5731,7 @@ A regional airline is deciding whether to add a direct route between two mid-siz
 Which of the following would be most useful to know in evaluating the planners' argument?
 
 - A) Whether the two cities are currently linked by a high-speed rail connection that offers journey times competitive with flying
-- B) What the average age of the aircraft in the airline's current fleet is, and when those aircraft are scheduled for replacement
+- B) What the average age of the aircraft in the airline's current fleet is, when those aircraft are scheduled for replacement, and whether the airline expects to lease or purchase replacements under its current fleet plan
 - C) Whether any other airlines have seriously considered adding a similar direct route between the two cities in recent years
 - D) How many of the 40,000 connecting passengers would switch to the direct route at the fares the airline would need to charge to cover the route's costs
 - E) Whether the airline's frequent-flyer members say they prefer direct routes to connecting routes when both options are available

@@ -19,6 +19,8 @@ export interface QuestionPoolEntry {
   section: Section
   topic: string
   difficulty: Difficulty
+  type: string
+  correctAnswerLetter: string
   /** Most recent attempt on this question (epoch ms), passage-aware —
    *  server-computed from practice_attempts. Absent = never seen. */
   lastSeenAt?: number
