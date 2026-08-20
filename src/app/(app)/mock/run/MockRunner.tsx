@@ -17,6 +17,7 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
+import DataInsightsCalculator from "@/components/shared/DataInsightsCalculator"
 import QuestionChart from "@/components/shared/QuestionChart"
 import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
 import type { ChartSpec } from "@/lib/chart-spec"
@@ -1351,6 +1352,7 @@ function SectionHeader({
         </p>
       </div>
       <div className="flex items-center gap-3">
+        {section === "DI" && <DataInsightsCalculator compact />}
         {phase === "running" && typeof questionElapsedMs === "number" && (
           <PacingBadge section={section} elapsedMs={questionElapsedMs} />
         )}

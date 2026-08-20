@@ -2426,7 +2426,7 @@ Taking the statements together, n is divisible by 5 (Statement 1) and divisible 
 ---
 
 ## Q83
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Algebra
 

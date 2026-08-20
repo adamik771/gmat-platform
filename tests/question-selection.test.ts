@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest"
 import {
   ACTIVE_DECK_TTL_MS,
   RECENT_SEEN_COOLDOWN_MS,
+  balanceDataSufficiencyOrder,
   buildLastSeenMap,
   planCustomSet,
   restoreDeckOrder,
@@ -15,6 +16,67 @@ const seen = (entries: Array<[string, number]>) => new Map(entries)
 
 const NOW = 1_000_000_000_000
 const HOUR = 60 * 60 * 1000
+
+describe("balanceDataSufficiencyOrder", () => {
+  const ds = (id: string, answer: string, difficulty = "Intermediate") => ({
+    id,
+    section: "DI",
+    type: "Data Sufficiency",
+    correctAnswerLetter: answer,
+    difficulty,
+  })
+
+  it("rotates available DS outcomes instead of serving a C-heavy streak", () => {
+    const ordered = [
+      ds("c1", "C"),
+      ds("c2", "C"),
+      ds("c3", "C"),
+      ds("a1", "A"),
+      ds("b1", "B"),
+      ds("d1", "D"),
+      ds("e1", "E"),
+    ]
+    const balanced = balanceDataSufficiencyOrder(ordered, { seed: 0 })
+    expect(balanced.slice(0, 5).map((q) => q.correctAnswerLetter)).toEqual([
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+    ])
+    expect(balanced.map((q) => q.id).sort()).toEqual(
+      ordered.map((q) => q.id).sort()
+    )
+  })
+
+  it("does not move a seen question into an unseen slot", () => {
+    const ordered = [ds("fresh-c", "C"), ds("fresh-a", "A"), ds("seen-b", "B")]
+    const balanced = balanceDataSufficiencyOrder(ordered, {
+      lastSeenAt: seen([["seen-b", NOW - HOUR]]),
+    })
+    expect(balanced[2].id).toBe("seen-b")
+  })
+
+  it("preserves non-DS positions and difficulty bands", () => {
+    const other = {
+      id: "chart",
+      section: "DI",
+      type: "Graphics Interpretation",
+      correctAnswerLetter: "C",
+      difficulty: "Intermediate",
+    }
+    const ordered = [
+      ds("easy-c", "C", "Beginner"),
+      other,
+      ds("hard-a", "A", "Advanced"),
+      ds("hard-c", "C", "Advanced"),
+    ]
+    const balanced = balanceDataSufficiencyOrder(ordered)
+    expect(balanced[0].difficulty).toBe("Beginner")
+    expect(balanced[1]).toBe(other)
+    expect(balanced.slice(2).every((q) => q.difficulty === "Advanced")).toBe(true)
+  })
+})
 
 describe("selectFresh", () => {
   it("serves unseen questions before any seen one", () => {

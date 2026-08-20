@@ -22,7 +22,10 @@ import {
   pickFreshOrder,
   type TopicSkillLevel,
 } from "@/lib/topic-skill"
-import { buildLastSeenMap } from "@/lib/question-selection"
+import {
+  balanceDataSufficiencyOrder,
+  buildLastSeenMap,
+} from "@/lib/question-selection"
 import { TOPIC_TO_SET } from "@/lib/topic-chapter-map"
 import { getUserState } from "@/lib/user-state"
 import { readSavedForReview } from "@/lib/spaced-review"
@@ -215,13 +218,17 @@ export default async function PracticeSessionPage({
   const adaptive = chapterTest
     ? pickAdaptiveOrder(playable, skill)
     : pickFreshOrder(playable, skill, lastSeenAtMs)
+  const delivered = balanceDataSufficiencyOrder(adaptive, {
+    lastSeenAt: lastSeenAtMs,
+    seed: [...slug].reduce((sum, char) => sum + char.charCodeAt(0), 0),
+  })
 
   return (
     <SessionClient
       slug={slug}
       topic={questions[0].topic}
       section={questions[0].section}
-      questions={adaptive}
+      questions={delivered}
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
       weakestTopic={weakestTopic ?? undefined}

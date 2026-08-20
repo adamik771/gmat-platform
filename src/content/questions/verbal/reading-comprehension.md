@@ -200,7 +200,7 @@ The correct answer is E.
 ---
 
 ### Q7
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Reading Comprehension
 **topic:** Inference
 

@@ -1122,6 +1122,93 @@ const DIFFICULTY_RANK: Record<Difficulty, number> = {
 }
 const CHAPTER_TEST_SLUG_RE = /^ch-(.+)-t(\d+)$/
 
+/**
+ * Chapter tests are calibration sets, not an exhaustive second copy of a
+ * topic drill. The historical DS bank is C-heavy, so dealing every eligible
+ * item straight through made "both statements together" the key on most of
+ * the first two tests. Draw a 30-item ladder in A-E rotation instead, aiming
+ * for ten per tier and filling a thin tier from the adjacent harder pools.
+ * The full bank remains available in the Data Sufficiency topic drill.
+ */
+function selectDataSufficiencyCalibrationPool(
+  pool: readonly ParsedQuestion[]
+): ParsedQuestion[] {
+  const letters = ["A", "B", "C", "D", "E"]
+  const difficulties = ["Beginner", "Intermediate", "Advanced"] as const
+  const available = new Map(
+    difficulties.map((difficulty) => [
+      difficulty,
+      pool.filter(
+        (q) => q.type === "Data Sufficiency" && q.difficulty === difficulty
+      ).length,
+    ])
+  )
+  const targets = new Map(
+    difficulties.map((difficulty) => [
+      difficulty,
+      Math.min(10, available.get(difficulty) ?? 0),
+    ])
+  )
+  let deficit = 30 - [...targets.values()].reduce((sum, count) => sum + count, 0)
+  const fillOrder = ["Intermediate", "Advanced", "Beginner"] as const
+  while (deficit > 0) {
+    let filled = false
+    for (const difficulty of fillOrder) {
+      const target = targets.get(difficulty) ?? 0
+      if (target >= (available.get(difficulty) ?? 0)) continue
+      targets.set(difficulty, target + 1)
+      deficit -= 1
+      filled = true
+      if (deficit === 0) break
+    }
+    if (!filled) break
+  }
+
+  const selected: ParsedQuestion[] = []
+  const globalAnswerCounts = new Map(letters.map((letter) => [letter, 0]))
+  for (const difficulty of difficulties) {
+    const buckets = new Map(
+      letters.map((letter) => [
+        letter,
+        pool.filter(
+          (q) =>
+            q.type === "Data Sufficiency" &&
+            q.difficulty === difficulty &&
+            q.correctAnswerLetter === letter
+        ),
+      ])
+    )
+    let cursor = 0
+    while (
+      selected.filter((q) => q.difficulty === difficulty).length <
+        (targets.get(difficulty) ?? 0) &&
+      [...buckets.values()].some((bucket) => bucket.length > 0)
+    ) {
+      let picked = false
+      const availableLetters = letters.filter(
+        (letter) => (buckets.get(letter)?.length ?? 0) > 0
+      )
+      const minimumCount = Math.min(
+        ...availableLetters.map((letter) => globalAnswerCounts.get(letter) ?? 0)
+      )
+      for (let step = 0; step < letters.length; step++) {
+        const index = (cursor + step) % letters.length
+        const letter = letters[index]
+        if ((globalAnswerCounts.get(letter) ?? 0) !== minimumCount) continue
+        const next = buckets.get(letter)?.shift()
+        if (!next) continue
+        selected.push(next)
+        globalAnswerCounts.set(letter, (globalAnswerCounts.get(letter) ?? 0) + 1)
+        cursor = (index + 1) % letters.length
+        picked = true
+        break
+      }
+      if (!picked) break
+    }
+  }
+  return selected
+}
+
 function estimatePracticeMinutes(questions: ParsedQuestion[]): number {
   const seconds = questions.reduce((sum, q) => sum + (q.estTimeSeconds ?? 90), 0)
   return Math.max(1, Math.ceil(seconds / 60))
@@ -1186,10 +1273,12 @@ export function getPracticeChapterGroups(): PracticeChapterGroup[] {
     if (!chapterSlug) chapterSlug = resolveChapterAssignment(q.setSlug, q.subtopic).chapter
     if (!chapterSlug || !chapterExists.has(chapterSlug) || isHidden(chapterSlug)) continue
     // DS questions authored in quant technique banks resolve to Quant chapters
-    // via BANK_RULES, which would deal DS into a Quant-branded practice test.
-    // On GMAT Focus, DS belongs only to DI surfaces — drop the assignment
-    // (no re-route: DI chapter tests keep drawing solely from the DI banks).
-    if (q.type === "Data Sufficiency" && sectionBySlug.get(chapterSlug) !== "DI") continue
+    // via BANK_RULES. On GMAT Focus, DS belongs only to DI surfaces: route all
+    // of them to the dedicated DS chapter instead of leaking them into Quant
+    // or silently stranding valid DI material.
+    if (q.type === "Data Sufficiency" && sectionBySlug.get(chapterSlug) !== "DI") {
+      chapterSlug = "data-sufficiency"
+    }
     const list = assigned.get(chapterSlug)
     if (list) list.push(q)
     else assigned.set(chapterSlug, [q])
@@ -1223,18 +1312,29 @@ export function getPracticeChapterGroups(): PracticeChapterGroup[] {
     // everything (a thin test beats no test).
     const MIN_TEST_POOL = 4
     const fresh = pool.filter((q) => !readerEmbedded.has(q.id))
-    const testPool = fresh.length >= MIN_TEST_POOL ? fresh : pool
+    const eligiblePool = fresh.length >= MIN_TEST_POOL ? fresh : pool
+    const testPool =
+      ch.slug === "data-sufficiency"
+        ? selectDataSufficiencyCalibrationPool(eligiblePool)
+        : eligiblePool
 
     // Order easy->hard; stable tiebreak by source file + question number.
     const sorted = [...testPool].sort((a, b) => {
       const d = DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty]
       if (d !== 0) return d
+      // The DS calibration selector already establishes an A-E rotation
+      // inside each tier. Preserve that stable order instead of restoring
+      // source-file order and clustering C keys again.
+      if (ch.slug === "data-sufficiency") return 0
       if (a.setSlug !== b.setSlug) return a.setSlug.localeCompare(b.setSlug)
       return a.number - b.number
     })
 
     // Choose N so no test exceeds the cap; prefer fewer, fuller tests.
-    const cap = TEST_CAPS[ch.section]
+    // DS uses three compact ten-question calibration sets so each can carry
+    // a meaningful spread of logical outcomes. A 15-item slice would merge
+    // tiers and recreate the C-heavy pattern this calibrated pool prevents.
+    const cap = ch.slug === "data-sufficiency" ? 10 : TEST_CAPS[ch.section]
     let n = Math.max(1, Math.round(sorted.length / cap))
     while (Math.ceil(sorted.length / n) > cap) n++
 

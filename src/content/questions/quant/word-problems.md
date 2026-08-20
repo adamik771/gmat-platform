@@ -303,7 +303,7 @@ The correct answer is B.
 ---
 
 ## Q11
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Mixture
 

@@ -77,6 +77,21 @@ describe("no Data Sufficiency on Quant surfaces", () => {
       const resolved = getQuestionsByIds(t.questionIds)
       expect(resolved.length).toBe(t.count)
       expect(resolved.every(isDS)).toBe(true)
+      const answerCounts = ["A", "B", "C", "D", "E"].map(
+        (letter) => resolved.filter((q) => q.correctAnswerLetter === letter).length
+      )
+      // A chapter test should not teach "guess C". Beginner DS currently has
+      // no E-keyed source item, so exact five-way equality is impossible; a
+      // three-item ceiling still keeps every available outcome competitive.
+      expect(Math.max(...answerCounts), t.id).toBeLessThanOrEqual(3)
+    }
+  })
+
+  it("DI mocks do not repeat a DS logical outcome while alternatives exist", () => {
+    for (const mockIndex of [0, 1, 2, 3]) {
+      const ds = pickMockQuestions("DI", undefined, undefined, mockIndex).filter(isDS)
+      const letters = ds.map((q) => q.correctAnswerLetter)
+      expect(new Set(letters).size).toBe(letters.length)
     }
   })
 

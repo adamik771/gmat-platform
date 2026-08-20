@@ -39,6 +39,45 @@ Each question is stored as a markdown block within a `.md` file under `src/conte
 | `related_reading` | **new — yes** | slug | Primary reading-chapter slug the explanation points back to (e.g., `reading-quant-04-algebra-and-equations`). For multi-chapter questions, list the most relevant single chapter. |
 | `hint_nudge`, `hint_strategy`, `hint_setup` | optional | text | Progressive hints (existing) |
 
+## Difficulty calibration and answer-pattern quality
+
+Difficulty is assigned from the reasoning required, not from surface length,
+jargon, large numbers, or a long explanation.
+
+| Tier | Minimum reasoning standard |
+|---|---|
+| `Easy` | One recognizable method or one direct passage lookup; distractors catch a single common misconception. |
+| `Medium` | Two connected reasoning moves, a meaningful translation, or a choice between plausible methods; at least two distractors survive a superficial read. |
+| `Hard` | Multiple dependent constraints or reasoning layers, a non-obvious inference or method switch, and plausible distractors tied to distinct expert-observed errors. Removing one key constraint should materially simplify the item. |
+
+A `Hard` label is not justified by longer prose, denser business context,
+tedious arithmetic, unfamiliar names, or an explanation that introduces
+complexity absent from the stem. When an item is a standard textbook template
+with direct substitution, label it `Medium` even if the arithmetic is long.
+
+Before adding or materially changing a batch:
+
+1. Blind-solve every proposed `Hard` item without seeing its key. Confirm one
+   uniquely defensible answer and record why the item requires top-tier
+   reasoning rather than ordinary execution.
+2. Review every distractor as a possible correct answer. A wrong option must
+   fail for a precise reason, not because it is vague, absurd, or off-topic.
+3. Measure answer-length leakage by type and tier. On five-choice Verbal items,
+   the correct option should be uniquely longest no more than 25% of the time,
+   and conspicuous length gaps should remain rare. Never pad the key while
+   leaving every distractor terse.
+4. Measure answer-key position and, for Data Sufficiency, logical-outcome
+   distribution. No DS outcome should become a default shortcut. Rebalancing
+   DS means authoring different sufficiency logic, never merely changing the
+   answer letter.
+5. Use official questions only as private calibration references. Do not copy,
+   translate, paraphrase, or scenario-swap any official stem, option set, or
+   explanation into this bank.
+
+The automated guardrails in `tests/question-quality-guardrails.test.ts` enforce
+the answer-length and DS-distribution ceilings. They are minimum safeguards,
+not a substitute for blind solving and editorial review.
+
 ## Subchapter slug convention
 
 Format: `{section_letter}{chapter}.{section}` where:

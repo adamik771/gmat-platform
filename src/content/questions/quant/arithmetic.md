@@ -316,7 +316,7 @@ The correct answer is C.
 ---
 
 ## Q12
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Ratios
 
