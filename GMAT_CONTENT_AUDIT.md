@@ -166,3 +166,63 @@ Changes applied:
 Still open: the larger item-by-item Advanced-tier re-review and source-level DS
 reauthoring. Delivery balancing removes the exploitable short-set pattern but
 does not make the authored bank itself statistically even.
+
+---
+
+## ADVANCED DIFFICULTY CALIBRATION — 2026-08-21
+
+This pass addressed the remaining high-confidence Quant and DI inflation in
+the Advanced tier. It used the established rubric in `QUESTION_TAXONOMY.md`:
+Advanced difficulty must come from multiple dependent constraints, a
+non-obvious inference, or a meaningful method switch. Length, jargon, routine
+calculation, and the presence of a familiar formula do not qualify by
+themselves.
+
+### Measurement and decisions
+
+- The starting bank contained 616 Advanced-labelled questions.
+- A full-bank structural screen identified 63 candidates whose explanations
+  described direct substitution, direct reading, a one-step identity, or a
+  similarly short path. Every changed item was then reviewed individually;
+  the screen was never used as an automatic relabeller.
+- 37 clear one-tier inflations were changed Hard -> Medium. The affected
+  patterns were direct sequence sums and quadratics, routine reciprocal and
+  nested-fraction arithmetic, repeated exponential-to-quadratic templates,
+  one-cycle remainder searches, direct closing-rate and equal-distance
+  average-speed templates, single-identity DS statements, direct chart/table
+  filtering, elementary probability complements, and basic TPA intersections.
+- Three newly authored multi-constraint questions were added at Hard:
+  `arithmetic-q125` (changing fraction bases), `arithmetic-q126` (sequential
+  allocation with a linked final constraint), and `backsolving-q53`
+  (three ticket classes, a ratio constraint, and a revenue constraint).
+- The resulting bank contains 582 Advanced questions. The same structural
+  screen now flags 29 rather than 63; the remaining non-Verbal flags are
+  genuinely layered on review. Most remaining candidates are passage-dependent
+  CR/RC items for which short stems and absent `fastest_path` metadata are not
+  evidence of low difficulty, so they were deliberately left unchanged.
+
+### Chapter-set protection
+
+Relabelled questions that occupied hard chapter-set slots were replaced in
+place, preserving set lengths and question positions for active users:
+
+- Fractions/Decimals: `arithmetic-q11/q66` -> new `q125/q126`.
+- Backsolving: `backsolving-q11` -> new `q53`.
+- Graphics Interpretation: direct CAGR `q14` -> trend-deviation `q94`.
+- Table Analysis: direct three-filter `q93` -> derived-metric plus threshold
+  `q53`.
+- Two-Part Analysis: elementary probability/intersection `q22/q34` ->
+  multi-phase work-rate `q61` and two-constraint production `q69`.
+
+The relabelled questions remain available in the general practice banks at
+their corrected Medium tier. No existing answer key changed. The bubble-chart
+item `graphics-interpretation-q47` also now says "option E (Product F)" in its
+explanation so the option letter cannot be confused with the product label.
+
+### Regression coverage
+
+`tests/question-difficulty-calibration.test.ts` locks all 37 reviewed labels,
+the three new Advanced items, the hard-set replacements, the Product F answer
+mapping, and a minimum Advanced-pool depth. Together with the existing answer-
+pattern guardrails, this prevents either difficulty inflation or accidental
+pool depletion from returning silently.

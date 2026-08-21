@@ -767,7 +767,7 @@ The correct answer is C.
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Comparison via Chained Percent Statements
 
@@ -2262,7 +2262,7 @@ The correct answer is B.
 ---
 
 ## Q76
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Ratio Allocation with Percent Changes
 

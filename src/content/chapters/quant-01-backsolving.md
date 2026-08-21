@@ -72,7 +72,7 @@ problem_sets:
       "725": 90
     question_ids:
       - backsolving-q10
-      - backsolving-q11
+      - backsolving-q53
       - backsolving-q24
       - backsolving-q25
       - backsolving-q26

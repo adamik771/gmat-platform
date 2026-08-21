@@ -509,7 +509,7 @@ The correct answer is E.
 ---
 
 ## Q14
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Graphics Interpretation
 **topic:** Line Graph
 
@@ -1859,7 +1859,7 @@ The correct answer is D.
 {"type":"bubble","title":"Products: sales volume vs. margin (bubble = total profit)","x":{"label":"Sales volume (K units)"},"y":{"label":"Profit margin (%)"},"data":[{"name":"A","x":50,"y":20,"z":10},{"name":"B","x":80,"y":15,"z":12},{"name":"C","x":30,"y":35,"z":10.5},{"name":"D","x":120,"y":10,"z":12},{"name":"E","x":40,"y":25,"z":10},{"name":"F","x":100,"y":18,"z":18}]}
 ```
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Graphics Interpretation
 **topic:** Reading Three-Variable Bubble Chart
 
@@ -1887,7 +1887,7 @@ Comparing all six values: 10, 12, 10.5, 12, 10, 18. The maximum is 18, which bel
 
 Product C carries the highest profit margin at 35%, yet its total monthly profit (bubble size 10.5) is among the lowest. Products B and D share the second-highest bubble size at 12, but neither approaches F's value of 18. The question asks specifically about total monthly profit, which is encoded in bubble size, and on that dimension F is unambiguous.
 
-The correct answer is E.
+The correct option is E (Product F).
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -3250,7 +3250,7 @@ The correct answer is C.
 {"type":"line","title":"New coffee shop openings by region (count)","x":{"label":"Year"},"y":{"label":"Openings"},"series":[{"key":"north","name":"North"},{"key":"south","name":"South"}],"data":[{"x":"2020","north":40,"south":24},{"x":"2021","north":52,"south":36},{"x":"2022","north":58,"south":54},{"x":"2023","north":61,"south":78},{"x":"2024","north":63,"south":99}]}
 ```
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Graphics Interpretation
 **topic:** Crossover Identification
 
@@ -3535,7 +3535,7 @@ The correct answer is C.
 {"type":"line","title":"Online course enrollment (thousands)","x":{"label":"Year"},"y":{"label":"Enrollment (K)"},"series":[{"key":"enrollment","name":"Enrollment"}],"data":[{"x":"2018","enrollment":50},{"x":"2019","enrollment":62},{"x":"2020","enrollment":88},{"x":"2021","enrollment":105},{"x":"2022","enrollment":130},{"x":"2023","enrollment":162}]}
 ```
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Graphics Interpretation
 **topic:** CAGR from Endpoints
 

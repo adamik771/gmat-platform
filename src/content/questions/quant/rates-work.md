@@ -828,7 +828,7 @@ The correct answer is D.
 ---
 
 ## Q22
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Rates — Two Trains, Closing Speed
 
@@ -2358,7 +2358,7 @@ The correct answer is D.
 ---
 
 ## Q67
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Rate Time Distance
 

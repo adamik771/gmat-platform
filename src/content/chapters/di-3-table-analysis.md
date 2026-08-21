@@ -129,7 +129,7 @@ problem_sets:
       - table-analysis-q4
       - table-analysis-q6
       - table-analysis-q10
-      - table-analysis-q93
+      - table-analysis-q53
       - table-analysis-q20
       - table-analysis-q33
       - table-analysis-q34

@@ -2563,7 +2563,7 @@ The correct answer is C.
 ---
 
 ## Q79
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Rate Distance
 
@@ -2617,7 +2617,7 @@ The correct answer is C.
 ---
 
 ## Q81
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Interest
 
@@ -2915,7 +2915,7 @@ The correct answer is D.
 ---
 
 ## Q92
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Rate Distance
 

@@ -1197,7 +1197,7 @@ The correct answers are Both odd = 3/10 and Sum even = 2/5.
 ---
 
 ## Q22
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Two-Part Analysis
 **topic:** Probability — Independent Trials
 
@@ -1803,7 +1803,7 @@ The correct answers are Can be Inferred = WFH employees have higher average prod
 ---
 
 ## Q34
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Two-Part Analysis
 **topic:** Quantitative — Exponential Growth and Decay
 
@@ -2851,7 +2851,7 @@ The correct answers are B (still water, km/h) = 18 and C (current, km/h) = 6.
 ---
 
 ## Q51
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Two-Part Analysis
 **topic:** Quantitative — Chinese Remainder Theorem / Number Theory
 

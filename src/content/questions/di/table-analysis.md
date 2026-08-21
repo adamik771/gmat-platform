@@ -3728,7 +3728,7 @@ The following table shows data for the five subscription plans of a software pro
 | Business   | 79                | 2,000       | 5,000        | 900             |
 | Enterprise | 149               | 600         | 20,000       | 400             |
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Table Analysis
 **topic:** Multi-Criterion Filtering
 
@@ -4204,7 +4204,7 @@ The correct answer is D.
 ---
 
 ## Q93
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Table Analysis
 **topic:** Multi-Condition Filtering
 

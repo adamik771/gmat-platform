@@ -1897,7 +1897,7 @@ The correct answer is E.
 ---
 
 ## Q57
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Standard Deviation
 

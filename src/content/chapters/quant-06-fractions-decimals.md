@@ -63,8 +63,8 @@ problem_sets:
       "685": 60
       "725": 80
     question_ids:
-      - arithmetic-q11
-      - arithmetic-q66
+      - arithmetic-q125
+      - arithmetic-q126
       - arithmetic-q67
       - arithmetic-q68
 ---

@@ -255,7 +255,7 @@ The correct answer is D.
 ---
 
 ## Q7
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Multi-Variable Recognition
 **subchapter:** q1.1.method
@@ -293,7 +293,7 @@ The correct answer is A.
 ---
 
 ## Q8
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Method Switching Under Pressure
 **subchapter:** q1.1.method

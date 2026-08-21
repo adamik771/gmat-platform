@@ -2777,7 +2777,7 @@ If |2x - 6| = 8, what is the sum of all possible values of x?
 ---
 
 ## Q107
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Sequences
 
@@ -2796,7 +2796,7 @@ In a geometric sequence, the first term is 3 and each term after the first is tw
 ---
 
 ## Q108
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics
 
@@ -2815,7 +2815,7 @@ If r and s are the two solutions of x² - 7x + 10 = 0, what is the value of 1/r 
 ---
 
 ## Q109
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Inequalities
 

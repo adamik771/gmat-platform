@@ -508,7 +508,7 @@ If x < 0, which of the following must be true?
 ---
 
 ## Q22
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Plugging In Numbers
 
@@ -688,7 +688,7 @@ Is x > y?
 ---
 
 ## Q34
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Plugging In Numbers
 

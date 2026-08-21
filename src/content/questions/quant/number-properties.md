@@ -752,7 +752,7 @@ The correct answer is C.
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Remainders — Chinese Remainder Setup
 
@@ -843,7 +843,7 @@ Because statement (2) alone is sufficient while statement (1) alone is not, the 
 ---
 
 ## Q28
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** LCM and GCD Identity
 
@@ -963,7 +963,7 @@ The correct answer is B.
 ---
 
 ## Q32
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Remainders — Reverse Engineering
 
@@ -2292,7 +2292,7 @@ If p is a prime number greater than 3, what is the remainder when p² is divided
 ---
 
 ## Q88
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Remainders
 
@@ -2428,7 +2428,7 @@ What is the units digit of 24¹⁷ × 33²¹ × 17¹³?
 ---
 
 ## Q95
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Factors and Multiples
 

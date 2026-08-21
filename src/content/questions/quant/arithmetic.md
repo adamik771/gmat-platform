@@ -30,8 +30,6 @@ Because the denominators are now identical, we combine the numerators: 6 + 5 - 4
 The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
----
-
 ## Q2
 **difficulty:** Easy
 **type:** Problem Solving
@@ -290,7 +288,7 @@ The correct answer is D.
 ---
 
 ## Q11
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Fractions
 
@@ -1894,7 +1892,7 @@ Which of the following correctly expresses 7/40 as both a decimal and a percent?
 ---
 
 ## Q66
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Fractions
 
@@ -3266,4 +3264,80 @@ Which of the following fractions has the greatest value?
 
 **answer:** E
 **explanation:** To compare fractions, put them on a common footing; cross-multiplying pairs or converting to a common denominator both work, but here comparing each to a benchmark and then head-to-head is fastest. As decimals: 7/12 approximately 0.583, 11/18 approximately 0.611, 13/21 approximately 0.619, 5/8 = 0.625, and 9/14 approximately 0.643. The largest is 9/14. To confirm the top two by cross-multiplication, compare 5/8 and 9/14: 5 x 14 = 70 while 9 x 8 = 72, and since 72 > 70, 9/14 > 5/8. (Choice D, 5/8, is the second largest and a common trap; Choice A, 7/12, is actually the smallest.) The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q125
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractions
+
+A tank is initially 3/5 full. After 90 liters are removed, the tank is 3/8 full. Water equal to 1/4 of the tank's empty space is then added. What fraction of the tank is full after the water is added?
+
+- A) 3/8
+- B) 7/16
+- C) 17/32
+- D) 9/16
+- E) 5/8
+
+**answer:** C
+**fastest_path:** The 90-liter removal changes the level by 3/5 - 3/8 = 9/40 of capacity, so capacity is 400 liters. At 3/8 full the tank holds 150 liters and has 250 liters of empty space; adding one quarter of that space adds 62.5 liters. The final fraction is 212.5/400 = 17/32.
+**common_trap:** "One quarter of the empty space" is based on the 250 liters empty after the removal, not on the tank's full capacity and not on the 150 liters still inside.
+**takeaway:** When a later percentage uses a changing reference quantity, calculate that new base explicitly before applying the percentage.
+**explanation:** Let C be the tank's capacity in liters. Removing 90 liters changes the level from 3/5 of C to 3/8 of C, so
+
+(3/5 - 3/8)C = 90.
+
+The difference is 24/40 - 15/40 = 9/40, giving (9/40)C = 90 and C = 400.
+
+After the removal, the tank contains (3/8)(400) = 150 liters. Its empty space is therefore 400 - 150 = 250 liters. The amount added is 1/4 of that empty space, or (1/4)(250) = 62.5 liters.
+
+The tank then contains 150 + 62.5 = 212.5 liters. As a fraction of capacity,
+
+212.5/400 = 425/800 = 17/32.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q126
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractions
+
+Three partners divide a fund. Partner A receives 1/3 of the fund. Partner B receives 2/5 of the amount remaining after A's share, plus an additional $120. Partner C receives the rest. If C's share is 3/4 of B's share, what is the total value of the fund?
+
+- A) $900
+- B) $960
+- C) $1,050
+- D) $1,120
+- E) $1,260
+
+**answer:** C
+**fastest_path:** Let the fund be T. After A, 2T/3 remains. Then B = 4T/15 + 120 and C = 2T/5 - 120. Set C = (3/4)B and solve T/5 = 210, so T = 1,050.
+**common_trap:** B receives 2/5 of the remainder, not 2/5 of the original fund; C is whatever remains after both B's fractional share and the extra $120.
+**takeaway:** In sequential allocation problems, express every share from one common total before applying the final relationship.
+**explanation:** Let T be the total value of the fund. Partner A receives T/3, leaving 2T/3.
+
+Partner B receives 2/5 of that remainder plus $120:
+
+B = (2/5)(2T/3) + 120 = 4T/15 + 120.
+
+Partner C receives what remains after A and B:
+
+C = 2T/3 - (4T/15 + 120) = 10T/15 - 4T/15 - 120 = 2T/5 - 120.
+
+The condition C = (3/4)B gives
+
+2T/5 - 120 = (3/4)(4T/15 + 120) = T/5 + 90.
+
+Subtracting T/5 from both sides and adding 120 gives T/5 = 210, so T = 1,050.
+
+Check: A receives $350, B receives (2/5)($700) + $120 = $400, and C receives $300. The shares total $1,050, and $300 is 3/4 of $400.
+
+The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
