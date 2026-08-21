@@ -13,6 +13,7 @@ import {
   ALL_GRADUATE_PROGRAMS,
   type GraduateProgram,
   type ProgramType,
+  type ScoreStatistic,
 } from "@/lib/graduate-programs"
 import type { Region } from "@/lib/mba-schools"
 import LeadCapture from "@/components/marketing/LeadCapture"
@@ -24,6 +25,29 @@ const PROGRAM_TYPES: Array<ProgramType | "All"> = [
   "MiM",
   "Finance master's",
 ]
+
+const SCORE_EVIDENCE_ORDER: Record<ScoreStatistic, number> = {
+  "Approximate median": 0,
+  Median: 0,
+  Average: 0,
+  "Observed range": 1,
+  "Recommended range": 2,
+  Minimum: 3,
+  "Not published": 4,
+}
+
+function compareProgrammeEvidence(a: GraduateProgram, b: GraduateProgram) {
+  const evidenceDifference =
+    SCORE_EVIDENCE_ORDER[a.scoreStatistic] -
+    SCORE_EVIDENCE_ORDER[b.scoreStatistic]
+
+  if (evidenceDifference !== 0) return evidenceDifference
+  return (b.focusSort ?? 0) - (a.focusSort ?? 0)
+}
+
+function isConcordanceFigure(program: GraduateProgram) {
+  return program.focusScoreLabel.includes("concordance")
+}
 
 function filterPrograms(programType: ProgramType | "All", region: Region | "All") {
   return ALL_GRADUATE_PROGRAMS.filter(
@@ -207,8 +231,9 @@ export default function ScoreBySchoolClient() {
           </h2>
           <p className="text-[14px] text-[#C0C0C0] leading-relaxed mb-5 max-w-xl">
             Select any row to view its evidence and admissions context above.
-            Programmes with published scores appear first, ordered by their
-            current-GMAT figure or approximate equivalent.
+            Rows are grouped by evidence type, not ranked as admissions
+            targets. The ≈ symbol marks a comparison derived from GMAC&apos;s July
+            2025 concordance table rather than a score published by the school.
           </p>
           <div
             className="overflow-x-auto rounded-xl border border-white/[0.08]"
@@ -221,19 +246,19 @@ export default function ScoreBySchoolClient() {
                     Programme
                   </th>
                   <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
-                    Current GMAT
+                    Current-GMAT figure
                   </th>
                   <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
-                    Published old score
+                    10th Edition figure
                   </th>
                   <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold hidden sm:table-cell">
-                    Class size
+                    Cohort / intake
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {[...filtered]
-                  .sort((a, b) => (b.focusSort ?? 0) - (a.focusSort ?? 0))
+                  .sort(compareProgrammeEvidence)
                   .map((program, i) => {
                     const isSelected = program.slug === selectedSlug
                     return (
@@ -263,10 +288,26 @@ export default function ScoreBySchoolClient() {
                           </span>
                         </td>
                         <td className="py-3 px-4 text-right tabular-nums text-[#C0C0C0]">
-                          {program.focusEquivalent ?? "—"}
+                          <span className="block">
+                            {program.focusEquivalent == null
+                              ? "—"
+                              : `${isConcordanceFigure(program) ? "≈ " : ""}${program.focusEquivalent}`}
+                          </span>
+                          <span className="block mt-1 text-[10px] leading-tight text-[#666666]">
+                            {program.scoreStatistic === "Not published"
+                              ? "No score published"
+                              : isConcordanceFigure(program)
+                                ? `${program.scoreStatistic} · GMAC comparison`
+                                : `${program.scoreStatistic} · school-published`}
+                          </span>
                         </td>
                         <td className="py-3 px-4 text-right tabular-nums text-[#888888]">
-                          {program.legacyScore ?? "—"}
+                          <span className="block">{program.legacyScore ?? "—"}</span>
+                          {program.legacyScore != null && (
+                            <span className="block mt-1 text-[10px] leading-tight text-[#555555]">
+                              {program.scoreStatistic}
+                            </span>
+                          )}
                         </td>
                         <td className="py-3 px-4 text-right tabular-nums text-[#888888] hidden sm:table-cell">
                           {program.classSize ?? "—"}
@@ -393,22 +434,34 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
         {/* Score grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <ScoreCell
-            label="Current GMAT figure"
+            label={
+              isConcordanceFigure(program)
+                ? "Current-GMAT comparison"
+                : "Published current GMAT"
+            }
             sub={
               program.focusEquivalent == null
                 ? "No class benchmark published"
                 : program.focusScoreLabel
             }
-            value={program.focusEquivalent}
+            value={
+              program.focusEquivalent != null && isConcordanceFigure(program)
+                ? `≈ ${program.focusEquivalent}`
+                : program.focusEquivalent
+            }
             accent="#C9A84C"
           />
           <ScoreCell
             label={
               program.legacyScore == null
-                ? "Published old GMAT score"
-                : `Published ${program.scoreStatistic.toLowerCase()}`
+                ? "10th Edition figure"
+                : `10th Edition ${program.scoreStatistic.toLowerCase()}`
             }
-            sub="School-reported old GMAT scale"
+            sub={
+              program.legacyScore == null
+                ? "Not published by the school"
+                : "School-published figure"
+            }
             value={program.legacyScore}
             accent="#888888"
           />
@@ -446,9 +499,10 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
             className="inline w-3 h-3 mr-1"
             style={{ color: "#C9A84C" }}
           />
-          Published class statistics describe a cohort, not an admissions
-          cutoff. Requirements and score distributions change; verify the
-          current policy before applying.
+          Averages and medians describe a cohort. Minimums, observed ranges,
+          and recommended ranges have the narrower meaning stated above; none
+          is a guaranteed admissions cutoff. Verify the current policy before
+          applying.
         </p>
         {program.sourceUrl != null && program.sourceLabel != null && (
           <a
