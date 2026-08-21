@@ -14,6 +14,10 @@ const navLinks = [
   { label: "About", href: "/about" },
 ]
 
+const navigationFont = {
+  fontFamily: "var(--font-inter), ui-sans-serif, system-ui, sans-serif",
+} as const
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
@@ -39,29 +43,39 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+          <div
+            className="hidden lg:flex items-center gap-7 xl:gap-9"
+            style={navigationFont}
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[13px] text-[#8B887F] hover:text-[#F0F0F0] transition-colors duration-150"
+                className="group relative py-2 text-[15px] leading-none font-medium text-[#AAA69C] hover:text-[#F0F0F0] transition-colors duration-150"
               >
                 {link.label}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-[#C9A84C] transition-transform duration-150 group-hover:scale-x-100"
+                />
               </Link>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div
+            className="hidden lg:flex items-center gap-5"
+            style={navigationFont}
+          >
             <Link
               href="/login"
-              className="text-[13px] text-[#8B887F] hover:text-[#F0F0F0] transition-colors"
+              className="text-[14px] font-medium text-[#AAA69C] hover:text-[#F0F0F0] transition-colors"
             >
               Sign in
             </Link>
             <Link
               href="/signup"
-              className="px-4 py-2.5 rounded-[4px] text-[13px] font-semibold transition-colors duration-150 hover:bg-[#D5B765]"
+              className="px-4 py-2.5 rounded-[4px] text-[14px] font-semibold transition-colors duration-150 hover:bg-[#D5B765]"
               style={{
                 backgroundColor: "#C9A84C",
                 color: "#0A0A0A",
@@ -103,31 +117,34 @@ export default function Navbar() {
                   </span>
                 </Link>
 
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1" style={navigationFont}>
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="px-3 py-3 rounded-[4px] text-[13px] text-[#888888] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+                      className="px-3 py-3.5 rounded-[4px] text-[15px] font-medium text-[#AAA69C] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
                     >
                       {link.label}
                     </Link>
                   ))}
                 </div>
 
-                <div className="mt-auto flex flex-col gap-3">
+                <div
+                  className="mt-auto flex flex-col gap-3"
+                  style={navigationFont}
+                >
                   <Link
                     href="/login"
                     onClick={() => setOpen(false)}
-                    className="text-center px-4 py-2.5 rounded-[4px] text-[13px] text-[#888888] border border-white/[0.08] hover:text-[#F0F0F0] transition-colors"
+                    className="text-center px-4 py-2.5 rounded-[4px] text-[14px] font-medium text-[#AAA69C] border border-white/[0.08] hover:text-[#F0F0F0] transition-colors"
                   >
                     Sign in
                   </Link>
                   <Link
                     href="/signup"
                     onClick={() => setOpen(false)}
-                    className="text-center px-4 py-2.5 rounded-[4px] text-[13px] font-semibold hover:bg-[#D5B765] transition-colors"
+                    className="text-center px-4 py-2.5 rounded-[4px] text-[14px] font-semibold hover:bg-[#D5B765] transition-colors"
                     style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                   >
                     Start trial
