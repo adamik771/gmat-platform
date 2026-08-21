@@ -35,6 +35,25 @@ describe("graduate programme score explorer", () => {
     expect(oxford?.focusScoreLabel).toContain("concordance")
   })
 
+  it("does not round aggregate old-GMAT statistics to a single score tick", () => {
+    const bySlug = new Map(
+      ALL_GRADUATE_PROGRAMS.map((program) => [program.slug, program]),
+    )
+
+    expect(bySlug.get("oxford-msc-financial-economics")?.focusEquivalent).toBe(
+      "685-715",
+    )
+    expect(bySlug.get("hec-master-international-finance")?.focusEquivalent).toBe(
+      "655-675",
+    )
+    expect(bySlug.get("lbs-masters-financial-analysis")?.focusEquivalent).toBe(
+      "645-665",
+    )
+    expect(bySlug.get("imperial-msc-finance")?.focusEquivalent).toBe(
+      "585-615",
+    )
+  })
+
   it("keeps admissions thresholds and ranges labelled as signals, not averages", () => {
     const sse = ALL_GRADUATE_PROGRAMS.find(
       (program) => program.slug === "sse-msc-finance",
@@ -97,5 +116,7 @@ describe("graduate programme score explorer", () => {
     expect(combined).toContain("my target programme?")
     expect(combined).not.toContain("Median GMAT scores for 20+ top MBA programs")
     expect(combined).not.toContain("maps to roughly the 80th percentile")
+    expect(combined).toContain("Rows are grouped by evidence type")
+    expect(combined).toContain("GMAC comparison")
   })
 })

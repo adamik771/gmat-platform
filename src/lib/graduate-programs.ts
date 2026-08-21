@@ -33,10 +33,20 @@ export interface GraduateProgram {
 }
 
 function currentEquivalent(oldScore: number) {
-  const result = convertOldToFocus(oldScore)
+  // Published cohort averages and medians are not always valid individual
+  // 10th Edition score ticks (for example, 703 or 715). Looking up only the
+  // nearest tick creates a falsely narrow range, so include both adjacent
+  // official GMAC concordance rows when the statistic falls between ticks.
+  const lowerTick = Math.floor(oldScore / 10) * 10
+  const upperTick = Math.ceil(oldScore / 10) * 10
+  const ticks = lowerTick === upperTick ? [lowerTick] : [lowerTick, upperTick]
+  const equivalents = [
+    ...new Set(ticks.flatMap((tick) => convertOldToFocus(tick).equivalents)),
+  ].sort((a, b) => a - b)
+
   return {
-    display: formatScoreRange(result.minEquivalent, result.maxEquivalent),
-    sort: result.representativeEquivalent,
+    display: formatScoreRange(equivalents[0], equivalents[equivalents.length - 1]),
+    sort: equivalents[Math.floor((equivalents.length - 1) / 2)],
   }
 }
 
@@ -93,7 +103,7 @@ function scoredProgram(
           (typeof publishedFocusScore === "number" ? publishedFocusScore : null)),
     focusScoreLabel:
       publishedFocusScore == null
-        ? "Approximate official concordance"
+        ? "GMAC concordance range (July 2025)"
         : "School-published current GMAT figure",
     competitiveGMAT: null,
     competitiveFocus: null,
