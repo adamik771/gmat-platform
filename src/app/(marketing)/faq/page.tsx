@@ -32,7 +32,7 @@ const categories: FAQCategory[] = [
       {
         question: "Who is Zakarian GMAT designed for?",
         answer:
-          "This system is built for serious MBA candidates who want a structured, data-driven approach — not a content library to wade through. It's especially effective for working professionals on a 12-16 week timeline, non-native English speakers, and people without a technical background who struggle with Quant.",
+          "This system is built for serious MBA and business master's candidates, including applicants to MiM, Master in Finance, Banking and Finance, Business Analytics, and related graduate business programmes. It is for candidates who want a structured, data-driven approach — not a content library to wade through — and is especially attentive to working professionals, non-native English speakers, and people without a technical background who struggle with Quant.",
       },
       {
         question: "Do I need a math background?",

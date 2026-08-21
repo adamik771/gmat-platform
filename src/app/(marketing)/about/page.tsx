@@ -8,7 +8,7 @@ import Breadcrumbs from "@/components/seo/Breadcrumbs"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The founder narrative behind Zakarian GMAT. How Adam went from 565 to 735 (top 1%) on the GMAT Focus Edition as a non-native English speaker — and the system that came out of it.",
+    "The founder narrative behind Zakarian GMAT: how Adam went from 565 to 735 (top 1%) as a non-native English speaker before joining the Master in Banking and Finance programme at HSG.",
   alternates: { canonical: "/about" },
 }
 
@@ -78,10 +78,11 @@ export default function AboutPage() {
             </span>
           </h1>
           <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
-            I&apos;m Adam Zakarian. My first GMAT diagnostic came back 565 —
-            56th percentile. I&apos;m not a native English speaker. Eight
-            months later I scored 735 — top 1% of test-takers — on the GMAT
-            Focus Edition. This is how.
+            I&apos;m Adam Zakarian, now studying in the Master in Banking and
+            Finance programme at the University of St.Gallen (HSG). My first
+            GMAT diagnostic came back 565 — 56th percentile. I&apos;m not a native
+            English speaker. Eight months later I scored 735 — top 1% of
+            test-takers — on the GMAT Focus Edition. This is how.
           </p>
         </div>
       </section>
