@@ -109,7 +109,7 @@ const categories: FAQCategory[] = [
       {
         question: "How does the GMAT Focus 205-805 scale compare to my old GMAT score?",
         answer:
-          "The two scales are not directly comparable — GMAC deliberately offset them. Roughly: Focus 705 ≈ Old 730, Focus 695 ≈ Old 720, Focus 645 ≈ Old 680. Use the score converter at /score-converter for any specific score.",
+          "The two scales are not directly comparable, and GMAC's official table often links one score to a range. In the July 2025 table, Focus 705 links to old 750, Focus 695 links to old 740-750, and Focus 645 links to old 690-700. Use the score converter for the complete official lookup.",
       },
     ],
   },

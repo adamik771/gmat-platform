@@ -419,8 +419,8 @@ export default function PostPage() {
             roughly the 87th percentile</Link>
             , the same competitive tier a 700 occupied on the old GMAT, which is
             why people call it &ldquo;the new 700.&rdquo; That is a percentile
-            equivalence, not a score one &mdash; by the score-scale concordance a
-            645 Focus converts to about 680 old, which you can check on the{" "}
+            shorthand, not an exact identity &mdash; GMAC&apos;s current concordance
+            links 645 to an old-score range of 690-700, which you can check on the{" "}
             <Link href="/score-converter">score converter</Link>. The practical
             point: Graphics Interpretation is where the most avoidable Data
             Insights points hide. These are not reasoning misses you have to

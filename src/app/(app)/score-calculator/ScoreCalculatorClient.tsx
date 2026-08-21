@@ -27,8 +27,9 @@ const clampSection = (n: number) => {
     : 75
 }
 
-/** 1 → "1st", 2 → "2nd", 3 → "3rd", 11–13 → "th", else "th". */
+/** Format integer or one-decimal percentile values for display. */
 function ordinal(n: number): string {
+  if (!Number.isInteger(n)) return `${n.toFixed(1)}th`
   const v = n % 100
   if (v >= 11 && v <= 13) return `${n}th`
   switch (n % 10) {
@@ -70,7 +71,7 @@ export default function ScoreCalculatorClient() {
   }
 
   const total = sectionScoresToTotal(scores.quant, scores.verbal, scores.di)
-  // 735+ is the 100th-percentile band per the GMAT Focus tables — show it.
+  // Use the current official GMAC total-score percentile table.
   const pct = totalPercentile(total)
 
   return (
