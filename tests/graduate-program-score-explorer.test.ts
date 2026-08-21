@@ -16,10 +16,40 @@ describe("graduate programme score explorer", () => {
       ALL_GRADUATE_PROGRAMS.filter(
         (program) => program.programType === "Finance master's",
       ).length,
-    ).toBeGreaterThanOrEqual(4)
+    ).toBeGreaterThanOrEqual(13)
     expect(
       ALL_GRADUATE_PROGRAMS.filter((program) => program.programType === "MiM").length,
     ).toBeGreaterThanOrEqual(3)
+  })
+
+  it("distinguishes published current-GMAT figures from concordance estimates", () => {
+    const esade = ALL_GRADUATE_PROGRAMS.find(
+      (program) => program.slug === "esade-global-masters-finance",
+    )
+    const oxford = ALL_GRADUATE_PROGRAMS.find(
+      (program) => program.slug === "oxford-msc-financial-economics",
+    )
+
+    expect(esade?.focusEquivalent).toBe("615")
+    expect(esade?.focusScoreLabel).toContain("School-published")
+    expect(oxford?.focusScoreLabel).toContain("concordance")
+  })
+
+  it("keeps admissions thresholds and ranges labelled as signals, not averages", () => {
+    const sse = ALL_GRADUATE_PROGRAMS.find(
+      (program) => program.slug === "sse-msc-finance",
+    )
+    const bocconi = ALL_GRADUATE_PROGRAMS.find(
+      (program) => program.slug === "bocconi-mafinrisk",
+    )
+    const ie = ALL_GRADUATE_PROGRAMS.find(
+      (program) => program.slug === "ie-master-finance",
+    )
+
+    expect(sse?.scoreStatistic).toBe("Minimum")
+    expect(bocconi?.scoreStatistic).toBe("Observed range")
+    expect(ie?.scoreStatistic).toBe("Recommended range")
+    expect(bocconi?.focusEquivalent).toBe("595–755")
   })
 
   it("requires official sources for every added business master's record", () => {
@@ -69,4 +99,3 @@ describe("graduate programme score explorer", () => {
     expect(combined).not.toContain("maps to roughly the 80th percentile")
   })
 })
-

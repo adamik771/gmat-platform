@@ -208,7 +208,7 @@ export default function ScoreBySchoolClient() {
           <p className="text-[14px] text-[#C0C0C0] leading-relaxed mb-5 max-w-xl">
             Select any row to view its evidence and admissions context above.
             Programmes with published scores appear first, ordered by their
-            approximate current-score equivalent.
+            current-GMAT figure or approximate equivalent.
           </p>
           <div
             className="overflow-x-auto rounded-xl border border-white/[0.08]"
@@ -221,7 +221,7 @@ export default function ScoreBySchoolClient() {
                     Programme
                   </th>
                   <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
-                    Current equivalent
+                    Current GMAT
                   </th>
                   <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
                     Published old score
@@ -393,19 +393,19 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
         {/* Score grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <ScoreCell
-            label="Current GMAT equivalent"
+            label="Current GMAT figure"
             sub={
               program.focusEquivalent == null
                 ? "No class benchmark published"
-                : "Approximate official concordance"
+                : program.focusScoreLabel
             }
             value={program.focusEquivalent}
             accent="#C9A84C"
           />
           <ScoreCell
             label={
-              program.scoreStatistic === "Not published"
-                ? "Published class score"
+              program.legacyScore == null
+                ? "Published old GMAT score"
                 : `Published ${program.scoreStatistic.toLowerCase()}`
             }
             sub="School-reported old GMAT scale"
