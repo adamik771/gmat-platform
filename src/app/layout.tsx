@@ -39,7 +39,16 @@ export const metadata: Metadata = {
   },
   description:
     "The structured GMAT prep system that took Adam from 565 to 735. Built for ambitious students who don't have time for guesswork.",
-  keywords: ["GMAT", "GMAT prep", "MBA", "score improvement", "test prep"],
+  keywords: [
+    "GMAT",
+    "GMAT prep",
+    "MBA",
+    "MiM",
+    "Master in Finance",
+    "business master's",
+    "score improvement",
+    "test prep",
+  ],
   authors: [{ name: "Adam Zakarian" }],
   creator: "Adam Zakarian",
   // OpenGraph — shared-link card defaults. Deliberately NO url/title/

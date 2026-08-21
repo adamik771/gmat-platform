@@ -100,7 +100,7 @@ const faqItems = [
   {
     question: "Who is Zakarian GMAT for?",
     answer:
-      "It is built for ambitious MBA and MiM candidates who want a structured, data-driven preparation system rather than a large, unsequenced video library. It is particularly attentive to the problems faced by non-native English speakers and students without technical backgrounds.",
+      "It is built for ambitious MBA and business master's candidates, including MiM, Master in Finance, and Banking and Finance applicants, who want a structured, data-driven preparation system rather than a large, unsequenced video library. It is particularly attentive to the problems faced by non-native English speakers and students without technical backgrounds.",
   },
   {
     question: "Do I need a strong mathematics background?",
@@ -130,7 +130,9 @@ export default function HomePage() {
 
       <section className="editorial-hero">
         <div className="editorial-hero__copy">
-          <p className="editorial-kicker">A complete preparation system for the GMAT</p>
+          <p className="editorial-kicker">
+            GMAT preparation for MBA and business master&apos;s candidates
+          </p>
           <h1>Zakarian GMAT</h1>
           <p className="editorial-hero__lede">
             A serious study environment for candidates who want clear direction,
@@ -244,7 +246,8 @@ export default function HomePage() {
           <p>
             Adam Zakarian built the original system to solve his own preparation:
             too much material, too little sequencing, and weak feedback after a mistake.
-            Over eight months, his score moved from 565 to 735.
+            Over eight months, his score moved from 565 to 735. He now studies in the
+            Master in Banking and Finance programme at the University of St.Gallen (HSG).
           </p>
           <p>
             Zakarian GMAT turns that working system into a platform: the curriculum,
