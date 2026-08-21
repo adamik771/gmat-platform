@@ -4,29 +4,51 @@ import { useMemo, useState } from "react"
 import Link from "next/link"
 import {
   ArrowRight,
+  ExternalLink,
   GraduationCap,
   Sparkles,
   TrendingUp,
 } from "lucide-react"
-import { ALL_SCHOOLS, type MbaSchool, type Region } from "@/lib/mba-schools"
+import {
+  ALL_GRADUATE_PROGRAMS,
+  type GraduateProgram,
+  type ProgramType,
+} from "@/lib/graduate-programs"
+import type { Region } from "@/lib/mba-schools"
 import LeadCapture from "@/components/marketing/LeadCapture"
 
 const REGIONS: Array<Region | "All"> = ["All", "USA", "Europe", "Asia"]
+const PROGRAM_TYPES: Array<ProgramType | "All"> = [
+  "All",
+  "MBA",
+  "MiM",
+  "Finance master's",
+]
+
+function filterPrograms(programType: ProgramType | "All", region: Region | "All") {
+  return ALL_GRADUATE_PROGRAMS.filter(
+    (program) =>
+      (programType === "All" || program.programType === programType) &&
+      (region === "All" || program.region === region),
+  )
+}
 
 export default function ScoreBySchoolClient() {
   const [region, setRegion] = useState<Region | "All">("All")
-  const [selectedSlug, setSelectedSlug] = useState<string>(ALL_SCHOOLS[0].slug)
+  const [programType, setProgramType] = useState<ProgramType | "All">("All")
+  const [selectedSlug, setSelectedSlug] = useState<string>(
+    ALL_GRADUATE_PROGRAMS[0].slug,
+  )
 
   const filtered = useMemo(
-    () =>
-      region === "All"
-        ? ALL_SCHOOLS
-        : ALL_SCHOOLS.filter((s) => s.region === region),
-    [region],
+    () => filterPrograms(programType, region),
+    [programType, region],
   )
 
   const selected = useMemo(
-    () => ALL_SCHOOLS.find((s) => s.slug === selectedSlug) ?? ALL_SCHOOLS[0],
+    () =>
+      ALL_GRADUATE_PROGRAMS.find((program) => program.slug === selectedSlug) ??
+      ALL_GRADUATE_PROGRAMS[0],
     [selectedSlug],
   )
 
@@ -46,16 +68,57 @@ export default function ScoreBySchoolClient() {
           <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
             What GMAT score do I need for{" "}
             <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              my dream school?
+              my target programme?
             </span>
           </h1>
           <p className="text-[16px] text-[#C0C0C0] leading-relaxed max-w-2xl">
-            Median GMAT scores for 20+ top MBA programs, on both the
-            legacy 200&ndash;800 and the new Focus 205&ndash;805 scales,
-            with a competitive band that maps to roughly the 80th
-            percentile of admitted applicants.
+            Published class averages, medians, and admissions signals for
+            leading MBA, MiM, and finance master&apos;s programmes. When a
+            school reports the old GMAT scale, the current-score figure is an
+            approximate official-concordance equivalent, not a new admissions
+            cutoff.
           </p>
         </header>
+
+        {/* Programme type filter */}
+        <div className="mb-5">
+          <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2">
+            Programme type
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {PROGRAM_TYPES.map((type) => (
+              <button
+                key={type}
+                type="button"
+                onClick={() => {
+                  const sameRegion = filterPrograms(type, region)
+                  const nextRegion = sameRegion.length > 0 ? region : "All"
+                  const nextPrograms = filterPrograms(type, nextRegion)
+                  setProgramType(type)
+                  setRegion(nextRegion)
+                  if (!nextPrograms.some((program) => program.slug === selectedSlug)) {
+                    setSelectedSlug(nextPrograms[0].slug)
+                  }
+                }}
+                aria-pressed={programType === type}
+                className="px-3 py-1.5 rounded-full text-[12px] font-semibold border transition-all"
+                style={{
+                  borderColor:
+                    programType === type
+                      ? "rgba(201,168,76,0.4)"
+                      : "rgba(255,255,255,0.08)",
+                  backgroundColor:
+                    programType === type
+                      ? "rgba(201,168,76,0.08)"
+                      : "#0D0D0D",
+                  color: programType === type ? "#C9A84C" : "#888888",
+                }}
+              >
+                {type}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Region filter */}
         <div className="mb-5">
@@ -69,16 +132,13 @@ export default function ScoreBySchoolClient() {
                 type="button"
                 onClick={() => {
                   setRegion(r)
-                  // If the currently selected school isn't in the new
-                  // filter, default to the first one that is.
-                  const list =
-                    r === "All"
-                      ? ALL_SCHOOLS
-                      : ALL_SCHOOLS.filter((s) => s.region === r)
-                  if (!list.find((s) => s.slug === selectedSlug)) {
+                  const list = filterPrograms(programType, r)
+                  if (!list.some((program) => program.slug === selectedSlug)) {
                     setSelectedSlug(list[0].slug)
                   }
                 }}
+                disabled={filterPrograms(programType, r).length === 0}
+                aria-pressed={region === r}
                 className="px-3 py-1.5 rounded-full text-[12px] font-semibold uppercase tracking-[0.15em] border transition-all"
                 style={{
                   borderColor:
@@ -90,6 +150,7 @@ export default function ScoreBySchoolClient() {
                       ? "rgba(201,168,76,0.08)"
                       : "#0D0D0D",
                   color: region === r ? "#C9A84C" : "#888888",
+                  opacity: filterPrograms(programType, r).length === 0 ? 0.35 : 1,
                 }}
               >
                 {r}
@@ -104,7 +165,7 @@ export default function ScoreBySchoolClient() {
             htmlFor="school-select"
             className="block text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2"
           >
-            Pick a school
+            Pick a programme
           </label>
           <select
             id="school-select"
@@ -119,30 +180,35 @@ export default function ScoreBySchoolClient() {
               paddingRight: "2.5rem",
             }}
           >
-            {filtered.map((s) => (
-              <option key={s.slug} value={s.slug} className="bg-[#0A0A0A]">
-                {s.name} — {s.location}
+            {filtered.map((program) => (
+              <option
+                key={program.slug}
+                value={program.slug}
+                className="bg-[#0A0A0A]"
+              >
+                {program.schoolName} — {program.programName}
               </option>
             ))}
           </select>
         </div>
 
         {/* Detail card */}
-        <SchoolCard school={selected} />
+        <ProgramCard program={selected} />
 
         {/* Comparison table — quick visual scan of all matching schools */}
         <div className="mt-12">
           <h2 className="font-display text-xl font-semibold text-[#F0F0F0] tracking-tight mb-3">
-            All {filtered.length} schools{" "}
-            {region !== "All" && (
+            All {filtered.length} programmes{" "}
+            {(programType !== "All" || region !== "All") && (
               <span className="text-[#888888] text-base font-normal">
-                ({region})
+                ({[programType, region].filter((value) => value !== "All").join(" · ")})
               </span>
             )}
           </h2>
           <p className="text-[14px] text-[#C0C0C0] leading-relaxed mb-5 max-w-xl">
-            Click any row to view its detail card above. Sorted by
-            approximate Focus median, descending.
+            Select any row to view its evidence and admissions context above.
+            Programmes with published scores appear first, ordered by their
+            approximate current-score equivalent.
           </p>
           <div
             className="overflow-x-auto rounded-xl border border-white/[0.08]"
@@ -152,13 +218,13 @@ export default function ScoreBySchoolClient() {
               <thead>
                 <tr style={{ backgroundColor: "#0F0F0F" }}>
                   <th className="py-3 px-4 text-left text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
-                    School
+                    Programme
                   </th>
                   <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
-                    Focus median
+                    Current equivalent
                   </th>
                   <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
-                    Old median
+                    Published old score
                   </th>
                   <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold hidden sm:table-cell">
                     Class size
@@ -167,15 +233,13 @@ export default function ScoreBySchoolClient() {
               </thead>
               <tbody>
                 {[...filtered]
-                  .sort(
-                    (a, b) => (b.medianFocus ?? 0) - (a.medianFocus ?? 0),
-                  )
-                  .map((s, i) => {
-                    const isSelected = s.slug === selectedSlug
+                  .sort((a, b) => (b.focusSort ?? 0) - (a.focusSort ?? 0))
+                  .map((program, i) => {
+                    const isSelected = program.slug === selectedSlug
                     return (
                       <tr
-                        key={s.slug}
-                        onClick={() => setSelectedSlug(s.slug)}
+                        key={program.slug}
+                        onClick={() => setSelectedSlug(program.slug)}
                         className="border-t border-white/[0.05] cursor-pointer transition-colors hover:bg-white/[0.02]"
                         style={{
                           backgroundColor: isSelected
@@ -192,20 +256,20 @@ export default function ScoreBySchoolClient() {
                               color: isSelected ? "#C9A84C" : "#F0F0F0",
                             }}
                           >
-                            {s.name}
+                            {program.schoolName}
                           </span>
                           <span className="block text-[11px] text-[#666666] mt-0.5">
-                            {s.location}
+                            {program.programName} · {program.location}
                           </span>
                         </td>
                         <td className="py-3 px-4 text-right tabular-nums text-[#C0C0C0]">
-                          {s.medianFocus ?? "—"}
+                          {program.focusEquivalent ?? "—"}
                         </td>
                         <td className="py-3 px-4 text-right tabular-nums text-[#888888]">
-                          {s.medianGMAT ?? "—"}
+                          {program.legacyScore ?? "—"}
                         </td>
                         <td className="py-3 px-4 text-right tabular-nums text-[#888888] hidden sm:table-cell">
-                          {s.classSize}
+                          {program.classSize ?? "—"}
                         </td>
                       </tr>
                     )
@@ -274,7 +338,10 @@ export default function ScoreBySchoolClient() {
   )
 }
 
-function SchoolCard({ school }: { school: MbaSchool }) {
+function ProgramCard({ program }: { program: GraduateProgram }) {
+  const hasCompetitiveBand =
+    program.competitiveFocus != null || program.competitiveGMAT != null
+
   return (
     <div
       className="p-7 sm:p-8 rounded-2xl border overflow-hidden relative"
@@ -302,50 +369,76 @@ function SchoolCard({ school }: { school: MbaSchool }) {
               color: "#C9A84C",
             }}
           >
-            {school.region}
+            {program.programType}
           </span>
           <span className="text-[11px] text-[#888888]">
-            {school.location}
+            {program.location}
           </span>
-          <span className="text-[11px] text-[#666666]">
-            · Class size {school.classSize}
-          </span>
+          {program.classSize != null && (
+            <span className="text-[11px] text-[#666666]">
+              · Class size {program.classSize}
+            </span>
+          )}
         </div>
         <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-3">
-          {school.name}
+          {program.schoolName}
         </h2>
+        <p className="text-[12px] uppercase tracking-[0.16em] font-semibold text-[#C9A84C] mb-3">
+          {program.programName}
+        </p>
         <p className="text-[14px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl">
-          {school.shortNote}
+          {program.shortNote}
         </p>
 
         {/* Score grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <ScoreCell
-            label="Focus median"
-            sub="Approximate, 205-805 scale"
-            value={school.medianFocus}
+            label="Current GMAT equivalent"
+            sub={
+              program.focusEquivalent == null
+                ? "No class benchmark published"
+                : "Approximate official concordance"
+            }
+            value={program.focusEquivalent}
             accent="#C9A84C"
           />
           <ScoreCell
-            label="Old GMAT median"
-            sub="Approximate, 200-800 scale"
-            value={school.medianGMAT}
+            label={
+              program.scoreStatistic === "Not published"
+                ? "Published class score"
+                : `Published ${program.scoreStatistic.toLowerCase()}`
+            }
+            sub="School-reported old GMAT scale"
+            value={program.legacyScore}
             accent="#888888"
           />
-          <ScoreCell
-            label="Competitive Focus"
-            sub="~80th percentile of admits"
-            value={school.competitiveFocus}
-            accent="#3ECF8E"
-            icon={TrendingUp}
-          />
-          <ScoreCell
-            label="Competitive old GMAT"
-            sub="~80th percentile of admits"
-            value={school.competitiveGMAT}
-            accent="#3ECF8E"
-            icon={TrendingUp}
-          />
+          {hasCompetitiveBand ? (
+            <>
+              <ScoreCell
+                label="Competitive Focus"
+                sub="Directional MBA planning band"
+                value={program.competitiveFocus}
+                accent="#3ECF8E"
+                icon={TrendingUp}
+              />
+              <ScoreCell
+                label="Competitive old GMAT"
+                sub="Directional MBA planning band"
+                value={program.competitiveGMAT}
+                accent="#3ECF8E"
+                icon={TrendingUp}
+              />
+            </>
+          ) : (
+            <div className="sm:col-span-2 px-4 py-3 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
+              <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-1.5">
+                Admissions treatment
+              </p>
+              <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
+                {program.testPolicy}
+              </p>
+            </div>
+          )}
         </div>
 
         <p className="text-[12px] text-[#666666] mt-5 leading-relaxed">
@@ -353,11 +446,22 @@ function SchoolCard({ school }: { school: MbaSchool }) {
             className="inline w-3 h-3 mr-1"
             style={{ color: "#C9A84C" }}
           />
-          Numbers are from school-published class profiles. Medians shift
-          year to year; treat the competitive band as the score you can
-          submit without having to over-explain the rest of your
-          application.
+          Published class statistics describe a cohort, not an admissions
+          cutoff. Requirements and score distributions change; verify the
+          current policy before applying.
         </p>
+        {program.sourceUrl != null && program.sourceLabel != null && (
+          <a
+            href={program.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 mt-4 text-[12px] font-semibold text-[#C9A84C] hover:text-[#E0C56A] transition-colors"
+          >
+            View official source
+            <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+            <span className="sr-only">: {program.sourceLabel}</span>
+          </a>
+        )}
       </div>
     </div>
   )
@@ -372,7 +476,7 @@ function ScoreCell({
 }: {
   label: string
   sub: string
-  value: number | null
+  value: number | string | null
   accent: string
   icon?: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
 }) {

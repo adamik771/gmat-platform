@@ -49,9 +49,9 @@ const TOOLS: ResourceCard[] = [
     meta: "Bidirectional · Official total-score ranges",
   },
   {
-    title: "GMAT score by MBA school",
+    title: "GMAT score by programme",
     description:
-      "Median GMAT scores for 20+ top MBA programs (HBS, Stanford, Wharton, INSEAD, LBS, ISB, more), on both scoring scales.",
+      "Published GMAT benchmarks for leading MBA, MiM, and finance master's programmes, with current-scale equivalents and source context.",
     href: "/score-by-school",
     cta: "Pick a school",
     icon: GraduationCap,
