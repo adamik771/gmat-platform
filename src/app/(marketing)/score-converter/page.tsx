@@ -6,7 +6,7 @@ import { softwareApplicationLd } from "@/lib/structured-data"
 export const metadata: Metadata = {
   title: "GMAT Score Converter — Focus ↔ Old GMAT",
   description:
-    "Convert a GMAT Focus score (205-805) into the equivalent legacy GMAT score (200-800), and vice versa. Built from the official GMAC concordance with per-section conversion and percentile bands.",
+    "Look up the official GMAC concordance range between current GMAT scores (205-805) and 10th Edition scores (200-800), with current percentiles.",
   alternates: { canonical: "/score-converter" },
 }
 
@@ -27,7 +27,7 @@ export default function ScoreConverterPage() {
         data={softwareApplicationLd({
           name: "GMAT Score Converter",
           description:
-            "Bidirectional converter between GMAT Focus (205-805) and legacy GMAT (200-800) scoring scales, with per-section conversion and percentile bands.",
+            "Bidirectional lookup between current GMAT (205-805) and 10th Edition GMAT (200-800) total scores using GMAC's official concordance ranges.",
           path: "/score-converter",
         })}
       />

@@ -42,11 +42,11 @@ const TOOLS: ResourceCard[] = [
   {
     title: "GMAT score converter",
     description:
-      "Translate Focus Edition (205-805) scores to legacy GMAT (200-800) and back. Built from official GMAC concordance anchors.",
+      "Look up the official GMAC score range between the current GMAT (205-805) and the 10th Edition (200-800).",
     href: "/score-converter",
     cta: "Open the converter",
     icon: Calculator,
-    meta: "Bidirectional · Per-section conversion",
+    meta: "Bidirectional · Official total-score ranges",
   },
   {
     title: "GMAT score by MBA school",
