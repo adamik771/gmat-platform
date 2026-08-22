@@ -41,6 +41,7 @@ import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import QuestionChart from "@/components/shared/QuestionChart"
+import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { ChartSpec } from "@/lib/chart-spec"
 import { cn } from "@/lib/utils"
 import type { Section } from "@/types"
@@ -806,14 +807,18 @@ function ExpandedMistake({
       </button>
 
       {entry.context && (
-        <div className="p-4 rounded-lg border border-white/[0.06] bg-[#0A0A0A]">
-          <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#C9A84C] mb-2">
-            Reference
-          </p>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
-            {entry.context}
-          </ReactMarkdown>
-        </div>
+        entry.questionType === "Multi-Source Reasoning" ? (
+          <MultiSourceTabs context={entry.context} variant="compact" />
+        ) : (
+          <div className="p-4 rounded-lg border border-white/[0.06] bg-[#0A0A0A]">
+            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#C9A84C] mb-2">
+              Reference
+            </p>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
+              {entry.context}
+            </ReactMarkdown>
+          </div>
+        )
       )}
 
       <div>

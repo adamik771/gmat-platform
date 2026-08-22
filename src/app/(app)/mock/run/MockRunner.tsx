@@ -20,6 +20,7 @@ import PacingBadge from "@/components/shared/PacingBadge"
 import DataInsightsCalculator from "@/components/shared/DataInsightsCalculator"
 import QuestionChart from "@/components/shared/QuestionChart"
 import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
+import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { ChartSpec } from "@/lib/chart-spec"
 import {
   digitKeyToOptionIndex,
@@ -1026,17 +1027,21 @@ export default function MockRunner({ dateIso, sections, modeLabel }: MockRunnerP
 
       <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111] space-y-4">
         {question.context && (
-          <div className="p-4 rounded-lg bg-[#0D0D0D] border border-white/[0.04]">
-            <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-2">
-              Passage
-            </p>
-            <div className="text-sm text-[#C0C0C0] leading-relaxed max-h-64 overflow-y-auto">
-              <MockMarkdown
-                text={question.context}
-                sortableTables={question.type === "Table Analysis"}
-              />
+          question.type === "Multi-Source Reasoning" ? (
+            <MultiSourceTabs context={question.context} variant="compact" />
+          ) : (
+            <div className="p-4 rounded-lg bg-[#0D0D0D] border border-white/[0.04]">
+              <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-2">
+                Passage
+              </p>
+              <div className="text-sm text-[#C0C0C0] leading-relaxed max-h-64 overflow-y-auto">
+                <MockMarkdown
+                  text={question.context}
+                  sortableTables={question.type === "Table Analysis"}
+                />
+              </div>
             </div>
-          </div>
+          )
         )}
 
         <div className="flex flex-wrap items-center gap-2">

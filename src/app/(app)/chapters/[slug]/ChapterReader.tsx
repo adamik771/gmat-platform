@@ -30,6 +30,7 @@ import MixedReviewCard from "@/components/shared/MixedReviewCard"
 import DataInsightsCalculator from "@/components/shared/DataInsightsCalculator"
 import QuestionChart from "@/components/shared/QuestionChart"
 import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
+import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { ChartSpec } from "@/lib/chart-spec"
 import ReaderThemeToggle, { useReadingTheme } from "@/components/shared/ReaderThemeToggle"
 import ChapterSidebarNav from "./ChapterSidebarNav"
@@ -2000,10 +2001,16 @@ function SectionCard({
 function PassageContext({
   text,
   sortableTables = false,
+  questionType,
 }: {
   text: string
   sortableTables?: boolean
+  questionType: string
 }) {
+  if (questionType === "Multi-Source Reasoning") {
+    return <MultiSourceTabs context={text} variant="reader" />
+  }
+
   return (
     <div
       className="rounded-xl border px-4 py-3.5"
@@ -2335,6 +2342,7 @@ function InlineQuestion({
           <PassageContext
             text={q.context}
             sortableTables={q.type === "Table Analysis"}
+            questionType={q.type}
           />
         )}
         {/* Graphics Interpretation: the chart the prompt refers to. Without
@@ -3064,6 +3072,7 @@ function ProblemSetRunner({
               <PassageContext
                 text={current.context}
                 sortableTables={current.type === "Table Analysis"}
+                questionType={current.type}
               />
             )}
             {current.chartSpec && <QuestionChart spec={current.chartSpec} />}
