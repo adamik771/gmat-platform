@@ -30,6 +30,7 @@ import { readSavedForReview } from "@/lib/spaced-review"
 import { getUserState } from "@/lib/user-state"
 import QuestionFeedbackBar from "@/components/beta/QuestionFeedbackBar"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
+import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { Section } from "@/types"
 
 export const metadata = {
@@ -303,14 +304,18 @@ function Hero({
       </div>
 
       {question.context && (
-        <div
-          className="p-5 rounded-2xl border border-white/[0.06] bg-[#0A0A0A] mb-5 prose prose-invert max-w-none"
-          style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02)" }}
-        >
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
-            {question.context}
-          </ReactMarkdown>
-        </div>
+        question.type === "Multi-Source Reasoning" ? (
+          <MultiSourceTabs context={question.context} className="mb-5" />
+        ) : (
+          <div
+            className="p-5 rounded-2xl border border-white/[0.06] bg-[#0A0A0A] mb-5 prose prose-invert max-w-none"
+            style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02)" }}
+          >
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
+              {question.context}
+            </ReactMarkdown>
+          </div>
+        )
       )}
 
       <div

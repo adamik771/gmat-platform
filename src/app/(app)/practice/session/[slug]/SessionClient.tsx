@@ -30,6 +30,7 @@ import PacingBadge from "@/components/shared/PacingBadge"
 import DataInsightsCalculator from "@/components/shared/DataInsightsCalculator"
 import QuestionChart from "@/components/shared/QuestionChart"
 import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
+import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { ChartSpec } from "@/lib/chart-spec"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
@@ -784,10 +785,16 @@ function HintPanel({
 function ContextPanel({
   text,
   sortableTables = false,
+  questionType,
 }: {
   text: string
   sortableTables?: boolean
+  questionType: string
 }) {
+  if (questionType === "Multi-Source Reasoning") {
+    return <MultiSourceTabs context={text} />
+  }
+
   // Strip leading passage/set/tab markdown headings so we present the text as
   // the student would see it on the real test.
   const cleaned = text
@@ -2807,6 +2814,7 @@ export default function SessionClient({
           <ContextPanel
             text={current.context}
             sortableTables={current.type === "Table Analysis"}
+            questionType={current.type}
           />
         )}
 
