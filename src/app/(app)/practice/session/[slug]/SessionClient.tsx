@@ -35,7 +35,11 @@ import type { ChartSpec } from "@/lib/chart-spec"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
-import { restoreDeckOrder, serializeDeck } from "@/lib/question-selection"
+import {
+  practiceResumeStorageKey,
+  restorePracticeResume,
+  type PracticeResumeSnapshot,
+} from "@/lib/practice-resume"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -101,6 +105,7 @@ export interface WeakTopicHint {
 }
 
 interface SessionClientProps {
+  userId: string
   slug: string
   topic: string
   section: "Quant" | "Verbal" | "DI"
@@ -128,6 +133,9 @@ interface SessionClientProps {
    *  (Rowland 2014); when set it wins over the stored preference, but
    *  the in-session toggle still allows a per-session opt-out. */
   defaultMode?: "exam" | "study"
+  /** Server copy of the user's one bounded active-practice snapshot. The
+   *  client prefers its newer local write-through copy when both exist. */
+  initialActivePractice?: unknown
 }
 
 /** Per-question time clamp: nobody legitimately spends 30+ minutes on one
@@ -1225,6 +1233,7 @@ function FullAnalysis({
 }
 
 export default function SessionClient({
+  userId,
   slug,
   topic,
   section,
@@ -1235,6 +1244,7 @@ export default function SessionClient({
   setLabel,
   initialSavedForReview,
   defaultMode,
+  initialActivePractice,
 }: SessionClientProps) {
   // Freeze the question list this mount was born with. The server page
   // re-shuffles topic drills on every render (Date.now()-seeded adaptive
@@ -1253,16 +1263,7 @@ export default function SessionClient({
     questionsRef.current = questions
   }, [questions])
   const [currentIdx, setCurrentIdx] = useState(0)
-  // Active-attempt deck stability. The freeze above protects a MOUNTED
-  // session from RSC refreshes, but a hard browser refresh remounts with a
-  // fresh Date.now()-seeded order from the server — a different deck
-  // mid-attempt. The deck is persisted to sessionStorage once the student
-  // submits an answer, and restored on remount when it passes the guards in
-  // restoreDeckOrder (same id-set, within ACTIVE_DECK_TTL_MS). Per-tab and
-  // order-only by design: repetition control itself stays server-side, and
-  // cross-device mid-attempt resume is out of scope. Cleared on finish and
-  // on restartSession so a deliberate new attempt gets fresh alternatives.
-  const deckKey = `practice-deck:${slug}`
+  const resumeStorageKey = practiceResumeStorageKey(userId)
   // Which questions are saved for review — seeded from the server, updated
   // as the student toggles, so the per-question button survives navigation
   // between questions (it remounts per question by key).
@@ -1278,24 +1279,46 @@ export default function SessionClient({
   const [states, setStates] = useState<QuestionState[]>(() =>
     freshStates(questions)
   )
-  // Restore a persisted active-attempt deck on remount (hard refresh /
-  // same-tab resume). Mount-only, before any interaction — states are still
-  // blank, so rebuilding them for the restored order is safe.
+  const [resumeHydrated, setResumeHydrated] = useState(false)
+  const [resumeRestored, setResumeRestored] = useState(false)
+  const restoredRef = useRef(false)
+  // Restore the full attempt — not just deck order — from the newer local
+  // write-through copy, falling back to the server copy for another device.
   useEffect(() => {
     try {
-      const restored = restoreDeckOrder(
-        window.sessionStorage.getItem(deckKey),
+      const local = window.localStorage.getItem(resumeStorageKey)
+      const localRestored = restorePracticeResume(
+        local,
         questionsProp,
-        Date.now()
+        { userId, slug, now: Date.now() }
       )
+      const serverRestored = restorePracticeResume(
+        initialActivePractice,
+        questionsProp,
+        { userId, slug, now: Date.now() }
+      )
+      const restored =
+        localRestored && serverRestored
+          ? localRestored.snapshot.updatedAt >= serverRestored.snapshot.updatedAt
+            ? localRestored
+            : serverRestored
+          : localRestored ?? serverRestored
       if (restored) {
-        setQuestions(restored)
-        setStates(freshStates(restored))
-        setCurrentIdx(0)
+        restoredRef.current = true
+        setQuestions(restored.questions)
+        setStates(restored.snapshot.states)
+        setCurrentIdx(restored.snapshot.currentIdx)
+        setMode(restored.snapshot.mode)
+        setIsReplay(restored.snapshot.isReplay)
+        const startedAt = Date.now() - restored.snapshot.currentElapsedMs
+        setQuestionStart(startedAt)
+        setNow(Date.now())
+        setResumeRestored(true)
       }
     } catch {
-      // Storage unavailable (private browsing) — fresh deck is fine.
+      // Storage unavailable — the session still works without recovery.
     }
+    setResumeHydrated(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const [questionStart, setQuestionStart] = useState(() => Date.now())
@@ -1313,6 +1336,7 @@ export default function SessionClient({
   // effect below instead.
   const [mode, setMode] = useState<"exam" | "study">(defaultMode ?? "exam")
   useEffect(() => {
+    if (restoredRef.current) return
     if (defaultMode) return // surface-imposed mode wins; toggle still works
     try {
       const stored = window.localStorage.getItem("session-feedback-mode")
@@ -1358,6 +1382,104 @@ export default function SessionClient({
   const [mixedReviewPending, setMixedReviewPending] = useState(false)
   const [mixedReviewError, setMixedReviewError] = useState<string | null>(null)
   const [showAllReview, setShowAllReview] = useState(false)
+
+  const hasStarted =
+    currentIdx > 0 ||
+    states.some(
+      (state) =>
+        state.submitted ||
+        state.selected !== null ||
+        state.twoPartSelections?.some((selection) => selection !== null) ||
+        state.hintsRevealed > 0 ||
+        state.confidence !== null
+    )
+
+  const makeResumeSnapshot = useCallback((): PracticeResumeSnapshot => {
+    const currentState = states[currentIdx]
+    const runningMs = currentState?.submitted
+      ? currentState.elapsedMs
+      : Math.min(Math.max(Date.now() - questionStart, 0), MAX_QUESTION_MS)
+    return {
+      version: 1,
+      userId,
+      slug,
+      questionIds: questions.map((question) => question.id),
+      states,
+      currentIdx,
+      currentElapsedMs: runningMs,
+      mode,
+      isReplay,
+      updatedAt: Date.now(),
+    }
+  }, [currentIdx, isReplay, mode, questionStart, questions, slug, states, userId])
+
+  const resumeSnapshotRef = useRef<PracticeResumeSnapshot | null>(null)
+  resumeSnapshotRef.current =
+    resumeHydrated && hasStarted && !finished ? makeResumeSnapshot() : null
+
+  const clearActiveResume = useCallback(() => {
+    resumeSnapshotRef.current = null
+    try {
+      window.localStorage.removeItem(resumeStorageKey)
+    } catch {
+      // Storage unavailable — server cleanup still proceeds.
+    }
+    void fetch("/api/practice-resume", {
+      method: "DELETE",
+      keepalive: true,
+    }).catch(() => undefined)
+  }, [resumeStorageKey])
+
+  // Local write-through is immediate. The server mirror is debounced so an
+  // option click + confidence click + submit burst becomes one request.
+  useEffect(() => {
+    if (!resumeHydrated || !hasStarted || finished) return
+    const snapshot = makeResumeSnapshot()
+    resumeSnapshotRef.current = snapshot
+    try {
+      window.localStorage.setItem(resumeStorageKey, JSON.stringify(snapshot))
+    } catch {
+      // Private browsing / quota — server sync remains available.
+    }
+    const timer = window.setTimeout(() => {
+      void fetch("/api/practice-resume", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(snapshot),
+        keepalive: true,
+      }).catch(() => undefined)
+    }, 700)
+    return () => window.clearTimeout(timer)
+  }, [
+    finished,
+    hasStarted,
+    makeResumeSnapshot,
+    resumeHydrated,
+    resumeStorageKey,
+  ])
+
+  // Capture the live timer as the page leaves. The local copy is exact to the
+  // latest render; keepalive gives the server copy the same best-effort update.
+  useEffect(() => {
+    function onPageHide() {
+      const snapshot = resumeSnapshotRef.current
+      if (!snapshot) return
+      const fresh = { ...snapshot, updatedAt: Date.now() }
+      try {
+        window.localStorage.setItem(resumeStorageKey, JSON.stringify(fresh))
+      } catch {
+        // Storage unavailable.
+      }
+      void fetch("/api/practice-resume", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fresh),
+        keepalive: true,
+      }).catch(() => undefined)
+    }
+    window.addEventListener("pagehide", onPageHide)
+    return () => window.removeEventListener("pagehide", onPageHide)
+  }, [resumeStorageKey])
 
   // Tick the timer once a second for the header readouts. Stops on the
   // results screen — every clock there reads the banked answering time, and
@@ -1420,6 +1542,7 @@ export default function SessionClient({
       })
       if (res.ok) {
         setSaveStatus("saved")
+        clearActiveResume()
         let sessionId: string | null = null
         try {
           const json = (await res.json()) as { sessionId?: string }
@@ -1454,42 +1577,6 @@ export default function SessionClient({
     saveSession()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showResults])
-
-  // Answers live only in React state until the finish-time save above — warn
-  // before a mid-session unload (tab close, hard refresh, external nav) so a
-  // chapter test or custom set isn't silently lost. Off once finished: the
-  // results screen has already persisted.
-  const hasUnsavedAnswers = !finished && states.some((s) => s.submitted)
-  useEffect(() => {
-    if (!hasUnsavedAnswers) return
-    const onBeforeUnload = (e: BeforeUnloadEvent) => {
-      e.preventDefault()
-    }
-    window.addEventListener("beforeunload", onBeforeUnload)
-    return () => window.removeEventListener("beforeunload", onBeforeUnload)
-  }, [hasUnsavedAnswers])
-
-  // Persist the active-attempt deck once the first answer lands (that's when
-  // the attempt becomes worth stabilising); clear it on finish so the next
-  // visit starts a fresh attempt with fresh alternatives.
-  useEffect(() => {
-    try {
-      if (finished) {
-        window.sessionStorage.removeItem(deckKey)
-        return
-      }
-      if (!states.some((s) => s.submitted)) return
-      window.sessionStorage.setItem(
-        deckKey,
-        serializeDeck(
-          questions.map((q) => q.id),
-          Date.now()
-        )
-      )
-    } catch {
-      // Storage unavailable — attempt stability degrades gracefully.
-    }
-  }, [states, finished, questions, deckKey])
 
   const goTo = useCallback(
     (idx: number) => {
@@ -1529,13 +1616,8 @@ export default function SessionClient({
     // reinforcement, but not fresh evidence. Marking the saved slug
     // (`redo-…`) lets accuracy metrics and adaptivity exclude them.
     setIsReplay(opts.replay ?? false)
-    // A deliberate new attempt: drop the persisted deck so it can't be
-    // restored over this one (the first submit re-persists the new deck).
-    try {
-      window.sessionStorage.removeItem(deckKey)
-    } catch {
-      // Storage unavailable — nothing to drop.
-    }
+    // A deliberate new attempt must not resurrect the previous checkpoint.
+    clearActiveResume()
     setQuestions(qs)
     setStates(freshStates(qs))
     setCurrentIdx(0)
@@ -2657,17 +2739,6 @@ export default function SessionClient({
       <div>
         <Link
           href="/practice"
-          onClick={(e) => {
-            // In-app navigation skips beforeunload — confirm here instead.
-            if (
-              hasUnsavedAnswers &&
-              !window.confirm(
-                "Leave this session? Your answers so far won't be saved."
-              )
-            ) {
-              e.preventDefault()
-            }
-          }}
           className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
         >
           <ArrowLeft className="w-3 h-3" />
@@ -2799,13 +2870,42 @@ export default function SessionClient({
           />
         </div>
         {!finished && (
-          <p className="text-[11px] mt-2" style={{ color: "#666666" }}>
-            {mode === "exam"
-              ? "Exam mode: explanations come at the end — answers lock as you go."
-              : "Study mode: explanation after every question — immediate feedback is how corrections stick. Use exam mode to rehearse timed conditions."}
-          </p>
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+            <p className="text-[11px]" style={{ color: "#666666" }}>
+              {mode === "exam"
+                ? "Exam mode: explanations come at the end — answers lock as you go."
+                : "Study mode: explanation after every question — immediate feedback is how corrections stick. Use exam mode to rehearse timed conditions."}
+            </p>
+            <p className="inline-flex items-center gap-1.5 text-[11px]" style={{ color: "#3ECF8E" }}>
+              <Check className="w-3 h-3" aria-hidden />
+              Progress saves automatically
+            </p>
+          </div>
         )}
       </div>
+
+      {resumeRestored && !finished && (
+        <div
+          className="flex items-center justify-between gap-3 rounded-lg border px-4 py-3"
+          style={{
+            borderColor: "rgba(62,207,142,0.24)",
+            backgroundColor: "rgba(62,207,142,0.06)",
+          }}
+          role="status"
+        >
+          <p className="text-[12px] leading-relaxed" style={{ color: "#BFE8D4" }}>
+            Resumed at question {currentIdx + 1}. Your answers, timing, confidence, and question order are intact.
+          </p>
+          <button
+            type="button"
+            onClick={() => setResumeRestored(false)}
+            className="p-1 text-[#888888] hover:text-[#F0F0F0] transition-colors"
+            aria-label="Dismiss resume message"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
       {/* Body: passage (if grouped) + question. Mobile: stack
           (passage above question); desktop: side-by-side. */}

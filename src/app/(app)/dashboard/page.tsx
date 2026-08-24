@@ -53,7 +53,9 @@ import { SECTION_TOTAL_ESTIMATE_SWING, sectionScoresToTotal } from "@/lib/scorin
 import { accuracyToSectionScore } from "@/lib/score-percentiles"
 import { daysUntil, isReplaySession, localDayIso } from "@/lib/utils"
 import { getUserTz } from "@/lib/tz"
+import { deriveDailyStudyStatus } from "@/lib/daily-study-loop"
 import TargetScoreControl from "./TargetScoreControl"
+import DailyStudyLoop from "@/components/dashboard/DailyStudyLoop"
 
 const PLAN_LABELS: Record<string, string> = {
   self_study: "Self-Study",
@@ -891,6 +893,7 @@ export default async function DashboardPage() {
     typeof rawDailyGoal === "number" && rawDailyGoal > 0 && rawDailyGoal <= 200
       ? rawDailyGoal
       : 25
+  const dailyStudy = deriveDailyStudyStatus(questionsToday, dailyQuestionGoal)
 
   // Course progress — share of chapters the student has read, using the
   // shared reading-sections rule (same as the /chapters cards; the old
@@ -1617,78 +1620,16 @@ export default async function DashboardPage() {
       {/* Today's Mission — one decisive next step. Sourced from the
           study-plan engine's top focus item. Renders only when the
           engine has a recommendation. */}
-      {topFocus && (
-        <section
-          className="relative overflow-hidden rounded-2xl border"
-          style={{
-            backgroundColor: "#111111",
-            borderColor: "rgba(255,255,255,0.06)",
-          }}
-        >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 70% 55% at 100% 0%, rgba(201,168,76,0.12) 0%, transparent 60%)",
-            }}
-            aria-hidden
-          />
-          <div
-            className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
-            aria-hidden
-          />
-          <div className="relative flex flex-wrap items-center justify-between gap-6 p-6 sm:p-8">
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-3">
-                <Target
-                  className="w-3.5 h-3.5"
-                  style={{ color: "#C9A84C" }}
-                  aria-hidden
-                />
-                <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                  style={{ color: "#C9A84C" }}
-                >
-                  Today&apos;s mission
-                </p>
-                <div
-                  className="h-px w-12"
-                  style={{
-                    background:
-                      "linear-gradient(to right, rgba(201,168,76,0.4), transparent)",
-                  }}
-                  aria-hidden
-                />
-              </div>
-              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-tight leading-[1.15]">
-                {topFocus.title}
-              </h2>
-              <p className="text-[13px] sm:text-[14px] text-[#C0C0C0] mt-2 leading-relaxed max-w-2xl">
-                {topFocus.subtitle}
-              </p>
-              {topFocusMinutes !== null && (
-                <div className="mt-4 inline-flex items-center gap-1.5 text-[11px] text-[#888888]">
-                  <Clock className="w-3 h-3" aria-hidden />
-                  ~{topFocusMinutes} min
-                </div>
-              )}
-            </div>
-            <Link
-              href={topFocus.href}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98] flex-shrink-0"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-            >
-              {topFocus.cta}
-              <ArrowRight className="w-4 h-4" aria-hidden />
-            </Link>
-          </div>
-        </section>
-      )}
+      <DailyStudyLoop
+        status={dailyStudy}
+        focus={topFocus}
+        estimatedMinutes={topFocusMinutes}
+      />
 
       {/* Quick Actions — fallback when Today's Mission isn't showing, so
           users without a study-plan recommendation still get a clear
           "what to do next" strip. */}
-      {!topFocus && <QuickActions />}
+      {!topFocus && !dailyStudy.complete && <QuickActions />}
 
       {/* Status strip — merges the old Score Goal + This Week cards into one
           compact row of stat cells: readiness→target (with the inline,
