@@ -6326,3 +6326,104 @@ A theater added a Sunday afternoon matinee to its weekly schedule. During the fi
 **answer:** C
 **explanation:** Map the argument. The first boldface states the advocates' claim: the garden will reduce littering. The skeptics' doubt is the opposing view. The evidence about the similar lot two neighborhoods away is offered against the skeptics and in favor of the advocates. The second boldface then draws the argument's own conclusion, endorsing the advocates' prediction. So the first boldface is a claim the argument ultimately supports, and the second is the main conclusion — exactly what Choice C says. Choice A reverses the argument's stance: the author defends the advocates' prediction rather than opposing it. Choice B mislabels both portions: the first is not the author's conclusion (it is the advocates' claim, which the author goes on to endorse), and the second is the conclusion itself, not evidence. Choice D attaches the first boldface to the wrong side — it is the advocates' claim, not support for the skeptics — and the argument accepts rather than rejects the second. Choice E swaps the roles entirely: the conclusion is the second boldface, and the second boldface is not an objection. The correct answer is C.
 **related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q250
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Method of Reasoning
+
+After a grocery store moved its most commonly purchased items closer to the entrance, the average time customers spent in the store fell. The manager concludes that the new layout made shopping more efficient. To support this conclusion, the manager notes that the number of items purchased per customer remained unchanged.
+
+Which of the following best describes the manager's method of reasoning?
+
+- A) The manager rejects a general rule by presenting a single case that violates it.
+- B) The manager infers that a change improved efficiency because time fell while the amount accomplished remained stable.
+- C) The manager treats two events that occurred at the same time as unrelated.
+- D) The manager predicts a future result by appealing to the opinion of an expert.
+- E) The manager concludes that a policy is ineffective because some customers dislike it.
+
+**answer:** B
+**explanation:** The manager compares output with time: customers bought the same number of items but needed less time, so the manager interprets the lower time per unchanged purchase volume as greater efficiency. Choice B states that structure exactly. Choice A describes a counterexample, C says the events are unrelated, D introduces an expert prediction, and E substitutes customer preference for the efficiency comparison. The correct answer is B.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q251
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Main Conclusion
+
+Some city officials oppose converting a lightly used parking lane into a protected bicycle lane because the change would remove parking spaces. Yet a six-month pilot on a comparable street increased total customer visits to nearby shops, while deliveries continued through designated loading zones. Since the proposed street has similar traffic and commercial patterns, the conversion should proceed.
+
+Which of the following is the main conclusion of the argument?
+
+- A) The pilot street and the proposed street have similar traffic patterns.
+- B) Protected bicycle lanes always increase revenue for nearby businesses.
+- C) Designated loading zones are preferable to curbside parking spaces.
+- D) The city should convert the parking lane on the proposed street into a protected bicycle lane.
+- E) The officials who oppose the conversion are primarily concerned about deliveries.
+
+**answer:** D
+**explanation:** The comparison with the pilot, the increase in visits, the loading-zone result, and the similarity between streets are all offered as reasons for the final recommendation. That recommendation is that the conversion should proceed, restated in Choice D. Choice A is a supporting premise, B overgeneralizes beyond the two streets, C is not argued, and E misstates the officials' stated concern. The correct answer is D.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q252
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Boldface
+
+**The museum's trustees argue that extending Friday hours will substantially increase weekly attendance.** Their proposal assumes that people who currently cannot visit during daytime hours would come on Friday evenings. A survey of nearby residents supports that assumption: many respondents said they would visit after work if the museum remained open. **The trustees' attendance forecast therefore has credible support, although the exact increase remains uncertain.**
+
+In the argument above, the two portions in boldface play which of the following roles?
+
+- A) The first is a claim assessed by the argument; the second is the argument's qualified judgment about that claim.
+- B) The first is evidence accepted by the argument; the second is an objection that the argument rejects.
+- C) The first is the argument's conclusion; the second is a restatement of the survey evidence.
+- D) The first is a position the argument opposes; the second explains why the survey is unreliable.
+- E) The first and second are competing explanations of the same attendance pattern.
+
+**answer:** A
+**explanation:** The first boldface is the trustees' forecast, which the rest of the argument evaluates rather than simply assuming. The survey then supplies support, and the second boldface gives the author's qualified conclusion: the forecast is credible, but its exact magnitude is uncertain. Choice A captures those roles. The argument does not oppose the first claim, and the second statement is neither an objection nor merely a repetition of the evidence. The correct answer is A.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q253
+**difficulty:** Easy
+**type:** Critical Reasoning
+**topic:** Complete the Argument
+
+A cafe replaced its printed loyalty cards with a phone-based rewards program. During the following month, the share of customers earning a reward increased, even though the number of purchases required for a reward did not change. The most likely explanation is that ______.
+
+- A) the cafe also introduced several new drinks during that month
+- B) some customers prefer paying with cash rather than with a phone
+- C) customers were less likely to lose or forget the phone-based record of their purchases
+- D) the cafe's printed loyalty cards had used a distinctive color
+- E) competing cafes offered rewards that required fewer purchases
+
+**answer:** C
+**explanation:** The number of required purchases stayed constant, so the explanation should identify why more completed purchase sequences were successfully recorded. A phone-based record is harder to lose or forget than a paper card, making Choice C a direct explanation. The other choices do not explain why a greater share of this cafe's customers reached the unchanged threshold. The correct answer is C.
+**related_reading:** reading-verbal-04-cr-question-types
+
+---
+
+## Q254
+**difficulty:** Medium
+**type:** Critical Reasoning
+**topic:** Complete the Argument
+
+A manufacturer found that employees on one assembly line made fewer errors after the line's overhead lighting was replaced. The company should not yet conclude that the new lighting caused the improvement, however, because ______.
+
+- A) the replacement lights consume less electricity than the old lights did
+- B) some employees said that they preferred the appearance of the new lights
+- C) the company plans to replace lighting on two other assembly lines next year
+- D) error rates on the line had varied from month to month before the lights were replaced
+- E) the lighting replacement coincided with the introduction of an automated device that checks and corrects assembly alignment
+
+**answer:** E
+**explanation:** The sentence calls for a competing explanation strong enough to undermine the causal conclusion. Choice E identifies a simultaneous change that directly prevents assembly errors, so the observed improvement cannot yet be attributed specifically to the lighting. Choice D notes ordinary variation but is much weaker because it does not identify a change aligned with the decline. The other choices are irrelevant to the source of the error reduction. The correct answer is E.
+**related_reading:** reading-verbal-04-cr-question-types

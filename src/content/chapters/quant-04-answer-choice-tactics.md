@@ -8,6 +8,14 @@ prerequisites:
 summary: |
   The five choices are data. This chapter teaches ballpark elimination, sign and unit checks, and spotting the engineered trap answer before you compute.
 sections:
+  - id: pretest
+    type: pretest
+    title: "Try before you learn"
+    intro: |
+      Two quick questions before the lesson. Use the answer choices however you like; the review will show where they can replace full algebra.
+    pretest_question_ids:
+      - arithmetic-q128
+      - arithmetic-q129
   - id: answer-choice-tactics
     type: reading
     title: "Method: Answer-Choice Tactics"

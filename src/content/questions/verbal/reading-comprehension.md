@@ -5330,3 +5330,72 @@ The author's overall attitude toward gamification in education is best described
 **answer:** B
 **explanation:** **Question task.** An Attitude question is a two-dial check: get the direction and the intensity of the author's stance both right. **Why B is correct.** The author names "real benefits" and calls gamification "genuinely useful" (positive direction) but warns against treating it as "a cure-all" and describes how it can "defeat its own purpose" (a clear reservation). Favorable, but hedged — cautious approval with a reservation. **Why the others fail.** A overshoots the intensity: "unqualified" ignores the explicit warning. C reverses the direction; the author does not oppose gamification, only its misuse. D is wrong because the author plainly cares and takes a position. E mistakes a balanced, well-organized judgment for confusion. The correct answer is B.
 **related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 48: Cooling Cities with Street Trees
+
+Urban tree-planting programs are often promoted as a simple response to extreme heat. The enthusiasm is justified in part: shade and evaporation can noticeably cool a tree-lined block, and the benefits are especially valuable in neighborhoods with little existing green space. Yet planting totals alone are a poor measure of success. Young trees die when cities fail to fund watering and maintenance, and species chosen without regard to local conditions may provide little shade or damage sidewalks. Tree planting is therefore best understood not as a one-day beautification campaign but as long-term infrastructure whose benefits depend on careful placement and continued care.
+
+### Q183
+**difficulty:** Easy
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward urban tree-planting programs is best described as
+
+- A) dismissive because their cooling effects have been exaggerated
+- B) enthusiastic about planting as many trees as possible, regardless of maintenance costs
+- C) neutral about whether cities should use trees to address extreme heat
+- D) supportive, provided that cities treat planting as a sustained and carefully planned investment
+- E) opposed because tree roots inevitably damage urban sidewalks
+
+**answer:** D
+**explanation:** The author accepts the meaningful cooling and equity benefits of urban trees but insists that species choice, placement, watering, and maintenance determine whether those benefits materialize. That is conditional support, exactly as Choice D states. A and E reverse the author's favorable direction, B ignores the explicit reservations, and C understates a clear evaluative position. The correct answer is D.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 49: Reconstructing Trade from Shipwrecks
+
+Historians once treated lists of taxes and port fees as the most dependable record of ancient trade. Marine archaeology has complicated that confidence. Cargo recovered from shipwrecks can reveal goods that officials never recorded and routes that written sources ignored. But shipwreck evidence has its own distortion: ships carrying certain materials survive better, intensively searched waters yield more discoveries, and a wreck marks a failed voyage rather than a typical one. Archaeological cargo should therefore neither replace written records nor sit beneath them in a fixed hierarchy. Its greatest value lies in forcing historians to test one incomplete archive against another.
+
+### Q184
+**difficulty:** Medium
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward using shipwreck cargo as evidence of ancient trade is best described as
+
+- A) appreciative of its corrective value while alert to its systematic limitations
+- B) convinced that it is more reliable than every form of written evidence
+- C) skeptical that it can contribute anything beyond what port records already show
+- D) disappointed that archaeologists have not discovered a representative sample of every ancient voyage
+- E) indifferent between archaeological and written evidence because both are equally inaccurate
+
+**answer:** A
+**explanation:** The author credits shipwreck evidence with revealing unrecorded goods and routes, then details several biases and concludes that its best use is in comparison with another incomplete archive. Choice A captures both the positive assessment and the caution. B creates the hierarchy the passage rejects, C denies the stated contributions, D turns a methodological observation into emotion, and E mistakes complementary incompleteness for equal uselessness. The correct answer is A.
+**related_reading:** reading-verbal-06-rc-question-types
+
+---
+
+## Passage 50: When Efficiency Becomes the Target
+
+Public agencies increasingly publish numerical measures of efficiency: cases processed per employee, average response time, or cost per inspection. Such measures can expose delay and waste that vague assurances would conceal. Trouble begins, however, when a measure shifts from being evidence about performance to being the definition of performance. An office rewarded solely for shorter response times may close difficult cases prematurely; an inspector judged by cost may avoid expensive but consequential investigations. This does not make measurement futile. It means that a useful metric must remain answerable to the public purpose it only imperfectly represents, rather than quietly replacing that purpose.
+
+### Q185
+**difficulty:** Hard
+**type:** Reading Comprehension
+**topic:** Author's Attitude
+
+The author's attitude toward numerical efficiency measures is best described as
+
+- A) hostility grounded in the belief that public performance cannot be measured at all
+- B) confidence that any distortion they create can be eliminated by publishing more metrics
+- C) guarded endorsement coupled with concern that a proxy can displace the objective it was meant to illuminate
+- D) resignation that agencies will inevitably sacrifice public goals for lower costs
+- E) enthusiasm for replacing qualitative judgment with transparent numerical targets
+
+**answer:** C
+**explanation:** The passage says metrics can expose real waste, so the author does not reject measurement. The warning is that a metric can become the target and thereby replace the broader public purpose it only approximates. Choice C preserves both parts: endorsement of measurement's value and concern about proxy displacement. A and D are too pessimistic, B proposes a solution the passage never offers, and E endorses precisely the substitution the author warns against. The correct answer is C.
+**related_reading:** reading-verbal-06-rc-question-types

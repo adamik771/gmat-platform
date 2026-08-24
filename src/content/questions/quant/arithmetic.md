@@ -3341,3 +3341,98 @@ Check: A receives $350, B receives (2/5)($700) + $120 = $400, and C receives $30
 
 The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q127
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** LCM Applied
+
+Two indicator lights flash at regular intervals. The first flashes every 6 seconds, and the second flashes every 8 seconds. If they flash together at 12:00:00, how many seconds later will they next flash together?
+
+- A) 12
+- B) 14
+- C) 18
+- D) 24
+- E) 48
+
+**answer:** D
+**explanation:** The lights next flash together after the least common multiple of their two intervals. The prime factorizations are 6 = 2 x 3 and 8 = 2^3, so LCM(6, 8) = 2^3 x 3 = 24. Checking: after 24 seconds, the first light has completed 4 intervals and the second has completed 3. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q128
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Answer Choice Tactics
+
+A supplier packs markers into boxes of 6 with no markers left over. Which of the following could be the total number of markers?
+
+- A) 142
+- B) 156
+- C) 164
+- D) 175
+- E) 182
+
+**answer:** B
+**explanation:** A total packed into groups of 6 must be divisible by both 2 and 3. Choice B is even, and its digits sum to 1 + 5 + 6 = 12, which is divisible by 3; therefore 156 is divisible by 6. Each other choice fails at least one of those two tests. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q129
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Answer Choice Tactics
+
+If x is a positive integer, x^2 - 11x + 24 = 0, and x > 5, what is x?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 6
+- E) 8
+
+**answer:** E
+**explanation:** The condition x > 5 immediately eliminates A, B, and C. Testing the two remaining choices is quicker than solving from scratch: for x = 6, 36 - 66 + 24 = -6, so D fails. For x = 8, 64 - 88 + 24 = 0, so all conditions hold. Equivalently, the quadratic factors as (x - 3)(x - 8) = 0, and the inequality selects 8. The correct answer is E.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q130
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Timing Strategy
+
+A quantity increases from 120 to 150. By what percent does the quantity increase?
+
+- A) 20%
+- B) 22.5%
+- C) 25%
+- D) 30%
+- E) 80%
+
+**answer:** C
+**explanation:** Percent increase is change divided by the original value. The change is 150 - 120 = 30, and 30/120 = 1/4 = 25%. Choice D is the absolute change written as a percent without dividing by the original value. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q131
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Timing Strategy
+
+Machine A can complete a job alone in 6 hours, and Machine B can complete the same job alone in 3 hours. Working together at their constant rates, how many hours will they take to complete the job?
+
+- A) 1
+- B) 1.5
+- C) 2
+- D) 2.5
+- E) 3
+
+**answer:** C
+**explanation:** Machine A completes 1/6 of the job per hour and Machine B completes 1/3 per hour. Together their rate is 1/6 + 1/3 = 1/6 + 2/6 = 1/2 job per hour, so one full job takes 1 divided by 1/2 = 2 hours. A quick reasonableness check also rules out E: together they must be faster than the faster machine working alone. The correct answer is C.
+**related_reading:** quant-rates-work

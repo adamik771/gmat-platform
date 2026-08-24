@@ -226,3 +226,44 @@ the three new Advanced items, the hard-set replacements, the Product F answer
 mapping, and a minimum Advanced-pool depth. Together with the existing answer-
 pattern guardrails, this prevents either difficulty inflation or accidental
 pool depletion from returning silently.
+
+---
+
+## CHAPTER TIER AND POOL COMPLETION — 2026-08-24
+
+This pass closed the validator's 87 adjacent-tier warnings without mechanically
+changing question difficulty. The warning mixed two different scales: a
+chapter's Easy/Medium/Hard sets are relative steps within one skill, whereas a
+question's Beginner/Intermediate/Advanced label is calibrated globally across
+the full GMAT bank. That distinction matters most for intrinsically demanding
+formats such as Boldface and RC Inference. Treating every adjacent difference
+as an error would either inflate set labels or understate global difficulty.
+
+The validator now preserves the meaningful invariant: any two-tier jump
+(Beginner in a Hard set or Advanced in an Easy set) is still a release-blocking
+error. Adjacent-tier scaffolding is allowed. The current bank has zero two-tier
+jumps.
+
+### Genuine gaps completed
+
+Sixteen original questions were added and reviewed against their stated keys:
+
+- Quant test pools: one LCM item, one even/odd item, and two
+  permutations/combinations items.
+- Verbal test pools: two argument-structure items, one Boldface item, two
+  Complete-the-Argument items, and three Author's Attitude passage items.
+- Method pretests: two Answer-Choice Tactics items and two Quant Timing items.
+
+The seven previously thin test pools now meet their section cap exactly:
+Quant chapters have at least 15 questions and Verbal chapters have at least 8.
+`quant-04-answer-choice-tactics` and `quant-30-timing` now each begin with a
+two-question try-before-you-learn pretest. The method questions are pinned to
+their readers and excluded from unrelated practice-test pools by the existing
+reader/test separation rule.
+
+### Verification
+
+`tests/content-completion-batch.test.ts` locks all 16 keys, five distinct
+options per item, the seven completed pools, both pretest pin sets, and the
+zero-two-tier-jump invariant. The content validator now reports 0 errors and
+0 warnings across 2,006 questions.
