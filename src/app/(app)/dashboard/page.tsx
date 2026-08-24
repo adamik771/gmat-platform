@@ -49,13 +49,13 @@ import { getUserState, type UserState } from "@/lib/user-state"
 import { readSavedForReview } from "@/lib/spaced-review"
 import { isChapterRead } from "@/lib/chapter-progress-merge"
 import { deriveFirst48Steps, first48Complete } from "./first48"
-import { SECTION_TOTAL_ESTIMATE_SWING, sectionScoresToTotal } from "@/lib/scoring"
+import { sectionScoresToTotal } from "@/lib/scoring"
 import { accuracyToSectionScore } from "@/lib/score-percentiles"
 import { daysUntil, isReplaySession, localDayIso } from "@/lib/utils"
 import { getUserTz } from "@/lib/tz"
 import { deriveDailyStudyStatus } from "@/lib/daily-study-loop"
-import TargetScoreControl from "./TargetScoreControl"
 import DailyStudyLoop from "@/components/dashboard/DailyStudyLoop"
+import ProgressSummary from "./ProgressSummary"
 
 const PLAN_LABELS: Record<string, string> = {
   self_study: "Self-Study",
@@ -872,7 +872,7 @@ export default async function DashboardPage() {
       : null
 
   // Daily question goal — per-user override stored in user_metadata,
-  // defaults to 25 when unset. Drives the goal widget in the hero.
+  // defaults to 25 when unset. Drives the single Today's Mission surface.
   // Trial status — signup promises a 7-day full-access trial, but nothing in
   // the app ever mentioned it again; a student who took the framing literally
   // hit day 8 with no signal. One honest line: day counter while it runs, and
@@ -1449,9 +1449,9 @@ export default async function DashboardPage() {
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {user && !consultDismissed && <ConsultOffer />}
-      {/* Compact greeting bar — one slim row replacing the old ~200px
-          editorial hero. Greeting + date on the left; plan chip + a
-          compact daily-goal indicator on the right. Restrained gold. */}
+      {/* Compact greeting bar. The daily count lives only in Today's Mission;
+          repeating it here made the page feel like a metrics dashboard before
+          the student even reached the action. */}
       <section
         className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-5 sm:px-6 py-4"
         style={{ backgroundColor: "#0D0D0D" }}
@@ -1504,37 +1504,6 @@ export default async function DashboardPage() {
                 {planLabel(currentPlan)}
               </span>
             )}
-            {/* Daily question goal — count vs target since local midnight.
-                Subdued gold until the goal is hit, then green. */}
-            <div className="flex items-center gap-2">
-              <span
-                className="font-display text-base font-semibold tabular-nums leading-none"
-                style={{
-                  color:
-                    questionsToday >= dailyQuestionGoal && dailyQuestionGoal > 0
-                      ? "#3ECF8E"
-                      : "#F0F0F0",
-                }}
-              >
-                {questionsToday}
-              </span>
-              <span className="text-[12px] tabular-nums" style={{ color: "#888888" }}>
-                / {dailyQuestionGoal}
-              </span>
-              <span
-                className="text-[10px] uppercase tracking-[0.18em] font-semibold"
-                style={{
-                  color:
-                    questionsToday >= dailyQuestionGoal && dailyQuestionGoal > 0
-                      ? "#3ECF8E"
-                      : "#888888",
-                }}
-              >
-                {questionsToday >= dailyQuestionGoal && dailyQuestionGoal > 0
-                  ? "Goal hit"
-                  : "today"}
-              </span>
-            </div>
           </div>
         </div>
       </section>
@@ -1631,151 +1600,33 @@ export default async function DashboardPage() {
           "what to do next" strip. */}
       {!topFocus && !dailyStudy.complete && <QuickActions />}
 
-      {/* Status strip — merges the old Score Goal + This Week cards into one
-          compact row of stat cells: readiness→target (with the inline,
-          editable TargetScoreControl), streak, week volume, week accuracy. */}
-      <section
-        className="rounded-2xl border bg-[#0F0F0F] p-4 sm:p-5"
-        style={{ borderColor: "rgba(255,255,255,0.06)" }}
-      >
-        <div className="grid grid-cols-2 sm:grid-cols-4 divide-y divide-white/[0.05] sm:divide-y-0 sm:divide-x">
-          {/* Course progress — carries the #score-goal anchor because the
-              inline target-score editor lives in this cell; three setup rows
-              (dashboard checklist, /learn, study-plan) deep-link to it. */}
-          <div id="score-goal" className="px-1 py-3 sm:px-4 sm:py-1 scroll-mt-24">
-            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
-              Course progress
-            </p>
-            <p
-              className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
-              style={{ color: completedChapters > 0 ? "#F0F0F0" : "#555555" }}
-            >
-              {courseCompletionPct}%
-            </p>
-            <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mt-2">
-              {/* The N/62 fraction was a pure restatement of the big %
-                  four lines up — one representation is enough. */}
-              <TargetScoreControl
-                initialTarget={targetScore}
-                estimate={estimatedTotal}
-              />
-              {/* The one on-dashboard readiness readout — the pre-data locked
-                  tile promises a 205-805 estimate, and this is where it lands
-                  once every section clears the 10-attempt sample gate. The
-                  ±band is the mapping's own documented swing (scoring.ts) —
-                  a bare point number overstated the precision. */}
-              {estimatedTotal !== null && (
-                <>
-                  <span className="text-[11px] text-[#888888]" aria-hidden>
-                    ·
-                  </span>
-                  <span className="text-[11px] tabular-nums" style={{ color: "#C9A84C" }}>
-                    est. {estimatedTotal} ±{SECTION_TOTAL_ESTIMATE_SWING}
-                  </span>
-                </>
-              )}
-            </div>
-          </div>
+      <ProgressSummary
+        courseCompletionPct={courseCompletionPct}
+        completedChapters={completedChapters}
+        targetScore={targetScore}
+        estimatedTotal={estimatedTotal}
+        currentStreak={currentStreak}
+        longestStreak={longestStreak}
+        questionsLastSevenDays={questionsThisWeek}
+        accuracyLastSevenDays={weekAccuracy}
+      />
 
-          {/* Streak */}
-          <div className="px-1 py-3 sm:px-4 sm:py-1">
-            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
-              Streak
-            </p>
-            {currentStreak === 0 && longestStreak > 0 ? (
-              /* Recovery framing beats a dimmed dash: a broken streak
-                 shown as loss discourages exactly the lapsed student who
-                 needs a reason to restart (fresh-start framing). */
-              <>
-                <p className="font-display text-[1.35rem] font-semibold tracking-[-0.02em] leading-none mt-2 text-[#F0F0F0]">
-                  Fresh start
-                </p>
-                <p className="text-[11px] mt-1.5 text-[#888888]">
-                  best run {longestStreak}d — one session restarts it
-                </p>
-              </>
-            ) : (
-              <>
-                <p
-                  className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
-                  style={{ color: currentStreak > 0 ? "#F0F0F0" : "#555555" }}
-                >
-                  {currentStreak > 0 ? currentStreak : "—"}
-                  {currentStreak > 0 && (
-                    <span className="text-[12px] font-medium text-[#888888] ml-1.5">
-                      {currentStreak === 1 ? "day" : "days"}
-                    </span>
-                  )}
-                </p>
-                {longestStreak > currentStreak && (
-                  <p className="text-[11px] mt-1.5" style={{ color: "#888888" }}>
-                    best {longestStreak}d
-                  </p>
-                )}
-              </>
-            )}
-          </div>
-
-          {/* Last 7 days — questions. Labeled honestly: this is a rolling
-              window, while the hours chart's "This week" below is a
-              Mon–Sun calendar week — two different windows must not share
-              one name. */}
-          <div className="px-1 py-3 sm:px-4 sm:py-1">
-            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
-              Last 7 days
-            </p>
-            <p
-              className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
-              style={{ color: questionsThisWeek > 0 ? "#F0F0F0" : "#555555" }}
-            >
-              {questionsThisWeek > 0 ? questionsThisWeek : "—"}
-              <span className="text-[12px] font-medium text-[#888888] ml-1.5">
-                questions
-              </span>
-            </p>
-          </div>
-
-          {/* Accuracy */}
-          <div className="px-1 py-3 sm:px-4 sm:py-1">
-            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888]">
-              Accuracy
-            </p>
-            <p
-              className="font-display text-[2rem] font-semibold tracking-[-0.02em] leading-none tabular-nums mt-2"
-              style={{ color: weekAccuracy !== null ? "#F0F0F0" : "#555555" }}
-            >
-              {weekAccuracy !== null ? weekAccuracy : "—"}
-              {weekAccuracy !== null && (
-                <span className="text-[12px] font-medium text-[#888888] ml-0.5">%</span>
-              )}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Study hours — per-day time invested, week-by-week comparison */}
-      <section>
-        <div className="flex items-center gap-3 mb-5">
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-            style={{ color: "#C9A84C" }}
-          >
-            Study Hours
-          </p>
-          <div
-            className="h-px flex-1"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-            }}
-            aria-hidden
-          />
-          <span className="text-[11px]" style={{ color: "#888888" }}>
-            Time in sessions, per day
+      {/* Study time remains available for students who use it, but no longer
+          competes with the action and three primary progress signals. */}
+      <details className="group rounded-2xl border border-white/[0.06] bg-[#0D0D0D]">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-[12px] font-semibold text-[#C0C0C0] transition-colors hover:text-[#F0F0F0]">
+          Study time
+          <span className="text-[11px] font-normal text-[#888888] group-open:hidden">
+            Show daily breakdown
           </span>
+          <span className="hidden text-[11px] font-normal text-[#888888] group-open:inline">
+            Hide breakdown
+          </span>
+        </summary>
+        <div className="border-t border-white/[0.05] px-4 py-5 sm:px-5">
+          <StudyHoursChart sessions={studySessions} />
         </div>
-        <StudyHoursChart sessions={studySessions} />
-      </section>
+      </details>
 
       {/* Section scores + accuracy trend moved to /analytics. A single
           slim row points there instead of duplicating both cards here. */}
@@ -2053,26 +1904,20 @@ export default async function DashboardPage() {
         </Link>
       </section>
 
-      {/* Achievements — collapsed from the 10-badge grid to a one-line chip */}
-      <div
-        className="flex items-center justify-between gap-3 px-5 py-3 rounded-2xl border border-white/[0.06]"
-        style={{ backgroundColor: "#0D0D0D" }}
-      >
-        <span className="inline-flex items-center gap-2.5 min-w-0">
-          <Award className="w-4 h-4 flex-shrink-0" style={{ color: "#C9A84C" }} aria-hidden />
-          <span className="text-[12px] font-semibold tabular-nums" style={{ color: "#F0F0F0" }}>
-            {unlockedBadges.length}/{badges.length} badges
+      {/* Surface the latest milestone without turning achievements into one
+          more ratio the student has to track. */}
+      {latestBadgeLabel && (
+        <div
+          className="flex items-center gap-2.5 rounded-2xl border border-white/[0.06] px-5 py-3"
+          style={{ backgroundColor: "#0D0D0D" }}
+        >
+          <Award className="h-4 w-4 flex-shrink-0 text-[#C9A84C]" aria-hidden />
+          <span className="text-[12px] text-[#888888]">Latest achievement</span>
+          <span className="truncate text-[12px] font-semibold text-[#F0F0F0]">
+            {latestBadgeLabel}
           </span>
-          {latestBadgeLabel && (
-            <span className="text-[12px] truncate" style={{ color: "#888888" }}>
-              · {latestBadgeLabel}
-            </span>
-          )}
-        </span>
-        <span className="text-[10px] uppercase tracking-[0.22em] font-semibold flex-shrink-0" style={{ color: "#888888" }}>
-          Achievements
-        </span>
-      </div>
+        </div>
+      )}
 
       {/* Product-led referral nudge — shown to active users (post-value), not
           in the no-data activation state. Fires referral_click on copy. */}

@@ -1,4 +1,4 @@
-import type { Section } from "@/types"
+import type { Difficulty, Section } from "@/types"
 
 /**
  * Classical item analysis for the question bank — research-report prescription:
@@ -68,6 +68,39 @@ export const MIN_ATTEMPTS_FOR_STATS = 20
 const MIN_ATTEMPTS_FOR_BROKEN = 20
 const P_VALUE_EASY = 0.85
 const P_VALUE_HARD = 0.2
+
+export type DifficultyFit =
+  | "on-target"
+  | "too-easy"
+  | "too-hard"
+  | "insufficient"
+
+/**
+ * Expected empirical correct-rate bands by authored tier. A universal
+ * 20–85% window can call an Advanced item with 78% correct "healthy", even
+ * though it is behaving like a medium/easy item. Tier-relative windows make
+ * the authoring label itself testable as usage data accumulates.
+ */
+export const DIFFICULTY_P_VALUE_BANDS: Record<
+  Difficulty,
+  { min: number; max: number }
+> = {
+  Beginner: { min: 0.5, max: 0.95 },
+  Intermediate: { min: 0.3, max: 0.82 },
+  Advanced: { min: 0.12, max: 0.65 },
+}
+
+export function assessDifficultyFit(
+  difficulty: Difficulty | null | undefined,
+  pValue: number,
+  attempts: number
+): DifficultyFit {
+  if (!difficulty || attempts < MIN_ATTEMPTS_FOR_STATS) return "insufficient"
+  const band = DIFFICULTY_P_VALUE_BANDS[difficulty]
+  if (pValue > band.max) return "too-easy"
+  if (pValue < band.min) return "too-hard"
+  return "on-target"
+}
 
 /**
  * Compute per-item statistics across all attempts. Pass ≥1 section's

@@ -308,4 +308,20 @@ describe("pickMockQuestions (reads real content, deterministic)", () => {
     // ...but the rotation offset produces a different selection.
     expect(rotated.map((q) => q.id)).not.toEqual(first.map((q) => q.id))
   })
+
+  it("exhausts unseen alternatives before repeating a prior mock in every section", () => {
+    for (const section of SECTIONS) {
+      const first = pickMockQuestions(section, undefined, undefined, 0)
+      const seen = new Map(first.map((question) => [question.id, Date.now()]))
+      const next = pickMockQuestions(section, undefined, undefined, 1, seen)
+      const firstIds = new Set(first.map((question) => question.id))
+      const overlap = next.filter((question) => firstIds.has(question.id))
+
+      expect(next).toHaveLength(MOCK_QUESTION_COUNT[section])
+      expect(
+        overlap,
+        `${section}: ${overlap.map((question) => question.id).join(", ")}`,
+      ).toHaveLength(0)
+    }
+  })
 })

@@ -8,6 +8,10 @@ import {
 } from "@/lib/entitlements"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import { pickMockQuestions, getDifficultyMixForTarget } from "@/lib/mock"
+import {
+  buildLastSeenMap,
+  QUESTION_HISTORY_LIMIT,
+} from "@/lib/question-selection"
 import { getUserState } from "@/lib/user-state"
 import {
   getMockSectionsForMode,
@@ -78,15 +82,25 @@ export default async function MockRunPage({
   // the picker visits fresh starting points each mock. Cheap head-only
   // count query; failure is non-fatal (defaults to 0 = no rotation).
   let mockIndex = 0
+  let lastSeenAt: ReadonlyMap<string, number> = new Map()
   try {
-    const { count } = await supabase
-      .from("practice_sessions")
-      .select("id", { count: "exact", head: true })
-      .eq("user_id", user.id)
-      .like("slug", "mock-%")
+    const [{ count }, { data: attemptRows }] = await Promise.all([
+      supabase
+        .from("practice_sessions")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", user.id)
+        .like("slug", "mock-%"),
+      supabase
+        .from("practice_attempts")
+        .select("question_id, created_at")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false })
+        .limit(QUESTION_HISTORY_LIMIT),
+    ])
     mockIndex = count ?? 0
+    lastSeenAt = buildLastSeenMap(attemptRows)
   } catch {
-    // Non-fatal — fall through with mockIndex = 0.
+    // Non-fatal — fall through with the deterministic base picker.
   }
 
   // Dispatch through the mode module — handles static + dynamic modes.
@@ -107,7 +121,8 @@ export default async function MockRunPage({
         section,
         mix ?? getDifficultyMixForTarget(section, targetScore),
         count,
-        mockIndex
+        mockIndex,
+        lastSeenAt
       ),
   })
 

@@ -25,6 +25,7 @@ import {
 import {
   balanceDataSufficiencyOrder,
   buildLastSeenMap,
+  QUESTION_HISTORY_LIMIT,
 } from "@/lib/question-selection"
 import { TOPIC_TO_SET } from "@/lib/topic-chapter-map"
 import { getUserState } from "@/lib/user-state"
@@ -170,17 +171,18 @@ export default async function PracticeSessionPage({
       skill = getLevelForSlug(levels, slug)
       savedForReview = Array.from(readSavedForReview(state))
 
-      // Fetch enough history to compute per-topic accuracy. 2k rows is
-      // sufficient for most users; the limit avoids over-fetching on
-      // heavy accounts while still giving good signal.
+      // Fetch enough history to cover the bank even when a student has
+      // repeated a few topics; otherwise an old solved question can fall out
+      // of the window and be misclassified as unseen.
       // Most-recent-first so the seen-map's first hit per question id IS the
-      // latest attempt, and the 2k window covers recent history.
+      // latest attempt, and the shared history window covers the full bank
+      // plus repeated work on a student's strongest topics.
       const { data: attempts } = await supabase
         .from("practice_attempts")
         .select("topic, is_correct, question_id, created_at")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false })
-        .limit(2000)
+        .limit(QUESTION_HISTORY_LIMIT)
 
       if (attempts && attempts.length > 0) {
         lastSeenAtMs = buildLastSeenMap(attempts)
