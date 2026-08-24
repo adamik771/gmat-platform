@@ -2079,7 +2079,7 @@ The correct answer is D.
 ## Q58
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Work
+**topic:** Production Rate
 
 A machine produces 60 parts every 1.5 hours at a constant rate. At this rate, how many parts will the machine produce in 7 hours?
 

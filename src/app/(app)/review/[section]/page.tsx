@@ -159,12 +159,14 @@ export default async function ReviewSectionPage({
         </p>
       </div>
       <SessionClient
+        userId={user.id}
         slug={slug}
         topic="Daily Review"
         section={section}
         questions={playable}
         defaultMode="study"
         initialSavedForReview={Array.from(saved)}
+        initialActivePractice={state.active_practice ?? null}
       />
     </div>
   )

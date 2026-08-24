@@ -59,6 +59,7 @@ export const BANK_RULES: Record<string, SubtopicRule[]> = {
     { match: [], chapter: "quant-06-fractions-decimals" },
   ],
   "number-properties": [
+    { match: ["absolute value"], chapter: "quant-15-inequalities-absolute-value" },
     { match: ["prime", "remainder", "trailing zero", "units digit", "chinese remainder"], chapter: "quant-10-primes-remainders" },
     { match: ["even", "odd", "parity", "perfect square", "integer propert", "consecutive integer"], chapter: "quant-08-even-odd-integer-properties" },
     { match: ["divisib", "factor", "multiple", "gcd", "lcm", "gcf"], chapter: "quant-09-divisibility-factors" },
@@ -66,6 +67,7 @@ export const BANK_RULES: Record<string, SubtopicRule[]> = {
     { match: [], chapter: "quant-09-divisibility-factors" },
   ],
   "exponents-roots": [
+    { match: ["prime factor"], chapter: "quant-10-primes-remainders" },
     { match: ["root", "radical"], chapter: "quant-12-roots-radicals" },
     { match: [], chapter: "quant-11-exponent-rules" },
   ],
@@ -84,18 +86,21 @@ export const BANK_RULES: Record<string, SubtopicRule[]> = {
     { match: [], chapter: "quant-18-ratios-proportions" },
   ],
   "rates-work": [
-    { match: ["combined work", "work rate", "work with", "worker", "machine", "job", "joint-and-solo", "team size"], chapter: "quant-22-work-rate" },
+    { match: ["combined work", "combined rates", "competing rates", "work rate", "work with", "work", "worker", "machine", "job", "joint-and-solo", "team size", "inlet", "outlet"], chapter: "quant-22-work-rate" },
     { match: [], chapter: "quant-21-rate-time-distance" },
   ],
   "statistics-probability": [
-    { match: ["probability", "expected value", "independent", "dependent", "mutually exclusive", "binomial", "geometric prob", "conditional"], chapter: "quant-27-probability" },
-    { match: ["inclusion-exclusion", "union", "neither", "three sets"], chapter: "quant-29-sets-venn" },
+    { match: ["probability", "expected value", "independent", "dependent", "mutually exclusive", "binomial", "geometric prob", "conditional probability", "bayes", "addition rule"], chapter: "quant-27-probability" },
+    { match: ["inclusion-exclusion", "union", "neither", "three sets", "sets"], chapter: "quant-29-sets-venn" },
+    { match: ["adjacency", "digit restriction", "restricted counting"], chapter: "quant-26-restrictions-advanced-counting" },
+    { match: ["counting principle"], chapter: "quant-24-counting-basics" },
+    { match: ["counting", "combination", "permutation"], chapter: "quant-25-permutations-combinations" },
     { match: [], chapter: "quant-23-statistics" },
   ],
   combinatorics: [
-    { match: ["probability", "expected value", "independent", "dependent", "complement", "binomial", "replacement"], chapter: "quant-27-probability" },
+    { match: ["probability", "expected value", "independent", "dependent", "complement", "binomial", "replacement", "addition rule", "bayes"], chapter: "quant-27-probability" },
     { match: ["overlapping set"], chapter: "quant-29-sets-venn" },
-    { match: ["restriction", "adjacency", "committee", "grid path", "forbidden", "stars and bars", "two-constraint", "inclusion-exclusion", "circular"], chapter: "quant-26-restrictions-advanced-counting" },
+    { match: ["restriction", "adjacency", "committee", "grid path", "forbidden", "stars and bars", "two-constraint", "inclusion-exclusion", "circular", "unlabeled group"], chapter: "quant-26-restrictions-advanced-counting" },
     { match: ["counting", "multiplication principle", "enumeration", "fundamental counting"], chapter: "quant-24-counting-basics" },
     { match: [], chapter: "quant-25-permutations-combinations" },
   ],

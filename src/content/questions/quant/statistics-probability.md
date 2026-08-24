@@ -232,7 +232,7 @@ The correct answer is B.
 ## Q7
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Counting
+**topic:** Restricted Counting — Digit Restrictions
 
 How many 3-digit positive integers have all distinct digits and are divisible by 5?
 
@@ -2355,7 +2355,7 @@ The correct answer is E.
 ## Q72
 **difficulty:** Medium
 **type:** Problem Solving
-**topic:** Counting
+**topic:** Restricted Counting — Adjacency
 
 Six students are to be seated in a row of six chairs. In how many of the possible arrangements are two particular students, Mara and Niko, NOT seated next to each other?
 
@@ -2476,7 +2476,7 @@ The correct answer is D.
 ## Q75
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Counting
+**topic:** Combinations — Pair Counting
 
 At a meeting of 8 people, each person shakes hands exactly once with every other person. What is the total number of handshakes?
 
@@ -2510,7 +2510,7 @@ The correct answer is B.
 ## Q76
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Counting
+**topic:** Combinations — Committee Constraints
 
 A committee of 4 people is to be formed from a pool of 5 men and 4 women. How many different committees include at least 2 women?
 
@@ -2722,7 +2722,7 @@ The correct answer is D.
 ## Q81
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Counting
+**topic:** Restricted Counting — Adjacency
 
 In how many ways can 7 distinct books be arranged in a row on a shelf if 2 particular books must NOT be placed next to each other?
 
@@ -2886,7 +2886,7 @@ The correct answer is C.
 ## Q85
 **difficulty:** Hard
 **type:** Problem Solving
-**topic:** Counting
+**topic:** Combinations — Committee Constraints
 
 A 4-person committee is to be formed from a pool of 6 teachers and 4 students. How many such committees include at least 2 teachers?
 

@@ -135,6 +135,33 @@ describe("resolveChapterAssignment — unknown banks / edge cases", () => {
       "quant-12-roots-radicals"
     )
   })
+
+  it("routes previously misfiled cross-bank topics to the chapter that teaches them", () => {
+    expect(
+      resolveChapterAssignment("number-properties", "Absolute Value and Integer Counting").chapter
+    ).toBe("quant-15-inequalities-absolute-value")
+    expect(resolveChapterAssignment("exponents-roots", "Prime Factorization").chapter).toBe(
+      "quant-10-primes-remainders"
+    )
+    expect(resolveChapterAssignment("rates-work", "Competing Rates — Inlet and Outlet").chapter).toBe(
+      "quant-22-work-rate"
+    )
+    expect(resolveChapterAssignment("statistics-probability", "Sets").chapter).toBe(
+      "quant-29-sets-venn"
+    )
+    expect(
+      resolveChapterAssignment("statistics-probability", "Restricted Counting — Adjacency").chapter
+    ).toBe("quant-26-restrictions-advanced-counting")
+    expect(
+      resolveChapterAssignment("statistics-probability", "Counting Principle").chapter
+    ).toBe("quant-24-counting-basics")
+    expect(
+      resolveChapterAssignment("combinatorics", "Bayes' Theorem — Rare Disease Testing").chapter
+    ).toBe("quant-27-probability")
+    expect(
+      resolveChapterAssignment("combinatorics", "Dividing Into Unlabeled Groups").chapter
+    ).toBe("quant-26-restrictions-advanced-counting")
+  })
 })
 
 describe("TEST_CAPS / COMING_SOON / OMITTED sets", () => {

@@ -933,8 +933,8 @@ export default async function StudyPlanPage({
         </div>
       </section>
 
-      {/* Today's focus — adaptive action queue ranked by impact.
-          Highest-priority item first; up to 3 shown. */}
+      {/* One primary action. Lower-ranked recommendations remain available as
+          compact optional follow-ups instead of competing task cards. */}
       {plan && plan.todaysFocus.length > 0 && (
         <section>
           <div className="flex items-center gap-3 mb-5">
@@ -966,11 +966,24 @@ export default async function StudyPlanPage({
               focus.
             </span>
           </h2>
-          <div className="space-y-3">
-            {plan.todaysFocus.map((action, i) => (
-              <FocusCard key={`${action.type}-${i}`} action={action} primary={i === 0} />
-            ))}
-          </div>
+          <FocusCard action={plan.todaysFocus[0]} primary />
+          {plan.todaysFocus.length > 1 && (
+            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#666666]">
+                After that, optional
+              </span>
+              {plan.todaysFocus.slice(1).map((action, i) => (
+                <Link
+                  key={`${action.type}-${i}`}
+                  href={action.href}
+                  className="inline-flex items-center gap-1.5 text-[12px] text-[#888888] hover:text-[#C9A84C] transition-colors"
+                >
+                  {action.title}
+                  <ArrowRight className="h-3 w-3" aria-hidden />
+                </Link>
+              ))}
+            </div>
+          )}
         </section>
       )}
 

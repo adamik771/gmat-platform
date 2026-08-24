@@ -205,11 +205,11 @@ for (const [id, arr] of idMap) {
   }
 }
 
-// Duplicate prompts (normalize whitespace, lowercase, full text — a prefix
-// comparison false-positives on TA/GI set questions that share an inlined
-// table/graph block but ask different things after it). Unicode minus/dash
-// and curly quotes are folded to ASCII first: two byte-identical prompts once
-// differed only by − vs - and slipped past this check (algebra q37/q79).
+// Duplicate complete items. Prompt-only comparison produced noisy warnings for
+// RC/MSR questions with different passages and GI questions with different
+// charts but intentionally generic stems. Include the full solving surface —
+// context, chart, prompt, and options — so this catches questions students can
+// actually recognise as repeats.
 const normalize = (s: string): string =>
   s
     .replace(/[−–—]/g, "-")
@@ -221,7 +221,9 @@ const normalize = (s: string): string =>
 const promptMap = new Map<string, ParsedQuestion[]>()
 for (const q of questions) {
   if (!q.prompt || q.prompt.trim().length < MIN_PROMPT_CHARS) continue
-  const key = normalize(q.prompt)
+  const key = normalize(
+    `${q.context ?? ""}\n${JSON.stringify(q.chartSpec ?? null)}\n${q.prompt}\n${q.options.join("\n")}`
+  )
   const arr = promptMap.get(key) ?? []
   arr.push(q)
   promptMap.set(key, arr)
@@ -231,7 +233,7 @@ for (const [, arr] of promptMap) {
     push({
       severity: "WARN",
       rule: "duplicate-prompt",
-      detail: `${arr.length} questions share an effectively identical prompt: ${arr.map((q) => q.id).join(", ")}`,
+      detail: `${arr.length} questions share an effectively identical solving surface: ${arr.map((q) => q.id).join(", ")}`,
     })
   }
 }
@@ -538,22 +540,23 @@ for (const c of chapters) {
   }
 }
 
-// WARN: problem-set tier disagrees with the pinned question's own difficulty
-// label (easy set holding a Hard-labeled question, etc.). The reader shows
-// both labels side by side, so mismatches are student-visible.
+// Adjacent tiers can be deliberate scaffolding, but a two-tier jump is never
+// acceptable: an Easy set must not contain an Advanced item (or vice versa).
 {
   const qById = new Map(questions.map((q) => [q.id, q]))
   const tierToDifficulty = { easy: "Beginner", medium: "Intermediate", hard: "Advanced" } as const
+  const rank = { Beginner: 0, Intermediate: 1, Advanced: 2 } as const
   for (const c of chapters) {
     for (const ps of c.problemSets) {
       for (const qid of ps.questionIds) {
         const q = qById.get(qid)
         if (q && q.difficulty !== tierToDifficulty[ps.difficulty]) {
+          const gap = Math.abs(rank[q.difficulty] - rank[tierToDifficulty[ps.difficulty]])
           push({
-            severity: "WARN",
+            severity: gap >= 2 ? "ERROR" : "WARN",
             setSlug: c.slug,
             questionId: qid,
-            rule: "problem-set-tier-mismatch",
+            rule: gap >= 2 ? "problem-set-two-tier-mismatch" : "problem-set-tier-mismatch",
             detail: `${ps.difficulty} set pins a ${q.difficulty}-tier question`,
           })
         }

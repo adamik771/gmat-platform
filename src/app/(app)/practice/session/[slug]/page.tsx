@@ -155,13 +155,17 @@ export default async function PracticeSessionPage({
   // Already-saved-for-review ids so the per-question save button reflects
   // server truth instead of remounting as "unsaved" on every navigation.
   let savedForReview: string[] = []
+  let userId = ""
+  let initialActivePractice: unknown = null
   try {
     const supabase = await createSupabaseServer()
     const {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
+      userId = user.id
       const state = await getUserState(supabase, user)
+      initialActivePractice = state.active_practice ?? null
       const levels = getTopicSkillLevels(state)
       skill = getLevelForSlug(levels, slug)
       savedForReview = Array.from(readSavedForReview(state))
@@ -225,6 +229,7 @@ export default async function PracticeSessionPage({
 
   return (
     <SessionClient
+      userId={userId}
       slug={slug}
       topic={questions[0].topic}
       section={questions[0].section}
@@ -234,6 +239,7 @@ export default async function PracticeSessionPage({
       weakestTopic={weakestTopic ?? undefined}
       setLabel={setLabel}
       initialSavedForReview={savedForReview}
+      initialActivePractice={initialActivePractice}
     />
   )
 }
