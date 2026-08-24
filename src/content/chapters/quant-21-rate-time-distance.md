@@ -33,6 +33,10 @@ sections:
     check_question_ids:
       - rates-work-q7
       - rates-work-q13
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -53,6 +57,12 @@ problem_sets:
       - rates-work-q39
       - rates-work-q6
 ---
+
+## @summary
+
+- Anchor every setup in distance = rate x time and keep all units consistent.
+- Add speeds for motion toward each other, subtract them for pursuit, and build separate legs when a rate changes.
+- Average speed is total distance divided by total time, never the simple average of speeds unless the times are equal.
 
 ## @drt-foundation
 

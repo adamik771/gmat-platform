@@ -27,6 +27,10 @@ sections:
     check_question_ids:
       - rates-work-q14
       - rates-work-q16
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -47,6 +51,12 @@ problem_sets:
       - rates-work-q11
       - rates-work-q70
 ---
+
+## @summary
+
+- Convert each worker's completion time into a per-unit-time rate before combining anything.
+- Rates add while workers operate together; for staggered starts, calculate each phase separately.
+- Use work = rate x time and verify that the combined time is faster than the fastest individual worker.
 
 ## @combined-work
 

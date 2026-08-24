@@ -21,6 +21,10 @@ sections:
     title: "CR: Strengthen"
     check_question_ids:
       - critical-reasoning-q35
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q76
       - critical-reasoning-q41
 ---
+
+## @summary
+
+- Identify the conclusion and its weakest link before reading the choices.
+- Prefer evidence that closes the exact gap, rules out a competing explanation, or confirms the proposed mechanism.
+- A strengthener need not prove the conclusion; it must make it more likely than it was.
 
 ## @cr-strengthen
 

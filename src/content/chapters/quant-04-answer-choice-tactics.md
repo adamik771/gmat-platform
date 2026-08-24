@@ -24,8 +24,18 @@ sections:
     type: reading
     title: "Let the answer choices do the work"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
 ---
+
+## @summary
+
+- Read the structure before calculating: ordered choices, shared factors, and answer spacing often reveal the cheapest path.
+- Estimate or eliminate first; backsolve from the middle only when the answer choices can replace the algebra cleanly.
+- Use the choices as evidence, not as permission to guess. Confirm the surviving option against every condition.
 
 ## @answer-choice-tactics
 

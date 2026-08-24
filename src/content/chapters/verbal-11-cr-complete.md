@@ -21,6 +21,10 @@ sections:
     title: "CR: Complete the Argument"
     check_question_ids:
       - critical-reasoning-q75
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q65
       - critical-reasoning-q167
 ---
+
+## @summary
+
+- Predict the missing sentence's logical job from the words immediately before the blank.
+- Preserve the argument's direction, tone, and scope rather than choosing a fact that is merely related.
+- Read the completed argument from start to finish and confirm that the transition now works.
 
 ## @cr-complete
 

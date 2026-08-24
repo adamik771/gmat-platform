@@ -25,6 +25,10 @@ sections:
     type: reading
     title: "Inference = one small step the text forces"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -47,6 +51,12 @@ problem_sets:
       - reading-comprehension-q23
       - reading-comprehension-q32
 ---
+
+## @summary
+
+- Build only one careful step beyond the text and keep the author's qualifiers intact.
+- Favor cautious wording because inference answers must remain supported under every relevant sentence.
+- Reject outside knowledge, reversed relationships, and claims that turn possibility into certainty.
 
 ## @rc-inference
 

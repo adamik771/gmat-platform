@@ -25,6 +25,10 @@ sections:
     type: reading
     title: "Detail questions are lookups, not memory tests"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -47,6 +51,12 @@ problem_sets:
       - reading-comprehension-q30
       - reading-comprehension-q144
 ---
+
+## @summary
+
+- Return to the cited location and read a small window around it; detail questions are lookup tasks.
+- Translate the passage into your own words before matching a paraphrase.
+- Reject choices that are generally true, appear elsewhere, or add an inference beyond what the line states.
 
 ## @rc-detail
 

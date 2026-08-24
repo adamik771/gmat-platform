@@ -29,6 +29,10 @@ sections:
     check_question_ids:
       - statistics-probability-q11
       - statistics-probability-q13
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -49,6 +53,12 @@ problem_sets:
       - combinatorics-q102
       - combinatorics-q69
 ---
+
+## @summary
+
+- Translate each restriction into a structural rule before counting.
+- Use complementary counting when avoiding a forbidden event is easier than constructing every allowed case.
+- Split overlapping conditions into disjoint cases and apply inclusion-exclusion when cases cannot be made disjoint.
 
 ## @restrictions
 

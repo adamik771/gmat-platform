@@ -22,6 +22,10 @@ sections:
     check_question_ids:
       - word-problems-q17
       - word-problems-q19
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -42,6 +46,12 @@ problem_sets:
       - word-problems-q38
       - word-problems-q34
 ---
+
+## @summary
+
+- For two sets, use total in either = A + B - both; subtract neither only after defining the relevant universe.
+- Label exclusive Venn regions before filling totals so that overlaps are not counted twice.
+- For three sets, use inclusion-exclusion carefully and distinguish 'exactly' from 'at least.'
 
 ## @sets-and-venn
 

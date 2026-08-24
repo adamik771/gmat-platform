@@ -22,6 +22,10 @@ sections:
     check_question_ids:
       - algebra-q37
       - algebra-q116
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -42,6 +46,12 @@ problem_sets:
       - algebra-q23
       - algebra-q24
 ---
+
+## @summary
+
+- A function is an input-output rule: substitute the entire input expression and keep composition order straight.
+- For arithmetic and geometric sequences, identify the first term, the change factor, and the requested index before using a formula.
+- Look for differences, ratios, or a recurrence pattern before assuming a sequence follows a familiar rule.
 
 ## @functions-and-sequences
 

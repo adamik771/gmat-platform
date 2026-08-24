@@ -21,6 +21,10 @@ sections:
     title: "CR: Argument Structure"
     check_question_ids:
       - critical-reasoning-q185
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q7
       - critical-reasoning-q8
 ---
+
+## @summary
+
+- Separate the main conclusion from premises, background, and intermediate conclusions.
+- Map how each statement supports, qualifies, or challenges another instead of summarizing the topic.
+- Answer role and method questions in abstract logical language before matching the choices.
 
 ## @cr-argument-structure
 

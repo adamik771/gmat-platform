@@ -21,6 +21,10 @@ sections:
     title: "CR: Paradox"
     check_question_ids:
       - critical-reasoning-q27
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q63
       - critical-reasoning-q158
 ---
+
+## @summary
+
+- Hold both apparently conflicting facts as true; the answer must explain how they can coexist.
+- Look for a hidden distinction in groups, timing, definitions, incentives, or an offsetting effect.
+- Reject answers that explain only one side, restate the surprise, or require denying a stated fact.
 
 ## @cr-paradox
 

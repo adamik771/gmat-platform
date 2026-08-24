@@ -34,6 +34,10 @@ sections:
     check_question_ids:
       - statistics-probability-q6
       - statistics-probability-q16
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -54,6 +58,12 @@ problem_sets:
       - statistics-probability-q5
       - statistics-probability-q52
 ---
+
+## @summary
+
+- Mean is total divided by count, so recover the total first whenever observations are added, removed, or changed.
+- Sort the data before finding the median and distinguish spread from center.
+- Standard deviation measures dispersion: moving values away from the mean increases it, while shifting every value equally does not.
 
 ## @mean-and-sum
 

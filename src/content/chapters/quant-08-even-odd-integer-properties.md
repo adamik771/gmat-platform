@@ -28,6 +28,10 @@ sections:
     check_question_ids:
       - number-properties-q11
       - number-properties-q16
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -48,6 +52,12 @@ problem_sets:
       - number-properties-q5
       - number-properties-q6
 ---
+
+## @summary
+
+- Track parity structurally: sums change with odd addends, while a product is odd only when every factor is odd.
+- Represent consecutive integers algebraically and use their spacing, midpoint, and divisibility before expanding.
+- Test edge cases such as zero and negative integers whenever a statement sounds universally true.
 
 ## @even-and-odd
 

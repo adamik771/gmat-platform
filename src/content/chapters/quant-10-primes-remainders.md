@@ -28,6 +28,10 @@ sections:
     check_question_ids:
       - number-properties-q77
       - number-properties-q25
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -48,6 +52,12 @@ problem_sets:
       - number-properties-q40
       - number-properties-q18
 ---
+
+## @summary
+
+- Break composite numbers into primes early; uniqueness makes divisibility and factor questions easier to control.
+- Write division as n = dq + r with 0 <= r < d, and translate repeated remainder behavior into modular arithmetic.
+- Large powers usually repeat. Find the remainder or units-digit cycle instead of calculating the full value.
 
 ## @primes-and-prime-factorization
 

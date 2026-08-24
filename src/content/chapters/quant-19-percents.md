@@ -34,6 +34,10 @@ sections:
     check_question_ids:
       - ratios-percents-q11
       - ratios-percents-q13
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -54,6 +58,12 @@ problem_sets:
       - ratios-percents-q43
       - ratios-percents-q12
 ---
+
+## @summary
+
+- Name the base every time: percent means part divided by the specific whole named in the problem.
+- Translate increases and decreases into multipliers and multiply successive changes instead of adding their rates.
+- Use percent change = (new - old) / old, with the original value in the denominator.
 
 ## @percent-basics
 

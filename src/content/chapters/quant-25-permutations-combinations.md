@@ -37,6 +37,10 @@ sections:
     check_question_ids:
       - combinatorics-q70
       - combinatorics-q94
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -57,6 +61,12 @@ problem_sets:
       - combinatorics-q61
       - combinatorics-q89
 ---
+
+## @summary
+
+- Ask whether order matters before choosing a formula: permutations arrange, combinations select.
+- Handle repeated objects or circular symmetry before counting, or the raw factorial will overcount.
+- Break multi-stage problems into choose-then-arrange steps and verify that restrictions are applied at the correct stage.
 
 ## @permutations
 

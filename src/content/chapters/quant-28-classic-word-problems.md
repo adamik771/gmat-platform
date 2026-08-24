@@ -42,6 +42,10 @@ sections:
     title: "Max/min and optimization — extremes under constraint"
     check_question_ids:
       - word-problems-q62
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -62,6 +66,12 @@ problem_sets:
       - word-problems-q11
       - word-problems-q66
 ---
+
+## @summary
+
+- Translate ages, coins, digits, and distribution constraints into variables and equations before chasing arithmetic.
+- For profit and optimization, identify the correct base and the feasible domain before comparing outcomes.
+- Reject solutions that violate real-world constraints such as integer counts, digit limits, nonnegative ages, or capacity.
 
 ## @profit-and-percent
 

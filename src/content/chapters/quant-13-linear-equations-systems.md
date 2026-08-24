@@ -31,6 +31,10 @@ sections:
     type: reading
     title: "The algebra blueprint (and solving for the combo)"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -51,6 +55,12 @@ problem_sets:
       - algebra-q5
       - algebra-q6
 ---
+
+## @summary
+
+- Preserve equality by performing the same valid operation on both sides and clear fractions strategically.
+- For systems, choose substitution when one variable is isolated and elimination when coefficients align cheaply.
+- Interpret the result in context and check it in the original equations, especially after translating a word problem.
 
 ## @linear-equations-one-unknown
 

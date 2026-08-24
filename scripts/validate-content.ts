@@ -321,12 +321,13 @@ for (const c of chapters) {
       detail: `0 trap callouts — add at least one **Trap to watch.** block per major method`,
     })
   }
-  if (totals.mentalModel === 0 && c.sections.length >= 4) {
+  const readingSectionCount = c.sections.filter((section) => section.type === "reading").length
+  if (totals.mentalModel === 0 && readingSectionCount >= 4) {
     push({
       severity: "INFO",
       setSlug: c.slug,
       rule: "no-mental-model",
-      detail: `Chapter has ${c.sections.length} sections but no **Mental model.** callout — anchor the reader's mental representation early`,
+      detail: `Chapter has ${readingSectionCount} reading sections but no **Mental model.** callout — anchor the reader's mental representation early`,
     })
   }
 }
