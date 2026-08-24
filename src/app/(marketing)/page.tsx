@@ -152,20 +152,20 @@ export default function HomePage() {
           </p>
           <dl className="editorial-proofline">
             <div>
-              <dt>Founder score</dt>
-              <dd>735</dd>
+              <dt>Founder&apos;s score journey</dt>
+              <dd>565 <span aria-hidden="true">→</span> 735</dd>
             </div>
             <div>
-              <dt>Starting score</dt>
-              <dd>565</dd>
+              <dt>Guided curriculum</dt>
+              <dd>{CHAPTER_COUNT_CLAIM} chapters</dd>
             </div>
             <div>
-              <dt>Question bank</dt>
+              <dt>Original question bank</dt>
               <dd>{QUESTION_CLAIM}</dd>
             </div>
             <div>
-              <dt>Access model</dt>
-              <dd>One-time</dd>
+              <dt>Try the complete platform</dt>
+              <dd>{TRIAL_DAYS} days, full access</dd>
             </div>
           </dl>
         </div>
