@@ -540,8 +540,11 @@ for (const c of chapters) {
   }
 }
 
-// Adjacent tiers can be deliberate scaffolding, but a two-tier jump is never
-// acceptable: an Easy set must not contain an Advanced item (or vice versa).
+// Problem-set labels are relative to the skill being taught, while question
+// labels are calibrated globally across the bank. An Intermediate Boldface
+// set can therefore legitimately contain globally Advanced questions. Adjacent
+// tiers are permitted scaffolding; a two-tier jump is still never acceptable
+// (an Easy set must not contain an Advanced item, or vice versa).
 {
   const qById = new Map(questions.map((q) => [q.id, q]))
   const tierToDifficulty = { easy: "Beginner", medium: "Intermediate", hard: "Advanced" } as const
@@ -552,13 +555,15 @@ for (const c of chapters) {
         const q = qById.get(qid)
         if (q && q.difficulty !== tierToDifficulty[ps.difficulty]) {
           const gap = Math.abs(rank[q.difficulty] - rank[tierToDifficulty[ps.difficulty]])
-          push({
-            severity: gap >= 2 ? "ERROR" : "WARN",
-            setSlug: c.slug,
-            questionId: qid,
-            rule: gap >= 2 ? "problem-set-two-tier-mismatch" : "problem-set-tier-mismatch",
-            detail: `${ps.difficulty} set pins a ${q.difficulty}-tier question`,
-          })
+          if (gap >= 2) {
+            push({
+              severity: "ERROR",
+              setSlug: c.slug,
+              questionId: qid,
+              rule: "problem-set-two-tier-mismatch",
+              detail: `${ps.difficulty} set pins a ${q.difficulty}-tier question`,
+            })
+          }
         }
       }
     }

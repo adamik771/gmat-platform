@@ -8,6 +8,14 @@ prerequisites:
 summary: |
   21 Problem Solving questions in 45 minutes. This chapter closes the Quant track with pacing, triage, the 30-second method-switch checkpoint, and the bookmark-and-edit feature.
 sections:
+  - id: pretest
+    type: pretest
+    title: "Try before you learn"
+    intro: |
+      Two short questions before the pacing lesson. Notice how quickly you identify a path, not merely whether you get the answer.
+    pretest_question_ids:
+      - arithmetic-q130
+      - arithmetic-q131
   - id: quant-timing
     type: reading
     title: "Quant Timing & Pacing"

@@ -2541,3 +2541,22 @@ What is the greatest integer k such that 3ᵏ is a factor of 30! (that is, of 30
 **answer:** D
 **explanation:** The exponent of a prime p in the factorization of n! equals the sum of the whole-number quotients ⌊n/p⌋ + ⌊n/p²⌋ + ⌊n/p³⌋ + …, because each term counts how many of the integers from 1 to n contribute at least one, then at least two, then at least three, and so on, factors of p. Here n! is 30! and the prime is p = 3, so we add the quotients for increasing powers of 3. The first term, ⌊30/3⌋ = 10, counts the multiples of 3 up to 30, each contributing at least one factor of 3. The second term, ⌊30/9⌋ = 3, counts the multiples of 9 (namely 9, 18, 27), each contributing an additional factor of 3. The third term, ⌊30/27⌋ = 1, counts the single multiple of 27 (namely 27), contributing yet another factor of 3. The next power, 81, exceeds 30, so ⌊30/81⌋ = 0 and all further terms vanish. Adding the contributions gives 10 + 3 + 1 = 14, so the greatest power of 3 dividing 30! is 3¹⁴, and the greatest such k is 14. The correct answer is D.
 **related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q101
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Even and Odd Integers
+
+If n is an odd integer, which of the following must be even?
+
+- A) n + 2
+- B) 2n + 1
+- C) n + 1
+- D) n^2
+- E) n^2 + 2
+
+**answer:** C
+**explanation:** Adding 1 to any odd integer produces the next integer, which is even. The other expressions are always odd when n is odd: odd + 2 is odd, 2n + 1 is odd, n^2 is odd, and n^2 + 2 remains odd. The correct answer is C.
+**related_reading:** reading-quant-03-number-properties

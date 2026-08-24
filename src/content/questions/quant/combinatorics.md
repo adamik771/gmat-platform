@@ -3281,3 +3281,41 @@ A committee of 5 people is to be chosen from a group of 6 men and 5 women. The c
 **answer:** D
 **explanation:** With 5 chosen and requirements of at least 2 men and at least 2 women, the only feasible splits are 2 men/3 women and 3 men/2 women (4+1 or 1+4 would violate one minimum). Case 2M–3W: C(6,2)·C(5,3) = 15 × 10 = 150. Case 3M–2W: C(6,3)·C(5,2) = 20 × 10 = 200. Add the disjoint cases: 150 + 200 = 350. (Option 462 = C(11,5) ignores the constraints; 150 and 200 each count only one valid split; 300 double-counts a single split.) The correct answer is D.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q121
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Combinations
+
+A student must choose 2 different electives from 5 available electives. How many different pairs of electives can the student choose?
+
+- A) 5
+- B) 10
+- C) 15
+- D) 20
+- E) 25
+
+**answer:** B
+**explanation:** The order in which the two electives are named does not matter, so this is a combination. The number of pairs is C(5, 2) = (5 x 4)/(2 x 1) = 10. Listing confirms the count: each of 5 choices can pair with 4 others, but dividing by 2 removes the double-counting of each pair. The correct answer is B.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
+
+---
+
+## Q122
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Permutations
+
+Five different reports are to be arranged in a row on a shelf. If a particular report must be placed first, how many different arrangements are possible?
+
+- A) 5
+- B) 10
+- C) 20
+- D) 24
+- E) 120
+
+**answer:** D
+**explanation:** The required report occupies the first position, so only the remaining 4 reports need to be arranged. They can be ordered in 4! = 4 x 3 x 2 x 1 = 24 ways. Choice E counts all 5! arrangements and ignores the fixed first position. The correct answer is D.
+**related_reading:** reading-quant-06-statistics-probability-combinatorics
