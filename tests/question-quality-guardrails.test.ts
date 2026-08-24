@@ -6,10 +6,10 @@ function optionLength(option: string): number {
 }
 
 describe("question-bank quality guardrails", () => {
-  it("does not make the longest option a reliable shortcut on Advanced CR", () => {
+  it("does not make the longest option a reliable shortcut on Advanced Verbal", () => {
     const questions = getAllQuestions().filter(
       (q) =>
-        q.type === "Critical Reasoning" &&
+        q.section === "Verbal" &&
         q.difficulty === "Advanced" &&
         q.options.length === 5
     )
@@ -27,13 +27,48 @@ describe("question-bank quality guardrails", () => {
     })
 
     // Random chance is 20%. A little natural variation is healthy, but once
-    // this clears 25% students can profitably guess from answer length.
+    // this clears 25% students can profitably guess from answer length across
+    // either Verbal format.
     expect(uniqueLongestCorrect.length / questions.length).toBeLessThanOrEqual(
       0.25
     )
     // Large, visible gaps should be rare even when the correct answer happens
     // to be longest.
     expect(materialCue.length / questions.length).toBeLessThanOrEqual(0.1)
+  })
+
+  it("keeps Advanced answer positions non-predictive within every section", () => {
+    const questions = getAllQuestions().filter(
+      (q) =>
+        q.difficulty === "Advanced" &&
+        q.options.length === 5 &&
+        q.correctAnswer >= 0
+    )
+
+    for (const section of ["Quant", "Verbal", "DI"] as const) {
+      const sectionQuestions = questions.filter((q) => q.section === section)
+      const shares = ["A", "B", "C", "D", "E"].map(
+        (letter) =>
+          sectionQuestions.filter((q) => q.correctAnswerLetter === letter)
+            .length / sectionQuestions.length
+      )
+      // 20% is ideal. These wider rails allow natural bank variation while
+      // blocking a stable guessing rule such as "Advanced Quant is usually C."
+      expect(Math.max(...shares), section).toBeLessThanOrEqual(0.4)
+      expect(Math.min(...shares), section).toBeGreaterThanOrEqual(0.08)
+    }
+  })
+
+  it("keeps every Advanced option set internally distinct", () => {
+    const advanced = getAllQuestions().filter(
+      (q) => q.difficulty === "Advanced" && q.options.length > 1
+    )
+    for (const question of advanced) {
+      const normalized = question.options.map((option) =>
+        option.replace(/\s+/g, " ").trim().toLowerCase()
+      )
+      expect(new Set(normalized).size, question.id).toBe(normalized.length)
+    }
   })
 
   it("prevents the raw DS bank's answer-pattern skew from getting worse", () => {

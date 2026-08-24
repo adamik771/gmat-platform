@@ -7,6 +7,7 @@ import {
 } from "@/lib/entitlements"
 import {
   buildLastSeenMap,
+  QUESTION_HISTORY_LIMIT,
   withContextLastSeen,
 } from "@/lib/question-selection"
 import UpgradeGate from "@/components/shared/UpgradeGate"
@@ -64,15 +65,14 @@ export default async function TestBuilderPage() {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
-      // Same shape + window as the topic-drill page's seen-map query: the
-      // 2k most recent attempts cover recent history without over-fetching.
+      // Same shape + window as the topic-drill page's seen-map query.
       const [{ data: attemptRows }, { data }] = await Promise.all([
         supabase
           .from("practice_attempts")
           .select("question_id, created_at")
           .eq("user_id", user.id)
           .order("created_at", { ascending: false })
-          .limit(2000),
+          .limit(QUESTION_HISTORY_LIMIT),
         supabase
           .from("practice_sessions")
           .select(

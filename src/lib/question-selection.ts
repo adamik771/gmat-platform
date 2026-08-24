@@ -39,6 +39,13 @@ import { seededShuffle } from "@/lib/topic-skill"
 export const RECENT_SEEN_COOLDOWN_MS = 3 * 24 * 60 * 60 * 1000
 
 /**
+ * Attempt rows fetched when constructing the freshness map. This is well above
+ * the 1,990-item bank size so repeated work on a few topics does not push older
+ * one-time attempts out of the window and make solved questions look unseen.
+ */
+export const QUESTION_HISTORY_LIMIT = 5_000
+
+/**
  * How long a persisted active-attempt deck stays restorable after the last
  * answer. 6 hours: longer than any plausible single sitting (sessions run
  * 10-45 min), short enough that returning tomorrow in a long-lived tab
