@@ -3436,3 +3436,22 @@ Machine A can complete a job alone in 6 hours, and Machine B can complete the sa
 **answer:** C
 **explanation:** Machine A completes 1/6 of the job per hour and Machine B completes 1/3 per hour. Together their rate is 1/6 + 1/3 = 1/6 + 2/6 = 1/2 job per hour, so one full job takes 1 divided by 1/2 = 2 hours. A quick reasonableness check also rules out E: together they must be faster than the faster machine working alone. The correct answer is C.
 **related_reading:** quant-rates-work
+
+---
+
+## Q132
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractions
+
+What is the least positive integer n for which n/168 can be written as a terminating decimal?
+
+- A) 7
+- B) 14
+- C) 21
+- D) 24
+- E) 42
+
+**answer:** C
+**explanation:** A fraction in lowest terms has a terminating decimal exactly when its denominator has no prime factors other than 2 and 5. Since 168 = 2^3 x 3 x 7, the numerator must cancel both the factor 3 and the factor 7. The least positive integer that does so is 3 x 7 = 21. Indeed, 21/168 = 1/8 = 0.125, which terminates. Choice A cancels only 7, choice B cancels 7 and one factor 2, and choice E also works but is not the least such integer. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations

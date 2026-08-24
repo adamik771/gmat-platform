@@ -267,3 +267,28 @@ reader/test separation rule.
 options per item, the seven completed pools, both pretest pin sets, and the
 zero-two-tier-jump invariant. The content validator now reports 0 errors and
 0 warnings across 2,006 questions.
+
+---
+
+## QUESTION ROUTING PRECISION — 2026-08-24
+
+This pass removed the chapter-test router's dependence on implicit bank
+defaults. Before the change, 278 questions across seven shared Quant banks
+reached a chapter only because no routing keyword matched their subtopic. Most
+landed in the intended dominant chapter, but the same mechanism could silently
+place a newly tagged question in the wrong chapter.
+
+Every subtopic currently present in those banks is now explicit. Cross-bank
+topics route to the chapter that teaches them: averages to Statistics,
+arithmetic sequences and symmetric sums to Functions and Sequences, production
+and inverse-proportion work to Work Rate, and finance calculations to Percents.
+The Classic Word Problems mapping preserves the chapter's own curriculum for
+ages, consecutive-integer setups, payroll constraints, distribution, and
+optimization. One original terminating-decimal question (`arithmetic-q132`)
+was added so removing a misplaced averages item did not thin the Fractions and
+Decimals pool.
+
+The catch-all rule remains as a runtime safety net, but the validator now warns
+on even one default-routed question. Regression coverage loads the complete
+bank and requires every current shared-bank question to resolve explicitly,
+while representative assertions lock the corrected cross-bank destinations.
