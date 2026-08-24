@@ -28,6 +28,10 @@ sections:
     check_question_ids:
       - algebra-q53
       - algebra-q12
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -48,6 +52,12 @@ problem_sets:
       - algebra-q11
       - algebra-q136
 ---
+
+## @summary
+
+- Set the quadratic equal to zero before factoring, then use the zero-product rule on every factor.
+- When factoring is awkward, use the quadratic formula, the discriminant, or root relationships instead of forcing it.
+- Carry both roots until the problem's domain or context rules one out.
 
 ## @quadratics-and-factoring
 

@@ -35,6 +35,10 @@ sections:
     type: reading
     title: "Working with several inequalities"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -55,6 +59,12 @@ problem_sets:
       - algebra-q106
       - algebra-q76
 ---
+
+## @summary
+
+- Reverse the inequality sign whenever you multiply or divide by a negative quantity.
+- Treat absolute value as distance: split equations into two cases and inequalities into the correct interval pattern.
+- Mark critical points on a number line and test intervals when signs or denominators can change.
 
 ## @inequalities
 

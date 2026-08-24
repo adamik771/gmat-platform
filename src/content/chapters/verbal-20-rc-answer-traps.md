@@ -25,6 +25,10 @@ sections:
     type: reading
     title: "The elimination discipline"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -47,6 +51,12 @@ problem_sets:
       - reading-comprehension-q83
       - reading-comprehension-q89
 ---
+
+## @summary
+
+- Demand textual proof for every important word in an answer choice.
+- Watch for scope shifts, distortions, half-right combinations, extreme language, and answers to a different question.
+- Eliminate four choices deliberately; do not select the first option that echoes the passage's vocabulary.
 
 ## @rc-answer-traps
 

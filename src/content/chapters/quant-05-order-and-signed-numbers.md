@@ -30,6 +30,10 @@ sections:
     title: "Integers vs. non-integers — knowing which world you're in"
     check_question_ids:
       - arithmetic-q50
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -50,6 +54,12 @@ problem_sets:
       - arithmetic-q5
       - arithmetic-q6
 ---
+
+## @summary
+
+- Resolve parentheses and exponents first, then multiply or divide left to right before adding or subtracting.
+- Treat a leading negative carefully: parentheses determine whether the sign is part of the base.
+- Never assume a variable is an integer unless the problem says so; carry the stated domain through every step.
 
 ## @order-of-operations
 

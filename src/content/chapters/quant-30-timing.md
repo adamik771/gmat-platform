@@ -24,8 +24,18 @@ sections:
     type: reading
     title: "One process, every question"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
 ---
+
+## @summary
+
+- Use checkpoints to detect drift early, but make decisions question by question rather than staring at the clock.
+- When a path is not forming, eliminate what you can, make the best choice, and preserve time for solvable questions.
+- After one deliberate exit, reset immediately; do not let a hard question create a second mistake.
 
 ## @quant-timing
 

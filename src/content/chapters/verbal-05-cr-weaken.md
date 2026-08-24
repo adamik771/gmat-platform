@@ -21,6 +21,10 @@ sections:
     title: "CR: Weaken"
     check_question_ids:
       - critical-reasoning-q36
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q31
       - critical-reasoning-q9
 ---
+
+## @summary
+
+- Attack the reasoning that connects evidence to conclusion, not merely the subject matter.
+- Look for an alternative cause, a failed comparison, a reversed mechanism, or evidence that the plan will not produce its goal.
+- The correct choice lowers confidence in the conclusion without needing to make it impossible.
 
 ## @cr-weaken
 

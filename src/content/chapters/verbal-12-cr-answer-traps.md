@@ -21,6 +21,10 @@ sections:
     title: "CR: Answer-Choice Traps"
     check_question_ids:
       - critical-reasoning-q83
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q87
       - critical-reasoning-q88
 ---
+
+## @summary
+
+- Eliminate choices for a named reason: scope shift, reversal, extremity, outside knowledge, or failure to affect the conclusion.
+- Do not reward familiar wording; repeated words can hide a different logical claim.
+- When two choices remain, return to the exact task in the stem and the exact gap in the argument.
 
 ## @cr-answer-traps
 

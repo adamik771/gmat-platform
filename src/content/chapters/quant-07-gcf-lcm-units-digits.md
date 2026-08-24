@@ -30,6 +30,10 @@ sections:
     title: "Estimation — when to compute and when to approximate"
     check_question_ids:
       - arithmetic-q19
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -50,6 +54,12 @@ problem_sets:
       - arithmetic-q72
       - arithmetic-q71
 ---
+
+## @summary
+
+- Prime factorization is the common language: GCF takes the smaller exponent and LCM takes the larger.
+- Translate scheduling and repetition language into an LCM question; translate equal grouping into a GCF question.
+- For units digits, find the repeating cycle and reduce the exponent to a position in that cycle.
 
 ## @gcf-lcm
 

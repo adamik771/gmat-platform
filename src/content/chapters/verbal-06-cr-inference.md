@@ -21,6 +21,10 @@ sections:
     title: "CR: Inference"
     check_question_ids:
       - critical-reasoning-q23
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q60
       - critical-reasoning-q40
 ---
+
+## @summary
+
+- Treat every statement as fixed evidence and choose only what must or is strongly supported to follow.
+- Combine facts conservatively; do not add causal claims, intentions, or comparisons the passage never provides.
+- Prefer the modest answer whose scope matches the evidence over a broader answer that merely sounds plausible.
 
 ## @cr-inference
 

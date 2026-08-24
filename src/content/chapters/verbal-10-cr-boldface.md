@@ -21,6 +21,10 @@ sections:
     title: "CR: Boldface"
     check_question_ids:
       - critical-reasoning-q49
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q90
       - critical-reasoning-q93
 ---
+
+## @summary
+
+- Classify each bold statement first as a fact, claim, evidence, objection, or conclusion.
+- Then identify whose position it represents and how it relates to the argument's main conclusion.
+- Match both roles together; an answer with one correct half and one wrong half is fully wrong.
 
 ## @cr-boldface
 

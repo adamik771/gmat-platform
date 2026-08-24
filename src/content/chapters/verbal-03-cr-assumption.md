@@ -21,6 +21,10 @@ sections:
     title: "CR: Assumption & the Negation Test"
     check_question_ids:
       - critical-reasoning-q11
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q15
       - critical-reasoning-q37
 ---
+
+## @summary
+
+- Find the gap between the evidence and the conclusion; the assumption is a claim the argument needs to cross it.
+- Use the negation test: if negating a choice seriously damages the argument, that choice is necessary.
+- Do not demand that the assumption prove the conclusion; it only has to be required for the reasoning.
 
 ## @cr-assumption
 

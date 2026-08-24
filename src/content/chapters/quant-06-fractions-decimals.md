@@ -37,6 +37,10 @@ sections:
     type: reading
     title: "Make the arithmetic nicer"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -68,6 +72,12 @@ problem_sets:
       - arithmetic-q67
       - arithmetic-q68
 ---
+
+## @summary
+
+- Simplify before multiplying, use a common denominator only when adding or subtracting, and divide by multiplying by the reciprocal.
+- Compare fractions with benchmarks or cross-products instead of forcing every value into a decimal.
+- A reduced fraction terminates only when its denominator contains no prime factors other than 2 and 5.
 
 ## @fractions-fluency
 

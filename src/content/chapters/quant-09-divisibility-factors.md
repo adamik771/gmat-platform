@@ -28,6 +28,10 @@ sections:
     check_question_ids:
       - number-properties-q76
       - number-properties-q13
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -48,6 +52,12 @@ problem_sets:
       - number-properties-q85
       - number-properties-q12
 ---
+
+## @summary
+
+- Use divisibility tests to eliminate quickly, then move to prime exponents when the question asks about factors or multiples.
+- If n has prime exponents a, b, and c, its positive-factor count is (a + 1)(b + 1)(c + 1).
+- Distinguish a factor from a multiple and a prime factor from a prime number before doing any arithmetic.
 
 ## @divisibility-rules
 

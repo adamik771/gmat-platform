@@ -25,6 +25,10 @@ sections:
     type: reading
     title: "Function = your paragraph-purpose tag, as a question"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -47,6 +51,12 @@ problem_sets:
       - reading-comprehension-q136
       - reading-comprehension-q149
 ---
+
+## @summary
+
+- Answer why the author included the sentence or paragraph, not merely what it says.
+- Connect the local move to the surrounding argument: example, concession, evidence, objection, transition, or qualification.
+- Use structural verbs and verify that the choice identifies both the material and its purpose.
 
 ## @rc-function
 

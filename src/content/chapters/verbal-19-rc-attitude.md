@@ -25,6 +25,10 @@ sections:
     type: reading
     title: "Attitude = the author's evaluative words, not airtime"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -47,6 +51,12 @@ problem_sets:
       - reading-comprehension-q103
       - reading-comprehension-q48
 ---
+
+## @summary
+
+- Anchor tone in evaluative words, contrast markers, and what the author chooses to praise, doubt, or qualify.
+- Match the degree precisely; measured skepticism is not hostility, and qualified approval is not enthusiasm.
+- Separate the author's attitude from the views of scholars or groups the passage merely reports.
 
 ## @rc-attitude
 

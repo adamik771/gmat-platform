@@ -22,6 +22,10 @@ sections:
     check_question_ids:
       - ratios-percents-q56
       - ratios-percents-q71
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -42,6 +46,12 @@ problem_sets:
       - ratios-percents-q17
       - arithmetic-q87
 ---
+
+## @summary
+
+- Track the amount of the relevant substance or contribution, not just the overall totals.
+- A weighted average is total weighted contribution divided by total weight; it must lie between the component values.
+- For remove-and-replace problems, update both the component amount and the total volume at each stage.
 
 ## @mixture-and-weighted-average
 

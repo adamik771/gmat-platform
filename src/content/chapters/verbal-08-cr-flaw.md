@@ -21,6 +21,10 @@ sections:
     title: "CR: Flaw"
     check_question_ids:
       - critical-reasoning-q67
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q205
       - critical-reasoning-q112
 ---
+
+## @summary
+
+- Describe the argument's gap in neutral, abstract language before looking for a named flaw.
+- Check recurring patterns: correlation versus causation, sampling, comparison groups, percentages versus totals, and necessary versus sufficient conditions.
+- Reject choices that criticize a true premise or describe a flaw the argument never commits.
 
 ## @cr-flaw
 

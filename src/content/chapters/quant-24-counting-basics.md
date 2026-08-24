@@ -58,6 +58,10 @@ sections:
     title: "Distributions — identical items among distinct recipients"
     check_question_ids:
       - combinatorics-q40
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -78,6 +82,12 @@ problem_sets:
       - combinatorics-q64
       - combinatorics-q65
 ---
+
+## @summary
+
+- Use the multiplication principle for sequential independent choices and the addition principle for disjoint cases.
+- List small cases systematically when it is faster and safer than invoking a formula.
+- Define exactly what one outcome is, then check that your method counts every outcome once.
 
 ## @enumeration
 

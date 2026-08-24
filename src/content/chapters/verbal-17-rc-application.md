@@ -25,6 +25,10 @@ sections:
     type: reading
     title: "Application = extend the author's logic to a new case"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -47,6 +51,12 @@ problem_sets:
       - reading-comprehension-q16
       - reading-comprehension-q20
 ---
+
+## @summary
+
+- Extract the rule, mechanism, or principle from the passage before examining the new scenario.
+- Apply that rule only when the scenario preserves the conditions that made it work.
+- Reject superficial topic matches that change the causal structure or comparison the passage established.
 
 ## @rc-application
 

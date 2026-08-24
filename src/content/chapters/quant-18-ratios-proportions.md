@@ -26,6 +26,10 @@ sections:
     title: "Chaining ratios — making the shared term match"
     check_question_ids:
       - ratios-percents-q10
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -46,6 +50,12 @@ problem_sets:
       - ratios-percents-q5
       - ratios-percents-q6
 ---
+
+## @summary
+
+- A ratio describes relative parts, not actual quantities; introduce a scale factor when totals are unknown.
+- Keep the order of terms consistent and compare like with like before cross-multiplying.
+- For changing ratios, track the underlying amounts because adding to one part changes both that part and the total.
 
 ## @ratio-fundamentals
 

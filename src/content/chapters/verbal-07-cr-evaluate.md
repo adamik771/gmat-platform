@@ -21,6 +21,10 @@ sections:
     title: "CR: Evaluate"
     check_question_ids:
       - critical-reasoning-q39
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q68
       - critical-reasoning-q48
 ---
+
+## @summary
+
+- Locate the uncertain link in the argument and ask what fact would change your confidence in it.
+- Test both possible answers to the proposed question; one direction should strengthen and the other should weaken.
+- A useful evaluation question must be relevant either way, not helpful under only one convenient response.
 
 ## @cr-evaluate
 

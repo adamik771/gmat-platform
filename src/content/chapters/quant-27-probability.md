@@ -34,6 +34,10 @@ sections:
     check_question_ids:
       - statistics-probability-q15
       - statistics-probability-q71
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -54,6 +58,12 @@ problem_sets:
       - statistics-probability-q75
       - statistics-probability-q82
 ---
+
+## @summary
+
+- Start with favorable outcomes divided by total equally likely outcomes, using a counting method when needed.
+- Use the complement for 'at least one' events and multiply only when the event relationship justifies it.
+- Distinguish independence from mutual exclusivity, and update the denominator when outcomes occur without replacement.
 
 ## @probability-basics
 

@@ -31,6 +31,10 @@ sections:
     check_question_ids:
       - algebra-q45
       - algebra-q89
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -51,6 +55,12 @@ problem_sets:
       - word-problems-q5
       - word-problems-q6
 ---
+
+## @summary
+
+- Define variables in words with units, then translate one clause at a time around the equals relationship.
+- Choose variables that keep expressions simple; answer choices may make backsolving faster than symbolic algebra.
+- Check the final value against every original sentence and make sure it answers the quantity actually asked.
 
 ## @translation-discipline
 

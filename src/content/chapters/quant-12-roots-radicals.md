@@ -37,6 +37,10 @@ sections:
     title: "Radical equations — isolate, square, and verify"
     check_question_ids:
       - exponents-roots-q22
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -57,6 +61,12 @@ problem_sets:
       - exponents-roots-q28
       - exponents-roots-q55
 ---
+
+## @summary
+
+- Convert freely between radicals and fractional exponents, then simplify by extracting perfect-power factors.
+- Squaring can introduce extraneous solutions, so check every candidate in the original equation.
+- Respect the real-number domain: an even root requires a nonnegative radicand.
 
 ## @fractional-exponents-and-radicals
 

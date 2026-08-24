@@ -292,3 +292,25 @@ The catch-all rule remains as a runtime safety net, but the validator now warns
 on even one default-routed question. Regression coverage loads the complete
 bank and requires every current shared-bank question to resolve explicitly,
 while representative assertions lock the corrected cross-bank destinations.
+
+---
+
+## CHAPTER RECAP COMPLETION — 2026-08-24
+
+This pass completed the 45 skill chapters that ended without a dedicated
+summary step. Each new recap is chapter-specific and compresses the lesson
+into three retrieval points: the governing method, the highest-value decision
+rule, and the trap or verification habit the student should carry into
+practice. Orientation chapters remain exempt, while the 13 chapters that
+already had substantial summaries were left unchanged.
+
+The recap is now a typed final section in every skill chapter rather than prose
+buried inside the last reading block. This lets the chapter reader present a
+consistent closing step and gives students a predictable final review before
+the graded problem sets. The content-health validator's mental-model threshold
+now counts reading sections only, so adding a recap cannot create a false
+long-chapter warning.
+
+`tests/chapter-recaps.test.ts` requires every non-orientation chapter to end
+with exactly one nonempty summary and at least three retrieval bullets. The
+content validator's `chapter-no-summary` count is now zero.
