@@ -173,6 +173,8 @@ The GMAT will state integer constraints explicitly when they matter, using langu
 
 `x² > x` is *not* automatically true — it holds only when x < 0 or x > 1, and fails for 0 ≤ x ≤ 1. Check each: x = −2 gives 4 > −2 (true); x = 1/2 gives 1/4 > 1/2 (false); x = 3 gives 9 > 3 (true). So **I and III**. Notice that the condition "x > 1" would capture III but says nothing about whether x is an integer — 1.5 qualifies just as much as 3. The region x lives in, not its integer-ness, is what decides x² versus x.
 
+**Worked example.** If x is a real number and |x − 2| = 5, what is the product of all possible values of x? Absolute value measures distance, so x − 2 = 5 or x − 2 = −5. The two values are 7 and −3, and their product is **−21**. The trap answer 21 keeps both roots but loses the sign; the trap answers 7 and −3 stop after only one branch. Whenever an absolute-value equation equals a positive constant, write both signed cases before doing anything else.
+
 **The "x² = 9" two-root issue.** The equation x² = 9 has *two* solutions, x = 3 and x = −3.
 
 - With no constraints, both survive — you cannot name a single value.

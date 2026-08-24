@@ -314,3 +314,24 @@ long-chapter warning.
 `tests/chapter-recaps.test.ts` requires every non-orientation chapter to end
 with exactly one nonempty summary and at least three retrieval bullets. The
 content validator's `chapter-no-summary` count is now zero.
+
+---
+
+## FINAL CONTENT-HEALTH CLEANUP — 2026-08-24
+
+The remaining skill-depth gaps were closed without padding the four orientation
+pages to satisfy teaching-chapter quotas. Five reviewed examples were added:
+one signed-number/absolute-value case, two applied GCF/LCM cases, and two
+Backsolving cases covering a normal second-test finish and a non-monotonic
+boundary. Roots and Radicals now opens with a mental model that connects
+radical notation, exponent notation, and extraneous-solution checks.
+
+The callout scanner now recognizes descriptive trap labels and blockquoted
+callouts. Course welcome and section-orientation pages are explicitly exempt
+from skill-chapter example, trap, and mental-model quotas; their job is course
+navigation, not standalone skill instruction.
+
+`tests/content-health.test.ts` locks the resulting standard: every skill
+chapter has at least five worked examples and one trap callout, and every
+chapter with four or more reading sections has a mental model. The content
+validator now reports 0 errors, 0 warnings, and 0 informational flags.

@@ -72,6 +72,8 @@ problem_sets:
 
 A fractional exponent is a root in disguise. Once you internalize that single idea, an entire category of intimidating-looking expressions collapses into routine arithmetic. The definition:
 
+**Mental model.** Radicals and fractional exponents are two notations for the same operation. Use radical form when evaluating a clean number because "root first" keeps values small; use exponent form when combining expressions because the ordinary exponent laws become mechanical. For equations, treat squaring as a reversible-looking move that can create impostor solutions, so the original equation remains the final judge.
+
 **x^(m/n) = ⁿ√(xᵐ) = (ⁿ√x)ᵐ**
 
 The denominator of the fraction is the root; the numerator is the power. Both orderings give the same result — but one is always much easier to compute. Read the fraction out loud as "the n-th root of x, raised to the m": the bottom number tells you which root, the top number tells you the power. That verbal habit alone prevents the most common mix-up, where test-takers swap the two and compute x^(3/2) as if it were x^(2/3). Burn the phrase into your ear — "bottom is the root, top is the power" — and you will read every fractional exponent correctly on sight, even under time pressure.
