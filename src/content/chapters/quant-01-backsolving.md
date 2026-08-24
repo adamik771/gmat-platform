@@ -119,6 +119,8 @@ This only works because the relationship is *monotonic* — bigger input pushes 
 
 **Worked example.** *If x² − 3x = 28 and x > 0, what is x?* Choices: (A) 4 (B) 5 (C) 7 (D) 8 (E) 9. Start at C, x = 7: 49 − 21 = 28. Exact on the first test — answer **(C)**. Notice everything you skipped: you never moved the 28 over, never factored x² − 3x − 28 into (x − 7)(x + 4), never discarded the negative root. Had C come out too big, you'd drop to A or B; too small, up to D or E.
 
+**Worked example (the second test matters).** A theater charges the same price for every ticket. After a $3 service fee is added to each ticket, 4 tickets cost $60. What was the original ticket price? Choices: (A) $9 (B) $10 (C) $11 (D) $12 (E) $15. Test C: 4(11 + 3) = 56, which is too small, so A and B are eliminated with C. Test D: 4(12 + 3) = 60, so the answer is **(D)**. One middle test removed three choices; the second confirmed the survivor. That is the median-first guarantee in its normal, two-test form.
+
 **Micro-drill (do this in your head).** For each, name which choice you test first and what a "too small" result tells you: *(i)* choices 10, 20, 30, 40, 50; *(ii)* choices 9, 7, 5, 3, 1 (descending). Answers: *(i)* test 30; too small means the answer is 40 or 50. *(ii)* test 5; because the list descends, "too small" means you move toward the **front** (9 or 7), not the back. Direction follows the ordering, not the page position.
 
 > **Recall check.** Why does starting at the median guarantee you finish in at most two tests for a monotonic relationship? (One test of the middle splits the ordered list into a ruled-out half and at most two survivors; the second test distinguishes those two.)
@@ -139,6 +141,8 @@ Now the discipline that separates fast from reckless — the four places backsol
 | The stem says **"must be true" / "could be true"** | You'd need to reason over *all* cases, not confirm one value |
 | Choices are **non-numeric or unsortable** (Roman numerals, "cannot be determined", bare ratios) | "Too big / too small" can't eliminate |
 | The relationship is **not monotonic** | A larger choice doesn't reliably push the condition one way, so half-elimination is unsafe |
+
+**Worked example (when half-elimination is unsafe).** Suppose x² − 10x = −21, x > 5, and the choices are 3, 4, 5, 7, and 9. Testing the middle value 5 gives −25, but that result does not justify moving by a generic "too small means larger" rule: the quadratic changes direction at x = 5. The domain x > 5 eliminates the first three choices; then direct testing shows x = 7 works because 49 − 70 = −21. You may still test choices, but you cannot delete half the list from direction alone when the relationship is non-monotonic.
 
 > **Trap to watch.** Even when backsolving, read the **exact ask**. If the stem defines x but asks for x + 1 or 2x, the choices describe the *transformed* quantity — back out what each choice implies before plugging, or solve for x and then transform. The method rewards precision, not just speed.
 

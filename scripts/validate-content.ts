@@ -265,13 +265,13 @@ function countCallouts(body: string): CalloutCounts {
   // anywhere on a line (start-of-line or after a blank line).
   const lines = body.split("\n")
   for (const raw of lines) {
-    const line = raw.trim()
+    const line = raw.trim().replace(/^>\s*/, "")
     const match = line.match(/^\*\*([^*]+?)\*\*/)
     if (!match) continue
     const label = match[1].trim().replace(/[.:]+$/, "").trim().toLowerCase()
     if (/^(example|example\s|worked example|illustrated example|example\s\(.*\)|example\s\d|example\s\d\s—)/.test(label) || label.startsWith("example ") || label === "example") {
       counts.example++
-    } else if (/^(trap to watch|common trap|trap pattern|trap)$/.test(label)) {
+    } else if (/^(trap to watch|common trap|trap pattern|trap)(?:\s|$)/.test(label)) {
       counts.trap++
     } else if (/^(mental model|the mental model|core idea)$/.test(label)) {
       counts.mentalModel++
@@ -286,8 +286,17 @@ function countCallouts(body: string): CalloutCounts {
 
 const MIN_EXAMPLES_PER_CHAPTER = 5
 const MIN_TRAPS_PER_CHAPTER = 1
+const CONTENT_HEALTH_EXEMPT = new Set([
+  "gmat-welcome",
+  "quant-section-intro",
+  "verbal-section-intro",
+  "di-section-intro",
+])
 
 for (const c of chapters) {
+  // Orientation pages frame the course rather than teach one tested skill, so
+  // applying the skill-chapter example/trap quotas would reward filler.
+  if (CONTENT_HEALTH_EXEMPT.has(c.slug)) continue
   let totals: CalloutCounts = {
     example: 0,
     trap: 0,

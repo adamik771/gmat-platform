@@ -94,6 +94,10 @@ GMAT speed standard: for two-digit numbers, prime factorization is usually faste
 3. **Cycle word problems.** "Two buses depart together; bus A runs every 8 minutes, bus B every 12 minutes. When do they next depart together?" → LCM(8, 12) = **24 minutes**. Any "when do two periodic events coincide?" question is LCM in disguise.
 4. **Shared-factor questions.** "Is GCF(x, y) > 1?" — the test will ask this in disguise as "do x and y share a common prime factor?" or "is there a number greater than 1 that divides both x and y?"
 
+**Worked example (GCF in disguise).** A school has 84 red folders and 126 blue folders. It wants to make the greatest possible number of identical packs, using every folder and putting the same number of each color in every pack. The number of packs must divide both 84 and 126, so it is GCF(84, 126). Since 84 = 2² × 3 × 7 and 126 = 2 × 3² × 7, the GCF is 2 × 3 × 7 = **42**. Each pack contains 2 red folders and 3 blue folders. The phrase "greatest number of identical groups using everything" is your GCF trigger.
+
+**Worked example (LCM in disguise).** Three maintenance checks repeat every 6, 8, and 15 days. If all three occur today, after how many days will they next occur together? The next shared occurrence is LCM(6, 8, 15). Using 6 = 2 × 3, 8 = 2³, and 15 = 3 × 5, take the highest exponent of each prime: 2³ × 3 × 5 = **120 days**. The trap answer 29 adds the intervals; repeating cycles align through an LCM, not a sum.
+
 **The "fully reduced" check.** After reducing a fraction, verify the result by checking that numerator and denominator share no prime factors. For `3/7`: 3 is prime, 7 is prime, they're different — fully reduced. For `6/14`: both are divisible by 2 → not reduced. The GMAT includes partially-reduced equivalents as trap answer choices (see Q13).
 
 **Micro-drill.** Under 45 seconds total:
