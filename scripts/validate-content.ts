@@ -665,8 +665,9 @@ for (const q of questions) {
   }
 }
 
-// WARN: share of a shared bank's questions that fall to the bank default
-// (no subtopic keyword matched) — a spike means uploads use unrecognized tags.
+// WARN: any shared-bank question that falls to the bank default. Every current
+// subtopic is intentionally mapped; the default exists only as a runtime safety
+// net so a future upload cannot make the practice page fail completely.
 const bankTotals = new Map<string, { total: number; viaDefault: number }>()
 for (const q of questions) {
   if (!(q.setSlug in BANK_RULES)) continue
@@ -677,13 +678,12 @@ for (const q of questions) {
   bankTotals.set(q.setSlug, t)
 }
 for (const [bank, t] of bankTotals) {
-  const share = t.total > 0 ? t.viaDefault / t.total : 0
-  if (share > 0.25) {
+  if (t.viaDefault > 0) {
     push({
-      severity: "INFO",
+      severity: "WARN",
       setSlug: bank,
       rule: "practice-default-routed",
-      detail: `${t.viaDefault}/${t.total} (${Math.round(share * 100)}%) used no chapter-specific keyword and routed to the bank's default chapter (fine when the default is the dominant chapter; add keywords in practice-tests-map.ts to split further)`,
+      detail: `${t.viaDefault}/${t.total} used an unrecognized subtopic and fell through to the bank's safety-net chapter — add an explicit rule in practice-tests-map.ts`,
     })
   }
 }

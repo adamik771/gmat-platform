@@ -7,7 +7,7 @@ import {
   COMING_SOON_CHAPTERS,
   OMITTED_CHAPTERS,
 } from "@/lib/practice-tests-map"
-import { getAllChapters } from "@/lib/content"
+import { getAllChapters, getAllQuestions } from "@/lib/content"
 
 describe("resolveChapterAssignment — DIRECT_BANK_CHAPTER (1:1 DI banks)", () => {
   it("routes a direct bank to its identical chapter slug, ignoring subtopic, never viaDefault", () => {
@@ -86,6 +86,58 @@ describe("resolveChapterAssignment — BANK_RULES keyword routing", () => {
     expect(resolveChapterAssignment("reading-comprehension", "inference question").chapter).toBe(
       "verbal-16-rc-inference"
     )
+  })
+
+  it("routes representative cross-bank topics to the chapter that actually teaches them", () => {
+    expect(resolveChapterAssignment("arithmetic", "Average").chapter).toBe("quant-23-statistics")
+    expect(resolveChapterAssignment("algebra", "Symmetric Sums").chapter).toBe(
+      "quant-16-functions-sequences"
+    )
+    expect(resolveChapterAssignment("rates-work", "Production Rate").chapter).toBe(
+      "quant-22-work-rate"
+    )
+    expect(resolveChapterAssignment("word-problems", "Age Problem").chapter).toBe(
+      "quant-28-classic-word-problems"
+    )
+    expect(resolveChapterAssignment("word-problems", "Consecutive Integers").chapter).toBe(
+      "quant-28-classic-word-problems"
+    )
+    expect(
+      resolveChapterAssignment("word-problems", "Investment — Two Simple Interest Rates").chapter
+    ).toBe("quant-19-percents")
+    expect(resolveChapterAssignment("word-problems", "Revenue Optimization").chapter).toBe(
+      "quant-28-classic-word-problems"
+    )
+    expect(resolveChapterAssignment("word-problems", "Inverse Proportion").chapter).toBe(
+      "quant-22-work-rate"
+    )
+  })
+
+  it("explicitly recognizes every subtopic currently present in a shared bank", () => {
+    const sharedBankQuestions = getAllQuestions().filter((q) => q.setSlug in BANK_RULES)
+
+    expect(sharedBankQuestions.length).toBeGreaterThan(0)
+    for (const question of sharedBankQuestions) {
+      const result = resolveChapterAssignment(question.setSlug, question.subtopic)
+      expect(
+        result.chapter,
+        `${question.id} (${question.setSlug}: ${question.subtopic}) did not resolve`
+      ).not.toBeNull()
+      expect(
+        result.viaDefault,
+        `${question.id} (${question.setSlug}: ${question.subtopic}) used the safety-net route`
+      ).toBe(false)
+    }
+  })
+
+  it("keeps the Fractions and Decimals pool full after removing misrouted averages", () => {
+    const question = getAllQuestions().find((q) => q.id === "arithmetic-q132")
+    expect(question?.correctAnswerLetter).toBe("C")
+    expect(question?.options).toHaveLength(5)
+    expect(resolveChapterAssignment(question!.setSlug, question!.subtopic)).toEqual({
+      chapter: "quant-06-fractions-decimals",
+      viaDefault: false,
+    })
   })
 })
 
