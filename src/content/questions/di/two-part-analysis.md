@@ -21,44 +21,10 @@ Select the value of T (row 1) and the value of S (row 2).
 | 6.0   |          |            |
 
 **answer:** T = 2.4, S = 6.0
-**explanation:** **The Combined-Work Principle.** When two agents work simultaneously on the same task, their rates — expressed in units of work per unit of time — are additive. That is, if Agent A completes 1/a of the job per hour and Agent B completes 1/b of the job per hour, together they complete 1/a + 1/b of the job per hour, and the total time to finish one complete job equals 1 divided by that combined rate.
-
-**Setting up the variables and rates.**
-
-Let the full load represent 1 unit of work. The problem states:
-
-- Truck A completes the load in 6 hours, so Truck A's rate = 1/6 load per hour.
-- Truck B completes the load in 4 hours, so Truck B's rate = 1/4 load per hour.
-
-**Solving for T (both trucks working together).**
-
-Applying the additive-rate principle, the combined rate when both trucks work simultaneously is:
-
-1/6 + 1/4
-
-To add these fractions, the least common denominator of 12 is used:
-
-1/6 + 1/4 = 2/12 + 3/12 = 5/12 load per hour
-
-Since time = work / rate, and the total work is 1 load:
-
-T = 1 / (5/12) = 12/5 = 2.4 hours
-
-The value 2.4 is therefore selected for the column "T (both)."
-
-**Solving for S (Truck A working alone).**
-
-When only Truck A works, its rate remains 1/6 load per hour. The time required to deliver exactly 1 full load is:
-
-S = 1 / (1/6) = 6 hours
-
-This result is consistent with the prompt's direct statement that Truck A alone requires 6 hours; no further manipulation is necessary. The value 6.0 is therefore selected for the column "S (A only)."
-
-**Confirming against the candidate values.**
-
-The five candidate values are 1.6, 2.4, 3.6, 4.0, and 6.0. The computed value T = 12/5 = 2.4 matches the candidate 2.4 exactly, and S = 6 matches the candidate 6.0 exactly. No other candidates are consistent with the rates derived above.
-
-The correct answers are T (both) = 2.4 and S (A only) = 6.0.
+**fastest_path:** Add work rates for T; read S directly. The combined rate is 1/6 + 1/4 = 5/12 load per hour.
+**explanation:** Truck A's rate is 1/6 load per hour and B's is 1/4. Together they work at 5/12 load per hour, so T = 1/(5/12) = 12/5 = 2.4 hours. Truck A alone takes the stated 6 hours, so S = 6.0. Select 2.4 for T and 6.0 for S.
+**common_trap:** Do not add the completion times. Workers combine by adding rates, then taking the reciprocal to obtain time.
+**takeaway:** For joint work, convert times to rates, add the rates, and invert once.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -217,31 +183,10 @@ Two trains leave cities 540 km apart, traveling toward each other. Train A trave
 | 5 hours |                  |              |
 
 **answer:** Train A distance = 240 km, Time = 3 hours
-**explanation:** **Governing principle.** When two objects move toward each other, their speeds combine: the rate at which the gap between them closes equals the sum of their individual speeds. Therefore, the time to meet is the total distance divided by the combined speed.
-
-**Variable definitions.** Let t be the time (in hours) elapsed when the two trains meet. Let d_A be the distance (in kilometers) traveled by Train A at the moment of meeting.
-
-**Setting up the equation.** Train A travels at 80 km/h and Train B travels at 100 km/h. Their combined closing speed is 80 + 100 = 180 km/h. The total distance separating the two cities is 540 km. The trains meet when the sum of the distances they have individually covered equals 540 km, which occurs at time t such that:
-
-180 * t = 540
-
-**Solving for t.**
-
-t = 540 / 180 = 3
-
-The time elapsed when the trains meet is 3 hours.
-
-**Solving for d_A.** Using the definition distance = rate * time:
-
-d_A = 80 * 3 = 240
-
-Train A has traveled 240 km when the trains meet.
-
-**Verification.** In the same 3 hours, Train B covers 100 * 3 = 300 km. The sum of the two distances is 240 + 300 = 540 km, which equals the total separation. The solution is consistent.
-
-**Evaluating the candidate values.** The column "Train A Distance" contains values 180 km, 240 km, and 300 km. Only 240 km matches d_A = 80 * 3. The value 300 km corresponds to Train B's distance, and 180 km corresponds to neither train. The column "Time to Meet" contains values 3 hours, 4 hours, and 5 hours. Only 3 hours matches t = 540 / 180. At t = 4, the combined distance would be 180 * 4 = 720 km, exceeding 540 km; at t = 5, it would be 900 km — both inconsistent with the given separation.
-
-The correct answers are Train A Distance = 240 km and Time to Meet = 3 hours.
+**fastest_path:** Add the closing speeds: 80 + 100 = 180 km/h. Divide the 540-km gap by 180, then use A's rate for its distance.
+**explanation:** The trains approach each other at a combined 180 km/h, so they meet after 540/180 = 3 hours. In that time, Train A travels 80 x 3 = 240 km. Train B covers the remaining 300 km, confirming a total of 540 km. Select 240 km for Train A and 3 hours for the meeting time.
+**common_trap:** The 300-km value is Train B's distance, not Train A's. Use each train's own speed after finding the common time.
+**takeaway:** For objects moving toward each other, add speeds to find meeting time, then compute each distance separately.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -288,38 +233,10 @@ A manufacturing company produces Product X and Product Y. Each unit of X require
 | 80  |                |                |
 
 **answer:** Max X = 60, Max Y = 40
-**explanation:** **Resource-constraint maximization.** When a firm produces only one product, total output is bounded by every applicable resource limit simultaneously; the maximum feasible quantity is the smallest upper bound imposed across all constraints.
-
-**Setting up the constraints.**
-
-Let x = the number of units of Product X produced and y = the number of units of Product Y produced. The two binding constraints are:
-
-- Labor (hours available = 120): 2x hours per unit of X, 3y hours per unit of Y
-- Materials (budget = $600): $10 per unit of X, $15 per unit of Y
-
-**Row 1 — Maximum X when only Product X is produced.**
-
-Setting y = 0, both constraints simplify to single-variable inequalities:
-
-Labor: 2x <= 120, which gives x <= 120/2 = 60.
-
-Materials: 10x <= 600, which gives x <= 600/10 = 60.
-
-Both constraints yield the same upper bound of 60. Therefore the maximum number of units of Product X is 60.
-
-**Row 2 — Maximum Y when only Product Y is produced.**
-
-Setting x = 0, both constraints simplify analogously:
-
-Labor: 3y <= 120, which gives y <= 120/3 = 40.
-
-Materials: 15y <= 600, which gives y <= 600/15 = 40.
-
-Again both constraints converge on the same ceiling of 40. Therefore the maximum number of units of Product Y is 40.
-
-**Verification against the candidate values.** The answer choices include 30, 40, 50, 60, and 80. The derived maximum for X is 60 (not 80, because neither constraint permits x = 80: 2(80) = 160 > 120 and 10(80) = 800 > 600). The derived maximum for Y is 40 (not 50, because 3(50) = 150 > 120 and 15(50) = 750 > 600). Both 60 and 40 appear among the candidates and satisfy all constraints with equality, confirming they are the correct selections.
-
-The correct answers are Max X (only X) = 60 and Max Y (only Y) = 40.
+**fastest_path:** For each product made alone, compute the output ceiling from labor and from materials; the smaller ceiling controls.
+**explanation:** For X only, labor allows 120/2 = 60 units and materials allow 600/10 = 60, so Max X = 60. For Y only, labor allows 120/3 = 40 and materials allow 600/15 = 40, so Max Y = 40. Both resources bind in each case. Select 60 for X and 40 for Y.
+**common_trap:** Do not combine X and Y in one production mix; each requested maximum assumes only that product is made.
+**takeaway:** Under multiple resource constraints, a single-product maximum is the minimum of its resource-based ceilings.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1199,37 +1116,10 @@ A retailer purchases a laptop at a wholesale cost of $800. The retailer applies 
 | $1,080 |            |               |
 
 **answer:** List Price = $1,000, Loyalty Price = $900
-**explanation:** A percentage markup applied to a cost price yields the selling (list) price, and a percentage discount applied to that list price yields the final price paid. Let C denote the wholesale cost, L denote the list price, and P denote the loyalty price.
-
-Define the variables and translate the prompt into equations.
-
-- C = 800 (given wholesale cost in dollars)
-- A 25% markup means the list price equals the cost plus 25% of the cost: L = C + 0.25 * C = C * (1 + 0.25) = 1.25 * C
-- A 10% loyalty discount means the customer pays 90% of the list price: P = L * (1 - 0.10) = 0.90 * L
-
-Solve for the list price (Column 1).
-
-Substituting C = 800 into the markup equation:
-
-L = 1.25 * 800 = 1,000
-
-The list price is $1,000.
-
-Solve for the loyalty price (Column 2).
-
-Substituting L = 1,000 into the discount equation:
-
-P = 0.90 * 1,000 = 900
-
-The loyalty price is $900.
-
-Verify against the candidate values.
-
-The candidate set is {$720, $880, $900, $1,000, $1,080}. The computed list price $1,000 appears in the set, and the computed loyalty price $900 also appears in the set. Both values are therefore valid selections.
-
-Common errors to rule out. One might mistakenly apply the 25% markup to the loyalty price rather than to the wholesale cost, or compute the discount as 10% of the cost ($80) rather than 10% of the list price ($100). Either error yields values not consistent with the problem statement and not supported by the candidate values $1,000 and $900. Another error is to treat the 10% discount as reducing the price by $10 rather than by 10% of $1,000 = $100, which would produce $990 — a value absent from the candidate set, confirming that interpretation is incorrect.
-
-The correct answers are List Price = $1,000 and Loyalty Price = $900.
+**fastest_path:** Apply the changes in order: multiply cost by 1.25 for list price, then multiply that result by 0.90 for loyalty price.
+**explanation:** A 25% markup on $800 gives a list price of 800 x 1.25 = $1,000. The 10% loyalty discount is taken from that list price, so the customer pays 1,000 x 0.90 = $900. Select $1,000 for List Price and $900 for Loyalty Price.
+**common_trap:** The discount is 10% of the $1,000 list price, not 10% of the original $800 cost. Apply sequential percentages to the correct base.
+**takeaway:** Successive percentage changes multiply their factors; they are not generally added or subtracted from the same starting value.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -2132,59 +2022,10 @@ Select the value of C (column 1) and the value of W (column 2).
 | 200 |                |                 |
 
 **answer:** C = 100, W = 100
-**explanation:** Let C = the number of acres planted with corn and W = the number of acres planted with wheat. The problem imposes two constraints and one objective.
-
-**Constraint 1 — land:** The farmer plants all 200 acres, so
-
-C + W = 200
-
-**Constraint 2 — labor:** Each corn acre requires 3 labor-days and each wheat acre requires 5 labor-days, with at most 800 labor-days available:
-
-3C + 5W <= 800
-
-**Objective:** Maximize total profit P = 400C + 600W.
-
-**Reducing to one variable.**
-
-From Constraint 1, C is expressed in terms of W:
-
-C = 200 - W
-
-Substituting into the labor constraint:
-
-3(200 - W) + 5W <= 800
-600 - 3W + 5W <= 800
-600 + 2W <= 800
-2W <= 200
-W <= 100
-
-The non-negativity conditions W >= 0 and C = 200 - W >= 0 give W <= 200. The binding upper bound is therefore W <= 100.
-
-**Expressing profit in terms of W.**
-
-Substituting C = 200 - W into the profit function:
-
-P = 400(200 - W) + 600W
-P = 80000 - 400W + 600W
-P = 80000 + 200W
-
-Because the coefficient of W is positive (200 > 0), profit is strictly increasing in W. Profit is therefore maximized by setting W as large as the constraints permit. The feasible maximum is W = 100.
-
-**Solving for C.**
-
-With W = 100:
-
-C = 200 - 100 = 100
-
-**Verification.**
-
-Land: C + W = 100 + 100 = 200. The acreage constraint is satisfied exactly.
-Labor: 3(100) + 5(100) = 300 + 500 = 800. The labor constraint is satisfied exactly (the bound is tight).
-Profit: 400(100) + 600(100) = 40000 + 60000 = 100000.
-
-For comparison, at W = 50, C = 150: profit = 400(150) + 600(50) = 60000 + 30000 = 90000, which is less than 100000. At W = 0, C = 200: profit = 400(200) = 80000, still less. Any W > 100 paired with C = 200 - W violates the labor constraint (labor = 800 + 2(W - 100) > 800). Therefore the profit-maximizing feasible solution is uniquely C = 100, W = 100.
-
-The correct answers are C (corn acres) = 100 and W (wheat acres) = 100.
+**fastest_path:** Replace one corn acre with wheat: profit rises $200 but labor use rises 2 days. The 200 extra labor-days allow 100 such swaps.
+**explanation:** Planting all 200 acres in corn uses 600 labor-days and earns $80,000. Each acre switched from corn to wheat uses 2 additional labor-days and adds $200 profit. The remaining 200 labor-days permit 200/2 = 100 switches. Thus W = 100 and C = 100. Labor is 3(100)+5(100)=800, and no further profitable switch is feasible.
+**common_trap:** Wheat earns more per acre, but all 200 acres of wheat would require 1,000 labor-days and violate the 800-day limit.
+**takeaway:** With fixed total acreage, compare the incremental profit and resource cost of replacing one crop with the other.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -2328,66 +2169,10 @@ Select the value of H (column 1) and the value of T (column 2).
 | 1,000 |                 |                 |
 
 **answer:** H = 6, T = 900
-**explanation:** **Setup and variable definitions.**
-
-Let E(n) denote the efficiency during the n-th hour of the shift, expressed as a decimal. The problem states that E(1) = 1.00 and that each subsequent hour reduces efficiency by 0.10, giving the arithmetic sequence:
-
-E(n) = 1.00 - 0.10(n - 1)
-
-At full efficiency the factory produces 200 units per hour, so the output during hour n is:
-
-Output(n) = 200 * E(n) = 200 * [1.00 - 0.10(n - 1)]
-
-**Finding H — the count of complete hours during which efficiency is at least 50%.**
-
-The condition E(n) >= 0.50 requires:
-
-1.00 - 0.10(n - 1) >= 0.50
-
-Subtracting 1.00 from both sides:
-
--0.10(n - 1) >= -0.50
-
-Dividing both sides by -0.10 and reversing the inequality:
-
-n - 1 <= 5, therefore n <= 6
-
-The largest integer satisfying this condition is n = 6. The table below lists each hour:
-
-| Hour n | E(n) | E(n) >= 50%? |
-|--------|------|--------------|
-| 1 | 100% | Yes |
-| 2 | 90% | Yes |
-| 3 | 80% | Yes |
-| 4 | 70% | Yes |
-| 5 | 60% | Yes |
-| 6 | 50% | Yes |
-| 7 | 40% | No |
-
-Hour 7 yields E(7) = 1.00 - 0.10(6) = 0.40, which falls below 0.50 and is therefore excluded. The number of qualifying complete hours is H = 6.
-
-**Finding T — total units produced during those H hours.**
-
-Summing Output(n) for n = 1 through 6:
-
-- Hour 1: 200 * 1.00 = 200
-- Hour 2: 200 * 0.90 = 180
-- Hour 3: 200 * 0.80 = 160
-- Hour 4: 200 * 0.70 = 140
-- Hour 5: 200 * 0.60 = 120
-- Hour 6: 200 * 0.50 = 100
-
-T = 200 + 180 + 160 + 140 + 120 + 100
-
-Adding in pairs: (200 + 100) + (180 + 120) + (160 + 140) = 300 + 300 + 300 = 900.
-
-Alternatively, because the six output values form an arithmetic sequence with first term 200, last term 100, and six terms, the sum equals (6/2) * (200 + 100) = 3 * 300 = 900.
-
-**Matching to the candidate values.**
-
-From the list {5, 6, 7, 700, 800, 900, 1,000}, the value 6 corresponds to H and the value 900 corresponds to T. No other pairing is consistent with the constraints.
-
-The correct answers are H (hours >= 50%) = 6 and T (total units) = 900.
+**fastest_path:** List the qualifying hourly efficiencies: 100%, 90%, 80%, 70%, 60%, 50%. That gives H = 6; sum their outputs as an arithmetic series.
+**explanation:** Efficiency remains at least 50% for hours 1 through 6, so H = 6. Output in those hours is 200, 180, 160, 140, 120, and 100 units. These six values form an arithmetic sequence, so T = 6(200 + 100)/2 = 900. Select 6 for H and 900 for T.
+**common_trap:** Do not exclude the sixth hour: 'at least 50%' includes exactly 50%. Hour 7 is the first hour below the cutoff.
+**takeaway:** For an inclusive threshold, count the endpoint; then use n(first + last)/2 to sum an arithmetic sequence quickly.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -3508,46 +3293,10 @@ Machine A can complete a production order alone in 12 days, and Machine B can co
 | 2/3   |               |                    |
 
 **answer:** Days A worked = 4, Fraction done by B = 2/3
-**explanation:** **Governing principle.** Each machine's rate is the reciprocal of its solo completion time, expressed as a fraction of the order per day. The total work done is the sum of each machine's rate multiplied by the number of days it ran, and a completed order equals 1 full unit of work.
-
-**Define variables and rates.** Let d be the number of days Machine A worked before going offline. Machine B runs for the entire job, a total of 16 days. The rates are:
-
-- Machine A: 1/12 of the order per day.
-- Machine B: 1/24 of the order per day.
-
-**Set up the completion equation.** The total work performed must equal one full order. Machine A contributes work for d days and Machine B contributes work for all 16 days:
-
-(1/12)·d + (1/24)·16 = 1
-
-**Solve for d.** First evaluate Machine B's total contribution:
-
-(1/24)·16 = 16/24 = 2/3
-
-The equation becomes:
-
-(1/12)·d + 2/3 = 1
-
-Subtracting 2/3 from both sides:
-
-(1/12)·d = 1 - 2/3 = 1/3
-
-Multiplying both sides by 12:
-
-d = 12 · (1/3) = 4
-
-Machine A therefore worked 4 days.
-
-**Determine the fraction completed by Machine B.** Machine B ran for all 16 days at a rate of 1/24 per day, completing:
-
-16 · (1/24) = 16/24 = 2/3
-
-So Machine B completed 2/3 of the order. (Machine A completed the remaining 1/3, consistent with 4 · (1/12) = 4/12 = 1/3.)
-
-**Verification.** Total work: 1/3 (by A) + 2/3 (by B) = 1, a complete order. The first 4 days were worked jointly; thereafter Machine B continued alone for the remaining 12 of its 16 days. Joint output in 4 days: 4·(1/12 + 1/24) = 4·(2/24 + 1/24) = 4·(3/24) = 4·(1/8) = 1/2. Machine B alone over its final 12 days: 12·(1/24) = 1/2. Total: 1/2 + 1/2 = 1. Consistent.
-
-**Matching candidate values.** The candidate list is 2, 4, 6, 1/3, 1/2, and 2/3. The value 4 (days A worked) and the value 2/3 (fraction done by B) both appear. The distractor 1/3 is the fraction done by A, not B, and 1/2 corresponds to neither requested quantity.
-
-The correct answers are Days A worked = 4 and Fraction done by B = 2/3.
+**fastest_path:** Compute B's contribution first: 16/24 = 2/3 of the order. A must complete the remaining 1/3, which takes 4 days at 1/12 per day.
+**explanation:** Machine B runs for 16 days at 1/24 of the order per day, so B completes 16/24 = 2/3. The remaining 1/3 is completed by A. At A's rate of 1/12 per day, the required time is (1/3)/(1/12) = 4 days. Select 4 for A's working time and 2/3 for B's fraction.
+**common_trap:** The 1/3 fraction belongs to Machine A, not B. Also, B's 16 days include the days when both machines were running.
+**takeaway:** In work problems, total contribution equals rate times time; solve the known worker's contribution before finding the remainder.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -4200,33 +3949,10 @@ A set of five distinct positive integers has a mean of 20 and a median of 18. Le
 | 60 |                          |                           |
 
 **answer:** L = 60, S = 25
-**explanation:** **Setup and definitions.** Let the five distinct positive integers, in ascending order, be a1 < a2 < a3 < a4 < a5. With five elements, the median is the third element, so a3 = 18. The mean of 20 fixes the total sum at 5 * 20 = 100. Subtracting the known median:
-
-a1 + a2 + a4 + a5 = 100 - 18 = 82
-
-Two further constraints follow from ordering and distinctness: a1 and a2 are distinct positive integers strictly less than 18, and a4 is strictly greater than 18 and strictly less than a5.
-
-**Finding L (the largest possible greatest integer).** To maximize a5, minimize a1 + a2 + a4. The smallest distinct positive integers for a1 and a2 are 1 and 2, summing to 3. The smallest allowable a4, which must exceed 18, is 19. Therefore:
-
-a5 = 82 - 1 - 2 - 19 = 60
-
-The resulting set {1, 2, 18, 19, 60} satisfies every condition: five distinct positive integers, sum 1 + 2 + 18 + 19 + 60 = 100 (mean 20), median 18. No smaller choice for a1, a2, or a4 is available while respecting distinctness and ordering, so L = 60.
-
-**Finding S (the smallest possible greatest integer).** To minimize a5, maximize a1 + a2 + a4. The two largest distinct integers strictly below 18 are 16 and 17, giving a1 + a2 = 33. This forces:
-
-a4 + a5 = 82 - 33 = 49
-
-Since a4 and a5 are distinct with 18 < a4 < a5, a5 is smallest when a4 is as large as possible, namely a4 = a5 - 1. Substituting:
-
-(a5 - 1) + a5 = 49
-
-2 * a5 = 50
-
-a5 = 25,   a4 = 24
-
-No smaller a5 works: if a5 = 24, then a4 = 49 - 24 = 25 > a5, violating the ordering; any a5 below 24 forces a4 above a5 as well. The resulting set {16, 17, 18, 24, 25} satisfies all conditions: five distinct positive integers, sum 16 + 17 + 18 + 24 + 25 = 100 (mean 20), median 18. Therefore S = 25.
-
-The correct answers are L (largest possible max) = 60 and S (smallest possible max) = 25.
+**fastest_path:** Order the integers a<b<18<d<e and use total 100. Maximize e by minimizing a,b,d; minimize e by maximizing a,b and balancing d,e.
+**explanation:** The sum is 5(20)=100. For the largest possible maximum, use the smallest allowed other values: 1, 2, 18, 19, giving e=60. Thus L=60. For the smallest possible maximum, maximize the two values below 18: 16 and 17. Then d+e=49 with 18<d<e, so the closest distinct pair is 24 and 25. Thus S=25. Select 60 and 25.
+**common_trap:** To minimize the maximum, do not minimize the other entries; make them as large and balanced as the ordering permits.
+**takeaway:** With a fixed sum, maximize one term by minimizing the rest; minimize the maximum by distributing the remaining sum evenly.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---

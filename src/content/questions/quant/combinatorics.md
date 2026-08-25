@@ -1559,20 +1559,13 @@ A disease affects 2% of the population. A diagnostic test has a 90% true-positiv
 - E) 90%
 
 **answer:** C
+**fastest_path:** Use a 1,000-person table: 20 are sick, 18 test positive; 980 are healthy, 49 test positive. Then divide true positives by all positives.
+**explanation:** Among 1,000 people, 2% prevalence gives 20 sick and 980 healthy. The test correctly flags 90% of the sick group, or 18 people, and falsely flags 5% of the healthy group, or 49 people. Thus 67 people test positive, of whom 18 are actually sick. The probability is 18/67 = 26.9%, approximately 27%, choice C.
+**common_trap:** The 90% sensitivity is P(positive | sick), not P(sick | positive). False positives from the much larger healthy group matter greatly.
+**takeaway:** For conditional-probability tests, convert rates into counts in a convenient population and use desired positives over all positives.
 **hint_nudge:** Do not be fooled by the 90% — a rare disease combined with many healthy people produces a flood of false positives.
 **hint_strategy:** Skip the formula: run a concrete population of 1,000 people and count true positives versus false positives.
 **hint_setup:** Diseased 20 -> 18 test positive; healthy 980 -> 49 test positive. Answer = 18 / (18 + 49).
-**explanation:** This problem is solved by applying Bayes' theorem, which relates the conditional probability of having the disease given a positive test to the underlying disease prevalence and the test's performance rates. Rather than manipulate the formula symbolically, we may work with a concrete reference population, which yields the same result and makes each quantity explicit.
-
-Let the reference population consist of 1,000 people. Since the disease affects 2 percent of the population, the number of people who actually have the disease is 2 percent of 1,000, which equals 20. The remaining 980 people are healthy.
-
-We now determine how many people in each group test positive. The test has a 90 percent true-positive rate, so among the 20 diseased people the number who test positive is 90 percent of 20, which equals 18. The test has a 5 percent false-positive rate, so among the 980 healthy people the number who test positive is 5 percent of 980; since 10 percent of 980 is 98, taking half gives 49.
-
-The total number of people who test positive is therefore 18 plus 49, which equals 67. Of these 67 positive results, only the 18 true positives correspond to people who actually have the disease.
-
-The probability that a person who tests positive actually has the disease is the ratio of true positives to all positives, which is 18 divided by 67. No long division is needed to convert this fraction to a percent: bound it between two benchmark fractions with friendlier denominators. If the denominator were 72, the value would be 18/72 = 1/4 = 25 percent; if the denominator were 60, the value would be 18/60 = 3/10 = 30 percent. Since 67 lies between 60 and 72, the ratio 18/67 must lie between 25 percent and 30 percent, and the only answer choice in that range is 27 percent.
-
-The correct answer is C.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1673,26 +1666,10 @@ Twelve students are to be divided into three equal groups of 4 for a field trip.
 - E) 69,300
 
 **answer:** B
-**hint_nudge:** The groups carry no labels, so the same three groups in a different order must not be recounted.
-**hint_strategy:** Count as though the groups were ordered, then divide by 3! to strip out the relabeling overcount.
-**hint_setup:** [C(12,4) x C(8,4) x C(4,4)] / 3! = 34,650 / 6.
-**explanation:** This problem requires counting the number of ways to partition a set into unlabeled groups of equal size. The governing principle is that when a sequential selection process imposes an implicit order on groups that are in fact interchangeable, the resulting count must be divided by the number of ways those groups can be permuted, namely the factorial of the number of groups.
-
-Let the twelve students be partitioned into three groups of four. We first count the partitions as though the groups were ordered, and then correct for the overcounting.
-
-Step 1: Choose the first group of four from the twelve students. The number of such choices is C(12, 4) = (12 × 11 × 10 × 9) / (4 × 3 × 2 × 1). Cancel before multiplying: 4 × 3 = 12 cancels the 12 in the numerator, leaving (11 × 10 × 9) / 2 = 11 × 5 × 9. In stages, 11 × 9 = 99 and 99 × 5 = 495.
-
-Step 2: Choose the second group of four from the remaining eight students. The number of such choices is C(8, 4) = 70.
-
-Step 3: The last four students necessarily form the third group, so there is C(4, 4) = 1 way to complete the division.
-
-Multiplying these together gives the number of ordered selections: 495 × 70 × 1.
-
-Because the three groups carry no labels, each genuine partition has been counted once for every possible ordering of its three groups. Three groups can be ordered in 3! = 6 ways, so every distinct partition appears 6 times in the ordered count. We therefore divide by 6 to remove this overcounting. Rather than multiply 495 × 70 out to a five-digit number and then long-divide, cancel the 6 into the factors first: writing 6 = 3 × 2, we take 495 / 3 = 165 and 70 / 2 = 35, so the answer is 165 × 35. Computing in stages keeps every step small: 165 × 35 = 165 × 7 × 5, and 165 × 7 = 1,155, then 1,155 × 5 = 5,775.
-
-(For reference, the ordered count itself is 495 × 70 = 5,775 × 6 = 34,650 — trap answer D, the result of forgetting that the groups are unlabeled.)
-
-The correct answer is B.
+**fastest_path:** Choose three groups in sequence, then remove their artificial order: C(12,4)C(8,4)/3!.
+**explanation:** If the groups were labeled, choose 4 of 12, then 4 of the remaining 8; the last 4 are forced. That gives C(12,4)C(8,4) = 495 x 70. But the groups are unlabeled, so each division has been counted in all 3! = 6 group orders. Thus 495 x 70 / 6 = 5,775, choice B.
+**common_trap:** The ordered count 34,650 treats the same three groups as different whenever their selection order changes.
+**takeaway:** For equal unlabeled groups, count labeled groups first and divide by the factorial of the number of groups.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---

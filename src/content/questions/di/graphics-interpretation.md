@@ -917,17 +917,10 @@ Based on the scatter plot, the correlation between household income and home pri
 - E) strong positive
 
 **answer:** E
-**explanation:** Correlation in a scatter plot is determined by examining whether the points, taken together, show a consistent directional relationship between the x-variable and the y-variable, and how tightly the points cluster around that trend.
-
-Let x = median household income (in $thousands) and y = average home price (in $thousands). The plot contains 12 points. Eleven of those points follow a clear, nearly linear upward path: (35, 220), (45, 280), (55, 340), (65, 380), (75, 450), (80, 500), (90, 560), (100, 620), (110, 680), (125, 780), (140, 860).
-
-Across this sequence, as x increases from 35 to 140 — a span of 105 units — y increases from 220 to 860 — a span of 640 units. The overall rise-to-run ratio is approximately 640/105 ≈ 6.1, and the incremental changes are consistently positive at every step: each successive point has both a larger x and a larger y. This monotone, nearly uniform progression is the signature of a strong positive association.
-
-The twelfth point is an outlier at (70, 820). Its x-value of 70 places it near the middle of the income range, yet its y-value of 820 is near the top of the price range — well above the trend line. One outlier among 12 points does not reverse or eliminate the dominant pattern; it does, however, reduce the tightness of the overall fit. Even so, with 11 of 12 points tracing a tight, consistent upward trajectory, the correlation remains strongly positive rather than merely weakly positive. A weak positive correlation would imply a scattered, hard-to-discern upward tendency; here the tendency is unmistakable and the clustering around the trend line is close for the bulk of the data.
-
-The data show no downward slope, no random scatter, and no merely faint upward drift. The dominant pattern — a consistent, steep, positive slope maintained across the full income range — unambiguously qualifies as a strong positive correlation.
-
-The correct answer is E.
+**fastest_path:** Judge the dominant pattern: 11 of 12 points form a tight upward line; one high-price outlier does not erase it.
+**explanation:** As income rises from $35K to $140K, home price generally rises from $220K to $860K, and most points lie close to a straight upward trend. The point near ($70K, $820K) is an outlier, but the remaining 11 points show a clear, tight positive association. The best description is strong positive correlation, choice E.
+**common_trap:** Do not label the relationship weak merely because one point is unusual. Strength reflects the overall pattern across all observations.
+**takeaway:** Identify the dominant direction and tightness first; then decide whether outliers are numerous or severe enough to change the label.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -1229,35 +1222,10 @@ Which month showed the largest percentage increase in revenue compared with the 
 - E) December
 
 **answer:** B
-**explanation:** The percentage change from one month to the next is given by ((current - previous) / previous) x 100. To find the month with the largest percentage increase, this quantity is computed for every month from February through December, and the maximum among positive values is identified.
-
-Let R_n denote the revenue (in thousands of dollars) for month n. The percentage change entering month n is:
-
-pct_n = ((R_n - R_{n-1}) / R_{n-1}) x 100
-
-The monthly revenues read from the chart are: Jan 120, Feb 115, Mar 130, Apr 145, May 160, Jun 155, Jul 170, Aug 185, Sep 170, Oct 160, Nov 150, Dec 165.
-
-Percentage changes for all months recording a positive gain:
-
-March: (130 - 115) / 115 x 100 = 15/115 x 100 = 13.04%
-
-April: (145 - 130) / 130 x 100 = 15/130 x 100 = 11.54%
-
-May: (160 - 145) / 145 x 100 = 15/145 x 100 = 10.34%
-
-December: (165 - 150) / 150 x 100 = 15/150 x 100 = 10.00%
-
-July: (170 - 155) / 155 x 100 = 15/155 x 100 = 9.68%
-
-August: (185 - 170) / 170 x 100 = 15/170 x 100 = 8.82%
-
-February, June, September, October, and November all show negative changes and are excluded from consideration.
-
-Although April, May, July, August, and December each show an absolute gain of 15 thousand dollars, March also records an absolute gain of 15 thousand dollars but from a lower base of 115. Because percentage change is sensitive to the base, a fixed absolute gain of 15 produces a larger percentage the smaller the base. March's base (115) is the smallest among all months recording a gain of 15, so 15/115 > 15/130 > 15/145 > 15/150 > 15/155 > 15/170. The ranking follows directly from the inequality 115 < 130 < 145 < 150 < 155 < 170.
-
-March, at approximately 13.04%, records the largest month-over-month percentage increase in FlowStream's subscription revenue.
-
-The correct answer is B.
+**fastest_path:** Every positive month shown rises by $15K, so the largest percentage increase comes from the smallest prior-month base.
+**explanation:** The positive changes into March, April, May, July, August, and December are all $15K. Their prior-month bases are 115, 130, 145, 155, 170, and 150. Because the same increase divided by a smaller base gives a larger percentage, March is largest: 15/115 = 13.0%. Choice B.
+**common_trap:** The question asks for percentage increase, not dollar increase. Equal $15K gains produce different percentages because their starting values differ.
+**takeaway:** Percentage change equals change divided by the previous value; always identify the correct base.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -1281,37 +1249,10 @@ Which of the following best describes the pattern shown in the graph?
 - E) Alternating peaks in Q1 and Q3.
 
 **answer:** B
-**explanation:** A seasonal pattern exists when the same intra-year rhythm repeats across multiple years, and a year-over-year growth trend exists when the value for a given quarter rises from one year to the next.
-
-The graph reports the following quarterly traffic values (millions of visits):
-
-| Quarter | Year 1 | Year 2 | Year 3 |
-|---------|--------|--------|--------|
-| Q1 | 8 | 11 | 14 |
-| Q2 | 10 | 14 | 17 |
-| Q3 | 9 | 12 | 15 |
-| Q4 | 12 | 16 | 20 |
-
-Within each year, the four quarterly values are compared to identify the annual peak:
-
-- Year 1: 8, 10, 9, 12 — maximum at Q4.
-- Year 2: 11, 14, 12, 16 — maximum at Q4.
-- Year 3: 14, 17, 15, 20 — maximum at Q4.
-
-In all three years, Q4 is the highest quarter. This eliminates choice A, which claims Q2 is always the peak, and choice E, which claims peaks alternate between Q1 and Q3.
-
-For a seasonal pattern with overall growth, each quarter's value must increase from Year 1 to Year 2 to Year 3:
-
-- Q1: 8 < 11 < 14 (increases of +3 each year).
-- Q2: 10 < 14 < 17 (increases of +4, then +3).
-- Q3: 9 < 12 < 15 (increases of +3 each year).
-- Q4: 12 < 16 < 20 (increases of +4 each year).
-
-Every quarter shows strictly increasing year-over-year values, confirming both a consistent upward trend and the absence of any declining trend for Q3, which eliminates choice C. Although Q2 does grow each year (10, 14, 17), it is not the annual peak: Q4 exceeds Q2 in every year (12 > 10; 16 > 14; 20 > 17), so choice A is false. Choice D ("no discernible pattern") is contradicted by the clear and repeating Q4 peak combined with uniform year-over-year growth.
-
-The intra-year shape is identical across all three years: traffic rises from Q1 to Q2, dips slightly in Q3, then peaks in Q4, and this cycle repeats at a higher absolute level in each successive year — precisely the combination described in choice B.
-
-The correct answer is B.
+**fastest_path:** Compare the same quarter across years, then find each year's peak. Every quarter grows year over year, and Q4 is always highest.
+**explanation:** The yearly pattern repeats: Q1 rises to Q2, dips in Q3, and peaks in Q4. Q4 values are 12, 16, and 20, the highest in each year. Each matching quarter also increases from Year 1 to Year 3: Q1 8-11-14, Q2 10-14-17, Q3 9-12-15, and Q4 12-16-20. This is seasonal Q4 peaking with year-over-year growth, choice B.
+**common_trap:** Do not read the whole line as uninterrupted quarterly growth; Q3 dips within each year even though each quarter grows year over year.
+**takeaway:** Separate seasonality (within-year shape) from trend (same-period change across years).
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -1451,27 +1392,10 @@ Based on the scatter plot, which of the following best describes the relationshi
 - E) Clearly non-linear pattern with a visible turning point
 
 **answer:** A
-**explanation:** The Pearson correlation coefficient r measures the strength and direction of a linear relationship between two quantitative variables. By convention, |r| >= 0.9 indicates a strong correlation; r > 0 indicates a positive direction (both variables move together).
-
-Let x = monthly advertising spending (thousands of dollars) and y = monthly sales (thousands of dollars). The ten observed pairs are: (20, 150), (25, 160), (30, 170), (30, 180), (35, 210), (40, 200), (45, 240), (50, 250), (55, 260), (60, 290). With n = 10 observations:
-
-mean_x = (20+25+30+30+35+40+45+50+55+60) / 10 = 390/10 = 39
-
-mean_y = (150+160+170+180+210+200+240+250+260+290) / 10 = 2110/10 = 211
-
-For each point, (x - 39)(y - 211) yields: (-19)(-61) = 1159; (-14)(-51) = 714; (-9)(-41) = 369; (-9)(-31) = 279; (-4)(-1) = 4; (1)(-11) = -11; (6)(29) = 174; (11)(39) = 429; (16)(49) = 784; (21)(79) = 1659. The sum of these products is 5560.
-
-The sum of squared deviations for x is: 361 + 196 + 81 + 81 + 16 + 1 + 36 + 121 + 256 + 441 = 1590.
-
-The sum of squared deviations for y is: 3721 + 2601 + 1681 + 961 + 1 + 121 + 841 + 1521 + 2401 + 6241 = 20090.
-
-The denominator is sqrt(1590 * 20090) = sqrt(31,943,100) ≈ 5652.
-
-Applying the Pearson formula: r = 5560 / 5652 ≈ 0.984.
-
-Since r ≈ 0.984 > 0, the relationship is positive: as advertising spending increases, sales increase. Since |r| ≈ 0.984 > 0.9, the linear relationship is strong. A visual inspection of the data confirms this: the x values ascend from 20 to 60, and the y values rise correspondingly from 150 to 290 with minimal dispersion around the upward trend. There is no evidence of a turning point, no cluster of outliers that would weaken the trend, and no downward or flat pattern that would suggest a negative or absent correlation. The near-perfect linear fit rules out the remaining choices, which each require a materially lower coefficient, the presence of outliers, or a visible inflection in the data.
-
-The correct answer is A.
+**fastest_path:** Read the overall direction and tightness of the points: they rise steadily from about (20,150) to (60,290) with little scatter.
+**explanation:** As advertising spend increases, monthly sales almost always increase, so the direction is positive. The points also lie close to a straight upward trend, with only small deviations such as the point near (40,200). There are no major outliers or turning point. The best description is a strong positive correlation, choice A; an exact correlation calculation is unnecessary.
+**common_trap:** A small local dip does not make the overall relationship weak. Judge the full cloud of points, not one neighboring pair.
+**takeaway:** For scatter plots, assess direction, strength, and form before considering individual deviations.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---

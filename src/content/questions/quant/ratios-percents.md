@@ -556,24 +556,10 @@ A tank contains a mixture of water and alcohol. What percent of the mixture is a
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** The governing principle is that a system of linear equations can be solved for its unknowns only when the number of independent equations equals the number of unknowns. Here there are two unknowns, so we must determine whether each statement supplies enough independent equations to fix the alcohol percentage.
-
-Let a = the number of liters of alcohol in the tank and let t = the total number of liters of the mixture. The quantity sought is the alcohol percentage, a/t expressed as a percent. With two unknowns, a single equation cannot determine this ratio.
-
-Statement (1) states that adding 10 liters of water would make the mixture 20 percent alcohol. Translating this into math gives a/(t + 10) = 0.20, or equivalently a = 0.20(t + 10). This is one linear equation in two unknowns. Different pairs (a, t) satisfy it and yield different values of a/t, so the alcohol percentage is not determined. Statement (1) alone is not sufficient.
-
-Statement (2) states that adding 5 liters of alcohol would make the mixture 40 percent alcohol. Translating this gives (a + 5)/(t + 5) = 0.40, or equivalently a + 5 = 0.40(t + 5). This too is a single linear equation in the same two unknowns, and again many pairs satisfy it with differing ratios a/t. Statement (2) alone is not sufficient.
-
-Taking the two statements together provides two independent linear equations in the two unknowns:
-
-a = 0.20(t + 10) = 0.20t + 2
-a = 0.40(t + 5) - 5 = 0.40t - 3
-
-Setting the two expressions for a equal gives 0.20t + 2 = 0.40t - 3. Subtracting 0.20t from both sides yields 2 = 0.20t - 3, and adding 3 to both sides yields 5 = 0.20t, so t = 25. Substituting back gives a = 0.20(25) + 2 = 5 + 2 = 7.
-
-The alcohol percentage is therefore a/t = 7/25 = 0.28, or 28 percent. Because the two statements together yield a unique value while neither alone does, both statements together are sufficient and neither alone is sufficient.
-
-The correct answer is C.
+**fastest_path:** Let a be alcohol and t total volume. Translate each statement into an equation; each alone leaves two variables, while together they solve uniquely.
+**explanation:** (1) gives a/(t+10)=0.20, one equation in a and t, so it is insufficient. (2) gives (a+5)/(t+5)=0.40, also one equation in two variables, so it is insufficient. Together: a=0.20t+2 and a=0.40t-3. Equating them gives t=25 and a=7, so the original percentage is 7/25=28%. Together sufficient, choice C.
+**common_trap:** Do not treat 20% or 40% as the original concentration; each is the concentration only after the stated addition.
+**takeaway:** In mixture DS, define original amount and total, translate each changed mixture, and count independent equations.
 **related_reading:** reading-quant-05-word-problems
 
 ---

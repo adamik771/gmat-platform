@@ -1718,23 +1718,10 @@ A candidate qualifies for the "senior track" position only if ALL of the followi
 - E) 5
 
 **answer:** C
-**explanation:** A candidate qualifies for the senior track if and only if three conditions hold simultaneously: years of experience >= 5, GPA >= 3.5, and interview score >= 8. Let E denote years of experience, G denote GPA, and I denote interview score. The qualifying rule is therefore E >= 5 AND G >= 3.5 AND I >= 8. Because the rule is conjunctive, failure on any single criterion eliminates a candidate regardless of performance on the others.
-
-We apply this filter to each of the six candidates in turn.
-
-**Candidate 1.** E = 5, G = 3.6, I = 8. Checking each condition: 5 >= 5 is satisfied; 3.6 >= 3.5 is satisfied; 8 >= 8 is satisfied. All three conditions hold. Candidate 1 qualifies.
-
-**Candidate 2.** E = 8, G = 3.2, I = 9. The experience condition 8 >= 5 is satisfied and the interview condition 9 >= 8 is satisfied, but 3.2 >= 3.5 is not satisfied. The GPA condition fails. Candidate 2 does not qualify.
-
-**Candidate 3.** E = 3, G = 3.9, I = 7. The experience condition requires 3 >= 5, which is not satisfied. Candidate 3 is eliminated at the first criterion regardless of the remaining values.
-
-**Candidate 4.** E = 10, G = 3.5, I = 9. Checking: 10 >= 5 is satisfied; 3.5 >= 3.5 is satisfied (the boundary value is included); 9 >= 8 is satisfied. All three conditions hold. Candidate 4 qualifies.
-
-**Candidate 5.** E = 6, G = 3.8, I = 8. Checking: 6 >= 5 is satisfied; 3.8 >= 3.5 is satisfied; 8 >= 8 is satisfied. All three conditions hold. Candidate 5 qualifies.
-
-**Candidate 6.** E = 4, G = 3.4, I = 6. The experience condition requires 4 >= 5, which is not satisfied. Candidate 6 is eliminated at the first criterion.
-
-The candidates who satisfy all three conditions are Candidates 1, 4, and 5, giving a total count of 3. The correct answer is C.
+**fastest_path:** Filter sequentially by experience >=5, GPA >=3.5, and interview >=8; stop checking a candidate after the first failure.
+**explanation:** Candidate 1 passes with 5 years, 3.6 GPA, and 8 interview. Candidate 4 passes with 10, 3.5, and 9. Candidate 5 passes with 6, 3.8, and 8. Candidates 2, 3, and 6 fail at least one criterion. Therefore 3 candidates qualify, choice C.
+**common_trap:** All three conditions are required, and boundary values count: 5 years, 3.5 GPA, and interview 8 each satisfy 'at least.'
+**takeaway:** For an ALL-condition table filter, mark each row pass/fail and include exact threshold values.
 **related_reading:** reading-di-03-table-analysis
 
 ---
