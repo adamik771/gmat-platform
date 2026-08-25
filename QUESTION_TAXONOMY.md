@@ -407,6 +407,8 @@ Every question's post-submit explanation follows the same six-section structure.
 
 - Lead with the *fastest* approach, not the most general or most algebraic one. If estimation works, lead with estimation.
 - Be GMAT-strategic — point at *which method dominates and why*, not just "here's how to solve it."
+- Preserve every reasoning step a prepared beginner needs to reproduce the solution. There is no character ceiling for `explanation`; 3-6 sentences is a normal shape, not a compression target.
+- Keep a second method when it adds a distinct transferable insight, a useful verification, or a safer route for a meaningful learner profile. Remove it only when it repeats the same reasoning without teaching anything new.
 - Explain wrong answer choices by *trap type*, not just "this is wrong." A wrong answer is wrong because it's engineered to catch a specific reading mistake; name the mistake.
 - Connect back to a reading chapter via `related_reading`. The explanation is reinforcement; the chapter is the lesson.
 
@@ -417,7 +419,7 @@ Every question's post-submit explanation follows the same six-section structure.
 - *Too short.* "B. 3x = 15." — no reasoning, no trap analysis, no takeaway.
 - *Not GMAT-strategic.* Walks through a textbook procedure without identifying the fastest path or the engineered trap.
 
-Match the new format. Keep each field tight. Lead with strategy, then arithmetic.
+Do not select an explanation for rewriting because it is long or short by itself. First identify a concrete defect: buried strategy, missing step, weak justification, confusing wording, duplicated reasoning, generic distractor analysis, or a mismatch between the method and the item's intended difficulty. Match the new format, lead with strategy, and use as much space as accurate teaching requires.
 
 ## Mistake analysis format
 

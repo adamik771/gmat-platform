@@ -197,11 +197,11 @@ describe("explanation clarity batch", () => {
     }
   })
 
-  it("keeps the supporting explanation compact and free of abstract boilerplate", () => {
+  it("keeps the supporting explanation substantive and free of abstract boilerplate", () => {
     const abstractOpening = /^(?:the governing principle|this problem is governed)/i
 
     for (const question of questions) {
-      expect(question.explanation.length, question.id).toBeLessThanOrEqual(650)
+      expect(question.explanation.trim().length, question.id).toBeGreaterThanOrEqual(120)
       expect(question.explanation.trim(), question.id).not.toMatch(abstractOpening)
     }
   })
