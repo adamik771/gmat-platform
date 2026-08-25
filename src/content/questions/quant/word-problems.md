@@ -682,15 +682,10 @@ A company sells widgets for $p each. The company's fixed monthly costs are $F, a
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** This is a data sufficiency question, so the task is to determine whether each statement provides enough information to answer the question "Did the company earn a profit?" with a definite yes or no, rather than to compute a single value. The governing relationship is that profit equals total revenue minus total cost. Let n represent the number of widgets sold in the month. Total revenue is np, the variable cost is nv, and the fixed cost is F, so total cost is F + nv. Translating the words into math, profit = np - (F + nv) = n(p - v) - F. The quantity (p - v) is the contribution margin per widget, and n(p - v) is the total contribution, from which the fixed cost F must be subtracted. Thus the answer depends on three pieces of information: the number sold, the per-unit margin, and the fixed cost.
-
-Consider statement (1). It gives n = 500 and p - v = 8, so the total contribution is 500 times 8, which equals 4,000. However, the fixed cost F is unknown. If F = 2,000, then profit = 4,000 - 2,000 = 2,000, which is positive, so the answer would be yes. If instead F = 10,000, then profit = 4,000 - 10,000 = -6,000, which is negative, so the answer would be no. Because both a yes and a no are possible, statement (1) alone is not sufficient.
-
-Consider statement (2). It gives F = 3,000 but provides no information about the number of widgets sold or the per-unit margin, so the total contribution n(p - v) is unknown. The contribution could be any nonnegative amount, making profit either positive or negative. Therefore statement (2) alone is not sufficient.
-
-Now consider the two statements together. From statement (1), the total contribution is n(p - v) = 4,000, and from statement (2), the fixed cost is F = 3,000. Substituting into profit = n(p - v) - F gives profit = 4,000 - 3,000 = 1,000. Since 1,000 is greater than 0, the company earned a profit, and the answer is a definite yes. The two statements together are sufficient, while neither statement alone is sufficient.
-
-The correct answer is C.
+**fastest_path:** Monthly profit is quantity x (price - variable cost) - fixed cost; combine the statements to compute 500 x $8 - $3,000.
+**explanation:** Statement (1) gives total contribution margin of 500 x $8 = $4,000 but not fixed cost, so profit status is unknown. Statement (2) gives fixed cost of $3,000 but not sales contribution, so it is also insufficient. Together, profit is $4,000 - $3,000 = $1,000, which is positive. Both statements together are sufficient, but neither alone is: C.
+**common_trap:** Calling the $4,000 contribution margin profit before subtracting fixed monthly costs.
+**takeaway:** Profit equals total contribution margin minus fixed cost; data for only one side cannot determine profitability.
 **related_reading:** reading-quant-05-word-problems
 
 ---

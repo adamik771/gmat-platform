@@ -235,45 +235,10 @@ A regulatory reviewer is assessing VT-400. She will recommend advancing to Phase
 - D) No, neither dose group satisfies all three criteria
 
 **answer:** B
-**explanation:** **Governing framework.** The reviewer applies a three-part conjunctive gate: all three criteria must be satisfied by the same dose. Each dose is tested against each criterion in order.
-
-**Criterion (i): Statistical significance on the primary endpoint (SOL, p < 0.05).**
-
-Tab 2 supplies the SOL p-values versus placebo. The study protocol (Tab 1) defines statistical significance as p < 0.05.
-
-- Group A (10 mg): p = 0.03. Because 0.03 < 0.05, criterion (i) is satisfied for Group A.
-- Group B (25 mg): p < 0.001. Because 0.001 < 0.05, criterion (i) is satisfied for Group B.
-
-Both doses clear the first gate.
-
-**Criterion (ii): Clinically meaningful improvement in TST, defined as at least 1.0 hour increase from baseline to Week 12.**
-
-Tab 2 provides the change in TST for each active group.
-
-- Group A (10 mg): Change in TST = +0.9 hrs. The threshold is 1.0 hr. Because 0.9 < 1.0, Group A does not satisfy criterion (ii).
-- Group B (25 mg): Change in TST = +1.7 hrs. Because 1.7 > 1.0, Group B satisfies criterion (ii).
-
-Group A is eliminated here. Only Group B remains a candidate.
-
-**Criterion (iii): Dropout rate does not exceed twice the placebo dropout rate.**
-
-Tab 2 provides dropout rates. The placebo dropout rate is 7.9%. The threshold is 2 * 7.9 = 15.8%. A dose group passes only if its dropout rate is at or below 15.8%.
-
-- Group B (25 mg): Dropout rate = 14.6%. Because 14.6 < 15.8, Group B satisfies criterion (iii).
-
-Group B clears the third gate.
-
-**Summary.**
-
-| Criterion | Group A (10 mg) | Group B (25 mg) |
-|-----------|----------------|----------------|
-| (i) SOL p < 0.05 | Pass (p = 0.03) | Pass (p < 0.001) |
-| (ii) TST change >= 1.0 hr | Fail (+0.9 hrs) | Pass (+1.7 hrs) |
-| (iii) Dropout <= 2 * 7.9% = 15.8% | Not needed (already failed) | Pass (14.6%) |
-
-Group A fails on criterion (ii) and therefore cannot support a Phase III recommendation. Group B satisfies all three criteria. Choice A is wrong because Group A fails the TST threshold. Choice C is wrong for the same reason — not both doses qualify, only the high dose. Choice D is wrong because Group B does in fact satisfy all three criteria.
-
-The correct answer is B.
+**fastest_path:** Check all three criteria dose by dose; the high dose has significant SOL, +1.7 hours TST, and 14.6% dropout versus a 15.8% cap.
+**explanation:** Low dose meets the primary-endpoint test because p = 0.03, but its TST gain is only 0.9 hour, below the required 1.0 hour. High dose has p < 0.001, gains 1.7 hours of TST, and has a 14.6% dropout rate. Twice the placebo dropout rate is 2 x 7.9% = 15.8%, so 14.6% is within the limit. Only the high dose satisfies all three criteria, so B is correct.
+**common_trap:** Stopping after statistical significance and failing to test clinical improvement and dropout for the same dose.
+**takeaway:** For conjunctive clinical criteria, evaluate every requirement on one dose rather than mixing evidence across groups.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -382,31 +347,10 @@ According to the meeting minutes, the current year's total operating budget was 
 - D) State and federal grants of $3.2 million were included in the minutes figure.
 
 **answer:** A
-**explanation:** **Governing principle.** In a multi-source reasoning set, a numerical discrepancy between two sources must be reconciled by locating the specific item each source includes or excludes. The analysis begins by quantifying the gap precisely, then tests each candidate explanation against the arithmetic.
-
-**Quantifying the discrepancy.** Tab 1 states the current year's total operating budget is $45.28 million. Tab 2 lists departmental line items that sum to $44.36 million for the current year. The difference is:
-
-45.28 - 44.36 = 0.92 million dollars
-
-The question is what accounts for $0.92 million that appears in the minutes figure but not in the table.
-
-**Verifying the 6% growth claim.** Before testing the answer choices, the Council Chair's arithmetic is confirmed against the data. If the current-year figure of $45.28 million is accepted as stated, the proposed budget would be:
-
-45.28 x 1.06 = 47.9968 million
-
-Rounded to the nearest $10,000, this equals $48.00 million — matching the proposed total stated in the minutes and shown in Tab 2. The rounding difference of roughly $32,000 is negligible at this scale. The 6% calculation is therefore not the source of the discrepancy, and the minutes figure of $45.28 million appears reliable.
-
-**Testing the answer choices.** Choice B asserts the 6% increase was calculated incorrectly. The verification above shows that 45.28 x 1.06 rounds to 48.00, which is precisely the proposed total. There is no meaningful arithmetic error in the Chair's statement. Choice B is inconsistent with the data.
-
-Choice C asserts that the $4.80 million debt service payment was double-counted in the minutes. Were that true, the inflated figure would exceed the table total by $4.80 million, not $0.92 million. Choice C does not explain a gap of $0.92 million and is ruled out.
-
-Choice D asserts that $3.2 million in state and federal grants was included in the minutes figure. Tab 1 explicitly states that the City Manager noted those grants "are not included in the operating budget figures." Moreover, $3.2 million does not equal $0.92 million. Choice D is ruled out on both grounds.
-
-Choice A asserts that the table omits a department or budget category carrying $0.92 million. This is the only explanation that accounts for the exact size of the discrepancy. The table lists six line items. If one additional category — such as an administrative reserve, a contingency fund, or a small department not separately enumerated — holds $0.92 million in the current year, the table's departmental sum would be $44.36 million while the aggregate operating budget reported in the minutes would be $44.36 + 0.92 = $45.28 million. This reconciliation is internally consistent and consistent with the verified 6% growth calculation.
-
-**Conclusion.** The $0.92 million gap cannot be attributed to a calculation error, double-counting of a $4.80 million item, or a $3.2 million grant exclusion. The only explanation that is both arithmetically exact and logically coherent is that the proposed budget table does not enumerate every spending category, leaving a residual of $0.92 million unrepresented.
-
-The correct answer is A.
+**fastest_path:** Subtract the two current-year totals: $45.28M - $44.36M = $0.92M, then find the option that accounts for exactly that gap.
+**explanation:** The meeting minutes give a current operating budget of $45.28 million, while the departmental table totals $44.36 million. The unexplained difference is $0.92 million. If the listed departmental figures are correct, the table must omit a department or category worth that amount, so A fits exactly. The 6% calculation concerns the proposed $48 million total, debt service is already listed once, and the $3.2 million in grants is explicitly outside the operating-budget figures.
+**common_trap:** Using the grant figure because it appears in the sources without checking whether it matches the $0.92 million discrepancy.
+**takeaway:** When two source totals conflict, calculate the exact gap first and test each explanation against both amount and scope.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -424,41 +368,10 @@ Over the five-year historical period shown in Tab 3, what is the total cumulativ
 - D) Deferred projects total $0.60M, which is less than the proposed Infrastructure increase of $1.34M.
 
 **answer:** A
-**explanation:** **Governing principle.** A cumulative sum aggregates individual period values over the full span shown; a budget change is the difference between a proposed allocation and the current allocation. The question asks us to compute both figures and compare them.
-
-**Identifying the relevant sources.** Tab 3 supplies the five-year deferred-project figures; Tab 2 supplies the current-year and proposed Infrastructure allocations. No computation from Tab 1 is needed here, though Tab 1 confirms Councilmember Park's concern about deferred spending, which provides interpretive context.
-
-**Computing cumulative deferred infrastructure spending.**
-
-Let D denote the cumulative deferred amount over the five fiscal years shown in Tab 3. Reading each row:
-
-- FY-4: $0.15M
-- FY-3: $0.60M
-- FY-2: $0.60M
-- FY-1: $0.46M
-- Current: $0.00M (estimated)
-
-Therefore D = 0.15 + 0.60 + 0.60 + 0.46 + 0.00 = $1.81M.
-
-A tempting misreading is to sum only the three years with the largest deferrals (FY-3, FY-2, and FY-1), yielding 0.60 + 0.60 + 0.46 = $1.66M, or to omit FY-4 on the assumption that it falls outside a "recent" window. The question specifies "over the five-year historical period shown," so all five rows must be included, and D = $1.81M.
-
-**Computing the proposed Infrastructure spending increase.**
-
-Let I denote the year-over-year change in Infrastructure allocation. From Tab 2:
-
-- Current Year allocation: $6.34M
-- Proposed allocation: $7.68M
-- I = 7.68 - 6.34 = $1.34M
-
-The Change column in Tab 2 confirms +$1.34M directly, providing a useful cross-check.
-
-**Comparison.**
-
-Comparing D and I: 1.81 > 1.34. The cumulative deferred amount ($1.81M) exceeds the proposed increase ($1.34M) by 1.81 - 1.34 = $0.47M. The proposed increase therefore does not fully offset the backlog of deferred projects even before accounting for the 12% projected rise in road maintenance costs noted in Tab 1.
-
-**Ruling out incorrect choices.** Choice B states the correct deferred total of $1.81M but reverses the comparison, asserting $1.81M < $1.34M, which is false. Choice C uses a deferred total of $1.21M, a figure not obtainable from the table under any standard summing method. Choice D uses only $0.60M, which corresponds to a single year's deferral (FY-3 or FY-2) rather than the cumulative five-year figure.
-
-The correct answer is A.
+**fastest_path:** Add the five deferred-project amounts, then compare the sum with the +$1.34M proposed change in Tab 2.
+**explanation:** Deferred projects total $0.15M + $0.60M + $0.60M + $0.46M + $0.00M = $1.81M. Tab 2 shows proposed Infrastructure spending rising from $6.34M to $7.68M, an increase of $1.34M. Because $1.81M exceeds $1.34M by $0.47M, A is correct.
+**common_trap:** Using only the largest annual deferral instead of summing the full five-year Deferred Projects column.
+**takeaway:** For cumulative-versus-current comparisons, total the historical flow first and compare it with the stated one-year change.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -576,21 +489,10 @@ A board member argues that North Star is mispriced given its positioning. Consid
 - D) Category growth for functional beverages is decelerating to 7% YoY.
 
 **answer:** B
-**explanation:** **Governing principle.** In price-positioning analysis, a product's retail price should be consistent with the segment it occupies. When a brand claims a premium or specialist niche, pricing it materially below the established benchmark for that niche undercuts the positioning signal and may leave margin unrealized — this is the "mispricing" a board member would flag.
-
-**Identifying the relevant sources.** Tab 3 (Competitive Landscape) is the primary source for this question: it lists competitor prices, distribution breadth, and explicit positioning descriptions. Tab 1 supplies North Star's intended positioning and the price-sensitivity findings. Tab 2 concerns financial projections and is not directly relevant to a pricing-versus-positioning argument.
-
-**Applying the principle to choice B.** Tab 3 notes that Ember & Root is "considered the closest direct competitor." Ember & Root is priced at $3.99 and is positioned as "premium adaptogen" — the identical niche North Star targets ("sparkling adaptogen wellness"). North Star's proposed price is $3.49, which is $3.99 - $3.49 = $0.50 per can below its nearest direct comparable. A product occupying the same premium-adaptogen segment but priced $0.50 below the established benchmark is, by standard positioning logic, underpriced: it sacrifices margin and may send a quality signal inconsistent with a premium claim. This is the most direct evidentiary support for the board member's argument.
-
-**Ruling out choice A.** Tab 1 states that above $3.99 purchase intent falls below 25%. This finding argues for a ceiling near $3.99, not for raising the price above $3.49. It actually suggests $3.49 is safely within the viable range, which cuts against the board member's claim rather than supporting it.
-
-**Ruling out choice C.** BrightKick is priced at $2.79 and occupies the "mass-market energy" segment — a categorically different positioning from premium adaptogen. Its 14% category share reflects mass-market volume economics, not a benchmark relevant to North Star's premium segment. Citing BrightKick's share provides no support for the claim that $3.49 is too low for a wellness-premium product.
-
-**Ruling out choice D.** The deceleration of overall functional-beverage category growth from 14% to a forecast 7% YoY is a macro market headwind. It speaks to the size of the opportunity, not to whether $3.49 is the correct price for the product's intended segment. Tab 1 separately notes that adaptogen-specific SKUs are still growing at 22% YoY, further weakening any inference from overall category deceleration to a pricing conclusion.
-
-**Conclusion.** Only choice B draws directly on the competitive-positioning benchmark most relevant to North Star's stated segment. The $0.50 gap between North Star's proposed price and Ember & Root's established price, combined with their shared premium-adaptogen positioning, provides the most direct support for the board member's argument that $3.49 is too low.
-
-The correct answer is B.
+**fastest_path:** Compare North Star with its closest positioning match: Ember & Root targets premium adaptogens at $3.99 versus North Star's $3.49.
+**explanation:** B most directly supports the claim that $3.49 is too low. Tab 3 identifies Ember & Root as the closest direct competitor and places it in the premium adaptogen segment at $3.99. North Star targets the same premium-adaptogen space but is priced $0.50 lower, which can undercut its intended positioning. A explains why a price above $3.99 may be risky, not why $3.49 is too low. BrightKick is a mass-market product, and slowing category growth does not establish the appropriate price.
+**common_trap:** Comparing North Star with the category-share leader even though that product has a different mass-market position.
+**takeaway:** Pricing evidence is strongest when the comparator matches the product's target segment and positioning.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -707,51 +609,10 @@ Applying the three constraints from the Executive Briefing (Tab 1) to the scenar
 - D) 3
 
 **answer:** C
-**explanation:** The governing framework. Tab 1 establishes three binding constraints that any retained-pair scenario must satisfy simultaneously:
-
-- Constraint A (delivery): the maximum increase in average delivery time to any customer group must be no greater than 0.5 days.
-- Constraint B (utilization): the combined utilization of the two retained warehouses must not exceed 90%.
-- Constraint C (savings): net annual savings must exceed $4.0 million.
-
-Net annual savings is defined as current total operating cost minus projected annual operating cost. From Tab 2, current total annual operating cost is $28.4 million. The savings condition therefore translates to: 28.4 minus (projected cost) > 4.0, which simplifies to projected cost < 24.4 million.
-
-Applying the constraints to each scenario (Tab 3).
-
-Let D = max customer delivery increase, U = combined utilization, and S = 28.4 minus projected cost.
-
-Scenario 1 — Columbus + Indianapolis.
-- D = 0.3 days. Since 0.3 <= 0.5, Constraint A is satisfied.
-- U = 88%. Since 88% <= 90%, Constraint B is satisfied.
-- S = 28.4 - 16.1 = 12.3 million. Since 12.3 > 4.0, Constraint C is satisfied.
-- Result: all three constraints satisfied.
-
-Scenario 2 — Columbus + St. Louis.
-- D = 0.4 days. Since 0.4 <= 0.5, Constraint A is satisfied.
-- U = 85%. Since 85% <= 90%, Constraint B is satisfied.
-- S = 28.4 - 16.5 = 11.9 million. Since 11.9 > 4.0, Constraint C is satisfied.
-- Result: all three constraints satisfied.
-
-Scenario 3 — Columbus + Milwaukee.
-- D = 0.6 days. Since 0.6 > 0.5, Constraint A is violated.
-- U = 92%. Since 92% > 90%, Constraint B is also violated.
-- Result: fails two constraints.
-
-Scenario 4 — Indianapolis + St. Louis.
-- D = 0.7 days. Since 0.7 > 0.5, Constraint A is violated. No further evaluation is required.
-- Result: fails at least one constraint.
-
-Summary table.
-
-| Scenario | Constraint A (D <= 0.5) | Constraint B (U <= 90%) | Constraint C (S > 4.0M) | Pass all three? |
-|----------|-------------------------|-------------------------|--------------------------|-----------------|
-| 1        | 0.3 pass                | 88% pass                | 12.3M pass               | Yes             |
-| 2        | 0.4 pass                | 85% pass                | 11.9M pass               | Yes             |
-| 3        | 0.6 fail                | 92% fail                | 13.0M pass               | No              |
-| 4        | 0.7 fail                | 84% pass                | 12.7M pass               | No              |
-
-Exactly two scenarios — Scenario 1 and Scenario 2 — satisfy all three constraints. Scenarios 3 and 4 both achieve savings well above the $4.0 million threshold; they are disqualified by the utilization cap and the delivery-time cap, respectively, not by financial performance. The temptation to count either of those as passing because the savings figure is strong must therefore be resisted.
-
-The correct answer is C.
+**fastest_path:** Annual savings exceed $4M in every row, so screen only utilization at 90% and delivery increase at 0.5 day.
+**explanation:** Savings equal $28.4M minus projected cost, so even the smallest saving is $11.9M and every scenario clears the $4M requirement. Scenario 1 has 88% utilization and a 0.3-day increase; Scenario 2 has 85% and 0.4 day, so both pass. Scenario 3 fails both limits at 92% and 0.6 day. Scenario 4 passes utilization at 84% but fails delivery at 0.7 day. Two scenarios satisfy all three constraints, so C is correct.
+**common_trap:** Subtracting the one-time transition cost from annual savings even though the stated annual-cost figures exclude it and the constraint concerns net annual savings.
+**takeaway:** Simplify a multi-constraint screen by identifying any condition that every option already satisfies.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -796,35 +657,10 @@ Based on the information provided across all three tabs, which of the following 
 - E) Standard shipping is slower than express shipping for Central-region orders.
 
 **answer:** A
-**explanation:** **Governing Principle.** In a Multi-Source Reasoning question, a statement "must be true" only if it follows necessarily from the data provided across all relevant tabs, with no additional assumptions required. Statements that are merely possible, or that rely on information not given, do not qualify.
-
-**Tab 3 establishes the pricing structure.** For each order size, express shipping costs exactly $8 more than standard shipping:
-
-- Small: express $20, standard $12; difference = 20 - 12 = 8
-- Medium: express $26, standard $18; difference = 26 - 18 = 8
-- Large: express $36, standard $28; difference = 36 - 28 = 8
-
-Tab 2 confirms this pattern explicitly: "Express shipping... costs $8 more per order than standard." Since $8 > 0, express shipping is strictly more expensive than standard shipping for every order size listed. This holds universally across all three size categories, therefore choice A must be true.
-
-**Evaluating the remaining choices to confirm none of them must be true.**
-
-Choice B states that the North region accounts for less order volume than either the Central or the South region. Tab 1 gives the following regional shares of 12,000 total orders:
-
-- South: 35% = 0.35 x 12,000 = 4,200 orders
-- Central: 25% = 0.25 x 12,000 = 3,000 orders
-- North: remainder = 100% - 35% - 25% = 40% = 0.40 x 12,000 = 4,800 orders
-
-The North region accounts for 40% of total volume, which is greater than both Central (25%) and South (35%). Choice B is false, not true.
-
-Choice C compares the price of a medium express order to the price of a large standard order. From Tab 3, medium express = $26 and large standard = $28. Since 26 < 28, a medium express order costs less than a large standard order. Choice C is false.
-
-Choice D claims that most orders are shipped via express. Tab 2 specifies that express shipping is available only for orders from the South region, which accounts for 35% of total orders. Even if every South-region order were shipped express, that would represent at most 35% of all orders — a minority, not a majority. Choice D cannot be true given the data.
-
-Choice E states that standard shipping is slower than express shipping for Central-region orders. Tab 2 specifies that express shipping is available only for orders from the South region. Central-region orders are therefore ineligible for express shipping, making any comparison between the two shipping methods for Central-region orders meaningless within the scope of the given information. Choice E does not must be true.
-
-**Conclusion.** Only choice A follows necessarily from the data in all three tabs. The Tab 3 pricing table, corroborated by the explicit $8 differential stated in Tab 2, confirms that express shipping exceeds standard shipping in cost for every order size without exception.
-
-The correct answer is A.
+**fastest_path:** Look for the statement stated directly across the pricing table: express is exactly $8 above standard for every size.
+**explanation:** A must be true. The table gives standard/express prices of $12/$20, $18/$26, and $28/$36, so express costs $8 more for every size, matching the policy. North supplies the remaining 40% of orders, more than Central's 25% and South's 35%, so B is false. Medium express is $26 versus $28 for large standard, eliminating C. The express share is unknown, and express is unavailable to Central orders, eliminating D and E.
+**common_trap:** Inferring how many orders use express when the sources give eligibility but no service-choice counts.
+**takeaway:** A must-be-true answer must follow from stated values without adding an unstated usage assumption.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -945,21 +781,10 @@ Based on the information provided across all three tabs, which of the following 
 - E) The FX headwind is reducing MorningShade's Q1 revenue by more than $20 million.
 
 **answer:** D
-**explanation:** For a "must be true" question, the credited answer must follow necessarily from the data as given, while every other choice either contradicts the data or cannot be confirmed from the information provided.
-
-Tab 1 (Analyst Memo) supplies the year-over-year revenue growth rates: Lyton Apparel +8%, MorningShade Cosmetics +17%, NorthCrest Outdoors +2%. Tab 2 (Financial Model Summary) supplies Q1 operating profit figures: Lyton $74.8M, MorningShade $71.4M, NorthCrest $27.9M, total $174.1M. Tab 3 (Historical Reference) supplies trailing four-quarter operating margins: Lyton 12.5%, MorningShade 18.0%, NorthCrest 10.0%.
-
-Tab 2 shows MorningShade Q1 operating profit = $71.4M and Lyton Q1 operating profit = $74.8M. Because 71.4 < 74.8, MorningShade's projected profit is lower, not higher. Choice A is false.
-
-Tab 2 states total projected Q1 operating profit = $174.1M. Because 174.1 < 180, the total does not exceed $180M. Choice B is false.
-
-Comparing each company's projected Q1 margin (Tab 2) against its trailing four-quarter average (Tab 3): Lyton projects 11.0% against a trailing 12.5%, so its margin is lower; MorningShade projects 17.0% against a trailing 18.0%, so its margin is lower; NorthCrest projects 9.0% against a trailing 10.0%, so its margin is lower. Every company shows a projected margin below its trailing average, making the claim that every margin is higher false. Choice C is false.
-
-The three year-over-year revenue growth rates from Tab 1 are Lyton +8%, MorningShade +17%, and NorthCrest +2%. Ranking them in ascending order: NorthCrest 2% < Lyton 8% < MorningShade 17%. NorthCrest's growth rate of 2% is strictly less than both 8% and 17%, so NorthCrest has the lowest projected Q1 revenue growth rate of the three companies. This follows directly and necessarily from the data. Choice D must be true.
-
-Tab 1 states that the FX headwind trims MorningShade's revenue growth rate by 3 percentage points, not that it reduces revenue by a stated dollar amount. To quantify the dollar impact, the prior-year Q1 revenue base is needed. The current estimate of $420M reflects +17% growth, so the prior-year base is approximately $420 / 1.17, or roughly $359M. Applying the 3-percentage-point headwind to that base yields approximately 0.03 x $359M, or roughly $10.8M — well below $20M. Choice E is not supported.
-
-The correct answer is D.
+**fastest_path:** Compare the three stated growth rates: Lyton 8%, MorningShade 17%, NorthCrest 2%; the lowest is NorthCrest.
+**explanation:** D must be true because NorthCrest's projected 2% revenue growth is below Lyton's 8% and MorningShade's 17%. A is false: MorningShade's projected operating profit is $71.4M versus Lyton's $74.8M. B is false because the total is $174.1M. C is false because every projected margin is below its trailing average. E cannot be established without the prior-year MorningShade revenue needed to convert the three-point growth headwind into dollars.
+**common_trap:** Converting a percentage-point growth headwind into dollars without the prior-year revenue base.
+**takeaway:** For must-be-true questions, verify direct comparisons first and reject calculations that need an unstated base value.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1013,41 +838,10 @@ Suppose the FX headwind disappears entirely during Q1, so MorningShade grows at 
 - E) $176M
 
 **answer:** E
-**explanation:** **Governing principle.** Operating profit equals revenue multiplied by operating margin. To forecast a revised total, recompute only the line item affected by the changed assumption, hold all other line items fixed, and sum.
-
-**Identifying the relevant source.** The question modifies the revenue growth assumption for MorningShade only. Tab 1 (Analyst Memo) establishes that the reported 17% year-over-year growth already embeds a 3-percentage-point FX drag, implying an underlying constant-currency growth rate of 20%. Tab 2 (Financial Model Summary) supplies the base Q1 revenue of $420M and the projected operating margin of 17.0% for MorningShade, as well as the unchanged figures for Lyton Apparel ($74.8M operating profit) and NorthCrest Outdoors ($27.9M operating profit).
-
-**Step 1: Recover MorningShade's prior-year Q1 revenue base.**
-
-The Tab 2 projected revenue of $420M reflects 17% year-over-year growth, so the prior-year base is:
-
-R_prior = 420 / 1.17 ≈ 358.97M
-
-**Step 2: Compute MorningShade's revised Q1 revenue at 20% growth.**
-
-R_revised = 358.97 × 1.20 ≈ 430.77M
-
-An equivalent, arithmetically transparent route: the incremental revenue from removing the FX drag equals the prior-year base multiplied by the 3-percentage-point difference between the constant-currency rate and the reported rate:
-
-Incremental revenue = (420 / 1.17) × 0.03 ≈ 10.77M
-
-Therefore R_revised = 420 + 10.77 ≈ 430.77M
-
-**Step 3: Apply MorningShade's projected operating margin to the revised revenue.**
-
-The question instructs that every company's operating margin be held constant at the Tab 2 projected level. MorningShade's margin is 17.0%, so:
-
-MorningShade revised operating profit = 430.77 × 0.17 ≈ 73.23M
-
-**Step 4: Assemble the three-company total.**
-
-The operating profits for Lyton Apparel ($74.8M) and NorthCrest Outdoors ($27.9M) are unaffected by the scenario change. The revised total is:
-
-Total = 74.8 + 73.23 + 27.9 = 175.93M ≈ 176M
-
-A tempting trap is to use MorningShade's original $420M revenue, which produces $174M (choice B) and ignores the instruction to substitute the constant-currency growth rate. Another near-miss would be to apply a higher margin alongside the higher revenue; however, the question explicitly holds margins constant, so no margin adjustment is warranted.
-
-The correct answer is E.
+**fastest_path:** Recover MorningShade's prior revenue as 420/1.17, grow it by 20%, then apply the unchanged 17% margin.
+**explanation:** MorningShade's $420M estimate represents 117% of prior-year revenue, so the base is $420M/1.17 = about $359.0M. At 20% growth, revenue would be about $430.8M, or $10.8M above the estimate. At a 17% margin, that adds about $1.8M of operating profit. The original three-company total is $174.1M, so the revised total is about $175.9M, closest to $176M. Thus E is correct.
+**common_trap:** Taking 3% of $420M; the three-point change applies to the prior-year revenue growth base, not directly to projected revenue.
+**takeaway:** When a forecast growth rate changes, recover the original base before recomputing revenue and downstream profit.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -1094,25 +888,10 @@ Based on the data presented in the three tabs, which of the following must be tr
 - E) More patients in the PalliMed-X group than in the control group achieved the primary endpoint.
 
 **answer:** E
-**explanation:** **Governing principle.** A "must be true" question in Multi-Source Reasoning requires that the credited statement be directly verifiable — and necessarily accurate — from the data as presented, without any inference beyond what the exhibits explicitly supply. Statements that require subgroup data not shown, statistical computations not reported, or a causal claim not established by the trial design cannot "must be true."
-
-**Locating the relevant data.** The primary quantitative result lives in Tab 1 (Trial Summary). Tab 2 (Baseline Characteristics) and Tab 3 (Adverse Events) supply ancillary figures needed to evaluate the distractors.
-
-**Evaluating the credited answer (E).** Tab 1 states: 182 of 300 patients in the PalliMed-X arm met the primary endpoint, versus 141 of 300 patients in the control arm. Comparing the raw counts directly: 182 > 141. Therefore, more patients in the PalliMed-X group achieved the primary endpoint than in the control group. This is a direct reading of reported numerators; no calculation beyond a simple integer comparison is required, and no assumption is needed. Statement E must be true.
-
-**Ruling out the distractors.**
-
-Choice A claims superiority in every subgroup. Tab 1 presents only aggregate trial-level results; no subgroup breakdowns appear in any of the three tabs. Because the data do not address subgroup-level performance, this claim is unsupported and cannot be established as necessarily true.
-
-Choice B asserts statistical significance of the 14-percentage-point difference. None of the three tabs reports a p-value, confidence interval, or any hypothesis-test result. Statistical significance requires inferential analysis beyond raw counts, and that analysis is simply absent from the exhibit set. The claim may or may not be true, but it cannot be read directly from the data.
-
-Choice D asserts that PalliMed-X causes nausea in the majority (> 50%) of patients who receive it. Tab 3 shows: nausea events in the PalliMed-X group = 48 out of 300 patients. Computing the rate: 48/300 = 0.16, or 16%. Because 16% < 50%, fewer than a majority experienced nausea, so this statement is false on the data as given — quite apart from the separate problem that correlation in an adverse-event table does not establish causation.
-
-Choice C claims the control group had a higher rate of prior opioid use. Tab 2 shows: prior opioid use in the PalliMed-X group = 26%; prior opioid use in the control group = 23%. Because 26% > 23%, it is the PalliMed-X group, not the control group, that had the higher rate. Statement C is directly contradicted by Tab 2.
-
-**Conclusion.** Only statement E is directly and necessarily supported by the reported data: 182 (PalliMed-X) > 141 (control) is an arithmetic fact read straight from Tab 1.
-
-The correct answer is E.
+**fastest_path:** Use the endpoint counts directly: 182 PalliMed-X patients achieved it versus 141 control patients.
+**explanation:** E must be true because Tab 1 explicitly reports 182 endpoint successes for PalliMed-X and 141 for control. No subgroup results are provided, so A cannot be established. The sources give no p-value or significance threshold for the 14-point difference, so B is not guaranteed. Prior opioid use is 26% for PalliMed-X versus 23% for control, reversing C. Nausea affected 16%, not a majority, eliminating D.
+**common_trap:** Treating a visible percentage difference as statistically significant without a reported test or enough information to derive one.
+**takeaway:** For must-be-true questions, prefer a direct reported comparison and reject claims requiring missing statistical or subgroup evidence.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -1220,26 +999,10 @@ Based on the three tabs, which of Stellar's aircraft models, if newly sold in th
 - E) SA-300, SA-400, and SA-500
 
 **answer:** D
-**explanation:** The FAA rule, stated in Tab 1, requires that any aircraft newly sold in the US market starting in 2027 must achieve a fuel burn per passenger-mile at least 12% below the current industry average. The current industry average is 2.6 L per 100 passenger-kilometers. The maximum permissible fuel burn under the proposed standard is therefore:
-
-2.6 × (1 - 0.12) = 2.6 × 0.88 = 2.288 L/100 passenger-km.
-
-Any model whose fuel burn exceeds 2.288 L/100 passenger-km does not comply; any model at or below that figure does comply.
-
-**Applying the threshold to each model (Tab 2).** Each aircraft's listed fuel burn is compared against the computed ceiling of 2.288:
-
-- SA-200: 3.0 L/100 passenger-km. Since 3.0 > 2.288, the SA-200 fails the standard.
-- SA-300: 2.6 L/100 passenger-km. Since 2.6 > 2.288, the SA-300 also fails; it merely matches the current average rather than beating it by 12%.
-- SA-400: 2.2 L/100 passenger-km. Since 2.2 < 2.288, the SA-400 meets the standard.
-- SA-500: 1.9 L/100 passenger-km. Since 1.9 < 2.288, the SA-500 also meets the standard.
-
-**Addressing the SA-500's status.** Tab 3 notes that the SA-500 is not yet available for commercial sale as of the date of the analysis, and Tab 2 gives its planned introduction year as 2026. The question asks which models would meet the standard if newly sold in the US in 2027. Because the SA-500's planned introduction precedes 2027, it is not categorically excluded from the 2027 market, and the question's conditional framing ("if newly sold in 2027") does not disqualify it on availability grounds. Its fuel burn of 1.9 L/100 passenger-km satisfies the regulatory threshold, so it is properly included.
-
-**Ruling out tempting alternatives.** Choice E includes the SA-300, which does not qualify: 2.6 L/100 passenger-km equals the industry average and therefore falls short of the required 12% reduction. Choice C likewise includes the SA-300 and excludes the SA-500 without justification. Choices A and B each name a single model that does not meet the threshold.
-
-The two models that satisfy the 2.288 L/100 passenger-km ceiling are the SA-400 (2.2) and the SA-500 (1.9).
-
-The correct answer is D.
+**fastest_path:** Compute the maximum allowed burn: 2.6 x 88% = 2.288; keep models at or below that value.
+**explanation:** The standard requires fuel burn at least 12% below 2.6, so the limit is 2.6 x 0.88 = 2.288 L per 100 passenger-kilometers. SA-200 at 3.0 and SA-300 at 2.6 fail. SA-400 at 2.2 and SA-500 at 1.9 pass. Therefore exactly SA-400 and SA-500 meet the proposed standard, making D correct.
+**common_trap:** Subtracting 0.12 from 2.6 instead of reducing the industry average by 12%.
+**takeaway:** Translate 'percent below' into a multiplier before comparing each model with the threshold.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -3466,44 +3229,10 @@ Applying the profitability standard in Tab 3 to the data in Tab 2, how many of t
 - E) 5
 
 **answer:** B
-**explanation:** Tab 3 defines a two-part conjunctive standard: a route meets the standard only if BOTH (i) profit per round trip is positive AND (ii) load factor is at least 60%. A route is a trim candidate if it fails either test. Each route is evaluated using the Tab 3 definitions applied to the Tab 2 figures.
-
-First, revenue per round trip = Avg Seats Sold × Avg Fare:
-- Cedar–Brook: 153 × 210 = 32,130.
-- Cedar–Glen: 99 × 240 = 23,760.
-- Brook–Harbor: 126 × 180 = 22,680.
-- Glen–Harbor: 162 × 260 = 42,120.
-- Brook–Summit: 90 × 150 = 13,500.
-
-Profit per round trip = Revenue − Cost:
-- Cedar–Brook: 32,130 − 24,000 = +8,130 (positive).
-- Cedar–Glen: 23,760 − 23,000 = +760 (positive).
-- Brook–Harbor: 22,680 − 19,500 = +3,180 (positive).
-- Glen–Harbor: 42,120 − 36,000 = +6,120 (positive).
-- Brook–Summit: 13,500 − 14,000 = −500 (negative).
-
-Load factor = Avg Seats Sold / 180:
-- Cedar–Brook: 153 / 180 = 85.0%.
-- Cedar–Glen: 99 / 180 = 55.0%.
-- Brook–Harbor: 126 / 180 = 70.0%.
-- Glen–Harbor: 162 / 180 = 90.0%.
-- Brook–Summit: 90 / 180 = 50.0%.
-
-Now applying both tests:
-
-| Route        | Profit/RT | Positive? | Load Factor | ≥ 60%? | Meets standard? | Trim candidate? |
-|--------------|-----------|-----------|-------------|--------|-----------------|-----------------|
-| Cedar–Brook  | +8,130    | Yes       | 85.0%       | Yes    | Yes             | No              |
-| Cedar–Glen   | +760      | Yes       | 55.0%       | No     | No              | Yes             |
-| Brook–Harbor | +3,180    | Yes       | 70.0%       | Yes    | Yes             | No              |
-| Glen–Harbor  | +6,120    | Yes       | 90.0%       | Yes    | Yes             | No              |
-| Brook–Summit | −500      | No        | 50.0%       | No     | No              | Yes             |
-
-A route is a trim candidate if it fails at least one test, so the candidate set is the union of the profit failures and the load-factor failures. Routes failing the profit test: {Brook–Summit}, the only route with negative profit per round trip (−500). Routes failing the load-factor test (load factor below 60%): {Cedar–Glen at 55.0%, Brook–Summit at 50.0%}. The union of these two sets is {Cedar–Glen, Brook–Summit} — exactly two distinct routes.
-
-The instructive trap is to assume only the money-losing route (Brook–Summit) trims out, which yields choice A and overlooks Cedar–Glen. Cedar–Glen is profitable (+760 per round trip) and so survives the profit test, but its 55.0% load factor falls below the 60% floor, making it a trim candidate on the second test alone. Brook–Summit fails both tests but is still only one route. The remaining three routes — Cedar–Brook, Brook–Harbor, and Glen–Harbor — each clear both the profit test (all positive) and the load-factor floor (85.0%, 70.0%, and 90.0% respectively), so none of them is a candidate. Choices C, D, and E overcount; choice A undercounts by missing the profitable-but-empty route.
-
-The correct answer is B.
+**fastest_path:** Check each route against both tests: positive profit per trip and at least 108 seats sold, because 60% of 180 is 108.
+**explanation:** Cedar-Glen sells 99 seats, so its 55% load factor fails even though revenue of 99 x $240 = $23,760 exceeds its $23,000 cost. Brook-Summit sells 90 seats, a 50% load factor, and loses $500 per trip because 90 x $150 = $13,500 against $14,000 cost. The other three routes have positive per-trip profit and load factors of 70% or more. Exactly two routes fail at least one test, so B is correct.
+**common_trap:** Checking profitability but forgetting that a route must also meet the 60% load-factor threshold.
+**takeaway:** For an AND standard, test every candidate against every condition and count any failure once.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -3588,35 +3317,10 @@ Applying the advancement rule, exactly which treatments should be advanced to mu
 - E) T2, T3, and T4
 
 **answer:** E
-**explanation:** The advancement rule (Tab 3) is conjunctive: a treatment advances only if it is BOTH statistically significant (p < 0.05 vs control) AND economically worthwhile (net economic benefit ≥ $50/ha). Each treatment is tested on both prongs using Tab 2 data and the Tab 3 definitions, with wheat at $250/tonne (Tab 1).
-
-Step 1 — statistical significance (p < 0.05):
-- T1: p = 0.21. Not significant (0.21 > 0.05). Eliminated immediately.
-- T2: p = 0.03. Significant.
-- T3: p = 0.01. Significant.
-- T4: p = 0.04. Significant.
-
-T1 fails the first prong and cannot advance regardless of economics. T2, T3, and T4 clear the significance bar and proceed to the economic test.
-
-Step 2 — net economic benefit (= uplift × $250 − input cost):
-- T2: uplift = 6.90 − 6.00 = 0.90 t/ha; incremental revenue = 0.90 × 250 = $225; net benefit = 225 − 120 = $105/ha. Since 105 ≥ 50, worthwhile.
-- T3: uplift = 7.50 − 6.00 = 1.50 t/ha; incremental revenue = 1.50 × 250 = $375; net benefit = 375 − 300 = $75/ha. Since 75 ≥ 50, worthwhile.
-- T4: uplift = 7.20 − 6.00 = 1.20 t/ha; incremental revenue = 1.20 × 250 = $300; net benefit = 300 − 250 = $50/ha. Since 50 ≥ 50, worthwhile (the threshold is inclusive).
-
-Both prongs:
-
-| Treatment | p < 0.05? | Net benefit | ≥ $50? | Advance? |
-|-----------|-----------|-------------|--------|----------|
-| T1        | No (0.21) | —           | —      | No       |
-| T2        | Yes       | $105        | Yes    | Yes      |
-| T3        | Yes       | $75         | Yes    | Yes      |
-| T4        | Yes       | $50         | Yes    | Yes      |
-
-T2, T3, and T4 each clear both prongs, so all three advance. Three features of the data create traps. First, T1 is the cheapest treatment ($60/ha) and shows a real yield bump (6.40 vs 6.00), but its p-value of 0.21 is far above 0.05, so it is not statistically significant and is eliminated at the first prong regardless of its economics (its net benefit would be only $40 anyway). Second, T3 carries the highest yield (7.50 t/ha) and the highest incremental revenue ($375), but its steep $300/ha input cost leaves a net benefit of just $75 — thin relative to its top-line, yet still comfortably above the $50 floor, so T3 advances. Third, T4 lands exactly on the boundary at $50 net benefit; because Tab 3 defines "economically worthwhile" as "at least $50," the boundary value qualifies, so T4 advances rather than being excluded.
-
-Choices A, B, C, and D each drop at least one qualifying treatment: A keeps only T2; B and C and D each omit a treatment that in fact passes both tests. Since T2 ($105), T3 ($75), and T4 ($50) are all both significant and worthwhile, and only T1 fails, the complete advancement set is T2, T3, and T4.
-
-The correct answer is E.
+**fastest_path:** For T2-T4, compute uplift x $250 minus input cost, then pair that result with p < 0.05.
+**explanation:** T1 is not significant because p = 0.21. T2 earns 0.9 x $250 - $120 = $105 per hectare and has p = 0.03. T3 earns 1.5 x $250 - $300 = $75 and has p = 0.01. T4 earns 1.2 x $250 - $250 = $50 and has p = 0.04. T2, T3, and T4 each meet both the significance and minimum-$50 economic tests, so E is correct.
+**common_trap:** Advancing a treatment for high yield alone without subtracting its input cost or checking statistical significance.
+**takeaway:** When advancement requires two conditions, compute the economic test and significance test separately for every treatment.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
@@ -3798,30 +3502,10 @@ Applying the intervention rule in Tab 3, how many of the five clinics are flagge
 - E) 5
 
 **answer:** B
-**explanation:** Tab 3 sets three targets and flags a clinic that misses two or more of them. The three targets are: average wait ≤ 30 min; satisfaction ≥ 75; visits per provider ≤ 25. Visits per provider = Avg Daily Visits / Providers. Each clinic is evaluated on all three using Tab 2.
-
-Computing visits per provider:
-- Northgate: 120 / 6 = 20.0.
-- Eastpark: 132 / 4 = 33.0.
-- Westside: 90 / 5 = 18.0.
-- Southbay: 175 / 7 = 25.0.
-- Midtown: 110 / 5 = 22.0.
-
-Now testing each target (a "miss" is marked):
-
-| Clinic    | Wait ≤ 30? | Satisfaction ≥ 75? | Visits/prov ≤ 25? | Misses | Flagged? |
-|-----------|------------|--------------------|--------------------|--------|----------|
-| Northgate | 18 ✓       | 88 ✓               | 20.0 ✓             | 0      | No       |
-| Eastpark  | 35 ✗       | 71 ✗               | 33.0 ✗             | 3      | Yes      |
-| Westside  | 22 ✓       | 84 ✓               | 18.0 ✓             | 0      | No       |
-| Southbay  | 41 ✗       | 66 ✗               | 25.0 ✓             | 2      | Yes      |
-| Midtown   | 27 ✓       | 79 ✓               | 22.0 ✓             | 0      | No       |
-
-Eastpark misses all three targets (wait 35 > 30, satisfaction 71 < 75, visits/provider 33 > 25) and is flagged. Southbay misses two — wait (41 > 30) and satisfaction (66 < 75) — but exactly meets the visits-per-provider target at 25.0 (the target is "at most 25," which 25.0 satisfies), so it accumulates two misses and is flagged. Northgate, Westside, and Midtown each meet all three targets and are not flagged.
-
-The key trap is Southbay's visits-per-provider value of exactly 25.0: because the target is inclusive ("at most 25"), 25.0 is a pass, not a miss, so Southbay lands at exactly two misses — still enough to flag it, but a solver who mistakenly counts 25.0 as a miss would record three. Either way Southbay is flagged. The second trap is Midtown's wait of 27, which is under the 30-minute ceiling and therefore a pass, so Midtown stays clean. Exactly two clinics — Eastpark and Southbay — meet the "two or more misses" bar.
-
-The correct answer is B.
+**fastest_path:** For each clinic, mark failures in wait, satisfaction, and visits/provider; flag only rows with at least two failures.
+**explanation:** Northgate passes all three targets. Eastpark fails wait (35), satisfaction (71), and visits/provider (132/4 = 33), so it is flagged. Westside passes all three. Southbay fails wait (41) and satisfaction (66) but meets visits/provider at 175/7 = 25, so it is flagged. Midtown passes with wait 27, satisfaction 79, and 110/5 = 22 visits/provider. Two clinics are flagged, so B is correct.
+**common_trap:** Treating a clinic that misses one target as flagged even though intervention requires at least two misses.
+**takeaway:** Convert every row into a count of failed conditions before applying a threshold-based intervention rule.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---

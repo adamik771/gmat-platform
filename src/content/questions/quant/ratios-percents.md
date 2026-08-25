@@ -1419,15 +1419,10 @@ A jar contains only red and blue balls. What percent of the balls in the jar are
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** We must determine the percent of the balls in the jar that are red. Let r represent the number of red balls and let b represent the number of blue balls, where both r and b are positive integers. The percent of balls that are red is r/(r + b), expressed as a percent. To answer the question, the value of this ratio must be uniquely determined; it is not necessary to know r and b individually, but the proportion they form must be fixed.
-
-Statement (1) states that the number of red balls is exactly 3 more than the number of blue balls, which translates to r = b + 3. This equation fixes only the difference between the two counts, not their proportion. For instance, (r, b) = (4, 1) gives 4/5 red, while (r, b) = (5, 2) gives 5/7 red. These two fractions are not equal, as cross-multiplication shows: 4 × 7 = 28 and 5 × 5 = 25, and 28 is not 25, so 4/5 and 5/7 are different proportions. Because different valid pairs produce different percents, the value of r/(r + b) is not determined. Statement (1) alone is not sufficient.
-
-Statement (2) states that if one red ball were removed, the ratio of red to blue balls would be 2 to 1, which translates to (r - 1)/b = 2/1, or equivalently r = 2b + 1. This equation fixes a relationship but leaves b free to vary. For instance, (r, b) = (3, 1) gives 3/4 red, while (r, b) = (5, 2) gives 5/7 red. Cross-multiplication again shows these fractions differ: 3 × 7 = 21 and 4 × 5 = 20, and 21 is not 20, so 3/4 and 5/7 are different proportions. Because different valid pairs again produce different percents, the value of r/(r + b) is not determined. Statement (2) alone is not sufficient.
-
-Taking the two statements together yields two independent linear equations in the two unknowns r and b: r = b + 3 and r = 2b + 1. Setting the two expressions for r equal gives b + 3 = 2b + 1. Subtracting b from both sides gives 3 = b + 1, so b = 2. Substituting b = 2 into r = b + 3 gives r = 5. The total number of balls is r + b = 5 + 2 = 7, and the proportion of balls that are red is 5/7. Because (r, b) = (5, 2) is the only pair satisfying both equations, this proportion is uniquely determined — and data sufficiency requires only a unique value, not a decimal conversion. Both statements together are therefore sufficient, while neither statement alone is sufficient.
-
-The correct answer is C.
+**fastest_path:** Let red = R and blue = B. Statement (1) gives R = B + 3; statement (2) gives R - 1 = 2B. Solve only after combining.
+**explanation:** Statement (1) allows many jars, such as R/B = 4/1 or 5/2, so the red percentage is not fixed. Statement (2) gives R = 2B + 1; different positive B values again produce different percentages. Together, B + 3 = 2B + 1, so B = 2 and R = 5. The red percentage is therefore fixed at 5/7 of the jar. Neither statement alone is sufficient, but together they are, so C is correct.
+**common_trap:** Assuming a difference or a post-removal ratio fixes the original percentage without determining the actual counts.
+**takeaway:** A fixed difference and a ratio often need to be combined before the underlying counts, and therefore the percentage, become unique.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
