@@ -1576,19 +1576,11 @@ A 100-liter drum contains 70 liters of water and 30 liters of juice (30% juice s
 - E) 5
 
 **answer:** B
-**explanation:** This is a drain-and-replace problem. Because the substance added on each cycle is pure juice, no water is ever introduced; water is only removed. It is therefore cleanest to track the water rather than the juice, and to require that the water concentration fall below 50 percent, which is equivalent to the juice concentration exceeding 50 percent.
+**fastest_path:** Track juice only: after each cycle, 80% of the current juice remains and 20 liters are added, so J(next) = 0.8J + 20.
+**explanation:** The drum starts with 30 liters of juice. After one cycle, draining 20% leaves 0.8 x 30 = 24 liters of juice; adding 20 liters of pure juice gives 44 liters, or 44%. After the second cycle, 0.8 x 44 = 35.2 liters remain, and replacement raises this to 55.2 liters. The concentration first exceeds 50% after two complete cycles, so B is correct.
+**common_trap:** Subtracting 20 liters of juice during each drain even though the removed 20 liters have the current mixture's concentration.
+**takeaway:** In repeated replacement, multiply the tracked component by the retained fraction, then add the pure replacement amount.
 
-Let the drum hold 100 liters throughout, since 20 liters are drained and 20 liters are added on every cycle, leaving the total unchanged. Each cycle drains 20 of the 100 liters of the current mixture, so it removes 20 percent of whatever water is present and retains the remaining 80 percent. The 20 liters of pure juice added afterward contribute no water. Hence the amount of water is multiplied by 80/100 = 4/5 on each cycle.
-
-The drum begins with 70 liters of water, so after n complete cycles the water remaining is 70 times (4/5) raised to the power n. We require the water to make up less than half of the 100 liters, that is, 70 times (4/5) to the power n is less than 50, which simplifies to (4/5) to the power n less than 5/7.
-
-We test successive values of n, comparing each power to 5/7 by cross-multiplication. For n = 1, compare 4/5 with 5/7: cross-multiplying gives 4 × 7 = 28 against 5 × 5 = 25, and 28 is greater than 25, so 4/5 is greater than 5/7 and the condition is not yet met. For n = 2, (4/5) squared is 16/25; compare 16/25 with 5/7: cross-multiplying gives 16 × 7 = 112 against 25 × 5 = 125, and 112 is less than 125, so 16/25 is less than 5/7 and the condition is met.
-
-A direct check confirms this. After cycle 1, draining 20 liters removes 14 liters of water, leaving 56 liters of water and 44 liters of juice, so the juice concentration is 44 percent, which does not exceed 50 percent. After cycle 2, draining 20 liters removes 11.2 liters of water from the 56 liters present, leaving 44.8 liters of water and 55.2 liters of juice, so the juice concentration is 55.2 percent, which does exceed 50 percent.
-
-The minimum number of complete cycles required is therefore 2.
-
-The correct answer is B.
 
 ---
 

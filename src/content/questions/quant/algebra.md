@@ -1127,29 +1127,17 @@ For how many integer values of x is |3x + 2| + |x − 4| ≤ 10?
 - E) 7
 
 **answer:** C
+**fastest_path:** Break at x = -2/3 and x = 4, solve each linear piece, then count integer solutions.
+**explanation:** For x < -2/3, the expression is -(3x+2) -(x-4) = -4x+2, so -4x+2 <= 10 gives x >= -2; integers are -2 and -1. For -2/3 <= x < 4, it is (3x+2) -(x-4) = 2x+6, so x <= 2; integers are 0, 1, 2. For x >= 4, it is 4x-2 <= 10, which requires x <= 3 and gives none. There are five values, so C is correct.
+**common_trap:** Solving one sign case across the entire number line or forgetting to reapply each case's interval restriction.
+**takeaway:** For sums of absolute values, split at every zero, solve each linear region, and intersect with that region before counting.
 **hint_nudge:** With a sum of two absolute values, the sign of each piece flips at a “critical point.”
 **hint_strategy:** Find where each expression hits zero (x = −2/3 and x = 4), break the line into intervals, drop the bars with the correct sign on each, and solve the resulting linear inequalities.
 **hint_setup:** On −2/3 ≤ x < 4 the sum is (3x + 2) + (4 − x) = 2x + 6 ≤ 10; handle the other intervals the same way, then collect the integers.
-**explanation:** When an inequality contains a sum of absolute-value expressions, the governing method is to locate the critical points at which each expression changes sign, partition the real line into the resulting intervals, and on each interval rewrite the absolute values as ordinary linear expressions so that the inequality becomes a plain linear inequality that can be solved directly.
-
-The two expressions are 3x + 2 and x - 4. We set each equal to zero to find the critical points. The expression 3x + 2 equals zero when x = -2/3, and the expression x - 4 equals zero when x = 4. These two values divide the real line into three intervals, which we examine in turn.
-
-Let us first consider the interval x >= 4. Here both 3x + 2 and x - 4 are nonnegative, so the absolute values may be removed directly: (3x + 2) + (x - 4) = 4x - 2. The inequality becomes 4x - 2 <= 10, which gives 4x <= 12, and therefore x <= 3. Since this conclusion contradicts the assumption x >= 4, this interval contributes no solutions.
-
-Next consider the interval -2/3 <= x < 4. Here 3x + 2 is nonnegative while x - 4 is negative, so |3x + 2| = 3x + 2 and |x - 4| = 4 - x. The sum is (3x + 2) + (4 - x) = 2x + 6. The inequality becomes 2x + 6 <= 10, which gives 2x <= 4, and therefore x <= 2. Intersecting this with the interval under consideration yields -2/3 <= x <= 2.
-
-Finally consider the interval x < -2/3. Here both 3x + 2 and x - 4 are negative, so |3x + 2| = -(3x + 2) and |x - 4| = 4 - x. The sum is -(3x + 2) + (4 - x) = -4x + 2. The inequality becomes -4x + 2 <= 10, which gives -4x <= 8, and therefore x >= -2. Intersecting this with the interval under consideration yields -2 <= x < -2/3.
-
-We now unite the solution sets from the three intervals. The first interval contributes nothing, the second contributes -2/3 <= x <= 2, and the third contributes -2 <= x < -2/3. Together these form the single continuous range -2 <= x <= 2. The integers satisfying this range are -2, -1, 0, 1, and 2, a total of five values.
-
-The correct answer is C.
-**fastest_path:** Critical points are −2/3 and 4; the binding region is −2 ≤ x ≤ 2, giving integers −2 through 2 = 5.
-**common_trap:** Mishandling the sign of an absolute value on one of the intervals.
 **mistake_a:** 3 drops two endpoints of the range.
 **mistake_b:** 4 drops one endpoint (e.g., −2 or 2).
 **mistake_d:** 6 adds an integer outside −2 ≤ x ≤ 2.
 **mistake_e:** 7 over-counts by extending past the binding interval.
-**takeaway:** For a sum of absolute values, partition at the critical points and solve a linear inequality on each piece.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---

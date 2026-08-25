@@ -1182,39 +1182,10 @@ Using the attribution framework, what was Orion's approximate total excess retur
 - E) 2.5 percentage points
 
 **answer:** D
-**explanation:** **Governing principle.** Under the attribution framework defined in Tab 3, a portfolio's total return equals the weighted sum of asset-class returns: total return = sum of (weight × asset-class return). Excess return then equals Orion's total return minus the benchmark's total return. These two definitions are sufficient to answer the question.
-
-**Computing Orion's total return.** Using the weights and Orion returns from Tab 2:
-
-Orion total = (0.60 × 16) + (0.30 × 7) + (0.10 × 12)
-            = 9.6 + 2.1 + 1.2
-            = 12.9%
-
-This figure matches the 12.9% stated in Tab 1, confirming internal consistency.
-
-**Computing the benchmark total return.** Applying the same formula to the benchmark returns in Tab 2:
-
-Benchmark total = (0.60 × 13) + (0.30 × 8) + (0.10 × 10)
-                = 7.8 + 2.4 + 1.0
-                = 11.2%
-
-Again, this matches the 11.2% benchmark return stated in Tab 1.
-
-**Excess return.** By the framework's definition:
-
-Excess return = 12.9 - 11.2 = 1.7 percentage points
-
-**Verification via per-class contribution.** Tab 3 also defines each asset class's contribution to excess return as (weight) × (Orion return − Benchmark return). Summing across classes provides an independent check:
-
-- Equities: 0.60 × (16 - 13) = 0.60 × 3 = 1.8 percentage points
-- Fixed Income: 0.30 × (7 - 8) = 0.30 × (-1) = -0.3 percentage points
-- Alternatives: 0.10 × (12 - 10) = 0.10 × 2 = 0.2 percentage points
-
-Total attributed excess = 1.8 + (-0.3) + 0.2 = 1.7 percentage points
-
-Both methods yield the same figure. Choice A (1.0) and choice B (1.5) are too small; a test-taker might arrive at 1.5 by incorrectly omitting the Alternatives class or by applying weights inconsistently. Choice C (2.0) could result from rounding 12.9 up to 13.0 before subtracting, and choice E (2.5) likely reflects an error in which the Fixed Income underperformance is ignored and only the two outperforming classes are summed. None of those paths follows the framework correctly.
-
-The correct answer is D.
+**fastest_path:** Subtract the reported totals directly: 12.9% - 11.2% = 1.7 percentage points.
+**explanation:** Orion's total return is 12.9% and the benchmark's is 11.2%, so total excess return is 1.7 percentage points, making D correct. The attribution components confirm it: Equities contribute 0.60(16%-13%) = 1.8 points, Fixed Income contributes 0.30(7%-8%) = -0.3, and Alternatives contribute 0.10(12%-10%) = 0.2. Their sum is 1.8 - 0.3 + 0.2 = 1.7.
+**common_trap:** Adding the three unweighted return differences instead of using either the reported totals or portfolio weights.
+**takeaway:** Use a direct total comparison when available, and use weighted contributions as a cross-check.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 
@@ -3151,37 +3122,10 @@ Applying the review flag defined in Tab 3, how many of the four stores are flagg
 - E) 4
 
 **answer:** B
-**explanation:** Tab 3 defines the review flag as a disjunctive condition: a store is flagged if its sales per square foot is below $250 OR its payback period exceeds 3 years. A store avoids the flag only if it clears BOTH thresholds — sales per square foot of at least $250 and payback of at most 3 years. Each store is tested using the Tab 3 definitions applied to Tab 2.
-
-First, the two metrics for each store.
-
-Annual operating profit (needed for payback) = Revenue − Operating Cost:
-- Riverside: $300K; Harborview: $540K; Oakdale: $120K; Summit: $525K.
-
-Payback period = Buildout / profit:
-- Riverside: 600 / 300 = 2.00 yr.
-- Harborview: 900 / 540 ≈ 1.67 yr.
-- Oakdale: 500 / 120 ≈ 4.17 yr.
-- Summit: 1,100 / 525 ≈ 2.10 yr.
-
-Sales per square foot = Revenue (in dollars) / sq ft:
-- Riverside: 1,200,000 / 4,000 = $300.
-- Harborview: 1,800,000 / 6,000 = $300.
-- Oakdale: 840,000 / 4,200 = $200.
-- Summit: 1,500,000 / 4,000 = $375.
-
-Now applying the disjunctive flag (flag if sales/sq ft < $250 OR payback > 3 yr):
-
-| Store      | Sales/sq ft | < $250? | Payback (yr) | > 3 yr? | Flagged? |
-|------------|-------------|---------|--------------|---------|----------|
-| Riverside  | $300        | No      | 2.00         | No      | No       |
-| Harborview | $300        | No      | 1.67         | No      | No       |
-| Oakdale    | $200        | Yes     | 4.17         | Yes     | Yes      |
-| Summit     | $375        | No      | 2.10         | No      | No       |
-
-Only Oakdale trips the flag — and it trips both halves of the OR condition at once: its $200 sales per square foot is below the $250 floor, and its 4.17-year payback exceeds the 3-year limit. The remaining three stores clear both thresholds and are not flagged. The trap is to misread the flag as conjunctive (requiring both failures) or to over-apply it; here the disjunction happens to catch a single store because only Oakdale fails on either dimension. Choices C, D, and E overcount, and choice A overlooks Oakdale entirely.
-
-The correct answer is B.
+**fastest_path:** Compute sales per square foot and payback for each store; flag a store if either metric breaches its limit.
+**explanation:** Riverside has $300/sq ft and 600/300 = 2-year payback. Harborview has $300/sq ft and 900/540 = 1.67 years. Oakdale has $200/sq ft and 500/120 = 4.17 years, so it fails both tests. Summit has $375/sq ft and 1,100/525 = 2.10 years. Only Oakdale has sales below $250 or payback above three years. One store is flagged, so B is correct.
+**common_trap:** Using revenue instead of operating profit in the payback denominator, or requiring both failures when the rule says OR.
+**takeaway:** For an OR flag, calculate each metric correctly and flag any row that breaches at least one threshold.
 **related_reading:** reading-di-05-multi-source-reasoning
 
 ---
