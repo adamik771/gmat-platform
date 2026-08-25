@@ -22,13 +22,10 @@ Based on the graph, the month with the highest revenue is approximately ______ t
 - E) 3.0
 
 **answer:** C
-**explanation:** Graphics Interpretation questions of this type require reading the global maximum and minimum from the described graph, then computing their ratio.
-
-Scanning all twelve monthly values — Jan 85, Feb 92, Mar 110, Apr 125, May 140, Jun 155, Jul 170, Aug 165, Sep 150, Oct 135, Nov 120, Dec 180 — the highest revenue occurs in December at 180 thousand USD and the lowest in January at 85 thousand USD. Although the graph shows an upward trend from January through July, a mid-year retreat from August through November, and a sharp December spike, the question asks only for the ratio of the global maximum to the global minimum.
-
-Setting H = 180 and L = 85, the ratio H/L = 180/85 = 36/17. Carrying out the division: 17 × 2 = 34 with remainder 2, so 36/17 = 2 + 2/17. Since 2/17 ≈ 0.118, the ratio is approximately 2.12, which rounds to 2.1. Answer choices below 2.0 are too small given that 180 is clearly more than twice 85, and choices of 2.5 or 3.0 would require a lowest-month value well below what the graph shows (2.5 × 85 = 212.5 and 3.0 × 85 = 255 are both above the graph's maximum).
-
-The correct answer is C.
+**fastest_path:** Read the maximum, 180 in December, and the minimum, 85 in January. Their ratio is 180/85 ≈ 2.1.
+**explanation:** The question asks only for highest divided by lowest; the months between them do not matter. December is the maximum at 180 and January is the minimum at 85. Since 180 is slightly more than twice 85, the ratio is approximately 2.1. The correct answer is C.
+**common_trap:** Dividing the lower value by the higher one, or getting distracted by the shape of the trend between the endpoints.
+**takeaway:** For a maximum-to-minimum ratio, identify the two extreme values first and ignore unrelated movement in the graph.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -406,23 +403,10 @@ Based on the chart, the combined sales of the two lowest-selling dealerships wer
 - E) 1.50
 
 **answer:** C
-**explanation:** A Graphics Interpretation question of this type requires reading specific values from the described bar chart, identifying the relevant data points by the criteria given, and computing the specified ratio.
-
-**Reading the chart values.** The five dealerships and their 2025 electric-vehicle sales (in thousands) are: P = 42, Q = 58, R = 31, S = 67, T = 49.
-
-**Identifying the two lowest-selling dealerships.** Sorting the five values in ascending order gives 31, 42, 49, 58, 67. The two lowest values belong to Dealership R (31 thousand) and Dealership P (42 thousand).
-
-**Identifying the highest-selling dealership.** The largest value is 67 thousand, belonging to Dealership S.
-
-**Setting up the fraction.** The combined sales of the two lowest dealerships form the numerator and the highest dealership's sales form the denominator:
-
-- Combined (R + P) = 31 + 42 = 73 (thousands)
-- Highest (S) = 67 (thousands)
-- Target fraction = 73 / 67
-
-**Computing the ratio.** Dividing yields 73 / 67 = 1.0895..., which is confirmed by noting that 67 * 1.09 = 73.03. Among the offered choices — 0.85, 1.00, 1.09, 1.25, and 1.50 — the value 1.09 is the nearest.
-
-The correct answer is C.
+**fastest_path:** The two lowest values are 31 and 42; together they make 73. Divide by the highest value, 67: 73/67 ≈ 1.09.
+**explanation:** Sort only far enough to identify the needed bars. R and P are the two lowest-selling dealerships, with 31 and 42 thousand sales, while S is highest at 67 thousand. The requested fraction is (31 + 42)/67 = 73/67, which is closest to 1.09. The correct answer is C.
+**common_trap:** Using the two lowest values as separate fractions instead of adding them before dividing by the highest value.
+**takeaway:** Translate the wording into a numerator and denominator before calculating: combined two lowest over highest.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -596,22 +580,10 @@ Based on the scatter plot, the correlation between experience and salary is best
 - E) strong positive
 
 **answer:** E
-**explanation:** Correlation measures both the direction and the strength of a linear relationship between two variables. A positive correlation means that as one variable increases the other tends to increase as well; a strong correlation means the data points cluster tightly around an imaginary best-fit line, while a weak correlation means they are widely scattered.
-
-Let x = years of experience and y = annual salary (in $thousands). The ten plotted employees occupy the coordinates (2, 52), (3, 60), (5, 70), (7, 85), (8, 78), (10, 100), (12, 115), (14, 125), (17, 145), and (19, 155).
-
-Direction. Every move along the x-axis from left to right is accompanied, on the whole, by an upward move along the y-axis. The lowest-experience employee (x = 2) earns the lowest salary (y = 52), and the highest-experience employee (x = 19) earns the highest salary (y = 155). The one apparent local reversal — the point (8, 78) sitting slightly below (7, 85) — is a minor fluctuation that does not interrupt the overall ascending trend. The correlation is therefore positive, eliminating choices A and B.
-
-Strength. To assess tightness, the endpoints and the interior points are compared against a straight path. The rise from y = 52 at x = 2 to y = 155 at x = 19 spans 103 units over a run of 17 units, yielding an approximate slope of 103/17 ≈ 6.06 thousand dollars per year of experience. Tracing the interior points against this implied line:
-
-- At x = 5, the line predicts roughly 52 + 6.06 × (5 − 2) = 52 + 18.18 ≈ 70; the actual value is 70. Residual ≈ 0.
-- At x = 10, the line predicts roughly 52 + 6.06 × (10 − 2) = 52 + 48.48 ≈ 100; the actual value is 100. Residual ≈ 0.
-- At x = 14, the line predicts roughly 52 + 6.06 × (14 − 2) = 52 + 72.72 ≈ 125; the actual value is 125. Residual ≈ 0.
-- The largest departure is the point (8, 78), which falls about 10 units below the predicted value of 52 + 6.06 × 6 ≈ 88. Even this outlier is small relative to the total y-range of 103 units, representing a deviation of only 10/103 ≈ 9.7%.
-
-Because the points hug the implied best-fit line closely throughout the entire range of x, the correlation is strong rather than weak, eliminating choice D. A scatter this tight is inconsistent with no correlation (choice C), which would require points distributed without any systematic trend.
-
-The data therefore show that experience and salary exhibit a strong positive linear relationship across all ten employees. The correct answer is E.
+**fastest_path:** The points rise from lower left to upper right and stay close to one upward-sloping line: strong positive correlation.
+**explanation:** Direction and strength are visual judgments here. Salary generally rises as experience rises, so the direction is positive. The points cluster fairly tightly around that upward trend, with only a small local deviation, so the relationship is strong rather than weak. The correct answer is E.
+**common_trap:** Calculating a slope or correlation coefficient when the answer choices ask only for a visual classification.
+**takeaway:** On a scatter plot, read direction from the overall slope and strength from how tightly the points cluster around that trend.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -1105,27 +1077,10 @@ Based on the chart, which statement is best supported?
 - E) Footwear overtook Accessories in February.
 
 **answer:** B
-**explanation:** **Governing principle.** In a stacked bar chart, each segment's height represents the unit sales for one product category in a given month. To determine which category led sales in every month, we compare the segment values for Apparel, Accessories, and Footwear within each month individually.
-
-**Reading the chart.** The data values are as follows:
-
-| Month | Apparel | Accessories | Footwear | Total |
-|-------|---------|-------------|----------|-------|
-| Jan   | 400     | 250         | 150      | 800   |
-| Feb   | 380     | 320         | 200      | 900   |
-| Mar   | 450     | 300         | 250      | 1,000 |
-
-**January.** We compare 400 (Apparel) vs. 250 (Accessories) vs. 150 (Footwear). Since 400 > 250 > 150, Apparel is the top-selling category.
-
-**February.** We compare 380 (Apparel) vs. 320 (Accessories) vs. 200 (Footwear). Since 380 > 320 > 200, Apparel is again the top-selling category.
-
-**March.** We compare 450 (Apparel) vs. 300 (Accessories) vs. 250 (Footwear). Since 450 > 300 > 250, Apparel leads once more.
-
-Therefore, across all three months — January, February, and March — Apparel records the highest unit sales. No other category surpasses or equals Apparel in any month, so the statement "Apparel was the top-selling category in every month" is fully supported by the chart.
-
-The remaining statements are contradicted by the data: Footwear sales increased from 150 to 200 to 250 (not decreased); Accessories fell from 320 to 300 between February and March (not continuous growth); total sales rose from 800 to 900 to 1,000 (not flat); and in February Accessories (320) exceeded Footwear (200), so Footwear did not overtake Accessories.
-
-The correct answer is B.
+**fastest_path:** Compare the three category values within each month. Apparel leads in January (400), February (380), and March (450), so B is supported.
+**explanation:** Check a statement against all three months, not just one. Apparel exceeds Accessories and Footwear in January, February, and March. The other claims each conflict with at least one chart value: Footwear rises, Accessories falls in March, totals rise, and Footwear remains below Accessories in February. The correct answer is B.
+**common_trap:** Accepting a statement because it works in one month without verifying the full period named in the choice.
+**takeaway:** For “best supported,” test each claim against every relevant category and time period.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---

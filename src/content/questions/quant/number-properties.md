@@ -17,17 +17,12 @@ How many prime numbers are between 20 and 40?
 - E) 7
 
 **answer:** B
-**explanation:** A prime number is an integer greater than 1 whose only positive divisors are 1 and itself. To count the primes strictly between 20 and 40, we examine each integer in that interval and determine whether it satisfies this definition.
+**fastest_path:** Cross out the even numbers and the obvious multiples of 3 and 5. The survivors are 23, 29, 31, and 37, so there are 4 primes.
+**explanation:** Only the odd numbers need checking: 21, 23, 25, 27, 29, 31, 33, 35, 37, and 39. Eliminate 21, 27, 33, and 39 as multiples of 3, and eliminate 25 and 35 as multiples of 5. That leaves 23, 29, 31, and 37.
 
-We may immediately set aside every even integer, since any even number greater than 2 is divisible by 2 and is therefore not prime. This leaves only the odd integers to consider: 21, 23, 25, 27, 29, 31, 33, 35, 37, and 39.
-
-We test each of these for divisibility by the small primes 3, 5, and 7. We have 21 = 3 times 7, so 21 is composite. We have 25 = 5 times 5, so 25 is composite. We have 27 = 3 times 9, so 27 is composite. We have 33 = 3 times 11, so 33 is composite. We have 35 = 5 times 7, so 35 is composite. And we have 39 = 3 times 13, so 39 is composite.
-
-The remaining odd integers are 23, 29, 31, and 37. Each of these is divisible by none of 2, 3, 5, or 7. Since any composite number less than 49 must have a prime factor of at most 7 (because a factor exceeding 7 would require a cofactor of at least 7, giving a product of at least 49), each of these four integers is prime.
-
-Thus the prime numbers between 20 and 40 are 23, 29, 31, and 37, giving a total count of 4.
-
-The correct answer is B.
+None of those four numbers has a possible prime divisor small enough to make it composite, so all four are prime. The correct answer is B.
+**common_trap:** Counting 1 or an endpoint, or testing every integer instead of eliminating whole groups first.
+**takeaway:** In a short interval, remove evens and obvious small-prime multiples before testing the few survivors.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -46,17 +41,18 @@ If m is an even integer and n is an odd integer, which of the following must be 
 - E) m - n + 1
 
 **answer:** C
-**explanation:** This problem is governed by the rules of parity, which describe how the even or odd character of integers is preserved under addition, subtraction, and multiplication. The relevant rules are: the sum or difference of two integers of the same parity is even, while the sum or difference of two integers of opposite parity is odd; the product of two integers is odd only when both factors are odd, and is even whenever at least one factor is even.
+**fastest_path:** Replace every even expression with E and every odd expression with O. Only choice C becomes E + O, which is odd.
+**explanation:** Because m is even, m², mn, 2m, and m itself are even. Because n is odd, 2n is even.
 
-Let m be an even integer and let n be an odd integer. We evaluate the expression m² + n.
+- A: m + 2n = even + even = even.
+- B: mn contains the even factor m, so it is even.
+- C: m² + n = even + odd = odd.
+- D: 2m + 2n = even + even = even.
+- E: m - n is odd, and adding 1 makes it even.
 
-First, consider m². Since m² = m × m is the product of two even integers, and the product of any even integer with another integer is even, m² is even.
-
-Next, consider the sum m² + n. This is the sum of an even integer (m²) and an odd integer (n). By the parity rule for addition, the sum of an even integer and an odd integer is odd. Therefore m² + n is odd.
-
-Because m² + n is odd for every even integer m and every odd integer n, this expression must be odd.
-
-The correct answer is C.
+Only choice C must be odd.
+**common_trap:** Checking only the attractive choice instead of quickly classifying all five expressions.
+**takeaway:** Reduce parity questions to E and O; the actual values of the integers do not matter.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -75,15 +71,10 @@ How many positive factors does the number 36 have?
 - E) 12
 
 **answer:** D
-**explanation:** The number of positive factors of an integer can be determined from its prime factorization: if a positive integer is written as the product of prime powers p^a · q^b · r^c · …, then its total number of positive factors equals (a + 1)(b + 1)(c + 1) · …. Each exponent in a factor of the number may independently range from 0 up to the exponent in the prime factorization, which yields (exponent + 1) choices for each prime.
-
-We begin by writing 36 as a product of prime powers. Since 36 = 4 · 9 = 2^2 · 3^2, the prime factorization of 36 is 2^2 · 3^2.
-
-Let the exponents of the primes 2 and 3 be a = 2 and b = 2. Applying the factor-counting principle, the number of positive factors is (a + 1)(b + 1) = (2 + 1)(2 + 1) = 3 · 3 = 9.
-
-This result can be confirmed by listing all positive factors of 36: 1, 2, 3, 4, 6, 9, 12, 18, and 36. There are 9 such factors.
-
-The correct answer is D.
+**fastest_path:** Factor 36 as 2² × 3², then add 1 to each exponent and multiply: (2 + 1)(2 + 1) = 9.
+**explanation:** Every factor of 36 chooses how many copies of 2 to use (0, 1, or 2) and how many copies of 3 to use (0, 1, or 2). That gives 3 independent choices for each prime, so 3 × 3 = 9 positive factors. The correct answer is D.
+**common_trap:** Multiplying the exponents, 2 × 2, instead of multiplying the numbers of exponent choices, 3 × 3.
+**takeaway:** If n = p^a × q^b, then n has (a + 1)(b + 1) positive factors.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -102,29 +93,14 @@ When the positive integer n is divided by 7, the remainder is 4. What is the rem
 - E) 6
 
 **answer:** C
-**explanation:** The governing principle is that any integer leaving a fixed remainder upon division by a divisor can be expressed in the form (divisor times an integer) plus that remainder, and remainders are preserved under the arithmetic operations performed on such expressions. We therefore translate the given condition into algebra and reduce modulo 7.
+**fastest_path:** Use the smallest legal value, n = 4. Then 3n + 5 = 17, which leaves remainder 3 when divided by 7.
+**explanation:** Every legal value of n is 4 more than a multiple of 7. Replacing n with 4 therefore preserves the remainder calculation:
 
-Let n be the positive integer. Since dividing n by 7 leaves a remainder of 4, we can write n = 7k + 4 for some non-negative integer k.
+3(4) + 5 = 17 = 2 × 7 + 3.
 
-We are asked for the remainder when 3n + 5 is divided by 7. Substituting the expression for n gives:
-
-3n + 5 = 3(7k + 4) + 5.
-
-We expand the product:
-
-3(7k + 4) + 5 = 21k + 12 + 5.
-
-We combine the constant terms:
-
-21k + 12 + 5 = 21k + 17.
-
-We now separate out the largest multiple of 7 that does not exceed the constant term, writing 17 as 14 + 3:
-
-21k + 17 = 21k + 14 + 3 = 7(3k + 2) + 3.
-
-Since 7(3k + 2) is a multiple of 7 and 0 is less than or equal to 3, which is less than 7, the remainder when 3n + 5 is divided by 7 is 3.
-
-The correct answer is C.
+So the remainder is 3, choice C. Any other legal value of n differs from 4 by a multiple of 7, and multiplying that difference by 3 still adds only a multiple of 7.
+**common_trap:** Turning a one-line remainder substitution into a full algebraic expansion before noticing that n = 4 is enough.
+**takeaway:** When a remainder question asks about an expression in one unknown, try the smallest legal value first.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -143,23 +119,10 @@ If the three-digit number 4A6 is divisible by 9, where A represents a single dig
 - E) 9
 
 **answer:** D
-**explanation:** A positive integer is divisible by 9 if and only if the sum of its digits is divisible by 9. We apply this rule to the three-digit number 4A6, where A represents a single digit.
-
-Let A denote the unknown tens digit. The digits of the number are 4, A, and 6, so the digit sum is
-
-4 + A + 6 = 10 + A.
-
-For 4A6 to be divisible by 9, the quantity 10 + A must be a multiple of 9. Because A is a single digit, A satisfies 0 ≤ A ≤ 9, and therefore
-
-10 ≤ 10 + A ≤ 19.
-
-The only multiple of 9 in the interval from 10 to 19 is 18. Hence we require
-
-10 + A = 18,
-
-which gives A = 8. The resulting number, 486, has digit sum 18, confirming that it is divisible by 9.
-
-The correct answer is D.
+**fastest_path:** The digit sum is 4 + A + 6 = 10 + A. The only multiple of 9 it can reach is 18, so A = 8.
+**explanation:** A number is divisible by 9 when its digits sum to a multiple of 9. Since A is one digit, 10 + A ranges from 10 to 19; the only multiple of 9 in that range is 18. Therefore 10 + A = 18 and A = 8. Indeed, 486 has digit sum 18. The correct answer is D.
+**common_trap:** Setting the digit sum equal to 9 even though 10 + A cannot be smaller than 10.
+**takeaway:** For an unknown-digit divisibility question, write the digit sum and identify the reachable multiple of 9.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -178,15 +141,10 @@ What is the greatest common factor of 168 and 252?
 - E) 84
 
 **answer:** E
-**explanation:** The greatest common factor of two integers is found by writing each integer as a product of primes and then taking each prime that the two integers share, raised to the smaller of the two exponents with which it appears. The product of these prime powers is the greatest common factor.
-
-Let us factor each integer completely into primes. For 168, repeated division gives 168 = 2 × 84 = 2 × 2 × 42 = 2 × 2 × 2 × 21 = 2 × 2 × 2 × 3 × 7, so 168 = 2^3 × 3 × 7. For 252, repeated division gives 252 = 2 × 126 = 2 × 2 × 63 = 2 × 2 × 3 × 21 = 2 × 2 × 3 × 3 × 7, so 252 = 2^2 × 3^2 × 7.
-
-The primes common to both factorizations are 2, 3, and 7. We take each to the smaller exponent appearing in the two factorizations. The prime 2 appears as 2^3 in 168 and 2^2 in 252, so we take 2^2. The prime 3 appears as 3^1 in 168 and 3^2 in 252, so we take 3^1. The prime 7 appears as 7^1 in both, so we take 7^1.
-
-The greatest common factor is therefore 2^2 × 3 × 7 = 4 × 3 × 7 = 84.
-
-The correct answer is E.
+**fastest_path:** Prime-factorize both numbers and keep the smaller exponent of each shared prime: 168 = 2³ × 3 × 7 and 252 = 2² × 3² × 7, so the GCF is 2² × 3 × 7 = 84.
+**explanation:** A common factor can use only prime factors available in both numbers. Both contain 2, 3, and 7; the shared supply is two copies of 2, one copy of 3, and one copy of 7. Their product is 4 × 3 × 7 = 84, choice E.
+**common_trap:** Taking the larger exponent, which builds the LCM rather than the GCF.
+**takeaway:** GCF takes the lower exponent of every shared prime; LCM takes the higher exponent of every prime present.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -205,24 +163,12 @@ If x and y are positive integers such that x = 8q + 5 and y = 8r + 3, where q an
 - E) 15
 
 **answer:** D
-**explanation:** The remainder of a product depends only on the remainders of its factors. When two integers are expressed in the form (multiple of 8) plus a remainder, the product of the two remainders, reduced modulo 8, gives the remainder of the product.
+**fastest_path:** x leaves remainder 5 and y leaves remainder 3. Multiply those remainders: 5 × 3 = 15, which leaves remainder 7 when divided by 8.
+**explanation:** Any multiple-of-8 part of x or y disappears in the final remainder. Only the remainder parts matter, so xy has the same remainder as 5 × 3 = 15. Since 15 = 8 + 7, the remainder is 7, choice D.
 
-Let x = 8q + 5 and y = 8r + 3, where q and r are positive integers. We form the product xy and expand it:
-
-xy = (8q + 5)(8r + 3)
-xy = 64qr + 24q + 40r + 15.
-
-Each of the first three terms is a multiple of 8, since 64 = 8(8), 24 = 8(3), and 40 = 8(5). We group these multiples of 8 together and treat the constant term separately:
-
-xy = 8(8qr + 3q + 5r) + 15.
-
-The quantity 8(8qr + 3q + 5r) contributes no remainder when divided by 8, so the remainder of xy is the remainder of 15 when divided by 8. Because 15 = 8 + 7, the remainder is 7. Writing this explicitly:
-
-xy = 8(8qr + 3q + 5r + 1) + 7.
-
-Thus the remainder when xy is divided by 8 is 7.
-
-The correct answer is D.
+Expanding (8q + 5)(8r + 3) would prove the same rule, but the expansion is not the efficient test-day method.
+**common_trap:** Reporting 15 without reducing it; a remainder must be smaller than the divisor 8.
+**takeaway:** For a product, multiply the remainders and reduce the result by the divisor.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -241,21 +187,10 @@ If n is a positive integer and n² is divisible by 72, what is the smallest poss
 - E) 72
 
 **answer:** B
-**explanation:** This problem is governed by the principle that, in the prime factorization of a perfect square, every prime exponent must be even, together with the rule that one integer is divisible by another exactly when each prime exponent in the divisor does not exceed the corresponding exponent in the dividend.
-
-We begin by factoring the divisor. We have 72 = 2^3 × 3^2.
-
-Let n be a positive integer. Then n^2 is a perfect square, so in its prime factorization the exponent of each prime is even. For n^2 to be divisible by 72, the exponent of 2 in n^2 must be at least 3, and the exponent of 3 in n^2 must be at least 2.
-
-Consider the exponent of 2. It must be even and at least 3, so the smallest permissible value is 4. Consider the exponent of 3. It must be even and at least 2, so the smallest permissible value is 2. Therefore the smallest n^2 that is divisible by 72 is 2^4 × 3^2.
-
-We now solve for n by taking the square root of this minimal n^2:
-
-n = (2^4 × 3^2)^(1/2) = 2^2 × 3^1 = 4 × 3 = 12.
-
-We confirm this value. We compute 12^2 = 144, and 144 = 72 × 2, so 144 is divisible by 72. Hence n = 12 satisfies the condition and is the smallest such positive integer.
-
-The correct answer is B.
+**fastest_path:** Factor 72 = 2³ × 3². Because n² has even prime exponents, it needs at least 2⁴ × 3², so n needs 2² × 3 = 12.
+**explanation:** The exponent of 2 in n² must be even and at least 3; the smallest possibility is 4. The exponent of 3 must be even and at least 2; the smallest possibility is 2. Therefore the smallest possible square is 2⁴ × 3² = 144, whose positive square root is 12. Check: 12² = 144 = 2 × 72. The correct answer is B.
+**common_trap:** Taking √72 directly and forgetting that n must be an integer whose square contains enough copies of every required prime.
+**takeaway:** When a square must be divisible by a number, raise each odd required exponent to the next even exponent before taking the square root.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -274,23 +209,10 @@ Which of the following numbers is divisible by 11?
 - E) 7239
 
 **answer:** A
-**explanation:** An integer is divisible by 11 if and only if its alternating sum of digits is itself divisible by 11, where divisibility includes the value 0. The alternating sum is formed by assigning signs to the digits in succession, beginning with a plus sign on the units digit, a minus sign on the tens digit, a plus sign on the hundreds digit, and so on.
-
-Let N be the candidate integer 2,431. Reading its digits from right to left, the units digit is 1, the tens digit is 3, the hundreds digit is 4, and the thousands digit is 2. We assign the alternating signs accordingly and compute the alternating sum S:
-
-S = 1 - 3 + 4 - 2.
-
-We evaluate the expression in order:
-
-1 - 3 = -2,
--2 + 4 = 2,
-2 - 2 = 0.
-
-Thus S = 0. Since 0 is divisible by 11, the integer 2,431 is divisible by 11.
-
-This conclusion may be confirmed directly by division: 2,431 = 11 * 221, since 11 * 221 = 11 * 200 + 11 * 21 = 2,200 + 231 = 2,431. The quotient 221 is an integer, which establishes that 11 divides 2,431 exactly.
-
-The correct answer is A.
+**fastest_path:** Apply the divisibility-by-11 test to 2431: (2 + 3) - (4 + 1) = 0. Because 0 is a multiple of 11, 2431 is divisible by 11.
+**explanation:** For a four-digit number abcd, compare a + c with b + d. Their difference must be a multiple of 11. For 2431, the alternating groups both sum to 5, so the difference is 0 and the number is divisible by 11. The correct answer is A.
+**common_trap:** Adding all four digits, which tests divisibility by 3 or 9 rather than by 11.
+**takeaway:** Divisibility by 11 uses an alternating digit sum; a difference of 0 counts.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -309,13 +231,10 @@ The sum of five consecutive integers is 85. What is the largest of the five inte
 - E) 23
 
 **answer:** C
-**explanation:** When an odd number of consecutive integers is summed, the mean of the set equals its median, which is the middle integer. Thus the sum is the product of that middle integer and the number of terms, and each integer can be located by its position relative to the middle.
-
-Let n denote the middle (third) of the five consecutive integers. Because the five integers are evenly spaced around n, their sum equals 5n. We are told this sum is 85, so we have the equation 5n = 85.
-
-Solving for n gives n = 85 / 5 = 17, so the middle integer is 17. The five consecutive integers are therefore 15, 16, 17, 18, and 19. The largest of these is the fifth integer, which is two more than the middle: 17 + 2 = 19.
-
-The correct answer is C.
+**fastest_path:** The middle of five consecutive integers equals their average: 85 ÷ 5 = 17. The largest is two more, 19.
+**explanation:** Five consecutive integers are balanced around the middle one, so their average is the middle integer. The numbers are 15, 16, 17, 18, and 19. Therefore the largest is 19, choice C.
+**common_trap:** Stopping at 17, which is the middle integer rather than the largest.
+**takeaway:** For an odd count of consecutive integers, average = middle; then move the required number of positions from the middle.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -334,20 +253,10 @@ What is the units digit of 3²⁴?
 - E) 9
 
 **answer:** B
-**explanation:** The units digit of a positive integer power can be found by examining the cycle that the units digits of successive powers form. We compute the units digits of the first several powers of 3 and observe the repeating pattern.
-
-Let n denote the exponent. Computing successive powers of 3:
-3^1 = 3, with units digit 3.
-3^2 = 9, with units digit 9.
-3^3 = 27, with units digit 7.
-3^4 = 81, with units digit 1.
-3^5 = 243, with units digit 3, which repeats the units digit of 3^1.
-
-Thus the units digits of 3^n form the repeating cycle 3, 9, 7, 1, which has period 4. To locate 3^24 within this cycle, we determine the position of the exponent 24 by computing its remainder upon division by 4.
-
-We have 24 = 4 times 6, so 24 divided by 4 leaves a remainder of 0. A remainder of 0 corresponds to the final position in the cycle, which is the fourth position. The units digit in the fourth position of the cycle 3, 9, 7, 1 is 1. Therefore the units digit of 3^24 is 1.
-
-The correct answer is B.
+**fastest_path:** Powers of 3 cycle through units digits 3, 9, 7, 1. Since 24 is divisible by the cycle length 4, use the fourth entry: 1.
+**explanation:** The units-digit pattern repeats every four powers. An exponent with remainder 1, 2, 3, or 0 when divided by 4 uses the first, second, third, or fourth cycle entry respectively. Because 24 leaves remainder 0, 3²⁴ ends in 1. The correct answer is B.
+**common_trap:** Treating a remainder of 0 as the first position in the cycle; it points to the final position.
+**takeaway:** For a four-term units cycle, exponent mod 4 = 0 means use the fourth entry.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -366,13 +275,10 @@ When the positive integer n is divided by 5, the remainder is 2. What is the rem
 - E) 4
 
 **answer:** E
-**explanation:** The governing principle is that the remainder of a product depends only on the remainders of its factors: if a positive integer leaves remainder r upon division by m, then its square leaves the same remainder as r squared upon division by m. We may therefore represent n in terms of its quotient and remainder when divided by 5.
-
-Let k be a nonnegative integer such that n = 5k + 2, since dividing n by 5 leaves a remainder of 2. Squaring this expression gives n squared = (5k + 2) squared = 25k squared + 20k + 4. The first two terms, 25k squared and 20k, are each multiples of 5, so they contribute nothing to the remainder. Factoring the multiple of 5 explicitly, we obtain n squared = 5(5k squared + 4k) + 4.
-
-The expression 5(5k squared + 4k) is divisible by 5, and the remaining term, 4, is less than 5. Hence the remainder when n squared is divided by 5 is 4.
-
-The correct answer is E.
+**fastest_path:** Square the given remainder: 2² = 4. Since 4 is already smaller than 5, the new remainder is 4.
+**explanation:** Every legal value of n differs from 2 by a multiple of 5, so n² has the same remainder as 2². That remainder is 4, choice E.
+**common_trap:** Keeping the original remainder 2 instead of applying the operation in the question.
+**takeaway:** To find the remainder of a square, square the original remainder and reduce if necessary.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -391,15 +297,10 @@ What is the least common multiple of 18, 24, and 30?
 - E) 720
 
 **answer:** C
-**explanation:** The least common multiple of a set of integers is the smallest positive integer that is divisible by each of them. The standard method is to prime-factorize each integer and then form a product that includes, for every prime that appears, the greatest power of that prime occurring in any single factorization.
-
-We factor each of the three integers into primes. We have 18 = 2 · 3 squared, 24 = 2 cubed · 3, and 30 = 2 · 3 · 5.
-
-We now collect the distinct primes that occur: 2, 3, and 5. For each prime we take the greatest exponent observed across the three factorizations. The greatest power of 2 is 2 cubed, which appears in 24. The greatest power of 3 is 3 squared, which appears in 18. The greatest power of 5 is 5 to the first power, which appears in 30.
-
-The least common multiple is therefore the product of these maximal prime powers: LCM = 2 cubed · 3 squared · 5. We compute this value step by step. First, 2 cubed = 8 and 3 squared = 9. Then 8 · 9 = 72, and 72 · 5 = 360.
-
-The correct answer is C.
+**fastest_path:** Use the largest prime power present: 18 = 2 × 3², 24 = 2³ × 3, and 30 = 2 × 3 × 5. Thus LCM = 2³ × 3² × 5 = 360.
+**explanation:** The LCM must contain enough prime factors to build all three numbers. The largest required power of 2 is 2³, the largest power of 3 is 3², and a factor of 5 is also required. Their product is 8 × 9 × 5 = 360, choice C.
+**common_trap:** Multiplying 18 × 24 × 30, which counts shared prime factors repeatedly.
+**takeaway:** LCM takes the highest exponent of every prime that appears in any input.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -418,17 +319,10 @@ How many positive factors does 720 have?
 - E) 36
 
 **answer:** C
-**explanation:** The number of positive factors of an integer can be found from its prime factorization. If a positive integer is written as the product of prime powers, then the total number of positive factors equals the product of the quantities formed by adding 1 to each exponent.
-
-We begin by prime-factorizing 720. We write 720 as 72 times 10, then break each part into primes: 72 = 8 times 9 = 2^3 times 3^2, and 10 = 2 times 5. Combining these, we obtain 720 = 2^3 times 3^2 times 2 times 5 = 2^4 times 3^2 times 5^1.
-
-We verify this factorization by recomputing the product: 2^4 = 16, 3^2 = 9, and 5^1 = 5, so 16 times 9 times 5 = 144 times 5 = 720, which confirms the factorization.
-
-We now apply the counting principle. The exponents are 4, 2, and 1, so we add 1 to each and take the product: (4 + 1)(2 + 1)(1 + 1) = 5 times 3 times 2 = 30.
-
-Thus 720 has 30 positive factors.
-
-The correct answer is C.
+**fastest_path:** Factor 720 = 2⁴ × 3² × 5. Add 1 to each exponent and multiply: 5 × 3 × 2 = 30 factors.
+**explanation:** A factor may use 0 through 4 copies of 2 (5 choices), 0 through 2 copies of 3 (3 choices), and 0 or 1 copy of 5 (2 choices). Those choices are independent, giving 5 × 3 × 2 = 30 positive factors. The correct answer is C.
+**common_trap:** Forgetting that an exponent of 1 still gives two choices: use the prime or do not use it.
+**takeaway:** Prime-factorize first; the factor count is the product of (exponent + 1) for every prime.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -447,15 +341,10 @@ What is the units digit of 2⁵⁰ + 7³⁰?
 - E) 7
 
 **answer:** C
-**explanation:** The units digit of a power depends only on the units digit of its base, and the units digits of successive powers of a fixed base repeat in a cycle. To find the units digit of a sum, we determine the units digit of each term separately and then add those digits, keeping only the units digit of the result.
-
-Consider first 2 raised to the 50th power. The units digits of the successive powers of 2 form the repeating cycle 2, 4, 8, 6, which has length 4. The position within this cycle for an exponent n is given by the remainder when n is divided by 4, where a remainder of 0 corresponds to the fourth position. Let r be the remainder when 50 is divided by 4. Since 50 equals 4 times 12 plus 2, we have r = 2. The second entry of the cycle 2, 4, 8, 6 is 4, so the units digit of 2 raised to the 50th power is 4.
-
-Consider next 7 raised to the 30th power. The units digits of the successive powers of 7 form the repeating cycle 7, 9, 3, 1, which also has length 4. Let s be the remainder when 30 is divided by 4. Since 30 equals 4 times 7 plus 2, we have s = 2. The second entry of the cycle 7, 9, 3, 1 is 9, so the units digit of 7 raised to the 30th power is 9.
-
-Adding the two units digits gives 4 plus 9, which equals 13. The units digit of 13 is 3, so the units digit of the entire sum is 3.
-
-The correct answer is C.
+**fastest_path:** Both units cycles have length 4. Exponents 50 and 30 each leave remainder 2, so 2⁵⁰ ends in 4 and 7³⁰ ends in 9; 4 + 9 = 13, so the sum ends in 3.
+**explanation:** The units digits of powers of 2 cycle 2, 4, 8, 6, while powers of 7 cycle 7, 9, 3, 1. A remainder of 2 selects the second entry in each cycle. Add only those two units digits, then keep the units digit of the sum: 4 + 9 = 13. The correct answer is C.
+**common_trap:** Combining the exponents or bases before finding each term's units digit separately.
+**takeaway:** For a sum of powers, find each units digit independently, add them, and keep only the final units digit.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -474,19 +363,10 @@ If n is a positive integer, which of the following must be divisible by 6?
 - E) n³ + 1
 
 **answer:** C
-**explanation:** The governing principle is that the product of any k consecutive integers is divisible by k!. Consequently, the product of any 3 consecutive integers is divisible by 3! = 6. The reason is structural: among any 3 consecutive integers, at least one is even and so contributes a factor of 2, and exactly one is a multiple of 3 and so contributes a factor of 3; together these guarantee a factor of 2 multiplied by 3, which is 6.
-
-Let n be a positive integer. We examine the expression n(n+1)(n+2), which is the product of the three consecutive integers n, n+1, and n+2.
-
-Divisibility by 2: Among any two consecutive integers, one is even. Hence at least one of n, n+1, and n+2 is even, so the product contains a factor of 2.
-
-Divisibility by 3: Among any three consecutive integers, exactly one is a multiple of 3. Hence one of n, n+1, and n+2 is divisible by 3, so the product contains a factor of 3.
-
-Because the product contains both a factor of 2 and a factor of 3, and because 2 and 3 are distinct primes, the product is divisible by 2 multiplied by 3, that is, by 6. This holds for every positive integer n.
-
-We confirm with a representative value. For n = 1, we have n(n+1)(n+2) = 1 multiplied by 2 multiplied by 3 = 6, and 6 divided by 6 = 1, an integer. For n = 4, we have 4 multiplied by 5 multiplied by 6 = 120, and 120 divided by 6 = 20, an integer. The expression is therefore always divisible by 6.
-
-The correct answer is C.
+**fastest_path:** Choice C multiplies three consecutive integers. One must be even and one must be divisible by 3, so their product must contain 2 × 3 = 6.
+**explanation:** Among n, n + 1, and n + 2, at least one number supplies a factor of 2 and exactly one supplies a factor of 3. Their product is therefore always divisible by 6. None of the other expressions guarantees both factors for every positive integer n. The correct answer is C.
+**common_trap:** Testing one convenient value and assuming the pattern must continue instead of proving where the factors 2 and 3 come from.
+**takeaway:** The product of three consecutive integers is always divisible by 3! = 6.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -508,17 +388,15 @@ Is the integer k odd?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**explanation:** This question asks whether the integer k is odd, so each statement is sufficient only if it forces a single, definite answer to that yes-or-no question. The governing principles are the parity rules for integers: the product of two consecutive integers is always even, and a product of integers is odd if and only if every factor is odd.
+**fastest_path:** Statement (1) is always true because k(k + 1) is the product of consecutive integers, so it reveals nothing. Statement (2) makes 3k odd, which forces k to be odd. Answer B.
+**explanation:**
 
-Let k be the integer in question.
+- **Statement (1):** k² + k = k(k + 1). One of two consecutive integers is always even, whether k itself is odd or even. The statement cannot answer the question, so it is insufficient.
+- **Statement (2):** If 3k + 1 is even, then 3k is odd. Since 3 is odd, k must also be odd. The answer is definitely yes, so this statement is sufficient.
 
-Statement (1) asserts that k² + k is even. We factor the expression as k² + k = k(k + 1). The factors k and k + 1 are consecutive integers, so exactly one of them is even; their product is therefore even for every integer k. Because k(k + 1) is even whether k is odd or even, statement (1) holds for both parities and cannot distinguish between them. For example, k = 2 gives 4 + 2 = 6 (even) and k = 3 gives 9 + 3 = 12 (even); the first k is even and the second is odd, yet both satisfy the statement. Statement (1) is therefore not sufficient.
-
-Statement (2) asserts that 3k + 1 is even. If 3k + 1 is even, then 3k = (3k + 1) − 1 is odd. A product of integers is odd only when each factor is odd; since 3 is odd, 3k is odd if and only if k is odd. Hence 3k odd forces k to be odd. This yields a definite answer of yes, so statement (2) is sufficient.
-
-Thus statement (2) alone is sufficient while statement (1) alone is not.
-
-The correct answer is B.
+Statement (2) alone is sufficient; the correct answer is B.
+**common_trap:** Treating a statement that is true for every integer as useful information about whether k is odd.
+**takeaway:** In Data Sufficiency, a universal identity provides no discrimination; test whether both odd and even values can satisfy it.
 **related_reading:** reading-quant-03-number-properties
 
 ---

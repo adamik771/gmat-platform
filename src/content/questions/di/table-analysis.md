@@ -2850,21 +2850,10 @@ Which model has the longest driving range?
 - E) Surge
 
 **answer:** C
-**explanation:** The driving range of each model is read directly from the Range (mi) column, and the maximum is identified by comparison; no derived computation is required.
-
-The Range (mi) column records:
-
-- Volt-X: 320
-- Aero: 280
-- Pulse: 360
-- Nimbus: 240
-- Surge: 300
-
-Ordering these five values from greatest to least: 360 > 320 > 300 > 280 > 240, corresponding to Pulse > Volt-X > Surge > Aero > Nimbus.
-
-Pulse's range of 360 miles is strictly greater than that of every other model, exceeding the next-longest range (Volt-X, at 320) by 40 miles. Pulse also carries the largest battery in the table (100 kWh), which is consistent with its leading range, though the question concerns range itself, for which Pulse leads outright.
-
-The correct answer is C.
+**fastest_path:** Scan only the Range column and find its maximum: 360 miles for Pulse.
+**explanation:** This is a direct lookup, so no calculation or sorting is needed. The largest value in the Range column is 360, which belongs to Pulse. The correct answer is C.
+**common_trap:** Looking at battery size or another nearby column instead of the column named in the question.
+**takeaway:** On a direct table lookup, isolate the requested column first, then scan for the required maximum or minimum.
 **related_reading:** reading-di-03-table-analysis
 
 ---
