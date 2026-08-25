@@ -22,7 +22,7 @@
  * absent so the UI just reads "unassigned" for every row.
  */
 
-import { useMemo, useState, useTransition } from "react"
+import { useMemo, useRef, useState, useTransition } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
@@ -34,6 +34,7 @@ import {
   Filter,
   Loader2,
   Repeat,
+  Save,
   Target,
   X,
 } from "lucide-react"
@@ -928,6 +929,9 @@ function TagEditor({
   const [notesDraft, setNotesDraft] = useState(entry.notes ?? "")
   const [notesDirty, setNotesDirty] = useState(false)
   const [savingNotes, setSavingNotes] = useState(false)
+  const [notesSaved, setNotesSaved] = useState(false)
+  const notesDraftRef = useRef(entry.notes ?? "")
+  const savingNotesRef = useRef(false)
   const [saving, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
@@ -938,7 +942,7 @@ function TagEditor({
     contributingCauses?: string[]
     notes?: string
     reviewed?: boolean
-  }) {
+  }): Promise<boolean> {
     setError(null)
     // Optimistic update in the parent's local list. Any user-driven
     // edit promotes the row to manual provenance, matching what the
@@ -950,12 +954,16 @@ function TagEditor({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ attemptId: entry.id, ...patch }),
+        // A note is commonly saved by blurring the box and navigating away.
+        // Keep the request alive so that navigation cannot cancel the write.
+        keepalive: true,
       })
       if (!res.ok) {
         const body = (await res.json().catch(() => ({}))) as { error?: string }
         throw new Error(body.error || `Request failed (${res.status})`)
       }
       startTransition(() => router.refresh())
+      return true
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong")
       // Revert — reset to the snapshot we started from.
@@ -967,6 +975,7 @@ function TagEditor({
         reviewed: entry.reviewed,
         confidence: entry.confidence,
       })
+      return false
     }
   }
 
@@ -1003,11 +1012,25 @@ function TagEditor({
   }
 
   async function commitNotes() {
-    if (!notesDirty) return
+    if (!notesDirty || savingNotesRef.current) return
+    const draftBeingSaved = notesDraftRef.current
+    savingNotesRef.current = true
     setSavingNotes(true)
-    const nextNotes = notesDraft.trim() === "" ? null : notesDraft
-    await save({ notes: nextNotes ?? "" })
-    setNotesDirty(false)
+    setNotesSaved(false)
+    const nextNotes = draftBeingSaved.trim() === "" ? null : draftBeingSaved
+    const didSave = await save({ notes: nextNotes ?? "" })
+
+    // The student may continue typing while the request is in flight. Only
+    // mark the editor clean when the currently visible draft is exactly the
+    // value the server just confirmed; otherwise leave the newer text dirty.
+    const hasNewerDraft = notesDraftRef.current !== draftBeingSaved
+    if (didSave && !hasNewerDraft) {
+      setNotesDirty(false)
+      setNotesSaved(true)
+    } else if (hasNewerDraft) {
+      setNotesDirty(true)
+    }
+    savingNotesRef.current = false
     setSavingNotes(false)
   }
 
@@ -1241,19 +1264,48 @@ function TagEditor({
         <textarea
           value={notesDraft}
           onChange={(e) => {
-            setNotesDraft(e.target.value)
-            setNotesDirty(e.target.value !== (entry.notes ?? ""))
+            const nextDraft = e.target.value
+            notesDraftRef.current = nextDraft
+            setNotesDraft(nextDraft)
+            setNotesDirty(nextDraft !== (entry.notes ?? ""))
+            setNotesSaved(false)
           }}
-          onBlur={commitNotes}
+          onBlur={() => void commitNotes()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+              e.preventDefault()
+              void commitNotes()
+            }
+          }}
+          maxLength={2000}
           rows={3}
           placeholder="e.g. I misread ≥ as >; always double-check inequality direction"
           className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-lg p-3 text-[16px] text-[#D8D8D8] placeholder:text-[#888888] focus:outline-none focus:border-[#C9A84C]/40 resize-none"
         />
-        {(notesDirty || savingNotes) && (
-          <p className="text-[10px] text-[#888888] mt-1">
-            {savingNotes ? "Saving…" : "Blur or tab out to save"}
+        <div className="mt-2 flex min-h-8 items-center justify-between gap-3">
+          <p className="text-[10px] text-[#888888]">
+            {notesSaved
+              ? "Saved to your error log"
+              : notesDirty
+                ? "Unsaved changes"
+                : "Changes save when you leave the box"}
           </p>
-        )}
+          {(notesDirty || savingNotes) && (
+            <button
+              type="button"
+              onClick={() => void commitNotes()}
+              disabled={savingNotes}
+              className="inline-flex min-h-8 items-center gap-1.5 rounded border border-[#C9A84C]/35 px-3 text-[11px] font-semibold text-[#C9A84C] transition-colors hover:bg-[#C9A84C]/10 disabled:cursor-wait disabled:opacity-60"
+            >
+              {savingNotes ? (
+                <Loader2 className="h-3 w-3 animate-spin" aria-hidden />
+              ) : (
+                <Save className="h-3 w-3" aria-hidden />
+              )}
+              {savingNotes ? "Saving…" : "Save note"}
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="flex items-center justify-between gap-3">
