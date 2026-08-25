@@ -784,17 +784,10 @@ Five distinct positive integers have an average of 20, a median of 22, and a lar
 - E) 26
 
 **answer:** B
-**explanation:** This problem is solved by translating the conditions on the average, median, and maximum into a single sum constraint and then optimizing under the requirement that the integers be distinct.
-
-Let the five distinct positive integers, listed in increasing order, be a, b, c, d, and e, so that a < b < c < d < e. The median of five ordered values is the middle value, so c = 22. The largest value is e = 35. Because the average of the five integers is 20, their sum is 5 × 20 = 100.
-
-Writing the sum and substituting the known values gives a + b + c + d + e = 100, so a + b + d = 100 − c − e = 100 − 22 − 35 = 43.
-
-The quantity to be minimized is the second-largest integer, d. From a + b + d = 43, we have d = 43 − (a + b), so d is smallest when a + b is as large as possible. The integers must be distinct, which forces d > c = 22; since d is an integer, d ≥ 23.
-
-We test the smallest permissible value, d = 23. Then a + b = 43 − 23 = 20, and we must choose distinct positive integers a < b with both less than c = 22. For example, a = 1 and b = 19 satisfy a < b < 22 and a + b = 20. The resulting set is {1, 19, 22, 23, 35}, whose sum is 1 + 19 + 22 + 23 + 35 = 100, confirming an average of 20, a median of 22, and a maximum of 35. Thus d = 23 is attainable.
-
-The correct answer is B.
+**fastest_path:** The second-largest value must be a distinct integer above the median 22, so its minimum possible value is 23. Verify it works: {1, 19, 22, 23, 35} sums to 100 and therefore averages 20.
+**explanation:** Write the ordered integers as a < b < 22 < d < 35. Their total is 5 x 20 = 100, so a + b + d = 43. Distinctness forces d >= 23. At d = 23, we need a + b = 20; choosing 1 and 19 gives a valid ordered set. Since 23 is both the lower bound and attainable, it is the minimum.
+**common_trap:** Finding the lower bound d = 23 but not checking that the other values can satisfy the sum and ordering conditions.
+**takeaway:** In minimum-value problems, establish a lower bound and then build one valid example that reaches it.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -813,13 +806,10 @@ A data set of 5 numbers has mean 10 and standard deviation 2. If each number in 
 - E) 22
 
 **answer:** C
-**explanation:** When every value in a data set undergoes a linear transformation of the form y = ax + b, the spread of the data is affected only by the multiplicative constant. The governing principle is that the standard deviation satisfies SD(y) = |a| · SD(x); the additive constant b shifts each value by the same amount and therefore leaves the spread unchanged.
-
-Let x denote a value in the original data set, which has mean 10 and standard deviation 2. Each value is multiplied by 3 and then increased by 4, so the transformed value is y = 3x + 4. Here the multiplicative constant is a = 3 and the additive constant is b = 4.
-
-Applying the rule, the standard deviation of the new data set is SD(y) = |3| · SD(x) = 3 · 2 = 6. The addition of 4 does not enter this computation, because translating every value by the same constant moves the entire distribution without altering the distances between values.
-
-The correct answer is C.
+**fastest_path:** Multiplying every value by 3 multiplies the standard deviation by 3; adding 4 changes only the center. New SD = 3 x 2 = 6.
+**explanation:** Standard deviation measures distances from the mean. Under y = 3x + 4, each distance is tripled by the factor 3, while adding 4 shifts every value and the mean equally. Therefore the spread changes from 2 to 6.
+**common_trap:** Applying the full transformation to the standard deviation and calculating 3(2) + 4 = 10.
+**takeaway:** For y = ax + b, the standard deviation becomes |a| times the original; b has no effect.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -838,21 +828,10 @@ A card is drawn at random from a standard 52-card deck. What is the probability 
 - E) 9/26
 
 **answer:** C
-**explanation:** This problem is governed by the addition rule of probability, which for two events that may overlap states that P(A or B) = P(A) + P(B) - P(A and B). The intersection is subtracted once because outcomes belonging to both events are otherwise counted twice.
-
-Let A be the event that the card drawn is a spade, and let B be the event that the card drawn is an ace. The sample space consists of the 52 equally likely cards in a standard deck.
-
-There are 13 spades, so P(A) = 13/52. There are 4 aces, so P(B) = 4/52. Exactly one card is both a spade and an ace — the ace of spades — so P(A and B) = 1/52.
-
-Applying the addition rule:
-P(A or B) = P(A) + P(B) - P(A and B)
-P(A or B) = 13/52 + 4/52 - 1/52
-P(A or B) = (13 + 4 - 1)/52
-P(A or B) = 16/52.
-
-Reducing the fraction by dividing numerator and denominator by 4 gives 16/52 = 4/13. Adding 13/52 and 4/52 without subtracting the ace of spades produces the trap value 17/52, which counts that card twice.
-
-The correct answer is C.
+**fastest_path:** Count 13 spades and 4 aces, then subtract the ace of spades counted twice: (13 + 4 - 1) / 52 = 16/52 = 4/13.
+**explanation:** “Spade or ace” combines two overlapping groups. The ace of spades belongs to both, so simply adding 13 and 4 would count it twice. Inclusion-exclusion gives 13 + 4 - 1 = 16 favorable cards out of 52, which reduces to 4/13.
+**common_trap:** Answering 17/52 by adding the two groups without removing their one-card overlap.
+**takeaway:** For overlapping events, P(A or B) = P(A) + P(B) - P(A and B).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -874,13 +853,10 @@ A data set consists of 7 numbers. What is the median of the data set?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**explanation:** The median of a data set is a positional measure: when the values are arranged in increasing order, the median is the middle value. For a set of n numbers with n odd, the median occupies position (n + 1)/2. Here n = 7, so the median is the value in position (7 + 1)/2 = 4, that is, the fourth number in the ordered list. The question is therefore answerable precisely when the fourth ordered value can be determined.
-
-Consider Statement (1). Let the seven numbers have sum 84. This fixes the mean at 84/7 = 12, but the mean is an arithmetic measure that places no constraint on the fourth ordered value. For instance, the set {12, 12, 12, 12, 12, 12, 12} sums to 84 and has median 12, whereas the set {0, 0, 0, 1, 20, 21, 42} also sums to 84 yet has median 1. Two admissible data sets with the same sum produce different medians, so the median is not determined. Statement (1) alone is not sufficient.
-
-Consider Statement (2). Let the numbers be written in increasing order. The fourth number in that ordering is given to be 15. Because the median of seven ordered numbers is exactly the fourth value, the median equals 15. This single fact determines the median uniquely, regardless of the other six values. Statement (2) alone is sufficient.
-
-The correct answer is B.
+**fastest_path:** In an ordered set of 7 values, the median is the fourth value. (1) A total of 84 fixes only the mean, not the fourth value. (2) Directly states that the fourth value is 15, so (2) alone is sufficient.
+**explanation:** Statement (1) is insufficient: {12, 12, 12, 12, 12, 12, 12} and {0, 0, 0, 1, 20, 21, 42} both sum to 84 but have different medians. Statement (2) identifies the fourth ordered value, which by definition is the median of seven values. Therefore statement (2) alone is sufficient.
+**common_trap:** Treating the mean 84 / 7 = 12 as though it must equal the median.
+**takeaway:** Median is positional: for 2k + 1 ordered values, it is the value in position k + 1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -899,17 +875,10 @@ A company has two factories. Factory P produces 60% of the company's products; F
 - E) 12/19
 
 **answer:** C
-**explanation:** This problem is governed by the rule for conditional probability, often applied through Bayes' reasoning: for events A and B, P(A | B) = P(A and B) / P(B). The required probability is the proportion of all defective products that originate at Factory P, so the task is to compute the probability that a product is both from Factory P and defective, and then divide by the total probability that a product is defective.
-
-Let the company's total output be the sample space. The given information establishes the prior probabilities and conditional defect rates. The probability that a randomly selected product comes from Factory P is P(P) = 0.60, and the probability that it comes from Factory Q is P(Q) = 0.40. The conditional probability that a product is defective given that it came from Factory P is P(D | P) = 0.03, and the conditional probability that a product is defective given that it came from Factory Q is P(D | Q) = 0.05.
-
-We first find the probability of each joint event by multiplying the prior probability of the factory by its conditional defect rate. For Factory P, P(P and D) = P(P) times P(D | P) = 0.60 times 0.03 = 0.018. For Factory Q, P(Q and D) = P(Q) times P(D | Q) = 0.40 times 0.05 = 0.020.
-
-Since a defective product must come from exactly one of the two factories, the total probability that a product is defective is the sum of these two joint probabilities: P(D) = P(P and D) + P(Q and D) = 0.018 + 0.020 = 0.038.
-
-Applying the conditional probability rule yields P(P | D) = P(P and D) / P(D) = 0.018 / 0.038. Multiplying numerator and denominator by 1,000 gives 18 / 38, and dividing both by 2 gives 9 / 19.
-
-The correct answer is C.
+**fastest_path:** Imagine 1,000 products. P makes 600 and 3% are defective, so 18 defective items come from P. Q makes 400 and 5% are defective, so 20 come from Q. Among all 38 defects, P supplies 18/38 = 9/19.
+**explanation:** Conditioning on “defective” changes the denominator from all products to only defective products. Expected defect counts are 600 x 0.03 = 18 from P and 400 x 0.05 = 20 from Q. Therefore the probability that a randomly selected defective item came from P is 18 / (18 + 20) = 9/19.
+**common_trap:** Choosing 60% because P makes 60% of all products; the selected group contains only defective products.
+**takeaway:** For Bayes questions, build natural-frequency counts and divide the target subgroup by the conditioned total.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -928,15 +897,10 @@ The scores of 9 students on a test, arranged in ascending order, are: 42, 55, 61
 - E) 94
 
 **answer:** B
-**explanation:** The range of a data set is a measure of spread, defined as the difference between the largest and smallest values in the set: Range = maximum value minus minimum value. This quantity describes the total width of the data, in contrast to the mean or median, which describe its center.
-
-Let the data set be the 9 test scores listed in ascending order: 42, 55, 61, 68, 73, 78, 82, 86, 94. Because the values are already sorted, the minimum is the first entry and the maximum is the last entry. Thus the minimum value is 42 and the maximum value is 94.
-
-Applying the definition of range, we subtract the minimum from the maximum:
-
-Range = 94 minus 42 = 52.
-
-The correct answer is B.
+**fastest_path:** The scores are already ordered, so use the endpoints: range = 94 - 42 = 52.
+**explanation:** Range measures the full width of a data set and equals maximum minus minimum. The middle seven scores do not affect it. Here the maximum is 94 and the minimum is 42, so the range is 52.
+**common_trap:** Reporting the maximum, 94, or subtracting in the wrong direction.
+**takeaway:** Range depends only on the two endpoints: maximum - minimum.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -958,15 +922,10 @@ Is the standard deviation of data set S greater than the standard deviation of d
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**explanation:** This is a data sufficiency question, so the task is to determine whether each statement, alone or in combination, fixes the answer to the question "Is the standard deviation of data set S greater than the standard deviation of data set T?" The governing principle is that the standard deviation of a data set measures the typical distance of the values from their mean, and it is not determined by either the range or the mean. The range reflects only the gap between the largest and smallest values, and the mean reflects only the center of the data. Two data sets can therefore agree on range or on mean while differing in standard deviation, and they can also disagree on range or on mean while sharing the same standard deviation. A statement is sufficient only if every data configuration consistent with it yields the same yes-or-no answer; if some consistent configurations answer "yes" and others answer "no," the statement is insufficient.
-
-Consider statement (1), which asserts that the range of S exceeds the range of T. To test sufficiency, we seek two configurations consistent with this statement that give opposite answers. Let S = {0, 5, 5, 5, 5, 5, 5, 5, 5, 10} and let T = {1, 1, 1, 1, 9, 9, 9, 9}. The range of S is 10 minus 0, which equals 10, and the range of T is 9 minus 1, which equals 8, so the range of S exceeds the range of T, consistent with statement (1). The mean of S is (0 + 5 times 8 + 10) divided by 10, which is 50 divided by 10, equal to 5; the deviations from the mean are 5 for the value 0, 5 for the value 10, and 0 for each of the eight values equal to 5, so the variance is (5 squared + 5 squared) divided by 10, which is 50 divided by 10, equal to 5, and the standard deviation of S is the square root of 5, approximately 2.24. The mean of T is (1 times 4 + 9 times 4) divided by 8, which is 40 divided by 8, equal to 5; each value deviates from the mean by exactly 4, so the variance is 4 squared, equal to 16, and the standard deviation of T is 4. Here S has the larger range yet the smaller standard deviation, giving the answer "no." Because the range can be enlarged by a single extreme value without spreading the bulk of the data, other configurations consistent with statement (1) can instead give the answer "yes." Statement (1) is therefore not sufficient.
-
-Consider statement (2), which asserts that the mean of S exceeds the mean of T. The mean locates the center of a data set and conveys nothing about how widely the values are dispersed about that center. A data set with a large mean can be tightly clustered, and a data set with a small mean can be widely spread, so the comparison of means is consistent with the standard deviation of S being greater, equal to, or less than that of T. Statement (2) is therefore not sufficient.
-
-Now consider both statements together, which require that the range of S exceed the range of T and that the mean of S exceed the mean of T. Adding the same constant to every element of a data set shifts its mean by that constant while leaving its range and its standard deviation unchanged. Starting from any pair of data sets that satisfies statement (1), we can add a sufficiently large constant to every element of S so that the mean of S also exceeds the mean of T, thereby satisfying statement (2) as well, all while preserving the ranges and standard deviations. The configuration above in which S has the smaller standard deviation can thus be adjusted to satisfy both statements and still answer "no," while a configuration in which S has the larger standard deviation can likewise be adjusted to satisfy both statements and answer "yes." The two statements together still permit opposite answers and are therefore not sufficient.
-
-The correct answer is E.
+**fastest_path:** Range and mean do not determine standard deviation. Even together they allow both outcomes: S = {10,15,15,20}, T = {1,1,9,9} gives SD(S) < SD(T); S = {10,10,20,20}, T = {1,5,5,9} gives SD(S) > SD(T).
+**explanation:** In both examples, S has range 10 versus T's range 8 and mean 15 versus T's mean 5, so statements (1) and (2) are satisfied together. Yet the first pair concentrates S near its mean and produces SD(S) < SD(T), while the second places S at its extremes and produces SD(S) > SD(T). Therefore the combined statements cannot answer the question; neither statement alone can do so either.
+**common_trap:** Assuming a larger range forces a larger standard deviation. Range uses only two endpoints; standard deviation uses every value.
+**takeaway:** Mean describes center and range describes endpoints; neither, even together, fixes how all observations are distributed.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -985,29 +944,10 @@ In a group of 80 people, 45 own a car and 35 own a bicycle. If 20 people own bot
 - E) 80
 
 **answer:** C
-**explanation:** This problem is governed by the inclusion-exclusion principle for the union of two sets. When two groups overlap, the number of members in at least one of the groups equals the size of the first group plus the size of the second group minus the number of members counted in both, since those members would otherwise be counted twice.
-
-Let C denote the set of people who own a car and B denote the set of people who own a bicycle. We are given that the number who own a car is |C| = 45, the number who own a bicycle is |B| = 35, and the number who own both is |C ∩ B| = 20. We seek the number who own at least one of the two things, which is the size of the union, |C ∪ B|.
-
-Applying the principle:
-
-|C ∪ B| = |C| + |B| − |C ∩ B|
-
-Substituting the known values:
-
-|C ∪ B| = 45 + 35 − 20
-
-First, add the two individual totals:
-
-45 + 35 = 80
-
-Then subtract the overlap once, so that the 20 people who own both are no longer counted twice:
-
-80 − 20 = 60
-
-Thus, 60 people own at least one of the two things.
-
-The correct answer is C.
+**fastest_path:** At least one = car + bicycle - both = 45 + 35 - 20 = 60.
+**explanation:** Adding 45 and 35 counts each of the 20 people who own both items twice. Subtract the overlap once so each person appears once in the union. Therefore 60 people own a car, a bicycle, or both.
+**common_trap:** Adding 45 + 35 = 80 without correcting for the 20 people counted in both groups.
+**takeaway:** For two sets, count(at least one) = count(A) + count(B) - count(both).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1026,23 +966,10 @@ A raffle sells 100 tickets at $5 each. One winning ticket is drawn at random and
 - E) $2.00
 
 **answer:** B
-**explanation:** The expected net gain is found by summing, over every possible outcome, the product of that outcome's probability and its net value. We must account for both the case in which the ticket wins and the case in which it loses.
-
-Let the cost of the ticket be $5. Because one winning ticket is drawn at random from 100 tickets, the probability that the chosen ticket wins is 1/100, and the probability that it loses is 99/100.
-
-We translate each outcome into a net gain. If the ticket wins, the buyer receives the $200 prize but has paid $5, so the net gain is 200 - 5 = 195 dollars. If the ticket loses, the buyer receives nothing and has paid $5, so the net gain is -5 dollars.
-
-We then compute the expected value by weighting each net gain by its probability:
-
-Expected value = (1/100)(195) + (99/100)(-5).
-
-Evaluating each term gives (1/100)(195) = 1.95 and (99/100)(-5) = -4.95. Adding these:
-
-1.95 + (-4.95) = -3.00.
-
-Thus the expected net gain for a person who buys one ticket is -$3.00.
-
-The correct answer is B.
+**fastest_path:** Expected prize value = (1/100)($200) = $2. Subtract the certain $5 ticket cost: $2 - $5 = -$3.
+**explanation:** Each ticket owns a 1/100 share of the single $200 prize, so its expected gross return is $2. Net gain must include the purchase cost, which is paid whether the ticket wins or loses. Therefore expected net gain is -$3.
+**common_trap:** Reporting $2, which is the expected prize payment before subtracting the ticket's $5 cost.
+**takeaway:** Expected net value = expected payoff - any cost paid in every outcome.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1061,15 +988,10 @@ A point is chosen uniformly at random on a line segment from 0 to 30. What is th
 - E) 7/10
 
 **answer:** B
-**explanation:** When a point is selected uniformly at random along a line segment, the probability that it lands within a particular subinterval equals the ratio of the length of that subinterval to the length of the entire segment. The governing principle is therefore P = (length of the favorable interval) / (length of the total segment).
-
-Let the entire segment extend from 0 to 30, so its total length is 30 - 0 = 30. The favorable region is the subinterval from 6 to 18, whose length is 18 - 6 = 12. Note that the relevant quantity is the length of this interval, obtained by subtracting its endpoints, not either endpoint value by itself.
-
-Applying the principle gives
-
-P = 12 / 30 = 2/5.
-
-The correct answer is B.
+**fastest_path:** Favorable length = 18 - 6 = 12. Total length = 30 - 0 = 30. Probability = 12/30 = 2/5.
+**explanation:** Uniform selection means equal-length intervals are equally likely. The desired interval occupies 12 of the segment's 30 units, so its probability is 2/5. Whether endpoints are included does not affect a continuous probability.
+**common_trap:** Using 18/30 and treating the upper endpoint as the favorable length.
+**takeaway:** In uniform geometric probability, divide favorable length by total length.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1088,17 +1010,10 @@ The scores of 8 students on a quiz, arranged in ascending order, are: 52, 61, 67
 - E) 42
 
 **answer:** C
-**explanation:** The interquartile range of a data set is the difference between the third quartile and the first quartile, Q3 - Q1, where Q1 is the median of the lower half of the ordered data and Q3 is the median of the upper half. This statistic measures the spread of the middle 50 percent of the values.
-
-The eight scores, already in ascending order, are 52, 61, 67, 72, 78, 85, 89, 94. Because there are eight values, an even number, the data divide into a lower half of four values and an upper half of four values.
-
-The lower half is {52, 61, 67, 72}. The median of these four values is the average of the two middle ones: Q1 = (61 + 67)/2 = 128/2 = 64.
-
-The upper half is {78, 85, 89, 94}. The median of these four values is the average of the two middle ones: Q3 = (85 + 89)/2 = 174/2 = 87.
-
-Therefore the interquartile range is Q3 - Q1 = 87 - 64 = 23.
-
-The correct answer is C.
+**fastest_path:** Lower-half median: Q1 = (61 + 67)/2 = 64. Upper-half median: Q3 = (85 + 89)/2 = 87. IQR = 87 - 64 = 23.
+**explanation:** Split the ordered eight values into two groups of four. Q1 is the median of the lower group and Q3 is the median of the upper group. Because each half has four values, average its two middle entries. Their difference, 87 - 64, is 23.
+**common_trap:** Using the overall middle pair, 72 and 78, as Q1 and Q3; those locate the median, not the quartiles.
+**takeaway:** For an even-sized ordered set, split it in half, find each half's median, then compute Q3 - Q1.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1117,17 +1032,10 @@ Events X and Y are mutually exclusive. P(X) = 0.3 and P(Y) = 0.4. What is the pr
 - E) 1.00
 
 **answer:** D
-**explanation:** The probability that at least one of two events occurs is governed by the addition rule, which states that for any two events X and Y, P(X or Y) = P(X) + P(Y) - P(X and Y). The term P(X and Y) is subtracted to avoid counting the overlap of the two events twice.
-
-The events X and Y are described as mutually exclusive, meaning they cannot both occur. The probability that both occur is therefore zero, so P(X and Y) = 0.
-
-Let P(X) = 0.3 and P(Y) = 0.4. Substituting these values, together with P(X and Y) = 0, into the addition rule gives the probability that at least one of the two events occurs:
-
-P(X or Y) = P(X) + P(Y) - P(X and Y)
-P(X or Y) = 0.3 + 0.4 - 0
-P(X or Y) = 0.70
-
-The correct answer is D.
+**fastest_path:** Mutually exclusive events cannot overlap, so P(X or Y) = 0.3 + 0.4 = 0.70.
+**explanation:** The general addition rule subtracts P(X and Y), but that intersection is 0 for mutually exclusive events. Therefore the probability that at least one occurs is simply the sum of the two probabilities.
+**common_trap:** Multiplying 0.3 x 0.4; multiplication answers “both,” which is impossible here.
+**takeaway:** For mutually exclusive events, add their probabilities to find “A or B.”
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1146,17 +1054,10 @@ Events A and B are independent. P(A) = 0.6 and P(B) = 0.3. What is the probabili
 - E) 0.90
 
 **answer:** A
-**explanation:** When two events are independent, the occurrence of one has no effect on the probability of the other, so the probability that both occur equals the product of their individual probabilities. This is the multiplication rule for independent events: for independent events A and B, P(A and B) = P(A) × P(B).
-
-Let P(A) = 0.6 and P(B) = 0.3 denote the given individual probabilities, and note that A and B are stated to be independent. The quantity sought is the joint probability that both A and B occur, namely P(A and B).
-
-Applying the multiplication rule for independent events gives:
-
-P(A and B) = P(A) × P(B)
-P(A and B) = 0.6 × 0.3
-P(A and B) = 0.18
-
-The correct answer is A.
+**fastest_path:** For independent events, multiply to find both: P(A and B) = 0.6 x 0.3 = 0.18.
+**explanation:** Independence means event A does not change event B's probability. Thus 60% of the cases reach A, and 30% of those also reach B, giving 18% overall.
+**common_trap:** Adding the probabilities, which is used for “A or B,” not “A and B.”
+**takeaway:** Independent “and” probabilities multiply; mutually exclusive “or” probabilities add.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1175,21 +1076,10 @@ One card is drawn at random from a standard deck of 52 cards. You win $5 if the 
 - E) $2.25
 
 **answer:** D
-**explanation:** The expected value of a single trial is the sum, over all possible outcomes, of each outcome's payoff multiplied by its probability. For this sum to be valid, the outcomes must partition the sample space, so their probabilities must total 1.
-
-A standard deck contains 52 cards, divided equally among four suits of 13 cards each. Let the three outcomes be drawing a heart, drawing a black card (a spade or a club), and drawing a diamond. The hearts number 13, so the probability of a heart is 13/52 = 1/4. The black cards comprise the 13 spades and the 13 clubs, a total of 26 cards, so the probability of a black card is 26/52 = 1/2. The diamonds number 13, so the probability of a diamond is 13/52 = 1/4. These probabilities sum to 1/4 + 1/2 + 1/4 = 1, confirming that the three outcomes form a complete partition of the deck.
-
-The associated payoffs are a gain of $5 for a heart, a gain of $2 for a black card, and a loss of $3 for a diamond. The expected value is therefore
-
-EV = (1/4)(5) + (1/2)(2) + (1/4)(-3).
-
-Evaluating each term gives (1/4)(5) = 5/4, (1/2)(2) = 1, and (1/4)(-3) = -3/4. Summing these,
-
-EV = 5/4 + 1 - 3/4 = (5/4 - 3/4) + 1 = 2/4 + 1 = 1/2 + 1 = 1.50.
-
-Thus the expected value of one draw is $1.50.
-
-The correct answer is D.
+**fastest_path:** Hearts and diamonds each have probability 1/4; black cards have probability 1/2. EV = (1/4)($5) + (1/2)($2) + (1/4)(-$3) = $1.50.
+**explanation:** Hearts, black cards, and diamonds form non-overlapping outcomes covering the whole deck. Weight each payoff by its share of the deck: $1.25 + $1.00 - $0.75 = $1.50.
+**common_trap:** Treating all three outcomes as equally likely even though black cards occupy two suits.
+**takeaway:** Expected value is the probability-weighted average of all mutually exclusive payoffs.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1208,17 +1098,10 @@ A company has 200 employees: 120 in the analytics division and 80 in the operati
 - E) 5/6
 
 **answer:** C
-**explanation:** This problem is governed by the definition of conditional probability: for events A and B with P(B) greater than 0, the probability of A given B equals the number of outcomes satisfying both A and B divided by the number of outcomes satisfying B. Equivalently, conditioning on B restricts the sample space to only those outcomes in which B occurs.
-
-Here the conditioning event is that the selected employee holds an MBA, so the relevant sample space is the set of all MBA holders, not the full set of 200 employees. We let A denote the event that the employee works in the analytics division and B denote the event that the employee holds an MBA.
-
-First we count the MBA holders in each division. The analytics division has 120 employees, of whom 25 percent hold an MBA, giving 120 times 0.25 equals 30 analytics employees with an MBA. The operations division has 80 employees, of whom 15 percent hold an MBA, giving 80 times 0.15 equals 12 operations employees with an MBA.
-
-The total number of employees who hold an MBA is therefore 30 plus 12 equals 42. This is the size of the restricted sample space, that is, the number of outcomes satisfying the conditioning event B.
-
-Of these 42 MBA holders, the number who also work in analytics, satisfying both A and B, is 30. The conditional probability is then the number satisfying both conditions divided by the number satisfying the given condition: 30 divided by 42, which reduces to 5/7.
-
-The correct answer is C.
+**fastest_path:** Analytics has 120 x 25% = 30 MBA holders. Operations has 80 x 15% = 12. Among the 42 MBA holders, 30 work in analytics, so the probability is 30/42 = 5/7.
+**explanation:** “Given that the employee has an MBA” restricts the denominator to MBA holders only. Count that group by division: 30 from analytics and 12 from operations. The desired subgroup is therefore 30 out of 42.
+**common_trap:** Using 120/200 = 3/5, the analytics share of all employees rather than of MBA holders.
+**takeaway:** After “given that,” rebuild the denominator using only outcomes satisfying that condition.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1237,21 +1120,10 @@ A medical treatment has an independent 70% success rate for each patient. If 3 p
 - E) 0.490
 
 **answer:** D
-**explanation:** The event in question is governed by the binomial probability model, which applies whenever a fixed number of independent trials each yield one of two outcomes (success or failure) with a constant probability of success. The probability of obtaining exactly k successes in n such trials is given by
-
-P(exactly k successes) = C(n, k) * p^k * (1 - p)^(n - k),
-
-where C(n, k) is the number of ways to choose which k of the n trials are the successes, p is the probability of success on a single trial, and (1 - p) is the probability of failure on a single trial.
-
-Let a success denote a patient responding to the treatment. The number of trials is n = 3, the number of required successes is k = 2, and the success probability is p = 0.7, so the failure probability is 1 - p = 0.3. Substituting these values into the formula gives
-
-P = C(3, 2) * (0.7)^2 * (0.3)^1.
-
-The combinatorial factor is C(3, 2) = 3, since there are three ways to choose which two of the three patients respond. Evaluating the remaining factors yields (0.7)^2 = 0.49 and (0.3)^1 = 0.30. Therefore
-
-P = 3 * 0.49 * 0.30 = 3 * 0.147 = 0.441.
-
-The correct answer is D.
+**fastest_path:** Choose which 2 of 3 patients succeed, then multiply outcome probabilities: C(3,2)(0.7)^2(0.3) = 3 x 0.49 x 0.3 = 0.441.
+**explanation:** One specific order such as success-success-failure has probability (0.7)^2(0.3) = 0.147. The single failure can occur in any of three positions, and these cases do not overlap. Multiplying by 3 gives 0.441.
+**common_trap:** Calculating only 0.7^2 x 0.3, which counts one order rather than all three placements of the failure.
+**takeaway:** For exactly k successes, multiply one arrangement's probability by C(n, k).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
