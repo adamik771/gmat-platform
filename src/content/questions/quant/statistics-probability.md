@@ -1142,19 +1142,10 @@ In a survey of 120 customers, 72 bought Product A, 54 bought Product B, and 30 b
 - E) 30
 
 **answer:** D
-**explanation:** This problem is governed by the inclusion-exclusion principle, which states that for two overlapping groups the number of customers in at least one group equals the size of the first group plus the size of the second group minus the size of the overlap, so that the customers counted in both groups are not counted twice. The number who bought neither product is then the total number of customers minus the number who bought at least one product.
-
-Let T = 120 be the total number of customers surveyed. Let A be the number who bought Product A, so A = 72, and let B be the number who bought Product B, so B = 54. Let the number who bought both products be the intersection, so |A ∩ B| = 30.
-
-The number who bought at least one of the two products is the union, computed as
-
-|A ∪ B| = A + B − |A ∩ B| = 72 + 54 − 30 = 126 − 30 = 96.
-
-The number who bought neither product is the total minus those who bought at least one:
-
-Neither = T − |A ∪ B| = 120 − 96 = 24.
-
-The correct answer is D.
+**fastest_path:** First find at least one: 72 + 54 - 30 = 96. Then subtract from the total: 120 - 96 = 24 bought neither.
+**explanation:** Adding the two product groups counts the 30 customers in both groups twice, so subtract that overlap once. This leaves 96 customers who bought A, B, or both. Everyone else is outside the union, giving 24.
+**common_trap:** Stopping at 96, which is the number who bought at least one product rather than neither product.
+**takeaway:** For neither, compute the union with inclusion-exclusion, then subtract it from the total.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1173,25 +1164,10 @@ The average (arithmetic mean) of 5 numbers is 84. Four of the five numbers are 7
 - E) 99
 
 **answer:** D
-**explanation:** The arithmetic mean of a collection of numbers equals their sum divided by the count of numbers. It follows that the sum of the numbers equals the mean multiplied by the count. We apply this relationship to recover the missing value.
-
-Let x denote the fifth number. The five numbers have a mean of 84, so their total sum must be
-
-84 × 5 = 420.
-
-The four known numbers are 78, 91, 80, and 76. Their sum is
-
-78 + 91 + 80 + 76 = 325.
-
-Because the total of all five numbers is 420, the fifth number satisfies
-
-325 + x = 420,
-
-so
-
-x = 420 − 325 = 95.
-
-The correct answer is D.
+**fastest_path:** Required total = 5 x 84 = 420. Known total = 78 + 91 + 80 + 76 = 325. Missing number = 420 - 325 = 95.
+**explanation:** An average is not a total. Convert the average into the sum of all five values, then remove the four values already known. The remaining amount, 95, must be the fifth number.
+**common_trap:** Averaging the four known numbers or subtracting one of them from 84.
+**takeaway:** For a missing value, use missing = (mean x count) - sum of known values.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1210,25 +1186,10 @@ On a standardized exam, a score of 680 falls at the 72nd percentile. If 350 stud
 - E) 280
 
 **answer:** D
-**explanation:** The governing principle is the definition of a percentile: the nth percentile of a data set is the value below which n percent of the observations fall. To convert a percentile into a count of observations, we multiply the percentile, expressed as a decimal fraction, by the total number of observations.
-
-Let N denote the total number of students who took the exam, so that N = 350. A score of 680 falls at the 72nd percentile, which means that 72 percent of the test takers scored strictly below 680. Let B denote the number of students who scored strictly below 680.
-
-We translate the percentile statement into an equation:
-
-B = 0.72 × N.
-
-Substituting N = 350 gives
-
-B = 0.72 × 350.
-
-Computing the product,
-
-0.72 × 350 = 0.72 × 300 + 0.72 × 50 = 216 + 36 = 252.
-
-Therefore, approximately 252 students scored strictly below 680.
-
-The correct answer is D.
+**fastest_path:** The 72nd percentile means approximately 72% scored below 680. Compute 0.72 x 350 = 252.
+**explanation:** A percentile converts directly to a proportion below the stated score. Since 72% of 350 is 252, approximately 252 students scored below 680. The word “approximately” allows the percentile-based count.
+**common_trap:** Using the remaining 28%, which counts students at or above the score instead.
+**takeaway:** Convert an nth percentile into a count by multiplying n% by the population size.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1252,19 +1213,10 @@ Which of the following correctly compares the standard deviations of P and Q?
 - E) The comparison cannot be determined without computing exact standard deviations
 
 **answer:** C
-**explanation:** The standard deviation of a data set measures the typical distance of its values from the mean: the larger the deviations of the values from the mean, the larger the standard deviation. Because both sets are stated to have the same mean of 6 and the same number of values (7), the comparison reduces entirely to how far each set's values lie from 6.
-
-Let the mean of each set be m = 6, and consider the deviation of each value from the mean. The standard deviation is determined by the sum of the squared deviations, since for n values the standard deviation equals the square root of (the sum of the squared deviations divided by n), and here n is the same for both sets.
-
-For set P = {1, 4, 4, 6, 8, 8, 11}, the deviations from 6 are -5, -2, -2, 0, 2, 2, and 5. Squaring each gives 25, 4, 4, 0, 4, 4, and 25, and their sum is
-25 + 4 + 4 + 0 + 4 + 4 + 25 = 66.
-
-For set Q = {4, 4, 5, 6, 7, 8, 8}, the deviations from 6 are -2, -2, -1, 0, 1, 2, and 2. Squaring each gives 4, 4, 1, 0, 1, 4, and 4, and their sum is
-4 + 4 + 1 + 0 + 1 + 4 + 4 = 18.
-
-Since the sum of squared deviations for P (66) exceeds that for Q (18), and both sets are divided by the same n = 7 before taking the square root, the standard deviation of P is greater than the standard deviation of Q. This larger spread arises because P's values lie further from the mean than Q's values do: P's extremes, 1 and 11, are each 5 units from 6, whereas Q's extremes, 4 and 8, are each only 2 units from 6.
-
-The correct answer is C.
+**fastest_path:** Pair distances from the common mean 6. P has distances 5, 2, 2, 0, 2, 2, 5; Q has 2, 2, 1, 0, 1, 2, 2. P is farther out overall, so SD(P) > SD(Q).
+**explanation:** Both sets have the same mean and count, so compare their distances from 6 directly. Every value in P is at least as far from 6 as the corresponding symmetric value in Q, and P's endpoints are much farther away. Squared deviations therefore sum to more for P, giving P the larger standard deviation.
+**common_trap:** Assuming equal means and equal counts imply equal standard deviations; they say nothing about spread.
+**takeaway:** When sets share a mean and count, compare their distances from that mean before calculating exact SDs.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1283,15 +1235,10 @@ In a clinical study, 300 patients received one of two drugs. Two hundred patient
 - E) 3/5
 
 **answer:** B
-**explanation:** This is a conditional probability problem. When a member is chosen at random from a subgroup defined by a condition, the probability of belonging to a given category equals the number of members satisfying both the condition and that category, divided by the total number of members satisfying the condition. Here the condition is "experienced relief," and the category of interest is "received Drug A."
-
-First, find how many patients in each drug group experienced relief. The number of Drug A patients who experienced relief is 200 × 0.15 = 30. The number of Drug B patients who experienced relief is 100 × 0.45 = 45.
-
-The total number of patients who experienced relief is therefore 30 + 45 = 75. Since the selected patient is drawn at random from those who experienced relief, the probability that this patient received Drug A is the ratio of Drug A relief patients to all relief patients:
-
-30 / 75 = 2/5.
-
-The correct answer is B.
+**fastest_path:** Relief counts: Drug A gives 200 x 15% = 30; Drug B gives 100 x 45% = 45. Among the 75 patients with relief, 30 used A, so 30/75 = 2/5.
+**explanation:** The selected patient is known to have experienced relief, so the denominator is not all 300 patients. Restrict the sample to the 75 relief cases, then take the 30 cases from Drug A.
+**common_trap:** Using 200/300 because Drug A treated two-thirds of all patients, ignoring the condition that relief occurred.
+**takeaway:** In conditional probability, rebuild the denominator from the group named after “given.”
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1310,31 +1257,10 @@ A project manager must choose between two investment strategies. Strategy P has 
 - E) Strategy Q by $80,000
 
 **answer:** E
-**explanation:** The expected value of a strategy is the sum, over all possible outcomes, of each outcome's monetary value weighted by its probability. To determine which strategy is preferable, we compute the expected value of each and compare them.
-
-Let EV(P) denote the expected value of Strategy P. Strategy P yields a profit of $800,000 with probability 0.40 and a loss of $200,000 (a value of -$200,000) with probability 0.60. Translating this into the expected-value formula gives
-
-EV(P) = (0.40)($800,000) + (0.60)(-$200,000).
-
-Computing each term, (0.40)($800,000) = $320,000 and (0.60)(-$200,000) = -$120,000. Therefore
-
-EV(P) = $320,000 - $120,000 = $200,000.
-
-Let EV(Q) denote the expected value of Strategy Q. Strategy Q yields a profit of $400,000 with probability 0.70 and a break-even result of $0 with probability 0.30. Then
-
-EV(Q) = (0.70)($400,000) + (0.30)($0).
-
-Computing each term, (0.70)($400,000) = $280,000 and (0.30)($0) = $0. Therefore
-
-EV(Q) = $280,000 + $0 = $280,000.
-
-Comparing the two results, $280,000 is greater than $200,000, so Strategy Q has the higher expected value. The amount by which it is higher is
-
-$280,000 - $200,000 = $80,000.
-
-Thus Strategy Q has the higher expected value, by $80,000.
-
-The correct answer is E.
+**fastest_path:** EV(P) = 0.4($800k) - 0.6($200k) = $200k. EV(Q) = 0.7($400k) = $280k. Strategy Q is higher by $80k.
+**explanation:** Weight each possible profit or loss by its probability, keeping the loss negative. Strategy P averages $320k - $120k = $200k. Strategy Q averages $280k because its other outcome is $0. The difference is $80k in Q's favor.
+**common_trap:** Treating P's $200,000 loss as a positive payoff when calculating expected value.
+**takeaway:** Compare strategies by probability-weighted net outcomes, preserving the sign of every loss.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1353,27 +1279,10 @@ At a tech company, 180 employees were surveyed about three skills. The results s
 - E) 55
 
 **answer:** B
-**explanation:** This problem is solved using the inclusion-exclusion principle for three sets, which counts the number of elements belonging to at least one set without double-counting any overlaps. For three sets, the size of the union equals the sum of the individual set sizes, minus the sizes of the three pairwise intersections, plus the size of the intersection of all three sets.
-
-Let P, S, and M denote the sets of employees with Python, SQL, and machine learning skills, respectively. From the survey, |P| = 90, |S| = 75, and |M| = 60. The pairwise overlaps are |P ∩ S| = 30, |P ∩ M| = 25, and |S ∩ M| = 20, and the triple overlap is |P ∩ S ∩ M| = 10.
-
-The number of employees having at least one of the three skills is the size of the union P ∪ S ∪ M. By the inclusion-exclusion principle,
-
-|P ∪ S ∪ M| = |P| + |S| + |M| − |P ∩ S| − |P ∩ M| − |S ∩ M| + |P ∩ S ∩ M|.
-
-Substituting the given values,
-
-|P ∪ S ∪ M| = 90 + 75 + 60 − 30 − 25 − 20 + 10.
-
-Computing the sum of the individual sets gives 90 + 75 + 60 = 225. The sum of the pairwise intersections is 30 + 25 + 20 = 75. Therefore,
-
-|P ∪ S ∪ M| = 225 − 75 + 10 = 160.
-
-Thus 160 of the 180 surveyed employees have at least one skill. The employees with none of the three skills are those outside the union, so their number is the total minus the union:
-
-180 − 160 = 20.
-
-The correct answer is B.
+**fastest_path:** At least one = 90 + 75 + 60 - 30 - 25 - 20 + 10 = 160. Therefore none = 180 - 160 = 20.
+**explanation:** Add the three skill groups, subtract each pairwise overlap because it was counted twice, then add the triple overlap back because the three subtractions removed it once too many. This gives 160 employees with at least one skill and 20 with none.
+**common_trap:** Forgetting to add the 10-person triple overlap back after subtracting all three pairwise intersections.
+**takeaway:** For three sets: add singles, subtract pairs, add the triple, then subtract the union from the total for “none.”
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1392,19 +1301,10 @@ Set M = {4, 8, 14, 18, 22} has mean μ and standard deviation σ. Set N is forme
 - E) Mean of N = 3μ and SD of N = 3σ
 
 **answer:** C
-**explanation:** This problem applies the two rules governing how the mean and standard deviation of a data set respond to a linear transformation. For any transformation of the form n = a*m + b applied to every element of a set: the mean is transformed in the same way, becoming a*(mean) + b, while the standard deviation is multiplied by the absolute value of the scaling factor, becoming |a|*(standard deviation). The additive constant b shifts every value by the same amount and therefore leaves all deviations from the mean unchanged, so it does not affect the standard deviation.
-
-Let m denote a typical element of set M, with mean equal to the Greek letter mu and standard deviation equal to the Greek letter sigma. Set N is formed by multiplying every element of M by 3 and then subtracting 6, so each element of N is n = 3m - 6. Here the scaling factor is a = 3 and the additive constant is b = -6.
-
-Applying the mean rule gives Mean of N = 3*mu + (-6) = 3*mu - 6.
-
-Applying the standard deviation rule gives SD of N = |3|*sigma = 3*sigma. The constant -6 does not enter the standard deviation, because shifting every value by the same amount does not change the spread.
-
-These results can be confirmed numerically. The mean of M is (4 + 8 + 14 + 18 + 22) / 5 = 66 / 5 = 13.2, so the mean of N is 3(13.2) - 6 = 39.6 - 6 = 33.6, which equals 3*mu - 6. The deviations of the elements of M from 13.2 are -9.2, -5.2, 0.8, 4.8, and 8.8. After the transformation, the corresponding deviations in N are -27.6, -15.6, 2.4, 14.4, and 26.4, each exactly 3 times the original, confirming that the standard deviation is tripled.
-
-Thus Mean of N = 3*mu - 6 and SD of N = 3*sigma.
-
-The correct answer is C.
+**fastest_path:** Under x -> 3x - 6, transform the mean the same way: 3mu - 6. Standard deviation responds only to the multiplier, so it becomes 3sigma.
+**explanation:** Multiplying every value by 3 triples both the center and every distance from the center. Subtracting 6 then shifts all values and the mean equally, so it changes the mean but not the spread. Thus N has mean 3mu - 6 and SD 3sigma.
+**common_trap:** Subtracting 6 from the standard deviation; a uniform shift does not change distances between values.
+**takeaway:** For y = ax + b, mean becomes a(mean) + b, while SD becomes |a|(SD).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1423,34 +1323,10 @@ A bag contains 2 red balls and 1 white ball. A player draws one ball at random. 
 - E) $6.00
 
 **answer:** D
-**explanation:** This problem concerns the expected value of a game whose structure repeats itself: whenever a white ball is drawn, the player pays a fee and faces a situation identical to the original one. Because the game resets to its starting state after each white draw, the expected net gain can be expressed in terms of itself and solved algebraically.
-
-Let V denote the player's expected net gain from the game beginning at any draw. On a single draw there are exactly two outcomes. With probability 2/3 the ball is red, in which case the player wins $6 and the game ends; this contributes (2/3)(6). With probability 1/3 the ball is white, in which case the player pays $2 and the bag is restored to its original composition, so the player again faces a game whose expected net gain is V; this branch contributes (1/3)(-2 + V).
-
-Translating the two outcomes into a single equation gives
-
-V = (2/3)(6) + (1/3)(-2 + V).
-
-We now expand the right-hand side:
-
-V = 4 + (1/3)(-2) + (1/3)V
-V = 4 - 2/3 + V/3.
-
-Collecting the V terms on the left-hand side,
-
-V - V/3 = 4 - 2/3
-(2/3)V = 12/3 - 2/3
-(2/3)V = 10/3.
-
-Multiplying both sides by 3/2,
-
-V = (10/3)(3/2) = 10/2 = 5.
-
-Thus the player's expected net gain per game is $5.00.
-
-The result can be confirmed independently. Because every draw produces a red ball with probability 2/3, a red ball is eventually drawn with certainty, so the player always collects the $6 prize exactly once; the expected winnings are therefore $6. The number of white draws preceding the first red follows a geometric distribution, giving an expected number of white draws equal to (1/3)/(2/3) = 1/2, and hence an expected redraw cost of (1/2)($2) = $1. The expected net gain is $6 - $1 = $5, in agreement with the value found above.
-
-The correct answer is D.
+**fastest_path:** Let V be the expected gain from a fresh draw. Then V = (2/3)($6) + (1/3)(-$2 + V). Solving gives (2/3)V = 10/3, so V = $5.
+**explanation:** A red draw ends the game with $6. A white draw costs $2 and returns the player to the exact starting position, whose expected value is again V. That repeating state is why V appears on both sides of the equation. Solving the recurrence gives $5. As a check, the expected number of white draws before red is (1/3)/(2/3) = 1/2, so expected cost is $1 and net value is $6 - $1.
+**common_trap:** Evaluating only the first draw and ignoring that a white draw restarts the same game.
+**takeaway:** When an outcome resets a game, represent the restarted branch with the original expected value V.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1469,13 +1345,10 @@ What is the mode of the set {3, 8, 8, 11, 15, 8, 3}?
 - E) 15
 
 **answer:** C
-**explanation:** The mode of a set of numbers is the value that occurs most frequently. To find it, count how many times each distinct value appears and select the value with the greatest count; the mode is unrelated to the mean or the median, which describe the center of the data in different ways.
-
-Let the set be {3, 8, 8, 11, 15, 8, 3}. Tallying the occurrences of each distinct value, the value 3 appears twice, the value 8 appears three times, and the values 11 and 15 each appear once.
-
-Since 8 occurs three times, which is more often than any other value, the mode of the set is 8.
-
-The correct answer is C.
+**fastest_path:** Count repeats: 8 appears three times, 3 appears twice, and every other value appears once. The mode is 8.
+**explanation:** The mode is the most frequent value, not the middle or the average. Since no other value matches 8's three occurrences, the set has a single mode: 8.
+**common_trap:** Choosing 3 because it is the smallest repeated value; frequency, not size, determines the mode.
+**takeaway:** Mode means most frequent value; tally occurrences before comparing values.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1494,13 +1367,10 @@ A bag contains 5 red marbles, 7 green marbles, and 8 blue marbles. If one marble
 - E) 3/5
 
 **answer:** D
-**explanation:** The probability of an event with equally likely outcomes equals the number of favorable outcomes divided by the total number of outcomes. Because each marble is equally likely to be drawn, the probability of drawing a blue marble is the number of blue marbles divided by the total number of marbles.
-
-Let the total number of marbles be the sum of the marbles of each color: 5 + 7 + 8 = 20. The number of favorable outcomes is the number of blue marbles, which is 8.
-
-The probability of drawing a blue marble is therefore 8/20. Reducing this fraction by dividing the numerator and denominator by 4 gives 8/20 = 2/5.
-
-The correct answer is D.
+**fastest_path:** There are 5 + 7 + 8 = 20 marbles, of which 8 are blue. Probability = 8/20 = 2/5.
+**explanation:** With one random draw, each marble is equally likely. Use blue marbles as the favorable count and all marbles as the denominator, then reduce the fraction.
+**common_trap:** Using 8/15 by leaving one of the non-blue colors out of the total.
+**takeaway:** For equally likely outcomes, probability = favorable count / total count.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1519,17 +1389,10 @@ In a group of 60 people, 38 like coffee and 27 like tea. If 12 people like both 
 - E) 23
 
 **answer:** A
-**explanation:** This problem applies the inclusion-exclusion principle: the number of people who like at least one of the two beverages equals the number who like coffee plus the number who like tea minus the number who like both, since those who like both would otherwise be counted twice. The number who like neither is then the total minus the number who like at least one.
-
-Let the total number of people be T = 60. The number who like coffee is 38 and the number who like tea is 27, while the number who like both is 12. The number who like at least one beverage is the size of the union:
-
-38 + 27 − 12 = 65 − 12 = 53.
-
-The number who like neither beverage is the total minus those who like at least one:
-
-60 − 53 = 7.
-
-The correct answer is A.
+**fastest_path:** At least one = 38 + 27 - 12 = 53. Therefore neither = 60 - 53 = 7.
+**explanation:** Coffee and tea totals overlap by 12 people, so subtract that group once when finding the union. The 53 people in the union like at least one beverage; the remaining 7 like neither.
+**common_trap:** Subtracting 12 twice or forgetting the final subtraction from the total group.
+**takeaway:** Count neither as total - [A + B - both].
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1548,19 +1411,10 @@ A game uses a spinner that is equally likely to land on "win" or "lose." If it l
 - E) $3.00
 
 **answer:** B
-**explanation:** The expected value of a single spin is the sum, over all possible outcomes, of each outcome's net value multiplied by its probability. Because the spinner is equally likely to land on either region, each outcome has probability 1/2.
-
-The two outcomes are landing on "win," which has a net value of +$4, and landing on "lose," which has a net value of −$2. Weighting each net value by its probability gives
-
-EV = (1/2)(4) + (1/2)(−2).
-
-Evaluating the terms, (1/2)(4) = 2 and (1/2)(−2) = −1, so
-
-EV = 2 + (−1) = 1.
-
-Thus the expected net gain from one spin is $1.00.
-
-The correct answer is B.
+**fastest_path:** The two outcomes are equally likely, so average their net values: ($4 + -$2) / 2 = $1.
+**explanation:** Expected value weights each outcome by its probability. Here each has probability 1/2, so EV = (1/2)($4) + (1/2)(-$2) = $2 - $1 = $1.
+**common_trap:** Treating the $2 payment as positive instead of a loss.
+**takeaway:** When outcomes are equally likely, expected value is their ordinary arithmetic mean.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1579,17 +1433,10 @@ In a class of 30 students, 18 students scored an average of 80 on a test and the
 - E) 84
 
 **answer:** E
-**explanation:** This is a weighted-average problem. The overall mean of a combined group equals the total of all the scores divided by the total number of students, and the total of all the scores is found by converting each subgroup's average into a sum using the relationship sum = average × count.
-
-The first subgroup has 18 students averaging 80, so its total is 18 × 80 = 1,440. The second subgroup has 12 students averaging 90, so its total is 12 × 90 = 1,080. The combined total of all scores is therefore 1,440 + 1,080 = 2,520.
-
-Dividing the combined total by the total number of students gives the overall average:
-
-2,520 ÷ 30 = 84.
-
-Note that the result is not the simple average of 80 and 90, which would be 85, because the two subgroups contain different numbers of students; the larger subgroup (the 18 students scoring 80) pulls the combined average below the midpoint.
-
-The correct answer is E.
+**fastest_path:** Use weighted totals: (18 x 80 + 12 x 90) / 30 = 2,520 / 30 = 84.
+**explanation:** The groups have different sizes, so their averages cannot receive equal weight. Convert each group average to total points, combine the totals, and divide by all 30 students. The larger 80-average group pulls the result below 85.
+**common_trap:** Averaging 80 and 90 to get 85, which incorrectly treats the groups as equal in size.
+**takeaway:** Combined mean = sum of (group count x group mean) / total count.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1608,15 +1455,10 @@ Two fair six-sided dice are rolled. What is the probability that the sum of the 
 - E) 1/4
 
 **answer:** B
-**explanation:** The probability of an event equals the number of favorable outcomes divided by the total number of equally likely outcomes. Because the two dice are distinguishable, each roll is an ordered pair, and there are 6 × 6 = 36 equally likely ordered outcomes in total.
-
-The event "the sum is at least 10" includes the sums 10, 11, and 12. We count the ordered pairs (a, b) that produce each of these sums. A sum of 10 is achieved by (4, 6), (5, 5), and (6, 4), which is 3 outcomes. A sum of 11 is achieved by (5, 6) and (6, 5), which is 2 outcomes. A sum of 12 is achieved by (6, 6), which is 1 outcome.
-
-Adding these gives 3 + 2 + 1 = 6 favorable outcomes. The probability is therefore
-
-6/36 = 1/6.
-
-The correct answer is B.
+**fastest_path:** Count ordered outcomes for sums 10, 11, and 12: 3 + 2 + 1 = 6. Out of 36 total dice outcomes, the probability is 6/36 = 1/6.
+**explanation:** Sum 10 comes from (4,6), (5,5), and (6,4); sum 11 from (5,6) and (6,5); sum 12 from (6,6). Mixed pairs count in both orders because the dice are distinguishable. This gives 6 favorable outcomes.
+**common_trap:** Counting only the three target sums instead of the ordered dice outcomes producing them.
+**takeaway:** For two fair dice, count ordered pairs over a sample space of 36.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
@@ -1635,17 +1477,10 @@ A data set of 9 numbers has a standard deviation of 6. If every number in the se
 - E) 9
 
 **answer:** C
-**explanation:** When every value in a data set is multiplied by a constant, the standard deviation is multiplied by the absolute value of that constant. The governing rule is SD(ax) = |a| · SD(x); multiplying scales the distances between values, and hence the spread, by the same factor.
-
-Here every value is multiplied by 0.5, so the scaling constant is a = 0.5, and its absolute value is 0.5. The original standard deviation is 6.
-
-Applying the rule, the standard deviation of the new set is
-
-|0.5| × 6 = 0.5 × 6 = 3.
-
-The number of values in the set, 9, plays no role in this transformation, since multiplying by a constant affects only the spread, scaling the standard deviation directly by |a|.
-
-The correct answer is C.
+**fastest_path:** Multiplying every value by 0.5 multiplies the standard deviation by 0.5. New SD = 0.5 x 6 = 3.
+**explanation:** Standard deviation tracks distances from the mean. Halving every value also halves the mean and every deviation from it, so the spread falls from 6 to 3. The number of observations does not affect this transformation rule.
+**common_trap:** Leaving the SD unchanged because the number of data points remains 9.
+**takeaway:** Scaling every value by a multiplies standard deviation by |a|.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 ---
