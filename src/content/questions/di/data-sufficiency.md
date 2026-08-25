@@ -372,15 +372,10 @@ In a company, 60% of employees are full-time. Did the total number of employees 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** We are asked whether the total number of employees increased from last year to this year. This is a yes/no question, and a definite answer requires determining the sign of the change in the total. We let T represent last year's total number of employees. Because 60% of the employees were full-time last year, last year there were 0.6T full-time employees and 0.4T part-time employees. The total this year is the sum of this year's full-time employees and this year's part-time employees, so we must be able to evaluate both components, or their combined effect, relative to T. Note that the 60% figure describes only last year's composition; it does not constrain this year's composition and is not by itself sufficient to answer the question.
-
-Statement (1) tells us that the number of full-time employees increased by 10%, so this year's full-time count is 1.1 multiplied by 0.6T, which equals 0.66T. However, this statement provides no information about the part-time employees this year. If the part-time count remained at 0.4T, the total this year would be 0.66T plus 0.4T, or 1.06T, which exceeds T, indicating an increase. If instead all part-time employees left, so that the part-time count this year were 0, the total this year would be 0.66T, which is less than T, indicating a decrease. Because these two admissible scenarios yield opposite answers, Statement (1) alone is not sufficient.
-
-Statement (2) tells us that the number of part-time employees decreased by 5%, so this year's part-time count is 0.95 multiplied by 0.4T, which equals 0.38T. This statement provides no information about the full-time employees this year. If the full-time count remained at 0.6T, the total this year would be 0.6T plus 0.38T, or 0.98T, which is less than T, indicating a decrease. If the full-time count doubled to 1.2T, the total this year would be 1.2T plus 0.38T, or 1.58T, which exceeds T, indicating an increase. Because these two admissible scenarios yield opposite answers, Statement (2) alone is not sufficient.
-
-Taking the two statements together, this year's full-time count is 0.66T and this year's part-time count is 0.38T, so the total this year is 0.66T plus 0.38T, which equals 1.04T. Since T is positive, 1.04T is greater than T, and therefore the total number of employees increased. The combined information yields a definite answer of yes, so both statements together are sufficient, while neither statement alone is sufficient.
-
-The correct answer is C.
+**fastest_path:** Let this year's full-time and part-time counts be 3k and 2k; use each percentage change to reconstruct last year's counts.
+**explanation:** The current 60% full-time split means current counts can be written as 3k full-time and 2k part-time. Statement (1) gives last year's full-time count as 3k/1.10 but says nothing about last year's part-time count. Statement (2) gives last year's part-time count as 2k/0.95 but says nothing about full-time. Together, last year's total is 3k/1.10 + 2k/0.95, about 4.832k, which is less than this year's 5k. The total increased, so both statements together are sufficient: C.
+**common_trap:** Adding a 10% increase and a 5% decrease without weighting them by the current full-time and part-time counts.
+**takeaway:** When subgroup percentages move differently, reconstruct comparable counts before deciding what happened to the total.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1315,15 +1310,10 @@ In the xy-plane, the circle C has center (h, k) and radius r. Does the point (3,
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** A point lies inside a circle precisely when its distance from the center is strictly less than the radius. Thus the point (3, 4) lies inside circle C if and only if (3 - h)^2 + (4 - k)^2 < r^2. The question therefore asks whether enough is known about the center (h, k) and the radius r to determine the truth of this inequality.
-
-Consider Statement (1) alone. If the circle passes through (6, 8), then the distance from the center to (6, 8) equals the radius, giving (6 - h)^2 + (8 - k)^2 = r^2. This single equation fixes neither the center nor the radius. For example, let the center be (3, 4); then r^2 = (6 - 3)^2 + (8 - 4)^2 = 9 + 16 = 25, so r = 5, and the distance from (3, 4) to the center is 0, which is less than 5, so the point lies inside. Alternatively, let the center be (16, 8); then r^2 = (6 - 16)^2 + (8 - 8)^2 = 100, so r = 10, but the distance from (3, 4) to (16, 8) is the square root of (169 + 16) = the square root of 185, approximately 13.6, which exceeds 10, so the point lies outside. Because Statement (1) permits both a yes answer and a no answer, it is not sufficient.
-
-Consider Statement (2) alone. This fixes the center at the origin but says nothing about the radius. If r = 10, the distance from (3, 4) to the origin is 5, which is less than 10, so the point lies inside (yes). If instead r = 2, that distance of 5 exceeds 2, so the point lies outside (no). Two different outcomes are possible, so Statement (2) is not sufficient.
-
-Taking the statements together, Statement (2) places the center at the origin, and Statement (1) then fixes the radius: the circle passes through (6, 8), so r^2 = (6 - 0)^2 + (8 - 0)^2 = 36 + 64 = 100, giving r = 10. The distance from (3, 4) to the center (0, 0) is the square root of (3^2 + 4^2) = the square root of 25 = 5, which is strictly less than 10. The point (3, 4) therefore lies inside the circle, a determinate "yes." Because the two statements together produce a single definite answer while neither does so alone, they are sufficient in combination but not individually.
-
-The correct answer is C.
+**fastest_path:** Statement (2) fixes the center; then statement (1) fixes the radius as the origin-to-(6,8) distance, 10.
+**explanation:** Statement (1) gives one point on the circle but leaves its center and radius unknown, so it is insufficient. Statement (2) places the center at the origin but gives no radius, so it is also insufficient. Together, the radius is the distance from (0,0) to (6,8): sqrt(36 + 64) = 10. The point (3,4) is 5 units from the origin, which is less than 10, so it lies inside. Together sufficient: C.
+**common_trap:** Assuming a point lies inside merely because its coordinates are smaller than those of a point on the circle.
+**takeaway:** For circle inclusion, compare center-to-point distance with the radius; location and scale may come from separate statements.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---

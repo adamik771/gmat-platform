@@ -1,6 +1,69 @@
 import { describe, expect, it } from "vitest"
 import { getQuestionsByIds } from "@/lib/content"
 
+const COMBINED_DI_BATCH_IDS = [
+  "two-part-analysis-q49",
+  "two-part-analysis-q14",
+  "two-part-analysis-q35",
+  "two-part-analysis-q8",
+  "two-part-analysis-q33",
+  "two-part-analysis-q6",
+  "two-part-analysis-q45",
+  "two-part-analysis-q84",
+  "two-part-analysis-q94",
+  "two-part-analysis-q95",
+  "two-part-analysis-q13",
+  "multi-source-reasoning-q8",
+  "multi-source-reasoning-q12",
+  "two-part-analysis-q81",
+  "two-part-analysis-q39",
+  "multi-source-reasoning-q80",
+  "multi-source-reasoning-q15",
+  "multi-source-reasoning-q16",
+  "multi-source-reasoning-q22",
+  "multi-source-reasoning-q82",
+  "graphics-interpretation-q46",
+  "graphics-interpretation-q19",
+  "table-analysis-q5",
+  "graphics-interpretation-q28",
+  "two-part-analysis-q4",
+  "two-part-analysis-q91",
+  "data-sufficiency-q13",
+  "two-part-analysis-q64",
+  "multi-source-reasoning-q19",
+  "two-part-analysis-q60",
+  "ratios-percents-q45",
+  "multi-source-reasoning-q9",
+  "multi-source-reasoning-q21",
+  "two-part-analysis-q73",
+  "two-part-analysis-q12",
+  "graphics-interpretation-q82",
+  "two-part-analysis-q15",
+  "two-part-analysis-q59",
+  "graphics-interpretation-q44",
+  "two-part-analysis-q72",
+  "graphics-interpretation-q6",
+  "graphics-interpretation-q38",
+  "multi-source-reasoning-q25",
+  "multi-source-reasoning-q5",
+  "two-part-analysis-q20",
+  "two-part-analysis-q34",
+  "table-analysis-q29",
+  "two-part-analysis-q46",
+  "table-analysis-q36",
+  "two-part-analysis-q18",
+  "data-sufficiency-q44",
+  "multi-source-reasoning-q86",
+  "graphics-interpretation-q35",
+  "two-part-analysis-q51",
+  "graphics-interpretation-q88",
+  "two-part-analysis-q25",
+  "two-part-analysis-q61",
+  "table-analysis-q37",
+  "word-problems-q20",
+  "graphics-interpretation-q5",
+] as const
+
 const CLARITY_BATCH_IDS = [
   ...Array.from({ length: 51 }, (_, index) => `number-properties-q${index + 1}`),
   ...Array.from({ length: 65 }, (_, index) => `statistics-probability-q${index + 21}`),
@@ -9,6 +72,7 @@ const CLARITY_BATCH_IDS = [
   "graphics-interpretation-q16",
   "graphics-interpretation-q30",
   "table-analysis-q62",
+  ...COMBINED_DI_BATCH_IDS,
 ] as const
 
 describe("explanation clarity batch", () => {
@@ -37,7 +101,7 @@ describe("explanation clarity batch", () => {
   })
 
   it("preserves the reviewed answer keys", () => {
-    const expectedAnswers: Record<(typeof CLARITY_BATCH_IDS)[number], string> = {
+    const expectedAnswers: Record<string, string> = {
       "number-properties-q1": "B",
       "number-properties-q2": "C",
       "number-properties-q3": "D",
@@ -159,10 +223,81 @@ describe("explanation clarity batch", () => {
       "graphics-interpretation-q16": "E",
       "graphics-interpretation-q30": "B",
       "table-analysis-q62": "C",
+      "multi-source-reasoning-q8": "A",
+      "multi-source-reasoning-q12": "B",
+      "multi-source-reasoning-q80": "B",
+      "multi-source-reasoning-q15": "C",
+      "multi-source-reasoning-q16": "A",
+      "multi-source-reasoning-q22": "E",
+      "multi-source-reasoning-q82": "E",
+      "graphics-interpretation-q46": "D",
+      "graphics-interpretation-q19": "C",
+      "table-analysis-q5": "A",
+      "graphics-interpretation-q28": "B",
+      "data-sufficiency-q13": "C",
+      "multi-source-reasoning-q19": "D",
+      "ratios-percents-q45": "C",
+      "multi-source-reasoning-q9": "A",
+      "multi-source-reasoning-q21": "E",
+      "graphics-interpretation-q82": "C",
+      "graphics-interpretation-q44": "C",
+      "graphics-interpretation-q6": "A",
+      "graphics-interpretation-q38": "C",
+      "multi-source-reasoning-q25": "D",
+      "multi-source-reasoning-q5": "B",
+      "table-analysis-q29": "B",
+      "table-analysis-q36": "B",
+      "data-sufficiency-q44": "C",
+      "multi-source-reasoning-q86": "B",
+      "graphics-interpretation-q35": "C",
+      "graphics-interpretation-q88": "B",
+      "table-analysis-q37": "B",
+      "word-problems-q20": "C",
+      "graphics-interpretation-q5": "A",
+    }
+
+    const expectedTwoPartAnswers: Record<string, readonly [number, number]> = {
+      "two-part-analysis-q49": [0, 2],
+      "two-part-analysis-q14": [0, 1],
+      "two-part-analysis-q35": [0, 1],
+      "two-part-analysis-q8": [0, 1],
+      "two-part-analysis-q33": [0, 2],
+      "two-part-analysis-q6": [0, 1],
+      "two-part-analysis-q45": [0, 1],
+      "two-part-analysis-q84": [0, 1],
+      "two-part-analysis-q94": [0, 1],
+      "two-part-analysis-q95": [0, 1],
+      "two-part-analysis-q13": [0, 1],
+      "two-part-analysis-q81": [1, 3],
+      "two-part-analysis-q39": [1, 3],
+      "two-part-analysis-q4": [2, 0],
+      "two-part-analysis-q91": [0, 1],
+      "two-part-analysis-q64": [0, 1],
+      "two-part-analysis-q60": [0, 1],
+      "two-part-analysis-q73": [0, 1],
+      "two-part-analysis-q12": [4, 1],
+      "two-part-analysis-q15": [2, 4],
+      "two-part-analysis-q59": [0, 1],
+      "two-part-analysis-q72": [0, 1],
+      "two-part-analysis-q20": [2, 3],
+      "two-part-analysis-q34": [1, 4],
+      "two-part-analysis-q46": [4, 1],
+      "two-part-analysis-q18": [0, 2],
+      "two-part-analysis-q51": [2, 2],
+      "two-part-analysis-q25": [2, 4],
+      "two-part-analysis-q61": [1, 4],
     }
 
     for (const question of questions) {
-      expect(question.correctAnswerLetter, question.id).toBe(expectedAnswers[question.id])
+      const expectedAnswer = expectedAnswers[question.id]
+      const expectedTwoPart = expectedTwoPartAnswers[question.id]
+
+      expect(Boolean(expectedAnswer || expectedTwoPart), question.id).toBe(true)
+      if (expectedTwoPart) {
+        expect(question.twoPartCorrectAnswers, question.id).toEqual(expectedTwoPart)
+      } else {
+        expect(question.correctAnswerLetter, question.id).toBe(expectedAnswer)
+      }
     }
   })
 })

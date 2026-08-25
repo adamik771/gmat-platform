@@ -192,26 +192,10 @@ From the statements below, identify the conclusion of the argument (row 1) and t
 | Reduced competition always leads to increased sales                                 |            |            |
 
 **answer:** Conclusion = "The campaign's effectiveness may be overstated"; Assumption challenged = "The marketing campaign caused the 25% sales increase"
-**explanation:** **Governing principles.** In GMAT argument structure, the conclusion is the claim the author is ultimately trying to establish — typically signaled by indicator words such as "therefore," "thus," or "hence." A premise, by contrast, is a stated fact or observation offered as support. An assumption is an unstated premise that the argument relies on; when an argument says an original claim "may be overstated," it is implicitly targeting the reasoning behind that original claim.
-
-**Identifying the conclusion.** The passage contains the explicit conclusion indicator "Therefore" introducing the final sentence: "the campaign's effectiveness may be overstated." That sentence is not offered as evidence for anything else; every other statement in the passage either reports an observed fact (sales rose 25%; a competitor went bankrupt) or sets up the contrast that leads to this final judgment. We therefore assign the Conclusion column to "The campaign's effectiveness may be overstated."
-
-**Identifying the challenged assumption.** The argument works as follows: a claim was implicitly made — that the marketing campaign deserves credit for the 25% sales increase. The argument then introduces a rival explanation (reduced competition from a bankrupt competitor) to cast doubt on that credit attribution. The assumption being challenged is the unstated premise underlying the original attribution, namely "The marketing campaign caused the 25% sales increase." Without that assumed causal link, there would be no credit to overstate and no argument to make.
-
-Consider the other candidates:
-
-- "A major competitor went bankrupt during the quarter" — this is a stated premise, not an assumption.
-- "Sales increased 25% in the first quarter" — also a stated premise; the argument does not dispute that the increase occurred.
-- "Reduced competition always leads to increased sales" — this is too sweeping, and the argument does not need to challenge an "always" claim; it only needs to raise the possibility that reduced competition contributed here. The assumption being challenged is specifically the causal attribution to the campaign, not a universal law about competition.
-
-**Summary of assignments.**
-
-| Column | Credited value |
-|---|---|
-| Conclusion | The campaign's effectiveness may be overstated |
-| Assumption | The marketing campaign caused the 25% sales increase |
-
-The correct answers are Conclusion = The campaign's effectiveness may be overstated and Assumption = The marketing campaign caused the 25% sales increase.
+**fastest_path:** C is the author's final judgment; A is the causal attribution undermined by the competitor's bankruptcy.
+**explanation:** Choose C for Conclusion: after noting the simultaneous competitor bankruptcy, the author concludes that the campaign's effectiveness may be overstated. Choose A for Assumption Challenged. Crediting the full 25% increase to the campaign assumes the campaign caused that increase; reduced competition offers another cause and attacks that attribution. B and D are stated facts, while E is a universal claim the argument does not need.
+**common_trap:** Selecting the original causal claim as the conclusion even though the argument's final sentence challenges it.
+**takeaway:** Follow the author's final position and identify the narrower causal assumption that the new evidence disputes.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -280,31 +264,10 @@ From the statements below, identify one that would most strengthen the council's
 | Most accidents on Main Street occur during daylight hours                              |             |         |
 
 **answer:** Strengthens = "A nearby city with similar traffic volume saw 35% fewer accidents after installing lights"; Weakens = "Main Street accidents are primarily caused by speeding, not visibility"
-**explanation:** **Governing principle.** An argument is strengthened by a statement that increases the likelihood the conclusion is true, typically by providing supporting evidence, an analogous case, or validating a key assumption. An argument is weakened by a statement that decreases the likelihood the conclusion is true, typically by attacking a key assumption, undermining the causal mechanism, or revealing that the scope of the intervention is too narrow to achieve the claimed effect.
-
-**The argument.** The city council concludes: installing new streetlights on Main Street will reduce nighttime accidents by at least 30%. Two unstated assumptions underlie this conclusion: (1) that poor visibility — specifically inadequate lighting — is a meaningful cause of accidents on Main Street, and (2) that improving lighting will address this cause to a degree sufficient to produce a reduction of >= 30%.
-
-**Evaluating the candidates for Strengthens.**
-
-"A nearby city with similar traffic volume saw 35% fewer accidents after installing lights." Let the claimed reduction threshold = 30% and the analogous city's observed reduction = 35%. Because 35% > 30%, this analogical case directly supports the plausibility of the council's projection. The comparability condition (similar traffic volume) controls for a key confounding variable. This validates both assumptions: lighting was the intervention, and it produced a result meeting the stated threshold under comparable conditions.
-
-"Main Street has a higher-than-average traffic volume." This is a background fact about traffic density. It neither confirms that lighting causes accidents nor provides evidence that the 30% target is achievable. At best, higher volume might suggest more potential for improvement, but the reasoning is speculative and indirect. This does not qualify as a clear strengthener.
-
-"The new streetlights use energy-efficient LED bulbs." LED technology speaks to energy cost and operational efficiency, not to accident-reduction efficacy. This is irrelevant to the council's claim.
-
-The only candidate that strengthens the argument is the one providing direct analogical empirical evidence: a comparable city achieved a reduction of 35%, which is >= 30%.
-
-**Evaluating the candidates for Weakens.**
-
-"Main Street accidents are primarily caused by speeding, not visibility." This attacks the causal mechanism directly. The council's reasoning depends on assumption (1): that inadequate lighting — a visibility problem — is a meaningful cause of the nighttime accidents it wants to reduce. If those accidents are instead caused primarily by speeding, then adding brighter lights addresses the wrong cause, and the predicted 30% reduction in nighttime accidents cannot be achieved. By severing the link between the intervention (more light) and the intended effect (fewer nighttime accidents), this is the strongest available weakener.
-
-"Most accidents on Main Street occur during daylight hours." This statement looks like a weakener but is a scope trap. The council's claim is narrowly scoped to *nighttime* accidents: it predicts that the count of nighttime accidents will fall by at least 30%. The daytime-versus-nighttime split of *total* accidents is beside the point, because the 30% is measured against nighttime accidents, not against all accidents. Even if 75% of all accidents occur in daylight, the council can still be correct that the nighttime subset drops by 30%. Since this fact does not bear on whether nighttime accidents specifically will fall, it does not weaken the argument.
-
-The remaining options do not weaken the claim either: higher-than-average traffic volume is a background fact with no bearing on whether lighting reduces accidents, and the LED detail concerns energy cost rather than accident-reduction efficacy.
-
-**Confirming the credited answers.** For Strengthens, the analogous-city statement provides direct evidence at 35% >= 30% under controlled comparable conditions — the strongest available support for the council's conclusion. For Weakens, the speeding statement destroys the visibility mechanism the council's prediction depends on, so brighter lights would not deliver the claimed nighttime reduction; the daylight-hours statement, by contrast, never engages the nighttime-scoped claim and is the intended trap.
-
-The correct answers are Strengthens = A nearby city with similar traffic volume saw 35% fewer accidents after installing lights and Weakens = Main Street accidents are primarily caused by speeding, not visibility.
+**fastest_path:** Use the similar-city result as the comparison that supports lighting; use speeding as the cause that bypasses visibility.
+**explanation:** Choose A for Strengthens. A similar city experienced a 35% reduction after installing lights, closely matching the council's predicted effect. Choose B for Weakens. If nighttime accidents are primarily caused by speeding rather than poor visibility, better lighting may not address their main cause. E concerns when all accidents occur, not what causes the nighttime accidents named in the conclusion. Traffic volume and LED efficiency do not establish the safety effect.
+**common_trap:** Using the share of daytime accidents to evaluate a conclusion specifically about nighttime accidents.
+**takeaway:** Match evidence to the exact outcome and ask whether the proposed intervention addresses its dominant cause.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -379,45 +342,10 @@ From the options below, identify a statement that, if true, would provide an alt
 | Students who eat breakfast tend to arrive at school earlier                             |                 |         |
 
 **answer:** Alternative Explanation = "Students from higher-income families are more likely to eat breakfast"; Support = "A school that introduced free breakfast saw test scores rise by 12 points the next year"
-**explanation:** **Governing principles.** A Two-Part Analysis question of the cause-and-effect type requires distinguishing between (1) an alternative explanation — a statement that, if true, accounts for the observed correlation through a mechanism other than the one the author assumes — and (2) a support statement — a statement that, if true, directly strengthens the author's causal conclusion. Each candidate is examined against those definitions.
-
-**The argument.** The researcher observes a correlation: let S_b denote the mean standardized-test score for breakfast-eaters and S_s denote the mean score for breakfast-skippers. The premise states S_b - S_s = 10 points. The researcher infers a causal relationship — eating breakfast raises scores — and draws a policy conclusion: schools should provide free breakfast.
-
-The logical vulnerability is the leap from correlation to causation. If a third variable X is positively associated with both breakfast consumption and test scores, then the 10-point gap may reflect X rather than breakfast itself.
-
-**Column 1 — Alternative Explanation**
-
-The task is to identify a statement that, if true, introduces a confounding variable capable of explaining S_b - S_s = 10 without requiring breakfast to cause higher scores.
-
-- Students from higher-income families are more likely to eat breakfast. Let I represent family income. Higher-income students tend both to eat breakfast (explaining the breakfast-eating group) and to score higher on standardized tests (reflecting greater access to tutoring, stable home environments, and academic resources). If this statement is true, income I is a common cause of both breakfast consumption and test performance. The observed 10-point gap is therefore attributable to income disparities rather than to breakfast per se. This is a classical confound and constitutes a direct alternative explanation.
-
-- Students who eat breakfast tend to arrive at school earlier. This is a behavioral correlate of breakfast-eating; it does not independently explain the score gap unless one further assumes that earlier arrival causes higher scores — an additional inferential step that weakens its force as a standalone alternative explanation.
-
-- Breakfast foods contain essential nutrients for brain function. This supports rather than undermines the causal claim.
-
-- Schools already provide lunch programs. This is irrelevant to the causal mechanism linking breakfast to scores.
-
-- A school that introduced free breakfast saw test scores rise by 12 points the next year. This supports the conclusion rather than offering an alternative explanation.
-
-The credited alternative explanation is Students from higher-income families are more likely to eat breakfast. It introduces income as a confounding variable that fully accounts for the correlation without invoking a causal role for breakfast.
-
-**Column 2 — Support**
-
-The task is to identify the statement that, if true, most directly strengthens the conclusion that providing free breakfast will improve test scores.
-
-- A school that introduced free breakfast saw test scores rise by 12 points the next year. This is a natural experiment: an intervention was implemented (free breakfast provided) and the outcome — a 12-point increase, numerically consistent with the researcher's cited 10-point gap — was directly observed. This moves the evidence from correlation to a before-and-after comparison at the institutional level, providing the strongest available empirical support for the causal policy claim.
-
-- Breakfast foods contain essential nutrients for brain function. This offers a plausible biological mechanism, which is a legitimate form of support. However, a mechanism alone does not confirm that the intervention produces the effect; it merely explains how it could. The observed outcome evidence above is therefore more direct.
-
-- Students from higher-income families are more likely to eat breakfast. This undermines rather than supports the conclusion.
-
-- Schools already provide lunch programs. Institutional precedent is irrelevant to the causal claim.
-
-- Students who eat breakfast tend to arrive at school earlier. This is a correlate of the exposure variable and does not address whether providing breakfast raises scores.
-
-The credited support statement is A school that introduced free breakfast saw test scores rise by 12 points the next year. It provides direct outcome evidence that the proposed intervention produces an effect of the predicted magnitude.
-
-The correct answers are Alt Explanation = Students from higher-income families are more likely to eat breakfast and Support = A school that introduced free breakfast saw test scores rise by 12 points the next year.
+**fastest_path:** A gives a confounder that can explain both breakfast and scores; B reports an intervention followed by the predicted improvement.
+**explanation:** Choose A for Alternative Explanation. Family income can influence both whether a student eats breakfast and the academic resources that affect test scores, so breakfast need not cause the observed gap. Choose B for Support. After a school actually introduced free breakfast, scores rose by an amount consistent with the claim, providing direct intervention evidence. C offers only a plausible mechanism, while D and E do not show that providing breakfast raises scores.
+**common_trap:** Choosing a plausible biological mechanism over evidence that tests the proposed intervention itself.
+**takeaway:** A confounder explains both variables; intervention evidence is stronger support than a mechanism alone.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -618,37 +546,10 @@ A set of five distinct positive integers has a mean of 14 and a median of 12. Le
 | 42  |                          |                           |
 
 **answer:** L = 42, S = 19
-**explanation:** **Setup and definitions.**
-
-Let the five distinct positive integers, arranged in ascending order, be a1 < a2 < a3 < a4 < a5. Because the set has five elements, the median is the third element, so a3 = 12. Because the mean is 14, the total sum is 5 * 14 = 70. Subtracting the known median gives a fixed constraint on the remaining four elements:
-
-a1 + a2 + a4 + a5 = 70 - 12 = 58
-
-Two additional constraints follow from the ordering and the distinctness requirement: a1 and a2 must be distinct positive integers strictly less than 12, and a4 must be a distinct positive integer strictly greater than 12 and strictly less than a5.
-
-**Finding L (the largest possible value of the greatest integer).**
-
-To make a5 as large as possible, the sum a1 + a2 + a4 must be minimized. The two values a1 and a2 are distinct positive integers less than 12; their minimum possible sum is 1 + 2 = 3. With those values fixed, a4 must exceed 12 and be less than a5; the smallest allowable value of a4 is 13. Therefore:
-
-a5 = 58 - a1 - a2 - a4 = 58 - 1 - 2 - 13 = 42
-
-The resulting set {1, 2, 12, 13, 42} satisfies all conditions: five distinct positive integers, sum = 1 + 2 + 12 + 13 + 42 = 70 (mean = 14), and median = 12. No smaller choice of a1, a2, or a4 is available while respecting distinctness and ordering, so 42 is the maximum. Therefore L = 42.
-
-**Finding S (the smallest possible value of the greatest integer).**
-
-To make a5 as small as possible, the sum a1 + a2 + a4 must be maximized. For a1 and a2, the largest two distinct positive integers strictly below 12 are 10 and 11, giving a1 + a2 = 21. This forces:
-
-a4 + a5 = 58 - 21 = 37
-
-Because a4 and a5 must be distinct integers with 12 < a4 < a5, the value of a5 is minimized when a4 is as large as possible, that is, a4 = a5 - 1. Substituting:
-
-(a5 - 1) + a5 = 37
-2 * a5 = 38
-a5 = 19,   a4 = 18
-
-No smaller a5 is achievable: if a5 were 18, then a4 = 37 - 18 = 19, which contradicts a4 < a5; if a5 were 17 or less, a4 would exceed a5, which also contradicts the ordering. The resulting set {10, 11, 12, 18, 19} satisfies all conditions: five distinct positive integers, sum = 10 + 11 + 12 + 18 + 19 = 70 (mean = 14), and median = 12. Therefore S = 19.
-
-The correct answers are L (largest possible max) = 42 and S (smallest possible max) = 19.
+**fastest_path:** The five numbers total 70 and the middle is 12. Maximize the maximum with 1,2,12,13; minimize it by packing 10,11,12,18,19.
+**explanation:** For L, make the other four distinct positive integers as small as possible while preserving median 12: 1, 2, 12, and 13. The maximum is 70 - 28 = 42, so L = 42. For S, pack the values below and above 12 as high and close as possible. A maximum of 18 cannot work because the largest possible total is 10 + 11 + 12 + 17 + 18 = 68. A maximum of 19 works with 10, 11, 12, 18, 19, totaling 70. Thus S = 19.
+**common_trap:** Optimizing the largest value without enforcing distinctness, order, median 12, and total 70 simultaneously.
+**takeaway:** For extreme ordered sets, construct boundary cases and prove the neighboring value impossible.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -671,30 +572,10 @@ From the statements below, identify the conclusion of the argument (row 1) and t
 | Bike-share programs always reduce congestion wherever they are implemented                   |            |            |
 
 **answer:** Conclusion = "The bike-share program reduced congestion on Main Avenue"; Assumption = "No other factor materially contributed to the observed congestion decrease"
-**explanation:** In a Two-Part Analysis question of this type, the two tasks are to isolate the conclusion of the argument and to identify the central unstated assumption — the suppressed premise without which the inferential link between evidence and conclusion breaks down.
-
-**Identifying the conclusion.**
-
-The conclusion of an argument is the claim the argument is designed to establish. It is supported by the premises; it does not itself serve as direct support for another claim within the same argument. A reliable test is to ask: which statement are the other statements offered in order to prove?
-
-The argument presents two explicit evidence statements:
-
-- Premise 1: The bike-share program launched in March.
-- Premise 2: Six months later, traffic congestion on Main Avenue decreased by 15%.
-
-Both of these are offered in support of a single inferential claim introduced by the word "therefore": the bike-share program reduced congestion on Main Avenue. That final statement is what the arguer is trying to establish. The 15% decrease is an observed datum (a premise), not a claim the arguer is arguing for. Therefore, the conclusion is "The bike-share program reduced congestion on Main Avenue."
-
-**Identifying the central unstated assumption.**
-
-The argument's inferential core is a causal claim built on temporal succession: A (program launch) preceded B (congestion decrease), therefore A caused B. This pattern is a post hoc, ergo propter hoc structure. For such a causal conclusion to hold, one must assume that the observed effect was not produced by some independent cause. If another factor — for example, a new transit line opening, road construction completing, fuel prices rising, or seasonal commuter patterns — could equally account for the 15% drop, then the mere fact that the bike-share program preceded the decrease is insufficient to establish causation. The argument is therefore silently relying on the premise that no other factor materially contributed to the observed congestion decrease.
-
-This is confirmed by negation: if one negates the assumption — suppose some other factor did materially contribute to the decrease — the argument's conclusion is immediately undermined, because the decrease could then be explained without reference to the bike-share program at all. This confirms the statement is load-bearing and therefore qualifies as the central unstated assumption.
-
-**Evaluating the remaining candidates.**
-
-"Traffic congestion on Main Avenue decreased by 15%" is an explicit premise, not an unstated assumption and not the conclusion. "The bike-share program launched in March" is also an explicit premise. "Bike-share programs always reduce congestion wherever they are implemented" is a universal generalization. The argument does not require so strong a principle — it makes only a local causal claim about one program in one city. Assuming this universal would be sufficient to support the conclusion but is far stronger than necessary; it is not the minimal unstated assumption actually doing the inferential work.
-
-The correct answers are Conclusion = The bike-share program reduced congestion on Main Avenue and Assumption = No other factor materially contributed to the observed congestion decrease.
+**fastest_path:** A is the claim the author wants accepted; B is required to attribute the 15% decline to bike-share rather than another change.
+**explanation:** Choose A for Conclusion: the argument uses the launch and later congestion decline to claim that bike-share caused the reduction. Choose B for Assumption. The causal inference requires that no other material change produced the decline; if road construction ended, traffic was rerouted, or another policy changed, the timing alone would not prove bike-share was responsible. C and D are stated facts, while E is an unnecessarily universal claim.
+**common_trap:** Selecting a stated statistic as the conclusion or choosing a much stronger universal assumption than the argument needs.
+**takeaway:** The conclusion is the causal claim; its minimal assumption rules out a material competing cause in the observed period.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -717,56 +598,10 @@ From the statements below, identify one that would most strengthen the argument 
 | The CRM costs $50 per seat per month                                                              |             |                     |
 
 **answer:** Strengthens = "A controlled experiment randomly assigned the CRM to half of a company's regions and saw retention rise 7 points only in those regions"; Weakens = "Companies that adopted the CRM also simultaneously raised their customer service headcount by 20%"
-**explanation:** **The Logical Task.**
-
-A Two-Part Analysis question in the Strengthen/Weaken category asks us to do two distinct things simultaneously: find the statement that best supports the causal claim, and find the statement that best undermines it by offering an alternative explanation for the observed effect. Each column is treated as an independent sub-question with its own evaluation criterion.
-
-**The Argument.**
-
-The analyst's claim has the following structure. Let R = the observed change in customer retention rate, and let C = adoption of the CRM platform. The argument asserts:
-
-- Observed: companies that adopted C showed R = +8 percentage points in the following year.
-- Conclusion: therefore, C caused the improvement in R.
-
-This is a causal conclusion drawn from observational (correlational) data. The central logical gap is the possibility of confounding variables — other factors that changed simultaneously with CRM adoption and that could themselves explain the rise in R. A strengthener must close that gap; a weakener (alternative cause) must open or exploit it.
-
-**Evaluating the Candidates for Strengthens.**
-
-The governing principle: the best strengthener of a causal argument eliminates competing explanations and provides evidence of a genuine causal link, not merely correlation.
-
-- Candidate A: "A controlled experiment randomly assigned the CRM to half of a company's regions and saw retention rise 7 points only in those regions." Random assignment is the gold standard for establishing causation. Because regions were randomly assigned, pre-existing differences between regions are neutralized in expectation. The fact that R rose approximately +7 points only in the CRM-assigned regions — and not in the control regions — rules out confounders such as broader market trends, management quality, or simultaneous policy changes, since those forces would have affected both sets of regions equally. This directly addresses the argument's logical gap. Strong strengthener.
-
-- Candidate B: "Companies that adopted the CRM also simultaneously raised their customer service headcount by 20%." This introduces a plausible alternative cause and therefore weakens the argument rather than strengthening it.
-
-- Candidate C: "The CRM platform is the highest-rated software in its category." A software rating reflects user satisfaction or feature quality but provides no evidence that the platform caused retention rates to rise. This is irrelevant to the causal conclusion.
-
-- Candidate D: "Retention rates across the industry rose 1 percentage point on average last year." An industry-wide trend of +1 point suggests ambient forces independent of CRM adoption. Although this trend is small relative to the observed +8 points, it indicates that some portion of the observed change may reflect external conditions, which weakens rather than strengthens the argument.
-
-- Candidate E: "The CRM costs $50 per seat per month." Cost information is irrelevant to whether the CRM caused retention to improve.
-
-Candidate A is therefore selected as the best strengthener.
-
-**Evaluating the Candidates for Weakens (Alternative Cause).**
-
-The governing principle: the best alternative-cause weakener identifies a distinct variable — one that (i) plausibly changed at the same time as CRM adoption, and (ii) could independently explain the observed rise in R, thereby breaking the inferred causal link between C and R.
-
-- Candidate A: Already selected for Strengthens; furthermore, a controlled experiment supports rather than weakens the causal claim.
-
-- Candidate B: "Companies that adopted the CRM also simultaneously raised their customer service headcount by 20%." Let H = the increase in customer service headcount. If companies that adopted the CRM also increased H by 20% at the same time, then the observed R = +8 points could be attributable to H rather than to the CRM itself. The argument cannot distinguish between these two explanations because both C and H varied together in the observational data. This is a textbook alternative cause: it does not deny that R rose, but it denies that C is the cause. Strong weakener.
-
-- Candidate C: A software rating provides no alternative causal mechanism. Irrelevant.
-
-- Candidate D: An industry-wide rise of +1 point is a partial alternative explanation (ambient trend), but it accounts for at most +1 of the +8 points observed. The analyst's claim survives largely intact; the remaining +7 points still require explanation. Candidate D is a mild weakener but far less decisive than Candidate B.
-
-- Candidate E: Cost is irrelevant to causation. Irrelevant.
-
-Candidate B is therefore selected as the best weakener by alternative cause.
-
-**Summary of the Selections.**
-
-For the Strengthens column, Candidate A is superior because random assignment in a controlled experiment eliminates confounding variables and provides the strongest available evidence that the CRM itself — not accompanying changes — drove the retention improvement. For the Weakens (alt cause) column, Candidate B is superior because it identifies a specific, simultaneous, and causally plausible alternative variable (headcount) that could fully explain the observed +8-point rise, leaving the argument's causal attribution to the CRM unsupported.
-
-The correct answers are Strengthens = A controlled experiment randomly assigned the CRM to half of a company's regions and saw retention rise 7 points only in those regions and Weakens (alt cause) = Companies that adopted the CRM also simultaneously raised their customer service headcount by 20%.
+**fastest_path:** Random assignment isolates the CRM effect, while a simultaneous increase in service staff supplies a competing cause.
+**explanation:** Choose A for Strengthens. Randomly assigning the CRM to some regions and observing the gain only there creates a control group, making the CRM the key difference. Choose B for Weakens: the 20% increase in customer-service staff occurred at the same time and could itself improve retention. D offers only a small industry-wide rise and does not explain the full eight-point gain as directly. Ratings and price do not establish what caused retention to change.
+**common_trap:** Treating popularity, price, or an industry trend as stronger causal evidence than a controlled comparison.
+**takeaway:** For causal claims, controlled comparisons strengthen; simultaneous plausible changes weaken by confounding the result.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -789,49 +624,10 @@ Select the value of T (row 1) and the value of U (row 2).
 | 8.0 hrs      |               |               |
 
 **answer:** T = 3.43 hrs, U = 8.0 hrs
-**explanation:** The work-rate method treats each pipe's contribution as a fraction of the tank filled (or emptied) per unit time. If a pipe fills a full tank in n hours, its rate is 1/n tank per hour; a drain that empties a full tank in n hours contributes −1/n tank per hour. When multiple pipes operate simultaneously, the net rate is the algebraic sum of the individual rates, and the time to fill one full tank equals 1 divided by that net rate.
-
-Setting up rates. Let the capacity of the tank equal 1 (one full tank). The individual rates are:
-
-- Pipe A fills the tank in 4 hours, so its rate is 1/4 tank per hour.
-- Pipe B fills the tank in 6 hours, so its rate is 1/6 tank per hour.
-- The drain empties the tank in 8 hours, so its rate is −1/8 tank per hour (negative because it removes volume).
-
-Finding T (all three open). The net combined rate when all three operate simultaneously is:
-
-1/4 + 1/6 − 1/8
-
-To add these fractions, use the least common denominator of 4, 6, and 8, which is 24:
-
-1/4 = 6/24, 1/6 = 4/24, 1/8 = 3/24
-
-Net rate = 6/24 + 4/24 − 3/24 = 7/24 tank per hour
-
-The time T to fill one full tank is therefore:
-
-T = 1 / (7/24) = 24/7 hours
-
-Evaluating: 24/7 = 3.4285..., which rounds to 3.43 hours. Among the candidate values, 3.43 hrs is the match.
-
-Finding U (Pipe A and the drain only). With Pipe B closed, the net rate is:
-
-1/4 − 1/8
-
-Using a common denominator of 8:
-
-1/4 = 2/8
-
-Net rate = 2/8 − 1/8 = 1/8 tank per hour
-
-The time U to fill one full tank is therefore:
-
-U = 1 / (1/8) = 8 hours
-
-Among the candidate values, 8.0 hrs is the match. Notably, this result has an intuitive interpretation: Pipe A fills at twice the rate the drain empties (1/4 vs. 1/8), so the effective filling rate equals exactly the drain's rate, yielding a fill time equal to the drain's standalone emptying time.
-
-Checking the other candidates. The value 2.4 hrs corresponds to a net rate of 1/2.4 = 5/12, which would require a combined filling rate of 5/12 — far above 7/24. The value 2.75 hrs corresponds to 4/11, also inconsistent with the arithmetic above. The value 4.0 hrs would require a net rate of 1/4, which is Pipe A alone with no drain effect. None of these match either scenario.
-
-The correct answers are T (all three) = 3.43 hrs and U (A + drain) = 8.0 hrs.
+**fastest_path:** Add fill rates and subtract the drain: T uses 1/4 + 1/6 - 1/8; U uses 1/4 - 1/8.
+**explanation:** With all three open, the net rate is 1/4 + 1/6 - 1/8 = (6 + 4 - 3)/24 = 7/24 tank per hour, so T = 24/7, about 3.43 hours. With only Pipe A and the drain, the net rate is 1/4 - 1/8 = 1/8 tank per hour, so U = 8 hours. Select 3.43 hours for T and 8.0 hours for U.
+**common_trap:** Adding the drain's rate as if it fills the tank, or adding times instead of rates.
+**takeaway:** Combine work rates with signs first, then invert the net rate to obtain time.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -968,58 +764,10 @@ A regional bus company operates two routes. Total weekly ridership across both r
 | 100,000 |                      |                      |
 
 **answer:** Ridership on Route 1 = 8,000, Revenue from Route 2 = 60,000
-**explanation:** **Setup.** Two unknowns govern this problem: let x represent the weekly ridership on Route 1, and let y represent the weekly ridership on Route 2. The prompt supplies two independent constraints, which together form a determinate linear system.
-
-**Translating the constraints into equations.**
-
-The total ridership constraint states that the sum of passengers on both routes equals 28,000:
-
-x + y = 28,000   ... (1)
-
-The total revenue constraint states that per-passenger revenue of $5.00 on Route 1 and $3.00 on Route 2 combine to produce $100,000:
-
-5x + 3y = 100,000   ... (2)
-
-**Solving the system.**
-
-From equation (1), express y in terms of x:
-
-y = 28,000 - x   ... (3)
-
-Substitute (3) into equation (2):
-
-5x + 3(28,000 - x) = 100,000
-
-5x + 84,000 - 3x = 100,000
-
-2x = 100,000 - 84,000
-
-2x = 16,000
-
-x = 8,000
-
-**Route 1 ridership** is therefore 8,000 passengers per week. Among the candidate values — 8,000; 20,000; 60,000; 80,000; 100,000 — the value 8,000 is the unique solution consistent with both constraints.
-
-**Solving for Route 2 ridership and revenue.**
-
-Substituting x = 8,000 back into equation (3):
-
-y = 28,000 - 8,000 = 20,000
-
-Route 2 carries 20,000 passengers per week. Weekly revenue from Route 2 is:
-
-3 * 20,000 = 60,000
-
-**Route 2 weekly revenue** is therefore $60,000. Among the candidate values, 60,000 is the unique figure consistent with the system.
-
-**Verification.** Both constraints are satisfied simultaneously:
-
-- Total ridership: 8,000 + 20,000 = 28,000. Correct.
-- Total revenue: 5 * 8,000 + 3 * 20,000 = 40,000 + 60,000 = 100,000. Correct.
-
-No other pairing of candidate values satisfies both equations. For instance, selecting 20,000 for Route 1 ridership would yield Route 1 revenue of 5 * 20,000 = 100,000, which already exhausts the total budget and leaves nothing for Route 2 — a contradiction. Similarly, any candidate value for Route 1 ridership other than 8,000 produces a value for y that does not generate a Route 2 revenue figure appearing among the candidates.
-
-The correct answers are Ridership on Route 1 = 8,000 and Revenue from Route 2 = 60,000.
+**fastest_path:** Let Route 1 ridership be x: 5x + 3(28,000 - x) = 100,000.
+**explanation:** Let x be Route 1 riders, so Route 2 has 28,000 - x riders. Revenue gives 5x + 3(28,000 - x) = 100,000. Simplifying, 2x + 84,000 = 100,000, so x = 8,000. Route 2 then has 20,000 riders and earns 20,000 x $3 = $60,000. Select 8,000 and 60,000.
+**common_trap:** Multiplying total ridership by one fare instead of splitting riders between the two revenue rates.
+**takeaway:** For two-group revenue problems, express one group as total minus the other and build one weighted equation.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -1120,33 +868,10 @@ A bag contains 8 white balls and 4 black balls. Two balls are drawn at random wi
 | 21/33  |            |            |
 
 **answer:** Both white = 14/33, Same color = 17/33
-**explanation:** **Governing principle.** When drawing objects without replacement, each successive draw reduces the total. The probability of a multi-step outcome is the product of the conditional probabilities at each step, or equivalently, the ratio of favorable combinations to total combinations using C(n, k) = n! / (k! * (n-k)!).
-
-**Setup.** The bag holds 8 white balls and 4 black balls, for a total of 12 balls. Two balls are drawn without replacement. The task is to find (1) the probability that both balls are white, and (2) the probability that both balls are the same color.
-
-The total number of ways to choose any 2 balls from 12 is C(12, 2) = (12 * 11) / 2 = 66. This is the denominator for all probability calculations here.
-
-**Column 1 — Probability that both balls drawn are white.**
-
-The number of ways to choose 2 white balls from the 8 available white balls is C(8, 2) = (8 * 7) / 2 = 28.
-
-Therefore, P(both white) = 28 / 66 = 14 / 33.
-
-This can also be computed as a product of sequential conditional probabilities: the probability the first ball is white is 8/12, and given that, the probability the second ball is also white is 7/11. Thus P(both white) = (8/12) * (7/11) = 56/132 = 14/33. Both methods agree.
-
-**Column 2 — Probability that both balls drawn are the same color.**
-
-"Same color" means either both white or both black; these two events are mutually exclusive, so their probabilities are added.
-
-P(both white) = 14/33, as derived above.
-
-For both black: the number of ways to choose 2 black balls from the 4 available is C(4, 2) = (4 * 3) / 2 = 6. Therefore, P(both black) = 6/66 = 1/11 = 3/33.
-
-P(same color) = P(both white) + P(both black) = 14/33 + 3/33 = 17/33.
-
-**Verification against the candidate values.** The five candidate values are 1/11, 3/11, 14/33, 17/33, and 21/33. The value 14/33 emerges directly as P(both white) and 17/33 emerges directly as P(same color); neither value is used for both columns. The value 1/11 = 3/33 equals P(both black) alone, a plausible distractor. The value 21/33 does not arise from any correct grouping of these outcomes.
-
-The correct answers are Both white = 14/33 and Same color = 17/33.
+**fastest_path:** Both white is (8/12)(7/11); same color adds the both-black probability (4/12)(3/11).
+**explanation:** P(both white) = (8/12)(7/11) = 56/132 = 14/33. For the same color, add P(both black) = (4/12)(3/11) = 12/132 = 3/33. Thus P(same color) = 14/33 + 3/33 = 17/33. Select 14/33 for Both white and 17/33 for Same color.
+**common_trap:** Treating the second draw as independent and keeping the denominator at 12 after one ball has been removed.
+**takeaway:** Without replacement, update both numerator and denominator; for disjoint cases, compute each and add.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -1351,42 +1076,10 @@ A retailer sells umbrellas. Fixed daily costs total $120. Each umbrella costs $4
 | 72  |               |                      |
 
 **answer:** Optimal price = 12, Maximum daily profit = 72
-**explanation:** Let p denote the price (in dollars) the retailer charges per umbrella, and let q denote the daily quantity demanded. The demand function is q = 60 - 3p, valid for 0 <= p <= 20. Fixed daily cost is $120 and variable (acquisition) cost per umbrella is $4.
-
-Daily revenue equals p * q = p * (60 - 3p). Daily variable cost equals 4 * q = 4 * (60 - 3p). The daily profit function Pi(p) is therefore:
-
-Pi(p) = p*(60 - 3p) - 4*(60 - 3p) - 120
-
-Factoring the first two terms:
-
-Pi(p) = (p - 4)*(60 - 3p) - 120
-
-Expanding:
-
-Pi(p) = 60p - 3p^2 - 240 + 12p - 120
-
-Pi(p) = -3p^2 + 72p - 360
-
-Because Pi(p) is a downward-opening quadratic in p (leading coefficient -3 is negative), it has a unique global maximum at its vertex. The vertex occurs at:
-
-p = -72 / (2 * (-3)) = -72 / (-6) = 12
-
-Since p = 12 lies within the feasible domain 0 <= p <= 20, this is the valid optimal price.
-
-At p = 12: q = 60 - 3*(12) = 24 umbrellas; revenue = 12 * 24 = 288; variable cost = 4 * 24 = 96; fixed cost = 120; Pi(12) = 288 - 96 - 120 = 72.
-
-Evaluating Pi(p) at each remaining candidate price confirms no alternative achieves a higher profit:
-
-- p = 4: q = 48; Pi = 4*48 - 4*48 - 120 = 0 - 120 = -120
-- p = 8: q = 36; Pi = 8*36 - 4*36 - 120 = 288 - 144 - 120 = 24
-- p = 12: Pi = 72 (computed above)
-- p = 18: q = 6; Pi = 18*6 - 4*6 - 120 = 108 - 24 - 120 = -36
-
-The profit function rises from p = 4 through p = 12 and then falls, confirming p = 12 as the unique maximum within the candidate set and the feasible domain.
-
-Among the other candidates: p = 4 sets price equal to unit acquisition cost, so every unit sold contributes $0 toward fixed costs, producing a loss of exactly $120. At p = 8 there is a positive contribution margin but the quadratic has not reached its peak, yielding only $24 in profit. At p = 18 demand falls to 6 units, insufficient to cover fixed costs, producing a loss of $36. The value 72 is the maximum profit itself (the column 2 answer) and is not a valid price.
-
-The correct answers are Optimal price = 12 and Maximum daily profit = 72.
+**fastest_path:** Profit is (p - 4)(60 - 3p) - 120 = -3p^2 + 72p - 360; use the vertex.
+**explanation:** The quadratic profit function opens downward. Its maximizing price is p = -b/(2a) = -72/[2(-3)] = 12. Demand is 60 - 3(12) = 24 umbrellas. Daily profit is (12 - 4)(24) - 120 = 192 - 120 = $72. Select 12 for the optimal price and 72 for maximum profit.
+**common_trap:** Maximizing revenue or unit margin alone while ignoring how price changes demand and fixed cost.
+**takeaway:** Build profit as unit contribution times demand minus fixed cost, then maximize the resulting downward-opening quadratic.
 **related_reading:** reading-di-06-two-part-analysis
 
 
@@ -1758,46 +1451,10 @@ From the statements below, select the one that can be properly inferred from the
 | WFH employees benefit from fewer interruptions, which explains their performance advantage       |                 |                |
 
 **answer:** Can be Inferred = "WFH employees have higher average productivity ratings than full-time in-office employees"; Why Not Causal = "The highest-performing employees self-select into WFH arrangements"
-**explanation:** **Governing Principle.** A claim "can be inferred" from a data set if and only if it follows necessarily from the stated data, with no additional assumptions required. A causal claim, by contrast, asserts that one variable produces changes in another. Observational data cannot establish causation when a confounding explanation — such as selection bias — accounts equally well for the observed difference.
-
-**Setup.** Let P_WFH denote the average productivity rating of employees who work from home at least 3 days per week, and let P_OFC denote the average productivity rating of employees who work in the office full time. The study reports:
-
-P_WFH = 82 out of 100
-P_OFC = 74 out of 100
-
-Therefore P_WFH > P_OFC, specifically 82 > 74, a difference of 82 - 74 = 8 rating points.
-
-**Column 1 — Can be Inferred.**
-
-Each candidate is evaluated against the standard: does it follow necessarily from P_WFH = 82 and P_OFC = 74?
-
-- "WFH employees have higher average productivity ratings than full-time in-office employees." Since 82 > 74, this is a direct restatement of the reported figures. No assumption beyond the data is required. This statement is supported.
-
-- "Requiring all employees to WFH at least 3 days per week would raise the company's average rating." This is a policy prediction. It assumes that mandating WFH would replicate the observed difference, which depends on causal assumptions the data do not establish. Not inferable.
-
-- "The highest-performing employees self-select into WFH arrangements." This is a proposed mechanism — a hypothesis about why the gap exists. The data report a gap; they say nothing about how employees came to be in each group. Not inferable.
-
-- "The productivity rating scale penalizes visible in-office behaviors such as collaboration time." This is a claim about measurement methodology. The data provide no information about how the rating scale is constructed. Not inferable.
-
-- "WFH employees benefit from fewer interruptions, which explains their performance advantage." This asserts a causal mechanism (fewer interruptions leading to higher performance). The data contain no information about interruption rates. Not inferable.
-
-The only statement that follows necessarily from P_WFH = 82 and P_OFC = 74 is the first: WFH employees have higher average productivity ratings than full-time in-office employees.
-
-**Column 2 — Why Not Causal.**
-
-Each statement is now evaluated for whether it best identifies a reason the observed difference in average ratings does not establish that WFH causes higher productivity. The logical requirement is a plausible alternative explanation — one that accounts for the gap without invoking a causal link from WFH to productivity.
-
-- "Requiring all employees to WFH at least 3 days per week would raise the company's average rating." This is itself a causal claim and offers no explanation for why causation is absent. It does not serve as a challenge to the causal interpretation.
-
-- "The highest-performing employees self-select into WFH arrangements." This identifies a classic confound: if employees who already have high productivity ratings are the ones who choose (or are permitted) to work from home, then the group difference reflects pre-existing ability differences rather than any effect of WFH. The direction of causation would run from high performance to WFH eligibility, not from WFH to high performance. This is the correct alternative explanation.
-
-- "The productivity rating scale penalizes visible in-office behaviors such as collaboration time." This could explain a measurement artifact, but it does not address the underlying causal question — it raises a different methodological concern (rating validity) rather than explaining whether WFH itself produces the gap. It is a weaker and less direct challenger to the causal inference than selection bias.
-
-- "WFH employees benefit from fewer interruptions, which explains their performance advantage." This actually supports the causal claim — it proposes a mechanism by which WFH causes higher productivity. It therefore cannot be the answer to why the data fail to establish causation.
-
-The statement that best explains why the data do not establish a causal relationship is that the highest-performing employees self-select into WFH arrangements, because it provides a specific alternative (selection bias) that fully accounts for the observed gap without requiring WFH to have any causal effect.
-
-The correct answers are Can be Inferred = WFH employees have higher average productivity ratings than full-time in-office employees and Why Not Causal = The highest-performing employees self-select into WFH arrangements.
+**fastest_path:** Infer only the reported comparison for column 1; use self-selection to explain why that comparison is not causal for column 2.
+**explanation:** Choose A for Can be Inferred: the study directly reports average ratings of 82 for WFH employees and 74 for office employees. It does not show what would happen if everyone were required to work from home. Choose C for Why Not Causal. If stronger employees self-select into WFH, employee ability can produce both WFH participation and higher ratings. D and E are possible stories, but the data do not establish either one; C directly identifies the selection problem.
+**common_trap:** Turning an observed group difference into a prediction about forcing every employee into the same arrangement.
+**takeaway:** Descriptive data support the measured comparison, not a causal policy claim when group membership may be self-selected.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1821,65 +1478,10 @@ Select the value of t* (column 1) and the value of V (column 2).
 | 8,000 |              |                      |
 
 **answer:** t* = 3, V = 4,000
-**explanation:** **Governing principle.** Two functions intersect when they produce equal output for the same input. We set P(t) = Q(t) and solve for the value of t at which that equality holds, then substitute back to find the shared population value.
-
-**Defining variables.** Let t represent the number of decades elapsed (t >= 0). The two population models are:
-
-- P(t) = 500 x 2^t (Town A, exponential growth)
-- Q(t) = 32,000 / 2^t (Town B, exponential decay)
-
-We seek t*, the decade at which P(t*) = Q(t*), and V = P(t*) = Q(t*), the shared population at that point.
-
-**Setting up and solving for t*.**
-
-Setting the two expressions equal:
-
-500 x 2^t = 32,000 / 2^t
-
-Multiplying both sides by 2^t eliminates the denominator on the right:
-
-500 x 2^t x 2^t = 32,000
-
-Applying the exponent rule 2^t x 2^t = 2^(2t):
-
-500 x 2^(2t) = 32,000
-
-Dividing both sides by 500:
-
-2^(2t) = 32,000 / 500 = 64
-
-Expressing 64 as a power of 2 — since 2^1 = 2, 2^2 = 4, 2^3 = 8, 2^4 = 16, 2^5 = 32, 2^6 = 64 — we obtain:
-
-2^(2t) = 2^6
-
-Because the bases are identical and positive (and not equal to 1), the exponents must be equal:
-
-2t = 6, therefore t = 3
-
-Thus t* = 3 decades.
-
-**Solving for V.**
-
-Substituting t* = 3 into P(t):
-
-P(3) = 500 x 2^3 = 500 x 8 = 4,000
-
-Verification via Q(t):
-
-Q(3) = 32,000 / 2^3 = 32,000 / 8 = 4,000
-
-Both models yield the same output at t = 3, confirming V = 4,000.
-
-**Eliminating the remaining candidates.**
-
-The candidate list for column 1 includes t = 2 and t = 4, and the candidate list for column 2 includes 2,000 and 8,000 as plausible distractors. We verify these are incorrect:
-
-- t = 2: P(2) = 500 x 4 = 2,000 and Q(2) = 32,000 / 4 = 8,000. The outputs differ, so t = 2 is not an intersection.
-- t = 4: P(4) = 500 x 16 = 8,000 and Q(4) = 32,000 / 16 = 2,000. The outputs again differ, so t = 4 is not an intersection.
-
-The distractor values 2,000 and 8,000 each appear as one model's output at t = 2 or t = 4, not as a shared value. Only at t = 3 do the two models agree, and the shared value there is 4,000, not any other candidate in the list.
-
-The correct answers are t* (decades) = 3 and V (shared population) = 4,000.
+**fastest_path:** Set the models equal: 500 x 2^t = 32,000/2^t, so 4^t = 64 and t = 3.
+**explanation:** Equating the populations gives 500 x 2^t = 32,000/2^t. Multiply by 2^t and divide by 500: 2^(2t) = 64, or 4^t = 64 = 4^3. Thus t* = 3 decades. Substituting into Town A's model gives V = 500 x 2^3 = 500 x 8 = 4,000. Select 3 for t* and 4,000 for V.
+**common_trap:** Setting the expressions equal but failing to account for the second factor of 2^t when clearing the denominator.
+**takeaway:** For one exponential growing while another decays, clear the denominator and solve the resulting common-base equation.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -1902,49 +1504,10 @@ From the statements below, identify the one that most strengthens the economist'
 | Some consumers increase their saving when interest rates rise, which further reduces their discretionary spending  |             |              |
 
 **answer:** Strengthens = "Durable goods account for approximately 60% of total consumer spending"; Gap in Chain = "When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead"
-**explanation:** **Governing principle.** In a Two-Part Analysis causal-chain question, two distinct questions are posed of the candidate statements. For the "Strengthens" column, the task is to find the statement that makes the argument's conclusion more likely to be true — typically by supplying evidence for an implicit assumption the argument requires. For the "Gap in Chain" column, the task is to find the statement that identifies a place in the stated causal sequence where the chain could break without the argument acknowledging the possibility.
-
-**The economist's stated causal chain.** Each step may be labeled explicitly:
-
-- Step A: A central bank rate hike causes consumer borrowing to decrease.
-- Step B: A decrease in consumer borrowing causes spending on durable goods to decline.
-- Step C (conclusion): Raising interest rates reduces overall consumer spending.
-
-The inferential move from Step B to Step C is the critical one. The argument implicitly requires that durable-goods spending is a large enough fraction of total consumer spending that a decline in durable-goods spending produces a material decline in overall consumer spending. If durable goods represent, say, 3% of total consumer spending, then Step C does not follow from Step B even if Steps A and B are both valid.
-
-**Analysis of each candidate for Column 1 (Strengthens).**
-
-Let S_d denote spending on durable goods and S_total denote total consumer spending.
-
-- "Durable goods account for approximately 60% of total consumer spending": this states S_d / S_total is approximately 0.60. If durable-goods spending declines significantly, then because durable goods constitute roughly 60% of the total, overall spending must also decline materially. This directly closes the implicit assumption gap between Step B and Step C. It is the strongest strengthener of the conclusion.
-
-- "A cross-country study found that central bank rate hikes correlate with reduced durable goods purchases": this provides correlational evidence consistent with the overall chain from Step A through Step B, which the argument already asserts as given premises. Supporting already-stated premises does not strengthen the conclusion as directly as supplying a missing logical bridge.
-
-- "Some consumers increase their saving when interest rates rise, which further reduces their discretionary spending": this introduces an additional causal mechanism outside the stated chain. It is consistent with the conclusion but does not directly address whether the durable-goods channel alone is sufficient to move overall spending.
-
-- "The central bank has raised interest rates four times in the past two years": this is historical background about past policy actions. It does not address whether future rate hikes will reduce overall spending and therefore does not logically strengthen the prospective conclusion.
-
-- "When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead": this suggests that one borrowing channel closing prompts consumers to open another, which would tend to weaken rather than strengthen the argument.
-
-The credited answer for Column 1 is therefore "Durable goods account for approximately 60% of total consumer spending," because it supplies the quantitative bridge that makes the step from "durable-goods spending falls" to "overall consumer spending falls" logically valid.
-
-**Analysis of each candidate for Column 2 (Gap in Chain).**
-
-The question now is which statement reveals a place where the stated causal chain could fail.
-
-- "When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead": this directly targets Step A. The argument assumes that higher interest rates reduce consumer borrowing in the aggregate. If consumers who can no longer afford mortgage-rate borrowing simply migrate to credit-card borrowing, then aggregate borrowing may not fall, durable-goods purchases may continue at roughly the same level, and the chain breaks at its first link. This is the most significant gap because it challenges the foundational premise on which every subsequent step depends. If consumers substitute one credit channel for another, the causal mechanism the economist describes never gains traction.
-
-- "Durable goods account for approximately 60% of total consumer spending": as established above, this fills a gap; it does not reveal one.
-
-- "A cross-country study found that rate hikes correlate with reduced durable goods purchases": this supports the overall chain and does not reveal a gap.
-
-- "The central bank has raised interest rates four times in the past two years": this is extraneous historical data that neither supports nor attacks any link in the chain.
-
-- "Some consumers increase their saving when interest rates rise": this is directionally consistent with the economist's conclusion and therefore does not reveal a gap.
-
-The credited answer for Column 2 is therefore "When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead," because it identifies that the first causal link — higher rates reduce borrowing — need not hold if consumers substitute across borrowing instruments.
-
-The correct answers are Strengthens = Durable goods account for approximately 60% of total consumer spending and Gap in Chain = When mortgage borrowing becomes costlier, many consumers shift to credit card spending instead.
+**fastest_path:** A bridges durable-goods spending to total spending; B shows borrowing may shift channels instead of falling.
+**explanation:** Choose A for Strengthens. If durable goods make up about 60% of consumer spending, a decline in that category is large enough to reduce the total, closing the argument's final gap. Choose B for Gap in Chain. If consumers replace costlier mortgage borrowing with credit-card borrowing, overall borrowing may not decrease, so the chain can fail at its first link. C supports only the durable-goods link, D is background, and E adds another route by which spending could fall.
+**common_trap:** Selecting evidence that merely repeats an existing link instead of filling or breaking the missing link.
+**takeaway:** Map each link in a causal chain; strengthen the unsupported transition and attack the earliest link that may fail.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -2115,33 +1678,10 @@ From the statements below, select the conclusion of the argument (column 1) and 
 | The restaurant reduced its prices by 10% to promote the new menu | | |
 
 **answer:** Conclusion = "The new menu is a clear success"; Alt Explanation = "The restaurant's closest competitor closed permanently the prior month"
-**explanation:** **Identifying the Conclusion.**
-
-In argument analysis, the conclusion is the claim that the author intends to establish and that the remaining statements are offered to support. The premises are the evidence; the conclusion is what that evidence is meant to prove.
-
-The manager's argument contains the following statements:
-
-- "Our restaurant introduced a new menu last month." (background fact)
-- "Customer visits increased by 15% compared to the same month last year." (evidence)
-- "Customers rated the new dishes an average of 4.5 out of 5." (evidence)
-- "The new menu is a clear success." (the claim the preceding evidence is meant to establish)
-
-"Customer visits increased by 15% last month" and "Customers rated the new dishes an average of 4.5 out of 5" both function as premises — they are presented as factual observations. "The new menu is a clear success" is the claim those observations are marshaled to support. It is therefore the conclusion of the argument.
-
-**Identifying the Strongest Alternative Explanation.**
-
-An alternative explanation, in the context of causal reasoning, is a statement that, if true, could independently account for the observed phenomenon — here, the 15% increase in customer visits — without crediting the cause the author proposes (the new menu).
-
-The remaining candidates are evaluated as follows:
-
-- "Customer visits increased by 15% last month" — this is the explanandum, the phenomenon requiring explanation. It cannot serve as its own explanation.
-- "Customers rated the new dishes an average of 4.5 out of 5" — this is a second premise within the original argument. It describes satisfaction with the menu itself, making it consistent with the author's conclusion rather than an alternative to it.
-- "The restaurant reduced its prices by 10% to promote the new menu" — a price reduction could attract additional customers, but the phrasing ties the reduction directly to promoting the new menu. This makes it at least partially connected to the new menu as a cause, weakening its force as a purely independent alternative explanation.
-- "The restaurant's closest competitor closed permanently the prior month" — this event is entirely independent of the new menu. If the nearest competitor shut down, its former customers would plausibly redirect their visits to this restaurant. This alone would be sufficient to produce a measurable increase in customer visits, with no causal role for the new menu whatsoever.
-
-The competitor's permanent closure provides the strongest alternative explanation because it is causally independent of the new menu, it is temporally proximate (occurring the prior month, just before the measured increase), and it directly predicts a redirection of consumer traffic to the restaurant in question.
-
-The correct answers are Conclusion = The new menu is a clear success and Alt Explanation = The restaurant's closest competitor closed permanently the prior month.
+**fastest_path:** B is the judgment supported by the statistics; D supplies an external event that can independently explain more visits.
+**explanation:** Choose B for Conclusion: the author cites increased visits and strong dish ratings to support the judgment that the menu is a success. Choose D for Alternative Explanation. A nearby competitor's closure could shift customers to this restaurant regardless of its new menu. E is tied to promoting the menu and could also affect visits, but the competitor closure is the cleaner independent cause. A and C are evidence already stated in the argument.
+**common_trap:** Selecting a supporting statistic as the conclusion or choosing a factor bundled with the menu launch over an independent market change.
+**takeaway:** Find the evaluative claim for the conclusion and prefer an independent event as the strongest alternative cause.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -2483,29 +2023,10 @@ From the statements below, select the statement that most seriously weakens the 
 | Post-program surveys show that mentees cite career-growth opportunities as their primary reason for staying | | |
 
 **answer:** Weakens = Turnover at peer companies in the same sector dropped; Supports = Employees who participated in the mentorship program left the company
-**explanation:** A causal conclusion of the form "intervention X caused outcome Y" can be weakened by identifying an alternative explanation that accounts for Y without X, and can be supported by evidence that more directly isolates X as the operative cause of Y.
-
-The company's annual turnover fell from 22% to 13% — a drop of 22 - 13 = 9 percentage points — over the 18 months following the launch of the mentorship program. The conclusion is that the mentorship program caused this decline.
-
-A weakener must undermine the link between the mentorship program and the observed turnover reduction. The most effective weakener introduces an alternative explanation powerful enough to account for the 9-point decline on its own.
-
-"Turnover at peer companies in the same sector dropped by an average of 10 points over the same period, with no mentorship programs." If companies in the same sector experienced a 10-point decline without any mentorship program, the 9-point decline at this company falls entirely within what sector-wide forces alone would predict. The causal role of the program is therefore rendered unnecessary to explain the data. This is a classic alternative-cause weakener: it provides an independent mechanism — sector-wide conditions — that fully accounts for the magnitude of the effect, severing the claimed causal link.
-
-"A company-wide salary increase of 15% was implemented three months before the mentorship program launched." This introduces a confounding variable internal to the company. However, it does not supply an external benchmark showing that the entire 9-point drop is accounted for by a non-program factor; it merely identifies one possible confound. The sector-wide benchmark is a more serious weakener because it demonstrates that an equivalent or larger decline occurred in the absence of any mentorship program, making the program causally superfluous.
-
-The remaining candidates do not introduce alternative causal explanations for the turnover reduction and therefore do not weaken the conclusion.
-
-A supporter must make the causal link between the mentorship program and reduced turnover more credible. The strongest support comes from evidence that isolates the program as the operative variable.
-
-"Employees who participated in the mentorship program left the company at half the rate of employees who did not participate." This is an internal, within-company controlled comparison. Defining r_p as the turnover rate for program participants and r_n as the turnover rate for non-participants, the statement establishes r_p = (1/2) * r_n. Because both groups exist within the same company during the same period, they are exposed to the same salary increases, industry conditions, and macroeconomic factors. The only systematic difference between the groups is participation in the mentorship program. The finding therefore isolates the program's effect and directly supports a causal attribution.
-
-"Post-program surveys show that mentees cite career-growth opportunities as their primary reason for staying." This is consistent with the mentorship program helping retention, but it is limited by self-report bias and does not control for other variables. It is weaker support than the direct rate comparison above.
-
-"The program required a significant time commitment that temporarily reduced measured output." This observation concerns productivity, not turnover, and neither strengthens nor weakens the causal conclusion about retention.
-
-The weakener works by showing that a 10-point sector-wide decline — larger than the company's own 9-point decline — occurred simultaneously in companies with no mentorship program, making external conditions a fully sufficient explanation. The supporter works by holding all other factors constant within the same company and showing a 2:1 turnover-rate differential that aligns precisely with program participation status.
-
-The correct answers are Weakens = Turnover at peer companies in the same sector dropped by an average of 10 points over the same period, with no mentorship programs and Supports = Employees who participated in the mentorship program left the company at half the rate of employees who did not participate.
+**fastest_path:** A shows the decline also occurred without mentorship; B compares participants with nonparticipants inside the company.
+**explanation:** Choose A for Weakens. Peer companies without mentorship programs saw an average ten-point turnover decline, so a sector-wide force can explain the company's nine-point decline. Choose B for Supports: mentorship participants left at half the rate of nonparticipants, directly linking participation to retention. C also offers a possible cause, but A is stronger because it provides an external comparison matching the observed change. E is supportive but relies on self-reported reasons rather than actual departure rates.
+**common_trap:** Preferring a survey response over behavioral evidence or overlooking a comparison group without the program.
+**takeaway:** A no-treatment comparison tests alternative causes; participant outcomes provide direct, though not perfect, support.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -2529,44 +2050,10 @@ Select the value of P1 (column 1) and the value of P2 (column 2).
 | 7/12  |                |                              |
 
 **answer:** P1 = 5/12, P2 = 4/11
-**explanation:** **Conditional Probability — Sequential Draws Without Replacement**
-
-We apply the classical definition of probability and the formal definition of conditional probability. For any event A, P(A) = (number of favorable outcomes) / (total number of equally likely outcomes). For conditional probability, P(B | A) = P(A and B) / P(A), which in the case of sequential draws without replacement reduces to a direct count on the reduced sample space after the first draw has occurred.
-
-**Setting up the problem.**
-
-Let the bag contain 5 red marbles and 7 blue marbles, for a total of 5 + 7 = 12 marbles. Define:
-
-- P1 = P(first marble is red)
-- P2 = P(second marble is red | first marble was red)
-
-**Computing P1.**
-
-On the first draw, all 12 marbles are present and each is equally likely to be selected. There are 5 favorable outcomes (any of the 5 red marbles). Therefore:
-
-P1 = 5/12
-
-Among the candidate values, 5/12 is listed and is the unique correct match.
-
-**Computing P2.**
-
-We now condition on the event that the first marble drawn was red. Because the draw is without replacement, that red marble is removed from the bag before the second draw. The bag therefore contains:
-
-- Red marbles remaining: 5 - 1 = 4
-- Blue marbles remaining: 7 (unchanged)
-- Total marbles remaining: 4 + 7 = 11
-
-On the second draw, the reduced sample space has 11 equally likely outcomes, of which 4 are favorable (red). Therefore:
-
-P2 = 4/11
-
-Among the candidate values, 4/11 is listed and is the unique correct match.
-
-**Checking the distractors.**
-
-The value 5/11 would correspond to the probability the second marble is red given the first marble drawn was blue (leaving all 5 red marbles in an 11-marble pool) — a different conditional event. The value 4/12 incorrectly applies the reduced numerator to the original denominator, conflating two different sample spaces. The value 1/12 has no direct interpretation here, and 7/12 is the probability the first marble drawn is blue, not red. None of these match the events defined in the prompt.
-
-The correct answers are P1 (first red) = 5/12 and P2 (second red, given first red) = 4/11.
+**fastest_path:** First-draw red uses 5 of 12; after a red is removed, the conditional second draw uses 4 of 11.
+**explanation:** Before any draw, 5 of the 12 marbles are red, so P1 = 5/12. Given that the first marble was red, 4 red and 7 blue marbles remain, 11 total. Therefore P2 = 4/11. Select 5/12 for P1 and 4/11 for P2.
+**common_trap:** Reusing 5/12 for the second draw even though the condition removes one red marble and one total marble.
+**takeaway:** In conditional draws without replacement, update the favorable count and total after the stated first outcome.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -2720,66 +2207,10 @@ From the statements below, select the one that most seriously weakens the conclu
 | The $1.5 million recovery target represents only 75% of the stated $2 million loss, leaving a residual gap | | |
 
 **answer:** Weakens = Most TechCorp employees will continue performing work tasks; Unstated Assumption = The 30% productivity difference between high-vacation and low-vacation employees
-**explanation:** Governing framework. A Two-Part Analysis question requires identifying, for one column, the statement that most seriously undermines the conclusion, and for the other column, the statement that names a critical unstated assumption the argument takes for granted. These are distinct logical roles: a weakener supplies evidence that breaks a causal or inferential link the argument relies on; an unstated assumption is a premise the argument needs to be true but never explicitly states.
-
-Reconstructing the argument.
-
-Let V = the average number of vacation days taken by "high-vacation" employees (>= 15 days per year).
-Let L = the average number of vacation days taken by "low-vacation" employees (< 15 days per year).
-Let P_H = productivity of high-vacation employees, P_L = productivity of low-vacation employees.
-
-The survey establishes: P_H = 1.30 * P_L, i.e., a 30% productivity premium associated with taking at least 15 vacation days.
-
-Let D = the annual productivity loss TechCorp incurs from overworked employees = $2,000,000.
-Let R = the projected recovery if TechCorp mandates 15 minimum vacation days.
-
-The consulting firm concludes: R >= $1,500,000 (i.e., R >= 0.75 * D).
-
-Identifying the inferential chain. The argument moves through three links:
-
-1. The 30% productivity difference is caused by vacation, not merely correlated with it.
-2. Mandating vacation will function as genuine rest and thereby deliver that productivity benefit.
-3. The survey's findings generalize to TechCorp's specific workforce and industry context.
-
-Evaluating each candidate for Column 1 (Weakens).
-
-"Most TechCorp employees will continue performing work tasks during mandated vacation time, meaning the time off will not function as genuine rest." This directly attacks Link 2. If employees work during vacation, mandated time off produces no genuine rest, the causal mechanism that was supposed to generate the productivity gain is broken entirely, and the recovery projection collapses. This is a direct mechanism failure.
-
-"The $2 million productivity loss estimate was derived from a study of a different industry with significantly lower workloads." This undermines the reliability of the $2 million baseline figure. However, the conclusion is about recovering $1,500,000 of whatever the true loss is. If the baseline is unreliable, the conclusion is weakened, but the weakening is indirect — it attacks the measurement of D rather than the causal mechanism behind R.
-
-"The 30% productivity difference between high-vacation and low-vacation employees reflects that high performers self-select into taking longer vacations, not that vacation itself causes productivity gains." This attacks Link 1 (causation vs. correlation). It weakens the argument substantially by showing the 30% figure cannot be imported as a causal effect of mandating vacation. However, this statement also fits precisely as the critical unstated assumption (see below), making it the stronger candidate for Column 2.
-
-"Mandating vacation will create scheduling complexity that increases management overhead costs." This raises a countervailing cost, which is relevant to net benefit but does not strike at the core conclusion that R >= $1,500,000 in productivity recovery. It weakens net ROI, not the core productivity-recovery claim.
-
-"The $1.5 million recovery target represents only 75% of the stated $2 million loss, leaving a residual gap." This is a restatement of arithmetic already explicit in the argument (1,500,000 / 2,000,000 = 0.75). It does not introduce any new information and therefore does not weaken anything.
-
-The strongest weakener is the first option: it identifies a concrete mechanism failure — employees continuing to work during vacation — that directly prevents the causal chain from operating, regardless of whether vacation causes productivity gains in principle.
-
-Evaluating each candidate for Column 2 (Unstated Assumption).
-
-An unstated assumption is a premise that must be true for the conclusion to follow, but that the argument never articulates.
-
-"Most TechCorp employees will continue performing work tasks during mandated vacation time..." This is the negation of an assumption the argument makes, not the assumption itself. Framed as an assumption, the argument assumes employees will not work during vacation. But as stated, this option is a factual claim about TechCorp's employees that weakens the mechanism — it is better deployed as a weakener.
-
-"The $2 million productivity loss estimate was derived from a study of a different industry..." This is a factual statement about the provenance of a data point, not an assumption embedded in the argument's inferential chain.
-
-"The 30% productivity difference reflects that high performers self-select into taking longer vacations, not that vacation itself causes productivity gains." Precisely stated, this option describes what is true if the argument's critical unstated assumption is false. The argument's conclusion requires that the 30% productivity premium is caused by vacation itself, not merely a selection effect. The argument never states this; it assumes it. This option makes that hidden assumption visible by articulating the rival explanation — it is the classic correlation-vs.-causation assumption that must hold for the survey evidence to support the conclusion. This is the most critical unstated assumption.
-
-"Mandating vacation will create scheduling complexity..." This is a potential side effect, not an assumption embedded in the argument's inferential chain.
-
-"The $1.5 million recovery target represents only 75%..." This is pure arithmetic and names no assumption.
-
-Therefore, the unstated assumption is the third option: the argument silently assumes that vacation causes the productivity gain rather than that productivity differences explain vacation-taking behavior.
-
-Verification by negation test. Negating the unstated assumption — that is, positing that high performers merely self-select into taking more vacation — means the 30% figure carries no causal weight. Mandating vacation for lower performers would not replicate that premium, and R >= $1,500,000 would not follow. The argument collapses entirely, confirming this is a necessary and unstated assumption.
-
-Summary of derivation.
-
-For Weakens: the mechanism-failure option is preferred over the correlation/causation option because (a) it introduces new empirical content about TechCorp specifically, (b) it severs the causal link at the point of implementation rather than at the statistical inference stage, and (c) the correlation/causation option is more precisely the unstated assumption.
-
-For Unstated Assumption: the self-selection option is the only candidate that names a premise the argument must silently rely on — that the survey's 30% gap reflects a causal effect of vacation, not a selection artifact.
-
-The correct answers are Weakens = Most TechCorp employees will continue performing work tasks during mandated vacation time, meaning the time off will not function as genuine rest and Unstated Assumption = The 30% productivity difference between high-vacation and low-vacation employees reflects that high performers self-select into taking longer vacations, not that vacation itself causes productivity gains.
+**fastest_path:** Separate the roles: A breaks the proposed rest mechanism at TechCorp; C exposes the cause-versus-selection assumption behind the 30% survey gap.
+**explanation:** For Weakens, choose A. If employees keep working during mandated vacation, the policy does not create genuine rest, so the proposed route to higher productivity fails. For Unstated Assumption, choose C. The projection treats the 30% association as a causal effect of vacation; if high performers simply choose more vacation, forcing others to take vacation need not reproduce the gain. B questions the loss estimate, D concerns cost rather than recovered productivity, and E merely restates that $1.5 million is 75% of $2 million.
+**common_trap:** Using C for both columns because it weakens the argument; the task requires the best distinct role for each selection.
+**takeaway:** In causal Two-Part questions, distinguish a failed implementation mechanism from an unstated cause-versus-correlation assumption.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -2869,47 +2300,10 @@ Select the value of S (column 1) and the value of R (column 2).
 | 31  |                |              |
 
 **answer:** S = 17, R = 17
-**explanation:** **The Chinese Remainder Theorem and modular arithmetic** govern this problem. A positive integer N satisfies two simultaneous congruence conditions; the task is to find the smallest such N (call it S) and then compute S mod 28.
-
-**Setting up the congruences.**
-
-Let N be a positive integer. The two conditions translate directly into congruence notation:
-
-- N = 7q + 3 for some non-negative integer q (remainder 3 when divided by 7)
-- N = 4p + 1 for some non-negative integer p (remainder 1 when divided by 4)
-
-We seek the smallest positive integer N satisfying both simultaneously.
-
-**Solving by substitution.**
-
-From the first condition, N takes the values 3, 10, 17, 24, 31, 38, ... (adding 7 each time). We test each against the second condition (N mod 4 = 1):
-
-- N = 3: 3 / 4 gives remainder 3. Fails.
-- N = 10: 10 / 4 gives remainder 2. Fails.
-- N = 17: 17 / 4 = 4 remainder 1. Satisfies both conditions.
-
-Therefore S = 17 is the smallest positive integer satisfying N mod 7 = 3 and N mod 4 = 1.
-
-**Verification of S = 17.**
-
-- 17 = 7(2) + 3, so 17 mod 7 = 3. Confirmed.
-- 17 = 4(4) + 1, so 17 mod 4 = 1. Confirmed.
-
-**Why the period is 28.**
-
-By the Chinese Remainder Theorem, since gcd(7, 4) = 1, the two moduli are coprime, and the combined solution repeats with period 7 x 4 = 28. The next values satisfying both conditions are 17 + 28 = 45, 17 + 56 = 73, and so on. This confirms that any solution has the form N = 17 + 28k for non-negative integer k.
-
-**Computing R = S mod 28.**
-
-We compute 17 / 28. Since 17 < 28, the quotient is 0 and the remainder is 17 itself:
-
-17 = 28(0) + 17, therefore R = 17.
-
-**Matching against the candidate values.**
-
-The candidate row values are 3, 10, 17, 21, 24, and 31. For Column 1, S = 17 appears in the list. For Column 2, R = 17 also appears in the list. No other candidate satisfies both conditions simultaneously: for instance, N = 24 satisfies N mod 7 = 3 but 24 mod 4 = 0, not 1; N = 21 satisfies N mod 4 = 1 but 21 mod 7 = 0, not 3.
-
-The correct answers are S (smallest N) = 17 and R (S mod 28) = 17.
+**fastest_path:** List numbers that leave remainder 3 on division by 7: 3, 10, 17, 24; the first that is 1 mod 4 is 17.
+**explanation:** Numbers congruent to 3 modulo 7 are 3, 10, 17, 24, and so on. Their remainders modulo 4 are 3, 2, 1, and 0, so the smallest satisfying both conditions is S = 17. Because 17 is already below 28, its remainder when divided by 28 is also R = 17. Select 17 for both columns.
+**common_trap:** Stopping at the first number that satisfies one congruence without checking the other.
+**takeaway:** For small simultaneous remainder conditions, list one progression and test the second modulus.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -3323,17 +2717,10 @@ From the statements below, identify the conclusion of the argument (row 1) and t
 | Advertising is the only driver of sales for every product                               |            |            |
 
 **answer:** Conclusion = "The reduced advertising caused the drop in sales", Assumption = "No other factor materially contributed to the decline in sales"
-**explanation:** A Two-Part Analysis question of this type asks the solver to isolate the conclusion of the argument and to identify the central unstated assumption — the suppressed premise without which the link from evidence to conclusion fails.
-
-**Identifying the conclusion.** The conclusion is the claim the argument is designed to establish; it is supported by the premises and does not itself serve as support for another claim. The argument offers two explicit evidence statements: sales fell 20%, and the advertising budget was cut in half. Both are presented in support of the claim introduced by "Therefore": the reduced advertising caused the drop in sales. That causal statement is what the arguer is trying to prove, so it is the conclusion.
-
-**Identifying the central unstated assumption.** The inference follows a post hoc pattern: two events coincided in the same quarter, so one is claimed to have caused the other. For that causal leap to hold, the argument must assume that no other factor — such as a new competitor, a price increase, a supply shortage, or a broader market downturn — materially contributed to the 20% decline. The statement "No other factor materially contributed to the decline in sales" is therefore the load-bearing assumption.
-
-**Confirming by negation.** If one negates the assumption — suppose some other factor did materially contribute to the decline — the conclusion collapses, because the drop could then be explained without reference to advertising. A negation that destroys the argument confirms the statement is the necessary assumption.
-
-**Evaluating the remaining candidates.** "Sales of the flagship product fell 20% last quarter" and "The advertising budget was cut by half last quarter" are explicit premises, not the conclusion and not unstated. "Advertising is the only driver of sales for every product" is a universal generalization far stronger than the argument needs; the argument makes only a local causal claim about one product in one quarter, so this sweeping principle is not the minimal assumption doing the work.
-
-The correct answers are Conclusion = The reduced advertising caused the drop in sales and Assumption = No other factor materially contributed to the decline in sales.
+**fastest_path:** A is the causal claim; B is the no-competing-cause assumption needed to infer causation from simultaneous changes.
+**explanation:** Choose A for Conclusion: the author claims that reduced advertising caused the 20% sales decline. Choose B for Assumption. The timing supports that claim only if no other material factor, such as price, distribution, or demand, caused the decline. C and D are observations used as premises. E is much stronger than necessary; the argument need not assume advertising is the only sales driver for every product.
+**common_trap:** Choosing a universal assumption when the argument needs only to rule out a material alternative cause in this case.
+**takeaway:** Use the minimal required assumption, not an extreme claim that extends beyond the argument.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -3356,15 +2743,10 @@ From the statements below, identify one that would most strengthen the argument 
 | Many customers report enjoying the taste of the shake                                            |             |         |
 
 **answer:** Strengthens = "In a randomized trial, those given the shake lost 5 pounds while an identical group given a placebo shake lost none", Weakens = "Participants who drank the shake daily also began exercising five times a week during the study"
-**explanation:** **Governing principle.** A statement strengthens a causal argument when it provides evidence of a genuine causal link and rules out competing explanations; it weakens the argument when it introduces an alternative cause that could independently produce the observed effect. Each column is evaluated as an independent sub-question.
-
-**The argument.** The company observes that daily shake drinkers lost an average of 6 pounds and concludes that the shake is causally effective for weight loss. The logical gap is the leap from correlation to causation: other factors changing alongside shake consumption could account for the loss.
-
-**Evaluating the candidates for Strengthens.** The randomized-trial statement is decisive. Random assignment neutralizes pre-existing differences between groups in expectation, and a placebo control isolates the effect of the shake itself. Because the shake group lost 5 pounds while an otherwise identical placebo group lost none, the difference is attributable to the shake rather than to dieting trends, seasonal behavior, or self-selection. This closes the correlation-to-causation gap and is the strongest available support. The other candidates — the shake's flavor count, its protein content, and customer taste preferences — speak to product features or satisfaction, not to whether the shake causes weight loss, so none strengthens the causal claim.
-
-**Evaluating the candidates for Weakens.** The exercise statement introduces a plausible simultaneous alternative cause. If the same people who drank the shake daily also started exercising five times a week during the study, then the 6-pound average loss could be attributable to the new exercise regimen rather than to the shake. Because both behaviors varied together in the observational data, the argument cannot separate the two, and the causal attribution to the shake is undermined. This is a textbook alternative cause: it does not deny that weight was lost, only that the shake is the cause. The remaining candidates provide no alternative causal mechanism and are irrelevant to the inference.
-
-The correct answers are Strengthens = In a randomized trial, those given the shake lost 5 pounds while an identical group given a placebo shake lost none and Weakens = Participants who drank the shake daily also began exercising five times a week during the study.
+**fastest_path:** A isolates the shake against a placebo; B adds exercise as a powerful competing cause of weight loss.
+**explanation:** Choose A for Strengthens. Random assignment to shake and placebo groups that are otherwise identical isolates the product, and only the shake group loses weight. Choose B for Weakens: participants also began exercising five times weekly, which could independently explain the six-pound loss. Flavor, protein content, and taste do not establish whether the shake caused weight loss.
+**common_trap:** Treating a product ingredient or positive customer opinion as stronger evidence than a controlled outcome comparison.
+**takeaway:** Randomized comparison supports causation; a simultaneous behavioral change creates a direct alternative cause.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -3386,41 +2768,10 @@ A printing job can be completed by Machine P alone in 12 hours or by Machine Q a
 | 1/2   |                |                     |
 
 **answer:** Hours Together = 3, Fraction by Q Alone = 3/8
-**explanation:** **Governing principle.** Each machine's rate is the reciprocal of its solo completion time, and rates add when machines work simultaneously. The job total of 1 is split between a "together" phase and a "Q-alone" phase, and the durations of the two phases must sum to the total elapsed time.
-
-**Setting up rates.** Let the full job equal 1 unit. Machine P's rate is 1/12 job per hour and Machine Q's rate is 1/8 job per hour. Their combined rate is:
-
-1/12 + 1/8
-
-Using the least common denominator 24: 1/12 = 2/24 and 1/8 = 3/24, so the combined rate is 5/24 job per hour.
-
-**Defining the phases.** Let h be the number of hours both machines work together. After P breaks down, Q works alone for the remaining (6 - h) hours at rate 1/8 job per hour. The total work done across both phases equals 1:
-
-(5/24) * h + (1/8) * (6 - h) = 1
-
-**Solving for h.** Multiply every term by 24 to clear denominators (note 24 * 1/8 = 3):
-
-5h + 3(6 - h) = 24
-
-5h + 18 - 3h = 24
-
-2h = 6
-
-h = 3
-
-So the machines worked together for 3 hours.
-
-**Solving for the fraction completed by Q alone.** After P breaks down, Q works alone for 6 - 3 = 3 hours at rate 1/8 job per hour, completing:
-
-(1/8) * 3 = 3/8
-
-So Q alone completes 3/8 of the job after P breaks down.
-
-**Verification.** Together for 3 hours produces (5/24)(3) = 15/24 = 5/8 of the job; Q alone for the remaining 3 hours produces 3/8; the two sum to 5/8 + 3/8 = 1, the full job, and the total elapsed time is 3 + 3 = 6 hours, matching the prompt.
-
-**Matching candidate values.** The candidate durations are 2.4, 3, and 4.8 hours, and the candidate fractions are 1/8, 3/8, and 1/2. The duration h = 3 satisfies the work equation, and the fraction 3/8 matches Q's solo contribution. The value 2.4 (which is 12/5, the time for P and Q to finish a whole job together) does not satisfy the broken-down scenario, and the fraction 1/2 would require Q to work alone for 4 hours, contradicting the 6-hour total.
-
-The correct answers are Hours Together = 3 and Fraction by Q Alone = 3/8.
+**fastest_path:** Let t be joint-work hours: (5/24)t + (1/8)(6 - t) = 1.
+**explanation:** P and Q together work at 1/12 + 1/8 = 5/24 job per hour. If they work together for t hours, Q then works alone for 6 - t hours. Thus (5/24)t + (1/8)(6 - t) = 1. Multiplying by 24 gives 5t + 18 - 3t = 24, so t = 3. Q works alone for 3 hours and completes 3 x 1/8 = 3/8 of the job. Select 3 and 3/8.
+**common_trap:** Using six hours as the joint-work time or adding completion times instead of work fractions.
+**takeaway:** Split the timeline into phases and make the completed-work fractions sum to one job.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -3543,15 +2894,10 @@ From the options below, identify a statement that, if true, would provide an alt
 | Self-checkout kiosks are popular with younger shoppers                                      |                 |         |
 
 **answer:** Alt Explanation = "The stores that adopted the kiosks are mostly in low-traffic suburbs with shorter lines", Support = "When ten matched stores added kiosks, their checkout times dropped 14% the following month"
-**explanation:** **Governing principle.** This cause-and-effect Two-Part Analysis requires distinguishing an alternative explanation — a statement that accounts for the observed difference through a mechanism other than the one the author assumes — from a support statement that directly strengthens the author's causal conclusion. Each column is evaluated independently.
-
-**The argument.** The manager observes that kiosk-equipped stores process customers 15% faster and concludes that the kiosks cause the speedup, recommending a chainwide rollout. The vulnerability is the leap from a between-store correlation to causation: a confounding difference between the two sets of stores could explain the gap without the kiosks doing any work.
-
-**Column 1 — Alternative Explanation.** The statement that kiosk-adopting stores are mostly in low-traffic suburbs with shorter lines introduces a confounding variable. If those stores already had shorter lines because of lower customer traffic, then their faster checkout times could reflect light demand rather than the kiosks. This common difference between the two store groups accounts for the 15% gap without requiring the kiosks to be the cause, making it a direct alternative explanation. The other options do not supply a competing cause: kiosk advertisements, identical cashier counts, and popularity with younger shoppers do not explain why checkout would be faster independent of the kiosks.
-
-**Column 2 — Support.** The statement that ten matched stores saw checkout times drop 14% the month after adding kiosks is a before-and-after comparison within the same stores. Because the stores are matched and serve as their own baseline, the comparison controls for the location and traffic differences that plague the cross-store correlation. An observed drop of about 14%, close to the cited 15% gap, provides direct evidence that introducing the kiosks produces the effect, which is the strongest available support for the rollout recommendation. The advertising, cashier-count, and demographic-popularity statements describe features or preferences but offer no evidence that the kiosks cause faster checkout.
-
-The correct answers are Alt Explanation = The stores that adopted the kiosks are mostly in low-traffic suburbs with shorter lines and Support = When ten matched stores added kiosks, their checkout times dropped 14% the following month.
+**fastest_path:** A makes store traffic a confounder; B compares matched stores before and after installing the kiosks.
+**explanation:** Choose A for Alternative Explanation. Kiosk stores are mainly in low-traffic suburbs, where shorter lines could produce faster processing even without kiosks. Choose B for Support. Ten matched stores improved by 14% after adding kiosks, closely reproducing the reported effect while controlling store comparability. Advertising, equal cashier counts, and popularity among younger shoppers do not isolate the cause of checkout speed.
+**common_trap:** Treating equal cashier staffing as enough to control for the major difference in customer traffic.
+**takeaway:** A confounder explains both adoption and outcome; matched before-and-after evidence more directly tests the intervention.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -3910,15 +3256,10 @@ From the statements below, identify the conclusion of the argument (row 1) and t
 | A four-day work week always reduces turnover at every company                       |            |            |
 
 **answer:** Conclusion = "The four-day work week reduced turnover at our company", Assumption = "No other factor materially contributed to the observed drop in turnover"
-**explanation:** In this Two-Part Analysis question the two tasks are to isolate the conclusion of the argument and to identify the central unstated assumption — the suppressed premise without which the inference from evidence to conclusion collapses.
-
-**Identifying the conclusion.** The conclusion is the claim the argument is designed to establish; it is supported by the premises and does not itself support another claim in the argument. The argument offers two explicit evidence statements — the company switched to a four-day week in January, and turnover fell 20% by December — both introduced in support of the claim signaled by "Therefore": the four-day work week reduced turnover at the company. That final claim is what the arguer seeks to prove, so it is the conclusion.
-
-**Identifying the central unstated assumption.** The inference is causal and built on temporal succession: the policy preceded the drop, therefore the policy caused the drop. This post hoc structure requires assuming the observed effect was not produced by some independent cause. If another factor — a hiring freeze elsewhere in the industry, a pay raise, a softening labor market that reduced outside offers, or new management — could account for the 20% drop, then the mere fact that the four-day week preceded the decline is insufficient. The argument silently relies on the premise that no other factor materially contributed to the drop. Negation confirms it is load-bearing: if some other factor did materially contribute, the conclusion is immediately undermined.
-
-**Evaluating the remaining candidates.** "Employee turnover fell by 20% over the year" and "The company switched to a four-day work week in January" are explicit premises, not the conclusion or an unstated assumption. "A four-day work week always reduces turnover at every company" is a universal generalization far stronger than the local causal claim the argument needs; it would suffice but is not the minimal assumption actually doing the work.
-
-The correct answers are Conclusion = The four-day work week reduced turnover at our company and Assumption = No other factor materially contributed to the observed drop in turnover.
+**fastest_path:** A is the causal conclusion; B is required to attribute the turnover decline to the schedule change.
+**explanation:** Choose A for Conclusion: the argument claims that the four-day work week reduced turnover. Choose B for Assumption. A before-and-after pattern supports that claim only if no other material change caused the 20% decline during the year. C and D are stated observations, while E is an unnecessary universal claim about every company.
+**common_trap:** Selecting a premise as the conclusion or assuming the author needs an 'always' rule.
+**takeaway:** A before-and-after causal claim minimally assumes that no competing change materially produced the observed result.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -3941,15 +3282,10 @@ From the statements below, identify one that would most strengthen the argument 
 | Heart disease rates have declined nationwide over the past decade                                       |             |                     |
 
 **answer:** Strengthens = "In a randomized trial, participants assigned to drink green tea daily had 18% fewer cardiac events than the control group", Weakens = "People who drink green tea daily also tend to exercise more and eat more vegetables"
-**explanation:** **The logical task.** This Strengthen/Weaken Two-Part Analysis asks for the statement that best supports the causal claim and the statement that best undermines it by offering an alternative explanation. Each column is an independent sub-question.
-
-**The argument.** The nutritionist observes that daily green-tea drinkers have lower heart-disease rates and concludes that green tea causes the lower risk. This is a causal conclusion from observational, correlational data; the central gap is the possibility of confounding variables that move together with green-tea drinking and could themselves explain the lower rates.
-
-**Evaluating the strengthener.** "In a randomized trial, participants assigned to drink green tea daily had 18% fewer cardiac events than the control group." Random assignment is the gold standard for establishing causation: it neutralizes pre-existing differences between groups in expectation, so a measured 18% reduction in the assigned group isolates the effect of green tea itself. This directly closes the correlation-to-causation gap and is the strongest available support. The taste, retail availability, and nationwide-decline statements provide no evidence that green tea causes lower risk; the lifestyle statement weakens rather than strengthens.
-
-**Evaluating the weakener (alternative cause).** "People who drink green tea daily also tend to exercise more and eat more vegetables." This identifies a distinct variable — a healthier overall lifestyle — that plausibly accompanies green-tea drinking and could independently produce lower heart-disease rates. The observational data cannot separate the tea from the lifestyle because they vary together, so this is a textbook alternative cause: it does not deny the lower rates but denies that green tea is the cause. The nationwide-decline statement is at best a weak ambient-trend point that applies to everyone equally and does not explain the gap between tea drinkers and non-drinkers; taste and availability are irrelevant to causation.
-
-The correct answers are Strengthens = In a randomized trial, participants assigned to drink green tea daily had 18% fewer cardiac events than the control group and Weakens (alt cause) = People who drink green tea daily also tend to exercise more and eat more vegetables.
+**fastest_path:** A randomizes green-tea exposure; B identifies exercise and diet as competing health causes.
+**explanation:** Choose A for Strengthens. Random assignment and a control group make green-tea consumption the main systematic difference, and the treatment group has fewer cardiac events. Choose B for Weakens: daily tea drinkers also exercise more and eat more vegetables, either of which could explain their lower heart-disease rate. Taste, availability, and a nationwide decline do not isolate why tea drinkers differ from non-drinkers.
+**common_trap:** Treating a nationwide trend as the strongest alternative when it would affect both tea drinkers and non-drinkers.
+**takeaway:** Randomized outcomes support causation; lifestyle differences correlated with exposure create confounding.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -4329,26 +3665,10 @@ From the statements below, identify the main conclusion of the argument (row 1) 
 | Electronic prescribing systems are now standard across most regional hospitals                     |            |            |
 
 **answer:** Conclusion = "The new system is responsible for the decline in medication errors"; Assumption = "No other change at the hospital materially contributed to the decline in reported errors"
-**explanation:** **Governing principle.** In an argument, the conclusion is the claim the author is ultimately trying to establish; it is supported by the premises and is typically flagged by an indicator such as "therefore." A premise is a stated fact offered as support. A central unstated assumption is a suppressed premise the argument needs in order for its inference to hold; the negation test confirms it — if denying the statement collapses the argument, it is a required assumption.
-
-**Identifying the conclusion.** The passage offers two pieces of support: an observed datum (errors fell 22% after adoption) and a mechanism (electronic prescribing removes handwriting ambiguity). Both are marshaled, via the indicator "Therefore," in service of the final claim: "the new system is responsible for the decline in medication errors." That claim is not offered as evidence for anything else in the passage; it is the endpoint the other statements are meant to prove. The Conclusion column is therefore assigned to "The new system is responsible for the decline in medication errors."
-
-**Identifying the central unstated assumption.** The inferential core is causal: the system was adopted, errors then fell, so the system caused the fall. This is a post hoc structure that holds only if the observed decline is not better explained by some other simultaneous change. If, for example, the hospital also hired more pharmacists, reduced patient volume, or changed how errors were defined or counted in the same period, the 22% drop could be explained without crediting the prescribing system. The argument silently relies on the premise "No other change at the hospital materially contributed to the decline in reported errors." Applying the negation test: if some other change did materially contribute, the conclusion that the system is responsible no longer follows — confirming this statement is load-bearing and is the central assumption.
-
-**Evaluating the remaining candidates.**
-
-- "Electronic prescribing eliminates handwriting ambiguity" is a stated premise (the mechanism), not the conclusion and not unstated.
-- "Reported medication errors fell by 22% after the system was adopted" is the stated observational premise, not an assumption and not the conclusion.
-- "Electronic prescribing systems are now standard across most regional hospitals" is an irrelevant background fact about industry adoption; the argument concerns one hospital's results and does not depend on what other hospitals do.
-
-**Summary of assignments.**
-
-| Column | Credited value |
-|---|---|
-| Conclusion | The new system is responsible for the decline in medication errors |
-| Assumption | No other change at the hospital materially contributed to the decline in reported errors |
-
-The correct answers are Conclusion = The new system is responsible for the decline in medication errors and Assumption = No other change at the hospital materially contributed to the decline in reported errors.
+**fastest_path:** B is the causal claim being defended; D is the no-competing-change assumption needed to attribute the decline to the system.
+**explanation:** Choose B for Conclusion. The first two statements supply timing and a plausible mechanism; the author ultimately claims the new system caused the decline. Choose D for Assumption. If another hospital change materially reduced errors during the same year, the 22% drop could not be attributed to electronic prescribing from these facts alone. A and C are premises, and E is background that the argument does not require.
+**common_trap:** Mistaking the mechanism or the reported decline for the author's main causal conclusion.
+**takeaway:** In a causal argument, distinguish premises from the attribution claim and test whether a concurrent cause was silently excluded.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -4473,29 +3793,10 @@ From the statements below, identify one that would most strengthen the argument 
 | Customers who buy the multivitamin tend to renew their subscriptions                                    |             |                     |
 
 **answer:** Strengthens = "In a randomized double-blind trial, participants given the multivitamin had 28% fewer sick days than a placebo group"; Weakens = "Customers who take the daily multivitamin are also far more likely to exercise regularly and sleep eight hours a night"
-**explanation:** **The logical task.** This Strengthen/Weaken Two-Part Analysis asks for two distinct judgments: the statement that best supports the causal claim, and the statement that best undermines it by supplying an alternative cause. Each column is its own sub-question.
-
-**The argument.** Let V denote taking the multivitamin and let D denote the number of sick days. The company observes, in a customer survey, that V is associated with about 30% fewer D, and concludes that V causes the reduction in D. This is a causal conclusion drawn from self-reported observational data. The central gap is confounding: some other factor may travel with multivitamin use and independently lower sick days. A strengthener must close that gap; an alternative-cause weakener must exploit it.
-
-**Evaluating the candidates for Strengthens.** The best strengthener of a causal claim removes competing explanations and shows the effect persists when the cause is isolated.
-
-- "In a randomized double-blind trial, participants given the multivitamin had 28% fewer sick days than a placebo group." Random assignment neutralizes pre-existing differences between groups in expectation, and the double-blind placebo control isolates the multivitamin itself from expectation and self-selection effects. Because the treatment group showed about 28% fewer sick days — close to the cited 30% — relative to an otherwise comparable placebo group, the result is attributable to the multivitamin rather than to lifestyle, motivation, or reporting habits. This directly closes the correlation-to-causation gap and is the strongest available support.
-- "The multivitamin contains the full recommended daily allowance of vitamins C and D" describes the product's composition, offering a possible mechanism but no evidence that the product actually lowers sick days. It is weaker than direct experimental outcome evidence.
-- "The multivitamin is the company's best-selling product" and "Customers who buy the multivitamin tend to renew their subscriptions" speak to sales and satisfaction, not to whether the product reduces sick days. Both are irrelevant to causation.
-
-The credited strengthener is the randomized double-blind trial.
-
-**Evaluating the candidates for Weakens (alternative cause).** The best alternative-cause weakener names a distinct variable that plausibly accompanies multivitamin use and could itself produce the observed reduction in sick days.
-
-- "Customers who take the daily multivitamin are also far more likely to exercise regularly and sleep eight hours a night." This identifies a healthier overall lifestyle — regular exercise and adequate sleep — that travels with multivitamin use and is independently known to reduce illness. Because the survey cannot separate the multivitamin from these accompanying habits, the observed 30% gap may be due to the lifestyle rather than the pill. This is a textbook alternative cause: it does not deny that the multivitamin group had fewer sick days, only that the multivitamin is what caused it.
-- The randomized-trial statement supports the claim and is selected for the other column.
-- The vitamin-content, best-seller, and renewal statements supply no competing causal mechanism and are irrelevant to weakening.
-
-The credited weakener is the lifestyle-confound statement.
-
-**Summary of the selections.** For Strengthens, the randomized double-blind trial is decisive because it isolates the multivitamin from confounders and reproduces the effect under controlled conditions. For Weakens (alt cause), the exercise-and-sleep statement is decisive because it supplies a specific, simultaneous, causally plausible alternative that the observational survey cannot rule out.
-
-The correct answers are Strengthens = In a randomized double-blind trial, participants given the multivitamin had 28% fewer sick days than a placebo group and Weakens (alt cause) = Customers who take the daily multivitamin are also far more likely to exercise regularly and sleep eight hours a night.
+**fastest_path:** A uses random assignment and a placebo; B identifies healthier habits that could explain both vitamin use and fewer sick days.
+**explanation:** Choose A for Strengthens. A randomized double-blind placebo trial balances other health differences and finds nearly the same reduction, giving strong causal evidence. Choose B for Weakens: vitamin users also exercise more and sleep longer, either of which could reduce sick days without any vitamin effect. C states ingredients but not outcomes, while sales and subscription renewal say nothing about whether the product prevents illness.
+**common_trap:** Treating the presence of familiar vitamins as proof of the product's real-world effect.
+**takeaway:** Randomized placebo evidence supports causation; correlated health behaviors create confounding alternative explanations.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -4826,17 +4127,10 @@ From the statements below, identify the conclusion of the argument (row 1) and t
 | Every company that shortens its work week sees profits rise                                       |            |            |
 
 **answer:** Conclusion = "The four-day work week increased profits by improving employee retention"; Assumption = "Lower employee turnover, rather than some other change, was responsible for the rise in profits"
-**explanation:** In this Two-Part Analysis question, the two tasks are to isolate the conclusion the argument is built to establish and to identify the unstated assumption the causal inference silently depends on.
-
-**Identifying the conclusion.** The conclusion is the claim the other statements are offered to support, and it is here introduced by the indicator word "Therefore." The argument presents two observations as evidence — profits rose 18% after the switch, and turnover fell sharply over the same period — and uses them to support a single integrated claim: "The four-day work week increased profits by improving employee retention." That final statement is what the argument is trying to establish; it is not offered as support for anything else. Therefore it is the conclusion.
-
-**Identifying the central unstated assumption.** The conclusion does more than note that profits rose; it asserts a specific causal pathway — the work week improved retention, and improved retention drove the profit increase. For that pathway to hold, the drop in turnover (not some unrelated factor) must be what produced the higher profits. If the 18% profit increase were actually caused by something else — a price increase, a competitor's exit, a seasonal sales surge, or a cost-cutting program — then even granting that turnover fell, the argument's specific causal story would collapse. The argument therefore silently relies on the premise that lower employee turnover, rather than some other change, was responsible for the rise in profits.
-
-This is confirmed by negation: if one supposes that some other change actually caused the profit increase, the conclusion's claimed mechanism (retention drove profits) no longer follows, which shows the statement is load-bearing.
-
-**Evaluating the remaining candidates.** "Quarterly profits rose 18% after the switch to a four-day work week" and "Employee turnover fell sharply over the same period" are the two explicit premises — observed data, not unstated assumptions, and not the conclusion. "Every company that shortens its work week sees profits rise" is a sweeping universal generalization; the argument makes only a local claim about one company and does not require so strong a principle, so it is not the minimal assumption doing the inferential work.
-
-The correct answers are Conclusion = The four-day work week increased profits by improving employee retention and Assumption = Lower employee turnover, rather than some other change, was responsible for the rise in profits.
+**fastest_path:** A is the full causal claim; B supplies the required bridge from lower turnover to higher profit.
+**explanation:** Choose A for Conclusion. The author claims that the four-day week raised profit through improved retention. Choose B for Assumption. The argument needs lower turnover, rather than another simultaneous change, to be responsible for the profit increase; otherwise the proposed mechanism does not connect the policy to profit. C and D are observations, and E is an unnecessarily universal statement.
+**common_trap:** Choosing the observed profit increase rather than the causal explanation the author is trying to establish.
+**takeaway:** For a multi-step causal conclusion, the assumption must secure the claimed link between the intermediate result and final outcome.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -4955,30 +4249,10 @@ From the statements below, identify one that would most strengthen the argument 
 | Tap-to-pay has been adopted by transit systems in several other countries                                           |             |                     |
 
 **answer:** Strengthens = "At a comparison station where only tap-to-pay was installed and nothing else changed, boarding time fell by 20%"; Weakens = "The same spring that tap-to-pay launched at Central Station, the transit agency also added two extra boarding doors per train there"
-**explanation:** **The logical task.** This Strengthen/Weaken Two-Part Analysis requires two separate judgments: the statement that best supports the official's causal claim, and the statement that best undermines it by supplying an alternative cause. Each column is its own sub-question.
-
-**The argument.** Let T denote installing tap-to-pay and B denote the change in boarding time. The official observes that at Central Station, T was followed by a 22% fall in boarding time, and concludes that T caused the faster boarding and will reproduce the effect system-wide. This is a causal conclusion drawn from a single before-and-after observation at one station. The central gap is confounding: some other change at Central Station might have occurred at the same time as T and could itself explain the faster boarding. A strengthener must close that gap by isolating T; an alternative-cause weakener must exploit it.
-
-**Evaluating the candidates for Strengthens.** The best strengthener isolates the cause and shows the effect persists when nothing else varies.
-
-- "At a comparison station where only tap-to-pay was installed and nothing else changed, boarding time fell by 20%." This isolates the intervention: because tap-to-pay was the sole change at the comparison station, the 20% drop — close to the 22% at Central Station — cannot be attributed to other simultaneous modifications. It directly rebuts the confounding worry and supports the claim that tap-to-pay itself speeds boarding and would do so elsewhere. Strong strengthener.
-- "The tap-to-pay terminals cost less to maintain than the old turnstiles" concerns operating cost, not boarding speed, and is irrelevant to the causal claim.
-- "Passenger satisfaction surveys improved" reflects sentiment, not boarding time, and does not establish that tap-to-pay caused the speed-up.
-- "Tap-to-pay has been adopted by transit systems in several other countries" reports popularity, which says nothing about whether it caused faster boarding here. Irrelevant.
-
-The credited strengthener is the comparison-station result.
-
-**Evaluating the candidates for Weakens (alternative cause).** The best alternative-cause weakener names a distinct change that occurred alongside the intervention and could itself produce the observed effect.
-
-- "The same spring that tap-to-pay launched at Central Station, the transit agency also added two extra boarding doors per train there." Adding boarding doors independently speeds boarding by letting more passengers enter at once. Because this change happened at the same place and time as tap-to-pay, the observed 22% reduction at Central Station may be due to the extra doors rather than the payment system. The single-station observation cannot separate the two, so this is a textbook alternative cause that breaks the inferred link between tap-to-pay and the speed-up. Strong weakener.
-- The comparison-station statement supports the claim and is selected for the other column.
-- The maintenance-cost, satisfaction, and other-countries statements supply no competing causal mechanism for the boarding-time change and are irrelevant to weakening.
-
-The credited weakener is the extra-boarding-doors statement.
-
-**Summary of the selections.** For Strengthens, the comparison-station result is decisive because it isolates tap-to-pay from other changes and reproduces the effect, closing the correlation-to-causation gap and supporting the system-wide projection. For Weakens (alt cause), the extra-doors statement is decisive because it identifies a specific, simultaneous, causally plausible alternative that the single-station observation cannot rule out.
-
-The correct answers are Strengthens = At a comparison station where only tap-to-pay was installed and nothing else changed, boarding time fell by 20% and Weakens (alt cause) = The same spring that tap-to-pay launched at Central Station, the transit agency also added two extra boarding doors per train there.
+**fastest_path:** A isolates tap-to-pay at a comparison station; B adds another change that could independently reduce boarding time.
+**explanation:** Choose A for Strengthens. At a comparable station where tap-to-pay was the only change, boarding time fell by a similar 20%, supporting the claimed causal effect. Choose B for Weakens: adding two boarding doors at Central Station could itself explain faster boarding, so the before-and-after result does not isolate payment technology. Maintenance cost, satisfaction, and adoption elsewhere do not show what caused boarding time to fall.
+**common_trap:** Using positive customer reaction or widespread adoption as evidence about a specific operational outcome.
+**takeaway:** A clean comparison isolates the intervention; a simultaneous operational change confounds a before-and-after result.
 **related_reading:** reading-di-06-two-part-analysis
 
 ---
@@ -5001,27 +4275,8 @@ From the statements below, identify one that would most strengthen the board's a
 | Posting calorie counts increases the cost of reprinting menus                                               |             |         |
 
 **answer:** Strengthens = "In a neighboring region with similar dining habits, mandatory calorie posting cut average calories ordered by 12%"; Weakens = "Most customers say they ignore nutritional information when ordering a meal"
-**explanation:** **Governing principle.** An argument is strengthened by a statement that raises the likelihood the conclusion is true — typically by supplying supporting evidence, a controlled analogous case, or validation of a key assumption. It is weakened by a statement that lowers that likelihood — typically by attacking the causal mechanism or showing the intervention cannot produce the claimed effect.
-
-**The argument.** The health board concludes that requiring calorie counts on menus will reduce the average calories customers order per meal by at least 10%. The conclusion rests on an unstated assumption: that customers will actually notice and respond to the posted calorie information by choosing lower-calorie options to a degree large enough to cut the average by 10% or more.
-
-**Evaluating the candidates for Strengthens.**
-
-- "In a neighboring region with similar dining habits, mandatory calorie posting cut average calories ordered by 12%." Let the board's threshold be 10% and the neighboring region's observed reduction be 12%. Because 12% exceeds 10% and the comparison region has similar dining habits — controlling for a key confounder — this analogous case provides direct empirical evidence that the same policy achieves the claimed effect under comparable conditions. Strong strengthener.
-- "Calorie counts will be printed in a slightly larger font than the menu prices" concerns formatting; a marginally larger font does not establish that customers will change their orders by 10%. Weak and indirect.
-- "Many restaurants already list the price of each menu item" is a background fact about pricing with no bearing on whether calorie posting reduces calories ordered. Irrelevant.
-
-The credited strengthener is the neighboring-region result.
-
-**Evaluating the candidates for Weakens.**
-
-- "Most customers say they ignore nutritional information when ordering a meal." This attacks the argument's key assumption directly. The board's prediction depends on customers noticing and acting on the posted calorie figures; if most customers ignore nutritional information, then posting calorie counts will not change their ordering behavior, and the projected 10% reduction cannot be achieved. By severing the link between the intervention (posting calories) and the intended effect (lower calories ordered), this is the strongest available weakener.
-- "Posting calorie counts increases the cost of reprinting menus." This raises a cost objection but says nothing about whether the policy reduces calories ordered. It does not bear on the effectiveness claim and is therefore not a weakener of this argument.
-- The larger-font and existing-prices statements likewise fail to weaken: neither shows that the calorie-reduction effect will not occur.
-
-The credited weakener is the customers-ignore-information statement.
-
-**Confirming the credited answers.** For Strengthens, the neighboring-region statement provides direct evidence at 12% ≥ 10% under comparable conditions — the strongest available support. For Weakens, the ignored-information statement destroys the behavioral mechanism the prediction depends on, so the posted calories would not change orders; the reprinting-cost statement, by contrast, never engages whether calories ordered will fall and is the intended trap.
-
-The correct answers are Strengthens = In a neighboring region with similar dining habits, mandatory calorie posting cut average calories ordered by 12% and Weakens = Most customers say they ignore nutritional information when ordering a meal.
+**fastest_path:** A tests the same policy in a similar region and exceeds the target; B says the information will not affect most choices.
+**explanation:** Choose A for Strengthens. A neighboring region with similar dining habits implemented the same requirement and saw a 12% reduction, directly supporting the predicted minimum of 10%. Choose B for Weakens. If most customers ignore nutrition information, posting calorie counts is unlikely to change what they order. Font size, existing price labels, and menu-printing cost do not address whether ordered calories will fall.
+**common_trap:** Focusing on implementation details or expense instead of whether customers use the posted information.
+**takeaway:** The best support tests the same policy and outcome; the best weakener blocks the behavior the policy relies on.
 **related_reading:** reading-di-06-two-part-analysis

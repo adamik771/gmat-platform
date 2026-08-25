@@ -161,17 +161,10 @@ Based on the scatter plot, the correlation between hours studied and test score 
 - E) strong negative
 
 **answer:** A
-**explanation:** Correlation measures the strength and direction of the linear relationship between two variables. A strong positive correlation exists when data points cluster tightly around an upward-sloping line, so that as x increases, y increases proportionally and with little scatter. A weak positive correlation shows the same upward direction but with considerably more dispersion around the trend line. When there is no systematic linear pattern, the correlation is approximately zero.
-
-Let x = hours studied and y = test score. The scatter plot displays 15 student observations over the range x in [0, 20] and y in [0, 100].
-
-The majority of points trace a clear upward path from approximately (2, 50) to (18, 95). The implied slope of this trend is roughly (95 - 50) / (18 - 2) = 45 / 16 ≈ 2.8 points per hour, which is positive and consistent across the visible cluster.
-
-Two outliers are noted: a high performer at (5, 85) who scored well above the trend, and a low performer at (15, 60) who scored well below it. A third reference point, (10, 75), lies directly on the trend line. Even accounting for the two deviating observations, 13 of the 15 points conform closely to the linear pattern. Two outliers out of 15 data points represent only about 13% of the sample; they modestly reduce the correlation from a perfect r = 1 but do not reduce it to the level consistent with "weak positive," which would require substantially greater dispersion throughout the entire data range.
-
-A weak positive correlation would mean that knowing x provides only marginal predictive power for y — the cloud of points would be wide and diffuse. Here the cloud is narrow along a well-defined upward axis, indicating meaningful predictive power. Negative or zero correlation is plainly inconsistent with the upward slope of the dominant cluster.
-
-Because the predominant trend is clearly upward and the points cluster tightly around that trend, the correlation is best described as strong and positive. The correct answer is A.
+**fastest_path:** Ignore the two clear outliers and follow the main cloud from lower left to upper right.
+**explanation:** Most observations rise from scores near 50 at low study hours to scores near 95 at high study hours, and they stay fairly close to an upward-sloping pattern. The points near (5,85) and (15,60) are outliers, but they do not erase the dominant relationship. The correlation is therefore strong positive, so A is correct.
+**common_trap:** Calling the correlation weak or absent because a strong relationship can still contain a few outliers.
+**takeaway:** Judge correlation from the overall direction and tightness of the point cloud, not from one or two exceptions.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -195,35 +188,10 @@ Based on the scatter plot, a student who studied 5 hours and scored 85 is best d
 - E) well below
 
 **answer:** A
-**explanation:** **Outlier Identification in Scatter Plots.**
-
-A trend line (line of best fit) represents the predicted value of the response variable for a given value of the explanatory variable. A data point is described relative to the trend line by comparing its actual y-value to the y-value predicted by the trend line at the same x-value. A point is "well above" when its actual value exceeds the predicted value by a substantial margin; "slightly above" when the excess is small; "on" when the actual and predicted values coincide; and symmetrically "slightly below" or "well below" for downward deviations.
-
-**Establishing the trend line.** The scatter plot describes a positive linear trend anchored approximately at (2, 50) and (18, 95). These two anchor points establish the slope and intercept of the trend line.
-
-Let the trend line be y = mx + b. Using the two anchor points:
-
-slope m = (95 - 50) / (18 - 2) = 45 / 16 ≈ 2.81 points per hour
-
-Substituting (2, 50) to find b:
-
-50 = 2.81 * 2 + b, therefore b = 50 - 5.62 ≈ 44.38
-
-The trend line is therefore approximately y = 2.81x + 44.38.
-
-**Evaluating the student at (5, 85).** The predicted score for a student who studied 5 hours is:
-
-y_predicted = 2.81 * 5 + 44.38 = 14.05 + 44.38 ≈ 58.4
-
-The student's actual score is 85. The deviation above the trend line is:
-
-85 - 58.4 ≈ 26.6 points
-
-**Assessing the magnitude.** The total range of the test score axis spans 0 to 100. A deviation of approximately 26.6 points represents roughly 26.6% of the total score range. The cluster of on-trend points spans scores from roughly 50 to 95 at their respective x-values, implying a typical residual of only a few points for students following the trend. A residual of approximately 27 points is therefore a pronounced departure, placing this student far above the values consistent with the general pattern. The problem statement itself identifies this student explicitly as a high-performing outlier, corroborating the quantitative finding.
-
-A deviation of this magnitude cannot be characterized as "slightly above." It is a pronounced positive outlier, placing the student well above the trend line.
-
-The correct answer is A.
+**fastest_path:** At five study hours, the main cluster predicts a score near 60; the plotted score of 85 is roughly 25 points higher.
+**explanation:** The overall scatter rises from about 50 at two hours to about 95 at eighteen hours. Around five hours, that trend places a typical score near the upper 50s or about 60. The observed point is 85, roughly 25 points above that level and far beyond the ordinary scatter around the trend. It is therefore well above the trend line, so A is correct.
+**common_trap:** Calling the point only slightly above because five hours is near other low-hour observations; compare vertical position at the same x-value.
+**takeaway:** Judge a point's residual vertically: actual y minus the trend-line y at that x-value.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -664,28 +632,10 @@ Which statement is best supported by the chart?
 - E) The company with the smallest ARR has the lowest churn.
 
 **answer:** C
-**explanation:** In a bubble chart, each data point encodes three variables simultaneously: horizontal position (x), vertical position (y), and bubble area (size). To evaluate a claimed association, all companies are ranked by the x-variable and the y-variable and size variable are checked for systematic directional movement.
-
-Sorting the six companies in ascending order of average contract value gives:
-
-| Company | x (contract value, $K) | y (churn, %) | S (ARR, $M) |
-|---------|------------------------|--------------|-------------|
-| Alpha   | 10                     | 18           | 30          |
-| Epsilon | 15                     | 15           | 45          |
-| Beta    | 25                     | 12           | 85          |
-| Zeta    | 35                     | 9            | 110         |
-| Gamma   | 45                     | 6            | 140         |
-| Delta   | 55                     | 4            | 220         |
-
-Reading y down the column as x increases yields 18, 15, 12, 9, 6, 4 — each step strictly decreasing. The difference across the full range is 18 - 4 = 14 percentage points. There is a monotone negative relationship between contract value and churn rate; higher x is associated with lower y without exception in this data set.
-
-Reading S down the column as x increases yields 30, 45, 85, 110, 140, 220 — each step strictly increasing. The ratio from smallest to largest ARR is 220 / 30 approximately 7.3, a substantial spread that grows in lock-step with contract value. There is a monotone positive relationship between contract value and ARR size; higher x is associated with larger S without exception.
-
-Choice A asserts the opposite of what the chart shows and is contradicted by the data. Choice B asserts independence between ARR and contract value, which the consistent positive pattern refutes. Choice D asserts a positive correlation between churn rate and ARR size; however, as churn falls from 18% to 4%, ARR rises from $30M to $220M, making the association between those two variables negative, not positive. Choice E claims the company with the smallest ARR has the lowest churn; the smallest ARR belongs to Alpha ($30M), yet Alpha carries the highest churn in the data set (18%).
-
-Choice C asserts that companies with higher contract values tend to have lower churn and larger ARR. Both sub-claims are confirmed: churn is strictly decreasing in x and ARR is strictly increasing in x. The word "tend" requires only a consistent directional pattern, which the data supply perfectly. Choice C is the only statement supported by the chart.
-
-The correct answer is C.
+**fastest_path:** Track all three encodings together: points farther right generally sit lower and use larger ARR markers.
+**explanation:** The chart shows that firms with higher contract values tend to have lower churn rates and larger ARR, which is exactly C. A reverses the churn direction. B and D ignore the visible association among the plotted variables. E makes an unsupported claim about the smallest-ARR firm. Because the question asks what is best supported, the broad joint trend matters more than any single point.
+**common_trap:** Reading only two axes and ignoring that marker size carries the third variable, ARR.
+**takeaway:** In a multivariable scatter plot, interpret position and marker encoding together before evaluating a claim.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -1000,28 +950,10 @@ Based on the scatter plot, which of the following is best supported by the data?
 - E) Longer routes always take longer than shorter routes.
 
 **answer:** B
-**explanation:** In a scatter plot, a trend line captures the typical relationship between two variables. Points that conform to this trend support the general pattern, while points that deviate substantially from it are best explained by factors outside the primary relationship rather than by the relationship itself.
-
-Eight of the ten plotted points follow a clear, consistent upward pattern:
-
-| x (miles) | y (minutes) |
-|-----------|-------------|
-| 5         | 18          |
-| 10        | 28          |
-| 15        | 40          |
-| 20        | 52          |
-| 25        | 62          |
-| 30        | 75          |
-| 35        | 88          |
-| 45        | 115         |
-
-Examining successive increments along these eight points, each additional 5 miles corresponds to roughly 10–14 additional minutes, indicating a strong, nearly linear positive association between distance and time.
-
-Two points do not conform to this pattern. Point (12, 95) recorded 95 minutes for a route of only 12 miles. Interpolating linearly between (10, 28) and (15, 40) gives a predicted time of 28 + (2/5)(40 - 28) = 32.8 minutes; the observed value exceeds the prediction by roughly 62 minutes, nearly three times the expected time for that distance. Point (40, 45) recorded only 45 minutes for a route of 40 miles. Interpolating between (35, 88) and (45, 115) gives a predicted time of 88 + (5/10)(115 - 88) = 101.5 minutes; the observed value falls short by roughly 56.5 minutes, less than half the expected time. These deviations are large relative to the scatter of the conforming points and are directionally opposite to each other, ruling out a systematic measurement error.
-
-The dominant pattern — eight points forming a near-linear upward trend — establishes that longer routes generally require more delivery time, not less, and that distance and delivery time are clearly related. Asserting no relationship overstates the noise in the data, while asserting that distance entirely determines delivery time overstates the regularity. The claim that longer routes always take longer is directly contradicted by the pair (12, 95) and (40, 45): a 12-mile route took 95 minutes while a 40-mile route took only 45 minutes, so the shorter route required substantially more time. The most defensible inference is therefore that the two outliers represent unusual conditions — traffic delays, access difficulties, rapid highway routes, or similar anomalies — rather than evidence against the general distance-time relationship that the remaining eight points so clearly support.
-
-The correct answer is B.
+**fastest_path:** Identify the main upward distance-time pattern, then treat the two far-off points as exceptions rather than the rule.
+**explanation:** Most points follow a positive relationship: longer routes generally take more time. Two observations sit well away from that pattern, so unusual conditions are the best-supported explanation, making B correct. A reverses the main trend, C denies it, and D and E use absolute language that the outliers directly disprove. The chart supports a tendency, not a deterministic rule.
+**common_trap:** Letting two outliers erase the dominant relationship or choosing an 'always' statement that the outliers contradict.
+**takeaway:** Separate the main pattern from outliers, and avoid absolute conclusions when the plot contains clear exceptions.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -1269,19 +1201,10 @@ Based on the chart, which statement is best supported?
 - E) Store count declined after 2022.
 
 **answer:** C
-**explanation:** **Governing principle.** A Graphics Interpretation question asks us to read values directly from the described chart and evaluate which statement is fully consistent with every data point shown. A statement is disqualified the moment any single year's data contradicts it.
-
-**Reading the store-count series (solid line, left axis).** The values are 800, 1 000, 1 250, 1 450, 1 700, and 1 900 for years 2020 through 2025 respectively. Each successive value is strictly greater than the one before it, so the store count rose in every one of the six years without exception.
-
-**Reading the same-store sales growth series (dashed line, right axis).** The values are -2%, +3%, +8%, +6%, +2%, and -1% for the same six years. The maximum by inspection is +8% in 2022. After 2022 the series reads +6%, +2%, -1%, each value smaller than the one preceding it, confirming a monotone decline from 2022 onward. Additionally, the series began at -2% in 2020 (below the 2022 peak), rose through 2021 and 2022 (reaching the peak), then fell continuously. Therefore 2022 is unambiguously the single peak year.
-
-**Evaluating the credited answer.** Statement C asserts two things: (i) store count rose every year, and (ii) same-store sales growth peaked in 2022 and then declined. Both sub-claims are confirmed by the data above. No year contradicts either assertion.
-
-**Why the other statements fail.** Statement A claims both series peaked in 2022; the store count never peaked — it was still climbing in 2025 (1 900 stores). Statement B claims same-store sales growth rose steadily as stores grew; in fact growth fell in 2023, 2024, and 2025 while stores continued to increase. Statement D claims same-store sales growth was negative every year; it was positive in 2021 (+3%), 2022 (+8%), 2023 (+6%), and 2024 (+2%). Statement E claims store count declined after 2022; the count went from 1 450 (2023) to 1 700 (2024) to 1 900 (2025), so it continued to rise.
-
-**Conclusion.** Only statement C is fully supported by every data point in the chart.
-
-The correct answer is C.
+**fastest_path:** Read each series separately: store count rises every year; same-store growth peaks at 8% in 2022, then falls.
+**explanation:** Store count increases from 800 in 2020 to 1,900 in 2025 with no decline. Same-store sales growth rises from -2% to 3% to 8% in 2022, then declines to 6%, 2%, and -1%. This is exactly C. Store count does not peak in 2022, growth does not rise steadily, and neither series behaves as A, B, D, or E claims.
+**common_trap:** Combining the bar and line series into one trend instead of tracking each measure independently.
+**takeaway:** On a dual-axis chart, describe each series first, then evaluate claims about how their trends coincide or diverge.
 **related_reading:** reading-di-04-graphics-interpretation
 
 
@@ -1416,19 +1339,10 @@ Suppose the company adds no net new customers for the next six months, so that a
 - E) $5.04M
 
 **answer:** C
-**explanation:** Annualized net revenue retention (NRR) of 112% means that, absent any new customer acquisition, a cohort of existing customers produces MRR that compounds such that after exactly 12 months the total is 1.12 times the starting value. The problem stipulates that all MRR change over the next six months comes from this expansion-minus-churn dynamic, which is precisely what NRR measures, so the NRR figure is the only growth input needed.
-
-Let M_0 = 4.5 (MRR in January, in millions). The annualized NRR multiplier is 1.12, meaning one full year of compounding produces a factor of 1.12. Six months is exactly one-half of a year, so the relevant multiplier is (1.12)^(6/12) = (1.12)^(1/2) = sqrt(1.12).
-
-To compute sqrt(1.12): the value lies between sqrt(1.00) = 1.000 and sqrt(1.21) = 1.100. A useful intermediate is sqrt(1.1025) = 1.05 exactly, since 1.05^2 = 1.1025. Because 1.12 > 1.1025, the result is slightly above 1.05. Applying the linear approximation near x = 0 for f(x) = sqrt(1.1025 + x) gives sqrt(1.12) ≈ 1.05 + (0.0175)/(2 × 1.05) ≈ 1.05 + 0.0083 ≈ 1.0583. The exact value is 1.05830, confirming the approximation.
-
-Applying this multiplier: MRR_June = 4.5 × 1.0583 ≈ 4.762 million, or approximately $4.76M.
-
-The 2% monthly gross churn is consistent with but not separately needed in this calculation. NRR is a net figure that already nets expansion revenue against both contraction and churn. If gross churn is 2% monthly, the implied monthly gross expansion rate is roughly 2% + 0.95% ≈ 2.95%, which the company's upsell and cross-sell activity is assumed to deliver. The problem instructs use of NRR as the single compounding driver, so no further decomposition is required.
-
-The computed value of approximately $4.762M is closest to $4.76M. Choice A ($4.55M) would correspond to essentially flat or barely growing MRR. Choice B ($4.65M) is consistent with applying only about half the NRR benefit. Choice D ($4.89M) would require an annualized NRR of roughly 120%, and Choice E ($5.04M) would result from applying a full-year NRR multiplier over six months, a common error of confusing annual growth with half-year growth.
-
-The correct answer is C.
+**fastest_path:** Six months is half a year, so apply the square root of the 1.12 annual NRR multiplier: $4.5M x sqrt(1.12).
+**explanation:** Annualized NRR of 112% means existing-customer MRR multiplies by 1.12 over a year. Over six months, use 1.12^(6/12) = sqrt(1.12), about 1.0583. Thus projected MRR is $4.5M x 1.0583 = about $4.76M, so C is correct. Do not subtract the 2% gross churn separately: NRR already nets churn and contraction against expansion.
+**common_trap:** Applying the full 12% annual increase over six months or subtracting gross churn again after using net retention.
+**takeaway:** Convert an annual compound multiplier to a partial-year multiplier, and do not double-count components already included in a net metric.
 **related_reading:** reading-di-04-graphics-interpretation
 
 
@@ -1689,33 +1603,10 @@ In which quarter did the company achieve the highest absolute operating profit (
 - E) Q4 2023
 
 **answer:** C
-**explanation:** **Operating profit as a derived metric.**
-
-Operating profit is defined as revenue multiplied by operating margin. Let R denote quarterly revenue (in $ millions) and M denote the operating margin expressed as a decimal; then operating profit P = R x M. Because P is a product of two quantities that move in different directions across the eight quarters—revenue rising steadily while margin first rises then falls—the maximum of P need not coincide with the maximum of either factor alone. We therefore compute P explicitly for each quarter.
-
-The chart supplies the following values:
-
-| Quarter  | Revenue R ($M) | Margin M (%) | Operating Profit P = R x (M/100) ($M) |
-|----------|---------------|--------------|---------------------------------------|
-| Q1 2022  | 45            | 10           | 45 x 10/100 = 4.50                    |
-| Q2 2022  | 48            | 11           | 48 x 11/100 = 5.28                    |
-| Q3 2022  | 52            | 12           | 52 x 12/100 = 6.24                    |
-| Q4 2022  | 55            | 14           | 55 x 14/100 = 7.70                    |
-| Q1 2023  | 58            | 13           | 58 x 13/100 = 7.54                    |
-| Q2 2023  | 60            | 13           | 60 x 13/100 = 7.80                    |
-| Q3 2023  | 62            | 12           | 62 x 12/100 = 7.44                    |
-| Q4 2023  | 65            | 11           | 65 x 11/100 = 7.15                    |
-
-The four plausible candidates are the quarters in which P exceeds $7.00M. Comparing them directly:
-
-- Q4 2022: 55 x 0.14 = 7.70
-- Q1 2023: 58 x 0.13 = 7.54
-- Q2 2023: 60 x 0.13 = 7.80
-- Q3 2023: 62 x 0.12 = 7.44
-
-We find that 7.80 > 7.70 > 7.54 > 7.44, so Q2 2023 produces the highest operating profit. It is instructive to note why Q4 2023, which has the highest revenue of all eight quarters ($65M), does not win: its margin of 11% yields only 65 x 0.11 = 7.15, which is less than Q2 2023's product. The critical insight is that margin compression from 13% to 11% between Q2 2023 and Q4 2023 more than offsets the $5M revenue gain, because 5 x 0.11 = 0.55 added from extra revenue is outweighed by 60 x 0.02 = 1.20 lost from margin erosion on the existing base.
-
-The correct answer is C.
+**fastest_path:** Multiply revenue by margin for the close contenders: 55x14%, 58x13%, 60x13%, 62x12%, and 65x11%.
+**explanation:** The candidate operating profits, in millions, are Q4 2022: 55 x 0.14 = 7.70; Q1 2023: 58 x 0.13 = 7.54; Q2 2023: 60 x 0.13 = 7.80; Q3 2023: 62 x 0.12 = 7.44; and Q4 2023: 65 x 0.11 = 7.15. The largest is $7.80M in Q2 2023, so C is correct. Highest revenue alone does not win because its margin is lower.
+**common_trap:** Selecting the quarter with the highest revenue or margin without multiplying the two measures.
+**takeaway:** For a derived metric, compare the required products rather than ranking either input by itself.
 **related_reading:** reading-di-04-graphics-interpretation
 
 
@@ -1768,41 +1659,10 @@ Based on the scatter plot, which of the following best describes the relationshi
 - E) Non-linear pattern with a clear turning point
 
 **answer:** D
-**explanation:** The Pearson correlation coefficient r measures the strength and direction of a linear relationship between two variables. By convention, |r| >= 0.7 indicates a strong linear association, 0.4 <= |r| < 0.7 indicates moderate association, and |r| < 0.4 indicates weak or no linear association. A positive r confirms that y tends to increase as x increases.
-
-With x_i denoting years of experience and y_i denoting annual salary in thousands of dollars for each of the n = 12 data points — (2, 52), (3, 58), (3, 65), (5, 68), (7, 75), (8, 85), (9, 90), (10, 95), (12, 105), (14, 120), (15, 110), (18, 140) — the sample means are:
-
-x_bar = (2+3+3+5+7+8+9+10+12+14+15+18) / 12 = 106/12 = 8.83
-
-y_bar = (52+58+65+68+75+85+90+95+105+120+110+140) / 12 = 1063/12 = 88.58
-
-The three sums required for r are:
-
-SS_xy = sum of (x_i - x_bar)(y_i - y_bar) = 1498.17
-
-SS_x = sum of (x_i - x_bar)^2 = 293.67
-
-SS_y = sum of (y_i - y_bar)^2 = 7852.92
-
-Each of the twelve (x_i - x_bar)(y_i - y_bar) products is positive, reflecting that points below the mean on x are also below the mean on y and points above the mean on x are also above the mean on y — a consistent directional pattern throughout the cloud.
-
-The Pearson coefficient is then:
-
-r = SS_xy / sqrt(SS_x * SS_y) = 1498.17 / sqrt(293.67 * 7852.92) = 1498.17 / sqrt(2,305,875) = 1498.17 / 1518.60 = 0.987
-
-Since r = 0.987 > 0 and |r| > 0.7, the data exhibit a strong positive linear relationship.
-
-The ordinary-least-squares regression line through these points is approximately:
-
-y_hat = 43.52 + 5.10 * x
-
-The slope of 5.10 implies that each additional year of experience is associated with roughly $5,100 more in annual salary. Examining the residuals (y_i - y_hat), eleven of the twelve points lie within approximately ±6.2 thousand dollars of the fitted line; only the point (15, 110) deviates by approximately -10.0 thousand dollars, introducing the modest scatter visible in the plot.
-
-The direction is unambiguously positive (r = +0.987), which eliminates choices A and B. The correlation is far from zero, which eliminates C. Although a casual reading of the point cloud might invite curve-fitting, there is no identifiable turning point where salary reverses direction, which eliminates E.
-
-With r = 0.987, the data exhibit a strong positive linear relationship with only modest scatter around the regression line. Among the five answer choices, choice D — "Moderate-to-strong positive correlation, with modest scatter around an approximately linear trend" — is the best available description, capturing both the positive direction and the near-linear pattern while acknowledging the slight dispersion around the trend line.
-
-The correct answer is D.
+**fastest_path:** Read direction, form, and spread: the points rise roughly linearly with modest scatter and no reversal.
+**explanation:** As years of experience increase, annual salary generally increases, so the relationship is positive. The points remain reasonably close to an upward-sloping linear pattern, though not perfectly, which supports a moderate-to-strong correlation with modest scatter. That matches D. The plot is neither negative nor directionless, and it shows no clear turning point that would make a nonlinear description better.
+**common_trap:** Calling a relationship perfect or nonlinear merely because individual points do not sit exactly on one line.
+**takeaway:** Describe a scatter plot using direction, strength, and form rather than expecting every observation to follow the trend exactly.
 **related_reading:** reading-di-04-graphics-interpretation
 
 
@@ -3104,24 +2964,10 @@ Which statement is best supported by the chart?
 - E) The firm spending the least on R&D files the most patents.
 
 **answer:** C
-**explanation:** In a bubble chart each point encodes three variables: horizontal position (R&D spend, x), vertical position (approval rate, y), and bubble size (patents filed, z). To evaluate a claimed pattern, the firms are sorted by the x-variable and the y- and z-variables are checked for systematic movement, noting any exception.
-
-Sorting the six firms in ascending order of R&D spend:
-
-| Firm | x (R&D spend, $B) | y (approval rate, %) | z (patents) |
-|------|-------------------|----------------------|-------------|
-| F1   | 2                 | 12                   | 40          |
-| F6   | 3                 | 30                   | 250         |
-| F2   | 4                 | 18                   | 75          |
-| F3   | 6                 | 22                   | 120         |
-| F4   | 8                 | 28                   | 160         |
-| F5   | 10                | 34                   | 210         |
-
-One firm, F6, is an outlier in both vertical dimensions: at only $3B of R&D spend it posts a 30% approval rate and files 250 patents, both far above what its modest spend would predict. The remaining five firms — F1, F2, F3, F4, F5, taken in order of increasing spend — show approval rates of 12, 18, 22, 28, 34 (strictly rising) and patent counts of 40, 75, 120, 160, 210 (strictly rising). Excluding F6, therefore, higher R&D spend is associated with both higher approval rates and more patents filed, exactly as choice C states.
-
-Choice A claims a negative association between spend and approval; among the five non-outlier firms the relationship is clearly positive, so A is wrong. Choice B claims the firm with the highest approval rate also files the most patents. The highest approval rate belongs to F5 (34%), but F5 files 210 patents, whereas F6 files the most at 250 — so the highest-approval firm is not the top patent filer, and B is false. Choice D is refuted because, once the single outlier is set aside, patents rise in lock-step with spend, so the two are clearly not independent. Choice E is false: the least-spending firm (F1, $2B) files the fewest patents (40), not the most — the most patents (250) come from F6, which spends $3B, the second-lowest. Only choice C, which explicitly accounts for the single exception, holds.
-
-The correct answer is C.
+**fastest_path:** Set aside F6, then read F1-F5 in spending order: approval rates and bubble sizes both increase at every step.
+**explanation:** F6 is the exception: at $3B of R&D it has a 30% approval rate and 250 patents. Excluding it, F1 through F5 rise with spending from $2B to $10B; approval rates increase 12%, 18%, 22%, 28%, 34%, and patents increase 40, 75, 120, 160, 210. That supports C. F5 has the highest approval rate but F6 has the most patents, eliminating B. A, D, and E contradict the visible trend or endpoint values.
+**common_trap:** Ignoring the bubble-size variable or letting one explicit outlier hide the consistent pattern among the other firms.
+**takeaway:** In a bubble chart, sort by x and track both y and bubble size, noting whether one point is a clear exception.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
@@ -3345,24 +3191,10 @@ Based on the bubble chart, which statement is best supported?
 - E) Average hours watched is unrelated to subscriber count.
 
 **answer:** B
-**explanation:** A bubble chart encodes three variables: x-position (average monthly hours watched), y-position (monthly churn), and bubble size (subscribers, in millions). To evaluate a claimed pattern, the plans are sorted by the x-variable and the y- and size-variables are examined for systematic movement, with attention to any single exception.
-
-Sorting the six plans in ascending order of average hours watched:
-
-| Plan | x (hours) | y (churn, %) | z (subscribers, M) |
-|------|-----------|--------------|--------------------|
-| P1   | 12        | 10           | 2.0                |
-| P2   | 22        | 8            | 3.5                |
-| P3   | 34        | 6            | 5.0                |
-| P6   | 40        | 9            | 1.2                |
-| P4   | 45        | 4            | 7.5                |
-| P5   | 52        | 3            | 9.0                |
-
-One plan, P6, is an outlier: at 40 average hours it shows a churn of 9% (far above the downward trend) and only 1.2M subscribers (the smallest of all), both inconsistent with its high engagement. Excluding P6, the remaining five plans taken in order of increasing hours (P1, P2, P3, P4, P5) show churn of 10, 8, 6, 4, 3 — strictly decreasing — and subscribers of 2.0, 3.5, 5.0, 7.5, 9.0 — strictly increasing. Setting aside the single outlier, plans with more average hours watched have both lower churn and more subscribers, exactly as choice B states.
-
-Choice A reverses both relationships and is contradicted by the five-plan trend. Choice C claims churn and subscribers move together positively; in fact, as churn falls from 10% to 3% across the trend plans, subscribers rise from 2.0M to 9.0M, a negative association. Choice D claims the largest-subscriber plan has the highest churn; the largest is P5 (9.0M) with the lowest churn (3%), not the highest. Choice E denies any relationship between hours and subscribers, which the consistent positive trend among five of six plans refutes. Only choice B, which explicitly accounts for the single exception, holds.
-
-The correct answer is B.
+**fastest_path:** Set aside P6; P1-P5 show hours rising, churn falling, and bubble size increasing at every step.
+**explanation:** From P1 to P5, average hours rise 12, 22, 34, 45, 52; churn falls 10%, 8%, 6%, 4%, 3%; and subscribers rise 2M, 3.5M, 5M, 7.5M, 9M. P6 is the exception, with 40 hours, 9% churn, and 1.2M subscribers. Therefore B, which explicitly sets aside one plan, is best supported. The other choices reverse or deny these visible relationships.
+**common_trap:** Demanding a pattern hold for every point when the correct statement explicitly allows one outlier.
+**takeaway:** Sort bubble-chart observations by x, track y and size together, and identify whether one point explains the exception.
 **related_reading:** reading-di-04-graphics-interpretation
 
 ---
