@@ -227,6 +227,29 @@ export async function POST(request: Request) {
     return Response.json({ error: error.message }, { status: 500 })
   }
 
+  // A successful upsert response is not enough for free-text notes: this is
+  // user-authored work and silently dropping it is worse than surfacing an
+  // error. Read the value back through the same user's RLS scope and only
+  // acknowledge the save once the stored value matches the request.
+  if (body.notes !== undefined) {
+    const { data: persisted, error: verifyError } = await supabase
+      .from("error_tags")
+      .select("notes")
+      .eq("attempt_id", body.attemptId)
+      .eq("user_id", user.id)
+      .maybeSingle()
+
+    const persistedNotes = (persisted as { notes: string | null } | null)?.notes
+    if (verifyError || !persisted || persistedNotes !== body.notes) {
+      return Response.json(
+        { error: "Your note could not be confirmed as saved. Please try again." },
+        { status: 500 },
+      )
+    }
+
+    return Response.json({ ok: true, notes: persistedNotes })
+  }
+
   return Response.json({ ok: true })
 }
 
