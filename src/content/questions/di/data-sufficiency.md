@@ -727,15 +727,10 @@ In triangle ABC, what is the measure of angle A?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**explanation:** We are asked to determine the measure of angle A in triangle ABC. Because the interior angles of any triangle sum to 180 degrees, we have A + B + C = 180. To answer the question, we must be able to pin angle A down to a single numerical value.
-
-Consider Statement (1) alone. If B = 70 degrees, then A + C = 110 degrees. This relationship is satisfied by many distinct values of A; for example, A could equal 50 degrees with C = 60 degrees, or A could equal 60 degrees with C = 50 degrees. Since more than one value of A is possible, Statement (1) alone is not sufficient.
-
-Consider Statement (2) alone. Knowing only that triangle ABC is isosceles tells us that some pair of its angles are equal, but it neither specifies which pair is equal nor fixes any particular measure. The triangle could, for instance, have angles 70, 70, and 40 or angles 80, 80, and 20, yielding different measures for A. Thus Statement (2) alone is not sufficient.
-
-Consider the two statements together. We now know that B = 70 degrees and that the triangle is isosceles, but the isosceles condition still leaves open which pair of angles is equal, and this produces three different configurations. If A = B, then A = 70 degrees. If B = C, then both equal 70 degrees, so A = 180 - 140 = 40 degrees. If instead A = C is the equal pair, then 2A + 70 = 180, giving A = 55 degrees. These three admissible cases yield A = 70, A = 40, and A = 55, so angle A is not uniquely determined even with both statements. It is tempting to assume that combining a specific angle with the isosceles condition must force a single answer, but the isosceles property describes a family of three configurations rather than one. Therefore the two statements together are not sufficient.
-
-The correct answer is E.
+**fastest_path:** Together, B=70 and 'isosceles' still allow three equal-angle pairings. Compute A under each pairing.
+**explanation:** (1) gives A+C=110, so A is not fixed. (2) gives no angle measure and does not specify the equal sides, so it is insufficient. Together, if A=B then A=70; if B=C then A=40; if A=C then 2A+70=180 and A=55. Multiple values remain possible, so even both statements are insufficient. Choice E.
+**common_trap:** Do not assume which two sides or angles are equal. 'Isosceles' alone permits AB=AC, AB=BC, or AC=BC.
+**takeaway:** In geometry DS, test every configuration allowed by an unspecified relationship; one diagram is not proof.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1272,23 +1267,10 @@ The sequence s_1, s_2, s_3, ... is defined by s_n = s_(n-1) + s_(n-2) for all n 
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** The sequence is defined by the recurrence s_n = s_(n-1) + s_(n-2) for all n greater than or equal to 3, so every term is determined once the two initial terms s_1 and s_2 are fixed. We express the term in question entirely in terms of s_1 and s_2:
-
-s_3 = s_1 + s_2
-s_4 = s_3 + s_2 = s_1 + 2s_2
-s_5 = s_4 + s_3 = 2s_1 + 3s_2
-s_6 = s_5 + s_4 = 3s_1 + 5s_2
-s_7 = s_6 + s_5 = 5s_1 + 8s_2
-
-The question asks whether s_7 = 5s_1 + 8s_2 exceeds 40. A definite answer of either yes or no constitutes sufficiency.
-
-Statement (1) gives s_3 = 5, that is, s_1 + s_2 = 5. This is a single equation in two unknowns and does not fix s_1 and s_2 individually. Writing s_7 = 5(s_1 + s_2) + 3s_2 = 25 + 3s_2, we see the value depends on s_2. For example, s_1 = 4 and s_2 = 1 give s_7 = 25 + 3 = 28, which is not greater than 40, whereas s_1 = -10 and s_2 = 15 give s_7 = 25 + 45 = 70, which is greater than 40. The two outcomes differ, so Statement (1) alone is not sufficient.
-
-Statement (2) gives s_4 = 8, that is, s_1 + 2s_2 = 8. Again this is one equation in two unknowns. Substituting s_1 = 8 - 2s_2 yields s_7 = 5(8 - 2s_2) + 8s_2 = 40 - 2s_2, which depends on s_2. For example, s_2 = 1 and s_1 = 6 give s_7 = 40 - 2 = 38, which is not greater than 40, whereas s_2 = -10 and s_1 = 28 give s_7 = 40 + 20 = 60, which is greater than 40. The two outcomes differ, so Statement (2) alone is not sufficient.
-
-Taking the two statements together, we have the system s_1 + s_2 = 5 and s_1 + 2s_2 = 8. Subtracting the first equation from the second gives s_2 = 3, and then s_1 = 2. These two initial values determine the entire sequence, so s_7 = 5(2) + 8(3) = 10 + 24 = 34. Since 34 is not greater than 40, the answer to the question is a definite no. The two statements together are therefore sufficient. A definite no settles the yes-or-no question just as firmly as a definite yes would; the value need not exceed 40 for the data to be sufficient.
-
-The correct answer is C.
+**fastest_path:** Express s7 from the two given terms: since s5=s4+s3, s6=s4+s5, and s7=s5+s6, knowing both s3 and s4 fixes s7.
+**explanation:** Statement (1) gives only s3 = 5; s4 can vary, so s7 can vary. Statement (2) gives only s4 = 8; s3 can vary, so s7 can vary. Together, s3 = 5 and s4 = 8 give s5 = 13, s6 = 21, and s7 = 34. The answer to 'Is s7 > 40?' is definitively no, so the statements together are sufficient. Choice C.
+**common_trap:** Data Sufficiency requires a definite answer, not a yes. The fixed value 34 produces a sufficient, definite no.
+**takeaway:** For a second-order recurrence, two consecutive terms determine every later term; test whether each statement supplies both.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 ---
@@ -1427,15 +1409,10 @@ If x and y are positive integers with x < y, is y − x a multiple of 4?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** We are given that x and y are positive integers with x < y, and we must determine whether y − x is a multiple of 4. This is a yes/no question; a statement is sufficient only if it forces a single answer for every case it permits.
-
-Statement (1) tells us that x + y is a multiple of 8. Consider x = 2 and y = 6: here x + y = 8, and y − x = 4, which is a multiple of 4, so the answer is yes. Now consider x = 1 and y = 7: here x + y = 8 as well, but y − x = 6, which is not a multiple of 4, so the answer is no. Because the same condition yields both a yes and a no, Statement (1) alone is not sufficient.
-
-Statement (2) tells us that xy is a multiple of 16. Consider x = 4 and y = 8: here xy = 32, a multiple of 16, and y − x = 4, a multiple of 4, so the answer is yes. Now consider x = 2 and y = 8: here xy = 16, a multiple of 16, but y − x = 6, which is not a multiple of 4, so the answer is no. Because both outcomes occur, Statement (2) alone is not sufficient.
-
-Taking the two statements together, we use both conditions. Since x + y is a multiple of 8, it is even, so x and y share the same parity. They cannot both be odd, because then xy would be odd and could not be a multiple of 16; hence x and y are both even. Let x = 2a and y = 2b, where a and b are positive integers. Then x + y = 2(a + b) is a multiple of 8, so a + b is a multiple of 4, and xy = 4ab is a multiple of 16, so ab is a multiple of 4. Because a + b is even, a and b share the same parity. They cannot both be odd, for then ab would be odd and not a multiple of 4; hence a and b are both even. It follows that x = 2a and y = 2b are each multiples of 4, so y − x is a multiple of 4. The answer is definitively yes, so the two statements together are sufficient.
-
-The correct answer is C.
+**fastest_path:** Use counterexamples separately, then parity together. The sum condition makes x,y same parity; the product condition rules out both odd, then forces another factor of 2.
+**explanation:** (1) is insufficient: (2,6) gives difference 4, while (1,7) gives 6. (2) is insufficient: (4,8) gives 4, while (2,8) gives 6. Together, x+y divisible by 8 makes x,y the same parity; xy divisible by 16 rules out both odd, so write x=2a,y=2b. Then a+b is divisible by 4 and ab by 4, forcing a,b both even. Thus x,y are multiples of 4, so y-x is always a multiple of 4. Choice C.
+**common_trap:** Showing one pair that works proves possibility, not sufficiency. Each statement alone needs both a yes and no example to disprove it.
+**takeaway:** For divisibility DS, use counterexamples alone and factor powers of 2 systematically when combining statements.
 **related_reading:** reading-di-02-data-sufficiency-logic
 
 
