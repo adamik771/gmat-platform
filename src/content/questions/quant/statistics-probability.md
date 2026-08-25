@@ -1869,15 +1869,10 @@ Sets A and B each consist of 5 numbers. Is the standard deviation of A greater t
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** E
-**explanation:** The standard deviation measures the typical distance of a set's values from its own mean, so it is unaffected by how high or low the values sit overall and is not determined by the range alone. A statement is sufficient only if every configuration consistent with it forces the same yes-or-no answer.
-
-Consider Statement (1). Saying that every number in A exceeds every number in B compares the locations of the two sets but says nothing about their internal spreads; a high-valued set can be tightly clustered or widely spread. For example, A could be the tight set {100, 100, 100, 100, 100} (standard deviation 0) while B is the spread set {0, 0, 0, 0, 10}, giving a NO, or A could be a spread set while B is tightly clustered, giving a YES. Statement (1) alone is not sufficient.
-
-Consider Statement (2). Equal ranges fix only the gap between each set's largest and smallest values, not how the remaining values are distributed. The set {0, 0, 0, 0, 10} and the set {0, 5, 5, 5, 10} both have range 10 yet different standard deviations, so equal ranges permit either answer. Statement (2) alone is not sufficient.
-
-Taking both statements together, A can be shifted entirely above B while preserving any chosen spreads and ranges, so the two sets can still be arranged to make the standard deviation of A larger, smaller, or equal to that of B. For instance, with A = {20, 20, 20, 20, 30} (range 10) and B = {0, 5, 5, 5, 10} (range 10), every number in A exceeds every number in B and the ranges match, yet here A has the larger standard deviation; replacing B with {0, 0, 0, 0, 10} keeps both conditions but reverses the comparison. Because opposite answers remain possible, the two statements together are not sufficient.
-
-The correct answer is E.
+**fastest_path:** Location and range do not fix SD. With A={20,20,20,20,30}, B={0,5,5,5,10} gives SD(A)>SD(B); using B={0,0,10,10,10} gives SD(A)<SD(B). Answer E.
+**explanation:** Both examples satisfy every A value greater than every B value and equal ranges of 10. In the first, B clusters near its mean; in the second, B concentrates at its endpoints, reversing the SD comparison. Statement (1) controls location and statement (2) only the endpoints. Even together they do not determine the full spread.
+**common_trap:** Assuming higher values or equal ranges determine standard deviation; SD measures distances from each set's own mean.
+**takeaway:** To disprove DS sufficiency, construct two valid cases satisfying all facts but producing opposite answers.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
 
 
@@ -1897,28 +1892,14 @@ An alloy weighing 40 kilograms is 30% copper by weight. How many kilograms of a 
 - E) 90
 
 **answer:** D
-**fastest_path:** Balance the copper deviations from the 60% target. The first alloy is 30 points short over 40 kg, a deficit of 30 × 40 = 1,200 point-kg; the second alloy runs 15 points over, so it must supply 1,200/15 = 80 kg. No equation needed.
-**explanation:** In a mixture problem the amount of a component (here copper) is conserved: the copper in the final blend equals the sum of the copper contributed by each ingredient. The fraction of copper in a portion equals its copper weight divided by its total weight, so copper weight equals copper fraction times total weight.
-
-Let x be the number of kilograms of the second alloy added. The first alloy contributes 0.30 × 40 = 12 kilograms of copper, and the second alloy contributes 0.75x kilograms of copper. The combined alloy weighs 40 + x kilograms and must be 60% copper, so its copper weight is 0.60(40 + x).
-
-Setting the copper contributed equal to the copper required gives
-
-12 + 0.75x = 0.60(40 + x).
-
-Expanding the right side yields 12 + 0.75x = 24 + 0.60x. Subtracting 0.60x and 12 from both sides gives 0.15x = 12, so
-
-x = 12 / 0.15 = 80.
-
-Adding 80 kilograms of the 75% alloy produces a 120-kilogram blend whose copper weight is 12 + 0.75 × 80 = 12 + 60 = 72 kilograms, and 72 / 120 = 0.60, confirming the blend is 60% copper.
-
-The correct answer is D.
+**fastest_path:** Balance deviations from 60%: 40 kg is 30 points below the target, while the new alloy is 15 points above. Thus 40 x 30 = 15x, so x = 80 kg.
+**explanation:** Weighted deviations from the target must cancel. The first alloy contributes a deficit of 40 x (60 - 30) = 1,200 percentage-point kilograms. Each kilogram of the second alloy offsets 75 - 60 = 15 of those units, so 1,200 / 15 = 80 kilograms are required.
 **mistake_a:** 24 takes the simple midpoint reasoning that the target 60% sits halfway, then sizes the addition to the wrong reference; it ignores that the two alloys pull on the mean with different strengths.
 **mistake_b:** 48 comes from equating the two alloys' weighted distances incorrectly (for instance 30 × 40 = 15 × 80 mis-solved to 48) — an arithmetic slip in the balance equation.
 **mistake_c:** 60 mistakes the copper weight that must be added (0.75 × 80 = 60 kg of copper) for the weight of the alloy itself.
 **mistake_e:** 90 over-adds, as if the target were closer to 75% than it is; the second alloy needs to outweigh the first, but not by this much.
 **common_trap:** Averaging the two percentages (30% and 75%) as if equal weights were combined, instead of letting the unknown amount of the richer alloy do the balancing.
-**takeaway:** Mixture problems conserve the component: set (fraction × amount) contributed equal to (target fraction × total), or balance each ingredient's deviation from the target weighted by its amount.
+**takeaway:** In mixtures, balance each ingredient's amount times its distance from the target percentage.
 **hint_nudge:** Track the kilograms of copper, not the percentages — copper in equals copper out.
 **hint_strategy:** Copper from alloy 1 (0.30 × 40) plus copper from alloy 2 (0.75x) equals copper required (0.60 × (40 + x)). Solve for x.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -1940,21 +1921,7 @@ A committee of 3 people is to be selected at random from a group of 5 women and 
 
 **answer:** E
 **fastest_path:** Complement: P(at least one man) = 1 − P(all women) = 1 − C(5,3)/C(9,3) = 1 − 10/84 = 74/84 = 37/42.
-**explanation:** When a question asks for the probability of "at least one" of something, the complement rule is usually the fastest route: the probability of at least one man equals 1 minus the probability of no men, which is the probability that all three committee members are women. Because the committee is an unordered selection, probabilities are computed with combinations, where C(n, r) = n! / [r!(n − r)!].
-
-The group has 5 + 4 = 9 people, and 3 are chosen, so the total number of equally likely committees is
-
-C(9, 3) = (9 × 8 × 7) / (3 × 2 × 1) = 504 / 6 = 84.
-
-The number of committees containing no men, that is all three members chosen from the 5 women, is
-
-C(5, 3) = (5 × 4 × 3) / (3 × 2 × 1) = 60 / 6 = 10.
-
-So the probability that the committee has no men is 10/84. Applying the complement rule, the probability of at least one man is
-
-1 − 10/84 = 84/84 − 10/84 = 74/84 = 37/42.
-
-The correct answer is E.
+**explanation:** “At least one man” is the complement of an all-woman committee. There are C(9,3) = 84 total committees and C(5,3) = 10 all-woman committees. Subtracting that single excluded case gives 1 - 10/84 = 37/42.
 **mistake_a:** 5/42 = 10/84 is P(no men) reduced incompletely or its mismatched form — the very event the complement removes, not the answer.
 **mistake_b:** 10/21 = 40/84 counts only the committees with exactly one man, C(4,1)·C(5,2) = 4 × 10 = 40, dropping the two-man and three-man cases that "at least one" also includes.
 **mistake_c:** 4/9 is a raw fraction-of-men guess (4 men out of 9 people) that ignores the multi-person selection entirely.
@@ -1982,19 +1949,7 @@ Six students are to be seated in a row of six chairs. In how many of the possibl
 
 **answer:** C
 **fastest_path:** Total arrangements minus the adjacent ones: 6! − (5! × 2) = 720 − 240 = 480.
-**explanation:** The cleanest way to count arrangements that avoid a condition is to subtract the arrangements that satisfy the condition from the total number of arrangements. Here the total counts every way to seat 6 distinct students, and the condition to subtract is "Mara and Niko sit next to each other."
-
-The total number of ways to arrange 6 distinct students in a row is 6! = 720.
-
-To count the arrangements in which Mara and Niko are adjacent, treat the pair as a single combined unit. This unit, together with the other 4 students, gives 5 objects to arrange in a row, which can be done in 5! = 120 ways. Within the combined unit, Mara and Niko can be ordered in 2! = 2 ways (Mara-Niko or Niko-Mara). By the multiplication principle, the number of adjacent arrangements is
-
-5! × 2! = 120 × 2 = 240.
-
-The arrangements in which Mara and Niko are NOT adjacent are therefore the total minus the adjacent ones:
-
-720 − 240 = 480.
-
-The correct answer is C.
+**explanation:** Count the forbidden adjacent case and subtract it from all 6! arrangements. Treat Mara and Niko as one block, giving five objects to arrange in 5! ways, then multiply by 2 for their internal order. Thus adjacent = 240 and not adjacent = 720 - 240 = 480.
 **mistake_a:** 240 is the count of arrangements in which the two ARE adjacent — the quantity meant to be subtracted, not the final answer.
 **mistake_b:** 360 = 720 / 2 halves the total as if exactly half the seatings put the pair together, but the adjacent share is 240/720 = 1/3, not 1/2.
 **mistake_d:** 600 = 720 − 120 subtracts the 5! block-arrangements but forgets to double for the two internal orders of the pair, undercounting the adjacent cases.
@@ -2022,23 +1977,7 @@ A student's average (arithmetic mean) on her first 5 exams is 78. What score mus
 
 **answer:** D
 **fastest_path:** Required sixth score = new total − old total = 6 × 80 − 5 × 78 = 480 − 390 = 90.
-**explanation:** The arithmetic mean equals the sum of the values divided by the count, so the sum equals the mean multiplied by the count. The score needed on the new exam is simply the difference between the total the student must reach and the total she already has.
-
-The first 5 exams average 78, so their sum is
-
-5 × 78 = 390.
-
-For the average over all 6 exams to be 80, the sum of all 6 scores must be
-
-6 × 80 = 480.
-
-The sixth score is the amount by which the total must increase, which is the new required total minus the existing total:
-
-480 − 390 = 90.
-
-A quick sanity check using deviations confirms this: holding an 80 average over 6 exams while the first 5 each fell 2 points short of 80 means the first five carry a combined deficit of 5 × 2 = 10 points, so the sixth exam must exceed 80 by 10, giving 80 + 10 = 90.
-
-The correct answer is D.
+**explanation:** The first five exams total 5 x 78 = 390 points. Six exams averaging 80 must total 6 x 80 = 480 points. The sixth exam must supply the 90-point difference. Equivalently, it must offset the first five exams' combined 10-point shortfall from the target.
 **mistake_a:** 82 = 80 + 2 just nudges the new average up by the 2-point gap between 78 and 80, ignoring that the deficit accumulated over all five earlier exams.
 **mistake_b:** 86 partially accounts for the accumulated deficit but stops short of the full 10-point make-up the five exams require.
 **mistake_c:** 88 = 78 + 10 adds the correct 10-point make-up to the old average instead of to the target average of 80.
@@ -2065,17 +2004,7 @@ A machine produces parts independently, and each part is defective with probabil
 
 **answer:** D
 **fastest_path:** Complement: P(at least one defective) = 1 − P(none defective) = 1 − (0.9)^3 = 1 − 0.729 = 0.271.
-**explanation:** For independent events, the probability that they all occur is the product of their individual probabilities. The phrase "at least one defective" is handled most efficiently with the complement rule: the probability of at least one defective equals 1 minus the probability that no part is defective, that is, the probability that all three parts are good.
-
-Each part is defective with probability 0.1, so each part is good with probability 1 − 0.1 = 0.9. Because the parts are produced independently, the probability that all three are good is the product
-
-0.9 × 0.9 × 0.9 = (0.9)^3 = 0.729.
-
-Applying the complement rule, the probability that at least one part is defective is
-
-1 − 0.729 = 0.271.
-
-The correct answer is D.
+**explanation:** The complement of at least one defective part is that all three are good. Each part is good with probability 0.9, and independence lets those probabilities multiply: P(all good) = 0.9^3 = 0.729. Subtract from 1 to get 0.271.
 **mistake_a:** 0.001 = (0.1)^3 is the probability that ALL three parts are defective, a far rarer event than "at least one."
 **mistake_b:** 0.027 mixes the factors, for example (0.1)^2 × (0.9) × 3 mis-evaluated, capturing only a sliver of the "at least one" event.
 **mistake_c:** 0.243 = 3 × (0.1)(0.9)^2 is P(exactly one defective); "at least one" must also include the two- and three-defective cases.
@@ -2103,15 +2032,7 @@ At a meeting of 8 people, each person shakes hands exactly once with every other
 
 **answer:** B
 **fastest_path:** Each handshake is one unordered pair of people: C(8,2) = (8 × 7)/2 = 28.
-**explanation:** A handshake involves exactly two distinct people, and the handshake between two given people is the same regardless of the order in which they are named, so a handshake is an unordered pair. The number of ways to choose an unordered pair from n people is the combination C(n, 2) = n(n − 1) / 2.
-
-With 8 people, the number of distinct pairs, and therefore the number of handshakes, is
-
-C(8, 2) = (8 × 7) / 2 = 56 / 2 = 28.
-
-An equivalent way to see this: each of the 8 people shakes hands with the other 7, giving 8 × 7 = 56 person-to-person counts, but each handshake is counted twice (once from each participant's perspective), so the number of handshakes is 56 / 2 = 28.
-
-The correct answer is B.
+**explanation:** Each handshake corresponds to one pair, and order within a pair does not matter. Choosing two people from eight gives C(8,2) = 28. The alternative count 8 x 7 = 56 counts each handshake twice, once from each person's perspective, so it must also be divided by 2.
 **mistake_a:** 16 = 8 × 2 has no combinatorial meaning here; it neither pairs people nor divides out the double count.
 **mistake_c:** 32 = 8 × 4 is a stray product that does not correspond to choosing pairs from 8 people.
 **mistake_d:** 56 = 8 × 7 counts every ordered pair (each handshake twice) and forgets to divide by 2.
@@ -2137,33 +2058,13 @@ A committee of 4 people is to be formed from a pool of 5 men and 4 women. How ma
 
 **answer:** B
 **fastest_path:** Total committees minus those with fewer than 2 women: C(9,4) − [C(4,0)C(5,4) + C(4,1)C(5,3)] = 126 − (5 + 40) = 126 − 45 = 81.
-**explanation:** A committee is an unordered selection, so it is counted with combinations: C(n, r) = n! / [r!(n − r)!]. The phrase "at least 2 women" covers the committees with exactly 2, exactly 3, or exactly 4 women. It is efficient to count by complement: all committees minus those that fail the condition, namely committees with 0 women or exactly 1 woman.
-
-The total number of 4-person committees from the 9 people is
-
-C(9, 4) = (9 × 8 × 7 × 6) / (4 × 3 × 2 × 1) = 3024 / 24 = 126.
-
-Committees with 0 women consist of 4 men chosen from 5:
-
-C(4, 0) × C(5, 4) = 1 × 5 = 5.
-
-Committees with exactly 1 woman have 1 of the 4 women and 3 of the 5 men:
-
-C(4, 1) × C(5, 3) = 4 × 10 = 40.
-
-So the committees with fewer than 2 women number 5 + 40 = 45. Subtracting from the total gives the committees with at least 2 women:
-
-126 − 45 = 81.
-
-As a check, counting the qualifying cases directly: exactly 2 women is C(4,2)·C(5,2) = 6 × 10 = 60; exactly 3 women is C(4,3)·C(5,1) = 4 × 5 = 20; exactly 4 women is C(4,4)·C(5,0) = 1 × 1 = 1. Their sum is 60 + 20 + 1 = 81, matching the complement count.
-
-The correct answer is B.
+**explanation:** There are C(9,4) = 126 total committees. The invalid cases have zero women, C(5,4) = 5, or one woman, C(4,1)C(5,3) = 40. Subtracting these 45 deficient committees leaves 81 with at least two women.
 **mistake_a:** 60 is the count for exactly 2 women only, C(4,2)·C(5,2); it omits the exactly-3 and exactly-4-women committees that "at least 2" also includes.
 **mistake_c:** 96 results from a miscount of one of the cases, such as using C(5,2) = 10 where C(5,1) = 5 belongs, inflating the three-women tally.
 **mistake_d:** 105 = 126 − 21 subtracts a wrong "fewer than 2 women" total, for example by miscounting the one-woman committees.
 **mistake_e:** 126 is the total number of committees with no restriction, ignoring the at-least-2-women condition entirely.
 **common_trap:** Counting only the "exactly 2 women" case and forgetting that the requirement is satisfied just as well by 3 or 4 women.
-**takeaway:** "At least k" of a category is total minus the deficient cases (0 through k−1), or the sum of the qualifying "exactly" cases — compute it whichever way is shorter and let the two agree.
+**takeaway:** For “at least k,” subtract the cases with fewer than k from the unrestricted total.
 **hint_nudge:** "At least 2 women" out of 4 seats — list which exact woman-counts qualify, then decide whether direct or complement counting is faster.
 **hint_strategy:** Subtract the all-men and exactly-one-woman committees from C(9,4).
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -2184,24 +2085,8 @@ Three letters are placed at random, one per envelope, into three envelopes that 
 - E) 5/6
 
 **answer:** C
-**fastest_path:** Count permutations with exactly one fixed point: choose the 1 correct letter (3 ways), and the other 2 must both be wrong, which for 2 items happens in exactly 1 way (they swap). Favorable = 3 × 1 = 3 out of 3! = 6, so 3/6 = 1/2.
-**explanation:** Placing the three letters into the three envelopes at random corresponds to choosing one of the 3! = 6 equally likely orderings (permutations) of the letters. A letter is "correct" when it lands in its own envelope, which is a fixed point of the permutation. The event of interest is that exactly one letter is correct, meaning the permutation has exactly one fixed point.
-
-There are 3! = 6 equally likely arrangements in total.
-
-To count the arrangements with exactly one correct letter, first choose which single letter is correct: there are C(3, 1) = 3 choices. Once that letter is fixed in its own envelope, the remaining two letters must each be incorrect, that is, neither of them may go to its own envelope. With only two letters and two envelopes left, the sole way for both to be wrong is for them to swap envelopes; there is exactly 1 such arrangement (a derangement of 2 objects).
-
-By the multiplication principle, the number of favorable arrangements is
-
-3 × 1 = 3.
-
-The probability is the favorable count divided by the total:
-
-3 / 6 = 1/2.
-
-As a check, the six arrangements split as: 1 arrangement with all three correct, 0 arrangements with exactly two correct (fixing two forces the third), 3 arrangements with exactly one correct, and 2 arrangements with none correct, and 1 + 0 + 3 + 2 = 6.
-
-The correct answer is C.
+**fastest_path:** Choose the one correctly placed letter in 3 ways. The other two must swap, which can happen in only 1 way. Favorable = 3 out of 3! = 6 arrangements, so the probability is 1/2.
+**explanation:** Once one letter is fixed in its correct envelope, exactly one arrangement keeps both remaining letters wrong: they exchange envelopes. Thus there are 3 favorable arrangements, one for each choice of the correct letter, among 6 total permutations. Exactly two correct is impossible because the third would then also be forced correct.
 **mistake_a:** 1/6 is the probability that ALL three letters are correct (the single fully-matched arrangement), not exactly one.
 **mistake_b:** 1/3 = 2/6 is the probability that NO letter is correct (the two derangements of three objects), the opposite end of the count.
 **mistake_d:** 2/3 = 4/6 lumps together the "exactly one correct" and "all correct" arrangements (3 + 1), but "exactly one" excludes the all-correct case.
@@ -2228,16 +2113,8 @@ A history class has 30 students. The 18 students who completed the optional essa
 - E) 90
 
 **answer:** D
-**fastest_path:** Balance the deviations. The 18 essay students sit 78 − 72 = 6 below the class mean, a deficit of 6 × 18 = 108. The 12 non-essay students must carry that 108 as a surplus, so they sit 108 / 12 = 9 above the mean: 78 + 9 = 87.
-**explanation:** The arithmetic mean of a group equals the sum of its values divided by the count, so the sum of a group equals its mean multiplied by its count. The total of the whole class equals the sum of its two subgroups, the essay completers and the non-completers.
-
-Let S denote the sum of all 30 final grades, let E denote the sum of the 18 essay completers' grades, and let N denote the sum of the 12 non-completers' grades. Because every student is in exactly one group, S = E + N.
-
-The class of 30 students has a mean of 78, so S = 30 × 78 = 2,340. The 18 essay completers have a mean of 72, so E = 18 × 72 = 1,296. The non-completers' total is therefore N = S − E = 2,340 − 1,296 = 1,044.
-
-The mean grade of the 12 non-completers is their sum divided by their count: N ÷ 12 = 1,044 ÷ 12 = 87.
-
-The correct answer is D.
+**fastest_path:** The 18 essay students are 6 points below the class mean, a 108-point deficit. Spread that over the other 12 students: 108/12 = 9 above 78, so their mean is 87.
+**explanation:** Weighted deviations from the class mean must balance. The essay group contributes 18 x (72 - 78) = -108 points. The other 12 students must contribute +108 points, or +9 each, placing their mean at 78 + 9 = 87.
 **mistake_a:** 75 splits the gap evenly, as if both groups sat the same distance from 78. The smaller group must move farther, so its mean is not just halfway up.
 **mistake_b:** 81 = 78 + 3 nudges the mean by part of the deficit only; it fails to load all 108 deficit points onto the 12-student group.
 **mistake_c:** 84 = 72 + 12 mirrors the class-to-essay gap of 6 incorrectly, or doubles it; the non-completers' offset is 9, not 12.
@@ -2265,27 +2142,13 @@ A committee of 3 people is selected at random from a group of 5 women and 4 men.
 
 **answer:** B
 **fastest_path:** Use combinations: favorable = choose 2 of 5 women and 1 of 4 men = C(5,2) × C(4,1) = 10 × 4 = 40; total = C(9,3) = 84. So 40/84 = 10/21.
-**explanation:** When a subset is chosen at random and order does not matter, the probability of an event equals the number of favorable combinations divided by the total number of combinations. The number of ways to choose r objects from n distinct objects is the combination C(n, r) = n! / [r!(n − r)!].
-
-The group has 5 women and 4 men, for 9 people total, and a committee of 3 is chosen. The total number of equally likely committees is the number of ways to choose 3 people from 9:
-
-C(9, 3) = (9 × 8 × 7) / (3 × 2 × 1) = 504 / 6 = 84.
-
-A committee with exactly 2 women must contain 2 of the 5 women and, to reach a size of 3, exactly 1 of the 4 men. By the multiplication principle, the number of such committees is
-
-C(5, 2) × C(4, 1) = [(5 × 4) / (2 × 1)] × 4 = 10 × 4 = 40.
-
-The probability is therefore the favorable count divided by the total count:
-
-40 / 84 = 10 / 21.
-
-The correct answer is B.
+**explanation:** An exactly-two-women committee must also contain exactly one man. Count favorable committees as C(5,2)C(4,1) = 40, then divide by all C(9,3) = 84 committees. The result reduces to 10/21.
 **mistake_a:** 5/42 = 10/84 is P(all 3 women) = C(5,3)/C(9,3) = 10/84. "Exactly 2 women" requires the third member to be a man, not a third woman.
 **mistake_c:** 25/42 = 50/84 is P(at least 2 women) = (40 + 10)/84, which adds the all-women case to the exactly-two case. "Exactly 2" excludes the all-women committees.
 **mistake_d:** 4/9 ignores combinations entirely and reports a single draw's chance (4 men out of 9, or similar), skipping the C(n, r) counting the problem requires.
 **mistake_e:** 20/21 = 80/84 doubles the favorable count to 80, e.g., by treating the committee positions as ordered when choosing the 2 women and 1 man.
 **common_trap:** Reading "exactly 2 women" as "at least 2 women" and folding in the all-women committees, or treating the unordered committee as an ordered arrangement.
-**takeaway:** For unordered selections, multiply the combination for each required subgroup, C(women)×C(men), and divide by C(total). "Exactly k" means the remaining slots come from the other group only.
+**takeaway:** For exact subgroup counts, multiply the relevant combinations and divide by all possible selections.
 **hint_nudge:** A 3-person committee with exactly 2 women has how many men?
 **hint_strategy:** Favorable = C(5,2) × C(4,1); total = C(9,3). Divide.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -2306,24 +2169,8 @@ Each of the following five sets contains five numbers with a mean of 44. Which s
 - E) {34, 44, 44, 44, 54}
 
 **answer:** D
-**fastest_path:** All five sets share the mean 44, so the set whose values lie farthest from 44 has the largest standard deviation. Set D reaches 28 below and 28 above the mean (16 and 72) — the widest spread of any option — so D wins. No full variance computation needed.
-**explanation:** The standard deviation measures how far a set's values spread from its mean. When several sets share the same mean, the one whose values lie farther from that mean has the greater standard deviation. A quick rigorous proxy is the sum of squared deviations from the common mean: a larger sum of squared deviations means a larger standard deviation, since all sets here have the same count.
-
-Every set has mean 44, so compute each value's deviation from 44 and square it.
-
-Set A: deviations −4, −2, 0, 2, 4; squared deviations 16 + 4 + 0 + 4 + 16 = 40.
-
-Set B: deviations −14, −4, 0, 4, 14; squared deviations 196 + 16 + 0 + 16 + 196 = 424.
-
-Set C: all deviations 0; squared deviations sum to 0.
-
-Set D: deviations −28, 0, 0, 0, 28; squared deviations 784 + 0 + 0 + 0 + 784 = 1,568.
-
-Set E: deviations −10, 0, 0, 0, 10; squared deviations 100 + 0 + 0 + 0 + 100 = 200.
-
-The sum of squared deviations is largest for Set D (1,568), so Set D has the greatest standard deviation.
-
-The correct answer is D.
+**fastest_path:** All sets share mean 44 and have five values. Set D places two values 28 points from the mean, farther than any other option, so it has the greatest SD.
+**explanation:** With equal means and counts, compare squared distances from 44. Set D's deviations are -28, 0, 0, 0, and 28, whose squares sum to 1,568. The next-largest total is Set B's 424, so D has the greatest standard deviation.
 **mistake_a:** {40, 42, 44, 46, 48} is the most tightly clustered set (largest deviation only 4), giving the smallest nonzero spread, not the greatest.
 **mistake_b:** {30, 40, 44, 48, 58} spreads out to ±14, more than A but well short of D's ±28; its sum of squared deviations (424) is far below D's.
 **mistake_c:** {44, 44, 44, 44, 44} has every value equal to the mean, so its standard deviation is 0 — the smallest possible, the opposite of greatest.
@@ -2348,28 +2195,14 @@ In how many ways can 7 distinct books be arranged in a row on a shelf if 2 parti
 - E) 5,040
 
 **answer:** C
-**fastest_path:** Use the complement. Total arrangements of 7 distinct books = 7! = 5,040. Arrangements where the 2 particular books ARE adjacent = treat them as one block (2 internal orders) with the other 5 books: 2 × 6! = 1,440. Subtract: 5,040 − 1,440 = 3,600.
-**explanation:** The number of ways to arrange n distinct objects in a row is n factorial, written n!. To count the arrangements in which two particular objects are NOT adjacent, it is efficient to subtract the "bad" arrangements (those in which the two ARE adjacent) from the total, using the complement principle.
-
-First, the total number of arrangements of 7 distinct books in a row is
-
-7! = 7 × 6 × 5 × 4 × 3 × 2 × 1 = 5,040.
-
-Next, count the arrangements in which the two particular books are adjacent. Tie the two books together into a single block. This block, together with the remaining 5 books, makes 6 items to arrange in a row, which can be done in 6! = 720 ways. Within the block, the two books can be ordered in 2! = 2 ways. By the multiplication principle, the number of adjacent arrangements is
-
-2 × 6! = 2 × 720 = 1,440.
-
-Finally, the number of arrangements in which the two books are not adjacent is the total minus the adjacent arrangements:
-
-5,040 − 1,440 = 3,600.
-
-The correct answer is C.
+**fastest_path:** Total arrangements = 7! = 5,040. Adjacent arrangements = 2 x 6! = 1,440 by treating the pair as one block. Subtract to get 3,600.
+**explanation:** Count the forbidden adjacent arrangements and remove them from the total. The pair forms one block among six objects, with two possible internal orders, so the adjacent count is 2 x 6!. Therefore not adjacent = 7! - 2 x 6! = 3,600.
 **mistake_a:** 1,440 = 2 × 6! is the count of arrangements where the two books ARE adjacent — the bad case you must subtract, not the answer.
 **mistake_b:** 2,520 = 7!/2 halves the total, as if exactly half the arrangements were adjacent; the adjacent fraction is 1,440/5,040 = 2/7, not 1/2.
 **mistake_d:** 4,320 = 6 × 6! subtracts only 6! (720) instead of 2 × 6! (1,440), forgetting the 2 internal orders of the tied block.
 **mistake_e:** 5,040 = 7! is the total number of arrangements with no restriction applied — the "not adjacent" condition has been ignored.
 **common_trap:** Forgetting that the glued pair has 2 internal orderings, so the adjacent count is 2 × 6! and not 6!; or counting the adjacent case as the final answer instead of subtracting it.
-**takeaway:** For "must not be adjacent," compute total − adjacent; tie the restricted pair into a block (k! internal orders for k items) and arrange the block among the rest.
+**takeaway:** For “not adjacent,” subtract the block count from all arrangements and include the pair's internal orders.
 **hint_nudge:** It is easier to count the arrangements where the two books ARE together and remove them.
 **hint_strategy:** Adjacent count = (treat the pair as one block: 6! arrangements) × (2 ways to order the pair). Subtract from 7!.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
@@ -2391,19 +2224,7 @@ A list consists of 15 consecutive multiples of 4, the least of which is 12. What
 
 **answer:** B
 **fastest_path:** A list of consecutive multiples of 4 is evenly spaced, so its mean equals its median, the middle (8th of 15) term. The 8th term is 12 + 7 × 4 = 40.
-**explanation:** For any evenly spaced list — an arithmetic sequence — the values are symmetric about the center, so the arithmetic mean equals the median, which is the middle term when the count of terms is odd. Consecutive multiples of 4 are evenly spaced with a common difference of 4, so this shortcut applies.
-
-The list has 15 terms, an odd count, so the median is the single middle term. For a list of n terms in order, the middle position is (n + 1)/2; here (15 + 1)/2 = 8, so the median is the 8th term.
-
-The first term is 12, and each successive term increases by the common difference 4. The kth term equals the first term plus (k − 1) common differences, so the 8th term is
-
-12 + (8 − 1) × 4 = 12 + 28 = 40.
-
-Because the list is evenly spaced, the mean equals this middle term, so the mean is 40.
-
-As a check, the largest term is 12 + 14 × 4 = 68, and the mean of an evenly spaced list also equals the average of its first and last terms: (12 + 68)/2 = 80/2 = 40.
-
-The correct answer is B.
+**explanation:** An evenly spaced list is symmetric, so its mean equals its middle term. Fifteen terms have the 8th term in the center. Starting from 12 and moving seven steps of 4 gives 12 + 28 = 40. As a check, the last term is 68 and (12 + 68)/2 is also 40.
 **mistake_a:** 36 is the 7th term (12 + 6 × 4), an off-by-one on the middle position — the median of 15 terms is the 8th term, not the 7th.
 **mistake_c:** 44 is the 9th term (12 + 8 × 4), the other off-by-one, overshooting the middle position by one.
 **mistake_d:** 68 is the largest term (12 + 14 × 4), the maximum of the list rather than its center.
@@ -2429,17 +2250,7 @@ An archer hits the bull's-eye on any given shot with probability 1/3, and the ou
 
 **answer:** D
 **fastest_path:** Complement: P(at least one hit) = 1 − P(no hits). Each miss has probability 2/3, and the shots are independent, so P(no hits) = (2/3)^3 = 8/27. Thus 1 − 8/27 = 19/27.
-**explanation:** For independent trials, the probability that several specified outcomes all occur is the product of their individual probabilities. The most efficient route to an "at least once" probability is the complement: the probability of at least one success equals 1 minus the probability of no successes at all.
-
-On each shot the archer hits with probability 1/3, so she misses with probability 1 − 1/3 = 2/3. The three shots are independent, so the probability that she misses on all three shots is the product of the three individual miss probabilities:
-
-P(no hits) = (2/3) × (2/3) × (2/3) = (2/3)^3 = 8/27.
-
-The event "at least one hit" is the complement of "no hits," so
-
-P(at least one hit) = 1 − P(no hits) = 1 − 8/27 = 27/27 − 8/27 = 19/27.
-
-The correct answer is D.
+**explanation:** The complement of at least one hit is missing all three shots. Each miss has probability 2/3, and independence allows multiplication, so P(no hits) = (2/3)^3 = 8/27. Subtracting from 1 gives 19/27.
 **mistake_a:** 1/27 = (1/3)^3 is P(she hits on all three shots) — the probability of three hits, not of at least one.
 **mistake_b:** 8/27 = (2/3)^3 is P(she misses all three shots), which is exactly the complement you subtract, not the answer.
 **mistake_c:** 4/9 = 3 × (1/3)(2/3)^2 is P(exactly one hit). "At least one" also includes exactly two and exactly three hits, which this drops.
@@ -2467,25 +2278,7 @@ An investor places $3,000 in a fund that returns 4% for the year and an addition
 
 **answer:** C
 **fastest_path:** Balance the deviations from the 6% blend. The $3,000 at 4% is 2 points below the blend; the second fund at 9% is 3 points above it. To balance, 3,000 × 2 = x × 3, so x = 6,000/3 = $2,000.
-**explanation:** The overall return on a portfolio is the weighted average of the component returns, weighted by the dollar amount in each component. Equivalently, the dollar-weighted deviation of one component above the blended rate must exactly offset the dollar-weighted deviation of the other component below it.
-
-Let x be the amount placed in the second fund. The total invested is 3,000 + x. The combined dollar return equals the sum of the two funds' dollar returns and also equals 6% of the total. Setting these equal gives
-
-0.04 × 3,000 + 0.09 × x = 0.06 × (3,000 + x).
-
-Computing the constant terms, 0.04 × 3,000 = 120 and 0.06 × 3,000 = 180, so
-
-120 + 0.09x = 180 + 0.06x.
-
-Subtracting 0.06x and 120 from both sides yields
-
-0.03x = 60,
-
-so x = 60 / 0.03 = 2,000.
-
-As a check, $3,000 at 4% earns $120 and $2,000 at 9% earns $180, for $300 total on $5,000 invested, which is 300/5,000 = 6%.
-
-The correct answer is C.
+**explanation:** Weighted deviations from the 6% target must balance. The first fund contributes $3,000 x 2 percentage points of shortfall. The second contributes 3x points of surplus. Setting 6,000 = 3x gives $2,000. The returns then total $120 + $180 = $300 on $5,000, or 6%.
 **mistake_a:** $1,200 reverses the balance, pairing the larger deviation with the larger amount (3,000 × 3 = x × 2 gives 4,500, or a related mis-pairing yields 1,200); the 4% fund is only 2 points off the blend, the 9% fund 3 points.
 **mistake_b:** $1,500 splits the $3,000 in half, as if the blend sat exactly halfway between 4% and 9%; the blend of 6% is closer to 4%, so the high fund needs a larger share than half the low fund's amount.
 **mistake_d:** $2,500 comes from balancing to the midpoint rate of 6.5% (halfway between 4% and 9%) instead of the given 6%, shifting the required amount.
@@ -2513,25 +2306,7 @@ A 4-person committee is to be formed from a pool of 6 teachers and 4 students. H
 
 **answer:** D
 **fastest_path:** Use the complement. Total committees = C(10,4) = 210. Subtract those with fewer than 2 teachers: 0 teachers = C(4,4) = 1; 1 teacher = C(6,1) × C(4,3) = 6 × 4 = 24. So 210 − 1 − 24 = 185.
-**explanation:** When order does not matter, the number of ways to choose r objects from n distinct objects is C(n, r) = n! / [r!(n − r)!]. For an "at least k" condition, it is usually fastest to count the total number of selections and subtract the "too few" cases (the complement), rather than summing all qualifying cases.
-
-The pool has 6 teachers and 4 students, for 10 people total. The total number of 4-person committees is
-
-C(10, 4) = (10 × 9 × 8 × 7) / (4 × 3 × 2 × 1) = 5,040 / 24 = 210.
-
-A committee fails the "at least 2 teachers" condition only if it has 0 teachers or exactly 1 teacher.
-
-Zero teachers means all 4 members are students: C(6, 0) × C(4, 4) = 1 × 1 = 1.
-
-Exactly 1 teacher means 1 teacher and 3 students: C(6, 1) × C(4, 3) = 6 × 4 = 24.
-
-So the number of committees with fewer than 2 teachers is 1 + 24 = 25. Subtracting from the total gives the number with at least 2 teachers:
-
-210 − 25 = 185.
-
-As a direct check, sum the qualifying cases. Exactly 2 teachers: C(6, 2) × C(4, 2) = 15 × 6 = 90. Exactly 3 teachers: C(6, 3) × C(4, 1) = 20 × 4 = 80. Exactly 4 teachers: C(6, 4) × C(4, 0) = 15 × 1 = 15. The total is 90 + 80 + 15 = 185, confirming the result.
-
-The correct answer is D.
+**explanation:** There are C(10,4) = 210 total committees. Invalid committees have zero teachers, C(4,4) = 1, or one teacher, C(6,1)C(4,3) = 24. Removing those 25 deficient cases leaves 185 committees with at least two teachers.
 **mistake_a:** 90 = C(6,2) × C(4,2) counts only the exactly-2-teacher committees and omits the exactly-3 and exactly-4 cases that "at least 2" also includes.
 **mistake_b:** 161 subtracts too much — for instance removing all committees with 1 teacher (24) plus an inflated zero-teacher count, or a slip in C(10,4).
 **mistake_c:** 170 = 90 + 80 captures exactly 2 and exactly 3 teachers but forgets the 15 all-teacher (exactly 4) committees.
