@@ -1368,7 +1368,7 @@ A bag contains 5 red marbles, 7 green marbles, and 8 blue marbles. If one marble
 
 **answer:** D
 **fastest_path:** There are 5 + 7 + 8 = 20 marbles, of which 8 are blue. Probability = 8/20 = 2/5.
-**explanation:** With one random draw, each marble is equally likely. Use blue marbles as the favorable count and all marbles as the denominator, then reduce the fraction.
+**explanation:** With one random draw, each marble is equally likely. There are 5 + 7 + 8 = 20 marbles in total, and 8 favorable outcomes because 8 marbles are blue. Therefore P(blue) = 8/20 = 2/5, so the correct answer is D.
 **common_trap:** Using 8/15 by leaving one of the non-blue colors out of the total.
 **takeaway:** For equally likely outcomes, probability = favorable count / total count.
 **related_reading:** reading-quant-06-statistics-probability-combinatorics
