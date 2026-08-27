@@ -7,7 +7,6 @@ import {
   ExternalLink,
   GraduationCap,
   Sparkles,
-  TrendingUp,
 } from "lucide-react"
 import {
   ALL_GRADUATE_PROGRAMS,
@@ -27,7 +26,6 @@ const PROGRAM_TYPES: Array<ProgramType | "All"> = [
 ]
 
 const SCORE_EVIDENCE_ORDER: Record<ScoreStatistic, number> = {
-  "Approximate median": 0,
   Median: 0,
   Average: 0,
   "Observed range": 1,
@@ -286,6 +284,22 @@ export default function ScoreBySchoolClient() {
                           <span className="block text-[11px] text-[#666666] mt-0.5">
                             {program.programName} · {program.location}
                           </span>
+                          {program.sourceUrl != null &&
+                            program.sourceLabel != null && (
+                              <a
+                                href={program.sourceUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={(event) => event.stopPropagation()}
+                                className="inline-flex items-center gap-1 mt-1.5 text-[10px] leading-tight text-[#C9A84C] hover:text-[#E0C56A] transition-colors"
+                              >
+                                {program.sourceLabel}
+                                <ExternalLink
+                                  className="w-3 h-3 shrink-0"
+                                  aria-hidden="true"
+                                />
+                              </a>
+                            )}
                         </td>
                         <td className="py-3 px-4 text-right tabular-nums text-[#C0C0C0]">
                           <span className="block">
@@ -295,7 +309,7 @@ export default function ScoreBySchoolClient() {
                           </span>
                           <span className="block mt-1 text-[10px] leading-tight text-[#666666]">
                             {program.scoreStatistic === "Not published"
-                              ? "No score published"
+                              ? "Not published / unverified"
                               : isConcordanceFigure(program)
                                 ? `${program.scoreStatistic} · GMAC comparison`
                                 : `${program.scoreStatistic} · school-published`}
@@ -380,9 +394,6 @@ export default function ScoreBySchoolClient() {
 }
 
 function ProgramCard({ program }: { program: GraduateProgram }) {
-  const hasCompetitiveBand =
-    program.competitiveFocus != null || program.competitiveGMAT != null
-
   return (
     <div
       className="p-7 sm:p-8 rounded-2xl border overflow-hidden relative"
@@ -441,7 +452,9 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
             }
             sub={
               program.focusEquivalent == null
-                ? "No class benchmark published"
+                ? program.legacyScore == null
+                  ? "Not published or not verified"
+                  : "No school-published current figure"
                 : program.focusScoreLabel
             }
             value={
@@ -454,7 +467,7 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
           <ScoreCell
             label={
               program.legacyScore == null
-                ? "10th Edition figure"
+                ? "10th Edition GMAT"
                 : `10th Edition ${program.scoreStatistic.toLowerCase()}`
             }
             sub={
@@ -465,33 +478,14 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
             value={program.legacyScore}
             accent="#888888"
           />
-          {hasCompetitiveBand ? (
-            <>
-              <ScoreCell
-                label="Competitive Focus"
-                sub="Directional MBA planning band"
-                value={program.competitiveFocus}
-                accent="#3ECF8E"
-                icon={TrendingUp}
-              />
-              <ScoreCell
-                label="Competitive old GMAT"
-                sub="Directional MBA planning band"
-                value={program.competitiveGMAT}
-                accent="#3ECF8E"
-                icon={TrendingUp}
-              />
-            </>
-          ) : (
-            <div className="sm:col-span-2 px-4 py-3 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
-              <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-1.5">
-                Admissions treatment
-              </p>
-              <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
-                {program.testPolicy}
-              </p>
-            </div>
-          )}
+          <div className="sm:col-span-2 px-4 py-3 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
+            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-1.5">
+              Admissions treatment
+            </p>
+            <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
+              {program.testPolicy}
+            </p>
+          </div>
         </div>
 
         <p className="text-[12px] text-[#666666] mt-5 leading-relaxed">
@@ -511,9 +505,8 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 mt-4 text-[12px] font-semibold text-[#C9A84C] hover:text-[#E0C56A] transition-colors"
           >
-            View official source
+            {program.sourceLabel}
             <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-            <span className="sr-only">: {program.sourceLabel}</span>
           </a>
         )}
       </div>
