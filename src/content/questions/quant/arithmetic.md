@@ -1911,7 +1911,7 @@ What is the value of 1 ÷ ( 1 + 1 ÷ ( 1 + 1/3 ) ) ?
 ---
 
 ## Q67
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Decimals
 

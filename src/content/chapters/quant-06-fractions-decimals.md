@@ -69,7 +69,6 @@ problem_sets:
     question_ids:
       - arithmetic-q125
       - arithmetic-q126
-      - arithmetic-q67
       - arithmetic-q68
 ---
 

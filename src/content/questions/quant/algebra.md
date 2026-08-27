@@ -1676,7 +1676,7 @@ A taxi charges a fixed base fare plus a constant rate per mile. A 4-mile ride co
 ---
 
 ## Q49
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Systems of Equations
 
@@ -1714,7 +1714,7 @@ For a certain value of k, the equation 3(kx - 2) = 5x + 9 has no solution. What 
 ---
 
 ## Q51
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Systems of Equations
 
@@ -1961,7 +1961,7 @@ For the equation x^2 + px + 5 = 0, the two real solutions differ by 4. If p is p
 ---
 
 ## Q64
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics
 
@@ -2341,7 +2341,7 @@ In an arithmetic sequence, the first term is 5 and the common difference is 3. W
 ---
 
 ## Q84
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Sequences
 
@@ -2512,7 +2512,7 @@ Six years ago, Aaron was twice as old as Bella was then. In four years, the sum 
 ---
 
 ## Q94
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Translation
 
@@ -2531,7 +2531,7 @@ A jar contains red, blue, and green marbles. The number of red marbles is 5 more
 ---
 
 ## Q95
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Translation
 

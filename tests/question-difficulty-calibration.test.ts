@@ -2,11 +2,18 @@ import { describe, expect, it } from "vitest"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
 
 const RELABELLED_TO_INTERMEDIATE = [
+  "algebra-q49",
+  "algebra-q51",
+  "algebra-q64",
+  "algebra-q84",
+  "algebra-q94",
+  "algebra-q95",
   "algebra-q107",
   "algebra-q108",
   "algebra-q109",
   "arithmetic-q11",
   "arithmetic-q66",
+  "arithmetic-q67",
   "backsolving-q11",
   "exponents-roots-q46",
   "exponents-roots-q47",
