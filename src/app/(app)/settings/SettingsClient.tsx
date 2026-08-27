@@ -272,7 +272,8 @@ function DangerZone() {
         setDeleting(false)
         return
       }
-      // Account is gone server-side — clear the local session and leave.
+      // A 2xx response means the durable erasure request was accepted. Clear
+      // the local session even when server-side cleanup is still retrying.
       try {
         await createSupabaseBrowser().auth.signOut()
       } catch {
