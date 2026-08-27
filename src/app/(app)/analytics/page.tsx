@@ -30,11 +30,9 @@ import AnalyticsClient, {
   type DifficultyTimingRow,
   type ErrorPatternSummary,
   type PacingRow,
-  type PredictionMAE,
   type ScoreTrendPoint,
   type TopicRow,
 } from "./AnalyticsClient"
-import { accuracyToScore } from "@/lib/diagnostic"
 
 // Minimum attempts required to trust a per-topic accuracy — anything below
 // and a couple of lucky / unlucky answers dominate the number.
@@ -78,7 +76,6 @@ export default async function AnalyticsPage() {
   let difficultyTimingRows: DifficultyTimingRow[] = []
   let errorPatterns: ErrorPatternSummary | null = null
   let calibration: CalibrationReport | null = null
-  let predictionMAE: PredictionMAE | null = null
   let hasData = false
   /** True when the analytics reads failed — a failed read must not render
    *  as the "take your baseline" empty state. */
@@ -141,11 +138,11 @@ export default async function AnalyticsPage() {
       // that week", which we then scale to a Focus total.
       // The score-trajectory sessions read and the attempt aggregates are
       // independent (both scoped to this user) so fetch them concurrently. The
-      // per-topic / pacing / per-difficulty / behaviour / readiness /
+      // per-topic / pacing / per-difficulty / behaviour / accuracy /
       // confidence fan-out now runs in Postgres via get_analytics_aggregates()
       // (RLS-scoped) and returns compact per-group rows instead of ~20k raw
       // attempts; the same thresholds + rounding are applied below.
-      const [{ data: sessions }, { data: aggRaw }] = await Promise.all([
+      const [sessionsRes, aggregatesRes] = await Promise.all([
         supabase
           .from("practice_sessions")
           .select("slug, topic, section, created_at, total_questions, correct_count")
@@ -154,6 +151,11 @@ export default async function AnalyticsPage() {
           .order("created_at", { ascending: true }),
         supabase.rpc("get_analytics_aggregates"),
       ])
+      if (sessionsRes.error) throw sessionsRes.error
+      if (aggregatesRes.error) throw aggregatesRes.error
+
+      const sessions = sessionsRes.data
+      const aggRaw = aggregatesRes.data
       const agg = (aggRaw ?? null) as AnalyticsAggregates | null
 
       if (sessions && sessions.length > 0) {
@@ -210,8 +212,6 @@ export default async function AnalyticsPage() {
                   month: "short",
                 }) + ` W${Math.ceil(weekDate.getDate() / 7)}`,
               index: i,
-              total:
-                overallAcc !== null ? accuracyToScore(overallAcc / 100) : null,
               overallAccuracy: overallAcc !== null ? Math.round(overallAcc) : null,
               quant: pct(b.Quant) !== null ? Math.round(pct(b.Quant)!) : null,
               verbal: pct(b.Verbal) !== null ? Math.round(pct(b.Verbal)!) : null,
@@ -337,132 +337,6 @@ export default async function AnalyticsPage() {
           }
         }
 
-        // ---------- Prediction MAE (PDF v2 KPI) ----------
-        // PDF v2 p.7: "A good internal target is a mean absolute
-        // prediction error at or below 35 points against a recent
-        // official mock." Our mocks aren't official, but the analogue
-        // holds: compare our readiness band to the most recent
-        // complete mock's total score.
-        //
-        // Requires: (a) all 3 sections with ≥10 attempts so the
-        // readiness derivation is stable, matching the dashboard/study-
-        // plan gating; (b) a mock where all 3 section sessions exist.
-        type SecStatRow = { total: number; correct: number }
-        const readinessSecStats: Record<Section, SecStatRow> = {
-          Quant: { total: 0, correct: 0 },
-          Verbal: { total: 0, correct: 0 },
-          DI: { total: 0, correct: 0 },
-        }
-        for (const r of agg.section_totals ?? []) {
-          if (
-            r.section === "Quant" ||
-            r.section === "Verbal" ||
-            r.section === "DI"
-          ) {
-            readinessSecStats[r.section] = { total: r.total, correct: r.correct }
-          }
-        }
-        const READINESS_MIN_SAMPLE = 10
-        const readinessReady = (["Quant", "Verbal", "DI"] as const).every(
-          (s) => readinessSecStats[s].total >= READINESS_MIN_SAMPLE
-        )
-
-        // Fetch mock section sessions (most recent first) — bounded to
-        // the last 30 complete sessions to keep the query small. Used by
-        // both the MAE snapshot (most-recent complete mock) and the MAE
-        // trend chart (every complete mock).
-        const { data: mockRows } = await supabase
-          .from("practice_sessions")
-          .select("slug, accuracy, created_at")
-          .eq("user_id", user.id)
-          .like("slug", "mock-%")
-          .order("created_at", { ascending: false })
-          .limit(30)
-
-        // Group by YYYY-MM-DD date embedded in the slug
-        // (mock-YYYY-MM-DD-section). Section sessions from the same
-        // mock have the same date slug prefix.
-        type MockRow = { slug: string; accuracy: number; created_at: string }
-        const byDate = new Map<
-          string,
-          { sections: Partial<Record<Section, MockRow>>; created_at: string }
-        >()
-        for (const r of (mockRows as MockRow[] | null) ?? []) {
-          const match = r.slug.match(
-            /^mock-(\d{4}-\d{2}-\d{2})-(quant|verbal|di)$/i
-          )
-          if (!match) continue
-          const date = match[1]
-          const sec = (match[2].charAt(0).toUpperCase() +
-            match[2].slice(1).toLowerCase()) as Section
-          const normalisedSec: Section =
-            sec === ("Di" as Section) ? "DI" : sec
-          const group = byDate.get(date) ?? {
-            sections: {} as Partial<Record<Section, MockRow>>,
-            created_at: r.created_at,
-          }
-          // Keep the latest created_at across section sessions for
-          // "date completed" ordering.
-          if (r.created_at > group.created_at) group.created_at = r.created_at
-          group.sections[normalisedSec] = r
-          byDate.set(date, group)
-        }
-
-        // Complete mocks, newest first.
-        const completeMocks = [...byDate.entries()]
-          .filter(
-            ([, g]) =>
-              g.sections.Quant && g.sections.Verbal && g.sections.DI
-          )
-          .sort(([, a], [, b]) =>
-            b.created_at.localeCompare(a.created_at)
-          )
-
-        // Helper: mock total from the 3-section aggregate.
-        const mockTotalFor = (
-          group: { sections: Partial<Record<Section, MockRow>> }
-        ) =>
-          Math.round(
-            ((["Quant", "Verbal", "DI"] as const)
-              .map((s) =>
-                accuracyToScore((group.sections[s]!.accuracy ?? 0) / 100)
-              )
-              .reduce((x, y) => x + y, 0) /
-              3 /
-              10) *
-              10
-          )
-
-        if (readinessReady && completeMocks.length > 0) {
-          const avgAccuracy =
-            (["Quant", "Verbal", "DI"] as const)
-              .map(
-                (s) =>
-                  readinessSecStats[s].correct / readinessSecStats[s].total
-              )
-              .reduce((x, y) => x + y, 0) / 3
-          const readinessTotal = accuracyToScore(avgAccuracy)
-          const [date, group] = completeMocks[0]
-          const mockTotal = mockTotalFor(group)
-          const signedDelta = readinessTotal - mockTotal
-          const error = Math.abs(signedDelta)
-          predictionMAE = {
-            readinessTotal,
-            mockTotal,
-            mockDate: date,
-            errorPoints: error,
-            signedDelta,
-            // PDF v2 target is ≤35 points; we stratify into calibrated
-            // / drifting / miscalibrated so the student sees a clear
-            // signal on whether to trust the readiness band.
-            verdict:
-              error <= 35
-                ? "calibrated"
-                : error <= 70
-                  ? "drifting"
-                  : "miscalibrated",
-          }
-        }
       }
     }
   } catch {
@@ -515,7 +389,6 @@ export default async function AnalyticsPage() {
         difficultyTimingRows={difficultyTimingRows}
         errorPatterns={errorPatterns}
         calibration={calibration}
-        predictionMAE={predictionMAE}
         hasData={hasData}
       />
     </>
@@ -625,10 +498,10 @@ function BaselineView({
             </span>
           </h1>
           <p className="mt-4 text-[15px] text-[#C0C0C0] leading-[1.7]">
-            Six analytics modules unlock as your data grows: readiness
+            Six analytics modules unlock as your data grows: accuracy
             trajectory, topic accuracy, section pacing, strengths &amp;
-            weaknesses, confidence calibration, and the score-report
-            mirror. Baseline exam first; the rest follow.
+            weaknesses, confidence calibration, and error-pattern review.
+            Baseline exam first; the rest follow.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link

@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils"
 
 interface Props {
   initialTarget: number | null
-  estimate: number | null
 }
 
 // GMAT Focus Edition: 205..805 in 10-point increments.
@@ -28,18 +27,13 @@ for (let s = 205; s <= 805; s += 10) SCORE_OPTIONS.push(s)
  */
 export default function TargetScoreControl({
   initialTarget,
-  estimate,
 }: Props) {
   const [target, setTarget] = useState<number | null>(initialTarget)
   const [editing, setEditing] = useState(false)
-  // Default the picker to the user's current target, or a sensible
-  // starting point above their current estimate if they have one.
+  // Default to a common competitive target when the student has not set one.
+  // Practice accuracy is deliberately not converted into a GMAT total here.
   const [draft, setDraft] = useState<number>(() => {
     if (initialTarget !== null) return initialTarget
-    if (estimate !== null) {
-      const rounded = Math.ceil((estimate + 50) / 10) * 10
-      return Math.min(805, Math.max(205, rounded))
-    }
     return 705
   })
   const [error, setError] = useState<string | null>(null)

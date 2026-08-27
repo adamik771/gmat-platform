@@ -49,8 +49,6 @@ import { getUserState, type UserState } from "@/lib/user-state"
 import { readSavedForReview } from "@/lib/spaced-review"
 import { isChapterRead } from "@/lib/chapter-progress-merge"
 import { deriveFirst48Steps, first48Complete } from "./first48"
-import { sectionScoresToTotal } from "@/lib/scoring"
-import { accuracyToSectionScore } from "@/lib/score-percentiles"
 import { daysUntil, isReplaySession, localDayIso } from "@/lib/utils"
 import { getUserTz } from "@/lib/tz"
 import { deriveDailyStudyStatus } from "@/lib/daily-study-loop"
@@ -321,14 +319,6 @@ export default async function DashboardPage() {
   let questionsToday = 0
   let weekAccuracy: number | null = null
   let totalSessionCount: number | null = null
-  // Per-section stats split into overall / thisWeek / priorWeek so we can
-  // derive a section score (60-90) for the estimated-total readout.
-  type SectionBucket = { total: number; correct: number }
-  const sectionStats: Record<Section, { overall: SectionBucket }> = {
-    Quant: { overall: { total: 0, correct: 0 } },
-    Verbal: { overall: { total: 0, correct: 0 } },
-    DI: { overall: { total: 0, correct: 0 } },
-  }
   let recentMistakes: {
     id: string
     section: Section
@@ -388,7 +378,6 @@ export default async function DashboardPage() {
       const [
         weekSessionsRes,
         totalSessionRes,
-        sectionAttemptsRes,
         completedCountRes,
         recentWrongRes,
         latestPurchaseRes,
@@ -408,19 +397,6 @@ export default async function DashboardPage() {
           .from("practice_sessions")
           .select("id", { count: "exact", head: true })
           .eq("user_id", userId),
-        supabase
-          .from("practice_attempts")
-          // The embedded slug/topic let the est-score inputs exclude
-          // replay sessions (review/redo/mixed) — the page's own rule
-          // for accuracy metrics, previously violated only here.
-          .select("section, is_correct, practice_sessions!inner(slug, topic)")
-          .eq("user_id", userId)
-          // Safety cap against an unbounded multi-year history. The section
-          // stats below aggregate order-independently; created_at (not a
-          // UUID column) keeps the capped slice the RECENT history if a
-          // power user ever exceeds it.
-          .order("created_at", { ascending: false })
-          .limit(20000),
         supabase
           .from("lesson_completions")
           .select("user_id", { count: "exact", head: true })
@@ -483,6 +459,21 @@ export default async function DashboardPage() {
           .eq("is_correct", false),
       ])
 
+      const metricsError = [
+        weekSessionsRes,
+        totalSessionRes,
+        completedCountRes,
+        recentWrongRes,
+        latestPurchaseRes,
+        allSessionsRes,
+        allCompletionsRes,
+        customProbeRes,
+        allTagCountRes,
+        reviewedTagCountRes,
+        totalWrongRes,
+      ].find((result) => result.error)?.error
+      if (metricsError) throw metricsError
+
       // Today's Mission — the study plan has been computing in parallel with
       // the metrics batch above; await it now (usually already resolved) and
       // derive the hero card's top focus + estimated minutes.
@@ -539,31 +530,6 @@ export default async function DashboardPage() {
       // Total sessions ever
       const { count } = totalSessionRes
       totalSessionCount = count
-
-      // Per-section accuracy from all attempts — join the parent session's
-      // created_at so we can split into overall / this-week / prior-week
-      // buckets for trend calculations.
-      const { data: sectionAttempts } = sectionAttemptsRes
-
-      for (const a of (sectionAttempts as unknown as Array<{
-        section: string
-        is_correct: boolean
-        practice_sessions: { slug?: string; topic?: string } | null
-      }> | null) ?? []) {
-        // Replay sessions (review/redo/mixed) are excluded from the
-        // est-score inputs — the same rule every other accuracy metric
-        // on this page follows. Replaying your misses should never drag
-        // the estimate down.
-        if (
-          isReplaySession(a.practice_sessions?.slug, a.practice_sessions?.topic)
-        ) {
-          continue
-        }
-        const sec = a.section as Section
-        if (!sectionStats[sec]) continue
-        sectionStats[sec].overall.total++
-        if (a.is_correct) sectionStats[sec].overall.correct++
-      }
 
       // Lessons completed count
       const { count: completedCount } = completedCountRes
@@ -821,43 +787,6 @@ export default async function DashboardPage() {
       </div>
     )
   }
-
-  // ---------- Derive section / total scores ----------
-  // A section score (60-90) is only shown once the user has a minimum sample
-  // to avoid wild swings from 1-2 lucky answers.
-  const SECTION_MIN_SAMPLE = 10
-
-  // Shared scoring helpers (src/lib): the local re-implementations they
-  // replace were one of THREE parallel estimated-score derivations across
-  // dashboard / study-plan / analytics that could disagree by a snap step.
-  function deriveSection(section: Section): { score: number | null } {
-    const s = sectionStats[section]
-    const hasEnough = s.overall.total >= SECTION_MIN_SAMPLE
-    return {
-      score: hasEnough
-        ? accuracyToSectionScore(s.overall.correct / s.overall.total)
-        : null,
-    }
-  }
-
-  const sectionDerived: Record<Section, { score: number | null }> = {
-    Quant: deriveSection("Quant"),
-    Verbal: deriveSection("Verbal"),
-    DI: deriveSection("DI"),
-  }
-
-  const allSectionsHaveSample =
-    sectionDerived.Quant.score !== null &&
-    sectionDerived.Verbal.score !== null &&
-    sectionDerived.DI.score !== null
-
-  const estimatedTotal = allSectionsHaveSample
-    ? sectionScoresToTotal(
-        sectionDerived.Quant.score!,
-        sectionDerived.Verbal.score!,
-        sectionDerived.DI.score!
-      )
-    : null
 
   // User's persisted target score lives in user_metadata.target_score.
   // Round to a GMAT-valid value defensively in case a future client writes
@@ -1252,7 +1181,7 @@ export default async function DashboardPage() {
             >
               <p className="text-[14px] text-[#C0C0C0] leading-[1.65] mb-6 max-w-2xl">
                 Each step calibrates a specific part of your plan.
-                Together they unlock readiness scoring, weak-area mapping,
+                Together they unlock accuracy trends, weak-area mapping,
                 and a weekly cadence built around your test date.
               </p>
               <div className="space-y-3">
@@ -1352,8 +1281,8 @@ export default async function DashboardPage() {
             {[
               {
                 Icon: TrendingUp,
-                title: "Readiness band",
-                body: "A 205–805 estimate from your section accuracy, refreshed every drill.",
+                title: "Accuracy trend",
+                body: "Weekly overall and section accuracy from your completed practice.",
               },
               {
                 Icon: Compass,
@@ -1604,7 +1533,6 @@ export default async function DashboardPage() {
         courseCompletionPct={courseCompletionPct}
         completedChapters={completedChapters}
         targetScore={targetScore}
-        estimatedTotal={estimatedTotal}
         currentStreak={currentStreak}
         longestStreak={longestStreak}
         questionsLastSevenDays={questionsThisWeek}

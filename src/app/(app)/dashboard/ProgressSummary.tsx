@@ -1,11 +1,9 @@
 import TargetScoreControl from "./TargetScoreControl"
-import { SECTION_TOTAL_ESTIMATE_SWING } from "@/lib/scoring"
 
 interface ProgressSummaryProps {
   courseCompletionPct: number
   completedChapters: number
   targetScore: number | null
-  estimatedTotal: number | null
   currentStreak: number
   longestStreak: number
   questionsLastSevenDays: number
@@ -22,7 +20,6 @@ export default function ProgressSummary({
   courseCompletionPct,
   completedChapters,
   targetScore,
-  estimatedTotal,
   currentStreak,
   longestStreak,
   questionsLastSevenDays,
@@ -48,12 +45,7 @@ export default function ProgressSummary({
             {courseCompletionPct}% complete
           </p>
           <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-            <TargetScoreControl initialTarget={targetScore} estimate={estimatedTotal} />
-            {estimatedTotal !== null && (
-              <span className="text-[11px] tabular-nums text-[#C9A84C]">
-                est. {estimatedTotal} ±{SECTION_TOTAL_ESTIMATE_SWING}
-              </span>
-            )}
+            <TargetScoreControl initialTarget={targetScore} />
           </div>
         </div>
 
