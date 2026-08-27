@@ -86,6 +86,114 @@ describe("graduate programme score explorer", () => {
     }
   })
 
+  it("shows MBA benchmarks only with row-level official-school evidence", () => {
+    const officialDomains = [
+      "hbs.edu",
+      "stanford.edu",
+      "upenn.edu",
+      "chicagobooth.edu",
+      "northwestern.edu",
+      "mit.edu",
+      "columbia.edu",
+      "dartmouth.edu",
+      "yale.edu",
+      "nyu.edu",
+      "berkeley.edu",
+      "ucla.edu",
+      "umich.edu",
+      "virginia.edu",
+      "duke.edu",
+      "insead.edu",
+      "london.edu",
+      "iese.edu",
+      "ox.ac.uk",
+      "imd.org",
+      "ceibs.edu",
+      "isb.edu",
+      "nus.edu.sg",
+    ]
+    const mbaPrograms = ALL_GRADUATE_PROGRAMS.filter(
+      (program) => program.programType === "MBA",
+    )
+
+    expect(mbaPrograms).toHaveLength(23)
+    for (const program of mbaPrograms) {
+      expect(program.sourceLabel).toBeTruthy()
+      expect(program.sourceUrl).toMatch(/^https:\/\//)
+
+      const hostname = new URL(program.sourceUrl!).hostname
+      expect(
+        officialDomains.some(
+          (domain) => hostname === domain || hostname.endsWith(`.${domain}`),
+        ),
+      ).toBe(true)
+
+      if (program.scoreStatistic === "Not published") {
+        expect(program.legacyScore).toBeNull()
+        expect(program.focusEquivalent).toBeNull()
+      } else {
+        expect(
+          program.legacyScore != null || program.focusEquivalent != null,
+        ).toBe(true)
+      }
+
+      if (program.focusEquivalent != null) {
+        expect(program.focusScoreLabel).toContain("School-published")
+        expect(program.focusScoreLabel).not.toContain("concordance")
+      }
+    }
+  })
+
+  it("keeps representative MBA figures tied to the cited cohort and scale", () => {
+    const bySlug = new Map(
+      ALL_GRADUATE_PROGRAMS.map((program) => [program.slug, program]),
+    )
+
+    expect(bySlug.get("harvard-hbs")).toMatchObject({
+      legacyScore: 730,
+      focusEquivalent: "685",
+      scoreStatistic: "Median",
+      sourceLabel: "HBS MBA Class of 2027 profile",
+    })
+    expect(bySlug.get("columbia")).toMatchObject({
+      legacyScore: 734,
+      focusEquivalent: "690",
+      scoreStatistic: "Average",
+    })
+    expect(bySlug.get("fuqua")).toMatchObject({
+      legacyScore: "680–770",
+      focusEquivalent: null,
+      scoreStatistic: "Observed range",
+    })
+    expect(bySlug.get("stanford-gsb")).toMatchObject({
+      legacyScore: null,
+      focusEquivalent: null,
+      scoreStatistic: "Not published",
+    })
+  })
+
+  it("contains no synthetic competitive-band data or presentation", () => {
+    const files = [
+      "src/lib/mba-schools.ts",
+      "src/lib/graduate-programs.ts",
+      "src/app/(marketing)/score-by-school/ScoreBySchoolClient.tsx",
+    ].map(read)
+    const combined = files.join("\n")
+    const mbaPrograms = ALL_GRADUATE_PROGRAMS.filter(
+      (program) => program.programType === "MBA",
+    )
+
+    for (const program of mbaPrograms) {
+      expect(program).not.toHaveProperty("competitiveGMAT")
+      expect(program).not.toHaveProperty("competitiveFocus")
+    }
+    expect(combined).not.toContain("competitiveGMAT")
+    expect(combined).not.toContain("competitiveFocus")
+    expect(combined).not.toContain("Directional MBA planning band")
+    expect(combined).not.toContain("Competitive old GMAT")
+    expect(combined).not.toContain("Approximate median")
+  })
+
   it("does not fabricate HSG class scores", () => {
     const hsgPrograms = ALL_GRADUATE_PROGRAMS.filter((program) =>
       program.schoolName.includes("St.Gallen"),
@@ -118,5 +226,6 @@ describe("graduate programme score explorer", () => {
     expect(combined).not.toContain("maps to roughly the 80th percentile")
     expect(combined).toContain("Rows are grouped by evidence type")
     expect(combined).toContain("GMAC comparison")
+    expect(client).toContain("{program.sourceLabel}")
   })
 })

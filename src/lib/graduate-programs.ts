@@ -3,7 +3,6 @@ import { convertOldToFocus, formatScoreRange } from "@/lib/score-conversion"
 
 export type ProgramType = "MBA" | "MiM" | "Finance master's"
 export type ScoreStatistic =
-  | "Approximate median"
   | "Median"
   | "Average"
   | "Minimum"
@@ -24,8 +23,6 @@ export interface GraduateProgram {
   focusScoreLabel: string
   scoreStatistic: ScoreStatistic
   classSize: number | null
-  competitiveGMAT: number | null
-  competitiveFocus: number | null
   shortNote: string
   testPolicy: string
   sourceLabel: string | null
@@ -57,19 +54,21 @@ const MBA_PROGRAMS: GraduateProgram[] = ALL_SCHOOLS.map((school) => ({
   location: school.location,
   region: school.region,
   programType: "MBA",
-  legacyScore: school.medianGMAT,
-  focusEquivalent: school.medianFocus == null ? null : String(school.medianFocus),
-  focusSort: school.medianFocus,
-  focusScoreLabel: "Approximate official concordance",
-  scoreStatistic: "Approximate median",
+  legacyScore: school.legacyGMAT,
+  focusEquivalent:
+    school.currentGMAT == null ? null : String(school.currentGMAT),
+  focusSort:
+    typeof school.currentGMAT === "number" ? school.currentGMAT : null,
+  focusScoreLabel:
+    school.currentGMAT == null
+      ? "No school-published current GMAT figure verified"
+      : "School-published current GMAT figure",
+  scoreStatistic: school.scoreStatistic,
   classSize: school.classSize,
-  competitiveGMAT: school.competitiveGMAT,
-  competitiveFocus: school.competitiveFocus,
   shortNote: school.shortNote,
-  testPolicy:
-    "The score is one part of a holistic MBA application. Confirm the current class profile and testing policy on the school's admissions site before applying.",
-  sourceLabel: null,
-  sourceUrl: null,
+  testPolicy: school.testPolicy,
+  sourceLabel: school.sourceLabel,
+  sourceUrl: school.sourceUrl,
 }))
 
 function scoredProgram(
@@ -78,8 +77,6 @@ function scoredProgram(
     | "focusEquivalent"
     | "focusSort"
     | "focusScoreLabel"
-    | "competitiveGMAT"
-    | "competitiveFocus"
   > & {
     publishedFocusScore?: number | string
     publishedFocusSort?: number
@@ -105,8 +102,6 @@ function scoredProgram(
       publishedFocusScore == null
         ? "GMAC concordance range (July 2025)"
         : "School-published current GMAT figure",
-    competitiveGMAT: null,
-    competitiveFocus: null,
   }
 }
 

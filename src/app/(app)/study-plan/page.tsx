@@ -1096,12 +1096,8 @@ export default async function StudyPlanPage({
         </div>
       </section>
 
-      {/* Progress cards — real counts only. The "Projected total" estimate
-          card was removed: it was the THIRD score estimate in the product
-          (dashboard and /analytics each compute their own from different
-          attempt pools), fed by an uncapped query that silently truncated
-          at ~1000 rows — one more number that could disagree with the other
-          two. /analytics owns the score estimate. */}
+      {/* Progress cards use directly observed counts and time only. Practice
+          accuracy is not converted into a GMAT total score. */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard
           icon={BookOpen}
