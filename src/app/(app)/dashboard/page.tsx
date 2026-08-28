@@ -442,14 +442,16 @@ export default async function DashboardPage() {
           .limit(1)
           .maybeSingle(),
         // Head-counts instead of full-row transfer — the page only needs
-        // the two numbers.
+        // the two numbers. `error_tags` is keyed by `attempt_id`; it has no
+        // generic `id` column, so selecting `id` makes the entire parallel
+        // metrics batch fail even though the count itself needs no row data.
         supabase
           .from("error_tags")
-          .select("id", { count: "exact", head: true })
+          .select("attempt_id", { count: "exact", head: true })
           .eq("user_id", userId),
         supabase
           .from("error_tags")
-          .select("id", { count: "exact", head: true })
+          .select("attempt_id", { count: "exact", head: true })
           .eq("user_id", userId)
           .eq("reviewed", true),
         supabase
