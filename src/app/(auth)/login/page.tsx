@@ -24,8 +24,40 @@ export default function LoginPage() {
 
 function LoginFormSkeleton() {
   return (
-    <div className="w-full max-w-md">
-      <div className="p-7 sm:p-8 rounded-[5px] border border-white/[0.08] bg-[#0D0D0D] h-[420px]" />
+    <div
+      className="w-full max-w-md"
+      role="status"
+      aria-label="Loading sign-in form"
+    >
+      <div className="mb-7" aria-hidden="true">
+        <div className="h-[39px] w-[82%] rounded-[3px] bg-white/[0.06]" />
+        <div className="mt-3 h-[22px] w-[68%] rounded-[3px] bg-white/[0.04]" />
+      </div>
+
+      <div
+        className="p-7 sm:p-8 rounded-[5px] border border-white/[0.1] bg-[#0D0D0D]"
+        aria-hidden="true"
+      >
+        <div className="space-y-5">
+          <div>
+            <div className="mb-2 h-[14px] w-12 rounded-[3px] bg-white/[0.06]" />
+            <div className="h-12 rounded-[4px] border border-white/[0.08] bg-[#0A0A0A]" />
+          </div>
+          <div>
+            <div className="mb-2 flex items-center justify-between">
+              <div className="h-[14px] w-16 rounded-[3px] bg-white/[0.06]" />
+              <div className="h-[14px] w-12 rounded-[3px] bg-white/[0.04]" />
+            </div>
+            <div className="h-12 rounded-[4px] border border-white/[0.08] bg-[#0A0A0A]" />
+          </div>
+          <div className="h-11 rounded-[4px] bg-[#C9A84C]/25" />
+        </div>
+      </div>
+
+      <div
+        className="mx-auto mt-6 h-[16px] w-40 rounded-[3px] bg-white/[0.04]"
+        aria-hidden="true"
+      />
     </div>
   )
 }
