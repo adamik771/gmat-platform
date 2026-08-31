@@ -211,7 +211,7 @@ export default async function StudyPlanPage({
           .eq("is_correct", false),
         supabase
           .from("error_tags")
-          .select("id", { count: "exact", head: true })
+          .select("attempt_id", { count: "exact", head: true })
           .eq("user_id", user.id)
           .eq("reviewed", true),
         computeStudyPlan(supabase, user.id, {
