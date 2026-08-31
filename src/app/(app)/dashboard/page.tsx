@@ -16,7 +16,7 @@ import {
   TrendingUp,
 } from "lucide-react"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { redirect, unstable_rethrow } from "next/navigation"
 import QuickActions from "@/components/dashboard/QuickActions"
 import InviteFriend from "@/components/dashboard/InviteFriend"
 import StudyHoursChart from "./StudyHoursChart"
@@ -54,6 +54,7 @@ import { getUserTz } from "@/lib/tz"
 import { deriveDailyStudyStatus } from "@/lib/daily-study-loop"
 import DailyStudyLoop from "@/components/dashboard/DailyStudyLoop"
 import ProgressSummary from "./ProgressSummary"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 const PLAN_LABELS: Record<string, string> = {
   self_study: "Self-Study",
@@ -358,6 +359,7 @@ export default async function DashboardPage() {
   /** True when the metrics batch failed — render an honest error instead
    *  of the pre-data onboarding view (which reads as lost history). */
   let metricsLoadFailed = false
+  let metricsFailureReported = false
 
   try {
     if (user) {
@@ -461,20 +463,29 @@ export default async function DashboardPage() {
           .eq("is_correct", false),
       ])
 
-      const metricsError = [
-        weekSessionsRes,
-        totalSessionRes,
-        completedCountRes,
-        recentWrongRes,
-        latestPurchaseRes,
-        allSessionsRes,
-        allCompletionsRes,
-        customProbeRes,
-        allTagCountRes,
-        reviewedTagCountRes,
-        totalWrongRes,
-      ].find((result) => result.error)?.error
-      if (metricsError) throw metricsError
+      const metricQueries = [
+        { operation: "week_sessions", table: "practice_sessions", result: weekSessionsRes },
+        { operation: "total_session_count", table: "practice_sessions", result: totalSessionRes },
+        { operation: "lesson_completion_count", table: "lesson_completions", result: completedCountRes },
+        { operation: "recent_mistakes", table: "practice_attempts", result: recentWrongRes },
+        { operation: "current_plan", table: "purchases", result: latestPurchaseRes },
+        { operation: "all_sessions", table: "practice_sessions", result: allSessionsRes },
+        { operation: "lesson_activity", table: "lesson_completions", result: allCompletionsRes },
+        { operation: "custom_test_probe", table: "practice_sessions", result: customProbeRes },
+        { operation: "tagged_mistake_count", table: "error_tags", result: allTagCountRes },
+        { operation: "reviewed_mistake_count", table: "error_tags", result: reviewedTagCountRes },
+        { operation: "wrong_attempt_count", table: "practice_attempts", result: totalWrongRes },
+      ] as const
+      const failedMetric = metricQueries.find(({ result }) => result.error)
+      if (failedMetric?.result.error) {
+        metricsFailureReported = true
+        reportDataFailure(failedMetric.result.error, {
+          surface: "dashboard",
+          operation: failedMetric.operation,
+          table: failedMetric.table,
+        })
+        throw failedMetric.result.error
+      }
 
       // Today's Mission — the study plan has been computing in parallel with
       // the metrics batch above; await it now (usually already resolved) and
@@ -759,9 +770,16 @@ export default async function DashboardPage() {
         }
       }
     }
-  } catch {
+  } catch (error) {
+    unstable_rethrow(error)
     // Supabase query failed. Flag it: rendering the pre-data onboarding
     // view here told a veteran student their history was gone.
+    if (!metricsFailureReported) {
+      reportDataFailure(error, {
+        surface: "dashboard",
+        operation: "metrics_batch",
+      })
+    }
     metricsLoadFailed = true
   }
 

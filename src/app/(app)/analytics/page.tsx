@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { unstable_rethrow } from "next/navigation"
 import {
   ArrowRight,
   BarChart3,
@@ -13,6 +14,7 @@ import {
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getUserState } from "@/lib/user-state"
 import { isReplaySession } from "@/lib/utils"
+import { reportDataFailure } from "@/lib/server-data-observability"
 import {
   computeCalibration,
   type CalibrationReport,
@@ -80,6 +82,7 @@ export default async function AnalyticsPage() {
   /** True when the analytics reads failed — a failed read must not render
    *  as the "take your baseline" empty state. */
   let loadFailed = false
+  let loadFailureReported = false
 
   // Baseline gate — the only pre-data signal the locked view needs.
   let officialExamCount = 0
@@ -151,8 +154,24 @@ export default async function AnalyticsPage() {
           .order("created_at", { ascending: true }),
         supabase.rpc("get_analytics_aggregates"),
       ])
-      if (sessionsRes.error) throw sessionsRes.error
-      if (aggregatesRes.error) throw aggregatesRes.error
+      if (sessionsRes.error) {
+        loadFailureReported = true
+        reportDataFailure(sessionsRes.error, {
+          surface: "analytics",
+          operation: "score_trajectory_sessions",
+          table: "practice_sessions",
+        })
+        throw sessionsRes.error
+      }
+      if (aggregatesRes.error) {
+        loadFailureReported = true
+        reportDataFailure(aggregatesRes.error, {
+          surface: "analytics",
+          operation: "analytics_aggregates",
+          rpc: "get_analytics_aggregates",
+        })
+        throw aggregatesRes.error
+      }
 
       const sessions = sessionsRes.data
       const aggRaw = aggregatesRes.data
@@ -339,9 +358,16 @@ export default async function AnalyticsPage() {
 
       }
     }
-  } catch {
+  } catch (error) {
+    unstable_rethrow(error)
     // Supabase unavailable — flag it; the baseline view below would tell
     // a student with months of history to go take their baseline exam.
+    if (!loadFailureReported) {
+      reportDataFailure(error, {
+        surface: "analytics",
+        operation: "page_load",
+      })
+    }
     loadFailed = true
   }
 
