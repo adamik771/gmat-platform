@@ -21,6 +21,7 @@ import {
   Menu,
   LogOut,
   User,
+  ShieldCheck,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
@@ -29,6 +30,7 @@ import StudyTimer from "@/components/shared/StudyTimer"
 import ServiceWorkerRegistrar from "@/components/offline/ServiceWorkerRegistrar"
 import OfflineBanner from "@/components/offline/OfflineBanner"
 import OfflineSyncTrigger from "@/components/offline/OfflineSyncTrigger"
+import PlatformActivityTracker from "@/components/analytics/PlatformActivityTracker"
 import { clearReviewCache } from "@/lib/offline/review-cache"
 import { drainPendingAttempts } from "@/lib/offline/sync"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -91,9 +93,11 @@ function SidebarLink({
 
 function Sidebar({
   pathname,
+  isAdminUser,
   onClose,
 }: {
   pathname: string
+  isAdminUser: boolean
   onClose?: () => void
 }) {
   return (
@@ -127,6 +131,21 @@ function Sidebar({
           Keeps the sidebar clean before the cohort exists, then turns
           on with one env var when Adam launches it. */}
       <div className="p-3 border-t border-white/[0.06] space-y-1">
+        {isAdminUser && (
+          <Link
+            href="/admin/students"
+            onClick={onClose}
+            className={cn(
+              "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors",
+              pathname.startsWith("/admin")
+                ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
+                : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]",
+            )}
+          >
+            <ShieldCheck className="w-4 h-4 flex-shrink-0" />
+            <span>Student activity</span>
+          </Link>
+        )}
         {process.env.NEXT_PUBLIC_COMMUNITY_URL && (
           <a
             href={process.env.NEXT_PUBLIC_COMMUNITY_URL}
@@ -173,6 +192,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   // drill attempts back to /api/practice-sessions when this user is
   // online. Empty until auth resolves; the trigger no-ops on empty.
   const [userId, setUserId] = useState("")
+  const [isAdminUser, setIsAdminUser] = useState(false)
 
   // Publish the browser's IANA timezone as a cookie so server components
   // can compute the USER's day boundaries (streaks, "today" counts,
@@ -197,6 +217,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
         setUserId(user.id)
+        void fetch("/api/admin/me", { cache: "no-store" })
+          .then((response) => (response.ok ? response.json() : null))
+          .then((result: { isAdmin?: boolean } | null) => {
+            setIsAdminUser(result?.isAdmin === true)
+          })
+          .catch(() => setIsAdminUser(false))
         // Only display a real authored name. The email-username fallback
         // ("adamzakaryan15") makes the chrome look like a dev build —
         // showing nothing is more premium than showing the handle.
@@ -259,7 +285,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   const currentLabel =
-    navItems.find((i) => pathname.startsWith(i.href))?.label ?? "Dashboard"
+    pathname.startsWith("/admin")
+      ? "Admin"
+      : navItems.find((i) => pathname.startsWith(i.href))?.label ?? "Dashboard"
 
   return (
     <div
@@ -274,7 +302,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         className="hidden lg:flex flex-col w-60 flex-shrink-0 border-r border-white/[0.07]"
         style={{ backgroundColor: "#0B0B0A" }}
       >
-        <Sidebar pathname={pathname} />
+        <Sidebar pathname={pathname} isAdminUser={isAdminUser} />
       </aside>
 
       {/* Mobile sidebar overlay */}
@@ -290,6 +318,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           >
             <Sidebar
               pathname={pathname}
+              isAdminUser={isAdminUser}
               onClose={() => setSidebarOpen(false)}
             />
           </aside>
@@ -356,6 +385,17 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   Profile & Settings
                 </Link>
               </DropdownMenuItem>
+              {isAdminUser && (
+                <DropdownMenuItem>
+                  <Link
+                    href="/admin/students"
+                    className="flex items-center gap-2 text-[#888888] hover:text-[#F0F0F0] cursor-pointer w-full"
+                  >
+                    <ShieldCheck className="w-4 h-4" />
+                    Student activity
+                  </Link>
+                </DropdownMenuItem>
+              )}
               <DropdownMenuSeparator className="bg-white/[0.06]" />
               <DropdownMenuItem
                 onClick={handleSignOut}
@@ -390,6 +430,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           last so the banner's stacking context is above other
           absolutely-positioned UI. */}
       <ServiceWorkerRegistrar />
+      {userId && <PlatformActivityTracker />}
       {userId && <OfflineSyncTrigger userId={userId} />}
       <div className="fixed top-0 inset-x-0 z-[60] pointer-events-none">
         <div className="pointer-events-auto">

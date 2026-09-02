@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 }
 
-const LAST_UPDATED = "July 19, 2026"
+const LAST_UPDATED = "September 2, 2026"
 const CONTACT_EMAIL = SITE_CONTACT_EMAIL
 
 export default function PrivacyPage() {
@@ -42,9 +42,13 @@ export default function PrivacyPage() {
           <li>
             <strong>Study data.</strong> Your practice sessions, question
             attempts, error-log entries, exam date, target score, chapter
-            progress, and notification preferences. This is the data the
-            Platform uses to give you analytics, an adaptive plan, and a spaced
-            review queue.
+            progress, notification preferences, and a coarse active-use
+            estimate. The active-use estimate stores only the total active
+            seconds for each day and the latest activity time. It counts a tab
+            only while it is visible and has been used recently; it does not
+            store a page-by-page browsing history. This is the data the
+            Platform uses to give you analytics, an adaptive plan, a spaced
+            review queue, and more informed progress support.
           </li>
           <li>
             <strong>Payment information.</strong> If you purchase a plan, our
@@ -86,6 +90,10 @@ export default function PrivacyPage() {
         <ul>
           <li>To provide the Platform and its core features.</li>
           <li>To compute your analytics, study plan, and review queue.</li>
+          <li>
+            To understand course progress and provide students with more
+            relevant study guidance and support.
+          </li>
           <li>To process payments and manage your subscription or plan.</li>
           <li>To send transactional emails (account verification, password reset, receipts).</li>
           <li>To send product updates if you opt in via your notification preferences.</li>
