@@ -3,7 +3,6 @@
 import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, Phone, X } from "lucide-react"
-import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
 /**
  * Dismissible dashboard strip offering Adam's free 30-minute consultation
@@ -25,6 +24,7 @@ export default function ConsultOffer() {
   const dismiss = async () => {
     setDismissing(true)
     try {
+      const { createSupabaseBrowser } = await import("@/lib/supabase/browser")
       const supabase = createSupabaseBrowser()
       await supabase.auth.updateUser({
         data: { consult_offer_dismissed_at: new Date().toISOString() },

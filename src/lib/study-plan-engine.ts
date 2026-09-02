@@ -184,23 +184,27 @@ export async function computeStudyPlan(
   // (the params match), otherwise fetch it here. A failed read degrades to
   // an empty queue: the plan still renders, and the review surfaces carry
   // the honest error state.
-  const queue =
-    opts.reviewQueue ??
-    (await getReviewQueue(supabase, userId, {
-      limit: 60,
-      flaggedQuestionIds: opts.flaggedQuestionIds,
-    })) ??
-    []
+  const queuePromise =
+    opts.reviewQueue !== undefined
+      ? Promise.resolve(opts.reviewQueue)
+      : getReviewQueue(supabase, userId, {
+          limit: 60,
+          flaggedQuestionIds: opts.flaggedQuestionIds,
+        }).then((queue) => queue ?? [])
+  const attemptsPromise = supabase
+    .from("practice_attempts")
+    .select("id, section, topic, is_correct")
+    .eq("user_id", userId)
+    .limit(5000)
+  const [queue, { data: attemptRows }] = await Promise.all([
+    queuePromise,
+    attemptsPromise,
+  ])
   const reviewDueCount = queue.length
 
   // Topic-level accuracy from all attempts. Bounded to 5k rows via the
   // review-queue helper would be ideal; here we take a broader view since
   // weak-area signals benefit from more history.
-  const { data: attemptRows } = await supabase
-    .from("practice_attempts")
-    .select("id, section, topic, is_correct")
-    .eq("user_id", userId)
-    .limit(5000)
 
   const topicStats = new Map<
     string,

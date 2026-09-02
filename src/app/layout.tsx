@@ -18,7 +18,7 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
   display: "swap",
-  axes: ["opsz", "SOFT"],
+  axes: ["opsz"],
 })
 
 // Site URL — used by metadataBase so relative og:image / twitter:image

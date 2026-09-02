@@ -189,6 +189,8 @@ export default async function StudyPlanPage({
         { count: totalWrongCount },
         { count: reviewedTagCount },
         planResult,
+        { data: masteryAttempts },
+        { data: masterySessions },
       ] = await Promise.all([
         supabase
           .from("practice_sessions")
@@ -220,6 +222,16 @@ export default async function StudyPlanPage({
           flaggedQuestionIds: gatherFlaggedQuestionIds(state),
           officialExamCount,
         }),
+        supabase
+          .from("practice_attempts")
+          .select("topic, section, is_correct, time_spent_ms, session_id, difficulty")
+          .eq("user_id", user.id)
+          .limit(5000),
+        supabase
+          .from("practice_sessions")
+          .select("id, slug, topic, created_at")
+          .eq("user_id", user.id)
+          .limit(1000),
       ])
 
       // Past-7-day session activity — calendar dots + study hours.
@@ -254,19 +266,6 @@ export default async function StudyPlanPage({
       // replace the "completed the lesson = done" heuristic with the
       // research-report criteria. Needs session metadata to classify mixed
       // sessions and attempt timing to compute median pace.
-      const [{ data: masteryAttempts }, { data: masterySessions }] =
-        await Promise.all([
-          supabase
-            .from("practice_attempts")
-            .select("topic, section, is_correct, time_spent_ms, session_id, difficulty")
-            .eq("user_id", user.id)
-            .limit(5000),
-          supabase
-            .from("practice_sessions")
-            .select("id, slug, topic, created_at")
-            .eq("user_id", user.id)
-            .limit(1000),
-        ])
       const sessionsById = new Map<string, MasterySession>()
       for (const s of masterySessions ?? []) {
         sessionsById.set(s.id as string, {

@@ -18,7 +18,6 @@ import {
 } from "./mistake-insights"
 import {
   buildSpacedReviewQueue,
-  type SpacedReviewQueue,
 } from "./spaced-review"
 import {
   getCurriculumOutline,
@@ -303,21 +302,18 @@ export async function collectAdaptiveSignals(
   options: CollectSignalsOptions = {}
 ): Promise<AdaptiveSignals> {
   const practiceWindowDays = options.practiceWindowDays ?? 84
-
-  // ---- Diagnostic ----
-  const diagnosticReport = await loadDiagnosticReport(supabase, userId)
-
-  // ---- Latest mock ----
-  const latestMock = await loadLatestMockReport(supabase, userId)
-
-  // ---- All practice attempts (window-bounded) ----
   const cutoff = new Date()
   cutoff.setDate(cutoff.getDate() - practiceWindowDays)
-  // `!inner` is load-bearing: without it PostgREST keeps parent rows
-  // that fail the embedded date filter (it only nulls the embed), so the
-  // "window" silently matched ALL-TIME attempts; the order keeps the
-  // 5000-row cap on the RECENT slice (same pattern as review-queue.ts).
-  const { data: rawAttempts } = await supabase
+
+  // These four sources are independent. Resolve them together so the plan's
+  // latency is bounded by the slowest read instead of the sum of every read.
+  const spacedQueuePromise = buildSpacedReviewQueue(
+    supabase,
+    userId,
+    userMetadata,
+    { flaggedQuestionIds: options.flaggedQuestionIds, limit: 100 },
+  ).catch(() => null)
+  const attemptsPromise = supabase
     .from("practice_attempts")
     .select(
       "question_id, section, topic, subtopic, difficulty, question_type, is_correct, time_spent_ms, practice_sessions!inner(created_at)"
@@ -326,7 +322,19 @@ export async function collectAdaptiveSignals(
     .gte("practice_sessions.created_at", cutoff.toISOString())
     .order("practice_sessions(created_at)", { ascending: false })
     .limit(5000)
+  const [diagnosticReport, latestMock, { data: rawAttempts }, spacedQueue] =
+    await Promise.all([
+      loadDiagnosticReport(supabase, userId),
+      loadLatestMockReport(supabase, userId),
+      attemptsPromise,
+      spacedQueuePromise,
+    ])
 
+  // ---- All practice attempts (window-bounded) ----
+  // `!inner` is load-bearing: without it PostgREST keeps parent rows
+  // that fail the embedded date filter (it only nulls the embed), so the
+  // "window" silently matched ALL-TIME attempts; the order keeps the
+  // 5000-row cap on the RECENT slice (same pattern as review-queue.ts).
   const attempts = (rawAttempts ?? []) as unknown as Array<{
     question_id: string
     section: Section
@@ -533,17 +541,6 @@ export async function collectAdaptiveSignals(
   const pacingPatterns = latestMock?.timingAnalysis ?? diagnosticReport?.timingAnalysis ?? []
 
   // ---- Spaced-review backlog ----
-  let spacedQueue: SpacedReviewQueue | null = null
-  try {
-    spacedQueue = await buildSpacedReviewQueue(
-      supabase,
-      userId,
-      userMetadata,
-      { flaggedQuestionIds: options.flaggedQuestionIds, limit: 100 }
-    )
-  } catch {
-    // Non-fatal — render plan without queue if engine throws.
-  }
   const pendingReviewByKind = {
     question: spacedQueue?.byKind.question.length ?? 0,
     concept: spacedQueue?.byKind.concept.length ?? 0,
