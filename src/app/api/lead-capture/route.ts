@@ -2,6 +2,11 @@ import { getSupabaseService } from "@/lib/supabase/service"
 import { recordConsent } from "@/lib/outreach/consent"
 import { enqueueDrip } from "@/lib/outreach/queue"
 import { sendEmail } from "@/lib/email"
+import {
+  consumeSecurityRateLimit,
+  getClientAddress,
+} from "@/lib/security-rate-limit"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 /**
  * POST /api/lead-capture — collect a prospect email from public marketing
@@ -55,30 +60,6 @@ const MAGNET_DOWNLOADS: Record<string, string> = {
 // constraint, and we'd rather accept the long tail than over-validate.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-// Per-IP capture throttle. Unauthenticated route where a truthy optIn both
-// records consent and can enqueue a multi-step drip for ANY posted address —
-// without a cap, a script could enrol strangers or bloat the tables (only the
-// honeypot stood in the way). In-memory (per warm instance); a WAF rule is
-// the durable owner-side complement.
-const captureCounts = new Map<string, { count: number; windowStart: number }>()
-const CAPTURE_WINDOW_MS = 60 * 60 * 1000
-const CAPTURE_MAX_PER_WINDOW = 5
-
-function overCaptureLimit(ip: string, now: number): boolean {
-  const entry = captureCounts.get(ip)
-  if (!entry || now - entry.windowStart >= CAPTURE_WINDOW_MS) {
-    if (captureCounts.size > 2000) {
-      for (const [k, v] of captureCounts) {
-        if (now - v.windowStart >= CAPTURE_WINDOW_MS) captureCounts.delete(k)
-      }
-    }
-    captureCounts.set(ip, { count: 1, windowStart: now })
-    return false
-  }
-  entry.count += 1
-  return entry.count > CAPTURE_MAX_PER_WINDOW
-}
-
 export async function POST(request: Request) {
   let body: {
     email?: unknown
@@ -91,14 +72,6 @@ export async function POST(request: Request) {
     body = (await request.json()) as typeof body
   } catch {
     return Response.json({ error: "Invalid JSON body" }, { status: 400 })
-  }
-
-  // Throttle by caller IP before any write or drip enrolment.
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown"
-  if (overCaptureLimit(ip, Date.now())) {
-    // Same generic response as success — the throttle is not observable.
-    return Response.json({ ok: true })
   }
 
   // Honeypot — bots fill hidden fields; humans don't see them.
@@ -139,6 +112,43 @@ export async function POST(request: Request) {
     console.error(
       "[lead-capture] Supabase service client unavailable — capture failed",
     )
+    return Response.json(
+      { ok: false, error: "Lead capture is temporarily unavailable." },
+      { status: 503 },
+    )
+  }
+
+  try {
+    const limits = [
+      consumeSecurityRateLimit(supabase, {
+        action: "lead_capture_email",
+        subject: email,
+        limit: 5,
+        windowSeconds: 24 * 60 * 60,
+      }),
+    ]
+    const address = getClientAddress(request.headers)
+    if (address) {
+      limits.push(
+        consumeSecurityRateLimit(supabase, {
+          action: "lead_capture_ip",
+          subject: address,
+          limit: 10,
+          windowSeconds: 60 * 60,
+        }),
+      )
+    }
+    const decisions = await Promise.all(limits)
+    if (decisions.some((decision) => !decision.allowed)) {
+      // Preserve the existing non-observable throttle behavior.
+      return Response.json({ ok: true })
+    }
+  } catch (err) {
+    reportDataFailure(err, {
+      surface: "lead-capture",
+      operation: "rate-limit",
+      rpc: "consume_security_rate_limit",
+    })
     return Response.json(
       { ok: false, error: "Lead capture is temporarily unavailable." },
       { status: 503 },

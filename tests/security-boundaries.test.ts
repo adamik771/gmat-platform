@@ -75,3 +75,31 @@ describe("service-worker cache boundary", () => {
     expect(source).toContain("await self.clients.claim()")
   })
 })
+
+describe("database-backed abuse controls", () => {
+  const migration = readFileSync(
+    "supabase/migrations/20260902000000_security_rate_limits.sql",
+    "utf8",
+  ).toLowerCase()
+
+  it("keeps the limiter table inaccessible to browser roles", () => {
+    expect(migration).toContain(
+      "alter table public.security_rate_limits enable row level security",
+    )
+    expect(migration).toContain(
+      "revoke all on table public.security_rate_limits from public, anon, authenticated",
+    )
+    expect(migration).not.toMatch(
+      /grant\s+(?:select|insert|update|delete|all)[\s\S]*?security_rate_limits[\s\S]*?to\s+(?:anon|authenticated)/,
+    )
+  })
+
+  it("exposes the atomic function only to the service role", () => {
+    expect(migration).toContain("security invoker")
+    expect(migration).toContain("set search_path = ''")
+    expect(migration).toContain(
+      "from public, anon, authenticated",
+    )
+    expect(migration).toContain("to service_role")
+  })
+})

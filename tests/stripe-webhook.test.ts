@@ -165,7 +165,7 @@ describe("resolveWebhookEvent — checkout.session.completed", () => {
     expect(action).toMatchObject({ kind: "record", paymentIntent: null })
   })
 
-  it("skips (accepts, records nothing) when user id is missing", () => {
+  it("flags missing user metadata for route-level rejection", () => {
     const action = resolveWebhookEvent(
       checkoutEvent({
         id: "cs_no_user",

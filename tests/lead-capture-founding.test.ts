@@ -19,6 +19,16 @@ vi.mock("@/lib/outreach/consent", () => ({
 vi.mock("@/lib/outreach/queue", () => ({
   enqueueDrip: vi.fn(async () => 4),
 }))
+vi.mock("@/lib/security-rate-limit", () => ({
+  consumeSecurityRateLimit: vi.fn(async () => ({
+    allowed: true,
+    retryAfterSeconds: 0,
+  })),
+  getClientAddress: vi.fn(() => "test-ip"),
+}))
+vi.mock("@/lib/server-data-observability", () => ({
+  reportDataFailure: vi.fn(),
+}))
 
 import { POST } from "@/app/api/lead-capture/route"
 import { getSupabaseService } from "@/lib/supabase/service"
