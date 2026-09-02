@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import {
@@ -24,15 +24,12 @@ import {
   ShieldCheck,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import FeedbackWidget from "@/components/beta/FeedbackWidget"
 import StudyTimer from "@/components/shared/StudyTimer"
 import ServiceWorkerRegistrar from "@/components/offline/ServiceWorkerRegistrar"
 import OfflineBanner from "@/components/offline/OfflineBanner"
 import OfflineSyncTrigger from "@/components/offline/OfflineSyncTrigger"
 import PlatformActivityTracker from "@/components/analytics/PlatformActivityTracker"
-import { clearReviewCache } from "@/lib/offline/review-cache"
-import { drainPendingAttempts } from "@/lib/offline/sync"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -64,16 +61,21 @@ function SidebarLink({
   item,
   active,
   onClick,
+  onIntent,
 }: {
   item: (typeof navItems)[0]
   active: boolean
   onClick?: () => void
+  onIntent: (href: string) => void
 }) {
   const Icon = item.icon
   return (
     <Link
       href={item.href}
+      prefetch={false}
       onClick={onClick}
+      onMouseEnter={() => onIntent(item.href)}
+      onFocus={() => onIntent(item.href)}
       aria-current={active ? "page" : undefined}
       className={cn(
         "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors group",
@@ -95,10 +97,12 @@ function Sidebar({
   pathname,
   isAdminUser,
   onClose,
+  onIntent,
 }: {
   pathname: string
   isAdminUser: boolean
   onClose?: () => void
+  onIntent: (href: string) => void
 }) {
   return (
     <div className="flex flex-col h-full">
@@ -122,6 +126,7 @@ function Sidebar({
             item={item}
             active={pathname.startsWith(item.href)}
             onClick={onClose}
+            onIntent={onIntent}
           />
         ))}
       </nav>
@@ -134,7 +139,10 @@ function Sidebar({
         {isAdminUser && (
           <Link
             href="/admin/students"
+            prefetch={false}
             onClick={onClose}
+            onMouseEnter={() => onIntent("/admin/students")}
+            onFocus={() => onIntent("/admin/students")}
             className={cn(
               "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors",
               pathname.startsWith("/admin")
@@ -166,7 +174,10 @@ function Sidebar({
         )}
         <Link
           href="/settings"
+          prefetch={false}
           onClick={onClose}
+          onMouseEnter={() => onIntent("/settings")}
+          onFocus={() => onIntent("/settings")}
           className={cn(
             "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors",
             pathname.startsWith("/settings")
@@ -193,6 +204,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   // online. Empty until auth resolves; the trigger no-ops on empty.
   const [userId, setUserId] = useState("")
   const [isAdminUser, setIsAdminUser] = useState(false)
+  const prefetchOnIntent = useCallback(
+    (href: string) => {
+      router.prefetch(href)
+    },
+    [router],
+  )
 
   // Publish the browser's IANA timezone as a cookie so server components
   // can compute the USER's day boundaries (streaks, "today" counts,
@@ -213,46 +230,55 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }, [])
 
   useEffect(() => {
-    const supabase = createSupabaseBrowser()
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        setUserId(user.id)
-        void fetch("/api/admin/me", { cache: "no-store" })
-          .then((response) => (response.ok ? response.json() : null))
-          .then((result: { isAdmin?: boolean } | null) => {
-            setIsAdminUser(result?.isAdmin === true)
-          })
-          .catch(() => setIsAdminUser(false))
-        // Only display a real authored name. The email-username fallback
-        // ("adamzakaryan15") makes the chrome look like a dev build —
-        // showing nothing is more premium than showing the handle.
-        const fullName = (user.user_metadata?.full_name as string | undefined)?.trim() ?? ""
-        const parts = fullName.split(/\s+/).filter(Boolean)
-        if (parts.length > 0) {
-          setUserName(parts[0])
-          setUserInitials(
-            parts.length >= 2
-              ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
-              : parts[0].slice(0, 2).toUpperCase()
-          )
-        } else {
-          setUserName("")
-          // Fall back to email-initial only for the avatar, never the visible name.
-          const emailInitial = user.email?.[0]?.toUpperCase() ?? ""
-          setUserInitials(emailInitial)
-        }
-      }
+    let active = true
+    void fetch("/api/account/me", {
+      cache: "no-store",
+      credentials: "same-origin",
     })
+      .then((response) => (response.ok ? response.json() : null))
+      .then(
+        (
+          profile: {
+            userId?: string
+            displayName?: string
+            initials?: string
+            isAdmin?: boolean
+          } | null,
+        ) => {
+          if (!active || !profile?.userId) return
+          setUserId(profile.userId)
+          setUserName(profile.displayName ?? "")
+          setUserInitials(profile.initials ?? "")
+          setIsAdminUser(profile.isAdmin === true)
+        },
+      )
+      .catch(() => {
+        if (active) setIsAdminUser(false)
+      })
+
+    return () => {
+      active = false
+    }
   }, [])
 
   async function handleSignOut() {
+    const [supabaseModule, syncModule, reviewCacheModule] = await Promise.all([
+      import("@/lib/supabase/browser"),
+      import("@/lib/offline/sync"),
+      import("@/lib/offline/review-cache"),
+    ])
+    const { createSupabaseBrowser } = supabaseModule
+    const { drainPendingAttempts } = syncModule
+    const { clearReviewCache } = reviewCacheModule
     const supabase = createSupabaseBrowser()
 
-    // Capture the current user id BEFORE we sign out — clearing the
-    // user-namespaced offline state needs it. If we can't get it, skip
-    // the per-user clear and fall back to the blanket cache wipe.
-    const { data: { user } } = await supabase.auth.getUser()
-    const uid = user?.id
+    // The shell bootstrap already verified the user. Only fall back to a
+    // fresh auth read if sign-out is clicked before that request completes.
+    let uid = userId
+    if (!uid) {
+      const { data: { user } } = await supabase.auth.getUser()
+      uid = user?.id ?? ""
+    }
 
     // Best-effort: sync any unsynced offline drill attempts to the
     // server before we wipe local state.
@@ -302,7 +328,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         className="hidden lg:flex flex-col w-60 flex-shrink-0 border-r border-white/[0.07]"
         style={{ backgroundColor: "#0B0B0A" }}
       >
-        <Sidebar pathname={pathname} isAdminUser={isAdminUser} />
+        <Sidebar
+          pathname={pathname}
+          isAdminUser={isAdminUser}
+          onIntent={prefetchOnIntent}
+        />
       </aside>
 
       {/* Mobile sidebar overlay */}
@@ -320,6 +350,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               pathname={pathname}
               isAdminUser={isAdminUser}
               onClose={() => setSidebarOpen(false)}
+              onIntent={prefetchOnIntent}
             />
           </aside>
         </div>
@@ -379,6 +410,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <DropdownMenuItem>
                 <Link
                   href="/settings"
+                  prefetch={false}
+                  onMouseEnter={() => prefetchOnIntent("/settings")}
+                  onFocus={() => prefetchOnIntent("/settings")}
                   className="flex items-center gap-2 text-[#888888] hover:text-[#F0F0F0] cursor-pointer w-full"
                 >
                   <User className="w-4 h-4" />
@@ -389,6 +423,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 <DropdownMenuItem>
                   <Link
                     href="/admin/students"
+                    prefetch={false}
+                    onMouseEnter={() => prefetchOnIntent("/admin/students")}
+                    onFocus={() => prefetchOnIntent("/admin/students")}
                     className="flex items-center gap-2 text-[#888888] hover:text-[#F0F0F0] cursor-pointer w-full"
                   >
                     <ShieldCheck className="w-4 h-4" />

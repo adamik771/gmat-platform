@@ -9,7 +9,6 @@ import {
   ChevronRight,
   Compass,
 } from "lucide-react"
-import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import type { First48Step } from "./first48"
 
 /**
@@ -51,6 +50,7 @@ export default function FirstRunGuide({
 
   const persistScalar = async (key: string) => {
     try {
+      const { createSupabaseBrowser } = await import("@/lib/supabase/browser")
       const supabase = createSupabaseBrowser()
       await supabase.auth.updateUser({
         data: { [key]: new Date().toISOString() },
