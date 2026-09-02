@@ -1,4 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
+import { getTrustedSiteOrigin } from "@/lib/site-origin"
 
 // Basic email shape check — deliberately loose. Supabase does its own
 // validation when the confirmation link is clicked; this just keeps the
@@ -54,9 +55,7 @@ export async function POST(request: Request) {
     )
   }
 
-  // Derive the callback origin from the incoming request so this works in
-  // dev, preview, and prod without a hardcoded host.
-  const origin = new URL(request.url).origin
+  const origin = getTrustedSiteOrigin(request.url)
 
   const { error } = await supabase.auth.updateUser(
     { email: nextEmail },

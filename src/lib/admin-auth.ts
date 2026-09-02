@@ -1,6 +1,10 @@
 import type { User } from "@supabase/supabase-js"
 
-// Dual-check admin gating: role-based (`user_metadata.role === 'admin'`) is the target state, while the `ADMIN_EMAILS` env-var list is a bootstrap fallback for when a new staff member's role hasn't been set yet (Supabase Auth dashboard → Users → Edit user → Raw user metadata, or `supabase.auth.admin.updateUserById(id, { user_metadata: { role: 'admin' } })` with the service key). Either condition grants access; both being absent = not admin.
+// Dual-check admin gating: the role lives in app_metadata, which only a
+// trusted server/admin can change. Never trust user_metadata for privileges:
+// authenticated users can edit their own user_metadata through Supabase Auth.
+// ADMIN_EMAILS remains a bootstrap fallback. Either trusted condition grants
+// access; both being absent = not admin.
 
 /** Parsed ADMIN_EMAILS env var: comma-separated, case-insensitive,
  *  whitespace-trimmed. Empty entries dropped. Empty list = no email
@@ -19,7 +23,7 @@ function adminEmails(): Set<string> {
  *  `user` through. Returns `false` for a null user. */
 export function isAdmin(user: User | null): boolean {
   if (!user) return false
-  if (user.user_metadata?.role === "admin") return true
+  if (user.app_metadata?.role === "admin") return true
   const email = user.email?.toLowerCase() ?? ""
   if (!email) return false
   return adminEmails().has(email)

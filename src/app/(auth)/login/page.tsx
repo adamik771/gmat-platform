@@ -5,14 +5,7 @@ import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle } from "lucide-react"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
-
-// Only allow same-origin redirect targets — never honor an absolute URL
-// from the `next` param (open-redirect risk).
-function safeNext(raw: string | null): string {
-  if (!raw) return "/dashboard"
-  if (!raw.startsWith("/") || raw.startsWith("//")) return "/dashboard"
-  return raw
-}
+import { safeInternalPath } from "@/lib/safe-navigation"
 
 export default function LoginPage() {
   return (
@@ -69,7 +62,7 @@ function LoginForm() {
   const [password, setPassword] = useState("")
   const router = useRouter()
   const searchParams = useSearchParams()
-  const next = safeNext(searchParams.get("next"))
+  const next = safeInternalPath(searchParams.get("next"))
   // Seed the error banner from the auth callback's redirect: a failed or
   // already-used email-confirmation link lands here with ?error=auth_callback,
   // and without this the student saw a plain login form with no explanation.

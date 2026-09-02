@@ -1,6 +1,12 @@
 import { getSupabaseService } from "@/lib/supabase/service"
 import { sendEmail } from "@/lib/email"
 import { passwordResetEmail } from "@/lib/auth-emails"
+import { getTrustedSiteOrigin } from "@/lib/site-origin"
+import {
+  consumeSecurityRateLimit,
+  getClientAddress,
+} from "@/lib/security-rate-limit"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 /**
  * POST /api/auth/reset-request  body: { email }
@@ -16,11 +22,9 @@ import { passwordResetEmail } from "@/lib/auth-emails"
  * can't be used to probe who has an account. The only non-200 is a 400 for a
  * structurally invalid request body.
  *
- * NOTE: minting our own link bypasses Supabase's built-in reset rate limit.
- * The in-memory cooldown below (checked BEFORE generateLink, so it can never
- * invalidate a just-emailed token) blocks per-address loops within a warm
- * instance; it is per-lambda, so a durable per-email/IP throttle (table or
- * Vercel WAF rule) is still the owner task before scaling.
+ * Minting our own link bypasses Supabase's built-in reset rate limit. The
+ * in-memory cooldown is a cheap first layer; the atomic database limiter below
+ * enforces the real per-email and per-IP ceilings across serverless instances.
  */
 
 // email -> last-send ms. Per-instance, pruned to keep the map bounded.
@@ -73,7 +77,39 @@ export async function POST(request: Request) {
     return ok()
   }
 
-  const redirectTo = `${new URL(request.url).origin}/reset-password/update`
+  try {
+    const limits = [
+      consumeSecurityRateLimit(service, {
+        action: "password_reset_email",
+        subject: email,
+        limit: 3,
+        windowSeconds: 60 * 60,
+      }),
+    ]
+    const address = getClientAddress(request.headers)
+    if (address) {
+      limits.push(
+        consumeSecurityRateLimit(service, {
+          action: "password_reset_ip",
+          subject: address,
+          limit: 20,
+          windowSeconds: 60 * 60,
+        }),
+      )
+    }
+    const decisions = await Promise.all(limits)
+    if (decisions.some((decision) => !decision.allowed)) return ok()
+  } catch (err) {
+    // Fail closed without changing the enumeration-safe response.
+    reportDataFailure(err, {
+      surface: "password-reset",
+      operation: "rate-limit",
+      rpc: "consume_security_rate_limit",
+    })
+    return ok()
+  }
+
+  const redirectTo = `${getTrustedSiteOrigin(request.url)}/reset-password/update`
 
   const { data, error } = await service.auth.admin.generateLink({
     type: "recovery",

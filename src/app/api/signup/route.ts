@@ -3,6 +3,11 @@ import { evaluateSignupGate, isSignupGateArmed } from "@/lib/signup-gate"
 import { buildMarketingConsent } from "@/lib/outreach/consent-flag"
 import { recordConsent } from "@/lib/outreach/consent"
 import { enqueueDrip } from "@/lib/outreach/queue"
+import {
+  consumeSecurityRateLimit,
+  getClientAddress,
+} from "@/lib/security-rate-limit"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 /**
  * POST /api/signup — the access-code-gated signup path.
@@ -61,6 +66,52 @@ export async function POST(request: Request) {
     )
   }
 
+  let supabase
+  try {
+    supabase = getSupabaseService()
+  } catch {
+    console.error(
+      "[signup] SIGNUP_ACCESS_CODE is set but SUPABASE_SERVICE_ROLE_KEY is not — gated signup cannot create accounts."
+    )
+    return Response.json(
+      { error: "Signup is temporarily unavailable. Please try again later." },
+      { status: 503 }
+    )
+  }
+
+  const address = getClientAddress(request.headers)
+  if (address) {
+    try {
+      const decision = await consumeSecurityRateLimit(supabase, {
+        action: "gated_signup_ip",
+        subject: address,
+        limit: 10,
+        windowSeconds: 15 * 60,
+      })
+      if (!decision.allowed) {
+        return Response.json(
+          { error: "Too many signup attempts. Please try again later." },
+          {
+            status: 429,
+            headers: {
+              "Retry-After": String(decision.retryAfterSeconds || 60),
+            },
+          },
+        )
+      }
+    } catch (err) {
+      reportDataFailure(err, {
+        surface: "signup",
+        operation: "rate-limit",
+        rpc: "consume_security_rate_limit",
+      })
+      return Response.json(
+        { error: "Signup is temporarily unavailable. Please try again later." },
+        { status: 503 },
+      )
+    }
+  }
+
   const gate = evaluateSignupGate(
     typeof body.accessCode === "string" ? body.accessCode : "",
     configured
@@ -86,20 +137,6 @@ export async function POST(request: Request) {
     return Response.json(
       { error: "Password must be at least 8 characters." },
       { status: 400 }
-    )
-  }
-
-  let supabase
-  try {
-    supabase = getSupabaseService()
-  } catch {
-    // Service-role key not configured — the gated path can't create users.
-    console.error(
-      "[signup] SIGNUP_ACCESS_CODE is set but SUPABASE_SERVICE_ROLE_KEY is not — gated signup cannot create accounts."
-    )
-    return Response.json(
-      { error: "Signup is temporarily unavailable. Please try again later." },
-      { status: 503 }
     )
   }
 
