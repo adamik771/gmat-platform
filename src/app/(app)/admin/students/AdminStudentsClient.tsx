@@ -213,8 +213,8 @@ export default function AdminStudentsClient({ students: rawStudents, nowIso }: P
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#C9A84C]">Admin</p>
           <h1 className="text-xl font-semibold text-[#F0F0F0]">Student activity</h1>
           <p className="max-w-3xl text-xs leading-5 text-[#888888]">
-            Original attempts drive accuracy. Active time counts visible, recently used tabs;
-            activity before this tracker includes timed practice only.
+            Original attempts drive accuracy. Active time estimates focused use, including quiet
+            reading on study pages; activity before this tracker includes timed practice only.
           </p>
         </div>
         <p className="text-[11px] text-[#555555]">Updated {formatDate(nowIso)}</p>
