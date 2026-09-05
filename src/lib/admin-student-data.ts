@@ -5,7 +5,6 @@ import { isAdmin } from "@/lib/admin-auth"
 import {
   buildAdminStudentMetrics,
   type AdminActivityDayRow,
-  type AdminErrorTagRow,
   type AdminLessonCompletionRow,
   type AdminPracticeAttemptRow,
   type AdminPracticeSessionRow,
@@ -14,7 +13,7 @@ import {
   type AdminTutorUsageRow,
   type AdminUserStateRow,
 } from "@/lib/admin-student-metrics"
-import { getAllChapters } from "@/lib/content"
+import { getAllChapters, getAllQuestions } from "@/lib/content"
 import { reportDataFailure } from "@/lib/server-data-observability"
 import { getSupabaseService } from "@/lib/supabase/service"
 
@@ -110,7 +109,6 @@ export async function loadAdminStudentMetrics(
     userStates,
     activityDays,
     purchases,
-    errorTags,
     tutorUsage,
     lessonCompletions,
   ] = await Promise.all([
@@ -124,7 +122,7 @@ export async function loadAdminStudentMetrics(
     allRows<AdminPracticeAttemptRow>(
       service,
       "practice_attempts",
-      "id,user_id,session_id,section,is_correct,time_spent_ms,created_at",
+      "id,user_id,session_id,question_id,section,topic,subtopic,is_correct,confidence,time_spent_ms,created_at",
       "id",
     ),
     allRows<AdminUserStateRow>(service, "user_state", "user_id,data,updated_at", "user_id"),
@@ -139,12 +137,6 @@ export async function loadAdminStudentMetrics(
       "purchases",
       "user_id,plan_id,paid_at,revoked_at",
       "paid_at",
-    ),
-    allRows<AdminErrorTagRow>(
-      service,
-      "error_tags",
-      "user_id,attempt_id,reviewed",
-      "user_id",
     ),
     allRows<AdminTutorUsageRow>(service, "tutor_usage", "user_id,created_at", "created_at"),
     allRows<AdminLessonCompletionRow>(
@@ -170,15 +162,21 @@ export async function loadAdminStudentMetrics(
     userStates,
     activityDays,
     purchases,
-    errorTags,
     tutorUsage,
     lessonCompletions,
     chapters: getAllChapters().map((chapter) => ({
       slug: chapter.slug,
+      section: chapter.section,
       sections: chapter.sections.map((section) => ({
         id: section.id,
         type: section.type,
       })),
+    })),
+    questions: getAllQuestions().map((question) => ({
+      id: question.id,
+      section: question.section,
+      correctAnswer: question.correctAnswer,
+      twoPartCorrectAnswers: question.twoPartCorrectAnswers,
     })),
     now,
   })

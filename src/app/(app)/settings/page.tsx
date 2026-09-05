@@ -3,6 +3,7 @@ import SettingsClient, {
   type NotificationPrefs,
   type PurchaseRow,
 } from "./SettingsClient"
+import { isPurchaseActive, purchaseExpiresAt } from "@/lib/plan-access"
 
 // Sensible defaults when the user has never touched the toggles. Streak
 // reminders + weekly progress default on, the others off — matches the
@@ -70,18 +71,27 @@ export default async function SettingsPage() {
 
       const { data } = await supabase
         .from("purchases")
-        .select("id, plan_id, amount_cents, currency, paid_at")
+        .select("id, plan_id, amount_cents, currency, paid_at, revoked_at")
         .eq("user_id", user.id)
         .order("paid_at", { ascending: false })
 
-      purchases = (data ?? []).map((p) => ({
-        id: p.id as string,
-        planId: p.plan_id as string,
-        planLabel: PLAN_LABELS[p.plan_id as string] ?? (p.plan_id as string),
-        amountCents: (p.amount_cents as number) ?? 0,
-        currency: ((p.currency as string) ?? "usd").toUpperCase(),
-        paidAt: p.paid_at as string,
-      }))
+      purchases = (data ?? []).map((p) => {
+        const purchase = {
+          plan_id: p.plan_id as string,
+          paid_at: p.paid_at as string,
+          revoked_at: p.revoked_at as string | null,
+        }
+        return {
+          id: p.id as string,
+          planId: purchase.plan_id,
+          planLabel: PLAN_LABELS[purchase.plan_id] ?? purchase.plan_id,
+          amountCents: (p.amount_cents as number) ?? 0,
+          currency: ((p.currency as string) ?? "usd").toUpperCase(),
+          paidAt: purchase.paid_at,
+          expiresAt: purchaseExpiresAt(purchase.plan_id, purchase.paid_at),
+          active: isPurchaseActive(purchase),
+        }
+      })
     }
   } catch {
     // Supabase unavailable — fall through with empty defaults.

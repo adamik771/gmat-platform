@@ -55,6 +55,7 @@ import { deriveDailyStudyStatus } from "@/lib/daily-study-loop"
 import DailyStudyLoop from "@/components/dashboard/DailyStudyLoop"
 import ProgressSummary from "./ProgressSummary"
 import { reportDataFailure } from "@/lib/server-data-observability"
+import { findActivePurchase } from "@/lib/plan-access"
 
 const PLAN_LABELS: Record<string, string> = {
   self_study: "Self-Study",
@@ -414,11 +415,10 @@ export default async function DashboardPage() {
           .limit(3),
         supabase
           .from("purchases")
-          .select("plan_id")
+          .select("plan_id, paid_at, revoked_at")
           .eq("user_id", userId)
           .order("paid_at", { ascending: false })
-          .limit(1)
-          .maybeSingle(),
+          .limit(20),
         supabase
           .from("practice_sessions")
           .select("created_at, total_questions, total_time_ms, slug")
@@ -570,10 +570,16 @@ export default async function DashboardPage() {
         })
       }
 
-      // Most-recent purchase → current plan chip. Users may upgrade later
-      // so we take the latest row.
-      const { data: latestPurchase } = latestPurchaseRes
-      currentPlan = (latestPurchase?.plan_id as string | null) ?? null
+      // Newest unexpired purchase → current plan chip. Expired/refunded rows
+      // remain billing history but must not present as current access.
+      const { data: purchaseRows } = latestPurchaseRes
+      currentPlan = findActivePurchase(
+        (purchaseRows ?? []) as Array<{
+          plan_id: string
+          paid_at: string
+          revoked_at: string | null
+        }>,
+      )?.plan_id ?? null
 
       // ---------- Streaks + badges ----------
       // Every date the user had ANY activity — practice sessions or lesson

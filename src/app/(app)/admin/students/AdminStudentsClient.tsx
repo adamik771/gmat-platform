@@ -73,8 +73,8 @@ const STATUS: Record<
     background: "rgba(70,150,255,0.07)",
     border: "rgba(70,150,255,0.18)",
   },
-  "on-track": {
-    label: "On track",
+  "no-alert": {
+    label: "No alert",
     text: "#79D6AA",
     background: "rgba(62,207,142,0.07)",
     border: "rgba(62,207,142,0.18)",
@@ -88,7 +88,7 @@ const STATUS_PRIORITY: Record<StudentAttentionStatus, number> = {
   accuracy: 3,
   timing: 4,
   new: 5,
-  "on-track": 6,
+  "no-alert": 6,
 }
 
 function timestamp(value: string | null): number {
@@ -132,7 +132,7 @@ function accuracy(value: number | null): string {
 function planName(plan: string | null): string {
   if (!plan) return "Trial / no purchase"
   return plan
-    .replaceAll("-", " ")
+    .replaceAll(/[-_]/g, " ")
     .replace(/\b\w/g, (letter) => letter.toUpperCase())
 }
 
@@ -182,7 +182,7 @@ export default function AdminStudentsClient({ students: rawStudents, nowIso }: P
         if (filter === "active" && nowMs - timestamp(student.lastActiveAt) > 7 * 86_400_000) return false
         if (filter === "inactive" && student.status !== "inactive") return false
         if (filter === "new" && student.status !== "new") return false
-        if (filter === "paid" && !student.plan) return false
+        if (filter === "paid" && !student.planActive) return false
         return true
       })
       .sort((a, b) => {
@@ -193,7 +193,7 @@ export default function AdminStudentsClient({ students: rawStudents, nowIso }: P
         if (sort === "course") return b.courseCompletionPct - a.courseCompletionPct
         if (sort === "accuracy") return (b.accuracy ?? -1) - (a.accuracy ?? -1)
         if (sort === "hours") return b.activeHours - a.activeHours
-        return b.questions - a.questions
+        return b.totalQuestions - a.totalQuestions
       })
   }, [filter, nowMs, search, sort, students])
 
@@ -267,10 +267,10 @@ export default function AdminStudentsClient({ students: rawStudents, nowIso }: P
           >
             <option value="attention">Priority</option>
             <option value="last-active">Last active</option>
-            <option value="course">Course completion</option>
+            <option value="course">Reading progress</option>
             <option value="accuracy">Accuracy</option>
             <option value="hours">Active hours</option>
-            <option value="questions">Questions answered</option>
+            <option value="questions">All questions answered</option>
           </select>
         </label>
       </div>
@@ -288,10 +288,10 @@ export default function AdminStudentsClient({ students: rawStudents, nowIso }: P
               <thead className="bg-white/[0.018] text-[10px] uppercase tracking-[0.12em] text-[#66635D]">
                 <tr>
                   <th className="w-[22%] px-4 py-3 font-semibold">Student</th>
-                  <th className="w-[13%] px-3 py-3 font-semibold">Course</th>
-                  <th className="w-[10%] px-3 py-3 font-semibold" title="Original attempts only">Questions</th>
-                  <th className="w-[10%] px-3 py-3 font-semibold" title="Original attempts only">Accuracy</th>
-                  <th className="w-[10%] px-3 py-3 font-semibold">Avg time</th>
+                  <th className="w-[13%] px-3 py-3 font-semibold">Reading</th>
+                  <th className="w-[10%] px-3 py-3 font-semibold">Questions</th>
+                  <th className="w-[10%] px-3 py-3 font-semibold">Timed accuracy</th>
+                  <th className="w-[10%] px-3 py-3 font-semibold">Timed avg</th>
                   <th className="w-[11%] px-3 py-3 font-semibold">Active time</th>
                   <th className="w-[11%] px-3 py-3 font-semibold">Last active</th>
                   <th className="w-[13%] px-3 py-3 font-semibold">Guidance</th>
@@ -381,12 +381,16 @@ function DesktopStudentRows({
           </div>
         </td>
         <td className="px-3 py-3 tabular-nums">
-          <p className="text-xs text-[#D0D0D0]">{student.questions}</p>
-          <p className="text-[10px] text-[#555555]">{student.questions30d} in 30d</p>
+          <p className="text-xs text-[#D0D0D0]">{student.totalQuestions}</p>
+          <p className="text-[10px] text-[#555555]">
+            {student.practiceQuestions} timed · {student.learningQuestions} chapter
+          </p>
         </td>
         <td className="px-3 py-3 tabular-nums">
           <p className="text-xs text-[#D0D0D0]">{accuracy(student.accuracy)}</p>
-          <p className="text-[10px] text-[#555555]">{accuracy(student.accuracy30d)} in 30d</p>
+          <p className="text-[10px] text-[#555555]">
+            {accuracy(student.learningAccuracy)} chapter
+          </p>
         </td>
         <td className="px-3 py-3 tabular-nums">
           <p className="text-xs text-[#D0D0D0]">{formatTime(student.averageTimeMs)}</p>
@@ -437,8 +441,8 @@ function MobileStudent({
         </span>
       </button>
       <div className="grid grid-cols-2 border-t border-white/[0.06]">
-        <MobileMetric label="Course" value={`${student.courseCompletionPct}%`} detail={`${student.completedChapters}/${student.totalChapters} chapters`} />
-        <MobileMetric label="Accuracy" value={accuracy(student.accuracy)} detail={`${student.questions} questions`} />
+        <MobileMetric label="Reading" value={`${student.courseCompletionPct}%`} detail={`${student.completedChapters}/${student.totalChapters} chapters`} />
+        <MobileMetric label="Timed accuracy" value={accuracy(student.accuracy)} detail={`${student.practiceQuestions} timed · ${student.learningQuestions} chapter`} />
         <MobileMetric label="Active" value={`${student.activeHours}h`} detail={`${student.activeHours30d}h in 30d`} />
         <MobileMetric label="Last active" value={formatRelative(student.lastActiveAt, nowMs)} detail={`${student.activeDays30d} days in 30d`} />
       </div>
@@ -481,34 +485,55 @@ function StudentDetail({ student }: { student: AdminStudentMetric }) {
       </div>
 
       <div className="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3 xl:grid-cols-6">
-        <DetailValue label="Plan" value={planName(student.plan)} />
+        <DetailValue
+          label="Plan"
+          value={
+            student.plan
+              ? `${planName(student.plan)}${student.planActive ? "" : " · expired"}`
+              : "Trial / no purchase"
+          }
+        />
         <DetailValue label="Target score" value={student.targetScore ? String(student.targetScore) : "Not set"} />
         <DetailValue label="Exam date" value={formatDate(student.examDate)} />
         <DetailValue label="Joined" value={formatDate(student.joinedAt)} />
         <DetailValue label="Official exams" value={String(student.officialExamCount)} />
-        <DetailValue label="Review backlog" value={String(student.reviewBacklog)} />
+        <DetailValue label="Due review" value={String(student.reviewBacklog)} />
       </div>
+      {student.planExpiresAt ? (
+        <p className="text-[10px] text-[#555555]">
+          {student.planActive ? "Plan access ends" : "Plan access ended"}{" "}
+          {formatDate(student.planExpiresAt)}.
+        </p>
+      ) : null}
 
       <div className="grid gap-px bg-white/[0.06] sm:grid-cols-3">
         {student.sectionMetrics.map((metric) => (
           <div key={metric.section} className="bg-[#0D0D0D] px-4 py-3">
             <div className="flex items-center justify-between gap-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#77746C]">{metric.section}</p>
-              {student.weakestSection === metric.section && metric.questions >= 5 ? (
+              {student.weakestSection === metric.section ? (
                 <span className="text-[9px] font-semibold uppercase tracking-[0.1em] text-[#E2C66F]">Focus</span>
               ) : null}
             </div>
-            <div className="mt-2 flex items-baseline gap-4 tabular-nums">
-              <p className="text-base font-semibold text-[#E6E6E6]">{accuracy(metric.accuracy)}</p>
-              <p className="text-[10px] text-[#555555]">{metric.questions} q · {formatTime(metric.averageTimeMs)} avg</p>
+            <div className="mt-2 space-y-1 tabular-nums">
+              <p className="text-base font-semibold text-[#E6E6E6]">
+                {accuracy(metric.accuracy)}
+                <span className="ml-2 text-[10px] font-normal text-[#555555]">
+                  timed · {metric.questions} q · {formatTime(metric.averageTimeMs)} avg
+                </span>
+              </p>
+              <p className="text-[10px] text-[#66635D]">
+                {accuracy(metric.learningAccuracy)} chapter learning · {metric.learningQuestions} q
+              </p>
             </div>
           </div>
         ))}
       </div>
 
       <p className="text-[10px] text-[#555555]">
-        Last 30 days: {student.questions30d} original questions, {student.questions7d} in the last 7 days,
-        {" "}{student.tutorRequests30d} tutor requests, {student.activeDays30d} active days.
+        Last 30 days: {student.questions30d} timed original questions, {student.questions7d} in the last 7 days,
+        {" "}{student.tutorRequests30d} tutor requests, {student.activeDays30d} active days. Chapter totals are lifetime snapshots;
+        {" "}{student.chapterSetsCompleted} graded chapter-set runs are retained.
       </p>
     </div>
   )
