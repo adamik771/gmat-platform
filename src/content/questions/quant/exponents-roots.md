@@ -1567,7 +1567,7 @@ The correct answer is C.
 ---
 
 ## Q46
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Equations with Exponents
 
@@ -1604,7 +1604,7 @@ The correct answer is B.
 ---
 
 ## Q47
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Exponent Approximation
 
@@ -1633,7 +1633,7 @@ The correct answer is A.
 ---
 
 ## Q48
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Roots & Radicals
 
@@ -1662,7 +1662,7 @@ The correct answer is C.
 ---
 
 ## Q49
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Equations with Exponents
 
@@ -2506,7 +2506,7 @@ The correct answer is D.
 ---
 
 ## Q86
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Equations with Exponents
 

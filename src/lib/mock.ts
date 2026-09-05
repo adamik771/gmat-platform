@@ -1,5 +1,10 @@
 import { getQuestionsBySection, type ParsedQuestion } from "./content"
 import { groupByContext } from "./topic-skill"
+import {
+  balanceDataSufficiencyOrder,
+  selectFresh,
+  withContextLastSeen,
+} from "./question-selection"
 import type { Difficulty, Section } from "@/types"
 
 const DIFFICULTY_RANK: Record<Difficulty, number> = {
@@ -122,12 +127,16 @@ const MAX_PER_TOPIC = 4
  *     incrementing index so the picker walks the pool from a different
  *     starting slice each time, drawing fresh questions across mocks.
  *     Caller-supplied: typically the count of prior mock sessions.
+ *   - `lastSeenAt`: question-level attempt history. Never-seen questions are
+ *     exhausted before repeats; when repeats are unavoidable, the least
+ *     recent return first. Passage/set siblings inherit the same timestamp.
  */
 export function pickMockQuestions(
   section: Section,
   mixOverride?: Record<Difficulty, number>,
   countOverride?: number,
-  mockIndex: number = 0
+  mockIndex: number = 0,
+  lastSeenAt: ReadonlyMap<string, number> = new Map()
 ): ParsedQuestion[] {
   const pool = getQuestionsBySection(section).filter((q) => q.options.length > 0)
   if (pool.length === 0) return []
@@ -141,11 +150,20 @@ export function pickMockQuestions(
       ? pool
       : [...pool.slice(offset), ...pool.slice(0, offset)]
 
+  const seenByQuestion = withContextLastSeen(rotated, lastSeenAt)
+  const orderedPool =
+    seenByQuestion.size > 0
+      ? selectFresh(rotated, rotated.length, seenByQuestion, {
+          seed: mockIndex,
+        }).picked
+      : rotated
+
   const target = countOverride ?? MOCK_QUESTION_COUNT[section]
   const mix = mixOverride ?? DIFFICULTY_MIX[section]
   const picked: ParsedQuestion[] = []
   const pickedIds = new Set<string>()
   const topicCount = new Map<string, number>()
+  const dsAnswerCount = new Map<string, number>()
   const perDifficulty: Record<Difficulty, number> = {
     Beginner: 0,
     Intermediate: 0,
@@ -155,22 +173,34 @@ export function pickMockQuestions(
   const fits = (q: ParsedQuestion) => {
     if (perDifficulty[q.difficulty] >= mix[q.difficulty]) return false
     if ((topicCount.get(q.topic) ?? 0) >= MAX_PER_TOPIC) return false
+    if (
+      q.type === "Data Sufficiency" &&
+      (dsAnswerCount.get(q.correctAnswerLetter) ?? 0) >= 1
+    ) {
+      return false
+    }
     return true
   }
 
-  for (const q of rotated) {
+  for (const q of orderedPool) {
     if (picked.length >= target) break
     if (!fits(q)) continue
     picked.push(q)
     pickedIds.add(q.id)
     perDifficulty[q.difficulty] += 1
     topicCount.set(q.topic, (topicCount.get(q.topic) ?? 0) + 1)
+    if (q.type === "Data Sufficiency") {
+      dsAnswerCount.set(
+        q.correctAnswerLetter,
+        (dsAnswerCount.get(q.correctAnswerLetter) ?? 0) + 1
+      )
+    }
   }
 
   // Top up if the strict pass didn't fill the target (small pools for
   // one difficulty, or too many topic-capped picks).
   if (picked.length < target) {
-    for (const q of rotated) {
+    for (const q of orderedPool) {
       if (picked.length >= target) break
       if (pickedIds.has(q.id)) continue
       picked.push(q)
@@ -178,7 +208,7 @@ export function pickMockQuestions(
     }
   }
 
-  return orderForMock(picked)
+  return balanceDataSufficiencyOrder(orderForMock(picked), { seed: mockIndex })
 }
 
 /**

@@ -14,13 +14,17 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q25
-      - critical-reasoning-q26
+      - critical-reasoning-q188
+      - critical-reasoning-q139
   - id: cr-weaken
     type: reading
     title: "CR: Weaken"
     check_question_ids:
-      - critical-reasoning-q27
+      - critical-reasoning-q36
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +33,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q158
-      - critical-reasoning-q28
-      - critical-reasoning-q29
+      - critical-reasoning-q52
+      - critical-reasoning-q200
+      - critical-reasoning-q77
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,10 +43,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q30
+      - critical-reasoning-q69
       - critical-reasoning-q31
-      - critical-reasoning-q32
+      - critical-reasoning-q9
 ---
+
+## @summary
+
+- Attack the reasoning that connects evidence to conclusion, not merely the subject matter.
+- Look for an alternative cause, a failed comparison, a reversed mechanism, or evidence that the plan will not produce its goal.
+- The correct choice lowers confidence in the conclusion without needing to make it impossible.
 
 ## @cr-weaken
 

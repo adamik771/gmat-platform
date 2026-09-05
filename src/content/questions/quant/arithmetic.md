@@ -30,8 +30,6 @@ Because the denominators are now identical, we combine the numerators: 6 + 5 - 4
 The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
----
-
 ## Q2
 **difficulty:** Easy
 **type:** Problem Solving
@@ -290,7 +288,7 @@ The correct answer is D.
 ---
 
 ## Q11
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Fractions
 
@@ -316,7 +314,7 @@ The correct answer is C.
 ---
 
 ## Q12
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Ratios
 
@@ -1495,33 +1493,31 @@ The correct answer is D.
 **type:** Problem Solving
 **topic:** Remainders
 
-When positive integer n is divided by 7, the remainder is 4. What is the remainder when 3n + 5 is divided by 7?
+When the positive integer n is divided by 8, the remainder is 5. What is the remainder when n² + 3n is divided by 8?
 
-- A) 1
+- A) 0
 - B) 2
-- C) 3
-- D) 4
+- C) 4
+- D) 5
 - E) 6
 
-**answer:** C
+**answer:** A
 **explanation:** The governing principle is the division algorithm: when a positive integer is divided by a fixed divisor, it can be written as the product of the divisor and the quotient plus the remainder, where the remainder is a nonnegative integer less than the divisor.
 
-Let n be the positive integer. Since n divided by 7 leaves a remainder of 4, we may write n = 7k + 4 for some nonnegative integer k.
+Let n be the positive integer. Since n divided by 8 leaves a remainder of 5, we may write n = 8k + 5 for some nonnegative integer k.
 
-We substitute this expression into 3n + 5 and simplify:
+The fastest route is to factor before substituting: n² + 3n = n(n + 3). Since n = 8k + 5, the second factor is n + 3 = 8k + 8 = 8(k + 1), which is a multiple of 8. A product with a factor that is a multiple of 8 is itself a multiple of 8, so n² + 3n is divisible by 8 and the remainder is 0.
 
-3n + 5 = 3(7k + 4) + 5
-= 21k + 12 + 5
-= 21k + 17.
+Direct substitution confirms this. With n = 8k + 5:
 
-To isolate the remainder upon division by 7, we separate the part that is a multiple of 7 from the rest. We note that 21k is divisible by 7, and we rewrite 17 as 14 + 3:
+n² + 3n = (8k + 5)² + 3(8k + 5)
+= 64k² + 80k + 25 + 24k + 15
+= 64k² + 104k + 40
+= 8(8k² + 13k + 5).
 
-21k + 17 = 21k + 14 + 3
-= 7(3k + 2) + 3.
+Every term contains the factor 8, so the remainder upon division by 8 is 0. As a numerical check, n = 5 gives n² + 3n = 25 + 15 = 40 = 8 × 5, and n = 13 gives 169 + 39 = 208 = 8 × 26 — both leave remainder 0.
 
-The quantity 7(3k + 2) is a multiple of 7, and 3 is a nonnegative integer less than 7. Therefore, when 3n + 5 is divided by 7, the remainder is 3.
-
-The correct answer is C.
+The correct answer is A.
 **related_reading:** reading-quant-03-number-properties
 
 ---
@@ -1896,7 +1892,7 @@ Which of the following correctly expresses 7/40 as both a decimal and a percent?
 ---
 
 ## Q66
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Fractions
 
@@ -1915,7 +1911,7 @@ What is the value of 1 ÷ ( 1 + 1 ÷ ( 1 + 1/3 ) ) ?
 ---
 
 ## Q67
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Decimals
 
@@ -2303,7 +2299,7 @@ A delivery van drives 120 miles from a warehouse to a depot at an average speed 
 If n is a positive integer, what is the remainder when n is divided by 5?
 
 (1) n + 1 is divisible by 5.
-(2) n is divisible by 10.
+(2) n − 4 is divisible by 10.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) alone is not sufficient.
@@ -2312,7 +2308,7 @@ If n is a positive integer, what is the remainder when n is divided by 5?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** D
-**explanation:** The question asks for a single fixed value: the remainder when the positive integer n is divided by 5. The governing principle is that two integers leave the same remainder upon division by 5 if and only if their difference is a multiple of 5, so any statement that pins n to a fixed residue class modulo 5 is sufficient. Consider statement (1), which says n + 1 is divisible by 5. Then n + 1 = 5k for some integer k, so n = 5k − 1 = 5(k − 1) + 4, which always leaves a remainder of 4 when divided by 5; statement (1) alone gives a unique remainder and is therefore sufficient. Consider statement (2), which says n is divisible by 10. Any multiple of 10 is also a multiple of 5, so n leaves a remainder of 0 when divided by 5; statement (2) alone also gives a unique remainder and is sufficient. Because each statement independently determines the remainder, each alone is sufficient. The correct answer is D.
+**explanation:** The question asks for a single fixed value: the remainder when the positive integer n is divided by 5. The governing principle is that two integers leave the same remainder upon division by 5 if and only if their difference is a multiple of 5, so any statement that pins n to a fixed residue class modulo 5 is sufficient. Consider statement (1), which says n + 1 is divisible by 5. Then n + 1 = 5k for some integer k, so n = 5k − 1 = 5(k − 1) + 4, which always leaves a remainder of 4 when divided by 5; statement (1) alone gives a unique remainder and is therefore sufficient. Consider statement (2), which says n − 4 is divisible by 10. Then n − 4 = 10m for some integer m, so n = 10m + 4 = 5(2m) + 4, which always leaves a remainder of 4 when divided by 5; statement (2) alone also gives a unique remainder and is sufficient. Because each statement independently determines the remainder, each alone is sufficient. The correct answer is D.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -2558,7 +2554,7 @@ A group of 50 employees has an overall average productivity score of 80. The emp
 
 If k is a positive integer, what is the remainder when k is divided by 4?
 
-(1) k is odd.
+(1) k is even.
 (2) k + 2 is divisible by 4.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) alone is not sufficient.
@@ -2568,7 +2564,7 @@ If k is a positive integer, what is the remainder when k is divided by 4?
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** B
-**explanation:** The question asks for a single fixed value: the remainder when the positive integer k is divided by 4. The governing principle is that any statement which pins k to a single residue class modulo 4 is sufficient, whereas a statement consistent with more than one residue is not. Consider statement (1), which says k is odd. An odd integer divided by 4 can leave a remainder of either 1 or 3; for instance, 5 leaves remainder 1 while 7 leaves remainder 3. Because more than one remainder is possible, statement (1) alone is not sufficient. Consider statement (2), which says k + 2 is divisible by 4. Then k + 2 = 4m for some integer m, so k = 4m − 2 = 4(m − 1) + 2, which always leaves a remainder of 2 when divided by 4; testing k = 2, 6, 10 confirms each leaves remainder 2. Statement (2) alone determines a unique remainder and is therefore sufficient. The correct answer is B.
+**explanation:** The question asks for a single fixed value: the remainder when the positive integer k is divided by 4. The governing principle is that any statement which pins k to a single residue class modulo 4 is sufficient, whereas a statement consistent with more than one residue is not. Consider statement (1), which says k is even. An even integer divided by 4 can leave a remainder of either 0 or 2; for instance, 8 leaves remainder 0 while 6 leaves remainder 2. Because more than one remainder is possible, statement (1) alone is not sufficient. Consider statement (2), which says k + 2 is divisible by 4. Then k + 2 = 4m for some integer m, so k = 4m − 2 = 4(m − 1) + 2, which always leaves a remainder of 2 when divided by 4; testing k = 2, 6, 10 confirms each leaves remainder 2. Statement (2) alone determines a unique remainder and is therefore sufficient. The correct answer is B.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -3268,4 +3264,194 @@ Which of the following fractions has the greatest value?
 
 **answer:** E
 **explanation:** To compare fractions, put them on a common footing; cross-multiplying pairs or converting to a common denominator both work, but here comparing each to a benchmark and then head-to-head is fastest. As decimals: 7/12 approximately 0.583, 11/18 approximately 0.611, 13/21 approximately 0.619, 5/8 = 0.625, and 9/14 approximately 0.643. The largest is 9/14. To confirm the top two by cross-multiplication, compare 5/8 and 9/14: 5 x 14 = 70 while 9 x 8 = 72, and since 72 > 70, 9/14 > 5/8. (Choice D, 5/8, is the second largest and a common trap; Choice A, 7/12, is actually the smallest.) The correct answer is E.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q125
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractions
+
+A tank is initially 3/5 full. After 90 liters are removed, the tank is 3/8 full. Water equal to 1/4 of the tank's empty space is then added. What fraction of the tank is full after the water is added?
+
+- A) 3/8
+- B) 7/16
+- C) 17/32
+- D) 9/16
+- E) 5/8
+
+**answer:** C
+**fastest_path:** The 90-liter removal changes the level by 3/5 - 3/8 = 9/40 of capacity, so capacity is 400 liters. At 3/8 full the tank holds 150 liters and has 250 liters of empty space; adding one quarter of that space adds 62.5 liters. The final fraction is 212.5/400 = 17/32.
+**common_trap:** "One quarter of the empty space" is based on the 250 liters empty after the removal, not on the tank's full capacity and not on the 150 liters still inside.
+**takeaway:** When a later percentage uses a changing reference quantity, calculate that new base explicitly before applying the percentage.
+**explanation:** Let C be the tank's capacity in liters. Removing 90 liters changes the level from 3/5 of C to 3/8 of C, so
+
+(3/5 - 3/8)C = 90.
+
+The difference is 24/40 - 15/40 = 9/40, giving (9/40)C = 90 and C = 400.
+
+After the removal, the tank contains (3/8)(400) = 150 liters. Its empty space is therefore 400 - 150 = 250 liters. The amount added is 1/4 of that empty space, or (1/4)(250) = 62.5 liters.
+
+The tank then contains 150 + 62.5 = 212.5 liters. As a fraction of capacity,
+
+212.5/400 = 425/800 = 17/32.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q126
+
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Fractions
+
+Three partners divide a fund. Partner A receives 1/3 of the fund. Partner B receives 2/5 of the amount remaining after A's share, plus an additional $120. Partner C receives the rest. If C's share is 3/4 of B's share, what is the total value of the fund?
+
+- A) $900
+- B) $960
+- C) $1,050
+- D) $1,120
+- E) $1,260
+
+**answer:** C
+**fastest_path:** Let the fund be T. After A, 2T/3 remains. Then B = 4T/15 + 120 and C = 2T/5 - 120. Set C = (3/4)B and solve T/5 = 210, so T = 1,050.
+**common_trap:** B receives 2/5 of the remainder, not 2/5 of the original fund; C is whatever remains after both B's fractional share and the extra $120.
+**takeaway:** In sequential allocation problems, express every share from one common total before applying the final relationship.
+**explanation:** Let T be the total value of the fund. Partner A receives T/3, leaving 2T/3.
+
+Partner B receives 2/5 of that remainder plus $120:
+
+B = (2/5)(2T/3) + 120 = 4T/15 + 120.
+
+Partner C receives what remains after A and B:
+
+C = 2T/3 - (4T/15 + 120) = 10T/15 - 4T/15 - 120 = 2T/5 - 120.
+
+The condition C = (3/4)B gives
+
+2T/5 - 120 = (3/4)(4T/15 + 120) = T/5 + 90.
+
+Subtracting T/5 from both sides and adding 120 gives T/5 = 210, so T = 1,050.
+
+Check: A receives $350, B receives (2/5)($700) + $120 = $400, and C receives $300. The shares total $1,050, and $300 is 3/4 of $400.
+
+The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q127
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** LCM Applied
+
+Two indicator lights flash at regular intervals. The first flashes every 6 seconds, and the second flashes every 8 seconds. If they flash together at 12:00:00, how many seconds later will they next flash together?
+
+- A) 12
+- B) 14
+- C) 18
+- D) 24
+- E) 48
+
+**answer:** D
+**explanation:** The lights next flash together after the least common multiple of their two intervals. The prime factorizations are 6 = 2 x 3 and 8 = 2^3, so LCM(6, 8) = 2^3 x 3 = 24. Checking: after 24 seconds, the first light has completed 4 intervals and the second has completed 3. The correct answer is D.
+**related_reading:** reading-quant-03-number-properties
+
+---
+
+## Q128
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Answer Choice Tactics
+
+A supplier packs markers into boxes of 6 with no markers left over. Which of the following could be the total number of markers?
+
+- A) 142
+- B) 156
+- C) 164
+- D) 175
+- E) 182
+
+**answer:** B
+**explanation:** A total packed into groups of 6 must be divisible by both 2 and 3. Choice B is even, and its digits sum to 1 + 5 + 6 = 12, which is divisible by 3; therefore 156 is divisible by 6. Each other choice fails at least one of those two tests. The correct answer is B.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q129
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Answer Choice Tactics
+
+If x is a positive integer, x^2 - 11x + 24 = 0, and x > 5, what is x?
+
+- A) 2
+- B) 3
+- C) 4
+- D) 6
+- E) 8
+
+**answer:** E
+**explanation:** The condition x > 5 immediately eliminates A, B, and C. Testing the two remaining choices is quicker than solving from scratch: for x = 6, 36 - 66 + 24 = -6, so D fails. For x = 8, 64 - 88 + 24 = 0, so all conditions hold. Equivalently, the quadratic factors as (x - 3)(x - 8) = 0, and the inequality selects 8. The correct answer is E.
+**related_reading:** reading-quant-04-algebra-and-equations
+
+---
+
+## Q130
+**difficulty:** Easy
+**type:** Problem Solving
+**topic:** Timing Strategy
+
+A quantity increases from 120 to 150. By what percent does the quantity increase?
+
+- A) 20%
+- B) 22.5%
+- C) 25%
+- D) 30%
+- E) 80%
+
+**answer:** C
+**explanation:** Percent increase is change divided by the original value. The change is 150 - 120 = 30, and 30/120 = 1/4 = 25%. Choice D is the absolute change written as a percent without dividing by the original value. The correct answer is C.
+**related_reading:** reading-quant-02-arithmetic-foundations
+
+---
+
+## Q131
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Timing Strategy
+
+Machine A can complete a job alone in 6 hours, and Machine B can complete the same job alone in 3 hours. Working together at their constant rates, how many hours will they take to complete the job?
+
+- A) 1
+- B) 1.5
+- C) 2
+- D) 2.5
+- E) 3
+
+**answer:** C
+**explanation:** Machine A completes 1/6 of the job per hour and Machine B completes 1/3 per hour. Together their rate is 1/6 + 1/3 = 1/6 + 2/6 = 1/2 job per hour, so one full job takes 1 divided by 1/2 = 2 hours. A quick reasonableness check also rules out E: together they must be faster than the faster machine working alone. The correct answer is C.
+**related_reading:** quant-rates-work
+
+---
+
+## Q132
+**difficulty:** Medium
+**type:** Problem Solving
+**topic:** Fractions
+
+What is the least positive integer n for which n/168 can be written as a terminating decimal?
+
+- A) 7
+- B) 14
+- C) 21
+- D) 24
+- E) 42
+
+**answer:** C
+**explanation:** A fraction in lowest terms has a terminating decimal exactly when its denominator has no prime factors other than 2 and 5. Since 168 = 2^3 x 3 x 7, the numerator must cancel both the factor 3 and the factor 7. The least positive integer that does so is 3 x 7 = 21. Indeed, 21/168 = 1/8 = 0.125, which terminates. Choice A cancels only 7, choice B cancels 7 and one factor 2, and choice E also works but is not the least such integer. The correct answer is C.
 **related_reading:** reading-quant-02-arithmetic-foundations

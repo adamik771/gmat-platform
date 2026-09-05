@@ -8,6 +8,8 @@
  * EMAIL_SEQUENCES.md mirrors.
  */
 
+import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM_SHORT } from "@/lib/site"
+
 const GOLD = "#C9A84C"
 
 export interface TemplateContext {
@@ -65,12 +67,12 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
   "signup-welcome": (c) => ({
     subject: "You're in. Here's where I'd start.",
     preheader:
-      "I went 565 to 735 on the GMAT Focus. This platform is that system — and it's free during private beta.",
+      "I went 565 to 735 on the GMAT Focus. This platform is that system — and your first 7 days are free with full access.",
     heading: "Welcome to Zakarian GMAT",
     paragraphs: [
       greeting(c),
-      "Quick story first. My first GMAT Focus score was a 565. I rebuilt my prep from scratch — pretest, reading, recall checks, graded problem sets, every miss logged and reviewed until it stopped repeating. I finished at 735, the 100th percentile. This platform is that system, chapter by chapter.",
-      "You have all of it free while we're in private beta: 50+ interactive chapters, 1,900+ practice questions, full-length mocks, the six-tag error log, and daily spaced review.",
+      "Quick story first. My first GMAT Focus score was a 565. I rebuilt my prep from scratch — pretest, reading, recall checks, graded problem sets, every miss logged and reviewed until it stopped repeating. I finished at 735 — top 1% of test-takers. This platform is that system, chapter by chapter.",
+      "Your free 7-day trial gives you all of it: " + CHAPTER_COUNT_CLAIM + " interactive chapters, " + QUESTION_CLAIM_SHORT + ", full-length mocks, the six-tag error log, and daily spaced review.",
       "One thing before you dive in: your study plan calibrates from a real baseline — an official mba.com practice exam. If you have a recent official score, start your plan from it. If not, take one this week. Honest baseline first, everything else second.",
       "Last thing: I'm a solo founder. There's no support team behind this address — replies come to me, and I answer them personally.",
     ],
@@ -133,7 +135,7 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
       "My own prep only got serious once someone else knew my test date. Accountability beats motivation, and it isn't close. If a classmate or friend is grinding toward the same score, you'll both study more together.",
       "The deal: send them your referral link. They lock founding-member pricing before checkout opens, and you get $50 when the referral goes through.",
       "Full transparency — there's no slick referral software behind this yet. I track every referral by hand. It's a real program with two real beneficiaries: your friend and you.",
-      "And right now it costs them nothing to try — the whole platform is free during private beta. Worst case, they studied free alongside you for a while.",
+      "And right now it costs them nothing to try — every new account starts with a free 7-day full-access trial. Worst case, they studied free alongside you for a week.",
     ],
     cta: { label: "Get your referral link", href: path(c, "/refer") },
   }),
@@ -145,9 +147,9 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
     paragraphs: [
       greeting(c),
       "Before the prices, here's how I'd evaluate any GMAT course, mine included: original questions at realistic difficulty, a system that forces you to confront your errors instead of just logging hours, and mocks plus a study plan calibrated against official material. If a course can't show you those three things, keep your money — whether it's mine or anyone else's.",
-      "That's the standard I built to: 50+ interactive chapters, 1,900+ practice questions, a six-tag error log, daily spaced review, full-length mocks, and a plan calibrated from your official mba.com practice exam baseline.",
+      "That's the standard I built to: " + CHAPTER_COUNT_CLAIM + " interactive chapters, " + QUESTION_CLAIM_SHORT + ", a six-tag error log, daily spaced review, full-length mocks, and a plan calibrated from your official mba.com practice exam baseline.",
       "Now the numbers. When checkout opens, Self-Study will be $429 for 4 months. Self-Study + Mentorship — direct WhatsApp Q&A with me — will be $599 for 6 months.",
-      "Founding members lock roughly $299 and $399 instead. Reserving is free and there's nothing to pay today — you pay only when checkout opens, and every paid plan carries a 14-day money-back guarantee.",
+      "Founding members lock roughly $299 and $399 instead. Reserving is free and there's nothing to pay today — you pay only when checkout opens, and both plans carry a 14-day money-back guarantee.",
       "No countdown timer, because there isn't one. The founding rate exists until checkout opens, then it's gone. That's the whole pitch.",
     ],
     cta: { label: "Reserve your founding rate", href: path(c, "/pricing") },
@@ -161,7 +163,7 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
       greeting(c),
       "You've had access for about ten days now, so I want one thing from you — and it isn't money.",
       "What's the single most annoying, confusing, or missing thing so far? A chapter that dragged. An explanation that felt off. A feature you expected and couldn't find. One sentence is plenty.",
-      "And if you haven't started yet, that's an answer too — tell me what stopped you. That's some of the most useful feedback a beta user can give me.",
+      "And if you haven't started yet, that's an answer too — tell me what stopped you. That's some of the most useful feedback an early user can give me.",
       "There's no support team and no ticket queue here. Your reply lands in my inbox, I read every one, and it shapes what I build next. Reply directly, or use the contact page if you prefer a form.",
     ],
     cta: { label: "Send me a note", href: path(c, "/contact") },
@@ -170,22 +172,22 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
   // B. Founding reservation --------------------------------------------------
   "founding-confirm": (c) => ({
     subject: "Your founding access is reserved",
-    preheader: "Free beta access now; your founding price is held.",
+    preheader: "Full access on your free trial now; your founding price is held.",
     heading: "Reserved.",
     paragraphs: [
       greeting(c),
-      "Thanks for reserving founding access. You have free access to the full platform during the beta right now, and your founding price is held for when payment turns on later.",
+      "Thanks for reserving founding access. Your free trial gives you the full platform right now, and your founding price is held for when payment turns on later.",
       "I handle founding access by hand for now, so I'll be in touch personally if anything's needed.",
     ],
     cta: { label: "Open the platform", href: path(c, "/dashboard") },
   }),
   "founding-includes": (c) => ({
-    subject: "What your beta access includes",
-    preheader: "62 chapters, the question bank, mocks, review, and a baseline-driven plan.",
+    subject: "What your access includes",
+    preheader: CHAPTER_COUNT_CLAIM + " chapters, the question bank, mocks, review, and a baseline-driven plan.",
     heading: "What you've got",
     paragraphs: [
       greeting(c),
-      "Your beta access is the whole platform: 62 chapters, the full practice bank, full-length mocks, the spaced review queue, the error log, and a study plan built from your official practice-exam baseline. No card required.",
+      "Your trial access is the whole platform: " + CHAPTER_COUNT_CLAIM + " chapters, the full practice bank, full-length mocks, the spaced review queue, the error log, and a study plan built from your official practice-exam baseline. No card required.",
       "If you only do one thing this week, set your baseline so the plan can calibrate.",
     ],
     cta: { label: "Set your baseline", href: path(c, "/mock") },
@@ -240,9 +242,9 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
     heading: "Want this automated?",
     paragraphs: [
       greeting(c),
-      "If the spreadsheet's been useful, the platform is the spreadsheet on autopilot: it tags your misses, builds a spaced review queue, and re-prioritizes your study plan from your last sessions. It's free during the private beta.",
+      "If the spreadsheet's been useful, the platform is the spreadsheet on autopilot: it tags your misses, builds a spaced review queue, and re-prioritizes your study plan from your last sessions. Your free 7-day trial includes all of it.",
     ],
-    cta: { label: "Try the beta free", href: path(c, "/signup") },
+    cta: { label: "Start your free trial", href: path(c, "/signup") },
   }),
   "errorlog-founding": (c) => ({
     subject: "Founding access (while it's free)",
@@ -250,7 +252,7 @@ const TEMPLATES: Record<string, (ctx: TemplateContext) => BuiltEmail> = {
     heading: "Founding access",
     paragraphs: [
       greeting(c),
-      "One more option: founding users lock in early pricing now, while the platform is free in beta, for when it goes paid later. No charge today.",
+      "One more option: founding users lock in early pricing now, before checkout opens, for when it goes paid later. No charge today.",
     ],
     cta: { label: "Reserve founding access", href: path(c, "/pricing") },
   }),
@@ -365,7 +367,7 @@ function shell(b: BuiltEmail, ctx: TemplateContext): string {
     <p style="margin:0 0 8px;font-size:12px;line-height:1.5;color:#777777;">You're receiving this because ${esc(
       reason
     )}. <a href="${ctx.unsubscribeUrl}" style="color:#999999;text-decoration:underline;">Unsubscribe</a> anytime.</p>
-    <p style="margin:0;font-size:11px;line-height:1.5;color:#555555;">Zakarian GMAT is independent GMAT prep. It is not affiliated with, endorsed by, or sponsored by GMAC, the GMAT, or mba.com. No score is guaranteed.</p>
+    <p style="margin:0;font-size:11px;line-height:1.5;color:#555555;">GMAT and related marks are trademarks of GMAC. Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC. No score is guaranteed.</p>
     ${pixel}
   </div>
 </body></html>`
@@ -382,7 +384,7 @@ function textVersion(b: BuiltEmail, ctx: TemplateContext): string {
     "",
     "—",
     `You're receiving this because ${reason}. Unsubscribe: ${ctx.unsubscribeUrl}`,
-    "Zakarian GMAT is independent GMAT prep — not affiliated with GMAC, the GMAT, or mba.com. No score is guaranteed.",
+    "GMAT and related marks are trademarks of GMAC. Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC. No score is guaranteed.",
   ]
   return lines.filter((l) => l !== undefined).join("\n")
 }

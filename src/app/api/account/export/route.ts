@@ -1,5 +1,5 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
-import { getUserState } from "@/lib/user-state"
+import { getUserStateForWrite } from "@/lib/user-state"
 
 // Always fresh — this is the signed-in user's own data.
 export const dynamic = "force-dynamic"
@@ -24,13 +24,31 @@ export async function GET() {
   }
 
   const uid = user.id
+  // A data export that silently ships [] for a table that FAILED to read
+  // is an incomplete export presented as complete — fail the request
+  // instead so the user retries and gets the real thing. Ordered +
+  // paginated so large histories aren't silently truncated at the
+  // PostgREST row cap.
   const rows = async (table: string) => {
-    const { data, error } = await supabase.from(table).select("*").eq("user_id", uid)
-    if (error) {
-      console.warn(`[account/export] could not read ${table}:`, error.message)
-      return []
+    const out: unknown[] = []
+    const PAGE = 1000
+    // Stable (not necessarily chronological) order for pagination —
+    // `id` exists on every exported table except lesson_completions.
+    const orderCol = table === "lesson_completions" ? "completed_at" : "id"
+    for (let from = 0; ; from += PAGE) {
+      const { data, error } = await supabase
+        .from(table)
+        .select("*")
+        .eq("user_id", uid)
+        .order(orderCol, { ascending: true })
+        .range(from, from + PAGE - 1)
+      if (error) {
+        throw new Error(`[account/export] could not read ${table}: ${error.message}`)
+      }
+      out.push(...(data ?? []))
+      if (!data || data.length < PAGE) break
     }
-    return data ?? []
+    return out
   }
 
   const [
@@ -54,7 +72,15 @@ export async function GET() {
   // Growing state (chapter_progress, saved_for_review, mock_flags, etc.) lives
   // in the user_state table now, not user_metadata — merge it back in so the
   // export stays complete.
-  const state = await getUserState(supabase, user)
+  const { state, errored: stateErrored } = await getUserStateForWrite(
+    supabase,
+    user
+  )
+  if (stateErrored) {
+    // Same rule as the table reads: a partial export presented as
+    // complete is worse than a failed one the user can retry.
+    throw new Error("[account/export] could not read user_state")
+  }
 
   const payload = {
     exported_at: new Date().toISOString(),

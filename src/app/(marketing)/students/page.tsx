@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   title: "Student score lifts",
   alternates: { canonical: "/students" },
   description:
-    "The founder's verified 565 to 735, plus how we report results. Beta student score lifts publish here as they're verified — no synthetic numbers.",
+    "The founder's 565 to 735, plus how we report results. Early-student score lifts publish here as they're verified — no synthetic numbers.",
 }
 
 /**
- * Social-proof page — score lifts from beta students.
+ * Social-proof page — score lifts from early students.
  *
  * Adam: replace each entry below with a real student story once they
  * complete the program. Keep the schema (start, after, weeks, focus,
@@ -48,7 +48,7 @@ interface StudentLift {
 const STUDENTS: StudentLift[] = [
   // The only fully verified result so far is the founder's own — clearly
   // labelled as the founder, not a customer. Replace/extend with real student
-  // lifts (drop the placeholder: true flag) as the beta cohort completes.
+  // lifts (drop the placeholder: true flag) as the first cohort completes.
   {
     name: "Adam Zakarian",
     context: "Founder · non-native English speaker, non-technical background",
@@ -104,8 +104,8 @@ export default function StudentsPage() {
           </h1>
           <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
             We publish only real baseline-to-mock or baseline-to-official
-            deltas — no synthetic numbers. The first beta cohort is still
-            finishing, so for now the one fully verified result is the
+            deltas — no synthetic numbers. The first student cohort is still
+            finishing, so for now the one result published here is the
             founder&apos;s own.
           </p>
         </div>
@@ -119,12 +119,12 @@ export default function StudentsPage() {
               className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3"
               style={{ color: "#C9A84C" }}
             >
-              Verified
+              Published
             </p>
             <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
               {verified.length === 1
-                ? "One verified result so far"
-                : `${verified.length} verified results`}
+                ? "One published result so far"
+                : `${verified.length} published results`}
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -151,7 +151,7 @@ export default function StudentsPage() {
             </h2>
             <p className="text-[14px] text-[#888888] max-w-xl mx-auto leading-relaxed">
               We&apos;re holding space for verified score lifts as the
-              first beta cohort completes. We&apos;ll only publish numbers
+              first student cohort completes. We&apos;ll only publish numbers
               we&apos;ve seen on a real baseline-to-mock or official
               delta.
             </p>
@@ -190,8 +190,8 @@ export default function StudentsPage() {
             </p>
             <p>
               Score improvement is not guaranteed. Results vary by hours
-              committed, baseline, and consistency. We publish only what
-              we&apos;ve verified.
+              committed, baseline, and consistency. We publish only real,
+              attributable results.
             </p>
           </div>
         </div>

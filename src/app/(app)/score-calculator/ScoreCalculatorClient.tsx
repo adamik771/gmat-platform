@@ -27,8 +27,9 @@ const clampSection = (n: number) => {
     : 75
 }
 
-/** 1 → "1st", 2 → "2nd", 3 → "3rd", 11–13 → "th", else "th". */
+/** Format integer or one-decimal percentile values for display. */
 function ordinal(n: number): string {
+  if (!Number.isInteger(n)) return `${n.toFixed(1)}th`
   const v = n % 100
   if (v >= 11 && v <= 13) return `${n}th`
   switch (n % 10) {
@@ -70,7 +71,7 @@ export default function ScoreCalculatorClient() {
   }
 
   const total = sectionScoresToTotal(scores.quant, scores.verbal, scores.di)
-  // 735+ is the 100th-percentile band per the GMAT Focus tables — show it.
+  // Use the current official GMAC total-score percentile table.
   const pct = totalPercentile(total)
 
   return (
@@ -144,11 +145,11 @@ export default function ScoreCalculatorClient() {
 
       {/* Result */}
       <div
+        data-testid="score-calculator-result"
         className="rounded-2xl border p-6 sm:p-8 text-center"
         style={{
           borderColor: "rgba(201,168,76,0.25)",
-          background:
-            "radial-gradient(ellipse 80% 120% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%), #0D0D0D",
+          backgroundColor: "#0D0D0D",
         }}
       >
         <p className={EYEBROW + " mb-3"}>Estimated total</p>
@@ -170,15 +171,15 @@ export default function ScoreCalculatorClient() {
         <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#888888]" aria-hidden />
         <p className="text-[12px] text-[#888888] leading-relaxed">
           <span className="text-[#C0C0C0] font-medium">This is an estimate.</span>{" "}
-          GMAC does not publish the official section→total formula. This uses the
-          standard equal-weight approximation{" "}
+          GMAC does not publish the official section→total formula. This
+          calculator applies the transparent equal-weight approximation{" "}
           <span className="text-[#C0C0C0]">
             (Q + V + DI − 180) × 20⁄3 + 205
           </span>
-          , the same basis as major prep calculators (Target Test Prep, Magoosh,
-          e-GMAT). Identical section scores can map to slightly different real
-          totals, so treat the result as a ±{SECTION_TOTAL_ESTIMATE_SWING}-point
-          ballpark — not an official conversion.
+          {". "}Identical section scores can map to different official totals,
+          so treat the result as a ±
+          {SECTION_TOTAL_ESTIMATE_SWING}-point ballpark — not an official
+          conversion.
         </p>
       </div>
     </div>

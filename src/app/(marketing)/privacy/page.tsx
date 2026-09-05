@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import LegalPage, { LegalSection } from "@/components/marketing/LegalPage"
+import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
 import { SITE_CONTACT_EMAIL } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 }
 
-const LAST_UPDATED = "May 3, 2026"
+const LAST_UPDATED = "September 2, 2026"
 const CONTACT_EMAIL = SITE_CONTACT_EMAIL
 
 export default function PrivacyPage() {
@@ -41,9 +42,13 @@ export default function PrivacyPage() {
           <li>
             <strong>Study data.</strong> Your practice sessions, question
             attempts, error-log entries, exam date, target score, chapter
-            progress, and notification preferences. This is the data the
-            Platform uses to give you analytics, an adaptive plan, and a spaced
-            review queue.
+            progress, notification preferences, and a coarse active-use
+            estimate. The active-use estimate stores only the total active
+            seconds for each day and the latest activity time. It counts a tab
+            only while it is visible and has been used recently; it does not
+            store a page-by-page browsing history. This is the data the
+            Platform uses to give you analytics, an adaptive plan, a spaced
+            review queue, and more informed progress support.
           </li>
           <li>
             <strong>Payment information.</strong> If you purchase a plan, our
@@ -67,8 +72,17 @@ export default function PrivacyPage() {
           </li>
         </ul>
         <p>
-          We do not currently use third-party advertising trackers, behavioral
-          analytics, or session-replay tools.
+          We use Vercel Web Analytics to count page views and key product
+          events in aggregate. If you accept measurement in the consent
+          banner, we also store the campaign parameters that brought you to
+          the site (for example, utm_source) in your browser&apos;s local
+          storage so we can attribute signups to a campaign; if you decline,
+          nothing is stored. Emails from our marketing sequences include an
+          open-tracking pixel and links that pass through our own
+          click-tracking redirect so we can tell which emails are useful;
+          unsubscribing stops those emails. When our advertising measurement
+          tags (Meta Pixel, Google tag) are active, they measure whether ads
+          lead to signups. We do not use session-replay tools.
         </p>
       </LegalSection>
 
@@ -76,6 +90,10 @@ export default function PrivacyPage() {
         <ul>
           <li>To provide the Platform and its core features.</li>
           <li>To compute your analytics, study plan, and review queue.</li>
+          <li>
+            To understand course progress and provide students with more
+            relevant study guidance and support.
+          </li>
           <li>To process payments and manage your subscription or plan.</li>
           <li>To send transactional emails (account verification, password reset, receipts).</li>
           <li>To send product updates if you opt in via your notification preferences.</li>
@@ -104,6 +122,14 @@ export default function PrivacyPage() {
             <strong>Anthropic</strong> — language-model inference for the
             in-product AI tutor.
           </li>
+          <li>
+            <strong>Resend</strong> — transactional and product email delivery
+            (processes your name and email address).
+          </li>
+          <li>
+            <strong>Formspree</strong> — contact-form processing (US-based;
+            the name, email, and message you submit on the contact page).
+          </li>
         </ul>
         <p>
           Each of these providers has its own privacy and security commitments.
@@ -116,8 +142,15 @@ export default function PrivacyPage() {
           We use a small number of cookies (and equivalent local-storage keys)
           that are necessary for the Platform to function — primarily to keep
           you signed in and to remember session state such as your study timer
-          and offline cache. We do not use advertising or cross-site tracking
-          cookies.
+          and offline cache. Our analytics does not use advertising cookies.
+          Advertising measurement tags (Meta Pixel, Google tag) and
+          advertising attribution are loaded and stored only if you accept
+          them in the consent banner; they stay off by default and when you
+          reject. Beyond that we do not use cross-site tracking cookies. You
+          can change your choice at any time:
+        </p>
+        <p>
+          <ConsentSettingsButton className="underline hover:opacity-80" />
         </p>
       </LegalSection>
 

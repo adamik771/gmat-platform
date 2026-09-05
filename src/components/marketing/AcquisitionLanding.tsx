@@ -35,6 +35,13 @@ export interface AcquisitionLandingProps {
     ctaLabel?: string
   }
   primaryCta?: { label: string; href: string }
+  /** Conversion-hero variant: proof chips rendered under the h1 with the CTA
+   *  moved ABOVE the intro, so headline + proof + CTA all sit above the
+   *  mobile fold. Pages that omit this keep the original hero layout. */
+  heroChips?: string[]
+  /** Rendered between the hero and the value sections (e.g. interactive
+   *  sample questions on the paid-traffic landing page). */
+  afterHero?: React.ReactNode
   metaDescription: string
   /** Internal cross-links ("Keep going" grid) — keeps the visitor in the funnel
    *  and builds the on-site link graph search engines crawl. */
@@ -96,18 +103,51 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
         <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
           {props.h1}
         </h1>
+        {props.heroChips && (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {props.heroChips.map((chip) => (
+              <span
+                key={chip}
+                className="inline-flex items-center px-3 py-1.5 rounded-full border text-xs font-medium"
+                style={{
+                  borderColor: "rgba(201,168,76,0.3)",
+                  backgroundColor: "rgba(201,168,76,0.06)",
+                  color: "#C9A84C",
+                }}
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
+        )}
+        {props.heroChips && (
+          <div className="flex flex-wrap gap-3 mb-8">
+            <Link
+              href={cta.href}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {cta.label}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
         <Prose text={props.intro} pClass="text-[16px] text-[#C0C0C0] leading-relaxed mb-4 max-w-2xl" />
-        <div className="flex flex-wrap gap-3 mt-6">
-          <Link
-            href={cta.href}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-          >
-            {cta.label}
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+        {!props.heroChips && (
+          <div className="flex flex-wrap gap-3 mt-6">
+            <Link
+              href={cta.href}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {cta.label}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
       </section>
+
+      {props.afterHero}
 
       {/* Value sections */}
       <section className="max-w-3xl mx-auto px-4 py-8 space-y-12">
@@ -187,7 +227,7 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
       <section className="max-w-3xl mx-auto px-4 pt-8 pb-24">
         <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-8 text-center">
           <p className="text-[15px] text-[#C0C0C0] mb-5">
-            The full platform is free while we&apos;re in private beta. No credit card.
+            Every new account starts with a free 7-day full-access trial. No credit card.
           </p>
           <Link
             href={cta.href}
@@ -199,9 +239,10 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
           </Link>
         </div>
         <p className="text-[11px] text-[#555555] leading-relaxed mt-6 text-center max-w-2xl mx-auto">
-          Zakarian GMAT is an independent prep platform. It is not affiliated with, endorsed by, or
-          sponsored by the Graduate Management Admission Council (GMAC), the GMAT, GMAT Focus Edition,
-          or mba.com, which are trademarks of GMAC. We do not guarantee any score.
+          GMAC, GMAT, Graduate Management Admission Council, and Graduate Management Admission Test
+          are trademarks of GMAC in the United States and other countries. Zakarian GMAT is
+          independent and is not affiliated with, endorsed by, or sponsored by GMAC. We do not
+          guarantee any score.
         </p>
       </section>
     </div>

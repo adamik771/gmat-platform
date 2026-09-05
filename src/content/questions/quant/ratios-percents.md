@@ -466,7 +466,7 @@ The correct answer is C.
 ---
 
 ## Q16
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Mixtures
 
@@ -556,24 +556,10 @@ A tank contains a mixture of water and alcohol. What percent of the mixture is a
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** The governing principle is that a system of linear equations can be solved for its unknowns only when the number of independent equations equals the number of unknowns. Here there are two unknowns, so we must determine whether each statement supplies enough independent equations to fix the alcohol percentage.
-
-Let a = the number of liters of alcohol in the tank and let t = the total number of liters of the mixture. The quantity sought is the alcohol percentage, a/t expressed as a percent. With two unknowns, a single equation cannot determine this ratio.
-
-Statement (1) states that adding 10 liters of water would make the mixture 20 percent alcohol. Translating this into math gives a/(t + 10) = 0.20, or equivalently a = 0.20(t + 10). This is one linear equation in two unknowns. Different pairs (a, t) satisfy it and yield different values of a/t, so the alcohol percentage is not determined. Statement (1) alone is not sufficient.
-
-Statement (2) states that adding 5 liters of alcohol would make the mixture 40 percent alcohol. Translating this gives (a + 5)/(t + 5) = 0.40, or equivalently a + 5 = 0.40(t + 5). This too is a single linear equation in the same two unknowns, and again many pairs satisfy it with differing ratios a/t. Statement (2) alone is not sufficient.
-
-Taking the two statements together provides two independent linear equations in the two unknowns:
-
-a = 0.20(t + 10) = 0.20t + 2
-a = 0.40(t + 5) - 5 = 0.40t - 3
-
-Setting the two expressions for a equal gives 0.20t + 2 = 0.40t - 3. Subtracting 0.20t from both sides yields 2 = 0.20t - 3, and adding 3 to both sides yields 5 = 0.20t, so t = 25. Substituting back gives a = 0.20(25) + 2 = 5 + 2 = 7.
-
-The alcohol percentage is therefore a/t = 7/25 = 0.28, or 28 percent. Because the two statements together yield a unique value while neither alone does, both statements together are sufficient and neither alone is sufficient.
-
-The correct answer is C.
+**fastest_path:** Let a be alcohol and t total volume. Translate each statement into an equation; each alone leaves two variables, while together they solve uniquely.
+**explanation:** (1) gives a/(t+10)=0.20, one equation in a and t, so it is insufficient. (2) gives (a+5)/(t+5)=0.40, also one equation in two variables, so it is insufficient. Together: a=0.20t+2 and a=0.40t-3. Equating them gives t=25 and a=7, so the original percentage is 7/25=28%. Together sufficient, choice C.
+**common_trap:** Do not treat 20% or 40% as the original concentration; each is the concentration only after the stated addition.
+**takeaway:** In mixture DS, define original amount and total, translate each changed mixture, and count independent equations.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -767,7 +753,7 @@ The correct answer is C.
 ---
 
 ## Q25
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Comparison via Chained Percent Statements
 
@@ -1021,7 +1007,7 @@ The correct answer is C.
 A store sells only two products, P and Q. What fraction of the store's total revenue comes from Product Q?
 
 (1) Revenue from Product P is 20% less than revenue from Product Q.
-(2) Revenue from Product P increased by 10% this year while revenue from Product Q decreased by 10%, and total revenue remained the same as last year.
+(2) If revenue from Product P were 25% greater than it is, it would equal revenue from Product Q.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -1034,7 +1020,7 @@ A store sells only two products, P and Q. What fraction of the store's total rev
 
 Statement (1) states that the revenue from Product P is 20% less than the revenue from Product Q, which translates to P = 0.80Q. Substituting gives a total revenue of P + Q = 0.80Q + Q = 1.80Q. The fraction from Product Q is therefore Q / (1.80Q) = 1 / 1.80 = 5/9. This is a single determined value, so statement (1) alone is sufficient.
 
-Statement (2) describes the change from last year to this year. Let last year's revenues be P and Q. This year the revenue from Product P increased by 10%, becoming 1.10P, and the revenue from Product Q decreased by 10%, becoming 0.90Q. The condition that total revenue remained the same yields the equation 1.10P + 0.90Q = P + Q. Subtracting P + Q from both sides gives 0.10P - 0.10Q = 0, hence 0.10P = 0.10Q, so P = Q. With equal revenues, the fraction from Product Q is Q / (Q + Q) = Q / (2Q) = 1/2. This is a single determined value, so statement (2) alone is sufficient.
+Statement (2) states that increasing the revenue from Product P by 25% would make it equal to the revenue from Product Q, which translates to 1.25P = Q, or P = 0.80Q. This is the same relative relationship expressed from the other direction — a quantity 20% below another must grow by 25%, not 20%, to catch up, because the percentage base shifts from the larger quantity to the smaller one. Substituting gives P + Q = 0.80Q + Q = 1.80Q, so the fraction from Product Q is Q / (1.80Q) = 5/9. This is a single determined value, so statement (2) alone is sufficient.
 
 Because each statement alone determines the fraction of total revenue coming from Product Q, each statement alone is sufficient.
 
@@ -1419,15 +1405,10 @@ A jar contains only red and blue balls. What percent of the balls in the jar are
 - E) Statements (1) and (2) TOGETHER are NOT sufficient.
 
 **answer:** C
-**explanation:** We must determine the percent of the balls in the jar that are red. Let r represent the number of red balls and let b represent the number of blue balls, where both r and b are positive integers. The percent of balls that are red is r/(r + b), expressed as a percent. To answer the question, the value of this ratio must be uniquely determined; it is not necessary to know r and b individually, but the proportion they form must be fixed.
-
-Statement (1) states that the number of red balls is exactly 3 more than the number of blue balls, which translates to r = b + 3. This equation fixes only the difference between the two counts, not their proportion. For instance, (r, b) = (4, 1) gives 4/5 red, while (r, b) = (5, 2) gives 5/7 red. These two fractions are not equal, as cross-multiplication shows: 4 × 7 = 28 and 5 × 5 = 25, and 28 is not 25, so 4/5 and 5/7 are different proportions. Because different valid pairs produce different percents, the value of r/(r + b) is not determined. Statement (1) alone is not sufficient.
-
-Statement (2) states that if one red ball were removed, the ratio of red to blue balls would be 2 to 1, which translates to (r - 1)/b = 2/1, or equivalently r = 2b + 1. This equation fixes a relationship but leaves b free to vary. For instance, (r, b) = (3, 1) gives 3/4 red, while (r, b) = (5, 2) gives 5/7 red. Cross-multiplication again shows these fractions differ: 3 × 7 = 21 and 4 × 5 = 20, and 21 is not 20, so 3/4 and 5/7 are different proportions. Because different valid pairs again produce different percents, the value of r/(r + b) is not determined. Statement (2) alone is not sufficient.
-
-Taking the two statements together yields two independent linear equations in the two unknowns r and b: r = b + 3 and r = 2b + 1. Setting the two expressions for r equal gives b + 3 = 2b + 1. Subtracting b from both sides gives 3 = b + 1, so b = 2. Substituting b = 2 into r = b + 3 gives r = 5. The total number of balls is r + b = 5 + 2 = 7, and the proportion of balls that are red is 5/7. Because (r, b) = (5, 2) is the only pair satisfying both equations, this proportion is uniquely determined — and data sufficiency requires only a unique value, not a decimal conversion. Both statements together are therefore sufficient, while neither statement alone is sufficient.
-
-The correct answer is C.
+**fastest_path:** Let red = R and blue = B. Statement (1) gives R = B + 3; statement (2) gives R - 1 = 2B. Solve only after combining.
+**explanation:** Statement (1) allows many jars, such as R/B = 4/1 or 5/2, so the red percentage is not fixed. Statement (2) gives R = 2B + 1; different positive B values again produce different percentages. Together, B + 3 = 2B + 1, so B = 2 and R = 5. The red percentage is therefore fixed at 5/7 of the jar. Neither statement alone is sufficient, but together they are, so C is correct.
+**common_trap:** Assuming a difference or a post-removal ratio fixes the original percentage without determining the actual counts.
+**takeaway:** A fixed difference and a ratio often need to be combined before the underlying counts, and therefore the percentage, become unique.
 **related_reading:** reading-quant-02-arithmetic-foundations
 
 ---
@@ -1568,7 +1549,7 @@ The correct answer is C.
 ---
 
 ## Q50
-**difficulty:** Challenge
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Iterative Replacement — Target Concentration
 
@@ -1581,19 +1562,11 @@ A 100-liter drum contains 70 liters of water and 30 liters of juice (30% juice s
 - E) 5
 
 **answer:** B
-**explanation:** This is a drain-and-replace problem. Because the substance added on each cycle is pure juice, no water is ever introduced; water is only removed. It is therefore cleanest to track the water rather than the juice, and to require that the water concentration fall below 50 percent, which is equivalent to the juice concentration exceeding 50 percent.
+**fastest_path:** Track juice only: after each cycle, 80% of the current juice remains and 20 liters are added, so J(next) = 0.8J + 20.
+**explanation:** The drum starts with 30 liters of juice. After one cycle, draining 20% leaves 0.8 x 30 = 24 liters of juice; adding 20 liters of pure juice gives 44 liters, or 44%. After the second cycle, 0.8 x 44 = 35.2 liters remain, and replacement raises this to 55.2 liters. The concentration first exceeds 50% after two complete cycles, so B is correct.
+**common_trap:** Subtracting 20 liters of juice during each drain even though the removed 20 liters have the current mixture's concentration.
+**takeaway:** In repeated replacement, multiply the tracked component by the retained fraction, then add the pure replacement amount.
 
-Let the drum hold 100 liters throughout, since 20 liters are drained and 20 liters are added on every cycle, leaving the total unchanged. Each cycle drains 20 of the 100 liters of the current mixture, so it removes 20 percent of whatever water is present and retains the remaining 80 percent. The 20 liters of pure juice added afterward contribute no water. Hence the amount of water is multiplied by 80/100 = 4/5 on each cycle.
-
-The drum begins with 70 liters of water, so after n complete cycles the water remaining is 70 times (4/5) raised to the power n. We require the water to make up less than half of the 100 liters, that is, 70 times (4/5) to the power n is less than 50, which simplifies to (4/5) to the power n less than 5/7.
-
-We test successive values of n, comparing each power to 5/7 by cross-multiplication. For n = 1, compare 4/5 with 5/7: cross-multiplying gives 4 × 7 = 28 against 5 × 5 = 25, and 28 is greater than 25, so 4/5 is greater than 5/7 and the condition is not yet met. For n = 2, (4/5) squared is 16/25; compare 16/25 with 5/7: cross-multiplying gives 16 × 7 = 112 against 25 × 5 = 125, and 112 is less than 125, so 16/25 is less than 5/7 and the condition is met.
-
-A direct check confirms this. After cycle 1, draining 20 liters removes 14 liters of water, leaving 56 liters of water and 44 liters of juice, so the juice concentration is 44 percent, which does not exceed 50 percent. After cycle 2, draining 20 liters removes 11.2 liters of water from the 56 liters present, leaving 44.8 liters of water and 55.2 liters of juice, so the juice concentration is 55.2 percent, which does exceed 50 percent.
-
-The minimum number of complete cycles required is therefore 2.
-
-The correct answer is B.
 
 ---
 
@@ -1780,7 +1753,7 @@ The correct answer is C.
 A garden contains only rose bushes and tulip beds in the ratio of 4 rose bushes to 5 tulip beds. How many rose bushes are in the garden?
 
 (1) There are 12 more tulip beds than rose bushes.
-(2) There are 90 plantings in the garden in total.
+(2) There are 108 plantings in the garden in total.
 
 - A) Statement (1) ALONE is sufficient, but statement (2) ALONE is not sufficient.
 - B) Statement (2) ALONE is sufficient, but statement (1) ALONE is not sufficient.
@@ -1793,7 +1766,7 @@ A garden contains only rose bushes and tulip beds in the ratio of 4 rose bushes 
 
 Statement (1): There are 12 more tulip beds than rose bushes, so 5k - 4k = k = 12. This gives k = 12 directly, so the number of rose bushes is 4k = 48. The value is uniquely determined, so statement (1) alone is sufficient.
 
-Statement (2): There are 90 plantings in total, so 4k + 5k = 9k = 90, which gives k = 10. The number of rose bushes is 4k = 40. The value is uniquely determined, so statement (2) alone is sufficient.
+Statement (2): There are 108 plantings in total, so 4k + 5k = 9k = 108, which gives k = 12. The number of rose bushes is 4k = 48. The value is uniquely determined, so statement (2) alone is sufficient.
 
 Since each statement alone fixes k and therefore the number of rose bushes, each statement alone is sufficient.
 
@@ -2262,7 +2235,7 @@ The correct answer is B.
 ---
 
 ## Q76
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Ratio Allocation with Percent Changes
 

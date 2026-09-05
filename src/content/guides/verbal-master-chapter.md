@@ -19,7 +19,7 @@ This chapter is the same format as the Quant master chapter. Part 1 is the readi
 
 *Read it carefully.* Verbal rewards slow, careful reading above all other habits. Reading this chapter the way you should read a Verbal passage — with your whole attention, catching every qualifier, noticing every logical connector — is itself a form of practice.
 
-A final note before we start. GMAT Focus Edition's Verbal section has exactly two question formats: Critical Reasoning and Reading Comprehension. There is no Sentence Correction. If you are using older prep materials that spend large sections on SC, ignore those sections — the skill does not transfer to the current test, and time spent on SC is time not spent on the two skills that actually count. This chapter covers CR and RC at the depth that 700+ scorers need.
+A final note before we start. GMAT Focus Edition's Verbal section has exactly two question formats: Critical Reasoning and Reading Comprehension. There is no Sentence Correction. If you are using older prep materials that spend large sections on SC, ignore those sections — the skill does not transfer to the current test, and time spent on SC is time not spent on the two skills that actually count. This chapter covers CR and RC at the depth that top scorers need.
 
 ## What Verbal actually measures
 

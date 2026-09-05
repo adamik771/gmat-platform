@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # LinkedIn Ads Setup
 
 Acquisition playbook for Zakarian GMAT (zakariangmat.com) on LinkedIn Ads. LinkedIn is the highest-cost channel in the mix and the most professionally targeted. Treat it as a precision channel for warm, high-intent MBA aspirants — not a volume channel. The goal is qualified signups into the private beta, with opt-in email leads as the secondary, lower-friction conversion that feeds founding-price follow-up.
@@ -9,7 +11,7 @@ These are non-negotiable and apply to every line of copy, every creative, and ev
 - Zakarian GMAT is **not affiliated with, endorsed by, or sponsored by GMAC, the GMAT, GMAT Focus, or mba.com.** GMAT and GMAT Focus are GMAC trademarks; use them only nominatively (to name the exam the platform prepares you for). Never imply partnership or endorsement.
 - **No guaranteed-score claims.** No "raise your score by X," no "guaranteed 700+," no implied outcomes.
 - **No diagnostic claims.** The platform has no in-app diagnostic. The study plan is built from *the user's own official mba.com practice-exam baseline*. Banned phrasing: "free diagnostic," "30-question diagnostic," "readiness band," "score band," "typically lands," "most students see/improve."
-- **The only performance claim allowed** is the founder's own climb: 565 to 735, 100th percentile on his official report. Never generalize it to other students ("our students hit 700+" is forbidden).
+- **The only performance claim allowed** is the founder's own climb: 565 to 735, top 1%. Never generalize it to other students ("our students hit 700+" is forbidden).
 - **No fake urgency, no fabricated testimonials, no invented student counts.** Founding-price scarcity is real (early pricing is genuinely reserved), so it can be stated plainly without manufactured countdowns.
 - **No bots, no scraping, no automated DMs, no cold lists.** LinkedIn paid targeting only, against LinkedIn's native audience tools.
 
@@ -97,7 +99,7 @@ All copy below is pre-cleared against the guardrails. Keep intro text tight — 
 - **Intro:** 62 chapters across Quant, Verbal, and Data Insights. A large practice bank, spaced review, mock trends, per-topic analytics. No card to join.
 - **CTA button:** Sign up
 - **Variant B headline:** Built solo by a 735 scorer. Free to try right now.
-- **Variant B intro:** Adam Zakarian self-studied 565 to 735 (100th percentile on his official report) and built the platform he wished he'd had. Join the private beta.
+- **Variant B intro:** Adam Zakarian self-studied 565 to 735 (top 1%) and built the platform he wished he'd had. Join the private beta.
 
 ### Group C — Quant / Data Insights / mock review (Single Image, signup)
 
@@ -110,7 +112,7 @@ All copy below is pre-cleared against the guardrails. Keep intro text tight — 
 
 ### Founder-led long-copy block (for Document ad intro or expanded Single Image)
 
-> I scored 565 on my first GMAT and 735 on my last — 100th percentile on my official report — studying solo. The single biggest unlock was reviewing wrong answers by *category*, not just redoing them. I built Zakarian GMAT around that: 62 chapters, a large practice bank, a six-tag error log, a daily spaced-review queue, full-length mocks with trend tracking, and analytics by topic and difficulty. It's free during a private beta — no card. — Adam Zakarian
+> I scored 565 on my first GMAT and 735 on my last — top 1% — studying solo. The single biggest unlock was reviewing wrong answers by *category*, not just redoing them. I built Zakarian GMAT around that: 62 chapters, a large practice bank, a six-tag error log, a daily spaced-review queue, full-length mocks with trend tracking, and analytics by topic and difficulty. It's free during a private beta — no card. — Adam Zakarian
 
 ## 4. Landing page mapping
 

@@ -17,7 +17,6 @@ const SITE_URL = (
 ).replace(/\/$/, "")
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date()
   // Marketing routes only. Add new public surfaces here as they ship.
   // priority is relative within this site; 1.0 is the homepage,
   // pricing/about ~0.9 (high-conversion intent), other pages ~0.6.
@@ -42,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/gmat-mock-review", changeFrequency: "monthly", priority: 0.8 },
     { path: "/gmat-data-insights-practice", changeFrequency: "monthly", priority: 0.8 },
     { path: "/gmat-quant-practice", changeFrequency: "monthly", priority: 0.8 },
-    { path: "/gmat-private-beta", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/gmat-free-trial", changeFrequency: "monthly", priority: 0.9 },
     { path: "/gmat-verbal-practice", changeFrequency: "monthly", priority: 0.8 },
     {
       path: "/gmat-data-sufficiency-practice",
@@ -204,9 +203,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
     { path: "/refund", changeFrequency: "yearly", priority: 0.4 },
   ]
+  // No lastModified: it was stamped with the request time, so every fetch
+  // showed all 57 URLs as "just changed" — a freshness signal crawlers learn
+  // to ignore. Omitting it is honest; per-route real dates can come later.
   return routes.map((r) => ({
     url: `${SITE_URL}${r.path}`,
-    lastModified: now,
     changeFrequency: r.changeFrequency,
     priority: r.priority,
   }))

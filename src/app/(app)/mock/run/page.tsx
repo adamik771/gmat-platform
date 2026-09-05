@@ -8,6 +8,10 @@ import {
 } from "@/lib/entitlements"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import { pickMockQuestions, getDifficultyMixForTarget } from "@/lib/mock"
+import {
+  buildLastSeenMap,
+  QUESTION_HISTORY_LIMIT,
+} from "@/lib/question-selection"
 import { getUserState } from "@/lib/user-state"
 import {
   getMockSectionsForMode,
@@ -78,15 +82,25 @@ export default async function MockRunPage({
   // the picker visits fresh starting points each mock. Cheap head-only
   // count query; failure is non-fatal (defaults to 0 = no rotation).
   let mockIndex = 0
+  let lastSeenAt: ReadonlyMap<string, number> = new Map()
   try {
-    const { count } = await supabase
-      .from("practice_sessions")
-      .select("id", { count: "exact", head: true })
-      .eq("user_id", user.id)
-      .like("slug", "mock-%")
+    const [{ count }, { data: attemptRows }] = await Promise.all([
+      supabase
+        .from("practice_sessions")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", user.id)
+        .like("slug", "mock-%"),
+      supabase
+        .from("practice_attempts")
+        .select("question_id, created_at")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false })
+        .limit(QUESTION_HISTORY_LIMIT),
+    ])
     mockIndex = count ?? 0
+    lastSeenAt = buildLastSeenMap(attemptRows)
   } catch {
-    // Non-fatal — fall through with mockIndex = 0.
+    // Non-fatal — fall through with the deterministic base picker.
   }
 
   // Dispatch through the mode module — handles static + dynamic modes.
@@ -107,7 +121,8 @@ export default async function MockRunPage({
         section,
         mix ?? getDifficultyMixForTarget(section, targetScore),
         count,
-        mockIndex
+        mockIndex,
+        lastSeenAt
       ),
   })
 
@@ -150,13 +165,10 @@ export default async function MockRunPage({
 
   return (
     <div className="space-y-4">
-      <Link
-        href="/mock"
-        className="inline-flex items-center gap-1.5 text-xs text-[#888888] hover:text-[#F0F0F0] transition-colors"
-      >
-        <ArrowLeft className="w-3 h-3" />
-        Back to Mock
-      </Link>
+      {/* No always-visible Back link here: one misclick above a 45-minute
+          in-memory section used to destroy the whole attempt. In-run exits
+          are guarded inside MockRunner (confirm + beforeunload); the intro
+          screen still allows leaving freely. */}
       <p className="text-[11px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold">
         {def.label}
       </p>

@@ -1,6 +1,6 @@
 # Google Ads Launch — Campaign Structure
 
-Zakarian GMAT — independent GMAT Focus Edition prep. Private beta, free to use, no credit card. Stripe is test-mode only; the paywall is OFF. Goal of this campaign is micro-conversions (signups, leads, founding reservations), not purchases.
+Zakarian GMAT — independent GMAT Focus Edition prep. Public offer: a free 7-day full-access trial, no credit card, then one-time paid plans. Stripe is test-mode only; the paywall is OFF. Goal of this campaign is micro-conversions (signups, leads, founding reservations), not purchases.
 
 This file is the master plan. KEYWORDS.csv, NEGATIVE_KEYWORDS.csv, ADS.csv, LANDING_PAGE_MAP.md, and UTM_TEMPLATE.md are all built to match the ad-group names and landing URLs defined here. Keep them in sync.
 
@@ -50,7 +50,7 @@ Each ad group maps 1:1 to a single live, content-rich page so the message match 
 | 3 | `AG-Mock-Review` | gmat mock review | https://www.zakariangmat.com/gmat-mock-review | lead_captured (newsletter) |
 | 4 | `AG-Data-Insights` | gmat data insights practice | https://www.zakariangmat.com/gmat-data-insights-practice | lead_captured (newsletter) |
 | 5 | `AG-Quant-Practice` | gmat quant practice | https://www.zakariangmat.com/gmat-quant-practice | lead_captured (newsletter) |
-| 6 | `AG-Prep-Platform` | gmat prep platform / private beta | https://www.zakariangmat.com/gmat-private-beta | founding_reserve (founding reservation) |
+| 6 | `AG-Prep-Platform` | gmat prep platform / free trial | https://www.zakariangmat.com/gmat-free-trial | signup (trial start) |
 
 Six ad groups is the launch set. KEYWORDS.csv may split a couple of these into tightly-themed sub-buckets for SKAG-like control, but every keyword still points at one of these six pages.
 
@@ -86,7 +86,7 @@ Secondary (track but **mark "Don't include in Conversions"** so they don't skew 
 - `landing_view`
 - `pricing_view`
 
-Dormant (do NOT set up yet — no purchases during free beta):
+Dormant (do NOT set up yet — no purchases until checkout opens):
 - `checkout_initiated`, `purchase_completed`
 
 See GOOGLE_ADS_SETUP_STEPS.md for whether to **import these from GA4** (preferred if `NEXT_PUBLIC_GOOGLE_TAG_ID` is a `G-` GA4 id) or **create Google Ads conversions** (if it is an `AW-` Google Ads id).
@@ -95,12 +95,12 @@ See GOOGLE_ADS_SETUP_STEPS.md for whether to **import these from GA4** (preferre
 
 - `NEXT_PUBLIC_GOOGLE_TAG_ID` must be set in Vercel prod and deployed. Until then, no gtag fires and conversions cannot be measured. **= SKIPPED_USER_ACTION** (owner must set the env var and redeploy).
 - Verify in GA4 / Tag Assistant that `signup`, `lead_captured`, and `founding_reserve` actually fire before turning the campaign live with budget.
-- Do not spend before tracking is verified. This is a no-traffic beta; minimum money is the priority.
+- Do not spend before tracking is verified. This is a low-traffic pre-launch site; minimum money is the priority.
 
 ## 9. Compliance guardrails (apply to every asset)
 
 - No score/percentile/timeline guarantees anywhere.
 - No implied affiliation with GMAC / GMAT / GMAT Focus Edition / mba.com.
-- Only permitted performance claim: founder's own 565 -> 735 (100th percentile), framed as his personal result. (Generally kept OUT of tight character-limited ad copy to avoid any "typical result" reading; used only where there's room to frame it as his own.)
-- Honest framing: it is a private beta and it is free right now.
+- Only permitted performance claim: founder's own 565 -> 735 (top 1%), framed as his personal result. (Generally kept OUT of tight character-limited ad copy to avoid any "typical result" reading; used only where there's room to frame it as his own.)
+- Honest framing: every account starts a free 7-day full-access trial — no card.
 - No emojis anywhere.

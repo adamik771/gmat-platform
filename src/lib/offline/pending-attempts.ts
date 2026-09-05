@@ -71,6 +71,27 @@ export async function clearPendingAttempts(userId: string): Promise<void> {
   await idbDelete("pending-attempts", queueKey(userId))
 }
 
+/**
+ * Remove exactly the given attempt ids from the queue. Used by the drain
+ * instead of a whole-key clear: an attempt appended while the drain's
+ * POST was in flight survives to the next drain instead of being
+ * silently deleted with the drained batch.
+ */
+export async function removePendingAttempts(
+  userId: string,
+  ids: readonly string[]
+): Promise<void> {
+  if (!userId || ids.length === 0) return
+  const drained = new Set(ids)
+  const current = await loadPendingAttempts(userId)
+  const remaining = current.filter((a) => !drained.has(a.id))
+  if (remaining.length === 0) {
+    await idbDelete("pending-attempts", queueKey(userId))
+  } else {
+    await idbSet("pending-attempts", queueKey(userId), remaining)
+  }
+}
+
 /** Generate a queue id. Client-side only — uuid not strictly needed,
  *  collision risk is negligible in single-user scope. */
 export function newAttemptId(): string {

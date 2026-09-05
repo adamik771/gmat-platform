@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -41,16 +42,16 @@ const TOOLS: ResourceCard[] = [
   {
     title: "GMAT score converter",
     description:
-      "Translate Focus Edition (205-805) scores to legacy GMAT (200-800) and back. Built from official GMAC concordance anchors.",
+      "Look up the official GMAC score range between the current GMAT (205-805) and the 10th Edition (200-800).",
     href: "/score-converter",
     cta: "Open the converter",
     icon: Calculator,
-    meta: "Bidirectional · Per-section conversion",
+    meta: "Bidirectional · Official total-score ranges",
   },
   {
-    title: "GMAT score by MBA school",
+    title: "GMAT score by programme",
     description:
-      "Median GMAT scores for 20+ top MBA programs (HBS, Stanford, Wharton, INSEAD, LBS, ISB, more), on both scoring scales.",
+      "Published GMAT benchmarks for leading MBA, MiM, and finance master's programmes, with current-scale equivalents and source context.",
     href: "/score-by-school",
     cta: "Pick a school",
     icon: GraduationCap,
@@ -257,21 +258,21 @@ const EXTERNAL: ExternalResource[] = [
   },
   {
     title: "forall x: Calgary",
-    publisher: "Open Logic Project",
-    badge: "Open (CC BY)",
+    publisher: "A. Thomas-Bolduc & R. Zach / Open Logic Project",
+    badge: "CC BY 4.0",
     icon: BookOpen,
     href: "https://forallx.openlogicproject.org/",
     description:
-      "A free, openly licensed intro-to-logic textbook — the cleanest grounding for the argument structure behind Critical Reasoning.",
+      "An openly licensed introduction to logic that may be shared and adapted with attribution under CC BY 4.0.",
   },
   {
     title: "Critical Thinking, Logic, and Argument",
     publisher: "Athabasca University Press",
-    badge: "Open",
+    badge: "CC BY-NC-SA 4.0",
     icon: BookOpen,
     href: "https://www.aupress.ca/app/uploads/OER-202403_Dayton_Rodier_2024-Critical-Thinking-Logic-and-Argument.pdf",
     description:
-      "Argument forms, fallacies, and validity, free and openly licensed. Directly useful for Critical Reasoning (PDF).",
+      "An external logic reference that may be shared noncommercially with attribution and share-alike. It is not incorporated into this paid course (PDF).",
   },
   {
     title: "Purdue OWL — Grammar",
@@ -618,17 +619,17 @@ export default function ResourcesPage() {
             </span>
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
-            50+ chapters. The adaptive study plan. The error log built into
+            {CHAPTER_COUNT_CLAIM} chapters. The adaptive study plan. The error log built into
             the platform with the spaced-review queue.
             Mock exams with debrief tools.{" "}
             {PAYWALL_ENABLED ? (
               <>
                 Free to start; full access on every paid plan, with a 14-day
-                money-back guarantee.
+                money-back guarantee on the self-study plans.
               </>
             ) : (
               <>
-                Full access, free while in beta &mdash; no card required.
+                Full access free for 7 days &mdash; no card required.
               </>
             )}
           </p>

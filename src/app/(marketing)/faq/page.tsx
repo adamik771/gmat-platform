@@ -5,7 +5,8 @@ import SectionWrapper from "@/components/shared/SectionWrapper"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import JsonLd from "@/components/seo/JsonLd"
 import { faqPageLd } from "@/lib/structured-data"
-import { PAYWALL_ENABLED } from "@/lib/entitlements"
+import { PAYWALL_ENABLED, TRIAL_DAYS } from "@/lib/entitlements"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -31,7 +32,7 @@ const categories: FAQCategory[] = [
       {
         question: "Who is Zakarian GMAT designed for?",
         answer:
-          "This system is built for serious MBA candidates who want a structured, data-driven approach — not a content library to wade through. It's especially effective for working professionals on a 12-16 week timeline, non-native English speakers, and people without a technical background who struggle with Quant.",
+          "This system is built for serious MBA and business master's candidates, including applicants to MiM, Master in Finance, Banking and Finance, Business Analytics, and related graduate business programmes. It is for candidates who want a structured, data-driven approach — not a content library to wade through — and is especially attentive to working professionals, non-native English speakers, and people without a technical background who struggle with Quant.",
       },
       {
         question: "Do I need a math background?",
@@ -66,8 +67,8 @@ const categories: FAQCategory[] = [
       {
         question: "What do I get with a free account?",
         answer: PAYWALL_ENABLED
-          ? "The free tier covers all 50+ chapters, the first practice test in each chapter, the adaptive study plan, and the error log — a genuine working slice of the system. Full-length mock exams, the full analytics, the spaced review queue, the custom test builder, unlimited practice, and the AI tutor are on the paid plans. No credit card required at signup."
-          : "Full access to everything: all 50+ chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.",
+          ? `Every new account starts a free ${TRIAL_DAYS}-day trial with full access to everything — all ${CHAPTER_COUNT_CLAIM} chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, and the AI tutor. No credit card required at signup.`
+          : `A free 7-day trial with full access to everything: all ${CHAPTER_COUNT_CLAIM} chapters, the full question bank, the error log, the adaptive study plan, the spaced review queue, mock exams, the AI tutor, and the offline PWA. No credit card required at signup.`,
       },
       {
         question: "Do I need a credit card to sign up?",
@@ -77,8 +78,8 @@ const categories: FAQCategory[] = [
       {
         question: "Will my free access expire after a set number of days?",
         answer: PAYWALL_ENABLED
-          ? "No. The free tier is permanent — there's no time-boxed trial, no countdown, and nothing to cancel. Paid plans are a one-time payment that unlocks the rest (full-length mocks, the full analytics, the spaced review queue, the custom test builder, unlimited practice, and the AI tutor), with a 14-day money-back guarantee. What's free stays free."
-          : "No. There's no time-boxed trial — the platform is free to use while it's in beta, with no countdown and nothing to cancel. If paid plans are introduced later, any change to what's free will be made clear in advance.",
+          ? `Yes — the free trial runs ${TRIAL_DAYS} days from signup, with full access and nothing to cancel. When it ends, your study data stays exactly where you left it; a one-time plan purchase (not a subscription) unlocks the platform for your plan's access window, with a 14-day money-back guarantee on the self-study plans.`
+          : "Every account starts with a free 7-day full-access trial — no credit card, nothing to cancel. We're pre-launch, so access isn't cut off the moment the trial ends; when paid checkout opens, a one-time purchase (not a subscription) continues your access, and any change will be made clear in advance.",
       },
       {
         question: "How does the platform know where I'm starting from?",
@@ -108,7 +109,7 @@ const categories: FAQCategory[] = [
       {
         question: "How does the GMAT Focus 205-805 scale compare to my old GMAT score?",
         answer:
-          "The two scales are not directly comparable — GMAC deliberately offset them. Roughly: Focus 705 ≈ Old 730, Focus 695 ≈ Old 720, Focus 645 ≈ Old 680. Use the score converter at /score-converter for any specific score.",
+          "The two scales are not directly comparable, and GMAC's official table often links one score to a range. In the July 2025 table, Focus 705 links to old 750, Focus 695 links to old 740-750, and Focus 645 links to old 690-700. Use the score converter for the complete official lookup.",
       },
     ],
   },
@@ -118,7 +119,7 @@ const categories: FAQCategory[] = [
       {
         question: "How is the curriculum structured?",
         answer:
-          "50+ chapters covering every GMAT Focus topic across Quant, Verbal, and Data Insights. Each chapter has a pre-test (~2 questions), 6-9 reading sections with in-chapter recall checks, and a graded problem set across easy / medium / hard tiers.",
+          `${CHAPTER_COUNT_CLAIM} chapters covering every GMAT Focus topic across Quant, Verbal, and Data Insights. Each chapter has a pre-test (~2 questions), 6-9 reading sections with in-chapter recall checks, and a graded problem set across easy / medium / hard tiers.`,
       },
       {
         question: "Can I skip chapters I already know?",
@@ -153,7 +154,7 @@ const categories: FAQCategory[] = [
       {
         question: "Will my Verbal score realistically improve?",
         answer:
-          "Yes. The biggest myth is that Verbal is 'easier for native speakers.' The actual disadvantage is comprehension speed, not comprehension itself — and speed is fixable with the structural-skim approach. Non-native students who run the loop typically close 60-80% of the Verbal gap in 12 weeks.",
+          "Yes. The biggest myth is that Verbal is 'easier for native speakers.' The actual disadvantage is comprehension speed, not comprehension itself — and speed is trainable with the structural-skim approach. That is the exact gap Adam closed as a non-native speaker on the way from 565 to 735. The platform doesn't quote average improvement figures until they're verified from real students — your own mock-to-mock trend is the number that matters.",
       },
       {
         question: "Was Sentence Correction removed from the GMAT Focus Edition?",
@@ -223,7 +224,7 @@ const categories: FAQCategory[] = [
       {
         question: "What is your refund policy?",
         answer:
-          "Every plan includes a 14-day money-back guarantee, no questions asked. Coaching and Intensive packages have additional terms once the program starts. See /refund for the full conditions of each.",
+          "Self-Study and Self-Study + Mentorship include a 14-day money-back guarantee, no questions asked. Coaching and Intensive are refundable in full any time before your first session; after that, package terms apply — see /refund for the exact conditions of each.",
       },
       {
         question: "Are prices in USD?",

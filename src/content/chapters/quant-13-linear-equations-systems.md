@@ -2,7 +2,7 @@
 slug: quant-13-linear-equations-systems
 title: "Algebra: Linear Equations & Systems"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 60
 prerequisites:
   - quant-12-roots-radicals
 summary: |
@@ -15,7 +15,7 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - algebra-q1
-      - algebra-q2
+      - algebra-q41
   - id: linear-equations-one-unknown
     type: reading
     title: "Linear equations in one unknown — isolate-the-variable discipline"
@@ -30,6 +30,10 @@ sections:
   - id: the-algebra-blueprint
     type: reading
     title: "The algebra blueprint (and solving for the combo)"
+    check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
     check_question_ids: []
 problem_sets:
   easy:
@@ -52,9 +56,15 @@ problem_sets:
       - algebra-q6
 ---
 
+## @summary
+
+- Preserve equality by performing the same valid operation on both sides and clear fractions strategically.
+- For systems, choose substitution when one variable is isolated and elimination when coefficients align cheaply.
+- Interpret the result in context and check it in the original equations, especially after translating a word problem.
+
 ## @linear-equations-one-unknown
 
-The single most important habit in algebra is "isolate the variable before you do anything else." Every one-unknown linear equation reduces to `x = something`. The work is mechanical; the errors come from doing it sloppily under time pressure. The good news is that this is the highest-leverage skill in all of Quant: linear manipulation shows up not just in algebra problems but inside word problems, geometry, rates, and ratios. Master the discipline once and it pays off across the whole section. Most test-takers already "know how" to solve `3x + 7 = 22`; what separates a 600-level scorer from a 700-level scorer is not knowing the steps but executing them without a single dropped sign across a four-step manipulation, under the clock, on a problem dressed up as something else.
+The single most important habit in algebra is "isolate the variable before you do anything else." Every one-unknown linear equation reduces to `x = something`. The work is mechanical; the errors come from doing it sloppily under time pressure. The good news is that this is the highest-leverage skill in all of Quant: linear manipulation shows up not just in algebra problems but inside word problems, rates, and ratios. Master the discipline once and it pays off across the whole section. Most test-takers already "know how" to solve `3x + 7 = 22`; what separates a mid-scoring test-taker from a top scorer is not knowing the steps but executing them without a single dropped sign across a four-step manipulation, under the clock, on a problem dressed up as something else.
 
 **Mental model.** An equation is a balance scale. Whatever you do to one side, you must do to the other — the two sides stay equal. Solving means isolating the unknown by adding, subtracting, multiplying, or dividing **both sides** at once. Lose this discipline and your work breaks down within three steps. The scale metaphor is not decoration: it is the reason every legal move comes in pairs. If you change only one pan, the scale tips and the equality is gone. The whole of one-variable algebra is just repeatedly asking, "what is currently being done to x, and what is the inverse operation that undoes it?" — then applying that inverse to both pans simultaneously.
 

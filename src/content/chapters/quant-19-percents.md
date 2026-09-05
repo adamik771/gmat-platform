@@ -2,7 +2,7 @@
 slug: quant-19-percents
 title: "Percents & Percent Change"
 section: Quant
-estimated_minutes: 11
+estimated_minutes: 70
 prerequisites:
   - quant-18-ratios-proportions
 summary: |
@@ -34,6 +34,10 @@ sections:
     check_question_ids:
       - ratios-percents-q11
       - ratios-percents-q13
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -54,6 +58,12 @@ problem_sets:
       - ratios-percents-q43
       - ratios-percents-q12
 ---
+
+## @summary
+
+- Name the base every time: percent means part divided by the specific whole named in the problem.
+- Translate increases and decreases into multipliers and multiply successive changes instead of adding their rates.
+- Use percent change = (new - old) / old, with the original value in the denominator.
 
 ## @percent-basics
 
@@ -288,7 +298,7 @@ The here-is-why behind all of this: **compound interest is nothing but successiv
 
 ## @percent-word-problems
 
-This is where the "is/of/what" translation table earns its keep. The pattern never changes: take a sentence, parse it into an equation, solve. The skill that separates a 600-level percent solver from a 700-level one is not arithmetic — it's reading the English precisely enough to know *which* number is the base, *which* is the part, and *which way* the change runs. Almost every wrong answer on a percent word problem is the right arithmetic applied to the wrong base. The GMAT knows this, and it writes the answer choices specifically to reward the right-arithmetic-wrong-base error: the trap value is usually sitting right there in the lineup, waiting for you. This section drills the three patterns that account for the overwhelming majority of GMAT percent word problems: ratios-from-percents, markup-vs-margin, and reverse percent change. We close with the "dollar-anchor" principle that turns these into 700-level questions.
+This is where the "is/of/what" translation table earns its keep. The pattern never changes: take a sentence, parse it into an equation, solve. The skill that separates a mid-difficulty percent solver from a top-tier one is not arithmetic — it's reading the English precisely enough to know *which* number is the base, *which* is the part, and *which way* the change runs. Almost every wrong answer on a percent word problem is the right arithmetic applied to the wrong base. The GMAT knows this, and it writes the answer choices specifically to reward the right-arithmetic-wrong-base error: the trap value is usually sitting right there in the lineup, waiting for you. This section drills the three patterns that account for the overwhelming majority of GMAT percent word problems: ratios-from-percents, markup-vs-margin, and reverse percent change. We close with the "dollar-anchor" principle that turns these into the hardest percent questions.
 
 Before the patterns, anchor the one idea that underlies all of them: a percent is always a percent **of something**, and that something is the *base*. Change the base and you change the answer, even when every digit in the problem stays the same. The discipline that follows — underline the values, fix the base, fix the direction — is just a procedure for never losing track of the base under time pressure.
 

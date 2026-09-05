@@ -14,16 +14,20 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q41
-      - reading-comprehension-q42
+      - reading-comprehension-q79
+      - reading-comprehension-q85
   - id: rc-attitude
     type: reading
     title: "RC: Author's Attitude"
     check_question_ids:
-      - reading-comprehension-q43
+      - reading-comprehension-q27
   - id: attitude-from-evaluative-words
     type: reading
     title: "Attitude = the author's evaluative words, not airtime"
+    check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
     check_question_ids: []
 problem_sets:
   easy:
@@ -33,9 +37,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - reading-comprehension-q140
-      - reading-comprehension-q44
-      - reading-comprehension-q45
+      - reading-comprehension-q182
+      - reading-comprehension-q36
+      - reading-comprehension-q91
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,10 +47,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q46
-      - reading-comprehension-q47
+      - reading-comprehension-q97
+      - reading-comprehension-q103
       - reading-comprehension-q48
 ---
+
+## @summary
+
+- Anchor tone in evaluative words, contrast markers, and what the author chooses to praise, doubt, or qualify.
+- Match the degree precisely; measured skepticism is not hostility, and qualified approval is not enthusiasm.
+- Separate the author's attitude from the views of scholars or groups the passage merely reports.
 
 ## @rc-attitude
 

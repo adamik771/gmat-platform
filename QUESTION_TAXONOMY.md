@@ -39,6 +39,45 @@ Each question is stored as a markdown block within a `.md` file under `src/conte
 | `related_reading` | **new — yes** | slug | Primary reading-chapter slug the explanation points back to (e.g., `reading-quant-04-algebra-and-equations`). For multi-chapter questions, list the most relevant single chapter. |
 | `hint_nudge`, `hint_strategy`, `hint_setup` | optional | text | Progressive hints (existing) |
 
+## Difficulty calibration and answer-pattern quality
+
+Difficulty is assigned from the reasoning required, not from surface length,
+jargon, large numbers, or a long explanation.
+
+| Tier | Minimum reasoning standard |
+|---|---|
+| `Easy` | One recognizable method or one direct passage lookup; distractors catch a single common misconception. |
+| `Medium` | Two connected reasoning moves, a meaningful translation, or a choice between plausible methods; at least two distractors survive a superficial read. |
+| `Hard` | Multiple dependent constraints or reasoning layers, a non-obvious inference or method switch, and plausible distractors tied to distinct expert-observed errors. Removing one key constraint should materially simplify the item. |
+
+A `Hard` label is not justified by longer prose, denser business context,
+tedious arithmetic, unfamiliar names, or an explanation that introduces
+complexity absent from the stem. When an item is a standard textbook template
+with direct substitution, label it `Medium` even if the arithmetic is long.
+
+Before adding or materially changing a batch:
+
+1. Blind-solve every proposed `Hard` item without seeing its key. Confirm one
+   uniquely defensible answer and record why the item requires top-tier
+   reasoning rather than ordinary execution.
+2. Review every distractor as a possible correct answer. A wrong option must
+   fail for a precise reason, not because it is vague, absurd, or off-topic.
+3. Measure answer-length leakage by type and tier. On five-choice Verbal items,
+   the correct option should be uniquely longest no more than 25% of the time,
+   and conspicuous length gaps should remain rare. Never pad the key while
+   leaving every distractor terse.
+4. Measure answer-key position and, for Data Sufficiency, logical-outcome
+   distribution. No DS outcome should become a default shortcut. Rebalancing
+   DS means authoring different sufficiency logic, never merely changing the
+   answer letter.
+5. Use official questions only as private calibration references. Do not copy,
+   translate, paraphrase, or scenario-swap any official stem, option set, or
+   explanation into this bank.
+
+The automated guardrails in `tests/question-quality-guardrails.test.ts` enforce
+the answer-length and DS-distribution ceilings. They are minimum safeguards,
+not a substitute for blind solving and editorial review.
+
 ## Subchapter slug convention
 
 Format: `{section_letter}{chapter}.{section}` where:
@@ -341,7 +380,15 @@ This DB extension is *optional* for shipping the bank — the question metadata 
 
 ## Originality rule
 
-Every question is original. No question is copied or closely paraphrased from any GMAT prep source. Scenarios, numerical setups, and answer-choice arrangements are written from scratch for each question. Tropey scenarios (Tom-and-Sarah painters, coffee/diabetes correlation, bike-lane traffic) are explicitly avoided.
+**Authoring requirement:** every question must be independently created. No question may be copied, translated, reconstructed, or closely paraphrased from GMAC material, paid prep products, leaked exam content, or any other protected source. Scenarios, numerical setups, answer-choice arrangements, and explanations must be written from scratch. Tropey scenarios (Tom-and-Sarah painters, coffee/diabetes correlation, bike-lane traffic) are explicitly avoided.
+
+**Source isolation:** official questions and competitor content must not be supplied to an AI system as examples, source material, or style references. General skills and syllabus facts may be researched independently. Open educational resources may inform ideas only within their license; protected expression, exercises, examples, and structure must not be carried over. The Athabasca resource listed on `/resources` is CC BY-NC-SA 4.0 and is reference-only for this commercial platform.
+
+Use this instruction in every content-generation task:
+
+> Create independently from the skill specification only. Do not access, reproduce, paraphrase, translate, or reconstruct any official GMAT question, leaked item, paid-prep question, passage, explanation, example, or distinctive framework. Use a new scenario, values, logic path, distractors, and wording. List every external source consulted. If source isolation cannot be confirmed, stop and flag the item instead of drafting it.
+
+**Batch record and human review:** before a new batch is described as original, add an entry to `CONTENT_PROVENANCE.md` with the affected question IDs/files, source list, isolation confirmation, generation method, and review evidence. Adam must read the final wording, independently solve or verify every keyed answer in the batch, and record either substantive editorial changes or explicit approval. Automated validation and model-to-model review are useful QA, but they do not substitute for human authorship or legal provenance.
 
 ## Standardized explanation format
 
@@ -360,6 +407,8 @@ Every question's post-submit explanation follows the same six-section structure.
 
 - Lead with the *fastest* approach, not the most general or most algebraic one. If estimation works, lead with estimation.
 - Be GMAT-strategic — point at *which method dominates and why*, not just "here's how to solve it."
+- Preserve every reasoning step a prepared beginner needs to reproduce the solution. There is no character ceiling for `explanation`; 3-6 sentences is a normal shape, not a compression target.
+- Keep a second method when it adds a distinct transferable insight, a useful verification, or a safer route for a meaningful learner profile. Remove it only when it repeats the same reasoning without teaching anything new.
 - Explain wrong answer choices by *trap type*, not just "this is wrong." A wrong answer is wrong because it's engineered to catch a specific reading mistake; name the mistake.
 - Connect back to a reading chapter via `related_reading`. The explanation is reinforcement; the chapter is the lesson.
 
@@ -370,7 +419,7 @@ Every question's post-submit explanation follows the same six-section structure.
 - *Too short.* "B. 3x = 15." — no reasoning, no trap analysis, no takeaway.
 - *Not GMAT-strategic.* Walks through a textbook procedure without identifying the fastest path or the engineered trap.
 
-Match the new format. Keep each field tight. Lead with strategy, then arithmetic.
+Do not select an explanation for rewriting because it is long or short by itself. First identify a concrete defect: buried strategy, missing step, weak justification, confusing wording, duplicated reasoning, generic distractor analysis, or a mismatch between the method and the item's intended difficulty. Match the new format, lead with strategy, and use as much space as accurate teaching requires.
 
 ## Mistake analysis format
 

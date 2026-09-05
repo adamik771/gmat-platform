@@ -64,9 +64,9 @@ https://www.zakariangmat.com/error-log-template?utm_source=google&utm_medium=cpc
 https://www.zakariangmat.com/gmat-mock-review?utm_source=google&utm_medium=cpc&utm_campaign=zg-search-launch&utm_content=ag-mock-review&utm_term={keyword}
 ```
 
-**Prep platform / private beta ad group:**
+**Prep platform / free trial ad group:**
 ```
-https://www.zakariangmat.com/gmat-private-beta?utm_source=google&utm_medium=cpc&utm_campaign=zg-search-launch&utm_content=ag-prep-platform&utm_term={keyword}
+https://www.zakariangmat.com/gmat-free-trial?utm_source=google&utm_medium=cpc&utm_campaign=zg-search-launch&utm_content=ag-prep-platform&utm_term={keyword}
 ```
 
 (Data Insights and Quant follow the same pattern: page = the live URL from LANDING_PAGE_MAP.md, `utm_content` = `ag-data-insights` / `ag-quant-practice`.)

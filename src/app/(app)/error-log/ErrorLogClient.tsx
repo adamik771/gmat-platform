@@ -22,7 +22,7 @@
  * absent so the UI just reads "unassigned" for every row.
  */
 
-import { useMemo, useState, useTransition } from "react"
+import { useMemo, useRef, useState, useTransition } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
@@ -34,6 +34,7 @@ import {
   Filter,
   Loader2,
   Repeat,
+  Save,
   Target,
   X,
 } from "lucide-react"
@@ -41,6 +42,7 @@ import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import QuestionChart from "@/components/shared/QuestionChart"
+import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { ChartSpec } from "@/lib/chart-spec"
 import { cn } from "@/lib/utils"
 import type { Section } from "@/types"
@@ -126,7 +128,7 @@ const mdComponents: Components = {
       className="list-decimal pl-5 my-2 space-y-1 text-[14px] text-[#D8D8D8]"
     />
   ),
-  li: (props) => <li {...props} className="leading-relaxed marker:text-[#555555]" />,
+  li: (props) => <li {...props} className="leading-relaxed marker:text-[#888888]" />,
   strong: (props) => <strong {...props} className="font-semibold text-[#F0F0F0]" />,
   em: (props) => <em {...props} className="italic text-[#E8C97A]" />,
   code: ({ className, ...props }) => {
@@ -503,7 +505,8 @@ export default function ErrorLogClient({
                 <button
                   type="button"
                   onClick={() => setExpandedId(isOpen ? null : entry.id)}
-                  className="w-full text-left grid grid-cols-12 px-5 py-4 items-center gap-2 hover:bg-white/[0.02] transition-colors"
+                  aria-expanded={isOpen}
+                  className="w-full text-left flex flex-col gap-1.5 sm:grid sm:grid-cols-12 px-5 py-4 sm:items-center sm:gap-2 hover:bg-white/[0.02] transition-colors"
                 >
                   <div className="col-span-1 flex items-center gap-1.5 text-[11px] text-[#888888] tabular-nums">
                     {isOpen ? (
@@ -524,14 +527,14 @@ export default function ErrorLogClient({
                   <div className="col-span-5">
                     <p className="text-[12px] text-[#C0C0C0] leading-relaxed line-clamp-2">
                       {entry.prompt ?? (
-                        <span className="italic text-[#555555]">
+                        <span className="italic text-[#888888]">
                           Question source not found
                         </span>
                       )}
                     </p>
                   </div>
                   <div className="col-span-2 flex items-center gap-2 text-[11px]">
-                    <span className="text-[#555555] uppercase tracking-[0.14em]">
+                    <span className="text-[#888888] uppercase tracking-[0.14em]">
                       You
                     </span>
                     <span
@@ -548,7 +551,7 @@ export default function ErrorLogClient({
                       {entry.correctAnswerLetter ?? "—"}
                     </span>
                   </div>
-                  <div className="col-span-1 flex items-center justify-center gap-1 flex-wrap">
+                  <div className="col-span-1 flex items-center gap-1 flex-wrap sm:justify-center">
                     {entry.tag ? (
                       (() => {
                         const p = paletteForTag(entry.tag)
@@ -580,7 +583,7 @@ export default function ErrorLogClient({
                         )
                       })()
                     ) : (
-                      <span className="text-[10px] text-[#444444]">—</span>
+                      <span className="text-[10px] text-[#888888]">—</span>
                     )}
                     {entry.rootCause && ROOT_CAUSE_BY_ID[entry.rootCause] && (
                       <span
@@ -602,14 +605,14 @@ export default function ErrorLogClient({
                     )}
                     {entry.contributingCauses.length > 0 && (
                       <span
-                        className="text-[9px] font-mono text-[#555555] tabular-nums"
+                        className="text-[9px] font-mono text-[#888888] tabular-nums"
                         title={`Contributing: ${entry.contributingCauses.join(", ")}`}
                       >
                         +{entry.contributingCauses.length}
                       </span>
                     )}
                   </div>
-                  <div className="col-span-1 flex items-center justify-end gap-1.5">
+                  <div className="col-span-1 flex items-center gap-1.5 sm:justify-end">
                     <RemediationCycle
                       entry={entry}
                       onCycle={() => cycleRemediation(entry)}
@@ -622,7 +625,7 @@ export default function ErrorLogClient({
                       />
                     ) : (
                       <Circle
-                        className="w-4 h-4 flex-shrink-0 text-[#444444]"
+                        className="w-4 h-4 flex-shrink-0 text-[#888888]"
                         aria-label="Not reviewed"
                       />
                     )}
@@ -708,7 +711,7 @@ function RemediationCycle({
     state === "unassigned"
       ? {
           borderColor: "rgba(255,255,255,0.08)",
-          color: "#555555",
+          color: "#888888",
           backgroundColor: "transparent",
         }
       : state === "in-progress"
@@ -799,20 +802,24 @@ function ExpandedMistake({
       <button
         onClick={onClose}
         aria-label="Close"
-        className="absolute top-4 right-4 p-1 rounded text-[#555555] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+        className="absolute top-4 right-4 p-1 rounded text-[#888888] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
       >
         <X className="w-4 h-4" />
       </button>
 
       {entry.context && (
-        <div className="p-4 rounded-lg border border-white/[0.06] bg-[#0A0A0A]">
-          <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#C9A84C] mb-2">
-            Reference
-          </p>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
-            {entry.context}
-          </ReactMarkdown>
-        </div>
+        entry.questionType === "Multi-Source Reasoning" ? (
+          <MultiSourceTabs context={entry.context} variant="compact" />
+        ) : (
+          <div className="p-4 rounded-lg border border-white/[0.06] bg-[#0A0A0A]">
+            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#C9A84C] mb-2">
+              Reference
+            </p>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
+              {entry.context}
+            </ReactMarkdown>
+          </div>
+        )
       )}
 
       <div>
@@ -922,6 +929,9 @@ function TagEditor({
   const [notesDraft, setNotesDraft] = useState(entry.notes ?? "")
   const [notesDirty, setNotesDirty] = useState(false)
   const [savingNotes, setSavingNotes] = useState(false)
+  const [notesSaved, setNotesSaved] = useState(false)
+  const notesDraftRef = useRef(entry.notes ?? "")
+  const savingNotesRef = useRef(false)
   const [saving, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
@@ -932,7 +942,7 @@ function TagEditor({
     contributingCauses?: string[]
     notes?: string
     reviewed?: boolean
-  }) {
+  }): Promise<boolean> {
     setError(null)
     // Optimistic update in the parent's local list. Any user-driven
     // edit promotes the row to manual provenance, matching what the
@@ -944,12 +954,16 @@ function TagEditor({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ attemptId: entry.id, ...patch }),
+        // A note is commonly saved by blurring the box and navigating away.
+        // Keep the request alive so that navigation cannot cancel the write.
+        keepalive: true,
       })
       if (!res.ok) {
         const body = (await res.json().catch(() => ({}))) as { error?: string }
         throw new Error(body.error || `Request failed (${res.status})`)
       }
       startTransition(() => router.refresh())
+      return true
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong")
       // Revert — reset to the snapshot we started from.
@@ -961,6 +975,7 @@ function TagEditor({
         reviewed: entry.reviewed,
         confidence: entry.confidence,
       })
+      return false
     }
   }
 
@@ -997,11 +1012,25 @@ function TagEditor({
   }
 
   async function commitNotes() {
-    if (!notesDirty) return
+    if (!notesDirty || savingNotesRef.current) return
+    const draftBeingSaved = notesDraftRef.current
+    savingNotesRef.current = true
     setSavingNotes(true)
-    const nextNotes = notesDraft.trim() === "" ? null : notesDraft
-    await save({ notes: nextNotes ?? "" })
-    setNotesDirty(false)
+    setNotesSaved(false)
+    const nextNotes = draftBeingSaved.trim() === "" ? null : draftBeingSaved
+    const didSave = await save({ notes: nextNotes ?? "" })
+
+    // The student may continue typing while the request is in flight. Only
+    // mark the editor clean when the currently visible draft is exactly the
+    // value the server just confirmed; otherwise leave the newer text dirty.
+    const hasNewerDraft = notesDraftRef.current !== draftBeingSaved
+    if (didSave && !hasNewerDraft) {
+      setNotesDirty(false)
+      setNotesSaved(true)
+    } else if (hasNewerDraft) {
+      setNotesDirty(true)
+    }
+    savingNotesRef.current = false
     setSavingNotes(false)
   }
 
@@ -1066,7 +1095,7 @@ function TagEditor({
             if (tagsInFamily.length === 0) return null
             return (
               <div key={family}>
-                <p className="text-[9px] uppercase tracking-widest text-[#444444] mb-1.5">
+                <p className="text-[9px] uppercase tracking-widest text-[#888888] mb-1.5">
                   {family}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -1117,7 +1146,7 @@ function TagEditor({
         <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-1">
           Root cause
         </p>
-        <p className="text-[11px] text-[#444444] italic mb-2">
+        <p className="text-[11px] text-[#888888] italic mb-2">
           Where did the solve process break? The tag above says
           <em> what</em> kind of question; this says <em>why</em> the answer
           was wrong. One per mistake.
@@ -1128,7 +1157,7 @@ function TagEditor({
             if (causes.length === 0) return null
             return (
               <div key={family}>
-                <p className="text-[9px] uppercase tracking-widest text-[#444444] mb-1.5">
+                <p className="text-[9px] uppercase tracking-widest text-[#888888] mb-1.5">
                   {family}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -1176,11 +1205,11 @@ function TagEditor({
         <div>
           <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-1">
             Contributing causes{" "}
-            <span className="text-[#444444] normal-case tracking-normal">
+            <span className="text-[#888888] normal-case tracking-normal">
               ({entry.contributingCauses.length}/2)
             </span>
           </p>
-          <p className="text-[11px] text-[#444444] italic mb-2">
+          <p className="text-[11px] text-[#888888] italic mb-2">
             Optional — up to two secondary failure modes that amplified the
             primary cause. Leave blank if the miss was clean-single-cause.
           </p>
@@ -1228,26 +1257,55 @@ function TagEditor({
       <div>
         <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2">
           Notes{" "}
-          <span className="text-[#444444] normal-case tracking-normal italic">
+          <span className="text-[#888888] normal-case tracking-normal italic">
             — why did this go wrong? What will you remember next time?
           </span>
         </p>
         <textarea
           value={notesDraft}
           onChange={(e) => {
-            setNotesDraft(e.target.value)
-            setNotesDirty(e.target.value !== (entry.notes ?? ""))
+            const nextDraft = e.target.value
+            notesDraftRef.current = nextDraft
+            setNotesDraft(nextDraft)
+            setNotesDirty(nextDraft !== (entry.notes ?? ""))
+            setNotesSaved(false)
           }}
-          onBlur={commitNotes}
+          onBlur={() => void commitNotes()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+              e.preventDefault()
+              void commitNotes()
+            }
+          }}
+          maxLength={2000}
           rows={3}
           placeholder="e.g. I misread ≥ as >; always double-check inequality direction"
-          className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-lg p-3 text-[14px] text-[#D8D8D8] placeholder:text-[#444444] focus:outline-none focus:border-[#C9A84C]/40 resize-none"
+          className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-lg p-3 text-[16px] text-[#D8D8D8] placeholder:text-[#888888] focus:outline-none focus:border-[#C9A84C]/40 resize-none"
         />
-        {(notesDirty || savingNotes) && (
-          <p className="text-[10px] text-[#555555] mt-1">
-            {savingNotes ? "Saving…" : "Blur or tab out to save"}
+        <div className="mt-2 flex min-h-8 items-center justify-between gap-3">
+          <p className="text-[10px] text-[#888888]">
+            {notesSaved
+              ? "Saved to your error log"
+              : notesDirty
+                ? "Unsaved changes"
+                : "Changes save when you leave the box"}
           </p>
-        )}
+          {(notesDirty || savingNotes) && (
+            <button
+              type="button"
+              onClick={() => void commitNotes()}
+              disabled={savingNotes}
+              className="inline-flex min-h-8 items-center gap-1.5 rounded border border-[#C9A84C]/35 px-3 text-[11px] font-semibold text-[#C9A84C] transition-colors hover:bg-[#C9A84C]/10 disabled:cursor-wait disabled:opacity-60"
+            >
+              {savingNotes ? (
+                <Loader2 className="h-3 w-3 animate-spin" aria-hidden />
+              ) : (
+                <Save className="h-3 w-3" aria-hidden />
+              )}
+              {savingNotes ? "Saving…" : "Save note"}
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="flex items-center justify-between gap-3">

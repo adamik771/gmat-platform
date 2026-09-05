@@ -6,6 +6,7 @@ if (process.env.SENTRY_DSN) {
   const rate = Number(process.env.SENTRY_TRACES_SAMPLE_RATE)
   Sentry.init({
     dsn: process.env.SENTRY_DSN,
+    sendDefaultPii: false,
     tracesSampleRate: Number.isFinite(rate) ? rate : 0,
   })
 }

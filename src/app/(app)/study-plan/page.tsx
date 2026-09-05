@@ -1,4 +1,8 @@
 import Link from "next/link"
+import { perDayMinutes, weeklyHoursAdvice } from "@/lib/study-hours"
+import { daysUntil, localDayIso } from "@/lib/utils"
+import { getUserTz } from "@/lib/tz"
+import { isChapterRead } from "@/lib/chapter-progress-merge"
 import {
   ArrowRight,
   BookOpen,
@@ -12,7 +16,6 @@ import {
   Sparkles,
   Target,
   TrendingDown,
-  TrendingUp,
   Flame,
   Wrench,
 } from "lucide-react"
@@ -46,26 +49,8 @@ import {
 } from "@/lib/personas"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { getUserState } from "@/lib/user-state"
-import type { Section } from "@/types"
 
 const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-const SECTION_MIN_SAMPLE = 10
-
-/**
- * Scale 0-100 accuracy to a GMAT Focus total (205..805 in 10-point
- * increments). Mirrors the dashboard + analytics helpers so the three
- * surfaces agree on what "estimated score" means.
- */
-function accuracyToFocusTotal(accuracy: number): number {
-  const clamped = Math.max(0, Math.min(100, accuracy))
-  const raw = 205 + clamped * 6.0
-  return 205 + Math.round((raw - 205) / 10) * 10
-}
-
-/** Same section → 60-90 scaling used by the dashboard Score Goal card. */
-function scaledSectionScore(correct: number, total: number): number {
-  return Math.round(60 + (correct / total) * 30)
-}
 
 export default async function StudyPlanPage({
   searchParams,
@@ -77,6 +62,7 @@ export default async function StudyPlanPage({
   // Rendered in BOTH the pre-baseline early-return and the full plan below, so
   // a brand-new user (officialExamCount === 0) still sees it.
   const justOnboarded = (await searchParams).welcome === "1"
+  const tz = await getUserTz()
   const welcomeBanner = justOnboarded ? (
     <div
       className="flex items-start gap-3 px-5 py-4 rounded-2xl border"
@@ -105,10 +91,10 @@ export default async function StudyPlanPage({
   // Default to zero / null so an unauth or Supabase-down render shows empty.
   let examDate: string | null = null
   let targetScore: number | null = null
+  let weeklyHoursTarget: number | null = null
   const activityDays = new Set<string>() // YYYY-MM-DD for past 7 days with activity
   let studyHoursWeek = 0
   let studyDays30Count = 0
-  let estimatedTotal: number | null = null
   let pendingMistakeCount = 0
   let plan: StudyPlanOutput | null = null
   let baselineExamDate: string | null = null
@@ -136,6 +122,15 @@ export default async function StudyPlanPage({
         typeof rawTarget === "number" && Number.isInteger(rawTarget)
           ? rawTarget
           : null
+      // The onboarding wizard's hours-per-week answer — shapes the weekly
+      // cadence (weak-areas-first when low, a rest day when high).
+      const rawHours = (
+        user.user_metadata?.onboarding as { weeklyHours?: unknown } | undefined
+      )?.weeklyHours
+      weeklyHoursTarget =
+        typeof rawHours === "number" && Number.isFinite(rawHours)
+          ? rawHours
+          : null
 
       const rawReadProgress = state.chapter_progress
       if (rawReadProgress && typeof rawReadProgress === "object") {
@@ -150,17 +145,52 @@ export default async function StudyPlanPage({
       // the synchronous inputs already in scope — so they have no
       // inter-dependency and resolve in one round-trip's worth of wall-clock
       // instead of five. reviewedTags is the one genuine dependency (it needs
-      // wrongIds) and stays sequential below. officialExamCount is still 0 here,
-      // exactly as before (it's derived from user_metadata further down, after
-      // this point — preserved deliberately, not "fixed").
+      // wrongIds) and stays sequential below.
+      //
+      // Official baseline — derived from user_state BEFORE the plan engine
+      // runs. This used to happen ~120 lines below, so computeStudyPlan
+      // always saw officialExamCount=0 and its priority-100 "Set your
+      // baseline" card sat permanently on top of Today's Focus even after
+      // the student had entered their exam (friend-reported bug).
+      const metaOfficial = state.official_exam_scores
+      const officialScores: Array<{
+        date?: unknown
+        total?: unknown
+        attemptNumber?: unknown
+      }> = Array.isArray(metaOfficial) ? metaOfficial : []
+      const validOfficial = officialScores
+        .filter(
+          (e) =>
+            typeof e?.date === "string" &&
+            typeof e?.total === "number" &&
+            e.total >= 205 &&
+            e.total <= 805,
+        )
+        .sort((a, b) => String(a.date).localeCompare(String(b.date)))
+      officialExamCount = validOfficial.length
+      // Anchor the plan to the latest FIRST ATTEMPT — retake scores draw
+      // from a seen pool and can be inflated, so they never set the
+      // baseline. Legacy entries (no attemptNumber) are first attempts.
+      const firstAttempts = validOfficial.filter(
+        (e) =>
+          !(typeof e.attemptNumber === "number" && e.attemptNumber >= 2),
+      )
+      if (firstAttempts.length > 0) {
+        const latest = firstAttempts[firstAttempts.length - 1]
+        officialBaseline = latest.total as number
+        baselineExamDate = latest.date as string
+      }
+
       const sevenAgo = new Date(Date.now() - 7 * 86400000).toISOString()
       const thirtyAgo = new Date(Date.now() - 30 * 86400000).toISOString()
       const [
         { data: weekSessions },
         { data: monthSessions },
-        { data: wrongAttempts },
-        { data: sectionAttempts },
+        { count: totalWrongCount },
+        { count: reviewedTagCount },
         planResult,
+        { data: masteryAttempts },
+        { data: masterySessions },
       ] = await Promise.all([
         supabase
           .from("practice_sessions")
@@ -172,87 +202,61 @@ export default async function StudyPlanPage({
           .select("created_at")
           .eq("user_id", user.id)
           .gte("created_at", thirtyAgo),
+        // Head-counts, not row transfer: the old full-id fetch fed a
+        // .in() filter whose GET URL blew past the proxy limit at the
+        // 1000-id cap — the query silently failed and the pending count
+        // inflated for exactly the heavy users it mattered to.
         supabase
           .from("practice_attempts")
-          .select("id")
+          .select("id", { count: "exact", head: true })
           .eq("user_id", user.id)
           .eq("is_correct", false),
         supabase
-          .from("practice_attempts")
-          .select("section, is_correct")
-          .eq("user_id", user.id),
+          .from("error_tags")
+          .select("attempt_id", { count: "exact", head: true })
+          .eq("user_id", user.id)
+          .eq("reviewed", true),
         computeStudyPlan(supabase, user.id, {
           targetScore,
           examDate,
           flaggedQuestionIds: gatherFlaggedQuestionIds(state),
           officialExamCount,
         }),
+        supabase
+          .from("practice_attempts")
+          .select("topic, section, is_correct, time_spent_ms, session_id, difficulty")
+          .eq("user_id", user.id)
+          .limit(5000),
+        supabase
+          .from("practice_sessions")
+          .select("id, slug, topic, created_at")
+          .eq("user_id", user.id)
+          .limit(1000),
       ])
 
-      // Past-7-day session activity — calendar dots + study hours
+      // Past-7-day session activity — calendar dots + study hours.
+      // localDayIso: the calendar renders LOCAL weekdays, so a late-evening
+      // session must land on the local day's dot, not the next UTC day's.
       for (const s of weekSessions ?? []) {
         const d = new Date(s.created_at as string)
-        activityDays.add(d.toISOString().slice(0, 10))
+        activityDays.add(localDayIso(d, tz))
         studyHoursWeek += ((s.total_time_ms as number) ?? 0) / 3600000
       }
 
       // Past-30-day activity days for "days practiced" — streak proxy.
       const monthDays = new Set<string>()
       for (const s of monthSessions ?? []) {
-        monthDays.add(
-          new Date(s.created_at as string).toISOString().slice(0, 10)
-        )
+        monthDays.add(localDayIso(new Date(s.created_at as string), tz))
       }
       studyDays30Count = monthDays.size
 
       // Pending-mistake count drives the error-review suggestion in the
-      // weekly schedule. Counts wrong attempts whose error_tags row either
-      // doesn't exist OR has reviewed=false — anything the user hasn't
-      // cleared through the error log yet.
-      const wrongIds = (wrongAttempts ?? []).map((a) => a.id as string)
-      if (wrongIds.length > 0) {
-        const { data: reviewedTags } = await supabase
-          .from("error_tags")
-          .select("attempt_id")
-          .eq("user_id", user.id)
-          .eq("reviewed", true)
-          .in("attempt_id", wrongIds)
-        const reviewedSet = new Set(
-          (reviewedTags ?? []).map((t) => t.attempt_id as string)
-        )
-        pendingMistakeCount = wrongIds.filter((id) => !reviewedSet.has(id)).length
-      }
-
-      // Estimated GMAT total — only if all 3 sections have ≥10 attempts,
-      // matching the dashboard's gating exactly.
-      const secStats: Record<Section, { total: number; correct: number }> = {
-        Quant: { total: 0, correct: 0 },
-        Verbal: { total: 0, correct: 0 },
-        DI: { total: 0, correct: 0 },
-      }
-      for (const a of sectionAttempts ?? []) {
-        const sec = a.section as Section
-        if (!secStats[sec]) continue
-        secStats[sec].total++
-        if (a.is_correct) secStats[sec].correct++
-      }
-      const allSectionsReady = (["Quant", "Verbal", "DI"] as const).every(
-        (s) => secStats[s].total >= SECTION_MIN_SAMPLE
+      // weekly schedule: wrong attempts minus reviewed ones — the same
+      // definition the dashboard chip uses.
+      pendingMistakeCount = Math.max(
+        0,
+        (totalWrongCount ?? 0) - (reviewedTagCount ?? 0)
       )
-      if (allSectionsReady) {
-        const sectionScore = (s: { total: number; correct: number }) =>
-          scaledSectionScore(s.correct, s.total)
-        const avgAccuracy =
-          (["Quant", "Verbal", "DI"] as const)
-            .map((sec) => secStats[sec].correct / secStats[sec].total)
-            .reduce((a, b) => a + b, 0) / 3
-        // Two viable derivations — accuracy→total or sum-of-sections. Use
-        // accuracy→total here (same as analytics/dashboard).
-        estimatedTotal = accuracyToFocusTotal(avgAccuracy * 100)
-        // Keep the per-section math around as a sanity check (unused but
-        // documents the relationship) — suppress the unused warning.
-        void sectionScore
-      }
 
       // Adaptive plan (Today's focus + weak areas + queue counts) — computed
       // concurrently in the Promise.all above.
@@ -262,19 +266,6 @@ export default async function StudyPlanPage({
       // replace the "completed the lesson = done" heuristic with the
       // research-report criteria. Needs session metadata to classify mixed
       // sessions and attempt timing to compute median pace.
-      const [{ data: masteryAttempts }, { data: masterySessions }] =
-        await Promise.all([
-          supabase
-            .from("practice_attempts")
-            .select("topic, section, is_correct, time_spent_ms, session_id, difficulty")
-            .eq("user_id", user.id)
-            .limit(5000),
-          supabase
-            .from("practice_sessions")
-            .select("id, slug, topic, created_at")
-            .eq("user_id", user.id)
-            .limit(1000),
-        ])
       const sessionsById = new Map<string, MasterySession>()
       for (const s of masterySessions ?? []) {
         sessionsById.set(s.id as string, {
@@ -295,28 +286,6 @@ export default async function StudyPlanPage({
           | undefined,
         questionIndex,
       )
-
-      // Official baseline — the latest mba.com practice-exam score the
-      // student has entered (user_metadata.official_exam_scores). It
-      // anchors persona assignment and the plan's attribution line.
-      const metaOfficial = state.official_exam_scores
-      const officialScores: Array<{ date?: unknown; total?: unknown }> =
-        Array.isArray(metaOfficial) ? metaOfficial : []
-      const validOfficial = officialScores
-        .filter(
-          (e) =>
-            typeof e?.date === "string" &&
-            typeof e?.total === "number" &&
-            e.total >= 205 &&
-            e.total <= 805,
-        )
-        .sort((a, b) => String(a.date).localeCompare(String(b.date)))
-      officialExamCount = validOfficial.length
-      if (validOfficial.length > 0) {
-        const latest = validOfficial[validOfficial.length - 1]
-        officialBaseline = latest.total as number
-        baselineExamDate = latest.date as string
-      }
 
       persona = computePersona(officialBaseline, targetScore, {
         englishNative:
@@ -384,7 +353,8 @@ export default async function StudyPlanPage({
           s.slug !== "custom" &&
           !s.slug?.startsWith("mock-") &&
           !s.slug?.startsWith("diagnostic-") &&
-          !s.slug?.startsWith("review-")
+          !s.slug?.startsWith("review-") &&
+          !s.slug?.startsWith("redo-")
         ) {
           completedTags.add("drilled-recently")
         }
@@ -437,26 +407,26 @@ export default async function StudyPlanPage({
   // the "Up next" panel; the full queue feeds the weekly cadence. (The old
   // /lessons library is deprecated — chapters are the curriculum.)
   const pathChapters = getAllChapters()
-  const isChapterRead = (ch: (typeof pathChapters)[number]) => {
-    const entry = readProgress[ch.slug]
-    if (!entry || ch.sections.length === 0) return false
-    return ch.sections.every((s) => entry.sectionsRead?.[s.id])
-  }
+  // Shared reading-sections completion rule — the old inline every-section
+  // predicate (pretest + summary included) disagreed with /chapters and kept
+  // "Chapters read" pinned low for students who read everything but never
+  // clicked the pretest/summary cards.
+  const isChapterReadHere = (ch: (typeof pathChapters)[number]) =>
+    isChapterRead(ch.sections, readProgress[ch.slug]?.sectionsRead)
   // A chapter is "engaged" once any section has been read — anchors the
   // recommendation to where the student actually is.
   const isChapterEngaged = (ch: (typeof pathChapters)[number]) => {
     const sr = readProgress[ch.slug]?.sectionsRead
     return sr ? Object.values(sr).some(Boolean) : false
   }
-  const incompleteChapters = pathChapters.filter((ch) => !isChapterRead(ch))
+  const incompleteChapters = pathChapters.filter((ch) => !isChapterReadHere(ch))
   // Recency-aware "Up next": recommend forward from the furthest chapter the
   // student has touched, so a single unread section in chapter 1 no longer pins
   // "Welcome to the GMAT" as next after they've moved on (see pickNextChapters).
   const {
-    nextUp: nextChapterUp,
     upcoming: upcomingChapters,
     readingQueue: nextReadingQueue,
-  } = pickNextChapters(pathChapters, isChapterRead, isChapterEngaged)
+  } = pickNextChapters(pathChapters, isChapterReadHere, isChapterEngaged)
   const chaptersDoneCount = pathChapters.length - incompleteChapters.length
   const totalChapters = pathChapters.length
 
@@ -473,30 +443,29 @@ export default async function StudyPlanPage({
     } as StudyPlanOutput)
   const weeklyCadence = buildWeeklyCadence(
     adaptivePlan,
-    nextReadingQueue.map((ch) => ({ slug: ch.slug, title: ch.title }))
+    nextReadingQueue.map((ch) => ({ slug: ch.slug, title: ch.title })),
+    weeklyHoursTarget
   )
   const suggestionByKey = new Map<string, DailySuggestion>()
 
   // ---------- Derived: calendar for the current week (Sun → Sat) ----------
-  const today = new Date()
-  const sunday = new Date(today)
-  sunday.setHours(0, 0, 0, 0)
-  sunday.setDate(today.getDate() - today.getDay())
-  const todayStart = new Date(today)
-  todayStart.setHours(0, 0, 0, 0)
-  const todayStartMs = todayStart.getTime()
+  // The USER's current week (tz cookie), not the server's — on UTC
+  // production servers the whole calendar could sit on the wrong day for
+  // evening users. Day arithmetic runs on date-only ISO strings parsed
+  // as UTC midnights, which is exact.
+  const todayIso = localDayIso(new Date(), tz)
+  const todayMs = Date.parse(todayIso)
+  const DAY_MS = 86400000
+  const todayDow = new Date(todayMs).getUTCDay()
   const weekDays = Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(sunday)
-    d.setDate(sunday.getDate() + i)
-    const key = d.toISOString().slice(0, 10)
-    const isToday = d.getTime() === todayStartMs
-    const isPast = d.getTime() < todayStartMs
+    const dMs = todayMs + (i - todayDow) * DAY_MS
+    const key = new Date(dMs).toISOString().slice(0, 10)
     return {
       weekdayLabel: WEEKDAY_LABELS[i],
-      date: d,
+      date: new Date(dMs),
       key,
-      isToday,
-      isPast,
+      isToday: dMs === todayMs,
+      isPast: dMs < todayMs,
       hasActivity: activityDays.has(key),
     }
   })
@@ -504,22 +473,25 @@ export default async function StudyPlanPage({
   // Walk future days and assign a pre-computed suggestion from the
   // adaptive cadence. Today isn't given a calendar suggestion — the
   // "Today's focus" card above owns that.
-  let cadenceIdx = 0
-  for (const day of weekDays) {
-    if (day.isPast || day.isToday) continue
-    const suggestion = weeklyCadence[cadenceIdx % weeklyCadence.length]
-    cadenceIdx++
+  //
+  // Index by WEEKDAY POSITION, not a running counter: the counter version
+  // gave the first future day cadence[0] every day, so the whole week's
+  // suggestions silently shifted forward one cell each real day ("Wed:
+  // Practice set" became "Wed: read chapter X" when Wednesday arrived),
+  // and slot 6 — the high-band "Light review + rest" day — was
+  // unreachable (max 6 future days). Weekday-anchored, a given day keeps
+  // its suggestion all week and the rest day lands on Saturday.
+  weekDays.forEach((day, i) => {
+    if (day.isPast || day.isToday) return
+    const suggestion = weeklyCadence[i]
     if (suggestion) suggestionByKey.set(day.key, suggestion)
-  }
+  })
 
   // ---------- Derived: exam readiness ----------
-  const daysUntilExam = examDate
-    ? Math.ceil(
-        (new Date(examDate).getTime() -
-          new Date(new Date().toDateString()).getTime()) /
-          86400000
-      )
-    : null
+  // Shared local-midnight parse — the naive new Date("YYYY-MM-DD") (UTC)
+  // version read a day short in positive-offset timezones and disagreed
+  // with the engine's own countdown.
+  const daysUntilExam = daysUntil(examDate, tz)
 
   // === Stage gate ===
   // The page promises an "adaptive plan" but the engine has no real
@@ -642,7 +614,7 @@ export default async function StudyPlanPage({
                 {
                   label: "Target score",
                   done: targetScore !== null,
-                  href: "/dashboard#score-goal",
+                  href: "/onboarding",
                 },
                 {
                   label: "Exam date",
@@ -843,7 +815,7 @@ export default async function StudyPlanPage({
               {
                 Icon: CalendarDays,
                 title: "Weekly cadence",
-                body: "Real seven-day schedule built from your exam runway + recommended hours per week.",
+                body: "Real seven-day schedule shaped by your exam runway + the hours per week you chose at onboarding.",
               },
               {
                 Icon: Target,
@@ -960,6 +932,207 @@ export default async function StudyPlanPage({
         </div>
       </section>
 
+      {/* One primary action. Lower-ranked recommendations remain available as
+          compact optional follow-ups instead of competing task cards. */}
+      {plan && plan.todaysFocus.length > 0 && (
+        <section>
+          <div className="flex items-center gap-3 mb-5">
+            <span
+              className="font-display text-[11px] font-semibold tabular-nums"
+              style={{ color: "rgba(201,168,76,0.55)" }}
+              aria-hidden
+            >
+              {sectionNum("todays-focus")}
+            </span>
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+              style={{ color: "#C9A84C" }}
+            >
+              Today&apos;s focus
+            </p>
+            <div
+              className="h-px flex-1"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-5">
+            Today&apos;s{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              focus.
+            </span>
+          </h2>
+          <FocusCard action={plan.todaysFocus[0]} primary />
+          {plan.todaysFocus.length > 1 && (
+            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#666666]">
+                After that, optional
+              </span>
+              {plan.todaysFocus.slice(1).map((action, i) => (
+                <Link
+                  key={`${action.type}-${i}`}
+                  href={action.href}
+                  className="inline-flex items-center gap-1.5 text-[12px] text-[#888888] hover:text-[#C9A84C] transition-colors"
+                >
+                  {action.title}
+                  <ArrowRight className="h-3 w-3" aria-hidden />
+                </Link>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* Weekly Calendar — real activity dots for the current week */}
+      <section>
+        <div className="flex items-center gap-3 mb-5">
+          <span
+            className="font-display text-[11px] font-semibold tabular-nums"
+            style={{ color: "rgba(201,168,76,0.55)" }}
+            aria-hidden
+          >
+            {sectionNum("this-week")}
+          </span>
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: "#C9A84C" }}
+          >
+            This week
+          </p>
+          <div
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+            }}
+            aria-hidden
+          />
+        </div>
+        {weeklyHoursTarget !== null && (
+          <p className="text-[12px] text-[#888888] leading-relaxed mb-4 max-w-2xl">
+            Planned around your{" "}
+            <span className="text-[#C0C0C0]">
+              {weeklyHoursTarget} hr/week
+            </span>{" "}
+            target (~{perDayMinutes(weeklyHoursTarget)} min/day).{" "}
+            {weeklyHoursAdvice(weeklyHoursTarget)}{" "}
+            <Link
+              href="/onboarding"
+              className="underline underline-offset-2"
+              style={{ color: "#C9A84C" }}
+            >
+              Change it
+            </Link>
+            .
+          </p>
+        )}
+        <div className="overflow-x-auto -mx-1 px-1">
+          <div className="grid grid-cols-7 gap-2 min-w-[560px]">
+          {weekDays.map((day) => {
+            const { weekdayLabel, date, isToday, isPast, hasActivity } = day
+            const borderColor = isToday
+              ? "rgba(201,168,76,0.3)"
+              : hasActivity
+              ? "rgba(62,207,142,0.2)"
+              : "rgba(255,255,255,0.06)"
+            const bg = isToday
+              ? "rgba(201,168,76,0.05)"
+              : hasActivity
+              ? "rgba(62,207,142,0.04)"
+              : "#0D0D0D"
+            return (
+              <div key={day.key} className="flex flex-col gap-2">
+                <p
+                  className={`text-[10px] text-center font-semibold uppercase tracking-[0.18em] ${
+                    isToday ? "text-[#C9A84C]" : "text-[#888888]"
+                  }`}
+                >
+                  {weekdayLabel}{" "}
+                  <span className="font-display text-[11px] normal-case tracking-normal text-[#888888] tabular-nums">
+                    {date.getDate()}
+                  </span>
+                </p>
+                <div
+                  className="rounded-2xl p-3 border min-h-[96px] flex flex-col gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                  style={{ borderColor, backgroundColor: bg }}
+                >
+                  {hasActivity ? (
+                    <>
+                      <CheckCircle
+                        className="w-3.5 h-3.5"
+                        style={{ color: "#3ECF8E" }}
+                      />
+                      <p className="text-xs text-[#C0C0C0] leading-snug">
+                        Practiced
+                      </p>
+                    </>
+                  ) : isToday ? (
+                    <>
+                      <div
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: "#C9A84C" }}
+                      />
+                      {/* Defer to Today's Focus instead of prescribing a
+                          chapter here — the two used to disagree on the
+                          same page. */}
+                      <p className="text-xs text-[#C0C0C0] leading-snug">
+                        See Today&apos;s focus above
+                      </p>
+                    </>
+                  ) : isPast ? (
+                    <p className="text-xs text-[#888888]">No activity</p>
+                  ) : (
+                    <SuggestionCell suggestion={suggestionByKey.get(day.key) ?? null} />
+                  )}
+                </div>
+              </div>
+            )
+          })}
+          </div>
+        </div>
+      </section>
+
+      {/* Progress cards use directly observed counts and time only. Practice
+          accuracy is not converted into a GMAT total score. */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <StatCard
+          icon={BookOpen}
+          color="#C9A84C"
+          label="Chapters read"
+          value={`${chaptersDoneCount} / ${totalChapters}`}
+        />
+        <StatCard
+          icon={Clock}
+          color="#C9A84C"
+          label={
+            weeklyHoursTarget !== null
+              ? `Practice hours (7d, target ${weeklyHoursTarget})`
+              : "Practice hours (7d)"
+          }
+          value={(() => {
+            const rounded = Math.round(studyHoursWeek * 10) / 10
+            return rounded >= 0.1 ? `${rounded.toFixed(1)} hrs` : "—"
+          })()}
+        />
+        <StatCard
+          icon={Flame}
+          color="#C9A84C"
+          label="Active days (30d)"
+          value={studyDays30Count > 0 ? `${studyDays30Count}` : "—"}
+        />
+      </div>
+
+      {/* Official-ready status — surfaces when the user has cleared the
+          official-exam readiness bar. */}
+      {officialReady && <OfficialReadyCard summary={officialReady} />}
+
+      {/* Persona, baseline attribution, and the multi-week plan link sit
+          BELOW the actionable blocks: beta feedback said the answer to
+          "what should I do today?" was buried ~1000px down, under four
+          cards of context. Today's Focus and the 7-day calendar now lead. */}
       {/* Persona card — research-report segmentation by (baseline, target).
           Drives copy, emphasis, and downstream mastery thresholds. Shows
           "Not yet assigned" with a baseline CTA when baseline is null. */}
@@ -1045,209 +1218,6 @@ export default async function StudyPlanPage({
         />
       </Link>
 
-      {/* Today's focus — adaptive action queue ranked by impact.
-          Highest-priority item first; up to 3 shown. */}
-      {plan && plan.todaysFocus.length > 0 && (
-        <section>
-          <div className="flex items-center gap-3 mb-5">
-            <span
-              className="font-display text-[11px] font-semibold tabular-nums"
-              style={{ color: "rgba(201,168,76,0.55)" }}
-              aria-hidden
-            >
-              {sectionNum("todays-focus")}
-            </span>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Today&apos;s focus
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-5">
-            Today&apos;s{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              focus.
-            </span>
-          </h2>
-          <div className="space-y-3">
-            {plan.todaysFocus.map((action, i) => (
-              <FocusCard key={`${action.type}-${i}`} action={action} primary={i === 0} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Weekly Calendar — real activity dots for the current week */}
-      <section>
-        <div className="flex items-center gap-3 mb-5">
-          <span
-            className="font-display text-[11px] font-semibold tabular-nums"
-            style={{ color: "rgba(201,168,76,0.55)" }}
-            aria-hidden
-          >
-            {sectionNum("this-week")}
-          </span>
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-            style={{ color: "#C9A84C" }}
-          >
-            This week
-          </p>
-          <div
-            className="h-px flex-1"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-            }}
-            aria-hidden
-          />
-        </div>
-        <div className="overflow-x-auto -mx-1 px-1">
-          <div className="grid grid-cols-7 gap-2 min-w-[560px]">
-          {weekDays.map((day) => {
-            const { weekdayLabel, date, isToday, isPast, hasActivity } = day
-            const borderColor = isToday
-              ? "rgba(201,168,76,0.3)"
-              : hasActivity
-              ? "rgba(62,207,142,0.2)"
-              : "rgba(255,255,255,0.06)"
-            const bg = isToday
-              ? "rgba(201,168,76,0.05)"
-              : hasActivity
-              ? "rgba(62,207,142,0.04)"
-              : "#0D0D0D"
-            return (
-              <div key={day.key} className="flex flex-col gap-2">
-                <p
-                  className={`text-[10px] text-center font-semibold uppercase tracking-[0.18em] ${
-                    isToday ? "text-[#C9A84C]" : "text-[#555555]"
-                  }`}
-                >
-                  {weekdayLabel}{" "}
-                  <span className="font-display text-[11px] normal-case tracking-normal text-[#444444] tabular-nums">
-                    {date.getDate()}
-                  </span>
-                </p>
-                <div
-                  className="rounded-2xl p-3 border min-h-[96px] flex flex-col gap-2 transition-all duration-300 hover:-translate-y-0.5"
-                  style={{ borderColor, backgroundColor: bg }}
-                >
-                  {hasActivity ? (
-                    <>
-                      <CheckCircle
-                        className="w-3.5 h-3.5"
-                        style={{ color: "#3ECF8E" }}
-                      />
-                      <p className="text-xs text-[#C0C0C0] leading-snug">
-                        Practiced
-                      </p>
-                    </>
-                  ) : isToday ? (
-                    <>
-                      <div
-                        className="w-2 h-2 rounded-full"
-                        style={{ backgroundColor: "#C9A84C" }}
-                      />
-                      <p className="text-xs text-[#C0C0C0] leading-snug">
-                        {nextChapterUp
-                          ? `Next: ${nextChapterUp.title}`
-                          : "Run a practice set"}
-                      </p>
-                    </>
-                  ) : isPast ? (
-                    <p className="text-xs text-[#444444]">No activity</p>
-                  ) : (
-                    <SuggestionCell suggestion={suggestionByKey.get(day.key) ?? null} />
-                  )}
-                </div>
-              </div>
-            )
-          })}
-          </div>
-        </div>
-      </section>
-
-      {/* Progress cards — real counts. Projected total leads when the
-          student has enough section data (>=10 attempts each) to estimate it. */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {estimatedTotal !== null && (
-          <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
-            <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: "#C9A84C15" }}
-            >
-              <TrendingUp className="w-4 h-4" style={{ color: "#C9A84C" }} />
-            </div>
-            <div className="min-w-0">
-              <p className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] tabular-nums leading-none">
-                {estimatedTotal}
-              </p>
-              <p className="text-[11px] text-[#888888] mt-1.5 uppercase tracking-[0.18em]">
-                Projected total
-              </p>
-              {(targetScore !== null || officialBaseline !== null) && (
-                <p className="text-[11px] text-[#555555] mt-1 tabular-nums">
-                  {targetScore !== null && (
-                    <span
-                      style={{
-                        color:
-                          estimatedTotal >= targetScore
-                            ? "#3ECF8E"
-                            : estimatedTotal >= targetScore - 40
-                              ? "#C9A84C"
-                              : "#FF4444",
-                      }}
-                    >
-                      {estimatedTotal >= targetScore ? "+" : ""}
-                      {estimatedTotal - targetScore} vs target
-                    </span>
-                  )}
-                  {targetScore !== null && officialBaseline !== null && (
-                    <span className="mx-1.5 text-[#333333]">·</span>
-                  )}
-                  {officialBaseline !== null && (
-                    <span>baseline {officialBaseline}</span>
-                  )}
-                </p>
-              )}
-            </div>
-          </div>
-        )}
-        <StatCard
-          icon={BookOpen}
-          color="#C9A84C"
-          label="Chapters read"
-          value={`${chaptersDoneCount} / ${totalChapters}`}
-        />
-        <StatCard
-          icon={Clock}
-          color="#C9A84C"
-          label="Practice hours (7d)"
-          value={(() => {
-            const rounded = Math.round(studyHoursWeek * 10) / 10
-            return rounded >= 0.1 ? `${rounded.toFixed(1)} hrs` : "—"
-          })()}
-        />
-        <StatCard
-          icon={Flame}
-          color="#C9A84C"
-          label="Active days (30d)"
-          value={studyDays30Count > 0 ? `${studyDays30Count}` : "—"}
-        />
-      </div>
-
-      {/* Official-ready status — surfaces when the user has cleared the
-          official-exam readiness bar. */}
-      {officialReady && <OfficialReadyCard summary={officialReady} />}
 
       {/* Weak areas — topic-level accuracy deficit driven from real attempts.
           Each row links to the relevant chapter so the student can read
@@ -1374,7 +1344,7 @@ export default async function StudyPlanPage({
                       className="flex items-center gap-4 p-4 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
                     >
                       <p className="text-[13px] text-[#C0C0C0] w-32 sm:w-44 flex-shrink-0 truncate">
-                        <span className="text-[#555555] mr-1.5 text-[11px] uppercase tracking-wider">
+                        <span className="text-[#888888] mr-1.5 text-[11px] uppercase tracking-wider">
                           {m.section}
                         </span>
                         {m.topic}
@@ -1401,7 +1371,7 @@ export default async function StudyPlanPage({
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0 justify-end">
                         {nextGate && (
-                          <span className="text-[11px] text-[#555555] truncate hidden md:inline max-w-[12rem]">
+                          <span className="text-[11px] text-[#888888] truncate hidden md:inline max-w-[12rem]">
                             {nextGate.evidence}
                           </span>
                         )}
@@ -1504,7 +1474,7 @@ export default async function StudyPlanPage({
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#555555]">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#888888]">
                         {chapterLabel}
                       </span>
                       <span
@@ -1538,7 +1508,7 @@ export default async function StudyPlanPage({
                       </p>
                     )}
                     <div className="flex items-center gap-1.5 mt-2">
-                      <Clock className="w-3 h-3 text-[#444444]" />
+                      <Clock className="w-3 h-3 text-[#888888]" />
                       <span className="text-[11px] text-[#888888] tabular-nums">
                         {chapter.estimatedPages} pages
                       </span>
@@ -1566,7 +1536,7 @@ function SuggestionCell({
   suggestion: DailySuggestion | null
 }) {
   if (!suggestion) {
-    return <p className="text-xs text-[#444444]">Open</p>
+    return <p className="text-xs text-[#888888]">Open</p>
   }
 
   const iconMap: Record<DailySuggestion["type"], typeof BookOpen> = {
@@ -1596,7 +1566,7 @@ function SuggestionCell({
       className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
     >
       <Icon className="w-3 h-3" style={{ color }} />
-      <p className="text-[9px] uppercase tracking-[0.22em] text-[#555555] font-semibold">
+      <p className="text-[9px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
         {typeLabel[suggestion.type]}
       </p>
       <p className="text-[11px] text-[#C0C0C0] leading-snug line-clamp-2">
@@ -1774,7 +1744,7 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
             <ArrowRight className="w-3 h-3" />
           </Link>
         ) : (
-          <span className="text-[11px] text-[#555555] italic">Keep practicing</span>
+          <span className="text-[11px] text-[#888888] italic">Keep practicing</span>
         )}
       </div>
     </div>
@@ -2150,7 +2120,7 @@ function PersonaPathCard({
                     {step.why}
                   </p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-[#555555] flex-shrink-0 mt-1.5 group-hover:text-[#C9A84C] transition-colors" />
+                <ArrowRight className="w-4 h-4 text-[#888888] flex-shrink-0 mt-1.5 group-hover:text-[#C9A84C] transition-colors" />
               </Link>
             </li>
           )
@@ -2217,7 +2187,7 @@ function OfficialReadyCard({ summary }: { summary: OfficialReadySummary }) {
       </p>
       <div className="grid grid-cols-2 gap-3">
         <div className="p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#555555] font-semibold">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
             Last week
           </p>
           <p className="font-display text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-[-0.02em]">
@@ -2228,7 +2198,7 @@ function OfficialReadyCard({ summary }: { summary: OfficialReadySummary }) {
           </p>
         </div>
         <div className="p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#555555] font-semibold">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
             This week
           </p>
           <p className="font-display text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-[-0.02em]">

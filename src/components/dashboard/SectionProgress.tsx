@@ -59,10 +59,10 @@ export default function SectionProgress({
       <div className="flex items-baseline gap-1.5 mb-4">
         {isEmpty ? (
           <>
-            <span className="font-display text-3xl font-semibold text-[#555555] tracking-[-0.02em] leading-none tabular-nums">
+            <span className="font-display text-3xl font-semibold text-[#888888] tracking-[-0.02em] leading-none tabular-nums">
               —
             </span>
-            <span className="text-[13px] text-[#444444] tabular-nums">
+            <span className="text-[13px] text-[#888888] tabular-nums">
               / {maxScore}
             </span>
           </>
@@ -71,7 +71,7 @@ export default function SectionProgress({
             <span className="font-display text-3xl sm:text-[2rem] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-none tabular-nums">
               {score}
             </span>
-            <span className="text-[13px] text-[#555555] tabular-nums">
+            <span className="text-[13px] text-[#888888] tabular-nums">
               / {maxScore}
             </span>
           </>

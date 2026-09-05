@@ -1,73 +1,41 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { blockIfNoAccess } from "@/lib/entitlements"
-import { getUserState, patchUserState } from "@/lib/user-state"
+import { getUserStateForWrite, patchUserState } from "@/lib/user-state"
+import {
+  MAX_OFFICIAL_ENTRIES,
+  parseOfficialExamEntries,
+  validateOfficialExamEntry,
+} from "@/lib/official-exams"
 
 /**
  * POST /api/official-exams — persist official mba.com practice-exam
- * scores to the `user_state.official_exam_scores` table.
+ * scores to the `user_state.official_exam_scores` value.
  *
- * The product treats the six official GMAT Focus practice exams as the
- * calibrated score signal; the student types each result in here after
- * sitting the exam under full conditions. Stored shape:
+ * The product treats first attempts on the six official practice exams as
+ * the score signal; the student types each result in here after sitting
+ * the exam under full conditions. Stored shape (canonical type + parser +
+ * validator live in src/lib/official-exams.ts, shared with the client so
+ * the two can't drift):
  *
  *   official_exam_scores: Array<{
- *     date: string        // ISO YYYY-MM-DD, unique key
- *     total: number       // 205-805
- *     quant?: number|null // 60-90
+ *     date: string          // ISO YYYY-MM-DD, unique key
+ *     total: number         // 205-805
+ *     quant?: number|null   // 60-90
  *     verbal?: number|null
  *     di?: number|null
- *     label?: string      // optional free text, <= 60 chars
+ *     label?: string        // optional free text, <= 60 chars
+ *     examNumber?: number   // 1-6; absent = legacy/unclassified entry
+ *     attemptNumber?: number // >= 1; requires examNumber; 2+ = retake
  *   }>
  *
  * Body: { action: "add" | "remove", entry?: {...}, date?: string }.
  * "add" upserts by date (array kept sorted ascending by date, hard cap
  * 12 entries — new dates beyond the cap are rejected). "remove" deletes
- * the entry with the given date.
+ * the entry with the given date. Tagging a legacy entry with its exam
+ * number is a plain "add" upsert on the same date.
  */
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
-const MAX_ENTRIES = 12
-
-interface OfficialExamEntry {
-  date: string
-  total: number
-  quant?: number | null
-  verbal?: number | null
-  di?: number | null
-  label?: string
-}
-
-function isValidSectionScore(value: unknown): value is number {
-  return (
-    typeof value === "number" &&
-    Number.isInteger(value) &&
-    value >= 60 &&
-    value <= 90
-  )
-}
-
-/** Parse whatever is currently stored into a clean entries array. */
-function readStoredEntries(metadata: unknown): OfficialExamEntry[] {
-  if (!metadata || typeof metadata !== "object") return []
-  const raw = (metadata as Record<string, unknown>).official_exam_scores
-  if (!Array.isArray(raw)) return []
-  const out: OfficialExamEntry[] = []
-  for (const item of raw) {
-    if (!item || typeof item !== "object") continue
-    const rec = item as Record<string, unknown>
-    if (typeof rec.date !== "string" || !DATE_RE.test(rec.date)) continue
-    if (typeof rec.total !== "number") continue
-    const entry: OfficialExamEntry = { date: rec.date, total: rec.total }
-    if (isValidSectionScore(rec.quant)) entry.quant = rec.quant
-    if (isValidSectionScore(rec.verbal)) entry.verbal = rec.verbal
-    if (isValidSectionScore(rec.di)) entry.di = rec.di
-    if (typeof rec.label === "string" && rec.label.trim() !== "") {
-      entry.label = rec.label.trim().slice(0, 60)
-    }
-    out.push(entry)
-  }
-  return out
-}
 
 export async function POST(request: Request) {
   const supabase = await createSupabaseServer()
@@ -83,18 +51,7 @@ export async function POST(request: Request) {
   const blocked = await blockIfNoAccess(supabase, user)
   if (blocked) return blocked
 
-  let body: {
-    action?: unknown
-    entry?: {
-      date?: unknown
-      total?: unknown
-      quant?: unknown
-      verbal?: unknown
-      di?: unknown
-      label?: unknown
-    }
-    date?: unknown
-  }
+  let body: { action?: unknown; entry?: unknown; date?: unknown }
   try {
     body = await request.json()
   } catch {
@@ -108,8 +65,14 @@ export async function POST(request: Request) {
     )
   }
 
-  const state = await getUserState(supabase, user)
-  const entries = readStoredEntries(state)
+  // Error-aware read: this route read-modify-writes a whole user_state key.
+  // Proceeding after a FAILED read would rebuild the key from empty and
+  // destroy the stored history (same class as the chapter-progress guard).
+  const { state, errored } = await getUserStateForWrite(supabase, user)
+  if (errored) {
+    return Response.json({ error: "state read failed; retry" }, { status: 503 })
+  }
+  const entries = parseOfficialExamEntries(state)
 
   if (body.action === "remove") {
     if (typeof body.date !== "string" || !DATE_RE.test(body.date)) {
@@ -134,79 +97,21 @@ export async function POST(request: Request) {
     return Response.json({ ok: true, official_exam_scores: next })
   }
 
-  // action === "add"
-  const raw = body.entry
-  if (!raw || typeof raw !== "object") {
-    return Response.json(
-      { error: "entry is required for action=add" },
-      { status: 400 }
-    )
-  }
-
-  if (typeof raw.date !== "string" || !DATE_RE.test(raw.date)) {
-    return Response.json(
-      { error: "entry.date must be an ISO date (YYYY-MM-DD)" },
-      { status: 400 }
-    )
-  }
-
-  // An official is logged AFTER it was taken. Without this, a future slot in
-  // the derived weekly schedule could be "scored" months ahead and become the
-  // latest point on the score trend (beta: a Nov 1 slot scored 705 in July,
-  // trend read "on target"). One day of UTC grace absorbs clients whose local
-  // calendar is ahead of the server's.
+  // action === "add". An official is logged AFTER it was taken — one day of
+  // UTC grace absorbs clients whose local calendar is ahead of the server's.
   const maxIso = new Date(Date.now() + 86_400_000).toISOString().slice(0, 10)
-  if (raw.date > maxIso) {
-    return Response.json(
-      {
-        error:
-          "entry.date cannot be in the future — log an official exam after you've taken it",
-      },
-      { status: 400 }
-    )
+  const validated = validateOfficialExamEntry(body.entry, maxIso)
+  if ("error" in validated) {
+    return Response.json({ error: validated.error }, { status: 400 })
   }
-
-  if (
-    typeof raw.total !== "number" ||
-    !Number.isInteger(raw.total) ||
-    raw.total < 205 ||
-    raw.total > 805
-  ) {
-    return Response.json(
-      { error: "entry.total must be an integer between 205 and 805" },
-      { status: 400 }
-    )
-  }
-
-  const entry: OfficialExamEntry = { date: raw.date, total: raw.total }
-
-  for (const key of ["quant", "verbal", "di"] as const) {
-    const value = raw[key]
-    if (value === undefined || value === null) continue
-    if (!isValidSectionScore(value)) {
-      return Response.json(
-        { error: `entry.${key} must be an integer between 60 and 90` },
-        { status: 400 }
-      )
-    }
-    entry[key] = value
-  }
-
-  if (raw.label !== undefined && raw.label !== null) {
-    if (typeof raw.label !== "string" || raw.label.length > 60) {
-      return Response.json(
-        { error: "entry.label must be a string of at most 60 characters" },
-        { status: 400 }
-      )
-    }
-    const trimmed = raw.label.trim()
-    if (trimmed !== "") entry.label = trimmed
-  }
+  const entry = validated.entry
 
   const existingIndex = entries.findIndex((e) => e.date === entry.date)
-  if (existingIndex === -1 && entries.length >= MAX_ENTRIES) {
+  if (existingIndex === -1 && entries.length >= MAX_OFFICIAL_ENTRIES) {
     return Response.json(
-      { error: `Cannot store more than ${MAX_ENTRIES} official exam scores` },
+      {
+        error: `Cannot store more than ${MAX_OFFICIAL_ENTRIES} official exam scores`,
+      },
       { status: 400 }
     )
   }

@@ -14,8 +14,8 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q17
-      - reading-comprehension-q18
+      - reading-comprehension-q165
+      - reading-comprehension-q115
   - id: rc-inference
     type: reading
     title: "RC: Inference"
@@ -24,6 +24,10 @@ sections:
   - id: inference-stays-supported
     type: reading
     title: "Inference = one small step the text forces"
+    check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
     check_question_ids: []
 problem_sets:
   easy:
@@ -34,8 +38,8 @@ problem_sets:
       "725": 100
     question_ids:
       - reading-comprehension-q54
-      - reading-comprehension-q20
-      - reading-comprehension-q21
+      - reading-comprehension-q60
+      - reading-comprehension-q39
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,10 +47,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q22
+      - reading-comprehension-q7
       - reading-comprehension-q23
-      - reading-comprehension-q24
+      - reading-comprehension-q32
 ---
+
+## @summary
+
+- Build only one careful step beyond the text and keep the author's qualifiers intact.
+- Favor cautious wording because inference answers must remain supported under every relevant sentence.
+- Reject outside knowledge, reversed relationships, and claims that turn possibility into certainty.
 
 ## @rc-inference
 

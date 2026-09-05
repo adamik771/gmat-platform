@@ -2,7 +2,7 @@
 slug: quant-23-statistics
 title: "Statistics: Mean, Median & Standard Deviation"
 section: Quant
-estimated_minutes: 11
+estimated_minutes: 90
 prerequisites:
   - quant-22-work-rate
 summary: |
@@ -15,7 +15,7 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - statistics-probability-q1
-      - statistics-probability-q2
+      - statistics-probability-q21
   - id: mean-and-sum
     type: reading
     title: "Mean and sum — the one identity that unlocks half the chapter"
@@ -34,6 +34,10 @@ sections:
     check_question_ids:
       - statistics-probability-q6
       - statistics-probability-q16
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -54,6 +58,12 @@ problem_sets:
       - statistics-probability-q5
       - statistics-probability-q52
 ---
+
+## @summary
+
+- Mean is total divided by count, so recover the total first whenever observations are added, removed, or changed.
+- Sort the data before finding the median and distinguish spread from center.
+- Standard deviation measures dispersion: moving values away from the mean increases it, while shifting every value equally does not.
 
 ## @mean-and-sum
 
@@ -200,7 +210,7 @@ Answers: (1) 126. (2) 12. (3) 48 — new sum = 32 × 9 = 288; old sum = 30 × 8 
 
 ## @median-mode-ordered-sets
 
-**Median** is the middle value of an ordered set. **Mode** is the most frequent value. For small sets the GMAT cares mostly about median, with occasional mode — and it cares *enormously* about whether you can tell which statistic a question is actually asking for. Mean, median, and mode answer three different questions about the same set, and the test's favorite trap is handing you a value that's correct for the *wrong* statistic. A 700+ scorer reads the question stem twice before computing anything, because the single most common way to lose a median/mode point is to compute the right number for the wrong word.
+**Median** is the middle value of an ordered set. **Mode** is the most frequent value. For small sets the GMAT cares mostly about median, with occasional mode — and it cares *enormously* about whether you can tell which statistic a question is actually asking for. Mean, median, and mode answer three different questions about the same set, and the test's favorite trap is handing you a value that's correct for the *wrong* statistic. A top scorer reads the question stem twice before computing anything, because the single most common way to lose a median/mode point is to compute the right number for the wrong word.
 
 **Mental model.** Median is positional — it depends only on *order and count*, not on the actual magnitudes of the values away from the center. Mean is a weighted balancing point that every value tugs on. Mode is just a tally of repeats. Keep these three separate in your head and most of this section's traps disappear. A useful image: imagine the sorted values as people standing in a line by height. The median is whoever stands in the middle of the line — the test doesn't care *how* tall the tallest person is, only that they're at the end. The mean is the line's "center of mass," which the tallest person can drag far to one side. The mode is whichever height shows up on the most heads.
 
@@ -253,7 +263,7 @@ Order them a < b < 18 < d < e, sum = 100, so a + b + d = 82 (since 18 + e accoun
 
 The lesson: maximize and minimize are the *same machine run in reverse*. Maximize a target ⟹ floor everyone else; minimize a target ⟹ ceiling everyone else. Write the order first, both times.
 
-**Trap to watch.** In the median-18 problems, "median 18" with five distinct integers forces the 3rd element to *equal* 18 — but with an *even* count, the median is an *average* and need not be any actual element. If the problem had said "four distinct integers, median 18," then 18 is the average of the 2nd and 3rd, and neither of those has to be 18 (they could be 17 and 19). Confusing "the median equals an element" (odd n) with "the median is an average of two elements" (even n) is a classic 600-level error.
+**Trap to watch.** In the median-18 problems, "median 18" with five distinct integers forces the 3rd element to *equal* 18 — but with an *even* count, the median is an *average* and need not be any actual element. If the problem had said "four distinct integers, median 18," then 18 is the average of the 2nd and 3rd, and neither of those has to be 18 (they could be 17 and 19). Confusing "the median equals an element" (odd n) with "the median is an average of two elements" (even n) is a classic mid-difficulty error.
 
 > **Recall check.** Six distinct integers have median 10. Must one of the integers equal 10? (No — even count, so 10 is the *average* of the 3rd and 4th; e.g. 8 and 12 give median 10 with no element equal to 10.)
 
@@ -265,7 +275,7 @@ Consecutive even integers form an arithmetic sequence, which is symmetric about 
 
 **Median under element swaps.** If you replace the largest element with an even larger one, the median doesn't change. Replace an element *below* the median with something even smaller: median still doesn't change. Only changes that move a value **across the middle position** can shift the median. This is the engine behind a huge family of median questions, so internalize it: *the median is hostage only to the middle, not the tails.*
 
-**Worked example (hard — the subtle one that separates 700+ scorers).** Set T has 7 elements with median m. Its maximum element is increased, and it remains the maximum. What is the new median?
+**Worked example (hard — the subtle one that separates top scorers).** Set T has 7 elements with median m. Its maximum element is increased, and it remains the maximum. What is the new median?
 
 With 7 elements, the median is the 4th value in sorted order. Increasing the maximum keeps it the maximum, so the 4th-position element is untouched — the new median is still **m**. The principle: only a change that moves a value *across the middle position* can shift the median; changes confined to the tails leave it alone. The trap is feeling you need the new maximum's actual value — you don't, because the median is hostage only to the middle, not the tails.
 
@@ -318,7 +328,7 @@ Mean 10 over 4 integers ⟹ fixed sum = 40. To **maximize range = max − min**,
 
 **Worked example (minimize range — the mirror move).** Four positive integers have mean 10 and sum 40. What's the *smallest* possible range? To minimize range, make the values as equal as possible: 10, 10, 10, 10 gives range **0**. If "distinct" were required, you cluster four integers as tightly as possible around the mean while summing to 40: {8, 9, 11, 12} sums to 40 with range 4, and you cannot do better — four distinct integers span at least 3 in a perfectly consecutive run {a, a+1, a+2, a+3}, but consecutive integers sum to 4a + 6, which equals 40 only at a = 8.5 (not an integer), so you must "skip the mean" to hit the sum, forcing a gap and range 4. The disciplined move: **center the values on the mean, then nudge to satisfy the sum.** The point to carry: minimizing range = clustering; maximizing range = one survivor takes the leftover.
 
-**Pro tip (the master move for both directions).** On any "maximize/minimize range" problem: write elements in order, label them a ≤ b ≤ … ≤ e, fix the total from the mean, then for **max range** drive all-but-one to their constrained floor, and for **min range** make them as equal as the constraints permit. Apply distinctness and integer constraints *last*, as adjustments. This is the *same* seesaw logic as the maximize/minimize-an-element problems above — recognizing that one machine handles both families is itself a 700-level economy.
+**Pro tip (the master move for both directions).** On any "maximize/minimize range" problem: write elements in order, label them a ≤ b ≤ … ≤ e, fix the total from the mean, then for **max range** drive all-but-one to their constrained floor, and for **min range** make them as equal as the constraints permit. Apply distinctness and integer constraints *last*, as adjustments. This is the *same* seesaw logic as the maximize/minimize-an-element problems above — recognizing that one machine handles both families is itself a top-tier economy.
 
 **Common mistakes.**
 

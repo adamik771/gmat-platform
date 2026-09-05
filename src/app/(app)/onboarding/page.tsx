@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import OnboardingClient from "./OnboardingClient"
+import { WEEKLY_HOURS_MAX, WEEKLY_HOURS_MIN } from "@/lib/study-hours"
 
 export const metadata = {
   title: "Get started",
@@ -44,10 +45,18 @@ export default async function OnboardingPage() {
       typeof meta.onboarding === "object" && meta.onboarding
         ? ((meta.onboarding as { currentScore?: number | null }).currentScore ?? null)
         : null,
-    weeklyHours:
-      typeof meta.onboarding === "object" && meta.onboarding
-        ? ((meta.onboarding as { weeklyHours?: number }).weeklyHours ?? 12)
-        : 12,
+    // Clamped into the current range: values stored under the old 1-40
+    // bounds would otherwise render as e.g. "30 hr/wk" while the slider
+    // pinned at 25 and Continue sat disabled with no explanation.
+    weeklyHours: Math.min(
+      WEEKLY_HOURS_MAX,
+      Math.max(
+        WEEKLY_HOURS_MIN,
+        typeof meta.onboarding === "object" && meta.onboarding
+          ? ((meta.onboarding as { weeklyHours?: number }).weeklyHours ?? 12)
+          : 12
+      )
+    ),
     weakAreas:
       typeof meta.onboarding === "object" && meta.onboarding
         ? ((meta.onboarding as { weakAreas?: string[] }).weakAreas ?? [])
@@ -63,5 +72,22 @@ export default async function OnboardingPage() {
     user.email?.split("@")[0] ||
     null
 
-  return <OnboardingClient initial={initial} firstName={firstName} />
+  // The RAW stored onboarding record. The skip write must spread this —
+  // supabase.auth.updateUser replaces nested objects wholesale, so a bare
+  // { skippedAt } used to wipe a completed intake (completedAt,
+  // weeklyHours, weakAreas…) for anyone who revisited the wizard.
+  const existingOnboarding =
+    typeof meta.onboarding === "object" && meta.onboarding
+      ? (meta.onboarding as Record<string, unknown>)
+      : {}
+
+  return (
+    <OnboardingClient
+      initial={initial}
+      firstName={firstName}
+      existingOnboarding={existingOnboarding}
+      alreadyCompleted={typeof existingOnboarding.completedAt === "string"}
+      userId={user.id}
+    />
+  )
 }

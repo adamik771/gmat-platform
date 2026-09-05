@@ -205,7 +205,7 @@ If 3^x + 3^x + 3^x = 3^10, what is the value of x?
 
 3^x + 3^x + 3^x = 3 × 3^x = 3^1 × 3^x = 3^(x+1). So 3^(x+1) = 3^10. x + 1 = 10. x = 9. Answer (C).
 
-*Recognition cue:* sum of identical exponential terms should trigger "factor out, combine with an additional multiplication." The trap answer (D) is the answer for a student who wrote 3^x + 3^x + 3^x = 3^3x and did 3x = 10 or similar.
+*Recognition cue:* sum of identical exponential terms should trigger "factor out, combine with an additional multiplication." The trap answer (D) is the answer for a student who wrote 3^x + 3^x + 3^x = 3^(3x) and did 3x = 10 or similar.
 
 ### Algebraic manipulation and linear equations
 
@@ -977,7 +977,7 @@ The structural identity is the only fast path. The student who knows it solves i
 
 *Recognition cue.* Any problem involving *symmetric functions* of two or three variables — x + y, xy; x + y + z, xy + yz + xz, xyz — should trigger the structural identity for the sum of squares or the product decomposition. These are among the top-twenty shapes on hard Quant.
 
-## Part 8: The Glossary of 700+ Problem Shapes
+## Part 8: The Glossary of Top-Tier Problem Shapes
 
 The GMAT recycles a finite library of high-difficulty problem shapes. Here are the most frequent ones above the 75th percentile, with the shape name, the recognition cue, and the right method.
 

@@ -15,12 +15,16 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - critical-reasoning-q33
-      - critical-reasoning-q34
+      - critical-reasoning-q144
   - id: cr-inference
     type: reading
     title: "CR: Inference"
     check_question_ids:
-      - critical-reasoning-q35
+      - critical-reasoning-q23
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +33,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q193
-      - critical-reasoning-q36
-      - critical-reasoning-q37
+      - critical-reasoning-q21
+      - critical-reasoning-q22
+      - critical-reasoning-q54
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,10 +43,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q38
-      - critical-reasoning-q39
+      - critical-reasoning-q24
+      - critical-reasoning-q60
       - critical-reasoning-q40
 ---
+
+## @summary
+
+- Treat every statement as fixed evidence and choose only what must or is strongly supported to follow.
+- Combine facts conservatively; do not add causal claims, intentions, or comparisons the passage never provides.
+- Prefer the modest answer whose scope matches the evidence over a broader answer that merely sounds plausible.
 
 ## @cr-inference
 

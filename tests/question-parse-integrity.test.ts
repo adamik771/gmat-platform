@@ -20,6 +20,16 @@ describe("question parse integrity", () => {
     expect(offenders).toEqual([])
   })
 
+  it("data sufficiency questions always parse as DI, never Quant", () => {
+    // GMAT Focus has no DS in the Quant section. Quant technique banks
+    // author DS-format drills; the parser must reclassify them to DI so
+    // they never enter Quant-only pools (test builder, mock, error log).
+    const ds = questions.filter((q) => q.type === "Data Sufficiency")
+    expect(ds.length).toBeGreaterThan(0)
+    const leaked = ds.filter((q) => q.section !== "DI").map((q) => q.id)
+    expect(leaked).toEqual([])
+  })
+
   it("every two-part-analysis question keeps its table-derived structure", () => {
     const tpa = questions.filter((q) => q.id.startsWith("two-part-analysis-"))
     expect(tpa.length).toBeGreaterThan(0)

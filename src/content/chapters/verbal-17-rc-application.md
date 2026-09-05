@@ -14,16 +14,20 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q25
-      - reading-comprehension-q26
+      - reading-comprehension-q90
+      - reading-comprehension-q96
   - id: rc-application
     type: reading
     title: "RC: Application"
     check_question_ids:
-      - reading-comprehension-q27
+      - reading-comprehension-q4
   - id: application-extends-the-logic
     type: reading
     title: "Application = extend the author's logic to a new case"
+    check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
     check_question_ids: []
 problem_sets:
   easy:
@@ -34,8 +38,8 @@ problem_sets:
       "725": 100
     question_ids:
       - reading-comprehension-q84
-      - reading-comprehension-q28
-      - reading-comprehension-q29
+      - reading-comprehension-q180
+      - reading-comprehension-q12
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,10 +47,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q30
-      - reading-comprehension-q31
-      - reading-comprehension-q32
+      - reading-comprehension-q8
+      - reading-comprehension-q16
+      - reading-comprehension-q20
 ---
+
+## @summary
+
+- Extract the rule, mechanism, or principle from the passage before examining the new scenario.
+- Apply that rule only when the scenario preserves the conditions that made it work.
+- Reject superficial topic matches that change the causal structure or comparison the passage established.
 
 ## @rc-application
 

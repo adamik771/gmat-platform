@@ -2,7 +2,7 @@
 slug: quant-20-mixtures-weighted-averages
 title: "Mixtures & Weighted Averages"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 30
 prerequisites:
   - quant-19-percents
 summary: |
@@ -15,13 +15,17 @@ sections:
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
       - ratios-percents-q57
-      - ratios-percents-q14
+      - ratios-percents-q36
   - id: mixture-and-weighted-average
     type: reading
     title: "Mixtures and weighted averages — anchor the invariant"
     check_question_ids:
       - ratios-percents-q56
       - ratios-percents-q71
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -30,7 +34,7 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - ratios-percents-q15
+      - ratios-percents-q63
       - ratios-percents-q16
   medium:
     target_accuracy_by_score:
@@ -40,12 +44,18 @@ problem_sets:
       "725": 95
     question_ids:
       - ratios-percents-q17
-      - ratios-percents-q18
+      - arithmetic-q87
 ---
+
+## @summary
+
+- Track the amount of the relevant substance or contribution, not just the overall totals.
+- A weighted average is total weighted contribution divided by total weight; it must lie between the component values.
+- For remove-and-replace problems, update both the component amount and the total volume at each stage.
 
 ## @mixture-and-weighted-average
 
-Mixture problems and weighted averages are the same problem wearing two different costumes. The mental model that collapses both: **find the quantity that stays invariant**, lock onto it as your anchor, and the rest becomes one equation in one unknown. This is one of the highest-leverage moves in Quant — the same skill answers concentration problems, blending problems, average-speed problems, and "average of averages" traps. Master the anchor and the alligation lever, and an entire family of 600-to-700-level questions shrinks to three lines each. The reason this topic separates scorers is not the arithmetic — it is that the GMAT deliberately disguises *which* quantity is frozen and *which* weight attaches to which value. Get those two decisions right and the algebra is trivial; get either wrong and you confidently compute a trap answer.
+Mixture problems and weighted averages are the same problem wearing two different costumes. The mental model that collapses both: **find the quantity that stays invariant**, lock onto it as your anchor, and the rest becomes one equation in one unknown. This is one of the highest-leverage moves in Quant — the same skill answers concentration problems, blending problems, average-speed problems, and "average of averages" traps. Master the anchor and the alligation lever, and an entire family of mid-to-hard questions shrinks to three lines each. The reason this topic separates scorers is not the arithmetic — it is that the GMAT deliberately disguises *which* quantity is frozen and *which* weight attaches to which value. Get those two decisions right and the algebra is trivial; get either wrong and you confidently compute a trap answer.
 
 **Mixture basics.** A 30-liter solution is 20% salt. You add 10 liters of pure water. What's the new concentration?
 
@@ -67,7 +77,7 @@ The anchor — salt = 6 — makes this a one-variable equation. Without locking 
 
 > **Recall check.** A 50 L tank is 30% acid. You boil off 10 L of pure water. What is the new acid concentration? (Acid is invariant: 0.30 × 50 = 15 L. New volume = 40 L. New concentration = 15/40 = 37.5%. Boiling removes only water, so the solute is the anchor — concentration goes *up*.)
 
-**The drain-and-refill trap.** This is where 700-level testing lives. If you remove some mixture and replace it with pure solvent, the solute is *not* invariant — you threw some away. Treat it in two stages: (1) draining scales every absolute amount by the same fraction; (2) refilling adds zero solute but restores volume.
+**The drain-and-refill trap.** This is where the hardest testing lives. If you remove some mixture and replace it with pure solvent, the solute is *not* invariant — you threw some away. Treat it in two stages: (1) draining scales every absolute amount by the same fraction; (2) refilling adds zero solute but restores volume.
 
 **Worked example (hard).** A 40 L radiator is 25% antifreeze. You drain 8 L and top it back up with 8 L of pure water. What is the new antifreeze concentration?
 
@@ -75,7 +85,7 @@ Stage 1 — drain 8 of 40 L, i.e. remove 8/40 = 1/5 of everything. Antifreeze be
 
 **Worked example (very hard — repeated drain-and-refill).** A 20 L container holds pure (100%) antifreeze. You drain 4 L and refill with water, mix, then drain 4 L of the *mixture* and refill with water again. What is the final antifreeze concentration?
 
-Each round drains 4 of 20 L, so f = 4/20 = 1/5, and each round multiplies the concentration by (1 − 1/5) = 4/5. Two rounds: 100% × (4/5) × (4/5) = 100% × 16/25 = 64%. The trap here is subtracting: a careless test-taker reasons "I removed 1/5 twice, so 2/5 of the antifreeze is gone, leaving 60%." Wrong — the second drain removes a fifth of what *remains*, not a fifth of the original, so the right operation is *multiply*, not subtract. The general formula for n identical rounds is starting concentration × (1 − f)^n. Recognizing this as a geometric decay, not a linear one, is the entire 700-level point of the problem.
+Each round drains 4 of 20 L, so f = 4/20 = 1/5, and each round multiplies the concentration by (1 − 1/5) = 4/5. Two rounds: 100% × (4/5) × (4/5) = 100% × 16/25 = 64%. The trap here is subtracting: a careless test-taker reasons "I removed 1/5 twice, so 2/5 of the antifreeze is gone, leaving 60%." Wrong — the second drain removes a fifth of what *remains*, not a fifth of the original, so the right operation is *multiply*, not subtract. The general formula for n identical rounds is starting concentration × (1 − f)^n. Recognizing this as a geometric decay, not a linear one, is the entire point of the hard version of the problem.
 
 **Alligation — the geometric shortcut.** For two mixtures combined to hit a target concentration, the amounts mix *inversely* to their distance from the target.
 

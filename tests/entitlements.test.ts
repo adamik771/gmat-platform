@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest"
 import type { PaidFeature, PlanTier } from "@/lib/entitlements"
+import type { SupabaseClient } from "@supabase/supabase-js"
 
 /**
  * PAYWALL_ENABLED is captured at module-import time from
@@ -183,5 +184,55 @@ describe("PlanTier values flow end-to-end", () => {
     const tier: PlanTier = getPlanTier(null)
     expect(tier).toBe("free")
     expect(canAccess(tier, "mock-simulator")).toBe(false)
+  })
+})
+
+describe("getPlanTierForUser purchase expiry", () => {
+  function clientWithPurchases(data: unknown[]): SupabaseClient {
+    const query = {
+      select: () => query,
+      eq: () => query,
+      order: () => query,
+      limit: async () => ({ data, error: null }),
+    }
+    return { from: () => query } as unknown as SupabaseClient
+  }
+
+  it("grants only an unexpired, non-revoked purchase", async () => {
+    const { getPlanTierForUser } = await loadWithPaywall("true")
+    const now = new Date("2026-09-05T12:00:00.000Z")
+    const client = clientWithPurchases([
+      {
+        plan_id: "self_study",
+        paid_at: "2026-05-05T12:00:00.000Z",
+        revoked_at: null,
+      },
+      {
+        plan_id: "intensive",
+        paid_at: "2026-02-01T00:00:00.000Z",
+        revoked_at: null,
+      },
+    ])
+
+    expect(await getPlanTierForUser(client, "student", now)).toBe("paid")
+  })
+
+  it("fails closed when every purchase is expired", async () => {
+    const { getPlanTierForUser } = await loadWithPaywall("true")
+    const client = clientWithPurchases([
+      {
+        plan_id: "self_study",
+        paid_at: "2026-01-01T00:00:00.000Z",
+        revoked_at: null,
+      },
+    ])
+
+    expect(
+      await getPlanTierForUser(
+        client,
+        "student",
+        new Date("2026-09-05T12:00:00.000Z"),
+      ),
+    ).toBe("free")
   })
 })

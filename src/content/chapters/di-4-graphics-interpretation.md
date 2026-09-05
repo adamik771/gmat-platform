@@ -121,7 +121,7 @@ problem_sets:
       "725": 80
     question_ids:
       - graphics-interpretation-q9
-      - graphics-interpretation-q14
+      - graphics-interpretation-q94
       - graphics-interpretation-q19
       - graphics-interpretation-q20
       - graphics-interpretation-q23

@@ -8,7 +8,7 @@ import TrackView from "@/components/analytics/TrackView"
 
 export const metadata: Metadata = {
   title: "GMAT Error Log Template — Free Download",
-  alternates: { canonical: "/error-log-template" },
+  alternates: { canonical: "/gmat-error-log-template" },
   description:
     "A free GMAT error log template (spreadsheet) with the six-tag system Adam used to go from 565 to 735. Log every mistake, find the patterns, and review what actually costs you points.",
 }
@@ -58,7 +58,7 @@ const faqItems = [
   {
     question: "Do I need to sign up for the platform to use it?",
     answer:
-      "No. The template is a standalone spreadsheet that works on its own. The full platform has the same six-tag error log built in (plus spaced review of your mistakes), and it is free to use during the private beta if you want it.",
+      "No. The template is a standalone spreadsheet that works on its own. The full platform has the same six-tag error log built in (plus spaced review of your mistakes), and every new account starts with a free 7-day full-access trial if you want it.",
   },
   {
     question: "Why an error log instead of just doing more questions?",
@@ -123,9 +123,10 @@ export default function ErrorLogTemplatePage() {
             optInCtaLabel="Email me the walkthrough"
           />
           <p className="text-[11px] text-[#555555] leading-relaxed mt-4">
-            GMAT is a registered trademark of the Graduate Management Admission
-            Council (GMAC), which does not endorse and is not affiliated with
-            Zakarian GMAT.
+            GMAC, GMAT, Graduate Management Admission Council, and Graduate
+            Management Admission Test are trademarks of GMAC in the United
+            States and other countries. Zakarian GMAT is independent and is
+            not affiliated with, endorsed by, or sponsored by GMAC.
           </p>
         </div>
       </SectionWrapper>
@@ -203,7 +204,7 @@ export default function ErrorLogTemplatePage() {
           <p className="text-[14px] text-[#888888] leading-relaxed mb-7">
             The full platform has this same six-tag log inside it, then feeds your
             tagged mistakes into a spaced review queue so you actually re-test the
-            ones that hurt. It is free to use while it is in private beta.
+            ones that hurt. Every new account starts with a free 7-day full-access trial.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -211,7 +212,7 @@ export default function ErrorLogTemplatePage() {
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
-              Start free in beta
+              Start your free trial
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

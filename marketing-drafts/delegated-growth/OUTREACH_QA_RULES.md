@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Outreach QA Rules — The Can-Say / Cannot-Say Bible
 
 This is the compliance reference for everything you send on Zakarian GMAT's behalf. If a message
@@ -18,8 +20,8 @@ Sibling docs:
 
 | You CAN say (true, approved claims) | You must NEVER say (banned) |
 |-------------------------------------|------------------------------|
-| Built by Adam Zakarian, who scored a **verified GMAT Focus 735 (100th percentile)** as a non-native English speaker. | Any **guaranteed score** or **specific improvement** ("you'll hit 700," "raise your score by 100 points"). |
-| Adam went **from 565 to 735** himself. (Cite only his own verified result.) | **Anyone else's** results, score improvements, or outcomes — there are no other verified results to cite. |
+| Built by Adam Zakarian, who scored a **GMAT Focus 735 (top 1%)** as a non-native English speaker. | Any **guaranteed score** or **specific improvement** ("you'll hit 700," "raise your score by 100 points"). |
+| Adam went **from 565 to 735** himself. (Cite only his own result.) | **Anyone else's** results, score improvements, or outcomes — there are no other results to cite. |
 | It is **free during a private, invite-based beta** — full access, no credit card. | A **"free diagnostic"**, a **scored diagnostic**, or any **placement / scored test** — none exists. The baseline is an official mba.com practice exam the user takes themselves and enters in the app. |
 | **50+ chapters** across Quant, Verbal, and Data Insights. | Any **affiliation with, endorsement by, or partnership with GMAC, mba.com, or the official GMAT.** |
 | **1,900+ original practice questions**, full-length mock exams, analytics, adaptive study planning, an error log with spaced review, and an optional AI tutor. | **Invented testimonials, reviews, user counts, or results.** |

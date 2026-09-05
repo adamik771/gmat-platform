@@ -14,16 +14,20 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - reading-comprehension-q33
-      - reading-comprehension-q34
+      - reading-comprehension-q113
+      - reading-comprehension-q120
   - id: rc-function
     type: reading
     title: "RC: Function"
     check_question_ids:
-      - reading-comprehension-q35
+      - reading-comprehension-q31
   - id: function-is-your-purpose-tag
     type: reading
     title: "Function = your paragraph-purpose tag, as a question"
+    check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
     check_question_ids: []
 problem_sets:
   easy:
@@ -33,9 +37,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - reading-comprehension-q55
-      - reading-comprehension-q36
-      - reading-comprehension-q37
+      - reading-comprehension-q181
+      - reading-comprehension-q44
+      - reading-comprehension-q125
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,10 +47,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q38
-      - reading-comprehension-q39
-      - reading-comprehension-q40
+      - reading-comprehension-q132
+      - reading-comprehension-q136
+      - reading-comprehension-q149
 ---
+
+## @summary
+
+- Answer why the author included the sentence or paragraph, not merely what it says.
+- Connect the local move to the surrounding argument: example, concession, evidence, objection, transition, or qualification.
+- Use structural verbs and verify that the choice identifies both the material and its purpose.
 
 ## @rc-function
 

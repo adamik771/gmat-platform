@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # SEO Landing Page Plan (No-Outreach Growth: SEO cluster)
 
 A plan for seven target landing pages that capture passive search demand and route it into the private beta. This is the page-level companion to `SEO_ARTICLE_IDEAS.md` (long-form posts) and complements the existing marketing docs (`GROWTH_PLAN.md`, `CONTENT_CALENDAR.md`, `REFERRAL_AND_DISCOUNT_PLAN.md`).
@@ -144,7 +146,7 @@ Reading the table: only **two genuinely new pages** are warranted — the error-
 - **Content outline (real content only):**
   - The private-beta promise: full access, free, no credit card.
   - The feature set (50+ chapters, 1,900+ questions, mocks, analytics, adaptive planning, error log plus spaced review, optional AI tutor) - use the shared `src/lib/site.ts` constants for counts, never hardcode exact figures.
-  - The founder story: Adam Zakarian, verified GMAT Focus 735 (100th percentile), 565 to 735, built solo.
+  - The founder story: Adam Zakarian, GMAT Focus 735 (top 1%), 565 to 735, built solo.
   - The founding-member reservation (locked-in discount) via the existing FoundingOffer block.
   - Claim block with the GMAC trademark line.
 - **Internal links:** `/about`, `/pricing`, `/refer`.
@@ -163,7 +165,7 @@ Reading the table: only **two genuinely new pages** are warranted — the error-
 ## Standing requirements for every page
 
 - ZERO emojis.
-- No "free diagnostic," no scored placement/diagnostic test, no guaranteed-score or specific-improvement language. The only personal result cited is Adam Zakarian's verified GMAT Focus 735 (100th percentile), 565 to 735.
+- No "free diagnostic," no scored placement/diagnostic test, no guaranteed-score or specific-improvement language. The only personal result cited is Adam Zakarian's GMAT Focus 735 (top 1%), 565 to 735.
 - No fabricated numbers; counts come from the shared `src/lib/site.ts` constant (approximate marketing counts), never hardcoded exact figures.
 - Include in any public claim block: "GMAT is a registered trademark of GMAC, which does not endorse and is not affiliated with this product."
 - Email capture stays opt-in with one-click unsubscribe (CAN-SPAM / GDPR); the existing LeadCapture flow fires `lead_captured` on submit.

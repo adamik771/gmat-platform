@@ -29,8 +29,6 @@ The correct answer is C.
 **takeaway:** When the stem asks for a single value and the choices are sorted numbers, test C first — one substitution either confirms the answer or tells you which half to discard.
 **related_reading:** quant-01-backsolving
 
----
-
 ## Q2
 **difficulty:** Medium
 **type:** Problem Solving
@@ -282,7 +280,7 @@ The correct answer is D.
 ---
 
 ## Q11
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Backsolving
 
@@ -882,7 +880,7 @@ The correct answer is C.
 ---
 
 ## Q28
-**difficulty:** Advanced
+**difficulty:** Hard
 **type:** Problem Solving
 **topic:** Backsolving
 
@@ -1293,7 +1291,7 @@ A jar contains 30 coins, all of which are dimes (10 cents) and quarters (25 cent
 **type:** Problem Solving
 **topic:** Backsolving
 
-A mother is currently five times as old as her daughter. In 6 years, the mother will be three times as old as her daughter will be then. How old is the mother now?
+A mother is currently three times as old as her daughter. In 10 years, the mother will be twice as old as her daughter will be then. How old is the mother now?
 
 - A) 25
 - B) 30
@@ -1302,7 +1300,7 @@ A mother is currently five times as old as her daughter. In 6 years, the mother 
 - E) 45
 
 **answer:** B
-**explanation:** Each choice is the mother's current age, and since she is five times her daughter's age, the daughter's age is that choice divided by 5. Testing choice B, mother = 30: the daughter is 6 now, so in 6 years the mother is 36 and the daughter is 12, and 36 is exactly three times 12. Both conditions hold, and checking the plain-English future condition against concrete ages avoids the classic mistranslation that forgets the daughter also ages six years.
+**explanation:** Each choice is the mother's current age, and since she is three times her daughter's age, the daughter's age is that choice divided by 3. Testing choice B, mother = 30: the daughter is 10 now, so in 10 years the mother is 40 and the daughter is 20, and 40 is exactly twice 20. Both conditions hold, and several wrong choices announce themselves immediately because dividing by 3 gives a non-integer current age for the daughter. Checking the plain-English future condition against concrete ages avoids the classic mistranslation that forgets the daughter also ages ten years.
 **related_reading:** quant-01-backsolving
 
 ---
@@ -1312,7 +1310,7 @@ A mother is currently five times as old as her daughter. In 6 years, the mother 
 **type:** Problem Solving
 **topic:** Backsolving
 
-Service X charges a one-time setup fee of 36 dollars plus 3 dollars per month. Service Y charges no setup fee and 9 dollars per month. After how many months is the total amount paid to Service X equal to the total amount paid to Service Y?
+A gym charges a one-time enrollment fee of 42 dollars plus 5 dollars per visit. A drop-in studio charges no enrollment fee and 12 dollars per visit. After how many visits is the total amount paid to the gym equal to the total amount paid to the studio?
 
 - A) 2
 - B) 3
@@ -1321,13 +1319,13 @@ Service X charges a one-time setup fee of 36 dollars plus 3 dollars per month. S
 - E) 6
 
 **answer:** E
-**explanation:** Each choice is a candidate number of months; Service X's total is the flat 36 plus 3 per month, and Service Y's total is 9 per month, so compute both and compare. Testing choice E, m = 6: Service X costs 36 + 3(6) = 54, and Service Y costs 9(6) = 54, so the totals are equal. The setup fee is paid once rather than monthly, and the gap between the two totals shrinks by 6 dollars each month, so exactly one month count balances them.
+**explanation:** Each choice is a candidate number of visits; the gym's total is the flat 42 plus 5 per visit, and the studio's total is 12 per visit, so compute both and compare. Testing choice E, v = 6: the gym costs 42 + 5(6) = 72, and the studio costs 12(6) = 72, so the totals are equal. The enrollment fee is paid once rather than per visit, and the gap between the two totals shrinks by 7 dollars each visit, so exactly one visit count balances them.
 **related_reading:** quant-01-backsolving
 
 ---
 
 ## Q50
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Backsolving
 
@@ -1388,6 +1386,40 @@ If n is a positive integer, what is the value of n?
 
 **answer:** C
 **explanation:** The question asks for a single value of n, so a statement is sufficient only if it isolates exactly one value. Statement (1) factors as (n - 2)(n - 3) = 0, allowing n = 2 or n = 3, two values, so it is not sufficient alone. Statement (2) says n is even, which permits infinitely many positive integers, so it is not sufficient alone. Combining them, n must be a root of the quadratic and even, which leaves only n = 2 since 3 is odd, so both statements together are sufficient and the answer is C.
+**related_reading:** quant-01-backsolving
+
+---
+
+## Q53
+**difficulty:** Hard
+**type:** Problem Solving
+**topic:** Backsolving
+
+A theater sold 240 tickets consisting only of adult, student, and balcony tickets. Adult tickets cost $18, student tickets cost $12, and balcony tickets cost $9. The theater sold twice as many student tickets as balcony tickets and collected $3,270 in total. How many adult tickets did the theater sell?
+
+- A) 70
+- B) 80
+- C) 90
+- D) 100
+- E) 110
+
+**answer:** C
+**fastest_path:** Backsolve the middle choice. If 90 tickets were adult tickets, the remaining 150 split in a 2:1 student-to-balcony ratio, giving 100 student and 50 balcony tickets. Revenue is 18(90) + 12(100) + 9(50) = 3,270.
+**common_trap:** The 2:1 ratio applies only to student and balcony tickets, so first subtract the proposed adult count from 240 and then divide the remainder into three ratio parts.
+**takeaway:** When choices represent one category and the remaining categories have a fixed ratio, each choice determines the complete allocation and can be checked directly.
+**explanation:** Each answer choice gives a possible number of adult tickets. Once that number is chosen, the remaining tickets must be divided between student and balcony tickets in the ratio 2:1.
+
+Start with the middle choice, 90 adult tickets. That leaves 240 - 90 = 150 tickets for students and balcony customers. Because the student-to-balcony ratio is 2:1, the 150 tickets divide into three equal parts of 50: 100 student tickets and 50 balcony tickets.
+
+The resulting revenue is
+
+18(90) + 12(100) + 9(50) = 1,620 + 1,200 + 450 = 3,270.
+
+This matches the stated total exactly, so 90 adult tickets satisfies every constraint.
+
+For uniqueness, increasing the adult count by 10 reduces the combined student-and-balcony count by 10. Under the 2:1 ratio, that substitution raises total revenue, because adult tickets cost more than either other ticket type. Therefore only one listed adult count can produce $3,270.
+
+The correct answer is C.
 **related_reading:** quant-01-backsolving
 
 ---

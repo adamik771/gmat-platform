@@ -20,9 +20,15 @@ import type { Section } from "@/types"
  */
 
 const MIN_ATTEMPTS_FOR_WEAKNESS = 3
+/** A topic needs at least this many MISSES before it can be called weak —
+ *  one wrong answer out of three used to flag the topic and could headline
+ *  Today's Focus off a single slip. */
+const MIN_MISSES_FOR_WEAKNESS = 2
 const WEAK_TOPIC_THRESHOLD = 0.7 // accuracy below this = flag as weak
 const REVIEW_QUEUE_URGENT = 10 // if ≥ this many due, review-first
 
+import { hoursBand } from "./study-hours"
+import { daysUntil } from "./utils"
 import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "./topic-chapter-map"
 import { ERROR_TAG_BY_ID, ROOT_CAUSE_BY_ID } from "@/app/(app)/error-log/constants"
 
@@ -175,23 +181,30 @@ export async function computeStudyPlan(
 
   // Review queue — the spaced-retrieval queue's length drives one arm of
   // the "what to do today" decision. Reuse a caller-provided queue when given
-  // (the params match), otherwise fetch it here.
-  const queue =
-    opts.reviewQueue ??
-    (await getReviewQueue(supabase, userId, {
-      limit: 60,
-      flaggedQuestionIds: opts.flaggedQuestionIds,
-    }))
+  // (the params match), otherwise fetch it here. A failed read degrades to
+  // an empty queue: the plan still renders, and the review surfaces carry
+  // the honest error state.
+  const queuePromise =
+    opts.reviewQueue !== undefined
+      ? Promise.resolve(opts.reviewQueue)
+      : getReviewQueue(supabase, userId, {
+          limit: 60,
+          flaggedQuestionIds: opts.flaggedQuestionIds,
+        }).then((queue) => queue ?? [])
+  const attemptsPromise = supabase
+    .from("practice_attempts")
+    .select("id, section, topic, is_correct")
+    .eq("user_id", userId)
+    .limit(5000)
+  const [queue, { data: attemptRows }] = await Promise.all([
+    queuePromise,
+    attemptsPromise,
+  ])
   const reviewDueCount = queue.length
 
   // Topic-level accuracy from all attempts. Bounded to 5k rows via the
   // review-queue helper would be ideal; here we take a broader view since
   // weak-area signals benefit from more history.
-  const { data: attemptRows } = await supabase
-    .from("practice_attempts")
-    .select("id, section, topic, is_correct")
-    .eq("user_id", userId)
-    .limit(5000)
 
   const topicStats = new Map<
     string,
@@ -209,7 +222,11 @@ export async function computeStudyPlan(
   }
 
   const weakAreas: WeakArea[] = [...topicStats.entries()]
-    .filter(([, v]) => v.total >= MIN_ATTEMPTS_FOR_WEAKNESS)
+    .filter(
+      ([, v]) =>
+        v.total >= MIN_ATTEMPTS_FOR_WEAKNESS &&
+        v.total - v.correct >= MIN_MISSES_FOR_WEAKNESS
+    )
     .map(([topic, v]) => ({
       topic,
       section: v.section,
@@ -271,18 +288,10 @@ export async function computeStudyPlan(
   // Today's focus — a ranked list, highest-impact first.
   const todaysFocus: FocusAction[] = []
 
-  const daysUntilExam = opts.examDate
-    ? (() => {
-        // Parse the exam date (YYYY-MM-DD) as LOCAL midnight, not UTC. `new
-        // Date("YYYY-MM-DD")` is UTC midnight, which in a positive-offset
-        // timezone (e.g. Oslo UTC+1/2) reads as the previous local day and
-        // threw the day count off by one. Compare local-midnight to local-today.
-        const [y, m, d] = opts.examDate.split("-").map(Number)
-        const examLocal = new Date(y, (m ?? 1) - 1, d ?? 1).getTime()
-        const todayLocal = new Date(new Date().toDateString()).getTime()
-        return Math.ceil((examLocal - todayLocal) / 86400000)
-      })()
-    : null
+  // Local-midnight parse — the shared helper exists because the naive
+  // `new Date("YYYY-MM-DD")` (UTC midnight) countdown was off by one in
+  // positive-offset timezones. Every exam countdown must use this.
+  const daysUntilExam = daysUntil(opts.examDate)
 
   // 1. Official baseline if none entered — the highest-priority first action.
   // The baseline is a real mba.com practice exam taken under exam conditions;
@@ -337,18 +346,27 @@ export async function computeStudyPlan(
     })
   }
 
-  // 4. Late-stage emphasis on mocks — if exam is close, nudge toward
-  // full-length timed practice.
-  if (daysUntilExam !== null && daysUntilExam > 0 && daysUntilExam <= 21) {
+  // 4. Late-stage emphasis on mocks — but only until the final week.
+  // Inside 7 days the advice flips to taper: GMAC's own guidance and the
+  // product's exam roadmap both say no full-length mocks in the final
+  // week (this card used to contradict the roadmap one click away).
+  if (daysUntilExam !== null && daysUntilExam > 0 && daysUntilExam <= 7) {
+    todaysFocus.push({
+      type: "review",
+      title: "Final week — taper",
+      subtitle:
+        "No more full-length mocks (matches your exam plan). Short timed sections and your review queue only.",
+      href: "/review",
+      cta: "Open review",
+      priority: 55,
+    })
+  } else if (daysUntilExam !== null && daysUntilExam > 7 && daysUntilExam <= 21) {
     todaysFocus.push({
       type: "mock",
-      title: `Build a timed mock`,
-      subtitle:
-        daysUntilExam <= 7
-          ? "Under a week out — simulate exam conditions every few days."
-          : `${daysUntilExam} days to go. Mix timed mocks into your rotation.`,
-      href: "/test-builder",
-      cta: "Build test",
+      title: `Run a timed mock`,
+      subtitle: `${daysUntilExam} days to go. Mix timed mocks into your rotation.`,
+      href: "/mock",
+      cta: "Go to mocks",
       priority: 55,
     })
   }
@@ -383,10 +401,17 @@ export async function computeStudyPlan(
  *   - injects review days whenever the queue is large
  *   - injects weak-topic chapter days when weak areas exist
  *   - falls back to practice when nothing else applies
+ *
+ * `weeklyHours` (the onboarding target) shapes the week when provided:
+ *   - low band: weak-area work leads the rotation — scarce hours go to the
+ *     highest-leverage gap first
+ *   - high band: the last day becomes a light review/rest day so a
+ *     high-volume week has a scheduled recovery point
  */
 export function buildWeeklyCadence(
   plan: StudyPlanOutput,
-  nextReadings: Array<{ slug: string; title: string }>
+  nextReadings: Array<{ slug: string; title: string }>,
+  weeklyHours?: number | null
 ): DailySuggestion[] {
   const days: DailySuggestion[] = []
   // Next chapters on the guided path (the lessons library is deprecated —
@@ -398,11 +423,22 @@ export function buildWeeklyCadence(
   // guided-path chapter read, then fresh practice, cycling.
   const hasReview = plan.reviewDueCount > 0
   const hasWeakTopic = weakQueue.length > 0
+  const band = typeof weeklyHours === "number" ? hoursBand(weeklyHours) : null
 
   const pool: Array<DailySuggestionType | "reading"> = []
   if (hasReview) pool.push("review")
   if (hasWeakTopic) pool.push("chapter")
   pool.push("reading", "practice")
+  // An urgent queue earns a second weekly review slot — one slot in a
+  // 4-item rotation means ~2 review days/week, which can't drain a
+  // backlog that regrows on the ladder's 2-day rung.
+  if (hasReview && plan.reviewDueCount >= REVIEW_QUEUE_URGENT) {
+    pool.push("review")
+  }
+  if (band === "low" && hasWeakTopic) {
+    pool.splice(pool.indexOf("chapter"), 1)
+    pool.unshift("chapter")
+  }
 
   for (let i = 0; i < 7; i++) {
     const choice = pool[i % pool.length]
@@ -432,6 +468,16 @@ export function buildWeeklyCadence(
         label: "Practice set",
         href: "/practice",
       })
+    }
+  }
+
+  if (band === "high") {
+    // Scheduled recovery: at 15+ hrs/week the marginal day of fresh material
+    // costs more (burnout) than it earns — close the week light.
+    days[6] = {
+      type: "review",
+      label: "Light review + rest",
+      href: "/review",
     }
   }
 

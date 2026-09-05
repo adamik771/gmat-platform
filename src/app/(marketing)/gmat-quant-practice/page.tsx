@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import AcquisitionLanding, {
   type AcquisitionLandingProps,
 } from "@/components/marketing/AcquisitionLanding"
+import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "GMAT Quant Practice and Study Plan: Strategy Over Content",
@@ -29,11 +30,11 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "heading": "Practice in mixed, timed sets and let spaced review do the retention",
-      "body": "How you practice matters more than how much. Two structural choices separate efficient prep from spinning your wheels:\n\n- Mixed over blocked. Doing 30 exponent questions in a row teaches your brain to expect exponents, which the real exam never does. The hard skill on test day is recognizing, cold, what kind of question you are looking at. So after you learn a concept in isolation, practice it interleaved with other topics. Mixed sets are uncomfortable and that discomfort is the training effect.\n- Timed by default. Untimed practice builds false confidence. Even early on, give yourself a soft clock so timing pressure is baked into how you solve, not bolted on at the end.\n\nRetention is the other half. You will relearn the same number-properties rule three times unless you revisit it on a spacing curve, reviewing a concept just as you are about to forget it. Doing this by hand with flashcards works but is tedious to schedule. The platform runs a daily spaced-review queue that resurfaces your past misses on that curve automatically, so the rules you got wrong come back exactly when they are most fragile. Across the 62 chapters and 1,900+ original practice questions, the workflow is: learn a concept, practice it mixed and timed, log every miss by cause, and let the review queue handle long-term retention."
+      "body": "How you practice matters more than how much. Two structural choices separate efficient prep from spinning your wheels:\n\n- Mixed over blocked. Doing 30 exponent questions in a row teaches your brain to expect exponents, which the real exam never does. The hard skill on test day is recognizing, cold, what kind of question you are looking at. So after you learn a concept in isolation, practice it interleaved with other topics. Mixed sets are uncomfortable and that discomfort is the training effect.\n- Timed by default. Untimed practice builds false confidence. Even early on, give yourself a soft clock so timing pressure is baked into how you solve, not bolted on at the end.\n\nRetention is the other half. You will relearn the same number-properties rule three times unless you revisit it on a spacing curve, reviewing a concept just as you are about to forget it. Doing this by hand with flashcards works but is tedious to schedule. The platform runs a daily spaced-review queue that resurfaces your past misses on that curve automatically, so the rules you got wrong come back exactly when they are most fragile. Across the " + CHAPTER_COUNT_CLAIM + " chapters and " + QUESTION_CLAIM + ", the workflow is: learn a concept, practice it mixed and timed, log every miss by cause, and let the review queue handle long-term retention."
     },
     {
       "heading": "Use mocks to calibrate, and build the plan around your own baseline",
-      "body": "Your study plan should be reverse-engineered from real data about you, not a generic 8-week template. That means anchoring to an actual baseline and re-checking it with full-length mocks.\n\n- Get a real baseline. Take an official practice exam from mba.com under timed conditions. That score, and the breakdown of where you lost points, is your honest starting line. The Zakarian GMAT adaptive study plan is built from that official-practice baseline rather than from any in-app guess, because the only trustworthy starting point is a real, full-length, properly-timed exam.\n- Use mocks to calibrate, not to cram. A full-length mock under real conditions tells you about stamina and pacing, things you cannot learn from problem sets. Take them periodically, not constantly, and treat the score as a calibration reading. The platform tracks mock-to-mock trend so you can see whether the line is actually moving.\n- Review the mock harder than you took it. The 90 minutes after a mock, spent sorting every miss by cause, is worth more than the mock itself.\n\nA note on honesty: there is no shortcut that substitutes for a real official baseline, and no tool (this one included) can tell you your test-day score in advance. What a good plan does is point your limited hours at the few things actually costing you points. That founder context is real: I self-studied from 565 to 735 (100th percentile on my official report) by obsessing over decision-making and timing rather than chasing more content, and the platform is the system I wish I had built on day one."
+      "body": "Your study plan should be reverse-engineered from real data about you, not a generic 8-week template. That means anchoring to an actual baseline and re-checking it with full-length mocks.\n\n- Get a real baseline. Take an official practice exam from mba.com under timed conditions. That score, and the breakdown of where you lost points, is your honest starting line. The Zakarian GMAT adaptive study plan is built from that official-practice baseline rather than from any in-app guess, because the only trustworthy starting point is a real, full-length, properly-timed exam.\n- Use mocks to calibrate, not to cram. A full-length mock under real conditions tells you about stamina and pacing, things you cannot learn from problem sets. Take them periodically, not constantly, and treat the score as a calibration reading. The platform tracks mock-to-mock trend so you can see whether the line is actually moving.\n- Review the mock harder than you took it. The 90 minutes after a mock, spent sorting every miss by cause, is worth more than the mock itself.\n\nA note on honesty: there is no shortcut that substitutes for a real official baseline, and no tool (this one included) can tell you your test-day score in advance. What a good plan does is point your limited hours at the few things actually costing you points. That founder context is real: I self-studied from 565 to 735 (top 1% of test-takers) by obsessing over decision-making and timing rather than chasing more content, and the platform is the system I wish I had built on day one."
     }
   ],
   "faq": [
@@ -43,7 +44,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "Is the platform free, and is there a catch?",
-      "a": "It is free to use during a private beta, with no credit card required. Separately, founding users can reserve early pricing if they want to lock it in: the founding rate is $399, anchored to the $599 mentorship tier, and there is a referral option where a friend gets the founding price and the referrer gets $50. None of that is required to study. The free tools (sample chapters, a Focus-to-old score converter, a section-to-total calculator, and the downloadable error-log template) need no account at all."
+      "a": "Every new account starts with a free 7-day full-access trial, with no credit card required. After the trial, access continues with a one-time plan purchase (no subscription) — current prices are on the pricing page. The free tools (sample chapters, a Focus-to-old score converter, a section-to-total calculator, and the downloadable error-log template) need no account at all."
     },
     {
       "q": "Does Zakarian GMAT have a diagnostic that tells me my score?",
@@ -51,15 +52,15 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "Is this affiliated with GMAC or mba.com?",
-      "a": "No. Zakarian GMAT is an independent prep platform and is not affiliated with, endorsed by, or sponsored by GMAC, the GMAT, GMAT Focus Edition, or mba.com. Those are GMAC trademarks and are referenced here only to describe the exam the platform helps you prepare for."
+      "a": "No. GMAC, GMAT, Graduate Management Admission Council, and Graduate Management Admission Test are trademarks of GMAC. Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC. The marks are referenced only to describe the exam the platform helps you prepare for."
     }
   ],
   "lead": {
     "source": "other",
-    "leadMagnet": "newsletter",
-    "headline": "Get the Quant error-log template and a sample chapter",
-    "description": "Enter your email and I will send you the six-cause error-log template (Conceptual, Careless, Time Pressure, Misread, Strategy, Other) plus a sample Quant chapter, so you can start sorting your misses by root cause today. No card, no spam, just the tools. You will also get notified when private-beta access opens up.",
-    "ctaLabel": "Send it to me"
+    "leadMagnet": "error-log-template",
+    "headline": "Get the free six-tag error-log template",
+    "description": "Enter your email and the six-cause error-log spreadsheet (Conceptual, Careless, Time Pressure, Misread, Strategy, Other) downloads right away, so you can start sorting your Quant misses by root cause today. The sample Quant chapter is free on the site with no email at all. No card, no account.",
+    "ctaLabel": "Send me the template"
   },
   "metaDescription": "A founder-built GMAT Focus Quant study approach: fix the real bottleneck, drill mixed sets under timing, log errors by cause, and master the 5 decision points that move your score."
 }

@@ -1,5 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { blockIfNoAccess } from "@/lib/entitlements"
+import { WEEKLY_HOURS_MAX, WEEKLY_HOURS_MIN } from "@/lib/study-hours"
 
 /**
  * POST /api/onboarding — persist the new-student intake form into
@@ -12,7 +13,7 @@ import { blockIfNoAccess } from "@/lib/entitlements"
  *     targetScore: number      // 205-805, increments of 10
  *     examDate: string | null  // YYYY-MM-DD or null = undecided
  *     currentScore: number | null  // 205-805 (only when student has a prior score)
- *     weeklyHours: number      // 1-40
+ *     weeklyHours: number      // WEEKLY_HOURS_MIN..MAX (3-25)
  *     weakAreas: string[]      // free-form selections from the wizard
  *     prepHistory: string      // "first-time" | "in-progress" | "retake"
  *   }
@@ -103,11 +104,13 @@ export async function POST(request: Request) {
   if (
     typeof weeklyHours !== "number" ||
     !Number.isFinite(weeklyHours) ||
-    weeklyHours < 1 ||
-    weeklyHours > 40
+    weeklyHours < WEEKLY_HOURS_MIN ||
+    weeklyHours > WEEKLY_HOURS_MAX
   ) {
     return Response.json(
-      { error: "weeklyHours must be a number 1-40" },
+      {
+        error: `weeklyHours must be a number ${WEEKLY_HOURS_MIN}-${WEEKLY_HOURS_MAX}`,
+      },
       { status: 400 }
     )
   }

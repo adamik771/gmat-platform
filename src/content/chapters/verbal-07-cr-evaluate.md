@@ -14,13 +14,17 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q41
-      - critical-reasoning-q42
+      - critical-reasoning-q150
+      - critical-reasoning-q151
   - id: cr-evaluate
     type: reading
     title: "CR: Evaluate"
     check_question_ids:
-      - critical-reasoning-q43
+      - critical-reasoning-q39
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +33,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q166
-      - critical-reasoning-q44
-      - critical-reasoning-q45
+      - critical-reasoning-q16
+      - critical-reasoning-q156
+      - critical-reasoning-q248
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,10 +43,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q46
-      - critical-reasoning-q47
+      - critical-reasoning-q62
+      - critical-reasoning-q68
       - critical-reasoning-q48
 ---
+
+## @summary
+
+- Locate the uncertain link in the argument and ask what fact would change your confidence in it.
+- Test both possible answers to the proposed question; one direction should strengthen and the other should weaken.
+- A useful evaluation question must be relevant either way, not helpful under only one convenient response.
 
 ## @cr-evaluate
 

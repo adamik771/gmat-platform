@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Measurement Dashboard
 
 The one map that ties every tracked event to the funnel metric it feeds, where to read it today, and what a realistic early-beta number looks like. This is decision-support: it tells you what to look at and how to compute it, not what to spend.
@@ -5,7 +7,7 @@ The one map that ties every tracked event to the funnel metric it feeds, where t
 Hard context that shapes every benchmark below:
 - This is a brand-new private beta with little to no traffic. Numbers are tiny and noisy. Treat single-day swings as noise; trust 7-day rollups.
 - The beta is **free, no card** (`PAYWALL_ENABLED` off, Stripe test-mode). So `signup` is the conversion that matters; `checkout_initiated` / `purchase_completed` are wired but dormant — expect zero, and that is correct, not a bug.
-- The **only** performance claim anywhere is the founder's own 565 -> 735 (100th percentile), framed as his result. No score guarantees, no fake diagnostic, no GMAC affiliation. Nothing in this file changes that.
+- The **only** performance claim anywhere is the founder's own 565 -> 735 (top 1%), framed as his result. No score guarantees, no fake diagnostic, no GMAC affiliation. Nothing in this file changes that.
 - Pixels are **dormant**: `NEXT_PUBLIC_META_PIXEL_ID` and `NEXT_PUBLIC_GOOGLE_TAG_ID` are unset, so Meta `CompleteRegistration` and Google conversion columns read **zero even when signups are real**. **Vercel Web Analytics fires regardless** and is the reliable daily source until those IDs are set.
 
 Where the plumbing lives (don't re-derive it): `trackEvent()` and `META_EVENT_MAP` in `src/lib/analytics.ts`; first-touch attribution in `src/components/analytics/AttributionCapture.tsx` (`captureAttribution` -> localStorage `zg_attribution`, merged into every event); pixels in `src/components/analytics/AdPixels.tsx`. Email plumbing: Resend + Supabase tables `email_subscriptions`, `email_queue`, `email_events`; daily cron `0 14 * * *`.
@@ -107,7 +109,7 @@ Roll up the daily Vercel snapshots and the email tables. One change per item; lo
 6. **Activation:** beta activation rate for last week's signup cohort (section 2.1). If signups rise but activation falls, fix onboarding, not the ads.
 7. **Organic check:** signups with no paid first-touch UTM. Which theme pages pull organic? Note momentum to feed with content.
 8. **Pixel/tag status:** confirm whether `NEXT_PUBLIC_META_PIXEL_ID` / `NEXT_PUBLIC_GOOGLE_TAG_ID` are set and whether platform conversions match Vercel within a sane margin.
-9. **Compliance pass:** re-read every live ad and headline. No guaranteed scores, no diagnostic/readiness/score-band claims, no generalized improvement claims, no fake urgency/scarcity/counts, GMAC marks nominative only, founder 565 -> 735 / 100th-percentile claim only and never generalized.
+9. **Compliance pass:** re-read every live ad and headline. No guaranteed scores, no diagnostic/readiness/score-band claims, no generalized improvement claims, no fake urgency/scarcity/counts, GMAC marks nominative only, founder 565 -> 735 / top-1% claim only and never generalized.
 10. **One decision for next week:** the single biggest lever. Write it down; review it next week.
 
 Daily (about 10 min) is lighter: open Vercel Events, record yesterday's `landing_view` / `lead_captured` / `signup`; confirm at least one `landing_view` per live page and at least one `signup` in the last 24-48h across all sources. Zero signups platform-wide for 2 days with live spend = treat as broken tracking until proven otherwise.

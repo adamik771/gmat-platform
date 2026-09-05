@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Retargeting Setup
 
 Operational checklist for turning on paid retargeting for Zakarian GMAT. The tracking infrastructure already exists in the repo and is dormant. This doc covers the install (env vars + platform pixels), the audiences to build, the ad copy per audience, frequency caps, UTM naming for retargeting traffic, and the conversion goals to optimize toward.
@@ -86,7 +88,7 @@ Per-page split for A2 (optional but recommended): the `landing_view` `{page}` pr
 
 ## 4. Retargeting ad copy per audience
 
-All copy below is TRUE and compliant. The only performance claim permitted anywhere is the founder's own 565 → 735 climb (100th percentile on his official report) — never generalized to other students. No guaranteed scores, no diagnostic/score-band language, no fake urgency. Headlines are tuned to where the person already is in the funnel.
+All copy below is TRUE and compliant. The only performance claim permitted anywhere is the founder's own 565 → 735 climb (top 1%) — never generalized to other students. No guaranteed scores, no diagnostic/score-band language, no fake urgency. Headlines are tuned to where the person already is in the funnel.
 
 ### A1 — All visitors (broad reminder)
 - **Headline:** The GMAT platform built by a 565 → 735 self-studier.
@@ -195,6 +197,6 @@ Optimize each campaign for the next step in the funnel, not the final sale — a
 
 - Not affiliated with, endorsed by, or sponsored by GMAC, the GMAT, GMAT Focus, or mba.com. Trademarks used nominatively only; include the disclaimer in ad accounts and landing footers.
 - No guaranteed-score claims. No diagnostic/readiness/score-band language. The platform has **no** in-app diagnostic — the baseline is the user's own official mba.com practice exam.
-- The only performance claim allowed is the founder's own 565 → 735 (100th percentile on his official report). Never generalize it to other students.
+- The only performance claim allowed is the founder's own 565 → 735 (top 1%). Never generalize it to other students.
 - No fabricated testimonials, student counts, or urgency. The free private beta and the founding-price reservation are real and need no manufactured scarcity.
 - No PII in `trackEvent` props or UTMs. Respect consent in regulated geos before loading any pixel/tag.

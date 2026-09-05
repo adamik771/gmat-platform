@@ -7,8 +7,9 @@ import FAQAccordion from "@/components/marketing/FAQAccordion"
 import FoundingOffer from "@/components/marketing/FoundingOffer"
 import TrackView from "@/components/analytics/TrackView"
 import { PAYWALL_ENABLED } from "@/lib/entitlements"
-import { QUESTION_CLAIM_SHORT } from "@/lib/site"
+import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM_SHORT } from "@/lib/site"
 import { tiers } from "@/lib/plans"
+import { PLAN_ACCESS_MONTHS } from "@/lib/plan-access"
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -45,7 +46,7 @@ const faqItems = [
 ]
 
 const comparisonFeatures = [
-  "50+ chapters (Q / V / DI)",
+  `${CHAPTER_COUNT_CLAIM} chapters (Q / V / DI)`,
   QUESTION_CLAIM_SHORT,
   "Practice tests + test builder",
   "Official-exam study plan",
@@ -57,10 +58,10 @@ const comparisonFeatures = [
 ]
 
 const comparisonData: Record<string, (boolean | string)[]> = {
-  "Self-Study": [true, true, true, true, true, true, "4 months", false, false],
-  Mentorship: [true, true, true, true, true, true, "6 months", true, false],
-  Coaching: [true, true, true, true, true, true, "6 months", true, "8 sessions"],
-  Intensive: [true, true, true, true, true, true, "12 months", true, "16 sessions"],
+  "Self-Study": [true, true, true, true, true, true, `${PLAN_ACCESS_MONTHS.self_study} months`, false, false],
+  Mentorship: [true, true, true, true, true, true, `${PLAN_ACCESS_MONTHS.self_study_guaranteed} months`, true, false],
+  Coaching: [true, true, true, true, true, true, `${PLAN_ACCESS_MONTHS.coaching} months`, true, "8 sessions"],
+  Intensive: [true, true, true, true, true, true, `${PLAN_ACCESS_MONTHS.intensive} months`, true, "16 sessions"],
 }
 
 export default function PricingPage() {
@@ -116,12 +117,31 @@ export default function PricingPage() {
                 </p>
               ) : (
                 <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
-                  <span className="font-semibold text-[#F0F0F0]">Early access.</span>{" "}
-                  The full self-study platform is free to use while we&apos;re in beta
-                  &mdash; create an account and start today. The plans below are how
-                  pricing and Adam&apos;s 1:1 coaching work as they roll out.
+                  <span className="font-semibold text-[#F0F0F0]">
+                    <Link href="/signup" className="underline hover:opacity-80">
+                      Start with the free trial.
+                    </Link>
+                  </span>{" "}
+                  Every new account begins with a free 7-day full-access trial &mdash;
+                  no credit card. Paid checkout hasn&apos;t opened yet; the plans below
+                  show exactly what each tier costs when it does, and every price is a
+                  one-time payment, not a subscription.
                 </p>
               )}
+            </div>
+            {/* The page's primary conversion action — previously /pricing had
+                no in-page path to /signup at all (the top leak in the pre-auth
+                funnel). Rendered above the cards so it is visible at 375px
+                without opening the nav. */}
+            <div className="mt-6">
+              <Link
+                href="/signup"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Start your 7-day trial &mdash; no card
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
 
@@ -158,7 +178,7 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
             {[
-              { icon: Shield, label: "14-Day Money-Back" },
+              { icon: Shield, label: "14-Day Money-Back on Self-Study" },
               { icon: Calendar, label: "Flexible Scheduling" },
               { icon: Globe, label: "Non-Native Speaker Support" },
             ].map((item, i) => {

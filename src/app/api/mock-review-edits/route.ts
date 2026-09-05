@@ -1,6 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { blockIfNoAccess } from "@/lib/entitlements"
-import { getUserState, patchUserState } from "@/lib/user-state"
+import { getUserStateForWrite, patchUserState } from "@/lib/user-state"
 
 const VALID_SECTIONS = new Set(["Quant", "Verbal", "DI"])
 
@@ -88,7 +88,13 @@ export async function POST(request: Request) {
     if (cleaned.length >= 10) break // real GMAT caps edits at 3; 10 is a generous ceiling
   }
 
-  const state = await getUserState(supabase, user)
+  // Error-aware read: this route read-modify-writes a whole user_state key.
+  // Proceeding after a FAILED read would rebuild the key from empty and
+  // destroy the stored history (same class as the chapter-progress guard).
+  const { state, errored } = await getUserStateForWrite(supabase, user)
+  if (errored) {
+    return Response.json({ error: "state read failed; retry" }, { status: 503 })
+  }
   const existing =
     (state.mock_review_edits as
       | Record<string, Partial<Record<string, EditEntry[]>>>

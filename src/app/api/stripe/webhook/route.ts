@@ -24,28 +24,32 @@ export async function POST(request: Request) {
   const sig = request.headers.get("stripe-signature")
   const secret = process.env.STRIPE_WEBHOOK_SECRET
 
-  if (!sig || !secret) {
-    return Response.json(
-      { error: "Missing stripe-signature or STRIPE_WEBHOOK_SECRET" },
-      { status: 400 }
-    )
+  if (!secret) {
+    console.error("[stripe/webhook] webhook secret is not configured")
+    return Response.json({ error: "Webhook unavailable" }, { status: 503 })
+  }
+  if (!sig) {
+    return Response.json({ error: "Invalid webhook request" }, { status: 400 })
+  }
+
+  const MAX_WEBHOOK_BYTES = 1024 * 1024
+  const declaredLength = Number(request.headers.get("content-length"))
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_WEBHOOK_BYTES) {
+    return Response.json({ error: "Webhook payload too large" }, { status: 413 })
   }
 
   const rawBody = await request.text()
+  if (Buffer.byteLength(rawBody, "utf8") > MAX_WEBHOOK_BYTES) {
+    return Response.json({ error: "Webhook payload too large" }, { status: 413 })
+  }
 
   let event: Stripe.Event
   try {
     const stripe = getStripe()
     event = stripe.webhooks.constructEvent(rawBody, sig, secret)
-  } catch (err) {
-    return Response.json(
-      {
-        error: `Webhook signature verification failed: ${
-          err instanceof Error ? err.message : "unknown"
-        }`,
-      },
-      { status: 400 }
-    )
+  } catch {
+    console.warn("[stripe/webhook] signature verification failed")
+    return Response.json({ error: "Invalid webhook request" }, { status: 400 })
   }
 
   // Decide what to do (pure, exhaustively tested in tests/stripe-webhook.test.ts).
@@ -60,21 +64,19 @@ export async function POST(request: Request) {
     service = getSupabaseService()
   } catch (err) {
     console.error("[stripe/webhook] service-role client error", err)
-    return Response.json(
-      { error: err instanceof Error ? err.message : "Service client unavailable" },
-      { status: 500 }
-    )
+    return Response.json({ error: "Webhook processing failed" }, { status: 500 })
   }
 
   try {
     if (action.kind === "skip_missing_metadata") {
-      // Nothing we can do without the user — log and accept so Stripe
-      // doesn't retry forever.
-      console.warn(
+      // Checkout creation always supplies these fields. A completed payment
+      // without them cannot safely grant access, so fail visibly and let
+      // Stripe retry while operations investigates the event.
+      console.error(
         "[stripe/webhook] checkout.session.completed missing user_id or plan_id",
         { sessionId: action.sessionId }
       )
-      return Response.json({ ok: true, skipped: "missing_metadata" })
+      return Response.json({ error: "Webhook processing failed" }, { status: 500 })
     } else if (action.kind === "record") {
       // Shared with the /purchase-success return page — upserts on
       // stripe_session_id, so double-recording the same payment converges.
@@ -87,7 +89,7 @@ export async function POST(request: Request) {
         currency: action.currency,
       })
       if (failed) {
-        return Response.json({ error: failed.error }, { status: 500 })
+        return Response.json({ error: "Webhook processing failed" }, { status: 500 })
       }
     } else if (action.kind === "partial_refund_noop") {
       // Partial refund — `charge.refunded` was false; access stays intact.
@@ -96,15 +98,12 @@ export async function POST(request: Request) {
       // Full refund or chargeback — revoke the matching purchase immediately.
       const revoked = await revokePurchase(service, action.paymentIntent, action.charge)
       if (revoked && "error" in revoked) {
-        return Response.json({ error: revoked.error }, { status: 500 })
+        return Response.json({ error: "Webhook processing failed" }, { status: 500 })
       }
     }
   } catch (err) {
     console.error("[stripe/webhook] handler error", err)
-    return Response.json(
-      { error: err instanceof Error ? err.message : "Handler error" },
-      { status: 500 }
-    )
+    return Response.json({ error: "Webhook processing failed" }, { status: 500 })
   }
 
   return Response.json({ ok: true, received: event.type })
@@ -138,13 +137,34 @@ async function revokePurchase(
     console.error(
       "[stripe/webhook] refund/dispute has no payment_intent or charge — cannot map to a purchase to revoke"
     )
-    return null
+    return { error: "refund/dispute has no purchase match key" }
   }
+
+  // Read first so an already-revoked event is an idempotent success, while a
+  // never-matched refund is a real error. The old update-only query could not
+  // distinguish those cases and acknowledged missing purchases as successful.
+  const { data: purchase, error: lookupError } = await service
+    .from("purchases")
+    .select("id, revoked_at")
+    .eq(matchedBy.column, matchedBy.value)
+    .limit(1)
+    .maybeSingle()
+  if (lookupError) {
+    console.error("[stripe/webhook] revoke lookup failed", lookupError)
+    return { error: lookupError.message }
+  }
+  if (!purchase) {
+    console.error("[stripe/webhook] refund/dispute matched no purchase", {
+      matchedBy: matchedBy.column,
+    })
+    return { error: "refund/dispute matched no purchase" }
+  }
+  if (purchase.revoked_at) return null
 
   const { data, error } = await service
     .from("purchases")
     .update({ revoked_at: new Date().toISOString() })
-    .eq(matchedBy.column, matchedBy.value)
+    .eq("id", purchase.id)
     .is("revoked_at", null)
     .select("id")
   if (error) {
@@ -152,14 +172,15 @@ async function revokePurchase(
     return { error: error.message }
   }
   if (!data || data.length === 0) {
-    // No active purchase matched: keys never stored, the completion event hasn't
-    // landed yet (out-of-order delivery), or it's already revoked. A refund or
-    // dispute that revokes nothing is a money/access discrepancy — escalate to
-    // error so monitoring can alert on it, not bury it as a warning.
-    console.error("[stripe/webhook] refund/dispute matched no active purchase", {
-      matchedBy: matchedBy.column,
-      value: matchedBy.value,
-    })
+    // A concurrent delivery may have revoked it between the read and update.
+    const { data: current, error: verifyError } = await service
+      .from("purchases")
+      .select("revoked_at")
+      .eq("id", purchase.id)
+      .maybeSingle()
+    if (!verifyError && current?.revoked_at) return null
+    console.error("[stripe/webhook] purchase could not be revoked")
+    return { error: "purchase could not be revoked" }
   }
   return null
 }

@@ -18,16 +18,28 @@ import {
 } from "lucide-react"
 import { DI_METHOD_CARDS, hasMethodCard } from "@/lib/di-method-cards"
 import { summarizeAnsweredAttempts } from "@/lib/practice-save"
-import { TOPIC_TO_CHAPTER } from "@/lib/topic-chapter-map"
+import { trackEvent } from "@/lib/analytics"
+import { isAnswerCorrect, pickMissed } from "@/lib/practice-retry"
+import { activeSessionMs } from "@/lib/practice-timing"
+import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "@/lib/topic-chapter-map"
+import { buildMixedReviewUrl } from "@/components/shared/MixedReviewCard"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import PacingBadge from "@/components/shared/PacingBadge"
+import DataInsightsCalculator from "@/components/shared/DataInsightsCalculator"
 import QuestionChart from "@/components/shared/QuestionChart"
+import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
+import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { ChartSpec } from "@/lib/chart-spec"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
+import {
+  practiceResumeStorageKey,
+  restorePracticeResume,
+  type PracticeResumeSnapshot,
+} from "@/lib/practice-resume"
 import {
   digitKeyToOptionIndex,
   shouldIgnoreKeyboardShortcut,
@@ -93,6 +105,7 @@ export interface WeakTopicHint {
 }
 
 interface SessionClientProps {
+  userId: string
   slug: string
   topic: string
   section: "Quant" | "Verbal" | "DI"
@@ -115,7 +128,19 @@ interface SessionClientProps {
    *  saved_for_review). Without this the save button remounted per question
    *  with a hardcoded unsaved state and looked like it "forgot" the save. */
   initialSavedForReview?: string[]
+  /** Surface-imposed feedback mode. Review sessions pass "study" so the
+   *  corrective-feedback surface actually delivers immediate feedback
+   *  (Rowland 2014); when set it wins over the stored preference, but
+   *  the in-session toggle still allows a per-session opt-out. */
+  defaultMode?: "exam" | "study"
+  /** Server copy of the user's one bounded active-practice snapshot. The
+   *  client prefers its newer local write-through copy when both exist. */
+  initialActivePractice?: unknown
 }
+
+/** Per-question time clamp: nobody legitimately spends 30+ minutes on one
+ *  GMAT item — beyond that it's a suspended tab, not solving time. */
+const MAX_QUESTION_MS = 30 * 60_000
 
 function formatDuration(ms: number): string {
   const totalSeconds = Math.floor(ms / 1000)
@@ -152,7 +177,15 @@ function detectDeviceType(): DeviceType {
 // question prompt + 5 options + explanation each render through it. Props are
 // primitives (text/className), so a shallow compare lets the per-second timer
 // tick (and other unrelated state changes) re-render without re-parsing.
-const PromptBlock = memo(function PromptBlock({ text, className = "" }: { text: string; className?: string }) {
+const PromptBlock = memo(function PromptBlock({
+  text,
+  className = "",
+  sortableTables = false,
+}: {
+  text: string
+  className?: string
+  sortableTables?: boolean
+}) {
   return (
     <div className={`text-sm leading-relaxed text-[#F0F0F0] ${className}`}>
       <ReactMarkdown
@@ -184,7 +217,7 @@ const PromptBlock = memo(function PromptBlock({ text, className = "" }: { text: 
             <ol {...props} className="list-decimal pl-5 my-2 space-y-1 first:mt-0 last:mb-0" />
           ),
           li: (props) => (
-            <li {...props} className="leading-relaxed marker:text-[#555555]" />
+            <li {...props} className="leading-relaxed marker:text-[#888888]" />
           ),
           a: (props) => (
             <a
@@ -223,11 +256,10 @@ const PromptBlock = memo(function PromptBlock({ text, className = "" }: { text: 
               className="my-3 p-3 rounded-lg bg-[#0A0A0A] border border-white/[0.06] overflow-x-auto text-xs"
             />
           ),
-          // Real HTML tables — the whole point of this upgrade.
           table: (props) => (
-            <div className="my-3 overflow-x-auto rounded-lg border border-white/[0.08]">
-              <table {...props} className="w-full border-collapse text-xs" />
-            </div>
+            <SortableMarkdownTable sortable={sortableTables} variant="runner">
+              {props.children}
+            </SortableMarkdownTable>
           ),
           thead: (props) => <thead {...props} className="bg-[#0D0D0D]" />,
           th: (props) => (
@@ -335,12 +367,16 @@ function cn(...classes: (string | false | null | undefined)[]): string {
 function ConfidencePanel({
   value,
   submitted,
+  hasAnswer,
   wasCorrect,
   revealOutcome = true,
   onSelect,
 }: {
   value: Confidence | null
   submitted: boolean
+  /** Brighten the prompt once an answer has been chosen so confidence is
+   *  captured at the decision point instead of being missed below the card. */
+  hasAnswer: boolean
   wasCorrect: boolean
   /** Exam mode defers correctness to the end — suppress the calibration
    *  copy (it leaks whether the answer was right) until then. */
@@ -402,16 +438,38 @@ function ConfidencePanel({
     }
   }
 
+  const needsConfidence = !submitted && hasAnswer && value === null
+
   return (
-    <div className="mt-5 p-4 rounded-lg border" style={{ borderColor: "rgba(201,168,76,0.12)", backgroundColor: "rgba(201,168,76,0.02)" }}>
+    <div
+      className="mt-4 p-4 rounded-lg border transition-all duration-200"
+      style={{
+        borderColor: needsConfidence
+          ? "rgba(232,201,122,0.62)"
+          : value
+            ? "rgba(201,168,76,0.34)"
+            : "rgba(201,168,76,0.16)",
+        backgroundColor: needsConfidence
+          ? "rgba(201,168,76,0.10)"
+          : value
+            ? "rgba(201,168,76,0.055)"
+            : "rgba(201,168,76,0.025)",
+        boxShadow: needsConfidence
+          ? "inset 3px 0 0 #E8C97A, 0 0 0 1px rgba(232,201,122,0.08)"
+          : "none",
+      }}
+    >
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+        <p
+          className="text-[11px] font-semibold uppercase tracking-widest"
+          style={{ color: needsConfidence ? "#F2D98F" : value ? "#E8C97A" : "#A0A0A0" }}
+        >
           {submitted ? "Your confidence" : "How confident are you?"}
-          <span className="text-[#444444] normal-case tracking-normal ml-2">
+          <span className="font-normal normal-case tracking-normal ml-2" style={{ color: "#8E8E8E" }}>
             (optional — trains metacognition)
           </span>
         </p>
-        <div className="flex gap-1.5">
+        <div className="flex gap-2">
           {levels.map((l) => {
             const active = value === l.id
             return (
@@ -420,7 +478,7 @@ function ConfidencePanel({
                 type="button"
                 onClick={() => onSelect(l.id)}
                 disabled={submitted}
-                className="px-2.5 py-1 rounded text-[11px] font-medium border transition-colors disabled:cursor-not-allowed disabled:opacity-80"
+                className="min-w-16 px-3.5 py-2 rounded-md text-xs font-semibold border transition-all hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-80 disabled:hover:translate-y-0"
                 style={
                   active
                     ? {
@@ -429,9 +487,13 @@ function ConfidencePanel({
                         borderColor: l.color + "66",
                       }
                     : {
-                        backgroundColor: "transparent",
-                        color: submitted ? "#444444" : "#888888",
-                        borderColor: "rgba(255,255,255,0.08)",
+                        backgroundColor: needsConfidence
+                          ? "rgba(10,10,10,0.38)"
+                          : "transparent",
+                        color: submitted ? "#444444" : needsConfidence ? "#D0D0D0" : "#929292",
+                        borderColor: needsConfidence
+                          ? "rgba(255,255,255,0.18)"
+                          : "rgba(255,255,255,0.10)",
                       }
                 }
               >
@@ -533,10 +595,10 @@ function PostSubmitUnderstandingRow({
     >
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <p className="text-[10px] uppercase tracking-widest text-[#888888]">
             How well do you understand this now?
           </p>
-          <p className="text-[10px] text-[#444444] mt-0.5">
+          <p className="text-[10px] text-[#888888] mt-0.5">
             (feeds your spaced-review schedule)
           </p>
         </div>
@@ -664,10 +726,10 @@ function HintPanel({
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div className="flex items-center gap-2">
           <Lightbulb className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
-          <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+          <p className="text-[10px] uppercase tracking-widest text-[#888888]">
             Hints
           </p>
-          <span className="text-[10px] text-[#555555]">
+          <span className="text-[10px] text-[#888888]">
             {revealed} / {total}
           </span>
         </div>
@@ -728,7 +790,19 @@ function HintPanel({
   )
 }
 
-function ContextPanel({ text }: { text: string }) {
+function ContextPanel({
+  text,
+  sortableTables = false,
+  questionType,
+}: {
+  text: string
+  sortableTables?: boolean
+  questionType: string
+}) {
+  if (questionType === "Multi-Source Reasoning") {
+    return <MultiSourceTabs context={text} />
+  }
+
   // Strip leading passage/set/tab markdown headings so we present the text as
   // the student would see it on the real test.
   const cleaned = text
@@ -736,19 +810,28 @@ function ContextPanel({ text }: { text: string }) {
     .replace(/^###\s+Tab\s+\d+:\s*/gm, "")
   return (
     <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111] max-h-[70vh] overflow-y-auto">
-      <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">Reference</p>
-      <PromptBlock text={cleaned} />
+      <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-3">Reference</p>
+      <PromptBlock text={cleaned} sortableTables={sortableTables} />
     </div>
   )
 }
 
 /** Returns true when a submitted question is answered correctly. */
 function isQuestionCorrect(q: SessionQuestion, state: QuestionState): boolean {
-  if (!state.submitted) return false
-  if (q.twoPartCorrectAnswers && state.twoPartSelections) {
-    return q.twoPartCorrectAnswers.every((ans, i) => state.twoPartSelections![i] === ans)
-  }
-  return state.selected === q.correctAnswer
+  return isAnswerCorrect(q, state)
+}
+
+/** Untouched per-question state for a fresh attempt over `qs`. */
+function freshStates(qs: SessionQuestion[]): QuestionState[] {
+  return qs.map((q) => ({
+    selected: null,
+    twoPartSelections: q.twoPartColumns ? q.twoPartColumns.map(() => null) : undefined,
+    submitted: false,
+    elapsedMs: 0,
+    hintsRevealed: 0,
+    confidence: null,
+    firstInteractionMs: null,
+  }))
 }
 
 interface SessionInsight {
@@ -931,12 +1014,26 @@ function TwoPartGrid({
                   }
                 }
 
+                // Accessible name carries both axes ("column: row"), plus
+                // the outcome once revealed — without it these were
+                // nameless stateless buttons and TPA questions were
+                // unanswerable with a screen reader.
+                const rowText = row.replace(/\*\*/g, "").replace(/\s+/g, " ").trim()
+                const outcome = showResult
+                  ? isCorrectCell
+                    ? " — correct answer"
+                    : isSelected
+                    ? " — your selection, incorrect"
+                    : ""
+                  : ""
                 return (
                   <td key={ci} className="py-3 px-4 text-center">
                     <button
                       onClick={() => onSelect(ci, ri)}
                       disabled={state.submitted}
-                      className="w-6 h-6 rounded-full border-2 mx-auto flex items-center justify-center transition-colors disabled:cursor-default"
+                      aria-label={`${cols[ci]}: ${rowText}${outcome}`}
+                      aria-pressed={isSelected}
+                      className="w-6 h-6 rounded-full border-2 mx-auto flex items-center justify-center transition-colors disabled:cursor-default tpa-radio"
                       style={circleStyle}
                     >
                       {isSelected && (
@@ -993,7 +1090,8 @@ function SaveStatusBanner({
         {status === "error" && "We couldn't save this session. Your answers are still on screen — retry to persist them."}
         {status === "unauthorized" && (
           <>
-            Your sign-in has expired. Sign in again to save this session — your answers are still on screen.
+            Your sign-in has expired. Sign in in the new tab, then come back
+            here and retry — your answers are still on screen.
           </>
         )}
       </p>
@@ -1012,17 +1110,37 @@ function SaveStatusBanner({
         </button>
       )}
       {status === "unauthorized" && (
-        <Link
-          href="/login"
-          className="px-3 py-1.5 rounded-md text-xs font-medium transition-colors"
-          style={{
-            backgroundColor: "rgba(201,168,76,0.12)",
-            color: "#C9A84C",
-            border: "1px solid rgba(201,168,76,0.3)",
-          }}
-        >
-          Sign in
-        </Link>
+        <span className="flex items-center gap-2">
+          {/* New tab on purpose: a same-tab navigation unmounts the runner
+              and destroys the very answers this banner promises are safe.
+              Auth is cookie-based, so signing in over there re-arms the
+              retry here. */}
+          <Link
+            href="/login"
+            target="_blank"
+            rel="noopener"
+            className="px-3 py-1.5 rounded-md text-xs font-medium transition-colors"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.12)",
+              color: "#C9A84C",
+              border: "1px solid rgba(201,168,76,0.3)",
+            }}
+          >
+            Sign in (new tab)
+          </Link>
+          <button
+            type="button"
+            onClick={onRetry}
+            className="px-3 py-1.5 rounded-md text-xs font-medium transition-colors"
+            style={{
+              backgroundColor: "rgba(201,168,76,0.12)",
+              color: "#C9A84C",
+              border: "1px solid rgba(201,168,76,0.3)",
+            }}
+          >
+            Retry save
+          </button>
+        </span>
       )}
     </div>
   )
@@ -1115,17 +1233,37 @@ function FullAnalysis({
 }
 
 export default function SessionClient({
+  userId,
   slug,
   topic,
   section,
-  questions,
+  questions: questionsProp,
   skillLevel,
   skillAttempts,
   weakestTopic,
   setLabel,
   initialSavedForReview,
+  defaultMode,
+  initialActivePractice,
 }: SessionClientProps) {
+  // Freeze the question list this mount was born with. The server page
+  // re-shuffles topic drills on every render (Date.now()-seeded adaptive
+  // order), so any router.refresh() fired mid-session — the save-for-review
+  // button does one after each toggle — would hand the mounted session a
+  // REORDERED questions prop while the per-index answer states stayed put:
+  // answers, results, and revealed explanations all landed on the wrong
+  // questions (unanswered ones could render pre-submitted with the answer
+  // showing). A fresh session (remount) still gets a fresh order. The list
+  // only ever changes through restartSession below (retry flows) — never
+  // from the prop.
+  const [questions, setQuestions] = useState(questionsProp)
+  /** Mirror of `questions` for callbacks declared before `total`. */
+  const questionsRef = useRef(questions)
+  useEffect(() => {
+    questionsRef.current = questions
+  }, [questions])
   const [currentIdx, setCurrentIdx] = useState(0)
+  const resumeStorageKey = practiceResumeStorageKey(userId)
   // Which questions are saved for review — seeded from the server, updated
   // as the student toggles, so the per-question button survives navigation
   // between questions (it remounts per question by key).
@@ -1139,45 +1277,92 @@ export default function SessionClient({
   const isMixedReview = slug === "custom" && topic.toLowerCase().startsWith("mixed review")
 
   const [states, setStates] = useState<QuestionState[]>(() =>
-    questions.map((q) => ({
-      selected: null,
-      twoPartSelections: q.twoPartColumns ? q.twoPartColumns.map(() => null) : undefined,
-      submitted: false,
-      elapsedMs: 0,
-      hintsRevealed: 0,
-      confidence: null,
-      firstInteractionMs: null,
-    }))
+    freshStates(questions)
   )
-  const [sessionStart] = useState(() => Date.now())
+  const [resumeHydrated, setResumeHydrated] = useState(false)
+  const [resumeRestored, setResumeRestored] = useState(false)
+  const restoredRef = useRef(false)
+  // Restore the full attempt — not just deck order — from the newer local
+  // write-through copy, falling back to the server copy for another device.
+  useEffect(() => {
+    try {
+      const local = window.localStorage.getItem(resumeStorageKey)
+      const localRestored = restorePracticeResume(
+        local,
+        questionsProp,
+        { userId, slug, now: Date.now() }
+      )
+      const serverRestored = restorePracticeResume(
+        initialActivePractice,
+        questionsProp,
+        { userId, slug, now: Date.now() }
+      )
+      const restored =
+        localRestored && serverRestored
+          ? localRestored.snapshot.updatedAt >= serverRestored.snapshot.updatedAt
+            ? localRestored
+            : serverRestored
+          : localRestored ?? serverRestored
+      if (restored) {
+        restoredRef.current = true
+        setQuestions(restored.questions)
+        setStates(restored.snapshot.states)
+        setCurrentIdx(restored.snapshot.currentIdx)
+        setMode(restored.snapshot.mode)
+        setIsReplay(restored.snapshot.isReplay)
+        const startedAt = Date.now() - restored.snapshot.currentElapsedMs
+        setQuestionStart(startedAt)
+        setNow(Date.now())
+        setResumeRestored(true)
+      }
+    } catch {
+      // Storage unavailable — the session still works without recovery.
+    }
+    setResumeHydrated(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const [questionStart, setQuestionStart] = useState(() => Date.now())
   const [now, setNow] = useState(() => Date.now())
   const [showResults, setShowResults] = useState(false)
-  // Exam vs study feedback mode. Exam (the default) defers correctness,
-  // explanations, and hints to the end-of-session review — like test day.
-  // Study reveals the explanation after each submit. The choice persists
-  // across sessions; switching mid-session is allowed.
-  const [mode, setMode] = useState<"exam" | "study">(() => {
-    if (typeof window === "undefined") return "exam"
-    return window.localStorage.getItem("session-feedback-mode") === "study"
-      ? "study"
-      : "exam"
-  })
+  // Exam vs study feedback mode. Exam defers correctness, explanations,
+  // and hints to the end-of-session review; study reveals the explanation
+  // after each submit — the evidence-preferred default for learning
+  // sessions (immediate corrective feedback, Rowland 2014). Precedence:
+  // surface prop > stored preference > study for plain topic drills /
+  // exam for assessment-shaped sets (chapter tests, custom builds).
+  // The initializer must NOT read localStorage — that produced a
+  // server/client hydration mismatch whenever the stored value differed
+  // from the SSR fallback. The stored preference applies in the mount
+  // effect below instead.
+  const [mode, setMode] = useState<"exam" | "study">(defaultMode ?? "exam")
+  useEffect(() => {
+    if (restoredRef.current) return
+    if (defaultMode) return // surface-imposed mode wins; toggle still works
+    try {
+      const stored = window.localStorage.getItem("session-feedback-mode")
+      if (stored === "study" || stored === "exam") {
+        setMode(stored)
+        return
+      }
+    } catch {
+      // Private browsing — fall through to the shape-based default.
+    }
+    const isTopicDrill = !setLabel && slug !== "custom"
+    if (isTopicDrill) setMode("study")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   // Once the results screen has been reached, per-question feedback is
   // visible regardless of mode so the review list can jump back into
   // fully-explained questions.
   const [finished, setFinished] = useState(false)
-  // The instant the session ended — captured at the finish click so the
-  // results screen's "Total time" and the persisted total_time_ms are frozen
-  // facts, not clocks that keep counting while the student reads results
-  // (beta: "timer in practice test does not stop at the end"). The ?? prev
-  // guard at the set sites keeps the FIRST finish moment if the student
-  // revisits questions from the review list and finishes again.
-  const [sessionEndedAt, setSessionEndedAt] = useState<number | null>(null)
   const reveal = mode === "study" || finished
 
   function switchMode(next: "exam" | "study") {
     setMode(next)
+    // Don't persist when the surface imposed the mode (review sessions):
+    // flipping one review session to exam mode is a per-session opt-out,
+    // not a decision to change the global default for every drill.
+    if (defaultMode) return
     try {
       window.localStorage.setItem("session-feedback-mode", next)
     } catch {
@@ -1188,10 +1373,116 @@ export default function SessionClient({
     "idle" | "saving" | "saved" | "error" | "unauthorized"
   >("idle")
   const [savedSessionId, setSavedSessionId] = useState<string | null>(null)
+  /** True while running a redo-missed replay — the save marks the slug. */
+  const [isReplay, setIsReplay] = useState(false)
+  /** Single polite live region for the runner: question transitions and
+   *  submit outcomes announced nothing, so a screen-reader user had no
+   *  idea the view had changed or whether they were right. */
+  const [announcement, setAnnouncement] = useState("")
+  const [mixedReviewPending, setMixedReviewPending] = useState(false)
+  const [mixedReviewError, setMixedReviewError] = useState<string | null>(null)
   const [showAllReview, setShowAllReview] = useState(false)
 
+  const hasStarted =
+    currentIdx > 0 ||
+    states.some(
+      (state) =>
+        state.submitted ||
+        state.selected !== null ||
+        state.twoPartSelections?.some((selection) => selection !== null) ||
+        state.hintsRevealed > 0 ||
+        state.confidence !== null
+    )
+
+  const makeResumeSnapshot = useCallback((): PracticeResumeSnapshot => {
+    const currentState = states[currentIdx]
+    const runningMs = currentState?.submitted
+      ? currentState.elapsedMs
+      : Math.min(Math.max(Date.now() - questionStart, 0), MAX_QUESTION_MS)
+    return {
+      version: 1,
+      userId,
+      slug,
+      questionIds: questions.map((question) => question.id),
+      states,
+      currentIdx,
+      currentElapsedMs: runningMs,
+      mode,
+      isReplay,
+      updatedAt: Date.now(),
+    }
+  }, [currentIdx, isReplay, mode, questionStart, questions, slug, states, userId])
+
+  const resumeSnapshotRef = useRef<PracticeResumeSnapshot | null>(null)
+  resumeSnapshotRef.current =
+    resumeHydrated && hasStarted && !finished ? makeResumeSnapshot() : null
+
+  const clearActiveResume = useCallback(() => {
+    resumeSnapshotRef.current = null
+    try {
+      window.localStorage.removeItem(resumeStorageKey)
+    } catch {
+      // Storage unavailable — server cleanup still proceeds.
+    }
+    void fetch("/api/practice-resume", {
+      method: "DELETE",
+      keepalive: true,
+    }).catch(() => undefined)
+  }, [resumeStorageKey])
+
+  // Local write-through is immediate. The server mirror is debounced so an
+  // option click + confidence click + submit burst becomes one request.
+  useEffect(() => {
+    if (!resumeHydrated || !hasStarted || finished) return
+    const snapshot = makeResumeSnapshot()
+    resumeSnapshotRef.current = snapshot
+    try {
+      window.localStorage.setItem(resumeStorageKey, JSON.stringify(snapshot))
+    } catch {
+      // Private browsing / quota — server sync remains available.
+    }
+    const timer = window.setTimeout(() => {
+      void fetch("/api/practice-resume", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(snapshot),
+        keepalive: true,
+      }).catch(() => undefined)
+    }, 700)
+    return () => window.clearTimeout(timer)
+  }, [
+    finished,
+    hasStarted,
+    makeResumeSnapshot,
+    resumeHydrated,
+    resumeStorageKey,
+  ])
+
+  // Capture the live timer as the page leaves. The local copy is exact to the
+  // latest render; keepalive gives the server copy the same best-effort update.
+  useEffect(() => {
+    function onPageHide() {
+      const snapshot = resumeSnapshotRef.current
+      if (!snapshot) return
+      const fresh = { ...snapshot, updatedAt: Date.now() }
+      try {
+        window.localStorage.setItem(resumeStorageKey, JSON.stringify(fresh))
+      } catch {
+        // Storage unavailable.
+      }
+      void fetch("/api/practice-resume", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fresh),
+        keepalive: true,
+      }).catch(() => undefined)
+    }
+    window.addEventListener("pagehide", onPageHide)
+    return () => window.removeEventListener("pagehide", onPageHide)
+  }, [resumeStorageKey])
+
   // Tick the timer once a second for the header readouts. Stops on the
-  // results screen — every clock there reads the frozen sessionEndedAt, and
+  // results screen — every clock there reads the banked answering time, and
   // without the gate the whole (heavy) results tree re-rendered every second.
   useEffect(() => {
     if (showResults) return
@@ -1200,6 +1491,10 @@ export default function SessionClient({
   }, [showResults])
 
   const saveSession = async () => {
+    // In-flight guard: a double-click on "Retry save" fired two identical
+    // POSTs (duplicate sessions). The server's recent-duplicate check is
+    // the backstop; this kills the common path.
+    if (saveStatus === "saving") return
     // Persist SUBMITTED questions only — see summarizeAnsweredAttempts for the
     // why (blanks used to be recorded as wrong answers and the stored totals
     // were inconsistent).
@@ -1233,28 +1528,42 @@ export default function SessionClient({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          slug,
+          slug: isReplay ? `redo-${slug}` : slug,
           topic,
           section,
           totalQuestions: summary.totalQuestions,
           correctCount: summary.correctCount,
           accuracy: summary.accuracy,
-          // The finish moment, not the save moment — a manual "Retry save"
-          // clicked after idling on the results screen must not inflate the
-          // stored total by the idle minutes.
-          totalTimeMs: (sessionEndedAt ?? Date.now()) - sessionStart,
+          // Active answering time only — reading solutions, idling on the
+          // results screen, or a late "Retry save" never inflate the total.
+          totalTimeMs: activeSessionMs(states, null),
           attempts: summary.attempts,
         }),
       })
       if (res.ok) {
         setSaveStatus("saved")
+        clearActiveResume()
+        let sessionId: string | null = null
         try {
           const json = (await res.json()) as { sessionId?: string }
-          if (json.sessionId) setSavedSessionId(json.sessionId)
+          if (json.sessionId) {
+            sessionId = json.sessionId
+            setSavedSessionId(json.sessionId)
+          }
         } catch {
           // Body parse failed — save still succeeded; the session-id-
           // dependent CTA will simply not render.
         }
+        // Activation signal: fires once per successful persist (the effect
+        // below only calls saveSession while saveStatus is "idle", so a
+        // rerender or a results-screen refresh cannot re-fire it). This is
+        // the signup-to-first-study measurement the funnel was missing.
+        trackEvent("practice_completed", {
+          section,
+          topic,
+          questions: summary.totalQuestions,
+          ...(sessionId ? { session_id: sessionId } : {}),
+        })
       } else if (res.status === 401) setSaveStatus("unauthorized")
       else setSaveStatus("error")
     } catch {
@@ -1269,10 +1578,57 @@ export default function SessionClient({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showResults])
 
-  const goTo = useCallback((idx: number) => {
-    setCurrentIdx(idx)
+  const goTo = useCallback(
+    (idx: number) => {
+      setCurrentIdx(idx)
+      setQuestionStart(Date.now())
+      // questionsRef avoids a declaration-order dependency on `total`.
+      setAnnouncement(`Question ${idx + 1} of ${questionsRef.current.length}`)
+    },
+    []
+  )
+
+  /**
+   * Start a clean attempt over `qs` — the full set ("Practice again") or
+   * just the missed subset ("Redo missed"). This is a client-side reset,
+   * NOT a link: the old "Practice again" linked to the URL this component
+   * was already mounted on, and same-URL App Router navigation never
+   * remounts — the student stayed parked on the old results screen (and,
+   * before the questions-freeze fix, the server's reshuffled list was
+   * re-scored against stale answers as a fake ~0% result). The finished
+   * attempt is already saved; the fresh one saves as its own session when
+   * it finishes.
+   */
+  function restartSession(qs: SessionQuestion[], opts: { replay?: boolean } = {}) {
+    if (qs.length === 0) return
+    // The finished attempt is normally already saved — but when the save
+    // failed, this reset would silently destroy the only copy of it while
+    // the error banner is still promising the answers are recoverable.
+    if (
+      (saveStatus === "error" || saveStatus === "unauthorized") &&
+      !window.confirm(
+        "This session hasn't been saved yet. Starting a new attempt discards it — continue?"
+      )
+    ) {
+      return
+    }
+    // Redo-missed runs replay questions the student just saw — real for
+    // reinforcement, but not fresh evidence. Marking the saved slug
+    // (`redo-…`) lets accuracy metrics and adaptivity exclude them.
+    setIsReplay(opts.replay ?? false)
+    // A deliberate new attempt must not resurrect the previous checkpoint.
+    clearActiveResume()
+    setQuestions(qs)
+    setStates(freshStates(qs))
+    setCurrentIdx(0)
     setQuestionStart(Date.now())
-  }, [])
+    setNow(Date.now())
+    setShowResults(false)
+    setFinished(false)
+    setSaveStatus("idle")
+    setSavedSessionId(null)
+    setShowAllReview(false)
+  }
 
   const current = questions[currentIdx]
   const currentState = states[currentIdx]
@@ -1299,7 +1655,7 @@ export default function SessionClient({
   }
 
   function handleSelect(index: number) {
-    if (currentState.submitted) return
+    if (currentState.submitted || finished) return
     setStates((prev) => {
       const next = prev.slice()
       next[currentIdx] = markFirstInteraction({
@@ -1311,7 +1667,7 @@ export default function SessionClient({
   }
 
   function handleTwoPartSelect(colIdx: number, rowIdx: number) {
-    if (currentState.submitted) return
+    if (currentState.submitted || finished) return
     setStates((prev) => {
       const next = prev.slice()
       const selections = [...(next[currentIdx].twoPartSelections ?? [])]
@@ -1325,13 +1681,40 @@ export default function SessionClient({
   }
 
   function handleSubmit() {
+    // Post-finish answering is blocked, not re-saved: the session row is
+    // already persisted and there is no update endpoint, so a submit here
+    // would silently diverge the screen from the DB. Skipped questions
+    // stay skipped once the session is finished.
+    if (finished) return
     if (!canSubmit(current, currentState)) return
-    const elapsed = Date.now() - questionStart
+    // Clamp: a laptop that slept overnight on an open question would
+    // otherwise bank hours into this attempt (and the hours metrics);
+    // a system-clock step backwards would bank a negative value that
+    // makes the save fail permanently.
+    const elapsed = Math.min(
+      Math.max(Date.now() - questionStart, 0),
+      MAX_QUESTION_MS
+    )
     setStates((prev) => {
       const next = prev.slice()
       next[currentIdx] = { ...next[currentIdx], submitted: true, elapsedMs: elapsed }
       return next
     })
+    if (mode === "study") {
+      const right = isAnswerCorrect(current, {
+        ...currentState,
+        submitted: true,
+      })
+      setAnnouncement(
+        right
+          ? "Correct."
+          : `Incorrect. The correct answer is ${current.correctAnswerLetter || "shown below"}.`
+      )
+    } else {
+      setAnnouncement(
+        `Answer recorded. Question ${Math.min(currentIdx + 2, total)} of ${total}`
+      )
+    }
     // Exam mode has no per-question reveal, so move straight on. The last
     // question still requires an explicit "Finish Session" click — finishing
     // is irreversible feedback-wise, so it shouldn't happen by surprise.
@@ -1372,7 +1755,6 @@ export default function SessionClient({
     if (currentIdx < total - 1) {
       goTo(currentIdx + 1)
     } else {
-      setSessionEndedAt((prev) => prev ?? Date.now())
       setFinished(true)
       setShowResults(true)
     }
@@ -1450,9 +1832,14 @@ export default function SessionClient({
         h.handleNext()
         return
       }
-      // Previous: ArrowLeft (only when submitted — avoid accidentally
-      // bailing out of an unanswered question).
-      if (event.key === "ArrowLeft" && h.currentIdx > 0) {
+      // Previous: ArrowLeft, only when the current question is submitted
+      // — the guard the comment always claimed: without it a stray arrow
+      // press mid-question navigated away and reset the question timer.
+      if (
+        event.key === "ArrowLeft" &&
+        h.currentIdx > 0 &&
+        h.currentState.submitted
+      ) {
         event.preventDefault()
         h.handlePrev()
       }
@@ -1463,9 +1850,8 @@ export default function SessionClient({
 
   if (showResults) {
     const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100)
-    // Frozen at the finish click — not a running clock (sessionEndedAt is
-    // always set by the time results render; `now` is a type-level fallback).
-    const totalTime = (sessionEndedAt ?? now) - sessionStart
+    // Banked answering time — frozen by construction, not a running clock.
+    const totalTime = activeSessionMs(states, null)
 
     // Shared next-step accuracy bands. Below LOW signals a concept gap
     // (revisit the chapter); at/above SOLID the topic is strong enough to
@@ -1562,12 +1948,26 @@ export default function SessionClient({
             Back to Practice
           </Link>
           <h1 className="text-2xl font-bold text-[#F0F0F0] mt-3">{headline}</h1>
-          <p className="text-sm text-[#555555] mt-1">
+          <p className="text-sm text-[#888888] mt-1">
             {topic} · {section}
           </p>
         </div>
 
         <SaveStatusBanner status={saveStatus} onRetry={saveSession} />
+
+        {savedSessionId && (
+          <p className="text-[11px] text-[#888888]">
+            Session saved — revisit these results anytime at{" "}
+            <Link
+              href={`/practice/history/${savedSessionId}`}
+              className="underline underline-offset-2"
+              style={{ color: "#C9A84C" }}
+            >
+              session results
+            </Link>
+            .
+          </p>
+        )}
 
         {/* Core metrics + insight breakdown */}
         <div
@@ -1579,20 +1979,20 @@ export default function SessionClient({
         >
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Accuracy</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#888888]">Accuracy</p>
               <p className="text-3xl font-bold mt-2" style={{ color: "#C9A84C" }}>
                 {accuracy}%
               </p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Correct</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#888888]">Correct</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">
                 {correctCount}
-                <span className="text-base font-normal text-[#555555]"> / {total}</span>
+                <span className="text-base font-normal text-[#888888]"> / {total}</span>
               </p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-[#555555]">Total time</p>
+              <p className="text-[10px] uppercase tracking-widest text-[#888888]">Total time</p>
               <p className="text-3xl font-bold mt-2 text-[#F0F0F0]">{formatDuration(totalTime)}</p>
             </div>
           </div>
@@ -1600,7 +2000,7 @@ export default function SessionClient({
           {/* Difficulty breakdown — only when questions span 2+ levels */}
           {difficultyBreakdown.length >= 2 && (
             <div className="mt-6 pt-5 border-t border-white/[0.06]">
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+              <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-3">
                 By difficulty
               </p>
               <div className="space-y-2.5">
@@ -1692,11 +2092,11 @@ export default function SessionClient({
               return (
                 <div className="mt-6 pt-5 border-t border-white/[0.06]">
                   <div className="flex items-center justify-between mb-3">
-                    <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                    <p className="text-[10px] uppercase tracking-widest text-[#888888]">
                       {topic} level
                     </p>
                     {!hasEnoughData && (
-                      <p className="text-[10px] text-[#555555]">
+                      <p className="text-[10px] text-[#888888]">
                         calibrating &middot; {skillAttempts} attempt{skillAttempts === 1 ? "" : "s"}
                       </p>
                     )}
@@ -1777,12 +2177,12 @@ export default function SessionClient({
           if (!insight) return null
           return (
             <div className="p-5 rounded-xl border border-white/[0.08] bg-[#111111]">
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+              <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-3">
                 {insight.label}
               </p>
               <p className="text-sm text-[#C0C0C0] leading-relaxed">{insight.observation}</p>
               <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-start gap-2">
-                <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#555555]" />
+                <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-[#888888]" />
                 <p className="text-xs text-[#888888] leading-relaxed">{insight.nextStep}</p>
               </div>
             </div>
@@ -1895,7 +2295,7 @@ export default function SessionClient({
           if (top.length === 0) return null
           return (
             <div className="p-5 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-3">
+              <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-3">
                 Where the mistakes fell
               </p>
               <div className="space-y-2.5">
@@ -1915,7 +2315,7 @@ export default function SessionClient({
                           />
                         ))}
                       </div>
-                      <span className="text-xs text-[#555555] w-4 text-right tabular-nums">
+                      <span className="text-xs text-[#888888] w-4 text-right tabular-nums">
                         {n}
                       </span>
                     </div>
@@ -1984,7 +2384,7 @@ export default function SessionClient({
                   <button
                     onClick={() => setShowAllReview((v) => !v)}
                     className="text-[11px] transition-colors"
-                    style={{ color: "#555555" }}
+                    style={{ color: "#888888" }}
                   >
                     {showAllReview ? "Wrong only" : `Show all ${questions.length}`}
                   </button>
@@ -1997,7 +2397,7 @@ export default function SessionClient({
                   style={{ backgroundColor: "rgba(62,207,142,0.03)" }}
                 >
                   <p className="text-sm text-[#3ECF8E] font-semibold">All correct</p>
-                  <p className="text-xs text-[#555555] mt-1">Nothing to review here.</p>
+                  <p className="text-xs text-[#888888] mt-1">Nothing to review here.</p>
                 </div>
               ) : (
                 <div className="rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden">
@@ -2035,7 +2435,7 @@ export default function SessionClient({
                                 <X className="w-3.5 h-3.5" style={{ color: "#FF4444" }} />
                               )
                             ) : (
-                              <span className="text-[10px] text-[#555555]">—</span>
+                              <span className="text-[10px] text-[#888888]">—</span>
                             )}
                           </div>
                           <div className="min-w-0">
@@ -2050,7 +2450,7 @@ export default function SessionClient({
                                   style={
                                     state.confidence === "high"
                                       ? { backgroundColor: "rgba(255,153,102,0.15)", color: "#FF9966" }
-                                      : { backgroundColor: "rgba(255,255,255,0.05)", color: "#555555" }
+                                      : { backgroundColor: "rgba(255,255,255,0.05)", color: "#888888" }
                                   }
                                 >
                                   {state.confidence === "high" ? "Confident" : "Unsure"}
@@ -2088,10 +2488,73 @@ export default function SessionClient({
             slug !== "custom"
           const chapterSlug = TOPIC_TO_CHAPTER[topic]
 
-          type NextAction = { label: string; href: string; variant: "primary" | "secondary" }
+          type NextAction = {
+            label: string
+            variant: "primary" | "secondary"
+            href?: string
+            onClick?: () => void
+            disabled?: boolean
+          }
           const actions: NextAction[] = []
 
-          if (isMixedReview) {
+          // Redo only the questions answered wrong — a clean client-side
+          // restart over the missed subset (see restartSession). Offered on
+          // every runner flow (topic drills, custom sets, review sessions).
+          const missed = pickMissed(questions, states)
+          // Full-set restart: reuse the freshest server-provided order so a
+          // repeat feels like a new visit, not a replay.
+          const practiceAgain: NextAction = {
+            label: "Practice again",
+            onClick: () => restartSession(questionsProp),
+            variant: "secondary",
+          }
+
+          if (missed.length > 0) {
+            actions.push({
+              label: `Redo ${missed.length} missed`,
+              onClick: () => restartSession(missed, { replay: true }),
+              // Below the concept-gap line the chapter is the better first
+              // move; otherwise redoing the misses is.
+              variant: accuracy < LOW_ACCURACY ? "secondary" : "primary",
+            })
+          }
+
+          const isReviewSession = slug.startsWith("review-")
+
+          if (isReviewSession) {
+            // Close the loop: a finished review session routes back to the
+            // remaining queue, not off to unrelated surfaces. When the
+            // session went well, add ONE near-transfer CTA — fresh
+            // same-topic questions are where the practiced retrieval pays
+            // off on novel items (Pan & Rickard 2018).
+            actions.push({
+              label: "Back to your queue",
+              href: "/review",
+              variant: "primary",
+            })
+            if (accuracy >= SOLID_ACCURACY) {
+              const correctTopicCounts = new Map<string, number>()
+              questions.forEach((q, i) => {
+                if (states[i]?.submitted && isAnswerCorrect(q, states[i])) {
+                  correctTopicCounts.set(
+                    q.topic,
+                    (correctTopicCounts.get(q.topic) ?? 0) + 1
+                  )
+                }
+              })
+              const topCorrect = [...correctTopicCounts.entries()].sort(
+                (a, b) => b[1] - a[1]
+              )[0]?.[0]
+              const transferSet = topCorrect ? TOPIC_TO_SET[topCorrect] : undefined
+              if (topCorrect && transferSet) {
+                actions.push({
+                  label: `Prove it on fresh ${topCorrect}`,
+                  href: `/practice/session/${transferSet}`,
+                  variant: "secondary",
+                })
+              }
+            }
+          } else if (isMixedReview) {
             actions.push({ label: "Go to chapters", href: "/chapters", variant: "primary" })
             actions.push({ label: "Review queue", href: "/review", variant: "secondary" })
           } else if (accuracy < LOW_ACCURACY) {
@@ -2101,11 +2564,14 @@ export default function SessionClient({
               variant: "primary",
             })
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+              actions.push(practiceAgain)
             }
           } else if (accuracy < SOLID_ACCURACY) {
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "primary" })
+              actions.push({
+                ...practiceAgain,
+                variant: missed.length > 0 ? "secondary" : "primary",
+              })
             }
             actions.push({
               label: chapterSlug ? "Review the chapter" : "Browse chapters",
@@ -2122,28 +2588,55 @@ export default function SessionClient({
                 variant: "secondary",
               })
             }
-          } else if (weakestTopic) {
-            // Strong session + known weak topic: point directly to the gap
-            actions.push({
-              label: `Practice ${weakestTopic.topic}`,
-              href: `/practice/session/${weakestTopic.practiceSlug}`,
-              variant: "primary",
-            })
-            const wtChapter = TOPIC_TO_CHAPTER[weakestTopic.topic]
-            actions.push({
-              label: wtChapter ? "Review the chapter" : "Go to chapters",
-              href: wtChapter ? `/chapters/${wtChapter}` : "/chapters",
-              variant: "secondary",
-            })
           } else {
-            // Strong session, no known weak topic: the highest-leverage move
-            // is no longer this topic — point at the macro plan first, then
-            // offer chapters / a repeat as escape hatches.
-            actions.push({ label: "View your study plan", href: "/study-plan", variant: "primary" })
-            actions.push({ label: "Go to chapters", href: "/chapters", variant: "secondary" })
+            // Strong blocked session: the evidence-backed next step is
+            // interleaved practice, not another blocked drill — once a
+            // topic holds up in isolation, mixed sets are where method
+            // selection (the exam skill) gets trained (Rohrer & Taylor
+            // 2007; Brunmair & Richter 2019).
             if (isPractice) {
-              actions.push({ label: "Practice again", href: `/practice/session/${slug}`, variant: "secondary" })
+              actions.push({
+                label: mixedReviewPending
+                  ? "Building your mix…"
+                  : "Start mixed review",
+                disabled: mixedReviewPending,
+                onClick: () => {
+                  if (mixedReviewPending) return
+                  setMixedReviewPending(true)
+                  setMixedReviewError(null)
+                  void buildMixedReviewUrl(chapterSlug ?? null).then(
+                    (url) => {
+                      window.location.href = url
+                    },
+                    (e: unknown) => {
+                      // Say what happened instead of silently landing the
+                      // student somewhere they didn't ask for.
+                      setMixedReviewPending(false)
+                      setMixedReviewError(
+                        e instanceof Error
+                          ? e.message
+                          : "Couldn't build a mixed set right now."
+                      )
+                    }
+                  )
+                },
+                variant: "primary",
+              })
             }
+            if (weakestTopic) {
+              actions.push({
+                label: `Practice ${weakestTopic.topic}`,
+                href: `/practice/session/${weakestTopic.practiceSlug}`,
+                variant: isPractice ? "secondary" : "primary",
+              })
+            } else {
+              actions.push({
+                label: "View your study plan",
+                href: "/study-plan",
+                variant: isPractice ? "secondary" : "primary",
+              })
+            }
+            actions.push({ label: "Go to chapters", href: "/chapters", variant: "secondary" })
           }
 
           return (
@@ -2154,39 +2647,67 @@ export default function SessionClient({
                 backgroundColor: "#0D0D0D",
               }}
             >
-              <p className="text-[10px] uppercase tracking-widest text-[#555555] mb-2">
+              <p className="text-[10px] uppercase tracking-widest text-[#888888] mb-2">
                 What to do next
               </p>
               <p className="text-sm text-[#C0C0C0] leading-relaxed mb-5">
                 {nextStepNote}
               </p>
+              {isMixedReview && accuracy < SOLID_ACCURACY && (
+                <p className="text-[13px] text-[#888888] leading-relaxed -mt-3 mb-5">
+                  Mixed sets score lower than single-topic drills for everyone
+                  — picking the method is the skill, and this is where it gets
+                  trained.
+                </p>
+              )}
               <div className="flex flex-wrap gap-3">
-                {actions.map((action) =>
-                  action.variant === "primary" ? (
-                    <Link
-                      key={action.href}
-                      href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
-                      {action.label}
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  ) : (
-                    <Link
-                      key={action.href}
-                      href={action.href}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0]"
-                      style={{
+                {actions.map((action) => {
+                  const primary = action.variant === "primary"
+                  const className = primary
+                    ? "inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all hover:opacity-90"
+                    : "inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors hover:border-white/[0.16] hover:text-[#F0F0F0]"
+                  const style = primary
+                    ? { backgroundColor: "#C9A84C", color: "#0A0A0A" }
+                    : {
                         borderColor: "rgba(255,255,255,0.08)",
                         color: "#888888",
-                      }}
+                      }
+                  const key = action.href ?? action.label
+                  if (action.onClick) {
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={action.onClick}
+                        disabled={action.disabled}
+                        className={className + " disabled:opacity-60"}
+                        style={style}
+                      >
+                        {action.label}
+                        {primary && !action.disabled && (
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        )}
+                      </button>
+                    )
+                  }
+                  return (
+                    <Link
+                      key={key}
+                      href={action.href!}
+                      className={className}
+                      style={style}
                     >
                       {action.label}
+                      {primary && <ArrowRight className="w-3.5 h-3.5" />}
                     </Link>
                   )
-                )}
+                })}
               </div>
+              {mixedReviewError && (
+                <p className="text-[12px] mt-3" style={{ color: "#FF8888" }} role="alert">
+                  {mixedReviewError}
+                </p>
+              )}
             </div>
           )
         })()}
@@ -2194,12 +2715,26 @@ export default function SessionClient({
     )
   }
 
-  const sessionElapsed = (sessionEndedAt ?? now) - sessionStart
+  // Answering time only: banked time on submitted questions, plus the
+  // running clock on the current question ONLY while it's unanswered. The
+  // header timer visibly pauses while the student reads a solution and
+  // resumes when they open the next unanswered question.
+  const sessionElapsed = activeSessionMs(states, {
+    submitted: currentState.submitted,
+    startedAt: questionStart,
+    now,
+  })
   const progressPct = Math.round(((currentIdx + (currentState.submitted ? 1 : 0)) / total) * 100)
   const hasContext = !!current.context && current.context.length > 0
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
+      {/* One persistently-mounted polite live region for the whole runner
+          (question moves, submit outcomes). Mounted always — a region
+          inserted on demand is announced unreliably. */}
+      <div className="sr-only" role="status" aria-live="polite">
+        {announcement}
+      </div>
       {/* Header */}
       <div>
         <Link
@@ -2209,7 +2744,10 @@ export default function SessionClient({
           <ArrowLeft className="w-3 h-3" />
           Exit Session
         </Link>
-        <div className="flex items-center justify-between mt-3">
+        {/* flex-wrap: the mode toggle + pacing badge + clock + tutor cluster
+            has ~395px min-content — without wrapping it panned the whole
+            page horizontally at 375/390px. */}
+        <div className="flex items-center justify-between mt-3 flex-wrap gap-y-2">
           <div>
             {setLabel ? (
               <p className="text-[10px] uppercase tracking-widest text-[#C9A84C] mb-1">
@@ -2217,7 +2755,7 @@ export default function SessionClient({
               </p>
             ) : null}
             <h1 className="text-xl font-bold text-[#F0F0F0]">{topic}</h1>
-            <p className="text-xs text-[#555555] mt-0.5">
+            <p className="text-xs text-[#888888] mt-0.5">
               Question{" "}
               <span className="font-display tabular-nums text-[#C0C0C0]">
                 {currentIdx + 1}
@@ -2248,9 +2786,11 @@ export default function SessionClient({
                 )}
             </p>
           </div>
-          <div className="flex items-center gap-2 text-sm text-[#888888]">
-            {/* Exam/Study feedback-mode toggle. Exam is the default and the
-                recommended skill test; study reveals each explanation. */}
+          <div className="flex items-center gap-2 text-sm text-[#888888] flex-wrap justify-end">
+            {current.section === "DI" && <DataInsightsCalculator compact />}
+            {/* Exam/Study feedback-mode toggle. Study reveals each
+                explanation (the default for learning drills); exam defers
+                feedback to the end for assessment-shaped sets. */}
             <div
               className="inline-flex rounded-lg border overflow-hidden"
               style={{ borderColor: "rgba(255,255,255,0.10)" }}
@@ -2272,7 +2812,7 @@ export default function SessionClient({
                   }
                   title={
                     m === "exam"
-                      ? "Explanations at the end, like test day (recommended)"
+                      ? "Explanations at the end — answers lock as you go"
                       : "Explanation after each question"
                   }
                   aria-pressed={mode === m}
@@ -2281,7 +2821,10 @@ export default function SessionClient({
                 </button>
               ))}
             </div>
+            {/* compact: drops the "· on pace" label (~50px) — the header
+                cluster is the tightest row on the 375px runner. */}
             <PacingBadge
+              compact
               section={section}
               elapsedMs={
                 currentState.submitted
@@ -2327,18 +2870,53 @@ export default function SessionClient({
           />
         </div>
         {!finished && (
-          <p className="text-[11px] mt-2" style={{ color: "#666666" }}>
-            {mode === "exam"
-              ? "Exam mode: answers and explanations come at the end, like test day."
-              : "Study mode: explanation after every question. Exam mode is the truer skill test — the chapters are where you learn."}
-          </p>
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+            <p className="text-[11px]" style={{ color: "#666666" }}>
+              {mode === "exam"
+                ? "Exam mode: explanations come at the end — answers lock as you go."
+                : "Study mode: explanation after every question — immediate feedback is how corrections stick. Use exam mode to rehearse timed conditions."}
+            </p>
+            <p className="inline-flex items-center gap-1.5 text-[11px]" style={{ color: "#3ECF8E" }}>
+              <Check className="w-3 h-3" aria-hidden />
+              Progress saves automatically
+            </p>
+          </div>
         )}
       </div>
+
+      {resumeRestored && !finished && (
+        <div
+          className="flex items-center justify-between gap-3 rounded-lg border px-4 py-3"
+          style={{
+            borderColor: "rgba(62,207,142,0.24)",
+            backgroundColor: "rgba(62,207,142,0.06)",
+          }}
+          role="status"
+        >
+          <p className="text-[12px] leading-relaxed" style={{ color: "#BFE8D4" }}>
+            Resumed at question {currentIdx + 1}. Your answers, timing, confidence, and question order are intact.
+          </p>
+          <button
+            type="button"
+            onClick={() => setResumeRestored(false)}
+            className="p-1 text-[#888888] hover:text-[#F0F0F0] transition-colors"
+            aria-label="Dismiss resume message"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
       {/* Body: passage (if grouped) + question. Mobile: stack
           (passage above question); desktop: side-by-side. */}
       <div className={hasContext ? "grid grid-cols-1 lg:grid-cols-2 gap-6" : ""}>
-        {hasContext && current.context && <ContextPanel text={current.context} />}
+        {hasContext && current.context && (
+          <ContextPanel
+            text={current.context}
+            sortableTables={current.type === "Table Analysis"}
+            questionType={current.type}
+          />
+        )}
 
         <div className="space-y-6">
           <div className="p-6 rounded-xl border border-white/[0.08] bg-[#111111]">
@@ -2346,7 +2924,11 @@ export default function SessionClient({
               <DIMethodCardBanner questionType={current.type} />
             )}
             {current.chartSpec && <QuestionChart spec={current.chartSpec} />}
-            <PromptBlock text={current.prompt} className="mb-5" />
+            <PromptBlock
+              text={current.prompt}
+              className="mb-5"
+              sortableTables={current.type === "Table Analysis"}
+            />
 
             {isTwoPart ? (
               <TwoPartGrid
@@ -2382,6 +2964,7 @@ export default function SessionClient({
                       key={i}
                       onClick={() => handleSelect(i)}
                       disabled={currentState.submitted}
+                      data-kb-space="submit"
                       className="w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-colors hover:bg-white/[0.02] disabled:cursor-default"
                       style={{ borderColor, backgroundColor: bgColor }}
                     >
@@ -2400,12 +2983,25 @@ export default function SessionClient({
                       >
                         {letterFor(i)}
                       </div>
-                      <PromptBlock text={option} className="flex-1" />
+                      <PromptBlock text={option} className="flex-1 min-w-0" />
+                      {/* sr-only outcome text: the Check/X icons are
+                          aria-hidden and the colors carry the only signal
+                          — screen readers heard nothing. */}
                       {showCorrect && (
-                        <Check className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#3ECF8E" }} />
+                        <>
+                          <span className="sr-only">
+                            {isSelected
+                              ? " — your answer, correct"
+                              : " — correct answer"}
+                          </span>
+                          <Check className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#3ECF8E" }} />
+                        </>
                       )}
                       {showIncorrect && (
-                        <X className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#FF4444" }} />
+                        <>
+                          <span className="sr-only"> — your answer, incorrect</span>
+                          <X className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#FF4444" }} />
+                        </>
                       )}
                     </button>
                   )
@@ -2416,6 +3012,7 @@ export default function SessionClient({
             <ConfidencePanel
               value={currentState.confidence}
               submitted={currentState.submitted}
+              hasAnswer={canSubmit(current, currentState)}
               wasCorrect={isQuestionCorrect(current, currentState)}
               revealOutcome={reveal}
               onSelect={handleConfidence}
@@ -2439,7 +3036,7 @@ export default function SessionClient({
                 }}
               >
                 <div className="flex items-center gap-2.5 mb-3">
-                  <p className="text-[10px] uppercase tracking-widest text-[#555555]">
+                  <p className="text-[10px] uppercase tracking-widest text-[#888888]">
                     Explanation
                   </p>
                   {!isQuestionCorrect(current, currentState) &&
@@ -2544,6 +3141,18 @@ export default function SessionClient({
               >
                 {currentIdx < total - 1 ? "Next Question" : "Finish Session"}
               </button>
+            ) : finished ? (
+              /* Post-finish, unsubmitted question (reached via the results
+                 review list): the session is saved and closed — answering
+                 now would never persist, so offer the way back instead of
+                 a Submit that silently diverges screen from DB. */
+              <button
+                onClick={() => setShowResults(true)}
+                className="flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              >
+                Back to results
+              </button>
             ) : (
               <button
                 onClick={handleSubmit}
@@ -2555,19 +3164,30 @@ export default function SessionClient({
               </button>
             )}
 
-            <button
-              onClick={() => {
-                setSessionEndedAt((prev) => prev ?? Date.now())
-                setFinished(true)
-                setShowResults(true)
-              }}
-              className="px-4 py-2 rounded-lg text-sm font-medium border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16] transition-colors"
-            >
-              End
-            </button>
+            {!finished && (
+              <button
+                onClick={() => {
+                  if (
+                    answeredCount < total &&
+                    !window.confirm(
+                      `End the session now? ${total - answeredCount} unanswered question${
+                        total - answeredCount === 1 ? "" : "s"
+                      } will be recorded as skipped.`
+                    )
+                  ) {
+                    return
+                  }
+                  setFinished(true)
+                  setShowResults(true)
+                }}
+                className="px-4 py-2 rounded-lg text-sm font-medium border border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16] transition-colors"
+              >
+                End
+              </button>
+            )}
           </div>
           {!isTwoPart && (
-            <p className="text-[11px] text-[#555555] mt-3 text-center">
+            <p className="text-[11px] text-[#888888] mt-3 text-center">
               Shortcuts: <kbd className="px-1 rounded bg-white/[0.06] font-mono">1</kbd>–<kbd className="px-1 rounded bg-white/[0.06] font-mono">{Math.min(current.options.length, 5)}</kbd> select · <kbd className="px-1 rounded bg-white/[0.06] font-mono">space</kbd> {currentState.submitted ? "next" : "submit"} · <kbd className="px-1 rounded bg-white/[0.06] font-mono">←</kbd>/<kbd className="px-1 rounded bg-white/[0.06] font-mono">→</kbd> nav
             </p>
           )}

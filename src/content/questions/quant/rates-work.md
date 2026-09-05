@@ -828,7 +828,7 @@ The correct answer is D.
 ---
 
 ## Q22
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Rates — Two Trains, Closing Speed
 
@@ -978,42 +978,10 @@ A boat travels 24 miles downstream along a river, then returns the same 24 miles
 - E) 10 mph
 
 **answer:** D
-**hint_nudge:** One distance, two speeds differing by a fixed amount, total time given — this becomes a quadratic in the upstream speed.
-**hint_strategy:** Let upstream = u and downstream = u + 4; sum the two leg times to 5 and clear denominators, or test the answers.
-**hint_setup:** 24/u + 24/(u+4) = 5. Testing u = 8: 24/8 + 24/12 = 3 + 2 = __ (target 5).
-**explanation:** This is a uniform-rate problem in which a single distance is covered at two different speeds, so the governing relationship is time = distance / rate, and the total time is the sum of the times for the two legs.
-
-Let u represent the boat's upstream speed in miles per hour. The downstream speed is 4 miles per hour greater, so it equals u + 4. Each leg covers 24 miles. The time for the downstream leg is therefore 24 / (u + 4), and the time for the upstream leg is 24 / u. Because the round trip takes 5 hours in total, we have
-
-24 / u + 24 / (u + 4) = 5.
-
-With concrete answer choices available, the fastest route is to test them in this equation. The value u = 8 makes both fractions clean: 24 / 8 = 3 and 24 / 12 = 2, so the total time is 3 + 2 = 5 hours, exactly as required. The upstream speed is therefore 8 miles per hour.
-
-To solve algebraically instead, multiply both sides of the equation by u(u + 4) to clear the denominators, which gives
-
-24(u + 4) + 24u = 5u(u + 4).
-
-Expanding each side yields
-
-24u + 96 + 24u = 5u^2 + 20u,
-
-which simplifies to
-
-48u + 96 = 5u^2 + 20u.
-
-Moving all terms to one side produces the quadratic equation
-
-5u^2 - 28u - 96 = 0.
-
-There is no need for the quadratic formula here. Since the test above showed that u = 8 satisfies the original equation, (u - 8) must be a factor, and the quadratic factors as
-
-5u^2 - 28u - 96 = (u - 8)(5u + 12) = 0.
-
-The factorization checks quickly: the outer and inner products are 12u and -40u, which combine to -28u, and the constants give (-8)(12) = -96. The two roots are u = 8 and u = -12/5, and the negative root is discarded because a speed must be positive, leaving u = 8 as the only solution.
-
-Both routes agree: the boat's upstream speed is 8 miles per hour, giving an upstream leg of 24 / 8 = 3 hours and a downstream leg of 24 / 12 = 2 hours, for the required total of 5 hours.
-
-The correct answer is D.
+**fastest_path:** Backsolve the answer choices. If upstream speed is 8 mph, downstream is 12 mph, so the times are 24/8 + 24/12 = 3 + 2 = 5.
+**explanation:** Let upstream speed be u; downstream speed is u + 4. The round-trip condition is 24/u + 24/(u+4) = 5. Testing u = 8 gives 3 hours upstream and 2 hours downstream, exactly 5 hours total. Therefore the upstream speed is 8 mph, choice D.
+**common_trap:** Do not average the two speeds: the boat travels equal distances, not equal times, at the two rates.
+**takeaway:** With numeric choices and a rate equation, backsolve clean candidates before doing quadratic algebra.
 **related_reading:** reading-quant-05-word-problems
 
 ---
@@ -2079,7 +2047,7 @@ The correct answer is D.
 ## Q58
 **difficulty:** Easy
 **type:** Problem Solving
-**topic:** Work
+**topic:** Production Rate
 
 A machine produces 60 parts every 1.5 hours at a constant rate. At this rate, how many parts will the machine produce in 7 hours?
 
@@ -2358,7 +2326,7 @@ The correct answer is D.
 ---
 
 ## Q67
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Rate Time Distance
 
