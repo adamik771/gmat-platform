@@ -1,24 +1,42 @@
 "use client"
 
 import { useEffect } from "react"
-
-const HEARTBEAT_MS = 60_000
-const ACTIVE_WINDOW_MS = 5 * 60_000
+import { usePathname } from "next/navigation"
+import {
+  activeWindowForPath,
+  hasRunningFocusBlock,
+  HEARTBEAT_MS,
+  STUDY_TIMER_STORAGE_KEY,
+} from "@/lib/platform-activity"
 
 /**
  * Records coarse active-use time for student support. The server stores only a
  * daily number of seconds and a last-seen timestamp, never browsing history.
  */
 export default function PlatformActivityTracker() {
+  const pathname = usePathname()
+
   useEffect(() => {
     let lastInteractionAt = Date.now()
+    const activeWindowMs = activeWindowForPath(pathname)
 
     const markActive = () => {
       lastInteractionAt = Date.now()
     }
     const sendHeartbeat = () => {
       if (document.visibilityState !== "visible" || !navigator.onLine) return
-      if (Date.now() - lastInteractionAt > ACTIVE_WINDOW_MS) return
+      const nowMs = Date.now()
+      let focusBlockRunning = false
+      try {
+        focusBlockRunning = hasRunningFocusBlock(
+          window.localStorage.getItem(STUDY_TIMER_STORAGE_KEY),
+          nowMs,
+        )
+      } catch {
+        // Storage can be unavailable in hardened browser modes. The ordinary
+        // interaction window remains a safe fallback.
+      }
+      if (!focusBlockRunning && nowMs - lastInteractionAt > activeWindowMs) return
 
       void fetch("/api/activity/heartbeat", {
         method: "POST",
@@ -37,6 +55,8 @@ export default function PlatformActivityTracker() {
     window.addEventListener("keydown", markActive)
     window.addEventListener("scroll", markActive, passive)
     window.addEventListener("touchstart", markActive, passive)
+    window.addEventListener("focus", markActive)
+    document.addEventListener("visibilitychange", markActive)
     const interval = window.setInterval(sendHeartbeat, HEARTBEAT_MS)
 
     return () => {
@@ -45,8 +65,10 @@ export default function PlatformActivityTracker() {
       window.removeEventListener("keydown", markActive)
       window.removeEventListener("scroll", markActive)
       window.removeEventListener("touchstart", markActive)
+      window.removeEventListener("focus", markActive)
+      document.removeEventListener("visibilitychange", markActive)
     }
-  }, [])
+  }, [pathname])
 
   return null
 }

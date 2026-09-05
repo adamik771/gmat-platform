@@ -213,8 +213,9 @@ export default function AdminStudentsClient({ students: rawStudents, nowIso }: P
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#C9A84C]">Admin</p>
           <h1 className="text-xl font-semibold text-[#F0F0F0]">Student activity</h1>
           <p className="max-w-3xl text-xs leading-5 text-[#888888]">
-            Original attempts drive accuracy. Active time counts visible, recently used tabs;
-            activity before this tracker includes timed practice only.
+            Original attempts drive accuracy. Active time estimates focused use, including quiet
+            reading and visible Focus blocks; activity before this tracker includes timed practice
+            only.
           </p>
         </div>
         <p className="text-[11px] text-[#555555]">Updated {formatDate(nowIso)}</p>
@@ -464,8 +465,8 @@ function StudentDetail({ student }: { student: AdminStudentMetric }) {
           <p className="text-xs font-medium text-[#D0D0D0]">{student.guidance}</p>
           <p className="mt-1 text-[10px] text-[#555555]">
             {student.trackedActivityAvailable
-              ? "Full-site activity tracking has started for this student."
-              : "Historical active time currently reflects recorded practice only."}
+              ? "Full-site tracking is available from 2 Sep 2026; earlier time reflects recorded practice only."
+              : "No full-site heartbeat yet; historical active time reflects recorded practice only."}
           </p>
         </div>
         {student.email && (

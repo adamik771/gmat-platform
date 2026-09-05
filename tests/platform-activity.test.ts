@@ -1,6 +1,12 @@
 import fs from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
+import {
+  activeWindowForPath,
+  DEFAULT_ACTIVE_WINDOW_MS,
+  hasRunningFocusBlock,
+  READING_ACTIVE_WINDOW_MS,
+} from "@/lib/platform-activity"
 
 const migration = fs.readFileSync(
   path.join(
@@ -43,5 +49,51 @@ describe("platform activity storage contract", () => {
     expect(migration).toContain("current_day.active_seconds + least(")
     expect(migration).toContain("active_seconds = least(")
     expect(migration).toContain("86400")
+  })
+})
+
+describe("platform activity reading windows", () => {
+  it("allows thirty minutes for quiet study reading and five elsewhere", () => {
+    expect(READING_ACTIVE_WINDOW_MS).toBe(30 * 60_000)
+    expect(DEFAULT_ACTIVE_WINDOW_MS).toBe(5 * 60_000)
+  })
+
+  it.each([
+    "/chapters/quant-01",
+    "/guides/reading-quant-01-mindset",
+    "/learn/examples",
+    "/practice/session/custom",
+    "/practice/history/session-id",
+    "/review",
+    "/review/question/question-id",
+    "/error-log",
+    "/mock/report",
+  ])("keeps quiet reading active on %s", (pathname) => {
+    expect(activeWindowForPath(pathname)).toBe(READING_ACTIVE_WINDOW_MS)
+  })
+
+  it.each(["/dashboard", "/chapters", "/practice", "/settings", "/admin/students"])(
+    "keeps the shorter idle allowance on %s",
+    (pathname) => {
+      expect(activeWindowForPath(pathname)).toBe(DEFAULT_ACTIVE_WINDOW_MS)
+    },
+  )
+
+  it("recognizes only a live, unpaused Focus work block", () => {
+    const now = Date.parse("2026-09-05T10:00:00.000Z")
+    const state = (overrides: Record<string, unknown> = {}) =>
+      JSON.stringify({
+        phase: "work",
+        endsAt: now + 10 * 60_000,
+        pausedRemainingMs: null,
+        ...overrides,
+      })
+
+    expect(hasRunningFocusBlock(state(), now)).toBe(true)
+    expect(hasRunningFocusBlock(state({ phase: "break" }), now)).toBe(false)
+    expect(hasRunningFocusBlock(state({ endsAt: now }), now)).toBe(false)
+    expect(hasRunningFocusBlock(state({ pausedRemainingMs: 60_000 }), now)).toBe(false)
+    expect(hasRunningFocusBlock("not-json", now)).toBe(false)
+    expect(hasRunningFocusBlock(null, now)).toBe(false)
   })
 })
