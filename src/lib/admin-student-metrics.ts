@@ -1,4 +1,9 @@
 import { isChapterRead } from "@/lib/chapter-progress-merge"
+import { findActivePurchase, purchaseExpiresAt } from "@/lib/plan-access"
+import { SECTION_TARGET_SECONDS } from "@/lib/pacing"
+import { computeRung, priorityFor } from "@/lib/review-queue"
+import { gatherFlaggedQuestionIds } from "@/lib/mock"
+import { readSavedForReview } from "@/lib/spaced-review"
 import { parseOfficialExamEntries } from "@/lib/official-exams"
 import { isReplaySession } from "@/lib/utils"
 
@@ -9,7 +14,7 @@ export type StudentAttentionStatus =
   | "accuracy"
   | "timing"
   | "new"
-  | "on-track"
+  | "no-alert"
 
 export interface AdminStudentUser {
   id: string
@@ -37,8 +42,12 @@ export interface AdminPracticeAttemptRow {
   id: string
   user_id: string
   session_id: string | null
+  question_id?: string | null
   section: string | null
+  topic?: string | null
+  subtopic?: string | null
   is_correct: boolean | null
+  confidence?: string | null
   time_spent_ms: number | null
   created_at: string
 }
@@ -63,12 +72,6 @@ export interface AdminPurchaseRow {
   revoked_at: string | null
 }
 
-export interface AdminErrorTagRow {
-  user_id: string
-  attempt_id: string
-  reviewed: boolean | null
-}
-
 export interface AdminTutorUsageRow {
   user_id: string
   created_at: string
@@ -81,7 +84,15 @@ export interface AdminLessonCompletionRow {
 
 export interface AdminChapterDefinition {
   slug: string
+  section: "Quant" | "Verbal" | "DI" | "General"
   sections: ReadonlyArray<{ id: string; type: string }>
+}
+
+export interface AdminQuestionDefinition {
+  id: string
+  section: "Quant" | "Verbal" | "DI"
+  correctAnswer: number
+  twoPartCorrectAnswers?: number[]
 }
 
 export interface AdminStudentSectionMetric {
@@ -89,6 +100,10 @@ export interface AdminStudentSectionMetric {
   questions: number
   accuracy: number | null
   averageTimeMs: number | null
+  recentQuestions: number
+  recentAccuracy: number | null
+  learningQuestions: number
+  learningAccuracy: number | null
 }
 
 export interface AdminStudentMetric {
@@ -102,9 +117,16 @@ export interface AdminStudentMetric {
   targetScore: number | null
   examDate: string | null
   plan: string | null
+  planActive: boolean
+  planExpiresAt: string | null
   courseCompletionPct: number
   completedChapters: number
   totalChapters: number
+  chapterSetsCompleted: number
+  totalQuestions: number
+  practiceQuestions: number
+  learningQuestions: number
+  learningAccuracy: number | null
   questions: number
   questions7d: number
   questions30d: number
@@ -133,16 +155,17 @@ export interface BuildAdminStudentMetricsInput {
   userStates: AdminUserStateRow[]
   activityDays: AdminActivityDayRow[]
   purchases: AdminPurchaseRow[]
-  errorTags: AdminErrorTagRow[]
   tutorUsage: AdminTutorUsageRow[]
   lessonCompletions: AdminLessonCompletionRow[]
   chapters: AdminChapterDefinition[]
+  questions: AdminQuestionDefinition[]
   now: Date
 }
 
 const DAY_MS = 86_400_000
 const MAX_REASONABLE_QUESTION_MS = 30 * 60_000
-const MAX_REASONABLE_SESSION_MS = 8 * 60 * 60_000
+const MAX_REASONABLE_SESSION_MS = 4 * 60 * 60_000
+const REVIEW_WINDOW_MS = 84 * DAY_MS
 
 function finiteNonNegative(value: number | null | undefined): number {
   return typeof value === "number" && Number.isFinite(value) && value > 0
@@ -178,6 +201,103 @@ function percent(correct: number, total: number): number | null {
   return total > 0 ? Math.round((correct / total) * 100) : null
 }
 
+function median(values: number[]): number | null {
+  if (values.length === 0) return null
+  const sorted = [...values].sort((a, b) => a - b)
+  const middle = Math.floor(sorted.length / 2)
+  return sorted.length % 2 === 0
+    ? Math.round((sorted[middle - 1] + sorted[middle]) / 2)
+    : sorted[middle]
+}
+
+function reasonableSessionMs(session: AdminPracticeSessionRow): number {
+  const reported = finiteNonNegative(session.total_time_ms)
+  const questionCount = Math.max(1, finiteNonNegative(session.total_questions))
+  // Ten minutes of setup/review plus five minutes per question is deliberately
+  // generous, but prevents a suspended one-question tab from becoming hours of
+  // historical activity. Full mocks remain covered by the four-hour hard cap.
+  const contextualCap = 10 * 60_000 + questionCount * 5 * 60_000
+  return Math.min(reported, contextualCap, MAX_REASONABLE_SESSION_MS)
+}
+
+function chapterQuestionCorrect(
+  progress: {
+    selected?: number | null
+    submitted?: boolean
+    twoPartSelections?: (number | null)[]
+  },
+  question: AdminQuestionDefinition,
+): boolean | null {
+  if (!progress.submitted) return null
+  if (question.twoPartCorrectAnswers?.length) {
+    const selected = progress.twoPartSelections
+    if (!selected || selected.length !== question.twoPartCorrectAnswers.length) return null
+    return selected.every((answer, index) => answer === question.twoPartCorrectAnswers?.[index])
+  }
+  return typeof progress.selected === "number"
+    ? progress.selected === question.correctAnswer
+    : null
+}
+
+function dueReviewCount(input: {
+  attempts: AdminPracticeAttemptRow[]
+  state: Record<string, unknown>
+  examDate: string | null
+  nowMs: number
+}): number {
+  const saved = readSavedForReview(input.state)
+  const flagged = gatherFlaggedQuestionIds(input.state)
+  const grouped = new Map<string, AdminPracticeAttemptRow[]>()
+  for (const attempt of input.attempts) {
+    if (attempt.is_correct === null) continue
+    const seenAt = timestamp(attempt.created_at)
+    if (seenAt === null || seenAt < input.nowMs - REVIEW_WINDOW_MS) continue
+    const questionId = attempt.question_id ?? attempt.id
+    const rows = grouped.get(questionId)
+    if (rows) rows.push(attempt)
+    else grouped.set(questionId, [attempt])
+  }
+
+  const examMs = input.examDate
+    ? Date.parse(`${input.examDate}T23:59:59.999Z`)
+    : Number.NaN
+  const daysUntilExam = Number.isFinite(examMs)
+    ? Math.max(0, Math.ceil((examMs - input.nowMs) / DAY_MS))
+    : null
+  let due = 0
+  for (const [questionId, attempts] of grouped) {
+    const chronological = attempts.sort(
+      (a, b) => (timestamp(a.created_at) ?? 0) - (timestamp(b.created_at) ?? 0),
+    )
+    const latest = chronological.at(-1)
+    if (!latest) continue
+    const latestMs = timestamp(latest.created_at) ?? input.nowMs
+    const correctness = chronological.map((attempt) => attempt.is_correct === true)
+    const rung = computeRung(correctness)
+    const missCount = correctness.filter((correct) => !correct).length
+    const isFlagged = flagged.has(questionId)
+    const isSaved = saved.has(questionId)
+    // The student queue also schedules routine reinforcement for questions
+    // answered correctly from the start. That is healthy practice, not an
+    // admin intervention signal; this count is specifically weak/saved/flagged
+    // material that is now due.
+    if (missCount === 0 && !isFlagged && !isSaved) continue
+    const result = priorityFor(
+      rung,
+      Math.max(0, (input.nowMs - latestMs) / DAY_MS),
+      missCount,
+      isFlagged,
+      {
+        daysUntilExam,
+        confidentMiss: latest.is_correct === false && latest.confidence === "high",
+        saved: isSaved,
+      },
+    )
+    if (result.due || isFlagged || isSaved) due += 1
+  }
+  return due
+}
+
 function daysSince(value: string | null, nowMs: number): number | null {
   const ms = timestamp(value)
   return ms === null ? null : Math.max(0, Math.floor((nowMs - ms) / DAY_MS))
@@ -198,19 +318,19 @@ function scalarString(value: unknown): string | null {
 }
 
 function statusFor(input: {
-  questions: number
+  hasStarted: boolean
   questions30d: number
   joinedAt: string
   lastActiveAt: string | null
   accuracy30d: number | null
-  averageTimeMs: number | null
+  timingSection: "Quant" | "Verbal" | "DI" | null
   reviewBacklog: number
   nowMs: number
 }): { status: StudentAttentionStatus; guidance: string } {
   const inactivity = daysSince(input.lastActiveAt, input.nowMs)
   const accountAge = daysSince(input.joinedAt, input.nowMs) ?? 0
 
-  if (input.questions === 0 && accountAge > 3) {
+  if (!input.hasStarted && accountAge > 3) {
     return {
       status: "not-started",
       guidance: "Has not completed a recorded question yet.",
@@ -225,7 +345,7 @@ function statusFor(input: {
   if (input.reviewBacklog >= 10) {
     return {
       status: "review-backlog",
-      guidance: `${input.reviewBacklog} missed questions are still awaiting review.`,
+      guidance: `${input.reviewBacklog} unique questions are due in spaced review.`,
     }
   }
   if (
@@ -238,14 +358,10 @@ function statusFor(input: {
       guidance: `Recent original-attempt accuracy is ${input.accuracy30d}%.`,
     }
   }
-  if (
-    input.questions30d >= 15 &&
-    input.averageTimeMs !== null &&
-    input.averageTimeMs > 180_000
-  ) {
+  if (input.timingSection) {
     return {
       status: "timing",
-      guidance: "Average question time is above three minutes.",
+      guidance: `${input.timingSection} median pace is materially above its section target.`,
     }
   }
   if (accountAge <= 7) {
@@ -255,8 +371,8 @@ function statusFor(input: {
     }
   }
   return {
-    status: "on-track",
-    guidance: "No immediate intervention signal.",
+    status: "no-alert",
+    guidance: "No rule-based intervention signal right now.",
   }
 }
 
@@ -280,15 +396,16 @@ export function buildAdminStudentMetrics(
   const attemptsByUser = groupByUser(input.attempts)
   const activityByUser = groupByUser(input.activityDays)
   const purchasesByUser = groupByUser(input.purchases)
-  const tagsByUser = groupByUser(input.errorTags)
   const tutorByUser = groupByUser(input.tutorUsage)
   const completionsByUser = groupByUser(input.lessonCompletions)
   const stateByUser = new Map(input.userStates.map((row) => [row.user_id, row]))
+  const questionById = new Map(input.questions.map((question) => [question.id, question]))
 
   return input.users.map((user) => {
     const sessions = sessionsByUser.get(user.id) ?? []
     const sessionById = new Map(sessions.map((session) => [session.id, session]))
-    const scoredAttempts = (attemptsByUser.get(user.id) ?? []).filter((attempt) => {
+    const allAttempts = attemptsByUser.get(user.id) ?? []
+    const scoredAttempts = allAttempts.filter((attempt) => {
       const session = attempt.session_id ? sessionById.get(attempt.session_id) : null
       return !session || !isReplaySession(session.slug, session.topic)
     })
@@ -308,11 +425,97 @@ export function buildAdminStudentMetrics(
       .map((attempt) => finiteNonNegative(attempt.time_spent_ms))
       .filter((ms) => ms >= 1_000 && ms <= MAX_REASONABLE_QUESTION_MS)
 
+    const stateRow = stateByUser.get(user.id)
+    const state = stateRow?.data ?? user.userMetadata
+    const chapterProgress =
+      state.chapter_progress && typeof state.chapter_progress === "object"
+        ? (state.chapter_progress as Record<
+            string,
+            {
+              sectionsRead?: Record<string, boolean>
+              questions?: Record<
+                string,
+                {
+                  selected?: number | null
+                  submitted?: boolean
+                  twoPartSelections?: (number | null)[]
+                }
+              >
+              problemSetResults?: Record<
+                string,
+                {
+                  correct?: number
+                  total?: number
+                  attempts?: number
+                  lifetimeCorrect?: number
+                  lifetimeTotal?: number
+                }
+              >
+            }
+          >)
+        : {}
+    const completedChapters = input.chapters.filter((chapter) =>
+      isChapterRead(chapter.sections, chapterProgress[chapter.slug]?.sectionsRead),
+    ).length
+
+    const learningBySection: Record<
+      "Quant" | "Verbal" | "DI",
+      { questions: number; graded: number; correct: number }
+    > = {
+      Quant: { questions: 0, graded: 0, correct: 0 },
+      Verbal: { questions: 0, graded: 0, correct: 0 },
+      DI: { questions: 0, graded: 0, correct: 0 },
+    }
+    let chapterSetsCompleted = 0
+    for (const chapter of input.chapters) {
+      const progress = chapterProgress[chapter.slug]
+      if (!progress) continue
+      for (const [questionId, questionProgress] of Object.entries(
+        progress.questions ?? {},
+      )) {
+        if (!questionProgress.submitted) continue
+        const question = questionById.get(questionId)
+        const section = question?.section ?? chapter.section
+        if (section === "General") continue
+        learningBySection[section].questions += 1
+        if (!question) continue
+        const correctResult = chapterQuestionCorrect(questionProgress, question)
+        if (correctResult === null) continue
+        learningBySection[section].graded += 1
+        if (correctResult) learningBySection[section].correct += 1
+      }
+      for (const result of Object.values(progress.problemSetResults ?? {})) {
+        const total = scalarNumber(result?.lifetimeTotal ?? result?.total) ?? 0
+        const correctResult = scalarNumber(
+          result?.lifetimeCorrect ?? result?.correct,
+        ) ?? 0
+        if (total <= 0) continue
+        if (chapter.section === "General") continue
+        learningBySection[chapter.section].questions += total
+        learningBySection[chapter.section].graded += total
+        learningBySection[chapter.section].correct += Math.min(total, correctResult)
+        chapterSetsCompleted += Math.max(
+          1,
+          scalarNumber(result?.attempts) ?? 1,
+        )
+      }
+    }
+    const learningQuestions = Object.values(learningBySection).reduce(
+      (sum, metric) => sum + metric.questions,
+      0,
+    )
+    const learningCorrect = Object.values(learningBySection).reduce(
+      (sum, metric) => sum + metric.correct,
+      0,
+    )
+
     const sectionMetrics = (["Quant", "Verbal", "DI"] as const).map((section) => {
       const rows = scoredAttempts.filter((attempt) => attempt.section === section)
+      const recentRows = recent30.filter((attempt) => attempt.section === section)
       const sectionTimed = rows
         .map((attempt) => finiteNonNegative(attempt.time_spent_ms))
         .filter((ms) => ms >= 1_000 && ms <= MAX_REASONABLE_QUESTION_MS)
+      const learning = learningBySection[section]
       return {
         section,
         questions: rows.length,
@@ -324,33 +527,57 @@ export function buildAdminStudentMetrics(
           sectionTimed.length > 0
             ? Math.round(sectionTimed.reduce((sum, ms) => sum + ms, 0) / sectionTimed.length)
             : null,
+        recentQuestions: recentRows.length,
+        recentAccuracy: percent(
+          recentRows.filter((attempt) => attempt.is_correct === true).length,
+          recentRows.length,
+        ),
+        learningQuestions: learning.questions,
+        learningAccuracy: percent(learning.correct, learning.graded),
       }
     })
-    const weakestSection = sectionMetrics
-      .filter((metric) => metric.questions >= 5 && metric.accuracy !== null)
-      .sort((a, b) => (a.accuracy ?? 101) - (b.accuracy ?? 101))[0]?.section ?? null
+    const recentFocusCandidates = sectionMetrics.filter(
+      (metric) => metric.recentQuestions >= 10 && metric.recentAccuracy !== null,
+    )
+    const lifetimeFocusCandidates = sectionMetrics.filter(
+      (metric) => metric.questions >= 20 && metric.accuracy !== null,
+    )
+    const focusCandidates =
+      recentFocusCandidates.length >= 2
+        ? recentFocusCandidates.sort(
+            (a, b) => (a.recentAccuracy ?? 101) - (b.recentAccuracy ?? 101),
+          )
+        : lifetimeFocusCandidates.length >= 2
+          ? lifetimeFocusCandidates.sort(
+            (a, b) => (a.accuracy ?? 101) - (b.accuracy ?? 101),
+          )
+          : []
+    const weakestSection = focusCandidates[0]?.section ?? null
 
-    const stateRow = stateByUser.get(user.id)
-    const state = stateRow?.data ?? user.userMetadata
-    const chapterProgress =
-      state.chapter_progress && typeof state.chapter_progress === "object"
-        ? (state.chapter_progress as Record<
-            string,
-            { sectionsRead?: Record<string, boolean> }
-          >)
-        : {}
-    const completedChapters = input.chapters.filter((chapter) =>
-      isChapterRead(chapter.sections, chapterProgress[chapter.slug]?.sectionsRead),
-    ).length
+    const timingSection = (["Quant", "Verbal", "DI"] as const)
+      .map((section) => {
+        const times = recent30
+          .filter((attempt) => attempt.section === section)
+          .map((attempt) => finiteNonNegative(attempt.time_spent_ms))
+          .filter((ms) => ms >= 1_000 && ms <= MAX_REASONABLE_QUESTION_MS)
+        const medianMs = median(times)
+        return {
+          section,
+          count: times.length,
+          ratio:
+            medianMs === null
+              ? 0
+              : medianMs / (SECTION_TARGET_SECONDS[section] * 1_000),
+        }
+      })
+      .filter((metric) => metric.count >= 10 && metric.ratio > 1.3)
+      .sort((a, b) => b.ratio - a.ratio)[0]?.section ?? null
 
     const practiceSecondsByDay = new Map<string, number>()
     for (const session of sessions) {
       const day = utcDay(session.created_at)
       if (!day) continue
-      const ms = Math.min(
-        finiteNonNegative(session.total_time_ms),
-        MAX_REASONABLE_SESSION_MS,
-      )
+      const ms = reasonableSessionMs(session)
       practiceSecondsByDay.set(day, (practiceSecondsByDay.get(day) ?? 0) + ms / 1_000)
     }
     const trackedSecondsByDay = new Map<string, number>()
@@ -382,22 +609,20 @@ export function buildAdminStudentMetrics(
       }
     }
 
-    const tags = tagsByUser.get(user.id) ?? []
-    const reviewedAttemptIds = new Set(
-      tags.filter((tag) => tag.reviewed).map((tag) => tag.attempt_id),
-    )
-    const wrongAttemptIds = new Set(
-      scoredAttempts
-        .filter((attempt) => attempt.is_correct === false)
-        .map((attempt) => attempt.id),
-    )
-    const reviewBacklog = [...wrongAttemptIds].filter(
-      (attemptId) => !reviewedAttemptIds.has(attemptId),
-    ).length
+    const examDate = scalarString(state.exam_date ?? user.userMetadata.exam_date)
+    const reviewBacklog = dueReviewCount({
+      attempts: allAttempts,
+      state,
+      examDate,
+      nowMs,
+    })
 
-    const activePurchase = (purchasesByUser.get(user.id) ?? [])
+    const purchaseHistory = (purchasesByUser.get(user.id) ?? [])
       .filter((purchase) => !purchase.revoked_at)
-      .sort((a, b) => b.paid_at.localeCompare(a.paid_at))[0]
+      .sort((a, b) => b.paid_at.localeCompare(a.paid_at))
+    const latestPurchase = purchaseHistory[0] ?? null
+    const activePurchase = findActivePurchase(purchaseHistory, input.now)
+    const displayedPurchase = activePurchase ?? latestPurchase
     const tutorRequests30d = (tutorByUser.get(user.id) ?? []).filter(
       (row) => (timestamp(row.created_at) ?? 0) >= thirtyDaysAgo,
     ).length
@@ -410,15 +635,15 @@ export function buildAdminStudentMetrics(
     ])
 
     const status = statusFor({
-      questions: scoredAttempts.length,
+      hasStarted:
+        scoredAttempts.length + learningQuestions > 0 ||
+        completedChapters > 0 ||
+        activeSeconds > 0,
       questions30d: recent30.length,
       joinedAt: user.createdAt,
       lastActiveAt,
       accuracy30d: percent(correct30, recent30.length),
-      averageTimeMs:
-        timed30d.length > 0
-          ? Math.round(timed30d.reduce((sum, ms) => sum + ms, 0) / timed30d.length)
-          : null,
+      timingSection,
       reviewBacklog,
       nowMs,
     })
@@ -432,14 +657,29 @@ export function buildAdminStudentMetrics(
       lastSignInAt: user.lastSignInAt,
       lastActiveAt,
       targetScore: scalarNumber(state.target_score ?? user.userMetadata.target_score),
-      examDate: scalarString(state.exam_date ?? user.userMetadata.exam_date),
-      plan: activePurchase?.plan_id ?? null,
+      examDate,
+      plan: displayedPurchase?.plan_id ?? null,
+      planActive: activePurchase !== null,
+      planExpiresAt: displayedPurchase
+        ? purchaseExpiresAt(displayedPurchase.plan_id, displayedPurchase.paid_at)
+        : null,
       courseCompletionPct:
         input.chapters.length > 0
           ? Math.round((completedChapters / input.chapters.length) * 100)
           : 0,
       completedChapters,
       totalChapters: input.chapters.length,
+      chapterSetsCompleted,
+      totalQuestions: scoredAttempts.length + learningQuestions,
+      practiceQuestions: scoredAttempts.length,
+      learningQuestions,
+      learningAccuracy: percent(
+        learningCorrect,
+        Object.values(learningBySection).reduce(
+          (sum, metric) => sum + metric.graded,
+          0,
+        ),
+      ),
       questions: scoredAttempts.length,
       questions7d: recent7.length,
       questions30d: recent30.length,

@@ -29,6 +29,8 @@ export interface PurchaseRow {
   amountCents: number
   currency: string
   paidAt: string
+  expiresAt: string | null
+  active: boolean
 }
 
 export interface NotificationPrefs {
@@ -675,7 +677,8 @@ function TriStateRow({
 }
 
 function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
-  const latest = purchases[0] ?? null
+  const latest = purchases.find((purchase) => purchase.active) ?? null
+  const latestPast = purchases[0] ?? null
 
   return (
     <div className="space-y-10">
@@ -712,7 +715,7 @@ function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
                   {latest.planLabel}
                 </p>
                 <p className="text-[13px] text-[#C0C0C0]">
-                  Activated {formatDate(latest.paidAt)} ·{" "}
+                  Activated {formatDate(latest.paidAt)} · access until {latest.expiresAt ? formatDate(latest.expiresAt) : "not available"} ·{" "}
                   {formatMoney(latest.amountCents, latest.currency)} paid
                 </p>
               </div>
@@ -733,11 +736,12 @@ function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
             >
               <div>
                 <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight mb-1">
-                  No plan yet
+                  {latestPast ? "No active plan" : "No plan yet"}
                 </p>
                 <p className="text-[13px] text-[#C0C0C0] leading-[1.6] max-w-sm">
-                  Pick a package on the pricing page to unlock the full
-                  curriculum and coaching.
+                  {latestPast
+                    ? `Your ${latestPast.planLabel} access ended ${latestPast.expiresAt ? formatDate(latestPast.expiresAt) : "on its scheduled end date"}.`
+                    : "Pick a package on the pricing page to unlock the full curriculum and coaching."}
                 </p>
               </div>
               <Link

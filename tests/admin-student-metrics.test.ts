@@ -26,12 +26,12 @@ function input(
     userStates: [],
     activityDays: [],
     purchases: [],
-    errorTags: [],
     tutorUsage: [],
     lessonCompletions: [],
     chapters: [
       {
         slug: "chapter-1",
+        section: "Quant",
         sections: [
           { id: "pre", type: "pretest" },
           { id: "read-1", type: "reading" },
@@ -41,9 +41,11 @@ function input(
       },
       {
         slug: "chapter-2",
+        section: "Verbal",
         sections: [{ id: "read", type: "reading" }],
       },
     ],
+    questions: [],
     now: NOW,
     ...overrides,
   }
@@ -177,9 +179,9 @@ describe("admin student metrics", () => {
     expect(student.trackedActivityAvailable).toBe(true)
   })
 
-  it("identifies the weakest section only after enough evidence", () => {
+  it("identifies a focus section only after enough recent evidence", () => {
     const sections = [
-      ...Array.from({ length: 5 }, (_, index) => ({
+      ...Array.from({ length: 10 }, (_, index) => ({
         id: `q-${index}`,
         user_id: "student-1",
         session_id: null,
@@ -188,7 +190,7 @@ describe("admin student metrics", () => {
         time_spent_ms: 60_000,
         created_at: "2026-09-01T12:00:00.000Z",
       })),
-      ...Array.from({ length: 5 }, (_, index) => ({
+      ...Array.from({ length: 10 }, (_, index) => ({
         id: `v-${index}`,
         user_id: "student-1",
         session_id: null,
@@ -213,31 +215,90 @@ describe("admin student metrics", () => {
     expect(student.sectionMetrics.find((metric) => metric.section === "DI")?.questions).toBe(1)
   })
 
-  it("prioritizes an outstanding review queue over lower-priority signals", () => {
-    const attempts = Array.from({ length: 12 }, (_, index) => ({
+  it("counts unique questions actually due under the spacing ladder", () => {
+    const attempts = [
+      ...Array.from({ length: 10 }, (_, index) => ({
       id: `wrong-${index}`,
       user_id: "student-1",
       session_id: null,
+      question_id: `q-${index}`,
       section: "Verbal",
       is_correct: false,
       time_spent_ms: 240_000,
-      created_at: "2026-09-01T12:00:00.000Z",
-    }))
+      created_at: "2026-09-01T10:00:00.000Z",
+      })),
+      {
+        id: "recovered-wrong",
+        user_id: "student-1",
+        session_id: null,
+        question_id: "recovered",
+        section: "Verbal",
+        is_correct: false,
+        time_spent_ms: 120_000,
+        created_at: "2026-08-31T10:00:00.000Z",
+      },
+      {
+        id: "recovered-correct",
+        user_id: "student-1",
+        session_id: null,
+        question_id: "recovered",
+        section: "Verbal",
+        is_correct: true,
+        time_spent_ms: 120_000,
+        created_at: "2026-09-02T10:00:00.000Z",
+      },
+    ]
+    const [student] = buildAdminStudentMetrics(
+      input({ attempts }),
+    )
+
+    expect(student.reviewBacklog).toBe(10)
+    expect(student.status).toBe("review-backlog")
+  })
+
+  it("includes chapter checks and cumulative problem-set work without mixing accuracies", () => {
     const [student] = buildAdminStudentMetrics(
       input({
-        attempts,
-        errorTags: [
+        questions: [
+          { id: "check-1", section: "Quant", correctAnswer: 1 },
+          { id: "check-2", section: "Quant", correctAnswer: 2 },
+        ],
+        userStates: [
           {
             user_id: "student-1",
-            attempt_id: "wrong-0",
-            reviewed: true,
+            updated_at: "2026-09-02T11:00:00.000Z",
+            data: {
+              chapter_progress: {
+                "chapter-1": {
+                  sectionsRead: { "read-1": true },
+                  questions: {
+                    "check-1": { selected: 1, submitted: true },
+                    "check-2": { selected: 0, submitted: true },
+                  },
+                  problemSetResults: {
+                    easy: {
+                      correct: 4,
+                      total: 5,
+                      attempts: 2,
+                      lifetimeCorrect: 7,
+                      lifetimeTotal: 10,
+                    },
+                  },
+                },
+              },
+            },
           },
         ],
       }),
     )
 
-    expect(student.reviewBacklog).toBe(11)
-    expect(student.status).toBe("review-backlog")
+    expect(student.practiceQuestions).toBe(0)
+    expect(student.learningQuestions).toBe(12)
+    expect(student.totalQuestions).toBe(12)
+    expect(student.learningAccuracy).toBe(67)
+    expect(student.accuracy).toBeNull()
+    expect(student.chapterSetsCompleted).toBe(2)
+    expect(student.status).not.toBe("not-started")
   })
 
   it("uses recent timing for interventions while retaining lifetime timing", () => {
@@ -265,6 +326,80 @@ describe("admin student metrics", () => {
 
     expect(student.averageTimeMs).toBe(180_000)
     expect(student.averageTime30dMs).toBe(60_000)
-    expect(student.status).toBe("on-track")
+    expect(student.status).toBe("no-alert")
+  })
+
+  it("uses section-specific median pace for timing intervention", () => {
+    const slowQuant = Array.from({ length: 15 }, (_, index) => ({
+      id: `slow-${index}`,
+      user_id: "student-1",
+      session_id: null,
+      question_id: `slow-q-${index}`,
+      section: "Quant",
+      is_correct: true,
+      time_spent_ms: 170_000,
+      created_at: "2026-09-01T12:00:00.000Z",
+    }))
+    const [student] = buildAdminStudentMetrics(input({ attempts: slowQuant }))
+
+    expect(student.status).toBe("timing")
+    expect(student.guidance).toContain("Quant median pace")
+  })
+
+  it("does not name a weakest section when only one section has enough evidence", () => {
+    const attempts = Array.from({ length: 30 }, (_, index) => ({
+      id: `only-${index}`,
+      user_id: "student-1",
+      session_id: null,
+      question_id: `only-q-${index}`,
+      section: "Quant",
+      is_correct: index < 10,
+      time_spent_ms: 60_000,
+      created_at: "2026-09-01T12:00:00.000Z",
+    }))
+    const [student] = buildAdminStudentMetrics(input({ attempts }))
+
+    expect(student.weakestSection).toBeNull()
+  })
+
+  it("caps implausibly long small sessions in historical activity fallback", () => {
+    const [student] = buildAdminStudentMetrics(
+      input({
+        sessions: [
+          {
+            id: "suspended",
+            user_id: "student-1",
+            slug: "review-offline-1",
+            topic: "Review",
+            section: "Quant",
+            total_questions: 1,
+            correct_count: 0,
+            total_time_ms: 7_200_000,
+            created_at: "2026-09-01T12:00:00.000Z",
+          },
+        ],
+      }),
+    )
+
+    expect(student.activeHours).toBe(0.3)
+  })
+
+  it("expires the displayed paid plan at its advertised duration", () => {
+    const [student] = buildAdminStudentMetrics(
+      input({
+        purchases: [
+          {
+            user_id: "student-1",
+            plan_id: "self_study",
+            paid_at: "2026-05-02T12:00:00.000Z",
+            revoked_at: null,
+          },
+        ],
+      }),
+    )
+
+    expect(student.plan).toBe("self_study")
+    expect(student.planActive).toBe(false)
+    expect(student.planExpiresAt).toBe("2026-09-02T12:00:00.000Z")
   })
 })

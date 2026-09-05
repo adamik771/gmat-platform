@@ -155,6 +155,76 @@ describe("mergeProgress (chapter progress union — fixes lost graded tests)", (
     expect(mergeProgress(fresh, stale).problemSetResults.medium?.correct).toBe(3)
   })
 
+  it("keeps monotonic cumulative retake counters from the more complete copy", () => {
+    const stale = empty()
+    stale.problemSetResults.medium = {
+      correct: 8,
+      total: 10,
+      at: 1000,
+      attempts: 2,
+      lifetimeCorrect: 15,
+      lifetimeTotal: 20,
+    }
+    const fresh = empty()
+    fresh.problemSetResults.medium = {
+      correct: 6,
+      total: 10,
+      at: 2000,
+      attempts: 3,
+      lifetimeCorrect: 21,
+      lifetimeTotal: 30,
+    }
+
+    const result = mergeProgress(stale, fresh).problemSetResults.medium
+    expect(result).toMatchObject({
+      correct: 6,
+      total: 10,
+      attempts: 3,
+      lifetimeCorrect: 21,
+      lifetimeTotal: 30,
+    })
+  })
+
+  it("unions concurrent retake histories by attempt id", () => {
+    const deviceA = empty()
+    deviceA.problemSetResults.hard = {
+      correct: 7,
+      total: 10,
+      at: 2000,
+      attempts: 2,
+      lifetimeCorrect: 15,
+      lifetimeTotal: 20,
+      history: [
+        { id: "original", correct: 8, total: 10, at: 1000 },
+        { id: "device-a", correct: 7, total: 10, at: 2000 },
+      ],
+    }
+    const deviceB = empty()
+    deviceB.problemSetResults.hard = {
+      correct: 6,
+      total: 10,
+      at: 3000,
+      attempts: 2,
+      lifetimeCorrect: 14,
+      lifetimeTotal: 20,
+      history: [
+        { id: "original", correct: 8, total: 10, at: 1000 },
+        { id: "device-b", correct: 6, total: 10, at: 3000 },
+      ],
+    }
+
+    const result = mergeProgress(deviceA, deviceB).problemSetResults.hard
+    expect(result?.correct).toBe(6)
+    expect(result?.attempts).toBe(3)
+    expect(result?.lifetimeCorrect).toBe(21)
+    expect(result?.lifetimeTotal).toBe(30)
+    expect(result?.history?.map((entry) => entry.id)).toEqual([
+      "original",
+      "device-a",
+      "device-b",
+    ])
+  })
+
   it("legacy results without timestamps keep the more-attempts rule", () => {
     const a = empty()
     a.problemSetResults.medium = { correct: 5, total: 6 }

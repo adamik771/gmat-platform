@@ -36,13 +36,13 @@ export default function ProgressSummary({
       <div className="grid grid-cols-1 divide-y divide-white/[0.05] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
         <div id="score-goal" className="px-1 py-4 sm:px-5 sm:py-1 scroll-mt-24">
           <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#888888]">
-            Course
+            Reading progress
           </p>
           <p
             className="mt-2 font-display text-[1.75rem] font-semibold leading-none tabular-nums"
             style={{ color: completedChapters > 0 ? "#F0F0F0" : "#666666" }}
           >
-            {courseCompletionPct}% complete
+            {courseCompletionPct}% read
           </p>
           <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
             <TargetScoreControl initialTarget={targetScore} />

@@ -128,7 +128,20 @@ interface ChapterProgress {
    *  the newer retake; legacy entries without it fall back to more-total. */
   problemSetResults: Record<
     "easy" | "medium" | "hard",
-    { correct: number; total: number; at?: number } | undefined
+    {
+      correct: number
+      total: number
+      at?: number
+      attempts?: number
+      lifetimeCorrect?: number
+      lifetimeTotal?: number
+      history?: Array<{
+        id: string
+        correct: number
+        total: number
+        at: number
+      }>
+    } | undefined
   >
   /** Difficulty → mid-set progress for a graded run the student left before
    *  finishing (idx = next question, answers = graded so far). Lets a
@@ -2893,23 +2906,56 @@ function ProblemSetCard({
               { immediate: true }
             )
           }
-          onFinish={(correct, total) =>
+          onFinish={(correct, total) => {
+            const finishedAt = Date.now()
+            const attemptId =
+              typeof crypto !== "undefined" && "randomUUID" in crypto
+                ? crypto.randomUUID()
+                : `${finishedAt}-${Math.random().toString(36).slice(2)}`
             update(
-              (prev) => ({
-                ...prev,
-                problemSetResults: {
-                  ...prev.problemSetResults,
-                  [set.difficulty]: { correct, total, at: Date.now() },
-                },
-                // The run is complete — drop the mid-set checkpoint.
-                problemSetRuns: {
-                  ...prev.problemSetRuns,
-                  [set.difficulty]: undefined,
-                },
-              }),
+              (prev) => {
+                const prior = prev.problemSetResults[set.difficulty]
+                const priorHistory =
+                  prior?.history ??
+                  (prior?.total
+                    ? [
+                        {
+                          id: `legacy:${slug}:${set.difficulty}:${prior.at ?? "unknown"}:${prior.correct}:${prior.total}`,
+                          correct: prior.correct,
+                          total: prior.total,
+                          at: prior.at ?? 0,
+                        },
+                      ]
+                    : [])
+                return {
+                  ...prev,
+                  problemSetResults: {
+                    ...prev.problemSetResults,
+                    [set.difficulty]: {
+                      correct,
+                      total,
+                      at: finishedAt,
+                      attempts: (prior?.attempts ?? (prior?.total ? 1 : 0)) + 1,
+                      lifetimeCorrect:
+                        (prior?.lifetimeCorrect ?? prior?.correct ?? 0) + correct,
+                      lifetimeTotal:
+                        (prior?.lifetimeTotal ?? prior?.total ?? 0) + total,
+                      history: [
+                        ...priorHistory,
+                        { id: attemptId, correct, total, at: finishedAt },
+                      ].slice(-100),
+                    },
+                  },
+                  // The run is complete — drop the mid-set checkpoint.
+                  problemSetRuns: {
+                    ...prev.problemSetRuns,
+                    [set.difficulty]: undefined,
+                  },
+                }
+              },
               { immediate: true }
             )
-          }
+          }}
         />
       )}
     </>

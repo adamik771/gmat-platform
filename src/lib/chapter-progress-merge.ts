@@ -25,10 +25,17 @@ export interface MergeableQuestion {
 }
 
 interface SetResult {
+  /** Most recent run. */
   correct: number
   total: number
   /** Epoch ms of the finish. Optional — legacy results predate it. */
   at?: number
+  /** Cumulative counters added in Sep 2026. Legacy rows fall back to one run. */
+  attempts?: number
+  lifetimeCorrect?: number
+  lifetimeTotal?: number
+  /** Recent run identities let two devices union concurrent retakes safely. */
+  history?: Array<{ id: string; correct: number; total: number; at: number }>
 }
 
 interface SetRun {
@@ -95,8 +102,60 @@ function pickSetResult(
 ): SetResult | undefined {
   if (!a) return b
   if (!b) return a
-  if ((a.at ?? 0) !== (b.at ?? 0)) return (b.at ?? 0) > (a.at ?? 0) ? b : a
-  return b.total > a.total ? b : a
+  const latest =
+    (a.at ?? 0) !== (b.at ?? 0)
+      ? (b.at ?? 0) > (a.at ?? 0)
+        ? b
+        : a
+      : b.total > a.total
+        ? b
+        : a
+
+  const hasCumulative =
+    a.attempts !== undefined ||
+    b.attempts !== undefined ||
+    a.lifetimeCorrect !== undefined ||
+    b.lifetimeCorrect !== undefined ||
+    a.lifetimeTotal !== undefined ||
+    b.lifetimeTotal !== undefined ||
+    a.history !== undefined ||
+    b.history !== undefined
+  if (!hasCumulative) return latest
+
+  const historyById = new Map<
+    string,
+    { id: string; correct: number; total: number; at: number }
+  >()
+  for (const entry of [...(a.history ?? []), ...(b.history ?? [])]) {
+    historyById.set(entry.id, entry)
+  }
+  const history = [...historyById.values()]
+    .sort((left, right) => left.at - right.at)
+    .slice(-100)
+  const historyCorrect = history.reduce((sum, entry) => sum + entry.correct, 0)
+  const historyTotal = history.reduce((sum, entry) => sum + entry.total, 0)
+
+  // Cumulative fields are monotonic. Taking the maximum heals a stale-device
+  // merge without double-counting the same run from local and server copies.
+  return {
+    ...latest,
+    attempts: Math.max(
+      a.attempts ?? (a.total > 0 ? 1 : 0),
+      b.attempts ?? (b.total > 0 ? 1 : 0),
+      history.length,
+    ),
+    lifetimeCorrect: Math.max(
+      a.lifetimeCorrect ?? a.correct,
+      b.lifetimeCorrect ?? b.correct,
+      historyCorrect,
+    ),
+    lifetimeTotal: Math.max(
+      a.lifetimeTotal ?? a.total,
+      b.lifetimeTotal ?? b.total,
+      historyTotal,
+    ),
+    ...(history.length > 0 ? { history } : {}),
+  }
 }
 
 export function mergeProgress<T extends MergeableProgress>(a: T, b: T): T {

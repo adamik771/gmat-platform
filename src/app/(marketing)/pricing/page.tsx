@@ -9,6 +9,7 @@ import TrackView from "@/components/analytics/TrackView"
 import { PAYWALL_ENABLED } from "@/lib/entitlements"
 import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM_SHORT } from "@/lib/site"
 import { tiers } from "@/lib/plans"
+import { PLAN_ACCESS_MONTHS } from "@/lib/plan-access"
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -57,10 +58,10 @@ const comparisonFeatures = [
 ]
 
 const comparisonData: Record<string, (boolean | string)[]> = {
-  "Self-Study": [true, true, true, true, true, true, "4 months", false, false],
-  Mentorship: [true, true, true, true, true, true, "6 months", true, false],
-  Coaching: [true, true, true, true, true, true, "6 months", true, "8 sessions"],
-  Intensive: [true, true, true, true, true, true, "12 months", true, "16 sessions"],
+  "Self-Study": [true, true, true, true, true, true, `${PLAN_ACCESS_MONTHS.self_study} months`, false, false],
+  Mentorship: [true, true, true, true, true, true, `${PLAN_ACCESS_MONTHS.self_study_guaranteed} months`, true, false],
+  Coaching: [true, true, true, true, true, true, `${PLAN_ACCESS_MONTHS.coaching} months`, true, "8 sessions"],
+  Intensive: [true, true, true, true, true, true, `${PLAN_ACCESS_MONTHS.intensive} months`, true, "16 sessions"],
 }
 
 export default function PricingPage() {
