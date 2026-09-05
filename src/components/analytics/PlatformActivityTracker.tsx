@@ -2,7 +2,12 @@
 
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
-import { activeWindowForPath, HEARTBEAT_MS } from "@/lib/platform-activity"
+import {
+  activeWindowForPath,
+  hasRunningFocusBlock,
+  HEARTBEAT_MS,
+  STUDY_TIMER_STORAGE_KEY,
+} from "@/lib/platform-activity"
 
 /**
  * Records coarse active-use time for student support. The server stores only a
@@ -20,7 +25,18 @@ export default function PlatformActivityTracker() {
     }
     const sendHeartbeat = () => {
       if (document.visibilityState !== "visible" || !navigator.onLine) return
-      if (Date.now() - lastInteractionAt > activeWindowMs) return
+      const nowMs = Date.now()
+      let focusBlockRunning = false
+      try {
+        focusBlockRunning = hasRunningFocusBlock(
+          window.localStorage.getItem(STUDY_TIMER_STORAGE_KEY),
+          nowMs,
+        )
+      } catch {
+        // Storage can be unavailable in hardened browser modes. The ordinary
+        // interaction window remains a safe fallback.
+      }
+      if (!focusBlockRunning && nowMs - lastInteractionAt > activeWindowMs) return
 
       void fetch("/api/activity/heartbeat", {
         method: "POST",
