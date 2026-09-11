@@ -1,7 +1,9 @@
 import { isChapterRead } from "@/lib/chapter-progress-merge"
+import { buildActivitySummary } from "@/lib/activity-summary"
 import { findActivePurchase, purchaseExpiresAt } from "@/lib/plan-access"
 import { SECTION_TARGET_SECONDS } from "@/lib/pacing"
 import { computeRung, priorityFor } from "@/lib/review-queue"
+import { normalizeWeeklyHoursTarget } from "@/lib/study-hours"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { readSavedForReview } from "@/lib/spaced-review"
 import { parseOfficialExamEntries } from "@/lib/official-exams"
@@ -135,8 +137,12 @@ export interface AdminStudentMetric {
   averageTimeMs: number | null
   averageTime30dMs: number | null
   activeHours: number
+  activeHours7d: number
   activeHours30d: number
+  weeklyHoursTarget: number | null
+  weeklyPacePct: number | null
   trackedActivityAvailable: boolean
+  activeDays7d: number
   activeDays30d: number
   sessions: number
   reviewBacklog: number
@@ -164,7 +170,6 @@ export interface BuildAdminStudentMetricsInput {
 
 const DAY_MS = 86_400_000
 const MAX_REASONABLE_QUESTION_MS = 30 * 60_000
-const MAX_REASONABLE_SESSION_MS = 4 * 60 * 60_000
 const REVIEW_WINDOW_MS = 84 * DAY_MS
 
 function finiteNonNegative(value: number | null | undefined): number {
@@ -192,11 +197,6 @@ function maxIso(values: Array<string | null | undefined>): string | null {
   return winner
 }
 
-function utcDay(value: string): string | null {
-  const ms = timestamp(value)
-  return ms === null ? null : new Date(ms).toISOString().slice(0, 10)
-}
-
 function percent(correct: number, total: number): number | null {
   return total > 0 ? Math.round((correct / total) * 100) : null
 }
@@ -208,16 +208,6 @@ function median(values: number[]): number | null {
   return sorted.length % 2 === 0
     ? Math.round((sorted[middle - 1] + sorted[middle]) / 2)
     : sorted[middle]
-}
-
-function reasonableSessionMs(session: AdminPracticeSessionRow): number {
-  const reported = finiteNonNegative(session.total_time_ms)
-  const questionCount = Math.max(1, finiteNonNegative(session.total_questions))
-  // Ten minutes of setup/review plus five minutes per question is deliberately
-  // generous, but prevents a suspended one-question tab from becoming hours of
-  // historical activity. Full mocks remain covered by the four-hour hard cap.
-  const contextualCap = 10 * 60_000 + questionCount * 5 * 60_000
-  return Math.min(reported, contextualCap, MAX_REASONABLE_SESSION_MS)
 }
 
 function chapterQuestionCorrect(
@@ -573,41 +563,14 @@ export function buildAdminStudentMetrics(
       .filter((metric) => metric.count >= 10 && metric.ratio > 1.3)
       .sort((a, b) => b.ratio - a.ratio)[0]?.section ?? null
 
-    const practiceSecondsByDay = new Map<string, number>()
-    for (const session of sessions) {
-      const day = utcDay(session.created_at)
-      if (!day) continue
-      const ms = reasonableSessionMs(session)
-      practiceSecondsByDay.set(day, (practiceSecondsByDay.get(day) ?? 0) + ms / 1_000)
-    }
-    const trackedSecondsByDay = new Map<string, number>()
     const activityRows = activityByUser.get(user.id) ?? []
-    for (const day of activityRows) {
-      const seconds = Math.min(finiteNonNegative(day.active_seconds), 86_400)
-      trackedSecondsByDay.set(
-        day.activity_date,
-        Math.max(trackedSecondsByDay.get(day.activity_date) ?? 0, seconds),
-      )
-    }
-    const allDays = new Set([
-      ...practiceSecondsByDay.keys(),
-      ...trackedSecondsByDay.keys(),
-    ])
-    let activeSeconds = 0
-    let activeSeconds30d = 0
-    let activeDays30d = 0
-    for (const day of allDays) {
-      const seconds = Math.max(
-        practiceSecondsByDay.get(day) ?? 0,
-        trackedSecondsByDay.get(day) ?? 0,
-      )
-      activeSeconds += seconds
-      const dayMs = Date.parse(`${day}T23:59:59.999Z`)
-      if (Number.isFinite(dayMs) && dayMs >= thirtyDaysAgo) {
-        activeSeconds30d += seconds
-        if (seconds > 0) activeDays30d += 1
-      }
-    }
+    const activity = buildActivitySummary(sessions, activityRows, input.now)
+    const onboarding =
+      user.userMetadata.onboarding &&
+      typeof user.userMetadata.onboarding === "object"
+        ? (user.userMetadata.onboarding as { weeklyHours?: unknown })
+        : null
+    const weeklyHoursTarget = normalizeWeeklyHoursTarget(onboarding?.weeklyHours)
 
     const examDate = scalarString(state.exam_date ?? user.userMetadata.exam_date)
     const reviewBacklog = dueReviewCount({
@@ -638,7 +601,7 @@ export function buildAdminStudentMetrics(
       hasStarted:
         scoredAttempts.length + learningQuestions > 0 ||
         completedChapters > 0 ||
-        activeSeconds > 0,
+        activity.activeSeconds > 0,
       questions30d: recent30.length,
       joinedAt: user.createdAt,
       lastActiveAt,
@@ -693,10 +656,20 @@ export function buildAdminStudentMetrics(
         timed30d.length > 0
           ? Math.round(timed30d.reduce((sum, ms) => sum + ms, 0) / timed30d.length)
           : null,
-      activeHours: Math.round((activeSeconds / 3_600) * 10) / 10,
-      activeHours30d: Math.round((activeSeconds30d / 3_600) * 10) / 10,
-      trackedActivityAvailable: activityRows.length > 0,
-      activeDays30d,
+      activeHours: Math.round((activity.activeSeconds / 3_600) * 10) / 10,
+      activeHours7d: Math.round((activity.activeSeconds7d / 3_600) * 10) / 10,
+      activeHours30d:
+        Math.round((activity.activeSeconds30d / 3_600) * 10) / 10,
+      weeklyHoursTarget,
+      weeklyPacePct:
+        weeklyHoursTarget !== null
+          ? Math.round(
+              (activity.activeSeconds7d / 3_600 / weeklyHoursTarget) * 100,
+            )
+          : null,
+      trackedActivityAvailable: activity.trackedActivityAvailable,
+      activeDays7d: activity.activeDays7d,
+      activeDays30d: activity.activeDays30d,
       sessions: sessions.length,
       reviewBacklog,
       officialExamCount: parseOfficialExamEntries(state).length,

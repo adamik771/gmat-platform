@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest"
-import { perDayMinutes } from "@/lib/study-hours"
+import {
+  dailyStudyBudgetLabel,
+  normalizeWeeklyHoursTarget,
+  perDayMinutes,
+} from "@/lib/study-hours"
 import { buildWeeklyCadence, pickNextChapters } from "@/lib/study-plan-engine"
 import type {
   StudyPlanOutput,
@@ -351,6 +355,7 @@ describe("perDayMinutes — honest per-STUDY-day budget", () => {
     // 18 hrs = 1080 min. Over 7 days that reads 155/day, but the high-band
     // plan schedules only 6 study days — the honest figure is 180.
     expect(perDayMinutes(18)).toBe(180)
+    expect(perDayMinutes(40)).toBe(400)
   })
 
   it("divides low and medium bands by all 7 days", () => {
@@ -360,5 +365,15 @@ describe("perDayMinutes — honest per-STUDY-day budget", () => {
 
   it("never returns less than a 10-minute floor", () => {
     expect(perDayMinutes(0)).toBe(10)
+  })
+
+  it("formats intensive daily budgets without a wall of minutes", () => {
+    expect(dailyStudyBudgetLabel(40)).toBe("6 hr 40 min per study day")
+  })
+
+  it("preserves valid intensive targets and clamps only outside the range", () => {
+    expect(normalizeWeeklyHoursTarget(30)).toBe(30)
+    expect(normalizeWeeklyHoursTarget(40)).toBe(40)
+    expect(normalizeWeeklyHoursTarget(50)).toBe(40)
   })
 })

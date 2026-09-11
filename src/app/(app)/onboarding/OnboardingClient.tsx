@@ -4,7 +4,7 @@ import { useEffect, useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import {
-  perDayMinutes,
+  dailyStudyBudgetLabel,
   weeklyHoursAdvice,
   WEEKLY_HOURS_MAX,
   WEEKLY_HOURS_MIN,
@@ -695,12 +695,12 @@ function WeeklyHoursStep({
       />
       <div className="flex justify-between text-[11px] text-[#888888] mt-2 uppercase tracking-[0.16em] font-medium">
         <span>{WEEKLY_HOURS_MIN} hr</span>
-        <span>14 hr</span>
+        <span>20 hr</span>
         <span>{WEEKLY_HOURS_MAX} hr</span>
       </div>
       <p className="text-[12px] text-[#888888] leading-relaxed mt-5">
         That&apos;s about{" "}
-        <span className="text-[#C0C0C0]">{perDayMinutes(value)} min/day</span>.{" "}
+        <span className="text-[#C0C0C0]">{dailyStudyBudgetLabel(value)}</span>.{" "}
         {weeklyHoursAdvice(value)}
       </p>
       <p className="text-[11px] text-[#888888] leading-relaxed mt-2">

@@ -174,9 +174,65 @@ describe("admin student metrics", () => {
     )
 
     expect(student.activeHours).toBe(2)
+    expect(student.activeHours7d).toBe(2)
     expect(student.activeHours30d).toBe(2)
+    expect(student.activeDays7d).toBe(2)
     expect(student.activeDays30d).toBe(2)
     expect(student.trackedActivityAvailable).toBe(true)
+  })
+
+  it("compares rolling seven-day study with the onboarding target", () => {
+    const [student] = buildAdminStudentMetrics(
+      input({
+        users: [
+          {
+            id: "student-1",
+            email: "student@example.com",
+            isAdmin: false,
+            createdAt: "2026-08-01T12:00:00.000Z",
+            lastSignInAt: "2026-09-02T10:00:00.000Z",
+            userMetadata: {
+              full_name: "Test Student",
+              onboarding: { weeklyHours: 10 },
+            },
+            appMetadata: {},
+          },
+        ],
+        activityDays: [
+          {
+            user_id: "student-1",
+            activity_date: "2026-09-01",
+            active_seconds: 7_200,
+            last_seen_at: "2026-09-01T15:00:00.000Z",
+          },
+        ],
+      }),
+    )
+
+    expect(student.activeHours7d).toBe(2)
+    expect(student.weeklyHoursTarget).toBe(10)
+    expect(student.weeklyPacePct).toBe(20)
+    expect(student.activeDays7d).toBe(1)
+  })
+
+  it("preserves intensive targets and clamps only values above the supported range", () => {
+    const [student] = buildAdminStudentMetrics(
+      input({
+        users: [
+          {
+            id: "student-1",
+            email: "student@example.com",
+            isAdmin: false,
+            createdAt: "2026-08-01T12:00:00.000Z",
+            lastSignInAt: null,
+            userMetadata: { onboarding: { weeklyHours: 50 } },
+            appMetadata: {},
+          },
+        ],
+      }),
+    )
+
+    expect(student.weeklyHoursTarget).toBe(40)
   })
 
   it("identifies a focus section only after enough recent evidence", () => {

@@ -329,6 +329,7 @@ export default async function DashboardPage() {
   }[] = []
   let lessonsCompletedCount = 0
   let currentPlan: string | null = null
+  let hasPurchaseHistory = false
   let currentStreak = 0
   let longestStreak = 0
   /** Every session's timestamp + duration — the study-hours chart buckets
@@ -573,6 +574,7 @@ export default async function DashboardPage() {
       // Newest unexpired purchase → current plan chip. Expired/refunded rows
       // remain billing history but must not present as current access.
       const { data: purchaseRows } = latestPurchaseRes
+      hasPurchaseHistory = (purchaseRows?.length ?? 0) > 0
       currentPlan = findActivePurchase(
         (purchaseRows ?? []) as Array<{
           plan_id: string
@@ -832,9 +834,9 @@ export default async function DashboardPage() {
   // the app ever mentioned it again; a student who took the framing literally
   // hit day 8 with no signal. One honest line: day counter while it runs, and
   // the over-delivery message after (paywall is off, access continues free).
-  // Users with a purchased plan are not on a trial — the "Trial period
-  // over" line used to render 30px from their paid-plan chip.
-  const trialStart = user && !currentPlan ? trialStartFor(user) : null
+  // A purchase remains part of the account's history after it expires or is
+  // revoked. Do not relabel that returning customer as a trial account.
+  const trialStart = user && !hasPurchaseHistory ? trialStartFor(user) : null
   const trialLeft = trialStart ? trialDaysLeft(trialStart, new Date()) : null
   const trialLine =
     trialLeft === null

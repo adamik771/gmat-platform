@@ -16,6 +16,11 @@ const migration = fs.readFileSync(
   "utf8",
 )
 
+const studyPlanPage = fs.readFileSync(
+  path.join(process.cwd(), "src/app/(app)/study-plan/page.tsx"),
+  "utf8",
+)
+
 describe("platform activity storage contract", () => {
   it("stores only daily aggregate duration and last-seen time", () => {
     expect(migration).toContain("create table if not exists public.user_activity_daily")
@@ -56,6 +61,12 @@ describe("platform activity reading windows", () => {
   it("allows thirty minutes for quiet study reading and five elsewhere", () => {
     expect(READING_ACTIVE_WINDOW_MS).toBe(30 * 60_000)
     expect(DEFAULT_ACTIVE_WINDOW_MS).toBe(5 * 60_000)
+  })
+
+  it("uses full-site activity for the student's study-time summary", () => {
+    expect(studyPlanPage).toContain('.from("user_activity_daily")')
+    expect(studyPlanPage).toContain("buildActivitySummary")
+    expect(studyPlanPage).toContain("Study time · last 7 days")
   })
 
   it.each([
