@@ -45,9 +45,8 @@ export default async function OnboardingPage() {
       typeof meta.onboarding === "object" && meta.onboarding
         ? ((meta.onboarding as { currentScore?: number | null }).currentScore ?? null)
         : null,
-    // Clamped into the current range: values stored under the old 1-40
-    // bounds would otherwise render as e.g. "30 hr/wk" while the slider
-    // pinned at 25 and Continue sat disabled with no explanation.
+    // Clamp corrupted or legacy values into the current supported range so
+    // the displayed number, slider position, and validation always agree.
     weeklyHours: Math.min(
       WEEKLY_HOURS_MAX,
       Math.max(

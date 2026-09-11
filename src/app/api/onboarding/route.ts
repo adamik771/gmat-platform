@@ -13,7 +13,7 @@ import { WEEKLY_HOURS_MAX, WEEKLY_HOURS_MIN } from "@/lib/study-hours"
  *     targetScore: number      // 205-805, increments of 10
  *     examDate: string | null  // YYYY-MM-DD or null = undecided
  *     currentScore: number | null  // 205-805 (only when student has a prior score)
- *     weeklyHours: number      // WEEKLY_HOURS_MIN..MAX (3-25)
+ *     weeklyHours: number      // WEEKLY_HOURS_MIN..MAX (3-40)
  *     weakAreas: string[]      // free-form selections from the wizard
  *     prepHistory: string      // "first-time" | "in-progress" | "retake"
  *   }

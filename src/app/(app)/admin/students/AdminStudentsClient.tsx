@@ -192,7 +192,7 @@ export default function AdminStudentsClient({ students: rawStudents, nowIso }: P
         if (sort === "last-active") return timestamp(b.lastActiveAt) - timestamp(a.lastActiveAt)
         if (sort === "course") return b.courseCompletionPct - a.courseCompletionPct
         if (sort === "accuracy") return (b.accuracy ?? -1) - (a.accuracy ?? -1)
-        if (sort === "hours") return b.activeHours - a.activeHours
+        if (sort === "hours") return b.activeHours7d - a.activeHours7d
         return b.totalQuestions - a.totalQuestions
       })
   }, [filter, nowMs, search, sort, students])
@@ -269,7 +269,7 @@ export default function AdminStudentsClient({ students: rawStudents, nowIso }: P
             <option value="last-active">Last active</option>
             <option value="course">Reading progress</option>
             <option value="accuracy">Accuracy</option>
-            <option value="hours">Active hours</option>
+            <option value="hours">Study time · 7 days</option>
             <option value="questions">All questions answered</option>
           </select>
         </label>
@@ -292,7 +292,7 @@ export default function AdminStudentsClient({ students: rawStudents, nowIso }: P
                   <th className="w-[10%] px-3 py-3 font-semibold">Questions</th>
                   <th className="w-[10%] px-3 py-3 font-semibold">Timed accuracy</th>
                   <th className="w-[10%] px-3 py-3 font-semibold">Timed avg</th>
-                  <th className="w-[11%] px-3 py-3 font-semibold">Active time</th>
+                  <th className="w-[11%] px-3 py-3 font-semibold">Study time · 7d</th>
                   <th className="w-[11%] px-3 py-3 font-semibold">Last active</th>
                   <th className="w-[13%] px-3 py-3 font-semibold">Guidance</th>
                 </tr>
@@ -397,8 +397,15 @@ function DesktopStudentRows({
           <p className="text-[10px] text-[#555555]">{formatTime(student.averageTime30dMs)} in 30d</p>
         </td>
         <td className="px-3 py-3 tabular-nums">
-          <p className="text-xs text-[#D0D0D0]">{student.activeHours}h</p>
-          <p className="text-[10px] text-[#555555]">{student.activeHours30d}h in 30d</p>
+          <p className="text-xs text-[#D0D0D0]">
+            {student.activeHours7d}h
+            {student.weeklyHoursTarget !== null
+              ? ` / ${student.weeklyHoursTarget}h`
+              : ""}
+          </p>
+          <p className="text-[10px] text-[#555555]">
+            last 7d · {student.activeHours30d}h in 30d
+          </p>
         </td>
         <td className="px-3 py-3">
           <p className="text-xs text-[#C0C0C0]">{formatRelative(student.lastActiveAt, nowMs)}</p>
@@ -443,7 +450,11 @@ function MobileStudent({
       <div className="grid grid-cols-2 border-t border-white/[0.06]">
         <MobileMetric label="Reading" value={`${student.courseCompletionPct}%`} detail={`${student.completedChapters}/${student.totalChapters} chapters`} />
         <MobileMetric label="Timed accuracy" value={accuracy(student.accuracy)} detail={`${student.practiceQuestions} timed · ${student.learningQuestions} chapter`} />
-        <MobileMetric label="Active" value={`${student.activeHours}h`} detail={`${student.activeHours30d}h in 30d`} />
+        <MobileMetric
+          label="Study · 7d"
+          value={`${student.activeHours7d}h${student.weeklyHoursTarget !== null ? ` / ${student.weeklyHoursTarget}h` : ""}`}
+          detail={`${student.activeHours30d}h in 30d`}
+        />
         <MobileMetric label="Last active" value={formatRelative(student.lastActiveAt, nowMs)} detail={`${student.activeDays30d} days in 30d`} />
       </div>
       {expanded && <div className="border-t border-white/[0.06] p-4"><StudentDetail student={student} /></div>}
@@ -496,9 +507,24 @@ function StudentDetail({ student }: { student: AdminStudentMetric }) {
         <DetailValue label="Target score" value={student.targetScore ? String(student.targetScore) : "Not set"} />
         <DetailValue label="Exam date" value={formatDate(student.examDate)} />
         <DetailValue label="Joined" value={formatDate(student.joinedAt)} />
+        <DetailValue
+          label="7-day study"
+          value={`${student.activeHours7d}h${student.weeklyHoursTarget !== null ? ` / ${student.weeklyHoursTarget}h target` : ""}`}
+        />
         <DetailValue label="Official exams" value={String(student.officialExamCount)} />
         <DetailValue label="Due review" value={String(student.reviewBacklog)} />
       </div>
+      {student.weeklyHoursTarget !== null ? (
+        <div className="max-w-xl space-y-1.5">
+          <div className="flex items-center justify-between gap-3 text-[10px] text-[#66635D]">
+            <span>Rolling 7-day study target</span>
+            <span className="tabular-nums">
+              {student.weeklyPacePct ?? 0}% · {student.activeDays7d} active days
+            </span>
+          </div>
+          <ProgressBar value={Math.min(100, student.weeklyPacePct ?? 0)} />
+        </div>
+      ) : null}
       {student.planExpiresAt ? (
         <p className="text-[10px] text-[#555555]">
           {student.planActive ? "Plan access ends" : "Plan access ended"}{" "}
@@ -532,7 +558,7 @@ function StudentDetail({ student }: { student: AdminStudentMetric }) {
 
       <p className="text-[10px] text-[#555555]">
         Last 30 days: {student.questions30d} timed original questions, {student.questions7d} in the last 7 days,
-        {" "}{student.tutorRequests30d} tutor requests, {student.activeDays30d} active days. Chapter totals are lifetime snapshots;
+        {" "}{student.tutorRequests30d} tutor requests, {student.activeDays30d} active days, {student.activeHours}h total recorded study time. Chapter totals are lifetime snapshots;
         {" "}{student.chapterSetsCompleted} graded chapter-set runs are retained.
       </p>
     </div>

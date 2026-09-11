@@ -18,4 +18,13 @@ describe("dashboard query contracts", () => {
       /\.from\("error_tags"\)[\s\S]{0,140}?\.select\("id", \{ count: "exact", head: true \}\)/,
     )
   })
+
+  it("does not relabel a returning purchaser as a trial account", () => {
+    expect(dashboard).toContain(
+      "hasPurchaseHistory = (purchaseRows?.length ?? 0) > 0",
+    )
+    expect(dashboard).toContain(
+      "user && !hasPurchaseHistory ? trialStartFor(user) : null",
+    )
+  })
 })

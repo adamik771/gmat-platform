@@ -8,13 +8,17 @@
  *   medium (6–14 hrs) — balanced chapter/practice/review rotation
  *   high   (>= 15 hrs) — volume plan: schedule a lighter review/rest day
  */
-// 3-25, matching the study-schedule generator's own clamp. GMAC's survey
-// data puts the median total prep at ~80 hours and 700+ scorers around
-// ~100 over a typical 6-10-week runway — 25 h/wk already reaches that in
-// a month; the old 40 ceiling (320h over 8 weeks) endorsed a pace with
-// no evidence behind it and a burnout profile against it.
+// The upper end supports students treating preparation as a full-time block.
+// It is available capacity, not a recommendation or a question-volume quota.
 export const WEEKLY_HOURS_MIN = 3
-export const WEEKLY_HOURS_MAX = 25
+export const WEEKLY_HOURS_MAX = 40
+
+/** Read a stored onboarding target using today's supported range. Historical
+ * values came from a wider slider, so clamp rather than hiding them. */
+export function normalizeWeeklyHoursTarget(value: unknown): number | null {
+  if (typeof value !== "number" || !Number.isFinite(value)) return null
+  return Math.min(WEEKLY_HOURS_MAX, Math.max(WEEKLY_HOURS_MIN, value))
+}
 
 export type HoursBand = "low" | "medium" | "high"
 
@@ -32,12 +36,28 @@ export function perDayMinutes(hours: number): number {
   return Math.max(10, Math.round((hours * 60) / studyDays / 5) * 5)
 }
 
+export function dailyStudyBudgetLabel(hours: number): string {
+  const minutes = perDayMinutes(hours)
+  const wholeHours = Math.floor(minutes / 60)
+  const remainingMinutes = minutes % 60
+  const duration =
+    wholeHours === 0
+      ? `${minutes} min`
+      : remainingMinutes === 0
+        ? `${wholeHours} hr`
+        : `${wholeHours} hr ${remainingMinutes} min`
+  return `${duration} per ${hoursBand(hours) === "high" ? "study day" : "day"}`
+}
+
 export function weeklyHoursAdvice(hours: number): string {
+  if (hours > 25) {
+    return "Intensive schedule: treat these hours as available capacity, not a quota. Split the day into focused blocks and reserve substantial time for solution review, concept repair, and breaks rather than adding question volume indefinitely."
+  }
   switch (hoursBand(hours)) {
     case "low":
-      return "Under ~6 hrs/week means a longer runway: GMAC's survey median is ~80 total prep hours, so plan 12+ weeks. Your plan leads with your weakest areas so every session counts."
+      return "A smaller weekly budget needs a longer runway. Your plan leads with the highest-priority gaps so consistency matters more than session length."
     case "medium":
-      return "6-14 hrs/week reaches the ~80-100 hours typical of 700+ scorers in about 8 weeks — the pace most working students can sustain."
+      return "This supports a balanced rotation of chapters, timed practice, and deliberate review without requiring full study days."
     case "high":
       return "High volume: your plan reserves a lighter review/rest day each week, and long days work best as 45-60 minute blocks with real breaks — one block is one timed section, the endurance unit exam day tests."
   }

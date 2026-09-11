@@ -1,5 +1,9 @@
 import Link from "next/link"
-import { perDayMinutes, weeklyHoursAdvice } from "@/lib/study-hours"
+import {
+  dailyStudyBudgetLabel,
+  normalizeWeeklyHoursTarget,
+  weeklyHoursAdvice,
+} from "@/lib/study-hours"
 import { daysUntil, localDayIso } from "@/lib/utils"
 import { getUserTz } from "@/lib/tz"
 import { isChapterRead } from "@/lib/chapter-progress-merge"
@@ -49,6 +53,7 @@ import {
 } from "@/lib/personas"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { getUserState } from "@/lib/user-state"
+import { buildActivitySummary } from "@/lib/activity-summary"
 
 const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
@@ -127,10 +132,7 @@ export default async function StudyPlanPage({
       const rawHours = (
         user.user_metadata?.onboarding as { weeklyHours?: unknown } | undefined
       )?.weeklyHours
-      weeklyHoursTarget =
-        typeof rawHours === "number" && Number.isFinite(rawHours)
-          ? rawHours
-          : null
+      weeklyHoursTarget = normalizeWeeklyHoursTarget(rawHours)
 
       const rawReadProgress = state.chapter_progress
       if (rawReadProgress && typeof rawReadProgress === "object") {
@@ -181,11 +183,19 @@ export default async function StudyPlanPage({
         baselineExamDate = latest.date as string
       }
 
-      const sevenAgo = new Date(Date.now() - 7 * 86400000).toISOString()
-      const thirtyAgo = new Date(Date.now() - 30 * 86400000).toISOString()
+      const activityNow = new Date()
+      const thirtyDayStart = new Date(
+        Date.UTC(
+          activityNow.getUTCFullYear(),
+          activityNow.getUTCMonth(),
+          activityNow.getUTCDate(),
+        ),
+      )
+      thirtyDayStart.setUTCDate(thirtyDayStart.getUTCDate() - 29)
+      const thirtyAgo = thirtyDayStart.toISOString()
       const [
-        { data: weekSessions },
         { data: monthSessions },
+        { data: trackedActivity },
         { count: totalWrongCount },
         { count: reviewedTagCount },
         planResult,
@@ -194,14 +204,14 @@ export default async function StudyPlanPage({
       ] = await Promise.all([
         supabase
           .from("practice_sessions")
-          .select("created_at, total_time_ms")
-          .eq("user_id", user.id)
-          .gte("created_at", sevenAgo),
-        supabase
-          .from("practice_sessions")
-          .select("created_at")
+          .select("created_at, total_time_ms, total_questions")
           .eq("user_id", user.id)
           .gte("created_at", thirtyAgo),
+        supabase
+          .from("user_activity_daily")
+          .select("activity_date, active_seconds, last_seen_at")
+          .eq("user_id", user.id)
+          .gte("activity_date", thirtyAgo.slice(0, 10)),
         // Head-counts, not row transfer: the old full-id fetch fed a
         // .in() filter whose GET URL blew past the proxy limit at the
         // 1000-id cap — the query silently failed and the pending count
@@ -234,21 +244,35 @@ export default async function StudyPlanPage({
           .limit(1000),
       ])
 
-      // Past-7-day session activity — calendar dots + study hours.
-      // localDayIso: the calendar renders LOCAL weekdays, so a late-evening
-      // session must land on the local day's dot, not the next UTC day's.
-      for (const s of weekSessions ?? []) {
-        const d = new Date(s.created_at as string)
-        activityDays.add(localDayIso(d, tz))
-        studyHoursWeek += ((s.total_time_ms as number) ?? 0) / 3600000
-      }
+      // The full-site heartbeat includes quiet chapter reading and practice.
+      // Practice-session time remains the historical fallback; daily max
+      // prevents counting the same practice work twice.
+      const activity = buildActivitySummary(
+        (monthSessions ?? []) as Array<{
+          created_at: string
+          total_time_ms: number | null
+          total_questions: number | null
+        }>,
+        (trackedActivity ?? []) as Array<{
+          activity_date: string
+          active_seconds: number | null
+        }>,
+        activityNow,
+      )
+      studyHoursWeek = activity.activeSeconds7d / 3_600
+      studyDays30Count = activity.activeDays30d
 
-      // Past-30-day activity days for "days practiced" — streak proxy.
-      const monthDays = new Set<string>()
+      // Calendar dots use the user's local day. Daily heartbeat totals are
+      // stored in UTC, so their last-seen timestamp is the best local-day
+      // anchor; the duration total itself remains exact across the window.
       for (const s of monthSessions ?? []) {
-        monthDays.add(localDayIso(new Date(s.created_at as string), tz))
+        activityDays.add(localDayIso(new Date(s.created_at as string), tz))
       }
-      studyDays30Count = monthDays.size
+      for (const day of trackedActivity ?? []) {
+        if (typeof day.last_seen_at === "string") {
+          activityDays.add(localDayIso(new Date(day.last_seen_at), tz))
+        }
+      }
 
       // Pending-mistake count drives the error-review suggestion in the
       // weekly schedule: wrong attempts minus reviewed ones — the same
@@ -492,6 +516,15 @@ export default async function StudyPlanPage({
   // version read a day short in positive-offset timezones and disagreed
   // with the engine's own countdown.
   const daysUntilExam = daysUntil(examDate, tz)
+  const roundedStudyHours = Math.round(studyHoursWeek * 10) / 10
+  const weeklyHoursRemaining =
+    weeklyHoursTarget !== null
+      ? Math.max(0, Math.round((weeklyHoursTarget - studyHoursWeek) * 10) / 10)
+      : null
+  const weeklyStudyProgress =
+    weeklyHoursTarget !== null && weeklyHoursTarget > 0
+      ? Math.min(100, Math.round((studyHoursWeek / weeklyHoursTarget) * 100))
+      : null
 
   // === Stage gate ===
   // The page promises an "adaptive plan" but the engine has no real
@@ -1017,7 +1050,7 @@ export default async function StudyPlanPage({
             <span className="text-[#C0C0C0]">
               {weeklyHoursTarget} hr/week
             </span>{" "}
-            target (~{perDayMinutes(weeklyHoursTarget)} min/day).{" "}
+            target (~{dailyStudyBudgetLabel(weeklyHoursTarget)}).{" "}
             {weeklyHoursAdvice(weeklyHoursTarget)}{" "}
             <Link
               href="/onboarding"
@@ -1103,25 +1136,34 @@ export default async function StudyPlanPage({
           color="#C9A84C"
           label="Chapters read"
           value={`${chaptersDoneCount} / ${totalChapters}`}
+          detail="Reading completion"
         />
         <StatCard
           icon={Clock}
           color="#C9A84C"
-          label={
+          label="Study time · last 7 days"
+          value={
             weeklyHoursTarget !== null
-              ? `Practice hours (7d, target ${weeklyHoursTarget})`
-              : "Practice hours (7d)"
+              ? `${roundedStudyHours.toFixed(1)} / ${weeklyHoursTarget} hrs`
+              : roundedStudyHours >= 0.1
+                ? `${roundedStudyHours.toFixed(1)} hrs`
+                : "—"
           }
-          value={(() => {
-            const rounded = Math.round(studyHoursWeek * 10) / 10
-            return rounded >= 0.1 ? `${rounded.toFixed(1)} hrs` : "—"
-          })()}
+          detail={
+            weeklyHoursRemaining === null
+              ? "Includes reading and practice"
+              : weeklyHoursRemaining === 0
+                ? "Weekly target met"
+                : `${weeklyHoursRemaining.toFixed(1)} hrs to your rolling target`
+          }
+          progress={weeklyStudyProgress}
         />
         <StatCard
           icon={Flame}
           color="#C9A84C"
           label="Active days (30d)"
           value={studyDays30Count > 0 ? `${studyDays30Count}` : "—"}
+          detail="Days with recorded study"
         />
       </div>
 
@@ -2305,11 +2347,15 @@ function StatCard({
   color,
   label,
   value,
+  detail,
+  progress,
 }: {
   icon: typeof BookOpen
   color: string
   label: string
   value: string
+  detail?: string
+  progress?: number | null
 }) {
   return (
     <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
@@ -2326,6 +2372,26 @@ function StatCard({
         <p className="text-[11px] text-[#888888] mt-1.5 uppercase tracking-[0.18em]">
           {label}
         </p>
+        {detail ? (
+          <p className="mt-1 text-[11px] leading-snug text-[#66635D]">
+            {detail}
+          </p>
+        ) : null}
+        {progress !== null && progress !== undefined ? (
+          <div
+            className="mt-2 h-1.5 w-full max-w-40 overflow-hidden rounded-full bg-white/[0.06]"
+            role="progressbar"
+            aria-label="Weekly study target progress"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.max(0, Math.min(100, progress))}
+          >
+            <div
+              className="h-full rounded-full bg-[#C9A84C]"
+              style={{ width: `${Math.max(0, Math.min(100, progress))}%` }}
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   )
