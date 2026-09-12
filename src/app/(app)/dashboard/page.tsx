@@ -1,19 +1,12 @@
 import {
-  Clock,
-  Target,
   CheckCircle,
   AlertCircle,
   ArrowRight,
   Award,
   ChevronRight,
-  Compass,
-  ExternalLink,
   Flag,
   FlaskConical,
-  Lock,
   RotateCcw,
-  Sparkles,
-  TrendingUp,
 } from "lucide-react"
 import Link from "next/link"
 import { redirect, unstable_rethrow } from "next/navigation"
@@ -29,6 +22,7 @@ import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { TRIAL_DAYS, trialDaysLeft, trialStartFor } from "@/lib/entitlements"
 import {
   officialExamReminder,
+  getFinalWeekReview,
   parseIsoDate,
   parseOfficialExamEntries,
   deriveExamUsage,
@@ -59,7 +53,7 @@ import { findActivePurchase } from "@/lib/plan-access"
 
 const PLAN_LABELS: Record<string, string> = {
   self_study: "Self-Study",
-  self_study_guaranteed: "Self-Study + Mentorship",
+  self_study_guaranteed: "Mentorship",
   coaching: "Coaching",
   intensive: "Intensive",
 }
@@ -207,6 +201,7 @@ export default async function DashboardPage() {
               examDate,
               flaggedQuestionIds,
               officialExamCount: officialCount,
+              tz,
               reviewQueue,
             }).catch(() => null)
           } catch {
@@ -320,6 +315,7 @@ export default async function DashboardPage() {
   let questionsThisWeek = 0
   let questionsToday = 0
   let weekAccuracy: number | null = null
+  let accuracyQuestionCount = 0
   let totalSessionCount: number | null = null
   let recentMistakes: {
     id: string
@@ -534,6 +530,7 @@ export default async function DashboardPage() {
         (r) => !isReplaySession(r.slug as string, (r as { topic?: string }).topic)
       )
       const weekQTotal = scoredWeek.reduce((s, r) => s + r.total_questions, 0)
+      accuracyQuestionCount = weekQTotal
       const weekQCorrect = scoredWeek.reduce(
         (s, r) => s + ((r.correct_count as number) ?? 0),
         0
@@ -746,11 +743,11 @@ export default async function DashboardPage() {
       // untagged legacy entries exist: /mock's roadmap asks the student to
       // tag those first, and "take your next official" would contradict it.
       examReminder =
-        officialUsage.unclassifiedCount > 0
+        officialUsage.unclassifiedCount > 0 || getFinalWeekReview(typeof metaExamDate === "string" ? metaExamDate : null, localDayIso(new Date(), tz))
           ? null
           : officialExamReminder(
               typeof metaExamDate === "string" ? metaExamDate : null,
-              new Date().toISOString().slice(0, 10),
+              localDayIso(new Date(), tz),
               officialExamCount,
             )
 
@@ -928,433 +925,51 @@ export default async function DashboardPage() {
   const onboardingComplete = onboardingSteps.every((s) => s.done)
   const onboardingDoneCount = onboardingSteps.filter((s) => s.done).length
 
-  // === Dashboard stage gate ===
-  // Pre-data ("baseline" stage): the student has no practice sessions yet,
-  // so most analytics widgets would render as 12 dead cards ("—"
-  // everywhere). Instead, drop them entirely and focus the page on the
-  // single decisive action: take the baseline official exam. Setup
-  // checklist + a locked
-  // preview of what unlocks afterward are the only other things on screen.
+  const finalWeek = getFinalWeekReview(
+    typeof user?.user_metadata?.exam_date === "string" ? user.user_metadata.exam_date : null,
+    localDayIso(new Date(), tz),
+  )
+  if (finalWeek) {
+    topFocus = { type: "review", title: finalWeek.title, subtitle: finalWeek.reason, href: finalWeek.href, cta: finalWeek.actionLabel, priority: 100 }
+    topFocusMinutes = finalWeek.estimatedMinutes
+  }
+
+  // Empty accounts still have a useful next action, without fabricated metrics.
   if (!hasData) {
-    // Baseline entered but no practice yet: stop telling the user to "set your
-    // baseline" (they have — the status panel shows it) and point them at
-    // practice, which is what actually activates the dashboard.
     const baselineSet = officialExamCount > 0
+    const firstChapter = getAllChapters()[0]
+    const emptyFocus: FocusAction = topFocus ?? (baselineSet ? {
+      type: "weak-topic-chapter",
+      title: resumeTarget && !resumeTarget.isComplete ? `Continue: ${resumeTarget.title}` : "Start your first chapter",
+      subtitle: "Read a section, check your understanding, then try its questions. Your progress appears as you study.",
+      href: resumeTarget && !resumeTarget.isComplete ? resumeTarget.href : firstChapter ? `/chapters/${firstChapter.slug}` : "/chapters",
+      cta: "Open chapter",
+      priority: 0,
+    } : {
+      type: "baseline",
+      title: "Plan your official baseline exam",
+      subtitle: "Take an official practice exam on mba.com, then log your section scores in Exams. You can start reading and practicing before taking it.",
+      href: "/mock",
+      cta: "Open exam plan",
+      priority: 0,
+    })
     return (
-      <div className="max-w-7xl mx-auto space-y-10">
+      <div className="max-w-7xl mx-auto space-y-6">
+        <section className="dashboard-greeting">
+          <h1>{greeting}{firstName ? `, ${firstName}.` : "."}</h1>
+          <p className="mt-2">{today}</p>
+        </section>
+        <DailyStudyLoop status={dailyStudy} focus={emptyFocus} estimatedMinutes={topFocusMinutes} />
+        {first48Steps && <FirstRunGuide steps={first48Steps} dismissed={guideDismissed} />}
+        <section className="border-b border-white/10 py-5">
+          <h2 className="text-lg font-semibold text-[#F4F1E8]">Your preparation</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#B9B7AE]">No practice results yet. Chapters, practice sets, and review are available now. Accuracy and timing will appear after you complete a set.</p>
+          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+            <Link href="/chapters" className="inline-flex min-h-11 items-center gap-2 text-sm text-[#C8A85A]">Browse chapters<ArrowRight className="size-4" aria-hidden /></Link>
+            <Link href="/practice" className="inline-flex min-h-11 items-center gap-2 text-sm text-[#C8A85A]">Choose a practice set<ArrowRight className="size-4" aria-hidden /></Link>
+          </div>
+        </section>
         {user && !consultDismissed && <ConsultOffer />}
-        {/* Slim greeting — no daily-goal pill, no plan chip; nothing to
-            show until there's signal. */}
-        <section className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-6 py-9 sm:px-10 sm:py-12" style={{ backgroundColor: "#0D0D0D" }}>
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 80% 60% at 20% -10%, rgba(201,168,76,0.14) 0%, transparent 60%)",
-            }}
-            aria-hidden
-          />
-          <div
-            className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
-            aria-hidden
-          />
-          <div className="relative">
-            <div className="flex items-center gap-3 mb-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em]" style={{ color: "#C9A84C" }}>
-                {today}
-              </p>
-              <div
-                className="h-px w-12"
-                style={{
-                  background:
-                    "linear-gradient(to right, rgba(201,168,76,0.4), transparent)",
-                }}
-                aria-hidden
-              />
-            </div>
-            <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-              {firstName ? (
-                <>
-                  {greeting},{" "}
-                  <span
-                    className="font-display-italic"
-                    style={{ color: "#C9A84C" }}
-                  >
-                    {firstName}.
-                  </span>
-                </>
-              ) : (
-                <>
-                  {greeting}
-                  <span style={{ color: "#C9A84C" }}>.</span>
-                </>
-              )}
-            </h1>
-            <p className="text-[14px] text-[#888888] leading-[1.65] mt-3 max-w-xl">
-              {baselineSet
-                ? "Your baseline's in. The dashboard fills in once you start practicing — run your first set to bring it to life."
-                : "Your dashboard activates once you practice and enter your baseline official exam. Until then, everything here is setup."}
-            </p>
-          </div>
-        </section>
-
-        {/* First-48-hours guide — the graduated two-day path for a brand-new
-            account. The baseline hero below stays as the single big ask; this
-            sequences the lighter moves around it. Collapses to one row when
-            complete or skipped. */}
-        {first48Steps && (
-          <FirstRunGuide steps={first48Steps} dismissed={guideDismissed} />
-        )}
-
-        {/* Baseline-dominant hero — the single page-level primary
-            action. Everything else is secondary. */}
-        <section
-          className="relative overflow-hidden rounded-2xl border"
-          style={{
-            borderColor: "rgba(201,168,76,0.28)",
-            backgroundColor: "#0D0D0D",
-          }}
-        >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 60% 60% at 0% 50%, rgba(201,168,76,0.14) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 100% 100%, rgba(201,168,76,0.06) 0%, transparent 60%)",
-            }}
-            aria-hidden
-          />
-          <div className="relative grid lg:grid-cols-[minmax(0,1fr)_320px] gap-8 lg:gap-12 p-6 sm:p-10">
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-3">
-                <span
-                  className="inline-flex items-center justify-center w-7 h-7 rounded-lg"
-                  style={{ backgroundColor: "rgba(201,168,76,0.14)" }}
-                >
-                  <Target className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
-                </span>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em]" style={{ color: "#C9A84C" }}>
-                  Start here
-                </p>
-              </div>
-              <h2 className="font-display text-3xl sm:text-[40px] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-                {baselineSet ? (
-                  <>
-                    Start{" "}
-                    <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-                      practicing.
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    Set your baseline{" "}
-                    <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-                      first.
-                    </span>
-                  </>
-                )}
-              </h2>
-              <p className="mt-4 text-[15px] text-[#C0C0C0] leading-[1.7] max-w-2xl">
-                {baselineSet
-                  ? "Your baseline's recorded. Run your first practice set and the dashboard comes alive — accuracy, pacing, weak areas, and a daily focus, all driven by what you actually get wrong."
-                  : "Take Official Practice Exam 1 on mba.com under full exam conditions — same start time as your real slot, one sitting, official breaks — then enter the score here. A real exam is the only baseline worth planning around."}
-              </p>
-              {!baselineSet && (
-                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px]" style={{ color: "rgba(255,255,255,0.5)" }}>
-                  <span className="inline-flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#C9A84C" }} aria-hidden />
-                    Official GMAT Focus practice exam · mba.com
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <Clock className="w-3 h-3" />
-                    ~2 h 15 min, one sitting
-                  </span>
-                </div>
-              )}
-              <div className="mt-7 flex flex-wrap items-center gap-3">
-                {baselineSet ? (
-                  <>
-                    <Link
-                      href="/practice"
-                      className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
-                      Start a practice set
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
-                    <Link
-                      href="/chapters"
-                      className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors hover:border-white/20"
-                      style={{
-                        borderColor: "rgba(255,255,255,0.10)",
-                        color: "#C0C0C0",
-                      }}
-                    >
-                      Browse chapters
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      href="/mock"
-                      className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
-                      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                    >
-                      Open the official exam plan
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
-                    <a
-                      href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors hover:border-white/20"
-                      style={{
-                        borderColor: "rgba(255,255,255,0.10)",
-                        color: "#C0C0C0",
-                      }}
-                    >
-                      Get the exam on mba.com
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                    {!onboardingTargetSet && (
-                      <Link
-                        href="/onboarding"
-                        className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
-                        style={{
-                          borderColor: "rgba(255,255,255,0.10)",
-                          color: "#C0C0C0",
-                        }}
-                      >
-                        Set target score
-                      </Link>
-                    )}
-                  </>
-                )}
-              </div>
-            </div>
-            {/* Right column — three thin status rows showing setup
-                state. Quiet visual; the baseline CTA stays dominant. */}
-            <div className="flex flex-col gap-2.5 lg:max-w-[320px]">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A84C] mb-1">
-                Setup status
-              </p>
-              {[
-                { label: "Baseline exam", done: officialExamCount > 0 },
-                { label: "Target score", done: onboardingTargetSet },
-                { label: "Exam date", done: onboardingExamDateSet },
-                { label: "Intake survey", done: onboardingIntakeDone },
-              ].map((row) => (
-                <div
-                  key={row.label}
-                  className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg border"
-                  style={{
-                    borderColor: row.done
-                      ? "rgba(62,207,142,0.22)"
-                      : "rgba(255,255,255,0.06)",
-                    backgroundColor: row.done
-                      ? "rgba(62,207,142,0.04)"
-                      : "rgba(255,255,255,0.012)",
-                  }}
-                >
-                  {row.done ? (
-                    <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#3ECF8E" }} />
-                  ) : (
-                    <span
-                      className="w-3.5 h-3.5 rounded-full border flex-shrink-0"
-                      style={{ borderColor: "rgba(255,255,255,0.2)" }}
-                      aria-hidden
-                    />
-                  )}
-                  <span className="text-[13px] flex-1" style={{ color: row.done ? "#888888" : "#C0C0C0" }}>
-                    {row.label}
-                  </span>
-                  <span className="text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: row.done ? "#3ECF8E" : "rgba(255,255,255,0.4)" }}>
-                    {row.done ? "Set" : "Missing"}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* === Onboarding checklist (rebranded for the baseline framing) ===
-            Hidden while the first-48-hours guide is active — its profile step
-            covers the same ground, and two checklists compete. */}
-        {!guideActive && !onboardingComplete && (
-          <section>
-            <div className="flex items-center gap-3 mb-5">
-              <p
-                className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                style={{ color: "#C9A84C" }}
-              >
-                Build your GMAT baseline
-              </p>
-              <div
-                className="h-px flex-1"
-                style={{
-                  background:
-                    "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-                }}
-                aria-hidden
-              />
-              <span className="text-[11px] text-[#888888] tabular-nums">
-                {onboardingDoneCount}/{onboardingSteps.length} done
-              </span>
-            </div>
-            <div
-              className="p-6 sm:p-7 rounded-2xl border"
-              style={{
-                borderColor: "rgba(201,168,76,0.18)",
-                backgroundColor: "rgba(201,168,76,0.03)",
-              }}
-            >
-              <p className="text-[14px] text-[#C0C0C0] leading-[1.65] mb-6 max-w-2xl">
-                Each step calibrates a specific part of your plan.
-                Together they unlock accuracy trends, weak-area mapping,
-                and a weekly cadence built around your test date.
-              </p>
-              <div className="space-y-3">
-                {onboardingSteps.map((step, i) => {
-                  // Outcome-focused descriptions — what each step *unlocks*,
-                  // not what it asks for. Premium framing of admin work.
-                  const outcomeCopy: Record<string, string> = {
-                    intake:
-                      "Personalizes your weekly workload, weak-area focus, and section priority.",
-                    target:
-                      "Sets the accuracy thresholds and pacing goals for every drill.",
-                    exam:
-                      "Converts your timeline into a week-by-week study cadence.",
-                    baseline:
-                      "Anchors your score trend and what the gap to target really is.",
-                  }
-                  return (
-                    <Link
-                      key={step.key}
-                      href={step.href}
-                      className="group flex items-center gap-5 p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
-                      style={{
-                        borderColor: step.done
-                          ? "rgba(62,207,142,0.2)"
-                          : "rgba(255,255,255,0.08)",
-                        backgroundColor: step.done
-                          ? "rgba(62,207,142,0.04)"
-                          : "#0D0D0D",
-                      }}
-                    >
-                      <span
-                        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{
-                          backgroundColor: step.done
-                            ? "rgba(62,207,142,0.15)"
-                            : "rgba(201,168,76,0.08)",
-                        }}
-                      >
-                        {step.done ? (
-                          <CheckCircle className="w-4 h-4" style={{ color: "#3ECF8E" }} />
-                        ) : (
-                          <span
-                            className="font-display text-base font-semibold tabular-nums"
-                            style={{ color: "#C9A84C" }}
-                          >
-                            0{i + 1}
-                          </span>
-                        )}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <p
-                          className="text-[15px] font-semibold tracking-tight"
-                          style={{ color: step.done ? "#888888" : "#F0F0F0" }}
-                        >
-                          {step.label}
-                        </p>
-                        <p className="text-[13px] text-[#888888] mt-0.5 leading-relaxed">
-                          {outcomeCopy[step.key] ?? step.description}
-                        </p>
-                      </div>
-                      {!step.done && (
-                        <span
-                          className="flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight hidden sm:inline-flex transition-all duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
-                          style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                        >
-                          {step.cta}
-                        </span>
-                      )}
-                    </Link>
-                  )
-                })}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* === What unlocks after your first data ===
-            Locked tiles to set the expectation — the dashboard isn't
-            empty by accident, it's gated. Each tile is a one-line
-            promise of what that widget will surface once data exists. */}
-        <section>
-          <div className="flex items-center gap-3 mb-5">
-            <Lock className="w-3 h-3" style={{ color: "rgba(255,255,255,0.5)" }} />
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#888888]">
-              Unlocks after baseline
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(255,255,255,0.10), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {[
-              {
-                Icon: TrendingUp,
-                title: "Accuracy trend",
-                body: "Weekly overall and section accuracy from your completed practice.",
-              },
-              {
-                Icon: Compass,
-                title: "Weak-area map",
-                body: "Per-topic accuracy and timing, ranked by score impact.",
-              },
-              {
-                Icon: Sparkles,
-                title: "Adaptive plan",
-                body: "Today's highest-leverage task, picked from your weakest signals.",
-              },
-              {
-                Icon: RotateCcw,
-                title: "Review queue",
-                body: "Spaced-retrieval queue of misses, due for review on the right day.",
-              },
-            ].map(({ Icon, title, body }) => (
-              <div
-                key={title}
-                className="p-4 rounded-xl border flex flex-col gap-2.5"
-                style={{
-                  borderColor: "rgba(255,255,255,0.05)",
-                  backgroundColor: "rgba(255,255,255,0.012)",
-                }}
-              >
-                <div className="flex items-center justify-between">
-                  <span
-                    className="inline-flex items-center justify-center w-8 h-8 rounded-lg"
-                    style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
-                  >
-                    <Icon className="w-3.5 h-3.5" style={{ color: "rgba(255,255,255,0.4)" }} />
-                  </span>
-                  <Lock className="w-3 h-3" style={{ color: "rgba(255,255,255,0.3)" }} aria-hidden />
-                </div>
-                <p className="text-[14px] font-semibold tracking-tight" style={{ color: "rgba(240,240,240,0.7)" }}>
-                  {title}
-                </p>
-                <p className="text-[12px] leading-snug" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  {body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     )
   }
@@ -1405,22 +1020,12 @@ export default async function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
-      {user && !consultDismissed && <ConsultOffer />}
       {/* Compact greeting bar. The daily count lives only in Today's Mission;
           repeating it here made the page feel like a metrics dashboard before
           the student even reached the action. */}
       <section
-        className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-5 sm:px-6 py-4"
-        style={{ backgroundColor: "#0D0D0D" }}
+        className="dashboard-greeting"
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 120% at 0% 0%, rgba(201,168,76,0.08) 0%, transparent 60%)",
-          }}
-          aria-hidden
-        />
         <div className="relative flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
           <div className="min-w-0">
             <h1 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-tight">
@@ -1464,6 +1069,12 @@ export default async function DashboardPage() {
           </div>
         </div>
       </section>
+
+      <DailyStudyLoop
+        status={dailyStudy}
+        focus={topFocus}
+        estimatedMinutes={topFocusMinutes}
+      />
 
       {/* First-48-hours guide — what to actually DO first, derived from real
           state. Skippable forever; collapses to one row once complete. */}
@@ -1543,15 +1154,6 @@ export default async function DashboardPage() {
         </section>
       )}
 
-      {/* Today's Mission — one decisive next step. Sourced from the
-          study-plan engine's top focus item. Renders only when the
-          engine has a recommendation. */}
-      <DailyStudyLoop
-        status={dailyStudy}
-        focus={topFocus}
-        estimatedMinutes={topFocusMinutes}
-      />
-
       {/* Quick Actions — fallback when Today's Mission isn't showing, so
           users without a study-plan recommendation still get a clear
           "what to do next" strip. */}
@@ -1560,11 +1162,13 @@ export default async function DashboardPage() {
       <ProgressSummary
         courseCompletionPct={courseCompletionPct}
         completedChapters={completedChapters}
+        totalChapters={allChaptersForPct.length}
         targetScore={targetScore}
         currentStreak={currentStreak}
         longestStreak={longestStreak}
         questionsLastSevenDays={questionsThisWeek}
         accuracyLastSevenDays={weekAccuracy}
+        accuracyQuestionCount={accuracyQuestionCount}
       />
 
       {/* Study time remains available for students who use it, but no longer
@@ -1877,6 +1481,7 @@ export default async function DashboardPage() {
 
       {/* Product-led referral nudge — shown to active users (post-value), not
           in the no-data activation state. Fires referral_click on copy. */}
+      {user && !consultDismissed && <ConsultOffer />}
       <InviteFriend surface="dashboard" />
     </div>
   )

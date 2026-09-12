@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useId, useState } from "react"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -23,9 +23,13 @@ function FAQItemComponent({
   isOpen: boolean
   onToggle: () => void
 }) {
+  const answerId = useId()
   return (
     <div className="border-b border-white/[0.06] last:border-0">
       <button
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={answerId}
         onClick={onToggle}
         className="w-full flex items-center justify-between py-4 text-left gap-4 group"
       >
@@ -38,6 +42,7 @@ function FAQItemComponent({
           {item.question}
         </span>
         <ChevronDown
+          aria-hidden="true"
           className={cn(
             "w-4 h-4 flex-shrink-0 transition-transform duration-200",
             isOpen ? "rotate-180" : ""
@@ -45,13 +50,8 @@ function FAQItemComponent({
           style={{ color: "#C9A84C" }}
         />
       </button>
-      <div
-        className={cn(
-          "overflow-hidden transition-all duration-300",
-          isOpen ? "max-h-96 pb-4" : "max-h-0"
-        )}
-      >
-        <p className="text-sm text-[#888888] leading-relaxed">{item.answer}</p>
+      <div id={answerId} hidden={!isOpen} className="pb-4">
+        <p className="text-sm text-[#B9B7AE] leading-relaxed">{item.answer}</p>
       </div>
     </div>
   )

@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import { getAllGuides, getGuideBySlug } from "@/lib/content"
 import GuideReaderShell from "./GuideReaderShell"
+import styles from "./GuideReader.module.css"
 
 export async function generateStaticParams() {
   return getAllGuides().map((g) => ({ slug: g.slug }))
@@ -54,15 +55,19 @@ export default async function GuideDetailPage({
     <ReactMarkdown
       remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}
       components={{
-        h1: ({ children, ...props }) => (
-          <h1
+        // The authored leading title is already supplied by the reading shell.
+        // Retain its anchor so existing deep links still resolve.
+        h1: ({ children, node, ...props }) => node?.position?.start.offset === guide.content.search(/^#\s+/m) ? (
+          <span id={slugify(headingText(children))} />
+        ) : (
+          <h2
             {...props}
             id={slugify(headingText(children))}
             className="font-display text-3xl sm:text-4xl font-semibold tracking-[-0.02em] leading-[1.05] mt-12 mb-6 first:mt-0 scroll-mt-24"
             style={{ color: "var(--read-text)" }}
           >
             {children}
-          </h1>
+          </h2>
         ),
         h2: ({ children, ...props }) => (
           <h2
@@ -164,6 +169,9 @@ export default async function GuideDetailPage({
             style={{ color: "var(--read-gold)" }}
           />
         ),
+        table: ({ children }) => (
+          <div className={styles.table} tabIndex={0} role="region" aria-label="Scrollable guide table"><table>{children}</table></div>
+        ),
       }}
     >
       {guide.content}
@@ -173,6 +181,7 @@ export default async function GuideDetailPage({
   return (
     <GuideReaderShell
       section={guide.section}
+      kind={guide.type}
       title={guide.title}
       description={guide.description}
       article={article}

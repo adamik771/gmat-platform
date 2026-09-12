@@ -1,23 +1,8 @@
-"use client"
-
-import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { trackEvent } from "@/lib/analytics"
 
-/**
- * Interim buy CTA while no live payment processor exists (PAYWALL_ENABLED
- * off). Looks exactly like the real checkout button — the pricing page keeps
- * its purchase framing — and only ON CLICK reveals the interim story: checkout
- * isn't open yet, the platform is free meanwhile, reserve the founding rate.
- *
- * The reveal is deliberately click-gated (owner decision): announcing "it's
- * free" on every card undercuts purchase intent for browsers who never meant
- * to buy; the person who clicked has already shown intent worth capturing.
- * Fires checkout_initiated with placement "pre-checkout" so real purchase
- * intent during the processor gap is measurable per plan.
- */
+/** Reservations currently capture an email, not a plan selection. */
 export default function ReserveInterceptButton({
   planId,
   label,
@@ -27,68 +12,19 @@ export default function ReserveInterceptButton({
   label: string
   highlighted: boolean
 }) {
-  const [open, setOpen] = useState(false)
-
-  const reveal = () => {
-    if (!open) {
-      trackEvent("checkout_initiated", { plan: planId, placement: "pre-checkout" })
-      setOpen(true)
-    }
-  }
-
   return (
     <div className="mb-6">
-      <button
-        type="button"
-        onClick={reveal}
+      <Link
+        href="#founding"
+        data-plan-id={planId}
         className={cn(
-          "w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 hover:opacity-90",
-          highlighted
-            ? "text-[#0A0A0A]"
-            : "border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5"
+          "flex min-h-11 w-full items-center justify-center gap-2 rounded-md px-3 py-3 text-center text-sm font-medium",
+          highlighted ? "bg-[#C9A84C] text-[#171B17] hover:bg-[#DEC371]" : "border border-white/20 text-[#F0F0F0] hover:bg-white/5"
         )}
-        style={highlighted ? { backgroundColor: "#C9A84C" } : {}}
       >
-        {label}
-      </button>
-      {open && (
-        <div
-          className="mt-3 p-3.5 rounded-xl border text-left"
-          style={{
-            borderColor: "rgba(201,168,76,0.25)",
-            backgroundColor: "rgba(201,168,76,0.05)",
-          }}
-        >
-          <p className="text-[12px] text-[#C0C0C0] leading-relaxed">
-            Paid checkout hasn&apos;t opened yet. Until then the full platform
-            is free to use, and you can lock a founding-member discount on
-            this exact plan — we&apos;ll email you your code when checkout
-            opens.
-          </p>
-          {/* Two next steps, trial first: the clicker showed purchase intent
-              and previously hit a dead end here (no signup path at all).
-              Stacked with per-link padding so each stays a comfortable tap
-              target at mobile card widths. */}
-          <div className="flex flex-col gap-1 mt-2.5">
-            <Link
-              href="/signup"
-              className="inline-flex items-center gap-1.5 text-[12px] font-semibold py-1.5 hover:underline"
-              style={{ color: "#C9A84C" }}
-            >
-              Start your 7-day trial &mdash; no card
-              <ArrowRight className="w-3 h-3" />
-            </Link>
-            <Link
-              href="#founding"
-              className="inline-flex items-center gap-1.5 text-[12px] font-semibold py-1.5 hover:underline"
-              style={{ color: "#C9A84C" }}
-            >
-              Reserve my founding rate
-              <ArrowRight className="w-3 h-3" />
-            </Link>
-          </div>
-        </div>
-      )}
+        {label}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
+      </Link>
+      <p className="mt-2 text-xs leading-relaxed text-[#B9B7AE]">No payment today. Choose a plan when checkout opens.</p>
     </div>
   )
 }

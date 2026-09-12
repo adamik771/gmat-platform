@@ -77,20 +77,20 @@ function LoginForm() {
     setLoading(true)
     setError("")
 
-    const supabase = createSupabaseBrowser()
-    const { error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-
-    if (authError) {
-      setError(authError.message)
+    try {
+      const supabase = createSupabaseBrowser()
+      const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
+      if (authError) {
+        setError(authError.message)
+        return
+      }
+      router.push(next)
+      router.refresh()
+    } catch {
+      setError("We couldn't reach the sign-in service. Your entries are still here; please try again.")
+    } finally {
       setLoading(false)
-      return
     }
-
-    router.push(next)
-    router.refresh()
   }
 
   return (
@@ -111,6 +111,7 @@ function LoginForm() {
           {error && (
             <div
               role="alert"
+              id="login-error"
               aria-live="polite"
               className="flex items-start gap-2.5 px-4 py-3 rounded-[4px] text-[13px]"
               style={{
@@ -130,6 +131,10 @@ function LoginForm() {
             </label>
             <input
               id="login-email"
+              name="email"
+              autoComplete="username"
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? "login-error" : undefined}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -155,6 +160,10 @@ function LoginForm() {
             <div className="relative">
               <input
                 id="login-password"
+                name="password"
+                autoComplete="current-password"
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ? "login-error" : undefined}
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -165,7 +174,7 @@ function LoginForm() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#555555] hover:text-[#C0C0C0] transition-colors"
+                className="absolute right-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center text-[#B9B7AE] hover:text-[#F4F1E8] transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (

@@ -1,0 +1,10 @@
+.trigger { position: fixed; bottom: 80px; right: 16px; z-index: 30; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; padding: 10px 16px; border-radius: 8px; background: var(--read-gold); color: var(--read-bg-inset); font-size: 14px; font-weight: 600; box-shadow: 0 2px 12px #0003; }
+.drawer { padding: 0; border: 0; width: 100%; max-width: 600px; max-height: 80dvh; margin: auto auto 0; background: transparent; color: var(--read-text); }
+.drawer::backdrop { background: #0009; }
+.sheet { padding: 16px 20px 24px; border: 1px solid var(--read-border-strong); border-radius: 8px 8px 0 0; background: var(--read-bg-elevated); }
+.heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.heading h2 { font-size: 18px; font-weight: 600; }
+.heading button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex-shrink: 0; }
+.drawer a { min-height: 44px; }
+.trigger:focus-visible, .drawer :is(a, button):focus-visible { outline: 2px solid var(--read-gold); outline-offset: 3px; }
+@media (min-width: 1200px) { .trigger { display: none; } }

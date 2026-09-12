@@ -1,6 +1,7 @@
 import { Lock, Check } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import LeadCapture from "@/components/marketing/LeadCapture"
+import { TRIAL_DAYS } from "@/lib/entitlements"
 
 /**
  * FoundingOffer — the pre-checkout reservation block. While checkout is not
@@ -17,14 +18,13 @@ export default function FoundingOffer({
   variant?: "dark" | "darker"
 }) {
   const perks = [
-    "Full access to the whole platform — a free 7-day trial, no card",
+    `Full platform access during early release, including the ${TRIAL_DAYS}-day trial`,
     "30-40% off the plan prices above, locked in for when checkout opens",
-    "Your founding code before anyone else — no charge until you choose to buy",
-    "A direct line to shape what gets built next",
+    "A founding code by email when checkout opens; choose your plan then",
   ]
 
   return (
-    <SectionWrapper variant={variant} id="founding">
+    <SectionWrapper variant={variant} id="founding" className="scroll-mt-24 !py-12 lg:!py-16">
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Left: the pitch */}
@@ -44,10 +44,9 @@ export default function FoundingOffer({
               Become a founding member.
             </h2>
             <p className="text-[15px] text-[#888888] leading-relaxed mb-7 max-w-md">
-              Paid checkout isn&apos;t open yet. Until it opens, you can reserve
-              a founding discount on the plan prices listed above — no charge
-              today and no obligation; you&apos;re holding your place and your
-              price while you try the platform on the free 7-day trial.
+              Paid checkout is not open. Reserve a founding discount by email,
+              with no charge or obligation. This reservation is not tied to a
+              plan; you choose one when checkout opens.
             </p>
             <ul className="space-y-3">
               {perks.map((perk) => (
@@ -72,7 +71,7 @@ export default function FoundingOffer({
               trackEventName="founding_reserve"
               eyebrow="Reserve your rate"
               headline="Hold my founding discount."
-              description="Drop your email and I'll reserve your founding price. When checkout opens, you get your code first — at the founding rate, locked in."
+              description="Reserve by email. Choose your plan when checkout opens; no payment today."
               ctaLabel="Reserve my founding rate"
               successHeadline="You're on the founding list."
               successDescription="Your founding rate is reserved to this address, and a confirmation email is on its way. When checkout opens, your code arrives here — one email, just the code. No charge unless you decide to buy."

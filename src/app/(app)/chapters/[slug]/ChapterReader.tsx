@@ -34,8 +34,8 @@ import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { ChartSpec } from "@/lib/chart-spec"
 import ReaderThemeToggle, { useReadingTheme } from "@/components/shared/ReaderThemeToggle"
 import ChapterSidebarNav from "./ChapterSidebarNav"
-import ChapterRightPanel from "./ChapterRightPanel"
 import ChapterMobileTOC from "./ChapterMobileTOC"
+import styles from "./ChapterReader.module.css"
 import type { Difficulty, Section } from "@/types"
 
 /**
@@ -776,27 +776,6 @@ export default function ChapterReader({
     attempts: number
   } | null
 }) {
-  // The chapter's anchor concept for the reference rail: its authored
-  // "Mental model." callout, else a trimmed summary. No per-chapter work.
-  const bigIdea = useMemo(() => {
-    const body = sections.map((s) => s.body || "").join("\n")
-    const mm = body.match(/\*\*Mental model\.?\*\*\s*([^\n]+)/i)
-    let raw = (mm ? mm[1] : summary) || ""
-    raw = raw.replace(/\*\*/g, "").replace(/\*/g, "").replace(/`/g, "").trim()
-    if (!raw) return null
-    if (raw.length > 240) {
-      const cut = raw.slice(0, 240)
-      const stop = Math.max(
-        cut.lastIndexOf(". "),
-        cut.lastIndexOf("— "),
-        cut.lastIndexOf("? "),
-      )
-      raw = (stop > 120 ? cut.slice(0, stop + 1) : cut).trim()
-      if (!/[.!?…]$/.test(raw)) raw += "…"
-    }
-    return raw
-  }, [sections, summary])
-
   // Hydrate progress from localStorage after mount. SSR renders an empty
   // state (every question pristine, no sections marked read), then the
   // client useEffect fills it in with whichever source is more complete.
@@ -804,7 +783,7 @@ export default function ChapterReader({
   const [progress, setProgress] = useState<ChapterProgress>(EMPTY_PROGRESS)
   const [hydrated, setHydrated] = useState(false)
   const [theme, setTheme] = useReadingTheme()
-  // Focus mode — collapses the 3-col grid (sidebar nav + right panel)
+  // Focus mode collapses the contents rail
   // and centers the reading column for distraction-free study sessions.
   // Persisted in localStorage so the choice survives reloads.
   // Focus mode lives in the module-level store above so the hydration
@@ -974,28 +953,15 @@ export default function ChapterReader({
 
   return (
     <div
-      className="reader-themed space-y-10 rounded-2xl p-4 sm:p-6 -m-4 sm:-m-6"
+      className={`reader-themed ${styles.reader}`}
       data-reading-theme={theme}
       style={{ backgroundColor: "var(--read-bg)", color: "var(--read-text)" }}
     >
       {/* Header */}
       <div
-        className="relative overflow-hidden rounded-2xl border px-6 py-10 sm:px-10 sm:py-12"
-        style={{ borderColor: "var(--read-border)", backgroundColor: "var(--read-bg-inset)" }}
+        className={styles.header}
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 50% -10%, var(--read-gold-soft) 0%, transparent 60%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.025] mix-blend-overlay"
-          aria-hidden
-        />
-        <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+        <div className={styles.toolbar}>
           {section === "DI" && (
             <DataInsightsCalculator compact tone="reader" />
           )}
@@ -1003,6 +969,7 @@ export default function ChapterReader({
             type="button"
             onClick={toggleFocusMode}
             aria-label={focusMode ? "Exit focus mode" : "Enter focus mode"}
+            aria-pressed={focusMode}
             title={focusMode ? "Exit focus mode" : "Enter focus mode"}
             className="inline-flex items-center justify-center w-9 h-9 rounded-lg border transition-all duration-150 hover:scale-[1.04] active:scale-[0.96]"
             style={{
@@ -1055,7 +1022,7 @@ export default function ChapterReader({
             </span>
           </div>
           <h1
-            className="font-display text-3xl sm:text-5xl font-semibold tracking-[-0.02em] leading-[1.05]"
+            className={styles.title}
             style={{ color: "var(--read-text)" }}
           >
             {title}
@@ -1130,15 +1097,11 @@ export default function ChapterReader({
         </div>
       </div>
 
-      {/* Inline progress bar — shown on smaller screens where the
-          sticky sidebar isn't visible. Hidden on lg+ since the rail
-          carries the same data. Also gated to once the student has
-          read at least one section. */}
-      {completedSections > 0 && (
-        <div className="lg:hidden">
+      {/* One readings-only measure, shared by all viewport sizes. */}
+      {hydrated && totalSections > 0 && (
+        <div className={styles.progress}>
           <div
-            className="flex items-center justify-between text-[11px] uppercase tracking-[0.18em] font-semibold mb-2.5"
-            style={{ color: "var(--read-text-faint)" }}
+            className={styles.progressLabel}
           >
             <span>
               {completedSections} of {totalSections} readings complete
@@ -1151,6 +1114,12 @@ export default function ChapterReader({
             </span>
           </div>
           <div
+            role="progressbar"
+            aria-label="Readings complete"
+            aria-valuemin={0}
+            aria-valuemax={totalSections}
+            aria-valuenow={completedSections}
+            aria-valuetext={`${completedSections} of ${totalSections} readings complete`}
             className="h-1.5 rounded-full overflow-hidden"
             style={{ backgroundColor: "var(--read-bg-inset)" }}
           >
@@ -1187,11 +1156,7 @@ export default function ChapterReader({
         </div>
       )}
 
-      {/* Three-column reading layout on lg+:
-            left rail  — sticky chapter contents nav
-            center     — the section cards + end-of-chapter problem sets
-            right rail — sticky learning panel (progress + next action)
-          On <lg this collapses to a single column (the center). */}
+      {/* Contents yield to a drawer below 1200px; reading has no right rail. */}
       {(() => {
         const sidebarItems = sections.map((s) => ({
           id: s.id,
@@ -1199,17 +1164,12 @@ export default function ChapterReader({
           title: s.title,
           read: !!progress.sectionsRead[s.id],
         }))
-        const nextUnread = sections.find((s) => !progress.sectionsRead[s.id])
         return (
           <div
-            className={
-              focusMode
-                ? "max-w-4xl mx-auto"
-                : "lg:grid lg:grid-cols-[210px_minmax(0,1fr)_290px] lg:gap-x-8 lg:items-start"
-            }
+            className={`${styles.layout} ${focusMode ? styles.focused : ""}`}
           >
             {!focusMode && (
-              <aside className="hidden lg:block sticky top-6 self-start">
+              <aside className={styles.contents}>
                 <ChapterSidebarNav
                   sections={sidebarItems}
                   hasProblemSets={problemSets.length > 0}
@@ -1226,7 +1186,7 @@ export default function ChapterReader({
               />
             )}
 
-            <div className="space-y-10 min-w-0">
+            <div className={styles.article}>
               {sections.map((s, i) => {
                 const next = sections[i + 1] ?? null
                 return (
@@ -1274,21 +1234,6 @@ export default function ChapterReader({
                 )}
             </div>
 
-            {!focusMode && (
-              <aside className="hidden lg:block sticky top-6 self-start">
-                <ChapterRightPanel
-                  section={section}
-                  estimatedPages={estimatedPages}
-                  totalSections={totalSections}
-                  completedSections={completedSections}
-                  hasProblemSets={problemSets.length > 0}
-                  nextUnreadTitle={nextUnread?.title ?? null}
-                  nextUnreadAnchorId={nextUnread?.id ?? null}
-                  bigIdea={bigIdea}
-                  firstPracticeTestSlug={firstPracticeTestSlug ?? null}
-                />
-              </aside>
-            )}
           </div>
         )
       })()}
@@ -1834,14 +1779,14 @@ function SectionCard({
   return (
     <article
       id={s.id}
-      className="rounded-2xl border transition-colors scroll-mt-6"
+      className={styles.section}
       style={{
-        backgroundColor: "var(--read-bg-elevated)",
+        backgroundColor: "var(--read-bg)",
         borderColor: read ? "var(--read-border)" : "var(--read-border-strong)",
       }}
     >
       <header
-        className="flex items-start gap-4 px-6 sm:px-8 py-6 border-b"
+        className={styles.sectionHeader}
         style={{ borderColor: "var(--read-border)" }}
       >
         <div
@@ -1879,7 +1824,7 @@ function SectionCard({
         )}
       </header>
 
-      <div className="px-6 sm:px-8 py-7 space-y-6">
+      <div className={`${styles.sectionBody} space-y-6`}>
         {s.intro && (
           <div
             className="p-5 rounded-xl border text-[14px] leading-[1.75]"

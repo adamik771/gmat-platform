@@ -11,10 +11,8 @@ import {
   ArrowRight,
   BookOpen,
   CalendarDays,
-  Check,
   CheckCircle,
   Clock,
-  ExternalLink,
   FlaskConical,
   RotateCcw,
   Sparkles,
@@ -49,13 +47,11 @@ import {
   personaThresholdOverrides,
   PERSONA_TAG_DEFS,
   type PersonaProfile,
-  type PersonaTag,
 } from "@/lib/personas"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { getUserState } from "@/lib/user-state"
 import { buildActivitySummary } from "@/lib/activity-summary"
-
-const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+import { nextSevenPlanDays, recentActivityDays } from "./presentation"
 
 export default async function StudyPlanPage({
   searchParams,
@@ -70,7 +66,7 @@ export default async function StudyPlanPage({
   const tz = await getUserTz()
   const welcomeBanner = justOnboarded ? (
     <div
-      className="flex items-start gap-3 px-5 py-4 rounded-2xl border"
+      className="flex items-start gap-3 px-5 py-4 rounded-lg border"
       style={{
         borderColor: "rgba(201,168,76,0.28)",
         backgroundColor: "rgba(201,168,76,0.06)",
@@ -108,7 +104,6 @@ export default async function StudyPlanPage({
   let officialBaseline: number | null = null
   let persona: PersonaProfile | null = null
   let officialReady: OfficialReadySummary | null = null
-  const completedTags = new Set<string>()
   // Per-chapter reading progress (sectionsRead), for the guided-path
   // "Upcoming chapters" panel + the weekly cadence's reading queue.
   let readProgress: Record<string, { sectionsRead?: Record<string, boolean> }> = {}
@@ -229,6 +224,7 @@ export default async function StudyPlanPage({
         computeStudyPlan(supabase, user.id, {
           targetScore,
           examDate,
+          tz,
           flaggedQuestionIds: gatherFlaggedQuestionIds(state),
           officialExamCount,
         }),
@@ -349,77 +345,6 @@ export default async function StudyPlanPage({
           : {},
       )
 
-      // Persona-path completion signals. Each tag collapses a step in
-      // the path card so students see what's still left rather than
-      // "do these things again" on every /study-plan visit.
-      const nowMs = Date.now()
-      const dayMs = 86_400_000
-      for (const s of sessionsById.values()) {
-        const ts = Date.parse(s.created_at)
-        if (Number.isNaN(ts)) continue
-        const ageDays = (nowMs - ts) / dayMs
-        if (s.slug?.startsWith("mock-") && ageDays <= 14) {
-          completedTags.add("ran-mock-14d")
-        }
-        const topicLower = s.topic?.toLowerCase() ?? ""
-        if (
-          ageDays <= 7 &&
-          (s.slug === "custom" || topicLower.startsWith("mixed review"))
-        ) {
-          completedTags.add("ran-mixed-7d")
-        }
-        // Hard-difficulty detection would require attempt-level difficulty
-        // lookups; simple proxy: any timed practice session in 7d counts
-        // as "drilled recently" for Stretcher/Elite until we add a
-        // difficulty-aware signal.
-        if (
-          ageDays <= 7 &&
-          s.slug !== "custom" &&
-          !s.slug?.startsWith("mock-") &&
-          !s.slug?.startsWith("diagnostic-") &&
-          !s.slug?.startsWith("review-") &&
-          !s.slug?.startsWith("redo-")
-        ) {
-          completedTags.add("drilled-recently")
-        }
-      }
-      const chapterProgress = state.chapter_progress as
-        | ChapterProgressShape
-        | undefined
-      if (chapterProgress) {
-        for (const [slug, block] of Object.entries(chapterProgress)) {
-          const qs = block?.questions
-          if (!qs) continue
-          const anySubmitted = Object.values(qs).some((q) => q?.submitted)
-          if (anySubmitted) completedTags.add(`chapter-started:${slug}`)
-        }
-      }
-      // Hard-difficulty drill detection — Stretcher/Elite "hard pool"
-      // steps should only tick when the student actually ran Advanced
-      // practice recently, not any practice. Collect attempts from
-      // sessions that started in the last 7 days, check difficulty.
-      const sevenDaysAgoMs = nowMs - 7 * dayMs
-      const recentSessionIds = new Set<string>()
-      for (const s of sessionsById.values()) {
-        if (Date.parse(s.created_at) >= sevenDaysAgoMs) {
-          recentSessionIds.add(s.id)
-        }
-      }
-      for (const a of (masteryAttempts ?? []) as Array<
-        MasteryAttempt & { difficulty?: string | null }
-      >) {
-        if (!a.session_id || !recentSessionIds.has(a.session_id)) continue
-        if (a.difficulty === "Advanced") {
-          completedTags.add("hard-drilled-recently")
-          break
-        }
-      }
-
-      // Error-log is "clear" when the pending-untagged count is small —
-      // uses the same signal /review already surfaces.
-      if (pendingMistakeCount < 5) {
-        completedTags.add("error-log-clear")
-      }
     }
   } catch {
     // Supabase unavailable — render with empty defaults.
@@ -470,46 +395,8 @@ export default async function StudyPlanPage({
     nextReadingQueue.map((ch) => ({ slug: ch.slug, title: ch.title })),
     weeklyHoursTarget
   )
-  const suggestionByKey = new Map<string, DailySuggestion>()
-
-  // ---------- Derived: calendar for the current week (Sun → Sat) ----------
-  // The USER's current week (tz cookie), not the server's — on UTC
-  // production servers the whole calendar could sit on the wrong day for
-  // evening users. Day arithmetic runs on date-only ISO strings parsed
-  // as UTC midnights, which is exact.
   const todayIso = localDayIso(new Date(), tz)
-  const todayMs = Date.parse(todayIso)
-  const DAY_MS = 86400000
-  const todayDow = new Date(todayMs).getUTCDay()
-  const weekDays = Array.from({ length: 7 }, (_, i) => {
-    const dMs = todayMs + (i - todayDow) * DAY_MS
-    const key = new Date(dMs).toISOString().slice(0, 10)
-    return {
-      weekdayLabel: WEEKDAY_LABELS[i],
-      date: new Date(dMs),
-      key,
-      isToday: dMs === todayMs,
-      isPast: dMs < todayMs,
-      hasActivity: activityDays.has(key),
-    }
-  })
-
-  // Walk future days and assign a pre-computed suggestion from the
-  // adaptive cadence. Today isn't given a calendar suggestion — the
-  // "Today's focus" card above owns that.
-  //
-  // Index by WEEKDAY POSITION, not a running counter: the counter version
-  // gave the first future day cadence[0] every day, so the whole week's
-  // suggestions silently shifted forward one cell each real day ("Wed:
-  // Practice set" became "Wed: read chapter X" when Wednesday arrived),
-  // and slot 6 — the high-band "Light review + rest" day — was
-  // unreachable (max 6 future days). Weekday-anchored, a given day keeps
-  // its suggestion all week and the rest day lands on Saturday.
-  weekDays.forEach((day, i) => {
-    if (day.isPast || day.isToday) return
-    const suggestion = weeklyCadence[i]
-    if (suggestion) suggestionByKey.set(day.key, suggestion)
-  })
+  const weekDays = nextSevenPlanDays(todayIso, weeklyCadence, activityDays)
 
   // ---------- Derived: exam readiness ----------
   // Shared local-midnight parse — the naive new Date("YYYY-MM-DD") (UTC)
@@ -535,364 +422,16 @@ export default async function StudyPlanPage({
   // official mba.com practice-exam score is entered.
   if (officialExamCount === 0) {
     return (
-      <div className="max-w-5xl mx-auto space-y-10">
+      <div className="mx-auto max-w-5xl space-y-6">
         {welcomeBanner}
-        {/* Hero — baseline-dominant; the page's only primary CTA */}
-        <section
-          className="relative overflow-hidden rounded-2xl border"
-          style={{
-            borderColor: "rgba(201,168,76,0.28)",
-            backgroundColor: "#0D0D0D",
-          }}
-        >
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 60% 60% at 0% 50%, rgba(201,168,76,0.14) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 100% 100%, rgba(201,168,76,0.06) 0%, transparent 60%)",
-            }}
-            aria-hidden
-          />
-          <div
-            className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
-            aria-hidden
-          />
-          <div className="relative grid lg:grid-cols-[minmax(0,1fr)_320px] gap-8 lg:gap-12 p-6 sm:p-10">
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 mb-3">
-                <span
-                  className="inline-flex items-center justify-center w-7 h-7 rounded-lg"
-                  style={{ backgroundColor: "rgba(201,168,76,0.14)" }}
-                >
-                  <Target
-                    className="w-3.5 h-3.5"
-                    style={{ color: "#C9A84C" }}
-                  />
-                </span>
-                <p
-                  className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                  style={{ color: "#C9A84C" }}
-                >
-                  Adaptive plan · locked
-                </p>
-              </div>
-              <h1 className="font-display text-3xl md:text-[42px] font-semibold tracking-[-0.02em] text-[#F0F0F0] leading-[1.05]">
-                Your adaptive plan unlocks{" "}
-                <span
-                  className="font-display-italic"
-                  style={{ color: "#C9A84C" }}
-                >
-                  after your baseline exam.
-                </span>
-              </h1>
-              <p className="text-[15px] leading-[1.7] text-[#C0C0C0] max-w-2xl mt-4">
-                Take Official Practice Exam 1 on mba.com under full exam
-                conditions and enter the score on the Mock page. A real
-                exam score assigns your study persona and seeds the weekly
-                cadence, section priorities, and mastery gates. Without
-                it, every recommendation is a guess.
-              </p>
-              <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Link
-                  href="/mock"
-                  className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-                >
-                  Open the official exam plan
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                </Link>
-                <a
-                  href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors hover:border-white/20"
-                  style={{
-                    borderColor: "rgba(255,255,255,0.10)",
-                    color: "#C0C0C0",
-                  }}
-                >
-                  Get the exam on mba.com
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-                {!examDate && (
-                  <Link
-                    href="/settings"
-                    className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
-                    style={{
-                      borderColor: "rgba(255,255,255,0.10)",
-                      color: "#C0C0C0",
-                    }}
-                  >
-                    Set exam date
-                  </Link>
-                )}
-              </div>
-            </div>
-
-            {/* Right column — plan-status snapshot. Quiet visual; the
-                baseline CTA stays dominant. */}
-            <div className="flex flex-col gap-2.5 lg:max-w-[320px]">
-              <p
-                className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-1"
-                style={{ color: "#C9A84C" }}
-              >
-                Plan status
-              </p>
-              {[
-                {
-                  label: "Baseline exam",
-                  done: officialExamCount > 0,
-                  href: "/mock",
-                },
-                {
-                  label: "Target score",
-                  done: targetScore !== null,
-                  href: "/onboarding",
-                },
-                {
-                  label: "Exam date",
-                  done: examDate !== null,
-                  href: "/settings",
-                },
-              ].map((row) => (
-                <Link
-                  key={row.label}
-                  href={row.href}
-                  className="group flex items-center gap-3 px-3.5 py-2.5 rounded-lg border transition-colors hover:bg-white/[0.02]"
-                  style={{
-                    borderColor: row.done
-                      ? "rgba(62,207,142,0.22)"
-                      : "rgba(255,255,255,0.06)",
-                    backgroundColor: row.done
-                      ? "rgba(62,207,142,0.04)"
-                      : "rgba(255,255,255,0.012)",
-                  }}
-                >
-                  {row.done ? (
-                    <CheckCircle
-                      className="w-3.5 h-3.5 flex-shrink-0"
-                      style={{ color: "#3ECF8E" }}
-                    />
-                  ) : (
-                    <span
-                      className="w-3.5 h-3.5 rounded-full border flex-shrink-0"
-                      style={{ borderColor: "rgba(255,255,255,0.2)" }}
-                      aria-hidden
-                    />
-                  )}
-                  <span
-                    className="text-[13px] flex-1"
-                    style={{ color: row.done ? "#888888" : "#C0C0C0" }}
-                  >
-                    {row.label}
-                  </span>
-                  <span
-                    className="text-[11px] uppercase tracking-[0.18em] font-semibold"
-                    style={{
-                      color: row.done
-                        ? "#3ECF8E"
-                        : "rgba(255,255,255,0.4)",
-                    }}
-                  >
-                    {row.done ? "Set" : "Missing"}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Launch sequence — replaces the empty 7-day calendar that
-            otherwise read as "you've already missed Sun/Mon/Tue/Wed".
-            Three steps, two of them locked, the first one bright. */}
-        <section>
-          <div className="flex items-center gap-3 mb-5">
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Your launch sequence
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <ol className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {[
-              {
-                kicker: "Today",
-                title: "Take Official Practice Exam 1",
-                body: "On mba.com, full exam conditions, one sitting. The whole plan keys off this.",
-                state: "current" as const,
-                href: "/mock",
-              },
-              {
-                kicker: "Next",
-                title: "Enter your baseline score",
-                body: "Type the total and section scores into the exam plan so the system can anchor to them.",
-                state: "next" as const,
-                href: "/mock",
-              },
-              {
-                kicker: "Then",
-                title: "Receive your weekly cadence",
-                body: "A real seven-day plan auto-builds from your baseline + exam date.",
-                state: "future" as const,
-                href: "/study-plan",
-              },
-            ].map((step) => {
-              const accent =
-                step.state === "current"
-                  ? "#C9A84C"
-                  : "rgba(255,255,255,0.25)"
-              const bg =
-                step.state === "current"
-                  ? "rgba(201,168,76,0.05)"
-                  : "#0D0D0D"
-              const border =
-                step.state === "current"
-                  ? "rgba(201,168,76,0.28)"
-                  : "rgba(255,255,255,0.06)"
-              return (
-                <li key={step.kicker}>
-                  <Link
-                    href={step.href}
-                    className="group block h-full p-5 rounded-xl border transition-all duration-300 hover:-translate-y-0.5"
-                    style={{
-                      borderColor: border,
-                      backgroundColor: bg,
-                    }}
-                  >
-                    <p
-                      className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-2"
-                      style={{
-                        color:
-                          step.state === "current"
-                            ? "#C9A84C"
-                            : "rgba(255,255,255,0.4)",
-                      }}
-                    >
-                      {step.kicker}
-                    </p>
-                    <p
-                      className="text-[15px] font-semibold tracking-tight leading-snug"
-                      style={{
-                        color:
-                          step.state === "current"
-                            ? "#F0F0F0"
-                            : "rgba(240,240,240,0.7)",
-                      }}
-                    >
-                      {step.title}
-                    </p>
-                    <p
-                      className="text-[12px] mt-1.5 leading-snug"
-                      style={{
-                        color:
-                          step.state === "current"
-                            ? "rgba(192,192,192,0.75)"
-                            : "rgba(255,255,255,0.4)",
-                      }}
-                    >
-                      {step.body}
-                    </p>
-                    {step.state === "current" && (
-                      <span
-                        className="inline-flex items-center gap-1 mt-3 text-[11px] uppercase tracking-[0.18em] font-semibold"
-                        style={{ color: accent }}
-                      >
-                        Start now
-                        <ArrowRight className="w-3 h-3" aria-hidden />
-                      </span>
-                    )}
-                  </Link>
-                </li>
-              )
-            })}
-          </ol>
-        </section>
-
-        {/* Unlocks after baseline — preview tiles. Each tile is a
-            one-line promise of what the baseline activates. Replaces
-            the live empty Mastery / Weak-areas / Calendar / Adaptive
-            multi-week panels that otherwise rendered as filler. */}
-        <section>
-          <div className="flex items-center gap-3 mb-5">
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#888888" }}
-            >
-              Unlocks after baseline
-            </p>
-            <div
-              className="h-px flex-1"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(255,255,255,0.10), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {[
-              {
-                Icon: Sparkles,
-                title: "Study persona",
-                body: "A baseline-derived label (Rebuilder / Improver / Stretcher / Elite) that tunes thresholds and the path.",
-              },
-              {
-                Icon: CalendarDays,
-                title: "Weekly cadence",
-                body: "Real seven-day schedule shaped by your exam runway + the hours per week you chose at onboarding.",
-              },
-              {
-                Icon: Target,
-                title: "Mastery gates",
-                body: "Per-topic Concept → Timed → Mixed → Section progression so you know what's stable.",
-              },
-              {
-                Icon: TrendingDown,
-                title: "Stability signal",
-                body: "Two-week mock + mixed accuracy band — the readiness check before test day.",
-              },
-            ].map(({ Icon, title, body }) => (
-              <div
-                key={title}
-                className="p-4 rounded-xl border flex flex-col gap-2.5"
-                style={{
-                  borderColor: "rgba(255,255,255,0.05)",
-                  backgroundColor: "rgba(255,255,255,0.012)",
-                }}
-              >
-                <span
-                  className="inline-flex items-center justify-center w-8 h-8 rounded-lg"
-                  style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
-                >
-                  <Icon
-                    className="w-3.5 h-3.5"
-                    style={{ color: "rgba(255,255,255,0.4)" }}
-                  />
-                </span>
-                <p
-                  className="text-[14px] font-semibold tracking-tight"
-                  style={{ color: "rgba(240,240,240,0.7)" }}
-                >
-                  {title}
-                </p>
-                <p
-                  className="text-[12px] leading-snug"
-                  style={{ color: "rgba(255,255,255,0.4)" }}
-                >
-                  {body}
-                </p>
-              </div>
-            ))}
-          </div>
+        <header className="flex flex-wrap items-start justify-between gap-4">
+          <div><h1 className="text-3xl font-semibold text-[#F0F0F0]">Study plan</h1><p className="mt-2 text-sm text-[#B9B7AE]">An official baseline anchors the personalized plan.</p></div>
+          <Link href="/settings" className="inline-flex min-h-11 items-center gap-2 text-sm text-[#C9A84C]"><CalendarDays className="h-4 w-4" aria-hidden />Update my schedule</Link>
+        </header>
+        <section className="border-t border-white/10 py-5">
+          <h2 className="text-xl font-semibold text-[#F0F0F0]">Record your official baseline</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#B9B7AE]">Take an official mba.com practice exam and enter its result on the exam plan. You can read chapters and practice before recording it.</p>
+          <Link href="/mock" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#C9A84C] px-4 py-2 text-sm font-semibold text-[#0A0A0A]">Open exam plan<ArrowRight className="h-4 w-4" aria-hidden /></Link>
         </section>
       </div>
     )
@@ -905,7 +444,6 @@ export default async function StudyPlanPage({
   const renderedNumberedSections: string[] = []
   if (plan && plan.todaysFocus.length > 0)
     renderedNumberedSections.push("todays-focus")
-  renderedNumberedSections.push("this-week")
   if (plan && plan.weakAreas.length > 0)
     renderedNumberedSections.push("weak-areas")
   if (masteries.length > 0) renderedNumberedSections.push("mastery")
@@ -914,64 +452,31 @@ export default async function StudyPlanPage({
     String(renderedNumberedSections.indexOf(key) + 1).padStart(2, "0")
 
   return (
-    <div className="max-w-5xl mx-auto space-y-10">
+    <div className="max-w-5xl mx-auto space-y-6">
       {welcomeBanner}
-      <section
-        className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-6 py-10 sm:px-10 sm:py-14"
-        style={{ backgroundColor: "#0D0D0D" }}
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 20% -10%, rgba(201,168,76,0.14) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 110% 110%, rgba(201,168,76,0.08) 0%, transparent 60%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
-          aria-hidden
-        />
-        <div className="relative">
-          <div className="flex items-center gap-3 mb-4">
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Adaptive plan
-            </p>
-            <div
-              className="h-px w-12"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.4), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-            Your weekly{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              cadence.
-            </span>
-          </h1>
-          <p className="text-[15px] leading-[1.75] text-[#C0C0C0] mt-4 max-w-2xl">
+      <header className="flex flex-wrap items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h1 className="text-3xl font-semibold text-[#F0F0F0]">Study plan</h1>
+          <p className="mt-2 text-sm leading-relaxed text-[#B9B7AE]">
             {daysUntilExam !== null && daysUntilExam > 0
-              ? `${daysUntilExam} day${daysUntilExam === 1 ? "" : "s"} until your exam — the plan below ranks today's focus, weak topics, and a seven-day cadence drawn from your real activity.`
-              : daysUntilExam !== null && daysUntilExam <= 0
-                ? "Exam day has passed or is here — update your date in Settings to re-anchor the countdown."
-                : "Set an exam date in Settings to anchor a countdown — the plan adapts to whatever runway you have left."}
+              ? daysUntilExam + " days until your exam. Today's task comes first; future tasks are suggestions, not completion records."
+              : daysUntilExam === 0
+                ? "Your exam is today. Update your schedule if your plans have changed."
+                : daysUntilExam !== null
+                  ? "Your exam date has passed. Update it to align future suggestions."
+                  : "Set an exam date to anchor your plan."}
           </p>
         </div>
-      </section>
+        <Link href="/settings" className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[#C9A84C]"><CalendarDays className="h-4 w-4" aria-hidden />Update my schedule</Link>
+      </header>
 
       {/* One primary action. Lower-ranked recommendations remain available as
           compact optional follow-ups instead of competing task cards. */}
       {plan && plan.todaysFocus.length > 0 && (
-        <section>
+        <section id="todays-focus" className="scroll-mt-24">
           <div className="flex items-center gap-3 mb-5">
             <span
-              className="font-display text-[11px] font-semibold tabular-nums"
+              className="font-sans text-[11px] font-semibold tabular-nums"
               style={{ color: "rgba(201,168,76,0.55)" }}
               aria-hidden
             >
@@ -992,9 +497,9 @@ export default async function StudyPlanPage({
               aria-hidden
             />
           </div>
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-5">
+          <h2 className="font-sans text-xl font-semibold text-[#F0F0F0] tracking-normal leading-[1.1] mb-5">
             Today&apos;s{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-normal" style={{ color: "#C9A84C" }}>
               focus.
             </span>
           </h2>
@@ -1019,114 +524,29 @@ export default async function StudyPlanPage({
         </section>
       )}
 
-      {/* Weekly Calendar — real activity dots for the current week */}
-      <section>
-        <div className="flex items-center gap-3 mb-5">
-          <span
-            className="font-display text-[11px] font-semibold tabular-nums"
-            style={{ color: "rgba(201,168,76,0.55)" }}
-            aria-hidden
-          >
-            {sectionNum("this-week")}
-          </span>
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-            style={{ color: "#C9A84C" }}
-          >
-            This week
-          </p>
-          <div
-            className="h-px flex-1"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-            }}
-            aria-hidden
-          />
-        </div>
-        {weeklyHoursTarget !== null && (
-          <p className="text-[12px] text-[#888888] leading-relaxed mb-4 max-w-2xl">
-            Planned around your{" "}
-            <span className="text-[#C0C0C0]">
-              {weeklyHoursTarget} hr/week
-            </span>{" "}
-            target (~{dailyStudyBudgetLabel(weeklyHoursTarget)}).{" "}
-            {weeklyHoursAdvice(weeklyHoursTarget)}{" "}
-            <Link
-              href="/onboarding"
-              className="underline underline-offset-2"
-              style={{ color: "#C9A84C" }}
-            >
-              Change it
-            </Link>
-            .
-          </p>
-        )}
-        <div className="overflow-x-auto -mx-1 px-1">
-          <div className="grid grid-cols-7 gap-2 min-w-[560px]">
+      <section className="border-t border-white/10 pt-6">
+        <h2 className="text-xl font-semibold text-[#F0F0F0]">Next seven days</h2>
+        <p className="mt-2 text-sm leading-relaxed text-[#B9B7AE]">
+          Suggested tasks, not saved appointments.
+          {weeklyHoursTarget !== null && <> Your {weeklyHoursTarget} hr/week target is about {dailyStudyBudgetLabel(weeklyHoursTarget)} per day. {weeklyHoursAdvice(weeklyHoursTarget)}</>}
+        </p>
+        <ol className="mt-4 divide-y divide-white/10">
           {weekDays.map((day) => {
-            const { weekdayLabel, date, isToday, isPast, hasActivity } = day
-            const borderColor = isToday
-              ? "rgba(201,168,76,0.3)"
-              : hasActivity
-              ? "rgba(62,207,142,0.2)"
-              : "rgba(255,255,255,0.06)"
-            const bg = isToday
-              ? "rgba(201,168,76,0.05)"
-              : hasActivity
-              ? "rgba(62,207,142,0.04)"
-              : "#0D0D0D"
-            return (
-              <div key={day.key} className="flex flex-col gap-2">
-                <p
-                  className={`text-[10px] text-center font-semibold uppercase tracking-[0.18em] ${
-                    isToday ? "text-[#C9A84C]" : "text-[#888888]"
-                  }`}
-                >
-                  {weekdayLabel}{" "}
-                  <span className="font-display text-[11px] normal-case tracking-normal text-[#888888] tabular-nums">
-                    {date.getDate()}
-                  </span>
-                </p>
-                <div
-                  className="rounded-2xl p-3 border min-h-[96px] flex flex-col gap-2 transition-all duration-300 hover:-translate-y-0.5"
-                  style={{ borderColor, backgroundColor: bg }}
-                >
-                  {hasActivity ? (
-                    <>
-                      <CheckCircle
-                        className="w-3.5 h-3.5"
-                        style={{ color: "#3ECF8E" }}
-                      />
-                      <p className="text-xs text-[#C0C0C0] leading-snug">
-                        Practiced
-                      </p>
-                    </>
-                  ) : isToday ? (
-                    <>
-                      <div
-                        className="w-2 h-2 rounded-full"
-                        style={{ backgroundColor: "#C9A84C" }}
-                      />
-                      {/* Defer to Today's Focus instead of prescribing a
-                          chapter here — the two used to disagree on the
-                          same page. */}
-                      <p className="text-xs text-[#C0C0C0] leading-snug">
-                        See Today&apos;s focus above
-                      </p>
-                    </>
-                  ) : isPast ? (
-                    <p className="text-xs text-[#888888]">No activity</p>
-                  ) : (
-                    <SuggestionCell suggestion={suggestionByKey.get(day.key) ?? null} />
-                  )}
-                </div>
-              </div>
-            )
+            const suggestion = day.suggestion
+            return <li key={day.key} className="grid gap-2 py-3 sm:grid-cols-[100px_minmax(0,1fr)] sm:gap-4">
+              <div><p className="text-sm font-medium text-[#F0F0F0]">{day.isToday ? "Today" : day.weekdayLabel} {day.date.getUTCDate()}</p><p className="text-sm text-[#B9B7AE]">{day.hasActivity ? "Activity recorded" : "Suggested"}</p></div>
+              {day.isToday
+                ? <a href={plan?.todaysFocus.length ? "#todays-focus" : "/practice"} className="inline-flex min-h-11 items-center gap-2 text-sm text-[#C9A84C]">{plan?.todaysFocus.length ? "Today's focus" : "Choose practice"}<ArrowRight className="h-4 w-4" aria-hidden /></a>
+                : <SuggestionCell suggestion={suggestion ?? null} />}
+            </li>
           })}
-          </div>
-        </div>
+        </ol>
       </section>
+
+      <details className="border-t border-white/10 pt-3">
+        <summary className="min-h-11 cursor-pointer py-3 text-sm font-medium text-[#B9B7AE]">Recorded activity · last seven calendar days</summary>
+        <p className="pb-3 text-sm text-[#B9B7AE]">{recentActivityDays(todayIso, activityDays)} days with recorded study. Activity does not confirm that a suggested task was completed.</p>
+      </details>
 
       {/* Progress cards use directly observed counts and time only. Practice
           accuracy is not converted into a GMAT total score. */}
@@ -1171,28 +591,10 @@ export default async function StudyPlanPage({
           official-exam readiness bar. */}
       {officialReady && <OfficialReadyCard summary={officialReady} />}
 
-      {/* Persona, baseline attribution, and the multi-week plan link sit
-          BELOW the actionable blocks: beta feedback said the answer to
-          "what should I do today?" was buried ~1000px down, under four
-          cards of context. Today's Focus and the 7-day calendar now lead. */}
-      {/* Persona card — research-report segmentation by (baseline, target).
-          Drives copy, emphasis, and downstream mastery thresholds. Shows
-          "Not yet assigned" with a baseline CTA when baseline is null. */}
-      {persona && <PersonaCard persona={persona} />}
-
-      {/* Persona path — each baseline-derived persona gets a short,
-          tailored "do these next" list. Research-report segment table
-          drives the prescription per persona: Rebuilder rebuilds
-          fundamentals, Improver rehearses consistency, Stretcher hits
-          harder pools + review/edit discipline, Elite calibrates
-          against official-style mocks. Hidden when persona is unknown. */}
-      {persona && persona.key !== "unknown" && (
-        <PersonaPathCard
-          personaKey={persona.key}
-          completedTags={completedTags}
-          tags={persona.tags}
-        />
-      )}
+      {persona && <details className="border-t border-white/10 pt-3">
+        <summary className="min-h-11 cursor-pointer py-3 text-sm font-medium text-[#B9B7AE]">Plan assumptions</summary>
+        <PersonaCard persona={persona} />
+      </details>}
 
       {/* Baseline attribution — only when an official score exists, so the
           plan is visibly rooted in real data. Tiny line; clicks through to
@@ -1200,7 +602,7 @@ export default async function StudyPlanPage({
       {officialExamCount > 0 && baselineExamDate && (
         <Link
           href="/mock"
-          className="flex items-center justify-between gap-3 p-4 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] hover:border-white/[0.12] transition-all duration-300 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
+          className="flex items-center justify-between gap-3 p-4 rounded-lg border border-white/[0.06] bg-[#0D0D0D] hover:border-white/[0.12] transition-all duration-300 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
         >
           <p className="text-[13px] text-[#C0C0C0]">
             <span className="text-[#888888]">
@@ -1223,42 +625,6 @@ export default async function StudyPlanPage({
         </Link>
       )}
 
-      {/* Adaptive multi-week plan link — synthesises every signal source
-          (official exams, mocks, practice, timing, confidence, mistakes,
-          spaced queue) into a 2-4 week schedule. Sits above today's
-          focus so students can choose between zoomed-in (today) and
-          zoomed-out (week) views. */}
-      <Link
-        href="/study-plan/adaptive"
-        className="group flex items-center justify-between gap-4 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
-        style={{
-          borderColor: "rgba(201,168,76,0.18)",
-          backgroundColor: "#0D0D0D",
-          boxShadow:
-            "0 0 40px rgba(201,168,76,0.05), inset 0 1px 0 rgba(255,255,255,0.04)",
-        }}
-      >
-        <div className="flex items-start gap-3">
-          <CalendarDays
-            className="w-4 h-4 mt-0.5 flex-shrink-0"
-            style={{ color: "#C9A84C" }}
-          />
-          <div>
-            <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
-              Open your adaptive multi-week plan
-            </p>
-            <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
-              Synthesised from your official exams, mocks, practice attempts,
-              timing patterns, confidence log, and mistake-log patterns.
-              Re-runs every visit so the schedule stays current.
-            </p>
-          </div>
-        </div>
-        <ArrowRight
-          className="w-4 h-4 flex-shrink-0 text-[#C9A84C] group-hover:translate-x-0.5 transition-transform"
-          aria-hidden
-        />
-      </Link>
 
 
       {/* Weak areas — topic-level accuracy deficit driven from real attempts.
@@ -1268,7 +634,7 @@ export default async function StudyPlanPage({
         <section>
           <div className="flex items-center gap-3 mb-5">
             <span
-              className="font-display text-[11px] font-semibold tabular-nums"
+              className="font-sans text-[11px] font-semibold tabular-nums"
               style={{ color: "rgba(201,168,76,0.55)" }}
               aria-hidden
             >
@@ -1289,9 +655,9 @@ export default async function StudyPlanPage({
               aria-hidden
             />
           </div>
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-5">
+          <h2 className="font-sans text-xl font-semibold text-[#F0F0F0] tracking-normal leading-[1.1] mb-5">
             Where accuracy{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-normal" style={{ color: "#C9A84C" }}>
               leaks.
             </span>
           </h2>
@@ -1339,7 +705,7 @@ export default async function StudyPlanPage({
             <section>
               <div className="flex items-center gap-3 mb-5">
                 <span
-                  className="font-display text-[11px] font-semibold tabular-nums"
+                  className="font-sans text-[11px] font-semibold tabular-nums"
                   style={{ color: "rgba(201,168,76,0.55)" }}
                   aria-hidden
                 >
@@ -1360,10 +726,10 @@ export default async function StudyPlanPage({
                   aria-hidden
                 />
               </div>
-              <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-2">
+              <h2 className="font-sans text-xl font-semibold text-[#F0F0F0] tracking-normal leading-[1.1] mb-2">
                 Where mastery{" "}
                 <span
-                  className="font-display-italic"
+                  className="font-normal"
                   style={{ color: "#C9A84C" }}
                 >
                   is forming.
@@ -1383,7 +749,7 @@ export default async function StudyPlanPage({
                   return (
                     <div
                       key={`${m.section}|${m.topic}`}
-                      className="flex items-center gap-4 p-4 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
+                      className="flex items-center gap-4 p-4 rounded-lg border border-white/[0.06] bg-[#0F0F0F] transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
                     >
                       <p className="text-[13px] text-[#C0C0C0] w-32 sm:w-44 flex-shrink-0 truncate">
                         <span className="text-[#888888] mr-1.5 text-[11px] uppercase tracking-wider">
@@ -1444,7 +810,7 @@ export default async function StudyPlanPage({
       <section>
         <div className="flex items-center gap-3 mb-5">
           <span
-            className="font-display text-[11px] font-semibold tabular-nums"
+            className="font-sans text-[11px] font-semibold tabular-nums"
             style={{ color: "rgba(201,168,76,0.55)" }}
             aria-hidden
           >
@@ -1465,14 +831,15 @@ export default async function StudyPlanPage({
             aria-hidden
           />
         </div>
-        <h2 className="font-display text-3xl md:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-5">
+        <h2 className="font-sans text-xl font-semibold text-[#F0F0F0] tracking-normal leading-[1.1] mb-5">
           Upcoming{" "}
-          <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+          <span className="font-normal" style={{ color: "#C9A84C" }}>
             chapters.
           </span>
         </h2>
+        <p className="mb-4 text-sm leading-relaxed text-[#B9B7AE]">Reading sequence after your furthest engaged chapter. Today&apos;s focus may recommend different work based on practice history.</p>
         {upcomingChapters.length === 0 ? (
-          <div className="p-6 rounded-2xl border border-white/[0.08] bg-[#0F0F0F]">
+          <div className="p-6 rounded-lg border border-white/[0.08] bg-[#0F0F0F]">
             <div className="flex items-start gap-3">
               <CheckCircle
                 className="w-5 h-5 flex-shrink-0 mt-0.5"
@@ -1480,11 +847,13 @@ export default async function StudyPlanPage({
               />
               <div>
                 <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight">
-                  Curriculum complete
+                  {incompleteChapters.length === 0 ? "All chapters read" : "Earlier chapters still to read"}
                 </p>
                 <p className="text-[13px] text-[#C0C0C0] mt-1 leading-relaxed">
-                  All {totalChapters} chapters read. Keep drilling practice
-                  sets and mock exams until test day.
+                  {incompleteChapters.length === 0
+                    ? `${totalChapters} / ${totalChapters} chapters read. Reading completion is separate from practice and mastery.`
+                    : `${chaptersDoneCount} / ${totalChapters} chapters read. ${incompleteChapters.length} earlier chapters remain; they stay in the reading queue.`}
+                  {" "}<Link href="/chapters" className="inline-flex min-h-11 items-center text-[#C9A84C] underline underline-offset-4">View learning path</Link>
                 </p>
               </div>
             </div>
@@ -1498,7 +867,7 @@ export default async function StudyPlanPage({
                 <Link
                   key={chapter.slug}
                   href={`/chapters/${chapter.slug}`}
-                  className="flex items-start gap-4 p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] hover:border-white/[0.14] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
+                  className="flex items-start gap-4 p-5 rounded-lg border border-white/[0.06] bg-[#0F0F0F] hover:border-white/[0.14] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]"
                 >
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
@@ -1605,13 +974,13 @@ function SuggestionCell({
   return (
     <Link
       href={suggestion.href}
-      className="flex flex-col gap-1 text-left hover:opacity-90 transition-opacity"
+      className="flex min-h-11 flex-wrap items-center gap-3 text-left hover:opacity-90 transition-opacity"
     >
       <Icon className="w-3 h-3" style={{ color }} />
-      <p className="text-[9px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
+      <p className="text-sm text-[#B9B7AE]">
         {typeLabel[suggestion.type]}
       </p>
-      <p className="text-[11px] text-[#C0C0C0] leading-snug line-clamp-2">
+      <p className="text-sm text-[#C0C0C0] leading-relaxed">
         {suggestion.label}
       </p>
     </Link>
@@ -1649,7 +1018,7 @@ function FocusCard({
   return (
     <Link
       href={action.href}
-      className="group p-5 rounded-2xl border flex items-start gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-18px_rgba(201,168,76,0.22)]"
+      className="group p-5 rounded-lg border flex flex-wrap items-start gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-18px_rgba(201,168,76,0.22)]"
       style={{
         borderColor: primary
           ? "rgba(201,168,76,0.3)"
@@ -1658,7 +1027,7 @@ function FocusCard({
       }}
     >
       <div
-        className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+        className="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0"
         style={{
           backgroundColor: primary
             ? "rgba(201,168,76,0.12)"
@@ -1670,7 +1039,7 @@ function FocusCard({
           style={{ color: primary ? "#C9A84C" : "#888888" }}
         />
       </div>
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 min-w-[140px]">
         <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0] mb-1">
           {action.title}
         </p>
@@ -1679,7 +1048,7 @@ function FocusCard({
         </p>
       </div>
       <span
-        className="flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200 group-hover:scale-[1.02]"
+        className="inline-flex min-h-11 max-w-full items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-semibold tracking-tight transition-all duration-200 group-hover:scale-[1.02]"
         style={{
           backgroundColor: primary ? "#C9A84C" : "rgba(201,168,76,0.12)",
           color: primary ? "#0A0A0A" : "#C9A84C",
@@ -1728,7 +1097,7 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
     color: "#C9A84C",
   }
   return (
-    <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
+    <div className="p-5 rounded-lg border border-white/[0.06] bg-[#0F0F0F] flex items-start sm:items-center justify-between gap-4 flex-col sm:flex-row transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
       <div className="flex items-start gap-3">
         <TrendingDown className="w-4 h-4 mt-0.5 text-[#FF4444] flex-shrink-0" />
         <div>
@@ -1770,7 +1139,7 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
         {practiceSlug && (
           <Link
             href={`/practice/session/${practiceSlug}`}
-            className="text-xs px-3.5 py-1.5 rounded-xl font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1"
+            className="text-xs px-3.5 py-1.5 rounded-lg font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1"
             style={chapterIsPrimary ? secondaryStyle : primaryStyle}
           >
             Drill
@@ -1779,7 +1148,7 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
         {weak.chapterSlug ? (
           <Link
             href={`/chapters/${weak.chapterSlug}`}
-            className="text-xs px-3.5 py-1.5 rounded-xl font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1"
+            className="text-xs px-3.5 py-1.5 rounded-lg font-semibold tracking-tight transition-all duration-200 hover:scale-[1.02] inline-flex items-center gap-1"
             style={chapterIsPrimary ? primaryStyle : secondaryStyle}
           >
             Read
@@ -1789,385 +1158,6 @@ function WeakAreaCard({ weak }: { weak: WeakArea }) {
           <span className="text-[11px] text-[#888888] italic">Keep practicing</span>
         )}
       </div>
-    </div>
-  )
-}
-
-/**
- * Per-persona "do these next" path. Each baseline persona (Rebuilder /
- * Improver / Stretcher / Elite) gets a short list of 3-4 CTAs tailored
- * to the research-report segment prescription.
- *
- *   Rebuilder — fundamentals rebuild: 4 chapters in order.
- *   Improver  — consistency + mixed-set rehearsal.
- *   Stretcher — harder pools + review/edit training.
- *   Elite     — calibration + stress-test discipline.
- */
-type PersonaPathKey = Exclude<PersonaProfile["key"], "unknown">
-
-interface PersonaPathStep {
-  href: string
-  section?: "Quant" | "Verbal" | "DI" | "All"
-  label: string
-  why: string
-  /** Optional completion tag. When present and matched against the page-
-   *  level `completedTags` set, the step renders muted + with a check
-   *  so students see what's left instead of "do these again." */
-  completionTag?: string
-}
-
-interface PersonaPathDef {
-  title: string
-  intro: string
-  steps: PersonaPathStep[]
-  accent: { color: string; bg: string; border: string }
-}
-
-const PERSONA_PATHS: Record<PersonaPathKey, PersonaPathDef> = {
-  "foundations-rebuilder": {
-    title: "Foundations path",
-    intro:
-      "Four chapters cover the fundamentals that every other topic leans on. Work them in order — each one unlocks comfort for the next. Don't skip to mixed sets until you've finished these.",
-    steps: [
-      {
-        href: "/chapters/quant-05-order-and-signed-numbers",
-        section: "Quant",
-        label: "Arithmetic Foundations",
-        why: "Basic Quant fluency — every other Quant topic leans on this.",
-        completionTag: "chapter-started:quant-05-order-and-signed-numbers",
-      },
-      {
-        href: "/chapters/verbal-01-foundations",
-        section: "Verbal",
-        label: "Verbal Foundations",
-        why: "Active reading + argument anatomy — the shared base under CR and RC.",
-        completionTag: "chapter-started:verbal-01-foundations",
-      },
-      {
-        href: "/chapters/verbal-02-cr-argument-structure",
-        section: "Verbal",
-        label: "CR: Argument Structure",
-        why: "Conclusion, evidence, gap — the engine every CR question type runs on.",
-        completionTag: "chapter-started:verbal-02-cr-argument-structure",
-      },
-      {
-        href: "/chapters/data-sufficiency",
-        section: "DI",
-        label: "Data Sufficiency",
-        why: "DI literacy — sufficiency logic, not arithmetic.",
-        completionTag: "chapter-started:data-sufficiency",
-      },
-    ],
-    accent: {
-      color: "#E8C97A",
-      bg: "rgba(232,201,122,0.06)",
-      border: "rgba(232,201,122,0.35)",
-    },
-  },
-  "structured-improver": {
-    title: "Improver path",
-    intro:
-      "The fundamentals are there; the delivery isn't reliable yet. Build a weekly rhythm of mixed sets + section rehearsals + error review so the right answer comes out consistently, not only when conditions are easy.",
-    steps: [
-      {
-        href: "/review",
-        section: "All",
-        label: "Two mixed-review sessions",
-        why: "Interleaving is where consistency is forged — your topic-by-topic accuracy is already decent.",
-        completionTag: "ran-mixed-7d",
-      },
-      {
-        href: "/test-builder",
-        section: "All",
-        label: "One timed section rehearsal",
-        why: "Quarter-section or half-section blocks train pacing and triage without the mock's endurance cost.",
-        completionTag: "drilled-recently",
-      },
-      {
-        href: "/error-log",
-        section: "All",
-        label: "Clear the error-log backlog",
-        why: "Tag every miss this week. Frequency-of-error patterns only show up once each mistake has a label.",
-        completionTag: "error-log-clear",
-      },
-    ],
-    accent: {
-      color: "#C9A84C",
-      bg: "rgba(201,168,76,0.06)",
-      border: "rgba(201,168,76,0.35)",
-    },
-  },
-  "ambitious-stretcher": {
-    title: "Stretcher path",
-    intro:
-      "The last 60 points cost more than the first 150. Stop running up the accuracy of topics you've already cleared — shift to harder pools, DI sophistication, and review/edit decision training.",
-    steps: [
-      {
-        href: "/practice",
-        section: "All",
-        label: "Hard-item drills",
-        why: "Pick Advanced difficulty on topics where you're already ≥75% at Intermediate. Leave medium behind.",
-        completionTag: "hard-drilled-recently",
-      },
-      {
-        href: "/chapters/multi-source-reasoning",
-        section: "DI",
-        label: "DI sophistication — MSR + TPA",
-        why: "DI is where 705+ candidates earn real ground — Multi-Source + Two-Part are the highest-leverage workflows.",
-        completionTag: "chapter-started:multi-source-reasoning",
-      },
-      {
-        href: "/mock/run",
-        section: "All",
-        label: "Mock + review-edit coach",
-        why: "The 3-edit cap under time pressure is its own skill — run a mock and read the review/edit helped/hurt counts.",
-        completionTag: "ran-mock-14d",
-      },
-    ],
-    accent: {
-      color: "#3ECF8E",
-      bg: "rgba(62,207,142,0.06)",
-      border: "rgba(62,207,142,0.35)",
-    },
-  },
-  "elite-finisher": {
-    title: "Elite path",
-    intro:
-      "Polish, not rebuild. Your ceiling work is endurance, trap discipline, and official-style calibration — leave the content drills and lean on realistic full-lengths with strict post-mortems.",
-    steps: [
-      {
-        href: "/mock",
-        section: "All",
-        label: "Official-style full mock",
-        why: "Full-length under exam conditions is the only reliable signal at this band. Treat our mock as the practice; use real official mocks as the calibration ground-truth.",
-        completionTag: "ran-mock-14d",
-      },
-      {
-        href: "/practice",
-        section: "All",
-        label: "Stress-pool drills",
-        why: "Hard-only sets on your weakest 2-3 topics. Skip everything else — you've earned the time.",
-        completionTag: "hard-drilled-recently",
-      },
-      {
-        href: "/error-log",
-        section: "All",
-        label: "Strict review/edit discipline",
-        why: "At this band, review/edit is where points leak. Tag every answer change with its root cause; only keep edits you can name the flaw for.",
-        completionTag: "error-log-clear",
-      },
-    ],
-    accent: {
-      color: "#6FB5F6",
-      bg: "rgba(111,181,246,0.06)",
-      border: "rgba(111,181,246,0.35)",
-    },
-  },
-}
-
-/**
- * Orthogonal tag-driven step layering. When `intl-verbal` or `retaker`
- * are active, we append 1 extra step per tag to the base persona path —
- * never replace. The intent is: the baseline persona is still the spine
- * of the prescription; tags add emphasis, not substitution.
- *
- * Each tag-layered step carries `tagOrigin` so the card can render a
- * small chip showing *why* the step is in the list (e.g. "Int'l" pill
- * on a Verbal drill). Completion tags are omitted here on purpose —
- * these are persistent recommendations, not gated tasks.
- */
-type PersonaPathStepWithOrigin = PersonaPathStep & { tagOrigin: PersonaTag }
-
-const PERSONA_TAG_STEPS: Record<
-  PersonaTag,
-  Record<PersonaPathKey, PersonaPathStep>
-> = {
-  "intl-verbal": {
-    "foundations-rebuilder": {
-      href: "/practice",
-      section: "Verbal",
-      label: "Untimed RC reading drills",
-      why: "Build reading-load stamina before the clock matters. Non-native readers need more volume here — pace comes after fluency.",
-    },
-    "structured-improver": {
-      href: "/test-builder",
-      section: "Verbal",
-      label: "Verbal-only timed block",
-      why: "Your delivery risk is sharper in Verbal — a section-length Verbal rehearsal trains reading-load pacing specifically.",
-    },
-    "ambitious-stretcher": {
-      href: "/practice",
-      section: "Verbal",
-      label: "Advanced CR + RC pools",
-      why: "Verbal precision is the ceiling piece for non-native readers — drill Advanced only, leave medium Verbal behind.",
-    },
-    "elite-finisher": {
-      href: "/practice",
-      section: "Verbal",
-      label: "Verbal stress-pool",
-      why: "The final points for Int'l candidates usually leak from a 2-3 question Verbal block under time. Drill Advanced RC + CR exclusively.",
-    },
-  },
-  retaker: {
-    "foundations-rebuilder": {
-      href: "/analytics",
-      section: "All",
-      label: "Post-mortem on /analytics",
-      why: "Your last GMAT is a data point. Score Report Mirror approximates the ESR breakdown — find the leak before re-running the same prep.",
-    },
-    "structured-improver": {
-      href: "/analytics",
-      section: "All",
-      label: "Read your Score Report Mirror",
-      why: "Your last GMAT shows the drag you didn't address last time. Mirror the section + type breakdown to make sure this cycle attacks it.",
-    },
-    "ambitious-stretcher": {
-      href: "/analytics",
-      section: "All",
-      label: "Prediction MAE + type breakdown",
-      why: "Calibration matters more for retakers — your last real score is the only one that counted. Read the MAE direction before the next mock.",
-    },
-    "elite-finisher": {
-      href: "/analytics",
-      section: "All",
-      label: "Strict ESR-style review/edit discipline",
-      why: "Retakers at the Elite band leak on review/edit decisions under time. Tag every post-time answer change with its root cause.",
-    },
-  },
-}
-
-function PersonaPathCard({
-  personaKey,
-  completedTags,
-  tags,
-}: {
-  personaKey: PersonaPathKey
-  completedTags: Set<string>
-  tags: PersonaTag[]
-}) {
-  const path = PERSONA_PATHS[personaKey]
-  const extraSteps: PersonaPathStepWithOrigin[] = tags.map((tag) => ({
-    ...PERSONA_TAG_STEPS[tag][personaKey],
-    tagOrigin: tag,
-  }))
-  const allSteps: (PersonaPathStep | PersonaPathStepWithOrigin)[] = [
-    ...path.steps,
-    ...extraSteps,
-  ]
-  const doneCount = path.steps.filter(
-    (s) => s.completionTag && completedTags.has(s.completionTag),
-  ).length
-  return (
-    <div
-      className="p-6 sm:p-7 rounded-2xl border transition-all duration-300"
-      style={{
-        borderColor: path.accent.border,
-        backgroundColor: path.accent.bg,
-      }}
-    >
-      <div className="flex items-center gap-3 mb-2 flex-wrap">
-        <BookOpen className="w-4 h-4" style={{ color: path.accent.color }} />
-        <p
-          className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-          style={{ color: path.accent.color }}
-        >
-          {path.title}
-        </p>
-        {doneCount > 0 && (
-          <span
-            className="text-[10px] uppercase tracking-[0.18em] font-semibold px-2 py-0.5 rounded-full tabular-nums border"
-            style={{
-              backgroundColor: path.accent.color + "1A",
-              borderColor: path.accent.color + "40",
-              color: path.accent.color,
-            }}
-          >
-            {doneCount}/{path.steps.length} done
-          </span>
-        )}
-      </div>
-      <p className="text-[14px] text-[#C0C0C0] leading-[1.65] mb-5">
-        {path.intro}
-      </p>
-      <ol className="space-y-2.5">
-        {allSteps.map((step, i) => {
-          const done = !!(
-            step.completionTag && completedTags.has(step.completionTag)
-          )
-          const tagOrigin = "tagOrigin" in step ? step.tagOrigin : undefined
-          const tagDef = tagOrigin ? PERSONA_TAG_DEFS[tagOrigin] : null
-          return (
-            <li key={`${step.href}-${i}`}>
-              <Link
-                href={step.href}
-                className="group flex items-start gap-3 p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06] hover:border-white/[0.14] transition-all duration-300 hover:-translate-y-0.5"
-                style={done ? { opacity: 0.55 } : {}}
-              >
-                <span
-                  className="flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 font-display text-[13px] font-semibold tabular-nums mt-0.5"
-                  style={
-                    done
-                      ? {
-                          backgroundColor: "rgba(62,207,142,0.18)",
-                          color: "#3ECF8E",
-                        }
-                      : tagDef
-                        ? {
-                            backgroundColor: tagDef.bg,
-                            color: tagDef.color,
-                          }
-                        : {
-                            backgroundColor: path.accent.color + "26",
-                            color: path.accent.color,
-                          }
-                  }
-                >
-                  {done ? <Check className="w-3.5 h-3.5" /> : `0${i + 1}`}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    {step.section && (
-                      <span
-                        className="px-1.5 py-0.5 rounded-full text-[9px] uppercase tracking-[0.18em]"
-                        style={{
-                          backgroundColor: "rgba(201,168,76,0.08)",
-                          color: "#C9A84C",
-                        }}
-                      >
-                        {step.section}
-                      </span>
-                    )}
-                    {tagDef && (
-                      <span
-                        className="px-1.5 py-0.5 rounded-full text-[9px] uppercase tracking-[0.18em]"
-                        style={{
-                          backgroundColor: tagDef.bg,
-                          color: tagDef.color,
-                        }}
-                      >
-                        {tagDef.label}
-                      </span>
-                    )}
-                    <p
-                      className="text-[14px] font-semibold tracking-tight"
-                      style={{
-                        color: done ? "#888888" : "#F0F0F0",
-                        textDecoration: done ? "line-through" : "none",
-                      }}
-                    >
-                      {step.label}
-                    </p>
-                  </div>
-                  <p className="text-[12px] text-[#C0C0C0] leading-relaxed">
-                    {step.why}
-                  </p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-[#888888] flex-shrink-0 mt-1.5 group-hover:text-[#C9A84C] transition-colors" />
-              </Link>
-            </li>
-          )
-        })}
-      </ol>
     </div>
   )
 }
@@ -2207,7 +1197,7 @@ function OfficialReadyCard({ summary }: { summary: OfficialReadySummary }) {
   const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`)
   return (
     <div
-      className="p-6 rounded-2xl border transition-all duration-300 hover:shadow-[0_14px_36px_-20px_rgba(201,168,76,0.18)]"
+      className="p-6 rounded-lg border transition-all duration-300 hover:shadow-[0_14px_36px_-20px_rgba(201,168,76,0.18)]"
       style={{ borderColor: colour + "40", backgroundColor: bg }}
     >
       <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
@@ -2228,22 +1218,22 @@ function OfficialReadyCard({ summary }: { summary: OfficialReadySummary }) {
         {headline}
       </p>
       <div className="grid grid-cols-2 gap-3">
-        <div className="p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06]">
+        <div className="p-4 rounded-lg bg-[#0D0D0D] border border-white/[0.06]">
           <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
             Last week
           </p>
-          <p className="font-display text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-[-0.02em]">
+          <p className="font-sans text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-normal">
             {pct(lastWeekAccuracy)}
           </p>
           <p className="text-[11px] text-[#888888] mt-1 tabular-nums">
             {lastWeekAttempts} attempt{lastWeekAttempts === 1 ? "" : "s"}
           </p>
         </div>
-        <div className="p-4 rounded-xl bg-[#0D0D0D] border border-white/[0.06]">
+        <div className="p-4 rounded-lg bg-[#0D0D0D] border border-white/[0.06]">
           <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold">
             This week
           </p>
-          <p className="font-display text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-[-0.02em]">
+          <p className="font-sans text-2xl font-semibold text-[#F0F0F0] mt-1.5 tabular-nums tracking-normal">
             {pct(thisWeekAccuracy)}
           </p>
           <p className="text-[11px] text-[#888888] mt-1 tabular-nums">
@@ -2265,7 +1255,7 @@ function PersonaCard({ persona }: { persona: PersonaProfile }) {
   const unknown = persona.key === "unknown"
   return (
     <div
-      className="p-6 sm:p-7 rounded-2xl border transition-all duration-300 hover:shadow-[0_14px_36px_-20px_rgba(201,168,76,0.2)]"
+      className="p-6 sm:p-7 rounded-lg border transition-all duration-300 hover:shadow-[0_14px_36px_-20px_rgba(201,168,76,0.2)]"
       style={{
         borderColor: unknown ? "rgba(255,255,255,0.08)" : persona.color,
         backgroundColor: unknown ? "#0F0F0F" : persona.bg,
@@ -2302,36 +1292,15 @@ function PersonaCard({ persona }: { persona: PersonaProfile }) {
           {persona.bandLabel}
         </span>
       </div>
-      <p className="text-[15px] leading-[1.65] text-[#F0F0F0] tracking-tight">
-        {persona.coreNeed}
+      <p className="text-sm leading-relaxed text-[#B9B7AE]">
+        This planning group comes from your recorded official baseline and target score;
+        additional labels reflect your profile selections. It adjusts practice benchmarks,
+        not a diagnosis of your ability or proof that you have mastered a topic.
       </p>
-      {persona.emphasis && (
-        <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-2">
-          <span className="text-[#888888]">Product emphasis:</span>{" "}
-          {persona.emphasis}
-        </p>
-      )}
-      {persona.tags.length > 0 && (
-        <div className="mt-3 space-y-1.5">
-          {persona.tags.map((tag) => {
-            const def = PERSONA_TAG_DEFS[tag]
-            return (
-              <p
-                key={`addendum-${tag}`}
-                className="text-[13px] leading-[1.65]"
-                style={{ color: def.color }}
-              >
-                <span className="font-semibold">{def.label}:</span>{" "}
-                <span className="text-[#C0C0C0]">{def.addendum}</span>
-              </p>
-            )
-          })}
-        </div>
-      )}
       {unknown && (
         <Link
           href="/mock"
-          className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-xl font-semibold tracking-tight mt-4 transition-all duration-200 hover:scale-[1.02]"
+          className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-lg font-semibold tracking-tight mt-4 transition-all duration-200 hover:scale-[1.02]"
           style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
         >
           Enter your baseline exam
@@ -2358,15 +1327,15 @@ function StatCard({
   progress?: number | null
 }) {
   return (
-    <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
+    <div className="p-5 rounded-lg border border-white/[0.06] bg-[#0F0F0F] flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:shadow-[0_10px_30px_-15px_rgba(201,168,76,0.18)]">
       <div
-        className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
         style={{ backgroundColor: `${color}15` }}
       >
         <Icon className="w-4 h-4" style={{ color }} />
       </div>
       <div className="min-w-0">
-        <p className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] tabular-nums leading-none">
+        <p className="font-sans text-2xl font-semibold text-[#F0F0F0] tracking-normal tabular-nums leading-none">
           {value}
         </p>
         <p className="text-[11px] text-[#888888] mt-1.5 uppercase tracking-[0.18em]">

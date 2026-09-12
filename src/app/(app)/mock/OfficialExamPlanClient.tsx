@@ -294,32 +294,18 @@ export default function OfficialExamPlanClient({
 
   return (
     <section
-      className="relative overflow-hidden rounded-2xl border"
-      style={{
-        borderColor: "rgba(201,168,76,0.28)",
-        backgroundColor: "rgba(201,168,76,0.05)",
-      }}
+      className="border-y border-white/[0.12]"
     >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 80% at 100% 0%, rgba(201,168,76,0.12) 0%, transparent 60%)",
-        }}
-        aria-hidden
-      />
-      <div className="relative p-6 sm:p-8 space-y-6">
+      <div className="py-6 space-y-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0">
             <p className={EYEBROW + " mb-2"}>Official practice exam plan</p>
-            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.1]">
-              One official practice exam every week.
+            <h2 className="text-xl font-semibold text-[#F0F0F0]">
+              Your exam plan
             </h2>
             <p className="text-[13px] text-[#C0C0C0] leading-relaxed mt-2 max-w-xl">
-              Same weekday and start time as test day (if your slot is
-              9:00, start at 9:00), full test conditions, one sitting.
-              Type each score in here — your first attempt on each of the
-              six exams is your real score trajectory.
+              First attempts on official exams provide your score trajectory.
+              Space them across the final six weeks, then taper in the final week.
             </p>
           </div>
           <div className="flex-shrink-0 text-right">
@@ -357,7 +343,7 @@ export default function OfficialExamPlanClient({
           }}
         >
           <div className="flex flex-wrap items-center gap-2 mb-2.5">
-            <p className={EYEBROW}>Next recommended exam</p>
+            <p className={EYEBROW}>Recommended next action</p>
             <span
               className="px-2 py-0.5 rounded-full text-[10px] uppercase tracking-[0.14em] font-semibold"
               style={
@@ -380,7 +366,9 @@ export default function OfficialExamPlanClient({
                   ? "In-platform mock"
                   : roadmap.kind === "classify"
                     ? "Action needed"
-                    : "Setup"}
+                    : roadmap.kind === "review"
+                      ? "Short review"
+                      : "Setup"}
             </span>
             {roadmap.kind === "official" &&
               roadmap.officialNumber !== null &&
@@ -416,6 +404,7 @@ export default function OfficialExamPlanClient({
           <p className="text-[12px] text-[#C0C0C0] leading-relaxed mt-1.5">
             {roadmap.reason}
           </p>
+          <p className="mt-2 text-sm tabular-nums text-[#B9B7AE]">About {roadmap.estimatedMinutes} minutes{roadmap.kind === "official" || roadmap.kind === "site-mock" ? ", plus breaks" : ""}</p>
           {roadmap.prereq && (
             <p className="text-[12px] text-[#888888] leading-relaxed mt-1.5">
               First: {roadmap.prereq}
@@ -430,66 +419,27 @@ export default function OfficialExamPlanClient({
             </p>
           )}
           <div className="mt-3 flex flex-wrap items-center gap-3">
+            <Link
+              href={roadmap.href}
+              target={roadmap.href.startsWith("https://") ? "_blank" : undefined}
+              rel={roadmap.href.startsWith("https://") ? "noopener noreferrer" : undefined}
+              className="inline-flex min-h-11 items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C8A85A]"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {roadmap.actionLabel}
+              <ArrowRight className="w-4 h-4" aria-hidden />
+            </Link>
             {roadmap.kind === "official" && (
-              <>
                 <button
                   type="button"
                   onClick={openForm}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
-                  style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                  className="inline-flex min-h-11 items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-[#C9A84C]"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   {entries.length === 0
                     ? "Log your baseline score"
                     : "Log the score when done"}
                 </button>
-                <a
-                  href="https://www.mba.com/exam-prep/gmat-official-practice-exams"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[12px] font-semibold transition-colors hover:opacity-80"
-                  style={{ color: "#C9A84C" }}
-                >
-                  Take it on mba.com
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </>
-            )}
-            {roadmap.kind === "site-mock" && (
-              <Link
-                href="/mock/run?mode=full"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
-                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-              >
-                Start an in-platform mock
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            )}
-            {roadmap.kind === "setup" && (
-              <Link
-                href="/settings"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
-                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-              >
-                Update test date in Settings
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            )}
-            {roadmap.kind === "classify" && (
-              <button
-                type="button"
-                onClick={() =>
-                  rowsSectionRef.current?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                  })
-                }
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
-                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-              >
-                Tag the entries below
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
             )}
           </div>
         </div>
@@ -561,7 +511,7 @@ export default function OfficialExamPlanClient({
             logged entries (and their tag controls) stay visible even
             without a future exam date. */}
         {rows.length > 0 ? (
-          <div ref={rowsSectionRef} className="space-y-2">
+          <div id="official-score-history" ref={rowsSectionRef} className="scroll-mt-24 space-y-2">
             {rows.map((row) => (
               <ScheduleRow
                 key={row.date}

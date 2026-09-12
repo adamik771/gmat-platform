@@ -3,16 +3,10 @@
 import { useMemo, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import {
-  ArrowRight,
-  Clock,
-  Loader2,
-  TriangleAlert,
-  Wrench,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
+import { ArrowRight, Clock, Loader2, RotateCcw, TriangleAlert } from "lucide-react"
 import { planCustomSet } from "@/lib/question-selection"
 import type { Difficulty, Section } from "@/types"
+import { filterBuilderPool, topicKey, type DifficultyPick } from "./selection"
 
 export interface QuestionPoolEntry {
   id: string
@@ -21,8 +15,6 @@ export interface QuestionPoolEntry {
   difficulty: Difficulty
   type: string
   correctAnswerLetter: string
-  /** Most recent attempt on this question (epoch ms), passage-aware —
-   *  server-computed from practice_attempts. Absent = never seen. */
   lastSeenAt?: number
 }
 
@@ -37,596 +29,114 @@ export interface RecentCustomTest {
 }
 
 const SECTIONS: Section[] = ["Quant", "Verbal", "DI"]
-const DIFFICULTIES = ["Easy", "Medium", "Hard", "Mixed"] as const
-type DifficultyPick = (typeof DIFFICULTIES)[number]
+const CONTROL = "min-h-11 rounded-lg border border-white/[0.16] bg-[#141612] px-3 text-sm text-[#F4F1E8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C8A85A]"
 
-const DIFFICULTY_MAP: Record<Exclude<DifficultyPick, "Mixed">, Difficulty> = {
-  Easy: "Beginner",
-  Medium: "Intermediate",
-  Hard: "Advanced",
-}
-
-const QUESTION_COUNTS = [10, 15, 20, 30, 45] as const
-
-export default function TestBuilderClient({
-  pool,
-  recent,
-}: {
-  pool: QuestionPoolEntry[]
-  recent: RecentCustomTest[]
-}) {
-  // No section pre-selected. The picker is multi-select, so a default (e.g.
-  // "Quant") silently rides along — a student who taps "Verbal" then ends up
-  // with a Quant+Verbal set. Starting empty makes every selection explicit:
-  // you get exactly the sections you tap. (The Build button stays disabled
-  // with a "pick at least one section" hint until one is chosen.)
+export default function TestBuilderClient({ pool, recent }: { pool: QuestionPoolEntry[]; recent: RecentCustomTest[] }) {
   const [sections, setSections] = useState<Section[]>([])
+  const [topics, setTopics] = useState<string[]>([])
   const [difficulty, setDifficulty] = useState<DifficultyPick>("Mixed")
-  // Free-form count; the preset chips below are quick-picks. Clamped to the
-  // available pool at build time via effectiveCount.
-  const [numQuestions, setNumQuestions] = useState<number>(20)
-  // Editing buffer for the manual count input — lets the field be cleared /
-  // typed freely; clamped + committed to numQuestions on blur / Enter / preset.
-  const [countDraft, setCountDraft] = useState<string>("20")
-  const [timed, setTimed] = useState(true)
+  const [numQuestions, setNumQuestions] = useState(20)
+  const [countDraft, setCountDraft] = useState("20")
   const [building, setBuilding] = useState(false)
+  const [seed, setSeed] = useState(() => Date.now() % 1_000_000)
   const router = useRouter()
 
-  function setCount(n: number) {
-    const clamped = Number.isFinite(n)
-      ? Math.max(1, Math.min(100, Math.round(n)))
-      : 20
-    setNumQuestions(clamped)
-    setCountDraft(String(clamped))
+  function setCount(value: number) {
+    const next = Number.isFinite(value) ? Math.max(1, Math.min(100, Math.round(value))) : 20
+    setNumQuestions(next)
+    setCountDraft(String(next))
   }
 
-  function toggleSection(s: Section) {
-    setSections((prev) =>
-      prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]
-    )
+  function toggleSection(section: Section) {
+    const next = sections.includes(section) ? sections.filter((item) => item !== section) : [...sections, section]
+    setSections(next)
+    setTopics((selected) => selected.filter((key) => next.some((item) => key.startsWith(`${item}:`))))
   }
 
-  const matchingPool = useMemo(() => {
-    if (sections.length === 0) return []
-    return pool.filter((q) => {
-      if (!sections.includes(q.section)) return false
-      if (difficulty !== "Mixed") {
-        const mapped = DIFFICULTY_MAP[difficulty]
-        if (q.difficulty !== mapped) return false
-      }
-      return true
-    })
-  }, [pool, sections, difficulty])
-
+  const topicOptions = useMemo(() => {
+    const options = new Map<string, { key: string; section: Section; label: string; count: number }>()
+    for (const question of pool) {
+      if (!sections.includes(question.section)) continue
+      const key = topicKey(question)
+      const option = options.get(key) ?? { key, section: question.section, label: question.topic, count: 0 }
+      option.count++
+      options.set(key, option)
+    }
+    return [...options.values()].sort((a, b) => a.section.localeCompare(b.section) || a.label.localeCompare(b.label))
+  }, [pool, sections])
+  const matchingPool = useMemo(() => filterBuilderPool(pool, sections, topics, difficulty), [pool, sections, topics, difficulty])
   const available = matchingPool.length
   const effectiveCount = Math.min(numQuestions, available)
-  const timeLimit = timed ? Math.round(effectiveCount * 1.75) : null
+  const lastSeenById = useMemo(() => new Map(pool.filter((question) => typeof question.lastSeenAt === "number").map((question) => [question.id, question.lastSeenAt as number])), [pool])
+  const plan = useMemo(() => sections.length && effectiveCount
+    ? planCustomSet(matchingPool, sections, effectiveCount, lastSeenById, { seed })
+    : null, [matchingPool, sections, effectiveCount, lastSeenById, seed])
+  const actualCount = plan?.picked.length ?? 0
+  const unseenAvailable = matchingPool.filter((question) => !lastSeenById.has(question.id)).length
 
-  // Fresh-first sampling (shared policy: never-attempted lead, then
-  // least-recently-attempted; even round-robin split across the chosen
-  // sections is unchanged). The plan is computed up front so the repeat
-  // notice below shows exactly what "Build" will run. Reseeded per build so
-  // consecutive builds draw different unseen alternatives.
-  const [seed, setSeed] = useState(() => Date.now() % 1_000_000)
-  const lastSeenById = useMemo(
-    () =>
-      new Map(
-        pool
-          .filter((q) => typeof q.lastSeenAt === "number")
-          .map((q) => [q.id, q.lastSeenAt as number])
-      ),
-    [pool]
-  )
-  const plan = useMemo(() => {
-    if (sections.length === 0 || effectiveCount === 0) return null
-    return planCustomSet(matchingPool, sections, effectiveCount, lastSeenById, {
-      seed,
-    })
-  }, [matchingPool, sections, effectiveCount, lastSeenById, seed])
-  const unseenAvailable = useMemo(
-    () => matchingPool.filter((q) => !lastSeenById.has(q.id)).length,
-    [matchingPool, lastSeenById]
-  )
-
-  async function build() {
-    if (building) return
-    if (!plan || plan.picked.length === 0) return
-
+  function build() {
+    if (building || !plan || !plan.picked.length) return
     setBuilding(true)
-    const picked = plan.picked.map((q) => q.id)
-    // Next build on this mount samples with a fresh seed.
     setSeed(Date.now() % 1_000_000)
-
-    const topicLabel =
-      sections.length === 1 ? `Custom ${sections[0]}` : "Custom Mixed"
-    const sectionLabel = sections.length === 1 ? sections[0] : "Mixed"
-
     const qs = new URLSearchParams({
-      ids: picked.join(","),
-      topic: topicLabel,
-      section: sectionLabel,
+      ids: plan.picked.map((question) => question.id).join(","),
+      topic: topics.length === 1 ? topicOptions.find((option) => option.key === topics[0])?.label ?? "Custom Test" : sections.length === 1 ? `Custom ${sections[0]}` : "Custom Mixed",
+      section: sections.length === 1 ? sections[0] : "Mixed",
     })
-
-    router.push(`/practice/session/custom?${qs.toString()}`)
+    router.push(`/practice/session/custom?${qs}`)
   }
 
-  return (
-    <div className="relative">
-      <div
-        className="absolute inset-x-0 top-0 h-[480px] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%)",
-        }}
-        aria-hidden
-      />
-      <div
-        className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
-        aria-hidden
-      />
+  return <div className="mx-auto max-w-5xl space-y-6">
+    <header>
+      <h1 className="text-3xl font-semibold text-[#F4F1E8]">Custom practice</h1>
+      <p className="mt-2 text-sm text-[#B9B7AE]">{pool.length} total playable practice-bank questions. Questions you have not attempted are selected first.</p>
+    </header>
 
-      <div className="relative max-w-4xl mx-auto space-y-10">
-        <div>
-          <div className="flex items-center gap-3 mb-5">
-            <span
-              className="h-px w-8"
-              style={{
-                background:
-                  "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
-              }}
-            />
-            <p
-              className="text-[10px] uppercase tracking-[0.22em] font-semibold"
-              style={{ color: "#C9A84C" }}
-            >
-              Custom Practice
-            </p>
+    <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_280px]">
+      <div className="min-w-0 space-y-6">
+        <fieldset className="border-b border-white/[0.12] pb-5">
+          <legend className="mb-2 text-base font-medium text-[#F4F1E8]">Sections</legend>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">{SECTIONS.map((section) => <label key={section} className="flex min-h-11 items-center gap-2 text-sm text-[#F4F1E8]"><input type="checkbox" checked={sections.includes(section)} onChange={() => toggleSection(section)} className="h-4 w-4 accent-[#C8A85A]" />{section === "DI" ? "Data Insights" : section}</label>)}</div>
+          {sections.length === 0 && <p className="mt-2 text-sm text-[#B9B7AE]">Choose a section to see available questions.</p>}
+        </fieldset>
+
+        {sections.length > 0 && <fieldset className="border-b border-white/[0.12] pb-5">
+          <legend className="mb-2 text-base font-medium text-[#F4F1E8]">Topics</legend>
+          <div className="flex min-h-11 flex-wrap items-center justify-between gap-2 text-sm text-[#B9B7AE]">
+            <p>{topics.length ? `${topics.length} topics selected` : "All topics in selected sections"}</p>
+            {topics.length > 0 && <button type="button" onClick={() => setTopics([])} className="inline-flex min-h-11 items-center gap-2 text-[#C8A85A] focus-visible:outline-2 focus-visible:outline-[#C8A85A]"><RotateCcw size={16} aria-hidden />Reset topics</button>}
           </div>
-          <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight text-[#F0F0F0] leading-[1.05] mb-3">
-            Build your own{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              set.
-            </span>
-          </h1>
-          <p className="text-[15px] leading-[1.75] text-[#C0C0C0] max-w-xl">
-            Pull from {pool.length} original questions. Pick sections, scale,
-            and difficulty — questions you haven&apos;t tried yet come first,
-            so every build stays fresh while the pool allows.
-          </p>
+          <div className="grid gap-x-5 sm:grid-cols-2">{topicOptions.map((option) => <label key={option.key} className="flex min-h-11 items-center gap-2 py-1 text-sm text-[#B9B7AE]"><input type="checkbox" checked={topics.includes(option.key)} onChange={() => setTopics((selected) => selected.includes(option.key) ? selected.filter((key) => key !== option.key) : [...selected, option.key])} className="h-4 w-4 shrink-0 accent-[#C8A85A]" /><span>{sections.length > 1 ? `${option.section}: ` : ""}{option.label} <span className="text-[#95978D]">({option.count})</span></span></label>)}</div>
+        </fieldset>}
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <label className="block text-sm text-[#B9B7AE]">Number of questions<input type="number" inputMode="numeric" min={1} max={100} value={countDraft} onChange={(event) => setCountDraft(event.target.value)} onBlur={(event) => setCount(Number(event.target.value))} onKeyDown={(event) => { if (event.key === "Enter") event.currentTarget.blur() }} className={`${CONTROL} mt-2 block w-full tabular-nums`} /></label>
+          <label className="block text-sm text-[#B9B7AE]">Difficulty<select value={difficulty} onChange={(event) => setDifficulty(event.target.value as DifficultyPick)} className={`${CONTROL} mt-2 block w-full`}>{["Mixed", "Easy", "Medium", "Hard"].map((value) => <option key={value}>{value}</option>)}</select></label>
         </div>
-
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Builder */}
-          <div className="lg:col-span-2 space-y-5">
-            <FilterGroup eyebrow="01" label="Sections">
-              <div className="flex gap-2 flex-wrap">
-                {SECTIONS.map((s) => {
-                  const active = sections.includes(s)
-                  return (
-                    <button
-                      key={s}
-                      onClick={() => toggleSection(s)}
-                      className={cn(
-                        "px-4 py-2.5 rounded-xl text-[13px] font-semibold tracking-tight border transition-all",
-                        active
-                          ? "text-[#C9A84C] hover:scale-[1.02]"
-                          : "border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16]"
-                      )}
-                      style={
-                        active
-                          ? {
-                              borderColor: "rgba(201,168,76,0.45)",
-                              backgroundColor: "rgba(201,168,76,0.08)",
-                            }
-                          : {}
-                      }
-                    >
-                      {s}
-                    </button>
-                  )
-                })}
-              </div>
-            </FilterGroup>
-
-            <FilterGroup eyebrow="02" label="Number of questions">
-              <div className="flex gap-2 flex-wrap">
-                {QUESTION_COUNTS.map((n) => {
-                  const active = numQuestions === n
-                  return (
-                    <button
-                      key={n}
-                      onClick={() => setCount(n)}
-                      className={cn(
-                        "px-4 py-2.5 rounded-xl text-[13px] font-semibold tracking-tight border transition-all tabular-nums",
-                        active
-                          ? "text-[#C9A84C] hover:scale-[1.02]"
-                          : "border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16]"
-                      )}
-                      style={
-                        active
-                          ? {
-                              borderColor: "rgba(201,168,76,0.45)",
-                              backgroundColor: "rgba(201,168,76,0.08)",
-                            }
-                          : {}
-                      }
-                    >
-                      {n}
-                    </button>
-                  )
-                })}
-                <input
-                  type="number"
-                  inputMode="numeric"
-                  min={1}
-                  max={100}
-                  value={countDraft}
-                  onChange={(e) => setCountDraft(e.target.value)}
-                  onBlur={(e) => setCount(Number(e.target.value))}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") (e.target as HTMLInputElement).blur()
-                  }}
-                  aria-label="Custom number of questions"
-                  placeholder="Custom"
-                  className="w-24 px-4 py-2.5 rounded-xl text-[13px] font-semibold tabular-nums border border-white/[0.08] bg-transparent text-[#F0F0F0] placeholder:text-[#888888] placeholder:font-normal focus:border-[rgba(201,168,76,0.45)] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                />
-              </div>
-              <p className="text-[11px] text-[#888888] mt-2.5">
-                Tap a preset or type any number (1–100). You’ll get up to what
-                the selected sections + difficulty have available.
-              </p>
-            </FilterGroup>
-
-            <FilterGroup eyebrow="03" label="Difficulty">
-              <div className="flex gap-2 flex-wrap">
-                {DIFFICULTIES.map((d) => {
-                  const active = difficulty === d
-                  return (
-                    <button
-                      key={d}
-                      onClick={() => setDifficulty(d)}
-                      className={cn(
-                        "px-4 py-2.5 rounded-xl text-[13px] font-semibold tracking-tight border transition-all",
-                        active
-                          ? "text-[#C9A84C] hover:scale-[1.02]"
-                          : "border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16]"
-                      )}
-                      style={
-                        active
-                          ? {
-                              borderColor: "rgba(201,168,76,0.45)",
-                              backgroundColor: "rgba(201,168,76,0.08)",
-                            }
-                          : {}
-                      }
-                    >
-                      {d}
-                    </button>
-                  )
-                })}
-              </div>
-            </FilterGroup>
-
-            <FilterGroup eyebrow="04" label="Time limit">
-              <div className="flex gap-2 flex-wrap">
-                <button
-                  onClick={() => setTimed(true)}
-                  className={cn(
-                    "px-4 py-2.5 rounded-xl text-[13px] font-semibold tracking-tight border transition-all",
-                    timed
-                      ? "text-[#C9A84C] hover:scale-[1.02]"
-                      : "border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16]"
-                  )}
-                  style={
-                    timed
-                      ? {
-                          borderColor: "rgba(201,168,76,0.45)",
-                          backgroundColor: "rgba(201,168,76,0.08)",
-                        }
-                      : {}
-                  }
-                >
-                  Timed
-                  <span className="text-[11px] ml-1.5 opacity-80 tabular-nums">
-                    ({timeLimit ?? 0} min)
-                  </span>
-                </button>
-                <button
-                  onClick={() => setTimed(false)}
-                  className={cn(
-                    "px-4 py-2.5 rounded-xl text-[13px] font-semibold tracking-tight border transition-all",
-                    !timed
-                      ? "text-[#C9A84C] hover:scale-[1.02]"
-                      : "border-white/[0.08] text-[#888888] hover:text-[#F0F0F0] hover:border-white/[0.16]"
-                  )}
-                  style={
-                    !timed
-                      ? {
-                          borderColor: "rgba(201,168,76,0.45)",
-                          backgroundColor: "rgba(201,168,76,0.08)",
-                        }
-                      : {}
-                  }
-                >
-                  Untimed
-                </button>
-              </div>
-            </FilterGroup>
-
-            <div
-              className="relative overflow-hidden p-6 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
-              style={{
-                boxShadow:
-                  "0 0 60px rgba(201,168,76,0.04), inset 0 1px 0 rgba(255,255,255,0.03)",
-              }}
-            >
-              <div
-                className="absolute top-0 right-0 w-56 h-56 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(circle at 100% 0%, rgba(201,168,76,0.08) 0%, transparent 60%)",
-                }}
-                aria-hidden
-              />
-              <button
-                onClick={build}
-                disabled={
-                  building ||
-                  sections.length === 0 ||
-                  effectiveCount === 0
-                }
-                className="relative w-full py-4 rounded-xl text-[14px] font-semibold tracking-tight transition-all hover:scale-[1.01] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
-                style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-              >
-                {building ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Wrench className="w-4 h-4" />
-                )}
-                {building ? "Building…" : "Build practice set"}
-                {!building && <ArrowRight className="w-4 h-4" />}
-              </button>
-
-              {sections.length === 0 && (
-                <p
-                  className="relative text-[12px] mt-3 flex items-start gap-1.5"
-                  style={{ color: "#FF4444" }}
-                >
-                  <TriangleAlert className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
-                  Pick at least one section.
-                </p>
-              )}
-              {sections.length > 0 && available === 0 && (
-                <p
-                  className="relative text-[12px] mt-3 flex items-start gap-1.5"
-                  style={{ color: "#FF4444" }}
-                >
-                  <TriangleAlert className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
-                  No questions match this difficulty in the selected sections.
-                </p>
-              )}
-              {plan && plan.repeatCount > 0 && (
-                <p
-                  className="relative text-[12px] mt-3 flex items-start gap-1.5"
-                  style={{ color: "#C9A84C" }}
-                >
-                  <TriangleAlert className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
-                  {unseenAvailable === 0
-                    ? `You've answered every question matching these filters — this set replays your ${plan.repeatCount} least-recently-seen.`
-                    : `Only ${unseenAvailable} unseen ${
-                        unseenAvailable === 1 ? "question matches" : "questions match"
-                      } these filters — ${plan.repeatCount} of ${effectiveCount} will be ones you've answered before (least recent first).`}
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Summary */}
-          <div className="space-y-4">
-            <div
-              className="p-6 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
-              style={{
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
-              }}
-            >
-              <p
-                className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-5"
-                style={{ color: "#C9A84C" }}
-              >
-                Set Summary
-              </p>
-              <div className="space-y-3.5">
-                {[
-                  {
-                    label: "Sections",
-                    value: sections.join(", ") || "None selected",
-                  },
-                  {
-                    label: "Questions",
-                    value:
-                      effectiveCount < numQuestions
-                        ? `${effectiveCount} of ${numQuestions}`
-                        : effectiveCount.toString(),
-                  },
-                  { label: "Difficulty", value: difficulty },
-                  {
-                    label: "Time",
-                    value:
-                      timeLimit !== null ? `${timeLimit} min` : "Untimed",
-                  },
-                  {
-                    label: "Pool",
-                    value: `${available} ${available === 1 ? "question" : "questions"}`,
-                  },
-                ].map((row) => (
-                  <div
-                    key={row.label}
-                    className="flex justify-between gap-3 items-baseline"
-                  >
-                    <span className="text-[11px] uppercase tracking-[0.14em] text-[#888888] flex-shrink-0">
-                      {row.label}
-                    </span>
-                    <span className="text-[13px] font-medium text-[#F0F0F0] text-right tracking-tight">
-                      {row.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {timed && (
-              <div
-                className="flex items-start gap-3 p-5 rounded-2xl"
-                style={{
-                  backgroundColor: "rgba(201,168,76,0.04)",
-                  border: "1px solid rgba(201,168,76,0.18)",
-                }}
-              >
-                <Clock
-                  className="w-4 h-4 mt-0.5 flex-shrink-0"
-                  style={{ color: "#C9A84C" }}
-                />
-                <p className="text-[12px] text-[#C0C0C0] leading-[1.6]">
-                  Timed mode mirrors real exam conditions — about 1:45 per
-                  question.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Recent */}
-        <div>
-          <div className="flex items-center gap-3 mb-5">
-            <span
-              className="h-px w-8"
-              style={{
-                background:
-                  "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
-              }}
-            />
-            <p
-              className="text-[10px] uppercase tracking-[0.22em] font-semibold"
-              style={{ color: "#C9A84C" }}
-            >
-              Recent
-            </p>
-          </div>
-          <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-[#F0F0F0] mb-6 leading-[1.1]">
-            Previous{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              builds.
-            </span>
-          </h2>
-
-          {recent.length === 0 ? (
-            <div
-              className="p-6 rounded-2xl border border-dashed border-white/[0.1]"
-              style={{ backgroundColor: "#0A0A0A" }}
-            >
-              <p className="text-[13px] text-[#C0C0C0] leading-[1.6]">
-                Custom tests you generate will show up here. Your results are
-                tracked just like any other practice set.
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {recent.map((test) => (
-                <Link
-                  key={test.id}
-                  href={`/practice/history/${test.id}`}
-                  className="flex items-center justify-between p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] gap-4"
-                  style={{
-                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
-                  }}
-                >
-                  <div className="min-w-0">
-                    <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight truncate">
-                      {test.topic}
-                    </p>
-                    <p className="text-[12px] text-[#888888] mt-1 tracking-tight">
-                      <span className="text-[#C0C0C0]">{test.section}</span>
-                      <span className="mx-1.5 text-[#333333]">·</span>
-                      {test.totalQuestions}Q
-                      <span className="mx-1.5 text-[#333333]">·</span>
-                      {relativeDate(test.createdAt)}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3 flex-shrink-0">
-                    <span className="text-[12px] text-[#888888] tabular-nums tracking-tight">
-                      {test.correctCount}/{test.totalQuestions}
-                    </span>
-                    <span
-                      className="font-display text-[1.75rem] font-semibold tracking-[-0.02em] leading-none tabular-nums"
-                      style={{
-                        color: test.accuracy >= 70 ? "#3ECF8E" : "#FF4444",
-                      }}
-                    >
-                      {test.accuracy}%
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
+        <p className="flex items-start gap-2 text-sm leading-relaxed text-[#B9B7AE]"><Clock size={16} aria-hidden className="mt-0.5 shrink-0" />Count-up timer, no time limit. The timer starts when you open the set. Answers and time are saved when you finish or end the session.</p>
       </div>
-    </div>
-  )
-}
 
-function FilterGroup({
-  eyebrow,
-  label,
-  children,
-}: {
-  eyebrow: string
-  label: string
-  children: React.ReactNode
-}) {
-  return (
-    <div
-      className="p-6 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
-      style={{
-        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
-      }}
-    >
-      <div className="flex items-baseline gap-3 mb-4">
-        <span
-          className="font-display font-display-italic text-[1.5rem] leading-none"
-          style={{ color: "#C9A84C" }}
-        >
-          {eyebrow}
-        </span>
-        <span
-          className="h-px flex-1"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
-          }}
-        />
-        <p
-          className="text-[10px] uppercase tracking-[0.22em] font-semibold"
-          style={{ color: "#C9A84C" }}
-        >
-          {label}
-        </p>
-      </div>
-      {children}
+      <aside aria-labelledby="set-summary" className="min-w-0 border-t border-white/[0.16] pt-5 lg:sticky lg:top-6">
+        <h2 id="set-summary" className="text-lg font-semibold text-[#F4F1E8]">Your set</h2>
+        {sections.length === 0 ? <p className="mt-3 text-sm leading-relaxed text-[#B9B7AE]">Choose a section to see available questions.</p> : <dl className="mt-4 space-y-3 text-sm" aria-live="polite">
+          {[
+            ["Sections", sections.map((section) => section === "DI" ? "Data Insights" : section).join(", ")],
+            ["Topics", topics.length ? `${topics.length} selected` : "All selected-section topics"],
+            ["Questions", `${actualCount} of ${numQuestions} requested`],
+            ["Difficulty", difficulty],
+            ["Matching pool", `${available} questions`],
+            ["Timing", "No time limit"],
+          ].map(([label, value]) => <div key={label} className="flex flex-wrap justify-between gap-2"><dt className="text-[#95978D]">{label}</dt><dd className="text-[#F4F1E8]">{value}</dd></div>)}
+        </dl>}
+        {sections.length > 0 && actualCount < numQuestions && <p className="mt-4 text-sm text-[#B9B7AE]">{available === 0 ? "No questions match. Change the topics or difficulty." : `This selection can provide ${actualCount} questions, fewer than the ${numQuestions} requested.`}</p>}
+        {plan && plan.repeatCount > 0 && <p className="mt-4 flex items-start gap-2 text-sm text-[#C8A85A]"><TriangleAlert size={16} aria-hidden className="mt-0.5 shrink-0" /><span>{unseenAvailable} unseen questions available. This set includes {plan.repeatCount} previously attempted questions, least recent first.</span></p>}
+        <button type="button" onClick={build} disabled={building || !actualCount} className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-[#C8A85A] px-4 py-3 text-sm font-semibold text-[#171B17] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C8A85A]">{building ? <Loader2 size={16} className="animate-spin" aria-hidden /> : <ArrowRight size={16} aria-hidden />}{building ? "Opening set..." : "Start practice set"}</button>
+      </aside>
     </div>
-  )
-}
 
-function relativeDate(iso: string): string {
-  const date = new Date(iso)
-  if (Number.isNaN(date.getTime())) return "—"
-  const now = new Date()
-  const dayMs = 86400000
-  const startOfDay = (d: Date) =>
-    new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime()
-  const diffDays = Math.round((startOfDay(now) - startOfDay(date)) / dayMs)
-  if (diffDays === 0) return "Today"
-  if (diffDays === 1) return "Yesterday"
-  if (diffDays < 7) return `${diffDays} days ago`
-  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+    <section className="border-t border-white/[0.12] pt-6">
+      <h2 className="text-lg font-semibold text-[#F4F1E8]">Recent custom results</h2>
+      {recent.length === 0 ? <p className="mt-3 text-sm text-[#B9B7AE]">No saved custom sessions yet.</p> : <div className="mt-3 divide-y divide-white/[0.12]">{recent.map((test) => <Link key={test.id} href={`/practice/history/${test.id}`} className="flex flex-wrap items-center justify-between gap-3 py-4 focus-visible:outline-2 focus-visible:outline-[#C8A85A]"><span className="min-w-0 text-sm text-[#F4F1E8]">{test.topic}<span className="mt-1 block text-[#95978D]">{test.section} · {new Date(test.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span></span><span className="text-sm tabular-nums text-[#B9B7AE]">{test.correctCount}/{test.totalQuestions} correct · View results</span></Link>)}</div>}
+    </section>
+  </div>
 }

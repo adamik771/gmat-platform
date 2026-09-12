@@ -354,6 +354,8 @@ function SignupForm() {
             </label>
             <input
               id="signup-name"
+              name="name"
+              autoComplete="name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -369,6 +371,8 @@ function SignupForm() {
             </label>
             <input
               id="signup-email"
+              name="email"
+              autoComplete="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -385,6 +389,8 @@ function SignupForm() {
             <div className="relative">
               <input
                 id="signup-password"
+                name="password"
+                autoComplete="new-password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -396,7 +402,7 @@ function SignupForm() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#555555] hover:text-[#C0C0C0] transition-colors"
+                className="absolute right-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center text-[#B9B7AE] hover:text-[#F4F1E8] transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (

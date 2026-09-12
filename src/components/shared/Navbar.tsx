@@ -3,12 +3,10 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 
 const navLinks = [
   { label: "Platform", href: "/course" },
-  { label: "Curriculum", href: "/course#curriculum" },
-  { label: "Results", href: "/#results" },
   { label: "Pricing", href: "/pricing" },
   { label: "Resources", href: "/resources" },
   { label: "About", href: "/about" },
@@ -23,7 +21,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#0B0B0A]/95"
+      aria-label="Public navigation"
+      className="public-navigation fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#0B0B0A]/95"
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
@@ -37,7 +36,7 @@ export default function Navbar() {
               />
               <span>GMAT</span>
             </span>
-            <span className="text-[10px] leading-none text-[#77746C] group-hover:text-[#A39F95] transition-colors">
+            <span className="text-[11px] leading-none text-[#A5A59B] group-hover:text-[#B9B7AE] transition-colors">
               Preparation system
             </span>
           </Link>
@@ -81,14 +80,14 @@ export default function Navbar() {
                 color: "#0A0A0A",
               }}
             >
-              Start trial
+              Start 7-day trial
             </Link>
           </div>
 
           {/* Mobile Hamburger */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
-              className="lg:hidden p-2 rounded-[4px] text-[#888888] hover:text-[#F0F0F0] transition-colors"
+              className="lg:hidden h-11 w-11 inline-flex items-center justify-center rounded-lg text-[#B9B7AE] hover:text-[#F0F0F0] transition-colors"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
@@ -98,6 +97,7 @@ export default function Navbar() {
               className="w-72 border-white/[0.08]"
               style={{ backgroundColor: "#111111" }}
             >
+              <SheetTitle className="sr-only">Site navigation</SheetTitle>
               <div className="flex flex-col h-full pt-6">
                 <Link
                   href="/"
@@ -147,7 +147,7 @@ export default function Navbar() {
                     className="text-center px-4 py-2.5 rounded-[4px] text-[14px] font-semibold hover:bg-[#D5B765] transition-colors"
                     style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
                   >
-                    Start trial
+                    Start 7-day trial
                   </Link>
                 </div>
               </div>

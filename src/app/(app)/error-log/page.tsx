@@ -385,47 +385,11 @@ export default async function ErrorLogPage({
     computeRemediationSummary(mistakes)
 
   return (
-    <div className="max-w-6xl mx-auto space-y-10">
-      <section
-        className="relative overflow-hidden rounded-2xl border border-white/[0.06] px-6 py-10 sm:px-10 sm:py-14"
-        style={{ backgroundColor: "#0D0D0D" }}
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 20% -10%, rgba(201,168,76,0.14) 0%, transparent 60%), radial-gradient(ellipse 70% 60% at 110% 110%, rgba(255,68,68,0.08) 0%, transparent 60%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
-          aria-hidden
-        />
-        <div className="relative">
-          <div className="flex items-center gap-3 mb-4">
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
-            >
-              Error log
-            </p>
-            <div
-              className="h-px w-12"
-              style={{
-                background:
-                  "linear-gradient(to right, rgba(201,168,76,0.4), transparent)",
-              }}
-              aria-hidden
-            />
-          </div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-            Recent{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              mistakes.
-            </span>
-          </h1>
-          <p className="text-[15px] leading-[1.75] text-[#C0C0C0] mt-4 max-w-2xl">
+    <div className="max-w-6xl mx-auto space-y-6">
+      <section>
+        <div>
+          <h1 className="text-3xl font-semibold text-[#F0F0F0]">Error log</h1>
+          <p className="text-sm leading-relaxed text-[#B9B7AE] mt-2 max-w-2xl">
             {totalMistakes > 0 ? (
               <>
                 <span className="tabular-nums">
@@ -433,15 +397,15 @@ export default async function ErrorLogPage({
                 </span>{" "}
                 ·{" "}
                 <span className="tabular-nums">{reviewedCount} reviewed</span>
-                {" "}— every wrong answer is a tagged specimen. Classify the
-                failure mode, write a note, and the pattern starts to surface.
+                . Revisit the explanation, record what happened, and mark it reviewed.
               </>
             ) : hasUser ? (
-              "No mistakes logged yet — every question you get wrong will show up here with its full explanation."
+              sessionIdFilter ? "No incorrect answers logged in this session." : "No incorrect answers logged yet."
             ) : (
               "Sign in to see questions you've missed in practice sets, with explanations and quick links back to the sets."
             )}
           </p>
+          {hasUser && <p className="mt-2 text-sm text-[#B9B7AE]">{sessionIdFilter ? "This session only; up to 1,000 incorrect attempts." : "Showing up to 1,000 incorrect attempts from your 150 most recent sessions."}</p>}
           {sessionIdFilter && (
             <div className="mt-5 inline-flex items-center gap-2 text-[12px] text-[#C0C0C0] px-3 py-1.5 rounded-full border border-white/[0.08] bg-[#0A0A0A]">
               <span className="tabular-nums">
@@ -464,15 +428,15 @@ export default async function ErrorLogPage({
       {totalMistakes === 0 ? (
         <EmptyState
           icon={AlertCircle}
-          title="No mistakes logged yet"
+          title={hasUser ? sessionIdFilter ? "No incorrect answers in this session" : "No incorrect answers logged yet" : "Sign in to view your error log"}
           description={
             hasUser
-              ? "Your error log starts when you submit your first practice session — every miss will show up here with its explanation and a one-tap link back to the set."
+              ? "Correct answers may still return in Review for retention. This log only contains incorrect answers; an empty log does not mean your review queue is empty."
               : "Sign in to see questions you've missed in practice sets, with explanations and quick links back to the sets."
           }
-          ctaHref="/practice"
-          ctaLabel="Start practicing"
-          size="md"
+          ctaHref={hasUser ? "/review" : "/login"}
+          ctaLabel={hasUser ? "Check due review" : "Sign in"}
+          size="sm"
         />
       ) : (
         <>

@@ -5,14 +5,9 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import {
   LayoutDashboard,
-  Calendar,
   MessageCircle,
-  Sparkles,
   Target,
-  Wrench,
   BarChart3,
-  AlertCircle,
-  Calculator,
   RotateCcw,
   FlaskConical,
   GraduationCap,
@@ -24,6 +19,8 @@ import {
   ShieldCheck,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { appSections, getAppSection, getActiveAppView } from "@/lib/app-navigation"
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import FeedbackWidget from "@/components/beta/FeedbackWidget"
 import StudyTimer from "@/components/shared/StudyTimer"
 import ServiceWorkerRegistrar from "@/components/offline/ServiceWorkerRegistrar"
@@ -43,19 +40,8 @@ import {
 // is the deprecated old format (chapters superseded it), and reading-type
 // guides now appear inline in /chapters with a "Reading" badge. Reference
 // guides are still reachable via the chapter listing or direct links.
-const navItems = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Course", href: "/learn", icon: GraduationCap },
-  { label: "Study Plan", href: "/study-plan", icon: Calendar },
-  { label: "Chapters", href: "/chapters", icon: Sparkles },
-  { label: "Practice", href: "/practice", icon: Target },
-  { label: "Review", href: "/review", icon: RotateCcw },
-  { label: "Exams", href: "/mock", icon: FlaskConical },
-  { label: "Test Builder", href: "/test-builder", icon: Wrench },
-  { label: "Analytics", href: "/analytics", icon: BarChart3 },
-  { label: "Score Calc", href: "/score-calculator", icon: Calculator },
-  { label: "Error Log", href: "/error-log", icon: AlertCircle },
-]
+const sectionIcons = [LayoutDashboard, GraduationCap, Target, RotateCcw, FlaskConical, BarChart3]
+const navItems = appSections.map((section, index) => ({ ...section, icon: sectionIcons[index] }))
 
 function SidebarLink({
   item,
@@ -78,10 +64,10 @@ function SidebarLink({
       onFocus={() => onIntent(item.href)}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors group",
+        "flex min-h-11 items-center gap-3 border-l-2 px-3 py-2.5 text-[14px] transition-colors group",
         active
           ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
-          : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
+          : "border-transparent text-[#A5A59B] hover:text-[#F4F1E8] hover:bg-white/[0.02]"
       )}
     >
       <Icon
@@ -119,12 +105,12 @@ function Sidebar({
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto px-3 py-5 space-y-0.5">
+      <nav aria-label="Main navigation" className="flex-1 overflow-y-auto px-3 py-5 space-y-1">
         {navItems.map((item) => (
           <SidebarLink
             key={item.href}
             item={item}
-            active={pathname.startsWith(item.href)}
+            active={getAppSection(pathname)?.href === item.href}
             onClick={onClose}
             onIntent={onIntent}
           />
@@ -310,10 +296,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     router.refresh()
   }
 
+  const activeSection = getAppSection(pathname)
+  const activeView = getActiveAppView(pathname)
+  const isQuestionWorkspace = pathname.startsWith("/practice/session/") || pathname === "/mock/run"
   const currentLabel =
     pathname.startsWith("/admin")
       ? "Admin"
-      : navItems.find((i) => pathname.startsWith(i.href))?.label ?? "Dashboard"
+      : pathname.startsWith("/settings") ? "Settings" : activeSection?.label ?? "Your account"
 
   return (
     <div
@@ -325,7 +314,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </a>
       {/* Desktop sidebar */}
       <aside
-        className="hidden lg:flex flex-col w-60 flex-shrink-0 border-r border-white/[0.07]"
+        className="hidden lg:flex flex-col w-56 flex-shrink-0 border-r border-white/[0.07]"
         style={{ backgroundColor: "#0B0B0A" }}
       >
         <Sidebar
@@ -335,42 +324,23 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         />
       </aside>
 
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 flex">
-          <div
-            className="absolute inset-0 bg-black/60"
-            onClick={() => setSidebarOpen(false)}
-          />
-          <aside
-            className="relative z-10 w-60 flex flex-col border-r border-white/[0.07]"
-            style={{ backgroundColor: "#0B0B0A" }}
-          >
-            <Sidebar
-              pathname={pathname}
-              isAdminUser={isAdminUser}
-              onClose={() => setSidebarOpen(false)}
-              onIntent={prefetchOnIntent}
-            />
-          </aside>
-        </div>
-      )}
-
       {/* Main content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="min-w-0 flex-1 flex flex-col overflow-hidden">
         {/* Top bar */}
         <header
           className="flex items-center justify-between px-4 sm:px-6 h-14 border-b border-white/[0.07] flex-shrink-0"
           style={{ backgroundColor: "#0B0B0A" }}
         >
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-1.5 rounded-[4px] text-[#888888] hover:text-[#C0C0C0]"
-              aria-label="Open navigation menu"
-            >
-              <Menu className="w-5 h-5" aria-hidden="true" />
-            </button>
+            <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+              <SheetTrigger className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-lg text-[#B9B7AE]" aria-label="Open navigation menu">
+                <Menu className="w-5 h-5" aria-hidden="true" />
+              </SheetTrigger>
+              <SheetContent side="left" className="w-64 max-w-[85vw] gap-0 bg-[#0C0D0C] border-white/10">
+                <SheetTitle className="sr-only">Study navigation</SheetTitle>
+                <Sidebar pathname={pathname} isAdminUser={isAdminUser} onClose={() => setSidebarOpen(false)} onIntent={prefetchOnIntent} />
+              </SheetContent>
+            </Sheet>
             <p className="text-[13px] font-semibold text-[#F0F0F0]">
               {currentLabel}
             </p>
@@ -447,8 +417,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Page content */}
-        <main id="main-content" className="flex-1 overflow-y-auto bg-[#0B0B0A]">
-          <div className="p-4 sm:p-6 lg:p-8">{children}</div>
+        <main id="main-content" className="min-w-0 flex-1 overflow-y-auto bg-[#0B0B0A]">
+          <div className="app-page-content p-4 sm:p-6 lg:p-8">
+            {!isQuestionWorkspace && activeSection && activeSection.views.length > 1 && (
+              <nav aria-label={`${activeSection.label} views`} className="workspace-views">
+                {activeSection.views.map((view) => (
+                  <Link key={view.href} href={view.href} prefetch={false} aria-current={activeView?.href === view.href ? "page" : undefined}>
+                    {view.label}
+                  </Link>
+                ))}
+              </nav>
+            )}
+            {children}
+          </div>
         </main>
       </div>
 

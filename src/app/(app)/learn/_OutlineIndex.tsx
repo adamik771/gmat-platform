@@ -96,7 +96,7 @@ export default function OutlineIndex({
           className="inline-flex items-center gap-1.5 text-[12px] tracking-tight text-[#888888] hover:text-[#F0F0F0] transition-colors"
         >
           <ArrowLeft className="w-3 h-3" />
-          Back to course
+          Supporting readings
         </Link>
 
         <section>
