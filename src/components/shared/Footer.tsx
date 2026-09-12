@@ -1,6 +1,5 @@
 import Link from "next/link"
-import { Mail } from "lucide-react"
-import LeadCapture from "@/components/marketing/LeadCapture"
+import { ArrowRight, Mail } from "lucide-react"
 import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
 import { SITE_CONTACT_EMAIL } from "@/lib/site"
 
@@ -18,7 +17,7 @@ const platformLinks = [
 const companyLinks = [
   { label: "About", href: "/about" },
   { label: "How We Compare", href: "/how-we-compare" },
-  { label: "Student Results", href: "/students" },
+  { label: "Results and evidence", href: "/students" },
   { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
 ]
@@ -35,38 +34,11 @@ export default function Footer() {
       className="relative border-t border-white/[0.06] overflow-hidden"
       style={{ backgroundColor: "#050505" }}
     >
-      {/* Faint bottom-right gold radial flourish */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 55% 45% at 92% 100%, rgba(201,168,76,0.07) 0%, transparent 60%)",
-        }}
-        aria-hidden
-      />
-      {/* Subtle top hairline rule for separation from page above */}
-      <div
-        className="absolute inset-x-0 top-0 h-px pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(201,168,76,0.12), transparent)",
-        }}
-        aria-hidden
-      />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        {/* Lead capture — error-log template lead magnet. Drives the
-            social-channel CTAs ("DM me and I'll send the template") and
-            collects emails for prospects who bounce without signing up. */}
-        <div className="mb-14 max-w-xl">
-          <LeadCapture
-            source="footer"
-            leadMagnet="error-log-template"
-            eyebrow="Free template"
-            headline="Get the GMAT error-log template I used to go from 565 to 735."
-            description="The exact six-tag taxonomy and the spreadsheet structure. Two months of honest logging surfaces the patterns. No account needed — just your email."
-            ctaLabel="Send me the template"
-          />
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-12">
+        <div className="mb-8 border-b border-white/10 pb-6">
+          <Link href="/resources#templates" className="inline-flex min-h-11 items-center gap-2 text-sm text-[#C9A84C] hover:underline">
+            Free GMAT error-log template <ArrowRight aria-hidden="true" className="h-4 w-4" />
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -84,9 +56,8 @@ export default function Footer() {
                 GMAT
               </span>
             </Link>
-            <p className="font-display text-[13px] text-[#888888] leading-relaxed mb-6 max-w-[18rem]">
-              A premium GMAT preparation system. 565 → 735, built by someone who
-              solved the hard version.
+            <p className="text-sm text-[#B9B7AE] leading-relaxed mb-6 max-w-[18rem]">
+              Structured GMAT preparation, focused practice, and spaced review.
             </p>
             {/* Social icons removed until real profile URLs exist — a dead
                 href="#" button reads worse than no button. Re-add with the

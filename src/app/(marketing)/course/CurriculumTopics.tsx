@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useId, useState } from "react"
 
 /**
  * Collapsible topic list for a curriculum module on the marketing course page.
@@ -9,16 +9,17 @@ import { useState } from "react"
  */
 export default function CurriculumTopics({ topics }: { topics: string[] }) {
   const [expanded, setExpanded] = useState(false)
+  const topicsId = useId()
   const visible = expanded ? topics : topics.slice(0, 2)
   const hiddenCount = topics.length - 2
 
   return (
     <>
-      <ul className="flex flex-wrap gap-2">
+      <ul id={topicsId} className="flex flex-wrap gap-x-6 gap-y-2">
         {visible.map((topic) => (
           <li
             key={topic}
-            className="text-[11px] px-2.5 py-1 rounded-md border border-white/[0.06] text-[#888888] tracking-wide"
+            className="text-sm text-[#B9B7AE]"
           >
             {topic}
           </li>
@@ -28,9 +29,10 @@ export default function CurriculumTopics({ topics }: { topics: string[] }) {
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="mt-3 text-[11px] font-semibold tracking-wide transition-opacity hover:opacity-80"
+          className="mt-2 min-h-11 text-sm font-semibold transition-opacity hover:opacity-80"
           style={{ color: "#C9A84C" }}
           aria-expanded={expanded}
+          aria-controls={topicsId}
         >
           {expanded ? "Show less" : `Show ${hiddenCount} more`}
         </button>

@@ -20,12 +20,12 @@ const values = [
   {
     title: "Consistency",
     description:
-      "Every 10-point improvement comes from showing up every day — not cramming the week before.",
+      "Build a sustainable routine with regular study and review.",
   },
   {
     title: "Mastery",
     description:
-      "Don't move on until you understand. Covering more ground slower beats skimming faster every time.",
+      "Check understanding before moving on, and return to concepts that need more work.",
   },
   {
     title: "Honesty",
@@ -51,7 +51,7 @@ export default function AboutPage() {
         />
       </div>
       {/* Hero */}
-      <section className="relative pt-8 pb-20 overflow-hidden">
+      <section className="relative pt-8 pb-10 overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -72,31 +72,35 @@ export default function AboutPage() {
             About
           </p>
           <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-6">
-            The story behind the{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              score.
-            </span>
+            Adam Zakarian
           </h1>
           <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
             I&apos;m Adam Zakarian, now studying in the Master in Banking and
-            Finance programme at the University of St.Gallen (HSG). My first
-            GMAT diagnostic came back 565 — 56th percentile. I&apos;m not a native
-            English speaker. Eight months later I scored 735 — top 1% of
-            test-takers — on the GMAT Focus Edition. This is how.
+            Finance programme at the University of St.Gallen (HSG). My own GMAT
+            preparation shaped this platform&apos;s focus on structured study,
+            deliberate practice, and reviewing mistakes.
           </p>
         </div>
       </section>
 
       {/* Story + Timeline */}
-      <SectionWrapper variant="darker">
+      <SectionWrapper variant="darker" className="!py-12 lg:!py-16">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "#C9A84C" }}>
               The story
             </p>
             <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-8">
-              What actually happened
+              From preparation to a platform
             </h2>
+            <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+              I started with a cold official practice exam in April 2025 and
+              sat two official GMAT Focus exams later that year. My preparation
+              included a summer pause, intensive study, and a final period of
+              mistake review. This is one personal journey, not a typical student outcome.
+            </p>
+            <details className="mt-4">
+              <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold text-[#C9A84C]">Read the full preparation story</summary>
             <div className="space-y-5 text-[15px] text-[#C0C0C0] leading-[1.75]">
               <p>
                 <span className="font-display text-5xl font-semibold float-left leading-none mt-1 mr-3" style={{ color: "#C9A84C" }}>I</span>
@@ -181,6 +185,7 @@ export default function AboutPage() {
                 loop you can run by yourself.
               </p>
             </div>
+            </details>
           </div>
 
           <div>
@@ -191,6 +196,9 @@ export default function AboutPage() {
               From 565 to 735
             </h2>
             <ScoreTimeline />
+            <Link href="/students" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm text-[#C9A84C] hover:underline">
+              Results and evidence <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
             {/* ScoreReportProof is intentionally not rendered: there is no
                 redacted score-report image yet, so referencing the missing
                 /score-report.png would mean a 404 image request and an
@@ -267,10 +275,9 @@ export default function AboutPage() {
             </span>
           </h2>
           <p className="text-[16px] text-[#C0C0C0] leading-relaxed mb-5">
-            Most GMAT prep is sold by people who scored well on their first
-            try. They teach to their own strengths. That&apos;s not useful
-            for the student starting cold at 50th percentile, with a lot of
-            ground to cover and limited time.
+            Starting with a lot of ground to cover and limited time shaped
+            what I wanted from preparation: a clear sequence, useful practice,
+            and an honest record of what still needed work.
           </p>
           <p className="text-[16px] text-[#C0C0C0] leading-relaxed">
             I built this for the student who knows they need a structured
@@ -361,7 +368,7 @@ export default function AboutPage() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/[0.12] text-[#C0C0C0] hover:border-white/[0.2] hover:text-[#F0F0F0] transition-all duration-200"
             >
-              Book a Free Call
+              Request a free call
             </Link>
           </div>
         </div>

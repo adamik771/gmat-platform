@@ -4,6 +4,7 @@ import SettingsClient, {
   type PurchaseRow,
 } from "./SettingsClient"
 import { isPurchaseActive, purchaseExpiresAt } from "@/lib/plan-access"
+import { normalizeWeeklyHoursTarget } from "@/lib/study-hours"
 
 // Sensible defaults when the user has never touched the toggles. Streak
 // reminders + weekly progress default on, the others off — matches the
@@ -28,6 +29,7 @@ export default async function SettingsPage() {
   let initialName = ""
   let initialEmail = ""
   let initialExamDate: string | null = null
+  let initialWeeklyHours: number | null = null
   let initialTargetScore: number | null = null
   let initialEnglishNative: boolean | null = null
   let initialPriorGmatAttempt: boolean | null = null
@@ -45,6 +47,7 @@ export default async function SettingsPage() {
       initialEmail = user.email ?? ""
       initialExamDate =
         (user.user_metadata?.exam_date as string | null) ?? null
+      initialWeeklyHours = normalizeWeeklyHoursTarget(user.user_metadata?.onboarding?.weeklyHours)
       const rawTarget = user.user_metadata?.target_score
       initialTargetScore =
         typeof rawTarget === "number" && Number.isInteger(rawTarget)
@@ -102,6 +105,7 @@ export default async function SettingsPage() {
       initialName={initialName}
       initialEmail={initialEmail}
       initialExamDate={initialExamDate}
+      initialWeeklyHours={initialWeeklyHours}
       initialTargetScore={initialTargetScore}
       initialEnglishNative={initialEnglishNative}
       initialPriorGmatAttempt={initialPriorGmatAttempt}

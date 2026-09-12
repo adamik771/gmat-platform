@@ -14,6 +14,7 @@ interface Props {
   sections: SidebarSectionItem[]
   hasProblemSets: boolean
   problemSetsAnchorId: string
+  label?: string
   /** Optional — invoked after the user taps an entry. Used by the mobile
    *  drawer to close itself once the user has chosen a section to scroll to. */
   onNavigate?: () => void
@@ -34,6 +35,7 @@ export default function ChapterSidebarNav({
   sections,
   hasProblemSets,
   problemSetsAnchorId,
+  label = "Chapter contents",
   onNavigate,
 }: Props) {
   const [activeId, setActiveId] = useState<string | null>(
@@ -78,21 +80,17 @@ export default function ChapterSidebarNav({
     e.preventDefault()
     const el = document.getElementById(id)
     if (!el) return
-    el.scrollIntoView({ behavior: "smooth", block: "start" })
+    el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" })
     // Update history without page reload so the URL reflects the section.
     if (typeof window !== "undefined") {
-      window.history.replaceState(null, "", `#${id}`)
+      window.history.replaceState(window.history.state, "", `#${id}`)
     }
     onNavigate?.()
   }
 
-  const completed = sections.filter((s) => s.read).length
-  const total = sections.length
-  const pct = total > 0 ? Math.round((completed / total) * 100) : 0
-
   return (
     <nav
-      aria-label="Chapter contents"
+      aria-label={label}
       className="text-[13px]"
       style={{ color: "var(--read-text-muted)" }}
     >
@@ -110,8 +108,9 @@ export default function ChapterSidebarNav({
             <li key={s.id}>
               <a
                 href={`#${s.id}`}
+                aria-current={isActive ? "location" : undefined}
                 onClick={(e) => handleClick(e, s.id)}
-                className="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md transition-colors"
+                className="flex items-center gap-2.5 px-2.5 py-2 min-h-11 rounded-md transition-colors"
                 style={{
                   backgroundColor: isActive
                     ? "var(--read-gold-soft)"
@@ -134,7 +133,7 @@ export default function ChapterSidebarNav({
                       : "var(--read-text-faint)",
                   }}
                 />
-                <span className="flex-1 leading-snug truncate">
+                <span className="flex-1 leading-snug break-words min-w-0">
                   {s.title}
                 </span>
                 {s.read && (
@@ -152,6 +151,7 @@ export default function ChapterSidebarNav({
           <li>
             <a
               href={`#${problemSetsAnchorId}`}
+              aria-current={problemSetsAnchorId === activeId ? "location" : undefined}
               onClick={(e) => handleClick(e, problemSetsAnchorId)}
               className="flex items-center gap-2.5 px-2.5 py-1.5 rounded-md transition-colors mt-2"
               style={{
@@ -181,39 +181,6 @@ export default function ChapterSidebarNav({
         )}
       </ul>
 
-      {/* Compact progress meter at the bottom of the rail */}
-      <div className="mt-6 pt-5 border-t" style={{ borderColor: "var(--read-border)" }}>
-        <div
-          className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] font-semibold mb-2"
-          style={{ color: "var(--read-text-faint)" }}
-        >
-          <span>Progress</span>
-          <span
-            className="font-display tabular-nums normal-case tracking-normal text-[11px]"
-            style={{ color: "var(--read-text-body)" }}
-          >
-            {pct}%
-          </span>
-        </div>
-        <div
-          className="h-1 rounded-full overflow-hidden"
-          style={{ backgroundColor: "var(--read-bg-inset)" }}
-        >
-          <div
-            className="h-full rounded-full transition-all duration-500"
-            style={{
-              width: `${pct}%`,
-              backgroundColor: "var(--read-gold)",
-            }}
-          />
-        </div>
-        <p
-          className="text-[11px] mt-2"
-          style={{ color: "var(--read-text-faint)" }}
-        >
-          {completed} of {total} read
-        </p>
-      </div>
     </nav>
   )
 }

@@ -1,0 +1,17 @@
+.guide { overflow-wrap: anywhere; }
+.navigation { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+.navigation button { min-height: 44px; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--read-text-body); font-size: 14px; }
+.breadcrumb a { padding: 8px 0; }
+.meta { font-size: 14px; color: var(--read-text-muted); margin-bottom: 12px; }
+.description { font-size: 17px; line-height: 1.65; color: var(--read-text-body); margin-top: 16px; }
+.prose { font-size: 18px; line-height: 1.7; }
+.prose :is(p, ul, ol) { font-size: inherit; line-height: inherit; }
+.prose h2 { font-size: 24px; line-height: 1.35; }
+.prose :is(h2, h3, h4, span[id]) { scroll-margin-top: 96px; }
+.table { overflow-x: auto; margin: 24px 0; }
+.table table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.table :is(th, td) { padding: 10px; border: 1px solid var(--read-border-strong); text-align: left; }
+.adjacent { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; border-top: 1px solid var(--read-border-strong); margin-top: 48px; padding-top: 24px; }
+.adjacent a { display: inline-flex; align-items: center; gap: 12px; flex: 1 1 200px; font-size: 14px; line-height: 1.6; color: var(--read-text-body); min-height: 44px; }
+@media (max-width: 639px) { .prose { font-size: 17px; } }
