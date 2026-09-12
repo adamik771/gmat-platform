@@ -130,9 +130,9 @@ export function deriveFirst48Steps(s: First48Signals): First48Step[] {
     {
       key: "review-loop",
       day: 2,
-      title: "Complete your first review",
+      title: "Clear a miss in Review or the Error Log",
       detail:
-        "Revisit a due question, or analyze a mistake in the Error Log. Review includes correct answers worth remembering, not only mistakes.",
+        "After any wrong answer: tag why it happened in the Error Log, and the question resurfaces in Review at the right spacing. Clearing one miss completes this.",
       href: "/review",
       cta: "Open review",
       done: s.reviewUsed,

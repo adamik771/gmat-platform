@@ -1,5 +1,6 @@
 import Link from "next/link"
 import {
+  ArrowLeft,
   ArrowRight,
   BookOpen,
   Calendar,
@@ -11,8 +12,7 @@ import {
   Timer,
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
-import { daysUntil, localDayIso } from "@/lib/utils"
-import { getFinalWeekReview } from "@/lib/official-exams"
+import { daysUntil } from "@/lib/utils"
 import { getUserTz } from "@/lib/tz"
 import {
   collectAdaptiveSignals,
@@ -116,18 +116,6 @@ export default async function AdaptivePlanPage() {
   }
 
   const daysAvailable = rawDaysUntil !== null ? Math.max(0, rawDaysUntil) : null
-  const finalWeekReview = getFinalWeekReview(examDate, localDayIso(new Date(), tz))
-  if (finalWeekReview) {
-    return <Frame>
-      <Header />
-      <section className="border-t border-white/10 py-5">
-        <h2 className="text-xl font-semibold text-[#F0F0F0]">{finalWeekReview.title}</h2>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#B9B7AE]">{finalWeekReview.reason}</p>
-        <p className="mt-2 text-sm text-[#B9B7AE]">About {finalWeekReview.estimatedMinutes} minutes</p>
-        <Link href={finalWeekReview.href} className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#C9A84C] px-4 py-2 text-sm font-semibold text-[#0A0A0A]">{finalWeekReview.actionLabel}<ArrowRight className="h-4 w-4" aria-hidden /></Link>
-      </section>
-    </Frame>
-  }
 
   const plan = computeAdaptivePlan(signals, {
     targetScore,
@@ -158,18 +146,59 @@ export default async function AdaptivePlanPage() {
 // ============================================================
 
 function Frame({ children }: { children: React.ReactNode }) {
-  return <div className="mx-auto max-w-5xl space-y-6">{children}</div>
+  return (
+    <div className="relative">
+      <div
+        className="absolute inset-x-0 top-0 h-[480px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 55% at 50% 0%, rgba(201,168,76,0.10) 0%, transparent 60%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+        aria-hidden
+      />
+      <div className="relative max-w-5xl mx-auto space-y-12">{children}</div>
+    </div>
+  )
 }
 
 function Header() {
   return (
-    <header className="flex flex-wrap items-start justify-between gap-4">
-      <div className="min-w-0">
-        <h1 className="text-3xl font-semibold text-[#F0F0F0]">Long-term plan</h1>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#B9B7AE]">Suggested work from your recorded results and practice history. Recalculated when you visit; suggested tasks are not completion records.</p>
+    <section>
+      <Link
+        href="/study-plan"
+        className="inline-flex items-center gap-1.5 text-[12px] tracking-tight text-[#888888] hover:text-[#F0F0F0] transition-colors mb-6"
+      >
+        <ArrowLeft className="w-3 h-3" />
+        Back to Study Plan
+      </Link>
+      <div className="flex items-center gap-3 mb-4">
+        <span
+          className="h-px w-10"
+          style={{
+            background:
+              "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+          }}
+        />
+        <p className={EYEBROW} style={{ color: "#C9A84C" }}>
+          Adaptive Plan
+        </p>
       </div>
-      <Link href="/settings" className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[#C9A84C]"><Calendar className="h-4 w-4" aria-hidden />Update my schedule</Link>
-    </header>
+      <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-[-0.02em] text-[#F0F0F0] leading-[1.05] mb-4">
+        Your weekly{" "}
+        <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+          plan.
+        </span>
+      </h1>
+      <p className="text-[15px] text-[#C0C0C0] leading-relaxed max-w-3xl">
+        Synthesised from your official exams, latest mock, practice attempts, timing
+        patterns, confidence log, and mistake-log patterns. Re-runs every time
+        you visit, so the schedule stays current without you regenerating it.
+      </p>
+    </section>
   )
 }
 

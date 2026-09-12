@@ -97,7 +97,6 @@ export default async function SessionHistoryPage({
         <p className="text-sm text-[#888888] mt-1">
           {session.section as string} · {when}
         </p>
-        <p className="mt-2 text-sm text-[#B9B7AE]">Saved attempt results. No timer is running.</p>
       </div>
 
       <div
@@ -137,8 +136,6 @@ export default async function SessionHistoryPage({
         </div>
       </div>
 
-      <section id="answers" aria-labelledby="saved-answers-heading" className="scroll-mt-24 space-y-3">
-      <h2 id="saved-answers-heading" className="text-lg font-semibold text-[#F0F0F0]">Review answers</h2>
       {rows.length === 0 ? (
         <p className="text-sm text-[#888888]">
           No per-question detail was recorded for this session.
@@ -154,7 +151,7 @@ export default async function SessionHistoryPage({
             return (
               <div
                 key={row.id}
-                className={`flex flex-wrap items-center justify-between gap-3 p-4 ${
+                className={`flex items-center justify-between gap-3 p-4 ${
                   i < rows.length - 1 ? "border-b border-white/[0.05]" : ""
                 }`}
                 style={
@@ -163,7 +160,7 @@ export default async function SessionHistoryPage({
                     : undefined
                 }
               >
-                <div className="flex items-center gap-3 min-w-0 flex-1 basis-56">
+                <div className="flex items-center gap-3 min-w-0">
                   <div
                     className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
                     style={{
@@ -229,7 +226,7 @@ export default async function SessionHistoryPage({
                   {q && (
                     <Link
                       href={`/review/question/${row.questionId}`}
-                      className="inline-flex min-h-11 items-center gap-1 text-sm transition-colors hover:text-[#F0F0F0]"
+                      className="inline-flex items-center gap-1 text-xs transition-colors hover:text-[#F0F0F0]"
                       style={{ color: "#C9A84C" }}
                     >
                       Explanation
@@ -242,7 +239,6 @@ export default async function SessionHistoryPage({
           })}
         </div>
       )}
-      </section>
     </div>
   )
 }

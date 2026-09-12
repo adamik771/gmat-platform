@@ -10,7 +10,7 @@ import {
 import OfficialExamPlanClient from "./OfficialExamPlanClient"
 
 export const metadata = {
-  title: "Exams",
+  title: "Mock Exams",
 }
 
 /**
@@ -82,15 +82,61 @@ export default async function MockLandingPage() {
   const adaptiveModesAvailable = practiceAttemptsCount > 0
 
   return (
-    <div>
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="relative">
+      <div
+        className="absolute inset-x-0 top-0 h-[480px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 55% at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 60%), radial-gradient(ellipse 55% 40% at 90% 20%, rgba(201,168,76,0.06) 0%, transparent 60%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+        aria-hidden
+      />
+
+      <div className="relative max-w-4xl mx-auto space-y-12">
         {/* HERO — officials are the measuring stick; the simulator is
             for extra reps. */}
-        <section>
-          <h1 className="text-3xl font-semibold text-[#F0F0F0]">Exams</h1>
-          <p className="text-sm leading-relaxed text-[#B9B7AE] mt-2 max-w-2xl">
-            Official mba.com exams measure your score. Platform simulations
-            provide pacing practice and training feedback, not score predictions.
+        <section className="pt-4">
+          <div className="flex items-center gap-3 mb-5">
+            <span
+              className="h-px w-10"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(201,168,76,0.6))",
+              }}
+              aria-hidden
+            />
+            <p
+              className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+              style={{ color: "#C9A84C" }}
+            >
+              Mock exams
+            </p>
+            <div
+              className="h-px flex-1"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+          <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
+            Measure on the{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              official
+            </span>{" "}
+            scale.
+          </h1>
+          <p className="text-[15px] leading-[1.75] text-[#C0C0C0] mt-5 max-w-2xl">
+            The six official mba.com practice exams are your measuring
+            stick — real GMAC scoring, real adaptive engine, one per week
+            under full exam conditions. Log every result below. Our own
+            simulator stays available further down for unlimited extra
+            reps between officials.
           </p>
         </section>
 
@@ -102,13 +148,11 @@ export default async function MockLandingPage() {
           siteMockCount={siteMockCount}
         />
 
+        {/* EXAM KIT + CONDITIONS — static advice card. */}
+        <ExamKitCard />
+
         {/* SECONDARY — site simulator modes. */}
         <SiteMocksSection adaptiveModesAvailable={adaptiveModesAvailable} />
-
-        <details className="border-t border-white/[0.12] pt-4">
-          <summary className="min-h-11 cursor-pointer text-sm font-medium text-[#B9B7AE]">Exam kit and practice conditions</summary>
-          <ExamKitCard />
-        </details>
       </div>
     </div>
   )

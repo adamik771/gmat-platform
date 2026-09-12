@@ -28,8 +28,7 @@ const WEAK_TOPIC_THRESHOLD = 0.7 // accuracy below this = flag as weak
 const REVIEW_QUEUE_URGENT = 10 // if ≥ this many due, review-first
 
 import { hoursBand } from "./study-hours"
-import { daysUntil, localDayIso } from "./utils"
-import { getFinalWeekReview } from "./official-exams"
+import { daysUntil } from "./utils"
 import { TOPIC_TO_CHAPTER, TOPIC_TO_SET } from "./topic-chapter-map"
 import { ERROR_TAG_BY_ID, ROOT_CAUSE_BY_ID } from "@/app/(app)/error-log/constants"
 
@@ -168,7 +167,6 @@ export async function computeStudyPlan(
   opts: {
     targetScore: number | null
     examDate: string | null
-    tz?: string | null
     flaggedQuestionIds?: Set<string>
     /** Entries in user_metadata.official_exam_scores — the official mba.com
      *  practice-exam scores the student has entered. 0 means no baseline yet. */
@@ -293,22 +291,7 @@ export async function computeStudyPlan(
   // Local-midnight parse — the shared helper exists because the naive
   // `new Date("YYYY-MM-DD")` (UTC midnight) countdown was off by one in
   // positive-offset timezones. Every exam countdown must use this.
-  const daysUntilExam = daysUntil(opts.examDate, opts.tz)
-  const finalWeek = getFinalWeekReview(opts.examDate, localDayIso(new Date(), opts.tz))
-  if (finalWeek) {
-    return {
-      reviewDueCount,
-      weakAreas,
-      todaysFocus: [{
-        type: "review",
-        title: finalWeek.title,
-        subtitle: finalWeek.reason,
-        href: finalWeek.href,
-        cta: finalWeek.actionLabel,
-        priority: 100,
-      }],
-    }
-  }
+  const daysUntilExam = daysUntil(opts.examDate)
 
   // 1. Official baseline if none entered — the highest-priority first action.
   // The baseline is a real mba.com practice exam taken under exam conditions;
@@ -333,7 +316,7 @@ export async function computeStudyPlan(
       type: "review",
       title: `Review ${reviewDueCount} questions in your queue`,
       subtitle:
-        "Questions due for another retrieval attempt, including previously correct answers and earlier mistakes. Each item's reason is shown in Review.",
+        "Spaced retrieval on items you've missed before — strongest memory gains.",
       href: "/review",
       cta: "Start review",
       priority: 90,
@@ -367,7 +350,17 @@ export async function computeStudyPlan(
   // Inside 7 days the advice flips to taper: GMAC's own guidance and the
   // product's exam roadmap both say no full-length mocks in the final
   // week (this card used to contradict the roadmap one click away).
-  if (daysUntilExam !== null && daysUntilExam > 7 && daysUntilExam <= 21) {
+  if (daysUntilExam !== null && daysUntilExam > 0 && daysUntilExam <= 7) {
+    todaysFocus.push({
+      type: "review",
+      title: "Final week — taper",
+      subtitle:
+        "No more full-length mocks (matches your exam plan). Short timed sections and your review queue only.",
+      href: "/review",
+      cta: "Open review",
+      priority: 55,
+    })
+  } else if (daysUntilExam !== null && daysUntilExam > 7 && daysUntilExam <= 21) {
     todaysFocus.push({
       type: "mock",
       title: `Run a timed mock`,
