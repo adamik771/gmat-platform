@@ -457,10 +457,10 @@ p {
   /* Light = paper-beige editorial default. Darker / warmer than a
      pure-white sheet so the transition into the dark authed chrome
      is gradational, not a harsh jump from #050505 to #ffffff. */
-  --read-bg: #f6f2e7;
-  --read-bg-inset: #eee9dc;
-  --read-bg-elevated: #fcfaf4;
-  --read-text: #20241f;
+  --read-bg: #ede5d0;
+  --read-bg-inset: #e3d9bf;
+  --read-bg-elevated: #f5efdb;
+  --read-text: #1c1c1c;
   --read-text-body: #3c3c3c;
   --read-text-muted: #616161;
   --read-text-faint: #6f6f6f;
@@ -498,7 +498,7 @@ p {
   --read-text: #f0f0f0;
   --read-text-body: #c0c0c0;
   --read-text-muted: #888888;
-  --read-text-faint: #95978d;
+  --read-text-faint: #555555;
   --read-border: rgba(255, 255, 255, 0.06);
   --read-border-strong: rgba(255, 255, 255, 0.12);
   --read-gold: #c9a84c;
@@ -1556,7 +1556,7 @@ sup {
   --workbench-panel-strong: #141412;
   --workbench-line: rgba(241, 239, 232, 0.1);
   --workbench-text: #efeee9;
-  --workbench-muted: #95978d;
+  --workbench-muted: #8b887f;
   background: var(--workbench-bg);
 }
 
@@ -1586,69 +1586,9 @@ sup {
   font-style: normal !important;
 }
 
-.app-workbench .reader-themed .font-display,
-.app-workbench .reader-themed .font-display-italic,
 .auth-workbench .font-display {
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-style: normal;
-}
-
-.app-page-content { max-width: 1440px; margin-inline: auto; }
-.app-workbench h1 { font-size: 30px; line-height: 1.2; letter-spacing: 0; }
-.app-workbench main { scroll-padding-block: 20px; }
-.workspace-views {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 20px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--ui-line);
-}
-.workspace-views a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding-block: 10px;
-  border-bottom: 2px solid transparent;
-  color: var(--ui-secondary);
-  font-size: 14px;
-  font-weight: 500;
-}
-.workspace-views a[aria-current="page"] {
-  border-bottom-color: var(--ui-gold);
-  color: var(--ui-text);
-}
-.workspace-views a:hover { color: var(--ui-text); }
-.dashboard-greeting { padding-block: 4px; }
-.dashboard-greeting h1 { font-size: 28px; font-weight: 600; }
-.dashboard-greeting p { color: var(--ui-muted); font-size: 14px; }
-.primary-study-task {
-  border-top: 2px solid var(--ui-gold);
-  border-bottom: 1px solid var(--ui-line);
-  background: var(--ui-surface);
-  padding: 24px;
-}
-.primary-study-task h2 { font-size: 24px; line-height: 1.3; }
-.primary-study-task p { font-size: 14px; line-height: 1.6; }
-.primary-study-task .task-action {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 20px;
-  border-radius: var(--ui-radius);
-  background: var(--ui-gold);
-  color: var(--ui-ink);
-  font-size: 14px;
-  font-weight: 600;
-}
-.primary-study-task .task-action:hover { background: #d7b96f; }
-@media (max-width: 640px) {
-  .app-workbench h1 { font-size: 26px; }
-  .workspace-views { gap: 0 16px; margin-bottom: 20px; }
-  .workspace-views a { font-size: 13px; }
-  .primary-study-task { padding: 20px 16px; }
-  .primary-study-task h2 { font-size: 22px; }
 }
 
 .app-workbench main [class~="rounded-2xl"],

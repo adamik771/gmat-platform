@@ -226,7 +226,7 @@ export default async function ChapterDetailPage({
         className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#888888] hover:text-[#C9A84C] transition-colors"
       >
         <ArrowLeft className="w-3 h-3" />
-        Learn / Interactive chapters
+        All chapters
       </Link>
 
       <ChapterReader

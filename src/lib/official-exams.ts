@@ -350,7 +350,7 @@ export interface ExamRoadmapInput {
   siteMockCount: number
 }
 
-export type RoadmapKind = "official" | "site-mock" | "review" | "setup" | "classify"
+export type RoadmapKind = "official" | "site-mock" | "setup" | "classify"
 
 export interface ExamRoadmap {
   /** What to do NEXT: sit an official, sit an in-platform mock, fix setup,
@@ -365,10 +365,6 @@ export interface ExamRoadmap {
   officialTargetDate: string | null
   title: string
   reason: string
-  href: string
-  actionLabel: string
-  /** Approximate activity duration, not a timer or auto-submit limit. */
-  estimatedMinutes: number
   /** What to have done before sitting it. */
   prereq: string | null
   caution: string | null
@@ -376,23 +372,6 @@ export interface ExamRoadmap {
 
 export const RETAKE_CAUTION =
   "A retake draws from the same fixed question pool — repeated questions are increasingly likely, and a retake score can be inflated and less valid. Treat it as a rehearsal, not a score measurement."
-
-const FINAL_WEEK_REVIEW = {
-  title: "Final week: a short review",
-  reason: "No more full-length exams in the final week. Keep practice light with a short review of due items and familiar strategies, and leave time for rest.",
-  href: "/review",
-  actionLabel: "Open review queue",
-  estimatedMinutes: 15,
-} as const
-
-/** Shared taper task for Today, Plan, and Exams; includes test day, not past dates. */
-export function getFinalWeekReview(examDate: string | null, todayIso: string): Pick<ExamRoadmap, "title" | "reason" | "href" | "actionLabel" | "estimatedMinutes"> | null {
-  const exam = examDate ? parseIsoDate(examDate) : null
-  const today = parseIsoDate(todayIso)
-  if (!exam || !today) return null
-  const days = Math.round((exam.getTime() - today.getTime()) / MS_PER_DAY)
-  return days >= 0 && days <= 7 ? { ...FINAL_WEEK_REVIEW } : null
-}
 
 /**
  * One shared derivation for "which exam next" — consumed by the /mock plan
@@ -415,22 +394,6 @@ export function getFinalWeekReview(examDate: string | null, todayIso: string): P
  *     measurement.
  */
 export function deriveExamRoadmap(input: ExamRoadmapInput): ExamRoadmap {
-  const roadmap = deriveExamRoadmapState(input)
-  const actions: Record<RoadmapKind, Pick<ExamRoadmap, "href" | "actionLabel" | "estimatedMinutes">> = {
-    official: {
-      href: "https://www.mba.com/exam-prep/gmat-official-practice-exams",
-      actionLabel: "Open official practice exams",
-      estimatedMinutes: 135,
-    },
-    "site-mock": { href: "/mock/run?mode=full", actionLabel: "Start an in-platform mock", estimatedMinutes: 135 },
-    review: FINAL_WEEK_REVIEW,
-    setup: { href: "/settings", actionLabel: "Update test date", estimatedMinutes: 2 },
-    classify: { href: "/mock#official-score-history", actionLabel: "Tag logged scores", estimatedMinutes: 2 },
-  }
-  return { ...roadmap, ...actions[roadmap.kind] }
-}
-
-function deriveExamRoadmapState(input: ExamRoadmapInput): Omit<ExamRoadmap, "href" | "actionLabel" | "estimatedMinutes"> {
   const { todayIso, examDate, entries, siteMockCount } = input
   const usage = deriveExamUsage(entries)
   const remaining = usage.unusedNumbers.length
@@ -457,22 +420,7 @@ function deriveExamRoadmapState(input: ExamRoadmapInput): Omit<ExamRoadmap, "hre
     }
   }
 
-  // Taper takes precedence even when no baseline or untagged scores exist.
-  const finalWeekReview = getFinalWeekReview(examDate, todayIso)
-  if (finalWeekReview) {
-    return {
-      kind: "review",
-      officialNumber: null,
-      isRetake: false,
-      officialTargetDate: null,
-      title: finalWeekReview.title,
-      reason: finalWeekReview.reason,
-      prereq: null,
-      caution: null,
-    }
-  }
-
-  // Baseline: nothing recorded yet, outside the final-week taper.
+  // Baseline: nothing recorded yet. Always the first exam recommendation.
   if (entries.length === 0) {
     return {
       kind: "official",
@@ -532,7 +480,10 @@ function deriveExamRoadmapState(input: ExamRoadmapInput): Omit<ExamRoadmap, "hre
       isRetake: false,
       officialTargetDate: null,
       title: "In-platform mock for your next checkpoint",
-      reason: "All six officials are used. Run in-platform mocks for checkpoints; save any retake of an official for a final rehearsal 1-3 weeks before test day.",
+      reason:
+        daysToExam !== null && daysToExam <= 7
+          ? "Inside the final week — no more full-length exams. Keep sharp with short timed sections and review."
+          : "All six officials are used. Run in-platform mocks for checkpoints; save any retake of an official for a final rehearsal 1-3 weeks before test day.",
       prereq: null,
       caution: RETAKE_CAUTION,
     }
@@ -548,6 +499,21 @@ function deriveExamRoadmapState(input: ExamRoadmapInput): Omit<ExamRoadmap, "hre
       title: "In-platform mock for now — save the officials",
       reason: `You have ${remaining} unused official${remaining === 1 ? "" : "s"} left. Without a test date they can't be spaced across the final six weeks, so use in-platform mocks for checkpoints and keep Exam ${nextNumber} for the schedule.`,
       prereq: "Set your test date in Settings to schedule the remaining officials.",
+      caution: null,
+    }
+  }
+
+  // Final week: the last weekly slot is exam-minus-7 by design.
+  if (daysToExam <= 7) {
+    return {
+      kind: "site-mock",
+      officialNumber: null,
+      isRetake: false,
+      officialTargetDate: null,
+      title: "Final week — taper, no more full exams",
+      reason:
+        "Full-length exams this close to test day cost more in fatigue than they return in signal. Short timed sections, review queue, and rest.",
+      prereq: null,
       caution: null,
     }
   }

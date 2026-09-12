@@ -1,6 +1,16 @@
 # Handoff — GMAT Platform
 
-## 2026-09-12: design-report redo (branch release, not merged)
+## 2026-09-12: restore the original prep workspace (branch release, awaiting merge)
+
+Follow-up: Adam explicitly requested committing and pushing this rollback. It is prepared for review on `fix/restore-study-workspace-20260912`; merging and production deployment are separate steps. The implementation notes below describe the state before that follow-up approval.
+
+After PR #589 was merged as `2c71a82`, Adam rejected the redesigned signed-in experience and explicitly requested bringing back the prep area. Branch `fix/restore-study-workspace-20260912` starts from that merge. All changed files under `src/app/(app)`, `DailyStudyLoop`, the study-plan engine, and official-exam helpers are restored to pre-redesign `f866494`; redesign-only helpers and associated tests are removed and previous tests restored. App-specific CSS additions are removed and reading/workbench colors restored. Shared font repair and public/auth typography remain; public pages, sample lessons, pricing, navigation, and marketing components are untouched by this rollback.
+
+This restores the previous behavior as well as the layouts, including the pre-redesign practice and exam recommendation behavior; do not claim the redesign's new routing/recommendation fixes survived. No student data, APIs, database records, credentials, or authored content were changed. Code comparison against `f866494` is empty for the restored app and helpers; comparison against current HEAD is empty for the public and auth surfaces. Content validation and TypeScript pass; 760 tests across 95 files pass. Production stays on the merged redesign until this rollback is committed, pushed, merged, and deployed. No commit/push requested for this new rollback yet.
+
+Verification for the rollback: production build passes (174 static pages), lint has no errors and the same pre-existing `scripts/send-consult-batch.ts:115` warning, and `git diff --check` is clean. Live Supabase schema validation remains unavailable without database environment variables in this isolated checkout.
+
+## 2026-09-12: design-report redo (merged as PR #589; prep rollback above supersedes this)
 
 Adam asked to start again from `/Users/adam/Downloads/zakarian-gmat-design-report.md`. This implementation is isolated in `/Users/adam/gmat-platform-design-redo-20260912`, branch `design/report-redo-20260912`, based on main `f866494`. The previous Stage 1 worktree and the main checkout were left untouched. Adam subsequently requested pushing this work; it is being committed for branch review, not merged. No production deployment, production data write, migration, or environment change.
 

@@ -1,16 +1,14 @@
 "use client"
 
-import { Suspense, useEffect, useRef, useState, useTransition } from "react"
+import { Suspense, useEffect, useState, useTransition } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import {
   AlertCircle,
-  ArrowLeft,
   Bell,
   CheckCircle2,
   CreditCard,
   Download,
-  Eye,
   Loader2,
   Mail,
   Pencil,
@@ -23,11 +21,6 @@ import {
 import { cn } from "@/lib/utils"
 import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
-import {
-  previewScheduleChanges,
-  scheduleMatchesPreview,
-  type SchedulePreview,
-} from "./schedule-preview"
 
 export interface PurchaseRow {
   id: string
@@ -52,7 +45,6 @@ interface Props {
   initialName: string
   initialEmail: string
   initialExamDate: string | null
-  initialWeeklyHours?: number | null
   initialTargetScore: number | null
   initialEnglishNative: boolean | null
   initialPriorGmatAttempt: boolean | null
@@ -66,7 +58,6 @@ export default function SettingsClient({
   initialName,
   initialEmail,
   initialExamDate,
-  initialWeeklyHours = null,
   initialTargetScore,
   initialEnglishNative,
   initialPriorGmatAttempt,
@@ -169,7 +160,6 @@ export default function SettingsClient({
               initialName={initialName}
               initialEmail={initialEmail}
               initialExamDate={initialExamDate}
-              initialWeeklyHours={initialWeeklyHours}
               targetScore={initialTargetScore}
               initialEnglishNative={initialEnglishNative}
               initialPriorGmatAttempt={initialPriorGmatAttempt}
@@ -413,7 +403,6 @@ function ProfileTab({
   initialName,
   initialEmail,
   initialExamDate,
-  initialWeeklyHours,
   targetScore,
   initialEnglishNative,
   initialPriorGmatAttempt,
@@ -421,7 +410,6 @@ function ProfileTab({
   initialName: string
   initialEmail: string
   initialExamDate: string | null
-  initialWeeklyHours: number | null
   targetScore: number | null
   initialEnglishNative: boolean | null
   initialPriorGmatAttempt: boolean | null
@@ -437,9 +425,6 @@ function ProfileTab({
   const [saving, setSaving] = useState(false)
   const [status, setStatus] = useState<"idle" | "saved" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-  const [preview, setPreview] = useState<SchedulePreview | null>(null)
-  const previewRef = useRef<HTMLElement>(null)
-  const saveButtonRef = useRef<HTMLButtonElement>(null)
   const [, startTransition] = useTransition()
   const router = useRouter()
 
@@ -449,23 +434,8 @@ function ProfileTab({
   const priorDirty = priorAttempt !== initialPriorGmatAttempt
   const dirty = nameDirty || examDirty || englishDirty || priorDirty
 
-  useEffect(() => {
-    if (preview) previewRef.current?.focus()
-  }, [preview])
-
   async function save() {
     if (!dirty || saving) return
-    const scheduleInputs = { examDate: examDate || null, weeklyHours: initialWeeklyHours }
-    if (examDirty && (!preview || !scheduleMatchesPreview(preview, scheduleInputs))) {
-      const result = previewScheduleChanges(
-        { examDate: initialExamDate, weeklyHours: initialWeeklyHours },
-        scheduleInputs,
-      )
-      setErrorMessage(result.error)
-      setStatus(result.error ? "error" : "idle")
-      setPreview(result.preview)
-      return
-    }
     setSaving(true)
     setStatus("idle")
     setErrorMessage(null)
@@ -486,7 +456,6 @@ function ProfileTab({
         const body = (await res.json().catch(() => ({}))) as { error?: string }
         throw new Error(body.error || `Request failed (${res.status})`)
       }
-      setPreview(null)
       setStatus("saved")
       startTransition(() => router.refresh())
       setTimeout(() => setStatus((s) => (s === "saved" ? "idle" : s)), 2500)
@@ -521,8 +490,7 @@ function ProfileTab({
                 id="settings-full-name"
                 type="text"
                 value={name}
-                onChange={(e) => { setName(e.target.value); setPreview(null) }}
-                disabled={saving}
+                onChange={(e) => setName(e.target.value)}
                 maxLength={120}
                 className={INPUT_CLASS}
                 style={INPUT_STYLE}
@@ -565,17 +533,10 @@ function ProfileTab({
                 id="settings-exam-date"
                 type="date"
                 value={examDate}
-                onChange={(e) => { setExamDate(e.target.value); setPreview(null) }}
-                disabled={saving}
+                onChange={(e) => setExamDate(e.target.value)}
                 className={INPUT_CLASS}
                 style={{ ...INPUT_STYLE, colorScheme: "dark" }}
               />
-            </div>
-            <div>
-              <FieldLabel>Weekly availability</FieldLabel>
-              <p className="text-[14px] text-[#F0F0F0]">
-                {initialWeeklyHours === null ? "Not set" : `${initialWeeklyHours} hours / week`}
-              </p>
             </div>
           </div>
 
@@ -596,8 +557,7 @@ function ProfileTab({
               label="Is English your first language?"
               subtitle="A non-native signal adds extra verbal (RC + CR) emphasis to your plan."
               value={englishNative}
-              onChange={(value) => { setEnglishNative(value); setPreview(null) }}
-              disabled={saving}
+              onChange={setEnglishNative}
               positiveLabel="Yes"
               negativeLabel="No, non-native"
             />
@@ -605,68 +565,26 @@ function ProfileTab({
               label="Have you taken the real GMAT before?"
               subtitle="A retaker signal shifts emphasis toward post-mortem + review behaviour."
               value={priorAttempt}
-              onChange={(value) => { setPriorAttempt(value); setPreview(null) }}
-              disabled={saving}
+              onChange={setPriorAttempt}
               positiveLabel="Yes, I'm a retaker"
               negativeLabel="No, first attempt"
             />
           </div>
 
-          {preview && (
-            <section
-              ref={previewRef}
-              tabIndex={-1}
-              aria-labelledby="schedule-preview-title"
-              className="mt-7 border-t border-white/10 pt-6 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C9A84C]"
-            >
-              <h3 id="schedule-preview-title" className="text-base font-semibold text-[#F0F0F0]">Review schedule changes</h3>
-              <p className="mt-2 text-[13px] leading-6 text-[#C0C0C0]">
-                Confirmed input changes only. Exact task order and completion dates are not previewed.
-              </p>
-              <dl className="mt-4 divide-y divide-white/10">
-                {preview.changes.map((change) => (
-                  <div key={change.field} className="grid gap-2 py-3 sm:grid-cols-3">
-                    <dt className="text-sm font-medium text-[#F0F0F0]">{change.label}</dt>
-                    <dd className="text-sm text-[#C0C0C0]"><span className="block text-xs text-[#888888]">Current</span>{change.before}</dd>
-                    <dd className="text-sm text-[#F0F0F0]"><span className="block text-xs text-[#888888]">After saving</span>{change.after}</dd>
-                  </div>
-                ))}
-              </dl>
-              {preview.dateShift && <p className="mt-3 text-[13px] text-[#C0C0C0]">{preview.dateShift}</p>}
-              {preview.dailyBudget && <p className="mt-3 text-[13px] text-[#C0C0C0]">{preview.dailyBudget}</p>}
-              <p className="mt-3 text-[13px] leading-6 text-[#C0C0C0]">Completed work and exam records stay unchanged.</p>
-              {(nameDirty || englishDirty || priorDirty) && <p className="mt-2 text-[13px] text-[#C0C0C0]">Your other profile changes will also be saved.</p>}
-            </section>
-          )}
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex items-center gap-4">
             <button
-              ref={saveButtonRef}
-              type="button"
               onClick={save}
               disabled={saving || !dirty}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-[13px] font-semibold tracking-tight transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
               style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
             >
               {saving ? (
-                <Loader2 className="w-4 h-4 shrink-0 animate-spin" aria-hidden="true" />
-              ) : examDirty && !preview ? (
-                <Eye className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <Loader2 className="w-4 h-4 animate-spin" />
               ) : (
-                <Save className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <Save className="w-4 h-4" />
               )}
-              {saving ? "Saving..." : preview ? "Confirm and save" : examDirty ? "Preview schedule changes" : "Save changes"}
+              {saving ? "Saving…" : "Save changes"}
             </button>
-            {preview && (
-              <button
-                type="button"
-                disabled={saving}
-                onClick={() => { setPreview(null); saveButtonRef.current?.focus() }}
-                className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] text-[#C0C0C0] hover:text-white disabled:opacity-60"
-              >
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                Back to editing
-              </button>
-            )}
             {status === "saved" && (
               <span
                 role="status"
@@ -703,7 +621,6 @@ function TriStateRow({
   onChange,
   positiveLabel,
   negativeLabel,
-  disabled = false,
 }: {
   label: string
   subtitle: string
@@ -711,7 +628,6 @@ function TriStateRow({
   onChange: (next: boolean | null) => void
   positiveLabel: string
   negativeLabel: string
-  disabled?: boolean
 }) {
   return (
     <div>
@@ -732,7 +648,6 @@ function TriStateRow({
           return (
             <button
               key={String(opt.v)}
-              disabled={disabled}
               type="button"
               onClick={() => onChange(active ? null : opt.v)}
               className={cn(

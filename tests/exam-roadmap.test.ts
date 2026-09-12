@@ -35,7 +35,7 @@ describe("official exam constants", () => {
 })
 
 describe("deriveExamRoadmap — baseline (no entries)", () => {
-  it("recommends Official Practice Exam 1 as the baseline outside the final week", () => {
+  it("recommends Official Practice Exam 1 as the baseline, regardless of timing", () => {
     const r = deriveExamRoadmap({
       todayIso: "2026-05-01",
       examDate: EXAM,
@@ -230,7 +230,7 @@ describe("deriveExamRoadmap — retake window boundaries (all six used)", () => 
     expect(at("2026-07-22").isRetake).toBe(true) // 21 days out
     expect(at("2026-07-21").isRetake).toBe(false) // 22 days out -> site mocks
     const finalWeek = at("2026-08-05") // 7 days out
-    expect(finalWeek.kind).toBe("review")
+    expect(finalWeek.kind).toBe("site-mock")
     expect(finalWeek.officialNumber).toBeNull()
   })
 
@@ -272,7 +272,7 @@ describe("deriveExamRoadmap — short timelines", () => {
       ],
       siteMockCount: 3,
     })
-    expect(r.kind).toBe("review")
+    expect(r.kind).toBe("site-mock")
     expect(r.officialNumber).toBeNull()
     expect(r.reason).toMatch(/fatigue|final/i)
   })
@@ -352,7 +352,7 @@ describe("deriveExamRoadmap — all six used", () => {
       entries: allSix,
       siteMockCount: 4,
     })
-    expect(r.kind).toBe("review")
+    expect(r.kind).toBe("site-mock")
     expect(r.officialNumber).toBeNull()
   })
 })

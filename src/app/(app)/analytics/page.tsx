@@ -1,6 +1,16 @@
 import Link from "next/link"
 import { unstable_rethrow } from "next/navigation"
-import { ArrowRight } from "lucide-react"
+import {
+  ArrowRight,
+  BarChart3,
+  CheckCircle2,
+  Clock,
+  Compass,
+  Lock,
+  Sparkles,
+  Target,
+  TrendingUp,
+} from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getUserState } from "@/lib/user-state"
 import { isReplaySession } from "@/lib/utils"
@@ -62,9 +72,6 @@ type AnalyticsAggregates = {
 }
 
 export default async function AnalyticsPage() {
-  const now = new Date()
-  const eightWeeksAgo = new Date(now.getTime() - 56 * 86400000).toISOString()
-  let attemptCount = 0
   let scoreTrend: ScoreTrendPoint[] = []
   let topicRows: TopicRow[] = []
   let pacingRows: PacingRow[] = []
@@ -127,7 +134,11 @@ export default async function AnalyticsPage() {
         | undefined
 
       // ---------- Score trajectory ----------
-      // The trajectory uses question-weighted accuracy, not a GMAT score.
+      const eightWeeksAgo = new Date(Date.now() - 56 * 86400000).toISOString()
+
+      // Per-session accuracy is the right unit here; if a user does 3 sessions
+      // in a week, the weekly average means "average accuracy across sessions
+      // that week", which we then scale to a Focus total.
       // The score-trajectory sessions read and the attempt aggregates are
       // independent (both scoped to this user) so fetch them concurrently. The
       // per-topic / pacing / per-difficulty / behaviour / accuracy /
@@ -165,7 +176,6 @@ export default async function AnalyticsPage() {
       const sessions = sessionsRes.data
       const aggRaw = aggregatesRes.data
       const agg = (aggRaw ?? null) as AnalyticsAggregates | null
-      attemptCount = agg?.attempt_count ?? 0
 
       if (sessions && sessions.length > 0) {
         // Question-weighted, review-excluded (same rules as the dashboard's
@@ -216,10 +226,11 @@ export default async function AnalyticsPage() {
             const overallAcc = pct(b.overall)
             return {
               weekKey,
-              weekLabel: weekDate.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+              weekLabel:
+                weekDate.toLocaleDateString("en-US", {
+                  month: "short",
+                }) + ` W${Math.ceil(weekDate.getDate() / 7)}`,
               index: i,
-              attempts: b.overall.total,
-              sectionAttempts: { Quant: b.Quant.total, Verbal: b.Verbal.total, DI: b.DI.total },
               overallAccuracy: overallAcc !== null ? Math.round(overallAcc) : null,
               quant: pct(b.Quant) !== null ? Math.round(pct(b.Quant)!) : null,
               verbal: pct(b.Verbal) !== null ? Math.round(pct(b.Verbal)!) : null,
@@ -257,7 +268,6 @@ export default async function AnalyticsPage() {
           undefined,
           practiceTierTotals,
         )
-        hasData = calibration.totalRated > 0
       }
 
       if (agg && agg.attempt_count > 0) {
@@ -295,8 +305,7 @@ export default async function AnalyticsPage() {
             const target = SECTION_TARGET_MIN[sec]
             return {
               section: sec,
-              avgMin,
-              attempts: st.count,
+              avgMin: Math.round(avgMin * 10) / 10,
               targetMin: target,
               // "over" in time = slower than target = red.
               over: avgMin > target,
@@ -312,7 +321,7 @@ export default async function AnalyticsPage() {
             section: r.section,
             difficulty: r.difficulty,
             attempts: r.cnt,
-            avgMin: r.total_ms / r.cnt / 60000,
+            avgMin: Math.round((r.total_ms / r.cnt / 60000) * 10) / 10,
             accuracy: Math.round((r.correct / r.cnt) * 100),
           }))
           .sort((a, b) => {
@@ -406,32 +415,263 @@ export default async function AnalyticsPage() {
         difficultyTimingRows={difficultyTimingRows}
         errorPatterns={errorPatterns}
         calibration={calibration}
-        scope={{ attempts: attemptCount, trendStart: eightWeeksAgo.slice(0, 10), trendEnd: now.toISOString().slice(0, 10) }}
+        hasData={hasData}
       />
     </>
   )
 }
 
-function BaselineView({ officialExamCount }: { officialExamCount: number }) {
+const EYEBROW_BASE =
+  "text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A84C]"
+
+/**
+ * Pre-data analytics view. Replaces the wall of "not enough data yet"
+ * panels that the previous design rendered into. Three blocks: an
+ * action-driven unlock hero, an unlock checklist with progress per
+ * threshold, and a 2x3 grid of locked module previews so the
+ * categories of analysis that *will* unlock are still visible.
+ */
+function BaselineView({
+  officialExamCount,
+}: {
+  officialExamCount: number
+}) {
+  // This view only renders while attempt_count === 0, so every
+  // attempt-derived "progress" number here would be 0 by construction —
+  // the old six-row have/need checklist with progress bars could never
+  // display anything but 0/N (one attempt anywhere and the whole page
+  // flips to active mode). Only the baseline exam is a real, trackable
+  // step at this stage; per-module thresholds live on the locked cards.
+  const baselineDone = officialExamCount > 0
+
+  const lockedModules: Array<{
+    Icon: typeof BarChart3
+    title: string
+    answers: string
+    unlock: string
+  }> = [
+    {
+      Icon: TrendingUp,
+      title: "Readiness trajectory",
+      answers: "Are you moving toward your target score?",
+      unlock: "Unlocks after 2+ weeks of practice.",
+    },
+    {
+      Icon: Compass,
+      title: "Topic accuracy",
+      answers: "Which topics are limiting your score?",
+      unlock: "Unlocks after 5+ attempts in a topic.",
+    },
+    {
+      Icon: Clock,
+      title: "Section pacing",
+      answers: "Is your timing stable per section?",
+      unlock: "Unlocks after 5+ timed attempts per section.",
+    },
+    {
+      Icon: Sparkles,
+      title: "Strengths & weaknesses",
+      answers: "Where do you finish strongest, where do you leak?",
+      unlock: "Unlocks after 5+ attempts in 2+ topics.",
+    },
+    {
+      Icon: Target,
+      title: "Calibration",
+      answers: "Are you over- or under-confident on what you know?",
+      unlock: "Unlocks after 10+ confidence-rated answers.",
+    },
+  ]
+
+  // Hero CTA dynamically targets the most impactful next action.
+  // Baseline exam first; then add practice volume; once attempts exist
+  // the analytics page itself flips to active mode (not this branch).
+  const primaryHref = baselineDone ? "/practice" : "/mock"
+  const primaryLabel = baselineDone
+    ? "Run your first practice set"
+    : "Enter your baseline official exam"
+
   return (
-    <div className="mx-auto max-w-5xl space-y-6">
-      <header>
-        <h1 className="text-3xl font-semibold text-[#F0F0F0]">Analytics</h1>
-        <p className="mt-2 text-sm leading-relaxed text-[#B9B7AE]">No recorded practice attempts or rated chapter answers yet.</p>
-      </header>
-      <section className="border-t border-white/10 pt-6">
-        <h2 className="text-xl font-semibold text-[#F0F0F0]">Start with a practice set</h2>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#B9B7AE]">Topic accuracy appears after 5 attempts in a topic. Timing uses attempts longer than one second; a weekly trend needs data from at least two weeks.</p>
-        <Link href="/practice" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#C9A84C] px-4 py-2 text-sm font-semibold text-[#0A0A0A]">
-          Choose a practice set <ArrowRight className="h-4 w-4" aria-hidden />
-        </Link>
+    <div className="max-w-6xl mx-auto space-y-10">
+      {/* === Unlock hero === */}
+      <section
+        className="relative overflow-hidden rounded-2xl border"
+        style={{
+          borderColor: "rgba(201,168,76,0.22)",
+          backgroundColor: "#0A0A0A",
+        }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 60% at 0% 50%, rgba(201,168,76,0.12) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 100% 100%, rgba(201,168,76,0.05) 0%, transparent 60%)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
+          aria-hidden
+        />
+        <div className="relative p-7 sm:p-10 max-w-3xl">
+          <div className="flex items-center gap-2 mb-3">
+            <Lock className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
+            <p className={EYEBROW_BASE}>Performance map · locked</p>
+          </div>
+          <h1 className="font-display text-4xl sm:text-[44px] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.04]">
+            Your performance map activates after the{" "}
+            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+              baseline.
+            </span>
+          </h1>
+          <p className="mt-4 text-[15px] text-[#C0C0C0] leading-[1.7]">
+            Six analytics modules unlock as your data grows: accuracy
+            trajectory, topic accuracy, section pacing, strengths &amp;
+            weaknesses, confidence calibration, and error-pattern review.
+            Baseline exam first; the rest follow.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <Link
+              href={primaryHref}
+              className="group inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
+              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            >
+              {primaryLabel}
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              href="/test-builder"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
+              style={{
+                borderColor: "rgba(255,255,255,0.10)",
+                color: "#C0C0C0",
+              }}
+            >
+              Build a custom set
+            </Link>
+          </div>
+        </div>
       </section>
-      <p className="text-sm leading-relaxed text-[#B9B7AE]">
-        {officialExamCount > 0
-          ? officialExamCount + " self-reported official exam result(s) recorded. Official scores are separate from practice accuracy."
-          : "An official practice exam can establish your baseline; it is not required for practice analytics."}
-        {" "}<Link href="/mock" className="inline-flex min-h-11 items-center text-[#C9A84C] underline underline-offset-4">View exam plan</Link>
-      </p>
+
+      {/* === First step — the one real, trackable item at this stage === */}
+      <section>
+        <div className="flex items-center gap-3 mb-5">
+          <p className={EYEBROW_BASE}>First step</p>
+          <div
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+            }}
+            aria-hidden
+          />
+        </div>
+        <div className="rounded-xl border border-white/[0.06] bg-[#0D0D0D] p-2">
+          <div className="flex items-center gap-4 px-4 py-3 rounded-lg">
+            <span
+              className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{
+                backgroundColor: baselineDone
+                  ? "rgba(62,207,142,0.15)"
+                  : "rgba(255,255,255,0.04)",
+                border: `1px solid ${
+                  baselineDone
+                    ? "rgba(62,207,142,0.35)"
+                    : "rgba(255,255,255,0.08)"
+                }`,
+              }}
+              aria-hidden
+            >
+              {baselineDone && (
+                <CheckCircle2
+                  className="w-3.5 h-3.5"
+                  style={{ color: "#3ECF8E" }}
+                />
+              )}
+            </span>
+            <div className="flex-1 min-w-0">
+              <p
+                className="text-[13px] font-semibold tracking-tight"
+                style={{
+                  color: baselineDone ? "rgba(240,240,240,0.7)" : "#F0F0F0",
+                }}
+              >
+                Official baseline exam
+              </p>
+              <p className="text-[11px] mt-0.5" style={{ color: "#888888" }}>
+                {baselineDone
+                  ? "Score entered — practice attempts unlock the modules below."
+                  : "Take an official mba.com practice exam and enter the score on the Mock page."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* === Locked module previews ===
+          Replaces the previous wall of "Not enough data yet" cards.
+          Each tile names what it will answer, not just that it's empty. */}
+      <section>
+        <div className="flex items-center gap-3 mb-5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#888888]">
+            Modules that unlock
+          </p>
+          <div
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(255,255,255,0.10), transparent)",
+            }}
+            aria-hidden
+          />
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {lockedModules.map(({ Icon, title, answers, unlock }) => (
+            <div
+              key={title}
+              className="p-4 rounded-xl border flex flex-col gap-2.5"
+              style={{
+                borderColor: "rgba(255,255,255,0.05)",
+                backgroundColor: "rgba(255,255,255,0.012)",
+              }}
+            >
+              <div className="flex items-center justify-between">
+                <span
+                  className="inline-flex items-center justify-center w-8 h-8 rounded-lg"
+                  style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+                >
+                  <Icon
+                    className="w-3.5 h-3.5"
+                    style={{ color: "rgba(255,255,255,0.4)" }}
+                  />
+                </span>
+                <Lock
+                  className="w-3 h-3"
+                  style={{ color: "rgba(255,255,255,0.3)" }}
+                  aria-hidden
+                />
+              </div>
+              <p
+                className="text-[14px] font-semibold tracking-tight"
+                style={{ color: "rgba(240,240,240,0.7)" }}
+              >
+                {title}
+              </p>
+              <p
+                className="text-[12px] leading-snug italic"
+                style={{ color: "rgba(192,192,192,0.5)" }}
+              >
+                Answers: {answers}
+              </p>
+              <p
+                className="text-[11px] mt-1"
+                style={{ color: "rgba(255,255,255,0.4)" }}
+              >
+                {unlock}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }

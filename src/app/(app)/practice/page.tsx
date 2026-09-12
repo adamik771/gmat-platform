@@ -1,5 +1,4 @@
-import { Suspense } from "react"
-import { getPracticeChapterGroups, getQuestionSets, getQuestionsByIds } from "@/lib/content"
+import { getPracticeChapterGroups, getQuestionSets } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { collectAdaptiveSignals } from "@/lib/adaptive-plan-engine"
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
@@ -10,8 +9,6 @@ import {
   practiceTestsAllowed,
 } from "@/lib/entitlements"
 import PracticeClient, { type PracticeRecommendation } from "./PracticeClient"
-import type { PracticeAttemptSummary } from "./catalogue"
-import { parsePracticeResumeSnapshot, restorePracticeResume } from "@/lib/practice-resume"
 
 export default async function PracticePage() {
   // Per-chapter practice tests — derived from the question banks by subtopic
@@ -26,13 +23,16 @@ export default async function PracticePage() {
   const knownSlugs = new Set(getQuestionSets().map((s) => s.slug))
   let recommendations: PracticeRecommendation[] = []
   let targetScore: number | null = null
-  let activeSlug: string | null = null
   // How many tests per chapter are unlocked. null = no locking (paywall off):
   // the list renders every test as before. A number means lock tests beyond
   // that index (free accounts when the paywall is on).
   let lockTestsBeyond: number | null = null
-  // Keep the saved session ID: results must never mount a fresh runner.
-  const attemptsBySlug: Record<string, PracticeAttemptSummary> = {}
+  // test.id (`ch-<chapterSlug>-t<n>`) -> latest attempt summary, so the test
+  // row shows "Review" + last score instead of "Start" (beta feedback).
+  const attemptsBySlug: Record<
+    string,
+    { lastCorrect: number; lastTotal: number; attempts: number }
+  > = {}
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -53,21 +53,13 @@ export default async function PracticePage() {
       const statePromise = getUserState(supabase, user)
       const testSessionsPromise = supabase
         .from("practice_sessions")
-        .select("id, slug, correct_count, total_questions, created_at")
+        .select("slug, correct_count, total_questions, created_at")
         .eq("user_id", user.id)
         .like("slug", "ch-%")
         .order("created_at", { ascending: false })
         .limit(2000)
 
       const state = await statePromise
-      const snapshot = parsePracticeResumeSnapshot(state.active_practice)
-      const activeTest = snapshot && chapterGroups.flatMap((group) => group.tests).find((test) => test.id === snapshot.slug)
-      // Submitted answers are not a finished session: the runner still
-      // requires Finish before saving results and clearing the snapshot.
-      if (snapshot && activeTest) {
-        const restored = restorePracticeResume(snapshot, getQuestionsByIds(activeTest.questionIds), { userId: user.id, slug: snapshot.slug })
-        if (restored) activeSlug = snapshot.slug
-      }
       const flaggedQuestionIds = gatherFlaggedQuestionIds(state)
       const signalsPromise = collectAdaptiveSignals(
         supabase,
@@ -103,7 +95,6 @@ export default async function PracticePage() {
           attemptsBySlug[slug].attempts += 1
         } else {
           attemptsBySlug[slug] = {
-            sessionId: s.id as string,
             lastCorrect: (s.correct_count as number | null) ?? 0,
             lastTotal: (s.total_questions as number | null) ?? 0,
             attempts: 1,
@@ -116,15 +107,12 @@ export default async function PracticePage() {
   }
 
   return (
-    <Suspense fallback={<p className="text-sm text-[#B9B7AE]">Loading practice filters...</p>}>
-      <PracticeClient
-        chapterGroups={chapterGroups}
-        recommendations={recommendations}
-        targetScore={targetScore}
-        lockTestsBeyond={lockTestsBeyond}
-        attemptsBySlug={attemptsBySlug}
-        activeSlug={activeSlug}
-      />
-    </Suspense>
+    <PracticeClient
+      chapterGroups={chapterGroups}
+      recommendations={recommendations}
+      targetScore={targetScore}
+      lockTestsBeyond={lockTestsBeyond}
+      attemptsBySlug={attemptsBySlug}
+    />
   )
 }

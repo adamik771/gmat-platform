@@ -10,7 +10,6 @@ import {
   YAxis,
 } from "recharts"
 import type { ScoreTrendPoint } from "./AnalyticsClient"
-import { withMissingWeeks } from "./presentation"
 
 // Extracted so it can be lazy-loaded — recharts (~97KB gz) is the single
 // heaviest dependency on /analytics (the app's largest route). Keeping it in
@@ -23,18 +22,17 @@ export default function ScoreTrajectoryChart({
 }) {
   return (
     <ResponsiveContainer width="100%" height={240}>
-      <LineChart data={withMissingWeeks(data)} margin={{ top: 5, right: 5, bottom: 0, left: -10 }}>
+      <LineChart data={data} margin={{ top: 5, right: 5, bottom: 0, left: -10 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
         <XAxis
           dataKey="weekLabel"
-          tick={{ fill: "#B9B7AE", fontSize: 12 }}
+          tick={{ fill: "#555555", fontSize: 11 }}
           axisLine={false}
           tickLine={false}
         />
         <YAxis
           domain={[0, 100]}
-          tick={{ fill: "#B9B7AE", fontSize: 12 }}
-          tickFormatter={(value) => `${value}%`}
+          tick={{ fill: "#555555", fontSize: 11 }}
           axisLine={false}
           tickLine={false}
         />
@@ -42,7 +40,7 @@ export default function ScoreTrajectoryChart({
           contentStyle={{
             backgroundColor: "#0A0A0A",
             border: "1px solid rgba(201,168,76,0.2)",
-            borderRadius: 8,
+            borderRadius: 12,
             fontSize: 12,
           }}
           labelStyle={{ color: "#C0C0C0" }}
@@ -59,37 +57,37 @@ export default function ScoreTrajectoryChart({
           strokeWidth={2.5}
           dot={{ fill: "#C9A84C", r: 3 }}
           name="Overall"
-          connectNulls={false}
+          connectNulls
         />
         <Line
           type="monotone"
           dataKey="quant"
-          stroke="#B9B7AE"
+          stroke="#888888"
           strokeWidth={1.5}
-          dot={{ r: 2 }}
+          dot={false}
           name="Quant"
           strokeDasharray="4 4"
-          connectNulls={false}
+          connectNulls
         />
         <Line
           type="monotone"
           dataKey="di"
           stroke="#3ECF8E"
           strokeWidth={1.5}
-          dot={{ r: 2 }}
+          dot={false}
           name="Data Insights"
           strokeDasharray="4 4"
-          connectNulls={false}
+          connectNulls
         />
         <Line
           type="monotone"
           dataKey="verbal"
-          stroke="#6FB5F6"
+          stroke="#555555"
           strokeWidth={1.5}
-          dot={{ r: 2 }}
+          dot={false}
           name="Verbal"
           strokeDasharray="4 4"
-          connectNulls={false}
+          connectNulls
         />
       </LineChart>
     </ResponsiveContainer>

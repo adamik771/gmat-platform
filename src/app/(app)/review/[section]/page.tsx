@@ -83,8 +83,9 @@ export default async function ReviewSectionPage({
         title={`Nothing due in ${section} right now`}
         body={
           <>
-            Correct answers return for retention after their spacing interval.
-            Incorrect answers from{" "}
+            Reviewed questions return when their spacing gap elapses — that
+            pause is the spacing working, not your attempts being ignored. New
+            misses in{" "}
             <Link
               href="/practice"
               className="underline underline-offset-2"
@@ -92,7 +93,7 @@ export default async function ReviewSectionPage({
             >
               Practice
             </Link>{" "}
-            can return for correction the same day.
+            arrive here the same day.
           </>
         }
       />
