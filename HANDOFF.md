@@ -1,5 +1,15 @@
 # Handoff — GMAT Platform
 
+## 2026-09-12: save feedback clarity (branch release; not merged or deployed)
+
+2026-09-13 follow-up: Adam authorized commit and push to `fix/save-feedback-clarity-20260912`. This is a branch-only release; merging and production verification remain separate steps.
+
+After the prep rollback merged as PR #590 (`62ba8b6`), Adam approved narrow saving/feedback improvements. Branch `fix/save-feedback-clarity-20260912` preserves all layouts, authored content, scoring, auth and API contracts. Bookmarks now change their confirmed saved state only after server acknowledgment, announce pending saves/removals, and expose retry errors (including compact buttons). Error-log notes announce saving and errors accessibly. Chapter sync failures offer a manual retry of the latest snapshot; failed initial reads still suppress writes. Failure copy no longer promises localStorage persistence, which the browser can reject. Existing explanation feedback is reused inside revealed practice/chapter solutions, with notes retained after failure, duplicate-submit protection, and retry.
+
+Verification: content validation and TypeScript clean; 767 tests across 96 files pass. A temporary local-only fixture exercised delayed/failed/successful bookmark adds and removals, feedback failure with note retention and retry, and chapter sync retry. Mobile 375px feedback form checked visually. Fixture removed; no student data or live API requests used. Production deployment and authenticated production testing are not part of this change. Do not resume any broad prep redesign.
+
+Final build passes (174 static pages, no fixture route); lint has zero errors and only the existing `scripts/send-consult-batch.ts:115` warning. Live Supabase schema validation was skipped because this checkout has no database configuration. No migration or environment change is needed.
+
 ## 2026-09-12: restore the original prep workspace (branch release, awaiting merge)
 
 Follow-up: Adam explicitly requested committing and pushing this rollback. It is prepared for review on `fix/restore-study-workspace-20260912`; merging and production deployment are separate steps. The implementation notes below describe the state before that follow-up approval.

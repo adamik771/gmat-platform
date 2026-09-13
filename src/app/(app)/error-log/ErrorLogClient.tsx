@@ -1262,6 +1262,7 @@ function TagEditor({
           </span>
         </p>
         <textarea
+          aria-label="Error log note"
           value={notesDraft}
           onChange={(e) => {
             const nextDraft = e.target.value
@@ -1283,8 +1284,8 @@ function TagEditor({
           className="w-full bg-[#0A0A0A] border border-white/[0.08] rounded-lg p-3 text-[16px] text-[#D8D8D8] placeholder:text-[#888888] focus:outline-none focus:border-[#C9A84C]/40 resize-none"
         />
         <div className="mt-2 flex min-h-8 items-center justify-between gap-3">
-          <p className="text-[10px] text-[#888888]">
-            {notesSaved
+          <p role="status" className="text-[10px] text-[#888888]">
+            {savingNotes ? "Saving note..." : notesSaved
               ? "Saved to your error log"
               : notesDirty
                 ? "Unsaved changes"
@@ -1331,7 +1332,7 @@ function TagEditor({
           {entry.reviewed ? "Reviewed" : "Mark reviewed"}
         </button>
         {error && (
-          <p className="text-xs" style={{ color: "#FF4444" }}>
+          <p role="alert" className="text-xs" style={{ color: "#FF4444" }}>
             {error}
           </p>
         )}

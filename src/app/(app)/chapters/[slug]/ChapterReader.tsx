@@ -27,6 +27,7 @@ import { mergeProgress, progressContentSig } from "@/lib/chapter-progress-merge"
 import { selectChapterCoachingState } from "@/lib/chapter-coaching"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
+import QuestionFeedbackBar from "@/components/beta/QuestionFeedbackBar"
 import DataInsightsCalculator from "@/components/shared/DataInsightsCalculator"
 import QuestionChart from "@/components/shared/QuestionChart"
 import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
@@ -823,6 +824,8 @@ export default function ChapterReader({
   // (it feeds /chapters, the dashboard, and other devices). Retries on
   // the next update and when the browser comes back online.
   const [syncFailed, setSyncFailed] = useState(false)
+  const [retryingSync, setRetryingSync] = useState(false)
+  const retryInFlight = useRef(false)
 
   // When the page's own progress read failed, this mount must not push:
   // it hydrated from a possibly-empty snapshot, and its first push would
@@ -851,7 +854,6 @@ export default function ChapterReader({
     const merged = mergeProgress(local, server)
     // Reads localStorage (browser-only) — required to run in the effect
     // rather than during render to avoid SSR hydration mismatch.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setProgress(merged)
     setHydrated(true)
     // Heal drift: persist the union locally, and push to the server only when
@@ -1165,13 +1167,11 @@ export default function ChapterReader({
         </div>
       )}
 
-      {/* Sync-failure notice — progress is safe on this device
-          (localStorage write-through) but the server copy is behind, so
-          other devices and the chapter list won't reflect it yet. */}
+      {/* Do not promise local persistence: browser storage may be unavailable. */}
       {syncFailed && (
         <div
           role="status"
-          className="flex items-center gap-2 px-4 py-2.5 rounded-lg border text-[12px]"
+          className="flex flex-wrap items-center gap-2 px-4 py-2.5 rounded-lg border text-[12px]"
           style={{
             borderColor: "rgba(201,168,76,0.3)",
             backgroundColor: "rgba(201,168,76,0.06)",
@@ -1181,9 +1181,30 @@ export default function ChapterReader({
           <span aria-hidden style={{ color: "var(--read-gold)" }}>
             ●
           </span>
-          {pushSuppressed
-            ? "Couldn't load your saved progress for this chapter, so changes are staying on this device only — reload the page before continuing so it can sync."
-            : "Progress is saved on this device but hasn't synced yet — it will retry automatically."}
+          <span className="min-w-0 flex-1">{pushSuppressed
+            ? "Couldn't load your saved progress. Sync is paused to protect your existing history. Reload before continuing."
+            : "Progress hasn't synced to your account. Keep this page open and retry."}</span>
+          {!pushSuppressed && (
+            <button
+              type="button"
+              disabled={retryingSync}
+              onClick={async () => {
+                if (retryInFlight.current) return
+                retryInFlight.current = true
+                setRetryingSync(true)
+                if (pushTimer.current) {
+                  clearTimeout(pushTimer.current)
+                  pushTimer.current = null
+                }
+                try { await pushNow(progressRef.current) }
+                finally { retryInFlight.current = false; setRetryingSync(false) }
+              }}
+              className="shrink-0 rounded border px-3 py-1.5 font-semibold disabled:opacity-50"
+              style={{ borderColor: "var(--read-border)", color: "var(--read-text-body)" }}
+            >
+              {retryingSync ? "Retrying..." : "Retry sync"}
+            </button>
+          )}
         </div>
       )}
 
@@ -2643,6 +2664,7 @@ function PostSubmitReveal({
           <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={mdComponents}>
             {question.explanation}
           </ReactMarkdown>
+          <QuestionFeedbackBar key={question.id} questionId={question.id} variant="explanation" />
           {state.selfExplanation.trim() && (
             <div
               className="mt-4 pt-4 border-t"
@@ -3228,6 +3250,7 @@ function ProblemSetRunner({
                 >
                   {current.explanation}
                 </ReactMarkdown>
+                <QuestionFeedbackBar key={current.id} questionId={current.id} variant="explanation" />
               </div>
             )}
 

@@ -33,6 +33,7 @@ import SortableMarkdownTable from "@/components/shared/SortableMarkdownTable"
 import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { ChartSpec } from "@/lib/chart-spec"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
+import QuestionFeedbackBar from "@/components/beta/QuestionFeedbackBar"
 import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
 import {
@@ -3061,6 +3062,7 @@ export default function SessionClient({
                     )}
                 </div>
                 <PromptBlock text={current.explanation} />
+                <QuestionFeedbackBar key={current.id} questionId={current.id} variant="explanation" />
                 {(() => {
                   const wrongLetter =
                     !isQuestionCorrect(current, currentState) &&
