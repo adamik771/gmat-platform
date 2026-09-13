@@ -62,6 +62,10 @@ const nextConfig: NextConfig = {
       { source: "/diagnostic/:path*", destination: "/mock", permanent: true },
       { source: "/free-diagnostic", destination: "/signup", permanent: true },
       { source: "/free-diagnostic/:path*", destination: "/signup", permanent: true },
+      // "Private beta" positioning retired (2026-07): the public offer is the
+      // 7-day full-access trial, so the old founding/beta landing URL forwards
+      // to the clean trial page. Old ads/snippets may still link it.
+      { source: "/gmat-private-beta", destination: "/gmat-free-trial", permanent: true },
       { source: "/chapters/critical-reasoning", destination: "/chapters/verbal-02-cr-argument-structure", permanent: true },
       { source: "/chapters/reading-comprehension", destination: "/chapters/verbal-13-rc-reading-process", permanent: true },
       { source: "/chapters/verbal-1-foundations", destination: "/chapters/verbal-01-foundations", permanent: true },
@@ -96,20 +100,19 @@ const nextConfig: NextConfig = {
     ]
   },
   // Navigation / runtime performance (2026-06). All keys verified to exist in
-  // the installed next@16.2.3 (see node_modules/next docs/schema):
-  //  - staleTimes: keep recently-fetched dynamic page segments in the client
-  //    Router Cache so quick back/forward + re-navigation reuse them instead of
-  //    re-rendering on the server (the dynamic default is 0s). 30s is short
-  //    enough to keep study-progress data fresh.
-  //  - viewTransition: opt route navigations into React 19.2 / the View
-  //    Transitions API for a smooth cross-fade between pages (reduced-motion
-  //    users are exempted via a globals.css guard).
+  // the installed next@16.3.1 (see node_modules/next docs/schema):
+  //  - staleTimes: static-segment reuse only. Dynamic segments stay on the
+  //    framework default (0s): a 30s dynamic window served pre-write payloads
+  //    on quick back-nav, so saved-for-review / mark-as-reviewed toggles that
+  //    HAD persisted in the DB rendered as unchecked, and the client prop
+  //    resync then clobbered the correct optimistic state (beta bug, 2026-07).
+  //  - Next 16.3 no longer exposes the old experimental.viewTransition flag.
+  //    Keep the reduced-motion CSS guard for native / React view transitions.
   //  - optimizePackageImports: tree-shake heavy barrel-export deps so only used
   //    modules ship. (lucide-react/recharts are already on Next's default list;
   //    the markdown + framer entries are the additive wins.)
   experimental: {
-    staleTimes: { dynamic: 30, static: 180 },
-    viewTransition: true,
+    staleTimes: { static: 180 },
     optimizePackageImports: [
       "lucide-react",
       "recharts",

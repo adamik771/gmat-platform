@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   const blocked = await blockIfNoAccess(supabase, user)
   if (blocked) return blocked
 
-  const body = (await request.json()) as {
+  type TagBody = {
     attemptId?: string
     tag?: ErrorTag | null
     rootCause?: string | null
@@ -43,9 +43,29 @@ export async function POST(request: Request) {
     remediationAssignedAt?: string | null
     remediationCompletedAt?: string | null
   }
+  let body: TagBody
+  try {
+    body = (await request.json()) as TagBody
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 })
+  }
 
   if (!body.attemptId || typeof body.attemptId !== "string") {
     return Response.json({ error: "attemptId required" }, { status: 400 })
+  }
+
+  // Notes: free text, but bounded — every sibling field is validated and an
+  // unbounded string could stash multi-megabyte payloads rendered on
+  // /error-log and dumped into the GDPR export. Same cap as beta feedback.
+  if (
+    body.notes !== undefined &&
+    body.notes !== null &&
+    (typeof body.notes !== "string" || body.notes.length > 2000)
+  ) {
+    return Response.json(
+      { error: "notes must be a string of at most 2000 characters" },
+      { status: 400 },
+    )
   }
 
   if (
@@ -207,6 +227,29 @@ export async function POST(request: Request) {
     return Response.json({ error: error.message }, { status: 500 })
   }
 
+  // A successful upsert response is not enough for free-text notes: this is
+  // user-authored work and silently dropping it is worse than surfacing an
+  // error. Read the value back through the same user's RLS scope and only
+  // acknowledge the save once the stored value matches the request.
+  if (body.notes !== undefined) {
+    const { data: persisted, error: verifyError } = await supabase
+      .from("error_tags")
+      .select("notes")
+      .eq("attempt_id", body.attemptId)
+      .eq("user_id", user.id)
+      .maybeSingle()
+
+    const persistedNotes = (persisted as { notes: string | null } | null)?.notes
+    if (verifyError || !persisted || persistedNotes !== body.notes) {
+      return Response.json(
+        { error: "Your note could not be confirmed as saved. Please try again." },
+        { status: 500 },
+      )
+    }
+
+    return Response.json({ ok: true, notes: persistedNotes })
+  }
+
   return Response.json({ ok: true })
 }
 
@@ -224,7 +267,12 @@ export async function DELETE(request: Request) {
   const blocked = await blockIfNoAccess(supabase, user)
   if (blocked) return blocked
 
-  const { attemptId } = (await request.json()) as { attemptId?: string }
+  let attemptId: string | undefined
+  try {
+    attemptId = ((await request.json()) as { attemptId?: string }).attemptId
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 })
+  }
   if (!attemptId || typeof attemptId !== "string") {
     return Response.json({ error: "attemptId required" }, { status: 400 })
   }

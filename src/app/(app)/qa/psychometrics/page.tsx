@@ -4,11 +4,14 @@ import { ArrowLeft, AlertTriangle, CheckCircle2 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { isAdmin } from "@/lib/admin-auth"
 import {
+  assessDifficultyFit,
   computeItemStats,
   summariseBankHealth,
+  type DifficultyFit,
   type ItemStat,
   type ItemStatFlag,
 } from "@/lib/psychometrics"
+import { getAllQuestions } from "@/lib/content"
 import type { Section } from "@/types"
 
 export const metadata = {
@@ -51,6 +54,22 @@ export default async function PsychometricsPage() {
     error = "Couldn't load attempts — Supabase may be unreachable."
   }
 
+  const difficultyById = new Map(
+    getAllQuestions().map((question) => [question.id, question.difficulty])
+  )
+  const calibrated = items.map((item) => {
+    const difficulty = difficultyById.get(item.questionId) ?? null
+    return {
+      ...item,
+      difficulty,
+      difficultyFit: assessDifficultyFit(
+        difficulty,
+        item.pValue,
+        item.attempts
+      ),
+    }
+  })
+
   const flagOrder: Record<ItemStatFlag, number> = {
     broken: 0,
     hard: 1,
@@ -58,14 +77,26 @@ export default async function PsychometricsPage() {
     ok: 3,
     insufficient: 4,
   }
-  const sorted = [...items].sort((a, b) => {
+  const fitOrder: Record<DifficultyFit, number> = {
+    "too-easy": 0,
+    "too-hard": 1,
+    "on-target": 2,
+    insufficient: 3,
+  }
+  const sorted = [...calibrated].sort((a, b) => {
     const fd = flagOrder[a.flag] - flagOrder[b.flag]
     if (fd !== 0) return fd
+    const fitDelta = fitOrder[a.difficultyFit] - fitOrder[b.difficultyFit]
+    if (fitDelta !== 0) return fitDelta
     return b.attempts - a.attempts
   })
 
   const health = summariseBankHealth(items)
   const visible = sorted.slice(0, 200)
+  const advancedTooEasy = calibrated.filter(
+    (item) =>
+      item.difficulty === "Advanced" && item.difficultyFit === "too-easy"
+  ).length
 
   const healthColor =
     health.healthPct >= 70 ? "#3ECF8E" : health.healthPct >= 50 ? "#C9A84C" : "#FF4444"
@@ -127,9 +158,10 @@ export default async function PsychometricsPage() {
             </span>
           </h1>
           <p className="text-[15px] leading-[1.75] text-[#C0C0C0] mt-5 max-w-2xl">
-            Classical item analysis across every attempt in the bank. Surfaces the
-            items that need author review — broken keys, out-of-band difficulty, or
-            too few attempts to read with confidence.
+            Classical item analysis across every attempt in the bank. Authored
+            difficulty is judged against a tier-specific correct-rate band, so an
+            Advanced item that behaves like a Medium can no longer hide inside a
+            generic bank-wide threshold.
           </p>
         </section>
 
@@ -171,8 +203,8 @@ export default async function PsychometricsPage() {
             />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-            <HealthCell label="Total items" value={String(health.totalItems)} color="#F0F0F0" />
-            <HealthCell label="OK" value={String(health.okCount)} color="#3ECF8E" />
+            <HealthCell label="Enough data" value={String(health.withEnoughData)} color="#F0F0F0" />
+            <HealthCell label="Advanced too easy" value={String(advancedTooEasy)} color="#C9A84C" />
             <HealthCell label="Broken" value={String(health.brokenCount)} color="#FF4444" />
             <HealthCell
               label="Out-of-band"
@@ -196,6 +228,7 @@ export default async function PsychometricsPage() {
               <LegendRow color="#C9A84C" label="Easy" detail="p-value over 0.85 (85%+ correct)" />
               <LegendRow color="#3ECF8E" label="OK" detail="inside the measurement window" />
               <LegendRow color="#888888" label="Low data" detail="under 20 attempts, cannot read" />
+              <LegendRow color="#C9A84C" label="Tier mismatch" detail="correct rate falls outside the authored tier's expected band" />
             </div>
           </div>
         </section>
@@ -224,7 +257,7 @@ export default async function PsychometricsPage() {
               }}
               aria-hidden
             />
-            <span className="text-[11px] tabular-nums text-[#555555]">
+            <span className="text-[11px] tabular-nums text-[#888888]">
               {visible.length} of {items.length}
             </span>
           </div>
@@ -243,6 +276,8 @@ export default async function PsychometricsPage() {
                     <Th>Flag</Th>
                     <Th>Question</Th>
                     <Th>Section</Th>
+                    <Th>Authored</Th>
+                    <Th>Tier fit</Th>
                     <Th>Topic</Th>
                     <Th align="right">Attempts</Th>
                     <Th align="right">p-value</Th>
@@ -273,6 +308,12 @@ export default async function PsychometricsPage() {
                           {it.section}
                         </span>
                       </td>
+                      <td className="py-3 px-4 sm:px-5 text-[#C0C0C0]">
+                        {it.difficulty ?? "—"}
+                      </td>
+                      <td className="py-3 px-4 sm:px-5">
+                        <DifficultyFitPill fit={it.difficultyFit} />
+                      </td>
                       <td className="py-3 px-4 sm:px-5 text-[#888888] truncate max-w-[220px]">
                         {it.topic}
                       </td>
@@ -297,7 +338,7 @@ export default async function PsychometricsPage() {
               </table>
             </div>
             {items.length === 0 && !error && (
-              <p className="text-[13px] text-[#555555] italic text-center py-10">
+              <p className="text-[13px] text-[#888888] italic text-center py-10">
                 No attempts in the database yet.
               </p>
             )}
@@ -385,6 +426,47 @@ function FlagPill({ flag }: { flag: ItemStatFlag }) {
     >
       {Icon && <Icon className="w-3 h-3" />}
       {label}
+    </span>
+  )
+}
+
+function DifficultyFitPill({ fit }: { fit: DifficultyFit }) {
+  const display: Record<
+    DifficultyFit,
+    { label: string; color: string; background: string }
+  > = {
+    "on-target": {
+      label: "On target",
+      color: "#3ECF8E",
+      background: "rgba(62,207,142,0.08)",
+    },
+    "too-easy": {
+      label: "Too easy",
+      color: "#C9A84C",
+      background: "rgba(201,168,76,0.08)",
+    },
+    "too-hard": {
+      label: "Too hard",
+      color: "#FF9933",
+      background: "rgba(255,153,51,0.08)",
+    },
+    insufficient: {
+      label: "Low data",
+      color: "#888888",
+      background: "rgba(136,136,136,0.08)",
+    },
+  }
+  const item = display[fit]
+  return (
+    <span
+      className="inline-flex rounded-full border px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em]"
+      style={{
+        color: item.color,
+        backgroundColor: item.background,
+        borderColor: `${item.color}40`,
+      }}
+    >
+      {item.label}
     </span>
   )
 }

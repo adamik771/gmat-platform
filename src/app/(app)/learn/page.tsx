@@ -339,7 +339,7 @@ export default async function CoursePage() {
               </p>
               {[
                 { label: "Baseline exam", done: baselineEntered, href: "/mock" },
-                { label: "Target score", done: targetScore !== null, href: "/dashboard#score-goal" },
+                { label: "Target score", done: targetScore !== null, href: "/onboarding" },
                 { label: "Exam date", done: examDate !== null, href: "/settings" },
               ].map((row) => (
                 <Link
@@ -859,7 +859,7 @@ function SectionGroup({
         >
           {section}
         </p>
-        <span className="text-[12px] text-[#555555] tracking-tight">
+        <span className="text-[12px] text-[#888888] tracking-tight">
           {count} chapter{count === 1 ? "" : "s"}
         </span>
       </div>

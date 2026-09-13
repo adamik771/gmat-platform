@@ -3,7 +3,17 @@ import Anthropic from "@anthropic-ai/sdk"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getQuestionsByIds } from "@/lib/content"
 import { canAccess, effectiveTierForUser } from "@/lib/entitlements"
-import { checkTutorRateLimit, recordTutorUse } from "@/lib/tutor-rate-limit"
+import {
+  recordTutorUse,
+  TUTOR_DAILY_LIMIT,
+  TUTOR_HOURLY_LIMIT,
+} from "@/lib/tutor-rate-limit"
+import { getSupabaseService } from "@/lib/supabase/service"
+import {
+  consumeSecurityRateLimit,
+  type SecurityRateDecision,
+} from "@/lib/security-rate-limit"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 /**
  * AI tutor endpoint. Given a question ID and a conversation history,
@@ -109,10 +119,7 @@ export async function POST(request: Request) {
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     return NextResponse.json(
-      {
-        error:
-          "Tutor not configured — set ANTHROPIC_API_KEY in the environment.",
-      },
+      { error: "Tutor is temporarily unavailable." },
       { status: 503 }
     )
   }
@@ -191,11 +198,38 @@ export async function POST(request: Request) {
       )
     }
 
-    // Per-user rate limit (tutor_usage table; fail-open until the migration
-    // is applied). Counted BEFORE the model call so abuse is capped even when
-    // upstream requests fail mid-flight.
-    const decision = await checkTutorRateLimit(supabase, user.id)
-    if (!decision.allowed) {
+    // Atomic, cross-instance limits are consumed BEFORE the model call so
+    // parallel requests cannot race the check and burn unbounded API spend.
+    let decisions: SecurityRateDecision[]
+    try {
+      const service = getSupabaseService()
+      decisions = await Promise.all([
+        consumeSecurityRateLimit(service, {
+          action: "ai_tutor_hour",
+          subject: user.id,
+          limit: TUTOR_HOURLY_LIMIT,
+          windowSeconds: 60 * 60,
+        }),
+        consumeSecurityRateLimit(service, {
+          action: "ai_tutor_day",
+          subject: user.id,
+          limit: TUTOR_DAILY_LIMIT,
+          windowSeconds: 24 * 60 * 60,
+        }),
+      ])
+    } catch (err) {
+      reportDataFailure(err, {
+        surface: "tutor",
+        operation: "rate-limit",
+        rpc: "consume_security_rate_limit",
+      })
+      return NextResponse.json(
+        { error: "Tutor usage checks are temporarily unavailable." },
+        { status: 503 },
+      )
+    }
+    const blockedDecision = decisions.find((decision) => !decision.allowed)
+    if (blockedDecision) {
       return NextResponse.json(
         {
           error:
@@ -203,7 +237,9 @@ export async function POST(request: Request) {
         },
         {
           status: 429,
-          headers: { "Retry-After": String(decision.retryAfterSeconds ?? 60) },
+          headers: {
+            "Retry-After": String(blockedDecision.retryAfterSeconds || 60),
+          },
         }
       )
     }
@@ -268,9 +304,12 @@ export async function POST(request: Request) {
     })
   } catch (error) {
     if (error instanceof Anthropic.APIError) {
-      // Surface a clean message; don't leak SDK internals.
+      console.error("[tutor] model request failed", {
+        status: error.status ?? null,
+        name: error.name,
+      })
       return NextResponse.json(
-        { error: `Tutor unavailable: ${error.message}` },
+        { error: "Tutor is temporarily unavailable." },
         { status: error.status ?? 502 }
       )
     }

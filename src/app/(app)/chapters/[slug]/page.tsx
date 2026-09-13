@@ -11,7 +11,7 @@ import {
   type ParsedQuestion,
 } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
-import { getUserState } from "@/lib/user-state"
+import { getUserStateForWrite } from "@/lib/user-state"
 import ChapterReader, {
   type ReaderQuestion,
   type ReaderSection,
@@ -30,6 +30,7 @@ function toReaderQuestion(q: ParsedQuestion): ReaderQuestion {
     topic: q.topic,
     subtopic: q.subtopic,
     difficulty: q.difficulty,
+    type: q.type,
     prompt: q.prompt,
     options: q.options,
     correctAnswer: q.correctAnswer,
@@ -83,8 +84,8 @@ export default async function ChapterDetailPage({
       .map(toReaderQuestion)
   }
 
-  const sections: ReaderSection[] = chapter.sections.map(
-    (s: ChapterSection) => ({
+  const sections: ReaderSection[] = chapter.sections
+    .map((s: ChapterSection) => ({
       id: s.id,
       type: s.type,
       title: s.title,
@@ -92,8 +93,11 @@ export default async function ChapterDetailPage({
       body: s.body,
       pretestQuestions: resolveIds(s.pretestQuestionIds),
       checkQuestions: resolveIds(s.checkQuestionIds),
-    })
-  )
+    }))
+    // A pretest with zero resolvable questions would render its "try these
+    // first" framing followed by nothing. Drop it here so the reader, TOC,
+    // and progress counts all agree it doesn't exist.
+    .filter((s) => s.type !== "pretest" || s.pretestQuestions.length > 0)
 
   const problemSets: ReaderProblemSet[] = chapter.problemSets.map(
     (ps: ChapterProblemSet) => ({
@@ -112,6 +116,7 @@ export default async function ChapterDetailPage({
   // where to re-enter.
   let targetScore: number | null = null
   let initialProgress: unknown = null
+  let initialProgressErrored = false
   // Signed-in user id, so the reader scopes its localStorage cache per account.
   // Without this, progress bleeds across accounts on a shared browser (a new
   // account showed the previous account's completed chapters).
@@ -134,7 +139,12 @@ export default async function ChapterDetailPage({
 
     if (user) {
       userId = user.id
-      const state = await getUserState(supabase, user)
+      // Error-aware read: a FAILED state read must be distinguishable
+      // from an empty one — the reader would otherwise hydrate empty on
+      // a cold device and its first push would wholesale-replace this
+      // chapter's real server progress.
+      const { state, errored } = await getUserStateForWrite(supabase, user)
+      initialProgressErrored = errored
       const chapterProgress = state.chapter_progress as
         | Record<string, unknown>
         | undefined
@@ -204,7 +214,9 @@ export default async function ChapterDetailPage({
       }
     }
   } catch {
-    // Supabase unavailable — reader falls back to the lenient tier + empty progress.
+    // Supabase unavailable — reader falls back to the lenient tier + empty
+    // progress, and must not push that emptiness back to the server.
+    initialProgressErrored = true
   }
 
   return (
@@ -227,6 +239,7 @@ export default async function ChapterDetailPage({
         problemSets={problemSets}
         targetScore={targetScore}
         initialProgress={initialProgress}
+        initialProgressErrored={initialProgressErrored}
         weakestSection={weakestSection}
         firstPracticeTestSlug={firstPracticeTestSlug}
         prevChapter={prevChapter}

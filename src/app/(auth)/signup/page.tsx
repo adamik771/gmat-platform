@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Eye, EyeOff, ArrowRight, Loader2, AlertCircle, ShieldCheck, KeyRound, MailCheck } from "lucide-react"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
-import { trackEvent } from "@/lib/analytics"
+import { getAttribution, trackEvent } from "@/lib/analytics"
 import { buildMarketingConsent } from "@/lib/outreach/consent-flag"
 
 /**
@@ -44,16 +44,13 @@ function SignupFallback() {
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          Free Access
+          7-day full-access trial
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
-          Begin the{" "}
-          <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-            climb.
-          </span>
+          Create your account
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Full access. No credit card needed.
+          Free 7-day full-access trial. No credit card needed.
         </p>
       </div>
     </div>
@@ -117,6 +114,7 @@ function SignupForm() {
             password,
             accessCode,
             marketingConsent: marketingOptIn,
+            attribution: getAttribution(),
           }),
         })
         data = await res.json().catch(() => ({}))
@@ -162,6 +160,10 @@ function SignupForm() {
           // Start the free trial clock at signup. The paywall (dormant until
           // PAYWALL_ENABLED) reads this to grant full access for TRIAL_DAYS.
           trial_started_at: new Date().toISOString(),
+          // First-touch campaign attribution (utm_* / gclid) captured on the
+          // landing page — persisted so every signup is joinable to the ad
+          // click or campaign that started it.
+          attribution: getAttribution(),
         },
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
@@ -290,16 +292,13 @@ function SignupForm() {
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
           style={{ color: "#C9A84C" }}
         >
-          Free Access
+          7-day full-access trial
         </p>
         <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
-          Begin the{" "}
-          <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-            climb.
-          </span>
+          Create your account
         </h1>
         <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-          Full access. No credit card needed.
+          Free 7-day full-access trial. No credit card needed.
         </p>
       </div>
 
@@ -355,6 +354,8 @@ function SignupForm() {
             </label>
             <input
               id="signup-name"
+              name="name"
+              autoComplete="name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -370,6 +371,8 @@ function SignupForm() {
             </label>
             <input
               id="signup-email"
+              name="email"
+              autoComplete="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -386,6 +389,8 @@ function SignupForm() {
             <div className="relative">
               <input
                 id="signup-password"
+                name="password"
+                autoComplete="new-password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -397,7 +402,7 @@ function SignupForm() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#555555] hover:text-[#C0C0C0] transition-colors"
+                className="absolute right-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center text-[#B9B7AE] hover:text-[#F4F1E8] transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
@@ -441,7 +446,7 @@ function SignupForm() {
               </>
             ) : (
               <>
-                Start Free
+                Start 7-day trial
                 <ArrowRight className="w-4 h-4" />
               </>
             )}

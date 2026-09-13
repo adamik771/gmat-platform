@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -381,12 +382,12 @@ export default function HowWeComparePage() {
             </span>
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
-            50+ chapters across Quant, Verbal, and Data Insights, the adaptive
+            {CHAPTER_COUNT_CLAIM} chapters across Quant, Verbal, and Data Insights, the adaptive
             study plan, the error log and spaced-review queue, and mock exams
             with debrief tools &mdash; built for the GMAT Focus Edition.{" "}
             {PAYWALL_ENABLED
-              ? "Free to start, with a 14-day money-back guarantee on paid plans."
-              : "Free while in beta, no card required."}
+              ? "Free trial to start, with a 14-day money-back guarantee on the self-study plans."
+              : "Free 7-day full-access trial, no card required."}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link

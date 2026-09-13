@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Email Automation Readiness & Validation
 
 Readiness + validation report for the automated, opt-in-only email follow-up system for Zakarian GMAT. The system is already built and live in the repo. Every item below was confirmed against the actual source files, table/column names, and config. Statuses are READY (working, no action needed) or NEEDS OWNER ACTION (a manual step is required, all of which are Vercel-dashboard or Supabase-dashboard operations the owner controls).

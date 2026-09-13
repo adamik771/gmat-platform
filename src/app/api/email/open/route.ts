@@ -1,5 +1,6 @@
 import { getSupabaseService } from "@/lib/supabase/service"
 import { logEmailEvent } from "@/lib/outreach/queue"
+import { verifyEmailTrackingId } from "@/lib/email-tracking-token"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -15,8 +16,10 @@ const PIXEL = Buffer.from(
  * Records an 'open' event (best-effort) and always returns the pixel.
  */
 export async function GET(request: Request) {
-  const id = new URL(request.url).searchParams.get("id")
-  if (id) {
+  const params = new URL(request.url).searchParams
+  const id = params.get("id")
+  const token = params.get("t")
+  if (verifyEmailTrackingId(id, token)) {
     try {
       await logEmailEvent(getSupabaseService(), { queueId: id, type: "open" })
     } catch {

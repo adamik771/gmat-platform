@@ -1,12 +1,16 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
 <!-- END:nextjs-agent-rules -->
 
 # Zakarian GMAT Platform
 
-A GMAT Focus Edition prep SaaS. Next.js 16 (App Router, Turbopack), Supabase Auth + Postgres, Tailwind, TypeScript, React Markdown. Deployed on Vercel. Owner: Adam (authored all content; works solo on this repo).
+A GMAT Focus Edition prep SaaS. Next.js 16 (App Router, Turbopack), Supabase Auth + Postgres, Tailwind, TypeScript, React Markdown. Deployed on Vercel. Owner: Adam (final editorial owner; content development is AI-assisted and reviewed; works solo on this repo).
 
 ## Product shape — the framework it implements
 
@@ -90,6 +94,13 @@ Per-section 60-90 scaling used by the dashboard: `60 + (correct/total) × 30`.
 - **Do not create new docs/README files** unless explicitly asked. `HANDOFF.md` is the only doc that gets updated between sessions, and only when task state changes.
 - **Do not add emojis** to any file (code, comments, markdown, UI copy) unless explicitly asked.
 - **Do not `git commit` unless explicitly asked.** Adam reviews before committing. Within a working session he'll often say "continue" / "ship it" which is approval for the session's feature, but don't commit unprompted.
+
+**IP and content-source rules:**
+- Do not use official GMAC questions, paid competitor material, screenshots, answer explanations, or leaked exam content as prompt input or as a drafting reference.
+- Do not reproduce, closely paraphrase, translate, or reconstruct an identifiable third-party question, passage, scenario, answer-choice set, explanation, example, or distinctive framework expression. General mathematical and logical concepts may be taught, but the wording, scenario, values, distractors, and explanation must be independently created.
+- `Critical Thinking, Logic, and Argument` (Athabasca University Press) is CC BY-NC-SA 4.0. Because this is a commercial product, it is reference-only: do not adapt its expression, exercises, examples, or structure into product content. `forall x: Calgary` is CC BY 4.0; any adapted expression requires attribution and a provenance entry.
+- Every future content batch must update `CONTENT_PROVENANCE.md` with the commit or proposed commit, affected IDs/files, inputs consulted, source-isolation confirmation, and the human review actually completed. Never claim review or authorship that did not occur.
+- Adam's editorial sign-off must include reading the final content, solving or checking it independently, and recording substantive changes or approval. AI generation alone is not human authorship, and prompts alone are not evidence of copyright ownership.
 
 **Architectural conventions observed across the codebase:**
 - Prefer `user_metadata` persistence over new tables for small user-scoped state.

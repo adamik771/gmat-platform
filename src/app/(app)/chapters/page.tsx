@@ -11,6 +11,8 @@ import {
 import { getAllChapters, getAllGuides } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getUserState } from "@/lib/user-state"
+import { daysUntil } from "@/lib/utils"
+import { getUserTz } from "@/lib/tz"
 
 // Section visual identity — distinct accent per GMAT section so each
 // journey carries its own feel. Re-uses the spaced-review queue's color
@@ -151,6 +153,10 @@ function MissionHero({
   const sectionTheme =
     resumeSection !== null ? SECTION_THEME[resumeSection] : SECTION_THEME.Quant
   const hasResume = resumeItem !== null
+  // Finishing every chapter is an achievement, not a reset — without this
+  // branch the hero regressed to the brand-new-user "Browse the
+  // curriculum" framing the day the course was done.
+  const courseComplete = totalCore > 0 && completedCore >= totalCore
 
   // Verb on the primary CTA. "Continue" only when the user has actually
   // started the chapter; otherwise "Start" — avoids the "continue
@@ -160,15 +166,21 @@ function MissionHero({
     : resumeItem!.isStarted
     ? "Continue"
     : "Start"
-  const primaryHref = hasResume
+  const primaryHref = courseComplete
+    ? "/review"
+    : hasResume
     ? resumeItem!.resumeAnchor
       ? `${resumeItem!.href}#${resumeItem!.resumeAnchor}`
       : resumeItem!.href
     : "#sections"
-  const primaryLabel = hasResume
+  const primaryLabel = courseComplete
+    ? "Keep it sharp in Review"
+    : hasResume
     ? `${primaryVerb} ${resumeItem!.title}`
     : "Browse the curriculum"
-  const positionLine = hasResume
+  const positionLine = courseComplete
+    ? `All ${totalCore} chapters read — retention and timed practice carry it from here`
+    : hasResume
     ? resumeItem!.totalSections > 0
       ? `Reading ${Math.min(
           resumeItem!.readSections + 1,
@@ -183,10 +195,12 @@ function MissionHero({
 
   // Promise sentence: chapter summary first sentence (truncated). Falls
   // back to the section blurb when no summary is authored.
-  const why = hasResume
+  const why = courseComplete
+    ? "Course complete. The spaced queue and mock trend are what move the score now — chapters stay open for reference."
+    : hasResume
     ? (resumeItem!.summary.split(/[.!?]\s/)[0] ||
         SECTION_THEME[resumeItem!.section].blurb).trim()
-    : "Diagnostic-driven, paced for the GMAT Focus Edition. Start anywhere."
+    : "Baseline-driven, paced for the GMAT Focus Edition. Start anywhere."
 
   const examLine = formatExamCountdown(daysUntilExam)
 
@@ -326,7 +340,7 @@ function MissionHero({
             </div>
             <p className="mt-2 font-display text-2xl font-semibold tabular-nums leading-none text-[#F0F0F0]">
               {completedCore}
-              <span className="text-base font-normal text-[#555555]">
+              <span className="text-base font-normal text-[#888888]">
                 {" "}
                 / {totalCore}
               </span>
@@ -950,6 +964,7 @@ function extractSkillChips(
 export default async function ChaptersPage() {
   const chapters = getAllChapters()
   const guides = getAllGuides()
+  const tz = await getUserTz()
 
   let chapterProgress: Record<string, StoredChapterProgress> = {}
   let targetScore: number | null = null
@@ -974,16 +989,13 @@ export default async function ChaptersPage() {
     // Supabase unavailable — render with empty progress state.
   }
 
-  const daysUntilExam =
-    examDate !== null
-      ? Math.max(
-          0,
-          Math.ceil(
-            (Date.parse(examDate) - new Date(new Date().toDateString()).getTime()) /
-              86_400_000
-          )
-        )
-      : null
+  // Shared local-midnight parse — Date.parse("YYYY-MM-DD") is UTC midnight,
+  // which read the countdown a day short in positive-offset timezones and
+  // disagreed with the study-plan engine's number for the same exam date.
+  // No clamp: a negative value is what lets formatExamCountdown say
+  // "Exam passed" — Math.max(0, …) pinned the label at "Exam today"
+  // forever once the date went by.
+  const daysUntilExam = examDate !== null ? daysUntil(examDate, tz) : null
 
   const sectionOrder: Record<SectionKey, number> = {
     Quant: 0,

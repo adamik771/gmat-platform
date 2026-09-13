@@ -47,19 +47,35 @@ export default async function PracticePage() {
         rawTarget <= 805
           ? rawTarget
           : null
-      if (PAYWALL_ENABLED) {
-        const tier = await getPlanTierForUser(supabase, user.id)
-        const allowed = practiceTestsAllowed(tier)
-        lockTestsBeyond = Number.isFinite(allowed) ? allowed : null
-      }
-      const state = await getUserState(supabase, user)
+      const tierPromise = PAYWALL_ENABLED
+        ? getPlanTierForUser(supabase, user.id)
+        : Promise.resolve(null)
+      const statePromise = getUserState(supabase, user)
+      const testSessionsPromise = supabase
+        .from("practice_sessions")
+        .select("slug, correct_count, total_questions, created_at")
+        .eq("user_id", user.id)
+        .like("slug", "ch-%")
+        .order("created_at", { ascending: false })
+        .limit(2000)
+
+      const state = await statePromise
       const flaggedQuestionIds = gatherFlaggedQuestionIds(state)
-      const signals = await collectAdaptiveSignals(
+      const signalsPromise = collectAdaptiveSignals(
         supabase,
         user.id,
         state,
-        { flaggedQuestionIds }
+        { flaggedQuestionIds },
       )
+      const [tier, signals, { data: testSessions }] = await Promise.all([
+        tierPromise,
+        signalsPromise,
+        testSessionsPromise,
+      ])
+      if (PAYWALL_ENABLED && tier) {
+        const allowed = practiceTestsAllowed(tier)
+        lockTestsBeyond = Number.isFinite(allowed) ? allowed : null
+      }
       recommendations = signals.topWeakSubskills
         .filter((w) => !!w.setSlug && knownSlugs.has(w.setSlug))
         .slice(0, 3)
@@ -73,13 +89,6 @@ export default async function PracticePage() {
 
       // Attempted chapter tests + latest score. Latest-first so the first row
       // per slug is the most recent attempt; bounded read.
-      const { data: testSessions } = await supabase
-        .from("practice_sessions")
-        .select("slug, correct_count, total_questions, created_at")
-        .eq("user_id", user.id)
-        .like("slug", "ch-%")
-        .order("created_at", { ascending: false })
-        .limit(2000)
       for (const s of testSessions ?? []) {
         const slug = s.slug as string
         if (attemptsBySlug[slug]) {

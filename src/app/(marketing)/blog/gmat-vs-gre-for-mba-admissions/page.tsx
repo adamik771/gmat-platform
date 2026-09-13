@@ -257,10 +257,13 @@ export default function PostPage() {
 
           <H3>4. You&apos;re applying to programs beyond MBA</H3>
           <p>
-            <Strong>Probably the GRE.</Strong> If you&apos;re also
-            considering masters programs in policy, public health,
-            economics, etc., the GRE is more universally accepted. The
-            GMAT outside MBA contexts is rarely accepted.
+            <Strong>Check the exact programme list first.</Strong> The GMAT
+            is accepted by many graduate business programmes beyond the MBA,
+            including MiM, Master in Finance, Banking and Finance, and related
+            degrees. If your list also includes programmes in policy, public
+            health, or other non-business fields, the GRE may give you broader
+            coverage. Choose against the published requirements of every
+            programme on your list rather than treating either test as universal.
           </p>
 
           <H3>5. You&apos;ve been studying for one and want to switch</H3>

@@ -277,15 +277,15 @@ Each of these traps has a fix, and the fix is the same: *the protocol*. Read the
 
 A worked example to make the protocol concrete.
 
-*Problem.* If $n$ is a positive integer and $3^n + 3^n + 3^n = 3^{20}$, what is the value of $n$?
+*Problem.* If n is a positive integer and 3^n + 3^n + 3^n = 3^(20), what is the value of n?
 
-*Method-selection scan.* Answer choices (assume A: 18, B: 19, C: 20, D: 21, E: a higher number) — small integers spread by one apart. Shape: exponent identity, single variable. Constraint: $n$ is a positive integer. The hint is in the structure of the left side — three copies of the same term — which is exactly the kind of "underlying structure" the test rewards seeing.
+*Method-selection scan.* Answer choices (assume A: 18, B: 19, C: 20, D: 21, E: a higher number) — small integers spread by one apart. Shape: exponent identity, single variable. Constraint: n is a positive integer. The hint is in the structure of the left side — three copies of the same term — which is exactly the kind of "underlying structure" the test rewards seeing.
 
-*Method.* Stay conceptual. Three copies of $3^n$ equals $3 \cdot 3^n$, which equals $3^{n+1}$. So $3^{n+1} = 3^{20}$, which gives $n + 1 = 20$, so $n = 19$.
+*Method.* Stay conceptual. Three copies of 3^n equals 3 × 3^n, which equals 3^(n+1). So 3^(n+1) = 3^(20), which gives n + 1 = 20, so n = 19.
 
-*Trap to avoid.* The wrong default here is "compute $3^{20}$ and then figure out what $n$ has to be." That path does not end. The right default is "rewrite the left side using exponent rules until both sides have a single base of 3." The shape of the problem — three identical terms — is the recognition signal. The chapter on Algebra and Equations covers exponent identities in depth; the point in this chapter is the *protocol that surfaced the right method in five seconds*.
+*Trap to avoid.* The wrong default here is "compute 3^(20) and then figure out what n has to be." That path does not end. The right default is "rewrite the left side using exponent rules until both sides have a single base of 3." The shape of the problem — three identical terms — is the recognition signal. The chapter on Algebra and Equations covers exponent identities in depth; the point in this chapter is the *protocol that surfaced the right method in five seconds*.
 
-*Time spent.* Method-selection scan: five seconds. Computation: ten seconds. Sanity check ($n = 19$ is a positive integer; satisfied): two seconds. Total: under twenty seconds for a problem that students who default to direct computation often spend two minutes on.
+*Time spent.* Method-selection scan: five seconds. Computation: ten seconds. Sanity check (n = 19 is a positive integer; satisfied): two seconds. Total: under twenty seconds for a problem that students who default to direct computation often spend two minutes on.
 
 This is not a hard problem. That is the point. The protocol applies to every problem on the section, not just the hard ones, and the time savings on the easier problems are what give you the budget to think on the harder ones.
 

@@ -172,7 +172,7 @@ The following sortable table shows employee data at a consulting firm.
 | G        | Strategy   | 10    | 150        | 40  |
 | H        | Finance    | 6     | 115        | 33  |
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Table Analysis
 **topic:** Multi-variable Correlation
 
@@ -230,34 +230,10 @@ Statement: Universities with lower acceptance rates consistently have higher ave
 - B) No
 
 **answer:** A
-**explanation:** **An inverse relationship** between two variables exists when, as one variable increases, the other consistently decreases across every ordered pair in the dataset. We assess whether acceptance rate and average SAT score satisfy this condition strictly — meaning no pair of universities violates the ordering.
-
-**Setting up the test.** Let r denote acceptance rate (%) and s denote average SAT score for each university. The statement asserts that whenever r_i < r_j, it follows that s_i > s_j — that is, the ranking by acceptance rate (ascending) is the exact reverse of the ranking by SAT score (descending), with no exceptions among all six universities.
-
-**Sorting by acceptance rate.** Arranging the six universities in ascending order of acceptance rate yields:
-
-| Rank (by rate) | University | Acceptance Rate | Avg SAT |
-|----------------|------------|-----------------|---------|
-| 1 | Epsilon U | 6% | 1520 |
-| 2 | Alpha U | 8% | 1510 |
-| 3 | Gamma U | 12% | 1480 |
-| 4 | Beta U | 15% | 1450 |
-| 5 | Delta U | 25% | 1380 |
-| 6 | Zeta U | 35% | 1320 |
-
-**Checking each consecutive pair.** We verify that each step up in acceptance rate corresponds to a step down in SAT score:
-
-- Epsilon U to Alpha U: rate 6% < 8% (increase of 2 pp), SAT 1520 > 1510 (decrease of 10). Condition holds.
-- Alpha U to Gamma U: rate 8% < 12% (increase of 4 pp), SAT 1510 > 1480 (decrease of 30). Condition holds.
-- Gamma U to Beta U: rate 12% < 15% (increase of 3 pp), SAT 1480 > 1450 (decrease of 30). Condition holds.
-- Beta U to Delta U: rate 15% < 25% (increase of 10 pp), SAT 1450 > 1380 (decrease of 70). Condition holds.
-- Delta U to Zeta U: rate 25% < 35% (increase of 10 pp), SAT 1380 > 1320 (decrease of 60). Condition holds.
-
-**Assessing the full ranking.** The acceptance-rate ranks (1 = most selective) are: Epsilon U = 1, Alpha U = 2, Gamma U = 3, Beta U = 4, Delta U = 5, Zeta U = 6. The SAT ranks (1 = highest score) follow the identical ordering: Epsilon U = 1 (1520), Alpha U = 2 (1510), Gamma U = 3 (1480), Beta U = 4 (1450), Delta U = 5 (1380), Zeta U = 6 (1320). The two rank sequences are perfect mirrors of one another — a rank correlation of -1 — with no pair of universities violating the inverse ordering.
-
-**Conclusion.** Across all six data points, every university with a lower acceptance rate has a strictly higher average SAT score, with no exception. The relationship is not merely approximate; it holds for every consecutive pair and for every possible pairing among the six universities. The statement therefore holds without qualification.
-
-The correct answer is A.
+**fastest_path:** Sort mentally by acceptance rate: 6, 8, 12, 15, 25, 35; the SAT scores fall steadily as acceptance rises.
+**explanation:** Ordering the universities from lowest to highest acceptance rate gives Epsilon 6%/1520, Alpha 8%/1510, Gamma 12%/1480, Beta 15%/1450, Delta 25%/1380, and Zeta 35%/1320. Every increase in acceptance rate is paired with a lower average SAT score. The stated inverse relationship holds consistently for all six rows, so the answer is Yes, A.
+**common_trap:** Checking only the endpoints instead of verifying that no middle row breaks the word 'consistently.'
+**takeaway:** For a consistency claim, sort by the explanatory column and inspect every adjacent pair for a violation.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -519,7 +495,7 @@ The following table shows the number of respondents in a 500-person survey who r
 |-----------|------------|------------|------------|----------|
 | StreamA   | 60         | 45         | 30         | 15       |
 | StreamB   | 25         | 40         | 35         | 20       |
-| StreamC   | 40         | 30         | 25         | 10       |
+| StreamC   | 30         | 30         | 25         | 10       |
 | StreamD   | 20         | 15         | 30         | 45       |
 | StreamE   | 5          | 10         | 5          | 5        |
 
@@ -538,11 +514,11 @@ Let T(s) denote the total respondents for service s, where T(s) = (Ages 18-29) +
 
 - StreamA: T(A) = 60 + 45 + 30 + 15 = 150
 - StreamB: T(B) = 25 + 40 + 35 + 20 = 120
-- StreamC: T(C) = 40 + 30 + 25 + 10 = 105
+- StreamC: T(C) = 30 + 30 + 25 + 10 = 95
 - StreamD: T(D) = 20 + 15 + 30 + 45 = 110
 - StreamE: T(E) = 5 + 10 + 5 + 5 = 25
 
-Ranking the totals in descending order: T(A) = 150 > T(B) = 120 > T(D) = 110 > T(C) = 105 > T(E) = 25. StreamA's total of 150 is strictly greater than that of every other service.
+Ranking the totals in descending order: T(A) = 150 > T(B) = 120 > T(D) = 110 > T(C) = 95 > T(E) = 25, and the totals sum to the survey's 500 respondents. StreamA's total of 150 is strictly greater than that of every other service.
 
 The correct answer is A.
 **related_reading:** reading-di-03-table-analysis
@@ -1159,7 +1135,7 @@ The following table shows stats for six soccer strikers over a season:
 | Cruz      | 32      | 24    | 120   | 4       |
 | Duarte    | 25      | 15    | 60    | 7       |
 | Esposito  | 30      | 12    | 80    | 10      |
-| Fofana    | 27      | 18    | 72    | 8       |
+| Fofana    | 27      | 18    | 80    | 8       |
 
 Which striker had the highest shot-conversion rate (goals / shots)?
 
@@ -1179,9 +1155,9 @@ Which striker had the highest shot-conversion rate (goals / shots)?
 | Cruz     | 24    | 120   | 24/120 = 0.200 (20.0%) |
 | Duarte   | 15    | 60    | 15/60 = 0.250 (25.0%)  |
 | Esposito | 12    | 80    | 12/80 = 0.150 (15.0%)  |
-| Fofana   | 18    | 72    | 18/72 = 0.250 (25.0%)  |
+| Fofana   | 18    | 80    | 18/80 = 0.225 (22.5%)  |
 
-Alvarez, Bako, and Cruz each convert exactly 20.0% of their shots; Esposito trails at 15.0%. Duarte and Fofana both reach 25.0%, the highest figure in the table. Of those two, only Duarte appears among the answer choices (Fofana is not listed as an option), making Duarte the uniquely selectable striker with the highest shot-conversion rate. Duarte's rate of 15/60 = 0.25 exceeds every other listed choice: Alvarez (0.20), Bako (0.20), Cruz (0.20), and Esposito (0.15).
+Alvarez, Bako, and Cruz each convert exactly 20.0% of their shots; Esposito trails at 15.0%, and Fofana reaches 22.5%. Duarte's 25.0% is the single highest figure in the table, so Duarte has the highest shot-conversion rate. Duarte's rate of 15/60 = 0.25 exceeds every other listed choice: Alvarez (0.20), Bako (0.20), Cruz (0.20), and Esposito (0.15).
 
 The correct answer is D.
 **related_reading:** reading-di-03-table-analysis
@@ -1259,33 +1235,10 @@ How many firms have BOTH average revenue per customer (ARR/Customers) above $35,
 - E) 5
 
 **answer:** B
-**explanation:** **Governing definitions.** Average revenue per customer (ARPC) is defined as ARR divided by the number of customers. Because ARR is reported in millions of dollars, the conversion to a per-customer dollar figure requires multiplying by 1,000,000. The two screening conditions that must hold simultaneously are: (1) ARPC > 35,000, and (2) gross margin > 70%. The strict inequalities mean that a firm with ARPC equal to exactly $35,000 or a gross margin equal to exactly 70% does not qualify.
-
-**Row-by-row computation.**
-
-For each firm, let ARPC = (ARR x 1,000,000) / Customers.
-
-- **Helion.** ARPC = 48,000,000 / 1200 = 40,000. Gross margin = 72%. Condition (1): 40,000 > 35,000 — satisfied. Condition (2): 72% > 70% — satisfied. Both conditions hold.
-
-- **Isoria.** ARPC = 30,000,000 / 600 = 50,000. Gross margin = 80%. Condition (1): 50,000 > 35,000 — satisfied. Condition (2): 80% > 70% — satisfied. Both conditions hold.
-
-- **Jovian.** ARPC = 90,000,000 / 1800 = 50,000. Gross margin = 68%. Condition (1): 50,000 > 35,000 — satisfied. Condition (2): 68% > 70% — not satisfied. Fails.
-
-- **Kestrel.** ARPC = 24,000,000 / 800 = 30,000. Gross margin = 75%. Condition (1): 30,000 > 35,000 — not satisfied. Fails.
-
-- **Lyra.** ARPC = 60,000,000 / 1500 = 40,000. Gross margin = 70%. Condition (1): 40,000 > 35,000 — satisfied. Condition (2): 70% > 70% — not satisfied, because the inequality is strict. Fails.
-
-**Summary.**
-
-| Firm | ARPC ($) | Gross Margin | ARPC > 35,000? | GM > 70%? | Both? |
-|---------|----------|-------------|----------------|-----------|-------|
-| Helion | 40,000 | 72% | Yes | Yes | Yes |
-| Isoria | 50,000 | 80% | Yes | Yes | Yes |
-| Jovian | 50,000 | 68% | Yes | No | No |
-| Kestrel | 30,000 | 75% | No | Yes | No |
-| Lyra | 40,000 | 70% | Yes | No | No |
-
-Two firms — Helion and Isoria — satisfy both conditions simultaneously. Jovian's high ARPC is offset by a below-threshold gross margin; Kestrel's strong gross margin is offset by an ARPC below $35,000; Lyra meets the ARPC requirement but its gross margin of exactly 70% does not satisfy the strict inequality. The correct answer is B.
+**fastest_path:** Compute ARR per customer in thousands, then keep only firms above both strict thresholds: $35K and 70%.
+**explanation:** Helion has $48M/1,200 = $40K per customer and 72% margin, so it passes. Isoria has $50K and 80%, so it passes. Jovian has $50K but only 68% margin. Kestrel has $30K. Lyra has $40K but exactly 70%, which is not above 70%. Exactly two firms meet both conditions, so B is correct.
+**common_trap:** Counting Lyra even though 'above 70%' excludes a gross margin exactly equal to 70%.
+**takeaway:** Translate units carefully and respect strict inequalities at the threshold.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1599,31 +1552,10 @@ Which location has the highest operating profit per customer?
 - E) Central
 
 **answer:** B
-**explanation:** Operating profit per customer is defined as operating profit divided by the number of customers served, where operating profit equals revenue minus costs. Let P(L) denote the operating profit for location L, C(L) denote its customer count, and R(L) denote the ratio P(L)/C(L). Because the question asks for the location with the highest R(L), this derived metric must be computed for all five locations rather than relying on either profit or customer count alone.
-
-Revenue and costs are given in thousands of dollars, so operating profit is also expressed in thousands of dollars.
-
-- North: P = 420 - 320 = 100 ($K)
-- South: P = 380 - 260 = 120 ($K)
-- East: P = 500 - 370 = 130 ($K)
-- West: P = 340 - 250 = 90 ($K)
-- Central: P = 460 - 330 = 130 ($K)
-
-To express profit per customer in dollars rather than thousands, each profit figure is multiplied by 1,000 before dividing by customer count.
-
-- North: (100 × 1,000) / 3,500 = 100,000 / 3,500 ≈ $28.57
-- South: (120 × 1,000) / 2,800 = 120,000 / 2,800 ≈ $42.86
-- East: (130 × 1,000) / 4,100 = 130,000 / 4,100 ≈ $31.71
-- West: (90 × 1,000) / 2,600 = 90,000 / 2,600 ≈ $34.62
-- Central: (130 × 1,000) / 3,300 = 130,000 / 3,300 ≈ $39.39
-
-Arranging in descending order: South (≈$42.86) > Central (≈$39.39) > West (≈$34.62) > East (≈$31.71) > North (≈$28.57).
-
-A notable comparison is East versus South: East produces the highest absolute operating profit (130 vs. 120), yet it also serves significantly more customers (4,100 vs. 2,800). The ratio 130/4,100 ≈ 0.03171 is strictly less than 120/2,800 ≈ 0.04286, confirming that a larger numerator does not guarantee a larger ratio when the denominator grows proportionally faster. Similarly, Central matches East in absolute profit but serves 3,300 customers, yielding a per-customer figure of approximately $39.39 — second-highest but still below South. West, despite the smallest absolute profit, benefits from a small customer base; its ratio of approximately $34.62 nevertheless trails South.
-
-South achieves the highest operating profit per customer at approximately $42.86.
-
-The correct answer is B.
+**fastest_path:** Compute (revenue - costs)/customers for each location; all money figures are in the same $K units.
+**explanation:** Profit per customer is North: 100K/3,500 = about $28.57; South: 120K/2,800 = about $42.86; East: 130K/4,100 = about $31.71; West: 90K/2,600 = about $34.62; Central: 130K/3,300 = about $39.39. South has the highest value, so B is correct.
+**common_trap:** Choosing the location with the greatest total profit without dividing by its customer count.
+**takeaway:** For a per-customer comparison, calculate the numerator first and then normalize every row by customers.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -1653,25 +1585,10 @@ Which of the following is most strongly supported by the data?
 - E) Epsilon has the highest percentage of trainees within one standard deviation of its mean.
 
 **answer:** B
-**explanation:** **Standard deviation** is the primary statistical measure of dispersion — the greater the standard deviation, the more spread out the individual scores are around the mean. To determine which cohort shows the greatest variability, the standard deviations can be compared directly from the table.
-
-Reading the Standard Deviation column for each cohort:
-
-| Cohort   | Standard Deviation |
-|----------|--------------------|
-| Alpha    | 12                 |
-| Beta     | 6                  |
-| Gamma    | 10                 |
-| Delta    | 15                 |
-| Epsilon  | 8                  |
-
-The ranking from highest to lowest is: Delta (15) > Alpha (12) > Gamma (10) > Epsilon (8) > Beta (6). Delta's standard deviation of 15 is the largest value in the column, and it exceeds the next-highest value (Alpha's 12) by 3 points — a margin of 3/12 = 25%, which is substantial.
-
-Because each cohort contains the same number of trainees (60), no adjustment for sample size is needed; the raw standard deviations are directly comparable. The choice asserting that Beta has the fewest high-scoring outliers conflates a low standard deviation with a specific claim about the tails that cannot be confirmed without distributional assumptions. Similarly, the claims about Gamma's, Alpha's, and Epsilon's trainees relative to specific cutoffs require knowledge of the full distribution shape, not merely the mean and median — the mean-median relationships shown (e.g., Alpha: mean 78 < median 80, suggesting slight left skew; Delta: mean 80 > median 78, suggesting slight right skew) offer weak directional hints but do not permit precise percentage calculations. The only statement that follows directly and unambiguously from a single column of the table is the comparison of standard deviations, which identifies Delta as the most variable cohort.
-
-Therefore, the statement that Delta shows the greatest variability in scores among the five cohorts is the one most strongly supported by the data.
-
-The correct answer is B.
+**fastest_path:** Variability is measured directly by standard deviation; compare 12, 6, 10, 15, and 8.
+**explanation:** Delta has the largest standard deviation, 15, so its scores show the greatest variability and B is supported. The table does not report distribution shape or individual scores, so it cannot establish the number of outliers, counts above or below a threshold, or percentages within one standard deviation. Those claims require information beyond mean, median, and standard deviation.
+**common_trap:** Inferring detailed counts or outliers from summary statistics that do not determine the underlying distribution.
+**takeaway:** Use standard deviation for comparative spread, but do not infer individual-score counts without distribution data.
 **related_reading:** reading-di-03-table-analysis
 
 
@@ -1801,23 +1718,10 @@ A candidate qualifies for the "senior track" position only if ALL of the followi
 - E) 5
 
 **answer:** C
-**explanation:** A candidate qualifies for the senior track if and only if three conditions hold simultaneously: years of experience >= 5, GPA >= 3.5, and interview score >= 8. Let E denote years of experience, G denote GPA, and I denote interview score. The qualifying rule is therefore E >= 5 AND G >= 3.5 AND I >= 8. Because the rule is conjunctive, failure on any single criterion eliminates a candidate regardless of performance on the others.
-
-We apply this filter to each of the six candidates in turn.
-
-**Candidate 1.** E = 5, G = 3.6, I = 8. Checking each condition: 5 >= 5 is satisfied; 3.6 >= 3.5 is satisfied; 8 >= 8 is satisfied. All three conditions hold. Candidate 1 qualifies.
-
-**Candidate 2.** E = 8, G = 3.2, I = 9. The experience condition 8 >= 5 is satisfied and the interview condition 9 >= 8 is satisfied, but 3.2 >= 3.5 is not satisfied. The GPA condition fails. Candidate 2 does not qualify.
-
-**Candidate 3.** E = 3, G = 3.9, I = 7. The experience condition requires 3 >= 5, which is not satisfied. Candidate 3 is eliminated at the first criterion regardless of the remaining values.
-
-**Candidate 4.** E = 10, G = 3.5, I = 9. Checking: 10 >= 5 is satisfied; 3.5 >= 3.5 is satisfied (the boundary value is included); 9 >= 8 is satisfied. All three conditions hold. Candidate 4 qualifies.
-
-**Candidate 5.** E = 6, G = 3.8, I = 8. Checking: 6 >= 5 is satisfied; 3.8 >= 3.5 is satisfied; 8 >= 8 is satisfied. All three conditions hold. Candidate 5 qualifies.
-
-**Candidate 6.** E = 4, G = 3.4, I = 6. The experience condition requires 4 >= 5, which is not satisfied. Candidate 6 is eliminated at the first criterion.
-
-The candidates who satisfy all three conditions are Candidates 1, 4, and 5, giving a total count of 3. The correct answer is C.
+**fastest_path:** Filter sequentially by experience >=5, GPA >=3.5, and interview >=8; stop checking a candidate after the first failure.
+**explanation:** Candidate 1 passes with 5 years, 3.6 GPA, and 8 interview. Candidate 4 passes with 10, 3.5, and 9. Candidate 5 passes with 6, 3.8, and 8. Candidates 2, 3, and 6 fail at least one criterion. Therefore 3 candidates qualify, choice C.
+**common_trap:** All three conditions are required, and boundary values count: 5 years, 3.5 GPA, and interview 8 each satisfy 'at least.'
+**takeaway:** For an ALL-condition table filter, mark each row pass/fail and include exact threshold values.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -2212,7 +2116,7 @@ The following table summarizes five companies:
 | Delta   | 250          | 25                | 6               | 600       |
 | Epsilon | 420          | 20                | 10              | 950       |
 
-**difficulty:** Hard
+**difficulty:** Easy
 **type:** Table Analysis
 **topic:** Multi-Criterion Filter
 
@@ -2850,21 +2754,10 @@ Which model has the longest driving range?
 - E) Surge
 
 **answer:** C
-**explanation:** The driving range of each model is read directly from the Range (mi) column, and the maximum is identified by comparison; no derived computation is required.
-
-The Range (mi) column records:
-
-- Volt-X: 320
-- Aero: 280
-- Pulse: 360
-- Nimbus: 240
-- Surge: 300
-
-Ordering these five values from greatest to least: 360 > 320 > 300 > 280 > 240, corresponding to Pulse > Volt-X > Surge > Aero > Nimbus.
-
-Pulse's range of 360 miles is strictly greater than that of every other model, exceeding the next-longest range (Volt-X, at 320) by 40 miles. Pulse also carries the largest battery in the table (100 kWh), which is consistent with its leading range, though the question concerns range itself, for which Pulse leads outright.
-
-The correct answer is C.
+**fastest_path:** Scan only the Range column and find its maximum: 360 miles for Pulse.
+**explanation:** This is a direct lookup, so no calculation or sorting is needed. The largest value in the Range column is 360, which belongs to Pulse. The correct answer is C.
+**common_trap:** Looking at battery size or another nearby column instead of the column named in the question.
+**takeaway:** On a direct table lookup, isolate the requested column first, then scan for the required maximum or minimum.
 **related_reading:** reading-di-03-table-analysis
 
 ---
@@ -3728,7 +3621,7 @@ The following table shows data for the five subscription plans of a software pro
 | Business   | 79                | 2,000       | 5,000        | 900             |
 | Enterprise | 149               | 600         | 20,000       | 400             |
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Table Analysis
 **topic:** Multi-Criterion Filtering
 
@@ -4204,7 +4097,7 @@ The correct answer is D.
 ---
 
 ## Q93
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Table Analysis
 **topic:** Multi-Condition Filtering
 

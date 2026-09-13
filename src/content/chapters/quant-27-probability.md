@@ -2,7 +2,7 @@
 slug: quant-27-probability
 title: "Probability"
 section: Quant
-estimated_minutes: 11
+estimated_minutes: 90
 prerequisites:
   - quant-26-restrictions-advanced-counting
 summary: |
@@ -14,7 +14,7 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - statistics-probability-q7
+      - statistics-probability-q51
       - statistics-probability-q8
   - id: probability-basics
     type: reading
@@ -34,6 +34,10 @@ sections:
     check_question_ids:
       - statistics-probability-q15
       - statistics-probability-q71
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -54,6 +58,12 @@ problem_sets:
       - statistics-probability-q75
       - statistics-probability-q82
 ---
+
+## @summary
+
+- Start with favorable outcomes divided by total equally likely outcomes, using a counting method when needed.
+- Use the complement for 'at least one' events and multiply only when the event relationship justifies it.
+- Distinguish independence from mutual exclusivity, and update the denominator when outcomes occur without replacement.
 
 ## @probability-basics
 
@@ -210,7 +220,7 @@ Probability is counting in a fraction: favorable over total, counted the same wa
 
 ## @basic-probability
 
-Probability of an event = **favorable outcomes ÷ total outcomes**, when every outcome is equally likely. That "equally likely" clause is doing quiet but heavy lifting — it is the assumption the whole formula stands on. If the outcomes are *not* equally likely (a weighted die, a deck with cards removed, draws without replacement), you cannot just count favorable cases and divide; you must weight each outcome by its own probability. Five formulas cover the entire topic, and almost every hard probability question is one of these five wearing a costume. The skill that separates a 700+ scorer here is not memorizing more formulas; it is **recognizing which of the five a problem is**, and reaching reflexively for the complement when the wording invites it.
+Probability of an event = **favorable outcomes ÷ total outcomes**, when every outcome is equally likely. That "equally likely" clause is doing quiet but heavy lifting — it is the assumption the whole formula stands on. If the outcomes are *not* equally likely (a weighted die, a deck with cards removed, draws without replacement), you cannot just count favorable cases and divide; you must weight each outcome by its own probability. Five formulas cover the entire topic, and almost every hard probability question is one of these five wearing a costume. The skill that separates a top scorer here is not memorizing more formulas; it is **recognizing which of the five a problem is**, and reaching reflexively for the complement when the wording invites it.
 
 Every probability is a number between 0 and 1 (or 0% and 100%). If your arithmetic ever produces a probability above 1 or below 0, stop — you have made an error, usually double-counting or adding when you should multiply. Treat that boundary as a free built-in sanity check on every answer. The same is true of the *direction* of an answer: "at least one" in many trials should be near 1; a long conjunction of rare events should be near 0. Building that magnitude intuition is half the battle.
 
@@ -441,7 +451,7 @@ When one event changes the probabilities of the next — drawing without replace
 
 **P(A then B) = P(A) × P(B | A)**
 
-The notation P(B | A) reads "the probability of B *given that* A already happened." On the GMAT, the only thing "given that A happened" usually does is remove one item from the pool — so the second fraction has a smaller numerator and a smaller denominator. The whole skill is bookkeeping: track what's left after each draw, and never reuse the original totals. That sounds trivial, and on a single problem it is; the difficulty at the 700+ level comes from problems that *bundle* a dependent calculation with a complement, a "one of each" doubling, or a stem that asks for the conditional when you instinctively computed the joint. Master the bookkeeping first, then the layering.
+The notation P(B | A) reads "the probability of B *given that* A already happened." On the GMAT, the only thing "given that A happened" usually does is remove one item from the pool — so the second fraction has a smaller numerator and a smaller denominator. The whole skill is bookkeeping: track what's left after each draw, and never reuse the original totals. That sounds trivial, and on a single problem it is; the difficulty on the hardest items comes from problems that *bundle* a dependent calculation with a complement, a "one of each" doubling, or a stem that asks for the conditional when you instinctively computed the joint. Master the bookkeeping first, then the layering.
 
 **Worked example (easy).** A drawer has 7 black and 5 white socks. You draw 2 without replacement. What is P(both black)?
 
@@ -525,7 +535,7 @@ The probability that the second coin is a dime is **3/8 — exactly the same as 
 
 > **Self-explanation prompt.** State the one diagnostic question that separates dependent from independent events: "Does the first event change what's available for the second?" Now apply it to two scenarios: (a) two cards drawn from the same deck without replacement; (b) two dice rolled at the same time. If you can classify both in under five seconds and explain why — (a) dependent because the first card leaves 51 remaining, (b) independent because each die has its own six faces regardless of the other — you're ready for the questions that blur this distinction on purpose.
 
-**Order-doesn't-matter vs. order-matters.** A subtle 700+ distinction: if the problem names *distinct roles* — "pick a president then a vice-president" — order matters and you keep the sequential product as is (or use permutations). If it just wants a *group* — "pick 2 people for the committee" — order doesn't matter and you either divide the ordered count by the arrangements or use combinations directly. Mixing these is what produces the off-by-a-factor errors (like 5/18 vs. 5/9 above). A clean tell: if swapping the two chosen items would create a *different outcome* for the scenario described (president vs. vice-president), order matters; if swapping them describes the *same* committee, order doesn't.
+**Order-doesn't-matter vs. order-matters.** A subtle top-tier distinction: if the problem names *distinct roles* — "pick a president then a vice-president" — order matters and you keep the sequential product as is (or use permutations). If it just wants a *group* — "pick 2 people for the committee" — order doesn't matter and you either divide the ordered count by the arrangements or use combinations directly. Mixing these is what produces the off-by-a-factor errors (like 5/18 vs. 5/9 above). A clean tell: if swapping the two chosen items would create a *different outcome* for the scenario described (president vs. vice-president), order matters; if swapping them describes the *same* committee, order doesn't.
 
 **Procedure to memorize (dependent-event problems):**
 

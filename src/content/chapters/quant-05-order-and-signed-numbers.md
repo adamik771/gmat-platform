@@ -3,8 +3,7 @@ slug: quant-05-order-and-signed-numbers
 title: "Arithmetic: Order of Operations & Signed Numbers"
 section: Quant
 estimated_minutes: 9
-prerequisites:
-  - quant-04-answer-choice-tactics
+prerequisites: []
 summary: |
   The grammar of arithmetic: PEMDAS, sign rules, and what changes when a value need not be an integer. Estimation and plugging-in pay off heavily here.
 sections:
@@ -30,7 +29,11 @@ sections:
     type: reading
     title: "Integers vs. non-integers — knowing which world you're in"
     check_question_ids:
-      - arithmetic-q18
+      - arithmetic-q50
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -52,11 +55,17 @@ problem_sets:
       - arithmetic-q6
 ---
 
+## @summary
+
+- Resolve parentheses and exponents first, then multiply or divide left to right before adding or subtracting.
+- Treat a leading negative carefully: parentheses determine whether the sign is part of the base.
+- Never assume a variable is an integer unless the problem says so; carry the stated domain through every step.
+
 ## @order-of-operations
 
 Every student has heard of PEMDAS — Parentheses, Exponents, Multiplication/Division, Addition/Subtraction. That's not what I'm going to teach you. What I'm going to teach you is the two traps inside PEMDAS that the GMAT mines for wrong answers.
 
-**Mental model.** Arithmetic is grammar. Order of operations, sign rules, fraction-handling — these are the syntax that has to be mechanical before any quant skill can run on top. A 700+ student doesn't think faster than a 600 student here; they make fewer sloppy moves per minute. Every arithmetic mistake on a hard problem is a rule you let yourself break under pressure.
+**Mental model.** Arithmetic is grammar. Order of operations, sign rules, fraction-handling — these are the syntax that has to be mechanical before any quant skill can run on top. A top scorer doesn't think faster than a mid-scoring student here; they make fewer sloppy moves per minute. Every arithmetic mistake on a hard problem is a rule you let yourself break under pressure.
 
 **Trap one: multiplication and division bind tighter than addition and subtraction, full stop.** When you see `8 − 2 × 4`, your brain reads left to right and wants to say "8 minus 2 is 6, times 4 is 24." That is wrong. The multiplication happens first: `2 × 4 = 8`, then `8 − 8 = 0`. The GMAT writes expressions specifically to bait left-to-right processing.
 
@@ -163,6 +172,8 @@ The GMAT will state integer constraints explicitly when they matter, using langu
 **Example.** For which of these values is x² > x?  I. x = −2   II. x = 1/2   III. x = 3
 
 `x² > x` is *not* automatically true — it holds only when x < 0 or x > 1, and fails for 0 ≤ x ≤ 1. Check each: x = −2 gives 4 > −2 (true); x = 1/2 gives 1/4 > 1/2 (false); x = 3 gives 9 > 3 (true). So **I and III**. Notice that the condition "x > 1" would capture III but says nothing about whether x is an integer — 1.5 qualifies just as much as 3. The region x lives in, not its integer-ness, is what decides x² versus x.
+
+**Worked example.** If x is a real number and |x − 2| = 5, what is the product of all possible values of x? Absolute value measures distance, so x − 2 = 5 or x − 2 = −5. The two values are 7 and −3, and their product is **−21**. The trap answer 21 keeps both roots but loses the sign; the trap answers 7 and −3 stop after only one branch. Whenever an absolute-value equation equals a positive constant, write both signed cases before doing anything else.
 
 **The "x² = 9" two-root issue.** The equation x² = 9 has *two* solutions, x = 3 and x = −3.
 

@@ -118,7 +118,7 @@ That is the whole ask. Everything else runs without you.
   placement test exists. There is none. The baseline is an official mba.com
   practice exam the user takes themselves and enters in the app.
 - **Never** promise or imply a guaranteed score or specific improvement. Cite
-  only Adam's own verified 565 to 735 (100th percentile).
+  only Adam's own 565 to 735 (top 1%).
 - **Never** imply affiliation with, endorsement by, or partnership with GMAC,
   mba.com, or the official GMAT. Include in any public-facing claim block:
   "GMAT is a registered trademark of GMAC, which does not endorse and is not

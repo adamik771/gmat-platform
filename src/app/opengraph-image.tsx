@@ -89,7 +89,7 @@ export default async function OpenGraphImage() {
             <span style={{ color: "#888888", fontSize: 32 }}>→</span>
             <span>735</span>
             <span style={{ color: "#444444" }}>·</span>
-            <span>100th percentile</span>
+            <span>Top 1%</span>
           </div>
           <div
             style={{

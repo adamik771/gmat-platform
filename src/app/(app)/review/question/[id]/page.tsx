@@ -30,6 +30,7 @@ import { readSavedForReview } from "@/lib/spaced-review"
 import { getUserState } from "@/lib/user-state"
 import QuestionFeedbackBar from "@/components/beta/QuestionFeedbackBar"
 import SaveForReviewButton from "@/components/review/SaveForReviewButton"
+import MultiSourceTabs from "@/components/shared/MultiSourceTabs"
 import type { Section } from "@/types"
 
 export const metadata = {
@@ -89,7 +90,9 @@ export default async function QuestionReviewPage({
         )
         .eq("user_id", user.id)
         .eq("question_id", id)
-        .order("id", { ascending: false })
+        // created_at, not id: attempt ids are random UUIDs, so ordering by
+        // id surfaced an ARBITRARY attempt as "your last attempt".
+        .order("created_at", { ascending: false })
         .limit(1)
       const row = (rows as unknown as Array<{
         is_correct: boolean
@@ -264,6 +267,12 @@ function Hero({
   const timeBucket = bucketTime(question.section, attempt?.timeSpentMs ?? null, question.estTimeSeconds)
   return (
     <section>
+      {/* The page had no headings at all — screen-reader users navigate
+          by heading and landed on an unstructured wall. Visually hidden
+          so the quiet chip-row design is unchanged. */}
+      <h1 className="sr-only">
+        Question review — {question.section}: {question.topic}
+      </h1>
       <div className="flex items-center gap-3 mb-5 flex-wrap">
         <span
           className="px-2 py-0.5 rounded text-[10px] uppercase tracking-[0.18em] font-semibold"
@@ -289,20 +298,24 @@ function Hero({
         >
           {question.difficulty}
         </span>
-        <span className="text-[11px] uppercase tracking-[0.16em] text-[#555555] font-medium">
+        <span className="text-[11px] uppercase tracking-[0.16em] text-[#888888] font-medium">
           {question.type}
         </span>
       </div>
 
       {question.context && (
-        <div
-          className="p-5 rounded-2xl border border-white/[0.06] bg-[#0A0A0A] mb-5 prose prose-invert max-w-none"
-          style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02)" }}
-        >
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
-            {question.context}
-          </ReactMarkdown>
-        </div>
+        question.type === "Multi-Source Reasoning" ? (
+          <MultiSourceTabs context={question.context} className="mb-5" />
+        ) : (
+          <div
+            className="p-5 rounded-2xl border border-white/[0.06] bg-[#0A0A0A] mb-5 prose prose-invert max-w-none"
+            style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02)" }}
+          >
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
+              {question.context}
+            </ReactMarkdown>
+          </div>
+        )
       )}
 
       <div
@@ -314,7 +327,59 @@ function Hero({
             {question.prompt}
           </ReactMarkdown>
         </div>
-        {question.options.length > 0 && (
+        {/* Two-Part Analysis: one selection per column, so the single-select
+            highlighting below (keyed on correctAnswer, which is -1 for TPA)
+            marked NOTHING correct — every TPA deep-review looked answerless.
+            Render the rows with the correct row per column labeled instead. */}
+        {question.twoPartColumns && question.twoPartCorrectAnswers ? (
+          <ol className="space-y-2 mb-5">
+            {question.options.map((opt, i) => {
+              const roles = question.twoPartColumns!.filter(
+                (_, ci) => question.twoPartCorrectAnswers![ci] === i
+              )
+              const isCorrectRow = roles.length > 0
+              return (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 px-4 py-3 rounded-lg border"
+                  style={{
+                    borderColor: isCorrectRow
+                      ? "rgba(62,207,142,0.25)"
+                      : "rgba(255,255,255,0.06)",
+                    backgroundColor: isCorrectRow
+                      ? "rgba(62,207,142,0.08)"
+                      : "transparent",
+                  }}
+                >
+                  <span
+                    className="flex-1 text-[14px] tracking-tight"
+                    style={{ color: isCorrectRow ? "#3ECF8E" : "#C0C0C0" }}
+                  >
+                    {opt}
+                  </span>
+                  {roles.map((role) => (
+                    <span
+                      key={role}
+                      className="text-[10px] font-semibold uppercase tracking-[0.16em] px-2 py-0.5 rounded-full flex-shrink-0 mt-0.5"
+                      style={{
+                        backgroundColor: "rgba(62,207,142,0.12)",
+                        color: "#3ECF8E",
+                      }}
+                    >
+                      {role}
+                    </span>
+                  ))}
+                  {isCorrectRow && (
+                    <CheckCircle2
+                      className="w-4 h-4 mt-0.5 flex-shrink-0"
+                      style={{ color: "#3ECF8E" }}
+                    />
+                  )}
+                </li>
+              )
+            })}
+          </ol>
+        ) : question.options.length > 0 && (
           <ol className="space-y-2 mb-5">
             {question.options.map((opt, i) => {
               const letter = String.fromCharCode(65 + i)
@@ -593,7 +658,7 @@ function RelatedDrillsCard({
                   in {d.subchapter}
                 </span>
               </span>
-              <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 text-[#555555] group-hover:text-[#3ECF8E] group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 text-[#888888] group-hover:text-[#3ECF8E] group-hover:translate-x-0.5 transition-all" />
             </Link>
           </li>
         ))}
@@ -638,7 +703,7 @@ function SimilarQuestionsCard({
                   {item.matchedOn.slice(0, 3).join(" · ")}
                 </span>
               </span>
-              <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-1 text-[#555555] group-hover:text-[#B088FF] group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-3.5 h-3.5 flex-shrink-0 mt-1 text-[#888888] group-hover:text-[#B088FF] group-hover:translate-x-0.5 transition-all" />
             </Link>
           </li>
         ))}

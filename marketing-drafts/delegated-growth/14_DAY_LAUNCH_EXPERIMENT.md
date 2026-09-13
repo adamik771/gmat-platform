@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # 14-Day Delegated Launch Experiment
 
 A single, time-boxed test of one question: can a trained assistant, supported by 2-3 ambassadors, produce real beta signups and founding reservations for Zakarian GMAT in 14 days while keeping Adam's involvement to a handful of small decisions?
@@ -61,7 +63,7 @@ This experiment assumes the following are in place on Day 0. If any is missing, 
 
 Lead with help, not a sale. The offer is: a free personalized GMAT study plan plus full platform access during the private beta, plus free sample chapters, a free study-schedule generator, and a free error-log template. The baseline is an official mba.com practice exam the user takes themselves and enters in the app.
 
-Never call anything a "free diagnostic" or imply a scored placement test exists. Never promise a score gain. The only performance fact anyone may cite is Adam's own verified 565 to 735 (100th percentile) climb. Always include the GMAC no-affiliation line in any public-facing claim block.
+Never call anything a "free diagnostic" or imply a scored placement test exists. Never promise a score gain. The only performance fact anyone may cite is Adam's own 565 to 735 (top 1%) climb. Always include the GMAC no-affiliation line in any public-facing claim block.
 
 ---
 
@@ -213,7 +215,7 @@ Record the decision, the numbers it was based on, and the single biggest lesson 
 - No automated DMs, no scraping, no outreach bots, no bulk identical messages, no bought lists or followers.
 - Never log into or use Adam's personal accounts or LinkedIn password. Assistant and ambassadors use their own accounts and email only.
 - Never call anything a "free diagnostic"; never claim a scored diagnostic / placement test exists.
-- Never promise or imply a guaranteed score or specific improvement. Only cite Adam's verified 565 to 735 / 100th percentile.
+- Never promise or imply a guaranteed score or specific improvement. Only cite Adam's 565 to 735 / top 1%.
 - Never imply affiliation with GMAC, mba.com, or the official GMAT. Include the GMAC no-affiliation line in any public-facing claim block.
 - Every message personalized and relevant; email includes who you are and a one-click opt-out.
 - Zero emojis in any asset.

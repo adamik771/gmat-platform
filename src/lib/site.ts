@@ -15,3 +15,7 @@ export const SITE_CONTACT_EMAIL = "hello@zakariangmat.com"
 // Bump to "2,000+" once getAllQuestions().length passes 2,000.
 export const QUESTION_CLAIM = "1,900+ original practice questions"
 export const QUESTION_CLAIM_SHORT = "1,900+ practice questions"
+
+// Chapter-count claim. Live curriculum computes to 62 chapters as of 2026-07.
+// Floored per the standing marketing rule; bump the floor here, never inline.
+export const CHAPTER_COUNT_CLAIM = "50+"

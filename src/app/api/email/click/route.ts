@@ -1,5 +1,6 @@
 import { getSupabaseService } from "@/lib/supabase/service"
 import { logEmailEvent } from "@/lib/outreach/queue"
+import { verifyEmailTrackingId } from "@/lib/email-tracking-token"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -20,6 +21,7 @@ const SITE_URL = (
 export async function GET(request: Request) {
   const params = new URL(request.url).searchParams
   const id = params.get("id")
+  const token = params.get("t")
   const u = params.get("u") ?? ""
 
   const origin = new URL(SITE_URL).origin
@@ -31,7 +33,7 @@ export async function GET(request: Request) {
     /* keep the safe default */
   }
 
-  if (id) {
+  if (verifyEmailTrackingId(id, token)) {
     try {
       await logEmailEvent(getSupabaseService(), {
         queueId: id,

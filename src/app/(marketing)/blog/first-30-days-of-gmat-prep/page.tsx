@@ -137,20 +137,23 @@ export default function PostPage() {
           <H2>Week 1 — Diagnose, don&apos;t teach</H2>
           <p>
             The single most important week of prep. The temptation to
-            skip the diagnostic and &ldquo;start learning&rdquo; is the single most
+            skip the baseline exam and &ldquo;start learning&rdquo; is the single most
             expensive mistake of prep. Resist it.
           </p>
 
-          <H3>Days 1-2: The full diagnostic</H3>
+          <H3>Days 1-2: The baseline exam</H3>
           <p>
-            Take a baseline practice exam across all three
-            sections. Untimed on the first pass &mdash; you&apos;re
-            measuring content knowledge, not pacing. The output is a
-            per-topic and per-difficulty heatmap. Without this, every
-            study plan you build for the next 12 weeks is guesswork.
+            Take a full-length official GMAT Focus practice exam from
+            mba.com under real conditions &mdash; all three sections, full
+            timing, no pausing. An untimed first pass measures the wrong
+            thing: pacing is part of what you are measuring, and an
+            untimed score will flatter you. Write down your total and all
+            three section scores, and enter them on the mock page &mdash;
+            every plan decision for the next 12 weeks builds on that
+            baseline instead of guesswork.
           </p>
 
-          <H3>Day 3: Read your diagnostic report</H3>
+          <H3>Day 3: Review every miss</H3>
           <p>
             Identify three things:
           </p>

@@ -1,3 +1,5 @@
+> **ARCHIVED (2026-07-19)** - historical snapshot; wording predates the current claim rules (offer: free 7-day full-access trial, no card; founder result: 565 to 735, top 1%, framed only as Adam's personal result; no "verified"/proof framing until the redacted score report actually ships). Reference only - do not build campaigns from this file.
+
 # Google Ads Audit — Zakarian GMAT (Campaign #1)
 
 Date: 2026-06-30. Skill: `/ads-google`. Account currency: NOK.

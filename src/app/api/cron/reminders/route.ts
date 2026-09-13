@@ -1,5 +1,9 @@
 import { getSupabaseService } from "@/lib/supabase/service"
-import { officialExamReminder } from "@/lib/official-exams"
+import {
+  officialExamReminder,
+  parseOfficialExamEntries,
+  deriveExamUsage,
+} from "@/lib/official-exams"
 import {
   officialExamReminderEmail,
   type ReminderStage,
@@ -80,8 +84,13 @@ export async function GET(request: Request) {
       const examDate = typeof meta.exam_date === "string" ? meta.exam_date : null
       if (!examDate) continue
       // Prefer the user_state row; fall back to legacy metadata pre-backfill.
+      // Canonical parser, so the email count can't drift from the /mock plan;
+      // untagged legacy entries suppress the reminder (the /mock roadmap asks
+      // for tagging first — "take your next official" would contradict it).
       const scores = officialByUser.get(user.id) ?? meta.official_exam_scores
-      const officialCount = Array.isArray(scores) ? scores.length : 0
+      const parsed = parseOfficialExamEntries({ official_exam_scores: scores })
+      if (deriveExamUsage(parsed).unclassifiedCount > 0) continue
+      const officialCount = parsed.length
 
       const reminder = officialExamReminder(examDate, todayIso, officialCount)
       if (!reminder) continue

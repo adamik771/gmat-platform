@@ -21,6 +21,10 @@ sections:
     title: "CR: Answer-Choice Traps"
     check_question_ids:
       - critical-reasoning-q83
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -31,7 +35,7 @@ problem_sets:
     question_ids:
       - critical-reasoning-q106
       - critical-reasoning-q84
-      - critical-reasoning-q85
+      - critical-reasoning-q202
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -44,11 +48,17 @@ problem_sets:
       - critical-reasoning-q88
 ---
 
+## @summary
+
+- Eliminate choices for a named reason: scope shift, reversal, extremity, outside knowledge, or failure to affect the conclusion.
+- Do not reward familiar wording; repeated words can hide a different logical claim.
+- When two choices remain, return to the exact task in the stem and the exact gap in the argument.
+
 ## @cr-answer-traps
 
 The question-type sections above give you the strategy for *what to look for*. This section gives you the six patterns that show up in *wrong answers* across every question type. Memorize these and your elimination speed roughly doubles — most wrong answers fall into one of these buckets, and recognizing the pattern lets you reject the choice in two seconds rather than re-evaluating the whole argument.
 
-Here is why this matters more than any single question-type trick: on the hard questions, the test writers no longer hide the correct answer. They surround it with four *plausibly related* distractors, each engineered to feel right for a different reason. You don't beat those questions by re-reading the stimulus a third time — you beat them by knowing the **shape of the bait**. Think of it as a two-layer skill. The first layer, *argument-reading*, changes with the question type: a strengthen prompt wants a different mental move than an inference prompt. The second layer, *answer-elimination*, is identical across every type — the same six construction tricks recur whether you're hunting an assumption, an inference, or a flaw. Most students drill the first layer endlessly and neglect the second, which is exactly where the points hemorrhage on the 700-level set. Below is the full catalogue, with a memorizable procedure at the end.
+Here is why this matters more than any single question-type trick: on the hard questions, the test writers no longer hide the correct answer. They surround it with four *plausibly related* distractors, each engineered to feel right for a different reason. You don't beat those questions by re-reading the stimulus a third time — you beat them by knowing the **shape of the bait**. Think of it as a two-layer skill. The first layer, *argument-reading*, changes with the question type: a strengthen prompt wants a different mental move than an inference prompt. The second layer, *answer-elimination*, is identical across every type — the same six construction tricks recur whether you're hunting an assumption, an inference, or a flaw. Most students drill the first layer endlessly and neglect the second, which is exactly where the points hemorrhage on the hardest set. Below is the full catalogue, with a memorizable procedure at the end.
 
 Here is a fast decoder you can hold in your head while you scan the five choices:
 

@@ -1,306 +1,133 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Check, X, Shield, Calendar, Globe, ArrowRight } from "lucide-react"
-import SectionWrapper from "@/components/shared/SectionWrapper"
+import { Check, X, ArrowRight } from "lucide-react"
 import PricingCard from "@/components/marketing/PricingCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import FoundingOffer from "@/components/marketing/FoundingOffer"
 import TrackView from "@/components/analytics/TrackView"
-import { PAYWALL_ENABLED } from "@/lib/entitlements"
-import { QUESTION_CLAIM_SHORT } from "@/lib/site"
+import { getPublicInventory } from "@/components/marketing/content-inventory"
+import { PAYWALL_ENABLED, TRIAL_DAYS } from "@/lib/entitlements"
 import { tiers } from "@/lib/plans"
+import { PLAN_ACCESS_MONTHS } from "@/lib/plan-access"
+import styles from "@/components/marketing/PublicSite.module.css"
 
 export const metadata: Metadata = {
   title: "Pricing",
   alternates: { canonical: "/pricing" },
-  description: "Simple, transparent pricing for GMAT prep that works.",
+  description: "Compare platform access and direct support across four one-time GMAT preparation plans.",
 }
 
 const faqItems = [
-  {
-    question: "Is this a subscription or one-time payment?",
-    answer:
-      "Self-Study is a one-time payment for four months of platform access; Self-Study + Mentorship is one payment for six months. Coaching and Intensive are packages — you pay once for the full program.",
-  },
-  {
-    question: "What does the Mentorship tier add?",
-    answer:
-      "Direct WhatsApp Q&A access to Adam, plus six months on the platform instead of four. Ask questions as they come up while you study — no scheduled calls, just answers when you need them.",
-  },
-  {
-    question: "Can I upgrade from Self-Study to Coaching?",
-    answer:
-      "Yes. If you start with Self-Study and want to add coaching, we'll credit your Self-Study payment toward the Coaching package.",
-  },
-  {
-    question: "How are coaching sessions conducted?",
-    answer:
-      "Sessions are 60 minutes via Zoom. Adam reviews your error log, mock exams, and analytics before each session. You get a written action plan after every call.",
-  },
-  {
-    question: "What if I need to pause or reschedule?",
-    answer:
-      "Life happens. You can reschedule sessions with 24-hour notice. Coaching packages are valid for 6 months from purchase.",
-  },
+  { question: "Is this a subscription?", answer: "No. Prices are in USD, paid once. Self-Study includes four months of platform access, Mentorship and Coaching six months, and Intensive twelve months. Paid access starts on the purchase date." },
+  { question: "What happens after the trial?", answer: PAYWALL_ENABLED
+    ? `After ${TRIAL_DAYS} days of full access, a paid plan is required to continue. Your existing account and study history remain in place.`
+    : `The standard trial is ${TRIAL_DAYS} days. During early release, full access continues beyond that period while the paywall is off. Checkout has not opened; a reservation does not start a paid access period.` },
+  { question: "What does Mentorship add?", answer: "Direct WhatsApp Q&A with Adam and six months on the platform instead of four. Mentorship does not include scheduled coaching calls." },
+  { question: "How are coaching sessions conducted?", answer: "Sessions are 60 minutes via Zoom. Adam reviews your error log, mock exams, and analytics before each session. You receive a written action plan after the call. Sessions can be rescheduled with 24-hour notice; coaching packages are valid for six months from purchase." },
+  { question: "Can I upgrade to Coaching later?", answer: "Yes. Your Self-Study payment can be credited toward the Coaching package. Contact Adam to arrange the upgrade." },
 ]
-
-const comparisonFeatures = [
-  "50+ chapters (Q / V / DI)",
-  QUESTION_CLAIM_SHORT,
-  "Practice tests + test builder",
-  "Official-exam study plan",
-  "Full analytics",
-  "Error log + spaced review",
-  "Platform access",
-  "WhatsApp Q&A access",
-  "1:1 coaching sessions",
-]
-
-const comparisonData: Record<string, (boolean | string)[]> = {
-  "Self-Study": [true, true, true, true, true, true, "4 months", false, false],
-  Mentorship: [true, true, true, true, true, true, "6 months", true, false],
-  Coaching: [true, true, true, true, true, true, "6 months", true, "8 sessions"],
-  Intensive: [true, true, true, true, true, true, "12 months", true, "16 sessions"],
-}
 
 export default function PricingPage() {
+  const inventory = getPublicInventory()
+  const comparisonFeatures = [
+    `${inventory.chapters} interactive chapters`,
+    `${inventory.readings} supporting readings`,
+    `${inventory.questions.toLocaleString("en-US")} original bank questions`,
+    "Practice, test builder, review, and analytics",
+    "Platform access",
+    "WhatsApp Q&A with Adam",
+    "1:1 coaching sessions",
+  ]
+  const comparisonData: Record<string, (boolean | string)[]> = {
+    "Self-Study": [true, true, true, true, `${PLAN_ACCESS_MONTHS.self_study} months`, false, false],
+    Mentorship: [true, true, true, true, `${PLAN_ACCESS_MONTHS.self_study_guaranteed} months`, true, false],
+    Coaching: [true, true, true, true, `${PLAN_ACCESS_MONTHS.coaching} months`, true, "8 sessions"],
+    Intensive: [true, true, true, true, `${PLAN_ACCESS_MONTHS.intensive} months`, true, "16 sessions"],
+  }
+  const checkoutConfigured = (priceId: string) =>
+    Boolean(process.env.STRIPE_SECRET_KEY) &&
+    Boolean(priceId) &&
+    !["price_self_study", "price_self_study_guaranteed", "price_coaching", "price_intensive"].includes(priceId)
+
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
-      {/* Fires pricing_view on mount — top of the conversion funnel. */}
+    <div className={styles.page}>
       <TrackView event="pricing_view" />
-      {/* Header */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 90% 50% at 50% -5%, rgba(201,168,76,0.15) 0%, transparent 60%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
-          aria-hidden
-        />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: "#C9A84C" }}
-            >
-              Pricing
-            </p>
-            <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-5">
-              Simple, transparent{" "}
-              <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-                pricing.
-              </span>
-            </h1>
-            <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed">
-              Four paths from self-study to full-service coaching. Choose the plan that
-              fits your timeline. Upgrade anytime.
-            </p>
-            <div
-              className="mt-7 inline-flex items-start gap-2.5 px-4 py-3 rounded-xl border text-left"
-              style={{
-                borderColor: "rgba(201,168,76,0.28)",
-                backgroundColor: "rgba(201,168,76,0.05)",
+      <div className={styles.container}>
+        <header className={styles.intro}>
+          <p className={styles.kicker}>Zakarian GMAT</p>
+          <h1 className="font-display">Plans and pricing</h1>
+          <p className={styles.lede}>The same platform, with different access lengths and levels of direct support.</p>
+          <p className="mt-5 max-w-3xl border-l-2 border-[#C9A84C] pl-4 text-sm leading-relaxed text-[#C0C0C0]">
+            {!PAYWALL_ENABLED
+              ? "Early release: checkout is not yet open. Full access continues beyond the seven-day trial while the paywall is off. Reserve a founding rate without paying; choose your plan when checkout opens."
+              : "Start with a full-access trial. Paid plans are one-time purchases; the access period begins on your purchase date. Checkout availability is shown for each plan."}
+          </p>
+          <div className={styles.actions}><Link href="/signup" className={styles.button}>Start {TRIAL_DAYS}-day trial <ArrowRight aria-hidden="true" /></Link></div>
+          <p className={styles.note}>No credit card required for the trial. Listed prices are in USD.</p>
+        </header>
+
+        <p className="mb-8 text-sm leading-relaxed text-[#B9B7AE]">
+          Every plan includes {inventory.chapters} interactive chapters, {inventory.readings} supporting readings, {inventory.questions.toLocaleString("en-US")} original bank questions, practice, review, and analytics.
+        </p>
+        <div className="grid items-stretch gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {tiers.map((tier) => (
+            <PricingCard
+              key={tier.id}
+              tier={{
+                ...tier,
+                description: tier.id === "self_study" ? "The complete platform for independent preparation." : tier.id === "coaching" ? "The platform and eight 1:1 sessions with Adam." : tier.id === "intensive" ? "The platform and sixteen 1:1 sessions with Adam." : tier.description,
+                features: tier.features.slice(-3),
               }}
-            >
-              {PAYWALL_ENABLED ? (
-                <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
-                  <span className="font-semibold text-[#F0F0F0]">Secure checkout.</span>{" "}
-                  Payments are handled by Stripe, and every self-study plan is
-                  covered by a 14-day money-back guarantee. Create a free account,
-                  then upgrade when you&apos;re ready.
-                </p>
-              ) : (
-                <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
-                  <span className="font-semibold text-[#F0F0F0]">Early access.</span>{" "}
-                  The full self-study platform is free to use while we&apos;re in beta
-                  &mdash; create an account and start today. The plans below are how
-                  pricing and Adam&apos;s 1:1 coaching work as they roll out.
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Pricing cards */}
-          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
-            {tiers.map((tier) => (
-              <PricingCard
-                key={tier.id}
-                tier={tier}
-                purchasable={PAYWALL_ENABLED}
-              />
-            ))}
-          </div>
-
-          {/* Hesitation reducer — sample chapter link below the tiers */}
-          <div className="mt-10 text-center">
-            <Link
-              href="/sample-chapter"
-              className="inline-flex items-center gap-2 text-[14px] hover:underline transition-opacity hover:opacity-80"
-              style={{ color: "#C9A84C" }}
-            >
-              Want to see what one chapter looks like first?
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
+              purchasable={PAYWALL_ENABLED && checkoutConfigured(tier.stripePriceId)}
+              reservationAvailable={!PAYWALL_ENABLED}
+            />
+          ))}
         </div>
-      </section>
-
-      {/* Trust strip */}
-      <div
-        className="border-y border-white/[0.06] py-8"
-        style={{ backgroundColor: "#0D0D0D" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
-            {[
-              { icon: Shield, label: "14-Day Money-Back" },
-              { icon: Calendar, label: "Flexible Scheduling" },
-              { icon: Globe, label: "Non-Native Speaker Support" },
-            ].map((item, i) => {
-              const Icon = item.icon
-              return (
-                <div key={item.label} className="flex items-center gap-3">
-                  {i > 0 && (
-                    <div className="hidden sm:block h-4 w-px bg-white/[0.08]" aria-hidden />
-                  )}
-                  <div className="flex items-center gap-2.5">
-                    <Icon className="w-4 h-4" style={{ color: "#C9A84C" }} />
-                    <span className="text-sm text-[#C0C0C0] tracking-tight">{item.label}</span>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+        <div className="my-6 flex flex-wrap gap-x-8">
+          <Link href="/sample-chapter" className={styles.textLink}>Read a sample chapter <ArrowRight aria-hidden="true" /></Link>
+          <Link href="/refund" className={styles.textLink}>Refund terms <ArrowRight aria-hidden="true" /></Link>
         </div>
       </div>
 
-      {/* FOUNDING OFFER — beta-only: reserve a locked-in founding discount
-          before paid checkout goes live. Hidden once PAYWALL_ENABLED. */}
-      {!PAYWALL_ENABLED && <FoundingOffer variant="dark" />}
+      {!PAYWALL_ENABLED && <FoundingOffer />}
 
-      {/* Comparison table */}
-      <SectionWrapper variant="darker">
-        <div className="text-center mb-12">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "#C9A84C" }}>
-            Compare
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-            What each tier includes
-          </h2>
-        </div>
-
-        <div
-          className="overflow-x-auto rounded-2xl border border-white/[0.08]"
-          style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)" }}
-        >
-          <table className="w-full">
-            <thead>
-              <tr style={{ backgroundColor: "#0F0F0F" }}>
-                <th className="py-5 px-6 text-left text-[10px] uppercase tracking-[0.18em] text-[#555555] font-semibold w-48">
-                  Feature
-                </th>
-                {Object.keys(comparisonData).map((plan) => (
-                  <th
-                    key={plan}
-                    className="py-5 px-4 text-center font-display text-sm font-semibold text-[#F0F0F0] tracking-tight"
-                  >
-                    {plan}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {comparisonFeatures.map((feature, fi) => (
-                <tr
-                  key={feature}
-                  className="border-t border-white/[0.05] transition-colors hover:bg-white/[0.02]"
-                  style={{
-                    backgroundColor: fi % 2 === 0 ? "#0A0A0A" : "transparent",
-                  }}
-                >
-                  <td className="py-3.5 px-6 text-sm text-[#C0C0C0]">{feature}</td>
-                  {Object.keys(comparisonData).map((plan) => {
-                    const val = comparisonData[plan][fi]
-                    return (
-                      <td key={plan} className="py-3.5 px-4 text-center">
-                        {typeof val === "boolean" ? (
-                          val ? (
-                            <Check
-                              className="w-4 h-4 mx-auto"
-                              style={{ color: "#3ECF8E" }}
-                            />
-                          ) : (
-                            <X className="w-4 h-4 mx-auto text-[#333333]" />
-                          )
-                        ) : (
-                          <span className="text-xs font-semibold tabular-nums" style={{ color: "#C9A84C" }}>
-                            {val}
-                          </span>
-                        )}
+      <div className={styles.container}>
+        <section className={styles.section}>
+          <h2 className="font-display">Compare the details</h2>
+          {/* Contain absolutely positioned screen-reader labels within the scroll area. */}
+          <div className="relative overflow-x-auto" tabIndex={0} role="region" aria-label="Plan comparison">
+            <table className="w-full min-w-[680px] text-sm">
+              <caption className="sr-only">Platform access and support included in each plan</caption>
+              <thead><tr>
+                <th scope="col" className="p-4 text-left">Included</th>
+                {Object.keys(comparisonData).map((plan) => <th key={plan} scope="col" className="p-4 text-center">{plan}</th>)}
+              </tr></thead>
+              <tbody>
+                {comparisonFeatures.map((feature, index) => (
+                  <tr key={feature} className="border-t border-white/10">
+                    <th scope="row" className="p-4 text-left font-normal text-[#C0C0C0]">{feature}</th>
+                    {Object.entries(comparisonData).map(([plan, values]) => {
+                      const value = values[index]
+                      return <td key={plan} className="p-4 text-center text-[#C0C0C0]">
+                        {typeof value === "boolean" ? <>
+                          {value ? <Check aria-hidden="true" className="mx-auto h-4 w-4 text-[#3ECF8E]" /> : <X aria-hidden="true" className="mx-auto h-4 w-4 text-[#B9B7AE]" />}
+                          <span className="sr-only">{value ? "Included" : "Not included"}</span>
+                        </> : value}
                       </td>
-                    )
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </SectionWrapper>
-
-      {/* FAQ */}
-      <SectionWrapper>
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "#C9A84C" }}>
-              FAQ
-            </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-              Pricing questions
-            </h2>
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <FAQAccordion items={faqItems} />
-        </div>
-      </SectionWrapper>
-
-      {/* Final CTA */}
-      <section className="relative py-28 overflow-hidden" style={{ backgroundColor: "#050505" }}>
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 70% at 50% 100%, rgba(201,168,76,0.14) 0%, transparent 65%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
-          aria-hidden
-        />
-        <div className="relative max-w-3xl mx-auto text-center px-4">
-          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
-            Not sure which plan?{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              Let&apos;s talk.
-            </span>
-          </h2>
-          <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed mb-10">
-            Book a free 20-minute call and we&apos;ll figure out the right fit together.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-          >
-            Book a Free Call
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
+        </section>
+        <section className={styles.section}><h2 className="font-display">Pricing questions</h2><FAQAccordion items={faqItems} className={styles.faq} /></section>
+        <section className={styles.section}>
+          <h2 className="font-display">Talk through your options</h2>
+          <p className={styles.note}>Request a free 20-minute call. Adam will reply by email to arrange a time.</p>
+          <Link href="/contact" className={styles.textLink}>Request a free call <ArrowRight aria-hidden="true" /></Link>
+        </section>
+      </div>
     </div>
   )
 }

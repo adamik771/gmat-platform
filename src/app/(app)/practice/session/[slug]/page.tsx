@@ -22,6 +22,11 @@ import {
   pickFreshOrder,
   type TopicSkillLevel,
 } from "@/lib/topic-skill"
+import {
+  balanceDataSufficiencyOrder,
+  buildLastSeenMap,
+  QUESTION_HISTORY_LIMIT,
+} from "@/lib/question-selection"
 import { TOPIC_TO_SET } from "@/lib/topic-chapter-map"
 import { getUserState } from "@/lib/user-state"
 import { readSavedForReview } from "@/lib/spaced-review"
@@ -147,40 +152,40 @@ export default async function PracticeSessionPage({
   }
   let weakestTopic: WeakTopicHint | null = null
   // question id -> most recent attempt (epoch ms), for seen-aware ordering.
-  const lastSeenAtMs = new Map<string, number>()
+  let lastSeenAtMs: ReadonlyMap<string, number> = new Map()
   // Already-saved-for-review ids so the per-question save button reflects
   // server truth instead of remounting as "unsaved" on every navigation.
   let savedForReview: string[] = []
+  let userId = ""
+  let initialActivePractice: unknown = null
   try {
     const supabase = await createSupabaseServer()
     const {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
+      userId = user.id
       const state = await getUserState(supabase, user)
+      initialActivePractice = state.active_practice ?? null
       const levels = getTopicSkillLevels(state)
       skill = getLevelForSlug(levels, slug)
       savedForReview = Array.from(readSavedForReview(state))
 
-      // Fetch enough history to compute per-topic accuracy. 2k rows is
-      // sufficient for most users; the limit avoids over-fetching on
-      // heavy accounts while still giving good signal.
+      // Fetch enough history to cover the bank even when a student has
+      // repeated a few topics; otherwise an old solved question can fall out
+      // of the window and be misclassified as unseen.
       // Most-recent-first so the seen-map's first hit per question id IS the
-      // latest attempt, and the 2k window covers recent history.
+      // latest attempt, and the shared history window covers the full bank
+      // plus repeated work on a student's strongest topics.
       const { data: attempts } = await supabase
         .from("practice_attempts")
         .select("topic, is_correct, question_id, created_at")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false })
-        .limit(2000)
+        .limit(QUESTION_HISTORY_LIMIT)
 
       if (attempts && attempts.length > 0) {
-        for (const row of attempts) {
-          const qid = row.question_id as string | null
-          if (!qid || lastSeenAtMs.has(qid)) continue
-          const at = new Date(row.created_at as string).getTime()
-          if (!Number.isNaN(at)) lastSeenAtMs.set(qid, at)
-        }
+        lastSeenAtMs = buildLastSeenMap(attempts)
         const stats = new Map<string, { total: number; correct: number }>()
         for (const row of attempts) {
           const t = row.topic as string | null
@@ -219,18 +224,24 @@ export default async function PracticeSessionPage({
   const adaptive = chapterTest
     ? pickAdaptiveOrder(playable, skill)
     : pickFreshOrder(playable, skill, lastSeenAtMs)
+  const delivered = balanceDataSufficiencyOrder(adaptive, {
+    lastSeenAt: lastSeenAtMs,
+    seed: [...slug].reduce((sum, char) => sum + char.charCodeAt(0), 0),
+  })
 
   return (
     <SessionClient
+      userId={userId}
       slug={slug}
       topic={questions[0].topic}
       section={questions[0].section}
-      questions={adaptive}
+      questions={delivered}
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
       weakestTopic={weakestTopic ?? undefined}
       setLabel={setLabel}
       initialSavedForReview={savedForReview}
+      initialActivePractice={initialActivePractice}
     />
   )
 }

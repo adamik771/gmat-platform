@@ -333,7 +333,7 @@ The correct answer is A.
 ---
 
 ## Q10
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Exponents
 
@@ -798,7 +798,7 @@ The correct answer is D.
 ---
 
 ## Q21
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Symmetric Sums
 
@@ -1127,29 +1127,17 @@ For how many integer values of x is |3x + 2| + |x − 4| ≤ 10?
 - E) 7
 
 **answer:** C
+**fastest_path:** Break at x = -2/3 and x = 4, solve each linear piece, then count integer solutions.
+**explanation:** For x < -2/3, the expression is -(3x+2) -(x-4) = -4x+2, so -4x+2 <= 10 gives x >= -2; integers are -2 and -1. For -2/3 <= x < 4, it is (3x+2) -(x-4) = 2x+6, so x <= 2; integers are 0, 1, 2. For x >= 4, it is 4x-2 <= 10, which requires x <= 3 and gives none. There are five values, so C is correct.
+**common_trap:** Solving one sign case across the entire number line or forgetting to reapply each case's interval restriction.
+**takeaway:** For sums of absolute values, split at every zero, solve each linear region, and intersect with that region before counting.
 **hint_nudge:** With a sum of two absolute values, the sign of each piece flips at a “critical point.”
 **hint_strategy:** Find where each expression hits zero (x = −2/3 and x = 4), break the line into intervals, drop the bars with the correct sign on each, and solve the resulting linear inequalities.
 **hint_setup:** On −2/3 ≤ x < 4 the sum is (3x + 2) + (4 − x) = 2x + 6 ≤ 10; handle the other intervals the same way, then collect the integers.
-**explanation:** When an inequality contains a sum of absolute-value expressions, the governing method is to locate the critical points at which each expression changes sign, partition the real line into the resulting intervals, and on each interval rewrite the absolute values as ordinary linear expressions so that the inequality becomes a plain linear inequality that can be solved directly.
-
-The two expressions are 3x + 2 and x - 4. We set each equal to zero to find the critical points. The expression 3x + 2 equals zero when x = -2/3, and the expression x - 4 equals zero when x = 4. These two values divide the real line into three intervals, which we examine in turn.
-
-Let us first consider the interval x >= 4. Here both 3x + 2 and x - 4 are nonnegative, so the absolute values may be removed directly: (3x + 2) + (x - 4) = 4x - 2. The inequality becomes 4x - 2 <= 10, which gives 4x <= 12, and therefore x <= 3. Since this conclusion contradicts the assumption x >= 4, this interval contributes no solutions.
-
-Next consider the interval -2/3 <= x < 4. Here 3x + 2 is nonnegative while x - 4 is negative, so |3x + 2| = 3x + 2 and |x - 4| = 4 - x. The sum is (3x + 2) + (4 - x) = 2x + 6. The inequality becomes 2x + 6 <= 10, which gives 2x <= 4, and therefore x <= 2. Intersecting this with the interval under consideration yields -2/3 <= x <= 2.
-
-Finally consider the interval x < -2/3. Here both 3x + 2 and x - 4 are negative, so |3x + 2| = -(3x + 2) and |x - 4| = 4 - x. The sum is -(3x + 2) + (4 - x) = -4x + 2. The inequality becomes -4x + 2 <= 10, which gives -4x <= 8, and therefore x >= -2. Intersecting this with the interval under consideration yields -2 <= x < -2/3.
-
-We now unite the solution sets from the three intervals. The first interval contributes nothing, the second contributes -2/3 <= x <= 2, and the third contributes -2 <= x < -2/3. Together these form the single continuous range -2 <= x <= 2. The integers satisfying this range are -2, -1, 0, 1, and 2, a total of five values.
-
-The correct answer is C.
-**fastest_path:** Critical points are −2/3 and 4; the binding region is −2 ≤ x ≤ 2, giving integers −2 through 2 = 5.
-**common_trap:** Mishandling the sign of an absolute value on one of the intervals.
 **mistake_a:** 3 drops two endpoints of the range.
 **mistake_b:** 4 drops one endpoint (e.g., −2 or 2).
 **mistake_d:** 6 adds an integer outside −2 ≤ x ≤ 2.
 **mistake_e:** 7 over-counts by extending past the binding interval.
-**takeaway:** For a sum of absolute values, partition at the critical points and solve a linear inequality on each piece.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -1514,7 +1502,7 @@ The correct answer is D.
 ---
 
 ## Q40
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Sequences — Recursive
 
@@ -1688,7 +1676,7 @@ A taxi charges a fixed base fare plus a constant rate per mile. A 4-mile ride co
 ---
 
 ## Q49
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Systems of Equations
 
@@ -1726,7 +1714,7 @@ For a certain value of k, the equation 3(kx - 2) = 5x + 9 has no solution. What 
 ---
 
 ## Q51
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Systems of Equations
 
@@ -1935,7 +1923,7 @@ Two positive integers a and b satisfy a + b = 15 and a − b = 4. What is the va
 ---
 
 ## Q62
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics
 
@@ -1973,7 +1961,7 @@ For the equation x^2 + px + 5 = 0, the two real solutions differ by 4. If p is p
 ---
 
 ## Q64
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics
 
@@ -2262,16 +2250,16 @@ For all numbers a and b, the operation ⊕ is defined by a ⊕ b = a² - 2b. Wha
 **type:** Problem Solving
 **topic:** Function Composition
 
-The functions f and g are defined by f(x) = 2x + 1 and g(x) = x² - 3. What is the value of f(g(2))?
+The functions f and g are defined by f(x) = 3x - 4 and g(x) = x² + 1. What is the value of g(f(2))?
 
-- A) 1
-- B) 2
-- C) 3
-- D) 22
-- E) 5
+- A) 2
+- B) 4
+- C) 5
+- D) 11
+- E) 13
 
 **answer:** C
-**explanation:** The inner function is evaluated first: g(2) = 2² - 3 = 4 - 3 = 1. Then f is applied to this result: f(1) = 2(1) + 1 = 3. The value 22 results from reversing the order and computing g(f(2)) = g(5) = 25 - 3 = 22, while 2 results from finding g(2) = 1 but forgetting to add 1 when applying f. The correct answer is C.
+**explanation:** The inner function is evaluated first: f(2) = 3(2) - 4 = 2. Then g is applied to this result: g(2) = 2² + 1 = 5. The value 11 results from reversing the order and computing f(g(2)) = f(5) = 15 - 4 = 11, while 2 results from finding f(2) = 2 but forgetting to apply g, and 4 comes from squaring without adding the trailing 1. The correct answer is C.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---
@@ -2353,7 +2341,7 @@ In an arithmetic sequence, the first term is 5 and the common difference is 3. W
 ---
 
 ## Q84
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Sequences
 
@@ -2524,7 +2512,7 @@ Six years ago, Aaron was twice as old as Bella was then. In four years, the sum 
 ---
 
 ## Q94
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Translation
 
@@ -2543,7 +2531,7 @@ A jar contains red, blue, and green marbles. The number of red marbles is 5 more
 ---
 
 ## Q95
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Word Problem — Translation
 
@@ -2777,7 +2765,7 @@ If |2x - 6| = 8, what is the sum of all possible values of x?
 ---
 
 ## Q107
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Sequences
 
@@ -2796,7 +2784,7 @@ In a geometric sequence, the first term is 3 and each term after the first is tw
 ---
 
 ## Q108
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics
 
@@ -2815,7 +2803,7 @@ If r and s are the two solutions of x² - 7x + 10 = 0, what is the value of 1/r 
 ---
 
 ## Q109
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Inequalities
 
@@ -3014,7 +3002,7 @@ Maria's age is 4 years more than twice Lena's age. If the sum of their ages is 3
 ---
 
 ## Q119
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Quadratics
 
@@ -3098,16 +3086,16 @@ A boat travels 36 kilometers downstream in 2 hours and the same 36 kilometers up
 **type:** Problem Solving
 **topic:** Quadratics
 
-If r and s are the two solutions of x² - 7x + 10 = 0, what is the value of r² + s²?
+If r and s are the two solutions of x² - 11x + 24 = 0, what is the value of r² + s²?
 
-- A) 9
-- B) 29
-- C) 39
-- D) 49
-- E) 69
+- A) 25
+- B) 73
+- C) 97
+- D) 121
+- E) 145
 
 **answer:** B
-**explanation:** Rather than finding r and s individually, we use Vieta's formulas together with an algebraic identity. For x² - 7x + 10 = 0, the sum of the roots is r + s = -(-7)/1 = 7 and the product is r·s = 10/1 = 10. The identity (r + s)² = r² + 2rs + s² can be rearranged to r² + s² = (r + s)² - 2rs. Substituting the known values gives r² + s² = 7² - 2(10) = 49 - 20 = 29. As a check, the equation factors as (x - 2)(x - 5) = 0, so the roots are 2 and 5, and 2² + 5² = 4 + 25 = 29, confirming the result. The correct answer is B.
+**explanation:** Rather than finding r and s individually, we use Vieta's formulas together with an algebraic identity. For x² - 11x + 24 = 0, the sum of the roots is r + s = -(-11)/1 = 11 and the product is r·s = 24/1 = 24. The identity (r + s)² = r² + 2rs + s² can be rearranged to r² + s² = (r + s)² - 2rs. Substituting the known values gives r² + s² = 11² - 2(24) = 121 - 48 = 73. As a check, the equation factors as (x - 3)(x - 8) = 0, so the roots are 3 and 8, and 3² + 8² = 9 + 64 = 73, confirming the result. Among the wrong answers, 121 is (r + s)² with the correction term forgotten, 97 subtracts rs only once, 145 adds rs to (r + s)² instead of subtracting 2rs, and 25 is (r - s)². The correct answer is B.
 **related_reading:** reading-quant-04-algebra-and-equations
 
 ---

@@ -1,4 +1,5 @@
 import type { Section } from "@/types"
+import { focusPercentile } from "@/lib/score-conversion"
 
 /**
  * GMAT Focus Edition percentile interpretation.
@@ -13,68 +14,6 @@ import type { Section } from "@/types"
  *   - Mock report: shows percentile next to the total score and per-section.
  *   - Diagnostic report: same idea, applied to the diagnostic baseline.
  */
-
-// Total-score percentiles from the GMAT Focus population tables (2020-2025).
-// Keys = score lower-bound; values = percentile. Walk in descending key order
-// and pick the first entry whose key is ≤ score (totals snap to the 205-805
-// grid, so the lookup is exact). 735+ is the 100th band; the score calculator
-// caps the DISPLAYED value at 99 separately.
-const TOTAL_PERCENTILES: Array<{ minScore: number; percentile: number }> = [
-  { minScore: 735, percentile: 100 },
-  { minScore: 725, percentile: 99 },
-  { minScore: 715, percentile: 99 },
-  { minScore: 705, percentile: 98 },
-  { minScore: 695, percentile: 97 },
-  { minScore: 685, percentile: 96 },
-  { minScore: 675, percentile: 95 },
-  { minScore: 665, percentile: 92 },
-  { minScore: 655, percentile: 91 },
-  { minScore: 645, percentile: 87 },
-  { minScore: 635, percentile: 82 },
-  { minScore: 625, percentile: 79 },
-  { minScore: 615, percentile: 76 },
-  { minScore: 605, percentile: 70 },
-  { minScore: 595, percentile: 67 },
-  { minScore: 585, percentile: 61 },
-  { minScore: 575, percentile: 57 },
-  { minScore: 565, percentile: 51 },
-  { minScore: 555, percentile: 48 },
-  { minScore: 545, percentile: 42 },
-  { minScore: 535, percentile: 39 },
-  { minScore: 525, percentile: 34 },
-  { minScore: 515, percentile: 32 },
-  { minScore: 505, percentile: 27 },
-  { minScore: 495, percentile: 25 },
-  { minScore: 485, percentile: 21 },
-  { minScore: 475, percentile: 20 },
-  { minScore: 465, percentile: 17 },
-  { minScore: 455, percentile: 15 },
-  { minScore: 445, percentile: 13 },
-  { minScore: 435, percentile: 12 },
-  { minScore: 425, percentile: 10 },
-  { minScore: 415, percentile: 9 },
-  { minScore: 405, percentile: 7 },
-  { minScore: 395, percentile: 6 },
-  { minScore: 385, percentile: 5 },
-  { minScore: 375, percentile: 5 },
-  { minScore: 365, percentile: 4 },
-  { minScore: 355, percentile: 3 },
-  { minScore: 345, percentile: 3 },
-  { minScore: 335, percentile: 2 },
-  { minScore: 325, percentile: 2 },
-  { minScore: 315, percentile: 2 },
-  { minScore: 305, percentile: 1 },
-  { minScore: 295, percentile: 1 },
-  { minScore: 285, percentile: 1 },
-  { minScore: 275, percentile: 1 },
-  { minScore: 265, percentile: 1 },
-  { minScore: 255, percentile: 0 },
-  { minScore: 245, percentile: 0 },
-  { minScore: 235, percentile: 0 },
-  { minScore: 225, percentile: 0 },
-  { minScore: 215, percentile: 0 },
-  { minScore: 205, percentile: 0 },
-]
 
 // Per-section percentiles (60-90 scale) from the GMAT Focus population
 // tables (2020-2025). Exact per-point values; sections snap to the 60-90
@@ -186,10 +125,7 @@ const SECTION_PERCENTILES: Record<Section, Array<{ minScore: number; percentile:
  * `score` is the total GMAT Focus score (205-805).
  */
 export function totalPercentile(score: number): number {
-  for (const row of TOTAL_PERCENTILES) {
-    if (score >= row.minScore) return row.percentile
-  }
-  return 1
+  return focusPercentile(score)
 }
 
 /**
@@ -210,7 +146,7 @@ export function sectionPercentile(section: Section, sectionScore: number): numbe
  */
 export function percentileBand(percentile: number): string {
   if (percentile >= 100) return "100th percentile (top 1%)"
-  if (percentile >= 99) return "99th percentile (top 1%)"
+  if (percentile >= 99) return `${percentile}th percentile (top 1%)`
   if (percentile >= 95) return `${percentile}th percentile (top 5%)`
   if (percentile >= 90) return `${percentile}th percentile (top 10%)`
   if (percentile >= 75) return `${percentile}th percentile`

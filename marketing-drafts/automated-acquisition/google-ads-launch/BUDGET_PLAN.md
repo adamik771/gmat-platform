@@ -1,6 +1,6 @@
 # Budget Plan — Google Ads Launch
 
-Brand-new beta, little to no traffic, paywall OFF (zero purchase volume). Priority is minimum spend to validate that ads -> micro-conversions (signup / lead_captured / founding_reserve) works at all. Do NOT scale before tracking is verified and conversions are flowing.
+Brand-new product pre-launch, little to no traffic, paywall OFF (zero purchase volume). Priority is minimum spend to validate that ads -> micro-conversions (signup / lead_captured / founding_reserve) works at all. Do NOT scale before tracking is verified and conversions are flowing.
 
 All figures are planning estimates, not guarantees. Real CPCs will vary by market and competition.
 
@@ -42,7 +42,7 @@ If an ad group is eating budget without converting, lower its keyword bids (towa
 
 Scale a keyword or ad group ONLY when ALL of these hold:
 - Conversion tracking is verified firing (signup / lead_captured / founding_reserve seen in Google Ads + GA4).
-- Cost per micro-conversion is **at or below ~$8** (a lead/signup during a free beta; revisit once the paywall is on and you know LTV).
+- Cost per micro-conversion is **at or below ~$8** (a lead/signup during the pre-launch free-trial period; revisit once the paywall is on and you know LTV).
 - The ad group has produced **at least 3–5 conversions** so the CPA isn't a fluke of one click.
 
 Scale move: raise daily budget in **$3 increments** (7 -> 10 -> 13), never doubling. Re-check CPA for 3–4 days before the next bump. Move to Maximize Conversions only after ~15–30 total conversions (see CAMPAIGN_STRUCTURE.md bidding progression).

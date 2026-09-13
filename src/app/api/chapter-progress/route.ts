@@ -1,6 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { blockIfNoAccess } from "@/lib/entitlements"
-import { getUserState, patchUserState } from "@/lib/user-state"
+import { getUserStateForWrite, patchUserState } from "@/lib/user-state"
 
 /**
  * POST /api/chapter-progress — persist a single chapter's progress to the
@@ -43,7 +43,18 @@ export async function POST(request: Request) {
     )
   }
 
-  const state = await getUserState(supabase, user)
+  // Read-modify-write of the whole chapter_progress map. A read that FAILED
+  // (vs. a genuinely absent row) must abort the write — otherwise `existing`
+  // is {} and the top-level merge below replaces every other chapter's server
+  // progress with just this one. The client push is fire-and-forget with
+  // localStorage as write-through, so a 503 here loses nothing.
+  const { state, errored } = await getUserStateForWrite(supabase, user)
+  if (errored) {
+    return Response.json(
+      { error: "state read failed; retry" },
+      { status: 503 }
+    )
+  }
   const existing =
     (state.chapter_progress as Record<string, unknown> | undefined) ?? {}
   const next = { ...existing, [slug]: progress }

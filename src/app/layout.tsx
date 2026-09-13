@@ -5,6 +5,7 @@ import "./globals.css"
 import JsonLd from "@/components/seo/JsonLd"
 import AdPixels from "@/components/analytics/AdPixels"
 import AttributionCapture from "@/components/analytics/AttributionCapture"
+import ConsentBanner from "@/components/analytics/ConsentBanner"
 import { organizationLd, websiteLd } from "@/lib/structured-data"
 
 const inter = Inter({
@@ -17,7 +18,7 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
   display: "swap",
-  axes: ["opsz", "SOFT"],
+  axes: ["opsz"],
 })
 
 // Site URL — used by metadataBase so relative og:image / twitter:image
@@ -38,20 +39,27 @@ export const metadata: Metadata = {
   },
   description:
     "The structured GMAT prep system that took Adam from 565 to 735. Built for ambitious students who don't have time for guesswork.",
-  keywords: ["GMAT", "GMAT prep", "MBA", "score improvement", "test prep"],
+  keywords: [
+    "GMAT",
+    "GMAT prep",
+    "MBA",
+    "MiM",
+    "Master in Finance",
+    "business master's",
+    "score improvement",
+    "test prep",
+  ],
   authors: [{ name: "Adam Zakarian" }],
   creator: "Adam Zakarian",
-  // OpenGraph — controls the rich card every social platform / chat
-  // app renders when a Zakarian GMAT link is shared. Without this,
-  // shared links rendered as a blank tile.
+  // OpenGraph — shared-link card defaults. Deliberately NO url/title/
+  // description here: those inherit per page from each page's own
+  // title/description, so /pricing shares as /pricing rather than every
+  // page rendering the homepage card. The homepage's own card lives in
+  // (marketing)/page.tsx metadata.
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: SITE_URL,
     siteName: "Zakarian GMAT",
-    title: "Zakarian GMAT — From 565 to 735, On Your Terms",
-    description:
-      "The structured GMAT prep system that took Adam from 565 to 735. Baseline-driven, mistake-driven, score-anchored — built for ambitious MBA candidates.",
     images: [
       {
         url: "/opengraph-image",
@@ -65,9 +73,6 @@ export const metadata: Metadata = {
   // openGraph but explicit `twitter:` keys give better cards on X.
   twitter: {
     card: "summary_large_image",
-    title: "Zakarian GMAT — From 565 to 735, On Your Terms",
-    description:
-      "The structured GMAT prep system that took Adam from 565 to 735.",
     images: ["/opengraph-image"],
   },
   robots: {
@@ -111,11 +116,16 @@ export default function RootLayout({
         {/* Vercel Web Analytics — page views + custom conversion events
             (see lib/analytics.ts). No-op until enabled on Vercel. */}
         <Analytics />
+        {/* Consent banner — Google/Meta tags and advertising attribution are
+            deny-by-default until the visitor accepts (Consent Mode v2). */}
+        <ConsentBanner />
         {/* Meta Pixel + Google tag — dormant until NEXT_PUBLIC_META_PIXEL_ID /
-            NEXT_PUBLIC_GOOGLE_TAG_ID are set; trackEvent forwards conversions. */}
+            NEXT_PUBLIC_GOOGLE_TAG_ID are set AND the visitor consents;
+            trackEvent forwards conversions. */}
         <AdPixels />
         {/* First-touch campaign attribution — stores utm_* / ref from the
-            landing URL so every conversion event is traceable to its source. */}
+            landing URL (only after consent) so conversion events are
+            traceable to their source. */}
         <AttributionCapture />
       </body>
     </html>

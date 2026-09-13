@@ -16,6 +16,9 @@ import {
 import { gatherFlaggedQuestionIds } from "@/lib/mock"
 import { getUserState } from "@/lib/user-state"
 import { getQuestionsByIds } from "@/lib/content"
+import { readSavedForReview } from "@/lib/spaced-review"
+import { daysUntil } from "@/lib/utils"
+import { getUserTz } from "@/lib/tz"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
 import ReviewCachePrimer from "@/components/offline/ReviewCachePrimer"
 import type { CachedQuestion } from "@/lib/offline/review-cache"
@@ -71,19 +74,40 @@ export default async function ReviewPage() {
   }
 
   const state = await getUserState(supabase, user)
+  const tz = await getUserTz()
   const flaggedQuestionIds = gatherFlaggedQuestionIds(state)
+  const savedQuestionIds = readSavedForReview(state)
+  const examDate =
+    (user.user_metadata?.exam_date as string | null | undefined) ?? null
   const queue = await getReviewQueue(supabase, user.id, {
     limit: 60,
     flaggedQuestionIds,
+    savedQuestionIds,
+    daysUntilExam: daysUntil(examDate, tz),
   })
+
+  // A failed read is NOT an empty queue — saying "all caught up" here
+  // would tell the student to skip their daily review on a DB hiccup.
+  if (queue === null) {
+    return (
+      <div className="max-w-3xl mx-auto">
+        <Header />
+        <EmptyState
+          title="Couldn't load your review queue"
+          body="Something went wrong reading your practice history. Your data is safe — reload the page to try again."
+        />
+      </div>
+    )
+  }
+
   const buckets = bucketBySection(queue)
 
   const totalDue = queue.length
 
-  // Count untagged wrong attempts so we can nudge the student to
-  // classify them — classification drives sharper error analysis and
-  // in a future iteration can influence review priority directly.
-  const [{ count: totalWrongCount }, { count: taggedCount }] = await Promise.all([
+  // Wrong attempts not yet marked reviewed — the same definition the
+  // dashboard and study plan use. (The old "untagged" arithmetic broke
+  // when the error log started auto-classifying every miss on render.)
+  const [{ count: totalWrongCount }, { count: reviewedCount }] = await Promise.all([
     supabase
       .from("practice_attempts")
       .select("id", { count: "exact", head: true })
@@ -91,16 +115,36 @@ export default async function ReviewPage() {
       .eq("is_correct", false),
     supabase
       .from("error_tags")
-      .select("id", { count: "exact", head: true })
-      .eq("user_id", user.id),
+      .select("attempt_id", { count: "exact", head: true })
+      .eq("user_id", user.id)
+      .eq("reviewed", true),
   ])
-  const untaggedCount = Math.max(0, (totalWrongCount ?? 0) - (taggedCount ?? 0))
+  const toReviewCount = Math.max(0, (totalWrongCount ?? 0) - (reviewedCount ?? 0))
+  const hasAttemptHistory = (totalWrongCount ?? 0) > 0
 
   if (totalDue === 0) {
     return (
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto space-y-8">
         <Header />
         <CaughtUpState />
+        {/* Mixed review is the evidence-backed next activity precisely
+            when the queue is clear — interleaved retrieval on material
+            the student has already practiced. Don't hide it here. */}
+        {hasAttemptHistory && <MixedReviewCard variant="global" unlocked />}
+        <div className="grid sm:grid-cols-2 gap-3">
+          <QuietLinkCard
+            href="/review/saved"
+            icon={<Bookmark className="w-4 h-4" style={{ color: "#C9A84C" }} />}
+            title="Saved questions"
+            body="Everything you bookmarked, in one place."
+          />
+          <QuietLinkCard
+            href="/review/all"
+            icon={<RotateCcw className="w-4 h-4" style={{ color: "#C9A84C" }} />}
+            title="Full spaced queue"
+            body="Questions and weak concepts by priority."
+          />
+        </div>
       </div>
     )
   }
@@ -142,152 +186,6 @@ export default async function ReviewPage() {
         questions={questionPayloads}
       />
       <Header totalDue={totalDue} />
-
-      {/* Untagged-mistakes nudge — classifying misses sharpens the
-          error-type analysis on the dashboard + analytics. Only shown
-          when the backlog is non-trivial so it doesn't nag users with
-          one stray untagged item. */}
-      {untaggedCount >= 5 && (
-        <Link
-          href="/error-log"
-          className="group flex items-center justify-between gap-3 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-20px_rgba(255,68,68,0.25)]"
-          style={{
-            borderColor: "rgba(255,68,68,0.22)",
-            backgroundColor: "rgba(255,68,68,0.04)",
-          }}
-        >
-          <div className="flex items-start gap-3">
-            <AlertCircle
-              className="w-4 h-4 mt-0.5 flex-shrink-0"
-              style={{ color: "#FF4444" }}
-            />
-            <div>
-              <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
-                <span className="tabular-nums">{untaggedCount}</span> untagged
-                mistakes
-              </p>
-              <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
-                Classifying each miss (conceptual gap? trap-baited? careless?)
-                takes ~5 seconds and makes your behaviour-pattern analytics
-                much sharper. Worth doing before today&apos;s review.
-              </p>
-            </div>
-          </div>
-          <span
-            className="flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200 group-hover:scale-[1.02]"
-            style={{
-              backgroundColor: "rgba(255,68,68,0.12)",
-              color: "#FF4444",
-            }}
-          >
-            Tag them
-          </span>
-        </Link>
-      )}
-
-      {/* Interleaved mixed review — pulls from recent misses + review
-          queue + any completed chapter pool. Stays above the per-section
-          Review cards so the student sees it first when returning. */}
-      <MixedReviewCard variant="global" unlocked={totalDue > 0} />
-
-      {/* Offline-drill discoverability — the queue + question payloads
-          on this page just got cached to IndexedDB by ReviewCachePrimer
-          (above). Surface the offline runner here so students know it
-          exists; on a flight or commute they can hit the link with no
-          network and the drill still works. */}
-      <Link
-        href="/offline/drill"
-        className="flex items-center justify-between gap-3 p-4 rounded-xl border text-[12px] transition-colors hover:bg-white/[0.02]"
-        style={{
-          borderColor: "rgba(255,255,255,0.05)",
-          backgroundColor: "rgba(255,255,255,0.012)",
-          color: "rgba(192,192,192,0.7)",
-        }}
-      >
-        <span className="flex items-center gap-2">
-          <RotateCcw
-            className="w-3.5 h-3.5"
-            style={{ color: "#C9A84C" }}
-          />
-          <span>
-            Drill this queue{" "}
-            <span style={{ color: "#888888" }}>
-              · works offline once cached
-            </span>
-          </span>
-        </span>
-        <ArrowRight
-          className="w-3.5 h-3.5"
-          style={{ color: "rgba(255,255,255,0.4)" }}
-        />
-      </Link>
-
-      {/* Link to the unified spaced-review queue (questions + concepts +
-          drills + recall checkpoints). The per-section cards below stay
-          the fast path for question-only review; this is the deeper
-          surface for students who want all four item kinds in one view. */}
-      <Link
-        href="/review/all"
-        className="group flex items-center justify-between gap-3 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
-        style={{
-          borderColor: "rgba(201,168,76,0.18)",
-          backgroundColor: "#0D0D0D",
-          boxShadow:
-            "0 0 40px rgba(201,168,76,0.05), inset 0 1px 0 rgba(255,255,255,0.04)",
-        }}
-      >
-        <div className="flex items-start gap-3">
-          <RotateCcw
-            className="w-4 h-4 mt-0.5 flex-shrink-0"
-            style={{ color: "#C9A84C" }}
-          />
-          <div>
-            <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
-              See the full spaced queue
-            </p>
-            <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
-              All four item kinds — questions, weak concepts, drills, recall
-              checkpoints — interleaved by composite priority. Confidence and
-              mistake-type modifiers shift each item up or down.
-            </p>
-          </div>
-        </div>
-        <ArrowRight
-          className="w-4 h-4 flex-shrink-0 text-[#C9A84C] group-hover:translate-x-0.5 transition-transform"
-          aria-hidden
-        />
-      </Link>
-
-      {/* Saved-for-review bookmarks — a dedicated list of questions the
-          student marked to revisit. */}
-      <Link
-        href="/review/saved"
-        className="group flex items-center justify-between gap-3 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
-        style={{
-          borderColor: "rgba(255,255,255,0.08)",
-          backgroundColor: "#0D0D0D",
-          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
-        }}
-      >
-        <div className="flex items-start gap-3">
-          <Bookmark
-            className="w-4 h-4 mt-0.5 flex-shrink-0"
-            style={{ color: "#C9A84C" }}
-          />
-          <div>
-            <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
-              Saved questions
-            </p>
-            <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
-              Everything you bookmarked with “Save for review”, in one place.
-            </p>
-          </div>
-        </div>
-        <ArrowRight
-          className="w-4 h-4 flex-shrink-0 text-[#C9A84C] group-hover:translate-x-0.5 transition-transform"
-          aria-hidden
-        />
-      </Link>
 
       <section>
         <div className="flex items-center gap-3 mb-5">
@@ -376,7 +274,7 @@ export default async function ReviewPage() {
                     )}
                     <RungDistribution counts={rungCounts} />
                   </div>
-                  <ArrowRight className="w-4 h-4 text-[#555555] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-1" />
+                  <ArrowRight className="w-4 h-4 text-[#888888] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-1" />
                 </div>
               </Link>
             )
@@ -384,13 +282,142 @@ export default async function ReviewPage() {
         </div>
       </section>
 
+      {/* Secondary surfaces — deliberately below the queue so the page
+          has exactly one primary action (start today's review). */}
+      <MixedReviewCard variant="global" unlocked={hasAttemptHistory} />
+
+      <div className="grid sm:grid-cols-2 gap-3">
+        <QuietLinkCard
+          href="/review/saved"
+          icon={<Bookmark className="w-4 h-4" style={{ color: "#C9A84C" }} />}
+          title="Saved questions"
+          body="Everything you bookmarked, in one place."
+        />
+        <QuietLinkCard
+          href="/review/all"
+          icon={<RotateCcw className="w-4 h-4" style={{ color: "#C9A84C" }} />}
+          title="Full spaced queue"
+          body="Questions and weak concepts by priority."
+        />
+      </div>
+
+      {/* Offline-drill discoverability — the queue + question payloads
+          on this page just got cached to IndexedDB by ReviewCachePrimer
+          (above). */}
+      <Link
+        href="/offline/drill"
+        className="flex items-center justify-between gap-3 p-4 rounded-xl border text-[12px] transition-colors hover:bg-white/[0.02]"
+        style={{
+          borderColor: "rgba(255,255,255,0.05)",
+          backgroundColor: "rgba(255,255,255,0.012)",
+          color: "rgba(192,192,192,0.7)",
+        }}
+      >
+        <span className="flex items-center gap-2">
+          <RotateCcw
+            className="w-3.5 h-3.5"
+            style={{ color: "#C9A84C" }}
+          />
+          <span>
+            Drill this queue{" "}
+            <span style={{ color: "#888888" }}>
+              · works offline once cached
+            </span>
+          </span>
+        </span>
+        <ArrowRight
+          className="w-3.5 h-3.5"
+          style={{ color: "rgba(255,255,255,0.4)" }}
+        />
+      </Link>
+
+      {/* Mistakes-to-review nudge — same definition as the dashboard chip
+          (wrong attempts without reviewed=true). Below the queue: today's
+          review is the primary job; clearing the error-log backlog is the
+          follow-on. */}
+      {toReviewCount >= 5 && (
+        <Link
+          href="/error-log"
+          className="group flex items-center justify-between gap-3 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-20px_rgba(255,68,68,0.25)]"
+          style={{
+            borderColor: "rgba(255,68,68,0.22)",
+            backgroundColor: "rgba(255,68,68,0.04)",
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <AlertCircle
+              className="w-4 h-4 mt-0.5 flex-shrink-0"
+              style={{ color: "#FF4444" }}
+            />
+            <div>
+              <p className="text-[15px] font-semibold tracking-tight text-[#F0F0F0]">
+                <span className="tabular-nums">{toReviewCount}</span> mistakes
+                to review
+              </p>
+              <p className="text-[13px] text-[#C0C0C0] leading-[1.65] mt-1">
+                Working through each miss in the error log (what happened, and
+                why) is what turns a wrong answer into a fixed skill.
+              </p>
+            </div>
+          </div>
+          <span
+            className="flex-shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200 group-hover:scale-[1.02]"
+            style={{
+              backgroundColor: "rgba(255,68,68,0.12)",
+              color: "#FF4444",
+            }}
+          >
+            Open error log
+          </span>
+        </Link>
+      )}
+
       <p className="text-[13px] text-[#888888] leading-[1.75] italic">
         Spacing ladder: same day → 2 days → 7 days → 21 days → 42 days.
-        Each correct answer moves a question one rung up the ladder and
-        hides it until the next gap elapses; a miss resets it to same-day.
-        Flagged questions override the ladder and surface immediately.
+        Each correct answer moves a question up the ladder and hides it
+        until the next gap elapses; a miss brings it back same-day, then it
+        re-enters one rung below where it slipped. Near your exam the gaps
+        shorten so nothing schedules past test day. Flagged and saved
+        questions override the ladder and surface immediately.
       </p>
     </div>
+  )
+}
+
+/** Compact secondary link card — quiet by design so the review queue
+ *  stays the page's single primary action. */
+function QuietLinkCard({
+  href,
+  icon,
+  title,
+  body,
+}: {
+  href: string
+  icon: React.ReactNode
+  title: string
+  body: string
+}) {
+  return (
+    <Link
+      href={href}
+      className="group flex items-center justify-between gap-3 p-4 rounded-xl border border-white/[0.06] bg-[#0D0D0D] transition-colors hover:border-white/[0.14]"
+    >
+      <div className="flex items-start gap-3 min-w-0">
+        <span className="mt-0.5 flex-shrink-0">{icon}</span>
+        <div className="min-w-0">
+          <p className="text-[14px] font-semibold tracking-tight text-[#F0F0F0]">
+            {title}
+          </p>
+          <p className="text-[12px] text-[#888888] leading-[1.6] mt-0.5">
+            {body}
+          </p>
+        </div>
+      </div>
+      <ArrowRight
+        className="w-4 h-4 flex-shrink-0 text-[#C9A84C] group-hover:translate-x-0.5 transition-transform"
+        aria-hidden
+      />
+    </Link>
   )
 }
 

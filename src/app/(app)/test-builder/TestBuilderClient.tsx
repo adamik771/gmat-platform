@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
   ArrowRight,
@@ -10,6 +11,7 @@ import {
   Wrench,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { planCustomSet } from "@/lib/question-selection"
 import type { Difficulty, Section } from "@/types"
 
 export interface QuestionPoolEntry {
@@ -17,6 +19,11 @@ export interface QuestionPoolEntry {
   section: Section
   topic: string
   difficulty: Difficulty
+  type: string
+  correctAnswerLetter: string
+  /** Most recent attempt on this question (epoch ms), passage-aware —
+   *  server-computed from practice_attempts. Absent = never seen. */
+  lastSeenAt?: number
 }
 
 export interface RecentCustomTest {
@@ -95,33 +102,40 @@ export default function TestBuilderClient({
   const effectiveCount = Math.min(numQuestions, available)
   const timeLimit = timed ? Math.round(effectiveCount * 1.75) : null
 
+  // Fresh-first sampling (shared policy: never-attempted lead, then
+  // least-recently-attempted; even round-robin split across the chosen
+  // sections is unchanged). The plan is computed up front so the repeat
+  // notice below shows exactly what "Build" will run. Reseeded per build so
+  // consecutive builds draw different unseen alternatives.
+  const [seed, setSeed] = useState(() => Date.now() % 1_000_000)
+  const lastSeenById = useMemo(
+    () =>
+      new Map(
+        pool
+          .filter((q) => typeof q.lastSeenAt === "number")
+          .map((q) => [q.id, q.lastSeenAt as number])
+      ),
+    [pool]
+  )
+  const plan = useMemo(() => {
+    if (sections.length === 0 || effectiveCount === 0) return null
+    return planCustomSet(matchingPool, sections, effectiveCount, lastSeenById, {
+      seed,
+    })
+  }, [matchingPool, sections, effectiveCount, lastSeenById, seed])
+  const unseenAvailable = useMemo(
+    () => matchingPool.filter((q) => !lastSeenById.has(q.id)).length,
+    [matchingPool, lastSeenById]
+  )
+
   async function build() {
     if (building) return
-    if (sections.length === 0 || effectiveCount === 0) return
+    if (!plan || plan.picked.length === 0) return
 
     setBuilding(true)
-    const bySection: Record<Section, QuestionPoolEntry[]> = {
-      Quant: [],
-      Verbal: [],
-      DI: [],
-    }
-    for (const q of matchingPool) bySection[q.section].push(q)
-    for (const sec of sections) shuffleInPlace(bySection[sec])
-
-    const picked: string[] = []
-    let exhausted = false
-    while (picked.length < effectiveCount && !exhausted) {
-      let progress = false
-      for (const sec of sections) {
-        if (picked.length >= effectiveCount) break
-        const bucket = bySection[sec]
-        if (bucket.length > 0) {
-          picked.push(bucket.pop()!.id)
-          progress = true
-        }
-      }
-      if (!progress) exhausted = true
-    }
+    const picked = plan.picked.map((q) => q.id)
+    // Next build on this mount samples with a fresh seed.
+    setSeed(Date.now() % 1_000_000)
 
     const topicLabel =
       sections.length === 1 ? `Custom ${sections[0]}` : "Custom Mixed"
@@ -176,7 +190,8 @@ export default function TestBuilderClient({
           </h1>
           <p className="text-[15px] leading-[1.75] text-[#C0C0C0] max-w-xl">
             Pull from {pool.length} original questions. Pick sections, scale,
-            and difficulty — the mix shuffles fresh each time.
+            and difficulty — questions you haven&apos;t tried yet come first,
+            so every build stays fresh while the pool allows.
           </p>
         </div>
 
@@ -253,10 +268,10 @@ export default function TestBuilderClient({
                   }}
                   aria-label="Custom number of questions"
                   placeholder="Custom"
-                  className="w-24 px-4 py-2.5 rounded-xl text-[13px] font-semibold tabular-nums border border-white/[0.08] bg-transparent text-[#F0F0F0] placeholder:text-[#555555] placeholder:font-normal focus:border-[rgba(201,168,76,0.45)] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="w-24 px-4 py-2.5 rounded-xl text-[13px] font-semibold tabular-nums border border-white/[0.08] bg-transparent text-[#F0F0F0] placeholder:text-[#888888] placeholder:font-normal focus:border-[rgba(201,168,76,0.45)] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
-              <p className="text-[11px] text-[#555555] mt-2.5">
+              <p className="text-[11px] text-[#888888] mt-2.5">
                 Tap a preset or type any number (1–100). You’ll get up to what
                 the selected sections + difficulty have available.
               </p>
@@ -390,6 +405,19 @@ export default function TestBuilderClient({
                   No questions match this difficulty in the selected sections.
                 </p>
               )}
+              {plan && plan.repeatCount > 0 && (
+                <p
+                  className="relative text-[12px] mt-3 flex items-start gap-1.5"
+                  style={{ color: "#C9A84C" }}
+                >
+                  <TriangleAlert className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
+                  {unseenAvailable === 0
+                    ? `You've answered every question matching these filters — this set replays your ${plan.repeatCount} least-recently-seen.`
+                    : `Only ${unseenAvailable} unseen ${
+                        unseenAvailable === 1 ? "question matches" : "questions match"
+                      } these filters — ${plan.repeatCount} of ${effectiveCount} will be ones you've answered before (least recent first).`}
+                </p>
+              )}
             </div>
           </div>
 
@@ -504,8 +532,9 @@ export default function TestBuilderClient({
           ) : (
             <div className="space-y-3">
               {recent.map((test) => (
-                <div
+                <Link
                   key={test.id}
+                  href={`/practice/history/${test.id}`}
                   className="flex items-center justify-between p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] gap-4"
                   style={{
                     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
@@ -536,7 +565,7 @@ export default function TestBuilderClient({
                       {test.accuracy}%
                     </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}
@@ -586,13 +615,6 @@ function FilterGroup({
       {children}
     </div>
   )
-}
-
-function shuffleInPlace<T>(arr: T[]): void {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[arr[i], arr[j]] = [arr[j], arr[i]]
-  }
 }
 
 function relativeDate(iso: string): string {

@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import {
@@ -21,18 +21,15 @@ import {
   Menu,
   LogOut,
   User,
+  ShieldCheck,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { createSupabaseBrowser } from "@/lib/supabase/browser"
 import FeedbackWidget from "@/components/beta/FeedbackWidget"
 import StudyTimer from "@/components/shared/StudyTimer"
 import ServiceWorkerRegistrar from "@/components/offline/ServiceWorkerRegistrar"
 import OfflineBanner from "@/components/offline/OfflineBanner"
 import OfflineSyncTrigger from "@/components/offline/OfflineSyncTrigger"
-import ConversionTracker from "@/components/analytics/ConversionTracker"
-import { clearReviewCache } from "@/lib/offline/review-cache"
-import { clearPendingAttempts } from "@/lib/offline/pending-attempts"
-import { drainPendingAttempts } from "@/lib/offline/sync"
+import PlatformActivityTracker from "@/components/analytics/PlatformActivityTracker"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -64,68 +61,72 @@ function SidebarLink({
   item,
   active,
   onClick,
+  onIntent,
 }: {
   item: (typeof navItems)[0]
   active: boolean
   onClick?: () => void
+  onIntent: (href: string) => void
 }) {
   const Icon = item.icon
   return (
     <Link
       href={item.href}
+      prefetch={false}
       onClick={onClick}
+      onMouseEnter={() => onIntent(item.href)}
+      onFocus={() => onIntent(item.href)}
+      aria-current={active ? "page" : undefined}
       className={cn(
-        "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors group",
+        "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors group",
         active
-          ? "text-[#F0F0F0]"
-          : "text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+          ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
+          : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
       )}
-      style={active ? { backgroundColor: "rgba(201,168,76,0.08)" } : {}}
     >
       <Icon
         className="w-4 h-4 flex-shrink-0"
         style={{ color: active ? "#C9A84C" : undefined }}
       />
       <span>{item.label}</span>
-      {active && (
-        <span
-          className="ml-auto w-1 h-1 rounded-full"
-          style={{ backgroundColor: "#C9A84C" }}
-        />
-      )}
     </Link>
   )
 }
 
 function Sidebar({
   pathname,
+  isAdminUser,
   onClose,
+  onIntent,
 }: {
   pathname: string
+  isAdminUser: boolean
   onClose?: () => void
+  onIntent: (href: string) => void
 }) {
   return (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className="px-4 py-5 border-b border-white/[0.06]">
-        <Link href="/" className="flex items-center gap-1">
-          <span className="text-[#F0F0F0] font-bold text-sm">ZAKARIAN</span>
+      <div className="px-5 h-14 flex items-center border-b border-white/[0.07]">
+        <Link href="/" className="flex items-center gap-2" aria-label="Zakarian GMAT home">
+          <span className="text-[#F0F0F0] font-semibold text-[12px]">ZAKARIAN</span>
           <span
-            className="w-1.5 h-1.5 rounded-full"
+            className="w-1 h-1 rounded-full"
             style={{ backgroundColor: "#C9A84C" }}
           />
-          <span className="text-[#F0F0F0] font-bold text-sm">GMAT</span>
+          <span className="text-[#F0F0F0] font-semibold text-[12px]">GMAT</span>
         </Link>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto p-3 space-y-1">
+      <nav className="flex-1 overflow-y-auto px-3 py-5 space-y-0.5">
         {navItems.map((item) => (
           <SidebarLink
             key={item.href}
             item={item}
             active={pathname.startsWith(item.href)}
             onClick={onClose}
+            onIntent={onIntent}
           />
         ))}
       </nav>
@@ -135,13 +136,31 @@ function Sidebar({
           Keeps the sidebar clean before the cohort exists, then turns
           on with one env var when Adam launches it. */}
       <div className="p-3 border-t border-white/[0.06] space-y-1">
+        {isAdminUser && (
+          <Link
+            href="/admin/students"
+            prefetch={false}
+            onClick={onClose}
+            onMouseEnter={() => onIntent("/admin/students")}
+            onFocus={() => onIntent("/admin/students")}
+            className={cn(
+              "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors",
+              pathname.startsWith("/admin")
+                ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
+                : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]",
+            )}
+          >
+            <ShieldCheck className="w-4 h-4 flex-shrink-0" />
+            <span>Student activity</span>
+          </Link>
+        )}
         {process.env.NEXT_PUBLIC_COMMUNITY_URL && (
           <a
             href={process.env.NEXT_PUBLIC_COMMUNITY_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+            className="flex items-center gap-3 border-l-2 border-transparent px-3 py-2.5 text-[13px] transition-colors text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
           >
             <MessageCircle className="w-4 h-4 flex-shrink-0" />
             <span>Community</span>
@@ -155,12 +174,15 @@ function Sidebar({
         )}
         <Link
           href="/settings"
+          prefetch={false}
           onClick={onClose}
+          onMouseEnter={() => onIntent("/settings")}
+          onFocus={() => onIntent("/settings")}
           className={cn(
-            "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
+            "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors",
             pathname.startsWith("/settings")
-              ? "text-[#F0F0F0]"
-              : "text-[#555555] hover:text-[#888888] hover:bg-white/[0.03]"
+              ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
+              : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
           )}
         >
           <Settings className="w-4 h-4 flex-shrink-0" />
@@ -181,59 +203,100 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   // drill attempts back to /api/practice-sessions when this user is
   // online. Empty until auth resolves; the trigger no-ops on empty.
   const [userId, setUserId] = useState("")
+  const [isAdminUser, setIsAdminUser] = useState(false)
+  const prefetchOnIntent = useCallback(
+    (href: string) => {
+      router.prefetch(href)
+    },
+    [router],
+  )
+
+  // Publish the browser's IANA timezone as a cookie so server components
+  // can compute the USER's day boundaries (streaks, "today" counts,
+  // calendar dots). Production servers run UTC — without this, every
+  // "local day" was a UTC day and late-evening sessions broke streaks.
+  useEffect(() => {
+    try {
+      // IANA names (letters/digits/_ / + -) are cookie-safe unencoded —
+      // encoding would percent-escape the slash and break the server's
+      // validation regex.
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+      if (tz && /^[A-Za-z0-9_+/-]{1,64}$/.test(tz) && !document.cookie.includes(`tz=${tz}`)) {
+        document.cookie = `tz=${tz}; path=/; max-age=31536000; samesite=lax`
+      }
+    } catch {
+      // No Intl or cookies blocked — server-timezone math remains.
+    }
+  }, [])
 
   useEffect(() => {
-    const supabase = createSupabaseBrowser()
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        setUserId(user.id)
-        // Only display a real authored name. The email-username fallback
-        // ("adamzakaryan15") makes the chrome look like a dev build —
-        // showing nothing is more premium than showing the handle.
-        const fullName = (user.user_metadata?.full_name as string | undefined)?.trim() ?? ""
-        const parts = fullName.split(/\s+/).filter(Boolean)
-        if (parts.length > 0) {
-          setUserName(parts[0])
-          setUserInitials(
-            parts.length >= 2
-              ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
-              : parts[0].slice(0, 2).toUpperCase()
-          )
-        } else {
-          setUserName("")
-          // Fall back to email-initial only for the avatar, never the visible name.
-          const emailInitial = user.email?.[0]?.toUpperCase() ?? ""
-          setUserInitials(emailInitial)
-        }
-      }
+    let active = true
+    void fetch("/api/account/me", {
+      cache: "no-store",
+      credentials: "same-origin",
     })
+      .then((response) => (response.ok ? response.json() : null))
+      .then(
+        (
+          profile: {
+            userId?: string
+            displayName?: string
+            initials?: string
+            isAdmin?: boolean
+          } | null,
+        ) => {
+          if (!active || !profile?.userId) return
+          setUserId(profile.userId)
+          setUserName(profile.displayName ?? "")
+          setUserInitials(profile.initials ?? "")
+          setIsAdminUser(profile.isAdmin === true)
+        },
+      )
+      .catch(() => {
+        if (active) setIsAdminUser(false)
+      })
+
+    return () => {
+      active = false
+    }
   }, [])
 
   async function handleSignOut() {
+    const [supabaseModule, syncModule, reviewCacheModule] = await Promise.all([
+      import("@/lib/supabase/browser"),
+      import("@/lib/offline/sync"),
+      import("@/lib/offline/review-cache"),
+    ])
+    const { createSupabaseBrowser } = supabaseModule
+    const { drainPendingAttempts } = syncModule
+    const { clearReviewCache } = reviewCacheModule
     const supabase = createSupabaseBrowser()
 
-    // Capture the current user id BEFORE we sign out — clearing the
-    // user-namespaced offline state needs it. If we can't get it, skip
-    // the per-user clear and fall back to the blanket cache wipe.
-    const { data: { user } } = await supabase.auth.getUser()
-    const uid = user?.id
+    // The shell bootstrap already verified the user. Only fall back to a
+    // fresh auth read if sign-out is clicked before that request completes.
+    let uid = userId
+    if (!uid) {
+      const { data: { user } } = await supabase.auth.getUser()
+      uid = user?.id ?? ""
+    }
 
     // Best-effort: sync any unsynced offline drill attempts to the
-    // server before we wipe local state. If we're offline or the API
-    // is unreachable, the drain is a no-op and the attempts get cleared
-    // below — that's the same trade-off we apply in the existing
-    // OfflineSyncTrigger flow. Sign-out on a shared device beats
-    // leaking another user's data into the next session.
+    // server before we wipe local state.
     if (uid) {
+      // Only clear the queue when the drain actually landed: the queue is
+      // keyed by user id (no cross-account leak), so on a failed drain the
+      // unsynced attempts are kept for this user's next sign-in instead of
+      // being silently destroyed.
       try {
+        // No follow-up whole-key clear: a successful drain already removed
+        // exactly the attempts it sent, so clearing here would delete only
+        // attempts appended DURING the drain (e.g. a drill finishing in
+        // another tab). A failed drain must keep the queue, and the key is
+        // user-scoped so nothing leaks into the next account.
         await drainPendingAttempts(uid)
       } catch {
-        // Swallow — sign-out should not block on a sync failure.
-      }
-      try {
-        await clearPendingAttempts(uid)
-      } catch {
-        // Swallow — IDB errors should not block sign-out.
+        // Swallow — sign-out should not block on a sync failure; the
+        // user-scoped queue stays for the next session.
       }
     }
     try {
@@ -248,11 +311,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   const currentLabel =
-    navItems.find((i) => pathname.startsWith(i.href))?.label ?? "Dashboard"
+    pathname.startsWith("/admin")
+      ? "Admin"
+      : navItems.find((i) => pathname.startsWith(i.href))?.label ?? "Dashboard"
 
   return (
     <div
-      className="flex h-screen overflow-hidden"
+      className="app-workbench flex h-dvh overflow-hidden"
       style={{ backgroundColor: "#0A0A0A" }}
     >
       <a href="#main-content" className="skip-to-content">
@@ -260,10 +325,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </a>
       {/* Desktop sidebar */}
       <aside
-        className="hidden lg:flex flex-col w-56 flex-shrink-0 border-r border-white/[0.06]"
-        style={{ backgroundColor: "#0D0D0D" }}
+        className="hidden lg:flex flex-col w-60 flex-shrink-0 border-r border-white/[0.07]"
+        style={{ backgroundColor: "#0B0B0A" }}
       >
-        <Sidebar pathname={pathname} />
+        <Sidebar
+          pathname={pathname}
+          isAdminUser={isAdminUser}
+          onIntent={prefetchOnIntent}
+        />
       </aside>
 
       {/* Mobile sidebar overlay */}
@@ -274,12 +343,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             onClick={() => setSidebarOpen(false)}
           />
           <aside
-            className="relative z-10 w-56 flex flex-col border-r border-white/[0.06]"
-            style={{ backgroundColor: "#0D0D0D" }}
+            className="relative z-10 w-60 flex flex-col border-r border-white/[0.07]"
+            style={{ backgroundColor: "#0B0B0A" }}
           >
             <Sidebar
               pathname={pathname}
+              isAdminUser={isAdminUser}
               onClose={() => setSidebarOpen(false)}
+              onIntent={prefetchOnIntent}
             />
           </aside>
         </div>
@@ -289,21 +360,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top bar */}
         <header
-          className="flex items-center justify-between px-4 sm:px-6 h-14 border-b border-white/[0.06] flex-shrink-0"
-          style={{ backgroundColor: "#0A0A0A" }}
+          className="flex items-center justify-between px-4 sm:px-6 h-14 border-b border-white/[0.07] flex-shrink-0"
+          style={{ backgroundColor: "#0B0B0A" }}
         >
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-1.5 rounded-lg text-[#555555] hover:text-[#888888]"
+              className="lg:hidden p-1.5 rounded-[4px] text-[#888888] hover:text-[#C0C0C0]"
               aria-label="Open navigation menu"
             >
               <Menu className="w-5 h-5" aria-hidden="true" />
             </button>
-            <p className="text-sm text-[#888888]">
-              <span className="text-[#555555]">App</span>
-              <span className="mx-1.5 text-[#333333]">/</span>
-              <span className="text-[#F0F0F0]">{currentLabel}</span>
+            <p className="text-[13px] font-semibold text-[#F0F0F0]">
+              {currentLabel}
             </p>
           </div>
 
@@ -314,7 +383,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           {/* User menu */}
           <DropdownMenu>
             <DropdownMenuTrigger
-              className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-white/[0.04] transition-colors"
+              className="flex items-center gap-2 p-1.5 rounded-[4px] hover:bg-white/[0.04] transition-colors"
               aria-label="Open user menu"
             >
               <Avatar className="w-7 h-7">
@@ -331,7 +400,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               {userName && (
                 <span className="hidden sm:block text-sm text-[#888888]">{userName}</span>
               )}
-              <ChevronDown className="w-3.5 h-3.5 text-[#555555]" />
+              <ChevronDown className="w-3.5 h-3.5 text-[#888888]" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
@@ -341,12 +410,29 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <DropdownMenuItem>
                 <Link
                   href="/settings"
+                  prefetch={false}
+                  onMouseEnter={() => prefetchOnIntent("/settings")}
+                  onFocus={() => prefetchOnIntent("/settings")}
                   className="flex items-center gap-2 text-[#888888] hover:text-[#F0F0F0] cursor-pointer w-full"
                 >
                   <User className="w-4 h-4" />
                   Profile & Settings
                 </Link>
               </DropdownMenuItem>
+              {isAdminUser && (
+                <DropdownMenuItem>
+                  <Link
+                    href="/admin/students"
+                    prefetch={false}
+                    onMouseEnter={() => prefetchOnIntent("/admin/students")}
+                    onFocus={() => prefetchOnIntent("/admin/students")}
+                    className="flex items-center gap-2 text-[#888888] hover:text-[#F0F0F0] cursor-pointer w-full"
+                  >
+                    <ShieldCheck className="w-4 h-4" />
+                    Student activity
+                  </Link>
+                </DropdownMenuItem>
+              )}
               <DropdownMenuSeparator className="bg-white/[0.06]" />
               <DropdownMenuItem
                 onClick={handleSignOut}
@@ -361,8 +447,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Page content */}
-        <main id="main-content" className="flex-1 overflow-y-auto">
-          <div className="p-4 sm:p-6">{children}</div>
+        <main id="main-content" className="flex-1 overflow-y-auto bg-[#0B0B0A]">
+          <div className="p-4 sm:p-6 lg:p-8">{children}</div>
         </main>
       </div>
 
@@ -370,12 +456,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           every authenticated page. The widget is fixed-position so it
           doesn't disrupt the layout. */}
       <FeedbackWidget />
-      {/* Fires purchase_completed on the Stripe success redirect
-          (?purchase=success). Renders null; Suspense-wrapped for
-          useSearchParams. */}
-      <Suspense fallback={null}>
-        <ConversionTracker />
-      </Suspense>
+      {/* The purchase_completed conversion now fires on /purchase-success
+          itself, AFTER server-side session verification (PurchaseTracker) —
+          never off editable query params, so ?purchase=success spoofing and
+          the old stripe_error false-fire are impossible. */}
       {/* Offline plumbing — all three render null in the common path.
           The registrar attaches /sw.js on mount (production only); the
           sync trigger drains queued offline drills when online; the
@@ -383,6 +467,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           last so the banner's stacking context is above other
           absolutely-positioned UI. */}
       <ServiceWorkerRegistrar />
+      {userId && <PlatformActivityTracker />}
       {userId && <OfflineSyncTrigger userId={userId} />}
       <div className="fixed top-0 inset-x-0 z-[60] pointer-events-none">
         <div className="pointer-events-auto">
