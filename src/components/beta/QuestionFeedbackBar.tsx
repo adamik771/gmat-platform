@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import { useId, useRef, useState, useTransition } from "react"
 import { usePathname } from "next/navigation"
 import {
   AlertCircle,
@@ -17,9 +17,8 @@ import { TAG_DEFS, type FeedbackTag } from "@/lib/beta-feedback"
 
 /**
  * QuestionFeedbackBar — per-question feedback row for the deep-review
- * surface. Six one-tap buttons that map to specific FeedbackTag ids,
- * plus a free-form textbox that opens on tap for "explanation
- * incomplete" and "other" cases.
+ * surface. Six category buttons open an optional note before submission.
+ * The compact explanation variant is for already-revealed solutions.
  *
  * Usage:
  *   <QuestionFeedbackBar questionId={q.id} />
@@ -44,10 +43,15 @@ const QUICK_TAGS: Array<{
 
 export default function QuestionFeedbackBar({
   questionId,
+  variant = "full",
 }: {
   questionId: string
+  variant?: "full" | "explanation"
 }) {
   const pathname = usePathname()
+  const noteId = useId()
+  const inFlight = useRef(false)
+  const compact = variant === "explanation"
   const [activeTag, setActiveTag] = useState<FeedbackTag | null>(null)
   const [message, setMessage] = useState("")
   const [submitted, setSubmitted] = useState(false)
@@ -56,6 +60,8 @@ export default function QuestionFeedbackBar({
 
   // Surface state: idle → pick a tag → optionally add note → submit → done
   const submit = (tag: FeedbackTag, note: string) => {
+    if (inFlight.current) return
+    inFlight.current = true
     setErrorMsg(null)
     startTransition(async () => {
       try {
@@ -81,6 +87,8 @@ export default function QuestionFeedbackBar({
         setTimeout(() => setSubmitted(false), 4000)
       } catch {
         setErrorMsg("Network error. Please try again.")
+      } finally {
+        inFlight.current = false
       }
     })
   }
@@ -88,14 +96,15 @@ export default function QuestionFeedbackBar({
   if (submitted) {
     return (
       <div
-        className="p-4 rounded-2xl border flex items-center gap-3"
+        role="status"
+        className={compact ? "mt-4 flex items-center gap-2" : "p-4 rounded-2xl border flex items-center gap-3"}
         style={{
-          borderColor: "rgba(62,207,142,0.3)",
-          backgroundColor: "rgba(62,207,142,0.05)",
+          borderColor: compact ? undefined : "rgba(62,207,142,0.3)",
+          backgroundColor: compact ? undefined : "rgba(62,207,142,0.05)",
         }}
       >
         <Check className="w-4 h-4 flex-shrink-0" style={{ color: "#3ECF8E" }} />
-        <p className="text-[13px] text-[#F0F0F0] tracking-tight">
+        <p className="text-[13px]" style={{ color: "var(--read-text-body, #F0F0F0)" }}>
           Thanks — feedback recorded against this question.
         </p>
       </div>
@@ -104,9 +113,22 @@ export default function QuestionFeedbackBar({
 
   return (
     <div
-      className="p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
-      style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)" }}
+      className={compact ? "mt-4" : "p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"}
     >
+      {compact ? (
+        <button
+          type="button"
+          disabled={pending}
+          aria-expanded={activeTag !== null}
+          aria-controls={activeTag ? noteId : undefined}
+          onClick={() => { setActiveTag(activeTag ? null : "explanation-incomplete"); setErrorMsg(null) }}
+          className="inline-flex items-center gap-2 py-2 text-[12px] underline underline-offset-4 disabled:opacity-50"
+          style={{ color: "var(--read-text-body, #C0C0C0)" }}
+        >
+          <HelpCircle className="h-3.5 w-3.5 shrink-0" />
+          This explanation confused me
+        </button>
+      ) : <>
       <div className="flex items-center gap-2 mb-3">
         <Zap className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
         <p
@@ -116,10 +138,6 @@ export default function QuestionFeedbackBar({
           Flag this question
         </p>
       </div>
-      <p className="text-[12px] text-[#888888] mb-4 leading-relaxed">
-        One tap files a feedback row for this question. Adam reads every flag in the triage queue.
-      </p>
-
       {/* Tag buttons */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
         {QUICK_TAGS.map((t) => {
@@ -129,6 +147,7 @@ export default function QuestionFeedbackBar({
             <button
               key={t.id}
               type="button"
+              disabled={pending}
               onClick={() => setActiveTag(active ? null : t.id)}
               className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-[12px] font-semibold tracking-tight transition-colors"
               style={{
@@ -142,25 +161,32 @@ export default function QuestionFeedbackBar({
           )
         })}
       </div>
+      </>}
 
       {/* Optional note */}
       {activeTag && (
         <>
           <textarea
+            id={noteId}
+            aria-label="Optional feedback: which step is missing or unclear?"
+            maxLength={2000}
+            disabled={pending}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={3}
             placeholder={hintFor(activeTag)}
             className="w-full p-3 text-[12px] text-[#F0F0F0] bg-[#111111] border border-white/[0.08] rounded-lg focus:outline-none focus:border-[rgba(201,168,76,0.4)] resize-none mb-3"
+            style={compact ? { color: "var(--read-text-body, #F0F0F0)", backgroundColor: "var(--read-bg-inset, #111111)", borderColor: "var(--read-border, rgba(255,255,255,0.08))" } : undefined}
           />
           {errorMsg && (
-            <p className="text-[12px] mb-3" style={{ color: "#FF8888" }}>
+            <p role="alert" className="text-[12px] mb-3" style={{ color: "var(--read-error, #FF8888)" }}>
               {errorMsg}
             </p>
           )}
           <div className="flex items-center gap-3 justify-end">
             <button
               type="button"
+              disabled={pending}
               onClick={() => {
                 setActiveTag(null)
                 setMessage("")
@@ -182,7 +208,7 @@ export default function QuestionFeedbackBar({
                   Sending…
                 </>
               ) : (
-                "Send"
+                errorMsg ? "Retry sending" : "Send feedback"
               )}
             </button>
           </div>
