@@ -78,10 +78,10 @@ function SidebarLink({
       onFocus={() => onIntent(item.href)}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors group",
+        "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[14px] transition-colors group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A84C]",
         active
           ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
-          : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
+          : "border-transparent text-[#A6A299] hover:text-[#F0F0F0] hover:bg-white/[0.02]"
       )}
     >
       <Icon

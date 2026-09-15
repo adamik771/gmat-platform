@@ -8,11 +8,7 @@ import {
 } from "@/lib/entitlements"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import { pickMockQuestions, getDifficultyMixForTarget } from "@/lib/mock"
-import {
-  buildLastSeenMap,
-  QUESTION_HISTORY_LIMIT,
-} from "@/lib/question-selection"
-import { getUserState } from "@/lib/user-state"
+import { loadPracticeExposure, loadSelectionState } from "@/lib/practice-exposure-data"
 import {
   getMockSectionsForMode,
   isValidMockMode,
@@ -83,22 +79,20 @@ export default async function MockRunPage({
   // count query; failure is non-fatal (defaults to 0 = no rotation).
   let mockIndex = 0
   let lastSeenAt: ReadonlyMap<string, number> = new Map()
+  const { state, errored: stateErrored } = await loadSelectionState(supabase, user)
+  let historyAvailable = false
   try {
-    const [{ count }, { data: attemptRows }] = await Promise.all([
+    const [{ count }, exposure] = await Promise.all([
       supabase
         .from("practice_sessions")
         .select("id", { count: "exact", head: true })
         .eq("user_id", user.id)
         .like("slug", "mock-%"),
-      supabase
-        .from("practice_attempts")
-        .select("question_id, created_at")
-        .eq("user_id", user.id)
-        .order("created_at", { ascending: false })
-        .limit(QUESTION_HISTORY_LIMIT),
+      loadPracticeExposure(supabase, user, state.chapter_progress, stateErrored),
     ])
     mockIndex = count ?? 0
-    lastSeenAt = buildLastSeenMap(attemptRows)
+    lastSeenAt = exposure.lastSeen
+    historyAvailable = !exposure.errored
   } catch {
     // Non-fatal — fall through with the deterministic base picker.
   }
@@ -111,7 +105,6 @@ export default async function MockRunPage({
   // Otherwise scale to the student's target tier — high-target students
   // see a tougher baseline mix, foundation-target students see an easier
   // one. Same per-section question counts in either case.
-  const state = await getUserState(supabase, user)
   const picks = await getMockSectionsForMode(mode, {
     supabase,
     userId: user.id,
@@ -172,6 +165,12 @@ export default async function MockRunPage({
       <p className="text-[11px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold">
         {def.label}
       </p>
+      {!historyAvailable && (
+        <p role="status" className="text-[13px] leading-relaxed text-[#C9A84C]">
+          Some study history could not be loaded. This exam may repeat earlier
+          questions. Refresh before starting to retry.
+        </p>
+      )}
       <MockRunner dateIso={dateIso} sections={sections} modeLabel={def.label} />
     </div>
   )

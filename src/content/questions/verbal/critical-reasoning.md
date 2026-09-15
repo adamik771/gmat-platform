@@ -6214,7 +6214,7 @@ The correct answer is D.
 ---
 
 ## Q245
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Flaw
 
@@ -6243,7 +6243,7 @@ The correct answer is A.
 ---
 
 ## Q246
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Critical Reasoning
 **topic:** Boldface
 

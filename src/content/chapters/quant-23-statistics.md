@@ -55,6 +55,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
+      - statistics-probability-q82
+      - statistics-probability-q52
+    previous_question_ids:
       - statistics-probability-q5
       - statistics-probability-q52
 ---

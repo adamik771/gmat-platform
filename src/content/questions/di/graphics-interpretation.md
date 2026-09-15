@@ -1679,7 +1679,7 @@ The correct answer is C.
 {"type":"radar","title":"Sales team performance (0–10)","series":[{"key":"A","name":"Member A"},{"key":"B","name":"Member B"},{"key":"C","name":"Member C"}],"data":[{"x":"Sales Volume","A":9,"B":5,"C":7},{"x":"New Clients","A":7,"B":9,"C":6},{"x":"Upsells","A":8,"B":7,"C":9},{"x":"Customer Retention","A":6,"B":8,"C":7},{"x":"Training Completion","A":5,"B":9,"C":8}]}
 ```
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Graphics Interpretation
 **topic:** Reading a Radar Chart — Total Score
 
@@ -2824,7 +2824,9 @@ Subscribers remaining at month 6 = 0.48 × 5,000 = 2,400.
 
 The number who churned between month 2 and month 6 is 3,500 − 2,400 = 1,100.
 
-Equivalently, the retention fell by 70% − 48% = 22 percentage points, and 22% of 5,000 is 0.22 × 5,000 = 1,100. Both methods agree. Among the choices — 600, 900, 1,100, 1,400, 1,750 — the value 1,100 is an exact match. Choice E (1,750) is a trap that computes those who left from the original cohort by month 2 (the 30% already churned, 1,500) plus confusion; choice A (600) reflects only the month 4-to-6 interval.
+Equivalently, the retention fell by 70% − 48% = 22 percentage points, and 22% of 5,000 is 0.22 × 5,000 = 1,100. Both methods agree, and only choice C matches.
+
+Keep the interval and the base separate: the question asks about departures from month 2 to month 6, using the original 5,000-person cohort as the percentage base. The 1,500 who had already left by month 2 are outside that interval. Starting at month 4 instead would give (55% − 48%) × 5,000 = 350, not the requested count.
 
 The correct answer is C.
 **related_reading:** reading-di-04-graphics-interpretation

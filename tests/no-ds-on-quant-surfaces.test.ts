@@ -87,12 +87,17 @@ describe("no Data Sufficiency on Quant surfaces", () => {
     }
   })
 
-  it("DI mocks do not repeat a DS logical outcome while alternatives exist", () => {
+  it("DI mocks preserve unique items but allow natural repeated DS outcomes", () => {
+    let repeatedOutcome = false
     for (const mockIndex of [0, 1, 2, 3]) {
       const ds = pickMockQuestions("DI", undefined, undefined, mockIndex).filter(isDS)
       const letters = ds.map((q) => q.correctAnswerLetter)
-      expect(new Set(letters).size).toBe(letters.length)
+      expect(new Set(ds.map((q) => q.id)).size).toBe(ds.length)
+      expect(letters.every((letter) => /^[A-E]$/.test(letter))).toBe(true)
+      if (new Set(letters).size < letters.length) repeatedOutcome = true
     }
+    // Forbidding repeats made a previous answer eliminate that choice later.
+    expect(repeatedOutcome).toBe(true)
   })
 
   it("re-dealt Quant tests keep a usable size (8-15)", () => {

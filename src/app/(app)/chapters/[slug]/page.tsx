@@ -104,6 +104,7 @@ export default async function ChapterDetailPage({
       difficulty: ps.difficulty,
       targetAccuracyByScore: ps.targetAccuracyByScore,
       questions: resolveIds(ps.questionIds),
+      previousQuestions: ps.previousQuestionIds ? resolveIds(ps.previousQuestionIds) : undefined,
     })
   )
 

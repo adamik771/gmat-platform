@@ -2,6 +2,16 @@ import { describe, expect, it } from "vitest"
 import { getAllChapters, getAllQuestions } from "@/lib/content"
 
 const RELABELLED_TO_INTERMEDIATE = [
+  "rates-work-q15",
+  "table-analysis-q40",
+  "table-analysis-q76",
+  "graphics-interpretation-q49",
+  "multi-source-reasoning-q29",
+  "critical-reasoning-q245",
+  "critical-reasoning-q246",
+  "reading-comprehension-q185",
+  "data-sufficiency-q98",
+  "two-part-analysis-q94",
   "algebra-q49",
   "algebra-q51",
   "algebra-q64",
@@ -121,6 +131,8 @@ describe("Advanced question calibration", () => {
   it("retains a deep Advanced pool after removing inflated labels", () => {
     expect(
       questions.filter((question) => question.difficulty === "Advanced").length
-    ).toBeGreaterThanOrEqual(575)
+    // Sep 15: ten further reviewed direct-method/explicit-role items moved
+    // to Intermediate (576 -> 566); none were removed from the bank.
+    ).toBeGreaterThanOrEqual(566)
   })
 })

@@ -51,9 +51,11 @@ const QUESTION_COUNTS = [10, 15, 20, 30, 45] as const
 export default function TestBuilderClient({
   pool,
   recent,
+  historyAvailable = true,
 }: {
   pool: QuestionPoolEntry[]
   recent: RecentCustomTest[]
+  historyAvailable?: boolean
 }) {
   // No section pre-selected. The picker is multi-select, so a default (e.g.
   // "Quant") silently rides along — a student who taps "Verbal" then ends up
@@ -191,7 +193,7 @@ export default function TestBuilderClient({
           <p className="text-[15px] leading-[1.75] text-[#C0C0C0] max-w-xl">
             Pull from {pool.length} original questions. Pick sections, scale,
             and difficulty — questions you haven&apos;t tried yet come first,
-            so every build stays fresh while the pool allows.
+            using your recorded chapter and practice history where available.
           </p>
         </div>
 
@@ -405,17 +407,23 @@ export default function TestBuilderClient({
                   No questions match this difficulty in the selected sections.
                 </p>
               )}
-              {plan && plan.repeatCount > 0 && (
+              {!historyAvailable && (
+                <p role="status" className="mt-3 text-[13px] leading-relaxed text-[#C9A84C]">
+                  Some study history could not be loaded. You can still build a set,
+                  but repeat estimates are unavailable. Refresh to retry.
+                </p>
+              )}
+              {historyAvailable && plan && plan.repeatCount > 0 && (
                 <p
                   className="relative text-[12px] mt-3 flex items-start gap-1.5"
                   style={{ color: "#C9A84C" }}
                 >
                   <TriangleAlert className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
                   {unseenAvailable === 0
-                    ? `You've answered every question matching these filters — this set replays your ${plan.repeatCount} least-recently-seen.`
+                    ? `You've encountered every question matching these filters — this set includes ${plan.repeatCount} repeats, prioritizing older encounters where dates are known.`
                     : `Only ${unseenAvailable} unseen ${
                         unseenAvailable === 1 ? "question matches" : "questions match"
-                      } these filters — ${plan.repeatCount} of ${effectiveCount} will be ones you've answered before (least recent first).`}
+                      } these filters — ${plan.repeatCount} of ${effectiveCount} will be ones you've encountered before. Older encounters are prioritized where dates are known.`}
                 </p>
               )}
             </div>

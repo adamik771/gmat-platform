@@ -1057,7 +1057,7 @@ The correct answer is D.
 ---
 
 ### Q29
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Multi-Source Reasoning
 **topic:** Single-Asset Contribution
 
@@ -2355,7 +2355,7 @@ At $15.00 per unit: 120,000 x 15.00 = $1,800,000, or $1.8M.
 
 9.0 + 1.8 = $10.8M.
 
-**Ruling out the alternatives.** Choice A ($9.0M) counts only Caldwell's cost and ignores the 120,000 units that must come from Brookfield. Choice E ($12.0M) results from charging all 800,000 units of the two plants' combined annual capacity at Brookfield's $15.00-per-unit rate (800,000 x 15.00 = $12.0M), which overshoots the 720,000-unit order. Choices B ($9.8M) and D ($11.0M) do not follow from any correct combination of the stated figures. Only $9.0M (Caldwell's full output) plus $1.8M (120,000 units from Brookfield at $15.00 per unit) yields the consistent total of $10.8M.
+**Ruling out the alternatives.** Choice A ($9.0M) counts only Caldwell's cost and ignores the 120,000 units assigned to Brookfield. Together, the plants can produce 600,000 + 480,000 = 1,080,000 units, but this order requires only 720,000; charging both plants' full annual costs would count output the order does not need. Here both plants have the same $15.00 unit cost, so 720,000 x $15.00 = $10.8M also checks the result directly. Choices B, D, and E do not match that required output and rate. In particular, $12.0M would pay for 800,000 units at $15.00 each, not 720,000.
 
 The correct answer is C.
 **related_reading:** reading-di-05-multi-source-reasoning

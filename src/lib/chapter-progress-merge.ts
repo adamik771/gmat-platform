@@ -28,6 +28,7 @@ interface SetResult {
   /** Most recent run. */
   correct: number
   total: number
+  questionIds?: string[]
   /** Epoch ms of the finish. Optional — legacy results predate it. */
   at?: number
   /** Cumulative counters added in Sep 2026. Legacy rows fall back to one run. */
@@ -35,12 +36,13 @@ interface SetResult {
   lifetimeCorrect?: number
   lifetimeTotal?: number
   /** Recent run identities let two devices union concurrent retakes safely. */
-  history?: Array<{ id: string; correct: number; total: number; at: number }>
+  history?: Array<{ id: string; correct: number; total: number; at: number; questionIds?: string[] }>
 }
 
 interface SetRun {
   idx: number
   answers: boolean[]
+  questionIds?: string[]
   /** Epoch ms of the last checkpoint. Optional — legacy runs predate it. */
   at?: number
 }
@@ -54,6 +56,8 @@ export interface MergeableProgress {
   notes?: Record<string, string>
   lastSeenAt?: number
   firstSeenAt?: number
+  /** Actual question-level encounter times; separate from chapter navigation. */
+  questionExposures?: Record<string, number>
 }
 
 /**
@@ -124,7 +128,7 @@ function pickSetResult(
 
   const historyById = new Map<
     string,
-    { id: string; correct: number; total: number; at: number }
+    { id: string; correct: number; total: number; at: number; questionIds?: string[] }
   >()
   for (const entry of [...(a.history ?? []), ...(b.history ?? [])]) {
     historyById.set(entry.id, entry)
@@ -175,8 +179,9 @@ export function mergeProgress<T extends MergeableProgress>(a: T, b: T): T {
     hard: pickSetResult(a.problemSetResults?.hard, b.problemSetResults?.hard),
   }
 
-  // Keep the in-flight run that has graded more questions (a longer run
-  // is strictly more progress) — then kill the zombie: a checkpoint from
+  // Prefer the newer checkpoint: a retake or revised set can be shorter
+  // than an older unfinished run. Unstamped legacy copies keep the longer
+  // checkpoint. Then kill the zombie: a checkpoint from
   // BEFORE the set's recorded finish is not an in-flight run, it's the
   // stale leftovers of the run that produced the result. Without this, a
   // finished set regressed to a "Resume · Qn" chip whenever another
@@ -187,8 +192,9 @@ export function mergeProgress<T extends MergeableProgress>(a: T, b: T): T {
   for (const d of ["easy", "medium", "hard"] as const) {
     const ra = a.problemSetRuns?.[d]
     const rb = b.problemSetRuns?.[d]
-    const winner =
-      (rb?.answers.length ?? -1) > (ra?.answers.length ?? -1) ? rb : ra
+    const winner = ra?.at && rb?.at && ra.at !== rb.at
+      ? rb.at > ra.at ? rb : ra
+      : (rb?.answers.length ?? -1) > (ra?.answers.length ?? -1) ? rb : ra
     if (!winner) continue
     const result = problemSetResults[d]
     if (result?.at && winner.at && result.at > winner.at) continue
@@ -205,6 +211,12 @@ export function mergeProgress<T extends MergeableProgress>(a: T, b: T): T {
     (t): t is number => typeof t === "number"
   )
   const firstSeenAt = firsts.length ? Math.min(...firsts) : undefined
+  const questionExposures: Record<string, number> = {}
+  for (const source of [a.questionExposures, b.questionExposures]) {
+    for (const [id, at] of Object.entries(source ?? {})) {
+      if (Number.isFinite(at) && at > 0) questionExposures[id] = Math.max(questionExposures[id] ?? 0, at)
+    }
+  }
 
   return {
     ...a,
@@ -215,6 +227,7 @@ export function mergeProgress<T extends MergeableProgress>(a: T, b: T): T {
     notes,
     lastSeenAt,
     firstSeenAt,
+    ...(Object.keys(questionExposures).length > 0 ? { questionExposures } : {}),
   } as T
 }
 
@@ -227,5 +240,6 @@ export function progressContentSig(p: MergeableProgress): string {
     r: p.problemSetResults,
     u: p.problemSetRuns ?? {},
     n: p.notes ?? {},
+    e: p.questionExposures ?? {},
   })
 }

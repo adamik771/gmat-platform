@@ -38,7 +38,7 @@ import TutorDrawer from "@/components/tutor/TutorDrawer"
 import { applySessionAttempts, levelLabel, MIN_ATTEMPTS_FOR_ADAPTIVE } from "@/lib/topic-skill"
 import {
   practiceResumeStorageKey,
-  restorePracticeResume,
+  restorePracticeResumeVersions,
   type PracticeResumeSnapshot,
 } from "@/lib/practice-resume"
 import {
@@ -111,6 +111,8 @@ interface SessionClientProps {
   topic: string
   section: "Quant" | "Verbal" | "DI"
   questions: SessionQuestion[]
+  /** Explicit previous membership for this same test; recovery only. */
+  previousQuestions?: SessionQuestion[]
   /** Adaptive-mode signals from the server. `skillLevel` is the
    *  student's current proficiency in [0, 1]; `skillAttempts` is the
    *  cumulative attempt count on this topic. Both come from
@@ -1239,6 +1241,7 @@ export default function SessionClient({
   topic,
   section,
   questions: questionsProp,
+  previousQuestions,
   skillLevel,
   skillAttempts,
   weakestTopic,
@@ -1282,20 +1285,24 @@ export default function SessionClient({
   )
   const [resumeHydrated, setResumeHydrated] = useState(false)
   const [resumeRestored, setResumeRestored] = useState(false)
+  const [resumePreviousVersion, setResumePreviousVersion] = useState(false)
   const restoredRef = useRef(false)
   // Restore the full attempt — not just deck order — from the newer local
   // write-through copy, falling back to the server copy for another device.
   useEffect(() => {
     try {
-      const local = window.localStorage.getItem(resumeStorageKey)
-      const localRestored = restorePracticeResume(
+      let local: string | null = null
+      try { local = window.localStorage.getItem(resumeStorageKey) } catch { /* Server recovery still works. */ }
+      const localRestored = restorePracticeResumeVersions(
         local,
         questionsProp,
+        previousQuestions,
         { userId, slug, now: Date.now() }
       )
-      const serverRestored = restorePracticeResume(
+      const serverRestored = restorePracticeResumeVersions(
         initialActivePractice,
         questionsProp,
+        previousQuestions,
         { userId, slug, now: Date.now() }
       )
       const restored =
@@ -1315,6 +1322,7 @@ export default function SessionClient({
         setQuestionStart(startedAt)
         setNow(Date.now())
         setResumeRestored(true)
+        setResumePreviousVersion(restored.previousVersion)
       }
     } catch {
       // Storage unavailable — the session still works without recovery.
@@ -2896,6 +2904,7 @@ export default function SessionClient({
         >
           <p className="text-[12px] leading-relaxed" style={{ color: "#BFE8D4" }}>
             Resumed at question {currentIdx + 1}. Your answers, timing, confidence, and question order are intact.
+            {resumePreviousVersion && " This is the previous version of the test you started."}
           </p>
           <button
             type="button"

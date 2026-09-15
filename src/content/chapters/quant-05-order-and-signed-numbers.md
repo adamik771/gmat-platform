@@ -88,7 +88,7 @@ Every student has heard of PEMDAS — Parentheses, Exponents, Multiplication/Div
 2. `(6 + 2)² ÷ 4 − 1` → ___
 3. `−(4 − 7)²` → ___
 
-Answers: (1) **6** — multiply first: 3 × 2 = 6, then 12 − 6. (2) **15** — parens: 8, squared: 64, ÷ 4: 16, minus 1. (3) **−9** — parens give −3, squared gives 9, then the leading negative makes it −9. If (3) gave you +9, you resolved the exponent before applying the leading minus — the exponent binds to `(4 − 7)`, not to the whole expression.
+Answers: (1) **6** — multiply first: 3 × 2 = 6, then 12 − 6. (2) **15** — parens: 8, squared: 64, ÷ 4: 16, minus 1. (3) **−9** — parens give −3, squared gives 9, then the leading negative makes it −9. Applying the exponent before the leading minus is correct: the exponent applies only to `(4 − 7)`. If you got +9, check whether you dropped the outer minus or incorrectly included it inside the quantity being squared. Write the expression as `−1 × (−3)² = −1 × 9 = −9` to keep the operations separate.
 
 > **Self-explanation prompt.** Before the check question, say out loud in one sentence: *why* does multiplication happen before subtraction? If you can articulate that multiplication is a compact way of writing repeated addition (so `2 × 4` is really `4 + 4`, already an addition), you'll stop making the left-to-right mistake.
 

@@ -335,3 +335,68 @@ navigation, not standalone skill instruction.
 chapter has at least five worked examples and one trap callout, and every
 chapter with four or more reading sections has a mental model. The content
 validator now reports 0 errors, 0 warnings, and 0 informational flags.
+
+---
+
+## TARGETED TEACHING-QUALITY PASS — 2026-09-15 (UNRELEASED)
+
+Branch: `fix/teaching-quality-batches-20260915`, based on main `5916b99`.
+The September 15 research audit was diagnostic, not a random sample. This
+pass does not estimate the fraction of the whole bank that is wrong.
+Adam approved batches 1-5 and 7; chapter chunking (6) and new DI-format/hint
+content (8) are deferred.
+
+Verified repairs: the method-selection ticket variant; outer-minus worked
+example in quant-05; graphics-interpretation-q80's distractor explanation;
+multi-source-reasoning-q65's annual cost/capacity arithmetic; and the Quant
+master guide's mixture and pacing examples. The 42% mixture has a valid
+fractional answer (10/3 liters), now correctly offered as C; the stem was
+not changed to manufacture an integer answer. Both pure-water replacement
+methods are valid and retained. No blanket explanation shortening.
+
+Pin repairs (old ordered IDs retained for in-chapter resume):
+- quant-23 medium: q5/q52 -> q82/q52.
+- quant-27 easy: q58/q47 -> q59/q47; medium: q75/q82 -> q74/q5.
+All IDs above are in statistics-probability. New pins test the stated skill
+at the intended tier. Historical results are distinguished from the new set.
+
+### Targeted Advanced review
+
+This is an AI-assisted editorial judgment, not empirical GMAT calibration.
+The initial five flagged items were already visible during the prior audit;
+the remaining six were reasoned through before reading their stored keys in
+this implementation pass. This was not an independent human panel or a set
+of independently spawned reviewers. Adam's final review remains pending.
+
+| Item | Verified answer / reasoning | Decision |
+|---|---|---|
+| rates-work-q15 | C: (12 + 8) / 2 = 10; direct current cancellation | Intermediate |
+| table-analysis-q40 | C: apply the three explicit filters; entries 1, 4, 5 qualify | Intermediate |
+| table-analysis-q76 | A: every qualifying airline has at least 35 cancellations | Intermediate |
+| graphics-interpretation-q49 | B: compare the sums 35, 38 and 37 | Intermediate |
+| multi-source-reasoning-q29 | E: 0.1 x (12 - 10) = 0.2 percentage points; source totals checked | Intermediate |
+| critical-reasoning-q245 | A: direct necessary-versus-sufficient condition reversal | Intermediate |
+| critical-reasoning-q246 | A: the stated boldface roles follow directly from the argument | Intermediate |
+| reading-comprehension-q185 | C: balanced attitude; competing extreme attitudes unsupported by Passage 50 | Intermediate |
+| data-sufficiency-q98 | D: symmetric arithmetic sequence, middle term 20 from either statement alone | Intermediate |
+| two-part-analysis-q94 | Rows 0/1: direct comparison and an added-doors alternative cause | Intermediate |
+| algebra-q137 | A: 11 integer solutions, -6 through 4; piecewise boundaries and counting require care | Keep Advanced |
+
+Only difficulty metadata changed for the ten relabelled bank items. None is
+pinned in an in-chapter hard problem set. Advanced inventory is now 566,
+down from 576; total inventory is still 2,007. Generated standalone tests
+repack when labels/pins change. The 21 affected memberships were recovered
+from the actual allocator using pre-batch HEAD content and stored explicitly
+for snapshot recovery. Old attempts keep their original IDs; new attempts
+use current content. Existing user, route, expiry and answer validation still
+applies. HANDOFF.md records the compatibility and browser checks.
+
+Regression checks lock the corrected arithmetic, keys, pin versions,
+inventory, answer-independent DS ordering, and shared-context freshness.
+Item-QA now treats recorded unique learners and uncertainty explicitly; its
+flags are screening cues, not a reason to automatically rewrite a question.
+
+Release status: Adam authorized committing and pushing for branch review on
+September 15; no merge or production deployment authorized. Independent human
+editorial review remains unrecorded. No live student data used to justify
+these relabels.

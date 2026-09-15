@@ -2813,7 +2813,7 @@ Since Statement (1) alone determines x while Statement (2) alone does not, there
 ---
 
 ## Q98
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Data Sufficiency
 **topic:** Sequences
 

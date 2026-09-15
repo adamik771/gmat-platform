@@ -26,7 +26,7 @@ describe("balanceDataSufficiencyOrder", () => {
     difficulty,
   })
 
-  it("rotates available DS outcomes instead of serving a C-heavy streak", () => {
+  it("randomizes DS items deterministically without changing their keys", () => {
     const ordered = [
       ds("c1", "C"),
       ds("c2", "C"),
@@ -37,16 +37,50 @@ describe("balanceDataSufficiencyOrder", () => {
       ds("e1", "E"),
     ]
     const balanced = balanceDataSufficiencyOrder(ordered, { seed: 0 })
-    expect(balanced.slice(0, 5).map((q) => q.correctAnswerLetter)).toEqual([
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-    ])
+    expect(balanced).toEqual(balanceDataSufficiencyOrder(ordered, { seed: 0 }))
+    expect(balanced.map((q) => q.id)).not.toEqual(ordered.map((q) => q.id))
+    for (const item of balanced) expect(item).toBe(ordered.find((q) => q.id === item.id))
     expect(balanced.map((q) => q.id).sort()).toEqual(
       ordered.map((q) => q.id).sort()
     )
+  })
+
+  it("does not derive the order from answer letters or force five-letter cycles", () => {
+    const pool = Array.from({ length: 50 }, (_, i) => ds(`q${i}`, "ABCDE"[i % 5]))
+    let cyclicTransitions = 0
+    let transitions = 0
+    let sameLetterTransitions = 0
+    const starts = new Set<string>()
+    for (let seed = 0; seed < 256; seed++) {
+      const picked = balanceDataSufficiencyOrder(pool, { seed })
+      const letters = picked.map((q) => q.correctAnswerLetter)
+      starts.add(letters.slice(0, 5).join(""))
+      expect(balanceDataSufficiencyOrder(pool.map((q) => ({ ...q, correctAnswerLetter: "C" })), { seed }).map((q) => q.id))
+        .toEqual(picked.map((q) => q.id))
+      for (let i = 1; i < letters.length; i++) {
+        transitions++
+        if (letters[i] === letters[i - 1]) sameLetterTransitions++
+        if (("ABCDE".indexOf(letters[i - 1]) + 1) % 5 === "ABCDE".indexOf(letters[i])) cyclicTransitions++
+      }
+    }
+    expect(starts.size).toBeGreaterThan(200)
+    expect(cyclicTransitions / transitions).toBeLessThan(0.25)
+    expect(sameLetterTransitions / transitions).toBeGreaterThan(0.1)
+  })
+
+  it("preserves least-recently-seen priority and context-bearing item positions", () => {
+    const pool = [ds("new-a", "A"), ds("old-c", "C"), ds("old-b", "B"), { ...ds("context", "A"), context: "Shared information" }, ds("recent-a", "A")]
+    const history = seen([["old-c", 100], ["old-b", 200], ["recent-a", 300]])
+    for (let seed = 0; seed < 30; seed++) {
+      const picked = balanceDataSufficiencyOrder(pool, { lastSeenAt: history, seed })
+      expect(picked.map((q) => q.id)).toEqual(pool.map((q) => q.id))
+    }
+  })
+
+  it("handles empty, one-outcome and unknown-key pools without losing items", () => {
+    for (const pool of [[], [ds("only", "C")], [ds("one", "C"), ds("two", "C"), ds("unknown", "?")]]) {
+      expect(balanceDataSufficiencyOrder(pool).map((q) => q.id).sort()).toEqual(pool.map((q) => q.id).sort())
+    }
   })
 
   it("does not move a seen question into an unseen slot", () => {

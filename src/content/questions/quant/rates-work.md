@@ -545,7 +545,7 @@ The correct answer is D.
 ---
 
 ## Q15
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Two Objects Moving
 

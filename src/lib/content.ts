@@ -849,6 +849,8 @@ export interface ChapterProblemSet {
   /** Map from target GMAT total → accuracy threshold (%). */
   targetAccuracyByScore: Record<string, number>
   questionIds: string[]
+  /** Only for restoring unfinished runs created before an editorial pin swap. */
+  previousQuestionIds?: string[]
 }
 
 export interface ParsedChapter {
@@ -893,6 +895,7 @@ interface ChapterFrontmatter {
 interface RawProblemSet {
   target_accuracy_by_score: Record<string, number>
   question_ids: string[]
+  previous_question_ids?: string[]
 }
 
 /**
@@ -956,6 +959,7 @@ function parseChapterFile(filepath: string): ParsedChapter | null {
       difficulty: d,
       targetAccuracyByScore: fm.problem_sets![d]!.target_accuracy_by_score,
       questionIds: fm.problem_sets![d]!.question_ids,
+      previousQuestionIds: fm.problem_sets![d]!.previous_question_ids,
     }))
 
   // Reading length in pages from the section prose (~400 words/page), so the UI

@@ -1227,13 +1227,13 @@ export default async function ChaptersPage() {
                     className="text-[10px] font-semibold uppercase tracking-[0.22em]"
                     style={{ color: "#C9A84C" }}
                   >
-                    In-depth reading
+                    Supporting readings
                   </p>
                   <span
                     className="text-[11px] tabular-nums"
-                    style={{ color: "rgba(255,255,255,0.4)" }}
+                    style={{ color: "#A6A299" }}
                   >
-                    {readingsAll.length} chapter
+                    {readingsAll.length} guide
                     {readingsAll.length === 1 ? "" : "s"}
                   </span>
                   <div
@@ -1247,11 +1247,11 @@ export default async function ChaptersPage() {
                 </div>
                 <p
                   className="text-[12px] mb-3 px-1 leading-relaxed"
-                  style={{ color: "rgba(192,192,192,0.6)" }}
+                  style={{ color: "#A6A299" }}
                 >
-                  Companion curriculum — research-report aligned, deeper
-                  coverage than the interactive chapters. Read on demand or in
-                  sequence.
+                  Optional strategy and deeper reference alongside the interactive
+                  chapters. These readings are not a second required course and do
+                  not count toward interactive chapter completion.
                 </p>
                 <div className="space-y-2">
                   {readingsAll.map((r) => (

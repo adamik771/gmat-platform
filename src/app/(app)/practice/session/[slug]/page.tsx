@@ -6,6 +6,7 @@ import {
   getChapterTest,
   parseChapterTestSlug,
   getChapterBySlug,
+  type ParsedQuestion,
 } from "@/lib/content"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
@@ -24,13 +25,25 @@ import {
 } from "@/lib/topic-skill"
 import {
   balanceDataSufficiencyOrder,
-  buildLastSeenMap,
-  QUESTION_HISTORY_LIMIT,
 } from "@/lib/question-selection"
 import { TOPIC_TO_SET } from "@/lib/topic-chapter-map"
-import { getUserState } from "@/lib/user-state"
+import { loadPracticeExposure, loadSelectionState } from "@/lib/practice-exposure-data"
+import { PREVIOUS_PRACTICE_TEST_IDS } from "@/lib/previous-practice-tests"
 import { readSavedForReview } from "@/lib/spaced-review"
 import SessionClient, { type SessionQuestion, type WeakTopicHint } from "./SessionClient"
+
+function toSessionQuestion(q: ParsedQuestion): SessionQuestion {
+  return {
+    id: q.id, number: q.number, section: q.section, topic: q.topic,
+    subtopic: q.subtopic, difficulty: q.difficulty, type: q.type,
+    prompt: q.prompt, context: q.context, options: q.options,
+    correctAnswer: q.correctAnswer, correctAnswerLetter: q.correctAnswerLetter,
+    explanation: q.explanation, hints: q.hints, fastestPath: q.fastestPath,
+    commonTrap: q.commonTrap, mistakeAnalysis: q.mistakeAnalysis, takeaway: q.takeaway,
+    twoPartColumns: q.twoPartColumns, twoPartCorrectAnswers: q.twoPartCorrectAnswers,
+    chartSpec: q.chartSpec,
+  }
+}
 
 export default async function PracticeSessionPage({
   params,
@@ -91,29 +104,12 @@ export default async function PracticeSessionPage({
   // kept as a safety net for any future format).
   const playable: SessionQuestion[] = questions
     .filter((q) => q.options.length > 0)
-    .map((q) => ({
-      id: q.id,
-      number: q.number,
-      section: q.section,
-      topic: q.topic,
-      subtopic: q.subtopic,
-      difficulty: q.difficulty,
-      type: q.type,
-      prompt: q.prompt,
-      context: q.context,
-      options: q.options,
-      correctAnswer: q.correctAnswer,
-      correctAnswerLetter: q.correctAnswerLetter,
-      explanation: q.explanation,
-      hints: q.hints,
-      fastestPath: q.fastestPath,
-      commonTrap: q.commonTrap,
-      mistakeAnalysis: q.mistakeAnalysis,
-      takeaway: q.takeaway,
-      twoPartColumns: q.twoPartColumns,
-      twoPartCorrectAnswers: q.twoPartCorrectAnswers,
-      chartSpec: q.chartSpec,
-    }))
+    .map(toSessionQuestion)
+
+  // The ordinary entitlement gate above applies equally to old memberships.
+  const previousQuestions = chapterTest && PREVIOUS_PRACTICE_TEST_IDS[slug]
+    ? getQuestionsByIds([...PREVIOUS_PRACTICE_TEST_IDS[slug]]).map(toSessionQuestion)
+    : undefined
 
   if (playable.length === 0) {
     return (
@@ -158,6 +154,7 @@ export default async function PracticeSessionPage({
   let savedForReview: string[] = []
   let userId = ""
   let initialActivePractice: unknown = null
+  let historyAvailable = false
   try {
     const supabase = await createSupabaseServer()
     const {
@@ -165,27 +162,18 @@ export default async function PracticeSessionPage({
     } = await supabase.auth.getUser()
     if (user) {
       userId = user.id
-      const state = await getUserState(supabase, user)
+      const { state, errored } = await loadSelectionState(supabase, user)
       initialActivePractice = state.active_practice ?? null
       const levels = getTopicSkillLevels(state)
       skill = getLevelForSlug(levels, slug)
       savedForReview = Array.from(readSavedForReview(state))
 
-      // Fetch enough history to cover the bank even when a student has
-      // repeated a few topics; otherwise an old solved question can fall out
-      // of the window and be misclassified as unseen.
-      // Most-recent-first so the seen-map's first hit per question id IS the
-      // latest attempt, and the shared history window covers the full bank
-      // plus repeated work on a student's strongest topics.
-      const { data: attempts } = await supabase
-        .from("practice_attempts")
-        .select("topic, is_correct, question_id, created_at")
-        .eq("user_id", user.id)
-        .order("created_at", { ascending: false })
-        .limit(QUESTION_HISTORY_LIMIT)
+      const exposure = await loadPracticeExposure(supabase, user, state.chapter_progress, errored)
+      const attempts = exposure.rows
+      lastSeenAtMs = exposure.lastSeen
+      historyAvailable = !exposure.errored
 
       if (attempts && attempts.length > 0) {
-        lastSeenAtMs = buildLastSeenMap(attempts)
         const stats = new Map<string, { total: number; correct: number }>()
         for (const row of attempts) {
           const t = row.topic as string | null
@@ -230,12 +218,20 @@ export default async function PracticeSessionPage({
   })
 
   return (
+    <>
+    {!historyAvailable && !chapterTest && (
+      <p role="status" className="mb-4 text-[13px] leading-relaxed text-[#C9A84C]">
+        Some study history could not be loaded. This drill may repeat earlier
+        questions. Refresh to retry; your saved work has not been changed.
+      </p>
+    )}
     <SessionClient
       userId={userId}
       slug={slug}
       topic={questions[0].topic}
       section={questions[0].section}
       questions={delivered}
+      previousQuestions={previousQuestions}
       skillLevel={skill.level}
       skillAttempts={skill.attempts}
       weakestTopic={weakestTopic ?? undefined}
@@ -243,5 +239,6 @@ export default async function PracticeSessionPage({
       initialSavedForReview={savedForReview}
       initialActivePractice={initialActivePractice}
     />
+    </>
   )
 }

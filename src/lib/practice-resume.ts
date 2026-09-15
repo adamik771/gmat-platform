@@ -193,3 +193,16 @@ export function restorePracticeResume<T extends ResumeQuestionShape>(
 export function practiceResumeStorageKey(userId: string): string {
   return `practice-resume:${userId}`
 }
+
+/** Only explicit, server-supplied historical memberships may restore an old set. */
+export function restorePracticeResumeVersions<T extends ResumeQuestionShape>(
+  raw: unknown,
+  current: T[],
+  previous: T[] | undefined,
+  expected: { userId: string; slug: string; now?: number },
+) {
+  const live = restorePracticeResume(raw, current, expected)
+  if (live) return { ...live, previousVersion: false }
+  const old = previous?.length ? restorePracticeResume(raw, previous, expected) : null
+  return old ? { ...old, previousVersion: true } : null
+}

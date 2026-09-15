@@ -24,6 +24,7 @@ import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import { REVEAL_SENTINEL, transformRecallChecks } from "@/lib/recall-reveal"
 import { mergeProgress, progressContentSig } from "@/lib/chapter-progress-merge"
+import { resolveGradedSetRun, resultMatchesCurrentSet, type GradedSetRun } from "@/lib/chapter-set-version"
 import { selectChapterCoachingState } from "@/lib/chapter-coaching"
 import { cn } from "@/lib/utils"
 import MixedReviewCard from "@/components/shared/MixedReviewCard"
@@ -99,6 +100,7 @@ export interface ReaderProblemSet {
   difficulty: "easy" | "medium" | "hard"
   targetAccuracyByScore: Record<string, number>
   questions: ReaderQuestion[]
+  previousQuestions?: ReaderQuestion[]
 }
 
 type Confidence = "low" | "med" | "high"
@@ -132,6 +134,7 @@ interface ChapterProgress {
     {
       correct: number
       total: number
+      questionIds?: string[]
       at?: number
       attempts?: number
       lifetimeCorrect?: number
@@ -141,6 +144,7 @@ interface ChapterProgress {
         correct: number
         total: number
         at: number
+        questionIds?: string[]
       }>
     } | undefined
   >
@@ -152,7 +156,7 @@ interface ChapterProgress {
   problemSetRuns?: Partial<
     Record<
       "easy" | "medium" | "hard",
-      { idx: number; answers: boolean[]; at?: number }
+      GradedSetRun
     >
   >
   /** Free-text per-section notes the student writes while reading. Keyed
@@ -166,6 +170,7 @@ interface ChapterProgress {
    *  spaced-review engine anchors drill + recall-checkpoint scheduling on this
    *  "concept install date". */
   firstSeenAt?: number
+  questionExposures?: Record<string, number>
 }
 
 const EMPTY_PROGRESS: ChapterProgress = {
@@ -201,6 +206,7 @@ function loadProgress(userId: string | null, slug: string): ChapterProgress {
       notes: parsed.notes ?? {},
       lastSeenAt: parsed.lastSeenAt,
       firstSeenAt: parsed.firstSeenAt,
+      questionExposures: parsed.questionExposures ?? {},
     }
   } catch {
     return EMPTY_PROGRESS
@@ -232,6 +238,7 @@ function normalizeServerProgress(input: unknown): ChapterProgress {
     notes: source.notes ?? {},
     lastSeenAt: source.lastSeenAt,
     firstSeenAt: source.firstSeenAt,
+    questionExposures: source.questionExposures ?? {},
   }
 }
 
@@ -2294,6 +2301,9 @@ function InlineQuestion({
             ...prev.questions,
             [q.id]: { ...state, ...fields },
           },
+          ...(fields.submitted === true || fields.skipped === true ? {
+            questionExposures: { ...prev.questionExposures, [q.id]: Date.now() },
+          } : {}),
         }),
         { immediate: fields.submitted === true }
       )
@@ -2745,8 +2755,8 @@ function ProblemSetsBlock({
           className="text-[14px] mt-3 leading-[1.75]"
           style={{ color: "var(--read-text-body)" }}
         >
-          Your accuracy targets are calibrated to your goal score
-          {targetScore !== null ? ` of ${targetScore}` : " (set one on the dashboard to personalize)"}.
+          These are practice checkpoints. Targets are study guidelines, not a
+          validated conversion to an official GMAT score.
         </p>
       </div>
 
@@ -2814,22 +2824,27 @@ function ProblemSetCard({
     opts?: { immediate?: boolean }
   ) => void
 }) {
-  const [running, setRunning] = useState(false)
+  const [activeRun, setActiveRun] = useState<{ set: ReaderProblemSet; run?: GradedSetRun } | null>(null)
   const result = progress.problemSetResults[set.difficulty]
   const run = progress.problemSetRuns?.[set.difficulty]
-  const resumable =
-    !!run && run.idx > 0 && run.idx < set.questions.length ? run : null
+  const restored = resolveGradedSetRun(set.questions, set.previousQuestions, run)
+  const resumable = restored?.run ?? null
+  const runnerSet = restored ? { ...set, questions: restored.questions } : set
+  // Freeze the deck when opening: the final checkpoint must not switch an
+  // older in-flight set to the new content before its result is saved.
+  const runningSet = activeRun?.set ?? set
+  const currentResult = resultMatchesCurrentSet(set.questions, set.previousQuestions, result)
   const targetPct = resolveAccuracyTarget(set.targetAccuracyByScore, targetScore)
   const achievedPct =
     result && result.total > 0
       ? Math.round((result.correct / result.total) * 100)
       : null
-  const passedTarget = achievedPct !== null && achievedPct >= targetPct
+  const passedTarget = currentResult && achievedPct !== null && achievedPct >= targetPct
 
   const colorVar =
     passedTarget === true
       ? "var(--read-success)"
-      : achievedPct !== null
+      : achievedPct !== null && currentResult
       ? "var(--read-error)"
       : "var(--read-gold)"
 
@@ -2837,7 +2852,7 @@ function ProblemSetCard({
     <>
       <button
         type="button"
-        onClick={() => setRunning(true)}
+        onClick={() => setActiveRun({ set: runnerSet, run: resumable ?? undefined })}
         className="group p-5 rounded-2xl border text-left transition-all duration-300 hover:-translate-y-0.5"
         style={{
           borderColor: "var(--read-border-strong)",
@@ -2859,20 +2874,20 @@ function ProblemSetCard({
                 color: "var(--read-gold)",
               }}
             >
-              Resume · Q{resumable.idx + 1}
+              Resume{restored?.previousVersion ? " previous set" : ""} · Q{resumable.idx + 1}
             </span>
           ) : (
             achievedPct !== null && (
               <span
                 className="text-[10px] px-2 py-0.5 rounded font-semibold uppercase tracking-[0.18em]"
                 style={{
-                  backgroundColor: passedTarget
+                  backgroundColor: !currentResult ? "var(--read-gold-soft)" : passedTarget
                     ? "var(--read-success-soft)"
                     : "var(--read-error-soft)",
-                  color: passedTarget ? "var(--read-success)" : "var(--read-error)",
+                  color: !currentResult ? "var(--read-gold)" : passedTarget ? "var(--read-success)" : "var(--read-error)",
                 }}
               >
-                {passedTarget ? "Passed" : "Retake"}
+                {!currentResult ? "Previous set" : passedTarget ? "Passed" : "Retake"}
               </span>
             )
           )}
@@ -2902,18 +2917,22 @@ function ProblemSetCard({
           <span>
             {achievedPct === null
               ? `Goal: ${targetPct}%`
-              : `You: ${achievedPct}% · Goal: ${targetPct}%`}
+              : !currentResult ? `Previous set: ${achievedPct}%` : `You: ${achievedPct}% · Goal: ${targetPct}%`}
           </span>
         </div>
       </button>
 
-      {running && (
+      {activeRun && (
         <ProblemSetRunner
           slug={slug}
-          set={set}
+          set={runningSet}
           targetPct={targetPct}
-          initialRun={progress.problemSetRuns?.[set.difficulty]}
-          onClose={() => setRunning(false)}
+          initialRun={activeRun.run}
+          onClose={() => setActiveRun(null)}
+          onEncounter={(questionId) => update((prev) => ({
+            ...prev,
+            questionExposures: { ...prev.questionExposures, [questionId]: Date.now() },
+          }), { immediate: true })}
           onProgress={(idx, answers) =>
             // `at` lets the merge tell a live checkpoint from the stale
             // leftovers of an already-finished run (zombie-resume fix).
@@ -2922,7 +2941,11 @@ function ProblemSetCard({
                 ...prev,
                 problemSetRuns: {
                   ...prev.problemSetRuns,
-                  [set.difficulty]: { idx, answers, at: Date.now() },
+                  [set.difficulty]: { idx, answers, at: Date.now(), questionIds: runningSet.questions.map((q) => q.id) },
+                },
+                questionExposures: {
+                  ...prev.questionExposures,
+                  [runningSet.questions[idx - 1].id]: Date.now(),
                 },
               }),
               { immediate: true }
@@ -2946,6 +2969,7 @@ function ProblemSetCard({
                           correct: prior.correct,
                           total: prior.total,
                           at: prior.at ?? 0,
+                          ...(prior.questionIds ? { questionIds: prior.questionIds } : {}),
                         },
                       ]
                     : [])
@@ -2957,6 +2981,7 @@ function ProblemSetCard({
                       correct,
                       total,
                       at: finishedAt,
+                      questionIds: runningSet.questions.map((q) => q.id),
                       attempts: (prior?.attempts ?? (prior?.total ? 1 : 0)) + 1,
                       lifetimeCorrect:
                         (prior?.lifetimeCorrect ?? prior?.correct ?? 0) + correct,
@@ -2964,7 +2989,7 @@ function ProblemSetCard({
                         (prior?.lifetimeTotal ?? prior?.total ?? 0) + total,
                       history: [
                         ...priorHistory,
-                        { id: attemptId, correct, total, at: finishedAt },
+                        { id: attemptId, correct, total, at: finishedAt, questionIds: runningSet.questions.map((q) => q.id) },
                       ].slice(-100),
                     },
                   },
@@ -2989,6 +3014,7 @@ function ProblemSetRunner({
   targetPct,
   initialRun,
   onClose,
+  onEncounter,
   onProgress,
   onFinish,
 }: {
@@ -2997,8 +3023,9 @@ function ProblemSetRunner({
   targetPct: number
   /** Mid-set checkpoint from a previous run the student left unfinished —
    *  resume there instead of restarting (progress used to be silently lost). */
-  initialRun?: { idx: number; answers: boolean[] }
+  initialRun?: GradedSetRun
   onClose: () => void
+  onEncounter: (questionId: string) => void
   /** Checkpoint after each graded question so leaving mid-set can resume. */
   onProgress: (idx: number, answers: boolean[]) => void
   onFinish: (correct: number, total: number) => void
@@ -3056,6 +3083,7 @@ function ProblemSetRunner({
 
   function submit() {
     if (!hasAnswer) return
+    onEncounter(current.id)
     setSubmitted(true)
   }
   function next() {

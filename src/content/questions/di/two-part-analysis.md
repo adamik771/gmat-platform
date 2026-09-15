@@ -3958,7 +3958,7 @@ A set of five distinct positive integers has a mean of 20 and a median of 18. Le
 ---
 
 ## Q94
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Two-Part Analysis
 **topic:** Logic — Cause and Effect / Strengthening and Weakening
 

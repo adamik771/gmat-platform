@@ -6,10 +6,9 @@ import {
   effectiveTierForUser,
 } from "@/lib/entitlements"
 import {
-  buildLastSeenMap,
-  QUESTION_HISTORY_LIMIT,
   withContextLastSeen,
 } from "@/lib/question-selection"
+import { loadPracticeExposure, loadSelectionState } from "@/lib/practice-exposure-data"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import TestBuilderClient, {
   type QuestionPoolEntry,
@@ -52,9 +51,10 @@ export default async function TestBuilderPage() {
   // Attempt history so generation can prefer never-attempted questions and
   // the UI can say when the filters force repeats. Passage-aware: a question
   // whose RC/MSR context the student has already worked counts as seen even
-  // if this particular stem was never attempted. Anonymous / errored reads
-  // degrade to an empty map (every question counts as fresh).
+  // if this particular stem was never attempted. Failed reads are disclosed;
+  // an empty fallback map must not be presented as proof of freshness.
   let lastSeen: ReadonlyMap<string, number> = new Map()
+  let historyAvailable = false
 
   // Pull the user's 5 most-recent `custom` sessions (saved by SessionClient
   // through /api/practice-sessions) for the "Recent Custom Tests" block.
@@ -65,14 +65,8 @@ export default async function TestBuilderPage() {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
-      // Same shape + window as the topic-drill page's seen-map query.
-      const [{ data: attemptRows }, { data }] = await Promise.all([
-        supabase
-          .from("practice_attempts")
-          .select("question_id, created_at")
-          .eq("user_id", user.id)
-          .order("created_at", { ascending: false })
-          .limit(QUESTION_HISTORY_LIMIT),
+      const [{ state, errored }, { data }] = await Promise.all([
+        loadSelectionState(supabase, user),
         supabase
           .from("practice_sessions")
           .select(
@@ -84,7 +78,9 @@ export default async function TestBuilderPage() {
           .limit(5),
       ])
 
-      lastSeen = withContextLastSeen(allQuestions, buildLastSeenMap(attemptRows))
+      const exposure = await loadPracticeExposure(supabase, user, state.chapter_progress, errored)
+      lastSeen = withContextLastSeen(allQuestions, exposure.lastSeen)
+      historyAvailable = !exposure.errored
 
       recent = (data ?? []).map((s) => ({
         id: s.id as string,
@@ -110,5 +106,5 @@ export default async function TestBuilderPage() {
     lastSeenAt: lastSeen.get(q.id),
   }))
 
-  return <TestBuilderClient pool={pool} recent={recent} />
+  return <TestBuilderClient pool={pool} recent={recent} historyAvailable={historyAvailable} />
 }

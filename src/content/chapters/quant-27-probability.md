@@ -46,6 +46,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
+      - statistics-probability-q59
+      - statistics-probability-q47
+    previous_question_ids:
       - statistics-probability-q58
       - statistics-probability-q47
   medium:
@@ -55,6 +58,9 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
+      - statistics-probability-q74
+      - statistics-probability-q5
+    previous_question_ids:
       - statistics-probability-q75
       - statistics-probability-q82
 ---

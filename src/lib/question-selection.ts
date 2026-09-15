@@ -15,8 +15,9 @@
  *      and the result reports how many repeats were forced so the UI can
  *      say so.
  *
- * Attempt history comes from `practice_attempts` (server-side, so the
- * policy is cross-device). sessionStorage is used ONLY for active-attempt
+ * Sampling routes merge `practice_attempts` with recorded chapter interactions
+ * in user_state (server-side, cross-device). Legacy counts without question
+ * identities cannot be reconstructed. sessionStorage is used ONLY for active-attempt
  * order stability (`restoreDeckOrder`) — a hard refresh mid-attempt must
  * not reshuffle the deck under the student.
  *
@@ -133,21 +134,17 @@ interface AnswerBalanceQuestion {
   type?: string
   correctAnswerLetter?: string
   difficulty?: string
+  context?: string
 }
 
-const ANSWER_LETTERS = ["A", "B", "C", "D", "E"] as const
-
 /**
- * Reorder only Data Sufficiency slots so one sufficiency outcome cannot form
- * an obvious streak while other answer patterns are available. The source
- * bank intentionally keeps its authored answers; this is a delivery guard,
- * not answer-key relabeling.
+ * Randomize independent DS items without using their answer keys. Rotating
+ * answer buckets made A-B-C-D-E predictable; a per-set quota or hard streak
+ * limit would introduce a different guessing cue. Natural repeats are valid.
  *
- * Fresh/seen status and difficulty stay fixed at each slot. That matters:
- * answer balancing must never pull a repeat ahead of an unseen question or
- * turn an adaptive Foundation-first drill into an Advanced-first one. Within
- * each such group, answer letters rotate A-E while preserving authored order
- * inside a letter bucket. Non-DS questions never move.
+ * Keep difficulty, exact last-seen timestamp, non-DS slots and shared-context
+ * items fixed. Thus unseen-first and least-recently-seen ordering survive.
+ * Seeded order remains repeatable; saved-deck restoration is unchanged.
  */
 export function balanceDataSufficiencyOrder<Q extends AnswerBalanceQuestion>(
   ordered: readonly Q[],
@@ -159,11 +156,12 @@ export function balanceDataSufficiencyOrder<Q extends AnswerBalanceQuestion>(
   const lastSeenAt = options.lastSeenAt
   const seed = options.seed ?? 0
   const groupKey = (q: Q) =>
-    `${q.difficulty ?? "all"}:${lastSeenAt ? (lastSeenAt.has(q.id) ? "seen" : "unseen") : "all"}`
+    `${q.difficulty ?? "all"}:${lastSeenAt?.get(q.id) ?? 0}`
+  const canMove = (q: Q) => q.type === "Data Sufficiency" && !q.context?.trim()
 
   const groups = new Map<string, Q[]>()
   for (const q of ordered) {
-    if (q.type !== "Data Sufficiency") continue
+    if (!canMove(q)) continue
     const key = groupKey(q)
     const list = groups.get(key)
     if (list) list.push(q)
@@ -173,39 +171,13 @@ export function balanceDataSufficiencyOrder<Q extends AnswerBalanceQuestion>(
   const balanced = new Map<string, Q[]>()
   let groupIndex = 0
   for (const [key, items] of groups) {
-    const buckets = new Map<string, Q[]>(
-      ANSWER_LETTERS.map((letter) => [letter, []])
-    )
-    const unknown: Q[] = []
-    for (const item of items) {
-      const bucket = buckets.get(item.correctAnswerLetter ?? "")
-      if (bucket) bucket.push(item)
-      else unknown.push(item)
-    }
-
-    const out: Q[] = []
-    let cursor = Math.abs(seed + groupIndex) % ANSWER_LETTERS.length
-    while (out.length < items.length - unknown.length) {
-      let found = false
-      for (let step = 0; step < ANSWER_LETTERS.length; step++) {
-        const index = (cursor + step) % ANSWER_LETTERS.length
-        const bucket = buckets.get(ANSWER_LETTERS[index])!
-        const next = bucket.shift()
-        if (!next) continue
-        out.push(next)
-        cursor = (index + 1) % ANSWER_LETTERS.length
-        found = true
-        break
-      }
-      if (!found) break
-    }
-    balanced.set(key, [...out, ...unknown])
+    balanced.set(key, seededShuffle(items, seed + groupIndex))
     groupIndex += 1
   }
 
   const cursors = new Map<string, number>()
   return ordered.map((q) => {
-    if (q.type !== "Data Sufficiency") return q
+    if (!canMove(q)) return q
     const key = groupKey(q)
     const index = cursors.get(key) ?? 0
     cursors.set(key, index + 1)

@@ -83,7 +83,7 @@ describe("question-bank quality guardrails", () => {
     )
     const shares = [...counts.values()].map((count) => count / questions.length)
 
-    // The delivery layer now balances short sets, but this source-bank limit
+    // Delivery randomizes order without forcing answer quotas. This bank limit
     // makes the historical C-heavy distribution a ceiling rather than a new
     // convention. New content must improve or preserve it, never worsen it.
     expect(Math.max(...shares)).toBeLessThanOrEqual(0.4)

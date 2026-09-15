@@ -1705,7 +1705,7 @@ The following table lists six candidates for a role:
 | 5         | 6                   | 3.8 | 82         | 8               |
 | 6         | 4                   | 3.4 | 90         | 6               |
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Table Analysis
 **topic:** Multi-Criterion Filtering
 
@@ -3353,7 +3353,7 @@ The following table shows operating statistics for five airlines during a recent
 | DeltaLine | 2,800   | 91        | 7               | 12            |
 | EastGate  | 4,500   | 79        | 17              | 50            |
 
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Table Analysis
 **topic:** Conditional Statements
 

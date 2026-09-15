@@ -5048,7 +5048,7 @@ The author's attitude toward using shipwreck cargo as evidence of ancient trade 
 Public agencies increasingly publish numerical measures of efficiency: cases processed per employee, average response time, or cost per inspection. Such measures can expose delay and waste that vague assurances would conceal. Trouble begins, however, when a measure shifts from being evidence about performance to being the definition of performance. An office rewarded solely for shorter response times may close difficult cases prematurely; an inspector judged by cost may avoid expensive but consequential investigations. This does not make measurement futile. It means that a useful metric must remain answerable to the public purpose it only imperfectly represents, rather than quietly replacing that purpose.
 
 ### Q185
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Reading Comprehension
 **topic:** Author's Attitude
 
