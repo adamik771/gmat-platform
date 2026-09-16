@@ -22,6 +22,8 @@ import {
   LogOut,
   User,
   ShieldCheck,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import FeedbackWidget from "@/components/beta/FeedbackWidget"
@@ -60,11 +62,13 @@ const navItems = [
 function SidebarLink({
   item,
   active,
+  collapsed = false,
   onClick,
   onIntent,
 }: {
   item: (typeof navItems)[0]
   active: boolean
+  collapsed?: boolean
   onClick?: () => void
   onIntent: (href: string) => void
 }) {
@@ -77,8 +81,11 @@ function SidebarLink({
       onMouseEnter={() => onIntent(item.href)}
       onFocus={() => onIntent(item.href)}
       aria-current={active ? "page" : undefined}
+      aria-label={collapsed ? item.label : undefined}
+      title={collapsed ? item.label : undefined}
       className={cn(
-        "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[14px] transition-colors group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A84C]",
+        "flex min-h-10 items-center border-l-2 text-[14px] transition-colors group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A84C]",
+        collapsed ? "justify-center px-2" : "gap-3 px-3",
         active
           ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
           : "border-transparent text-[#A6A299] hover:text-[#F0F0F0] hover:bg-white/[0.02]"
@@ -88,7 +95,7 @@ function SidebarLink({
         className="w-4 h-4 flex-shrink-0"
         style={{ color: active ? "#C9A84C" : undefined }}
       />
-      <span>{item.label}</span>
+      {!collapsed && <span>{item.label}</span>}
     </Link>
   )
 }
@@ -96,25 +103,43 @@ function SidebarLink({
 function Sidebar({
   pathname,
   isAdminUser,
+  collapsed = false,
   onClose,
   onIntent,
 }: {
   pathname: string
   isAdminUser: boolean
+  collapsed?: boolean
   onClose?: () => void
   onIntent: (href: string) => void
 }) {
   return (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className="px-5 h-14 flex items-center border-b border-white/[0.07]">
-        <Link href="/" className="flex items-center gap-2" aria-label="Zakarian GMAT home">
-          <span className="text-[#F0F0F0] font-semibold text-[12px]">ZAKARIAN</span>
-          <span
-            className="w-1 h-1 rounded-full"
-            style={{ backgroundColor: "#C9A84C" }}
-          />
-          <span className="text-[#F0F0F0] font-semibold text-[12px]">GMAT</span>
+      <div
+        className={cn(
+          "h-14 flex items-center border-b border-white/[0.07]",
+          collapsed ? "justify-center px-2" : "px-5",
+        )}
+      >
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          aria-label="Zakarian GMAT home"
+          title={collapsed ? "Zakarian GMAT home" : undefined}
+        >
+          {collapsed ? (
+            <span className="font-display text-[#F0F0F0] text-[20px] font-semibold">Z</span>
+          ) : (
+            <>
+              <span className="text-[#F0F0F0] font-semibold text-[12px]">ZAKARIAN</span>
+              <span
+                className="w-1 h-1 rounded-full"
+                style={{ backgroundColor: "#C9A84C" }}
+              />
+              <span className="text-[#F0F0F0] font-semibold text-[12px]">GMAT</span>
+            </>
+          )}
         </Link>
       </div>
 
@@ -125,6 +150,7 @@ function Sidebar({
             key={item.href}
             item={item}
             active={pathname.startsWith(item.href)}
+            collapsed={collapsed}
             onClick={onClose}
             onIntent={onIntent}
           />
@@ -143,15 +169,18 @@ function Sidebar({
             onClick={onClose}
             onMouseEnter={() => onIntent("/admin/students")}
             onFocus={() => onIntent("/admin/students")}
+            aria-label={collapsed ? "Student activity" : undefined}
+            title={collapsed ? "Student activity" : undefined}
             className={cn(
-              "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors",
+              "flex min-h-10 items-center border-l-2 text-[13px] transition-colors",
+              collapsed ? "justify-center px-2" : "gap-3 px-3",
               pathname.startsWith("/admin")
                 ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
                 : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]",
             )}
           >
             <ShieldCheck className="w-4 h-4 flex-shrink-0" />
-            <span>Student activity</span>
+            {!collapsed && <span>Student activity</span>}
           </Link>
         )}
         {process.env.NEXT_PUBLIC_COMMUNITY_URL && (
@@ -160,16 +189,25 @@ function Sidebar({
             target="_blank"
             rel="noopener noreferrer"
             onClick={onClose}
-            className="flex items-center gap-3 border-l-2 border-transparent px-3 py-2.5 text-[13px] transition-colors text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
+            aria-label={collapsed ? "Community" : undefined}
+            title={collapsed ? "Community" : undefined}
+            className={cn(
+              "flex min-h-10 items-center border-l-2 border-transparent text-[13px] transition-colors text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]",
+              collapsed ? "justify-center px-2" : "gap-3 px-3",
+            )}
           >
             <MessageCircle className="w-4 h-4 flex-shrink-0" />
-            <span>Community</span>
-            <span
-              className="ml-auto text-[9px] uppercase tracking-[0.18em] font-semibold"
-              style={{ color: "rgba(201,168,76,0.55)" }}
-            >
-              ↗
-            </span>
+            {!collapsed && (
+              <>
+                <span>Community</span>
+                <span
+                  className="ml-auto text-[9px] uppercase tracking-[0.18em] font-semibold"
+                  style={{ color: "rgba(201,168,76,0.55)" }}
+                >
+                  ↗
+                </span>
+              </>
+            )}
           </a>
         )}
         <Link
@@ -178,15 +216,18 @@ function Sidebar({
           onClick={onClose}
           onMouseEnter={() => onIntent("/settings")}
           onFocus={() => onIntent("/settings")}
+          aria-label={collapsed ? "Settings" : undefined}
+          title={collapsed ? "Settings" : undefined}
           className={cn(
-            "flex items-center gap-3 border-l-2 px-3 py-2.5 text-[13px] transition-colors",
+            "flex min-h-10 items-center border-l-2 text-[13px] transition-colors",
+            collapsed ? "justify-center px-2" : "gap-3 px-3",
             pathname.startsWith("/settings")
               ? "border-[#C9A84C] bg-white/[0.025] text-[#F0F0F0]"
               : "border-transparent text-[#77746C] hover:text-[#C0C0C0] hover:bg-white/[0.02]"
           )}
         >
           <Settings className="w-4 h-4 flex-shrink-0" />
-          <span>Settings</span>
+          {!collapsed && <span>Settings</span>}
         </Link>
       </div>
     </div>
@@ -197,6 +238,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [userName, setUserName] = useState("")
   const [userInitials, setUserInitials] = useState("")
   // Surfaced for the offline sync trigger — drains pending offline
@@ -227,6 +269,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     } catch {
       // No Intl or cookies blocked — server-timezone math remains.
     }
+  }, [])
+
+  const toggleSidebarCollapsed = useCallback(() => {
+    setSidebarCollapsed((current) => !current)
   }, [])
 
   useEffect(() => {
@@ -325,12 +371,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </a>
       {/* Desktop sidebar */}
       <aside
-        className="hidden lg:flex flex-col w-60 flex-shrink-0 border-r border-white/[0.07]"
+        className={cn(
+          "hidden lg:flex flex-col flex-shrink-0 border-r border-white/[0.07] transition-[width] duration-200 ease-out",
+          sidebarCollapsed ? "w-[72px]" : "w-60",
+        )}
         style={{ backgroundColor: "#0B0B0A" }}
       >
         <Sidebar
           pathname={pathname}
           isAdminUser={isAdminUser}
+          collapsed={sidebarCollapsed}
           onIntent={prefetchOnIntent}
         />
       </aside>
@@ -370,6 +420,20 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               aria-label="Open navigation menu"
             >
               <Menu className="w-5 h-5" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              onClick={toggleSidebarCollapsed}
+              className="hidden lg:inline-flex h-8 w-8 items-center justify-center rounded-[4px] text-[#A6A299] transition-colors hover:bg-white/[0.04] hover:text-[#F0F0F0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C9A84C]"
+              aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+              title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+              aria-expanded={!sidebarCollapsed}
+            >
+              {sidebarCollapsed ? (
+                <PanelLeftOpen className="h-[18px] w-[18px]" aria-hidden="true" />
+              ) : (
+                <PanelLeftClose className="h-[18px] w-[18px]" aria-hidden="true" />
+              )}
             </button>
             <p className="text-[13px] font-semibold text-[#F0F0F0]">
               {currentLabel}
