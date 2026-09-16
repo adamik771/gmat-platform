@@ -3,13 +3,15 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, AlertTriangle, CheckCircle2 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { isAdmin } from "@/lib/admin-auth"
+import { loadAdminItemStats } from "@/lib/admin-item-data"
 import {
-  computeItemStats,
+  assessDifficultyFit,
   summariseBankHealth,
+  type DifficultyFit,
   type ItemStat,
   type ItemStatFlag,
 } from "@/lib/psychometrics"
-import type { Section } from "@/types"
+import { getAllQuestions } from "@/lib/content"
 
 export const metadata = {
   title: "Content QA · Psychometrics",
@@ -30,45 +32,57 @@ export default async function PsychometricsPage() {
   let items: ItemStat[] = []
   let error: string | null = null
   try {
-    const { data } = await supabase
-      .from("practice_attempts")
-      .select("user_id, question_id, section, topic, is_correct")
-      .limit(50_000)
-    const rows = (data ?? [])
-      .filter((a) => {
-        const sec = a.section as Section
-        return sec === "Quant" || sec === "Verbal" || sec === "DI"
-      })
-      .map((a) => ({
-        user_id: a.user_id as string,
-        question_id: a.question_id as string,
-        section: a.section as Section,
-        topic: (a.topic as string) || "Unknown",
-        is_correct: !!a.is_correct,
-      }))
-    items = computeItemStats(rows)
+    items = await loadAdminItemStats(user)
   } catch {
-    error = "Couldn't load attempts — Supabase may be unreachable."
+    error = "Item statistics are temporarily unavailable. No partial results are shown. Please retry."
   }
 
+  const difficultyById = new Map(
+    getAllQuestions().map((question) => [question.id, question.difficulty])
+  )
+  const calibrated = items.map((item) => {
+    const difficulty = difficultyById.get(item.questionId) ?? null
+    return {
+      ...item,
+      difficulty,
+      difficultyFit: assessDifficultyFit(
+        difficulty,
+        item.pValue,
+        item.attempts
+      ),
+    }
+  })
+
   const flagOrder: Record<ItemStatFlag, number> = {
-    broken: 0,
+    review: 0,
     hard: 1,
     easy: 2,
     ok: 3,
     insufficient: 4,
   }
-  const sorted = [...items].sort((a, b) => {
+  const fitOrder: Record<DifficultyFit, number> = {
+    "too-easy": 0,
+    "too-hard": 1,
+    "on-target": 2,
+    insufficient: 3,
+  }
+  const sorted = [...calibrated].sort((a, b) => {
     const fd = flagOrder[a.flag] - flagOrder[b.flag]
     if (fd !== 0) return fd
+    const fitDelta = fitOrder[a.difficultyFit] - fitOrder[b.difficultyFit]
+    if (fitDelta !== 0) return fitDelta
     return b.attempts - a.attempts
   })
 
   const health = summariseBankHealth(items)
   const visible = sorted.slice(0, 200)
+  const advancedTooEasy = calibrated.filter(
+    (item) =>
+      item.difficulty === "Advanced" && item.difficultyFit === "too-easy"
+  ).length
 
   const healthColor =
-    health.healthPct >= 70 ? "#3ECF8E" : health.healthPct >= 50 ? "#C9A84C" : "#FF4444"
+    health.healthPct === null ? "#888888" : "#F0F0F0"
 
   return (
     <div className="relative">
@@ -127,9 +141,17 @@ export default async function PsychometricsPage() {
             </span>
           </h1>
           <p className="text-[15px] leading-[1.75] text-[#C0C0C0] mt-5 max-w-2xl">
-            Classical item analysis across every attempt in the bank. Surfaces the
-            items that need author review — broken keys, out-of-band difficulty, or
-            too few attempts to read with confidence.
+            One first recorded practice attempt per student and question, excluding
+            known review sessions and hinted first attempts. Later retries never
+            replace an excluded first attempt. Rates include 95% uncertainty intervals;
+            flags are editorial review prompts, not proof of a wrong key or an
+            official GMAT difficulty rating.
+          </p>
+          <p className="text-[13px] leading-[1.75] text-[#C0C0C0] mt-3 max-w-2xl">
+            Historical study mode, prior chapter exposure, and all forms of assistance
+            were not fully recorded. These are first recorded practice results, not
+            verified first-ever unassisted encounters. Current labels may differ from
+            those used when older attempts were recorded. Interpret small samples cautiously.
           </p>
         </section>
 
@@ -145,6 +167,7 @@ export default async function PsychometricsPage() {
           </div>
         )}
 
+        {!error && <>
         {/* BANK HEALTH */}
         <section>
           <div className="flex items-center gap-3 mb-6">
@@ -159,7 +182,7 @@ export default async function PsychometricsPage() {
               className="text-[10px] uppercase tracking-[0.22em] font-semibold"
               style={{ color: "#C9A84C" }}
             >
-              Bank health
+              Evidence summary
             </p>
             <div
               className="h-px flex-1"
@@ -171,17 +194,17 @@ export default async function PsychometricsPage() {
             />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-            <HealthCell label="Total items" value={String(health.totalItems)} color="#F0F0F0" />
-            <HealthCell label="OK" value={String(health.okCount)} color="#3ECF8E" />
-            <HealthCell label="Broken" value={String(health.brokenCount)} color="#FF4444" />
+            <HealthCell label="20+ students" value={String(health.withEnoughData)} color="#F0F0F0" />
+            <HealthCell label="Advanced: high rate" value={String(advancedTooEasy)} color="#C9A84C" />
+            <HealthCell label="Review signal" value={String(health.reviewCount)} color="#FF4444" />
             <HealthCell
               label="Out-of-band"
               value={String(health.hardCount + health.easyCount)}
               color="#C9A84C"
             />
             <HealthCell
-              label="Bank health"
-              value={`${health.healthPct}%`}
+              label="No flag among sampled"
+              value={health.healthPct === null ? "—" : `${health.healthPct}%`}
               color={healthColor}
             />
           </div>
@@ -191,12 +214,19 @@ export default async function PsychometricsPage() {
               Legend
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-[12px] leading-[1.7] text-[#C0C0C0]">
-              <LegendRow color="#FF4444" label="Broken" detail="discrimination at or below 0 with 20+ attempts (key may be wrong)" />
-              <LegendRow color="#FF9933" label="Hard" detail="p-value under 0.20 (guessing floor)" />
-              <LegendRow color="#C9A84C" label="Easy" detail="p-value over 0.85 (85%+ correct)" />
-              <LegendRow color="#3ECF8E" label="OK" detail="inside the measurement window" />
-              <LegendRow color="#888888" label="Low data" detail="under 20 attempts, cannot read" />
+              <LegendRow color="#FF4444" label="Review" detail="nonpositive group difference; investigate rather than assume a defect" />
+              <LegendRow color="#FF9933" label="Low rate" detail="the full 95% interval is below 0.20" />
+              <LegendRow color="#C9A84C" label="High rate" detail="the full 95% interval is above 0.85" />
+              <LegendRow color="#3ECF8E" label="No flag" detail="no screening threshold crossed; not a quality certificate" />
+              <LegendRow color="#888888" label="Low data" detail="fewer than 20 eligible students" />
+              <LegendRow color="#C9A84C" label="Tier screening" detail="heuristic bands, with a flag only when the full interval lies outside" />
             </div>
+            <p className="mt-3 text-[12px] leading-[1.7] text-[#C0C0C0]">
+              Group difference compares performance on other unique questions in the
+              same section. It needs five other eligible items per student and at
+              least five students in each correct/incorrect comparison group.
+              It is not a point-biserial correlation or a causal measure.
+            </p>
           </div>
         </section>
 
@@ -224,7 +254,7 @@ export default async function PsychometricsPage() {
               }}
               aria-hidden
             />
-            <span className="text-[11px] tabular-nums text-[#555555]">
+            <span className="text-[11px] tabular-nums text-[#888888]">
               {visible.length} of {items.length}
             </span>
           </div>
@@ -243,10 +273,12 @@ export default async function PsychometricsPage() {
                     <Th>Flag</Th>
                     <Th>Question</Th>
                     <Th>Section</Th>
+                    <Th>Authored</Th>
+                    <Th>Tier fit</Th>
                     <Th>Topic</Th>
-                    <Th align="right">Attempts</Th>
-                    <Th align="right">p-value</Th>
-                    <Th align="right">Disc.</Th>
+                    <Th align="right">Eligible students</Th>
+                    <Th align="right">Correct rate / 95% interval</Th>
+                    <Th align="right">Group difference</Th>
                   </tr>
                 </thead>
                 <tbody>
@@ -273,16 +305,24 @@ export default async function PsychometricsPage() {
                           {it.section}
                         </span>
                       </td>
+                      <td className="py-3 px-4 sm:px-5 text-[#C0C0C0]">
+                        {it.difficulty ?? "—"}
+                      </td>
+                      <td className="py-3 px-4 sm:px-5">
+                        <DifficultyFitPill fit={it.difficultyFit} />
+                      </td>
                       <td className="py-3 px-4 sm:px-5 text-[#888888] truncate max-w-[220px]">
                         {it.topic}
                       </td>
                       <td className="py-3 px-4 sm:px-5 text-right tabular-nums text-[#888888]">
                         {it.attempts}
+                        <span className="block text-[11px]">{it.recordedAttempts} recorded attempts</span>
                       </td>
                       <td className="py-3 px-4 sm:px-5 text-right">
                         <span className="font-display text-[15px] font-semibold tabular-nums text-[#F0F0F0]">
-                          {it.pValue.toFixed(2)}
+                          {it.pValue === null ? "—" : `${Math.round(it.pValue * 100)}%`}
                         </span>
+                        {it.interval && <span className="block text-[11px] text-[#C0C0C0]">{Math.round(it.interval.low * 100)}–{Math.round(it.interval.high * 100)}%</span>}
                       </td>
                       <td className="py-3 px-4 sm:px-5 text-right">
                         <span className="font-display text-[15px] font-semibold tabular-nums text-[#F0F0F0]">
@@ -290,6 +330,7 @@ export default async function PsychometricsPage() {
                             ? "—"
                             : it.discrimination.toFixed(2)}
                         </span>
+                        <span className="block text-[11px] text-[#C0C0C0]">n={it.comparisonCorrect}/{it.comparisonWrong}</span>
                       </td>
                     </tr>
                   ))}
@@ -297,12 +338,13 @@ export default async function PsychometricsPage() {
               </table>
             </div>
             {items.length === 0 && !error && (
-              <p className="text-[13px] text-[#555555] italic text-center py-10">
-                No attempts in the database yet.
+              <p className="text-[13px] text-[#888888] italic text-center py-10">
+                No recorded practice attempts are available for this report.
               </p>
             )}
           </div>
         </section>
+        </>}
       </div>
     </div>
   )
@@ -389,11 +431,52 @@ function FlagPill({ flag }: { flag: ItemStatFlag }) {
   )
 }
 
+function DifficultyFitPill({ fit }: { fit: DifficultyFit }) {
+  const display: Record<
+    DifficultyFit,
+    { label: string; color: string; background: string }
+  > = {
+    "on-target": {
+      label: "No clear flag",
+      color: "#3ECF8E",
+      background: "rgba(62,207,142,0.08)",
+    },
+    "too-easy": {
+      label: "Above band",
+      color: "#C9A84C",
+      background: "rgba(201,168,76,0.08)",
+    },
+    "too-hard": {
+      label: "Below band",
+      color: "#FF9933",
+      background: "rgba(255,153,51,0.08)",
+    },
+    insufficient: {
+      label: "Low data",
+      color: "#888888",
+      background: "rgba(136,136,136,0.08)",
+    },
+  }
+  const item = display[fit]
+  return (
+    <span
+      className="inline-flex rounded-full border px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em]"
+      style={{
+        color: item.color,
+        backgroundColor: item.background,
+        borderColor: `${item.color}40`,
+      }}
+    >
+      {item.label}
+    </span>
+  )
+}
+
 function flagDisplay(flag: ItemStatFlag) {
   switch (flag) {
-    case "broken":
+    case "review":
       return {
-        label: "Broken",
+        label: "Review",
         color: "#FF4444",
         bg: "rgba(255,68,68,0.08)",
         border: "rgba(255,68,68,0.25)",
@@ -401,7 +484,7 @@ function flagDisplay(flag: ItemStatFlag) {
       }
     case "hard":
       return {
-        label: "Hard",
+        label: "Low rate",
         color: "#FF9933",
         bg: "rgba(255,153,51,0.08)",
         border: "rgba(255,153,51,0.25)",
@@ -409,7 +492,7 @@ function flagDisplay(flag: ItemStatFlag) {
       }
     case "easy":
       return {
-        label: "Easy",
+        label: "High rate",
         color: "#C9A84C",
         bg: "rgba(201,168,76,0.08)",
         border: "rgba(201,168,76,0.25)",
@@ -417,7 +500,7 @@ function flagDisplay(flag: ItemStatFlag) {
       }
     case "ok":
       return {
-        label: "OK",
+        label: "No flag",
         color: "#3ECF8E",
         bg: "rgba(62,207,142,0.08)",
         border: "rgba(62,207,142,0.25)",

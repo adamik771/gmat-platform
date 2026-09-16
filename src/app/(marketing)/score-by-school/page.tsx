@@ -4,16 +4,15 @@ import JsonLd from "@/components/seo/JsonLd"
 import { softwareApplicationLd } from "@/lib/structured-data"
 
 export const metadata: Metadata = {
-  title: "GMAT Score by MBA School",
+  title: "GMAT Score by Graduate Business Programme",
   description:
-    "Median GMAT scores for 20+ top MBA programs (HBS, Stanford, Wharton, INSEAD, LBS, ISB, and more), on both the legacy 200-800 and new Focus 205-805 scales, with a competitive 80th-percentile target.",
+    "Published GMAT averages, medians, and admissions signals for leading MBA, MiM, Master in Finance, and Banking and Finance programmes.",
   alternates: { canonical: "/score-by-school" },
 }
 
 /**
- * /score-by-school — public utility that lets a prospect pick an MBA
- * program and immediately see the approximate GMAT median + the
- * "competitive" band, on both scales.
+ * /score-by-school — public utility for comparing programme-published GMAT
+ * benchmarks and admissions policies across MBA and business master's study.
  *
  * SEO target: high-volume school-specific queries like "GMAT score
  * for Wharton" / "what GMAT do I need for HBS" — and the long-tail
@@ -27,9 +26,9 @@ export default function ScoreBySchoolPage() {
     <>
       <JsonLd
         data={softwareApplicationLd({
-          name: "GMAT Score by MBA School",
+          name: "GMAT Score by Graduate Business Programme",
           description:
-            "Median GMAT scores for 20+ top MBA programs (M7, T15, top European, top Asian) on both Focus and legacy scoring scales.",
+            "Published GMAT benchmarks and admissions signals for leading MBA, MiM, and finance master's programmes.",
           path: "/score-by-school",
         })}
       />

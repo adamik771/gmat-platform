@@ -14,13 +14,17 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q73
-      - critical-reasoning-q74
+      - critical-reasoning-q163
+      - critical-reasoning-q165
   - id: cr-complete
     type: reading
     title: "CR: Complete the Argument"
     check_question_ids:
       - critical-reasoning-q75
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +33,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q169
-      - critical-reasoning-q76
-      - critical-reasoning-q77
+      - critical-reasoning-q164
+      - critical-reasoning-q56
+      - critical-reasoning-q166
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,10 +43,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q78
-      - critical-reasoning-q79
-      - critical-reasoning-q80
+      - critical-reasoning-q43
+      - critical-reasoning-q65
+      - critical-reasoning-q167
 ---
+
+## @summary
+
+- Predict the missing sentence's logical job from the words immediately before the blank.
+- Preserve the argument's direction, tone, and scope rather than choosing a fact that is merely related.
+- Read the completed argument from start to finish and confirm that the transition now works.
 
 ## @cr-complete
 

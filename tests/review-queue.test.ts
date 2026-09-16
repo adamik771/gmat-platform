@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest"
 import {
   computeRung,
+  priorityFor,
   bucketBySection,
   SPACING_LADDER_DAYS,
   MAX_RUNG,
@@ -23,6 +24,8 @@ function makeCandidate(
     rung: 0,
     daysUntilDue: 0,
     flagged: false,
+    confidentMiss: false,
+    saved: false,
     priority: 0,
     ...overrides,
   }
@@ -61,14 +64,14 @@ describe("computeRung", () => {
     expect(computeRung([false])).toBe(0)
   })
 
-  it("resets to 0 mid-ladder on a miss, then re-climbs", () => {
-    // climb to 3, miss (reset to 0), then two corrects climb back to 2.
-    expect(computeRung([true, true, true, false, true, true])).toBe(2)
+  it("re-enters one rung below the lapse point after a corrective success (relearning savings)", () => {
+    // climb to 3, miss (drop to 0), first correct re-enters at 2, next climbs to 3.
+    expect(computeRung([true, true, true, false, true, true])).toBe(3)
   })
 
-  it("resets from the cap back to 0 on a miss", () => {
-    // reach MAX_RUNG (4 corrects), miss -> 0, one correct -> 1.
-    expect(computeRung([true, true, true, true, false, true])).toBe(1)
+  it("re-enters at MAX_RUNG - 1 after lapsing from the cap", () => {
+    // reach MAX_RUNG (4 corrects), miss -> 0, one correct re-enters at 3.
+    expect(computeRung([true, true, true, true, false, true])).toBe(3)
   })
 
   it("a trailing miss always lands the question back at rung 0 (due-now)", () => {
@@ -76,10 +79,58 @@ describe("computeRung", () => {
     expect(computeRung([false, false, false])).toBe(0)
   })
 
-  it("only the chronological order matters, not the raw count of corrects", () => {
-    // Same number of trues, different placement of the reset.
+  it("a lapse on a brand-new or rung-1 item re-enters at rung 1 (no shortcut to skip the ladder)", () => {
     expect(computeRung([false, true, true])).toBe(2)
+    expect(computeRung([true, false, true])).toBe(1)
     expect(computeRung([true, true, false])).toBe(0)
+  })
+
+  it("repeated lapses step the re-entry rung down toward 1", () => {
+    // Lapse at 3 -> re-enter 2; later lapse at 2 -> re-enter 1.
+    expect(computeRung([true, true, true, false, true, false, true])).toBe(1)
+  })
+})
+
+describe("priorityFor", () => {
+  it("items inside their spacing window are not due, even with prior misses", () => {
+    // rung 1 (2-day gap), corrected today, missed once before: the old
+    // formula kept this in the queue forever via missCount * 3.
+    const r = priorityFor(1, 0, 1, false)
+    expect(r.due).toBe(false)
+    expect(r.daysUntilDue).toBeCloseTo(2)
+  })
+
+  it("rung-0 items are always due (same-day corrective attempt)", () => {
+    expect(priorityFor(0, 0, 1, false).due).toBe(true)
+  })
+
+  it("caps the overdue term so stale items cannot bury fresh misses arbitrarily", () => {
+    const stale = priorityFor(1, 30, 0, false) // 28d overdue, capped at 14
+    expect(stale.priority).toBe(14 * 10)
+    const fresh = priorityFor(0, 1, 1, false) // fresh miss: 10 + 50 + 3
+    expect(fresh.priority).toBe(63)
+  })
+
+  it("boosts high-confidence misses (+15) and saved questions (+25)", () => {
+    const base = priorityFor(0, 0, 1, false).priority
+    expect(priorityFor(0, 0, 1, false, { confidentMiss: true }).priority).toBe(
+      base + 15
+    )
+    expect(priorityFor(0, 0, 1, false, { saved: true }).priority).toBe(base + 25)
+  })
+
+  it("flagged keeps its +100 override", () => {
+    expect(priorityFor(1, 0, 0, true).priority).toBe(100)
+  })
+
+  it("caps the spacing gap near the exam so no review schedules past test day", () => {
+    // rung 4 = 42-day gap; 10 days to exam caps the gap at 5 days.
+    const nearExam = priorityFor(4, 6, 0, false, { daysUntilExam: 10 })
+    expect(nearExam.due).toBe(true)
+    // Without the exam cap the same item would not be due for 36 more days.
+    expect(priorityFor(4, 6, 0, false).due).toBe(false)
+    // The cap never drops below 3 days.
+    expect(priorityFor(2, 2, 0, false, { daysUntilExam: 1 }).due).toBe(false)
   })
 })
 

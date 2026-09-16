@@ -1,4 +1,5 @@
 import { getSupabaseService } from "@/lib/supabase/service"
+import { signEmailTrackingId } from "@/lib/email-tracking-token"
 import { emailConfigured, sendEmail } from "@/lib/email"
 import { recordConsent } from "@/lib/outreach/consent"
 import {
@@ -276,6 +277,7 @@ export async function GET(request: Request) {
     }
 
     const payload = (row.payload ?? {}) as Record<string, unknown>
+    const trackingToken = signEmailTrackingId(row.id)
     let rendered
     try {
       rendered = renderTemplate(row.template_key, {
@@ -288,8 +290,12 @@ export async function GET(request: Request) {
           typeof payload.downloadUrl === "string" ? payload.downloadUrl : null,
         referralUrl:
           typeof payload.referralUrl === "string" ? payload.referralUrl : null,
-        clickBase: `${SITE_URL}/api/email/click?id=${row.id}`,
-        openPixelUrl: `${SITE_URL}/api/email/open?id=${row.id}`,
+        clickBase: trackingToken
+          ? `${SITE_URL}/api/email/click?id=${row.id}&t=${trackingToken}`
+          : null,
+        openPixelUrl: trackingToken
+          ? `${SITE_URL}/api/email/open?id=${row.id}&t=${trackingToken}`
+          : null,
       })
     } catch {
       await markOutcome(service, row, {

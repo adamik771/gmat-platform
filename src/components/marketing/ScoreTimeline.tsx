@@ -11,9 +11,9 @@ interface TimelineEvent {
 const events: TimelineEvent[] = [
   {
     date: "April 2025",
-    title: "First Diagnostic",
+    title: "Official practice baseline",
     description:
-      "Sat for an official practice exam cold — no prep, no strategy. Q78, V79, DI77. 56th percentile.",
+      "Before structured preparation. Q78, V79, DI77.",
     score: 565,
   },
   {
@@ -32,14 +32,14 @@ const events: TimelineEvent[] = [
     date: "November 2025",
     title: "First Official Exam",
     description:
-      "Q86, V85, DI80. 95th percentile. Practice tests had been ranging 675–725; the official landed at the floor.",
+      "Official GMAT Focus exam. Q86, V85, DI80.",
     score: 675,
   },
   {
     date: "December 2025",
     title: "Second Official Exam",
     description:
-      "Booked with five days' notice. Three days of pure mistake review, no new content. Q88, V86, DI85. 100th percentile.",
+      "Official GMAT Focus exam. Q88, V86, DI85.",
     score: 735,
     highlight: true,
   },
@@ -56,7 +56,7 @@ export default function ScoreTimeline({ className }: ScoreTimelineProps) {
       <div className="absolute left-4 top-2 bottom-2 w-px bg-white/[0.08]" />
 
       <div className="space-y-8">
-        {events.map((event, index) => (
+        {events.filter((event) => event.score !== undefined).map((event, index) => (
           <div key={index} className="relative flex gap-6 pl-12">
             {/* Dot */}
             <div
@@ -78,7 +78,7 @@ export default function ScoreTimeline({ className }: ScoreTimelineProps) {
             <div className="flex-1 pb-2">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs text-[#555555] mb-1">{event.date}</p>
+                  <p className="text-sm text-[#B9B7AE] mb-1">{event.date}</p>
                   <h4
                     className={cn(
                       "text-sm font-semibold mb-1",
@@ -87,7 +87,7 @@ export default function ScoreTimeline({ className }: ScoreTimelineProps) {
                   >
                     {event.title}
                   </h4>
-                  <p className="text-sm text-[#888888]">{event.description}</p>
+                  <p className="text-sm text-[#B9B7AE]">{event.description}</p>
                 </div>
                 {event.score && (
                   <div

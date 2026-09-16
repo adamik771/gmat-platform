@@ -2,9 +2,11 @@ import type { Metadata } from "next"
 import AcquisitionLanding, {
   type AcquisitionLandingProps,
 } from "@/components/marketing/AcquisitionLanding"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
+import { TRIAL_DAYS } from "@/lib/entitlements"
 
 export const metadata: Metadata = {
-  title: "GMAT Study Plan: Build One That Actually Works | Zakarian GMAT",
+  title: "GMAT Study Plan: Build One That Actually Works",
   description: "A real GMAT study plan isn't a calendar of chapters — it's a feedback loop anchored to your official mba.com practice score. Here's how to build one, plus how Zakarian GMAT generates an adaptive plan from your baseline.",
   alternates: { canonical: "/gmat-study-plan" },
 }
@@ -13,6 +15,15 @@ const DATA: AcquisitionLandingProps = {
   "slug": "gmat-study-plan",
   "eyebrow": "GMAT study plan",
   "h1": "How to Build a GMAT Study Plan Around Your Own Baseline",
+  // Conversion-hero variant: chips + CTA above the intro so a commercial-
+  // intent visitor sees an action above the mobile fold (same pattern as
+  // /gmat-free-trial and /gmat-practice-questions-free).
+  "heroChips": [
+    `${TRIAL_DAYS}-day full-access trial`,
+    "No credit card",
+    "Adaptive plan from your official baseline",
+    "Built by a 565 → 735 founder",
+  ],
   "intro": "Most GMAT study plans fail for the same reason: they are a list of topics on a calendar, not a system that reacts to your mistakes. A plan that says \"Week 3: Geometry, Week 4: Critical Reasoning\" assumes your weaknesses are evenly spaced and never change. They aren't. Real score movement comes from three things working together — an honest baseline, a ruthless focus on your worst-performing topics, and a review schedule that re-tests what you got wrong before you forget it.\n\nThe single most important input is a number you cannot fake: your score on a full-length official GMAT Focus practice exam from mba.com. Everything downstream — which chapters to read, which question types to drill, how aggressive your timeline can be — should be derived from that baseline and updated every time you take another full-length. This page walks through how to build that loop by hand, and how Zakarian GMAT builds an adaptive version of it for you automatically. It's useful either way.",
   "sections": [
     {
@@ -21,7 +32,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "heading": "Rank your weak areas by score impact, not by syllabus order",
-      "body": "Once you have a baseline, resist the urge to study front-to-back. The GMAT Focus total is built from three equally weighted sections, so the fastest points usually come from your *lowest* section and, within it, the topics where your accuracy is worst relative to how often they appear.\n\nBuild a simple weakness table. For each topic you've practiced, track accuracy and average time per question. Sort by the gap between your accuracy and a target (say, 80%). The topics with the biggest deficit that also show up frequently — Critical Reasoning and Data Sufficiency-style reasoning carry a lot of weight — go to the top of the queue. A topic where you're already at 85% accuracy is a poor use of a study block, even if it's 'next' in a textbook.\n\nThen attack each weak topic in order: read the concept, do a focused problem set, log the mistakes, and only move on when accuracy climbs. This is what Zakarian GMAT's adaptive study plan automates. From your baseline and ongoing practice, it computes your weakest topics by accuracy deficit, tags each as a concept gap or an execution problem, and surfaces a short 'Today's Focus' list — one to three concrete actions — plus a rolling 7-day cadence. Each weak area links straight to the relevant chapter (there are 62, across Quant, Verbal, and Data Insights) and a matching drill, so 'study Data Sufficiency' becomes a specific click instead of a vague intention."
+      "body": "Once you have a baseline, resist the urge to study front-to-back. The GMAT Focus total is built from three equally weighted sections, so the fastest points usually come from your *lowest* section and, within it, the topics where your accuracy is worst relative to how often they appear.\n\nBuild a simple weakness table. For each topic you've practiced, track accuracy and average time per question. Sort by the gap between your accuracy and a target (say, 80%). The topics with the biggest deficit that also show up frequently — Critical Reasoning and Data Sufficiency-style reasoning carry a lot of weight — go to the top of the queue. A topic where you're already at 85% accuracy is a poor use of a study block, even if it's 'next' in a textbook.\n\nThen attack each weak topic in order: read the concept, do a focused problem set, log the mistakes, and only move on when accuracy climbs. This is what Zakarian GMAT's adaptive study plan automates. From your baseline and ongoing practice, it computes your weakest topics by accuracy deficit, tags each as a concept gap or an execution problem, and surfaces a short 'Today's Focus' list — one to three concrete actions — plus a rolling 7-day cadence. Each weak area links straight to the relevant chapter (there are " + CHAPTER_COUNT_CLAIM + ", across Quant, Verbal, and Data Insights) and a matching drill, so 'study Data Sufficiency' becomes a specific click instead of a vague intention."
     },
     {
       "heading": "Make review spaced, not crammed — the part most plans skip",
@@ -39,7 +50,7 @@ const DATA: AcquisitionLandingProps = {
   "faq": [
     {
       "q": "How long should a GMAT study plan be?",
-      "a": "It depends entirely on the gap between your baseline and your target, and how many hours per week you can commit — there is no universal number, and anyone who quotes one without seeing your baseline is guessing. As a frame of reference, the founder of Zakarian GMAT, Adam Zakarian, self-studied from a 565 (56th percentile) to a 735 (100th percentile on his official report) over about eight months as a non-native English speaker, and his gains were uneven: long flat stretches punctuated by jumps. The honest answer is to set your timeline from your own baseline, then re-check it after every full-length mock and adjust. This is the founder's own result and is not a prediction of what any other student will score."
+      "a": "It depends entirely on the gap between your baseline and your target, and how many hours per week you can commit — there is no universal number, and anyone who quotes one without seeing your baseline is guessing. As a frame of reference, the founder of Zakarian GMAT, Adam Zakarian, self-studied from a 565 (56th percentile) to a 735 (top 1% of test-takers) over about eight months as a non-native English speaker, and his gains were uneven: long flat stretches punctuated by jumps. The honest answer is to set your timeline from your own baseline, then re-check it after every full-length mock and adjust. This is the founder's own result and is not a prediction of what any other student will score."
     },
     {
       "q": "Do I need to pay for a study plan to improve?",
@@ -51,15 +62,15 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "Is Zakarian GMAT affiliated with GMAC or mba.com?",
-      "a": "No. Zakarian GMAT is an independent prep platform and is not affiliated with, endorsed by, or sponsored by GMAC, mba.com, or the official GMAT and GMAT Focus Edition exams. Those are trademarks of their owner and are referenced here only to describe the exam the platform helps you prepare for. We recommend official mba.com practice exams as your baseline precisely because they are the most accurate measure of where you stand."
+      "a": "No. GMAC, GMAT, Graduate Management Admission Council, and Graduate Management Admission Test are trademarks of GMAC. Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC. The marks are referenced only to describe the exam the platform helps you prepare for. We recommend official mba.com practice exams as your baseline because they are produced by the exam owner."
     }
   ],
   "lead": {
     "source": "other",
-    "leadMagnet": "newsletter",
-    "headline": "The Weak-Area + Spaced-Review Worksheet",
-    "description": "Get the free error-log template plus a one-page worksheet for turning your official practice score into a ranked weak-area plan with a built-in spaced-review schedule (same-day → 2 → 7 → 21 → 42 days) — the exact structure the founder used on his way from 565 to 735. No card, no account, just your email.",
-    "ctaLabel": "Send it to me"
+    "leadMagnet": "error-log-template",
+    "headline": "Get the free six-tag error-log template",
+    "description": "The exact Conceptual / Careless / Time Pressure / Misread / Strategy / Other log the founder used on his way from 565 to 735, as a ready-to-use spreadsheet — the review backbone of the study plan on this page. No card, no account, just your email.",
+    "ctaLabel": "Send me the template"
   },
   "metaDescription": "A real GMAT study plan isn't a calendar of chapters — it's a feedback loop anchored to your official mba.com practice score. Here's how to build one, plus how Zakarian GMAT generates an adaptive plan from your baseline."
 }

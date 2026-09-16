@@ -129,7 +129,7 @@ problem_sets:
       - table-analysis-q4
       - table-analysis-q6
       - table-analysis-q10
-      - table-analysis-q93
+      - table-analysis-q53
       - table-analysis-q20
       - table-analysis-q33
       - table-analysis-q34
@@ -142,7 +142,7 @@ Table Analysis is the one DI question type where your discipline matters more th
 
 Every Table Analysis question follows the same three-step pattern. Internalize the workflow and the question becomes mechanical.
 
-**Mental model.** Every TA question has the same three steps: identify the rows, filter or sort, then verify the claim against the filtered subset. Skip the filter step and you over-compute on the full table; skip the verify step and you bubble the trap answer that looks right at a glance. The whole format becomes mechanical once the three-step rhythm is reflexive.
+**Mental model.** Every TA question has the same three steps: identify the columns, filter or sort, then verify the claim against the filtered subset. Skip the filter step and you over-compute on the full table; skip the verify step and you bubble the trap answer that looks right at a glance. The whole format becomes mechanical once the three-step rhythm is reflexive.
 
 **Step 1: Identify the relevant column(s).**
 

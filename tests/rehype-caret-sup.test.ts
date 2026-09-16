@@ -59,6 +59,33 @@ describe("rehype-caret-sup", () => {
     expect(run(E("pre", [E("code", [T("keep^2 raw")])]))).toBe("keep^2 raw")
   })
 
+  it("raises decimal exponents whole (2^5.6 is not 2^5 followed by .6)", () => {
+    expect(run(E("p", [T("2^5.6 is less than 2^6 = 64")]))).toBe(
+      "2⟨5.6⟩ is less than 2⟨6⟩ = 64"
+    )
+    expect(run(E("p", [T("(1.8)^0.25 and e^0.04799")]))).toBe(
+      "(1.8)⟨0.25⟩ and e⟨0.04799⟩"
+    )
+  })
+
+  it("still raises an integer exponent at a sentence boundary", () => {
+    expect(run(E("p", [T("equals 2^6.")]))).toBe("equals 2⟨6⟩.")
+  })
+
+  it("leaves word exponents entirely raw instead of half-raising them", () => {
+    expect(run(E("p", [T("(−a)^even = a^even")]))).toBe("(−a)^even = a^even")
+    expect(run(E("p", [T("odd^anything is odd")]))).toBe("odd^anything is odd")
+  })
+
+  it("leaves alphanumeric compound exponents raw (p1^a1, 3^3x)", () => {
+    expect(run(E("p", [T("n = p1^a1 * p2^a2")]))).toBe("n = p1^a1 * p2^a2")
+    expect(run(E("p", [T("wrote 3^3x by mistake")]))).toBe(
+      "wrote 3^3x by mistake"
+    )
+    // The house style for multi-char exponents still renders:
+    expect(run(E("p", [T("3^(3x) = 3^(x+1)")]))).toBe("3⟨3x⟩ = 3⟨x+1⟩")
+  })
+
   it("leaves a stray leading caret (no base) untouched", () => {
     expect(run(E("p", [T("^starts here")]))).toBe("^starts here")
   })

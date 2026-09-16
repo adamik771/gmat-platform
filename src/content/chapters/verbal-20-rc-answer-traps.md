@@ -25,6 +25,10 @@ sections:
     type: reading
     title: "The elimination discipline"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -47,6 +51,12 @@ problem_sets:
       - reading-comprehension-q83
       - reading-comprehension-q89
 ---
+
+## @summary
+
+- Demand textual proof for every important word in an answer choice.
+- Watch for scope shifts, distortions, half-right combinations, extreme language, and answers to a different question.
+- Eliminate four choices deliberately; do not select the first option that echoes the passage's vocabulary.
 
 ## @rc-answer-traps
 
@@ -124,7 +134,7 @@ The cure: when two answers compete and one uses extreme language, **prefer the m
 
 **Worked example (hard).** This one shows the limit of the rule. Question on a passage that states: "No experiment to date has produced room-temperature superconductivity at ambient pressure." Inference answer A: "Room-temperature superconductivity at ambient pressure has not yet been experimentally achieved." Answer B: "Room-temperature superconductivity at ambient pressure is impossible." Choice B reeks of extreme language ("impossible") and is wrong — the passage reports an absence of results, not a proof of impossibility. But notice that choice A also contains an absolute-flavoured construction ("has not yet been achieved"), and *it is correct*, because the passage itself made an absolute factual claim ("no experiment to date has produced..."). Lesson: extreme language is a *flag*, not an automatic kill. The real question is always "does the passage support the strength of this claim?" Here the passage supports A's strong wording and not B's. Apply the decoder table to narrow the field, then **return to the cited sentence to confirm the strength is earned.**
 
-> **Recall check.** Is extreme language an automatic-eliminate, or a flag that sends you back to the text? (A flag — if the passage itself makes an absolute claim, an absolute answer can be correct.) Pull that distinction from memory now; it's the nuance that separates a 650-level "always is always wrong" heuristic from a 705-level reading that survives the hard inference questions.
+> **Recall check.** Is extreme language an automatic-eliminate, or a flag that sends you back to the text? (A flag — if the passage itself makes an absolute claim, an absolute answer can be correct.) Pull that distinction from memory now; it's the nuance that separates a crude "always is always wrong" heuristic from a top scorer's reading that survives the hard inference questions.
 
 **The step-by-step procedure (memorize this).**
 

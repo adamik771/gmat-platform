@@ -5,6 +5,10 @@ import {
   canAccess,
   effectiveTierForUser,
 } from "@/lib/entitlements"
+import {
+  withContextLastSeen,
+} from "@/lib/question-selection"
+import { loadPracticeExposure, loadSelectionState } from "@/lib/practice-exposure-data"
 import UpgradeGate from "@/components/shared/UpgradeGate"
 import TestBuilderClient, {
   type QuestionPoolEntry,
@@ -38,17 +42,19 @@ export default async function TestBuilderPage() {
   // The client samples from this pool on Generate. Shipping the full ~1,900-row
   // question list is a few KB — cheaper than POSTing to the server on every
   // click, and keeps the action instant.
-  const pool: QuestionPoolEntry[] = getAllQuestions()
-    // Playability filter matches the session route — skip anything with no
-    // options (shouldn't happen now that TPA parses into row-label options,
-    // but the guard stays as a safety net).
-    .filter((q) => q.options.length > 0)
-    .map((q) => ({
-      id: q.id,
-      section: q.section,
-      topic: q.topic,
-      difficulty: q.difficulty,
-    }))
+  //
+  // Playability filter matches the session route — skip anything with no
+  // options (shouldn't happen now that TPA parses into row-label options,
+  // but the guard stays as a safety net).
+  const allQuestions = getAllQuestions().filter((q) => q.options.length > 0)
+
+  // Attempt history so generation can prefer never-attempted questions and
+  // the UI can say when the filters force repeats. Passage-aware: a question
+  // whose RC/MSR context the student has already worked counts as seen even
+  // if this particular stem was never attempted. Failed reads are disclosed;
+  // an empty fallback map must not be presented as proof of freshness.
+  let lastSeen: ReadonlyMap<string, number> = new Map()
+  let historyAvailable = false
 
   // Pull the user's 5 most-recent `custom` sessions (saved by SessionClient
   // through /api/practice-sessions) for the "Recent Custom Tests" block.
@@ -59,15 +65,22 @@ export default async function TestBuilderPage() {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
-      const { data } = await supabase
-        .from("practice_sessions")
-        .select(
-          "id, topic, section, total_questions, correct_count, accuracy, created_at"
-        )
-        .eq("user_id", user.id)
-        .eq("slug", "custom")
-        .order("created_at", { ascending: false })
-        .limit(5)
+      const [{ state, errored }, { data }] = await Promise.all([
+        loadSelectionState(supabase, user),
+        supabase
+          .from("practice_sessions")
+          .select(
+            "id, topic, section, total_questions, correct_count, accuracy, created_at"
+          )
+          .eq("user_id", user.id)
+          .eq("slug", "custom")
+          .order("created_at", { ascending: false })
+          .limit(5),
+      ])
+
+      const exposure = await loadPracticeExposure(supabase, user, state.chapter_progress, errored)
+      lastSeen = withContextLastSeen(allQuestions, exposure.lastSeen)
+      historyAvailable = !exposure.errored
 
       recent = (data ?? []).map((s) => ({
         id: s.id as string,
@@ -80,8 +93,18 @@ export default async function TestBuilderPage() {
       }))
     }
   } catch {
-    // Supabase unavailable — fall through with empty list.
+    // Supabase unavailable — fall through with empty list / fresh pool.
   }
 
-  return <TestBuilderClient pool={pool} recent={recent} />
+  const pool: QuestionPoolEntry[] = allQuestions.map((q) => ({
+    id: q.id,
+    section: q.section,
+    topic: q.topic,
+    difficulty: q.difficulty,
+    type: q.type,
+    correctAnswerLetter: q.correctAnswerLetter,
+    lastSeenAt: lastSeen.get(q.id),
+  }))
+
+  return <TestBuilderClient pool={pool} recent={recent} historyAvailable={historyAvailable} />
 }

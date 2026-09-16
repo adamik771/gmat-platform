@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Daily Monitoring
 
 Operating guide for one founder running paid acquisition + organic for Zakarian GMAT. Goal: catch waste fast, protect spend, and feed the things that convert. Read time: 10 minutes a day, 30 minutes once a week.
@@ -67,7 +69,7 @@ Act on these the day you see them.
 | CPC spiking on one channel | Auction competition or quality-score drop | Lower bids or pause; do not chase the auction. |
 | `referral_click` high, no downstream `signup`/`founding_reserve` | Referral landing or reward copy unclear | Re-check `/refer` flow end to end. |
 | Any signup spike with no matching spend | Organic/SEO win OR bot/spam | Verify in Vercel; if real and organic, note the source and lean in. |
-| Compliance drift in any live ad | — | Pull the ad immediately. No guaranteed scores, no "diagnostic"/"readiness band"/"score band" language, no generalized score-improvement claims, no fake urgency or counts. Only the founder's own 565 -> 735 / 100th-percentile claim is allowed, never generalized. GMAC/GMAT/mba.com nominative reference only — never imply affiliation or endorsement. |
+| Compliance drift in any live ad | — | Pull the ad immediately. No guaranteed scores, no "diagnostic"/"readiness band"/"score band" language, no generalized score-improvement claims, no fake urgency or counts. Only the founder's own 565 -> 735 / top-1% claim is allowed, never generalized. GMAC/GMAT/mba.com nominative reference only — never imply affiliation or endorsement. |
 
 When in doubt between "tracking is broken" and "the ad is bad," **always rule out broken tracking first.** It is the cheaper mistake to check and the more expensive one to miss.
 
@@ -106,7 +108,7 @@ Same day each week. Roll up the daily logs.
 - [ ] **Organic/SEO check:** signups with no paid first-touch UTM. Which high-intent theme pages (study plan, error log, mock review, practice platform, DI/Quant practice, private beta) are pulling organic traffic? Note momentum to feed with content.
 - [ ] **Apply kill/scale rules** from the week's data: list what you paused, held, scaled — one change per item.
 - [ ] **Pixel/tag status:** confirm `NEXT_PUBLIC_META_PIXEL_ID` / `NEXT_PUBLIC_GOOGLE_TAG_ID` state and whether platform-side conversions match Vercel within a sane margin.
-- [ ] **Compliance pass:** re-read every live ad and landing headline against the hard rules. No guaranteed scores, no diagnostic/readiness/score-band claims, no generalized improvement claims, no fake urgency or student counts, GMAC marks nominative only, founder 565 -> 735 / 100th-percentile claim only and never generalized.
+- [ ] **Compliance pass:** re-read every live ad and landing headline against the hard rules. No guaranteed scores, no diagnostic/readiness/score-band claims, no generalized improvement claims, no fake urgency or student counts, GMAC marks nominative only, founder 565 -> 735 / top-1% claim only and never generalized.
 - [ ] **One decision for next week:** the single biggest lever (new variant, new page test, kill a channel, double down on the best). Write it down; review it next week.
 
 ---

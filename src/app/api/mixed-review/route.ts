@@ -110,11 +110,15 @@ export async function POST(request: Request) {
   )
 
   // Pool 3: last-14-day misses (recent fragility, time-dated).
+  // `!inner` is load-bearing: without it PostgREST keeps parent rows that
+  // fail the embedded date filter (it only nulls the embed), and DESC
+  // ordering then sorts those NULL embeds FIRST — so the pool filled with
+  // the OLDEST misses instead of the recent ones it advertises.
   const cutoff = new Date()
   cutoff.setDate(cutoff.getDate() - 14)
   const { data: missedRows } = await supabase
     .from("practice_attempts")
-    .select("question_id, practice_sessions(created_at)")
+    .select("question_id, practice_sessions!inner(created_at)")
     .eq("user_id", user.id)
     .eq("is_correct", false)
     .gte("practice_sessions.created_at", cutoff.toISOString())
@@ -129,18 +133,43 @@ export async function POST(request: Request) {
     missedIds.push(id)
   }
 
-  // Pool 4: review queue top (priority-ranked, flag-boosted).
-  const queue = await getReviewQueue(supabase, user.id, {
-    limit: 10,
-    flaggedQuestionIds: gatherFlaggedQuestionIds(state),
-  })
+  // Pool 4: review queue top (priority-ranked, flag-boosted). A failed
+  // read degrades to an empty pool — the other pools still fill the set.
+  const queue =
+    (await getReviewQueue(supabase, user.id, {
+      limit: 10,
+      flaggedQuestionIds: gatherFlaggedQuestionIds(state),
+    })) ?? []
   const queueIds = queue.map((c) => c.questionId)
+
+  const qIndex = new Map(getAllQuestions().map((q) => [q.id, q]))
+
+  // Global mixed review is single-section: interleaving trains
+  // discriminative contrast between confusable problem types, which
+  // needs items from the same domain — a Quant/Verbal/DI grab-bag adds
+  // switching cost without the contrast benefit (Hausman & Kornell
+  // 2014). Pick the section with the most candidate material and build
+  // the whole set inside it. Chapter-variant sets are already
+  // single-section by construction.
+  let globalSection: Section | null = null
+  if (!current) {
+    const tally: Record<Section, number> = { Quant: 0, Verbal: 0, DI: 0 }
+    for (const id of [...missedIds, ...queueIds, ...otherPool]) {
+      const s = qIndex.get(id)?.section
+      if (s && s in tally) tally[s as Section]++
+    }
+    const sections: Section[] = ["Quant", "Verbal", "DI"]
+    const best = sections.reduce((a, b) => (tally[a] >= tally[b] ? a : b))
+    if (tally[best] > 0) globalSection = best
+  }
+  const inSection = (id: string) =>
+    globalSection === null || qIndex.get(id)?.section === globalSection
 
   // Allocation
   const chosen = new Set<string>()
   const ordered: string[] = []
   const pickFrom = (pool: string[], n: number) => {
-    const filtered = pool.filter((id) => !chosen.has(id))
+    const filtered = pool.filter((id) => !chosen.has(id) && inSection(id))
     const shuffled = shuffle(filtered)
     for (const id of shuffled.slice(0, n)) {
       chosen.add(id)
@@ -164,7 +193,7 @@ export async function POST(request: Request) {
   if (ordered.length < count) {
     const topUp = shuffle(
       [...currentPool, ...otherPool, ...missedIds, ...queueIds].filter(
-        (id) => !chosen.has(id)
+        (id) => !chosen.has(id) && inSection(id)
       )
     )
     for (const id of topUp) {
@@ -175,7 +204,6 @@ export async function POST(request: Request) {
   }
 
   // Resolve to playable questions + final interleave shuffle.
-  const qIndex = new Map(getAllQuestions().map((q) => [q.id, q]))
   const resolved = ordered
     .filter((id) => {
       const q = qIndex.get(id)
@@ -188,7 +216,11 @@ export async function POST(request: Request) {
     (current && current.section !== "General" ? current.section : null) ??
     deriveSection(finalIds.map((id) => qIndex.get(id)!).filter(Boolean))
 
-  const label = current ? `Mixed Review: ${current.title}` : "Mixed Review"
+  const label = current
+    ? `Mixed Review: ${current.title}`
+    : globalSection
+    ? `Mixed Review — ${globalSection}`
+    : "Mixed Review"
 
   return Response.json({ ids: finalIds, label, section })
 }

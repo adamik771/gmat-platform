@@ -31,7 +31,7 @@ const FAMILY_PALETTE: Record<FamilyBucket, { color: string; bg: string }> = {
   Timing: { color: "#FF9933", bg: "rgba(255,153,51,0.12)" },
   Behaviour: { color: "#B088FF", bg: "rgba(176,136,255,0.12)" },
   Legacy: { color: "#888888", bg: "rgba(136,136,136,0.1)" },
-  Untagged: { color: "#555555", bg: "rgba(85,85,85,0.12)" },
+  Untagged: { color: "#888888", bg: "rgba(85,85,85,0.12)" },
 }
 
 // Mirrors ROOT_CAUSE_FAMILY_PALETTE in ErrorLogClient so the pills and
@@ -46,7 +46,7 @@ const ROOT_CAUSE_PALETTE: Record<RootCauseBucket, { color: string; bg: string }>
   Pacing: { color: "#FF9933", bg: "rgba(255,153,51,0.12)" },
   Judgement: { color: "#B088FF", bg: "rgba(176,136,255,0.12)" },
   Fatigue: { color: "#6FB5F6", bg: "rgba(111,181,246,0.12)" },
-  Uncoded: { color: "#555555", bg: "rgba(85,85,85,0.12)" },
+  Uncoded: { color: "#888888", bg: "rgba(85,85,85,0.12)" },
 }
 
 type View = "family" | "root-cause" | "contributing"

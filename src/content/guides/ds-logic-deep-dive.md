@@ -536,7 +536,7 @@ Statements provide inequalities or specific values. Solve by case analysis or su
 
 "In triangle ABC, angle A = 60°. What is the length of side BC?"
 
-Statements give other sides or angles. Apply law of cosines or sines, or Pythagorean theorem, or trig identities (limited on GMAT).
+Statements give other sides or angles. The question is whether the given constraints pin the triangle down to a single shape — you never need trigonometry (the GMAT does not test it in any edition).
 
 ### Statistics + algebra
 

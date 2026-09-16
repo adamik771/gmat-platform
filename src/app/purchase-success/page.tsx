@@ -1,9 +1,12 @@
 import { redirect } from "next/navigation"
+import Link from "next/link"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getSupabaseService } from "@/lib/supabase/service"
 import { getStripe } from "@/lib/stripe"
 import { normalizePaymentIntentId } from "@/lib/stripe-webhook"
 import { recordPurchase } from "@/lib/purchases"
+import { tiers } from "@/lib/plans"
+import PurchaseTracker from "./PurchaseTracker"
 
 // Every render talks to Stripe and redirects — never cache.
 export const dynamic = "force-dynamic"
@@ -77,16 +80,51 @@ export default async function PurchaseSuccessPage({
   }
 
   // redirect() throws — keep it outside the try so it isn't swallowed.
-  if (outcome === "recorded") {
-    // Keep the ?purchase=success&plan= params: the app layout's
-    // ConversionTracker fires the purchase analytics event off them.
-    redirect(`/dashboard?purchase=success&plan=${encodeURIComponent(planId)}`)
-  }
   if (outcome === "not_paid" || outcome === "wrong_user") {
     redirect("/upgrade")
   }
-  // stripe_error: the payment may well be fine and the webhook will record
-  // it; send them onward rather than to a dead end. If the gate still sees
-  // them as expired they land on /upgrade, which stays truthful.
-  redirect("/dashboard?purchase=success")
+  if (outcome === "stripe_error") {
+    // The payment may well be fine and the webhook will record it; send them
+    // onward rather than to a dead end. Deliberately WITHOUT any success
+    // param: nothing here was verified, so no conversion event may fire —
+    // a fabricated session_id must not be able to emit a Purchase.
+    redirect("/dashboard")
+  }
+
+  // outcome === "recorded": the ONLY branch that emits the purchase
+  // conversion. The session was verified server-side above (ownership +
+  // paid status) and the purchase row is written, so PurchaseTracker's
+  // client-side fire is anchored to server truth rather than to editable
+  // query params. It dedupes and then forwards to the dashboard.
+  const planName = tiers.find((t) => t.id === planId)?.name ?? "Your plan"
+  return (
+    <div
+      className="min-h-screen flex items-center justify-center px-4"
+      style={{ backgroundColor: "#0A0A0A" }}
+    >
+      <PurchaseTracker plan={planId} sessionId={sessionId} />
+      <div className="max-w-md w-full text-center p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]">
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
+          style={{ color: "#3ECF8E" }}
+        >
+          Payment confirmed
+        </p>
+        <h1 className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] mb-3">
+          You&apos;re all set.
+        </h1>
+        <p className="text-[14px] text-[#888888] leading-relaxed mb-6">
+          {planName} is active on your account. Taking you to your
+          dashboard&hellip;
+        </p>
+        <Link
+          href="/dashboard"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90"
+          style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+        >
+          Go to dashboard
+        </Link>
+      </div>
+    </div>
+  )
 }

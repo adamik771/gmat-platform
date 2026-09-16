@@ -12,7 +12,10 @@ sections:
     type: pretest
     title: "Try before you learn"
     intro: |
-      Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
+      Two quick questions before the lesson. Use the answer choices however you like; the review will show where they can replace full algebra.
+    pretest_question_ids:
+      - arithmetic-q128
+      - arithmetic-q129
   - id: answer-choice-tactics
     type: reading
     title: "Method: Answer-Choice Tactics"
@@ -21,8 +24,18 @@ sections:
     type: reading
     title: "Let the answer choices do the work"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
 ---
+
+## @summary
+
+- Read the structure before calculating: ordered choices, shared factors, and answer spacing often reveal the cheapest path.
+- Estimate or eliminate first; backsolve from the middle only when the answer choices can replace the algebra cleanly.
+- Use the choices as evidence, not as permission to guess. Confirm the surviving option against every condition.
 
 ## @answer-choice-tactics
 

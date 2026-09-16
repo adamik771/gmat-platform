@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Zakarian GMAT - Daily Assistant Checklist
 
 The daily standard operating procedure for the person running growth for Zakarian
@@ -93,7 +95,7 @@ worse than no message. **Prefer no send over a bad send.**
   generator, and a free error-log template. The baseline is an official mba.com
   practice exam the user takes themselves and enters in the app.
 - Never call anything a "free diagnostic" and never promise a score. You may cite
-  only Adam's own verified result (565 to 735, 100th percentile).
+  only Adam's own result (565 to 735, top 1%).
 - Log each send immediately: Name, Segment, Channel, Source/UTM, Date contacted,
   Template used, Status = Contacted, Last touch, Next action + date (usually a
   follow-up 3-4 days out). See `CRM_WORKFLOW.md`.
@@ -167,7 +169,7 @@ keeps it). These roll up into the Friday report (`WEEKLY_SOP.md` /
 - Never say "free diagnostic" and never claim a scored diagnostic or placement test
   exists - there is none.
 - Never promise or imply a guaranteed score or specific improvement. Cite only
-  Adam's verified 565 to 735 / 100th percentile.
+  Adam's 565 to 735 / top 1%.
 - Never imply affiliation with GMAC, mba.com, or the official GMAT. Include the
   GMAC non-affiliation line in any public-facing claim.
 - Never invent prices or discount codes. Pricing and discounts are Adam-approved

@@ -1,29 +1,17 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import {
-  ArrowRight,
-  BookOpen,
-  Target,
-  ClipboardList,
-  BarChart3,
-  AlertCircle,
-  Users,
-} from "lucide-react"
-import SectionWrapper from "@/components/shared/SectionWrapper"
-import { getAllChapters, getContentStats } from "@/lib/content"
+import { ArrowRight } from "lucide-react"
+import { getAllChapters } from "@/lib/content"
+import { getPublicInventory } from "@/components/marketing/content-inventory"
 import CurriculumTopics from "./CurriculumTopics"
+import styles from "@/components/marketing/PublicSite.module.css"
 
 export const metadata: Metadata = {
   title: "Course",
   alternates: { canonical: "/course" },
-  description:
-    "A complete GMAT prep system. One guided path through 50+ chapters.",
+  description: "A guided GMAT curriculum across Quant, Verbal, and Data Insights, with supporting readings and practice.",
 }
 
-// The guided path, phase by phase. Each phase lists the slugs of a few
-// representative chapters; their display titles are derived from the real
-// curriculum at render time so this section can never drift from the
-// product (CHAPTER_PATH_ORDER in src/lib/content.ts is the actual order).
 const PHASES: Array<{
   num: string
   title: string
@@ -78,7 +66,7 @@ const PHASES: Array<{
     title: "Advanced ground and trap immunity",
     sections: "Quant · Verbal · DI",
     description:
-      "Counting, probability, boldface, the answer-trap chapters — the second-tier patterns that separate a 645 from a 705.",
+      "Counting, probability, boldface, the answer-trap chapters — more complex reasoning and recurring answer traps.",
     exampleSlugs: [
       "quant-25-permutations-combinations",
       "quant-27-probability",
@@ -97,349 +85,66 @@ const PHASES: Array<{
   },
 ]
 
-const weeks = [
-  { week: "Week 1–2", focus: "Baseline + Mindset" },
-  { week: "Week 3–5", focus: "Quant deep dive" },
-  { week: "Week 6–7", focus: "Verbal precision" },
-  { week: "Week 8", focus: "Data Insights" },
-  { week: "Week 9–11", focus: "Mixed practice + error review" },
-  { week: "Week 12–13", focus: "Mock exams + debrief" },
-  { week: "Week 14–15", focus: "Targeted weak spots" },
-  { week: "Week 16", focus: "Final week protocol" },
-]
 
 export default function CoursePage() {
-  const stats = getContentStats()
-
-  // Resolve each phase's example slugs to live chapter titles so the
-  // curriculum section always reflects the real guided path.
-  const titleBySlug = new Map(getAllChapters().map((c) => [c.slug, c.title]))
-  const modules = PHASES.map((phase) => ({
-    num: phase.num,
-    title: phase.title,
-    section: phase.sections,
-    duration: `${phase.exampleSlugs.length}+ chapters`,
-    description: phase.description,
-    topics: phase.exampleSlugs
-      .map((slug) => titleBySlug.get(slug))
-      .filter((t): t is string => !!t),
-  }))
-
-  const included = [
-    {
-      icon: BookOpen,
-      title: "50+ research-backed chapters",
-      description:
-        "Reading-first curriculum with in-chapter checks and graded problem sets. No video filler — built to be worked through, not watched.",
-    },
-    {
-      icon: Target,
-      title: `${stats.totalQuestions} original practice questions`,
-      description: "Original questions tagged by type, topic, and difficulty.",
-    },
-    {
-      icon: ClipboardList,
-      title: "Mock exams",
-      description: "Full-length timed mocks with detailed debrief tools.",
-    },
-    {
-      icon: AlertCircle,
-      title: "Error log system",
-      description: "Built-in mistake tracker with pattern analysis.",
-    },
-    {
-      icon: BarChart3,
-      title: "Analytics dashboard",
-      description: "Score trends, accuracy by topic, pacing metrics.",
-    },
-    {
-      icon: Users,
-      title: "1:1 Coaching (select plans)",
-      description: "Weekly sessions with Adam. Not an outsourced tutor.",
-    },
-  ]
+  const chapters = getAllChapters()
+  const inventory = getPublicInventory()
+  const titleBySlug = new Map(chapters.map((chapter) => [chapter.slug, chapter.title]))
+  const samples = ["/sample-chapter", "/sample-chapter/quant", "/sample-chapter/quant", "/sample-chapter/data-insights", "/sample-chapter/data-insights"]
 
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,168,76,0.16) 0%, transparent 60%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 40% at 85% 25%, rgba(201,168,76,0.06) 0%, transparent 60%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
-          aria-hidden
-        />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-5"
-              style={{ color: "#C9A84C" }}
-            >
-              Platform
-            </p>
-            <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-6">
-              A complete prep{" "}
-              <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-                system.
-              </span>
-              <br />
-              <span className="text-[#888888]">Not a collection of videos.</span>
-            </h1>
-            <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl">
-              One guided path through 50+ chapters, built around how the GMAT
-              actually tests you. Each chapter connects to the next. Every
-              mistake feeds into the system.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                href="/sample-chapter"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold border transition-all duration-200 hover:opacity-90"
-                style={{
-                  borderColor: "rgba(201,168,76,0.32)",
-                  color: "#C9A84C",
-                  backgroundColor: "rgba(201,168,76,0.04)",
-                }}
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                Read a sample chapter
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-              <span className="text-[12px] text-[#666666]">
-                Two full readings from the Verbal Foundations chapter, no signup.
-              </span>
-            </div>
+    <div className={styles.page}>
+      <div className={styles.container}>
+        <header className={styles.intro}>
+          <p className={styles.kicker}>Zakarian GMAT / Platform</p>
+          <h1 className="font-display">GMAT curriculum</h1>
+          <p className={styles.lede}>A guided path from foundations to timed practice. Quant, Verbal, and Data Insights develop in rotation, with advanced and timing work later in the sequence.</p>
+          <div className={styles.actions}>
+            <Link href="/sample-chapter" className={styles.button}>Read a sample chapter <ArrowRight aria-hidden="true" /></Link>
+            <Link href="#curriculum" className={styles.quietButton}>Explore the five phases</Link>
           </div>
-        </div>
-      </section>
+          <p className={styles.note}>Public samples need no account. Your study plan can prioritise weak areas within the guided path.</p>
+        </header>
+        <dl className={styles.proof}>
+          <div><dt>Interactive chapters</dt><dd>{inventory.chapters}</dd></div>
+          <div><dt>Supporting readings</dt><dd>{inventory.readings}</dd></div>
+          <div><dt>Supplementary references</dt><dd>{inventory.references}</dd></div>
+          <div><dt>Original bank questions</dt><dd>{inventory.questions.toLocaleString("en-US")}</dd></div>
+        </dl>
 
-      {/* Modules */}
-      <SectionWrapper variant="darker">
-        <div className="text-center mb-14 max-w-2xl mx-auto">
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3"
-            style={{ color: "#C9A84C" }}
-          >
-            Curriculum
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-4">
-            One guided path. Five{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              phases.
-            </span>
-          </h2>
-          <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-            Foundations first, strategy early, the three sections built in
-            rotation — easier chapters in, advanced and timing work last. A
-            real sequence, built to compound.
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          {modules.map((mod) => (
-            <div
-              key={mod.num}
-              className="group relative p-7 rounded-2xl border border-white/[0.08] bg-[#111111] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-[#141414] hover:shadow-[0_10px_40px_-12px_rgba(201,168,76,0.15)]"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-5">
-                <div className="flex items-start gap-5 flex-1">
-                  <span
-                    className="font-display text-3xl font-semibold flex-shrink-0 tabular-nums leading-none mt-0.5"
-                    style={{ color: "rgba(201,168,76,0.55)" }}
-                    aria-hidden
-                  >
-                    {mod.num}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2.5 mb-2.5">
-                      <h3 className="font-display text-lg font-semibold text-[#F0F0F0] tracking-tight">
-                        {mod.title}
-                      </h3>
-                      <span
-                        className="px-2 py-0.5 rounded text-[11px] font-semibold tracking-wide"
-                        style={{
-                          backgroundColor: "rgba(201,168,76,0.08)",
-                          color: "#C9A84C",
-                        }}
-                      >
-                        {mod.section}
-                      </span>
-                      <span className="text-[11px] text-[#555555] tracking-wide">
-                        {mod.duration}
-                      </span>
-                    </div>
-                    <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-4">
-                      {mod.description}
-                    </p>
-                    <CurriculumTopics topics={mod.topics} />
+        <section id="curriculum" className={styles.section}>
+          <h2 className="font-display">Five phases of preparation</h2>
+          <p className={styles.note}>Topics below are representative examples. Interactive chapters combine readings, recall checks, and graded problem sets. Supporting readings and references are separate resources, not extra interactive chapters.</p>
+          <div className="mt-8 divide-y divide-white/10">
+            {PHASES.map((phase, index) => {
+              const topics = phase.exampleSlugs.map((slug) => titleBySlug.get(slug)).filter((title): title is string => Boolean(title))
+              return (
+                <article key={phase.num} className="grid gap-4 py-7 sm:grid-cols-[40px_1fr] sm:gap-6">
+                  <span className="text-lg tabular-nums text-[#B9B7AE]">{phase.num}</span>
+                  <div className="min-w-0">
+                    <h3>{phase.title}</h3>
+                    <p className="mt-2 max-w-3xl text-sm text-[#B9B7AE]">{phase.description}</p>
+                    <p className="mb-3 mt-5 text-sm text-[#F0F0F0]">Topics include</p>
+                    <CurriculumTopics topics={topics} />
+                    <Link href={samples[index]} className={styles.textLink}>Read a {index === 0 ? "Verbal" : index < 3 ? "Quant" : "Data Insights"} sample <ArrowRight aria-hidden="true" /></Link>
                   </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </SectionWrapper>
-
-      {/* Study timeline */}
-      <SectionWrapper>
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-12">
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3"
-              style={{ color: "#C9A84C" }}
-            >
-              Timeline
-            </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-4">
-              Sixteen weeks, written for{" "}
-              <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-                real
-              </span>{" "}
-              schedules.
-            </h2>
-            <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-              Designed for 90 min/day, 5 days/week. Adapt to your calendar, not the other
-              way around.
-            </p>
+                </article>
+              )
+            })}
           </div>
+          <Link href="/chapters" className={styles.textLink}>Open the complete chapter path (account required) <ArrowRight aria-hidden="true" /></Link>
+        </section>
 
-          <div className="space-y-2.5">
-            {weeks.map((w, i) => (
-              <div
-                key={w.week}
-                className="group flex items-center gap-5 p-5 rounded-2xl border border-white/[0.06] bg-[#0D0D0D] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.14] hover:bg-[#111111] hover:shadow-[0_10px_40px_-12px_rgba(201,168,76,0.12)]"
-              >
-                <span
-                  className="font-display text-[11px] font-semibold tabular-nums flex-shrink-0"
-                  style={{ color: "rgba(201,168,76,0.55)" }}
-                  aria-hidden
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div
-                  className="h-px flex-1 max-w-[48px]"
-                  style={{
-                    background:
-                      "linear-gradient(to right, rgba(201,168,76,0.35), transparent)",
-                  }}
-                  aria-hidden
-                />
-                <span className="text-[11px] uppercase tracking-[0.18em] text-[#555555] w-28 flex-shrink-0 font-semibold">
-                  {w.week}
-                </span>
-                <span className="text-[15px] text-[#C0C0C0] leading-relaxed">
-                  {w.focus}
-                </span>
-              </div>
-            ))}
+        <section className={styles.section}>
+          <h2 className="font-display">Fit the sequence to your schedule</h2>
+          <p className={styles.lede}>Start with an official practice-exam baseline. Use the guided sequence alongside focused practice and review; plan an exam date around the time you have available.</p>
+          <div className={styles.actions}>
+            <Link href="/study-schedule" className={styles.quietButton}>Build a study schedule</Link>
+            <Link href="/signup" className={styles.button}>Start your trial <ArrowRight aria-hidden="true" /></Link>
           </div>
-        </div>
-      </SectionWrapper>
-
-      {/* What's included */}
-      <SectionWrapper variant="darker">
-        <div className="text-center mb-14 max-w-2xl mx-auto">
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3"
-            style={{ color: "#C9A84C" }}
-          >
-            Included
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-4">
-            Everything in the{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              platform.
-            </span>
-          </h2>
-          <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
-            Curriculum, question bank, analytics, error log, coaching — one environment,
-            built to reinforce itself.
-          </p>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {included.map((item) => {
-            const Icon = item.icon
-            return (
-              <div
-                key={item.title}
-                className="group relative p-7 rounded-2xl border border-white/[0.08] bg-[#111111] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-[#141414] hover:shadow-[0_10px_40px_-12px_rgba(201,168,76,0.18)]"
-              >
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-105"
-                  style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
-                >
-                  <Icon className="w-5 h-5" style={{ color: "#C9A84C" }} />
-                </div>
-                <h3 className="font-display text-lg font-semibold text-[#F0F0F0] mb-2 tracking-tight">
-                  {item.title}
-                </h3>
-                <p className="text-[14px] text-[#888888] leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            )
-          })}
-        </div>
-      </SectionWrapper>
-
-      {/* Final CTA */}
-      <section
-        className="relative py-28 overflow-hidden"
-        style={{ backgroundColor: "#0A0A0A" }}
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 70% at 50% 100%, rgba(201,168,76,0.14) 0%, transparent 65%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.03] mix-blend-overlay"
-          aria-hidden
-        />
-        <div className="relative max-w-3xl mx-auto text-center px-4">
-          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
-            Ready to{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              begin?
-            </span>
-          </h2>
-          <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed mb-10">
-            Choose your plan and start your first lesson today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/signup"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-            >
-              Start Free
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/pricing"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/[0.12] text-[#C0C0C0] hover:border-white/[0.2] hover:text-[#F0F0F0] transition-all duration-200"
-            >
-              View Pricing
-            </Link>
-          </div>
-        </div>
-      </section>
+          <p className={styles.note}>The question bank is the full inventory. Chapter problem sets use selected questions from it; the bank total is not an additional set of chapter-test questions.</p>
+        </section>
+      </div>
     </div>
   )
 }

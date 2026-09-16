@@ -111,10 +111,10 @@ export default function FeedbackWidget() {
           border: "1px solid rgba(201,168,76,0.3)",
           boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
         }}
-        aria-label="Send beta feedback"
+        aria-label="Send feedback"
       >
         <MessageSquare className="w-3.5 h-3.5" />
-        Beta feedback
+        Feedback
       </button>
     )
   }
@@ -134,7 +134,7 @@ export default function FeedbackWidget() {
           className="text-[10px] uppercase tracking-[0.22em] font-semibold"
           style={{ color: "#C9A84C" }}
         >
-          Beta feedback
+          Feedback
         </p>
         <button
           type="button"

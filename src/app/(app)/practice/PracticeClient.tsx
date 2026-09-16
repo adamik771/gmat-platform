@@ -3,7 +3,7 @@
 import Link from "next/link"
 import {
   ArrowRight,
-  Clock,
+  BookOpen,
   Lock,
   Target,
   Check,
@@ -48,20 +48,6 @@ export default function PracticeClient({
     { lastCorrect: number; lastTotal: number; attempts: number }
   >
 }) {
-  // Accuracy the score formula (205 + accuracy x 600) implies for the goal,
-  // softened to 0.9x. A raw per-set bar at the literal score-accuracy is too
-  // harsh: practice drills include hard items and the real exam is
-  // adaptive/scaled, so you don't need your target-percentile raw accuracy on
-  // every set. The gentler aim keeps goal sensitivity without demanding
-  // near-perfection (e.g. an 805 goal now asks for ~90%, not 100%). Drives both
-  // the goal "%+" label and the per-test "aim X/Y" chip.
-  const AIM_SOFTENING = 0.9
-  const requiredAccuracy =
-    targetScore !== null
-      ? Math.min(1, Math.max(0, ((targetScore - 205) / 600) * AIM_SOFTENING))
-      : null
-  const requiredPercent =
-    requiredAccuracy !== null ? Math.ceil(requiredAccuracy * 100) : null
   const topRec = recommendations[0] ?? null
   // Hero CTA dynamically targets the highest-leverage action: top
   // recommendation when the engine has signal, otherwise the custom
@@ -102,7 +88,7 @@ export default function PracticeClient({
           <p className="mt-4 text-[15px] text-[#C0C0C0] leading-[1.7] max-w-2xl">
             {topRec
               ? "We pick the highest-leverage set; you run it. Every miss feeds your error log and the spaced-review queue."
-              : "Pick a mode, run a set, and every miss feeds your error log and the spaced-review queue. Original GMAT-style questions, expert-calibrated, timing-targeted."}
+              : "Pick a mode, run a set, and every miss feeds your error log and the spaced-review queue. Original GMAT-style questions organized by chapter and difficulty."}
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link
@@ -121,15 +107,24 @@ export default function PracticeClient({
                 color: "#C0C0C0",
               }}
             >
-              Run mixed review
+              Review queue
+            </Link>
+            <Link
+              href="/practice/history"
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
+              style={{
+                borderColor: "rgba(255,255,255,0.10)",
+                color: "#C0C0C0",
+              }}
+            >
+              Session history
             </Link>
           </div>
         </div>
       </section>
 
-      {/* === Goal accuracy strip — translates the student's score goal into
-          the per-test accuracy bar they should clear. */}
-      {requiredPercent !== null ? (
+      {/* A score goal is context, not a conversion from practice accuracy. */}
+      {targetScore !== null ? (
         <div
           className="rounded-xl border px-5 py-4 flex flex-wrap items-center gap-x-3 gap-y-2"
           style={{
@@ -142,11 +137,8 @@ export default function PracticeClient({
             <span className="font-semibold" style={{ color: "#C9A84C" }}>
               Goal {targetScore}
             </span>{" "}
-            means scoring{" "}
-            <span className="font-semibold tabular-nums" style={{ color: "#C9A84C" }}>
-              {requiredPercent}%+
-            </span>{" "}
-            on these tests — each row shows the correct count to beat.
+            — use official practice exams to assess progress toward this goal.
+            Accuracy on these chapter tests is not a GMAT score prediction.
           </p>
         </div>
       ) : (
@@ -165,7 +157,8 @@ export default function PracticeClient({
             >
               Set a score goal
             </Link>{" "}
-            to see the accuracy each test asks of you.
+            to keep your preparation focused. Chapter-test accuracy does not
+            convert directly to an official GMAT score.
           </p>
         </div>
       )}
@@ -212,7 +205,6 @@ export default function PracticeClient({
                 <ChapterBlock
                   key={group.chapterSlug}
                   group={group}
-                  requiredAccuracy={requiredAccuracy}
                   lockTestsBeyond={lockTestsBeyond}
                   attemptsBySlug={attemptsBySlug}
                 />
@@ -240,12 +232,10 @@ export default function PracticeClient({
  */
 function ChapterBlock({
   group,
-  requiredAccuracy,
   lockTestsBeyond,
   attemptsBySlug,
 }: {
   group: PracticeChapterGroup
-  requiredAccuracy: number | null
   lockTestsBeyond: number | null
   attemptsBySlug: Record<
     string,
@@ -267,19 +257,21 @@ function ChapterBlock({
             {group.chapterTitle}
           </h3>
         </div>
-        <span className="text-[12px] text-[#777777] tabular-nums flex-shrink-0">
+        <span className="text-[12px] text-[#A6A299] tabular-nums flex-shrink-0">
           {group.comingSoon
-            ? "Coming soon"
+            ? "No standalone test"
             : `${group.tests.length} test${group.tests.length === 1 ? "" : "s"} · ${totalQ} Q`}
         </span>
       </div>
       {group.comingSoon ? (
         <div
           className="mt-3 flex items-center gap-2 px-4 py-3 rounded-xl border border-dashed text-[12px]"
-          style={{ borderColor: "rgba(255,255,255,0.06)", color: "#555555" }}
+          style={{ borderColor: "rgba(255,255,255,0.06)", color: "#888888" }}
         >
-          <Clock className="w-3.5 h-3.5 flex-shrink-0" aria-hidden />
-          Tests coming soon — read the chapter for now.
+          <BookOpen className="w-3.5 h-3.5 flex-shrink-0" aria-hidden />
+          <Link href={`/chapters/${group.chapterSlug}`} className="underline underline-offset-4 hover:text-[#F0F0F0]">
+            Continue in the chapter
+          </Link>
         </div>
       ) : (
         <div className="mt-3 space-y-2.5">
@@ -287,7 +279,6 @@ function ChapterBlock({
             <ChapterTestRow
               key={test.id}
               test={test}
-              requiredAccuracy={requiredAccuracy}
               accent={SECTION_ACCENT[group.section]}
               locked={lockTestsBeyond !== null && i + 1 > lockTestsBeyond}
               attempt={attemptsBySlug[test.id] ?? null}
@@ -306,13 +297,11 @@ function ChapterBlock({
  */
 function ChapterTestRow({
   test,
-  requiredAccuracy,
   accent,
   locked = false,
   attempt = null,
 }: {
   test: PracticeTest
-  requiredAccuracy: number | null
   /** The chapter's section accent colour (Quant blue / Verbal purple / DI green). */
   accent: string
   /** Paid test the free account can't run yet — links to /pricing. */
@@ -327,16 +316,21 @@ function ChapterTestRow({
   if (medium > 0) pills.push({ label: "Med", count: medium, color: "#C9A84C" })
   if (hard > 0) pills.push({ label: "Hard", count: hard, color: "#FF8A65" })
   const testNumber = test.label.replace(/\D+/g, "") || "1"
-  const aimCount =
-    requiredAccuracy !== null
-      ? Math.min(test.count, Math.ceil(requiredAccuracy * test.count))
-      : null
   // A locked test never counts as "attempted" (it can't have been run).
   const lastAttempt = locked ? null : attempt
-  const metAim =
-    lastAttempt && aimCount !== null
-      ? lastAttempt.lastCorrect >= aimCount
-      : null
+  // A stored attempt's total can disagree with the CURRENT test size: content
+  // edits recompose the tests under the same positional slugs (the pool is
+  // re-dealt), and early exits record only the answered count. Comparing a
+  // stale fraction against today's composition produced "6 questions, last
+  // 8/8" — so when the totals disagree, show the historical score as a
+  // percentage rather than presenting it as a result on today's deck.
+  const staleTotal =
+    lastAttempt !== null && lastAttempt.lastTotal !== test.count
+  const lastScoreLabel = lastAttempt
+    ? staleTotal
+      ? `${Math.round((100 * lastAttempt.lastCorrect) / Math.max(1, lastAttempt.lastTotal))}%`
+      : `${lastAttempt.lastCorrect}/${lastAttempt.lastTotal}`
+    : null
   return (
     <Link
       href={locked ? "/pricing" : `/practice/session/${test.id}`}
@@ -344,7 +338,7 @@ function ChapterTestRow({
         locked
           ? `${test.label} — locked, see plans to unlock`
           : lastAttempt
-            ? `Review ${test.label} — last score ${lastAttempt.lastCorrect} of ${lastAttempt.lastTotal}`
+            ? `Review ${test.label} — last score ${lastScoreLabel}`
             : `Start ${test.label} — ${test.count} questions`
       }
       className={
@@ -402,30 +396,12 @@ function ChapterTestRow({
           <span
             className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[12px] font-semibold tabular-nums"
             style={{
-              backgroundColor:
-                metAim === true
-                  ? "rgba(62,207,142,0.12)"
-                  : "rgba(255,255,255,0.05)",
-              color: metAim === true ? "#3ECF8E" : "rgba(192,192,192,0.9)",
-            }}
-          >
-            {metAim === true ? (
-              <Check className="w-3 h-3" aria-hidden />
-            ) : (
-              <Target className="w-3 h-3" aria-hidden />
-            )}
-            last {lastAttempt.lastCorrect}/{lastAttempt.lastTotal}
-          </span>
-        ) : aimCount !== null && !locked ? (
-          <span
-            className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[12px] font-semibold tabular-nums"
-            style={{
-              backgroundColor: accent + "1A",
-              color: accent,
+              backgroundColor: "rgba(255,255,255,0.05)",
+              color: "rgba(192,192,192,0.9)",
             }}
           >
             <Target className="w-3 h-3" aria-hidden />
-            aim {aimCount}/{test.count}
+            last {lastScoreLabel}
           </span>
         ) : null}
       </div>

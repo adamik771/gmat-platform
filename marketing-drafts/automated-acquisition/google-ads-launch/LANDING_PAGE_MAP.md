@@ -9,7 +9,7 @@ Each ad group sends traffic to exactly one live, content-rich page that mirrors 
 | `AG-Mock-Review` | gmat mock review / mock test analysis / practice test review | https://www.zakariangmat.com/gmat-mock-review | `lead_captured` {source, lead_magnet} via newsletter | Searcher just took a mock and wants to extract lessons. Page describes per-topic / per-difficulty mock analytics, behaviour patterns (efficient/labored/rushed/stuck), and mock-to-mock trend — exactly the "what do I do with this mock" need. |
 | `AG-Data-Insights` | gmat data insights practice / di practice / data insights questions | https://www.zakariangmat.com/gmat-data-insights-practice | `lead_captured` {source, lead_magnet} via newsletter | Section-specific intent. Page offers interactive Data Insights chapters plus a large DI question bank and per-topic analytics — directly answers "I need DI practice." |
 | `AG-Quant-Practice` | gmat quant practice / quant questions / math practice | https://www.zakariangmat.com/gmat-quant-practice | `lead_captured` {source, lead_magnet} via newsletter | Highest-volume practice intent. Page offers the Quant question bank, interactive Quant chapters, and per-topic/per-difficulty analytics — matches "I want to drill quant." |
-| `AG-Prep-Platform` | gmat prep platform / online gmat prep / gmat prep app / private beta | https://www.zakariangmat.com/gmat-private-beta | `founding_reserve` {source, lead_magnet} via founding reservation | Highest commercial intent ("a platform/app/tool"). Page is the all-in-one pitch: 62 chapters, question bank, error log, mocks, adaptive plan, analytics — free during private beta — with a founding-access reservation as the primary CTA. |
+| `AG-Prep-Platform` | gmat prep platform / online gmat prep / gmat prep app / gmat free trial | https://www.zakariangmat.com/gmat-free-trial | `signup` (trial start) | Highest commercial intent ("a platform/app/tool"). Page is the all-in-one pitch: 50+ chapters, question bank, error log, mocks, adaptive plan, analytics — with the free 7-day full-access trial as the sole CTA (the founding reservation lives on /pricing, not on cold landing pages). |
 
 ## Conversion event reference
 
@@ -17,7 +17,7 @@ Events fire to Vercel Web Analytics and auto-forward to gtag once `NEXT_PUBLIC_G
 
 - `landing_view {page}` — fires on each landing-page view (track only; do NOT count as a conversion, it would inflate bidding).
 - `lead_captured {source, lead_magnet}` — primary conversion for ad groups 1–5.
-- `founding_reserve {source, lead_magnet}` — primary conversion for ad group 6.
+- `founding_reserve {source, lead_magnet}` — fires on /pricing founding reservations (secondary; ad group 6 optimizes to `signup`).
 - `signup {gated}` — counts as a conversion anywhere it occurs (Meta CompleteRegistration). A landing-page visitor who creates an account also counts.
 - `signup_initiated {gated}` — track only; not a conversion.
 

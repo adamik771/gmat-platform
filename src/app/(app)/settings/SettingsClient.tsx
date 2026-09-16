@@ -19,6 +19,7 @@ import {
   X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
 import { createSupabaseBrowser } from "@/lib/supabase/browser"
 
 export interface PurchaseRow {
@@ -28,6 +29,8 @@ export interface PurchaseRow {
   amountCents: number
   currency: string
   paidAt: string
+  expiresAt: string | null
+  active: boolean
 }
 
 export interface NotificationPrefs {
@@ -168,6 +171,14 @@ export default function SettingsClient({
         {tab === "billing" && <BillingTab purchases={purchases} />}
 
         {tab === "notifications" && <NotificationsTab initialPrefs={initialPrefs} />}
+
+        {/* Persistent privacy-settings entry point for signed-in users —
+            reopens the consent banner (marketing pages carry it in the
+            footer; the app chrome has no footer, so it lives here). */}
+        <p className="mt-10 text-[12px] text-[#555555]">
+          Cookie and measurement preferences:{" "}
+          <ConsentSettingsButton className="underline hover:text-[#888888] transition-colors" />
+        </p>
       </div>
     </div>
   )
@@ -263,7 +274,8 @@ function DangerZone() {
         setDeleting(false)
         return
       }
-      // Account is gone server-side — clear the local session and leave.
+      // A 2xx response means the durable erasure request was accepted. Clear
+      // the local session even when server-side cleanup is still retrying.
       try {
         await createSupabaseBrowser().auth.signOut()
       } catch {
@@ -502,7 +514,7 @@ function ProfileTab({
                   className={
                     targetScore !== null
                       ? "text-[#F0F0F0] font-medium"
-                      : "text-[#555555] italic"
+                      : "text-[#888888] italic"
                   }
                 >
                   {targetScore !== null ? targetScore : "Not set"}
@@ -655,7 +667,7 @@ function TriStateRow({
           )
         })}
         {value === null && (
-          <span className="text-[11px] text-[#555555] self-center italic ml-1">
+          <span className="text-[11px] text-[#888888] self-center italic ml-1">
             Not answered
           </span>
         )}
@@ -665,7 +677,8 @@ function TriStateRow({
 }
 
 function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
-  const latest = purchases[0] ?? null
+  const latest = purchases.find((purchase) => purchase.active) ?? null
+  const latestPast = purchases[0] ?? null
 
   return (
     <div className="space-y-10">
@@ -702,7 +715,7 @@ function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
                   {latest.planLabel}
                 </p>
                 <p className="text-[13px] text-[#C0C0C0]">
-                  Activated {formatDate(latest.paidAt)} ·{" "}
+                  Activated {formatDate(latest.paidAt)} · access until {latest.expiresAt ? formatDate(latest.expiresAt) : "not available"} ·{" "}
                   {formatMoney(latest.amountCents, latest.currency)} paid
                 </p>
               </div>
@@ -723,11 +736,12 @@ function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
             >
               <div>
                 <p className="text-[15px] font-semibold text-[#F0F0F0] tracking-tight mb-1">
-                  No plan yet
+                  {latestPast ? "No active plan" : "No plan yet"}
                 </p>
                 <p className="text-[13px] text-[#C0C0C0] leading-[1.6] max-w-sm">
-                  Pick a package on the pricing page to unlock the full
-                  curriculum and coaching.
+                  {latestPast
+                    ? `Your ${latestPast.planLabel} access ended ${latestPast.expiresAt ? formatDate(latestPast.expiresAt) : "on its scheduled end date"}.`
+                    : "Pick a package on the pricing page to unlock the full curriculum and coaching."}
                 </p>
               </div>
               <Link
@@ -791,7 +805,7 @@ function BillingTab({ purchases }: { purchases: PurchaseRow[] }) {
               </tbody>
             </table>
           </div>
-          <p className="text-[12px] text-[#555555] mt-4 italic">
+          <p className="text-[12px] text-[#888888] mt-4 italic">
             Need an invoice or refund? Reply to your purchase confirmation
             email — we&apos;ll sort it.
           </p>

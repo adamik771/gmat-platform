@@ -17,7 +17,7 @@ const FAQ = [
   {
     question: "Is 645 a good GMAT Focus score?",
     answer:
-      "Yes. A 645 sits at roughly the 87th percentile on the platform's rounded percentile bands, which is the same competitive tier a 700 occupied on the old GMAT. That is why people call 645 the new 700 — it is a percentile and competitiveness equivalence, not a score-scale equivalence. By the published score concordance, 645 Focus converts to about 680 on the old 200-800 scale; you can check the exact mapping with the score converter.",
+      "Yes. GMAC's July 2025 table places 645 at the 86.7th percentile and links it to old-GMAT scores of 690-700. That is why people call 645 the new 700, but it is still a concordance range rather than an exact identity. You can check any score with the score converter.",
   },
   {
     question: "What is the average GMAT Focus score?",
@@ -366,17 +366,15 @@ export default function PostPage() {
             700&rdquo; shorthand.
           </p>
           <p>
-            What it does <em>not</em>{" "}mean is that 645 Focus equals 700 old on
-            the score scale. By the published GMAC concordance, 645 Focus
-            converts to about <Strong>680</Strong>{" "}on the old 200-800 scale
-            &mdash; not 700. So both things are true at once, and you have to
-            keep them straight: by percentile, 645 sits where 700 used to; by
-            the score-scale concordance, 645 Focus maps to about 680 old. If
-            you are translating an old-GMAT target into a Focus target,
+            What it does <em>not</em>{" "}mean is that the scales have a precise
+            one-to-one conversion. GMAC&apos;s July 2025 concordance links 645 to
+            an old-score <Strong>range of 690-700</Strong>. The range exists
+            because the exams use different score-bin sizes and observed
+            frequencies. If you are translating an old-GMAT target,
             use the{" "}
             <Link href="/score-converter">score converter</Link> &mdash; it
-            runs the official concordance anchors so you do not accidentally
-            set your goal 20 points too high.
+            now performs an exact lookup against the official rows rather than
+            interpolating between a few hand-picked points.
           </p>
           <p>
             GMAC itself is explicit that the two scales are{" "}

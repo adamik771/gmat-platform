@@ -133,7 +133,7 @@ Five method-selection traps.
 
 ## Original mini-example
 
-A worked example to demonstrate method-selection where backsolving genuinely dominates over algebra.
+A worked example to compare backsolving with a short algebraic solution.
 
 *Problem.* A theater sold a total of 240 tickets. Adult tickets cost $12 each and student tickets cost $8 each. If total revenue was $2,480, how many student tickets were sold?
 
@@ -141,17 +141,17 @@ A worked example to demonstrate method-selection where backsolving genuinely dom
 
 *Method-selection scan.* Five clean integer answers, sorted in increasing order, all small enough to plug directly into the constraints. Both constraints (total tickets and total revenue) can be checked numerically against any candidate. Backsolving is the default tool here.
 
-*Why not algebra.* Algebra works fine — let s = student tickets and a = adult tickets, then a + s = 240 and 12a + 8s = 2,480 — but setting up two equations, eliminating one variable, and solving costs roughly a minute. Backsolving from a sorted middle answer can finish in thirty seconds.
+*The algebra alternative.* Let s = student tickets. Then 240 − s tickets were sold to adults, so 12(240 − s) + 8s = 2,480. Simplifying gives 2,880 − 4s = 2,480, hence s = 100. This is also a short, valid method. Backsolving is convenient here because the middle choice happens to satisfy both constraints immediately; it will not always be the quicker route.
 
 *Method (backsolving from C).* Start from C: s = 100. Then a = 240 − 100 = 140. Revenue check: 12(140) + 8(100) = 1,680 + 800 = 2,480. Match. C is the answer.
 
 *Sanity check.* Total tickets: 100 + 140 = 240. Match. Revenue: $2,480. Match. Both constraints satisfied; commit.
 
-*Trap to avoid.* The trap is reaching for algebra by reflex. The algebraic path produces the same answer in roughly twice the time, and across the section those time taxes accumulate. Recognition signal that pointed to backsolving: *sorted integer answers, both constraints checkable numerically, no algebraic structure that algebra would reveal more cleanly than substitution would*. When the answers are *the candidate values for the unknown the problem is asking about*, plugging them in is faster than solving for them.
+*Trap to avoid.* Do not commit to a method before checking what the choices represent. Here they are candidate values for s, so substitution tests a choice directly. Algebra remains useful when several choices would need checking or an equation isolates the requested quantity quickly.
 
-*A second variant where the choice flips.* If the same problem instead asked "what is the value of (a − s)?" the answers would still be integers, but you'd have to compute a − s for each candidate s after deriving a. That extra step makes algebra and backsolving roughly equivalent on speed, and algebra (using the elimination shortcut a − s = (12a + 8s − 8(a + s))/4 = (2,480 − 1,920)/4 = 140) actually wins. The lesson: even within "backsolving-friendly" problems, the *exact form of the question* shifts the winning method.
+*A variant asking for the difference.* If the question instead asked for a − s, subtracting 8(a + s) from the revenue equation gives 4a = 2,480 − 1,920 = 560. This isolates a, not a − s: a = 140. Then s = 240 − 140 = 100, so **a − s = 40**. Alternatively, subtract 10(a + s) from the revenue equation to get 2a − 2s = 80, directly giving a − s = 40. The lesson: choose the method for the exact quantity requested, and check what your expression actually represents.
 
-*Time spent.* Backsolving path: about 30 seconds. Algebraic path: about 60 seconds. The savings on this problem alone is one extra question of pacing budget — earned by 5 seconds of method-selection scanning.
+*Method takeaway.* Both methods satisfy the same constraints. Practice recognizing when a choice check is short and when elimination reaches the requested quantity directly; neither method has a guaranteed time advantage.
 
 ## More worked examples
 

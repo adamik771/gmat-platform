@@ -1,6 +1,6 @@
 ---
 slug: verbal-13-rc-reading-process
-title: "RC Reading Process"
+title: "RC: Reading Process"
 section: Verbal
 estimated_minutes: 40
 prerequisites:
@@ -53,7 +53,7 @@ problem_sets:
     question_ids:
       - reading-comprehension-q123
       - reading-comprehension-q6
-      - reading-comprehension-q3
+      - reading-comprehension-q18
   medium:
     target_accuracy_by_score:
       "605": 50

@@ -3,6 +3,11 @@ import { evaluateSignupGate, isSignupGateArmed } from "@/lib/signup-gate"
 import { buildMarketingConsent } from "@/lib/outreach/consent-flag"
 import { recordConsent } from "@/lib/outreach/consent"
 import { enqueueDrip } from "@/lib/outreach/queue"
+import {
+  consumeSecurityRateLimit,
+  getClientAddress,
+} from "@/lib/security-rate-limit"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 /**
  * POST /api/signup — the access-code-gated signup path.
@@ -35,6 +40,7 @@ export async function POST(request: Request) {
     accessCode?: unknown
     hp?: unknown
     marketingConsent?: unknown
+    attribution?: unknown
   }
   try {
     body = (await request.json()) as typeof body
@@ -58,6 +64,52 @@ export async function POST(request: Request) {
       { error: "Invite-only signup is not enabled." },
       { status: 403 }
     )
+  }
+
+  let supabase
+  try {
+    supabase = getSupabaseService()
+  } catch {
+    console.error(
+      "[signup] SIGNUP_ACCESS_CODE is set but SUPABASE_SERVICE_ROLE_KEY is not — gated signup cannot create accounts."
+    )
+    return Response.json(
+      { error: "Signup is temporarily unavailable. Please try again later." },
+      { status: 503 }
+    )
+  }
+
+  const address = getClientAddress(request.headers)
+  if (address) {
+    try {
+      const decision = await consumeSecurityRateLimit(supabase, {
+        action: "gated_signup_ip",
+        subject: address,
+        limit: 10,
+        windowSeconds: 15 * 60,
+      })
+      if (!decision.allowed) {
+        return Response.json(
+          { error: "Too many signup attempts. Please try again later." },
+          {
+            status: 429,
+            headers: {
+              "Retry-After": String(decision.retryAfterSeconds || 60),
+            },
+          },
+        )
+      }
+    } catch (err) {
+      reportDataFailure(err, {
+        surface: "signup",
+        operation: "rate-limit",
+        rpc: "consume_security_rate_limit",
+      })
+      return Response.json(
+        { error: "Signup is temporarily unavailable. Please try again later." },
+        { status: 503 },
+      )
+    }
   }
 
   const gate = evaluateSignupGate(
@@ -88,18 +140,20 @@ export async function POST(request: Request) {
     )
   }
 
-  let supabase
-  try {
-    supabase = getSupabaseService()
-  } catch {
-    // Service-role key not configured — the gated path can't create users.
-    console.error(
-      "[signup] SIGNUP_ACCESS_CODE is set but SUPABASE_SERVICE_ROLE_KEY is not — gated signup cannot create accounts."
-    )
-    return Response.json(
-      { error: "Signup is temporarily unavailable. Please try again later." },
-      { status: 503 }
-    )
+  // First-touch attribution forwarded by the client (utm_* / gclid /
+  // landing_path). Client-supplied, so sanitize: known keys only, short
+  // string values. Empty -> omitted entirely.
+  const ATTR_KEYS = new Set([
+    "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+    "ref", "gclid", "wbraid", "gbraid", "landing_path",
+  ])
+  const attribution: Record<string, string> = {}
+  if (body.attribution && typeof body.attribution === "object") {
+    for (const [k, v] of Object.entries(body.attribution as Record<string, unknown>)) {
+      if (ATTR_KEYS.has(k) && typeof v === "string" && v.length > 0) {
+        attribution[k] = v.slice(0, 200)
+      }
+    }
   }
 
   const consentFlag = buildMarketingConsent(
@@ -115,6 +169,7 @@ export async function POST(request: Request) {
       marketing_consent: consentFlag,
       // Start the free trial clock at signup (see entitlements / paywall gate).
       trial_started_at: new Date().toISOString(),
+      ...(Object.keys(attribution).length > 0 ? { attribution } : {}),
     },
   })
 

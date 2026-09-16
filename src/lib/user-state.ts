@@ -29,8 +29,7 @@ export { USER_STATE_KEYS, type UserStateKey, type UserState }
  * /api/notification-prefs) — those routes are intentionally NOT touched.
  */
 
-/** SQL for the table + RLS. Run once in the Supabase SQL editor (the repo has
- *  no migrations dir; schema is applied manually, mirroring beta-feedback.ts). */
+/** Manual bootstrap SQL mirroring the versioned user_state migration. */
 export const USER_STATE_MIGRATION_SQL = `
 create table if not exists public.user_state (
   user_id uuid primary key references auth.users(id) on delete cascade,
@@ -42,33 +41,41 @@ alter table public.user_state enable row level security;
 
 drop policy if exists "user_state_select_own" on public.user_state;
 create policy "user_state_select_own" on public.user_state
-  for select using (auth.uid() = user_id);
+  for select to authenticated using (auth.uid() = user_id);
 
 drop policy if exists "user_state_insert_own" on public.user_state;
 create policy "user_state_insert_own" on public.user_state
-  for insert with check (auth.uid() = user_id);
+  for insert to authenticated with check (auth.uid() = user_id);
 
 drop policy if exists "user_state_update_own" on public.user_state;
 create policy "user_state_update_own" on public.user_state
-  for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+  for update to authenticated
+  using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
--- Atomic top-level jsonb merge for the caller's own row. patchUserState calls
--- this instead of read-modify-write so two concurrent writes to DIFFERENT keys
--- can't lost-update each other (the merge happens server-side in one statement).
+-- Atomic top-level jsonb merge for the caller's own row. Legacy metadata is
+-- used only to seed a missing row; conflict updates merge only the new patch.
 -- security invoker → the insert/update still run under the caller's RLS.
-create or replace function public.merge_user_state(p_patch jsonb)
+create or replace function public.merge_user_state_seeded(
+  p_patch jsonb,
+  p_legacy_seed jsonb
+)
   returns void
   language sql
   security invoker
 as $$
   insert into public.user_state (user_id, data, updated_at)
-  values (auth.uid(), p_patch, now())
+  values (
+    auth.uid(),
+    coalesce(p_legacy_seed, '{}'::jsonb) || coalesce(p_patch, '{}'::jsonb),
+    now()
+  )
   on conflict (user_id) do update
-    set data = public.user_state.data || excluded.data,
+    set data = public.user_state.data || coalesce(p_patch, '{}'::jsonb),
         updated_at = now();
 $$;
 
-grant execute on function public.merge_user_state(jsonb) to authenticated;
+revoke all on function public.merge_user_state_seeded(jsonb, jsonb) from public;
+grant execute on function public.merge_user_state_seeded(jsonb, jsonb) to authenticated;
 `.trim()
 
 /** Pull the relocated keys out of a user_metadata blob (legacy fallback). */
@@ -128,31 +135,51 @@ export async function getUserState(
 }
 
 /**
+ * Error-aware read for READ-MODIFY-WRITE flows (e.g. /api/chapter-progress,
+ * which merges one chapter into the whole chapter_progress map). Unlike
+ * getUserState, a FAILED row read is surfaced instead of silently degrading
+ * to the (post-strip, usually empty) legacy copy — a caller that proceeded
+ * with {} would clobber every sibling key of the map it is patching. Abort
+ * the write when `errored` is true.
+ */
+export async function getUserStateForWrite(
+  supabase: SupabaseClient,
+  user: User,
+): Promise<{ state: UserState; errored: boolean }> {
+  const { row, errored } = await readStateRow(supabase, user)
+  if (errored) return { state: {}, errored: true }
+  return {
+    state:
+      row ?? pickLegacy(user.user_metadata as Record<string, unknown> | undefined),
+    errored: false,
+  }
+}
+
+/**
  * Merge a patch into the user's state row, then strip the relocated keys from
  * user_metadata so the auth cookie shrinks. Pass only the keys you are changing;
  * existing keys are preserved.
  *
- * DATA SAFETY: the merge happens server-side in one atomic statement
- * (merge_user_state: `data = data || patch`), so there is NO read-modify-write
- * window — two concurrent writes to different keys can't clobber each other, and
- * a single key's value is never overwritten by a stale whole-row read. For a
- * pre-backfill user (state still in user_metadata) we fold that legacy copy into
- * the write first, so the strip below never orphans a key the patch omitted.
+ * DATA SAFETY: the merge happens server-side in one atomic statement, so there
+ * is NO read-modify-write window. Legacy metadata and the patch are separate RPC
+ * inputs: SQL uses `legacy || patch` only when inserting a missing row, while a
+ * conflict update uses `stored || patch`. Stale metadata therefore cannot
+ * overwrite canonical state after the row exists, even if cookie cleanup fails.
  */
 export async function patchUserState(
   supabase: SupabaseClient,
   user: User,
   patch: UserState,
 ): Promise<{ error: string | null }> {
-  // Pre-backfill: fold the keys still in user_metadata into this write so they
-  // land in the table before the strip removes them. Post-strip / post-backfill
-  // there's nothing to fold.
-  const legacy = pickLegacy(user.user_metadata as Record<string, unknown> | undefined)
-  const effectivePatch: UserState =
-    Object.keys(legacy).length > 0 ? { ...legacy, ...patch } : patch
+  // Keep the seed separate from the patch. The RPC applies it only on insert;
+  // sending it again is harmless once the canonical row exists.
+  const legacySeed = pickLegacy(
+    user.user_metadata as Record<string, unknown> | undefined,
+  )
 
-  const { error } = await supabase.rpc("merge_user_state", {
-    p_patch: effectivePatch,
+  const { error } = await supabase.rpc("merge_user_state_seeded", {
+    p_patch: patch,
+    p_legacy_seed: legacySeed,
   })
   if (error) return { error: error.message }
 

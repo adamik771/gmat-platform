@@ -9,17 +9,27 @@
  * `base<sup>exponent</sup>`, so a square reads like a real square.
  *
  * Scope of exponent tokens (from the content): a single digit/letter (`^2`,
- * `^n`), a multi-digit or signed integer (`^83`, `^-3`, `^−2`), or a
- * parenthesized group (`^(1/2)`, `^(x+1)`, `^(2x+1)`) whose outer parens are
- * stripped. The base must be a digit/letter/closing bracket, so a stray
- * leading `^`, LaTeX `^{...}`, and `^*emphasis*` are all left untouched.
+ * `^n`), a multi-digit, signed, or decimal number (`^83`, `^-3`, `^−2`,
+ * `^0.25`, `^5.6`), or a parenthesized group (`^(1/2)`, `^(x+1)`, `^(2x+1)`)
+ * whose outer parens are stripped. The base must be a digit/letter/closing
+ * bracket, so a stray leading `^`, LaTeX `^{...}`, and `^*emphasis*` are all
+ * left untouched.
+ *
+ * Boundary rule: an exponent the regex only partially understands must be
+ * left ALONE, not half-raised — `2^5.6` once rendered as 2⟨5⟩.6 (visually a
+ * different number) and `(−a)^even` as (−a)⟨e⟩ven. Each token branch
+ * therefore requires a right boundary: numbers may not be followed by more
+ * digit/letter material, and a single-letter exponent may not be followed by
+ * a letter or digit (`x^even`, `p1^a1`, `3^3x` stay as readable raw carets;
+ * multi-char exponents belong in parens: `3^(3x)`).
  *
  * No content changes; reversible; applies everywhere the plugin is wired in.
  */
 
 // base (group 1) + caret + exponent token (group 2). No lookbehind, for
 // maximum runtime compatibility — the base char is re-emitted as text.
-const EXPONENT_RE = /([0-9A-Za-z)\]])\^(\([^)]+\)|[-−]?\d+|[A-Za-z])/g
+const EXPONENT_RE =
+  /([0-9A-Za-z)\]])\^(\([^)]+\)|[-−]?\d+(?:\.\d+)?(?!\.?\d|[A-Za-z])|[A-Za-z](?![0-9A-Za-z]))/g
 
 type SupElement = {
   type: "element"

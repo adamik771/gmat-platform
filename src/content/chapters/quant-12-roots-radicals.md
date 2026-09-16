@@ -2,7 +2,7 @@
 slug: quant-12-roots-radicals
 title: "Roots & Radicals"
 section: Quant
-estimated_minutes: 9
+estimated_minutes: 85
 prerequisites:
   - quant-11-exponent-rules
 summary: |
@@ -37,6 +37,10 @@ sections:
     title: "Radical equations — isolate, square, and verify"
     check_question_ids:
       - exponents-roots-q22
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -58,9 +62,17 @@ problem_sets:
       - exponents-roots-q55
 ---
 
+## @summary
+
+- Convert freely between radicals and fractional exponents, then simplify by extracting perfect-power factors.
+- Squaring can introduce extraneous solutions, so check every candidate in the original equation.
+- Respect the real-number domain: an even root requires a nonnegative radicand.
+
 ## @fractional-exponents-and-radicals
 
 A fractional exponent is a root in disguise. Once you internalize that single idea, an entire category of intimidating-looking expressions collapses into routine arithmetic. The definition:
+
+**Mental model.** Radicals and fractional exponents are two notations for the same operation. Use radical form when evaluating a clean number because "root first" keeps values small; use exponent form when combining expressions because the ordinary exponent laws become mechanical. For equations, treat squaring as a reversible-looking move that can create impostor solutions, so the original equation remains the final judge.
 
 **x^(m/n) = ⁿ√(xᵐ) = (ⁿ√x)ᵐ**
 

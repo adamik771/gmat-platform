@@ -60,7 +60,7 @@ If you hit checkpoint 2 (Q14) and you've used >34 minutes, you're in a pacing cr
 
 **The 645+ pacer's Quant mindset:**
 - Read each stem twice (slowly) — you save far more time on setup than you "lose" on reading
-- Identify the question type in the first 10 seconds (algebra translation? rate? geometry?)
+- Identify the question type in the first 10 seconds (algebra translation? rate? number property?)
 - Choose the method before starting (direct algebra? plug in? backsolve?)
 - Execute without second-guessing mid-calculation
 

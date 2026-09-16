@@ -17,12 +17,8 @@ import type { ScoreTrendPoint } from "./AnalyticsClient"
 // calibration) renders and hydrates before the chart library arrives.
 export default function ScoreTrajectoryChart({
   data,
-  domainMin,
-  domainMax,
 }: {
   data: ScoreTrendPoint[]
-  domainMin: number
-  domainMax: number
 }) {
   return (
     <ResponsiveContainer width="100%" height={240}>
@@ -35,7 +31,7 @@ export default function ScoreTrajectoryChart({
           tickLine={false}
         />
         <YAxis
-          domain={[domainMin, domainMax]}
+          domain={[0, 100]}
           tick={{ fill: "#555555", fontSize: 11 }}
           axisLine={false}
           tickLine={false}
@@ -51,17 +47,16 @@ export default function ScoreTrajectoryChart({
           formatter={(value, name) => {
             const label = String(name)
             if (value === null || value === undefined) return ["—", label]
-            if (label === "Total Score") return [String(value), label]
             return [`${value}%`, label]
           }}
         />
         <Line
           type="monotone"
-          dataKey="total"
+          dataKey="overallAccuracy"
           stroke="#C9A84C"
           strokeWidth={2.5}
           dot={{ fill: "#C9A84C", r: 3 }}
-          name="Total Score"
+          name="Overall"
           connectNulls
         />
         <Line
@@ -71,6 +66,16 @@ export default function ScoreTrajectoryChart({
           strokeWidth={1.5}
           dot={false}
           name="Quant"
+          strokeDasharray="4 4"
+          connectNulls
+        />
+        <Line
+          type="monotone"
+          dataKey="di"
+          stroke="#3ECF8E"
+          strokeWidth={1.5}
+          dot={false}
+          name="Data Insights"
           strokeDasharray="4 4"
           connectNulls
         />

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getPublicInventory } from "@/components/marketing/content-inventory"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -41,16 +42,16 @@ const TOOLS: ResourceCard[] = [
   {
     title: "GMAT score converter",
     description:
-      "Translate Focus Edition (205-805) scores to legacy GMAT (200-800) and back. Built from official GMAC concordance anchors.",
+      "Look up the official GMAC score range between the current GMAT (205-805) and the 10th Edition (200-800).",
     href: "/score-converter",
     cta: "Open the converter",
     icon: Calculator,
-    meta: "Bidirectional · Per-section conversion",
+    meta: "Bidirectional · Official total-score ranges",
   },
   {
-    title: "GMAT score by MBA school",
+    title: "GMAT score by programme",
     description:
-      "Median GMAT scores for 20+ top MBA programs (HBS, Stanford, Wharton, INSEAD, LBS, ISB, more), on both scoring scales.",
+      "Published GMAT benchmarks for leading MBA, MiM, and finance master's programmes, with current-scale equivalents and source context.",
     href: "/score-by-school",
     cta: "Pick a school",
     icon: GraduationCap,
@@ -126,47 +127,47 @@ const FEATURED: Array<{ slug: string; description: string }> = [
   {
     slug: "first-30-days-of-gmat-prep",
     description:
-      "What to actually do in your first month of GMAT prep — week by week, with the baseline-first sequence that beats jumping straight into content.",
+      "A baseline-first plan for your first month of preparation, with weekly study and review priorities.",
   },
   {
     slug: "gmat-prep-for-non-native-english-speakers",
     description:
-      "Seven specific tactics that took a non-native speaker from 565 to 735, including the Verbal-section approach native-speaker prep guides leave out.",
+      "The founder's preparation experience, with approaches to reading and reasoning as a non-native English speaker.",
   },
   {
     slug: "gmat-focus-vs-old-gmat-whats-changed",
     description:
-      "Section-by-section breakdown of what GMAT Focus removed, what it kept, and how to translate any old GMAT prep into a Focus study plan.",
+      "How the current exam differs from the previous edition, section by section.",
   },
   {
     slug: "gmat-reading-comprehension-passage-strategy",
     description:
-      "The four passage types, the structural skim that beats line-by-line reading, and how non-native speakers can match native-speaker accuracy on RC.",
+      "Reading for passage structure, argument, and purpose before evaluating the answer choices.",
   },
   {
     slug: "gmat-critical-reasoning-question-types-explained",
     description:
-      "All eight CR question types — what each one is asking, the trap built into each, and how to recognise the stem in five seconds.",
+      "Recognise what a Critical Reasoning question asks and distinguish common answer traps.",
   },
   {
     slug: "gmat-data-sufficiency-strategy-guide",
     description:
-      "The five answer choices, the AD/BCE process, the trap that costs most students 20 points per section, and how to drill DS without burning out.",
+      "The five answer choices, statement testing, and common Data Sufficiency mistakes.",
   },
   {
     slug: "gmat-data-insights-complete-guide",
     description:
-      "All five question types, timing strategy, the traps that cost most students points, and how to practice the newest section on the GMAT Focus Edition.",
+      "Data Insights question formats, timing considerations, and ways to structure practice.",
   },
   {
     slug: "how-to-build-a-gmat-study-plan-that-works",
     description:
-      "Why most GMAT study plans fail, the baseline-first approach, and a 16-week framework you can adapt to a real schedule.",
+      "A baseline-first study plan and an example 16-week schedule you can adapt.",
   },
   {
     slug: "why-your-gmat-score-is-stuck",
     description:
-      "I went from 565 to 735 in eight months. The single shift that made it possible — and why most prep advice misses it.",
+      "The founder's account of progress plateaus and the role of focused mistake review.",
   },
 ]
 
@@ -257,21 +258,21 @@ const EXTERNAL: ExternalResource[] = [
   },
   {
     title: "forall x: Calgary",
-    publisher: "Open Logic Project",
-    badge: "Open (CC BY)",
+    publisher: "A. Thomas-Bolduc & R. Zach / Open Logic Project",
+    badge: "CC BY 4.0",
     icon: BookOpen,
     href: "https://forallx.openlogicproject.org/",
     description:
-      "A free, openly licensed intro-to-logic textbook — the cleanest grounding for the argument structure behind Critical Reasoning.",
+      "An openly licensed introduction to logic that may be shared and adapted with attribution under CC BY 4.0.",
   },
   {
     title: "Critical Thinking, Logic, and Argument",
     publisher: "Athabasca University Press",
-    badge: "Open",
+    badge: "CC BY-NC-SA 4.0",
     icon: BookOpen,
     href: "https://www.aupress.ca/app/uploads/OER-202403_Dayton_Rodier_2024-Critical-Thinking-Logic-and-Argument.pdf",
     description:
-      "Argument forms, fallacies, and validity, free and openly licensed. Directly useful for Critical Reasoning (PDF).",
+      "An external logic reference that may be shared noncommercially with attribution and share-alike. It is not incorporated into this paid course (PDF).",
   },
   {
     title: "Purdue OWL — Grammar",
@@ -398,6 +399,7 @@ function SectionHeader({
 }
 
 export default function ResourcesPage() {
+  const inventory = getPublicInventory()
   return (
     <div style={{ backgroundColor: "#0A0A0A" }}>
       <div className="max-w-3xl mx-auto pt-24 px-4 sm:px-6">
@@ -430,28 +432,26 @@ export default function ResourcesPage() {
             </p>
           </div>
           <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-5">
-            Every free GMAT resource{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              we&apos;ve built
-            </span>
-            , in one place.
+            Free GMAT resources
           </h1>
           <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
-            Four interactive tools (including a glossary), a printable
-            exam-day checklist, three sample chapters with real curriculum
-            content, the error-log template I used to go from 565 to 735,
-            and nine long-form strategy guides. No signup required for any
-            of it &mdash; plus a curated shortlist of the best free GMAT
-            resources beyond this site.
+            Tools, sample lessons, templates, and guides for your preparation.
+            Browse without an account; the template download asks for your email,
+            with study emails kept optional.
           </p>
+          <nav aria-label="Resource categories" className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2">
+            {[["Tools", "tools"], ["Sample lessons", "samples"], ["Templates", "templates"], ["Guides", "guides"]].map(([label, id]) => (
+              <Link key={id} href={`#${id}`} className="inline-flex min-h-11 items-center text-sm text-[#C9A84C] underline underline-offset-4">{label}</Link>
+            ))}
+          </nav>
         </div>
       </section>
 
       {/* Tools */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 mt-10 mb-16">
+      <section id="tools" className="max-w-5xl mx-auto scroll-mt-24 px-4 sm:px-6 mt-10 mb-16">
         <SectionHeader
           eyebrow="Tools + reference"
-          title="Four free interactive resources."
+          title={`${TOOLS.length} free tools and references`}
           description="The score converter, school picker, study-schedule generator, and a GMAT glossary. All usable without an account."
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -476,7 +476,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Samples */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 mb-16">
+      <section id="samples" className="max-w-5xl mx-auto scroll-mt-24 px-4 sm:px-6 mb-16">
         <SectionHeader
           eyebrow="Sample chapters"
           title="Read real curriculum, no signup."
@@ -490,18 +490,14 @@ export default function ResourcesPage() {
       </section>
 
       {/* Template / lead magnet */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 mb-16">
+      <section id="templates" className="max-w-5xl mx-auto scroll-mt-24 px-4 sm:px-6 mb-16">
         <SectionHeader
           eyebrow="Template"
           title="The error-log spreadsheet."
-          description="The exact six-tag taxonomy I used to climb from 565 to 735, in a CSV you can run in Google Sheets, Excel, or Numbers. Two months of honest logging is the minimum to surface real patterns."
+          description="A six-tag mistake log in CSV format for Google Sheets, Excel, or Numbers. Record the reason for each miss and revisit recurring patterns."
         />
         <div
-          className="p-6 sm:p-8 rounded-2xl border"
-          style={{
-            borderColor: "rgba(201,168,76,0.28)",
-            backgroundColor: "#111111",
-          }}
+          className="max-w-2xl"
         >
           <div className="flex items-start gap-4 mb-5">
             <div
@@ -515,9 +511,8 @@ export default function ResourcesPage() {
                 GMAT error-log template
               </h3>
               <p className="text-[13px] text-[#888888] leading-relaxed">
-                CSV + readme. Three example rows + 40 empty rows ready to
-                log into. Drop your email below; the download starts
-                immediately.
+                CSV with example rows and space for your own entries.
+                Enter your email to get the download link.
               </p>
             </div>
           </div>
@@ -525,19 +520,20 @@ export default function ResourcesPage() {
             source="resources"
             leadMagnet="error-log-template"
             eyebrow=""
-            headline="Send me the template"
-            description="One email. No spam. Unsubscribe with one click."
-            ctaLabel="Send me the template"
+            headline="Get the template"
+            description="The download link appears after submission. Study emails are optional."
+            ctaLabel="Get the template"
+            footnote="Download access does not require marketing consent."
             variant="compact"
           />
         </div>
       </section>
 
       {/* Blog posts */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 mb-20">
+      <section id="guides" className="max-w-5xl mx-auto scroll-mt-24 px-4 sm:px-6 mb-20">
         <SectionHeader
           eyebrow="Strategy guides"
-          title="Nine long-form posts."
+          title={`${POSTS.length} selected strategy guides`}
           description="Each one is 1,500–2,500 words on a specific GMAT skill — section deep-dives, the founder story, planning advice, the Focus-vs-old explainer. Written from inside the prep, not above it."
         />
         <div className="grid sm:grid-cols-2 gap-4">
@@ -618,17 +614,17 @@ export default function ResourcesPage() {
             </span>
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
-            50+ chapters. The adaptive study plan. The error log built into
+            {inventory.chapters} interactive chapters. The adaptive study plan. The error log built into
             the platform with the spaced-review queue.
             Mock exams with debrief tools.{" "}
             {PAYWALL_ENABLED ? (
               <>
                 Free to start; full access on every paid plan, with a 14-day
-                money-back guarantee.
+                money-back guarantee on the self-study plans.
               </>
             ) : (
               <>
-                Full access, free while in beta &mdash; no card required.
+                Full access free for 7 days &mdash; no card required.
               </>
             )}
           </p>

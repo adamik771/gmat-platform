@@ -267,6 +267,11 @@ export default async function CoursePage() {
                   ? "Baseline entered. The rest of the loop runs from your study plan — today's focus, weak areas, weekly cadence."
                   : "Take Official Practice Exam 1 on mba.com under full exam conditions and enter the score here. A real exam is the only baseline worth planning around — it seeds the study plan."}
               </p>
+              <p className="mt-3 text-[14px] leading-[1.7] text-[#C0C0C0] max-w-2xl">
+                Your Study Plan sets the next task. The interactive Chapters are
+                the main learning path; the strategy readings below are supporting
+                material, not a second required course.
+              </p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 {baselineEntered ? (
                   <>
@@ -286,7 +291,7 @@ export default async function CoursePage() {
                         color: "#C0C0C0",
                       }}
                     >
-                      Browse the curriculum
+                      Open interactive chapters
                     </Link>
                   </>
                 ) : (
@@ -339,7 +344,7 @@ export default async function CoursePage() {
               </p>
               {[
                 { label: "Baseline exam", done: baselineEntered, href: "/mock" },
-                { label: "Target score", done: targetScore !== null, href: "/dashboard#score-goal" },
+                { label: "Target score", done: targetScore !== null, href: "/onboarding" },
                 { label: "Exam date", done: examDate !== null, href: "/settings" },
               ].map((row) => (
                 <Link
@@ -407,8 +412,8 @@ export default async function CoursePage() {
         >
           <StatCell
             value={parsed.length}
-            label="Core chapters"
-            outcome="Full Q / V / DI Focus coverage"
+            label="Supporting readings"
+            outcome="Strategy and deeper reference"
           />
           <StatCell
             value={totalSubchapters}
@@ -431,9 +436,9 @@ export default async function CoursePage() {
         <Stage
           stage="01"
           eyebrow="Learn"
-          title="Read the"
-          titleAccent="curriculum."
-          description="Each chapter teaches one operating principle plus its sub-skills. Sub-chapter links jump straight into the section you need."
+          title="Supporting"
+          titleAccent="readings."
+          description="Use these guides alongside the interactive Chapters when you need another explanation or a deeper look at a strategy. They are optional support, not the main chapter-completion path."
         >
           {(["Quant", "Verbal", "DI"] as const).map((section) => {
             const chapters = bySection[section]
@@ -748,8 +753,8 @@ function CourseLoop({
                   style={{
                     color:
                       node.state === "neutral"
-                        ? "rgba(255,255,255,0.4)"
-                        : "rgba(192,192,192,0.7)",
+                        ? "#A6A299"
+                        : "#C0C0C0",
                   }}
                 >
                   {node.body}
@@ -859,8 +864,8 @@ function SectionGroup({
         >
           {section}
         </p>
-        <span className="text-[12px] text-[#555555] tracking-tight">
-          {count} chapter{count === 1 ? "" : "s"}
+        <span className="text-[12px] text-[#888888] tracking-tight">
+          {count} guide{count === 1 ? "" : "s"}
         </span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">{children}</div>
@@ -884,7 +889,7 @@ function CurriculumChapterCard({
   const sectionsRead = progress?.sectionsRead ?? {}
   const sectionsReadCount = Object.values(sectionsRead).filter(Boolean).length
   const isStarted = sectionsReadCount > 0
-  const cta = isStarted ? "Continue" : "Open chapter"
+  const cta = isStarted ? "Continue guide" : "Open guide"
   const counts: string[] = []
   if (chapter.exampleCount > 0)
     counts.push(
@@ -944,7 +949,7 @@ function CurriculumChapterCard({
           <summary className="flex items-center justify-between gap-2 px-4 py-2.5 cursor-pointer list-none text-[11px] uppercase tracking-[0.18em] font-semibold text-[#888888] hover:text-[#C0C0C0] transition-colors">
             <span className="flex items-center gap-1.5">
               <ChevronRight className="w-3 h-3 transition-transform group-open/details:rotate-90" />
-              Sub-chapters
+              Guide sections
               <span
                 className="tabular-nums"
                 style={{ color: "rgba(255,255,255,0.4)" }}

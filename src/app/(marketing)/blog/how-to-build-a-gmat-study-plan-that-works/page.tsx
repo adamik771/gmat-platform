@@ -459,6 +459,11 @@ export default function PostPage() {
             </Link>
           </div>
         </div>
+        <p className="text-[13px] text-[#888888] leading-relaxed mb-8">
+          <Link href="/gmat-study-plan" className="underline underline-offset-2" style={{ color: "#C9A84C" }}>
+            Want the condensed version? The GMAT study plan hub distils this framework into one page.
+          </Link>
+        </p>
         <RelatedPosts currentSlug="how-to-build-a-gmat-study-plan-that-works" />
       </article>
       <style>{`

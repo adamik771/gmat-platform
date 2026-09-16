@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
 }
 
-const LAST_UPDATED = "May 3, 2026"
+const LAST_UPDATED = "August 20, 2026"
 const CONTACT_EMAIL = SITE_CONTACT_EMAIL
 
 export default function TermsPage() {
@@ -120,13 +120,20 @@ export default function TermsPage() {
 
       <LegalSection title="Intellectual property">
         <p>
-          All content on the Platform — including the question bank,
-          chapters, lesson explanations, analytics, design system, and
-          software — is the original work of the Operator and is protected by
-          copyright and other intellectual-property laws. You receive a
-          limited, personal, non-transferable, non-exclusive license to access
-          and use the content for your own GMAT preparation. No other rights
-          are granted.
+          Except for third-party materials and trademarks identified on the
+          Platform, the Platform&apos;s original content, selection,
+          arrangement, design, and software are owned by or licensed to the
+          Operator and may be protected by copyright and other
+          intellectual-property laws. You receive a limited, personal,
+          non-transferable, non-exclusive license to access and use the
+          Platform for your own GMAT preparation. No other rights are granted.
+        </p>
+        <p>
+          The Platform uses third-party software, including open-source
+          components, and may link to third-party educational resources. Those
+          materials remain subject to their own terms and licenses. Notices
+          for software distributed with the Platform are available in our{" "}
+          <a href="/third-party-notices.txt">third-party notices</a>.
         </p>
         <p>
           You retain ownership of any notes, error-log entries, or other
@@ -157,11 +164,12 @@ export default function TermsPage() {
 
       <LegalSection title="No exam-board affiliation">
         <p>
-          GMAT&trade; is a registered trademark of the Graduate Management
-          Admission Council&trade; (GMAC&trade;). GMAC does not endorse, nor
-          is it affiliated in any way with the owner or any content of this
-          Platform. All references to the GMAT exam are for descriptive and
-          educational purposes only.
+          GMAC&trade;, GMAT&trade;, Graduate Management Admission
+          Council&trade;, and Graduate Management Admission Test&trade; are
+          trademarks of GMAC in the United States and other countries.
+          Zakarian GMAT is independent and is not affiliated with, endorsed
+          by, or sponsored by GMAC. References to the GMAT exam are for
+          descriptive and educational purposes only.
         </p>
       </LegalSection>
 
