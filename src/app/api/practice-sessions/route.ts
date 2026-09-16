@@ -2,6 +2,7 @@ import { createSupabaseServer } from "@/lib/supabase/server"
 import { blockIfNoAccess } from "@/lib/entitlements"
 import { dropBlankAttempts } from "@/lib/practice-save"
 import { getUserStateForWrite, patchUserState } from "@/lib/user-state"
+import { reportDataFailure } from "@/lib/server-data-observability"
 import {
   applySessionAttempts,
   getTopicSkillLevels,
@@ -138,7 +139,7 @@ export async function POST(request: Request) {
   // retry, not a new session: total_time_ms is a ms-precision sum, so a
   // genuine collision is negligible.
   const dupeCutoff = new Date(Date.now() - 60_000).toISOString()
-  const { data: recentDupe } = await supabase
+  const { data: recentDupe, error: recentDupeError } = await supabase
     .from("practice_sessions")
     .select("id")
     .eq("user_id", user.id)
@@ -149,6 +150,17 @@ export async function POST(request: Request) {
     .gte("created_at", dupeCutoff)
     .limit(1)
     .maybeSingle()
+  if (recentDupeError) {
+    reportDataFailure(recentDupeError, {
+      surface: "practice-session",
+      operation: "check-duplicate",
+      table: "practice_sessions",
+    })
+    return Response.json(
+      { error: "could not verify the session save; retry" },
+      { status: 503 }
+    )
+  }
   if (recentDupe) {
     // Guard against matching an attemptless orphan (a prior save whose
     // attempts insert failed after the session row landed): treating THAT
@@ -159,7 +171,15 @@ export async function POST(request: Request) {
       .eq("session_id", recentDupe.id)
     // Fail SAFE on an errored count: treat the row as a real duplicate
     // rather than deleting a session that may well have attempts.
-    if (dupeCountError || (dupeAttempts ?? 0) > 0) {
+    if (dupeCountError) {
+      reportDataFailure(dupeCountError, {
+        surface: "practice-session",
+        operation: "check-duplicate-attempts",
+        table: "practice_attempts",
+      })
+      return Response.json({ sessionId: recentDupe.id })
+    }
+    if ((dupeAttempts ?? 0) > 0) {
       return Response.json({ sessionId: recentDupe.id })
     }
     // Attemptless orphan — remove it so this payload can land cleanly.
@@ -171,6 +191,11 @@ export async function POST(request: Request) {
       .eq("id", recentDupe.id)
       .eq("user_id", user.id)
     if (orphanDeleteError) {
+      reportDataFailure(orphanDeleteError, {
+        surface: "practice-session",
+        operation: "delete-orphan",
+        table: "practice_sessions",
+      })
       return Response.json(
         { error: "could not clear a stale session row; retry" },
         { status: 503 }
@@ -195,7 +220,12 @@ export async function POST(request: Request) {
     .single()
 
   if (sessionError) {
-    return Response.json({ error: sessionError.message }, { status: 500 })
+    reportDataFailure(sessionError, {
+      surface: "practice-session",
+      operation: "insert-session",
+      table: "practice_sessions",
+    })
+    return Response.json({ error: "session could not be saved" }, { status: 500 })
   }
 
   // Insert per-question attempts.
@@ -222,6 +252,11 @@ export async function POST(request: Request) {
     .insert(attempts)
 
   if (attemptError) {
+    reportDataFailure(attemptError, {
+      surface: "practice-session",
+      operation: "insert-attempts",
+      table: "practice_attempts",
+    })
     // The session row already persisted above. Without cleanup, a failed
     // attempts insert leaves an orphaned session — the hub counts it as
     // "done" while the report has no attempts to show (the bug Adam hit live
@@ -235,12 +270,13 @@ export async function POST(request: Request) {
       .eq("id", session.id)
       .eq("user_id", user.id)
     if (cleanupError) {
-      console.error(
-        `practice-sessions: failed to roll back orphaned session ${session.id} after attempts insert error:`,
-        cleanupError.message
-      )
+      reportDataFailure(cleanupError, {
+        surface: "practice-session",
+        operation: "rollback-session",
+        table: "practice_sessions",
+      })
     }
-    return Response.json({ error: attemptError.message }, { status: 500 })
+    return Response.json({ error: "question attempts could not be saved" }, { status: 500 })
   }
 
   // Update the per-topic skill level so the next session orders
@@ -282,9 +318,17 @@ export async function POST(request: Request) {
         }))
       if (updateAttempts.length > 0) {
         const nextLevels = applySessionAttempts(currentLevels, updateAttempts)
-        await patchUserState(supabase, user, { topic_skill_levels: nextLevels })
+        const { error } = await patchUserState(supabase, user, {
+          topic_skill_levels: nextLevels,
+        })
+        if (error) throw new Error(error)
       }
-    } catch {
+    } catch (error) {
+      reportDataFailure(error, {
+        surface: "practice-session",
+        operation: "update-skill-levels",
+        table: "user_state",
+      })
       // Non-fatal — adaptivity simply doesn't update for this session.
     }
   }

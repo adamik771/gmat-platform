@@ -11,6 +11,8 @@
     "notices:check": "node scripts/generate-third-party-notices.mjs --check",
     "validate:content": "node --experimental-strip-types --no-warnings scripts/validate-content.ts",
     "validate:supabase-contracts": "node --experimental-strip-types --no-warnings scripts/check-supabase-contracts.ts",
+    "smoke:production": "node --experimental-strip-types --no-warnings scripts/production-smoke.ts",
+    "audit:question-quality": "node --experimental-strip-types --no-warnings --env-file=.env.local scripts/audit-question-quality.ts",
     "generate:explanations": "node --experimental-strip-types --no-warnings --env-file=.env.local scripts/generate-explanations.ts",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -57,6 +57,20 @@ describe("authentication boundary", () => {
     expect(response.status).toBe(503)
     expect(response.headers.get("retry-after")).toBe("30")
   })
+
+  it("prevents caching of signed-out redirects from protected pages", async () => {
+    getUser.mockResolvedValueOnce({ data: { user: null } })
+
+    const response = await proxy(
+      new NextRequest("https://zakariangmat.com/dashboard")
+    )
+
+    expect(response.status).toBe(307)
+    expect(response.headers.get("location")).toBe(
+      "https://zakariangmat.com/login?next=%2Fdashboard"
+    )
+    expect(response.headers.get("cache-control")).toBe("private, no-store")
+  })
 })
 
 describe("service-worker cache boundary", () => {

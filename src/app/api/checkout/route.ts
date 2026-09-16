@@ -1,7 +1,7 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getStripe, STRIPE_PRICES } from "@/lib/stripe"
-import { sanitizeDataError } from "@/lib/data-error"
 import { getTrustedSiteOrigin } from "@/lib/site-origin"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 const PLAN_IDS = ["self_study", "self_study_guaranteed", "coaching", "intensive"] as const
 type PlanId = (typeof PLAN_IDS)[number]
@@ -70,6 +70,10 @@ export async function POST(request: Request) {
   // Guard against an unconfigured tier (any tier still on its placeholder id) —
   // a clear 503 beats letting Stripe reject a fake id with a cryptic 500.
   if (!priceId || PLACEHOLDER_PRICE_IDS.has(priceId)) {
+    reportDataFailure(new Error("Stripe price is not configured"), {
+      surface: "checkout",
+      operation: "resolve-price",
+    })
     return Response.json(
       { error: "Checkout is temporarily unavailable. Please try again later." },
       { status: 503 }
@@ -82,7 +86,10 @@ export async function POST(request: Request) {
   try {
     stripe = getStripe()
   } catch (err) {
-    console.error("[checkout] Stripe client unavailable", sanitizeDataError(err))
+    reportDataFailure(err, {
+      surface: "checkout",
+      operation: "create-client",
+    })
     return Response.json(
       { error: "Checkout is temporarily unavailable. Please try again later." },
       { status: 503 }
@@ -143,6 +150,10 @@ export async function POST(request: Request) {
     })
 
     if (!session.url) {
+      reportDataFailure(new Error("Stripe did not return a checkout URL"), {
+        surface: "checkout",
+        operation: "create-session",
+      })
       return Response.json(
         { error: "Stripe did not return a checkout URL" },
         { status: 500 }
@@ -151,7 +162,10 @@ export async function POST(request: Request) {
 
     return Response.json({ url: session.url })
   } catch (err) {
-    console.error("[checkout] session creation failed", sanitizeDataError(err))
+    reportDataFailure(err, {
+      surface: "checkout",
+      operation: "create-session",
+    })
     return Response.json(
       { error: "Checkout could not be started. Please try again." },
       { status: 500 }
