@@ -19,6 +19,9 @@ export interface SendEmailInput {
   replyTo?: string
   /** Extra SMTP headers (e.g. List-Unsubscribe) passed through to Resend. */
   headers?: Record<string, string>
+  /** Resend request idempotency key. Reusing the same key with the same
+   * payload prevents duplicate delivery during retries or concurrent jobs. */
+  idempotencyKey?: string
 }
 
 export type SendEmailResult =
@@ -50,6 +53,9 @@ export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult>
       headers: {
         Authorization: `Bearer ${key}`,
         "Content-Type": "application/json",
+        ...(input.idempotencyKey
+          ? { "Idempotency-Key": input.idempotencyKey }
+          : {}),
       },
       body: JSON.stringify({
         from: fromAddress(),

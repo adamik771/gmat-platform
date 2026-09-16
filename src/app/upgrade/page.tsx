@@ -1,14 +1,20 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Check } from "lucide-react"
+import { Check, MessageCircle } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import PricingCard from "@/components/marketing/PricingCard"
 import { tiers } from "@/lib/plans"
 import {
+  PAYWALL_ENABLED,
   getAccessForUser,
   trialDaysLeft,
   trialStartFor,
 } from "@/lib/entitlements"
+import {
+  MANUAL_PAYMENT_CONTACT_ENABLED,
+  manualPaymentMailto,
+  manualPaymentWhatsAppUrl,
+} from "@/lib/manual-payment"
 
 export const metadata: Metadata = {
   title: "Choose your plan",
@@ -32,6 +38,17 @@ export default async function UpgradePage() {
   const access = user ? await getAccessForUser(supabase, user, now) : "none"
   const daysLeft = user ? trialDaysLeft(trialStartFor(user), now) : 0
   const stillTrialing = access === "trialing"
+  const manualPaymentMode =
+    PAYWALL_ENABLED && MANUAL_PAYMENT_CONTACT_ENABLED
+  const checkoutConfigured = (priceId: string) =>
+    Boolean(process.env.STRIPE_SECRET_KEY) &&
+    Boolean(priceId) &&
+    ![
+      "price_self_study",
+      "price_self_study_guaranteed",
+      "price_coaching",
+      "price_intensive",
+    ].includes(priceId)
 
   // "none" = no trial ever started (rare — pre-backfill/pre-epoch accounts);
   // don't tell that user a trial "ended" that never began.
@@ -42,6 +59,8 @@ export default async function UpgradePage() {
       : "Your free trial has ended"
   const sub = stillTrialing
     ? "Lock in full access whenever you're ready — or keep going until your trial runs out."
+    : manualPaymentMode
+      ? "Online checkout is temporarily unavailable. Contact Adam and he will arrange payment and restore access on this same account."
     : "Choose a plan to pick up right where you left off. Everything you've done is saved."
 
   return (
@@ -78,13 +97,57 @@ export default async function UpgradePage() {
 
       <section className="pb-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {manualPaymentMode && (
+            <div className="mx-auto mb-8 flex max-w-3xl items-start gap-4 rounded-lg border border-[#C9A84C]/30 bg-[#14120D] p-5 text-left">
+              <MessageCircle
+                aria-hidden="true"
+                className="mt-0.5 h-5 w-5 shrink-0 text-[#C9A84C]"
+              />
+              <div>
+                <h2 className="text-base font-semibold text-[#F0F0F0]">
+                  Personal checkout assistance
+                </h2>
+                <p className="mt-1 text-sm leading-relaxed text-[#B9B7AE]">
+                  Sorry for the inconvenience. Choose the plan below, then send
+                  the prepared WhatsApp message. Adam will reply with the
+                  available payment instructions. Your progress remains safe
+                  while access is paused.
+                </p>
+              </div>
+            </div>
+          )}
           <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {tiers.map((tier) => (
-              <PricingCard key={tier.id} tier={tier} checkoutCancelPath="/upgrade" />
+              <PricingCard
+                key={tier.id}
+                tier={tier}
+                checkoutCancelPath="/upgrade"
+                purchasable={
+                  PAYWALL_ENABLED &&
+                  !manualPaymentMode &&
+                  checkoutConfigured(tier.stripePriceId)
+                }
+                reservationAvailable={false}
+                manualContactHref={
+                  manualPaymentMode
+                    ? manualPaymentWhatsAppUrl({ planName: tier.name })
+                    : undefined
+                }
+                manualEmailHref={
+                  manualPaymentMode
+                    ? manualPaymentMailto({
+                        planName: tier.name,
+                        accountEmail: user?.email,
+                      })
+                    : undefined
+                }
+              />
             ))}
           </div>
           <p className="text-center text-[12px] text-[#555555] mt-10">
-            Payments are handled securely by Stripe. Questions?{" "}
+            {manualPaymentMode
+              ? "No payment details are entered on this website while online checkout is unavailable."
+              : "Payments are handled securely by Stripe."}{" "}
             <Link href="/contact" className="underline hover:text-[#888888]">
               Get in touch
             </Link>
