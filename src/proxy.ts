@@ -51,6 +51,14 @@ const AUTH_ROUTES = ["/login", "/signup"]
  *  window (~6KB+) so the creep shows up as a leading indicator. Point a Vercel
  *  log-drain alert at "[proxy] large cookie" to get paged before a lockout. */
 const COOKIE_WARN_BYTES = 6 * 1024
+const PRIVATE_CACHE_CONTROL = "private, no-store"
+
+function privateRedirect(url: URL) {
+  const response = NextResponse.redirect(url)
+  response.headers.set("Cache-Control", PRIVATE_CACHE_CONTROL)
+  return response
+}
+
 function warnIfCookieLarge(request: NextRequest) {
   const bytes = (request.headers.get("cookie") ?? "").length
   if (bytes > COOKIE_WARN_BYTES) {
@@ -77,7 +85,7 @@ export async function proxy(request: NextRequest) {
   if (!isAppRoute && !isAuthRoute) {
     const res = NextResponse.next()
     if (pathname.startsWith("/auth/")) {
-      res.headers.set("Cache-Control", "private, no-store")
+      res.headers.set("Cache-Control", PRIVATE_CACHE_CONTROL)
     }
     return res
   }
@@ -107,14 +115,14 @@ export async function proxy(request: NextRequest) {
       url.pathname = "/login"
       // Preserve the original target so login can bounce back after auth.
       url.searchParams.set("next", pathname + request.nextUrl.search)
-      return NextResponse.redirect(url)
+      return privateRedirect(url)
     }
 
     // Authenticated users on auth routes → redirect to dashboard
     if (isAuthRoute && user) {
       const url = request.nextUrl.clone()
       url.pathname = "/dashboard"
-      return NextResponse.redirect(url)
+      return privateRedirect(url)
     }
 
     // Paywall / trial gate (a no-op while PAYWALL_ENABLED is off). A signed-in
@@ -139,7 +147,7 @@ export async function proxy(request: NextRequest) {
         if (!accessGrants(resolveAccess({ tier, trialStartedAt, now }))) {
           const url = request.nextUrl.clone()
           url.pathname = "/upgrade"
-          return NextResponse.redirect(url)
+          return privateRedirect(url)
         }
       }
     }
@@ -148,7 +156,7 @@ export async function proxy(request: NextRequest) {
     // Prevent CDN caching of auth-aware responses — otherwise a stale
     // "unauthenticated" response could leak to a logged-in user, or a
     // cached redirect could keep firing after they log in.
-    finalResponse.headers.set("Cache-Control", "private, no-store")
+    finalResponse.headers.set("Cache-Control", PRIVATE_CACHE_CONTROL)
     return finalResponse
   } catch (error) {
     console.error("[proxy] authentication unavailable", error)
@@ -160,7 +168,7 @@ function authUnavailableResponse() {
   return new NextResponse("Authentication is temporarily unavailable. Please try again.", {
     status: 503,
     headers: {
-      "Cache-Control": "private, no-store",
+      "Cache-Control": PRIVATE_CACHE_CONTROL,
       "Content-Type": "text/plain; charset=utf-8",
       "Retry-After": "30",
     },

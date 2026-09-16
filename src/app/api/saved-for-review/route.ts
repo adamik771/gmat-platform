@@ -1,6 +1,7 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { blockIfNoAccess } from "@/lib/entitlements"
 import { getUserStateForWrite, patchUserState } from "@/lib/user-state"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 /**
  * POST /api/saved-for-review — toggle a question's "save for review" flag.
@@ -63,6 +64,11 @@ export async function POST(request: Request) {
   // destroy the stored history (same class as the chapter-progress guard).
   const { state, errored } = await getUserStateForWrite(supabase, user)
   if (errored) {
+    reportDataFailure(new Error("State read failed"), {
+      surface: "saved-for-review",
+      operation: "read-before-write",
+      table: "user_state",
+    })
     return Response.json({ error: "state read failed; retry" }, { status: 503 })
   }
   const rawList = state.saved_for_review
@@ -85,7 +91,12 @@ export async function POST(request: Request) {
 
   const { error } = await patchUserState(supabase, user, { saved_for_review: next })
   if (error) {
-    return Response.json({ error }, { status: 500 })
+    reportDataFailure(error, {
+      surface: "saved-for-review",
+      operation: "save",
+      table: "user_state",
+    })
+    return Response.json({ error: "review state could not be saved" }, { status: 500 })
   }
 
   return Response.json({ ok: true, savedCount: next.length, saved: next.includes(questionId) })

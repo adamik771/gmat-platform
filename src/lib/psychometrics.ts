@@ -1,5 +1,5 @@
 import type { Difficulty, Section } from "@/types"
-import { databaseTimestampMicros } from "@/lib/database-timestamp"
+import { databaseTimestampMicros } from "./database-timestamp.ts"
 
 // These are editorial screening rules, not GMAT-equated difficulty estimates.
 export const MIN_ATTEMPTS_FOR_STATS = 20
