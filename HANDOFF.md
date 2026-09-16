@@ -1,5 +1,25 @@
 # Handoff — GMAT Platform
 
+## 2026-09-16: dormant manual-payment trial follow-up (branch review; not activated)
+
+Branch `feat/manual-payment-trial-followup-20260916` is based on `origin/main` `93db29c`. It adds a deliberately dormant bridge for a future period in which the paywall is active but Stripe checkout is unavailable: an expired-trial student can contact Adam through a plan-specific WhatsApp action or email fallback, and the daily reminders worker can send one branded operational trial-expiry email per user/trial. The WhatsApp action opens `+47 929 49 728` with a prepared message saying the student enjoyed the free trial and would like to continue. No bank details, payment links, discounts or claims are placed in the product or email.
+
+**Do not activate this flow until Adam has confirmed that accepting payment is legally permitted and the business/payment setup is ready.** Shipping the code or migration is not authorization to solicit or accept payment. Both the existing paywall switch and the new manual-contact switch default off. Trial-expiry messages run only when `PAYWALL_ENABLED=true`, `MANUAL_PAYMENT_CONTACT_ENABLED=true`, and `PAYWALL_TRIAL_EPOCH` is a valid timestamp. The upgrade/pricing contact experience follows the same switches. With either switch off, current behavior remains unchanged.
+
+Before future activation, complete this sequence in order:
+
+1. Confirm legal authority and the permitted payment arrangement; update the customer-facing wording if counsel or the payment provider requires it.
+2. Apply `supabase/migrations/20260916000000_trial_expiry_email_deliveries.sql`. The table is service-only with RLS enabled and stores delivery state, not email content.
+3. Grant/verify access for every existing paid, comped or manually approved student before enabling the paywall. Never infer payment from trial age.
+4. Set `PAYWALL_TRIAL_EPOCH` to the actual activation instant so accounts created before that cutoff are not retroactively treated as expired trials.
+5. Confirm `RESEND_API_KEY`, `EMAIL_FROM`, `CRON_SECRET`, the daily reminders cron and replies/forwarding for `hello@zakariangmat.com`.
+6. Run `npm run launch:check`, then enable `PAYWALL_ENABLED=true` and `MANUAL_PAYMENT_CONTACT_ENABLED=true` together in Production and redeploy.
+7. Test one controlled expired-trial account end to end: email received once, WhatsApp message prefilled correctly, email fallback opens, progress remains intact, and manual access can be granted after verified payment.
+
+Delivery safety: the worker fails closed if purchase lookup fails, requires a confirmed email and an actually expired free trial, claims a unique `(user_id, trial_started_at)` delivery row, caps retries, and supplies a Resend idempotency key. Paid users are excluded. The email is operational rather than marketing and contains no promotional sequence. Failures are recorded and reported without exposing the recipient's email to Sentry. The existing cron response keeps its total `sent` field and adds separate trial-expiry and exam-reminder breakdowns.
+
+Verification on the exact branch tree: content validation has 0 errors/0 warnings/0 info; TypeScript is clean; 107 test files / 823 tests pass; lint has zero errors and only the pre-existing `scripts/send-consult-batch.ts:115` warning; `next build --webpack` succeeds with 174 static pages. A synthetic manual-mode `npm run launch:check` has zero blockers (Stripe remains an expected warning in owner-assisted mode). The public pricing path was checked at desktop and 390px with zero horizontal overflow; all four plan buttons carried the correct plan-specific `wa.me/4792949728` message. The rendered email was inspected at desktop and 390px, and its WhatsApp target was read back from the actual link. The temporary email-preview route was removed before the final gate. No email was sent, no production environment variable changed, no migration applied and no production student access changed. Live database delivery behavior remains unverified until the migration is deliberately applied in a safe activation window.
+
 ## 2026-09-15: targeted teaching-quality repairs (branch review; not merged or deployed)
 
 Branch `fix/teaching-quality-batches-20260915` is based on `origin/main` `5916b99`, after PR #591. Adam authorized audit batches 1, 2, 3 and 7, then added 4 and 5. **Batches 6 and 8 are explicitly on hold.** Preserve the restored prep layout and all sidebar destinations. Follow-up: Adam explicitly authorized committing and pushing this branch for review. No merge, production data write or migration is authorized. Branch publication is not a claim that independent human editorial review or live Supabase verification has occurred.

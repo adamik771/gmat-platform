@@ -117,3 +117,22 @@ describe("database-backed abuse controls", () => {
     expect(migration).toContain("to service_role")
   })
 })
+
+describe("trial-expiry email delivery privacy", () => {
+  const migration = readFileSync(
+    "supabase/migrations/20260916000000_trial_expiry_email_deliveries.sql",
+    "utf8",
+  ).toLowerCase()
+
+  it("keeps delivery state service-role only", () => {
+    expect(migration).toContain(
+      "alter table public.trial_expiry_email_deliveries enable row level security",
+    )
+    expect(migration).not.toMatch(
+      /create\s+policy[\s\S]*?trial_expiry_email_deliveries/,
+    )
+    expect(migration).not.toMatch(
+      /grant\s+(?:select|insert|update|delete|all)[\s\S]*?trial_expiry_email_deliveries[\s\S]*?to\s+(?:anon|authenticated)/,
+    )
+  })
+})

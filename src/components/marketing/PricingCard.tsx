@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Check, X } from "lucide-react"
+import { Check, MessageCircle, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { PricingTier } from "@/types"
 import CheckoutButton from "./CheckoutButton"
@@ -11,6 +11,8 @@ interface PricingCardProps {
   checkoutCancelPath?: "/pricing" | "/upgrade"
   purchasable?: boolean
   reservationAvailable?: boolean
+  manualContactHref?: string
+  manualEmailHref?: string
 }
 
 export default function PricingCard({
@@ -19,6 +21,8 @@ export default function PricingCard({
   checkoutCancelPath,
   purchasable = true,
   reservationAvailable = true,
+  manualContactHref,
+  manualEmailHref,
 }: PricingCardProps) {
   const name = tier.id === "self_study_guaranteed" ? "Mentorship" : tier.name
   return (
@@ -42,6 +46,31 @@ export default function PricingCard({
         <CheckoutButton planId={tier.id} label={tier.cta} highlighted={tier.highlighted} cancelPath={checkoutCancelPath} />
       ) : reservationAvailable ? (
         <ReserveInterceptButton planId={tier.id} label="Reserve founding rate" highlighted={tier.highlighted} />
+      ) : manualContactHref ? (
+        <div className="mb-6 space-y-2">
+          <a
+            href={manualContactHref}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(
+              "flex min-h-11 w-full items-center justify-center gap-2 rounded-lg px-3 text-sm font-medium transition-opacity hover:opacity-90",
+              tier.highlighted
+                ? "bg-[#C9A84C] text-[#0A0A0A]"
+                : "border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5",
+            )}
+          >
+            <MessageCircle aria-hidden="true" className="h-4 w-4" />
+            Continue on WhatsApp
+          </a>
+          {manualEmailHref && (
+            <a
+              href={manualEmailHref}
+              className="block text-center text-xs text-[#B9B7AE] underline decoration-white/20 underline-offset-4 hover:text-[#F0F0F0]"
+            >
+              Or contact Adam by email
+            </a>
+          )}
+        </div>
       ) : (
         <div className="mb-6">
           <p className="mb-2 text-sm text-[#B9B7AE]">Checkout temporarily unavailable</p>
