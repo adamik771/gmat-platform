@@ -7,14 +7,12 @@ import {
   Check,
   Clock,
   Flag,
-  Sparkles,
   TrendingDown,
   X,
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getUserState } from "@/lib/user-state"
-import { MOCK_SECTIONS, accuracyToScore } from "@/lib/mock"
-import { snapToValidTotal } from "@/lib/scoring"
+import { MOCK_SECTIONS } from "@/lib/mock"
 import { getAllQuestions, getQuestionsByIds } from "@/lib/content"
 import {
   buildEnhancedReport,
@@ -23,13 +21,6 @@ import {
   type TrapPattern,
   type ChapterRecommendation,
 } from "@/lib/diagnostic"
-import {
-  totalPercentile,
-  sectionPercentile,
-  percentileBand,
-  accuracyToSectionScore,
-  interpretTotalScore,
-} from "@/lib/score-percentiles"
 import type { Difficulty, Section } from "@/types"
 
 export const metadata = {
@@ -41,7 +32,6 @@ interface SectionReport {
   total: number
   correct: number
   accuracy: number
-  score: number
   totalTimeMs: number
   avgTimePerQuestionMs: number
   weakTopics: Array<{ topic: string; accuracy: number; attempts: number }>
@@ -81,13 +71,20 @@ export default async function MockReportPage() {
 
   const state = await getUserState(supabase, user)
 
-  const { data: sessionRows } = await supabase
+  const { data: sessionRows, error: sessionsError } = await supabase
     .from("practice_sessions")
     .select("id, slug, section, topic, accuracy, total_questions, correct_count, total_time_ms, created_at")
     .eq("user_id", user.id)
     .like("slug", "mock-%")
     .order("created_at", { ascending: false })
     .limit(20)
+
+  // A failed read is NOT "no mock yet" — minutes after finishing a mock,
+  // that message reads as the attempt being lost. Throw to the (app)
+  // error boundary, which keeps the shell and offers a retry.
+  if (sessionsError) {
+    throw new Error(`mock report: sessions read failed (${sessionsError.message})`)
+  }
 
   if (!sessionRows || sessionRows.length === 0) {
     return (
@@ -114,9 +111,25 @@ export default async function MockReportPage() {
   const dateMatch = firstSlug.match(/^mock-(\d{4}-\d{2}-\d{2})-/)
   const targetDate = dateMatch?.[1] ?? null
 
-  const mostRecent = targetDate
-    ? sessionRows.filter((r) => (r.slug as string).startsWith(`mock-${targetDate}-`))
-    : sessionRows.slice(0, 3)
+  // One row per SECTION, newest first (sessionRows is created_at desc).
+  // Mock slugs are only unique per day+section, so a full mock plus a later
+  // single-section rep the same day used to merge into one bogus report:
+  // duplicate section rows, the total averaged over 4+ entries, and a
+  // finished full mock relabeled "Partial".
+  const dedupeBySection = (rows: typeof sessionRows) => {
+    const seen = new Set<string>()
+    return rows.filter((r) => {
+      const sec = r.section as string
+      if (seen.has(sec)) return false
+      seen.add(sec)
+      return true
+    })
+  }
+  const mostRecent = dedupeBySection(
+    targetDate
+      ? sessionRows.filter((r) => (r.slug as string).startsWith(`mock-${targetDate}-`))
+      : sessionRows.slice(0, 3)
+  )
 
   // Mode label = the `topic` we wrote at save time (e.g., "Full mock",
   // "Quant-only mock", "Hard-question mock"). Older sessions wrote the
@@ -135,28 +148,23 @@ export default async function MockReportPage() {
     arr.push(row)
     byDate.set(d, arr)
   }
-  let previousTotal: number | null = null
+  let previousAccuracy: number | null = null
   let previousDate: string | null = null
   for (const [date, rows] of byDate) {
-    if (rows.length < MOCK_SECTIONS.length) continue
-    const accBySection: Partial<Record<Section, number>> = {}
-    for (const r of rows) {
-      const sec = r.section as Section
-      if (accBySection[sec] === undefined) {
-        // Full-set accuracy (correct / total_questions) — matches how the
-        // current mock's total is computed below. The stored `accuracy` column
-        // is answered-only (correct/answered), so mixing the two produced a
-        // bogus current-vs-previous delta.
-        const total = (r.total_questions as number) ?? 0
-        const correct = (r.correct_count as number) ?? 0
-        accBySection[sec] = total === 0 ? 0 : correct / total
-      }
-    }
-    const scores = MOCK_SECTIONS.map((s) => accBySection[s])
-      .filter((v): v is number => typeof v === "number")
-      .map((a) => accuracyToScore(a))
-    if (scores.length === MOCK_SECTIONS.length) {
-      previousTotal = snapToValidTotal(scores.reduce((a, b) => a + b, 0) / 3)
+    const priorSections = dedupeBySection(rows)
+    if (priorSections.length !== MOCK_SECTIONS.length) continue
+    const previousQuestions = priorSections.reduce(
+      (sum, row) => sum + ((row.total_questions as number) ?? 0),
+      0
+    )
+    const previousCorrect = priorSections.reduce(
+      (sum, row) => sum + ((row.correct_count as number) ?? 0),
+      0
+    )
+    if (previousQuestions > 0) {
+      previousAccuracy = Math.round(
+        (previousCorrect / previousQuestions) * 100
+      )
       previousDate = date
       break
     }
@@ -170,10 +178,16 @@ export default async function MockReportPage() {
   const enhancedAttempts: DiagnosticAttempt[] = []
   for (const sessionRow of mostRecent) {
     const section = sessionRow.section as Section
-    const { data: attempts } = await supabase
+    const attemptsRes = await supabase
       .from("practice_attempts")
       .select("question_id, section, topic, subtopic, difficulty, is_correct, time_spent_ms")
       .eq("session_id", sessionRow.id as string)
+    if (attemptsRes.error) {
+      throw new Error(
+        `mock report: attempts read failed (${attemptsRes.error.message})`
+      )
+    }
+    const attempts = attemptsRes.data
 
     for (const a of attempts ?? []) {
       if (typeof a.question_id === "string") {
@@ -220,7 +234,6 @@ export default async function MockReportPage() {
       total,
       correct,
       accuracy,
-      score: accuracyToScore(accuracy),
       totalTimeMs,
       avgTimePerQuestionMs: total > 0 ? totalTimeMs / total : 0,
       weakTopics,
@@ -236,11 +249,10 @@ export default async function MockReportPage() {
   const enhancedQuestions = getQuestionsByIds(enhancedQuestionIds)
   const enhancedReport = buildEnhancedReport(enhancedAttempts, enhancedQuestions)
 
-  const totalScore = reports.length
-    ? snapToValidTotal(
-        reports.reduce((acc, r) => acc + r.score, 0) / reports.length
-      )
-    : 205
+  const reportQuestions = reports.reduce((sum, report) => sum + report.total, 0)
+  const reportCorrect = reports.reduce((sum, report) => sum + report.correct, 0)
+  const overallAccuracy =
+    reportQuestions > 0 ? Math.round((reportCorrect / reportQuestions) * 100) : 0
   const complete = reports.length === MOCK_SECTIONS.length
 
   let editsTotal = 0
@@ -309,7 +321,10 @@ export default async function MockReportPage() {
     }
   }
 
-  const delta = complete && previousTotal !== null ? totalScore - previousTotal : null
+  const delta =
+    complete && previousAccuracy !== null
+      ? overallAccuracy - previousAccuracy
+      : null
 
   return (
     <div className="relative">
@@ -360,7 +375,7 @@ export default async function MockReportPage() {
             />
           </div>
 
-          <p className="text-[11px] uppercase tracking-[0.22em] text-[#555555] mb-3 font-medium">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-[#888888] mb-3 font-medium">
             {targetDate ?? "most recent"}
           </p>
           <div className="mb-10">
@@ -385,13 +400,13 @@ export default async function MockReportPage() {
                 "0 0 80px rgba(201,168,76,0.08), inset 0 1px 0 rgba(255,255,255,0.04)",
             }}
           >
-            {complete && previousTotal !== null ? (
+            {complete && previousAccuracy !== null ? (
               <>
                 <div className="text-center">
                   <p className="font-display text-5xl sm:text-7xl font-semibold text-[#888888] tracking-[-0.03em] leading-none">
-                    {previousTotal}
+                    {previousAccuracy}%
                   </p>
-                  <p className="text-[10px] tracking-[0.18em] uppercase text-[#555555] mt-3 font-medium">
+                  <p className="text-[10px] tracking-[0.18em] uppercase text-[#888888] mt-3 font-medium">
                     Previous
                   </p>
                 </div>
@@ -415,10 +430,10 @@ export default async function MockReportPage() {
                     }}
                   >
                     {delta !== null && delta > 0
-                      ? `+${delta}`
+                      ? `+${delta} pp`
                       : delta !== null && delta < 0
-                      ? `${delta}`
-                      : "±0"}
+                      ? `${delta} pp`
+                      : "±0 pp"}
                   </span>
                 </div>
                 <div className="text-center relative">
@@ -435,7 +450,7 @@ export default async function MockReportPage() {
                     className="relative font-display text-5xl sm:text-7xl font-semibold tracking-[-0.03em] leading-none"
                     style={{ color: "#C9A84C" }}
                   >
-                    {totalScore}
+                    {overallAccuracy}%
                   </p>
                   <p
                     className="relative text-[10px] tracking-[0.18em] uppercase mt-3 font-medium"
@@ -460,7 +475,7 @@ export default async function MockReportPage() {
                   className="relative font-display text-6xl sm:text-8xl font-semibold tracking-[-0.03em] leading-none"
                   style={{ color: "#C9A84C" }}
                 >
-                  {totalScore}
+                  {overallAccuracy}%
                 </p>
                 <div className="relative flex items-center justify-center gap-2 mt-4">
                   <span
@@ -474,7 +489,7 @@ export default async function MockReportPage() {
                     className="text-[10px] tracking-[0.22em] uppercase font-semibold"
                     style={{ color: "#C9A84C" }}
                   >
-                    {complete ? "Final Total" : "Partial"}
+                    {complete ? "Overall Accuracy" : "Partial Accuracy"}
                   </p>
                   <span
                     className="h-px w-10"
@@ -490,31 +505,21 @@ export default async function MockReportPage() {
 
           <p className="text-[15px] leading-[1.75] text-[#C0C0C0] max-w-2xl mx-auto">
             {complete
-              ? previousTotal !== null
+              ? previousAccuracy !== null
                 ? (
                   <>
-                    Measured against your previous completed mock on{" "}
-                    <span className="text-[#F0F0F0] font-medium">{previousDate}</span>. Treat the absolute score as a rough calibration — official reports use a slightly different scale — but trust the direction of the delta.
+                    Question-weighted accuracy compared with your previous
+                    completed mock on{" "}
+                    <span className="text-[#F0F0F0] font-medium">
+                      {previousDate}
+                    </span>
+                    . The change is shown in percentage points; this is not an
+                    estimated GMAT score.
                   </>
                 )
-                : "Average of your three section scores on this mock. Take another mock in one to two weeks to see how this number moves."
-              : `You completed ${reports.length} of ${MOCK_SECTIONS.length} sections. Finish the rest for a full estimate.`}
+                : "Question-weighted accuracy across all three sections. Take another mock in one to two weeks to compare performance under the same conditions."
+              : `Question-weighted accuracy across the ${reports.length} completed section${reports.length === 1 ? "" : "s"}. Finish the rest for a complete mock result.`}
           </p>
-
-          {complete && (
-            <div className="mt-6 inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/[0.08] bg-[#0D0D0D]">
-              <Sparkles className="w-3.5 h-3.5" style={{ color: "#C9A84C" }} />
-              <p className="text-[12px] tracking-tight text-[#C0C0C0]">
-                <span className="text-[#F0F0F0] font-semibold">
-                  {percentileBand(totalPercentile(totalScore))}
-                </span>
-                <span className="mx-2 text-[#333333]">·</span>
-                <span className="text-[#888888]">
-                  {interpretTotalScore(totalScore, previousTotal).split(" — ")[1] ?? ""}
-                </span>
-              </p>
-            </div>
-          )}
         </div>
 
         {/* SECTION BREAKDOWN */}
@@ -561,7 +566,7 @@ export default async function MockReportPage() {
                   {r ? (
                     <>
                       <p className="font-display text-[2.75rem] font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-none mb-3">
-                        {r.score}
+                        {Math.round(r.accuracy * 100)}%
                       </p>
                       <p className="text-[13px] text-[#888888] tracking-tight">
                         <span className="text-[#C0C0C0]">
@@ -570,8 +575,8 @@ export default async function MockReportPage() {
                         <span className="mx-1.5 text-[#333333]">·</span>
                         {Math.round(r.avgTimePerQuestionMs / 1000)}s avg/q
                       </p>
-                      <p className="text-[11px] text-[#555555] mt-2 uppercase tracking-[0.16em] font-medium">
-                        {sectionPercentile(section, accuracyToSectionScore(r.accuracy))}th percentile
+                      <p className="text-[11px] text-[#888888] mt-2 uppercase tracking-[0.16em] font-medium">
+                        Section accuracy
                       </p>
                     </>
                   ) : (
@@ -579,7 +584,7 @@ export default async function MockReportPage() {
                       <p className="font-display text-[2.75rem] font-semibold text-[#333333] tracking-[-0.02em] leading-none mb-3">
                         —
                       </p>
-                      <p className="text-[13px] text-[#555555]">Not yet taken</p>
+                      <p className="text-[13px] text-[#888888]">Not yet taken</p>
                     </>
                   )}
                 </div>
@@ -663,7 +668,7 @@ export default async function MockReportPage() {
                           >
                             {row.section}
                           </span>
-                          <span className="text-[12px] text-[#555555]">
+                          <span className="text-[12px] text-[#888888]">
                             {Math.round(row.accuracy * 100)}% on {row.attempts} question
                             {row.attempts === 1 ? "" : "s"}
                           </span>
@@ -846,8 +851,13 @@ export default async function MockReportPage() {
                     ? "#FF4444"
                     : "#888888"
                 return (
-                  <div
+                  /* A real link, not a hover-styled div: the runner promises
+                     "results are revealed on the report", and the deep-review
+                     page has the answer, correctness, timing, and explanation
+                     for every attempted question. */
+                  <Link
                     key={row.questionId}
+                    href={`/review/question/${row.questionId}`}
                     className="p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] flex items-start justify-between gap-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12]"
                     style={{
                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)",
@@ -869,7 +879,7 @@ export default async function MockReportPage() {
                           >
                             {row.section}
                           </span>
-                          <span className="text-[12px] text-[#555555]">{row.topic}</span>
+                          <span className="text-[12px] text-[#888888]">{row.topic}</span>
                         </div>
                         <p className="text-[15px] text-[#F0F0F0] truncate tracking-tight">
                           {row.preview}
@@ -883,7 +893,7 @@ export default async function MockReportPage() {
                       {outcomeIcon}
                       {outcomeLabel}
                     </span>
-                  </div>
+                  </Link>
                 )
               })}
             </div>
@@ -1175,7 +1185,7 @@ function RecommendedChaptersSection({
                 </p>
               </div>
               <ArrowRight
-                className="w-4 h-4 flex-shrink-0 text-[#555555] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
+                className="w-4 h-4 flex-shrink-0 text-[#888888] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
                 aria-hidden
               />
             </Link>

@@ -14,13 +14,17 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q65
-      - critical-reasoning-q66
+      - critical-reasoning-q197
+      - critical-reasoning-q209
   - id: cr-boldface
     type: reading
     title: "CR: Boldface"
     check_question_ids:
-      - critical-reasoning-q67
+      - critical-reasoning-q49
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +33,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q205
-      - critical-reasoning-q68
-      - critical-reasoning-q69
+      - critical-reasoning-q45
+      - critical-reasoning-q249
+      - critical-reasoning-q64
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,10 +43,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q70
-      - critical-reasoning-q71
-      - critical-reasoning-q72
+      - critical-reasoning-q73
+      - critical-reasoning-q90
+      - critical-reasoning-q93
 ---
+
+## @summary
+
+- Classify each bold statement first as a fact, claim, evidence, objection, or conclusion.
+- Then identify whose position it represents and how it relates to the argument's main conclusion.
+- Match both roles together; an answer with one correct half and one wrong half is fully wrong.
 
 ## @cr-boldface
 

@@ -1,5 +1,7 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getStripe, STRIPE_PRICES } from "@/lib/stripe"
+import { getTrustedSiteOrigin } from "@/lib/site-origin"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 const PLAN_IDS = ["self_study", "self_study_guaranteed", "coaching", "intensive"] as const
 type PlanId = (typeof PLAN_IDS)[number]
@@ -46,9 +48,15 @@ export async function POST(request: Request) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const body = (await request.json()) as {
+  type CheckoutBody = {
     planId?: string
     cancelPath?: string
+  }
+  let body: CheckoutBody
+  try {
+    body = (await request.json()) as CheckoutBody
+  } catch {
+    return Response.json({ error: "Invalid JSON body" }, { status: 400 })
   }
   const planId = body.planId
   if (!planId || !PLAN_IDS.includes(planId as PlanId)) {
@@ -62,30 +70,28 @@ export async function POST(request: Request) {
   // Guard against an unconfigured tier (any tier still on its placeholder id) —
   // a clear 503 beats letting Stripe reject a fake id with a cryptic 500.
   if (!priceId || PLACEHOLDER_PRICE_IDS.has(priceId)) {
+    reportDataFailure(new Error("Stripe price is not configured"), {
+      surface: "checkout",
+      operation: "resolve-price",
+    })
     return Response.json(
-      {
-        error:
-          "Stripe prices are not configured. Set STRIPE_PRICE_SELF_STUDY / STRIPE_PRICE_SELF_STUDY_GUARANTEED / STRIPE_PRICE_COACHING / STRIPE_PRICE_INTENSIVE to real Stripe price IDs.",
-      },
+      { error: "Checkout is temporarily unavailable. Please try again later." },
       { status: 503 }
     )
   }
 
-  // Derive the site origin from the incoming request so this works in dev,
-  // preview, and the production Vercel URL without a hardcoded host.
-  const origin = new URL(request.url).origin
+  const origin = getTrustedSiteOrigin(request.url)
 
   let stripe: ReturnType<typeof getStripe>
   try {
     stripe = getStripe()
   } catch (err) {
+    reportDataFailure(err, {
+      surface: "checkout",
+      operation: "create-client",
+    })
     return Response.json(
-      {
-        error:
-          err instanceof Error
-            ? err.message
-            : "Stripe is not configured on the server.",
-      },
+      { error: "Checkout is temporarily unavailable. Please try again later." },
       { status: 503 }
     )
   }
@@ -144,6 +150,10 @@ export async function POST(request: Request) {
     })
 
     if (!session.url) {
+      reportDataFailure(new Error("Stripe did not return a checkout URL"), {
+        surface: "checkout",
+        operation: "create-session",
+      })
       return Response.json(
         { error: "Stripe did not return a checkout URL" },
         { status: 500 }
@@ -152,13 +162,12 @@ export async function POST(request: Request) {
 
     return Response.json({ url: session.url })
   } catch (err) {
+    reportDataFailure(err, {
+      surface: "checkout",
+      operation: "create-session",
+    })
     return Response.json(
-      {
-        error:
-          err instanceof Error
-            ? err.message
-            : "Failed to create checkout session",
-      },
+      { error: "Checkout could not be started. Please try again." },
       { status: 500 }
     )
   }

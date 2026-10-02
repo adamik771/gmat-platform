@@ -96,7 +96,7 @@ export default function ActivityFeed({ items, className }: ActivityFeedProps) {
               </p>
             </div>
             <div className="flex-shrink-0 flex flex-col items-end gap-1">
-              <span className="text-[11px] text-[#555555] tabular-nums">
+              <span className="text-[11px] text-[#888888] tabular-nums">
                 {formatRelativeTime(item.timestamp)}
               </span>
               {item.score !== undefined && (

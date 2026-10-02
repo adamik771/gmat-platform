@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { unstable_rethrow } from "next/navigation"
 import {
   ArrowRight,
   BarChart3,
@@ -12,6 +13,8 @@ import {
 } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getUserState } from "@/lib/user-state"
+import { isReplaySession } from "@/lib/utils"
+import { reportDataFailure } from "@/lib/server-data-observability"
 import {
   computeCalibration,
   type CalibrationReport,
@@ -29,11 +32,9 @@ import AnalyticsClient, {
   type DifficultyTimingRow,
   type ErrorPatternSummary,
   type PacingRow,
-  type PredictionMAE,
   type ScoreTrendPoint,
   type TopicRow,
 } from "./AnalyticsClient"
-import { accuracyToScore } from "@/lib/diagnostic"
 
 // Minimum attempts required to trust a per-topic accuracy — anything below
 // and a couple of lucky / unlucky answers dominate the number.
@@ -47,18 +48,6 @@ const SECTION_TARGET_MIN: Record<Section, number> = {
   Quant: 2.0,
   Verbal: 1.75,
   DI: 2.5,
-}
-
-/**
- * Scale an accuracy percentage (0-100) to an estimated GMAT Focus total
- * (205..805 in 10-point increments). Matches the derivation on the
- * dashboard's Score Goal card so the two surfaces don't drift.
- */
-function accuracyToFocusTotal(accuracy: number): number {
-  const clamped = Math.max(0, Math.min(100, accuracy))
-  // 0% → 60 per section → 205 total. 100% → 90 per section → 805 total.
-  const raw = 205 + clamped * 6.0
-  return 205 + Math.round((raw - 205) / 10) * 10
 }
 
 /** Shape returned by the get_analytics_aggregates() RPC — compact per-group
@@ -89,20 +78,14 @@ export default async function AnalyticsPage() {
   let difficultyTimingRows: DifficultyTimingRow[] = []
   let errorPatterns: ErrorPatternSummary | null = null
   let calibration: CalibrationReport | null = null
-  let predictionMAE: PredictionMAE | null = null
   let hasData = false
+  /** True when the analytics reads failed — a failed read must not render
+   *  as the "take your baseline" empty state. */
+  let loadFailed = false
+  let loadFailureReported = false
 
-  // Baseline-mode signals — counted regardless of `hasData` so the
-  // unlock checklist always reflects current state. Cheap derivations
-  // computed alongside the existing analytics aggregations.
+  // Baseline gate — the only pre-data signal the locked view needs.
   let officialExamCount = 0
-  const sectionAttemptCount: Record<Section, number> = {
-    Quant: 0,
-    Verbal: 0,
-    DI: 0,
-  }
-  let confidenceRatedCount = 0
-  let weeksOfPractice = 0
 
   try {
     const supabase = await createSupabaseServer()
@@ -158,25 +141,54 @@ export default async function AnalyticsPage() {
       // that week", which we then scale to a Focus total.
       // The score-trajectory sessions read and the attempt aggregates are
       // independent (both scoped to this user) so fetch them concurrently. The
-      // per-topic / pacing / per-difficulty / behaviour / readiness /
+      // per-topic / pacing / per-difficulty / behaviour / accuracy /
       // confidence fan-out now runs in Postgres via get_analytics_aggregates()
       // (RLS-scoped) and returns compact per-group rows instead of ~20k raw
       // attempts; the same thresholds + rounding are applied below.
-      const [{ data: sessions }, { data: aggRaw }] = await Promise.all([
+      const [sessionsRes, aggregatesRes] = await Promise.all([
         supabase
           .from("practice_sessions")
-          .select("accuracy, section, created_at")
+          .select("slug, topic, section, created_at, total_questions, correct_count")
           .eq("user_id", user.id)
           .gte("created_at", eightWeeksAgo)
           .order("created_at", { ascending: true }),
         supabase.rpc("get_analytics_aggregates"),
       ])
+      if (sessionsRes.error) {
+        loadFailureReported = true
+        reportDataFailure(sessionsRes.error, {
+          surface: "analytics",
+          operation: "score_trajectory_sessions",
+          table: "practice_sessions",
+        })
+        throw sessionsRes.error
+      }
+      if (aggregatesRes.error) {
+        loadFailureReported = true
+        reportDataFailure(aggregatesRes.error, {
+          surface: "analytics",
+          operation: "analytics_aggregates",
+          rpc: "get_analytics_aggregates",
+        })
+        throw aggregatesRes.error
+      }
+
+      const sessions = sessionsRes.data
+      const aggRaw = aggregatesRes.data
       const agg = (aggRaw ?? null) as AnalyticsAggregates | null
 
       if (sessions && sessions.length > 0) {
-        type Bucket = { overall: number[]; Quant: number[]; Verbal: number[]; DI: number[] }
+        // Question-weighted, review-excluded (same rules as the dashboard's
+        // weekly accuracy): an unweighted mean of session accuracies let a
+        // 2-question review replay of past misses count like a 45-question
+        // set and systematically dragged the trajectory down.
+        type Tally = { correct: number; total: number }
+        type Bucket = { overall: Tally; Quant: Tally; Verbal: Tally; DI: Tally }
+        const newTally = (): Tally => ({ correct: 0, total: 0 })
         const weeks = new Map<string, Bucket>()
         for (const s of sessions) {
+          if (isReplaySession(s.slug as string, (s as { topic?: string }).topic))
+            continue
           const d = new Date(s.created_at as string)
           const weekStart = new Date(d)
           weekStart.setDate(d.getDate() - d.getDay())
@@ -187,16 +199,19 @@ export default async function AnalyticsPage() {
           ).padStart(2, "0")}-${String(weekStart.getDate()).padStart(2, "0")}`
           const bucket =
             weeks.get(key) ?? {
-              overall: [],
-              Quant: [],
-              Verbal: [],
-              DI: [],
+              overall: newTally(),
+              Quant: newTally(),
+              Verbal: newTally(),
+              DI: newTally(),
             }
-          const acc = Number(s.accuracy)
-          bucket.overall.push(acc)
+          const total = (s.total_questions as number) ?? 0
+          const correct = (s.correct_count as number) ?? 0
+          bucket.overall.total += total
+          bucket.overall.correct += correct
           const sec = s.section as Section | string
           if (sec === "Quant" || sec === "Verbal" || sec === "DI") {
-            bucket[sec].push(acc)
+            bucket[sec].total += total
+            bucket[sec].correct += correct
           }
           weeks.set(key, bucket)
         }
@@ -206,9 +221,9 @@ export default async function AnalyticsPage() {
           .map(([weekKey, b], i) => {
             const [wy, wm, wd] = weekKey.split("-").map(Number)
             const weekDate = new Date(wy, (wm ?? 1) - 1, wd ?? 1)
-            const mean = (arr: number[]) =>
-              arr.length > 0 ? arr.reduce((x, y) => x + y, 0) / arr.length : null
-            const overallAcc = mean(b.overall)
+            const pct = (tal: Tally) =>
+              tal.total > 0 ? (tal.correct / tal.total) * 100 : null
+            const overallAcc = pct(b.overall)
             return {
               weekKey,
               weekLabel:
@@ -216,12 +231,10 @@ export default async function AnalyticsPage() {
                   month: "short",
                 }) + ` W${Math.ceil(weekDate.getDate() / 7)}`,
               index: i,
-              total:
-                overallAcc !== null ? accuracyToFocusTotal(overallAcc) : null,
               overallAccuracy: overallAcc !== null ? Math.round(overallAcc) : null,
-              quant: mean(b.Quant) !== null ? Math.round(mean(b.Quant)!) : null,
-              verbal: mean(b.Verbal) !== null ? Math.round(mean(b.Verbal)!) : null,
-              di: mean(b.DI) !== null ? Math.round(mean(b.DI)!) : null,
+              quant: pct(b.Quant) !== null ? Math.round(pct(b.Quant)!) : null,
+              verbal: pct(b.Verbal) !== null ? Math.round(pct(b.Verbal)!) : null,
+              di: pct(b.DI) !== null ? Math.round(pct(b.DI)!) : null,
             }
           })
       }
@@ -259,19 +272,6 @@ export default async function AnalyticsPage() {
 
       if (agg && agg.attempt_count > 0) {
         hasData = true
-
-        // Baseline-unlock signals (from the RPC's compact aggregates).
-        confidenceRatedCount = agg.confidence_rated_count ?? 0
-        weeksOfPractice = agg.week_count ?? 0
-        for (const r of agg.section_totals ?? []) {
-          if (
-            r.section === "Quant" ||
-            r.section === "Verbal" ||
-            r.section === "DI"
-          ) {
-            sectionAttemptCount[r.section] = r.total
-          }
-        }
 
         // ---------- Per-topic accuracy ----------
         // Filter to topics with enough attempts to trust, sort by volume.
@@ -342,7 +342,10 @@ export default async function AnalyticsPage() {
         const ep = agg.error_patterns
         if (ep) {
           const totalLabelled = ep.efficient + ep.labored + ep.rushed + ep.stuck
-          if (totalLabelled > 0) {
+          // n >= 30: tempo-pattern shares at a handful of labelled
+          // attempts are noise presented as diagnosis ("you rush") —
+          // hold the card back until the sample can carry it.
+          if (totalLabelled >= 30) {
             errorPatterns = {
               efficient: ep.efficient,
               labored: ep.labored,
@@ -353,136 +356,41 @@ export default async function AnalyticsPage() {
           }
         }
 
-        // ---------- Prediction MAE (PDF v2 KPI) ----------
-        // PDF v2 p.7: "A good internal target is a mean absolute
-        // prediction error at or below 35 points against a recent
-        // official mock." Our mocks aren't official, but the analogue
-        // holds: compare our readiness band to the most recent
-        // complete mock's total score.
-        //
-        // Requires: (a) all 3 sections with ≥10 attempts so the
-        // readiness derivation is stable, matching the dashboard/study-
-        // plan gating; (b) a mock where all 3 section sessions exist.
-        type SecStatRow = { total: number; correct: number }
-        const readinessSecStats: Record<Section, SecStatRow> = {
-          Quant: { total: 0, correct: 0 },
-          Verbal: { total: 0, correct: 0 },
-          DI: { total: 0, correct: 0 },
-        }
-        for (const r of agg.section_totals ?? []) {
-          if (
-            r.section === "Quant" ||
-            r.section === "Verbal" ||
-            r.section === "DI"
-          ) {
-            readinessSecStats[r.section] = { total: r.total, correct: r.correct }
-          }
-        }
-        const READINESS_MIN_SAMPLE = 10
-        const readinessReady = (["Quant", "Verbal", "DI"] as const).every(
-          (s) => readinessSecStats[s].total >= READINESS_MIN_SAMPLE
-        )
-
-        // Fetch mock section sessions (most recent first) — bounded to
-        // the last 30 complete sessions to keep the query small. Used by
-        // both the MAE snapshot (most-recent complete mock) and the MAE
-        // trend chart (every complete mock).
-        const { data: mockRows } = await supabase
-          .from("practice_sessions")
-          .select("slug, accuracy, created_at")
-          .eq("user_id", user.id)
-          .like("slug", "mock-%")
-          .order("created_at", { ascending: false })
-          .limit(30)
-
-        // Group by YYYY-MM-DD date embedded in the slug
-        // (mock-YYYY-MM-DD-section). Section sessions from the same
-        // mock have the same date slug prefix.
-        type MockRow = { slug: string; accuracy: number; created_at: string }
-        const byDate = new Map<
-          string,
-          { sections: Partial<Record<Section, MockRow>>; created_at: string }
-        >()
-        for (const r of (mockRows as MockRow[] | null) ?? []) {
-          const match = r.slug.match(
-            /^mock-(\d{4}-\d{2}-\d{2})-(quant|verbal|di)$/i
-          )
-          if (!match) continue
-          const date = match[1]
-          const sec = (match[2].charAt(0).toUpperCase() +
-            match[2].slice(1).toLowerCase()) as Section
-          const normalisedSec: Section =
-            sec === ("Di" as Section) ? "DI" : sec
-          const group = byDate.get(date) ?? {
-            sections: {} as Partial<Record<Section, MockRow>>,
-            created_at: r.created_at,
-          }
-          // Keep the latest created_at across section sessions for
-          // "date completed" ordering.
-          if (r.created_at > group.created_at) group.created_at = r.created_at
-          group.sections[normalisedSec] = r
-          byDate.set(date, group)
-        }
-
-        // Complete mocks, newest first.
-        const completeMocks = [...byDate.entries()]
-          .filter(
-            ([, g]) =>
-              g.sections.Quant && g.sections.Verbal && g.sections.DI
-          )
-          .sort(([, a], [, b]) =>
-            b.created_at.localeCompare(a.created_at)
-          )
-
-        // Helper: mock total from the 3-section aggregate.
-        const mockTotalFor = (
-          group: { sections: Partial<Record<Section, MockRow>> }
-        ) =>
-          Math.round(
-            ((["Quant", "Verbal", "DI"] as const)
-              .map((s) =>
-                accuracyToScore((group.sections[s]!.accuracy ?? 0) / 100)
-              )
-              .reduce((x, y) => x + y, 0) /
-              3 /
-              10) *
-              10
-          )
-
-        if (readinessReady && completeMocks.length > 0) {
-          const avgAccuracy =
-            (["Quant", "Verbal", "DI"] as const)
-              .map(
-                (s) =>
-                  readinessSecStats[s].correct / readinessSecStats[s].total
-              )
-              .reduce((x, y) => x + y, 0) / 3
-          const readinessTotal = accuracyToFocusTotal(avgAccuracy * 100)
-          const [date, group] = completeMocks[0]
-          const mockTotal = mockTotalFor(group)
-          const signedDelta = readinessTotal - mockTotal
-          const error = Math.abs(signedDelta)
-          predictionMAE = {
-            readinessTotal,
-            mockTotal,
-            mockDate: date,
-            errorPoints: error,
-            signedDelta,
-            // PDF v2 target is ≤35 points; we stratify into calibrated
-            // / drifting / miscalibrated so the student sees a clear
-            // signal on whether to trust the readiness band.
-            verdict:
-              error <= 35
-                ? "calibrated"
-                : error <= 70
-                  ? "drifting"
-                  : "miscalibrated",
-          }
-        }
       }
     }
-  } catch {
-    // Supabase unavailable — render empty state.
+  } catch (error) {
+    unstable_rethrow(error)
+    // Supabase unavailable — flag it; the baseline view below would tell
+    // a student with months of history to go take their baseline exam.
+    if (!loadFailureReported) {
+      reportDataFailure(error, {
+        surface: "analytics",
+        operation: "page_load",
+      })
+    }
+    loadFailed = true
+  }
+
+  // Honest failure state before the stage gate: a failed read is NOT
+  // "no data yet".
+  if (loadFailed && !hasData) {
+    return (
+      <div className="max-w-2xl mx-auto mt-16 p-8 rounded-2xl border border-white/[0.06] bg-[#0F0F0F] text-center">
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
+          style={{ color: "#C9A84C" }}
+        >
+          Analytics
+        </p>
+        <h1 className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.15] mb-3">
+          Couldn&apos;t load your analytics.
+        </h1>
+        <p className="text-[14px] text-[#C0C0C0] leading-[1.75]">
+          Your history is safe — this is a loading problem, not a data
+          problem. Refresh to retry.
+        </p>
+      </div>
+    )
   }
 
   // === Stage gate ===
@@ -494,12 +402,7 @@ export default async function AnalyticsPage() {
   // contradictions.
   if (!hasData) {
     return (
-      <BaselineView
-        officialExamCount={officialExamCount}
-        sectionAttemptCount={sectionAttemptCount}
-        confidenceRatedCount={confidenceRatedCount}
-        weeksOfPractice={weeksOfPractice}
-      />
+      <BaselineView officialExamCount={officialExamCount} />
     )
   }
 
@@ -512,7 +415,6 @@ export default async function AnalyticsPage() {
         difficultyTimingRows={difficultyTimingRows}
         errorPatterns={errorPatterns}
         calibration={calibration}
-        predictionMAE={predictionMAE}
         hasData={hasData}
       />
     </>
@@ -531,67 +433,16 @@ const EYEBROW_BASE =
  */
 function BaselineView({
   officialExamCount,
-  sectionAttemptCount,
-  confidenceRatedCount,
-  weeksOfPractice,
 }: {
   officialExamCount: number
-  sectionAttemptCount: Record<Section, number>
-  confidenceRatedCount: number
-  weeksOfPractice: number
 }) {
+  // This view only renders while attempt_count === 0, so every
+  // attempt-derived "progress" number here would be 0 by construction —
+  // the old six-row have/need checklist with progress bars could never
+  // display anything but 0/N (one attempt anywhere and the whole page
+  // flips to active mode). Only the baseline exam is a real, trackable
+  // step at this stage; per-module thresholds live on the locked cards.
   const baselineDone = officialExamCount > 0
-  const totalAttempts =
-    sectionAttemptCount.Quant +
-    sectionAttemptCount.Verbal +
-    sectionAttemptCount.DI
-
-  // Unlock checklist — each row carries a "have / need" pair so the
-  // student can see how close they are to each module rather than just
-  // "not enough data yet". Modules unlock when the threshold is met.
-  const checklist: Array<{
-    label: string
-    have: number
-    need: number
-    sublabel: string
-  }> = [
-    {
-      label: "Official baseline exam",
-      have: Math.min(officialExamCount, 1),
-      need: 1,
-      sublabel: "Score entered",
-    },
-    {
-      label: "Quant attempts",
-      have: sectionAttemptCount.Quant,
-      need: 5,
-      sublabel: "Per-topic accuracy",
-    },
-    {
-      label: "Verbal attempts",
-      have: sectionAttemptCount.Verbal,
-      need: 5,
-      sublabel: "Per-topic accuracy",
-    },
-    {
-      label: "DI attempts",
-      have: sectionAttemptCount.DI,
-      need: 5,
-      sublabel: "Per-topic accuracy",
-    },
-    {
-      label: "Confidence ratings",
-      have: confidenceRatedCount,
-      need: 10,
-      sublabel: "Calibration signal",
-    },
-    {
-      label: "Weeks of practice",
-      have: weeksOfPractice,
-      need: 2,
-      sublabel: "Readiness trajectory",
-    },
-  ]
 
   const lockedModules: Array<{
     Icon: typeof BarChart3
@@ -629,12 +480,6 @@ function BaselineView({
       answers: "Are you over- or under-confident on what you know?",
       unlock: "Unlocks after 10+ confidence-rated answers.",
     },
-    {
-      Icon: BarChart3,
-      title: "Score-report mirror",
-      answers: "How will the GMAC ESR break down your performance?",
-      unlock: "Unlocks after enough section + question-type coverage.",
-    },
   ]
 
   // Hero CTA dynamically targets the most impactful next action.
@@ -642,9 +487,7 @@ function BaselineView({
   // the analytics page itself flips to active mode (not this branch).
   const primaryHref = baselineDone ? "/practice" : "/mock"
   const primaryLabel = baselineDone
-    ? totalAttempts === 0
-      ? "Run your first practice set"
-      : "Continue practice"
+    ? "Run your first practice set"
     : "Enter your baseline official exam"
 
   return (
@@ -681,10 +524,10 @@ function BaselineView({
             </span>
           </h1>
           <p className="mt-4 text-[15px] text-[#C0C0C0] leading-[1.7]">
-            Six analytics modules unlock as your data grows: readiness
+            Six analytics modules unlock as your data grows: accuracy
             trajectory, topic accuracy, section pacing, strengths &amp;
-            weaknesses, confidence calibration, and the score-report
-            mirror. Baseline exam first; the rest follow.
+            weaknesses, confidence calibration, and error-pattern review.
+            Baseline exam first; the rest follow.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link
@@ -709,10 +552,10 @@ function BaselineView({
         </div>
       </section>
 
-      {/* === Unlock checklist === */}
+      {/* === First step — the one real, trackable item at this stage === */}
       <section>
         <div className="flex items-center gap-3 mb-5">
-          <p className={EYEBROW_BASE}>Unlock checklist</p>
+          <p className={EYEBROW_BASE}>First step</p>
           <div
             className="h-px flex-1"
             style={{
@@ -721,85 +564,46 @@ function BaselineView({
             }}
             aria-hidden
           />
-          <span className="text-[11px] text-[#555555] tabular-nums">
-            {checklist.filter((r) => r.have >= r.need).length} /{" "}
-            {checklist.length} unlocked
-          </span>
         </div>
         <div className="rounded-xl border border-white/[0.06] bg-[#0D0D0D] p-2">
-          {checklist.map((row) => {
-            const done = row.have >= row.need
-            const pct = Math.min(100, Math.round((row.have / row.need) * 100))
-            return (
-              <div
-                key={row.label}
-                className="flex items-center gap-4 px-4 py-3 rounded-lg transition-colors"
+          <div className="flex items-center gap-4 px-4 py-3 rounded-lg">
+            <span
+              className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{
+                backgroundColor: baselineDone
+                  ? "rgba(62,207,142,0.15)"
+                  : "rgba(255,255,255,0.04)",
+                border: `1px solid ${
+                  baselineDone
+                    ? "rgba(62,207,142,0.35)"
+                    : "rgba(255,255,255,0.08)"
+                }`,
+              }}
+              aria-hidden
+            >
+              {baselineDone && (
+                <CheckCircle2
+                  className="w-3.5 h-3.5"
+                  style={{ color: "#3ECF8E" }}
+                />
+              )}
+            </span>
+            <div className="flex-1 min-w-0">
+              <p
+                className="text-[13px] font-semibold tracking-tight"
+                style={{
+                  color: baselineDone ? "rgba(240,240,240,0.7)" : "#F0F0F0",
+                }}
               >
-                <span
-                  className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    backgroundColor: done
-                      ? "rgba(62,207,142,0.15)"
-                      : "rgba(255,255,255,0.04)",
-                    border: `1px solid ${
-                      done
-                        ? "rgba(62,207,142,0.35)"
-                        : "rgba(255,255,255,0.08)"
-                    }`,
-                  }}
-                  aria-hidden
-                >
-                  {done && (
-                    <CheckCircle2
-                      className="w-3.5 h-3.5"
-                      style={{ color: "#3ECF8E" }}
-                    />
-                  )}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-3 mb-1.5">
-                    <p
-                      className="text-[13px] font-semibold tracking-tight"
-                      style={{
-                        color: done ? "rgba(240,240,240,0.7)" : "#F0F0F0",
-                      }}
-                    >
-                      {row.label}
-                    </p>
-                    <p
-                      className="text-[11px] tabular-nums flex-shrink-0"
-                      style={{
-                        color: done
-                          ? "#3ECF8E"
-                          : "rgba(255,255,255,0.45)",
-                      }}
-                    >
-                      {row.have} / {row.need}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="h-1 flex-1 rounded-full bg-white/[0.05] overflow-hidden">
-                      <div
-                        className="h-full rounded-full transition-all duration-500"
-                        style={{
-                          width: `${pct}%`,
-                          backgroundColor: done ? "#3ECF8E" : "#C9A84C",
-                        }}
-                      />
-                    </div>
-                    <span
-                      className="text-[10px] uppercase tracking-[0.18em] font-semibold flex-shrink-0"
-                      style={{
-                        color: done ? "#3ECF8E" : "rgba(255,255,255,0.4)",
-                      }}
-                    >
-                      {row.sublabel}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+                Official baseline exam
+              </p>
+              <p className="text-[11px] mt-0.5" style={{ color: "#888888" }}>
+                {baselineDone
+                  ? "Score entered — practice attempts unlock the modules below."
+                  : "Take an official mba.com practice exam and enter the score on the Mock page."}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Outreach Scripts (Third-Party Voice)
 
 Ready-to-use scripts for an **assistant or ambassador** who is doing outreach on Adam's behalf.
@@ -45,7 +47,7 @@ admissions/consulting/finance) where you have a genuine, true reason to connect.
 
 > Hi [name] — I saw [specific true detail, e.g. "you're applying to MBA programs this cycle" /
 > "your post about GMAT prep"]. I help with outreach for Zakarian GMAT, a prep platform built by
-> Adam Zakarian, who scored a 735 (100th percentile) on the GMAT Focus as a non-native speaker. It's
+> Adam Zakarian, who scored a 735 (top 1%) on the GMAT Focus as a non-native speaker. It's
 > free during a private beta right now. Happy to share it if it's useful — either way, glad to
 > connect.
 
@@ -63,7 +65,7 @@ or peer who is actually prepping (Segment B or E). This is your warmest, highest
 
 > Hey [name] — I've been using Zakarian GMAT and thought of you since you're [prepping for the GMAT /
 > retaking / targeting [school]]. It's a prep platform built by Adam Zakarian, who went from 565 to
-> 735 (100th percentile) and turned his exact system into the app. It's free right now while it's in
+> 735 (top 1%) and turned his exact system into the app. It's free right now while it's in
 > private beta — full access, no card.
 >
 > If you want, I'll send you the link and you can get a free personalized study plan set up. Want it?
@@ -89,7 +91,7 @@ required by anti-spam rules (`OUTREACH_QA_RULES.md`).
 > out since you're prepping for the GMAT."]
 >
 > I help with outreach for Zakarian GMAT, a GMAT Focus prep platform built by Adam Zakarian, who
-> scored 735 (100th percentile) as a non-native English speaker and went from 565 to 735. It has
+> scored 735 (top 1%) as a non-native English speaker and went from 565 to 735. It has
 > 50+ chapters across Quant, Verbal, and Data Insights and 1,900+ original practice questions, and
 > it's free to use during a private beta right now — full access, no credit card.
 >
@@ -116,7 +118,7 @@ explicitly said yes** to your message in script form. Never post a link in a gro
 **Script (to post once the admin approves):**
 
 > Hi everyone — sharing a free resource for anyone prepping for the GMAT Focus. Zakarian GMAT is a
-> prep platform built by Adam Zakarian, who scored 735 (100th percentile) as a non-native speaker
+> prep platform built by Adam Zakarian, who scored 735 (top 1%) as a non-native speaker
 > (565 to 735). It's free during a private beta right now — full platform access, plus a free
 > personalized study plan and free sample chapters. Link: https://www.zakariangmat.com
 >
@@ -172,7 +174,7 @@ your referral-tagged link, then send this.
 **Script:**
 
 > I've been using Zakarian GMAT and it's genuinely good — a GMAT Focus prep platform built by Adam
-> Zakarian, who went from 565 to 735 (100th percentile). It's free right now during a private beta:
+> Zakarian, who went from 565 to 735 (top 1%). It's free right now during a private beta:
 > 50+ chapters, 1,900+ practice questions, mock exams, and a personalized study plan.
 >
 > If you're prepping, here's my link: [paste your /refer link]. You'd get the founding discount when

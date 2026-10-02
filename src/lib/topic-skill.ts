@@ -248,7 +248,7 @@ export function pickAdaptiveOrder<
   // Seedable for tests; defaults to time-derived.
   const seed = options.seed ?? (Date.now() % 1_000_000)
   for (const tier of tierOrder) {
-    buckets[tier] = mulberrySort(buckets[tier], seed + tier.length)
+    buckets[tier] = seededShuffle(buckets[tier], seed + tier.length)
   }
 
   return [
@@ -311,9 +311,10 @@ function clamp(n: number, lo: number, hi: number): number {
 }
 
 /** Tiny seeded shuffle (mulberry32-ish). Not for crypto; just for
- *  stable-but-varying question order across sessions. */
-function mulberrySort<T>(items: T[], seed: number): T[] {
-  if (items.length <= 1) return items
+ *  stable-but-varying question order across sessions. Exported so the
+ *  sampling policy in `@/lib/question-selection` reuses the same RNG. */
+export function seededShuffle<T>(items: readonly T[], seed: number): T[] {
+  if (items.length <= 1) return items.slice()
   let s = seed >>> 0
   const next = () => {
     s = (s + 0x6d2b79f5) >>> 0

@@ -17,6 +17,7 @@ export const USER_STATE_KEYS = [
   "checkpoint_reviews",
   "topic_skill_levels",
   "official_exam_scores",
+  "active_practice",
 ] as const
 
 export type UserStateKey = (typeof USER_STATE_KEYS)[number]

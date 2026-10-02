@@ -25,6 +25,10 @@ sections:
     type: reading
     title: "Main idea falls out of your map"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -33,8 +37,8 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - reading-comprehension-q124
-      - reading-comprehension-q4
+      - reading-comprehension-q179
+      - reading-comprehension-q29
       - reading-comprehension-q126
   medium:
     target_accuracy_by_score:
@@ -43,10 +47,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - reading-comprehension-q112
-      - reading-comprehension-q7
-      - reading-comprehension-q8
+      - reading-comprehension-q21
+      - reading-comprehension-q37
+      - reading-comprehension-q45
 ---
+
+## @summary
+
+- State the passage's topic, purpose, and scope in one sentence before reading the choices.
+- The correct answer must cover the whole passage without becoming broader or narrower than the author's project.
+- Reject choices that elevate one vivid detail or one paragraph into the main point.
 
 ## @rc-main-idea
 

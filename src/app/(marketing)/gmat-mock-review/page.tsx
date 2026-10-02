@@ -51,15 +51,15 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       "q": "What score improvement can the platform get me?",
-      "a": "We don't make score-guarantee or typical-result claims, because honest prep can't promise a specific number for any individual. The one performance story we'll stand behind is the founder's: Adam Zakarian self-studied from 565 to 735 (100th percentile on his official GMAT Focus report) and built this platform around the exact review method that got him there. Your result depends on your work — what we provide is the system, not a promise. The platform is free to use during a private beta, no card required, so you can judge it on its own merits."
+      "a": "We don't make score-guarantee or typical-result claims, because honest prep can't promise a specific number for any individual. The one performance story we'll stand behind is the founder's: Adam Zakarian self-studied from 565 to 735 (top 1% of test-takers) and built this platform around the exact review method that got him there. Your result depends on your work — what we provide is the system, not a promise. Every new account starts with a free 7-day full-access trial, no card required, so you can judge it on its own merits."
     }
   ],
   "lead": {
     "source": "other",
-    "leadMagnet": "newsletter",
-    "headline": "Get the GMAT mock review checklist behind a 565-to-735 climb",
-    "description": "A free one-page checklist for reviewing any GMAT mock the right way: how to tag every miss by cause with the six-tag error log, how to catch the lucky right answers before they cost you, and how to read your pacing data. Built from the exact process behind the founder's 565-to-735 climb. Enter your email and we'll send the checklist plus the downloadable error-log template — no card, no spam.",
-    "ctaLabel": "Send it to me"
+    "leadMagnet": "error-log-template",
+    "headline": "Get the free six-tag error-log template",
+    "description": "The review method on this page runs on one tool: a log that tags every miss by cause. Enter your email and the exact six-tag spreadsheet from the founder's 565-to-735 climb downloads right away — no card, no account.",
+    "ctaLabel": "Send me the template"
   },
   "metaDescription": "The right way to review a GMAT mock exam. A question-by-question method that turns one practice test into your next score points, plus a mock-to-mock review system."
 }

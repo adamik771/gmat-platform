@@ -69,19 +69,20 @@ export default function OfflineDrillClient() {
   // effect so render stays pure (no Date.now() in initial render path).
   const startedAtRef = useRef<number>(0)
 
-  // Resolve the current user. We can't gate this server-side because
-  // /offline/drill is meant to load without server reach; instead we
-  // read whatever auth-cookie state Supabase JS has stashed locally.
-  // If there's no session, we still try the cached queue — keys are
-  // user-scoped and `loadReviewQueue("")` returns nothing, so we'll
-  // land in the no-cache state.
+  // Resolve the current user from the LOCALLY-stored session.
+  // getSession() reads the stashed auth state without a network call —
+  // getUser() is a round-trip to the Auth server, which made this page
+  // show "No cached drills yet" precisely when the student was offline
+  // (the feature's headline scenario). A possibly-stale local session is
+  // fine here: the id only selects a user-scoped IndexedDB key whose
+  // data already lives on this device.
   useEffect(() => {
     let cancelled = false
     ;(async () => {
       try {
         const supabase = createSupabaseBrowser()
-        const { data } = await supabase.auth.getUser()
-        if (!cancelled) setUserId(data.user?.id ?? "")
+        const { data } = await supabase.auth.getSession()
+        if (!cancelled) setUserId(data.session?.user?.id ?? "")
       } catch {
         if (!cancelled) setUserId("")
       }

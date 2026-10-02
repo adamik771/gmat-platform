@@ -1,14 +1,21 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Check } from "lucide-react"
+import { Check, MessageCircle } from "lucide-react"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import PricingCard from "@/components/marketing/PricingCard"
 import { tiers } from "@/lib/plans"
 import {
+  PAYWALL_ENABLED,
   getAccessForUser,
   trialDaysLeft,
   trialStartFor,
 } from "@/lib/entitlements"
+import {
+  MANUAL_PAYMENT_CONTACT_ENABLED,
+  manualPaymentMailto,
+  manualPaymentWhatsAppUrl,
+} from "@/lib/manual-payment"
+import { isOnlineCheckoutAvailable, TRIAL_END_HELP } from "@/lib/payment-options"
 
 export const metadata: Metadata = {
   title: "Choose your plan",
@@ -32,17 +39,31 @@ export default async function UpgradePage() {
   const access = user ? await getAccessForUser(supabase, user, now) : "none"
   const daysLeft = user ? trialDaysLeft(trialStartFor(user), now) : 0
   const stillTrialing = access === "trialing"
+  const manualPaymentMode =
+    PAYWALL_ENABLED && MANUAL_PAYMENT_CONTACT_ENABLED
+  const checkoutAvailable = tiers.some((tier) => isOnlineCheckoutAvailable(tier.stripePriceId))
+  const accessPaused = PAYWALL_ENABLED && access === "trial_expired"
+  const contactIntent = manualPaymentMode && access === "trial_expired" ? "continue" : "enquiry"
 
   // "none" = no trial ever started (rare — pre-backfill/pre-epoch accounts);
   // don't tell that user a trial "ended" that never began.
-  const heading = stillTrialing
-    ? `You're on your free trial — ${daysLeft} day${daysLeft === 1 ? "" : "s"} left`
-    : access === "none"
-      ? "Choose a plan to unlock the full platform"
-      : "Your free trial has ended"
-  const sub = stillTrialing
-    ? "Lock in full access whenever you're ready — or keep going until your trial runs out."
-    : "Choose a plan to pick up right where you left off. Everything you've done is saved."
+  let heading: string
+  let sub: string
+  if (access === "paid") {
+    heading = "Your paid access is active"
+    sub = "You can keep studying on your current plan. Contact Adam if you would like to discuss a change."
+  } else if (!PAYWALL_ENABLED) {
+    heading = "Explore your plan options"
+    sub = TRIAL_END_HELP
+  } else if (stillTrialing) {
+    heading = `You're on your free trial — ${daysLeft} day${daysLeft === 1 ? "" : "s"} left`
+    sub = "Lock in full access whenever you're ready — or keep going until your trial runs out."
+  } else {
+    heading = access === "none" ? "Choose a plan to unlock the full platform" : "Your free trial has ended"
+    sub = checkoutAvailable
+      ? "Choose a plan to pick up right where you left off. Everything you've done is saved."
+      : "Online checkout is temporarily unavailable. Ask Adam about payment options and access on this same account. He will confirm the details before you decide."
+  }
 
   return (
     <div style={{ backgroundColor: "#0A0A0A" }} className="min-h-screen">
@@ -60,7 +81,7 @@ export default async function UpgradePage() {
             className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
             style={{ color: "#C9A84C" }}
           >
-            {stillTrialing ? "Free trial" : "Continue your prep"}
+            {PAYWALL_ENABLED && stillTrialing ? "Free trial" : "Your plan"}
           </p>
           <h1 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
             {heading}
@@ -78,13 +99,44 @@ export default async function UpgradePage() {
 
       <section className="pb-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {!checkoutAvailable && (
+            <div className="mx-auto mb-8 flex max-w-3xl items-start gap-4 rounded-lg border border-[#C9A84C]/30 bg-[#14120D] p-5 text-left">
+              <MessageCircle
+                aria-hidden="true"
+                className="mt-0.5 h-5 w-5 shrink-0 text-[#C9A84C]"
+              />
+              <div>
+                <h2 className="text-base font-semibold text-[#F0F0F0]">
+                  Questions about payment?
+                </h2>
+                <p className="mt-1 text-sm leading-relaxed text-[#B9B7AE]">
+                  Ask about your chosen plan by WhatsApp or email. Adam can
+                  confirm availability, the total price and access dates before
+                  you decide. {accessPaused
+                    ? "Your study history remains in place while access is paused."
+                    : "Sending an enquiry does not change your current access."}
+                </p>
+              </div>
+            </div>
+          )}
           <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {tiers.map((tier) => (
-              <PricingCard key={tier.id} tier={tier} checkoutCancelPath="/upgrade" />
+              <PricingCard
+                key={tier.id}
+                tier={tier}
+                checkoutCancelPath="/upgrade"
+                purchasable={isOnlineCheckoutAvailable(tier.stripePriceId)}
+                reservationAvailable={false}
+                manualContactHref={manualPaymentWhatsAppUrl({ planName: tier.name, intent: contactIntent })}
+                manualEmailHref={manualPaymentMailto({ planName: tier.name, accountEmail: user?.email, intent: contactIntent })}
+                contactLabel={contactIntent === "continue" ? "Continue on WhatsApp" : `Ask about ${tier.id === "self_study_guaranteed" ? "Mentorship" : tier.name}`}
+              />
             ))}
           </div>
           <p className="text-center text-[12px] text-[#555555] mt-10">
-            Payments are handled securely by Stripe. Questions?{" "}
+            {!checkoutAvailable
+              ? "No payment details are entered on this website while online checkout is unavailable."
+              : "Available online checkouts use Stripe. Contact Adam for any plan without an active checkout."}{" "}
             <Link href="/contact" className="underline hover:text-[#888888]">
               Get in touch
             </Link>

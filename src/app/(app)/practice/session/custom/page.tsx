@@ -92,14 +92,18 @@ export default async function CustomSessionPage({
   // Saved-for-review ids so the save button reflects server truth here too.
   // Best-effort: anonymous/errored just means an empty seed.
   let savedForReview: string[] = []
+  let userId = ""
+  let initialActivePractice: unknown = null
   try {
     const supabase = await createSupabaseServer()
     const {
       data: { user },
     } = await supabase.auth.getUser()
     if (user) {
+      userId = user.id
       const state = await getUserState(supabase, user)
       savedForReview = Array.from(readSavedForReview(state))
+      initialActivePractice = state.active_practice ?? null
     }
   } catch {
     /* render unauthenticated */
@@ -107,11 +111,13 @@ export default async function CustomSessionPage({
 
   return (
     <SessionClient
+      userId={userId}
       slug="custom"
       topic={topicLabel}
       section={sectionLabel}
       questions={playable}
       initialSavedForReview={savedForReview}
+      initialActivePractice={initialActivePractice}
     />
   )
 }

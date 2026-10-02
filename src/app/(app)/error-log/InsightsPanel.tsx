@@ -253,7 +253,7 @@ function PriorityFixRow({ fix, ordinal }: { fix: PriorityFix; ordinal: number })
           >
             {fix.kind === "trap" ? "Trap" : "Sub-skill"}
           </span>
-          <span className="text-[11px] text-[#555555] tracking-tight">
+          <span className="text-[11px] text-[#888888] tracking-tight">
             {fix.misses} miss{fix.misses === 1 ? "" : "es"}
           </span>
         </div>
@@ -336,7 +336,7 @@ function WeaknessCard({
       <p className="text-[14px] font-semibold text-[#F0F0F0] tracking-tight mb-1">
         {w.subskill}
       </p>
-      <p className="text-[11px] text-[#555555] mb-2">{w.topic}</p>
+      <p className="text-[11px] text-[#888888] mb-2">{w.topic}</p>
       <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.16em] font-medium mb-3">
         {w.byDifficulty.Beginner > 0 && (
           <span className="text-[#3ECF8E]">
@@ -443,7 +443,7 @@ function ColumnCard({
         </p>
       </div>
       {items.length === 0 ? (
-        <p className="text-[12px] text-[#555555] italic">{empty}</p>
+        <p className="text-[12px] text-[#888888] italic">{empty}</p>
       ) : (
         <ul className="space-y-2">
           {items.map((it) => (
@@ -453,7 +453,7 @@ function ColumnCard({
                 className="group flex items-start gap-3 -mx-1 px-1 py-1.5 rounded transition-colors hover:bg-white/[0.02]"
               >
                 <ArrowRight
-                  className="w-3.5 h-3.5 mt-1 flex-shrink-0 text-[#555555] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
+                  className="w-3.5 h-3.5 mt-1 flex-shrink-0 text-[#888888] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
                   aria-hidden
                 />
                 <div className="flex-1 min-w-0">

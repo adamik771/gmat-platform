@@ -32,7 +32,7 @@ Here is the day-by-day structure. Treat it as a scaffold, not a prison. If life 
 
 ### Day -6: Mock Analysis, No New Material
 - Spend 60 to 90 minutes on the mock. Categorize every miss: content gap, strategy error, careless error, or timing error.
-- Identify 2 to 3 patterns — not 10. If your DS on weighted averages broke twice, that is a pattern. If you missed one geometry question, that is noise.
+- Identify 2 to 3 patterns — not 10. If your DS on weighted averages broke twice, that is a pattern. If you missed one probability question, that is noise.
 - Write the patterns down. These are what you drill tomorrow. Everything else you leave alone.
 - Rationale: you are compressing the mock into a short, specific to-do list. Breadth is your enemy this week.
 
@@ -74,7 +74,7 @@ The difference between a productive final week and a destructive one usually com
 
 ### Review: Things That Must Be Automatic
 
-- **Core formulas**: Pythagorean triples (3-4-5, 5-12-13, 8-15-17), quadratic formula, the distance-rate-time triangle, simple and compound interest, permutations and combinations, probability basics. If you have to think about these on test day, you lose seconds that compound.
+- **Core formulas**: the quadratic formula, the distance-rate-time triangle, simple and compound interest, permutations and combinations, probability basics. If you have to think about these on test day, you lose seconds that compound.
 - **Percent and fraction conversions**: 1/8 = 12.5%, 1/6 = 16.67%, 1/3 = 33.33%, 3/8 = 37.5%, 5/8 = 62.5%. These come up everywhere and you should not be dividing on scratch.
 - **Exponent and root rules**: product rule, quotient rule, power rule, negative and fractional exponents.
 - **Number properties rules**: divisibility rules for 2, 3, 4, 5, 6, 8, 9, 11. Prime factorization habits. Even/odd algebra.

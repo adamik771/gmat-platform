@@ -14,13 +14,17 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q57
-      - critical-reasoning-q58
+      - critical-reasoning-q190
+      - critical-reasoning-q159
   - id: cr-paradox
     type: reading
     title: "CR: Paradox"
     check_question_ids:
-      - critical-reasoning-q59
+      - critical-reasoning-q27
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -30,8 +34,8 @@ problem_sets:
       "725": 100
     question_ids:
       - critical-reasoning-q157
-      - critical-reasoning-q60
-      - critical-reasoning-q61
+      - critical-reasoning-q55
+      - critical-reasoning-q34
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,10 +43,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q62
+      - critical-reasoning-q44
       - critical-reasoning-q63
-      - critical-reasoning-q64
+      - critical-reasoning-q158
 ---
+
+## @summary
+
+- Hold both apparently conflicting facts as true; the answer must explain how they can coexist.
+- Look for a hidden distinction in groups, timing, definitions, incentives, or an offsetting effect.
+- Reject answers that explain only one side, restate the surprise, or require denying a stated fact.
 
 ## @cr-paradox
 

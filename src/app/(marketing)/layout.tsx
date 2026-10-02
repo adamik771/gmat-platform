@@ -13,7 +13,7 @@ export default function MarketingLayout({
         Skip to content
       </a>
       <Navbar />
-      <main id="main-content">{children}</main>
+      <main id="main-content" className="marketing-editorial">{children}</main>
       <Footer />
       <MarketingFeedbackButton />
     </>

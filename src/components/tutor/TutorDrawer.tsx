@@ -62,13 +62,19 @@ export default function TutorDrawer({
   }, [messages, pending])
 
   // Focus the input when the drawer opens — keeps the interaction one
-  // keystroke away from "Drill it" → "Ask".
+  // keystroke away from "Drill it" → "Ask" — and return focus to the
+  // trigger on close (closing used to strand keyboard focus inside the
+  // hidden drawer).
+  const triggerRef = useRef<HTMLElement | null>(null)
   useEffect(() => {
     if (open) {
+      triggerRef.current = document.activeElement as HTMLElement | null
       // Delay slightly so the slide-in animation doesn't fight focus.
       const t = setTimeout(() => inputRef.current?.focus(), 80)
       return () => clearTimeout(t)
     }
+    triggerRef.current?.focus?.()
+    triggerRef.current = null
   }, [open])
 
   // Esc closes; nothing else captures it on the practice page.
@@ -90,6 +96,11 @@ export default function TutorDrawer({
     setMessages(next)
     setInput("")
     setPending(true)
+    // Capture the question this send belongs to: if the student advances
+    // mid-reply, the response must not land on (or roll back) the NEXT
+    // question's transcript.
+    const askedFor = questionId
+    const stillCurrent = () => lastQuestionRef.current === askedFor
     try {
       const res = await fetch("/api/tutor", {
         method: "POST",
@@ -101,11 +112,13 @@ export default function TutorDrawer({
         throw new Error(j.error || `Tutor error (${res.status})`)
       }
       const j = (await res.json()) as { reply: string }
+      if (!stillCurrent()) return
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: j.reply || "(no response)" },
       ])
     } catch (e) {
+      if (!stillCurrent()) return
       // Roll back the optimistic user message so the student can edit
       // and retry without a duplicated turn in the transcript.
       setMessages((prev) => prev.slice(0, -1))
@@ -140,6 +153,11 @@ export default function TutorDrawer({
         role="dialog"
         aria-label="GMAT tutor"
         aria-hidden={!open}
+        /* inert removes the CLOSED drawer from the tab order — aria-hidden
+           alone left 7 focusable ghost stops (close, presets, textarea,
+           send) that keyboard users tabbed through invisibly on every
+           question. */
+        inert={!open}
       >
         {/* Header */}
         <div
@@ -319,7 +337,7 @@ export default function TutorDrawer({
               <ArrowUp className="w-4 h-4" />
             </button>
           </form>
-          <p className="text-[10px] text-[#555555] mt-2 leading-snug">
+          <p className="text-[10px] text-[#888888] mt-2 leading-snug">
             Press Enter to send · Shift+Enter for newline · Tutor stays in scope
             for this question.
           </p>

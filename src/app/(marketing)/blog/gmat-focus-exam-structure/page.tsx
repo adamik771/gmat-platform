@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 import Link from "next/link"
 import { ArrowRight, Clock } from "lucide-react"
 import JsonLd from "@/components/seo/JsonLd"
@@ -452,7 +453,7 @@ export default function PostPage() {
 
           <H2>The platform</H2>
           <p>
-            Zakarian GMAT&apos;s 50+ chapters are built around this exact
+            Zakarian GMAT&apos;s {CHAPTER_COUNT_CLAIM} chapters are built around this exact
             structure &mdash; Quant, Verbal, and Data Insights taught as the
             three equally-weighted pillars they are on the real exam, with
             full-length mocks that mirror the 3-section, 45-minute,

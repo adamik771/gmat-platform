@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 import Link from "next/link"
 import { ArrowRight, Clock } from "lucide-react"
 import JsonLd from "@/components/seo/JsonLd"
@@ -376,7 +377,7 @@ export default function PostPage() {
             The error log&apos;s six-tag taxonomy separates the misses that came
             from time pressure from the ones that came from a genuine gap &mdash;
             so you can tell whether the algorithm is catching a weak topic or
-            just a panicked clock. Across 50+ chapters, the teaching is built
+            just a panicked clock. Across {CHAPTER_COUNT_CLAIM} chapters, the teaching is built
             for the test as it actually scores, not the folklore version. The
             sample chapter is free if you want to see how it teaches first.
           </p>

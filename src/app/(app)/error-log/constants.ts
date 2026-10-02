@@ -16,6 +16,24 @@
  * array.
  */
 
+/**
+ * Newest-first comparator for error-log entries. Entries without a
+ * timestamp (orphaned session join) sink to the bottom; ties break on id
+ * so the order is stable across renders.
+ */
+export function byMostRecent(
+  a: { createdAt: string | null; id: string },
+  b: { createdAt: string | null; id: string }
+): number {
+  const ta = a.createdAt ? Date.parse(a.createdAt) : NaN
+  const tb = b.createdAt ? Date.parse(b.createdAt) : NaN
+  const aValid = Number.isFinite(ta)
+  const bValid = Number.isFinite(tb)
+  if (aValid && bValid && tb !== ta) return tb - ta
+  if (aValid !== bValid) return aValid ? -1 : 1
+  return a.id < b.id ? 1 : a.id > b.id ? -1 : 0
+}
+
 export type ErrorFamily =
   | "Knowledge"
   | "Translation"

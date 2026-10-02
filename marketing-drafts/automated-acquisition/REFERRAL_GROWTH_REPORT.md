@@ -1,3 +1,5 @@
+> **ARCHIVED (2026-07-19)** - historical snapshot; wording predates the current claim rules (offer: free 7-day full-access trial, no card; founder result: 565 to 735, top 1%, framed only as Adam's personal result; no "verified"/proof framing until the redacted score report actually ships). Reference only - do not build campaigns from this file.
+
 # Referral Loop — Audit & Improvement Plan
 
 Owner: Adam. Scope: the Zakarian GMAT referral loop during the free private beta (PAYWALL_ENABLED off, Stripe test-mode). This is an internal launch doc. Compliance reminder for any copy edits below: no score/percentile/timeline promises, no GMAC affiliation, the only performance claim allowed is the founder's own 565 to 735 (100th percentile), it IS a free private beta, no fake urgency or scarcity, no emojis.

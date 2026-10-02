@@ -4,7 +4,7 @@ import AcquisitionLanding, {
 } from "@/components/marketing/AcquisitionLanding"
 
 export const metadata: Metadata = {
-  title: "GMAT Data Sufficiency Practice | Zakarian GMAT",
+  title: "GMAT Data Sufficiency Practice",
   description:
     "Practice GMAT Data Sufficiency the smart way: the AD/BCE decision grid, the classic traps, and deliberate timed drills. On the Focus Edition, DS lives in Data Insights.",
   alternates: { canonical: "/gmat-data-sufficiency-practice" },
@@ -40,7 +40,7 @@ const DATA: AcquisitionLandingProps = {
     {
       heading: "How the Platform Supports Data Sufficiency Work",
       body:
-        "Zakarian GMAT is an independent GMAT Focus Edition prep platform built by Adam Zakarian, who self-studied from a 565 to a 735 (100th percentile on his own official GMAT Focus score report) and built the tools he wished he had had. It treats Data Sufficiency as the Data Insights skill it now is, not a Quant afterthought.\n\nThe platform pairs structured Data Insights chapters — including dedicated Data Sufficiency instruction — with a large bank of original practice questions written in the DS format. The pieces are designed to work together rather than in isolation:\n\n- Interactive Data Insights chapters that teach the AD/BCE framework and the common traps before you drill.\n- An original question bank for timed DS sets, with per-topic and per-difficulty analytics so you can see where sufficiency breaks down.\n- A six-tag error log (Conceptual, Careless, Time Pressure, Misread, Strategy, Other) so every miss is filed by cause, not just counted.\n- A daily spaced-review queue (same-day, then 2, 7, 21, and 42 days) that resurfaces the questions you got wrong before you forget the lesson.\n\nThe questions are original and modeled on the format; they are not official GMAT questions, and Zakarian GMAT is not affiliated with or endorsed by GMAC. It is free during the current private beta — no credit card required.",
+        "Zakarian GMAT is an independent GMAT Focus Edition prep platform built by Adam Zakarian, who self-studied from a 565 to a 735 (top 1% of test-takers) and built the tools he wished he had had. It treats Data Sufficiency as the Data Insights skill it now is, not a Quant afterthought.\n\nThe platform pairs structured Data Insights chapters — including dedicated Data Sufficiency instruction — with a large bank of original practice questions written in the DS format. The pieces are designed to work together rather than in isolation:\n\n- Interactive Data Insights chapters that teach the AD/BCE framework and the common traps before you drill.\n- An original question bank for timed DS sets, with per-topic and per-difficulty analytics so you can see where sufficiency breaks down.\n- A six-tag error log (Conceptual, Careless, Time Pressure, Misread, Strategy, Other) so every miss is filed by cause, not just counted.\n- A daily spaced-review queue (same-day, then 2, 7, 21, and 42 days) that resurfaces the questions you got wrong before you forget the lesson.\n\nThe questions are original and modeled on the format; they are not official GMAT questions, and Zakarian GMAT is not affiliated with or endorsed by GMAC. Every new account starts with a free 7-day full-access trial — no credit card required.",
     },
   ],
   faq: [
@@ -54,11 +54,11 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       q: "Are these official GMAT questions?",
-      a: "No. The questions on the platform are original, written in-house and modeled on the Data Sufficiency format. They are not official GMAT questions, and Zakarian GMAT is not affiliated with or endorsed by GMAC. The GMAT and GMAT Focus Edition are trademarks of GMAC, referenced here only descriptively.",
+      a: "No. The questions on the platform are independently created and modeled on the Data Sufficiency format. They are not official GMAT questions. GMAT and related marks are trademarks of GMAC; Zakarian GMAT is independent and is not affiliated with, endorsed by, or sponsored by GMAC.",
     },
     {
       q: "Is it free?",
-      a: "Yes, it is free during the current private beta — no credit card required. You get access to the Data Insights chapters, the original question bank, the six-tag error log, and the daily spaced-review queue while the beta is open.",
+      a: "Yes — every new account starts with a free 7-day full-access trial, no credit card required. That covers the Data Insights chapters, the original question bank, the six-tag error log, and the daily spaced-review queue.",
     },
   ],
   lead: {
@@ -94,7 +94,7 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
   },
   {
     label: "Error Log Template",
-    href: "/error-log-template",
+    href: "/gmat-error-log-template",
     description:
       "The six-tag error log that files every Data Sufficiency miss by its real cause.",
   },

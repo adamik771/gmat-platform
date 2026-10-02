@@ -6,6 +6,7 @@
  */
 
 import type { LucideIcon } from "lucide-react"
+import { localDayIso } from "./utils"
 import {
   Award,
   BookOpen,
@@ -34,7 +35,13 @@ export interface StreakResult {
  * today, or yesterday (grace so users don't lose their streak before
  * midnight ends in their timezone). Everything breaks at a full missed day.
  */
-export function computeStreaks(activeDays: Set<string>): StreakResult {
+export function computeStreaks(
+  activeDays: Set<string>,
+  /** IANA timezone for "today" — without it the server's zone (UTC in
+   *  prod) decides when a streak day rolls over, which broke streaks for
+   *  anyone practicing after 00:00 UTC local-evening. */
+  tz?: string | null
+): StreakResult {
   if (activeDays.size === 0) {
     return { current: 0, longest: 0, activeToday: false }
   }
@@ -61,12 +68,9 @@ export function computeStreaks(activeDays: Set<string>): StreakResult {
     // gap === 0 shouldn't happen — Set dedupes — but ignore if it does.
   }
 
-  // Current streak anchored on today or yesterday.
-  const now = new Date()
-  const todayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(
-    2,
-    "0"
-  )}-${String(now.getDate()).padStart(2, "0")}`
+  // Current streak anchored on today or yesterday — "today" in the
+  // USER's zone when known.
+  const todayKey = localDayIso(new Date(), tz)
   const activeToday = activeDays.has(todayKey)
 
   let current = 0
@@ -97,6 +101,11 @@ export interface BadgeInput {
   totalSessions: number
   totalQuestions: number
   lessonsCompleted: number
+  /** Total units in the curriculum (chapters + legacy lessons) — the
+   *  denominator for "Curriculum Complete". The old hardcoded 8 was
+   *  sized for the deprecated 8-lesson library and unlocked the badge
+   *  at 8 of 62 chapters once chapter reads started counting. */
+  curriculumSize?: number
   longestStreak: number
   currentStreak: number
   taggedMistakeCount: number
@@ -187,10 +196,8 @@ export function computeBadges(input: BadgeInput): Badge[] {
     {
       id: "all-lessons",
       label: "Curriculum Complete",
-      description: "Finish every lesson in the course.",
-      // Threshold stays at 8 because the curriculum is fixed — if we ever
-      // add lessons, this badge moves automatically.
-      unlocked: input.lessonsCompleted >= 8,
+      description: "Read every chapter in the course.",
+      unlocked: input.lessonsCompleted >= (input.curriculumSize ?? 8),
       icon: Trophy,
     },
   ]

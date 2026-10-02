@@ -14,13 +14,17 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q131
-      - critical-reasoning-q189
+      - critical-reasoning-q179
+      - critical-reasoning-q182
   - id: cr-argument-structure
     type: reading
     title: "CR: Argument Structure"
     check_question_ids:
-      - critical-reasoning-q3
+      - critical-reasoning-q185
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -31,7 +35,7 @@ problem_sets:
     question_ids:
       - critical-reasoning-q133
       - critical-reasoning-q4
-      - critical-reasoning-q5
+      - critical-reasoning-q247
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -43,6 +47,12 @@ problem_sets:
       - critical-reasoning-q7
       - critical-reasoning-q8
 ---
+
+## @summary
+
+- Separate the main conclusion from premises, background, and intermediate conclusions.
+- Map how each statement supports, qualifies, or challenges another instead of summarizing the topic.
+- Answer role and method questions in abstract logical language before matching the choices.
 
 ## @cr-argument-structure
 

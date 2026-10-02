@@ -118,10 +118,10 @@ problem_sets:
       - two-part-analysis-q86
       - two-part-analysis-q20
       - two-part-analysis-q21
-      - two-part-analysis-q22
+      - two-part-analysis-q61
       - two-part-analysis-q24
       - two-part-analysis-q25
-      - two-part-analysis-q34
+      - two-part-analysis-q69
       - two-part-analysis-q49
 ---
 

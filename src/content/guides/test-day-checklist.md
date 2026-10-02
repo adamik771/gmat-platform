@@ -66,7 +66,7 @@ Customize based on whether you're taking the test at a **test center** or **onli
 
 **Light drill day.** 30-60 minutes max. Review your error log's recurring themes.
 
-**Final Quant formula sweep.** Run through the formula sheet, self-quiz on: quadratic formula, Pythagorean triples, 30-60-90 ratios, percent-change formula, probability basics, exponent rules. If any feel unfamiliar, spend 15 minutes drilling that specific area.
+**Final Quant formula sweep.** Run through the formula sheet, self-quiz on: quadratic formula, percent-change formula, probability basics, exponent rules. If any feel unfamiliar, spend 15 minutes drilling that specific area.
 
 **Hydration.** Start intentional hydration today. 64+ oz water daily through test day.
 

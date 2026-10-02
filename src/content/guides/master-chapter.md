@@ -1,6 +1,6 @@
 ---
 title: GMAT Master Chapter
-description: The full strategic playbook — how to think across all three sections like a 700+ scorer. Quant method selection, Verbal argument reading, Data Insights filtering, and the decision habits that separate 90th percentile thinking from everything below it.
+description: The full strategic playbook — how to think across all three sections like a top scorer. Quant method selection, Verbal argument reading, Data Insights filtering, and the decision habits that separate 90th percentile thinking from everything below it.
 section: General
 type: reference
 ---
@@ -25,7 +25,7 @@ This chapter is long because the section structure is deep. It is not long becau
 
 ### Section overview
 
-On the surface, Quant tests algebra, arithmetic, number properties, and a narrow slice of geometry and statistics. No calculus. No trigonometry. No advanced combinatorics. The raw knowledge required is covered by a strong high school curriculum.
+On the surface, Quant tests algebra, arithmetic, number properties, and statistics. No geometry (removed from GMAT Focus Quant — light geometric reasoning can still appear inside Data Insights contexts). No calculus. No trigonometry. No advanced combinatorics. The raw knowledge required is covered by a strong high school curriculum.
 
 Underneath, Quant tests three things in this order of importance: method selection, precision under speed, and pattern recognition. Method selection — given a problem and five answer choices, which of several legitimate approaches gets you to the answer fastest? — is the single largest lever above the 70th percentile. Precision under speed is whether you can compute accurately at roughly two minutes per problem, including translation and recovery from the occasional false start. Pattern recognition is whether you can see that today's problem is structurally identical to something you've solved before, even when the surface detail looks different.
 
@@ -37,7 +37,7 @@ Most students misdiagnose reasoning gaps as knowledge gaps and spend weeks re-st
 
 ### Core mindset
 
-Before computing anything, scan the problem and answer choices for thirty seconds and ask four questions. What's the shape — word problem, algebra manipulation, number property, geometry, probability? What's the variable — one unknown, two, or none? What do the answer choices tell me — are they numeric and plausible to test, variable expressions, nice fractions, or odd decimals that rule out estimation? Is there a hidden constraint — "positive integer," "distinct," "at least one," "greater than zero"? These aren't decoration. Circle them mentally.
+Before computing anything, scan the problem and answer choices for thirty seconds and ask four questions. What's the shape — word problem, algebra manipulation, number property, probability? What's the variable — one unknown, two, or none? What do the answer choices tell me — are they numeric and plausible to test, variable expressions, nice fractions, or odd decimals that rule out estimation? Is there a hidden constraint — "positive integer," "distinct," "at least one," "greater than zero"? These aren't decoration. Circle them mentally.
 
 Most Quant problems contain at least one irrelevant or redundant detail, included to test whether you can identify what drives the problem. Names, units that cancel, parenthetical clarifications, elaborate scenario setup that collapses into one equation. Read for the equation, not the story.
 
@@ -195,7 +195,9 @@ Traps: confusing combinations with permutations — a committee of 3 from 10 is 
 
 Example. A jar has 6 red and 4 blue marbles. Three drawn without replacement. Probability of at least one red? Complement: P(none red) = C(4,3)/C(10,3) = 4/120 = 1/30. Answer = 1 − 1/30 = 29/30.
 
-#### Coordinate geometry
+#### Coordinate geometry (not tested on GMAT Focus Quant — optional background)
+
+Geometry was removed from the Focus Quant section. This subsection stays as optional background only: light coordinate reasoning can surface inside Data Insights contexts (reading points off a scatter plot, slope-as-rate), and the ideas below cost little to keep warm.
 
 Must-know: distance, slope, line equations in slope-intercept (y = mx + b) and standard (ax + by = c) form, parallel lines have equal slopes, perpendicular lines have slopes whose product is −1, midpoint is the average of coordinates.
 

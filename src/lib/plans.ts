@@ -1,6 +1,7 @@
 import type { PricingTier } from "@/types"
 import { STRIPE_PRICES } from "@/lib/stripe"
 import { QUESTION_CLAIM } from "@/lib/site"
+import { PLAN_ACCESS_MONTHS } from "@/lib/plan-access"
 
 /**
  * The canonical 4-tier plan list. Shared by the public /pricing page and the
@@ -27,7 +28,7 @@ export const tiers: PricingTier[] = [
       { text: "Official-exam study plan & score tracking", included: true },
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
       { text: "Error log + spaced review queue", included: true },
-      { text: "4-month platform access", included: true },
+      { text: `${PLAN_ACCESS_MONTHS.self_study}-month platform access`, included: true },
       { text: "WhatsApp Q&A access with Adam", included: false },
       { text: "1:1 coaching sessions", included: false },
     ],
@@ -50,7 +51,7 @@ export const tiers: PricingTier[] = [
       { text: "Official-exam study plan & score tracking", included: true },
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
       { text: "Error log + spaced review queue", included: true },
-      { text: "6-month platform access", included: true },
+      { text: `${PLAN_ACCESS_MONTHS.self_study_guaranteed}-month platform access`, included: true },
       { text: "WhatsApp Q&A access with Adam", included: true },
       { text: "1:1 coaching sessions", included: false },
     ],
@@ -73,7 +74,7 @@ export const tiers: PricingTier[] = [
       { text: "Official-exam study plan & score tracking", included: true },
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
       { text: "Error log + spaced review queue", included: true },
-      { text: "6-month platform access", included: true },
+      { text: `${PLAN_ACCESS_MONTHS.coaching}-month platform access`, included: true },
       { text: "WhatsApp Q&A access with Adam", included: true },
       { text: "8 weekly 1:1 coaching sessions", included: true },
     ],
@@ -96,7 +97,7 @@ export const tiers: PricingTier[] = [
       { text: "Official-exam study plan & score tracking", included: true },
       { text: "Full analytics — accuracy, pacing, calibration", included: true },
       { text: "Error log + spaced review queue", included: true },
-      { text: "12-month platform access", included: true },
+      { text: `${PLAN_ACCESS_MONTHS.intensive}-month platform access`, included: true },
       { text: "WhatsApp Q&A access with Adam", included: true },
       { text: "16 weekly 1:1 coaching sessions", included: true },
     ],

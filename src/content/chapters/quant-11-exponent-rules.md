@@ -2,7 +2,7 @@
 slug: quant-11-exponent-rules
 title: "Exponents: The Rules & Scientific Notation"
 section: Quant
-estimated_minutes: 8
+estimated_minutes: 80
 prerequisites:
   - quant-10-primes-remainders
 summary: |
@@ -38,6 +38,10 @@ sections:
     check_question_ids:
       - exponents-roots-q3
       - exponents-roots-q9
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -58,6 +62,12 @@ problem_sets:
       - exponents-roots-q39
       - exponents-roots-q6
 ---
+
+## @summary
+
+- Combine exponents only when the bases or powers permit it; do not distribute an exponent across addition.
+- A negative exponent means reciprocal, and a fractional exponent combines a root with a power.
+- For equations, rewrite both sides with a common base before comparing exponents.
 
 ## @integer-exponents-rules
 

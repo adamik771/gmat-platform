@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # SEO Page Plan
 
 Zakarian GMAT (zakariangmat.com) — search-led acquisition page set, content rules, internal-linking map, build backlog, and on-page checklist.
@@ -10,7 +12,7 @@ This plan governs the SEO surface only. Paid channels (Google/Reddit/LinkedIn/Me
 
 **Every page must earn its ranking by being genuinely useful.** A page ships only when it answers the target query better than what a stuck test-taker would otherwise find. No doorway pages, no spun variants, no "GMAT prep in [city]" templated junk, no auto-generated tag archives.
 
-**Truth and compliance are gates, not guidelines.** Before any page is published it must pass the compliance review in Section 6. The only performance claim anywhere on the site is the founder's own 565 -> 735 climb (100th percentile on his official report). No guaranteed scores. No diagnostic/score-band/readiness language anywhere — the platform has no in-app diagnostic; the baseline is always the user's own official mba.com practice exam. GMAC/GMAT/GMAT Focus/mba.com are referenced only nominatively, with the standing "not affiliated / not endorsed" disclaimer in the footer.
+**Truth and compliance are gates, not guidelines.** Before any page is published it must pass the compliance review in Section 6. The only performance claim anywhere on the site is the founder's own 565 -> 735 climb (top 1%). No guaranteed scores. No diagnostic/score-band/readiness language anywhere — the platform has no in-app diagnostic; the baseline is always the user's own official mba.com practice exam. GMAC/GMAT/GMAT Focus/mba.com are referenced only nominatively, with the standing "not affiliated / not endorsed" disclaimer in the footer.
 
 **One primary intent per URL.** Each page targets exactly one query cluster. If two intents fight for the same page, split them.
 
@@ -221,7 +223,7 @@ For each URL:
 - [ ] Footer (site-wide) carries the nominative-use disclaimer: not affiliated with, endorsed by, or sponsored by GMAC, the GMAT, GMAT Focus, or mba.com.
 - [ ] No guaranteed-score language anywhere.
 - [ ] No "diagnostic", "free diagnostic", "30-question", "readiness band", "score band", "typically lands", or "most students see/improve" phrasing. The baseline is always described as the user's own official mba.com practice exam.
-- [ ] The only performance claim is the founder's own 565 -> 735 / 100th-percentile climb, framed as his result and never generalized to other students. (Keep "100th percentile" — backed by `public/score-report.png`.)
+- [ ] The only performance claim is the founder's own 565 -> 735 / top-1% climb, framed as his result and never generalized to other students. (Use "top 1%"; no verification/proof framing until `public/score-report.png` actually ships.)
 - [ ] No fabricated testimonials, student counts, urgency timers, or fake scarcity.
 - [ ] Pricing copy is accurate: free during private beta (no card); founding $399 anchored to the $599 mentorship tier; referral = friend gets founding price, referrer gets $50.
 - [ ] No emojis anywhere on the page.

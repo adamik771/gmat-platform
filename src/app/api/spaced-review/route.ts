@@ -4,7 +4,7 @@ import {
   recordReviewAttempt,
   type SpacedItemKind,
 } from "@/lib/spaced-review"
-import { getUserState, patchUserState, type UserState } from "@/lib/user-state"
+import { getUserStateForWrite, patchUserState, type UserState } from "@/lib/user-state"
 
 /**
  * POST /api/spaced-review — record the result of a spaced-review attempt.
@@ -79,7 +79,13 @@ export async function POST(request: Request) {
     )
   }
 
-  const state = await getUserState(supabase, user)
+  // Error-aware read: this route read-modify-writes whole user_state keys.
+  // Proceeding after a FAILED read would rebuild them from empty and destroy
+  // the stored review history (same class as the chapter-progress guard).
+  const { state, errored } = await getUserStateForWrite(supabase, user)
+  if (errored) {
+    return Response.json({ error: "state read failed; retry" }, { status: 503 })
+  }
   const nextMeta = recordReviewAttempt(
     state,
     { id: itemId, kind: kind as SpacedItemKind },

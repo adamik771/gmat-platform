@@ -1,245 +1,164 @@
-import type { Section } from "@/types"
+import type { Difficulty, Section } from "@/types"
+import { databaseTimestampMicros } from "./database-timestamp.ts"
 
-/**
- * Classical item analysis for the question bank — research-report prescription:
- * "Track a mastery probability by skill node, then update it with correctness,
- *  time, hint usage, confidence..." (PDF v2 p.9) AND "every item needs
- *  item-analysis-level feedback to the author."
- *
- * Two signals per question:
- *
- *  1. **p-value** — fraction of attempts that were correct. Classic
- *     "item difficulty." 0.1 = very hard (only 10% get it right),
- *     0.9 = very easy. Outside the 0.2–0.85 window a question usually
- *     isn't doing useful measurement work.
- *
- *  2. **Discrimination** — simplified point-biserial. Splits attempts
- *     into correct-group and wrong-group, computes each group's mean
- *     section-level accuracy (i.e. how those students did on OTHER
- *     questions in the same section), and takes the difference. A
- *     discriminating item has higher-ability students getting it right
- *     more than lower-ability ones. Negative discrimination = the
- *     question is likely broken, mis-keyed, or tagged to the wrong
- *     section.
- *
- * Interpretation:
- *   `flag = "ok"`           — pValue in 0.2..0.85, discrimination ≥ 0.1
- *   `flag = "easy"`         — pValue > 0.85 (too easy to discriminate)
- *   `flag = "hard"`         — pValue < 0.2 (too hard — guessing floor)
- *   `flag = "broken"`       — discrimination ≤ 0 AND ≥20 attempts
- *                             (strong students miss it more than weak ones)
- *   `flag = "insufficient"` — fewer than MIN_ATTEMPTS_FOR_STATS attempts
- */
+// These are editorial screening rules, not GMAT-equated difficulty estimates.
+export const MIN_ATTEMPTS_FOR_STATS = 20
+const MIN_OTHER_ITEMS = 5
+const MIN_COMPARISON_GROUP = 5
 
-export type ItemStatFlag =
-  | "ok"
-  | "easy"
-  | "hard"
-  | "broken"
-  | "insufficient"
+export type ItemStatFlag = "ok" | "easy" | "hard" | "review" | "insufficient"
+export type DifficultyFit = "on-target" | "too-easy" | "too-hard" | "insufficient"
 
 export interface ItemStat {
   questionId: string
   section: Section
   topic: string
+  /** One eligible first recorded attempt per student, never repeat attempts. */
   attempts: number
+  recordedAttempts: number
   correct: number
-  /** 0..1 — fraction of attempts that were correct. */
-  pValue: number
-  /** -1..1 — correct-group section accuracy minus wrong-group section
-   *  accuracy. Null when either group is empty (can't compute). */
+  pValue: number | null
+  /** Wilson 95% interval for the observed correct proportion. */
+  interval: { low: number; high: number } | null
+  /** Difference of group means, NOT a point-biserial correlation. */
   discrimination: number | null
+  comparisonCorrect: number
+  comparisonWrong: number
   flag: ItemStatFlag
 }
 
 export interface PsychometricsInput {
+  id: string
   user_id: string
   question_id: string
   section: Section
   topic: string
   is_correct: boolean
+  created_at: string | null
+  hints_revealed: number | null
+  /** False for review, redo, mixed-review, or an unresolvable session. */
+  eligibleSession: boolean
 }
 
-/** Minimum attempts before p-value / discrimination mean anything. 20 is
- *  a common floor in classical item analysis for pilot banks. */
-export const MIN_ATTEMPTS_FOR_STATS = 20
-/** "Broken" flag trips only with enough attempts — we don't want to call
- *  a question broken from 3 attempts where ordering is noise. */
-const MIN_ATTEMPTS_FOR_BROKEN = 20
-const P_VALUE_EASY = 0.85
-const P_VALUE_HARD = 0.2
-
-/**
- * Compute per-item statistics across all attempts. Pass ≥1 section's
- * worth of rows for section-level accuracy to make sense.
- *
- * Guards against distortion:
- *   - A user's own attempts on this question are EXCLUDED from their
- *     section-average (otherwise an item they always miss looks like
- *     it discriminates more than it does).
- *   - Section-average for a user needs ≥5 other attempts; otherwise
- *     their contribution is dropped from the discrimination sums.
- */
-export function computeItemStats(attempts: PsychometricsInput[]): ItemStat[] {
-  // First pass: per-user-per-section totals so we can compute a user's
-  // section-level ability (their accuracy EXCLUDING this question) when
-  // we see each attempt.
-  const userSecTotal = new Map<string, number>()
-  const userSecCorrect = new Map<string, number>()
-  for (const a of attempts) {
-    const key = `${a.user_id}|${a.section}`
-    userSecTotal.set(key, (userSecTotal.get(key) ?? 0) + 1)
-    if (a.is_correct) userSecCorrect.set(key, (userSecCorrect.get(key) ?? 0) + 1)
-  }
-
-  interface Agg {
-    section: Section
-    topic: string
-    attempts: number
-    correct: number
-    correctAbilitySum: number
-    correctAbilityCount: number
-    wrongAbilitySum: number
-    wrongAbilityCount: number
-  }
-  const byQ = new Map<string, Agg>()
-
-  for (const a of attempts) {
-    const qAgg = byQ.get(a.question_id) ?? {
-      section: a.section,
-      topic: a.topic,
-      attempts: 0,
-      correct: 0,
-      correctAbilitySum: 0,
-      correctAbilityCount: 0,
-      wrongAbilitySum: 0,
-      wrongAbilityCount: 0,
-    }
-    qAgg.attempts += 1
-    if (a.is_correct) qAgg.correct += 1
-
-    // Ability = user's section accuracy EXCLUDING this attempt.
-    const key = `${a.user_id}|${a.section}`
-    const userTotal = userSecTotal.get(key) ?? 0
-    const userCorrect = userSecCorrect.get(key) ?? 0
-    const otherTotal = userTotal - 1
-    const otherCorrect = userCorrect - (a.is_correct ? 1 : 0)
-    if (otherTotal >= 5) {
-      const ability = otherCorrect / otherTotal
-      if (a.is_correct) {
-        qAgg.correctAbilitySum += ability
-        qAgg.correctAbilityCount += 1
-      } else {
-        qAgg.wrongAbilitySum += ability
-        qAgg.wrongAbilityCount += 1
-      }
-    }
-
-    byQ.set(a.question_id, qAgg)
-  }
-
-  const out: ItemStat[] = []
-  for (const [qid, agg] of byQ) {
-    const pValue = agg.attempts > 0 ? agg.correct / agg.attempts : 0
-    const hasBothGroups =
-      agg.correctAbilityCount > 0 && agg.wrongAbilityCount > 0
-    const discrimination = hasBothGroups
-      ? agg.correctAbilitySum / agg.correctAbilityCount -
-        agg.wrongAbilitySum / agg.wrongAbilityCount
-      : null
-    const flag = classify(agg.attempts, pValue, discrimination)
-    out.push({
-      questionId: qid,
-      section: agg.section,
-      topic: agg.topic,
-      attempts: agg.attempts,
-      correct: agg.correct,
-      pValue,
-      discrimination,
-      flag,
-    })
-  }
-
-  return out
+export const DIFFICULTY_P_VALUE_BANDS: Record<Difficulty, { min: number; max: number }> = {
+  Beginner: { min: 0.5, max: 0.95 },
+  Intermediate: { min: 0.3, max: 0.82 },
+  Advanced: { min: 0.12, max: 0.65 },
 }
 
-function classify(
+export function proportionInterval(correct: number, total: number) {
+  if (!Number.isFinite(total) || !Number.isFinite(correct) || total <= 0 || correct < 0 || correct > total) return null
+  const p = correct / total
+  const z2 = 1.96 ** 2
+  const denominator = 1 + z2 / total
+  const center = (p + z2 / (2 * total)) / denominator
+  const margin = (1.96 * Math.sqrt(p * (1 - p) / total + z2 / (4 * total ** 2))) / denominator
+  return { low: Math.max(0, center - margin), high: Math.min(1, center + margin) }
+}
+
+export function assessDifficultyFit(
+  difficulty: Difficulty | null | undefined,
+  pValue: number | null,
   attempts: number,
-  pValue: number,
-  discrimination: number | null,
-): ItemStatFlag {
-  if (attempts < MIN_ATTEMPTS_FOR_STATS) return "insufficient"
-  // Check difficulty windows FIRST — an item with p=0.95 has near-zero
-  // discrimination mathematically (ceiling effect), so we don't want to
-  // call it broken on top of the easy flag. Same for p=0.05 floor.
-  if (pValue > P_VALUE_EASY) return "easy"
-  if (pValue < P_VALUE_HARD) return "hard"
-  if (
-    discrimination !== null &&
-    discrimination <= 0 &&
-    attempts >= MIN_ATTEMPTS_FOR_BROKEN
-  ) {
-    return "broken"
-  }
-  // discrimination < DISCRIMINATION_FLOOR but > 0: weakly discriminating
-  // but not actively broken. Surfaces as "ok" for now; caller can layer
-  // a secondary "weak" flag if needed.
-  return "ok"
+): DifficultyFit {
+  if (!difficulty || pValue === null || !Number.isFinite(pValue) || pValue < 0 || pValue > 1 || !Number.isInteger(attempts) || attempts < MIN_ATTEMPTS_FOR_STATS) return "insufficient"
+  const interval = proportionInterval(pValue * attempts, attempts)!
+  const band = DIFFICULTY_P_VALUE_BANDS[difficulty]
+  if (interval.low > band.max) return "too-easy"
+  if (interval.high < band.min) return "too-hard"
+  return "on-target"
 }
 
 /**
- * Roll up item stats into bank-level summary. Useful for a dashboard
- * metric that doesn't require scanning the full item list.
+ * Select FIRST recorded exposures before filtering. A later unhinted retry
+ * must never replace an assisted/review first encounter. Unknown chronology
+ * or conflicting simultaneous first rows cannot provide a defensible sample.
  */
-export interface BankHealth {
-  totalItems: number
-  withEnoughData: number
-  okCount: number
-  easyCount: number
-  hardCount: number
-  brokenCount: number
-  insufficientCount: number
-  /** Proportion of items with enough data that are flagged "ok". */
-  healthPct: number
+function firstEligibleAttempts(rows: readonly PsychometricsInput[]): PsychometricsInput[] {
+  const groups = new Map<string, PsychometricsInput[]>()
+  for (const row of rows) {
+    const key = JSON.stringify([row.user_id, row.question_id])
+    const group = groups.get(key) ?? []
+    group.push(row)
+    groups.set(key, group)
+  }
+  const eligible: PsychometricsInput[] = []
+  for (const group of groups.values()) {
+    if (group.some((a) => databaseTimestampMicros(a.created_at) === null)) continue
+    group.sort((a, b) => databaseTimestampMicros(a.created_at)! - databaseTimestampMicros(b.created_at)! || a.id.localeCompare(b.id))
+    const first = group[0]
+    if (group.some((a) => a.id !== first.id && databaseTimestampMicros(a.created_at) === databaseTimestampMicros(first.created_at))) continue
+    if (first.eligibleSession && first.hints_revealed === 0) eligible.push(first)
+  }
+  return eligible
 }
 
-export function summariseBankHealth(stats: ItemStat[]): BankHealth {
-  const totalItems = stats.length
-  let ok = 0
-  let easy = 0
-  let hard = 0
-  let broken = 0
-  let insufficient = 0
-  for (const s of stats) {
-    switch (s.flag) {
-      case "ok":
-        ok++
-        break
-      case "easy":
-        easy++
-        break
-      case "hard":
-        hard++
-        break
-      case "broken":
-        broken++
-        break
-      case "insufficient":
-        insufficient++
-        break
+export function computeItemStats(rows: readonly PsychometricsInput[]): ItemStat[] {
+  const items = new Map<string, ItemStat>()
+  for (const row of rows) {
+    const item = items.get(row.question_id) ?? {
+      questionId: row.question_id, section: row.section, topic: row.topic,
+      attempts: 0, recordedAttempts: 0, correct: 0, pValue: null, interval: null,
+      discrimination: null, comparisonCorrect: 0, comparisonWrong: 0,
+      flag: "insufficient" as const,
     }
+    item.recordedAttempts++
+    items.set(row.question_id, item)
   }
-  const withEnoughData = totalItems - insufficient
-  const healthPct =
-    withEnoughData > 0 ? Math.round((ok / withEnoughData) * 100) : 0
+  const firsts = firstEligibleAttempts(rows)
+  const userSections = new Map<string, { total: number; correct: number }>()
+  for (const row of firsts) {
+    const key = JSON.stringify([row.user_id, row.section])
+    const total = userSections.get(key) ?? { total: 0, correct: 0 }
+    total.total++
+    total.correct += Number(row.is_correct)
+    userSections.set(key, total)
+  }
+  const comparisonSums = new Map<string, { correct: number; wrong: number }>()
+  for (const row of firsts) {
+    const item = items.get(row.question_id)!
+    item.attempts++
+    item.correct += Number(row.is_correct)
+    const userSection = userSections.get(JSON.stringify([row.user_id, row.section]))!
+    // Each item occurs once per student, so subtracting one excludes ALL of
+    // this student's evidence on the target item, including every retry.
+    if (userSection.total - 1 < MIN_OTHER_ITEMS) continue
+    const otherAccuracy = (userSection.correct - Number(row.is_correct)) / (userSection.total - 1)
+    const sum = comparisonSums.get(row.question_id) ?? { correct: 0, wrong: 0 }
+    if (row.is_correct) {
+      item.comparisonCorrect++
+      sum.correct += otherAccuracy
+    } else {
+      item.comparisonWrong++
+      sum.wrong += otherAccuracy
+    }
+    comparisonSums.set(row.question_id, sum)
+  }
+  for (const item of items.values()) {
+    item.pValue = item.attempts > 0 ? item.correct / item.attempts : null
+    item.interval = proportionInterval(item.correct, item.attempts)
+    const sums = comparisonSums.get(item.questionId)
+    if (sums && item.attempts >= MIN_ATTEMPTS_FOR_STATS && item.comparisonCorrect >= MIN_COMPARISON_GROUP && item.comparisonWrong >= MIN_COMPARISON_GROUP) {
+      item.discrimination = sums.correct / item.comparisonCorrect - sums.wrong / item.comparisonWrong
+    }
+    if (item.attempts < MIN_ATTEMPTS_FOR_STATS || !item.interval) continue
+    if (item.interval.low > 0.85) item.flag = "easy"
+    else if (item.interval.high < 0.2) item.flag = "hard"
+    else if (item.discrimination !== null && item.discrimination <= 0) item.flag = "review"
+    else item.flag = "ok"
+  }
+  return [...items.values()]
+}
+
+export function summariseBankHealth(stats: readonly ItemStat[]) {
+  const count = (flag: ItemStatFlag) => stats.filter((item) => item.flag === flag).length
+  const insufficientCount = count("insufficient")
+  const withEnoughData = stats.length - insufficientCount
+  const okCount = count("ok")
   return {
-    totalItems,
-    withEnoughData,
-    okCount: ok,
-    easyCount: easy,
-    hardCount: hard,
-    brokenCount: broken,
-    insufficientCount: insufficient,
-    healthPct,
+    totalItems: stats.length, withEnoughData, okCount,
+    easyCount: count("easy"), hardCount: count("hard"), reviewCount: count("review"),
+    insufficientCount,
+    healthPct: withEnoughData > 0 ? Math.round(100 * okCount / withEnoughData) : null,
   }
 }

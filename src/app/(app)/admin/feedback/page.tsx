@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getSupabaseService } from "@/lib/supabase/service"
-import { isAdminEmail } from "@/lib/admin"
+import { isAdmin } from "@/lib/admin-auth"
 import AdminFeedbackClient, { type AdminFeedbackRow } from "./AdminFeedbackClient"
 
 export const dynamic = "force-dynamic"
@@ -34,9 +34,9 @@ interface AggSourcePath {
 /**
  * /admin/feedback — server-rendered triage queue for beta-feedback rows.
  *
- * Auth gate: `ADMIN_EMAILS` env var must include the current user's email,
- * otherwise the page 404s. There's no client-side check — all auth runs
- * here, server-side, before the queue is ever rendered.
+ * Auth gate: trusted app_metadata.role=admin or the ADMIN_EMAILS bootstrap
+ * allowlist. There's no client-side check — all auth runs here, server-side,
+ * before the queue is ever rendered.
  *
  * Data sources, in order:
  *   1. `beta_feedback` table (preferred — once the migration in
@@ -55,7 +55,7 @@ export default async function AdminFeedbackPage() {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  if (!user || !isAdminEmail(user.email)) notFound()
+  if (!isAdmin(user)) notFound()
 
   const service = getSupabaseService()
 

@@ -2,14 +2,21 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight, Calculator, RotateCcw } from "lucide-react"
+import {
+  ArrowLeft,
+  ArrowRight,
+  Calculator,
+  ExternalLink,
+  RotateCcw,
+} from "lucide-react"
 import {
   bandForPercentile,
-  convertFocusSectionToOldSection,
   convertFocusToOld,
-  convertOldSectionToFocusSection,
   convertOldToFocus,
-  getAnchors,
+  formatPercentileRange,
+  formatScoreRange,
+  GMAC_CONCORDANCE_PUBLISHED,
+  GMAC_CONCORDANCE_SOURCE_URL,
   type ScoreScale,
 } from "@/lib/score-conversion"
 import LeadCapture from "@/components/marketing/LeadCapture"
@@ -20,7 +27,6 @@ const OLD_STEP = 10
 export default function ScoreConverterClient() {
   const [direction, setDirection] = useState<ScoreScale>("focus")
   const [score, setScore] = useState<number>(direction === "focus" ? 705 : 720)
-  const [section, setSection] = useState<number | "">("")
 
   const isFocusInput = direction === "focus"
   const inputMin = isFocusInput ? 205 : 200
@@ -31,29 +37,22 @@ export default function ScoreConverterClient() {
     ? convertFocusToOld(score)
     : convertOldToFocus(score)
 
-  const sectionConversion =
-    section === ""
-      ? null
-      : isFocusInput
-        ? {
-            equivalent: convertFocusSectionToOldSection(Number(section)),
-            label: `Old per-section equivalent (6-51 scale)`,
-          }
-        : {
-            equivalent: convertOldSectionToFocusSection(Number(section)),
-            label: `Focus per-section equivalent (60-90 scale)`,
-          }
-
-  const band = bandForPercentile(totalConversion.percentile)
-  const anchors = getAnchors()
+  const band = bandForPercentile(totalConversion.minPercentile)
+  const equivalentLabel = formatScoreRange(
+    totalConversion.minEquivalent,
+    totalConversion.maxEquivalent
+  )
+  const percentileLabel = formatPercentileRange(
+    totalConversion.minPercentile,
+    totalConversion.maxPercentile
+  )
 
   function flip() {
     const newDirection: ScoreScale = isFocusInput ? "old" : "focus"
-    // When flipping, swap input value to the previous result so the user
-    // sees a continuous bidirectional conversion rather than a reset.
-    setScore(totalConversion.equivalent)
+    // The official mapping can be a range. Use a real linked score near the
+    // middle of that range rather than an interpolated value.
+    setScore(totalConversion.representativeEquivalent)
     setDirection(newDirection)
-    setSection("")
   }
 
   return (
@@ -81,11 +80,9 @@ export default function ScoreConverterClient() {
             </span>
           </h1>
           <p className="text-[16px] text-[#C0C0C0] leading-relaxed max-w-2xl">
-            Translate a GMAT Focus score (205&ndash;805) into the
-            equivalent legacy-test score (200&ndash;800), or vice versa.
-            Based on the official GMAC concordance anchors with linear
-            interpolation between them. Approximate by design &mdash; the
-            two scales are not arithmetically interchangeable.
+            Look up the score or score range linked by GMAC&apos;s official
+            concordance. The two exams use different score bins, so one score
+            can legitimately map to several scores on the other scale.
           </p>
         </header>
 
@@ -190,8 +187,8 @@ export default function ScoreConverterClient() {
             <div>
               <label className="block text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-3">
                 {isFocusInput
-                  ? "Old GMAT equivalent (200-800)"
-                  : "Focus equivalent (205-805)"}
+                  ? "Linked old GMAT score(s)"
+                  : "Linked current GMAT score(s)"}
               </label>
               <div
                 className="px-5 py-4 rounded-xl border"
@@ -204,11 +201,13 @@ export default function ScoreConverterClient() {
                   className="font-display text-3xl font-semibold tabular-nums"
                   style={{ color: "#C9A84C" }}
                 >
-                  ≈ {totalConversion.equivalent}
+                  {equivalentLabel}
                 </span>
               </div>
               <p className="text-[11px] text-[#888888] mt-2">
-                Approximate &mdash; based on official GMAC concordance.
+                Official linked{" "}
+                {totalConversion.equivalents.length === 1 ? "score" : "range"};
+                no interpolation.
               </p>
             </div>
           </div>
@@ -217,17 +216,13 @@ export default function ScoreConverterClient() {
           <div className="relative mt-7 pt-7 border-t border-white/[0.06] grid sm:grid-cols-3 gap-4">
             <div>
               <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2">
-                Approx. percentile
+                Official percentile
               </p>
               <p
                 className="font-display text-2xl font-semibold tabular-nums"
                 style={{ color: "#F0F0F0" }}
               >
-                {totalConversion.percentile}
-                <span className="text-[#888888] text-base font-normal">
-                  {" "}
-                  / 100
-                </span>
+                {percentileLabel}
               </p>
             </div>
             <div>
@@ -246,91 +241,22 @@ export default function ScoreConverterClient() {
                 Use this as
               </p>
               <p className="text-[13px] text-[#C0C0C0] leading-snug">
-                A rough target translation. Admissions reviews look at
-                the actual score &amp; percentile from your test report.
+                A concordance reference. Schools still receive the actual
+                score and percentile shown on your report.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Per-section converter */}
-        <div className="mt-10">
-          <h2 className="font-display text-xl font-semibold text-[#F0F0F0] tracking-tight mb-3">
-            Per-section conversion (optional)
-          </h2>
-          <p className="text-[14px] text-[#C0C0C0] leading-relaxed mb-5 max-w-2xl">
-            Focus per-section scores run 60&ndash;90; old-test per-section
-            scores ran 6&ndash;51. The mapping is roughly linear between
-            endpoints, so a single section value below converts directly.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-4 max-w-xl">
-            <div>
-              <label
-                htmlFor="section-input"
-                className="block text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2"
-              >
-                {isFocusInput
-                  ? "Per-section (60-90)"
-                  : "Per-section (6-51)"}
-              </label>
-              <input
-                id="section-input"
-                type="number"
-                min={isFocusInput ? 60 : 6}
-                max={isFocusInput ? 90 : 51}
-                value={section}
-                onChange={(e) => {
-                  const v = e.target.value
-                  if (v === "") {
-                    setSection("")
-                    return
-                  }
-                  const n = parseInt(v, 10)
-                  if (!isNaN(n)) setSection(n)
-                }}
-                placeholder="Enter a section score"
-                className="w-full px-4 py-3 rounded-xl text-lg font-display font-semibold tabular-nums text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
-              />
-            </div>
-            <div>
-              <p className="block text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2">
-                {sectionConversion?.label ??
-                  (isFocusInput
-                    ? "Old per-section equivalent (6-51)"
-                    : "Focus per-section equivalent (60-90)")}
-              </p>
-              <div
-                className="px-4 py-3 rounded-xl border"
-                style={{
-                  borderColor: "rgba(201,168,76,0.16)",
-                  backgroundColor: "#0D0D0D",
-                  minHeight: "53px",
-                }}
-              >
-                {sectionConversion ? (
-                  <span
-                    className="font-display text-lg font-semibold tabular-nums"
-                    style={{ color: "#C9A84C" }}
-                  >
-                    ≈ {sectionConversion.equivalent}
-                  </span>
-                ) : (
-                  <span className="text-[14px] text-[#555555]">—</span>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Anchor reference table */}
+        {/* Exact rows used for the selected score */}
         <div className="mt-12">
           <h2 className="font-display text-xl font-semibold text-[#F0F0F0] tracking-tight mb-3">
-            Reference: GMAC concordance anchors
+            Official rows for this score
           </h2>
           <p className="text-[14px] text-[#C0C0C0] leading-relaxed mb-5 max-w-2xl">
-            The converter interpolates between these anchor points.
-            Direct lookup at any anchor matches the official concordance;
-            scores in between are linear approximations.
+            These are the exact linked rows used above. GMAC explains that
+            ranges occur because the exams have different score-bin sizes and
+            observed frequencies.
           </p>
           <div
             className="overflow-x-auto rounded-xl border border-white/[0.08]"
@@ -346,14 +272,14 @@ export default function ScoreConverterClient() {
                     Old GMAT (200-800)
                   </th>
                   <th className="py-3 px-4 text-left text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
-                    Approx. percentile
+                    Official percentile
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {[...anchors].reverse().map((a, i) => (
+                {[...totalConversion.rows].reverse().map((row, i) => (
                   <tr
-                    key={a.focus}
+                    key={row.focus}
                     className="border-t border-white/[0.05]"
                     style={{
                       backgroundColor: i % 2 === 0 ? "#0A0A0A" : "transparent",
@@ -362,18 +288,34 @@ export default function ScoreConverterClient() {
                     <td
                       className="py-3 px-4 font-display tabular-nums text-[#F0F0F0]"
                     >
-                      {a.focus}
+                      {row.focus}
                     </td>
                     <td className="py-3 px-4 font-display tabular-nums text-[#C0C0C0]">
-                      {a.old}
+                      {formatScoreRange(row.old[0], row.old[row.old.length - 1])}
                     </td>
                     <td className="py-3 px-4 tabular-nums text-[#888888]">
-                      {a.percentile}
+                      {row.percentile.toFixed(1)}%
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="mt-4 flex items-start gap-2 text-[12px] leading-relaxed text-[#888888]">
+            <ExternalLink className="mt-0.5 h-3.5 w-3.5 flex-none" aria-hidden />
+            <p>
+              Source: GMAC, GMAT Score Concordance Table, published {" "}
+              {GMAC_CONCORDANCE_PUBLISHED}.{" "}
+              <a
+                href={GMAC_CONCORDANCE_SOURCE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#C9A84C] hover:text-[#E0C36A] transition-colors"
+              >
+                View the official table
+              </a>
+              . GMAC notes that percentile values are updated annually.
+            </p>
           </div>
         </div>
 

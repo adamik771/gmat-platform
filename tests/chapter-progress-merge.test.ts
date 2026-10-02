@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
 import {
+  isChapterRead,
   mergeProgress,
   progressContentSig,
   type MergeableProgress,
@@ -106,9 +107,157 @@ describe("mergeProgress (chapter progress union — fixes lost graded tests)", (
     expect(ab.problemSetResults.hard).toBeDefined()
   })
 
+  it("keeps the mid-set graded run with the most progress (resume survives reload)", () => {
+    const local = empty()
+    local.problemSetRuns = { medium: { idx: 4, answers: [true, false, true, true] } }
+    const server = empty()
+    server.problemSetRuns = { medium: { idx: 2, answers: [true, false] } }
+    const ab = mergeProgress(local, server)
+    const ba = mergeProgress(server, local)
+    expect(ab.problemSetRuns?.medium?.idx).toBe(4)
+    expect(ba.problemSetRuns?.medium?.idx).toBe(4)
+  })
+
+  it("isChapterRead: reading sections gate completion; pretest/summary do not", () => {
+    const sections = [
+      { id: "pretest", type: "pretest" },
+      { id: "r1", type: "reading" },
+      { id: "r2", type: "reading" },
+      { id: "summary", type: "summary" },
+    ]
+    // All readings read, pretest/summary untouched -> complete. (The old
+    // every-section rule kept dashboard/study-plan at 0% here.)
+    expect(isChapterRead(sections, { r1: true, r2: true })).toBe(true)
+    // A reading missing -> incomplete, even with pretest/summary clicked.
+    expect(
+      isChapterRead(sections, { pretest: true, r1: true, summary: true })
+    ).toBe(false)
+    // No progress at all / no reading sections -> never complete.
+    expect(isChapterRead(sections, undefined)).toBe(false)
+    expect(isChapterRead([{ id: "pretest", type: "pretest" }], {})).toBe(false)
+  })
+
   it("progressContentSig ignores timestamps (so we don't push on every open)", () => {
     const a = { ...empty(), lastSeenAt: 1, firstSeenAt: 1 }
     const b = { ...empty(), lastSeenAt: 999, firstSeenAt: 0 }
     expect(progressContentSig(a)).toBe(progressContentSig(b))
+  })
+
+  it("a NEWER retake result wins the merge in both directions (no flip-flop)", () => {
+    // Old rule: equal totals kept the local side, so the recorded score
+    // depended on which device merged last — forever.
+    const stale = empty()
+    stale.problemSetResults.medium = { correct: 8, total: 10, at: 1000 }
+    const fresh = empty()
+    fresh.problemSetResults.medium = { correct: 3, total: 10, at: 2000 }
+
+    expect(mergeProgress(stale, fresh).problemSetResults.medium?.correct).toBe(3)
+    expect(mergeProgress(fresh, stale).problemSetResults.medium?.correct).toBe(3)
+  })
+
+  it("keeps monotonic cumulative retake counters from the more complete copy", () => {
+    const stale = empty()
+    stale.problemSetResults.medium = {
+      correct: 8,
+      total: 10,
+      at: 1000,
+      attempts: 2,
+      lifetimeCorrect: 15,
+      lifetimeTotal: 20,
+    }
+    const fresh = empty()
+    fresh.problemSetResults.medium = {
+      correct: 6,
+      total: 10,
+      at: 2000,
+      attempts: 3,
+      lifetimeCorrect: 21,
+      lifetimeTotal: 30,
+    }
+
+    const result = mergeProgress(stale, fresh).problemSetResults.medium
+    expect(result).toMatchObject({
+      correct: 6,
+      total: 10,
+      attempts: 3,
+      lifetimeCorrect: 21,
+      lifetimeTotal: 30,
+    })
+  })
+
+  it("unions concurrent retake histories by attempt id", () => {
+    const deviceA = empty()
+    deviceA.problemSetResults.hard = {
+      correct: 7,
+      total: 10,
+      at: 2000,
+      attempts: 2,
+      lifetimeCorrect: 15,
+      lifetimeTotal: 20,
+      history: [
+        { id: "original", correct: 8, total: 10, at: 1000 },
+        { id: "device-a", correct: 7, total: 10, at: 2000 },
+      ],
+    }
+    const deviceB = empty()
+    deviceB.problemSetResults.hard = {
+      correct: 6,
+      total: 10,
+      at: 3000,
+      attempts: 2,
+      lifetimeCorrect: 14,
+      lifetimeTotal: 20,
+      history: [
+        { id: "original", correct: 8, total: 10, at: 1000 },
+        { id: "device-b", correct: 6, total: 10, at: 3000 },
+      ],
+    }
+
+    const result = mergeProgress(deviceA, deviceB).problemSetResults.hard
+    expect(result?.correct).toBe(6)
+    expect(result?.attempts).toBe(3)
+    expect(result?.lifetimeCorrect).toBe(21)
+    expect(result?.lifetimeTotal).toBe(30)
+    expect(result?.history?.map((entry) => entry.id)).toEqual([
+      "original",
+      "device-a",
+      "device-b",
+    ])
+  })
+
+  it("legacy results without timestamps keep the more-attempts rule", () => {
+    const a = empty()
+    a.problemSetResults.medium = { correct: 5, total: 6 }
+    const b = empty()
+    b.problemSetResults.medium = { correct: 7, total: 10 }
+    expect(mergeProgress(a, b).problemSetResults.medium?.total).toBe(10)
+  })
+
+  it("a checkpoint older than the set's recorded finish does not resurrect (zombie resume)", () => {
+    // Device A finished the set (result at t=2000, checkpoint cleared);
+    // device B still holds the mid-run checkpoint from t=1000. The merge
+    // must not bring the finished set back to a "Resume · Qn" state.
+    const finished = empty()
+    finished.problemSetResults.medium = { correct: 9, total: 10, at: 2000 }
+    const staleDevice = empty()
+    staleDevice.problemSetResults.medium = { correct: 9, total: 10, at: 2000 }
+    staleDevice.problemSetRuns = { medium: { idx: 4, answers: [true, false, true, true], at: 1000 } }
+
+    expect(mergeProgress(finished, staleDevice).problemSetRuns?.medium).toBeUndefined()
+    expect(mergeProgress(staleDevice, finished).problemSetRuns?.medium).toBeUndefined()
+  })
+
+  it("a checkpoint NEWER than the recorded finish survives (genuine retake in progress)", () => {
+    const p = empty()
+    p.problemSetResults.medium = { correct: 9, total: 10, at: 1000 }
+    p.problemSetRuns = { medium: { idx: 2, answers: [true, true], at: 5000 } }
+    expect(mergeProgress(p, empty()).problemSetRuns?.medium?.idx).toBe(2)
+  })
+
+  it("legacy (unstamped) runs are never deleted by the zombie rule", () => {
+    const p = empty()
+    p.problemSetResults.medium = { correct: 9, total: 10, at: 2000 }
+    p.problemSetRuns = { medium: { idx: 3, answers: [true, true, false] } }
+    expect(mergeProgress(p, empty()).problemSetRuns?.medium?.idx).toBe(3)
   })
 })

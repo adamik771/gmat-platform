@@ -205,7 +205,7 @@ If 3^x + 3^x + 3^x = 3^10, what is the value of x?
 
 3^x + 3^x + 3^x = 3 × 3^x = 3^1 × 3^x = 3^(x+1). So 3^(x+1) = 3^10. x + 1 = 10. x = 9. Answer (C).
 
-*Recognition cue:* sum of identical exponential terms should trigger "factor out, combine with an additional multiplication." The trap answer (D) is the answer for a student who wrote 3^x + 3^x + 3^x = 3^3x and did 3x = 10 or similar.
+*Recognition cue:* sum of identical exponential terms should trigger "factor out, combine with an additional multiplication." The trap answer (D) is the answer for a student who wrote 3^x + 3^x + 3^x = 3^(3x) and did 3x = 10 or similar.
 
 ### Algebraic manipulation and linear equations
 
@@ -353,7 +353,7 @@ Setup template. Mixture 1: amount a at concentration p1. Mixture 2: amount b at 
 
 *Mixture sub-types.* Salt water (concentration by mass). Alcohol (concentration by volume). Gold alloys (percentage composition). Investments at different interest rates (weighted average return). Prices of blended products (weighted average cost).
 
-*Trap: "replace" problems.* If a 20-liter 40% acid solution has 5 liters removed and replaced with pure water, the new concentration is not 40% − (5/20) × 40%. The math: you removed 5 × 0.40 = 2 liters of acid, leaving 20 × 0.40 − 2 = 6 liters of acid in 20 liters of solution, giving 30% concentration. Many students use the shortcut (1 − 5/20) × 40% = 30% — which happens to work here because pure water has 0% acid. If the replacement were another acid solution, the shortcut would fail.
+*Trap: "replace" problems.* Suppose a well-mixed 20-liter 40% acid solution has 5 liters removed and replaced with pure water. Removing 5 liters removes 5 × 0.40 = 2 liters of acid, leaving 8 − 2 = 6 liters. Adding water restores the total volume to 20 liters, so the new concentration is 6/20 = **30%**. The equivalent shortcuts 40% − (5/20) × 40% and (1 − 5/20) × 40% are both valid here. If the replacement contains acid, also add that incoming acid before dividing by the final volume; do not treat an acid solution as pure water.
 
 *Trap: units.* If one mixture is in ounces and another in liters, convert.
 
@@ -363,17 +363,15 @@ Setup template. Mixture 1: amount a at concentration p1. Mixture 2: amount b at 
 
 Solution A is 30% alcohol by volume and solution B is 50% alcohol by volume. How many liters of solution A must be mixed with 5 liters of solution B to produce a solution that is 42% alcohol?
 
-(A) 2  (B) 3  (C) 4  (D) 5  (E) 6
+(A) 2  (B) 3  (C) 10/3  (D) 5  (E) 6
 
-Let x be liters of A. Alcohol in A: 0.30x. Alcohol in B: 0.50 × 5 = 2.5. Total alcohol: 0.30x + 2.5. Total volume: x + 5. Final concentration: (0.30x + 2.5) / (x + 5) = 0.42. Solve: 0.30x + 2.5 = 0.42x + 2.1. 0.4 = 0.12x. x = 10/3 ≈ 3.33. Not a clean answer — recheck.
+Let x be liters of A. Alcohol in A: 0.30x. Alcohol in B: 0.50 × 5 = 2.5. Total alcohol: 0.30x + 2.5. Total volume: x + 5. Final concentration: (0.30x + 2.5) / (x + 5) = 0.42. Solve: 0.30x + 2.5 = 0.42x + 2.1. Thus 0.4 = 0.12x and **x = 10/3 liters**, choice C. A fractional answer is entirely valid.
 
 Try alligation: ratio of A to B = (50 − 42) : (42 − 30) = 8 : 12 = 2 : 3. B is 5 liters, so A is (2/3) × 5 = 10/3. Same answer.
 
-The answer 10/3 doesn't match any choice — so this example has a flaw I will use as a teaching moment. Real GMAT problems always have clean answers; if yours doesn't, the problem is usually one of these: (a) a misread of the percentages, (b) unit inconsistency, (c) a mis-set equation. Go back.
+Check: 10/3 liters of A contains 1 liter of alcohol. With B, there are 3.5 liters of alcohol in 25/3 liters of solution. The concentration is 3.5 ÷ (25/3) = 0.42, as required. Do not change a stated concentration to make an answer choice fit.
 
-Reread the problem: same-side math gives 10/3 and none of the answer choices match — but if the target concentration were 40% instead of 42%, alligation: (50 − 40) : (40 − 30) = 10 : 10 = 1:1, so A = 5. Answer (D).
-
-*Recognition cue:* for any "mix to produce concentration" problem, *alligation* is the forty-second method and algebraic setup is the ninety-second method.
+*Recognition cue:* when two concentrations and a target are given, alligation offers a compact ratio solution. The weighted-average equation works as well; use the method whose reasoning you can verify.
 
 ### Overlapping sets
 
@@ -639,11 +637,11 @@ Within 30 seconds of reading a problem, you classify it into one of four tiers:
 
 *The three-minute rule.* If you find yourself past three minutes on a problem, you are losing the section. Stop. Guess. Move.
 
-*The skip-and-return strategy.* In a 21-question section, plan to skip 1–3 problems on your first pass — the ones where the method isn't obvious in 30 seconds. Come back at the end if you have time. This is almost always higher-EV than grinding every problem in order.
+*Answer, bookmark, and return.* You must select an answer before moving to the next question. If you are stuck, eliminate choices where possible, choose your best remaining answer, and bookmark the item. After answering all questions in the section, return to bookmarked items if time remains. You may change at most three answers, so prioritize a correction you can justify rather than revisiting every uncertain choice.
 
-*The gap-budget.* By question 7, you should have used at most 15 minutes (the proportional share is 21 × 45/21 × 7 = 15). By question 14, at most 30 minutes. By question 21, exactly 45. Check the clock at those three waypoints. If you're behind, speed up on the next set — don't try to speed up by 10 seconds each; pick two future questions and commit to sub-60-second solves (usually the Tier 1 gimmes).
+*The gap-budget.* In a 21-question, 45-minute section, evenly paced checkpoints are about 15 minutes used after question 7 and 30 minutes used after question 14: (45/21) × 7 = 15 and (45/21) × 14 = 30. These are reference points, not per-question deadlines. Aim to answer all 21 questions before time expires, leaving review time when possible. If you are behind, reassess stalled solutions and use a justified estimate or a guess when needed; do not assume the next question can be solved in under a minute.
 
-*The last-five-minute rule.* With five minutes left, audit your remaining questions. Is there one you can finish cleanly? Do that. Is there a problem you skipped that now looks tractable? Come back to it. Are there two problems left you cannot realistically solve? Guess strategically on both — pick the letter that's least represented in your previous guesses (the answer distribution over 21 questions is roughly uniform).
+*The last-five-minute check.* First make sure you can answer every remaining question. If a solution is stalled, eliminate choices where possible, choose an answer, and continue. After answering all questions, use any remaining time to revisit bookmarked items; you may change at most three answers. Base a guess on the current question, not on which answer letters appeared earlier. Previous letters do not establish what the next answer should be.
 
 ### Why pacing is higher-leverage than content
 
@@ -977,7 +975,7 @@ The structural identity is the only fast path. The student who knows it solves i
 
 *Recognition cue.* Any problem involving *symmetric functions* of two or three variables — x + y, xy; x + y + z, xy + yz + xz, xyz — should trigger the structural identity for the sum of squares or the product decomposition. These are among the top-twenty shapes on hard Quant.
 
-## Part 8: The Glossary of 700+ Problem Shapes
+## Part 8: The Glossary of Top-Tier Problem Shapes
 
 The GMAT recycles a finite library of high-difficulty problem shapes. Here are the most frequent ones above the 75th percentile, with the shape name, the recognition cue, and the right method.
 

@@ -126,7 +126,7 @@ export default function AdminFeedbackClient({
         <p className="text-[11px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold">
           Admin
         </p>
-        <h1 className="text-xl text-[#F0F0F0] font-semibold">Beta-feedback triage</h1>
+        <h1 className="text-xl text-[#F0F0F0] font-semibold">Feedback triage</h1>
         <p className="text-sm text-[#888888]">
           {rows.length} total entries — {tableRowCount} from the dedicated table,{" "}
           {metadataRowCount} from user_metadata fallback.
@@ -162,7 +162,7 @@ export default function AdminFeedbackClient({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <Card title="Top flagged questions (last 7 days)">
           {topQuestions.length === 0 ? (
-            <p className="text-xs text-[#555555]">No question flags yet.</p>
+            <p className="text-xs text-[#888888]">No question flags yet.</p>
           ) : (
             <ul className="space-y-1.5">
               {topQuestions.map((q) => (
@@ -193,7 +193,7 @@ export default function AdminFeedbackClient({
         </Card>
         <Card title="Top bug source-paths (last 7 days)">
           {topBugSources.length === 0 ? (
-            <p className="text-xs text-[#555555]">No bug reports yet.</p>
+            <p className="text-xs text-[#888888]">No bug reports yet.</p>
           ) : (
             <ul className="space-y-1.5">
               {topBugSources.map((s) => (
@@ -220,14 +220,14 @@ export default function AdminFeedbackClient({
         </Card>
         <Card title="Ratings">
           {avgRating === null ? (
-            <p className="text-xs text-[#555555]">No ratings yet.</p>
+            <p className="text-xs text-[#888888]">No ratings yet.</p>
           ) : (
             <div className="space-y-2">
               <div className="flex items-baseline gap-2">
                 <span className="text-2xl font-semibold text-[#F0F0F0]">
                   {avgRating.toFixed(2)}
                 </span>
-                <span className="text-xs text-[#555555]">/ 5.00</span>
+                <span className="text-xs text-[#888888]">/ 5.00</span>
               </div>
               <p className="text-xs text-[#888888]">
                 Average across {ratingCount} rating{ratingCount === 1 ? "" : "s"}.
@@ -239,7 +239,7 @@ export default function AdminFeedbackClient({
 
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-2 text-xs">
-        <Filter className="w-3.5 h-3.5 text-[#555555]" />
+        <Filter className="w-3.5 h-3.5 text-[#888888]" />
         <FilterPill
           active={statusFilter === "all"}
           onClick={() => setStatusFilter("all")}
@@ -273,7 +273,7 @@ export default function AdminFeedbackClient({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search message / question / path…"
-          className="ml-auto w-72 max-w-full px-3 py-1.5 text-xs rounded-lg border border-white/[0.08] bg-[#0D0D0D] text-[#F0F0F0] placeholder:text-[#555555] focus:outline-none focus:border-[#C9A84C]/40"
+          className="ml-auto w-72 max-w-full px-3 py-1.5 text-xs rounded-lg border border-white/[0.08] bg-[#0D0D0D] text-[#F0F0F0] placeholder:text-[#888888] focus:outline-none focus:border-[#C9A84C]/40"
         />
       </div>
 
@@ -397,7 +397,7 @@ function FeedbackRowItem({ row }: { row: AdminFeedbackRow }) {
             {row.rating != null ? (
               <span className="text-[#C9A84C]">{"★".repeat(row.rating)}</span>
             ) : null}
-            <span className="text-[#555555]">·</span>
+            <span className="text-[#888888]">·</span>
             <span className="text-[#888888]">
               {new Date(row.created_at).toLocaleString(undefined, {
                 month: "short",
@@ -408,7 +408,7 @@ function FeedbackRowItem({ row }: { row: AdminFeedbackRow }) {
             </span>
             {row.user_email ? (
               <>
-                <span className="text-[#555555]">·</span>
+                <span className="text-[#888888]">·</span>
                 <span className="text-[#888888] truncate max-w-[16rem]">{row.user_email}</span>
               </>
             ) : null}
@@ -428,7 +428,7 @@ function FeedbackRowItem({ row }: { row: AdminFeedbackRow }) {
               {row.message}
             </p>
           ) : (
-            <p className="text-sm text-[#555555] italic">(no message)</p>
+            <p className="text-sm text-[#888888] italic">(no message)</p>
           )}
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-[#888888]">
@@ -451,7 +451,7 @@ function FeedbackRowItem({ row }: { row: AdminFeedbackRow }) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/[0.04]">
-        <span className="text-[11px] text-[#555555] uppercase tracking-wide">Status</span>
+        <span className="text-[11px] text-[#888888] uppercase tracking-wide">Status</span>
         {STATUS_OPTIONS.map((s) => {
           const active = localStatus === s
           return (

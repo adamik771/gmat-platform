@@ -5,7 +5,7 @@ section: DI
 estimated_minutes: 55
 prerequisites: []
 summary: |
-  Data Sufficiency is a game, not a math test. You don't solve for the answer — you decide whether you *could* solve for it given the information provided. The five-answer framework is mechanical: test each statement alone, then together if needed, and pick the letter that matches the sufficiency pattern. Master the AD/BCE decision tree, learn to rephrase the question before testing statements, and you'll finish every DS question in under 2 minutes without ever doing unnecessary arithmetic.
+  Data Sufficiency asks whether the information determines a definite answer, not just what that answer is. Test each statement alone, then together if neither is sufficient alone, and pick the letter that matches the sufficiency pattern. Use the AD/BCE decision tree and rephrase the question to avoid unnecessary calculation; time needed varies by question.
 sections:
   - id: pretest
     type: pretest
@@ -63,14 +63,14 @@ sections:
       - data-sufficiency-q20
       - data-sufficiency-q27
 
-  - id: summary
-    type: summary
-    title: "The DS decision tree and the five highest-leverage habits"
-    check_question_ids: []
-
   - id: the-ds-method
     type: reading
     title: "The data-sufficiency method"
+    check_question_ids: []
+
+  - id: summary
+    type: summary
+    title: "The DS decision tree and the five highest-leverage habits"
     check_question_ids: []
 
 problem_sets:
@@ -144,9 +144,9 @@ problem_sets:
 
 ## @the-five-answer-framework
 
-Data Sufficiency looks different from every other question type on the GMAT. You're given a question and two statements, and asked whether the statements (individually or together) are *sufficient* to answer the question. You never have to compute the final answer — you only decide whether you *could*.
+Data Sufficiency looks different from every other question type on the GMAT. You're given a question and two statements, and asked whether the statements (individually or together) are *sufficient* to answer the question. Your goal is to establish whether the answer is determined. Calculation can help, but you can stop once sufficiency or insufficiency is proved.
 
-**Mental model.** Data Sufficiency isn't a math problem — it's a classification problem. Each statement either pins down a unique answer or it doesn't, full stop. The AD/BCE grid (statement 1 sufficient? statement 2 sufficient? together?) covers all five answer choices mechanically. Once you stop trying to *compute the answer* and start asking *can the answer be computed*, DS becomes a different game.
+**Mental model.** Separate the reasoning from the answer letter. First use the question's given information with each statement to decide whether the answer is determined. Then the AD/BCE grid (statement 1 sufficient? statement 2 sufficient? together if needed?) maps that result to one of five choices. The grid helps you organize the decision; you still need to establish what the information allows.
 
 **The five answers (always the same, in the same order):**
 
@@ -174,7 +174,7 @@ Then test Statement (2) alone. Combined results:
 | Not sufficient | Sufficient | **B** |
 | Not sufficient | Not sufficient | **C** (if together work) or **E** (if they don't) |
 
-This grid eliminates guessing. Every DS answer falls out of two binary tests.
+This grid organizes the decision; it does not replace sufficiency reasoning. Test each statement separately, using the question's given information and without importing anything from the other statement. If neither is sufficient alone, test them together: sufficient together means C; insufficient together means E.
 
 **Example.** "What is the value of x? (1) 3x + 7 = 22. (2) x is a positive integer less than 10."
 
@@ -193,7 +193,7 @@ A statement is **sufficient** if it uniquely determines the answer to the questi
 
 The most common DS mistake: students think "sufficient" means "I know the value now." It doesn't. Sufficient on a yes/no question means "the question has a definite answer" — which can be yes or no.
 
-**The "don't solve" principle.** You do not need to find x, y, or the final answer on DS. You only need to know whether you *could*. This saves massive time. A system of two independent linear equations in two unknowns is always solvable — you don't need to actually solve it on test day. The word *"independent"* is the key; see the C-trap section.
+**The "stop when you know" principle.** Once you have established whether the requested answer is uniquely determined, further calculation is unnecessary. Sometimes solving or testing values is the clearest way to establish that. For example, two linear equations in two unknowns with non-proportional coefficient pairs determine a unique pair of values; you may be able to establish sufficiency without computing the pair. Keep any restrictions in the question, such as positive integers, in view. See the C-trap section for why counting equations alone is not enough.
 
 **The order matters.** Always test statement (1) first, then (2), then together only if both are individually insufficient. Skipping to "together" too quickly is the biggest source of wrong D vs. C answers.
 
@@ -236,7 +236,7 @@ From statement: (x + y)² = (x - y)² + 4xy = 16 + 20 = 36, so x + y = ±6. That
 
 **Example.** "What is the value of xyz?" A statement is sufficient if it uniquely determines xyz — it doesn't have to determine x, y, or z individually.
 
-> **Self-explanation prompt.** Why does rephrasing save so much time? If you can say "because the question as written often obscures what you actually need; the rephrase strips away noise and makes it obvious which statements help," you've internalized the core DS discipline. Rephrasing is where experts gain 20+ seconds per question over novices.
+> **Self-explanation prompt.** How can rephrasing reduce unnecessary work? Explain how the new wording preserves the original question while making the exact quantity or condition easier to test. Rephrasing helps only when it clarifies what must be determined; it is not a reason to change the question.
 
 ## @value-vs-yes-no
 
@@ -274,9 +274,9 @@ x² > 10 means x > √10 ≈ 3.16 OR x < -√10 ≈ -3.16. So x could be 4 (answ
 
 **Why the distinction matters.** On yes/no questions, you can often prove sufficiency faster because you only need one logical direction to nail it down. On value questions, you have to pin down a single number — a higher bar, usually requiring more work.
 
-**The "yes/no rephrase" trick.** Sometimes you can convert a value question into a yes/no and save time. "What is x?" becomes "Is x = 7?" — but this only works if you have a specific candidate. For most value questions, stick to the unique-value standard.
+**Keep the original question.** "What is x?" is not equivalent to "Is x = 7?" A statement allowing x to be either 2 or 3 answers the second question with a definite no, but leaves the first question unresolved. To establish sufficiency for a value question, show that exactly one value of the requested quantity is possible.
 
-> **Recall check.** Close your eyes. State the sufficiency standard for value DS in one sentence. Now state the sufficiency standard for yes/no DS. (Answers: value = yields exactly one number; yes/no = yields a definite yes OR a definite no.) Getting these wrong is the cause of roughly 30% of mis-answered DS questions — drilling the distinction now pays off on every question in the problem sets.
+> **Recall check.** Close your eyes. State the sufficiency standard for value DS in one sentence. Now state the sufficiency standard for yes/no DS. (Answers: value = yields exactly one number; yes/no = yields a definite yes OR a definite no.) Before testing a statement, identify which standard the original question requires.
 
 **Trap to watch.** Yes/no with a "no" answer. Statement (1) says "x = 3," question is "Is x > 5?" Some students call this insufficient because "it doesn't prove x > 5." That's wrong — it proves x is NOT > 5, which is a definite answer. Sufficient.
 
@@ -472,6 +472,32 @@ Count degrees of freedom: unknowns minus independent equations. When this reache
 
 > **Recall check.** Without looking: state the rule for when two linear equations in two unknowns are individually sufficient, together sufficient, or together insufficient. (Answers: individually never sufficient on their own if both have both unknowns; together sufficient if independent; together insufficient if one is a multiple of the other.) This single rule explains roughly 30% of DS answers.
 
+## @the-ds-method
+
+The earlier sections taught you what each answer choice *means* and which traps to dodge. This one is the procedure — the fixed sequence of moves you run on every DS question, in order, before you let yourself touch a statement. The AD/BCE grid, rephrasing, and the C-trap all live inside this method; here they become a single muscle-memory routine.
+
+**Mental model.** Treat a DS question like a courtroom, not a calculator. Each statement is a witness testifying in isolation, and your only verdict is "does this testimony, by itself, settle the question — yes or no?" You never call two witnesses at once until each has been examined alone. The work isn't arithmetic; it's keeping the cases separate and asking a single clean question of each.
+
+**Step 1 — push the question first.** Before you even glance at the statements, restate the prompt and pin down the *exact* fact that would answer it. This is the move most test-takers skip, and it is the one that saves the most time. If the prompt asks for one piece of a known relationship, rewrite it as the piece you actually need. (This is the rephrasing discipline from the rephrasing section, applied as the mandatory first step rather than an optional polish.) Say to yourself: "A statement is sufficient here if and only if it tells me ______." Fill that blank *now*, while the statements are still covered.
+
+**Step 2 — evaluate each statement strictly alone, with AD/BCE.** Read Statement (1) with the stem only — Statement (2) does not exist yet. If (1) is sufficient, the answer is **A or D**, so cross out B, C, and E. If (1) is not sufficient, cross out A and D. Then "wash your brain": deliberately forget everything Statement (1) told you and read Statement (2) completely fresh, again with the stem only. This reset is what the cross-contamination trap warns against; here it is a scheduled step, not an afterthought.
+
+**Step 3 — only combine if both failed alone.** This is the #1 score-killer in DS: reaching for both statements before you have judged each one by itself. If either statement was sufficient alone, "together" is irrelevant and combining can only mislead you toward a wrong C. You earn the right to combine only after you have written down "(1) alone: not sufficient" *and* "(2) alone: not sufficient."
+
+**Step 4 — stop the instant you know you *could* answer.** "Sufficient" means you can reach exactly one definite answer — not that you have computed it. One clean linear equation in one unknown is sufficient; do not solve it. A definite "no" on a yes/no question is sufficient; do not keep hunting for "yes." The moment you can see a unique answer is forced, mark sufficiency and move on. Every second spent finding the actual value is a second stolen from the rest of the section.
+
+**Worked example.** *A charity's annual budget is split among Outreach, Research, and Admin, and the three together make up the entire budget. What fraction of the budget goes to Research? (1) Outreach is 45% of the budget. (2) Admin is one-third of the combined Outreach-and-Research portion.*
+
+Step 1 — push the question. Since Outreach + Research + Admin = 100%, "What fraction is Research?" becomes "What is Outreach + Admin?" — because Research = 100% − (Outreach + Admin). So a statement is sufficient only if it pins down Outreach *and* Admin together.
+
+Step 2 — alone. Statement (1): Outreach = 45%, but Admin is still free, so Research could be anything from just above 0% to 55%. Not sufficient → cross A and D. Wash your brain. Statement (2): Admin = ⅓(Outreach + Research). That is one relationship among three unknown shares with no anchoring percentage, so Research is not pinned down. Not sufficient → cross B.
+
+Step 3 — both failed alone, so combine. Now Outreach = 45% and Admin = ⅓(45% + Research). With Outreach + Research + Admin = 100%, that is one clean equation in the single unknown Research. The moment you see "one equation, one unknown," **stop** — it is sufficient. Answer: **C**. Note what you did *not* do: you never solved for Research. (For the record it works out, but finding the number is wasted motion on the clock.)
+
+**Trap to watch.** The seductive failure is doing Step 3 in your head during Step 2 — reading Statement (1), feeling its gap, and silently letting Statement (2) fill it before you have ruled on (1) alone. That is how a true A or B masquerades as C. If you ever find yourself thinking "well, with the other statement…" while a single statement is still under examination, you have jumped a step. Back up, cover the other statement, and finish the verdict you started.
+
+> **Self-explanation prompt.** Why does pushing the question *before* reading the statements beat rephrasing it afterward? If you can say "because once I've seen the statements, my brain anchors on what they offer instead of what the question needs — pinning down the target fact first keeps me testing each statement against the real requirement rather than against whichever statement I read last," you've internalized why the method is ordered the way it is. The sequence is the skill; the algebra is incidental.
+
 ## @summary
 
 Data Sufficiency is the most mechanical question type on the GMAT once you internalize the framework. Every question resolves through two binary decisions and a handful of topic-specific templates.
@@ -531,29 +557,3 @@ If you're past 2:30 on any DS question, you're almost certainly over-computing. 
 | "Is the triangle right?" with "a² + b² = c²" | Sufficient by converse of Pythagorean |
 
 Drill the 45 questions in this chapter's problem sets with the decision tree at your elbow. By the end, the AD/BCE grid should be unconscious — and your DS questions should average under 90 seconds.
-
-## @the-ds-method
-
-The earlier sections taught you what each answer choice *means* and which traps to dodge. This one is the procedure — the fixed sequence of moves you run on every DS question, in order, before you let yourself touch a statement. The AD/BCE grid, rephrasing, and the C-trap all live inside this method; here they become a single muscle-memory routine.
-
-**Mental model.** Treat a DS question like a courtroom, not a calculator. Each statement is a witness testifying in isolation, and your only verdict is "does this testimony, by itself, settle the question — yes or no?" You never call two witnesses at once until each has been examined alone. The work isn't arithmetic; it's keeping the cases separate and asking a single clean question of each.
-
-**Step 1 — push the question first.** Before you even glance at the statements, restate the prompt and pin down the *exact* fact that would answer it. This is the move most test-takers skip, and it is the one that saves the most time. If the prompt asks for one piece of a known relationship, rewrite it as the piece you actually need. (This is the rephrasing discipline from the rephrasing section, applied as the mandatory first step rather than an optional polish.) Say to yourself: "A statement is sufficient here if and only if it tells me ______." Fill that blank *now*, while the statements are still covered.
-
-**Step 2 — evaluate each statement strictly alone, with AD/BCE.** Read Statement (1) with the stem only — Statement (2) does not exist yet. If (1) is sufficient, the answer is **A or D**, so cross out B, C, and E. If (1) is not sufficient, cross out A and D. Then "wash your brain": deliberately forget everything Statement (1) told you and read Statement (2) completely fresh, again with the stem only. This reset is what the cross-contamination trap warns against; here it is a scheduled step, not an afterthought.
-
-**Step 3 — only combine if both failed alone.** This is the #1 score-killer in DS: reaching for both statements before you have judged each one by itself. If either statement was sufficient alone, "together" is irrelevant and combining can only mislead you toward a wrong C. You earn the right to combine only after you have written down "(1) alone: not sufficient" *and* "(2) alone: not sufficient."
-
-**Step 4 — stop the instant you know you *could* answer.** "Sufficient" means you can reach exactly one definite answer — not that you have computed it. One clean linear equation in one unknown is sufficient; do not solve it. A definite "no" on a yes/no question is sufficient; do not keep hunting for "yes." The moment you can see a unique answer is forced, mark sufficiency and move on. Every second spent finding the actual value is a second stolen from the rest of the section.
-
-**Worked example.** *A charity's annual budget is split among Outreach, Research, and Admin, and the three together make up the entire budget. What fraction of the budget goes to Research? (1) Outreach is 45% of the budget. (2) Admin is one-third of the combined Outreach-and-Research portion.*
-
-Step 1 — push the question. Since Outreach + Research + Admin = 100%, "What fraction is Research?" becomes "What is Outreach + Admin?" — because Research = 100% − (Outreach + Admin). So a statement is sufficient only if it pins down Outreach *and* Admin together.
-
-Step 2 — alone. Statement (1): Outreach = 45%, but Admin is still free, so Research could be anything from just above 0% to 55%. Not sufficient → cross A and D. Wash your brain. Statement (2): Admin = ⅓(Outreach + Research). That is one relationship among three unknown shares with no anchoring percentage, so Research is not pinned down. Not sufficient → cross B.
-
-Step 3 — both failed alone, so combine. Now Outreach = 45% and Admin = ⅓(45% + Research). With Outreach + Research + Admin = 100%, that is one clean equation in the single unknown Research. The moment you see "one equation, one unknown," **stop** — it is sufficient. Answer: **C**. Note what you did *not* do: you never solved for Research. (For the record it works out, but finding the number is wasted motion on the clock.)
-
-**Trap to watch.** The seductive failure is doing Step 3 in your head during Step 2 — reading Statement (1), feeling its gap, and silently letting Statement (2) fill it before you have ruled on (1) alone. That is how a true A or B masquerades as C. If you ever find yourself thinking "well, with the other statement…" while a single statement is still under examination, you have jumped a step. Back up, cover the other statement, and finish the verdict you started.
-
-> **Self-explanation prompt.** Why does pushing the question *before* reading the statements beat rephrasing it afterward? If you can say "because once I've seen the statements, my brain anchors on what they offer instead of what the question needs — pinning down the target fact first keeps me testing each statement against the real requirement rather than against whichever statement I read last," you've internalized why the method is ordered the way it is. The sequence is the skill; the algebra is incidental.

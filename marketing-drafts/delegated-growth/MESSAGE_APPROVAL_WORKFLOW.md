@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Message Approval Workflow
 
 How Adam approves messaging **once** so that day-to-day outreach needs no further sign-off.
@@ -66,7 +68,7 @@ Every message has two zones. Learn the line between them cold.
 
 ### You MUST NOT change (the locked zone)
 
-- **Claims** — anything about the product, Adam's score (565 to 735, 100th percentile), features,
+- **Claims** — anything about the product, Adam's score (565 to 735, top 1%), features,
   what the platform does. Use the approved wording exactly.
 - **The offer** — free private-beta access, the founding discount, the $50 referral reward, the
   free study-plan hook. Do not restate, reinterpret, or "improve" these.

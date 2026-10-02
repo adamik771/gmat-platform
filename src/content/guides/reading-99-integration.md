@@ -209,17 +209,17 @@ The full improvement loop has six stages, each compounding into the next.
 
 *Stage 6 — Final mocks + final review.* In the last two to three weeks before the exam, take two to three full-length mocks under realistic conditions (same time of day, same break structure, same chair). Review each mock carefully. The final phase is about *consolidation*, not new content.
 
-This loop typically takes ten to fifteen weeks for a student moving from a 600-level baseline to a 700-plus target. Less time and less score gain go together; more time produces diminishing returns past about twenty weeks.
+This loop typically takes ten to fifteen weeks for a student making a major, multi-tier score move. Less time and less score gain go together; more time produces diminishing returns past about twenty weeks.
 
 ### Quick check
 
 1. The full improvement loop has how many stages?
 2. Stage 1 is what?
 3. Stage 4 is what?
-4. The loop typically takes how long for a 600-to-700+ score move?
+4. The loop typically takes how long for a major score move?
 5. More time produces what kind of returns past about 20 weeks?
 
-*Answers.* (1) Six stages. (2) Diagnostic — take a baseline mock; identify dominant patterns by section. (3) Mid-prep mock — re-diagnose; the dominant pattern usually shifts. (4) 10-15 weeks for a 600-to-700+ move. (5) Diminishing returns — past 20 weeks, additional time produces little additional gain.
+*Answers.* (1) Six stages. (2) Diagnostic — take a baseline mock; identify dominant patterns by section. (3) Mid-prep mock — re-diagnose; the dominant pattern usually shifts. (4) 10-15 weeks for a major score move. (5) Diminishing returns — past 20 weeks, additional time produces little additional gain.
 
 ## From knowledge to execution
 

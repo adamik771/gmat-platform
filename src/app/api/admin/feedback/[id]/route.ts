@@ -1,6 +1,6 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import { getSupabaseService } from "@/lib/supabase/service"
-import { isAdminEmail } from "@/lib/admin"
+import { isAdmin } from "@/lib/admin-auth"
 
 const ALLOWED_STATUSES = new Set([
   "open",
@@ -12,7 +12,7 @@ const ALLOWED_STATUSES = new Set([
 
 /**
  * PATCH /api/admin/feedback/[id] — update the triage status of a row in
- * `beta_feedback`. Admin-only (gated by `ADMIN_EMAILS`); writes use the
+ * `beta_feedback`. Admin-only (trusted role or bootstrap allowlist); writes use the
  * service-role client because the standard RLS only lets users edit
  * their own rows.
  *
@@ -29,7 +29,7 @@ export async function PATCH(
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  if (!user || !isAdminEmail(user.email)) {
+  if (!isAdmin(user)) {
     return Response.json({ error: "Not found" }, { status: 404 })
   }
 

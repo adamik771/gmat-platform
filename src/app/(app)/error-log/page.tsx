@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { AlertCircle, X } from "lucide-react"
-import { createSupabaseServer } from "@/lib/supabase/server"
+import { createSupabaseServer, getRequestUser } from "@/lib/supabase/server"
 import { getAllQuestions, getChapterTest, type ParsedQuestion } from "@/lib/content"
 import {
   classifyMistakes,
@@ -11,6 +11,7 @@ import { buildMistakeInsights } from "@/lib/mistake-insights"
 import EmptyState from "@/components/shared/EmptyState"
 import type { Difficulty, QuestionType, Section } from "@/types"
 import {
+  byMostRecent,
   ERROR_TAG_BY_ID,
   ERROR_FAMILIES,
   ROOT_CAUSE_BY_ID,
@@ -50,6 +51,11 @@ export default async function ErrorLogPage({
       // the related row under the relationship name. When `session_id` is
       // present in the query string, scope to that session — used by the
       // "Tag mistakes from this session" CTA on the practice completion screen.
+      //
+      // `practice_attempts` has no created_at of its own and PostgREST can't
+      // order the parent rows by the joined session column, so scope the
+      // query to the user's most recent sessions first — that keeps the row
+      // cap on the NEWEST mistakes instead of an arbitrary UUID-ordered slice.
       let attemptsQuery = supabase
         .from("practice_attempts")
         .select(
@@ -57,23 +63,43 @@ export default async function ErrorLogPage({
         )
         .eq("user_id", user.id)
         .eq("is_correct", false)
-        .order("session_id", { ascending: false })
-        .limit(200)
+        .limit(1000)
       if (sessionIdFilter) {
         attemptsQuery = attemptsQuery.eq("session_id", sessionIdFilter)
+      } else {
+        const { data: recentSessions } = await supabase
+          .from("practice_sessions")
+          .select("id")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: false })
+          .limit(150)
+        attemptsQuery = attemptsQuery.in(
+          "session_id",
+          (recentSessions ?? []).map((s) => s.id as string)
+        )
       }
       // The wrong-attempts read and the error-tags read are independent (both
       // key on user.id) — run them concurrently. The legacy-column fallback
       // below stays sequential since it only fires on a schema-mismatch error.
-      const [{ data: attempts }, withConfidence] = await Promise.all([
-        attemptsQuery,
-        supabase
-          .from("error_tags")
-          .select(
-            "attempt_id, tag, root_cause, contributing_causes, notes, reviewed, remediation_assigned_at, remediation_completed_at, confidence",
-          )
-          .eq("user_id", user.id),
-      ])
+      const [{ data: attempts, error: attemptsError }, withConfidence] =
+        await Promise.all([
+          attemptsQuery,
+          supabase
+            .from("error_tags")
+            .select(
+              "attempt_id, tag, root_cause, contributing_causes, notes, reviewed, remediation_assigned_at, remediation_completed_at, confidence",
+            )
+            .eq("user_id", user.id),
+        ])
+
+      // A failed attempts read must not render as an empty error log
+      // ("no mistakes — nice work") — throw to the (app) error boundary
+      // instead, which keeps the shell and offers a retry.
+      if (attemptsError) {
+        throw new Error(
+          `error log: attempts read failed (${attemptsError.message})`
+        )
+      }
 
       // Pull tags for the same user in a second query and merge by id. Doing
       // this separately (vs an FK join) avoids Supabase relationship-cache
@@ -141,13 +167,17 @@ export default async function ErrorLogPage({
         practice_sessions: { slug: string; created_at: string } | null
       }
 
-      mistakes = ((attempts as AttemptRow[] | null) ?? []).map((a) => {
+      mistakes = ((attempts as unknown as AttemptRow[] | null) ?? []).map((a) => {
         const q = byId.get(a.question_id)
         const t = tagMap.get(a.id)
         return {
           id: a.id,
           questionId: a.question_id,
-          section: a.section as Section,
+          // Prefer the question's CURRENT parsed section over the section
+          // stamped on the attempt row — attempts recorded before the
+          // DS-belongs-to-DI reclassification carry section='Quant' for
+          // Data Sufficiency questions and would leak into the Quant filter.
+          section: q?.section ?? (a.section as Section),
           topic: a.topic,
           subtopic: a.subtopic ?? "",
           difficulty: a.difficulty ?? "",
@@ -178,9 +208,16 @@ export default async function ErrorLogPage({
             : null) as MistakeEntry["confidence"],
         }
       })
+      // Most recent first, capped to the display budget. The DB rows arrive
+      // unordered (see the query note above), so this is the ordering.
+      mistakes.sort(byMostRecent)
+      mistakes = mistakes.slice(0, 200)
     }
-  } catch {
-    // Supabase unavailable — render empty state below.
+  } catch (e) {
+    // A FAILED read must not render as an empty error log ("no mistakes")
+    // — rethrow to the (app) error boundary, which keeps the shell and
+    // offers a retry.
+    throw e instanceof Error ? e : new Error("error log: load failed")
   }
 
   // Per-family breakdown. Groups tagged mistakes by their error family
@@ -317,9 +354,9 @@ export default async function ErrorLogPage({
   if (mistakes.length > 0) {
     try {
       const supabase = await createSupabaseServer()
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
+      // Request-memoized — this page already resolved the user above; a
+      // second auth round-trip here was pure latency.
+      const user = await getRequestUser()
       if (user) {
         const untagged = mistakes
           .map((m, i) => ({ entry: m, classification: classifications[i] }))
@@ -410,7 +447,7 @@ export default async function ErrorLogPage({
               <span className="tabular-nums">
                 Viewing one session
               </span>
-              <span className="text-[#444444]">·</span>
+              <span className="text-[#888888]">·</span>
               <Link
                 href="/error-log"
                 className="inline-flex items-center gap-1 font-semibold hover:text-[#F0F0F0] transition-colors"

@@ -109,7 +109,7 @@ The measuring stick for your progress is not a feeling — it is the **six offic
 
 The whole chapter on one screen — lock these in before you start the foundations.
 
-**The hard constraints.** Quant is **21 Problem Solving questions in 45 minutes** — about **2:08 each** — with **no calculator**. Data Sufficiency is gone to Data Insights; geometry is gone entirely. The section is scored **60–90** and is exactly one-third of your **205–805** total. You can bookmark, revisit within the section, and change up to three answers at the end.
+**The hard constraints.** Quant is **21 Problem Solving questions in 45 minutes** — about **2:08 each** — with **no calculator**. Data Sufficiency is gone to Data Insights; geometry is removed from Quant (light geometric reasoning can still appear inside Data Insights contexts). The section is scored **60–90** and is exactly one-third of your **205–805** total. You can bookmark, revisit within the section, and change up to three answers at the end.
 
 **The content.** A closed list: arithmetic, number properties, algebra, word problems, rates/ratios/percents, statistics, counting and probability — finite, learnable, finishable, and nearly all of it reducing to clean arithmetic plus translation. That is why foundations come first.
 

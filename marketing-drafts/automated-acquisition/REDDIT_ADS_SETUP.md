@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Reddit Ads Setup
 
 Paid acquisition plan for Zakarian GMAT (zakariangmat.com) on Reddit's self-serve ads platform. This is the run-book for standing up, launching, and reading the campaign. Everything here is built to be honest, useful to the reader, and compliant.
@@ -13,7 +15,7 @@ These bind every ad, every targeting choice, and every landing page in this plan
 - **No GMAC/GMAT affiliation.** "GMAT" and "GMAT Focus Edition" are GMAC trademarks, used here only nominatively to say what the product helps with. Never imply we are affiliated with, endorsed by, or sponsored by GMAC, the GMAT, GMAT Focus, or mba.com. Reddit's ad review will look for this; so will the subreddit audiences, who are sophisticated.
 - **No score guarantees.** Never promise a score, a point gain, or a percentile to the prospect.
 - **No diagnostic / score-band claims.** The platform has no in-app diagnostic. The study-plan baseline is the user's own official mba.com practice exam. Do not write "free diagnostic," "30-question test," "readiness band," "score band," "find out your level," "typically lands," or "most students see/improve." None of it.
-- **Only one performance claim is allowed:** the founder's own 565 -> 735 climb (100th percentile on his official report), always attributed to him personally and never generalized to other students or used as an implied promise.
+- **Only one performance claim is allowed:** the founder's own 565 -> 735 climb (top 1%), always attributed to him personally and never generalized to other students or used as an implied promise.
 - **No fake urgency, no fabricated testimonials, no invented student counts.** The beta is genuinely free with no card; say exactly that and nothing more.
 - **Reddit-native tone.** Reddit punishes ads that read like ads. Copy is helpful-first, specific, and written like a 735-scorer actually talking. No hype words, no buzzwords, no exclamation-point energy.
 
@@ -214,7 +216,7 @@ I built a free study plan tool that takes the score from your own official mba.c
 **Headline:** A GMAT Focus prep platform built solo by a 565 -> 735 self-studier (free private beta)
 
 **Body:**
-I'm a non-native English speaker who self-studied from 565 to 735 (100th percentile on my own official report). I couldn't find a tool that did review the way I'd taught myself to, so I built one: 62 chapters across Quant, Verbal, and Data Insights, a large practice bank, a 6-tag error log, a daily spaced-review queue, full-length mocks with mock-to-mock trend, and per-topic and per-difficulty analytics.
+I'm a non-native English speaker who self-studied from 565 to 735 (top 1%). I couldn't find a tool that did review the way I'd taught myself to, so I built one: 62 chapters across Quant, Verbal, and Data Insights, a large practice bank, a 6-tag error log, a daily spaced-review queue, full-length mocks with mock-to-mock trend, and per-topic and per-difficulty analytics.
 
 It's free to use during a private beta right now — no card. I'm looking for serious test-takers to use it and tell me where it's wrong.
 

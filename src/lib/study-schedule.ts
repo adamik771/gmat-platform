@@ -15,6 +15,7 @@
  */
 
 import type { Section } from "@/types"
+import { WEEKLY_HOURS_MAX, WEEKLY_HOURS_MIN } from "@/lib/study-hours"
 
 export interface SectionAccuracy {
   /** 0–1 accuracy on the public sampler or the user's gut estimate. */
@@ -30,7 +31,7 @@ export interface ScheduleInput {
   todayIso?: string
   /**
    * Total weekly study hours (e.g. 7.5 for 90 min/day × 5 days/week).
-   * Range 3–25 — anything outside is clamped at the call boundary.
+   * Range 3–40 — anything outside is clamped at the call boundary.
    */
   weeklyHours: number
   /**
@@ -141,7 +142,12 @@ function pickSecondWeakest(
 export function buildSchedule(input: ScheduleInput): Schedule {
   const today = input.todayIso ? new Date(input.todayIso) : new Date()
   const examDate = new Date(input.examDateIso)
-  const weeklyHours = clamp(input.weeklyHours, 3, 25)
+  const weeklyHours = clamp(
+    input.weeklyHours,
+    WEEKLY_HOURS_MIN,
+    WEEKLY_HOURS_MAX,
+  )
+  const intensive = weeklyHours > 25
 
   const days = Math.max(7, daysBetween(today, examDate))
   const totalWeeks = Math.max(2, Math.ceil(days / 7))
@@ -219,8 +225,10 @@ export function buildSchedule(input: ScheduleInput): Schedule {
       "Weakest section deep work",
       `Drill ${sectionLabel} topics, timed, with full review after every set.`,
       [
-        `${Math.round(weeklyHours * 0.7)} hours of timed drilling on ${sectionLabel}.`,
-        "30 min per session reviewing every miss into the error log.",
+        `${Math.round(weeklyHours * (intensive ? 0.5 : 0.7))} hours of timed drilling on ${sectionLabel}.`,
+        intensive
+          ? `${Math.round(weeklyHours * 0.25)} hours of solution review and error-log work; use the remaining time for chapter repair and recall.`
+          : "30 min per session reviewing every miss into the error log.",
         i === weakestSpan - 1 ? "End-of-block: short timed mock on this section." : "",
       ].filter(Boolean),
     )
@@ -234,9 +242,11 @@ export function buildSchedule(input: ScheduleInput): Schedule {
       "Second-weakest section",
       `Drill ${sectionLabel} topics. Maintain weekly maintenance on the first.`,
       [
-        `${Math.round(weeklyHours * 0.6)} hours on ${sectionLabel}.`,
+        `${Math.round(weeklyHours * (intensive ? 0.45 : 0.6))} hours on ${sectionLabel}.`,
         `${Math.round(weeklyHours * 0.2)} hours of maintenance on the first weakest.`,
-        "Re-sort the error log mid-week. Confirm patterns are shifting.",
+        intensive
+          ? "Use the remaining time for explanation review, concept repair, and spaced recall."
+          : "Re-sort the error log mid-week. Confirm patterns are shifting.",
       ],
     )
   }
@@ -255,7 +265,7 @@ export function buildSchedule(input: ScheduleInput): Schedule {
             "Action items for the next week, written down.",
           ]
         : [
-            `Daily 30-question mixed set, timed (~${Math.round(weeklyHours * 0.5)} hrs/wk total).`,
+            `${Math.round(weeklyHours * (intensive ? 0.4 : 0.5))} hours of timed mixed sets across the week.`,
             "Review-to-practice ratio: roughly 1:2 (review-heavy by week's end).",
             "Weekend: section mock alternating Q / V / DI.",
           ],

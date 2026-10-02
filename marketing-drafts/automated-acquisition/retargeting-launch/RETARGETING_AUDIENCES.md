@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Retargeting Audiences — Zakarian GMAT
 
 Internal launch doc for Adam. Defines the retargeting audiences to build from the
@@ -85,7 +87,7 @@ plus `/pricing`, `/score-converter`, `/resources`, `/signup`, `/about`,
 - **Est. size needed before serving:** Google >= 100 members; Meta a few hundred
   pixel events warmed. This is usually the FIRST audience to clear the gate.
 - **Message angle:** "It's a free private beta, no card." Low-friction reminder
-  + the single honest founder hook (565 -> 735, 100th percentile, his own result).
+  + the single honest founder hook (565 -> 735, top 1%, his own result).
   Push the easiest yes: grab the free error-log template or start free.
 - **Suppression:** exclude `signup`, `lead_captured`, `founding_reserve`.
 
@@ -205,4 +207,4 @@ plus `/pricing`, `/score-converter`, `/resources`, `/signup`, `/about`,
 - No audience name or note may imply a score outcome, a percentile prediction, or
   GMAC/mba.com affiliation. Keep names factual (e.g. "A2_errorlog_no_signup_21d").
 - The only performance claim allowed in any creative tied to these audiences is the
-  founder's own 565 -> 735 (100th percentile), framed as HIS result.
+  founder's own 565 -> 735 (top 1%), framed as HIS result.

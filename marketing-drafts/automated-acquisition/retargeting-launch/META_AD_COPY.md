@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Meta Retargeting Ad Copy — Zakarian GMAT
 
 Honest retargeting variants for the audiences in RETARGETING_AUDIENCES.md.
@@ -25,7 +27,7 @@ ad set PAUSED until then.
 
 - No score guarantee, no percentile prediction, no timeline, no "raise your score."
 - No implied affiliation/endorsement with GMAC / GMAT / GMAT Focus / mba.com.
-- Only performance claim = the founder's own 565 -> 735 (100th percentile), as HIS result.
+- Only performance claim = the founder's own 565 -> 735 (top 1%), as HIS result.
 - Honest: it IS a free private beta right now. No fake scarcity or testimonials.
 - No emojis (hard repo rule).
 - Every ad needs the standard footer disclaimer in the on-image text or first comment:

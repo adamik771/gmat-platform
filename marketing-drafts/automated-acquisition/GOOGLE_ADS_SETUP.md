@@ -1,5 +1,7 @@
 # Google Search Ads Setup
 
+> **STALE — do not build ads from this doc (2026-07-13).** It predates the offer change: the public offer is now the **free 7-day full-access trial, no card** (never "free beta"/"private beta"), `/gmat-private-beta` redirects to `/gmat-free-trial`, and founding pricing is a down-funnel /pricing offer, not an ad angle. Use `google-ads-launch/` (updated) + `marketing-drafts/acquisition-cleanup/OFFER_AUDIT.md` for current wording; keep this file only for the keyword/negative research below.
+
 Acquisition playbook for **Zakarian GMAT** (zakariangmat.com) on Google Search Ads. Search only — this doc does not cover Display, PMax, or YouTube.
 
 This is decision-support for the founder. Everything below is built to match the platform as it actually exists. Nothing here implies affiliation with GMAC, the GMAT, GMAT Focus Edition, or mba.com. "GMAT" and "GMAT Focus Edition" are referenced nominatively only (describing what the platform helps you prepare for); they are not used as if Zakarian GMAT is endorsed by or partnered with the trademark holder.
@@ -13,7 +15,7 @@ These are hard constraints. An ad that violates one does not run.
 - **No affiliation/endorsement language.** Never write "official GMAT," "GMAC-approved," "partner," or anything implying a relationship with GMAC/mba.com. Brand the product as "Zakarian GMAT," not "GMAT prep by GMAT."
 - **No guaranteed scores.** No "guaranteed 700+," "score X or your money back," "hit your target score."
 - **No diagnostic / score-band claims.** The platform has **no in-app diagnostic.** Never write "free diagnostic," "30-question diagnostic," "find your readiness band," "see your score band," "most students improve," "typically lands," "students see." The baseline comes from the user's **own official mba.com practice exam** — describe it that way ("build your plan from your official practice-exam score"), never as something we measure.
-- **Only one performance claim is allowed, and only about the founder:** Adam Zakarian's own 565 -> 735 climb (100th percentile on his official report). Never generalize it to other students. Acceptable: "Built by a 735-scorer." Not acceptable: "Our students go from 565 to 735."
+- **Only one performance claim is allowed, and only about the founder:** Adam Zakarian's own 565 -> 735 climb (top 1%). Never generalize it to other students. Acceptable: "Built by a 735-scorer." Not acceptable: "Our students go from 565 to 735."
 - **No fake urgency, no fabricated testimonials, no invented student counts.** Founding-price scarcity is real (early pricing is genuinely limited/anchored) and may be stated factually, but no countdown-timer fiction or "only 3 spots left" unless literally true.
 - **Trademark use in keywords is fine** (bidding on "GMAT study plan" etc. is nominative and allowed), but trademarked terms must not appear in ad copy in a way that implies endorsement. Use "GMAT" descriptively.
 

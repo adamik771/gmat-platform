@@ -2,9 +2,9 @@
 slug: quant-28-classic-word-problems
 title: "Classic Word Problems"
 section: Quant
-estimated_minutes: 10
+estimated_minutes: 85
 prerequisites:
-  - quant-27-probability
+  - quant-17-translating-word-problems
 summary: |
   Profit/markup, ages-coins-digits setups, and max/min optimization under constraints.
 sections:
@@ -26,8 +26,8 @@ sections:
       - word-problems-q50
       - word-problems-q51
       - word-problems-q53
-      - word-problems-q58
-      - word-problems-q60
+      - word-problems-q87
+      - ratios-percents-q59
   - id: ages-coins-digits
     type: reading
     title: "Ages, coins, and digit problems"
@@ -35,13 +35,17 @@ sections:
       - word-problems-q12
       - word-problems-q15
       - word-problems-q16
-      - word-problems-q18
+      - word-problems-q28
       - word-problems-q57
   - id: max-min-optimization
     type: reading
     title: "Max/min and optimization — extremes under constraint"
     check_question_ids:
       - word-problems-q62
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -63,9 +67,15 @@ problem_sets:
       - word-problems-q66
 ---
 
+## @summary
+
+- Translate ages, coins, digits, and distribution constraints into variables and equations before chasing arithmetic.
+- For profit and optimization, identify the correct base and the feasible domain before comparing outcomes.
+- Reject solutions that violate real-world constraints such as integer counts, digit limits, nonnegative ages, or capacity.
+
 ## @profit-and-percent
 
-Profit, markup, and discount problems run on a small set of identities. The trickiest part isn't the formulas — it's that the GMAT loves *compound* percent changes that students reflexively add when they should multiply, plus a relentless ambiguity about *which number is the base*. Master those two ideas and this entire family collapses into arithmetic you can do in your head. The 700+ scorers don't compute faster; they decide faster what each percent is a percent *of*, and they convert every percent into a multiplier before they touch a single number.
+Profit, markup, and discount problems run on a small set of identities. The trickiest part isn't the formulas — it's that the GMAT loves *compound* percent changes that students reflexively add when they should multiply, plus a relentless ambiguity about *which number is the base*. Master those two ideas and this entire family collapses into arithmetic you can do in your head. Top scorers don't compute faster; they decide faster what each percent is a percent *of*, and they convert every percent into a multiplier before they touch a single number.
 
 **The core identities.** Memorize these four; everything else is a recombination.
 
@@ -198,7 +208,7 @@ Simple interest is rare on the modern GMAT; **compound is the default assumption
 
 ## @ages-coins-digits
 
-Four classic "setup two equations" subgenres — **ages, coins, digits, and consecutive integers** — plus a few cousins the GMAT folds in with them. The good news: the underlying algebra is almost always the same skeleton, *two linear equations in two unknowns*. Only the flavor text differs. The bad news at the 700+ level: the trap is never the algebra. It's the **translation** — turning one sentence of English into one correct equation. Miss a parenthesis, anchor the wrong variable, or mix your units, and you'll solve a clean system to the wrong answer with total confidence. The GMAT knows this, which is why the wrong answers in these problems are not random — they are precisely the values you get from the most tempting mistranslations. This section drills the translation discipline first, then layers in the shortcuts, edge cases, and feasibility checks that separate fast, accurate solvers from slow, confident-but-wrong ones.
+Four classic "setup two equations" subgenres — **ages, coins, digits, and consecutive integers** — plus a few cousins the GMAT folds in with them. The good news: the underlying algebra is almost always the same skeleton, *two linear equations in two unknowns*. Only the flavor text differs. The bad news on the hardest versions: the trap is never the algebra. It's the **translation** — turning one sentence of English into one correct equation. Miss a parenthesis, anchor the wrong variable, or mix your units, and you'll solve a clean system to the wrong answer with total confidence. The GMAT knows this, which is why the wrong answers in these problems are not random — they are precisely the values you get from the most tempting mistranslations. This section drills the translation discipline first, then layers in the shortcuts, edge cases, and feasibility checks that separate fast, accurate solvers from slow, confident-but-wrong ones.
 
 A unifying idea before we start: **every problem here gives you exactly as many independent equations as you have unknowns.** Two unknowns, two facts. Three unknowns, three facts. If you've written your variables and you're short an equation, you missed a sentence — reread before you guess. And one more unifying idea: every answer here must be **feasible in the real world.** Ages and coin counts are non-negative integers; digits live in 0–9; a leading digit is at least 1. A fractional or negative result is not a number to round — it is an alarm telling you the translation slipped.
 
@@ -318,7 +328,7 @@ Non-integer again — and again it's diagnostic. Real GMAT data would give clean
 - **The 9-multiple fact (digits):** any two-digit-reversal difference is 9 × (digit difference), turning one equation into instant arithmetic; eliminate choices that aren't consistent.
 - **Parity read (coins):** after dividing the value equation by its common factor, check whether a count must be even or odd — a free correctness filter.
 
-**Trap to watch.** Age problems with "X years ago" or "in X years" clauses — students write `J − 5 = 4N − 5` instead of `J − 5 = 4(N − 5)`. The parenthesis is non-negotiable: *both* people were 5 years younger then, so both sides of the equation shift. Forgetting the parenthesis on the multiplied side is the single most common 700-level miss in this genre, because the algebra after it is clean and the wrong answer looks plausible — and, as we saw, the GMAT routinely lists that wrong value as a trap choice.
+**Trap to watch.** Age problems with "X years ago" or "in X years" clauses — students write `J − 5 = 4N − 5` instead of `J − 5 = 4(N − 5)`. The parenthesis is non-negotiable: *both* people were 5 years younger then, so both sides of the equation shift. Forgetting the parenthesis on the multiplied side is the single most common hard-item miss in this genre, because the algebra after it is clean and the wrong answer looks plausible — and, as we saw, the GMAT routinely lists that wrong value as a trap choice.
 
 **Common mistakes.**
 
@@ -450,4 +460,4 @@ The named tactic — **start backsolving from the extreme the question asks for*
 - **Rounding the wrong way.** Rounding a fractional corner *outward* and stepping outside the feasible region — always round inward.
 - **Backsolving from the wrong end.** Starting from the middle choice instead of the extreme the question targets, doubling your work.
 
-**Recap.** Max/min has no formula, only a reflex: find the fixed budget, identify what competes with your target, and shove the competitors to the opposite extreme — while honoring ordering, distinctness, and integer rules. Write constraints explicitly, push, then re-check feasibility. For products of ranges, test the four endpoint corners. For "smallest n such that," bracket with powers. For answer-choice problems asking for a maximum or minimum, backsolve starting from the extreme choice and take the first feasible one. The two traps that cost 700+ scorers points are the strict-vs-inclusive boundary and the hidden negative factor — slow down on the inequality symbol and on the sign of every variable, and these become free points.
+**Recap.** Max/min has no formula, only a reflex: find the fixed budget, identify what competes with your target, and shove the competitors to the opposite extreme — while honoring ordering, distinctness, and integer rules. Write constraints explicitly, push, then re-check feasibility. For products of ranges, test the four endpoint corners. For "smallest n such that," bracket with powers. For answer-choice problems asking for a maximum or minimum, backsolve starting from the extreme choice and take the first feasible one. The two traps that cost even strong test-takers points are the strict-vs-inclusive boundary and the hidden negative factor — slow down on the inequality symbol and on the sign of every variable, and these become free points.

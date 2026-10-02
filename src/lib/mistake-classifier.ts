@@ -184,7 +184,7 @@ function inferRootCause(
   bucket: TimeBucket,
   difficulty: Difficulty,
   hasTrap: boolean
-): { id: string; confidence: Confidence; signal: string } {
+): { id: string; confidence: Confidence; signal: string } | null {
   if (bucket === "rushed") {
     return {
       id: "P2",
@@ -220,11 +220,11 @@ function inferRootCause(
       signal: "trap-pattern miss — concept may be misapplied to this variant",
     }
   }
-  return {
-    id: "K2",
-    confidence: "low",
-    signal: "no decisive signal — defaulting to concept-misapplied",
-  }
+  // No decisive signal: return null rather than a default guess. A
+  // fabricated K2 here used to be persisted for EVERY miss, silently
+  // zeroing "untagged" counts and training the study plan's error
+  // patterning on classifier defaults instead of student evidence.
+  return null
 }
 
 /**
@@ -306,10 +306,11 @@ export function classifyMistake(
   // Root cause inference — a complementary view that says WHERE the
   // solve broke (concept / strategy / execution / pacing).
   const rc = inferRootCause(timeBucket, difficulty, !!trapValue)
-  const rootCauseDef = ROOT_CAUSE_BY_ID[rc.id] ?? null
-  const rootCause: InferredField<RootCauseDef> = rootCauseDef
-    ? { value: rootCauseDef, confidence: rc.confidence, signal: rc.signal }
-    : { value: null, confidence: "low", signal: "no decisive root-cause signal" }
+  const rootCauseDef = rc ? ROOT_CAUSE_BY_ID[rc.id] ?? null : null
+  const rootCause: InferredField<RootCauseDef> =
+    rc && rootCauseDef
+      ? { value: rootCauseDef, confidence: rc.confidence, signal: rc.signal }
+      : { value: null, confidence: "low", signal: "no decisive root-cause signal" }
 
   return {
     questionId: attempt.questionId,
@@ -365,9 +366,12 @@ export interface PersistAutoInput {
  * commonly because the migration above hasn't been applied yet — caller
  * should treat this as a soft failure and continue rendering).
  *
- * Only attempts whose classifier produced *some* signal (mistakeType OR
- * rootCause non-null) are persisted. Empty classifications are skipped
- * to avoid creating rows that say nothing.
+ * Fields are gated per-field on classifier confidence: a 'low'
+ * inference is a guess, and a stored guess is indistinguishable from
+ * evidence to every downstream consumer (study-plan error patterning,
+ * spaced-review priority, review counts). Low-confidence inferences
+ * stay client-side as "looks like…" suggestions; only medium/high
+ * fields persist, and attempts with no persistable field are skipped.
  */
 export async function persistAutoClassifications(
   supabase: SupabaseClient,
@@ -375,14 +379,18 @@ export async function persistAutoClassifications(
   inputs: PersistAutoInput[]
 ): Promise<{ inserted: number } | null> {
   const rows = inputs
-    .filter((i) => i.classification.mistakeType.value || i.classification.rootCause.value)
-    .map((i) => ({
-      attempt_id: i.attemptId,
-      user_id: userId,
-      tag: i.classification.mistakeType.value?.id ?? null,
-      root_cause: i.classification.rootCause.value?.id ?? null,
-      confidence: "auto",
-    }))
+    .map((i) => {
+      const mt = i.classification.mistakeType
+      const rc = i.classification.rootCause
+      return {
+        attempt_id: i.attemptId,
+        user_id: userId,
+        tag: mt.value && mt.confidence !== "low" ? mt.value.id : null,
+        root_cause: rc.value && rc.confidence !== "low" ? rc.value.id : null,
+        confidence: "auto",
+      }
+    })
+    .filter((r) => r.tag || r.root_cause)
 
   if (rows.length === 0) return { inserted: 0 }
 

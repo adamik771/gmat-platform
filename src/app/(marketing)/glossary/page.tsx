@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 import Link from "next/link"
 import { ArrowRight, BookA, Sparkles } from "lucide-react"
 import { ENTRIES, groupAlphabetically } from "@/lib/glossary"
@@ -182,8 +183,8 @@ export default function GlossaryPage() {
           </h2>
           <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
             Apply them in a structured 12-week plan with the platform.
-            50+ chapters + adaptive plan + error log, all free.
-            No card required.
+            {CHAPTER_COUNT_CLAIM} chapters + adaptive plan + error log —
+            free 7-day full-access trial. No card required.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link

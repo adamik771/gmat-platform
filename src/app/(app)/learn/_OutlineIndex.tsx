@@ -121,7 +121,7 @@ export default function OutlineIndex({
           <p className="text-[15px] text-[#C0C0C0] max-w-2xl leading-relaxed">
             {description}
           </p>
-          <p className="mt-4 text-[12px] uppercase tracking-[0.18em] text-[#555555] font-medium">
+          <p className="mt-4 text-[12px] uppercase tracking-[0.18em] text-[#888888] font-medium">
             {entries.length} total across {groups.size} chapter
             {groups.size === 1 ? "" : "s"}
           </p>
@@ -177,7 +177,7 @@ function ChapterGroup({
               className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-white/[0.06] bg-[#0D0D0D] hover:border-white/[0.12] transition-all"
               style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.02)" }}
             >
-              <ChevronRight className="w-3.5 h-3.5 flex-shrink-0 text-[#555555] group-hover:text-[#C9A84C] transition-colors" />
+              <ChevronRight className="w-3.5 h-3.5 flex-shrink-0 text-[#888888] group-hover:text-[#C9A84C] transition-colors" />
               <span className="flex-1 min-w-0">
                 <span className="block text-[13px] font-semibold text-[#F0F0F0] tracking-tight">
                   {e.label}
@@ -187,7 +187,7 @@ function ChapterGroup({
                 </span>
               </span>
               <ArrowRight
-                className="w-3.5 h-3.5 flex-shrink-0 text-[#555555] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
+                className="w-3.5 h-3.5 flex-shrink-0 text-[#888888] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
                 aria-hidden
               />
             </Link>

@@ -223,39 +223,16 @@ If x and y are distinct positive integers and x + y = 12, what is the maximum po
 - E) 36
 
 **answer:** D
-**explanation:** The constraint that x and y are *distinct* positive integers is the operative condition that governs this problem. If the word "distinct" were absent, the product xy would be maximized by setting x = y = 6, yielding xy = 36 — choice E. The entire difficulty of the problem lies in recognizing that this natural maximum is forbidden.
-
-Let x and y be distinct positive integers satisfying x + y = 12. Expressing y in terms of x gives y = 12 - x, so the product to be maximized is
-
-P = x(12 - x) = 12x - x^2.
-
-Because x and y must be positive, x can range over {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}. Because x and y must be distinct, x cannot equal y = 12 - x, which would require x = 6. Therefore x = 6 is excluded, and the admissible domain is {1, 2, 3, 4, 5, 7, 8, 9, 10, 11}.
-
-The function P = x(12 - x) is a downward-opening parabola with its unconstrained maximum at x = 6. On the restricted integer domain, the values of P nearest x = 6 are:
-
-- x = 5: P = 5 * 7 = 35
-- x = 7: P = 7 * 5 = 35
-
-Both admissible pairs (5, 7) and (7, 5) yield the same product, 35. Moving further from x = 6 in either direction reduces P:
-
-- x = 4: P = 4 * 8 = 32
-- x = 3: P = 3 * 9 = 27
-- x = 2: P = 2 * 10 = 20
-- x = 1: P = 1 * 11 = 11
-
-The maximum value of xy over all admissible pairs is therefore 35, achieved by {x, y} = {5, 7}.
-
-A faster method is to recognize the AM-GM structure directly: for a fixed sum, the product of two numbers is maximized when the numbers are as close to equal as possible. Because equality is forbidden, the optimal pair is the one closest to equal that remains distinct — namely (5, 7) — without the need to evaluate every pair.
-
-Choice E (36) is the product 6 * 6, which is excluded because the integers must be distinct. Selecting it reflects a failure to apply the distinctness constraint.
-
-The correct answer is D.
+**fastest_path:** For a fixed sum, make the numbers as close as allowed. Since 6 and 6 are not distinct, use 5 and 7.
+**explanation:** Two positive numbers with a fixed sum have the greatest product when they are closest together. The equal pair 6 and 6 would give 36, but it violates the distinctness condition. The nearest allowed integer pair is 5 and 7, giving xy = 35. Choice D.
+**common_trap:** Choice E ignores the single most important word in the prompt: distinct.
+**takeaway:** With fixed sum, maximize a product by balancing the factors, then adjust for integer or distinctness restrictions.
 **related_reading:** reading-quant-03-number-properties
 
 ---
 
 ## Q7
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Multi-Variable Recognition
 **subchapter:** q1.1.method
@@ -293,7 +270,7 @@ The correct answer is A.
 ---
 
 ## Q8
-**difficulty:** Hard
+**difficulty:** Medium
 **type:** Problem Solving
 **topic:** Method Switching Under Pressure
 **subchapter:** q1.1.method
@@ -311,27 +288,8 @@ If x is a positive integer such that x² + 7x + 12 = 110, what is the value of x
 - E) 9
 
 **answer:** C
-**explanation:** When a quadratic equation is presented alongside a set of discrete integer answer choices, two solution paths are available: algebraic factoring and backsolving by substitution. Both are valid; the faster path depends on how quickly the equation yields to factoring. Here, either method produces the answer efficiently, but recognizing the faster path under time pressure is itself part of the skill being tested.
-
-**Algebraic approach.** Let x be the unknown positive integer. The given equation is
-
-x^2 + 7x + 12 = 110.
-
-Subtracting 110 from both sides gives
-
-x^2 + 7x - 98 = 0.
-
-We seek two integers whose product is -98 and whose sum is 7. The pair 14 and -7 satisfies both conditions: (14)(-7) = -98 and 14 + (-7) = 7. The equation therefore factors as
-
-(x + 14)(x - 7) = 0,
-
-yielding x = -14 or x = 7. Because x is stipulated to be a positive integer, we discard x = -14, and we find x = 7.
-
-**Backsolving approach.** Because the answer choices are small consecutive integers, substituting the middle choice (C, x = 7) is a natural starting point. Substituting x = 7:
-
-7^2 + 7(7) + 12 = 49 + 49 + 12 = 110. This matches the right-hand side exactly, confirming the solution without any further substitution.
-
-Under timed conditions, a test-taker who spots that the quadratic does not factor immediately with the original constant (12 rather than -98) may find backsolving faster: start with the middle choice, verify in one arithmetic step, and stop. Conversely, a test-taker comfortable with quickly adjusting the equation to standard form x^2 + 7x - 98 = 0 and identifying the factor pair (14, -7) will find the algebraic route equally direct. The key discipline is to commit to one method promptly rather than beginning algebra, stalling, and then switching — the switch itself costs more time than either method requires from the start.
-
-The correct answer is C.
+**fastest_path:** Backsolve the middle choice. For x = 7, 7^2 + 7(7) + 12 = 49 + 49 + 12 = 110.
+**explanation:** The answer choices are small integers, so test x = 7 first. It satisfies the equation exactly: 49 + 49 + 12 = 110. Therefore x = 7, choice C. Algebra confirms this: x^2 + 7x - 98 = (x+14)(x-7)=0, and the positive solution is 7.
+**common_trap:** After factoring, -14 is also a root of the equation, but the prompt requires x to be a positive integer.
+**takeaway:** When choices are simple and substitution is quick, backsolve before committing to longer algebra.
 **related_reading:** reading-quant-08-method-selection

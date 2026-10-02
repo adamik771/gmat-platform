@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect } from "react"
-import { drainPendingAttempts } from "@/lib/offline/sync"
 
 /**
  * Side-effect-only. On mount and on every `online` event, attempts
@@ -20,20 +19,26 @@ export default function OfflineSyncTrigger({ userId }: { userId: string }) {
     if (typeof window === "undefined") return
 
     let cancelled = false
-    const run = () => {
+    const run = async () => {
       if (cancelled) return
-      void drainPendingAttempts(userId)
+      try {
+        const { drainPendingAttempts } = await import("@/lib/offline/sync")
+        if (!cancelled) await drainPendingAttempts(userId)
+      } catch {
+        // Offline recovery is best-effort and retries on the next online event.
+      }
     }
 
     // Try once on mount (e.g., user opens the app having queued
     // drills offline yesterday and is now online).
-    run()
+    void run()
 
     // Also retry whenever the browser flips online.
-    window.addEventListener("online", run)
+    const onOnline = () => void run()
+    window.addEventListener("online", onOnline)
     return () => {
       cancelled = true
-      window.removeEventListener("online", run)
+      window.removeEventListener("online", onOnline)
     }
   }, [userId])
 

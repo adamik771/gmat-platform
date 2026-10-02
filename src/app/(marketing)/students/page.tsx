@@ -1,370 +1,44 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, TrendingUp } from "lucide-react"
-import SectionWrapper from "@/components/shared/SectionWrapper"
+import { ArrowRight } from "lucide-react"
+import ScoreTimeline from "@/components/marketing/ScoreTimeline"
+import styles from "@/components/marketing/PublicSite.module.css"
 
 export const metadata: Metadata = {
-  title: "Student score lifts",
+  title: "Results and evidence",
   alternates: { canonical: "/students" },
-  description:
-    "The founder's verified 565 to 735, plus how we report results. Beta student score lifts publish here as they're verified — no synthetic numbers.",
+  description: "The founder's GMAT score journey and how Zakarian GMAT distinguishes practice, official exams, and student outcomes.",
 }
-
-/**
- * Social-proof page — score lifts from beta students.
- *
- * Adam: replace each entry below with a real student story once they
- * complete the program. Keep the schema (start, after, weeks, focus,
- * note) so the cards render cleanly. The `placeholder: true` flag
- * marks slots that should not be shipped to public traffic — they
- * render in a muted "coming soon" state until you swap them out.
- *
- * Honesty footer below makes the placeholder vs verified state explicit
- * to readers, so launching the page with fewer than five real lifts
- * doesn't look misleading.
- */
-
-interface StudentLift {
-  /** Display name or pseudonym. Placeholder rows can leave this blank. */
-  name?: string
-  /** Background context — non-native English, non-engineer, etc. */
-  context?: string
-  /** Baseline / first-mock score (e.g. "565"). */
-  start?: number
-  /** Most recent verified mock or official score. */
-  after?: number
-  /** Weeks of prep on the platform. */
-  weeks?: number
-  /** Headline focus or limiter (e.g. "DI pacing", "Verbal accuracy"). */
-  focus?: string
-  /** One- or two-sentence student note. */
-  note?: string
-  /** Was this an official GMAT score? Otherwise it's a verified mock. */
-  official?: boolean
-  /** True for empty slots awaiting a real story. */
-  placeholder?: boolean
-}
-
-const STUDENTS: StudentLift[] = [
-  // The only fully verified result so far is the founder's own — clearly
-  // labelled as the founder, not a customer. Replace/extend with real student
-  // lifts (drop the placeholder: true flag) as the beta cohort completes.
-  {
-    name: "Adam Zakarian",
-    context: "Founder · non-native English speaker, non-technical background",
-    start: 565,
-    after: 735,
-    official: true,
-    focus: "Mistake-driven review",
-    note: "565 on a cold official practice exam; 735 on the official GMAT Focus eight months later. The decisive jump — 675 to 735 — came from five days of focused mistake review, not new content.",
-  },
-  {
-    placeholder: true,
-  },
-  {
-    placeholder: true,
-  },
-  {
-    placeholder: true,
-  },
-]
 
 export default function StudentsPage() {
-  const verified = STUDENTS.filter((s) => !s.placeholder)
-  const placeholders = STUDENTS.filter((s) => s.placeholder)
-
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
-      {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,168,76,0.16) 0%, transparent 60%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 pointer-events-none bg-grain opacity-[0.035] mix-blend-overlay"
-          aria-hidden
-        />
-        <div className="relative max-w-3xl mx-auto text-center px-4">
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-5"
-            style={{ color: "#C9A84C" }}
-          >
-            Student outcomes
-          </p>
-          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-6">
-            Real results,{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              reported straight.
-            </span>
-          </h1>
-          <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
-            We publish only real baseline-to-mock or baseline-to-official
-            deltas — no synthetic numbers. The first beta cohort is still
-            finishing, so for now the one fully verified result is the
-            founder&apos;s own.
-          </p>
-        </div>
-      </section>
-
-      {/* Verified lifts */}
-      {verified.length > 0 && (
-        <SectionWrapper variant="darker">
-          <div className="text-center mb-12">
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3"
-              style={{ color: "#C9A84C" }}
-            >
-              Verified
-            </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
-              {verified.length === 1
-                ? "One verified result so far"
-                : `${verified.length} verified results`}
-            </h2>
+    <div className={styles.page}>
+      <div className={styles.container}>
+        <header className={styles.intro}>
+          <p className={styles.kicker}>Zakarian GMAT</p>
+          <h1 className="font-display">Results and evidence</h1>
+          <p className={styles.lede}>The founder&apos;s experience is the only result currently published here. Student outcomes will be added when available and verified.</p>
+        </header>
+        <section className={`${styles.section} ${styles.founder}`}>
+          <div>
+            <p className={styles.kicker}>Founder case study</p>
+            <h2 className="font-display">Adam Zakarian: 565 to 735</h2>
+            <p>A non-native English speaker with a non-technical background, Adam prepared over eight months. His account emphasises structured study, an error log, and focused mistake review before his second official exam.</p>
+            <p className="mt-4">This journey began before the platform was offered to students. It is not a customer outcome, a typical improvement, or a score guarantee.</p>
+            <p className="mt-4"><strong>Evidence status:</strong> Founder-reported dates and scores. A redacted score report is not currently published on this site.</p>
+            <Link href="/about" className={styles.textLink}>Read the founder story <ArrowRight aria-hidden="true" /></Link>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {verified.map((s, i) => (
-              <StudentCard key={`v-${i}`} student={s} />
-            ))}
+          <ScoreTimeline />
+        </section>
+        <section className={styles.section}>
+          <h2 className="font-display">Different measurements, clearly labelled</h2>
+          <div className={styles.steps}>
+            <div><h3>Official practice baseline</h3><p>A score from an official practice exam. It is not a test-centre result.</p></div>
+            <div><h3>Official exam result</h3><p>A score from a GMAT exam sitting, accompanied by its date and evidence status when published.</p></div>
+            <div><h3>Platform simulation</h3><p>Training feedback from this platform, not an official GMAT score or a prediction of one.</p></div>
           </div>
-        </SectionWrapper>
-      )}
-
-      {/* Placeholder slots — render as "in progress" so the page is
-          launchable before all 5 stories are in. Adam swaps these
-          rows out as students complete. */}
-      {placeholders.length > 0 && (
-        <SectionWrapper variant={verified.length > 0 ? undefined : "darker"}>
-          <div className="text-center mb-12">
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3 text-[#888888]"
-            >
-              Coming soon
-            </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
-              Student results, coming soon.
-            </h2>
-            <p className="text-[14px] text-[#888888] max-w-xl mx-auto leading-relaxed">
-              We&apos;re holding space for verified score lifts as the
-              first beta cohort completes. We&apos;ll only publish numbers
-              we&apos;ve seen on a real baseline-to-mock or official
-              delta.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {placeholders.map((s, i) => (
-              <StudentCard key={`p-${i}`} student={s} />
-            ))}
-          </div>
-        </SectionWrapper>
-      )}
-
-      {/* Honesty + methodology note */}
-      <SectionWrapper variant="darker">
-        <div className="max-w-2xl mx-auto">
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4 text-center"
-            style={{ color: "#C9A84C" }}
-          >
-            How we report these
-          </p>
-          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-6 text-center">
-            What you&apos;re looking at.
-          </h2>
-          <div className="space-y-4 text-[14px] text-[#C0C0C0] leading-[1.75]">
-            <p>
-              Each &quot;start&quot; score is the student&apos;s baseline when
-              they joined — an official mba.com practice exam, scored on the
-              section scale (60–90) and the Focus-scale total (205–805) from
-              the same formula shown on the dashboard.
-            </p>
-            <p>
-              Each &quot;after&quot; score is either a verified full-length
-              mock taken on the platform, or — when shown — a self-reported
-              official GMAT score. Official scores are tagged.
-            </p>
-            <p>
-              Score improvement is not guaranteed. Results vary by hours
-              committed, baseline, and consistency. We publish only what
-              we&apos;ve verified.
-            </p>
-          </div>
-        </div>
-      </SectionWrapper>
-
-      {/* CTA */}
-      <section
-        className="relative py-28 overflow-hidden"
-        style={{ backgroundColor: "#0A0A0A" }}
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 70% at 50% 100%, rgba(201,168,76,0.14) 0%, transparent 65%)",
-          }}
-          aria-hidden
-        />
-        <div className="relative max-w-3xl mx-auto text-center px-4">
-          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
-            Take the{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
-              first step.
-            </span>
-          </h2>
-          <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed mb-10">
-            Start with a free account. No credit card required.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/signup"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
-            >
-              Start Free
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/[0.12] text-[#C0C0C0] hover:border-white/[0.2] hover:text-[#F0F0F0] transition-all duration-200"
-            >
-              Read the founder&apos;s story
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
-  )
-}
-
-function StudentCard({ student }: { student: StudentLift }) {
-  if (student.placeholder) {
-    return (
-      <div
-        className="rounded-2xl border p-6 flex flex-col gap-4"
-        style={{
-          borderColor: "rgba(255,255,255,0.05)",
-          backgroundColor: "rgba(255,255,255,0.012)",
-        }}
-      >
-        <div className="flex items-center justify-between">
-          <span
-            className="text-[10px] uppercase tracking-[0.22em] font-semibold"
-            style={{ color: "rgba(255,255,255,0.4)" }}
-          >
-            Coming soon
-          </span>
-          <TrendingUp
-            className="w-3.5 h-3.5"
-            style={{ color: "rgba(255,255,255,0.3)" }}
-            aria-hidden
-          />
-        </div>
-        <p
-          className="font-display text-2xl font-semibold tracking-[-0.02em] leading-tight"
-          style={{ color: "rgba(240,240,240,0.5)" }}
-        >
-          Result coming soon
-        </p>
-        <p
-          className="text-[12px] leading-snug"
-          style={{ color: "rgba(255,255,255,0.4)" }}
-        >
-          A verified score lift lands here as soon as a student finishes
-          their final mock and we can confirm the number.
-        </p>
+        </section>
       </div>
-    )
-  }
-
-  const delta =
-    typeof student.start === "number" && typeof student.after === "number"
-      ? student.after - student.start
-      : null
-
-  return (
-    <div
-      className="rounded-2xl border p-6 flex flex-col gap-4"
-      style={{
-        borderColor: "rgba(201,168,76,0.20)",
-        backgroundColor: "rgba(201,168,76,0.04)",
-      }}
-    >
-      <div className="flex items-center justify-between">
-        <span
-          className="text-[10px] uppercase tracking-[0.22em] font-semibold"
-          style={{ color: "#C9A84C" }}
-        >
-          {student.official ? "Official score" : "Verified mock"}
-        </span>
-        {delta !== null && (
-          <span
-            className="inline-flex items-center gap-1 text-[11px] font-semibold tabular-nums"
-            style={{ color: "#3ECF8E" }}
-          >
-            <TrendingUp className="w-3 h-3" aria-hidden />
-            {delta > 0 ? `+${delta}` : delta}
-          </span>
-        )}
-      </div>
-      <div className="flex items-baseline gap-3 tabular-nums">
-        <p
-          className="font-display text-3xl font-semibold leading-none"
-          style={{ color: "rgba(240,240,240,0.6)" }}
-        >
-          {student.start ?? "—"}
-        </p>
-        <span
-          className="text-lg"
-          style={{ color: "rgba(255,255,255,0.4)" }}
-        >
-          →
-        </span>
-        <p className="font-display text-4xl font-semibold leading-none text-[#F0F0F0]">
-          {student.after ?? "—"}
-        </p>
-      </div>
-      {(student.name || student.context) && (
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px]">
-          {student.name && (
-            <span className="font-semibold text-[#F0F0F0]">{student.name}</span>
-          )}
-          {student.context && (
-            <span style={{ color: "rgba(255,255,255,0.55)" }}>
-              {student.context}
-            </span>
-          )}
-        </div>
-      )}
-      <div
-        className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px]"
-        style={{ color: "rgba(255,255,255,0.5)" }}
-      >
-        {student.weeks !== undefined && (
-          <span className="tabular-nums">
-            {student.weeks} week{student.weeks === 1 ? "" : "s"}
-          </span>
-        )}
-        {student.focus && (
-          <>
-            <span className="text-[#444444]">·</span>
-            <span>Focus: {student.focus}</span>
-          </>
-        )}
-      </div>
-      {student.note && (
-        <p
-          className="text-[13px] leading-relaxed italic"
-          style={{ color: "rgba(192,192,192,0.85)" }}
-        >
-          &ldquo;{student.note}&rdquo;
-        </p>
-      )}
     </div>
   )
 }

@@ -14,13 +14,17 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q17
-      - critical-reasoning-q18
+      - critical-reasoning-q132
+      - critical-reasoning-q136
   - id: cr-strengthen
     type: reading
     title: "CR: Strengthen"
     check_question_ids:
-      - critical-reasoning-q19
+      - critical-reasoning-q35
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +33,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q218
-      - critical-reasoning-q20
-      - critical-reasoning-q21
+      - critical-reasoning-q51
+      - critical-reasoning-q201
+      - critical-reasoning-q131
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,10 +43,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q22
-      - critical-reasoning-q23
-      - critical-reasoning-q24
+      - critical-reasoning-q193
+      - critical-reasoning-q76
+      - critical-reasoning-q41
 ---
+
+## @summary
+
+- Identify the conclusion and its weakest link before reading the choices.
+- Prefer evidence that closes the exact gap, rules out a competing explanation, or confirms the proposed mechanism.
+- A strengthener need not prove the conclusion; it must make it more likely than it was.
 
 ## @cr-strengthen
 

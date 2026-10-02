@@ -1,15 +1,18 @@
 // Instant Suspense fallback for the authenticated app shell. The (app) layout
 // keeps the sidebar mounted across navigation, so this only fills the content
-// region. Rendered by src/app/(app)/loading.tsx for every (app) route while the
-// server component fetches its data — replacing the "frozen previous page" with
-// an immediate skeleton. Surface tokens + Tailwind animate-pulse; no new deps.
+// region. The skeleton provides immediate structure; the branded Z is delayed
+// in CSS so fast navigations never flash a loader.
 export default function PageSkeleton() {
   return (
     <div className="max-w-6xl mx-auto">
       <span className="sr-only" role="status">
         Loading
       </span>
-      <div className="space-y-12 animate-pulse" aria-hidden>
+      <div className="app-route-progress" aria-hidden />
+      <div className="app-route-brand" aria-hidden>
+        <span>Z</span>
+      </div>
+      <div className="route-skeleton space-y-12" aria-hidden>
         {/* Hero / header block */}
         <div className="rounded-2xl border border-white/[0.06] bg-[#0D0D0D] px-6 py-10 sm:px-10 sm:py-14 space-y-4">
           <div className="h-3 w-24 rounded bg-white/[0.06]" />

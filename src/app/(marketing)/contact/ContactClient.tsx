@@ -3,26 +3,39 @@
 import { useState } from "react"
 import { Mail, Clock, MessageSquare, ArrowRight, Loader2 } from "lucide-react"
 import { SITE_CONTACT_EMAIL } from "@/lib/site"
+import { trackEvent } from "@/lib/analytics"
 
 export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
+    setError(false)
     const form = e.currentTarget
     const data = new FormData(form)
 
     try {
-      await fetch("https://formspree.io/f/xvzdgpyg", {
+      const res = await fetch("https://formspree.io/f/xvzdgpyg", {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },
       })
-      setSubmitted(true)
+      // Success UI and the conversion event only on a real 2xx — a Formspree
+      // rate-limit or validation 4xx must not show "Message received" or
+      // count a consult_request.
+      if (res.ok) {
+        setSubmitted(true)
+        // The free-consult booking is the highest-intent conversion that is
+        // live today; without this event it has zero telemetry anywhere.
+        trackEvent("consult_request")
+      } else {
+        setError(true)
+      }
     } catch {
-      // silent
+      setError(true)
     } finally {
       setLoading(false)
     }
@@ -61,13 +74,14 @@ export default function ContactClient() {
               Contact
             </p>
             <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-6">
-              Book a free 20-min{" "}
+              Request a free 20-min{" "}
               <span className="font-display-italic" style={{ color: "#C9A84C" }}>
                 call.
               </span>
             </h1>
             <p className="text-[15px] sm:text-[17px] text-[#C0C0C0] leading-relaxed">
-              Tell me about your situation. We&apos;ll figure out the right plan together.
+              Tell me about your preparation. I&apos;ll reply by email to arrange
+              a time and confirm the timezone. Submitting this form does not book a slot.
             </p>
           </div>
 
@@ -116,6 +130,7 @@ export default function ContactClient() {
                         id="contact-name"
                         type="text"
                         name="name"
+                        autoComplete="name"
                         required
                         placeholder="Your name"
                         className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0D0D0D] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
@@ -129,6 +144,7 @@ export default function ContactClient() {
                         id="contact-email"
                         type="email"
                         name="email"
+                        autoComplete="email"
                         required
                         placeholder="you@example.com"
                         className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0D0D0D] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
@@ -190,11 +206,21 @@ export default function ContactClient() {
                       </>
                     ) : (
                       <>
-                        Send Message
+                        Request a free call
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}
                   </button>
+                  {error && (
+                    <p
+                      role="alert"
+                      className="text-[13px] text-center"
+                      style={{ color: "#FF4444" }}
+                    >
+                      Your message didn&apos;t send &mdash; please try again in a
+                      moment, or email {SITE_CONTACT_EMAIL} directly.
+                    </p>
+                  )}
                 </form>
               )}
             </div>

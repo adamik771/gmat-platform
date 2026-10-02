@@ -5,7 +5,7 @@ import Image from "next/image"
 import { ShieldCheck } from "lucide-react"
 
 /**
- * Proof asset for the founder's 735 / 100th-percentile claim: a redacted
+ * Proof asset for the founder's 735 / top-1% claim: a redacted
  * official GMAT Focus score-report screenshot.
  *
  * Graceful by design — until the image file exists the component renders
@@ -38,7 +38,7 @@ export default function ScoreReportProof({
     >
       <Image
         src={src}
-        alt="Official GMAT Focus score report: 735 total (Q88, V86, DI85), 100th percentile. Personal identifiers redacted."
+        alt="Official GMAT Focus score report: 735 total (Q88, V86, DI85), top 1% of test-takers. Personal identifiers redacted."
         width={1200}
         height={1500}
         unoptimized
@@ -49,8 +49,7 @@ export default function ScoreReportProof({
       />
       <figcaption className="mt-3 flex items-center gap-2 text-[12px] text-[#888888]">
         <ShieldCheck className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
-        Official GMAT Focus score report — verified. Personal identifiers
-        redacted.
+        Official GMAT Focus score report. Personal identifiers redacted.
       </figcaption>
     </figure>
   )

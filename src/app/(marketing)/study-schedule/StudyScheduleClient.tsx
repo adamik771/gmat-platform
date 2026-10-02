@@ -14,6 +14,11 @@ import {
   totalHours,
   type ScheduleInput,
 } from "@/lib/study-schedule"
+import {
+  WEEKLY_HOURS_MAX,
+  WEEKLY_HOURS_MIN,
+  weeklyHoursAdvice,
+} from "@/lib/study-hours"
 import LeadCapture from "@/components/marketing/LeadCapture"
 
 function todayIso(): string {
@@ -112,8 +117,8 @@ export default function StudyScheduleClient() {
               <input
                 id="weekly-hours"
                 type="number"
-                min={3}
-                max={25}
+                min={WEEKLY_HOURS_MIN}
+                max={WEEKLY_HOURS_MAX}
                 step={0.5}
                 value={weeklyHours}
                 onChange={(e) => {
@@ -123,7 +128,9 @@ export default function StudyScheduleClient() {
                 className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
               />
               <p className="text-[11px] text-[#555555] mt-1.5">
-                Typical working professional: 7.5 (90 min/day × 5 days/wk).
+                {weeklyHours > 25
+                  ? weeklyHoursAdvice(weeklyHours)
+                  : "Typical working professional: 7.5 (90 min/day × 5 days/wk)."}
               </p>
             </div>
           </div>

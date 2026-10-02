@@ -35,9 +35,12 @@ const env = process.env
 const isSet = (k: string) => typeof env[k] === "string" && env[k]!.trim() !== ""
 
 const paywallOn = env.PAYWALL_ENABLED === "true"
+const manualPaymentOn = env.MANUAL_PAYMENT_CONTACT_ENABLED === "true"
 // When the paywall is off (free beta) Stripe isn't user-reachable, so missing
-// payment config is a warning, not a blocker.
-const stripeLevel: (label: string, detail: string) => void = paywallOn ? fail : warn
+// payment config is a warning, not a blocker. It is also optional in the
+// explicit owner-assisted payment mode.
+const stripeLevel: (label: string, detail: string) => void =
+  paywallOn && !manualPaymentOn ? fail : warn
 
 // ---- Core: the app can't serve authenticated traffic without these ----
 function checkCore() {
@@ -70,9 +73,12 @@ function isRealPriceId(v: string | undefined): boolean {
 }
 function checkStripe() {
   if (isSet("STRIPE_SECRET_KEY")) ok("STRIPE_SECRET_KEY")
-  else stripeLevel("STRIPE_SECRET_KEY", "unset — checkout returns 503")
+  else stripeLevel("STRIPE_SECRET_KEY", "unset — required for automated Stripe checkout")
   if (isSet("STRIPE_WEBHOOK_SECRET")) ok("STRIPE_WEBHOOK_SECRET")
-  else stripeLevel("STRIPE_WEBHOOK_SECRET", "unset — purchases won't be recorded (webhook can't verify)")
+  else stripeLevel(
+    "STRIPE_WEBHOOK_SECRET",
+    "unset — required to verify and record Stripe purchases",
+  )
 
   // selfStudyGuaranteed accepts the legacy _PLUS alias too.
   const priceEnvs: Array<[string, string | undefined]> = [
@@ -85,7 +91,8 @@ function checkStripe() {
     ["STRIPE_PRICE_INTENSIVE", env.STRIPE_PRICE_INTENSIVE],
   ]
   for (const [name, value] of priceEnvs) {
-    if (!value) stripeLevel(name, "unset — this tier 503s at checkout")
+    if (!value)
+      stripeLevel(name, "unset — required for this tier's Stripe checkout")
     else if (!isRealPriceId(value))
       stripeLevel(name, `looks like a placeholder/invalid id ("${value}") — set a real Stripe price id`)
     else ok(name)
@@ -93,22 +100,63 @@ function checkStripe() {
 
   if (!paywallOn) {
     ok("PAYWALL_ENABLED", "false — free beta; Stripe items above are warnings, not blockers")
+  } else if (manualPaymentOn) {
+    ok(
+      "PAYWALL_ENABLED",
+      "true — expired trials are gated; owner-assisted payment contact is active",
+    )
   } else {
     ok("PAYWALL_ENABLED", "true — monetization live; Stripe config is required")
   }
 }
 
+function checkPaymentMode() {
+  if (manualPaymentOn && !paywallOn) {
+    fail(
+      "MANUAL_PAYMENT_CONTACT_ENABLED",
+      "true while PAYWALL_ENABLED is false — contact emails and the expired-trial gate would disagree",
+    )
+  } else if (manualPaymentOn) {
+    ok(
+      "MANUAL_PAYMENT_CONTACT_ENABLED",
+      "true — Stripe checkout is replaced by WhatsApp/email assistance",
+    )
+  } else {
+    ok("MANUAL_PAYMENT_CONTACT_ENABLED", "false")
+  }
+
+  if (paywallOn) {
+    const epoch = env.PAYWALL_TRIAL_EPOCH
+    if (!epoch) {
+      fail(
+        "PAYWALL_TRIAL_EPOCH",
+        "required when the paywall is on — prevents old users from expiring immediately and keeps trial timing server-controlled",
+      )
+    } else if (!Number.isFinite(new Date(epoch).getTime())) {
+      fail("PAYWALL_TRIAL_EPOCH", `invalid ISO timestamp ("${epoch}")`)
+    } else {
+      ok("PAYWALL_TRIAL_EPOCH", epoch)
+    }
+  }
+}
+
 // ---- Email: confirmations + exam reminders bounce without these ----
 function checkEmail() {
+  const missing = manualPaymentOn ? fail : warn
   if (isSet("RESEND_API_KEY")) ok("RESEND_API_KEY")
-  else warn("RESEND_API_KEY", "unset — outbound email (reminders, etc.) is disabled")
+  else missing("RESEND_API_KEY", "unset — outbound email (reminders, etc.) is disabled")
   if (isSet("EMAIL_FROM")) ok("EMAIL_FROM", env.EMAIL_FROM!)
-  else warn("EMAIL_FROM", "unset — needed as the From address; ensure the domain is verified in Resend")
+  else missing("EMAIL_FROM", "unset — needed as the From address; ensure the domain is verified in Resend")
 }
 
 // ---- Cron: the reminders job won't run / is unprotected without the secret ----
 function checkCron() {
   if (isSet("CRON_SECRET")) ok("CRON_SECRET")
+  else if (manualPaymentOn)
+    fail(
+      "CRON_SECRET",
+      "unset — the one-time trial-expiry email cannot run securely",
+    )
   else warn("CRON_SECRET", "unset — /api/cron/reminders rejects all calls (503) until set")
 }
 
@@ -135,6 +183,7 @@ function checkAssets() {
 function main() {
   checkCore()
   checkStripe()
+  checkPaymentMode()
   checkEmail()
   checkCron()
   checkObservability()

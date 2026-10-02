@@ -199,7 +199,7 @@ function Header() {
         </span>
       </h1>
       <p className="text-[15px] text-[#C0C0C0] leading-relaxed max-w-3xl">
-        Four item types schedule independently — questions on a 0/2/7/21/42 ladder, concepts slower (3/10/28/56), drills on the question ladder, recall checkpoints fastest (1/4/14/30). Confidence and mistake-type modifiers shift each item up or down.
+        Missed questions and weak concepts on one spacing ladder — same day, then 2, 7, 21 and 42 days. Confidence and mistake-type modifiers shift each item up or down; saved and mock-flagged items jump the queue.
       </p>
     </section>
   )
@@ -337,7 +337,7 @@ function ItemRow({ item }: { item: SpacedItem }) {
               {Math.round(-item.daysUntilDue)}d overdue
             </span>
           )}
-          <span className="inline-flex items-center gap-1 text-[11px] text-[#555555]">
+          <span className="inline-flex items-center gap-1 text-[11px] text-[#888888]">
             <Clock className="w-3 h-3" />
             rung {item.rung}
           </span>
@@ -351,7 +351,7 @@ function ItemRow({ item }: { item: SpacedItem }) {
         </p>
       </div>
       <ArrowRight
-        className="w-4 h-4 flex-shrink-0 mt-1 text-[#555555] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
+        className="w-4 h-4 flex-shrink-0 mt-1 text-[#888888] group-hover:text-[#C9A84C] group-hover:translate-x-0.5 transition-all"
         aria-hidden
       />
     </Link>
@@ -373,7 +373,7 @@ function KindSection({ kind, items }: { kind: SpacedItemKind; items: SpacedItem[
         <p className={EYEBROW} style={{ color: "#C9A84C" }}>
           {meta.label}s due
         </p>
-        <span className="text-[12px] text-[#555555] tracking-tight">
+        <span className="text-[12px] text-[#888888] tracking-tight">
           {items.length}
         </span>
       </div>

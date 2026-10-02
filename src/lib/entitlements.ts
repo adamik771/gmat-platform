@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
+import { findActivePurchase } from "@/lib/plan-access"
 
 /**
  * Feature entitlements / paywall.
@@ -106,7 +107,7 @@ const DAY_MS = 24 * 60 * 60 * 1000
 
 /**
  * Access an account currently has to the paid surfaces:
- * - `paid`         — an active (non-revoked) purchase; the trial is irrelevant.
+ * - `paid`         — an unexpired, non-revoked purchase; the trial is irrelevant.
  * - `trialing`     — no purchase, but still inside the trial window.
  * - `trial_expired`— the trial started and has elapsed, with no purchase.
  * - `none`         — no purchase and no trial ever started (must start one).
@@ -188,6 +189,15 @@ export function trialStartFor(user: {
   user_metadata?: Record<string, unknown> | null
 }): string | null {
   const epochRaw = process.env.PAYWALL_TRIAL_EPOCH
+  if (!epochRaw && PAYWALL_ENABLED) {
+    // Loud guard for the unsafe combination: with the paywall ON and no
+    // server-side epoch, the trial anchor is user_metadata.trial_started_at,
+    // which any signed-in user can rewrite via auth.updateUser() to extend
+    // their own trial indefinitely. Set PAYWALL_TRIAL_EPOCH at flip time.
+    console.error(
+      "[entitlements] PAYWALL_ENABLED is true but PAYWALL_TRIAL_EPOCH is unset — trial starts fall back to user-editable metadata. Set the epoch env var."
+    )
+  }
   if (epochRaw) {
     const epoch = new Date(epochRaw).getTime()
     if (!Number.isNaN(epoch)) {
@@ -277,24 +287,22 @@ export async function effectiveTierForUser(
 }
 
 /**
- * Read the caller's plan tier from their most recent purchase. Mirrors the
- * dashboard's purchases read. Returns "free" on any error or no purchase.
+ * Read the caller's plan tier from their newest unexpired, non-revoked
+ * purchase. Returns "free" on any error or when no purchase still grants
+ * access.
  */
 export async function getPlanTierForUser(
   supabase: SupabaseClient,
-  userId: string
+  userId: string,
+  now: Date = new Date(),
 ): Promise<PlanTier> {
   try {
     const { data, error } = await supabase
       .from("purchases")
-      .select("plan_id")
+      .select("plan_id, paid_at, revoked_at")
       .eq("user_id", userId)
-      // Refunded / charged-back purchases are revoked — they must not grant
-      // access. The webhook stamps revoked_at on refund/dispute.
-      .is("revoked_at", null)
       .order("paid_at", { ascending: false })
-      .limit(1)
-      .maybeSingle()
+      .limit(20)
     if (error) {
       // Fail closed (free), but don't swallow silently: the most likely cause
       // is the purchases / revoked_at migration not being applied, which would
@@ -302,7 +310,15 @@ export async function getPlanTierForUser(
       console.error("[entitlements] purchases read failed — defaulting to free", error)
       return "free"
     }
-    return getPlanTier((data?.plan_id as string | null) ?? null)
+    const active = findActivePurchase(
+      (data ?? []) as Array<{
+        plan_id: string
+        paid_at: string
+        revoked_at: string | null
+      }>,
+      now,
+    )
+    return getPlanTier(active?.plan_id ?? null)
   } catch (err) {
     console.error("[entitlements] getPlanTierForUser threw — defaulting to free", err)
     return "free"

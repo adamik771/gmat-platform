@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Zakarian GMAT — Outreach Playbook
 
 Manual, personalized, one-to-one outreach. Every message below is a starting
@@ -16,7 +18,7 @@ Companion files: `GROWTH_PLAN.md` (strategy + metrics), `LAUNCH_ASSETS.md`
 - **One person at a time.** No automation, no scraping, no copy-paste blasts, no LinkedIn bots. This protects your reputation and complies with platform rules.
 - **Short.** A DM should be 3-6 sentences. Long pitches get ignored.
 - **One ask, soft.** End with a low-friction question ("want me to send it?"), not a hard close.
-- **No fake claims, ever.** No guaranteed scores, no invented results, no implied GMAT/GMAC affiliation. Cite only your verified 565 to 735.
+- **No fake claims, ever.** No guaranteed scores, no invented results, no implied GMAT/GMAC affiliation. Cite only your 565 to 735.
 - **Take no for an answer.** One polite follow-up max if there is no reply. Never a third.
 
 ---

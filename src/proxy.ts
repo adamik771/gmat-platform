@@ -51,6 +51,14 @@ const AUTH_ROUTES = ["/login", "/signup"]
  *  window (~6KB+) so the creep shows up as a leading indicator. Point a Vercel
  *  log-drain alert at "[proxy] large cookie" to get paged before a lockout. */
 const COOKIE_WARN_BYTES = 6 * 1024
+const PRIVATE_CACHE_CONTROL = "private, no-store"
+
+function privateRedirect(url: URL) {
+  const response = NextResponse.redirect(url)
+  response.headers.set("Cache-Control", PRIVATE_CACHE_CONTROL)
+  return response
+}
+
 function warnIfCookieLarge(request: NextRequest) {
   const bytes = (request.headers.get("cookie") ?? "").length
   if (bytes > COOKIE_WARN_BYTES) {
@@ -63,19 +71,6 @@ function warnIfCookieLarge(request: NextRequest) {
 export async function proxy(request: NextRequest) {
   warnIfCookieLarge(request)
 
-  // Guard: if Supabase env vars are missing, skip auth entirely so the
-  // site doesn't crash with a 500 on every route.
-  if (
-    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  ) {
-    const res = NextResponse.next()
-    // Don't let the CDN cache this — the env vars may be set on the
-    // next deploy, and we want fresh behavior immediately.
-    res.headers.set("Cache-Control", "private, no-store")
-    return res
-  }
-
   const { pathname } = request.nextUrl
   const isAppRoute = APP_ROUTES.some(
     (route) => pathname === route || pathname.startsWith(route + "/")
@@ -84,18 +79,24 @@ export async function proxy(request: NextRequest) {
     (route) => pathname === route || pathname.startsWith(route + "/")
   )
 
-  // Public / marketing routes need no auth decision. Skip the Supabase
-  // getUser() network round-trip entirely so navigating to them isn't gated on
-  // an auth call. Marketing/public pages are also safe to CDN-cache, so they
-  // get no no-store. The one exception: auth-flow endpoints under /auth/* (e.g.
-  // the /auth/callback code-exchange route handler) must never be cached even
-  // though they aren't redirect-gated — preserve no-store there.
+  // Public pages do not depend on authentication and should remain available
+  // during an auth-provider outage. Auth and app pages must never render unless
+  // the user's identity can be verified.
   if (!isAppRoute && !isAuthRoute) {
     const res = NextResponse.next()
     if (pathname.startsWith("/auth/")) {
-      res.headers.set("Cache-Control", "private, no-store")
+      res.headers.set("Cache-Control", PRIVATE_CACHE_CONTROL)
     }
     return res
+  }
+
+  // Missing auth configuration is a deployment failure, not permission to
+  // bypass authentication. Fail closed for every auth-dependent route.
+  if (
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ) {
+    return authUnavailableResponse()
   }
 
   try {
@@ -114,14 +115,14 @@ export async function proxy(request: NextRequest) {
       url.pathname = "/login"
       // Preserve the original target so login can bounce back after auth.
       url.searchParams.set("next", pathname + request.nextUrl.search)
-      return NextResponse.redirect(url)
+      return privateRedirect(url)
     }
 
     // Authenticated users on auth routes → redirect to dashboard
     if (isAuthRoute && user) {
       const url = request.nextUrl.clone()
       url.pathname = "/dashboard"
-      return NextResponse.redirect(url)
+      return privateRedirect(url)
     }
 
     // Paywall / trial gate (a no-op while PAYWALL_ENABLED is off). A signed-in
@@ -146,7 +147,7 @@ export async function proxy(request: NextRequest) {
         if (!accessGrants(resolveAccess({ tier, trialStartedAt, now }))) {
           const url = request.nextUrl.clone()
           url.pathname = "/upgrade"
-          return NextResponse.redirect(url)
+          return privateRedirect(url)
         }
       }
     }
@@ -155,15 +156,23 @@ export async function proxy(request: NextRequest) {
     // Prevent CDN caching of auth-aware responses — otherwise a stale
     // "unauthenticated" response could leak to a logged-in user, or a
     // cached redirect could keep firing after they log in.
-    finalResponse.headers.set("Cache-Control", "private, no-store")
+    finalResponse.headers.set("Cache-Control", PRIVATE_CACHE_CONTROL)
     return finalResponse
-  } catch {
-    // If Supabase is unreachable or misconfigured, fall through rather
-    // than crashing every route with a 500.
-    const res = NextResponse.next()
-    res.headers.set("Cache-Control", "private, no-store")
-    return res
+  } catch (error) {
+    console.error("[proxy] authentication unavailable", error)
+    return authUnavailableResponse()
   }
+}
+
+function authUnavailableResponse() {
+  return new NextResponse("Authentication is temporarily unavailable. Please try again.", {
+    status: 503,
+    headers: {
+      "Cache-Control": PRIVATE_CACHE_CONTROL,
+      "Content-Type": "text/plain; charset=utf-8",
+      "Retry-After": "30",
+    },
+  })
 }
 
 export const config = {

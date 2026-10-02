@@ -86,7 +86,7 @@ const SECTIONS: ChecklistSection[] = [
       {
         text: "Pack your test-day bag.",
         detail:
-          "ID, admission ticket (if you printed one), water bottle, light snack, jacket or layer, watch (only if non-electronic — most centers prohibit smartwatches in the testing room).",
+          "ID, appointment confirmation, water, a light snack, and a light sweater or non-outerwear jacket. Watches of every kind must stay outside the testing room; store yours in the locker if you bring one.",
       },
       {
         text: "Set out exam-day clothes.",
@@ -178,17 +178,17 @@ const SECTIONS: ChecklistSection[] = [
     eyebrow: "At the test center",
     title: "At the test center",
     intro:
-      "You have arrived 15 minutes early. From here, the procedure is the same at every test center.",
+      "Plan to arrive at least 30 minutes before your appointment so there is enough time for the official check-in process.",
     items: [
       {
         text: "Check in at reception with your ID.",
         detail:
-          "ID must match your mba.com name exactly. They will photograph you, take a palm or fingerprint scan, and issue a locker key.",
+          "ID must meet the rules for your location and your name must match your registration. Test-center check-in includes a photograph, digital signature, and a palm-vein scan where permitted by law.",
       },
       {
         text: "Empty your pockets.",
         detail:
-          "Phones, watches (smart or otherwise unless explicitly permitted), keys, wallet, snacks — all in the locker. You'll have access to the locker only during your scheduled break.",
+          "Phones, every kind of watch, keys, wallet, snacks, notes, and other personal items stay outside the testing room. Follow the administrator's locker and break-access instructions at your center.",
       },
       {
         text: "Use the bathroom before being seated.",
@@ -225,9 +225,9 @@ const SECTIONS: ChecklistSection[] = [
           "Quant: 2:00. Verbal: 1:55. DI: 2:15 (soft cap; MSR sets get more total time). The cost of staying past the cap is the next question, not this one.",
       },
       {
-        text: "Use your three section bookmarks deliberately.",
+        text: "Bookmark freely; use your three answer changes deliberately.",
         detail:
-          "Save them for genuine 50/50 decisions, not blind guesses. Revisit at the end of the section if time permits.",
+          "You can bookmark and review as many questions as time allows, but you can change only three answers per section. Prioritize genuine 50/50 decisions or a specific mistake you can explain.",
       },
       {
         text: "On the 10-minute break: water, bathroom, walk, breathe.",
@@ -254,9 +254,9 @@ const SECTIONS: ChecklistSection[] = [
       "The right post-exam behaviour matters more than people think.",
     items: [
       {
-        text: "Decide your unofficial score acceptance immediately.",
+        text: "Record nothing when your unofficial score appears.",
         detail:
-          "GMAT Focus shows you the unofficial score on screen and asks whether you accept or cancel. You have two minutes. Practice this decision in advance — usually accept unless the score is far below your historical mocks.",
+          "Your unofficial total and section scores appear on screen, but GMAC does not permit you to record, save, screenshot, or print them. Candidates no longer accept or cancel a score; only programs you later choose can receive it.",
       },
       {
         text: "Don't post your score on Reddit / GMAT Club within 24 hours.",
@@ -264,9 +264,9 @@ const SECTIONS: ChecklistSection[] = [
           "Wait. The first 24 hours after the exam are when emotional volatility is highest. Reactions you have now don't predict what you'll feel in a week.",
       },
       {
-        text: "The official score report arrives within 7-20 days.",
+        text: "Expect the official score report in your mba.com account.",
         detail:
-          "Includes percentiles, per-section breakdown, and the option to send scores to schools. Use this period to actually compare against your school targets.",
+          "GMAC says reports are typically available within 3–5 days, although they can occasionally take up to 20 days. The report includes total and section scores, percentiles, and detailed performance insights.",
       },
       {
         text: "If the score is below target, wait at least one week before deciding on a retake.",
@@ -390,6 +390,43 @@ export default function ExamDayChecklistPage() {
             </ul>
           </section>
         ))}
+
+        <aside className="mt-12 border-t border-white/[0.08] pt-6 no-print">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold mb-3">
+            Official policy sources
+          </p>
+          <p className="text-[13px] text-[#888888] leading-relaxed mb-3">
+            Policy details checked against GMAC on 27 August 2026. Always
+            re-check your appointment email and the current official rules
+            before test day.
+          </p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px]">
+            <a
+              href="https://www.mba.com/exams/gmat-exam/plan-for-exam-day/taking-the-exam-at-a-test-center"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#C9A84C] underline underline-offset-4"
+            >
+              Test-center rules
+            </a>
+            <a
+              href="https://www.mba.com/exams-and-exam-prep/gmat-exam/everything-you-need-to-know-about-gmat"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#C9A84C] underline underline-offset-4"
+            >
+              Review and edit rules
+            </a>
+            <a
+              href="https://www.mba.com/exams/gmat-exam/scores/official-score-reports"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#C9A84C] underline underline-offset-4"
+            >
+              Official score reports
+            </a>
+          </div>
+        </aside>
 
         {/* Final CTA */}
         <div

@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # SEO Article Ideas (No-Outreach Growth: SEO cluster)
 
 Ten new article ideas for the Zakarian GMAT blog. These are chosen to **complement, not duplicate** the 20+ posts already live under `/blog` (which already cover the score-stuck problem, study-plan building, Data Insights guides, Data Sufficiency, Critical Reasoning, Reading Comprehension, the Focus structure, Focus vs. old GMAT, GMAT vs. GRE, retaking after a low score, the adaptive algorithm, number properties, the math formula cheat sheet, quant timing, prep for non-native English speakers, and "what is a good Focus score").
@@ -7,7 +9,7 @@ Purpose: passive inbound. Each piece should rank for a real search query, answer
 ## Ground rules for every article
 
 - ZERO emojis.
-- No "free diagnostic," no scored placement test, no guaranteed-score language. The only personal result we may cite is Adam Zakarian's verified GMAT Focus 735 (100th percentile), going from 565 to 735.
+- No "free diagnostic," no scored placement test, no guaranteed-score language. The only personal result we may cite is Adam Zakarian's GMAT Focus 735 (top 1%), going from 565 to 735.
 - No fabricated statistics. If a number is needed, either cite the official source (mba.com / GMAC) generically without inventing a figure, or describe the mechanism instead of quoting a stat.
 - Include the trademark line in any public claim block: "GMAT is a registered trademark of GMAC, which does not endorse and is not affiliated with this product."
 - End with the honest hook (see each idea), not a hard sell.

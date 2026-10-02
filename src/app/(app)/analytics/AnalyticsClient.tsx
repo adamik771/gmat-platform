@@ -21,7 +21,6 @@ export interface ScoreTrendPoint {
   weekKey: string
   weekLabel: string
   index: number
-  total: number | null
   overallAccuracy: number | null
   quant: number | null
   verbal: number | null
@@ -62,25 +61,6 @@ export interface ErrorPatternSummary {
   totalLabelled: number
 }
 
-/** PDF v2 KPI: prediction MAE (≤35 points vs a recent mock). Checks
- *  whether our internal readiness band is tracking actual mock scores.
- *  A miscalibrated reading doesn't mean the student is doing badly — it
- *  means the readiness number is misleading and they should weigh their
- *  latest mock over the rolling estimate. */
-export interface PredictionMAE {
-  readinessTotal: number
-  mockTotal: number
-  mockDate: string // YYYY-MM-DD
-  /** Absolute error in points: |readiness - mock|. */
-  errorPoints: number
-  /** Signed delta: readiness - mock. Positive = readiness runs HIGH vs
-   *  mock (student is inflating expectations); negative = readiness
-   *  runs LOW (student is underestimating their real performance).
-   *  Actionable direction matters more than magnitude alone. */
-  signedDelta: number
-  verdict: "calibrated" | "drifting" | "miscalibrated"
-}
-
 // Shared class snippets for the editorial card shell. Non-chart cards
 // lift and gain a gold-tinted shadow on hover; charts stay still because
 // the crosshair + tooltip interaction is its own response.
@@ -106,7 +86,6 @@ export default function AnalyticsClient({
   difficultyTimingRows,
   errorPatterns,
   calibration,
-  predictionMAE,
   hasData,
 }: {
   scoreTrend: ScoreTrendPoint[]
@@ -115,27 +94,20 @@ export default function AnalyticsClient({
   difficultyTimingRows: DifficultyTimingRow[]
   errorPatterns: ErrorPatternSummary | null
   calibration: CalibrationReport | null
-  predictionMAE: PredictionMAE | null
   hasData: boolean
 }) {
-  const trendWithData = scoreTrend.filter((p) => p.total !== null)
+  const trendWithData = scoreTrend.filter((p) => p.overallAccuracy !== null)
   const hasTrend = trendWithData.length >= 2
-  const firstTotal = hasTrend ? trendWithData[0].total : null
-  const lastTotal = hasTrend ? trendWithData[trendWithData.length - 1].total : null
+  const firstAccuracy = hasTrend ? trendWithData[0].overallAccuracy : null
+  const lastAccuracy = hasTrend
+    ? trendWithData[trendWithData.length - 1].overallAccuracy
+    : null
   const trendRangeLabel =
-    hasTrend && firstTotal !== null && lastTotal !== null
-      ? `${firstTotal} → ${lastTotal} over ${trendWithData.length} week${
+    hasTrend && firstAccuracy !== null && lastAccuracy !== null
+      ? `${firstAccuracy}% → ${lastAccuracy}% over ${trendWithData.length} week${
           trendWithData.length === 1 ? "" : "s"
         }`
       : null
-  const trendMin =
-    hasTrend && firstTotal !== null
-      ? Math.max(205, Math.floor((firstTotal - 30) / 10) * 10)
-      : 205
-  const trendMax =
-    hasTrend && lastTotal !== null
-      ? Math.min(805, Math.ceil((lastTotal + 30) / 10) * 10)
-      : 805
 
   // Display up to 10 topics (by attempt count) — matches what the old mock
   // showed, keeps the page scannable without a dedicated topic drill-down.
@@ -166,16 +138,15 @@ export default function AnalyticsClient({
             </span>
           </h1>
           <p className="mt-4 max-w-2xl text-[15px] text-[#C0C0C0] leading-[1.75]">
-            Every attempt, every minute, every miss — compiled into the
-            breakdowns your Enhanced Score Report will mirror. Signal over
-            vanity.
+            Every attempt, every minute, every miss — compiled into honest
+            accuracy, pacing, and review patterns. Signal over vanity.
           </p>
         </div>
       </section>
 
       {/* Score trajectory */}
       <div className={CARD_BASE}>
-        <p className={EYEBROW + " mb-2"}>Readiness Trajectory</p>
+        <p className={EYEBROW + " mb-2"}>Accuracy Trajectory</p>
         <h2 className="font-display text-2xl sm:text-[1.75rem] font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.1]">
           Your weekly{" "}
           <span className="font-display-italic" style={{ color: "#C9A84C" }}>
@@ -187,20 +158,16 @@ export default function AnalyticsClient({
             ? trendRangeLabel
             : trendWithData.length === 1
               ? "One week of data so far — keep practicing to see a trend."
-              : "Complete practice sets over a few weeks to see your score trajectory."}
+              : "Complete practice sets over a few weeks to see your accuracy trajectory."}
         </p>
         <div className="mt-6">
           {hasTrend ? (
-            <ScoreTrajectoryChart
-              data={trendWithData}
-              domainMin={trendMin}
-              domainMax={trendMax}
-            />
+            <ScoreTrajectoryChart data={trendWithData} />
           ) : (
             <EmptyState
               icon={BarChart3}
               title="Not enough data yet"
-              description="Your weekly readiness band will plot here once you've run practice sets across two or more weeks. Readiness reflects current practice accuracy, not a test-day score prediction."
+              description="Your weekly overall and section accuracy will plot here once you've run practice sets across two or more weeks."
               ctaHref="/test-builder"
               ctaLabel="Build a test"
               size="sm"
@@ -236,7 +203,7 @@ export default function AnalyticsClient({
                 return (
                   <div key={`${t.section}|${t.topic}`} className="flex items-center gap-4">
                     <p className="text-[13px] text-[#C0C0C0] w-40 flex-shrink-0 truncate">
-                      <span className="text-[#555555] mr-1.5 text-[11px] uppercase tracking-wider">
+                      <span className="text-[#888888] mr-1.5 text-[11px] uppercase tracking-wider">
                         {t.section}
                       </span>
                       {t.topic}
@@ -257,7 +224,7 @@ export default function AnalyticsClient({
                       >
                         {t.accuracy}
                       </span>
-                      <span className="text-[11px] text-[#555555] tabular-nums">
+                      <span className="text-[11px] text-[#888888] tabular-nums">
                         · {t.attempts}q
                       </span>
                     </div>
@@ -320,7 +287,7 @@ export default function AnalyticsClient({
                         >
                           {p.avgMin.toFixed(1)}m
                         </span>
-                        <span className="text-[10px] text-[#555555] tabular-nums">
+                        <span className="text-[10px] text-[#888888] tabular-nums">
                           / {p.targetMin}m
                         </span>
                         {p.over ? (
@@ -434,7 +401,7 @@ export default function AnalyticsClient({
                     {tier.label} confidence
                   </p>
                   {tier.total === 0 ? (
-                    <p className="font-display text-3xl font-semibold text-[#555555]">
+                    <p className="font-display text-3xl font-semibold text-[#888888]">
                       —
                     </p>
                   ) : !enough ? (
@@ -469,7 +436,7 @@ export default function AnalyticsClient({
                     <>
                       <p className="font-display text-4xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
                         {pct}
-                        <span className="text-lg font-normal text-[#555555]">
+                        <span className="text-lg font-normal text-[#888888]">
                           %
                         </span>
                       </p>
@@ -498,7 +465,7 @@ export default function AnalyticsClient({
               )
             })}
           </div>
-          <p className="text-[11px] text-[#555555] mt-4 leading-relaxed italic">
+          <p className="text-[11px] text-[#888888] mt-4 leading-relaxed italic">
             Well-calibrated benchmarks: High ≈ 85%, Medium ≈ 65%, Low ≈ 45%.
             Close to those numbers = you know what you know. Far below on High
             = overconfident; far above on Low = second-guessing yourself.
@@ -506,15 +473,10 @@ export default function AnalyticsClient({
         </div>
       )}
 
-      {/* Prediction MAE — how well the readiness band tracks actual
-          mock scores. PDF v2 target ≤35 points. Only renders when both
-          sides (readiness + a complete mock) are available. */}
-      {predictionMAE && <PredictionMAECard mae={predictionMAE} />}
-
       {/* Error pattern breakdown — efficient / labored / rushed / stuck */}
       {errorPatterns && errorPatterns.totalLabelled > 0 && (
         <div className={CARD_BASE + " " + CARD_HOVER}>
-          <p className={EYEBROW + " mb-2"}>Behaviour Patterns</p>
+          <p className={EYEBROW + " mb-2"}>Tempo × accuracy</p>
           <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
             How you{" "}
             <span className="font-display-italic" style={{ color: "#C9A84C" }}>
@@ -522,35 +484,36 @@ export default function AnalyticsClient({
             </span>
           </h2>
           <p className="mt-2 text-[13px] text-[#888888] leading-relaxed">
-            Attempts tagged against your own section baseline — fast or slow
-            relative to how long you typically take. Middle-tempo attempts
-            (neither too fast nor too slow) aren&apos;t counted.
+            Descriptive, not diagnostic: each attempt is fast or slow only
+            relative to how long YOU typically take on that section, and
+            middle-tempo attempts aren&apos;t counted. Use it to spot where
+            time went, not as a verdict on how you think.
           </p>
           <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-3">
             <PatternCard
               label="Efficient"
-              description="Correct, fast — exactly what you want."
+              description="Correct and fast for you."
               count={errorPatterns.efficient}
               total={errorPatterns.totalLabelled}
               tone="good"
             />
             <PatternCard
               label="Labored"
-              description="Correct but slow — right answer, wasted time."
+              description="Correct but slow for you."
               count={errorPatterns.labored}
               total={errorPatterns.totalLabelled}
               tone="warn"
             />
             <PatternCard
               label="Rushed"
-              description="Wrong + fast — panic, misread, skipped steps."
+              description="Wrong + fast for you."
               count={errorPatterns.rushed}
               total={errorPatterns.totalLabelled}
               tone="bad"
             />
             <PatternCard
               label="Stuck"
-              description="Wrong + slow — conceptual gap even with extra time."
+              description="Wrong + slow for you."
               count={errorPatterns.stuck}
               total={errorPatterns.totalLabelled}
               tone="bad"
@@ -579,19 +542,19 @@ export default function AnalyticsClient({
                   className="text-left border-b border-white/[0.05]"
                   style={{ backgroundColor: "#0A0A0A" }}
                 >
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555]">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888]">
                     Section
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555]">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888]">
                     Difficulty
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555] text-right">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-right">
                     Attempts
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555] text-right">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-right">
                     Avg Time
                   </th>
-                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#555555] text-right">
+                  <th className="py-3 px-4 text-[10px] uppercase tracking-[0.18em] font-semibold text-[#888888] text-right">
                     Accuracy
                   </th>
                 </tr>
@@ -632,100 +595,6 @@ export default function AnalyticsClient({
       )}
 
       {!hasData && <FirstRunState />}
-    </div>
-  )
-}
-
-function PredictionMAECard({ mae }: { mae: PredictionMAE }) {
-  const { verdict, errorPoints, signedDelta, readinessTotal, mockTotal, mockDate } = mae
-  const colour =
-    verdict === "calibrated"
-      ? "#3ECF8E"
-      : verdict === "drifting"
-        ? "#C9A84C"
-        : "#FF4444"
-  const bg =
-    verdict === "calibrated"
-      ? "rgba(62,207,142,0.06)"
-      : verdict === "drifting"
-        ? "rgba(201,168,76,0.06)"
-        : "rgba(255,68,68,0.06)"
-  const verdictLabel =
-    verdict === "calibrated"
-      ? "Calibrated"
-      : verdict === "drifting"
-        ? "Drifting"
-        : "Miscalibrated"
-  // Direction matters as much as magnitude: "running high" means the
-  // readiness band is inflating your expectations (overconfidence risk
-  // on test day); "running low" means your real test performance is
-  // likely better than the rolling estimate suggests.
-  const directionLabel =
-    signedDelta > 0 ? "running high" : signedDelta < 0 ? "running low" : "aligned"
-  const errorPill =
-    signedDelta === 0
-      ? "on target"
-      : `${Math.abs(signedDelta)} pts ${directionLabel}`
-  const readoutCopy =
-    verdict === "calibrated"
-      ? `Readiness is tracking your mock within ±35 points — trust the band.`
-      : verdict === "drifting"
-        ? signedDelta > 0
-          ? `Readiness is ${errorPoints} points HIGH vs your ${mockDate} mock. Practice accuracy is inflating expectations — weigh the mock over the rolling estimate.`
-          : `Readiness is ${errorPoints} points LOW vs your ${mockDate} mock. You're underestimating real-test performance — the mock is the better signal right now.`
-        : signedDelta > 0
-          ? `Readiness is ${errorPoints} points HIGH vs your ${mockDate} mock. The band isn't tracking; until more mocks land, treat the mock as the real floor.`
-          : `Readiness is ${errorPoints} points LOW vs your ${mockDate} mock. The band isn't tracking; the mock is the stronger predictor right now.`
-  return (
-    <div
-      className="relative rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-0.5"
-      style={{
-        borderColor: colour + "33",
-        backgroundColor: bg,
-      }}
-    >
-      <p
-        className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-2"
-        style={{ color: colour }}
-      >
-        Prediction Accuracy
-      </p>
-      <div className="flex flex-wrap items-baseline justify-between gap-3 mb-3">
-        <h2 className="font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-[-0.01em] leading-[1.15]">
-          {verdictLabel}
-        </h2>
-        <span
-          className="text-[11px] font-semibold px-2.5 py-1 rounded-md uppercase tracking-[0.18em] tabular-nums"
-          style={{ backgroundColor: colour + "22", color: colour }}
-        >
-          {errorPill}
-        </span>
-      </div>
-      <p className="text-[13px] text-[#C0C0C0] leading-relaxed mb-5">
-        {readoutCopy}
-      </p>
-      <div className="grid grid-cols-2 gap-3">
-        <div className="p-4 rounded-xl bg-[#0A0A0A] border border-white/[0.06]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold mb-2">
-            Readiness band
-          </p>
-          <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
-            {readinessTotal}
-          </p>
-          <p className="text-[10px] text-[#555555] mt-2">
-            from all practice accuracy
-          </p>
-        </div>
-        <div className="p-4 rounded-xl bg-[#0A0A0A] border border-white/[0.06]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold mb-2">
-            Latest mock
-          </p>
-          <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
-            {mockTotal}
-          </p>
-          <p className="text-[10px] text-[#555555] mt-2 tabular-nums">{mockDate}</p>
-        </div>
-      </div>
     </div>
   )
 }
@@ -814,7 +683,7 @@ function PatternCard({
       </div>
       <p className="font-display text-3xl font-semibold text-[#F0F0F0] tabular-nums leading-none">
         {count}
-        <span className="text-sm font-normal text-[#555555]">
+        <span className="text-sm font-normal text-[#888888]">
           {" · "}
           {pct}%
         </span>

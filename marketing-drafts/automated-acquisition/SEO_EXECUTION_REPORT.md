@@ -1,3 +1,5 @@
+> **ARCHIVED (2026-07-19)** - historical snapshot; wording predates the current claim rules (offer: free 7-day full-access trial, no card; founder result: 565 to 735, top 1%, framed only as Adam's personal result; no "verified"/proof framing until the redacted score report actually ships). Reference only - do not build campaigns from this file.
+
 # SEO Acquisition Execution Report — Zakarian GMAT
 
 Independent GMAT Focus Edition prep, currently in free private beta (no credit card; PAYWALL_ENABLED off). Canonical host: https://www.zakariangmat.com (apex 308-redirects to www). The only performance claim permitted anywhere is founder Adam Zakarian's own 565 (56th pct) to 735 (100th percentile) result, framed as his personal result — never a prediction or typical outcome. Not affiliated with GMAC / GMAT / GMAT Focus Edition / mba.com; all marks referenced descriptively.

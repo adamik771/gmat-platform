@@ -6,8 +6,9 @@
  * `user_metadata` would make aggregation queries impractical. The table
  * is append-only; Adam triages by reading it directly.
  *
- * Until the migration runs, the API routes write to
- * `user_metadata.beta_feedback` as a fallback so feedback isn't lost.
+ * Older releases temporarily used `user_metadata.beta_feedback` as a fallback.
+ * The helper remains only so legacy entries can be bounded/read during cleanup;
+ * new feedback is written exclusively to the dedicated table.
  * The `__schema_migration` constant below is the SQL Adam can paste
  * into Supabase's SQL editor when he's ready to promote feedback to a
  * proper table.
@@ -114,11 +115,9 @@ export const USER_METADATA_FALLBACK_LIMIT = 10
 export const USER_METADATA_FALLBACK_MESSAGE_CHARS = 280
 
 /**
- * Append a feedback entry to user_metadata.beta_feedback. Used as a
- * fallback when the Supabase table doesn't exist yet (i.e., before the
- * migration runs). Bounds both the entry COUNT and each message's LENGTH so the
- * fallback can never grow user_metadata (which rides in the auth cookie) past
- * the request-header limit.
+ * Append a legacy feedback entry to user_metadata.beta_feedback. No production
+ * route should call this; it is retained for migration tests and bounded legacy
+ * data handling.
  */
 export function appendToUserMetadata(
   userMetadata: unknown,

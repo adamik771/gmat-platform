@@ -274,23 +274,21 @@ export default function PostPage() {
             different percentiles.
           </p>
           <p>
-            <Strong>Approximate concordance (from official GMAC tables):</Strong>
+            <Strong>Official GMAC concordance ranges (July 2025):</Strong>
           </p>
           <ul>
-            <li>805 (Focus) ≈ 800 (old)</li>
-            <li>745 (Focus) ≈ 760 (old)</li>
-            <li>695 (Focus) ≈ 720 (old)</li>
-            <li>645 (Focus) ≈ 680 (old)</li>
-            <li>595 (Focus) ≈ 640 (old)</li>
-            <li>545 (Focus) ≈ 600 (old)</li>
+            <li>805 (current) links to 790-800 (10th Edition)</li>
+            <li>745 (current) links to 770 (10th Edition)</li>
+            <li>695 (current) links to 740-750 (10th Edition)</li>
+            <li>645 (current) links to 690-700 (10th Edition)</li>
+            <li>595 (current) links to 640-650 (10th Edition)</li>
+            <li>545 (current) links to 570-580 (10th Edition)</li>
           </ul>
           <p>
-            The takeaway: if you scored 720 on the old test and you
-            want the equivalent on Focus, you&apos;re aiming at roughly
-            695. If you scored 680 on the old test, the Focus
-            equivalent is roughly 645. If you&apos;re translating an
-            admissions target like &ldquo;730+&rdquo; from old-test
-            terms, the rough Focus equivalent is in the 705-715 range.
+            The takeaway: the mapping is not one-to-one. An old score of 720
+            links to current scores of 665-675, while an old 680 links to
+            615-635. An old 730 links to 675-685. Use the range rather than
+            inventing a single arithmetic conversion.
           </p>
           <p>
             For an interactive version that handles arbitrary scores,
@@ -479,6 +477,11 @@ export default function PostPage() {
             </Link>
           </div>
         </div>
+        <p className="text-[13px] text-[#888888] leading-relaxed mb-8">
+          <Link href="/gmat-focus-edition-changes" className="underline underline-offset-2" style={{ color: "#C9A84C" }}>
+            For the quick reference, see the GMAT Focus Edition changes overview.
+          </Link>
+        </p>
         <RelatedPosts currentSlug="gmat-focus-vs-old-gmat-whats-changed" />
       </article>
       <style>{`

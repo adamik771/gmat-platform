@@ -1740,7 +1740,7 @@ Four habits underlie success across all formats:
 
 ## Part 26: The DI Problem-Shape Glossary
 
-Like Quant, DI recycles a finite library of problem shapes. Here are the most frequent at the 700+ level, with the format, the shape name, the recognition cue, and the right method.
+Like Quant, DI recycles a finite library of problem shapes. Here are the most frequent on the hardest items, with the format, the shape name, the recognition cue, and the right method.
 
 ### DS shapes
 
@@ -2018,7 +2018,7 @@ The reward is a DI score that moves. Over 8–12 weeks of disciplined study usin
 
 This chapter is a manual. Not a book to read once. A reference to consult as you drill each format, as each trap-pattern emerges in your error log, as each pacing issue surfaces in your mocks. Treat it as an extension of the lessons and chapters on the platform — not a replacement for practice but a companion to it.
 
-*I score 735s on this test.* DI is the section where the gap between my score and a 650-level scorer is largest. That gap came from exactly the preparation method described here. It is available to any student willing to do the same work.
+*I score 735s on this test.* DI is the section where the gap between my score and a mid-600s scorer is largest. That gap came from exactly the preparation method described here. It is available to any student willing to do the same work.
 
 ## Part 34: Three Specific DI Anti-Patterns to Unlearn
 

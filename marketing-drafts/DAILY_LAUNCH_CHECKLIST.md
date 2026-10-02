@@ -1,3 +1,5 @@
+> **STALE OFFER - review before use (2026-07-19).** Strategy below predates the current offer (free 7-day full-access trial, no card - never "free beta"/"private beta"). Founder-claim wording in this file has been aligned (565 to 735, top 1%, personal result, no "verified" framing), but offer/beta mechanics need a rewrite before launching anything from this file. Current wording source: acquisition-cleanup/OFFER_AUDIT.md and the live /gmat-free-trial page.
+
 # Daily Launch Checklist
 
 A simple, repeatable operating rhythm for a solo founder running a manual, ethical launch. Pair it with `CONTENT_CALENDAR.md` (what to post / who to DM), `OUTREACH_PLAYBOOK.md` (message templates), and `CRM_TEMPLATE.csv` (where to log everything). Not affiliated with GMAC, the GMAT, or mba.com.
@@ -6,7 +8,7 @@ A simple, repeatable operating rhythm for a solo founder running a manual, ethic
 
 - [ ] **Run the migration** `supabase/migrations/20260626000000_lead_captures_founding_referral.sql` in the Supabase SQL editor, or founding-member reservations fail the DB check and are silently dropped.
 - [ ] Confirm `hello@zakariangmat.com` receives mail (MX or forwarding), or contact replies bounce.
-- [ ] Add `public/score-report.png` (redacted) to turn on the 100th-percentile proof on /about.
+- [ ] Add `public/score-report.png` (redacted) to turn on the top-1% proof on /about.
 - [ ] (For ads later) Create a Meta Pixel + Google tag, set `NEXT_PUBLIC_META_PIXEL_ID` / `NEXT_PUBLIC_GOOGLE_TAG_ID` in Vercel. Until then, organic + DMs only.
 - [ ] Set up the founding/referral Stripe promotion codes when you are ready to monetize (see `REFERRAL_AND_DISCOUNT_PLAN.md`). Not needed while the beta is free.
 - [ ] Seed `CRM_TEMPLATE.csv` with 30-50 warm names. Delete the example row.

@@ -23,13 +23,11 @@ import type { Section } from "@/types"
  *   - drill       — a curriculum micro-drill block (8 Q sub-chapter set)
  *   - checkpoint  — a curriculum active-recall block (3-5 Q recall check)
  *
- * Each kind has its own spacing ladder calibrated to how quickly the
- * underlying memory decays:
- *
- *   question    → [0, 2,  7, 21, 42]
- *   concept     → [0, 3, 10, 28, 56]   (slower — concept stability is durable)
- *   drill       → [0, 2,  7, 21, 42]
- *   checkpoint  → [0, 1,  4, 14, 30]   (fastest — recall fragments fast)
+ * All kinds share the one evidence-backed spacing ladder from
+ * review-queue.ts ([0, 2, 7, 21, 42]) — the literature supports absolute
+ * spacing and retrieval count, not per-material decay-rate tuning
+ * (Karpicke & Bauernschmidt 2011), so there is deliberately no per-kind
+ * calibration to explain or maintain.
  *
  * Priority is composite — overdue-ness leads, with modifiers for:
  *
@@ -46,12 +44,12 @@ import type { Section } from "@/types"
  * which avoids a Supabase migration. Helpers below read & write this map.
  */
 
-// ---------- Spacing ladders per kind ----------
+// ---------- Spacing ladder (shared across kinds) ----------
 const LADDERS: Record<SpacedItemKind, readonly number[]> = {
   question: SPACING_LADDER_DAYS,
-  concept: [0, 3, 10, 28, 56],
-  drill: [0, 2, 7, 21, 42],
-  checkpoint: [0, 1, 4, 14, 30],
+  concept: SPACING_LADDER_DAYS,
+  drill: SPACING_LADDER_DAYS,
+  checkpoint: SPACING_LADDER_DAYS,
 }
 
 const MAX_RUNG_BY_KIND: Record<SpacedItemKind, number> = {
@@ -277,11 +275,20 @@ function liftQuestions(
       reason: isSaved
         ? `You saved this for review.`
         : buildQuestionReason(c, conf, mistakeType),
-      // Question ids are `${fileSlug}-q${n}` — stripping the -qN suffix
-      // recovers the exact bank set slug /practice/session resolves.
-      href: `/practice/session/${c.questionId.replace(/-q\d+$/, "")}`,
+      // Send the student into the section's priority-ordered review
+      // session (which contains the due items and logs attempts), not
+      // into the full bank set — the bank drill's unseen-first ordering
+      // would serve this already-seen question LAST.
+      href: `/review/${c.section.toLowerCase()}`,
     }
   })
+}
+
+/** Days until the NEXT review if the student answers correctly today —
+ *  used to make the ladder legible ("correct today → back in 7d"). */
+function nextGapDays(rung: number): number | null {
+  const next = SPACING_LADDER_DAYS[Math.min(rung + 1, SPACING_LADDER_DAYS.length - 1)]
+  return rung >= SPACING_LADDER_DAYS.length - 1 ? null : next
 }
 
 function buildQuestionReason(
@@ -297,10 +304,20 @@ function buildQuestionReason(
   if (confidence !== null && confidence <= 2) {
     return `Low confidence on the last review — bringing it back sooner.`
   }
-  if (c.daysSinceLastSeen > SPACING_LADDER_DAYS[c.rung]) {
-    return `${Math.round(-c.daysUntilDue)} days overdue at rung ${c.rung}.`
+  // Forgetting-framed default: "feels familiar" is exactly the fluency
+  // illusion that makes students skip the reviews that matter (Kornell &
+  // Bjork 2008), so the reason says why NOW and what happens next.
+  const days = Math.round(c.daysSinceLastSeen)
+  const ago = days <= 0 ? "earlier today" : days === 1 ? "1 day ago" : `${days} days ago`
+  const gap = nextGapDays(c.rung)
+  const next =
+    gap === null
+      ? "Correct today retires it from the queue"
+      : `Correct today → next review in ${gap}d; miss → back today`
+  if (!c.lastCorrect) {
+    return `Missed ${ago} — a corrective attempt now is what makes the fix stick. ${next}.`
   }
-  return `Spaced retrieval per ladder rung ${c.rung}.`
+  return `Right ${ago} — back now because this is when it starts to fade. ${next}.`
 }
 
 /**
@@ -694,8 +711,11 @@ export async function buildSpacedReviewQueue(
     )
     .eq("user_id", userId)
     // Safety cap so a long-tenured user's full tag history isn't loaded + sorted
-    // on every review build. attempt_id desc keeps the most recent tags when capped.
-    .order("attempt_id", { ascending: false })
+    // on every review build. error_tags has no reliable own timestamp and
+    // attempt_id is a random UUID (ordering by it is arbitrary, not recency —
+    // the uuid-order-guardrail class), so the cap keeps an arbitrary subset;
+    // the in-memory session-created_at sort below establishes real recency
+    // within whatever the cap returned.
     .limit(2000)
   const mistakeTypeByQuestion = new Map<string, string>()
   const errorTagRows = (errorRows ?? []) as unknown as Array<{
@@ -721,11 +741,16 @@ export async function buildSpacedReviewQueue(
     if (code) mistakeTypeByQuestion.set(qid, code)
   }
 
-  // Build per kind.
-  const rawQuestions = await getReviewQueue(supabase, userId, {
-    limit: 60,
-    flaggedQuestionIds: options.flaggedQuestionIds,
-  })
+  // Build per kind. A failed attempts read degrades to question-less
+  // buckets rather than erroring the whole queue — concepts and saved
+  // orphans can still render, and the /review surfaces carry the
+  // primary error state for the daily queue.
+  const rawQuestions =
+    (await getReviewQueue(supabase, userId, {
+      limit: 60,
+      flaggedQuestionIds: options.flaggedQuestionIds,
+      savedQuestionIds: savedSet,
+    })) ?? []
   const questions = liftQuestions(
     rawQuestions,
     confidenceMap,

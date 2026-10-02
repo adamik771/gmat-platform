@@ -64,7 +64,10 @@ export interface ChapterProgressShape {
   }
 }
 
-const MIN_UNTIMED = 5
+// 8, not 5: at n=5 a true-60% student passes the 80% concept gate ~34% of
+// the time by luck; n=8 roughly halves that false-pass rate at the cost
+// of three more questions.
+const MIN_UNTIMED = 8
 const CONCEPT_ACCURACY = 0.8
 const MIN_TIMED = 10
 const TIMED_ACCURACY = 0.7

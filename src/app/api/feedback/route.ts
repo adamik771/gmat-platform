@@ -1,10 +1,10 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import {
-  appendToUserMetadata,
   validateFeedbackInput,
   type FeedbackKind,
   type FeedbackTag,
 } from "@/lib/beta-feedback"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 /**
  * POST /api/feedback — single endpoint for all four feedback kinds.
@@ -18,15 +18,8 @@ import {
  *     tag?: string | null              // optional categorical tag
  *   }
  *
- * Storage strategy:
- *   1. Try to insert into the `beta_feedback` table (fast cross-user analysis path).
- *   2. If the table doesn't exist (or RLS blocks), fall back to appending into
- *      `user_metadata.beta_feedback` with a 30-entry cap so feedback isn't lost
- *      pre-migration.
- *
- * The route always returns `{ ok: true }` on accepted input — the
- * client doesn't care which storage path was used, and we never
- * surface "the table doesn't exist" to the student.
+ * Feedback is stored only in the dedicated table. Auth user_metadata rides in
+ * the session JWT/cookie, so it must never be used as an overflow datastore.
  */
 export async function POST(request: Request) {
   const supabase = await createSupabaseServer()
@@ -67,7 +60,6 @@ export async function POST(request: Request) {
     typeof body.sourcePath === "string" ? body.sourcePath.slice(0, 500) : null
   const userAgent = request.headers.get("user-agent")?.slice(0, 500) ?? null
 
-  // ---- Path 1: dedicated table ----
   const { error: insertError } = await supabase
     .from("beta_feedback")
     .insert({
@@ -85,32 +77,13 @@ export async function POST(request: Request) {
     return Response.json({ ok: true, persisted: "table" })
   }
 
-  // ---- Path 2: user_metadata fallback ----
-  // The table-insert failed (most likely because the migration hasn't
-  // run yet, or RLS blocks). Stash into user_metadata so feedback
-  // still lands somewhere Adam can read it.
-  const id = crypto.randomUUID()
-  const nextMeta = appendToUserMetadata(user.user_metadata, {
-    id,
-    kind,
-    message,
-    questionId,
-    rating,
-    tag,
-    sourcePath,
-    userAgent,
-    createdAt: new Date().toISOString(),
+  reportDataFailure(insertError, {
+    surface: "feedback",
+    operation: "insert",
+    table: "beta_feedback",
   })
-  const { error: metaError } = await supabase.auth.updateUser({ data: nextMeta })
-  if (metaError) {
-    return Response.json(
-      {
-        error:
-          "Could not persist feedback. The beta_feedback table is missing AND user_metadata write failed.",
-      },
-      { status: 500 }
-    )
-  }
-
-  return Response.json({ ok: true, persisted: "user_metadata" })
+  return Response.json(
+    { error: "Feedback could not be saved. Please try again." },
+    { status: 503 },
+  )
 }

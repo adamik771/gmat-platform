@@ -36,8 +36,8 @@ export type WebhookAction =
       currency: string
     }
   | {
-      // A completed checkout we can't attribute (no user_id / plan_id). Accept
-      // so Stripe stops retrying, but record nothing.
+      // A completed checkout we can't attribute (no user_id / plan_id). The
+      // route rejects this action so the paid-but-ungranted state is visible.
       kind: "skip_missing_metadata"
       sessionId: string
     }
@@ -78,7 +78,8 @@ export function normalizeChargeId(
  *   - unhandled type            -> ignore
  *   - checkout.session.completed:
  *       user id = client_reference_id ?? metadata.user_id; plan = metadata.plan_id
- *       both present -> record; either missing -> skip_missing_metadata
+ *       both present -> record; either missing -> skip_missing_metadata (the
+ *       route returns 500 so operations can repair and replay the event)
  *   - charge.refunded: full refund -> revoke(refund); partial -> partial_refund_noop
  *   - charge.dispute.created -> revoke(dispute)
  */

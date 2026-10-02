@@ -1,10 +1,30 @@
 import { getSupabaseService } from "@/lib/supabase/service"
-import { officialExamReminder } from "@/lib/official-exams"
+import {
+  officialExamReminder,
+  parseOfficialExamEntries,
+  deriveExamUsage,
+} from "@/lib/official-exams"
 import {
   officialExamReminderEmail,
   type ReminderStage,
 } from "@/lib/reminder-emails"
 import { emailConfigured, sendEmail } from "@/lib/email"
+import {
+  getPlanTier,
+  PAYWALL_ENABLED,
+  trialStartFor,
+} from "@/lib/entitlements"
+import { findActivePurchase, type DatedPurchase } from "@/lib/plan-access"
+import { MANUAL_PAYMENT_CONTACT_ENABLED } from "@/lib/manual-payment"
+import { trialExpiryPaymentEmail } from "@/lib/trial-expiry-email"
+import {
+  claimTrialExpiryDelivery,
+  markTrialExpiryDeliveryFailed,
+  markTrialExpiryDeliverySent,
+  shouldSendTrialExpiryEmail,
+} from "@/lib/trial-expiry-notifications"
+import { SITE_CONTACT_EMAIL } from "@/lib/site"
+import { reportDataFailure } from "@/lib/server-data-observability"
 
 // Node runtime: uses the service-role client + fetch to Resend.
 export const runtime = "nodejs"
@@ -21,6 +41,11 @@ export const dynamic = "force-dynamic"
  */
 
 const STAGE_RANK: Record<ReminderStage, number> = { week: 1, day: 2, overdue: 3 }
+const manualTrialEmailEnabled =
+  PAYWALL_ENABLED &&
+  MANUAL_PAYMENT_CONTACT_ENABLED &&
+  typeof process.env.PAYWALL_TRIAL_EPOCH === "string" &&
+  Number.isFinite(new Date(process.env.PAYWALL_TRIAL_EPOCH).getTime())
 
 export async function GET(request: Request) {
   const secret = process.env.CRON_SECRET
@@ -44,6 +69,8 @@ export async function GET(request: Request) {
   let checked = 0
   let sent = 0
   let errors = 0
+  let trialExpirySent = 0
+  let examReminderSent = 0
   const MAX_PAGES = 50
 
   for (let page = 1; page <= MAX_PAGES; page++) {
@@ -67,11 +94,55 @@ export async function GET(request: Request) {
       if (Array.isArray(s)) officialByUser.set(r.user_id as string, s)
     }
 
+    let purchasesByUser: Map<string, DatedPurchase[]> | null = null
+    if (manualTrialEmailEnabled) {
+      const { data: purchaseRows, error: purchaseError } = await service
+        .from("purchases")
+        .select("user_id, plan_id, paid_at, revoked_at")
+        .in(
+          "user_id",
+          data.users.map((u) => u.id),
+        )
+        .order("paid_at", { ascending: false })
+
+      if (purchaseError) {
+        errors++
+        reportDataFailure(purchaseError, {
+          surface: "trial-expiry-email",
+          operation: "load-purchases",
+          table: "purchases",
+        })
+      } else {
+        purchasesByUser = new Map()
+        for (const row of purchaseRows ?? []) {
+          const userId = row.user_id as string
+          const current = purchasesByUser.get(userId) ?? []
+          current.push(row as DatedPurchase)
+          purchasesByUser.set(userId, current)
+        }
+      }
+    }
+
     for (const user of data.users) {
       checked++
       const meta = (user.user_metadata ?? {}) as Record<string, unknown>
       const email = user.email
       if (!email || !user.email_confirmed_at) continue
+
+      if (manualTrialEmailEnabled && purchasesByUser) {
+        const outcome = await maybeSendTrialExpiryEmail({
+          service,
+          user,
+          now: new Date(),
+          purchases: purchasesByUser.get(user.id) ?? [],
+        })
+        if (outcome === "sent") {
+          sent++
+          trialExpirySent++
+        } else if (outcome === "error") {
+          errors++
+        }
+      }
 
       // Opt-out: exam reminders default ON; only skip when explicitly false.
       const prefs = meta.notification_prefs as Record<string, boolean> | undefined
@@ -80,8 +151,13 @@ export async function GET(request: Request) {
       const examDate = typeof meta.exam_date === "string" ? meta.exam_date : null
       if (!examDate) continue
       // Prefer the user_state row; fall back to legacy metadata pre-backfill.
+      // Canonical parser, so the email count can't drift from the /mock plan;
+      // untagged legacy entries suppress the reminder (the /mock roadmap asks
+      // for tagging first — "take your next official" would contradict it).
       const scores = officialByUser.get(user.id) ?? meta.official_exam_scores
-      const officialCount = Array.isArray(scores) ? scores.length : 0
+      const parsed = parseOfficialExamEntries({ official_exam_scores: scores })
+      if (deriveExamUsage(parsed).unclassifiedCount > 0) continue
+      const officialCount = parsed.length
 
       const reminder = officialExamReminder(examDate, todayIso, officialCount)
       if (!reminder) continue
@@ -120,6 +196,7 @@ export async function GET(request: Request) {
         continue
       }
       sent++
+      examReminderSent++
 
       // Record only after a successful send, so failures retry next run.
       const nextMeta = {
@@ -138,7 +215,96 @@ export async function GET(request: Request) {
     if (data.users.length < 100) break
   }
 
-  return Response.json({ ok: true, checked, sent, errors })
+  return Response.json({
+    ok: true,
+    checked,
+    sent,
+    errors,
+    trialExpiry: {
+      enabled: manualTrialEmailEnabled,
+      sent: trialExpirySent,
+    },
+    examReminders: { sent: examReminderSent },
+  })
+}
+
+type ReminderService = ReturnType<typeof getSupabaseService>
+
+async function maybeSendTrialExpiryEmail(input: {
+  service: ReminderService
+  user: {
+    id: string
+    email?: string
+    email_confirmed_at?: string | null
+    created_at?: string
+    user_metadata?: Record<string, unknown> | null
+  }
+  purchases: DatedPurchase[]
+  now: Date
+}): Promise<"sent" | "skipped" | "error"> {
+  const { service, user, purchases, now } = input
+  if (!user.email) return "skipped"
+
+  try {
+    const active = findActivePurchase(purchases, now)
+    const trialStartedAt = trialStartFor(user)
+    if (
+      !shouldSendTrialExpiryEmail({
+        paywallEnabled: PAYWALL_ENABLED,
+        manualPaymentEnabled: MANUAL_PAYMENT_CONTACT_ENABLED,
+        emailConfirmed: !!user.email_confirmed_at,
+        tier: getPlanTier(active?.plan_id),
+        trialStartedAt,
+        now,
+      }) ||
+      !trialStartedAt
+    ) {
+      return "skipped"
+    }
+
+    const delivery = await claimTrialExpiryDelivery(service, {
+      userId: user.id,
+      trialStartedAt,
+    })
+    if (!delivery) return "skipped"
+
+    const meta = (user.user_metadata ?? {}) as Record<string, unknown>
+    const fullName = typeof meta.full_name === "string" ? meta.full_name.trim() : ""
+    const firstName = fullName ? fullName.split(/\s+/)[0] : null
+    const rendered = trialExpiryPaymentEmail({
+      firstName,
+      accountEmail: user.email,
+    })
+    const result = await sendEmail({
+      to: user.email,
+      subject: rendered.subject,
+      html: rendered.html,
+      text: rendered.text,
+      replyTo: SITE_CONTACT_EMAIL,
+      idempotencyKey: `trial-expiry-${user.id}-${trialStartedAt.replace(/[^0-9]/g, "")}`,
+    })
+
+    if (!result.ok) {
+      await markTrialExpiryDeliveryFailed(service, delivery, result.reason)
+      if (!result.skipped) {
+        reportDataFailure(new Error(result.reason), {
+          surface: "trial-expiry-email",
+          operation: "send",
+        })
+      }
+      return result.skipped ? "skipped" : "error"
+    }
+
+    await markTrialExpiryDeliverySent(service, delivery.id)
+    return "sent"
+  } catch (error) {
+    reportDataFailure(error, {
+      surface: "trial-expiry-email",
+      operation: "process",
+      table: "trial_expiry_email_deliveries",
+    })
+    return "error"
+  }
 }
 
 function formatDue(iso: string): string {

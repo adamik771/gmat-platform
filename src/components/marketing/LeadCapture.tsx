@@ -191,7 +191,7 @@ export default function LeadCapture({
     const successD =
       successDescription ??
       (downloadUrl
-        ? "The template is downloading now. If it doesn't open automatically, click below."
+        ? "Your template is ready. Use the link below to download it."
         : "Expect the next post when it ships.")
     // An opt-in was attempted via the inline checkbox or the second chance.
     // Drive the confirmation off the SERVER's outcome (subResult), not client
@@ -349,13 +349,14 @@ export default function LeadCapture({
         </label>
         <input
           type="email"
+          autoComplete="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
           aria-label="Your email address"
           disabled={state === "submitting"}
-          className="flex-1 px-3.5 py-2.5 rounded-xl text-[14px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all disabled:opacity-60"
+          className="min-w-0 flex-1 px-3.5 py-2.5 rounded-xl text-[14px] text-[#F0F0F0] placeholder-[#95978D] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all disabled:opacity-60"
         />
         <button
           type="submit"

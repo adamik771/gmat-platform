@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import AcquisitionLanding, {
   type AcquisitionLandingProps,
 } from "@/components/marketing/AcquisitionLanding"
+import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "GMAT Focus Edition Changes Explained | Zakarian GMAT",
+  title: "GMAT Focus Edition Changes Explained",
   description:
     "A clear, factual breakdown of the GMAT Focus Edition changes — three 45-minute sections, what was removed, the new Data Insights section, and the 205-805 scale.",
   alternates: { canonical: "/gmat-focus-edition-changes" },
@@ -40,7 +41,7 @@ const DATA: AcquisitionLandingProps = {
     {
       heading: "What the changes mean for how you prepare",
       body:
-        "The practical takeaway is that prep built for the old GMAT can send you in the wrong direction. Time spent on the essay or on Sentence Correction grammar no longer maps to anything on test day, while Data Insights — including Data Sufficiency in its new home — deserves dedicated, format-specific practice.\n\nZakarian GMAT is built specifically for the Focus Edition. Its 62 interactive chapters span Quant, Verbal, and Data Insights as they exist now; the practice question bank holds original questions in the current formats; and an adaptive study plan is built from your own official mba.com practice-exam baseline that you enter on the mock page. A six-tag error log, a spaced-review queue, and full-length mocks (three 45-minute sections) keep your practice aligned with how the real exam is structured.\n\nThe platform is free during a private beta right now, with no credit card required, so you can map your prep to the current format without committing anything.",
+        "The practical takeaway is that prep built for the old GMAT can send you in the wrong direction. Time spent on the essay or on Sentence Correction grammar no longer maps to anything on test day, while Data Insights — including Data Sufficiency in its new home — deserves dedicated, format-specific practice.\n\nZakarian GMAT is built specifically for the Focus Edition. Its " + CHAPTER_COUNT_CLAIM + " interactive chapters span Quant, Verbal, and Data Insights as they exist now; the practice question bank holds original questions in the current formats; and an adaptive study plan is built from your own official mba.com practice-exam baseline that you enter on the mock page. A six-tag error log, a spaced-review queue, and full-length mocks (three 45-minute sections) keep your practice aligned with how the real exam is structured.\n\nEvery new account starts with a free 7-day full-access trial, no credit card required, so you can map your prep to the current format without committing anything.",
     },
   ],
   faq: [
@@ -95,7 +96,7 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
     description: "See how the 205-805 scale relates to the old 200-800 numbers.",
   },
   {
-    label: "Start free during the private beta",
+    label: "Start your free 7-day trial",
     href: "/signup",
     description: "Create an account and study the Focus Edition with no credit card.",
   },

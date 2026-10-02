@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils"
 
 interface Props {
   initialTarget: number | null
-  estimate: number | null
 }
 
 // GMAT Focus Edition: 205..805 in 10-point increments.
@@ -28,18 +27,13 @@ for (let s = 205; s <= 805; s += 10) SCORE_OPTIONS.push(s)
  */
 export default function TargetScoreControl({
   initialTarget,
-  estimate,
 }: Props) {
   const [target, setTarget] = useState<number | null>(initialTarget)
   const [editing, setEditing] = useState(false)
-  // Default the picker to the user's current target, or a sensible
-  // starting point above their current estimate if they have one.
+  // Default to a common competitive target when the student has not set one.
+  // Practice accuracy is deliberately not converted into a GMAT total here.
   const [draft, setDraft] = useState<number>(() => {
     if (initialTarget !== null) return initialTarget
-    if (estimate !== null) {
-      const rounded = Math.ceil((estimate + 50) / 10) * 10
-      return Math.min(805, Math.max(205, rounded))
-    }
     return 705
   })
   const [error, setError] = useState<string | null>(null)
@@ -110,7 +104,7 @@ export default function TargetScoreControl({
             setError(null)
           }}
           disabled={isPending}
-          className="p-1 rounded text-[#555555] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+          className="p-1 rounded text-[#888888] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
           aria-label="Cancel"
         >
           <X className="w-3.5 h-3.5" />
@@ -120,7 +114,7 @@ export default function TargetScoreControl({
             type="button"
             onClick={() => save(null)}
             disabled={isPending}
-            className="text-xs text-[#555555] hover:text-[#FF4444] transition-colors ml-1"
+            className="text-xs text-[#888888] hover:text-[#FF4444] transition-colors ml-1"
           >
             Clear
           </button>
@@ -146,14 +140,14 @@ export default function TargetScoreControl({
         <>
           <span className="text-xl font-bold text-[#F0F0F0]">
             {target}
-            <span className="text-sm font-normal text-[#555555] ml-1">
+            <span className="text-sm font-normal text-[#888888] ml-1">
               target
             </span>
           </span>
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="p-1 rounded text-[#555555] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+            className="p-1 rounded text-[#888888] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
             aria-label="Edit target score"
           >
             <Pencil className="w-3 h-3" />
@@ -161,9 +155,9 @@ export default function TargetScoreControl({
         </>
       ) : (
         <>
-          <span className="text-xl font-bold text-[#555555]">
+          <span className="text-xl font-bold text-[#888888]">
             —
-            <span className="text-sm font-normal text-[#555555] ml-1">
+            <span className="text-sm font-normal text-[#888888] ml-1">
               target
             </span>
           </span>

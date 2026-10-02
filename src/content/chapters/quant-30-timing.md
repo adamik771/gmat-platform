@@ -12,7 +12,10 @@ sections:
     type: pretest
     title: "Try before you learn"
     intro: |
-      Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
+      Two short questions before the pacing lesson. Notice how quickly you identify a path, not merely whether you get the answer.
+    pretest_question_ids:
+      - arithmetic-q130
+      - arithmetic-q131
   - id: quant-timing
     type: reading
     title: "Quant Timing & Pacing"
@@ -21,8 +24,18 @@ sections:
     type: reading
     title: "One process, every question"
     check_question_ids: []
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
 ---
+
+## @summary
+
+- Use checkpoints to detect drift early, but make decisions question by question rather than staring at the clock.
+- When a path is not forming, eliminate what you can, make the best choice, and preserve time for solvable questions.
+- After one deliberate exit, reset immediately; do not let a hard question create a second mistake.
 
 ## @quant-timing
 

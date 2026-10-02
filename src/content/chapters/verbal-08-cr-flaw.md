@@ -14,13 +14,17 @@ sections:
     intro: |
       Two quick questions before the lesson. Miss them freely; attempting first sharpens the read.
     pretest_question_ids:
-      - critical-reasoning-q49
-      - critical-reasoning-q50
+      - critical-reasoning-q91
+      - critical-reasoning-q105
   - id: cr-flaw
     type: reading
     title: "CR: Flaw"
     check_question_ids:
-      - critical-reasoning-q51
+      - critical-reasoning-q67
+  - id: summary
+    type: summary
+    title: "What to remember"
+    check_question_ids: []
 problem_sets:
   easy:
     target_accuracy_by_score:
@@ -29,9 +33,9 @@ problem_sets:
       "685": 95
       "725": 100
     question_ids:
-      - critical-reasoning-q201
-      - critical-reasoning-q52
-      - critical-reasoning-q53
+      - critical-reasoning-q26
+      - critical-reasoning-q28
+      - critical-reasoning-q61
   medium:
     target_accuracy_by_score:
       "605": 50
@@ -39,10 +43,16 @@ problem_sets:
       "685": 80
       "725": 95
     question_ids:
-      - critical-reasoning-q54
-      - critical-reasoning-q55
-      - critical-reasoning-q56
+      - critical-reasoning-q38
+      - critical-reasoning-q205
+      - critical-reasoning-q112
 ---
+
+## @summary
+
+- Describe the argument's gap in neutral, abstract language before looking for a named flaw.
+- Check recurring patterns: correlation versus causation, sampling, comparison groups, percentages versus totals, and necessary versus sufficient conditions.
+- Reject choices that criticize a true premise or describe a flaw the argument never commits.
 
 ## @cr-flaw
 

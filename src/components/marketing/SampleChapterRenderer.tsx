@@ -1,17 +1,29 @@
 import Link from "next/link"
-import ReactMarkdown from "react-markdown"
+import { Children } from "react"
+import { getPublicInventory } from "@/components/marketing/content-inventory"
+import ReactMarkdown, { type Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeCaretSup from "@/lib/rehype-caret-sup"
 import {
   ArrowRight,
-  BookOpen,
   Lock,
   ShieldCheck,
   Sparkles,
 } from "lucide-react"
-import { getChapterBySlug, type ParsedChapter } from "@/lib/content"
-import { PAYWALL_ENABLED } from "@/lib/entitlements"
+import { getChapterBySlug, getQuestionsByIds, type ParsedChapter } from "@/lib/content"
+import { REVEAL_SENTINEL, transformRecallChecks } from "@/lib/recall-reveal"
+import SampleQuestion from "@/app/(marketing)/sample-chapter/SampleQuestion"
+import styles from "@/app/(marketing)/sample-chapter/SampleChapter.module.css"
+import { PAYWALL_ENABLED, TRIAL_DAYS } from "@/lib/entitlements"
 import { notFound } from "next/navigation"
+
+const sampleMarkdownComponents: Components = {
+  table: ({ children }) => (
+    <div className={styles.tableScroll} role="region" aria-label="Scrollable table" tabIndex={0}>
+      <table>{children}</table>
+    </div>
+  ),
+}
 
 export interface SiblingSample {
   /** Where the sibling sample lives (e.g. "/sample-chapter/quant"). */
@@ -52,6 +64,7 @@ export default function SampleChapterRenderer({
 }: SampleChapterRendererProps) {
   const chapter: ParsedChapter | null = getChapterBySlug(chapterSlug)
   if (!chapter) notFound()
+  const inventory = getPublicInventory()
 
   const publicSections = chapter.sections.filter((s) =>
     publicSectionIds.includes(s.id),
@@ -66,53 +79,31 @@ export default function SampleChapterRenderer({
     (acc, set) => acc + set.questionIds.length,
     0,
   )
+  const sampleQuestion = getQuestionsByIds(publicSections.flatMap((s) => s.checkQuestionIds))
+    .find((q) => !q.twoPartColumns && !q.chartSpec && q.correctAnswer >= 0 && q.correctAnswer < q.options.length)
+  const readingMinutes = Math.max(1, Math.ceil(publicSections.reduce((sum, s) => sum + s.body.split(/\s+/).length, 0) / 200))
+  const markdown = (body: string, key?: number) => <ReactMarkdown key={key} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={sampleMarkdownComponents}>{body}</ReactMarkdown>
 
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div className="public-sample-reader" style={{ backgroundColor: "#0A0A0A" }}>
       {/* Sample banner */}
       <div
         className="border-b border-white/[0.06]"
         style={{ backgroundColor: "#0D0D0D" }}
       >
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3 flex-wrap">
-          <div
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.18em]"
-            style={{
-              backgroundColor: "rgba(201,168,76,0.1)",
-              color: "#C9A84C",
-            }}
-          >
-            <BookOpen className="w-3 h-3" />
-            Sample chapter · {sectionLabel}
-          </div>
-          <p className="text-[12px] text-[#888888] leading-snug">
-            Two full readings from the {chapter.title} chapter. No signup
-            required.
-            {siblings.length > 0 && (
-              <>
-                {" "}
-                {siblings.map((s, i) => (
-                  <span key={s.href}>
-                    {i === 0 ? "Try the " : i === siblings.length - 1 ? " or " : ", "}
-                    <Link
-                      href={s.href}
-                      className="hover:underline"
-                      style={{ color: "#C9A84C" }}
-                    >
-                      {s.sectionLabel} sample ({s.chapterLabel})
-                    </Link>
-                  </span>
-                ))}{" "}
-                instead.
-              </>
-            )}
-          </p>
+        <div className={styles.samples}>
+          <p className={styles.note}>Sample lessons / No signup required</p>
+          <nav aria-label="Sample lesson subjects" className={styles.switcher}>
+            {[{ href: "/sample-chapter/quant", label: "Quant" }, { href: "/sample-chapter", label: "Verbal" }, { href: "/sample-chapter/data-insights", label: "Data Insights" }].map((sample) => (
+              <Link key={sample.href} href={sample.href} aria-current={sample.label === sectionLabel ? "page" : undefined}>{sample.label}</Link>
+            ))}
+          </nav>
         </div>
       </div>
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 pt-12 pb-20">
+      <article className="max-w-[760px] mx-auto px-5 sm:px-6 pt-8 pb-16">
         <header className="mb-10">
-          <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.18em] text-[#888888] mb-4">
+          <div className="flex flex-wrap items-center gap-3 text-[13px] text-[#B9B7AE] mb-4">
             <span
               className="px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-[0.15em]"
               style={{
@@ -135,7 +126,7 @@ export default function SampleChapterRenderer({
             <span className="text-[#444444]">·</span>
             <span>Chapter</span>
             <span className="text-[#444444]">·</span>
-            <span>{chapter.estimatedPages} pages</span>
+            <span>About {readingMinutes} min for this sample</span>
           </div>
           <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
             {chapter.title}
@@ -145,6 +136,7 @@ export default function SampleChapterRenderer({
               {chapter.summary}
             </p>
           )}
+          {sampleQuestion && <a href="#sample-question" className={`${styles.action} mt-5`}>Try a question<ArrowRight size={16} aria-hidden /></a>}
         </header>
 
         <div className="prose-zk space-y-12">
@@ -175,20 +167,38 @@ export default function SampleChapterRenderer({
                 </h2>
                 {section.intro && (
                   <div className="text-[#888888] italic mb-5">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={sampleMarkdownComponents}>
                       {section.intro}
                     </ReactMarkdown>
                   </div>
                 )}
                 <div>
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]}>
-                    {section.body}
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeCaretSup]} components={{
+                    ...sampleMarkdownComponents,
+                    p: ({ children }) => {
+                      const parts = Children.toArray(children)
+                      if (typeof parts[0] === "string" && parts[0].startsWith(REVEAL_SENTINEL)) {
+                        parts[0] = parts[0].slice(REVEAL_SENTINEL.length)
+                        return <details><summary className="min-h-11 py-3 cursor-pointer">Reveal answer</summary><p>{parts}</p></details>
+                      }
+                      return <p>{children}</p>
+                    },
+                  }}>
+                    {transformRecallChecks(section.body)}
                   </ReactMarkdown>
                 </div>
               </section>
             )
           })}
         </div>
+
+        {sampleQuestion && <SampleQuestion
+          key={sampleQuestion.id}
+          prompt={<>{sampleQuestion.context && markdown(sampleQuestion.context)}{markdown(sampleQuestion.prompt)}</>}
+          options={sampleQuestion.options.map(markdown)}
+          correctAnswer={sampleQuestion.correctAnswer}
+          explanation={markdown(sampleQuestion.explanation)}
+        />}
 
         {/* Locked sections */}
         <div className="mt-16">
@@ -268,17 +278,16 @@ export default function SampleChapterRenderer({
           />
           <div className="relative">
             <p className="text-[10px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold mb-2">
-              What you just read is one of more than fifty chapters
+              Explore the full curriculum
             </p>
             <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-4">
-              The full curriculum is{" "}
+              The full curriculum includes{" "}
               <span
                 className="font-display-italic"
                 style={{ color: "#C9A84C" }}
               >
-                50+ chapters
-              </span>{" "}
-              like this one.
+                {inventory.chapters} interactive chapters
+              </span>.
             </h2>
             <p className="text-[15px] text-[#C0C0C0] leading-relaxed max-w-xl mb-6">
               Plus the adaptive study plan, the error log with six-tag
@@ -286,7 +295,7 @@ export default function SampleChapterRenderer({
               tagged by topic and difficulty.{" "}
               {PAYWALL_ENABLED
                 ? "Free to start; full access on every paid plan."
-                : "Full access, free while in beta — no card required."}
+                : "Full access free for 7 days — no card required."}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link
@@ -294,7 +303,7 @@ export default function SampleChapterRenderer({
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
                 style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
               >
-                Start Free
+                Start {TRIAL_DAYS}-day trial
                 <ArrowRight className="w-4 h-4" />
               </Link>
               {siblings.map((s) => (
@@ -325,38 +334,38 @@ export default function SampleChapterRenderer({
               />
               {PAYWALL_ENABLED
                 ? "No card required to start. 14-day money-back guarantee on self-study plans."
-                : "No card required. Free while in beta. 14-day money-back on paid self-study tiers."}
+                : "No card required. Free 7-day full-access trial. 14-day money-back on paid self-study tiers."}
             </div>
           </div>
         </div>
       </article>
 
       <style>{`
-        .prose-zk { color: #C0C0C0; font-size: 17px; line-height: 1.75; }
-        .prose-zk p { color: #C0C0C0; margin-bottom: 1em; }
-        .prose-zk strong { color: #F0F0F0; font-weight: 600; }
-        .prose-zk em { color: #E8E8E8; font-style: italic; }
-        .prose-zk h3 {
+        .public-sample-reader .prose-zk { color: #C0C0C0; font-size: 17px; line-height: 1.75; }
+        .public-sample-reader .prose-zk p { color: #C0C0C0; margin-bottom: 1em; }
+        .public-sample-reader .prose-zk strong { color: #F0F0F0; font-weight: 600; }
+        .public-sample-reader .prose-zk em { color: #E8E8E8; font-style: italic; }
+        .public-sample-reader .prose-zk h3 {
           font-family: var(--font-display, serif);
           color: #F0F0F0;
           font-size: 22px;
           font-weight: 600;
           margin-top: 2.4em;
           margin-bottom: 0.6em;
-          letter-spacing: -0.01em;
+          letter-spacing: 0;
           line-height: 1.3;
         }
-        .prose-zk h4 {
+        .public-sample-reader .prose-zk h4 {
           color: #F0F0F0;
           font-size: 16px;
           font-weight: 600;
           margin-top: 1.6em;
           margin-bottom: 0.4em;
         }
-        .prose-zk ol, .prose-zk ul { padding-left: 22px; margin-bottom: 1em; }
-        .prose-zk ol > li, .prose-zk ul > li { margin-bottom: 8px; }
-        .prose-zk a { color: #C9A84C; text-decoration: underline; }
-        .prose-zk blockquote {
+        .public-sample-reader .prose-zk ol, .public-sample-reader .prose-zk ul { padding-left: 22px; margin-bottom: 1em; }
+        .public-sample-reader .prose-zk ol > li, .public-sample-reader .prose-zk ul > li { margin-bottom: 8px; }
+        .public-sample-reader .prose-zk a { color: #C9A84C; text-decoration: underline; }
+        .public-sample-reader .prose-zk blockquote {
           margin: 1.5em 0;
           padding: 1em 1.25em;
           border-left: 2px solid rgba(201,168,76,0.5);
@@ -364,20 +373,20 @@ export default function SampleChapterRenderer({
           border-radius: 0 8px 8px 0;
           color: #D8D8D8;
         }
-        .prose-zk blockquote p { margin-bottom: 0; }
-        .prose-zk blockquote strong { color: #C9A84C; }
-        .prose-zk table {
+        .public-sample-reader .prose-zk blockquote p { margin-bottom: 0; }
+        .public-sample-reader .prose-zk blockquote strong { color: #C9A84C; }
+        .public-sample-reader .prose-zk table {
           width: 100%;
           border-collapse: collapse;
           margin: 1.5em 0;
           font-size: 14px;
         }
-        .prose-zk th, .prose-zk td {
+        .public-sample-reader .prose-zk th, .public-sample-reader .prose-zk td {
           padding: 8px 12px;
           border: 1px solid rgba(255,255,255,0.06);
           text-align: left;
         }
-        .prose-zk th {
+        .public-sample-reader .prose-zk th {
           background-color: #0F0F0F;
           color: #C9A84C;
           font-weight: 600;
@@ -385,8 +394,8 @@ export default function SampleChapterRenderer({
           font-size: 11px;
           letter-spacing: 0.1em;
         }
-        .prose-zk td { color: #C0C0C0; }
-        .prose-zk code {
+        .public-sample-reader .prose-zk td { color: #C0C0C0; }
+        .public-sample-reader .prose-zk code {
           background-color: rgba(255,255,255,0.05);
           padding: 2px 6px;
           border-radius: 4px;
