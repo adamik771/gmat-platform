@@ -7,6 +7,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import { faqPageLd } from "@/lib/structured-data"
 import { PAYWALL_ENABLED, TRIAL_DAYS } from "@/lib/entitlements"
 import { CHAPTER_COUNT_CLAIM } from "@/lib/site"
+import { paymentMethodsHelp, TRIAL_END_HELP } from "@/lib/payment-options"
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -77,9 +78,7 @@ const categories: FAQCategory[] = [
       },
       {
         question: "Will my free access expire after a set number of days?",
-        answer: PAYWALL_ENABLED
-          ? `Yes — the free trial runs ${TRIAL_DAYS} days from signup, with full access and nothing to cancel. When it ends, your study data stays exactly where you left it; a one-time plan purchase (not a subscription) unlocks the platform for your plan's access window, with a 14-day money-back guarantee on the self-study plans.`
-          : "Every account starts with a free 7-day full-access trial — no credit card, nothing to cancel. We're pre-launch, so access isn't cut off the moment the trial ends; when paid checkout opens, a one-time purchase (not a subscription) continues your access, and any change will be made clear in advance.",
+        answer: TRIAL_END_HELP,
       },
       {
         question: "How does the platform know where I'm starting from?",
@@ -213,13 +212,12 @@ const categories: FAQCategory[] = [
     items: [
       {
         question: "What payment methods do you accept?",
-        answer:
-          "All major credit and debit cards via Stripe. Bank transfer is available for Coaching and Intensive packages on request.",
+        answer: paymentMethodsHelp(),
       },
       {
         question: "Can I pay in installments?",
         answer:
-          "Installment plans are available for the Coaching and Intensive packages. Email us to set up a 2-payment or 4-payment schedule.",
+          "For Coaching and Intensive, ask Adam whether a 2-payment or 4-payment schedule is currently available. Confirm the total price, dates and terms before making a payment.",
       },
       {
         question: "What is your refund policy?",
@@ -229,7 +227,7 @@ const categories: FAQCategory[] = [
       {
         question: "Are prices in USD?",
         answer:
-          "Yes. All prices are listed in U.S. dollars. Currency conversion happens at your card issuer's exchange rate at the time of charge.",
+          "Yes. Listed prices are in U.S. dollars. Confirm the payment currency and any conversion or transfer fees with your payment provider before paying.",
       },
     ],
   },

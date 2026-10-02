@@ -10,10 +10,10 @@ import { PAYWALL_ENABLED, TRIAL_DAYS } from "@/lib/entitlements"
 import { tiers } from "@/lib/plans"
 import { PLAN_ACCESS_MONTHS } from "@/lib/plan-access"
 import {
-  MANUAL_PAYMENT_CONTACT_ENABLED,
   manualPaymentMailto,
   manualPaymentWhatsAppUrl,
 } from "@/lib/manual-payment"
+import { isOnlineCheckoutAvailable, paymentMethodsHelp, TRIAL_END_HELP } from "@/lib/payment-options"
 import styles from "@/components/marketing/PublicSite.module.css"
 
 export const metadata: Metadata = {
@@ -24,19 +24,13 @@ export const metadata: Metadata = {
 
 const faqItems = [
   { question: "Is this a subscription?", answer: "No. Prices are in USD, paid once. Self-Study includes four months of platform access, Mentorship and Coaching six months, and Intensive twelve months. Paid access starts on the purchase date." },
-  { question: "What happens after the trial?", answer: PAYWALL_ENABLED
-    ? MANUAL_PAYMENT_CONTACT_ENABLED
-      ? `After ${TRIAL_DAYS} days of full access, contact Adam to arrange payment while online checkout is temporarily unavailable. Your existing account and study history remain in place.`
-      : `After ${TRIAL_DAYS} days of full access, a paid plan is required to continue. Your existing account and study history remain in place.`
-    : `The standard trial is ${TRIAL_DAYS} days. During early release, full access continues beyond that period while the paywall is off. Checkout has not opened; a reservation does not start a paid access period.` },
+  { question: "What happens after the trial?", answer: TRIAL_END_HELP },
   { question: "What does Mentorship add?", answer: "Direct WhatsApp Q&A with Adam and six months on the platform instead of four. Mentorship does not include scheduled coaching calls." },
   { question: "How are coaching sessions conducted?", answer: "Sessions are 60 minutes via Zoom. Adam reviews your error log, mock exams, and analytics before each session. You receive a written action plan after the call. Sessions can be rescheduled with 24-hour notice; coaching packages are valid for six months from purchase." },
   { question: "Can I upgrade to Coaching later?", answer: "Yes. Your Self-Study payment can be credited toward the Coaching package. Contact Adam to arrange the upgrade." },
 ]
 
 export default function PricingPage() {
-  const manualPaymentMode =
-    PAYWALL_ENABLED && MANUAL_PAYMENT_CONTACT_ENABLED
   const inventory = getPublicInventory()
   const comparisonFeatures = [
     `${inventory.chapters} interactive chapters`,
@@ -53,10 +47,7 @@ export default function PricingPage() {
     Coaching: [true, true, true, true, `${PLAN_ACCESS_MONTHS.coaching} months`, true, "8 sessions"],
     Intensive: [true, true, true, true, `${PLAN_ACCESS_MONTHS.intensive} months`, true, "16 sessions"],
   }
-  const checkoutConfigured = (priceId: string) =>
-    Boolean(process.env.STRIPE_SECRET_KEY) &&
-    Boolean(priceId) &&
-    !["price_self_study", "price_self_study_guaranteed", "price_coaching", "price_intensive"].includes(priceId)
+  const checkoutAvailable = tiers.some((tier) => isOnlineCheckoutAvailable(tier.stripePriceId))
 
   return (
     <div className={styles.page}>
@@ -68,9 +59,9 @@ export default function PricingPage() {
           <p className={styles.lede}>The same platform, with different access lengths and levels of direct support.</p>
           <p className="mt-5 max-w-3xl border-l-2 border-[#C9A84C] pl-4 text-sm leading-relaxed text-[#C0C0C0]">
             {!PAYWALL_ENABLED
-              ? "Early release: checkout is not yet open. Full access continues beyond the seven-day trial while the paywall is off. Reserve a founding rate without paying; choose your plan when checkout opens."
-              : manualPaymentMode
-                ? "Online checkout is temporarily unavailable. After choosing a plan, contact Adam through the prepared WhatsApp message or by email to arrange payment and access."
+              ? "Online checkout is not available. Ask Adam about payment options for your chosen plan by WhatsApp or email. Full access currently continues beyond the seven-day trial while the paywall is off."
+              : !checkoutAvailable
+                ? "Online checkout is temporarily unavailable. Ask Adam about payment options for your chosen plan by WhatsApp or email. He will confirm the details before you decide."
               : "Start with a full-access trial. Paid plans are one-time purchases; the access period begins on your purchase date. Checkout availability is shown for each plan."}
           </p>
           <div className={styles.actions}><Link href="/signup" className={styles.button}>Start {TRIAL_DAYS}-day trial <ArrowRight aria-hidden="true" /></Link></div>
@@ -89,18 +80,11 @@ export default function PricingPage() {
                 description: tier.id === "self_study" ? "The complete platform for independent preparation." : tier.id === "coaching" ? "The platform and eight 1:1 sessions with Adam." : tier.id === "intensive" ? "The platform and sixteen 1:1 sessions with Adam." : tier.description,
                 features: tier.features.slice(-3),
               }}
-              purchasable={PAYWALL_ENABLED && !manualPaymentMode && checkoutConfigured(tier.stripePriceId)}
+              purchasable={isOnlineCheckoutAvailable(tier.stripePriceId)}
               reservationAvailable={!PAYWALL_ENABLED}
-              manualContactHref={
-                manualPaymentMode
-                  ? manualPaymentWhatsAppUrl({ planName: tier.name })
-                  : undefined
-              }
-              manualEmailHref={
-                manualPaymentMode
-                  ? manualPaymentMailto({ planName: tier.name })
-                  : undefined
-              }
+              manualContactHref={manualPaymentWhatsAppUrl({ planName: tier.name, intent: "enquiry" })}
+              manualEmailHref={manualPaymentMailto({ planName: tier.name, intent: "enquiry" })}
+              contactLabel={`Ask about ${tier.id === "self_study_guaranteed" ? "Mentorship" : tier.name}`}
             />
           ))}
         </div>
@@ -142,11 +126,14 @@ export default function PricingPage() {
             </table>
           </div>
         </section>
-        <section className={styles.section}><h2 className="font-display">Pricing questions</h2><FAQAccordion items={faqItems} className={styles.faq} /></section>
+        <section className={styles.section}><h2 className="font-display">Pricing questions</h2><FAQAccordion items={[...faqItems, { question: "What payment options are available?", answer: paymentMethodsHelp() }]} className={styles.faq} /></section>
         <section className={styles.section}>
-          <h2 className="font-display">Talk through your options</h2>
-          <p className={styles.note}>Request a free 20-minute call. Adam will reply by email to arrange a time.</p>
-          <Link href="/contact" className={styles.textLink}>Request a free call <ArrowRight aria-hidden="true" /></Link>
+          <h2 className="font-display">Questions about a plan?</h2>
+          <p className={styles.note}>Ask about access, what is included, or payment options. No call required.</p>
+          <div className={styles.actions}>
+            <a href={manualPaymentWhatsAppUrl({ intent: "enquiry" })} target="_blank" rel="noreferrer" className={styles.textLink}>Ask Adam on WhatsApp <ArrowRight aria-hidden="true" /></a>
+            <a href={manualPaymentMailto({ intent: "enquiry" })} className={styles.textLink}>Email Adam <ArrowRight aria-hidden="true" /></a>
+          </div>
         </section>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { track } from "@vercel/analytics"
+import type { SubscriptionTier } from "@/types"
 
 /** Property values Vercel Analytics accepts on a custom event. */
 type EventProps = Record<string, string | number | boolean | null>
@@ -58,8 +59,12 @@ export type ConsentStatus = "granted" | "denied" | null
  */
 export function subscribeConsent(callback: () => void): () => void {
   const onStorage = (e: StorageEvent) => {
-    if (e.key !== CONSENT_KEY) return
+    if (e.key !== CONSENT_KEY && e.key !== null) return
     const status = e.newValue === "granted" ? "granted" : "denied"
+    if (status === "denied") {
+      parkedGtag.length = 0
+      parkedFbq.length = 0
+    }
     const mode = status
     try {
       window.gtag?.("consent", "update", {
@@ -321,6 +326,27 @@ export function captureAttribution(search: string): void {
  */
 export function trackEvent(name: string, props?: EventProps): void {
   const merged: EventProps = { ...getAttribution(), ...(props ?? {}) }
+  deliverAnalyticsEvent(name, merged)
+}
+
+export interface PlanEnquiryEvent {
+  plan_id: SubscriptionTier
+  channel: "whatsapp" | "email"
+  surface: "pricing" | "upgrade"
+}
+
+/** A consented contact-link click, never a sent message, lead or purchase. */
+export function trackPlanEnquiry({ plan_id, channel, surface }: PlanEnquiryEvent): void {
+  if (getConsent() !== "granted") return
+  if (!["self_study", "self_study_guaranteed", "coaching", "intensive"].includes(plan_id)) return
+  if (channel !== "whatsapp" && channel !== "email") return
+  if (surface !== "pricing" && surface !== "upgrade") return
+
+  // Only these enums: no account details, destination/message URL or stored attribution.
+  deliverAnalyticsEvent("plan_enquiry_clicked", { plan_id, channel, surface })
+}
+
+function deliverAnalyticsEvent(name: string, merged: EventProps): void {
 
   // Vercel Web Analytics (no-op unless live).
   try {

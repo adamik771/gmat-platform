@@ -15,6 +15,7 @@ import {
   manualPaymentMailto,
   manualPaymentWhatsAppUrl,
 } from "@/lib/manual-payment"
+import { isOnlineCheckoutAvailable, TRIAL_END_HELP } from "@/lib/payment-options"
 
 export const metadata: Metadata = {
   title: "Choose your plan",
@@ -40,28 +41,29 @@ export default async function UpgradePage() {
   const stillTrialing = access === "trialing"
   const manualPaymentMode =
     PAYWALL_ENABLED && MANUAL_PAYMENT_CONTACT_ENABLED
-  const checkoutConfigured = (priceId: string) =>
-    Boolean(process.env.STRIPE_SECRET_KEY) &&
-    Boolean(priceId) &&
-    ![
-      "price_self_study",
-      "price_self_study_guaranteed",
-      "price_coaching",
-      "price_intensive",
-    ].includes(priceId)
+  const checkoutAvailable = tiers.some((tier) => isOnlineCheckoutAvailable(tier.stripePriceId))
+  const accessPaused = PAYWALL_ENABLED && access === "trial_expired"
+  const contactIntent = manualPaymentMode && access === "trial_expired" ? "continue" : "enquiry"
 
   // "none" = no trial ever started (rare — pre-backfill/pre-epoch accounts);
   // don't tell that user a trial "ended" that never began.
-  const heading = stillTrialing
-    ? `You're on your free trial — ${daysLeft} day${daysLeft === 1 ? "" : "s"} left`
-    : access === "none"
-      ? "Choose a plan to unlock the full platform"
-      : "Your free trial has ended"
-  const sub = stillTrialing
-    ? "Lock in full access whenever you're ready — or keep going until your trial runs out."
-    : manualPaymentMode
-      ? "Online checkout is temporarily unavailable. Contact Adam and he will arrange payment and restore access on this same account."
-    : "Choose a plan to pick up right where you left off. Everything you've done is saved."
+  let heading: string
+  let sub: string
+  if (access === "paid") {
+    heading = "Your paid access is active"
+    sub = "You can keep studying on your current plan. Contact Adam if you would like to discuss a change."
+  } else if (!PAYWALL_ENABLED) {
+    heading = "Explore your plan options"
+    sub = TRIAL_END_HELP
+  } else if (stillTrialing) {
+    heading = `You're on your free trial — ${daysLeft} day${daysLeft === 1 ? "" : "s"} left`
+    sub = "Lock in full access whenever you're ready — or keep going until your trial runs out."
+  } else {
+    heading = access === "none" ? "Choose a plan to unlock the full platform" : "Your free trial has ended"
+    sub = checkoutAvailable
+      ? "Choose a plan to pick up right where you left off. Everything you've done is saved."
+      : "Online checkout is temporarily unavailable. Ask Adam about payment options and access on this same account. He will confirm the details before you decide."
+  }
 
   return (
     <div style={{ backgroundColor: "#0A0A0A" }} className="min-h-screen">
@@ -79,7 +81,7 @@ export default async function UpgradePage() {
             className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
             style={{ color: "#C9A84C" }}
           >
-            {stillTrialing ? "Free trial" : "Continue your prep"}
+            {PAYWALL_ENABLED && stillTrialing ? "Free trial" : "Your plan"}
           </p>
           <h1 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
             {heading}
@@ -97,7 +99,7 @@ export default async function UpgradePage() {
 
       <section className="pb-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {manualPaymentMode && (
+          {!checkoutAvailable && (
             <div className="mx-auto mb-8 flex max-w-3xl items-start gap-4 rounded-lg border border-[#C9A84C]/30 bg-[#14120D] p-5 text-left">
               <MessageCircle
                 aria-hidden="true"
@@ -105,13 +107,14 @@ export default async function UpgradePage() {
               />
               <div>
                 <h2 className="text-base font-semibold text-[#F0F0F0]">
-                  Personal checkout assistance
+                  Questions about payment?
                 </h2>
                 <p className="mt-1 text-sm leading-relaxed text-[#B9B7AE]">
-                  Sorry for the inconvenience. Choose the plan below, then send
-                  the prepared WhatsApp message. Adam will reply with the
-                  available payment instructions. Your progress remains safe
-                  while access is paused.
+                  Ask about your chosen plan by WhatsApp or email. Adam can
+                  confirm availability, the total price and access dates before
+                  you decide. {accessPaused
+                    ? "Your study history remains in place while access is paused."
+                    : "Sending an enquiry does not change your current access."}
                 </p>
               </div>
             </div>
@@ -122,32 +125,18 @@ export default async function UpgradePage() {
                 key={tier.id}
                 tier={tier}
                 checkoutCancelPath="/upgrade"
-                purchasable={
-                  PAYWALL_ENABLED &&
-                  !manualPaymentMode &&
-                  checkoutConfigured(tier.stripePriceId)
-                }
+                purchasable={isOnlineCheckoutAvailable(tier.stripePriceId)}
                 reservationAvailable={false}
-                manualContactHref={
-                  manualPaymentMode
-                    ? manualPaymentWhatsAppUrl({ planName: tier.name })
-                    : undefined
-                }
-                manualEmailHref={
-                  manualPaymentMode
-                    ? manualPaymentMailto({
-                        planName: tier.name,
-                        accountEmail: user?.email,
-                      })
-                    : undefined
-                }
+                manualContactHref={manualPaymentWhatsAppUrl({ planName: tier.name, intent: contactIntent })}
+                manualEmailHref={manualPaymentMailto({ planName: tier.name, accountEmail: user?.email, intent: contactIntent })}
+                contactLabel={contactIntent === "continue" ? "Continue on WhatsApp" : `Ask about ${tier.id === "self_study_guaranteed" ? "Mentorship" : tier.name}`}
               />
             ))}
           </div>
           <p className="text-center text-[12px] text-[#555555] mt-10">
-            {manualPaymentMode
+            {!checkoutAvailable
               ? "No payment details are entered on this website while online checkout is unavailable."
-              : "Payments are handled securely by Stripe."}{" "}
+              : "Available online checkouts use Stripe. Contact Adam for any plan without an active checkout."}{" "}
             <Link href="/contact" className="underline hover:text-[#888888]">
               Get in touch
             </Link>

@@ -40,4 +40,25 @@ describe("manual payment contact links", () => {
       "My account email: student@example.com",
     )
   })
+
+  it("uses a neutral enquiry for prospects, without inventing trial history", () => {
+    const input = { planName: "Self-Study", intent: "enquiry" as const }
+    const whatsapp = new URL(manualPaymentWhatsAppUrl(input))
+    const email = new URL(manualPaymentMailto(input))
+    for (const message of [whatsapp.searchParams.get("text"), email.searchParams.get("body")]) {
+      expect(message).toContain("Self-Study")
+      expect(message).toContain("whether paid access is currently available")
+      expect(message).toContain("total price and access period")
+      expect(message).not.toMatch(/enjoyed|trial has ended|Please send me the available payment instructions/)
+    }
+    expect(email.searchParams.get("subject")).toBe("Zakarian GMAT payment options: Self-Study")
+  })
+
+  it("encodes plan names safely and supports an enquiry without a plan", () => {
+    const url = new URL(manualPaymentWhatsAppUrl({ planName: "  Q&A + support  ", intent: "enquiry" }))
+    expect([...url.searchParams.keys()]).toEqual(["text"])
+    expect(url.searchParams.get("text")).toContain("Q&A + support plan")
+    expect(new URL(manualPaymentMailto({ intent: "enquiry" })).searchParams.get("subject"))
+      .toBe("Zakarian GMAT payment options")
+  })
 })

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/refund" },
 }
 
-const LAST_UPDATED = "July 8, 2026"
+const LAST_UPDATED = "October 1, 2026"
 const CONTACT_EMAIL = SITE_CONTACT_EMAIL
 
 export default function RefundPage() {
@@ -135,7 +135,8 @@ export default function RefundPage() {
 
       <LegalSection title="How refunds are paid">
         <p>
-          Refunds are returned to the original payment method via Stripe.
+          Refunds are returned to the original payment method. Payments made
+          through Stripe are refunded through Stripe.
           Depending on your bank, the credit can take up to ten business days
           to appear on your statement after we process it.
         </p>

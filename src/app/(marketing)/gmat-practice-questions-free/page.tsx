@@ -105,9 +105,8 @@ const RELATED: AcquisitionLandingProps["relatedLinks"] = [
 ]
 
 // Three real items from the question bank, shown with a native answer
-// reveal (<details> — zero JS) so a paid click sees actual questions above
-// the "sign up" ask. Copy verbatim from src/content/questions; keep answers
-// and explanations in sync with the bank if those items ever change.
+// reveal (<details> — zero JS) before the signup ask. Option order can differ
+// from the bank; check the page's key and explanation together when editing.
 const SAMPLES: {
   section: string
   difficulty: string
@@ -125,7 +124,7 @@ const SAMPLES: {
     options: ["$12", "$65", "$68", "$72", "$76"],
     answer: "C",
     explanation:
-      "A 15% discount means you pay 85% of the price: 0.85 × $80 = $68. The trap is A — $12 is the discount itself, not the sale price. On the real exam that trap costs more than the hard questions do.",
+      "A 15% discount means you pay 85% of the price: 0.85 × $80 = $68. The trap is A — $12 is the discount itself, not the sale price. Check whether the question asks for the discount or the sale price.",
   },
   {
     section: "Verbal",
@@ -141,7 +140,7 @@ const SAMPLES: {
     ],
     answer: "B",
     explanation:
-      "The conclusion is causal, so the strengthener must rule out the biggest alternative explanation — that the whole market simply grew. B does exactly that: a comparable competitor without the program lost revenue over the same period. A and E introduce competing causes; C actively weakens.",
+      "B most strengthens the argument: a regional competitor without the program lost revenue, making a shared regional upswing less persuasive as the explanation. This supports the program as a cause without proving it. A does not separate the program's effect from the effect of advertising it. E supplies another possible cause: the expanded organic section. C describes prior shopping frequency, not whether the program changed later behavior. D says the average transaction size stayed the same, but does not explain why revenue rose.",
   },
   {
     section: "Data Insights",
@@ -157,7 +156,7 @@ const SAMPLES: {
     ],
     answer: "A",
     explanation:
-      "Sufficient means it pins x to exactly one value. Statement (1) is one linear equation in one unknown: x = 5 — sufficient alone. Statement (2) allows any of 1 through 9 — not sufficient. You never need to solve further once (1) is settled.",
+      "Sufficient means it pins x to exactly one value. Statement (1) gives 3x = 15, so x = 5 — sufficient alone. Test statement (2) separately, without using statement (1): it allows any integer from 1 through 9, so it is not sufficient. The pattern is sufficient / not sufficient, which gives A. No combined test is needed because statement (1) already suffices alone.",
   },
 ]
 

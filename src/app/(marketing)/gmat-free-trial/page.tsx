@@ -3,7 +3,8 @@ import AcquisitionLanding, {
   type AcquisitionLandingProps,
 } from "@/components/marketing/AcquisitionLanding"
 import { CHAPTER_COUNT_CLAIM, QUESTION_CLAIM, QUESTION_CLAIM_SHORT } from "@/lib/site"
-import { PAYWALL_ENABLED, TRIAL_DAYS } from "@/lib/entitlements"
+import { TRIAL_DAYS } from "@/lib/entitlements"
+import { TRIAL_END_HELP } from "@/lib/payment-options"
 
 // The clean bottom-funnel landing page for commercial-intent traffic (paid
 // search, branded search, partner links). ONE offer, stated plainly: a free
@@ -19,12 +20,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/gmat-free-trial" },
 }
 
-// What happens after the trial depends on whether paid checkout is live yet;
-// both branches promise only what the code actually does today.
-const AFTER_TRIAL_ANSWER = PAYWALL_ENABLED
-  ? `Your access pauses and your data stays exactly where you left it. A one-time plan purchase (not a subscription) unlocks the platform for your plan's access window — current prices are on the pricing page, and every self-study plan carries a 14-day money-back guarantee.`
-  : `Your study data stays exactly where you left it, and because paid checkout hasn't opened yet, access isn't cut off the moment the trial ends — we're pre-launch and you keep studying. When checkout opens, a one-time plan purchase (not a subscription) continues your access, and any change will be made clear in advance. Current plan prices are already published on the pricing page.`
-
 const DATA: AcquisitionLandingProps = {
   slug: "gmat-free-trial",
   eyebrow: "Free 7-day trial",
@@ -37,7 +32,7 @@ const DATA: AcquisitionLandingProps = {
     "Built by a 565 → 735 founder",
   ],
   intro:
-    "The offer is simple: create a free account and you get the entire platform for 7 days — every chapter, the full question bank, full-length mocks, the six-tag error log, spaced review, analytics, and the adaptive study plan. No credit card, nothing to cancel. After the trial, access continues with a one-time paid plan; the prices are public on the pricing page.\n\nThis page is worth reading even if you never sign up, because the structure underneath the platform is just good GMAT methodology you can copy by hand: baseline from a real official exam, fix weak areas with research-backed chapters, log every mistake by why you missed it, space your review, and re-measure with full-length mocks. Below is exactly how each piece works and an honest FAQ about what the trial is and isn't.",
+    `The offer is simple: create a free account and you get the entire platform for ${TRIAL_DAYS} days — every chapter, the full question bank, full-length mocks, the six-tag error log, spaced review, analytics, and the adaptive study plan. No credit card, nothing to cancel. ${TRIAL_END_HELP}\n\nThis page is worth reading even if you never sign up, because the structure underneath the platform is just good GMAT methodology you can copy by hand: baseline from a real official exam, fix weak areas with research-backed chapters, log every mistake by why you missed it, space your review, and re-measure with full-length mocks. Below is exactly how each piece works and an honest FAQ about what the trial is and isn't.`,
   sections: [
     {
       heading:
@@ -60,7 +55,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       heading: "How the trial works — and what happens when it ends",
-      body: `Create an account with your name, email, and a password — no payment details, no card on file, so there is nothing that silently converts into a charge. For ${TRIAL_DAYS} days you get the complete product, not a limited tier: there is no locked content inside the trial.\n\nAfter the trial, access continues through a one-time plan purchase, not a subscription. The plans and prices are public on the pricing page — Self-Study and Self-Study + Mentorship for self-paced prep, plus coaching packages — and every self-study plan carries a 14-day money-back guarantee.\n\nWhat you should not expect: a promised score, a magic number, or a guarantee about how much you'll improve. The only performance claim here is the founder's own — Adam Zakarian self-studied from 565 to 735 (top 1% of test-takers) and built this platform solo to be the system he wished he'd had. Results vary with your baseline, your hours, and your consistency; your results are your own.`,
+      body: `Create an account with your name, email, and a password — no payment details, no card on file, so there is nothing that silently converts into a charge. For ${TRIAL_DAYS} days you get the complete product, not a limited tier: there is no locked content inside the trial.\n\n${TRIAL_END_HELP} The plans and prices are public on the pricing page — Self-Study and Self-Study + Mentorship for self-paced prep, plus coaching packages — and every self-study plan carries a 14-day money-back guarantee.\n\nWhat you should not expect: a promised score, a magic number, or a guarantee about how much you'll improve. The only performance claim here is the founder's own — Adam Zakarian self-studied from 565 to 735 (top 1% of test-takers) and built this platform solo to be the system he wished he'd had. Results vary with your baseline, your hours, and your consistency; your results are your own.`,
     },
   ],
   faq: [
@@ -70,7 +65,7 @@ const DATA: AcquisitionLandingProps = {
     },
     {
       q: "What happens after the 7 days?",
-      a: AFTER_TRIAL_ANSWER,
+      a: TRIAL_END_HELP,
     },
     {
       q: "Is this a free GMAT diagnostic?",

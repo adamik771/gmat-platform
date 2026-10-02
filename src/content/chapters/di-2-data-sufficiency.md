@@ -5,7 +5,7 @@ section: DI
 estimated_minutes: 55
 prerequisites: []
 summary: |
-  Data Sufficiency is a game, not a math test. You don't solve for the answer — you decide whether you *could* solve for it given the information provided. The five-answer framework is mechanical: test each statement alone, then together if needed, and pick the letter that matches the sufficiency pattern. Master the AD/BCE decision tree, learn to rephrase the question before testing statements, and you'll finish every DS question in under 2 minutes without ever doing unnecessary arithmetic.
+  Data Sufficiency asks whether the information determines a definite answer, not just what that answer is. Test each statement alone, then together if neither is sufficient alone, and pick the letter that matches the sufficiency pattern. Use the AD/BCE decision tree and rephrase the question to avoid unnecessary calculation; time needed varies by question.
 sections:
   - id: pretest
     type: pretest
@@ -144,9 +144,9 @@ problem_sets:
 
 ## @the-five-answer-framework
 
-Data Sufficiency looks different from every other question type on the GMAT. You're given a question and two statements, and asked whether the statements (individually or together) are *sufficient* to answer the question. You never have to compute the final answer — you only decide whether you *could*.
+Data Sufficiency looks different from every other question type on the GMAT. You're given a question and two statements, and asked whether the statements (individually or together) are *sufficient* to answer the question. Your goal is to establish whether the answer is determined. Calculation can help, but you can stop once sufficiency or insufficiency is proved.
 
-**Mental model.** Data Sufficiency isn't a math problem — it's a classification problem. Each statement either pins down a unique answer or it doesn't, full stop. The AD/BCE grid (statement 1 sufficient? statement 2 sufficient? together?) covers all five answer choices mechanically. Once you stop trying to *compute the answer* and start asking *can the answer be computed*, DS becomes a different game.
+**Mental model.** Separate the reasoning from the answer letter. First use the question's given information with each statement to decide whether the answer is determined. Then the AD/BCE grid (statement 1 sufficient? statement 2 sufficient? together if needed?) maps that result to one of five choices. The grid helps you organize the decision; you still need to establish what the information allows.
 
 **The five answers (always the same, in the same order):**
 
@@ -174,7 +174,7 @@ Then test Statement (2) alone. Combined results:
 | Not sufficient | Sufficient | **B** |
 | Not sufficient | Not sufficient | **C** (if together work) or **E** (if they don't) |
 
-This grid eliminates guessing. Every DS answer falls out of two binary tests.
+This grid organizes the decision; it does not replace sufficiency reasoning. Test each statement separately, using the question's given information and without importing anything from the other statement. If neither is sufficient alone, test them together: sufficient together means C; insufficient together means E.
 
 **Example.** "What is the value of x? (1) 3x + 7 = 22. (2) x is a positive integer less than 10."
 
@@ -193,7 +193,7 @@ A statement is **sufficient** if it uniquely determines the answer to the questi
 
 The most common DS mistake: students think "sufficient" means "I know the value now." It doesn't. Sufficient on a yes/no question means "the question has a definite answer" — which can be yes or no.
 
-**The "don't solve" principle.** You do not need to find x, y, or the final answer on DS. You only need to know whether you *could*. This saves massive time. A system of two independent linear equations in two unknowns is always solvable — you don't need to actually solve it on test day. The word *"independent"* is the key; see the C-trap section.
+**The "stop when you know" principle.** Once you have established whether the requested answer is uniquely determined, further calculation is unnecessary. Sometimes solving or testing values is the clearest way to establish that. For example, two linear equations in two unknowns with non-proportional coefficient pairs determine a unique pair of values; you may be able to establish sufficiency without computing the pair. Keep any restrictions in the question, such as positive integers, in view. See the C-trap section for why counting equations alone is not enough.
 
 **The order matters.** Always test statement (1) first, then (2), then together only if both are individually insufficient. Skipping to "together" too quickly is the biggest source of wrong D vs. C answers.
 
@@ -236,7 +236,7 @@ From statement: (x + y)² = (x - y)² + 4xy = 16 + 20 = 36, so x + y = ±6. That
 
 **Example.** "What is the value of xyz?" A statement is sufficient if it uniquely determines xyz — it doesn't have to determine x, y, or z individually.
 
-> **Self-explanation prompt.** Why does rephrasing save so much time? If you can say "because the question as written often obscures what you actually need; the rephrase strips away noise and makes it obvious which statements help," you've internalized the core DS discipline. Rephrasing is where experts gain 20+ seconds per question over novices.
+> **Self-explanation prompt.** How can rephrasing reduce unnecessary work? Explain how the new wording preserves the original question while making the exact quantity or condition easier to test. Rephrasing helps only when it clarifies what must be determined; it is not a reason to change the question.
 
 ## @value-vs-yes-no
 
@@ -274,9 +274,9 @@ x² > 10 means x > √10 ≈ 3.16 OR x < -√10 ≈ -3.16. So x could be 4 (answ
 
 **Why the distinction matters.** On yes/no questions, you can often prove sufficiency faster because you only need one logical direction to nail it down. On value questions, you have to pin down a single number — a higher bar, usually requiring more work.
 
-**The "yes/no rephrase" trick.** Sometimes you can convert a value question into a yes/no and save time. "What is x?" becomes "Is x = 7?" — but this only works if you have a specific candidate. For most value questions, stick to the unique-value standard.
+**Keep the original question.** "What is x?" is not equivalent to "Is x = 7?" A statement allowing x to be either 2 or 3 answers the second question with a definite no, but leaves the first question unresolved. To establish sufficiency for a value question, show that exactly one value of the requested quantity is possible.
 
-> **Recall check.** Close your eyes. State the sufficiency standard for value DS in one sentence. Now state the sufficiency standard for yes/no DS. (Answers: value = yields exactly one number; yes/no = yields a definite yes OR a definite no.) Getting these wrong is the cause of roughly 30% of mis-answered DS questions — drilling the distinction now pays off on every question in the problem sets.
+> **Recall check.** Close your eyes. State the sufficiency standard for value DS in one sentence. Now state the sufficiency standard for yes/no DS. (Answers: value = yields exactly one number; yes/no = yields a definite yes OR a definite no.) Before testing a statement, identify which standard the original question requires.
 
 **Trap to watch.** Yes/no with a "no" answer. Statement (1) says "x = 3," question is "Is x > 5?" Some students call this insufficient because "it doesn't prove x > 5." That's wrong — it proves x is NOT > 5, which is a definite answer. Sufficient.
 

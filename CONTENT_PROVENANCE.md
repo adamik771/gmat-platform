@@ -25,6 +25,16 @@ Adam Zakarian is the final editorial owner. Content development has been AI-assi
 
 ## Historical evidence
 
+### 2026-10-01 public sample teaching corrections (local; not released)
+
+- **Branch:** `fix/payment-option-consistency-20261001`; existing payment-copy changes are separate and preserved.
+- **Scope:** explanations in `quant-13-linear-equations-systems`, `verbal-01-foundations`, `di-2-data-sufficiency`, and the three-question public sample page. No bank question, answer key, passage, chapter ID, pretest/check pin, or graded-set membership changed. Verbal section titles and the Verbal/DI summaries were updated to match the corrected teaching.
+- **Source material and isolation:** existing repository teaching text and the preceding sample-page audit. No external content source, official question, leaked item, or paid competitor material was supplied during this implementation. Mathematical and logical explanations were rewritten against the existing examples, not adapted from another provider.
+- **Authoring/review:** Codex parent editor; one separate AI agent rewrote and reviewed Verbal meaning/function guidance, and a second read-only AI agent independently checked the Quant/DI/public-practice changes. The parent corrected adjacent causal-assumption and because-ordering errors identified by the Verbal agent and performed final integration. This is AI-assisted review, not independent human validation; Adam's final editorial review is pending.
+- **Checks:** explicit re-solves of the linear equation (x = 8, D), ticket problem (18, C), discount ($68, C), and public DS item (statement 1 alone, A); CR B supports but does not prove causation. Regression tests render actual public pages and preserve the C/B/A sample keys and closed answer reveals. A structured comparison against HEAD confirms all stable frontmatter, pins and graded-set IDs are unchanged. Full local verification is recorded in HANDOFF.md.
+- **Limits:** no new external similarity search or legal clearance; historical provenance limitations remain. This is a scoped correction, not a full-curriculum accuracy certification. No difficulty calibration, score improvement, conversion result or human editorial approval is claimed. No commit, push or deployment in this pass.
+- **Publication follow-up, 2026-10-02:** Adam authorized committing and pushing the reviewed acquisition batch on `fix/payment-option-consistency-20261001`. Branch publication is not a record of independent human content review, a merge or a production deployment.
+
 ### 2026-09-15 targeted teaching-quality corrections (not released)
 
 - **Branch / proposed commit:** `fix/teaching-quality-batches-20260915`; `fix(quality): repair teaching, freshness and item statistics`.

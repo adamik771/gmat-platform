@@ -44,7 +44,7 @@ export default function FoundingOffer({
               Become a founding member.
             </h2>
             <p className="text-[15px] text-[#888888] leading-relaxed mb-7 max-w-md">
-              Paid checkout is not open. Reserve a founding discount by email,
+              Prefer to wait for online checkout? Reserve a founding discount by email,
               with no charge or obligation. This reservation is not tied to a
               plan; you choose one when checkout opens.
             </p>
