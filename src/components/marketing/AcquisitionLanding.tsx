@@ -60,7 +60,7 @@ function Prose({ text, pClass }: { text: string; pClass: string }) {
           return (
             <ul key={i} className="list-disc pl-5 mb-4 space-y-1.5">
               {lines.map((l, j) => (
-                <li key={j} className="text-[15px] text-[#C0C0C0] leading-relaxed">
+                <li key={j} className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
                   {l.replace(/^[-*]\s+/, "")}
                 </li>
               ))}
@@ -80,7 +80,7 @@ function Prose({ text, pClass }: { text: string; pClass: string }) {
 export default function AcquisitionLanding(props: AcquisitionLandingProps) {
   const cta = props.primaryCta ?? { label: "Start free", href: "/signup" }
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
       <TrackView event="landing_view" props={{ page: props.slug }} />
       <JsonLd
         data={[
@@ -97,10 +97,10 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
 
       {/* Hero */}
       <section className="relative max-w-3xl mx-auto px-4 pt-24 pb-10">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4" style={{ color: "#C9A84C" }}>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4" style={{ color: "var(--public-accent,#C9A84C)" }}>
           {props.eyebrow}
         </p>
-        <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
+        <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-5">
           {props.h1}
         </h1>
         {props.heroChips && (
@@ -110,9 +110,9 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
                 key={chip}
                 className="inline-flex items-center px-3 py-1.5 rounded-full border text-xs font-medium"
                 style={{
-                  borderColor: "rgba(201,168,76,0.3)",
-                  backgroundColor: "rgba(201,168,76,0.06)",
-                  color: "#C9A84C",
+                  borderColor: "var(--public-accent-line,rgba(201,168,76,0.3))",
+                  backgroundColor: "var(--public-tint,rgba(201,168,76,0.06))",
+                  color: "var(--public-accent,#C9A84C)",
                 }}
               >
                 {chip}
@@ -125,20 +125,20 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
             <Link
               href={cta.href}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               {cta.label}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         )}
-        <Prose text={props.intro} pClass="text-[16px] text-[#C0C0C0] leading-relaxed mb-4 max-w-2xl" />
+        <Prose text={props.intro} pClass="text-[16px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-4 max-w-2xl" />
         {!props.heroChips && (
           <div className="flex flex-wrap gap-3 mt-6">
             <Link
               href={cta.href}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               {cta.label}
               <ArrowRight className="w-4 h-4" />
@@ -153,10 +153,10 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
       <section className="max-w-3xl mx-auto px-4 py-8 space-y-12">
         {props.sections.map((s, i) => (
           <div key={i}>
-            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.15] mb-4">
+            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.15] mb-4">
               {s.heading}
             </h2>
-            <Prose text={s.body} pClass="text-[15px] text-[#C0C0C0] leading-relaxed mb-4" />
+            <Prose text={s.body} pClass="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-4" />
           </div>
         ))}
       </section>
@@ -176,14 +176,14 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
       {/* FAQ */}
       {props.faq.length > 0 && (
         <section className="max-w-3xl mx-auto px-4 py-8">
-          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] mb-6">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] mb-6">
             Common questions
           </h2>
           <div className="space-y-6">
             {props.faq.map((f, i) => (
               <div key={i}>
-                <p className="text-[15px] font-semibold text-[#F0F0F0] mb-1.5">{f.q}</p>
-                <p className="text-[14px] text-[#888888] leading-relaxed">{f.a}</p>
+                <p className="text-[15px] font-semibold text-[color:var(--public-ink,#F0F0F0)] mb-1.5">{f.q}</p>
+                <p className="text-[14px] text-[color:var(--public-muted,#888888)] leading-relaxed">{f.a}</p>
               </div>
             ))}
           </div>
@@ -193,7 +193,7 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
       {/* Internal links — keep the visitor in the funnel + build the link graph */}
       {props.relatedLinks && props.relatedLinks.length > 0 && (
         <section className="max-w-3xl mx-auto px-4 py-8">
-          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] mb-6">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] mb-6">
             Keep going
           </h2>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -201,18 +201,18 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
               <Link
                 key={i}
                 href={l.href}
-                className="group flex items-start gap-3 p-4 rounded-xl border border-white/[0.08] bg-[#0D0D0D] hover:border-white/[0.16] transition-all"
+                className="group flex items-start gap-3 p-4 rounded-xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)] hover:border-[var(--public-line,rgba(255,255,255,0.16))] transition-all"
               >
                 <ArrowRight
                   className="w-4 h-4 mt-0.5 flex-shrink-0"
-                  style={{ color: "#C9A84C" }}
+                  style={{ color: "var(--public-accent,#C9A84C)" }}
                 />
                 <span>
-                  <span className="block text-[14px] font-semibold text-[#F0F0F0] group-hover:text-white transition-colors">
+                  <span className="block text-[14px] font-semibold text-[color:var(--public-ink,#F0F0F0)] group-hover:text-[color:var(--public-accent,#ffffff)] transition-colors">
                     {l.label}
                   </span>
                   {l.description && (
-                    <span className="block text-[13px] text-[#888888] leading-relaxed mt-0.5">
+                    <span className="block text-[13px] text-[color:var(--public-muted,#888888)] leading-relaxed mt-0.5">
                       {l.description}
                     </span>
                   )}
@@ -225,20 +225,20 @@ export default function AcquisitionLanding(props: AcquisitionLandingProps) {
 
       {/* Final CTA + disclaimer */}
       <section className="max-w-3xl mx-auto px-4 pt-8 pb-24">
-        <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-8 text-center">
-          <p className="text-[15px] text-[#C0C0C0] mb-5">
+        <div className="rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)] p-8 text-center">
+          <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] mb-5">
             Every new account starts with a free 7-day full-access trial. No credit card.
           </p>
           <Link
             href={cta.href}
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
           >
             {cta.label}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-        <p className="text-[11px] text-[#555555] leading-relaxed mt-6 text-center max-w-2xl mx-auto">
+        <p className="text-[11px] text-[color:var(--public-muted,#555555)] leading-relaxed mt-6 text-center max-w-2xl mx-auto">
           GMAC, GMAT, Graduate Management Admission Council, and Graduate Management Admission Test
           are trademarks of GMAC in the United States and other countries. Zakarian GMAT is
           independent and is not affiliated with, endorsed by, or sponsored by GMAC. We do not

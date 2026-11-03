@@ -1,0 +1,13 @@
+.heading { margin: 0; font: inherit; }
+.trigger { color: var(--public-body, #c0c0c0); cursor: pointer; }
+.trigger:hover, .trigger[data-panel-open] { color: var(--public-ink, #f0f0f0); }
+.chevron { transition: transform 280ms var(--public-ease, ease-out); }
+.trigger[data-panel-open] .chevron { transform: rotate(180deg); }
+.panel { height: var(--accordion-panel-height); overflow: hidden; }
+.panel[data-starting-style], .panel[data-ending-style] { height: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .panel { transition: height 280ms var(--public-ease, ease-out); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .panel, .chevron { transition: none; }
+}

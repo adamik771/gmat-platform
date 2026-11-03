@@ -6,6 +6,7 @@ import JsonLd from "@/components/seo/JsonLd"
 import AdPixels from "@/components/analytics/AdPixels"
 import AttributionCapture from "@/components/analytics/AttributionCapture"
 import ConsentBanner from "@/components/analytics/ConsentBanner"
+import ExcludeLandingPreview from "@/components/shared/ExcludeLandingPreview"
 import { organizationLd, websiteLd } from "@/lib/structured-data"
 
 const inter = Inter({
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     template: "%s · Zakarian GMAT",
   },
   description:
-    "The structured GMAT prep system that took Adam from 565 to 735. Built for ambitious students who don't have time for guesswork.",
+    "GMAT preparation with structured chapters, original practice questions, full explanations and review tools for MBA, MiM and finance master's applicants.",
   keywords: [
     "GMAT",
     "GMAT prep",
@@ -103,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable} dark`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${fraunces.variable} dark`}>
       <body
         className="min-h-screen antialiased"
         style={{ backgroundColor: "#0A0A0A", color: "#F0F0F0" }}
@@ -111,22 +112,22 @@ export default function RootLayout({
         {/* Site-wide structured data: Organization + WebSite. Each
             page can additionally inject its own page-specific JSON-LD
             (Article on blog posts, SoftwareApplication on tools, etc.). */}
-        <JsonLd data={[organizationLd(), websiteLd()]} />
+        <ExcludeLandingPreview><JsonLd data={[organizationLd(), websiteLd()]} /></ExcludeLandingPreview>
         {children}
         {/* Vercel Web Analytics — page views + custom conversion events
             (see lib/analytics.ts). No-op until enabled on Vercel. */}
-        <Analytics />
+        <ExcludeLandingPreview><Analytics /></ExcludeLandingPreview>
         {/* Consent banner — Google/Meta tags and advertising attribution are
             deny-by-default until the visitor accepts (Consent Mode v2). */}
         <ConsentBanner />
         {/* Meta Pixel + Google tag — dormant until NEXT_PUBLIC_META_PIXEL_ID /
             NEXT_PUBLIC_GOOGLE_TAG_ID are set AND the visitor consents;
             trackEvent forwards conversions. */}
-        <AdPixels />
+        <ExcludeLandingPreview><AdPixels /></ExcludeLandingPreview>
         {/* First-touch campaign attribution — stores utm_* / ref from the
             landing URL (only after consent) so conversion events are
             traceable to their source. */}
-        <AttributionCapture />
+        <ExcludeLandingPreview><AttributionCapture /></ExcludeLandingPreview>
       </body>
     </html>
   )

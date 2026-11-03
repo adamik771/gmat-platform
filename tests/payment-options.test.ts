@@ -31,6 +31,73 @@ async function configure(paywall: boolean, manual: boolean, configured: boolean)
 }
 
 describe("payment option consistency", () => {
+  it("shows canonical prices and access lengths without restyling the account upgrade cards", async () => {
+    await configure(false, false, false)
+    const cardModule = await import("@/components/marketing/PricingCard")
+    const cards = vi.spyOn(cardModule, "default")
+    try {
+      const Pricing = (await import("@/app/(marketing)/pricing/page")).default
+      const Upgrade = (await import("@/app/upgrade/page")).default
+      const html = renderToStaticMarkup(createElement(Pricing))
+      expect(cards.mock.calls.map(([props]) => ({ id: props.tier.id, price: props.tier.price, months: props.accessMonths }))).toEqual([
+        { id: "self_study", price: 429, months: 4 },
+        { id: "self_study_guaranteed", price: 599, months: 6 },
+        { id: "coaching", price: 2500, months: 6 },
+        { id: "intensive", price: 4200, months: 12 },
+      ])
+      for (const [props] of cards.mock.calls) {
+        expect(props.className).toBeTruthy()
+        expect(html).toContain(`${props.accessMonths} months of platform access`)
+        expect(props.tier.features).toHaveLength(2)
+        expect(props.tier.highlighted).toBe(false)
+        expect(props.tier.badge).toBeNull()
+      }
+      expect(html).toContain('aria-labelledby="platform-plans-title"')
+      expect(html).toContain('aria-labelledby="coaching-plans-title"')
+      expect(html).toContain('href="#platform-plans"')
+      expect(html).toContain('href="#coaching-plans"')
+      expect(html).toContain('href="/sample-chapter/quant"')
+      expect(html).toContain("2,007 original bank questions")
+      expect(html).toContain("One payment, no recurring subscription.")
+      expect(html.indexOf("Compare the details")).toBeLessThan(html.indexOf('id="founding"'))
+      cards.mockClear()
+      const upgradeHtml = renderToStaticMarkup(await Upgrade())
+      expect(cards.mock.calls).toHaveLength(4)
+      for (const [props] of cards.mock.calls) {
+        expect(props.accessMonths).toBeUndefined()
+        expect(props.className).toBeUndefined()
+      }
+      expect(upgradeHtml).not.toContain('data-slot="plan-duration"')
+      expect(cards.mock.calls.find(([props]) => props.tier.id === "self_study_guaranteed")?.[0].tier.highlighted).toBe(true)
+    } finally {
+      cards.mockRestore()
+    }
+  })
+
+  it("keeps founding reservations and optional email permissions unchanged when restyled", async () => {
+    await configure(false, false, false)
+    const captureModule = await import("@/components/marketing/LeadCapture")
+    const capture = vi.spyOn(captureModule, "default")
+    try {
+      const Offer = (await import("@/components/marketing/FoundingOffer")).default
+      renderToStaticMarkup(createElement(Offer))
+      const defaultProps = capture.mock.calls[0][0]
+      capture.mockClear()
+      const html = renderToStaticMarkup(createElement(Offer, { className: "pricing-reservation" }))
+      expect(capture.mock.calls[0][0]).toEqual(defaultProps)
+      expect(defaultProps).toMatchObject({
+        source: "founding-member",
+        leadMagnet: "founding-reservation",
+        trackEventName: "founding_reserve",
+      })
+      expect(defaultProps.optInLabel).toContain("Optional; unsubscribe in one click.")
+      expect(html).toContain("pricing-reservation")
+      expect(html).toContain('id="founding"')
+    } finally {
+      capture.mockRestore()
+    }
+  })
+
   it("passes the correct plan, channel and surface from both actual pages", async () => {
     await configure(false, false, false)
     const linkModule = await import("@/components/marketing/PlanEnquiryLink")

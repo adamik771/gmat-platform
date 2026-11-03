@@ -163,10 +163,10 @@ const SAMPLES: {
 function SampleQuestions() {
   return (
     <section className="max-w-3xl mx-auto px-4 pt-2 pb-6">
-      <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.15] mb-2">
+      <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.15] mb-2">
         Try three, right now
       </h2>
-      <p className="text-[15px] text-[#888888] leading-relaxed mb-6">
+      <p className="text-[15px] text-[color:var(--public-muted,#888888)] leading-relaxed mb-6">
         One from each scored section, straight from the bank. No account needed
         for these three.
       </p>
@@ -174,32 +174,32 @@ function SampleQuestions() {
         {SAMPLES.map((q) => (
           <div
             key={q.section}
-            className="rounded-2xl border border-white/[0.08] p-5 sm:p-6"
-            style={{ backgroundColor: "#0D0D0D" }}
+            className="rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] p-5 sm:p-6"
+            style={{ backgroundColor: "var(--public-surface,#0D0D0D)" }}
           >
             <div className="flex flex-wrap items-center gap-2 mb-3">
               <span
                 className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.18em]"
-                style={{ backgroundColor: "rgba(201,168,76,0.1)", color: "#C9A84C" }}
+                style={{ backgroundColor: "var(--public-tint,rgba(201,168,76,0.1))", color: "var(--public-accent,#C9A84C)" }}
               >
                 {q.section}
               </span>
-              <span className="text-[11px] text-[#555555] uppercase tracking-[0.18em] font-semibold">
+              <span className="text-[11px] text-[color:var(--public-muted,#555555)] uppercase tracking-[0.18em] font-semibold">
                 {q.difficulty}
               </span>
             </div>
-            <p className="text-[15px] text-[#F0F0F0] leading-relaxed mb-3">{q.prompt}</p>
+            <p className="text-[15px] text-[color:var(--public-ink,#F0F0F0)] leading-relaxed mb-3">{q.prompt}</p>
             {q.statements && (
               <div className="mb-3 space-y-1">
                 {q.statements.map((st) => (
-                  <p key={st} className="text-[15px] text-[#F0F0F0] leading-relaxed">{st}</p>
+                  <p key={st} className="text-[15px] text-[color:var(--public-ink,#F0F0F0)] leading-relaxed">{st}</p>
                 ))}
               </div>
             )}
             <ol className="space-y-1.5 mb-4">
               {q.options.map((opt, i) => (
-                <li key={opt} className="text-[14px] text-[#C0C0C0] leading-relaxed flex gap-2">
-                  <span className="text-[#888888] font-semibold shrink-0">
+                <li key={opt} className="text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed flex gap-2">
+                  <span className="text-[color:var(--public-muted,#888888)] font-semibold shrink-0">
                     {String.fromCharCode(65 + i)})
                   </span>
                   <span>{opt}</span>
@@ -209,15 +209,15 @@ function SampleQuestions() {
             <details className="group">
               <summary
                 className="cursor-pointer text-[13px] font-semibold select-none inline-flex items-center gap-1.5"
-                style={{ color: "#C9A84C" }}
+                style={{ color: "var(--public-accent,#C9A84C)" }}
               >
                 Show the answer
               </summary>
-              <div className="mt-3 pt-3 border-t border-white/[0.06]">
-                <p className="text-[14px] font-semibold mb-1.5" style={{ color: "#3ECF8E" }}>
+              <div className="mt-3 pt-3 border-t border-[var(--public-line,rgba(255,255,255,0.06))]">
+                <p className="text-[14px] font-semibold mb-1.5" style={{ color: "var(--public-success,#3ECF8E)" }}>
                   Answer: {q.answer}
                 </p>
-                <p className="text-[14px] text-[#C0C0C0] leading-relaxed">{q.explanation}</p>
+                <p className="text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">{q.explanation}</p>
               </div>
             </details>
           </div>
@@ -227,12 +227,12 @@ function SampleQuestions() {
         <Link
           href="/signup"
           className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
-          style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+          style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
         >
           Unlock the full bank free
           <ArrowRight className="w-4 h-4" />
         </Link>
-        <p className="text-[13px] text-[#888888]">
+        <p className="text-[13px] text-[color:var(--public-muted,#888888)]">
           {QUESTION_CLAIM} on the platform — free 7-day trial, no card.
         </p>
       </div>

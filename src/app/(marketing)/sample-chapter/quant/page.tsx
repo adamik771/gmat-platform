@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import SampleChapterRenderer from "@/components/marketing/SampleChapterRenderer"
 
 export const metadata: Metadata = {
-  title: "Sample chapter — Linear Equations & Systems (Quant)",
+  title: "Sample chapter — Linear Equations and Systems (Quant)",
   description:
-    "Read two full sections from the Zakarian GMAT Algebra: Linear Equations & Systems chapter — linear equations and systems of equations. No signup required.",
+    "Read two full sections from the Zakarian GMAT Algebra: Linear Equations and Systems chapter — linear equations and systems of equations. No signup required.",
   alternates: { canonical: "/sample-chapter/quant" },
 }
 

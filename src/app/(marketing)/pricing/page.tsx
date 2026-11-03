@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
-import { Check, X, ArrowRight } from "lucide-react"
+import { Check, X, ArrowRight, Info } from "lucide-react"
 import PricingCard from "@/components/marketing/PricingCard"
 import FAQAccordion from "@/components/marketing/FAQAccordion"
 import FoundingOffer from "@/components/marketing/FoundingOffer"
@@ -15,6 +16,8 @@ import {
 } from "@/lib/manual-payment"
 import { isOnlineCheckoutAvailable, paymentMethodsHelp, TRIAL_END_HELP } from "@/lib/payment-options"
 import styles from "@/components/marketing/PublicSite.module.css"
+import pricing from "./Pricing.module.css"
+import quantLessonPreview from "../../../../public/images/home/quant-lesson.jpg"
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -48,59 +51,122 @@ export default function PricingPage() {
     Intensive: [true, true, true, true, `${PLAN_ACCESS_MONTHS.intensive} months`, true, "16 sessions"],
   }
   const checkoutAvailable = tiers.some((tier) => isOnlineCheckoutAvailable(tier.stripePriceId))
+  const platformPlans = tiers.filter((tier) => tier.id === "self_study" || tier.id === "self_study_guaranteed")
+  const coachingPlans = tiers.filter((tier) => tier.id === "coaching" || tier.id === "intensive")
+  const renderPlan = (tier: (typeof tiers)[number]) => (
+    <PricingCard
+      key={tier.id}
+      className={pricing.card}
+      accessMonths={PLAN_ACCESS_MONTHS[tier.id]}
+      tier={{
+        ...tier,
+        highlighted: false,
+        badge: null,
+        description: tier.id === "self_study" ? "The complete platform for independent preparation." : tier.id === "coaching" ? "The platform and eight 1:1 sessions with Adam." : tier.id === "intensive" ? "The platform and sixteen 1:1 sessions with Adam." : tier.description,
+        features: tier.features.slice(-2),
+      }}
+      purchasable={isOnlineCheckoutAvailable(tier.stripePriceId)}
+      reservationAvailable={!PAYWALL_ENABLED}
+      manualContactHref={manualPaymentWhatsAppUrl({ planName: tier.name, intent: "enquiry" })}
+      manualEmailHref={manualPaymentMailto({ planName: tier.name, intent: "enquiry" })}
+      contactLabel={`Ask about ${tier.id === "self_study_guaranteed" ? "Mentorship" : tier.name}`}
+    />
+  )
 
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} ${pricing.page}`}>
       <TrackView event="pricing_view" />
-      <div className={styles.container}>
-        <header className={styles.intro}>
-          <p className={styles.kicker}>Zakarian GMAT</p>
-          <h1 className="font-display">Plans and pricing</h1>
-          <p className={styles.lede}>The same platform, with different access lengths and levels of direct support.</p>
-          <p className="mt-5 max-w-3xl border-l-2 border-[#C9A84C] pl-4 text-sm leading-relaxed text-[#C0C0C0]">
+      <div className={pricing.container}>
+        <header className={pricing.intro}>
+          <div>
+            <p className={pricing.eyebrow}>Zakarian GMAT</p>
+            <h1>Plans and pricing</h1>
+            <p className={pricing.lede}>The full course in every plan. The choice is how much time and personal support you want.</p>
+          </div>
+          <div className={pricing.trial}>
+            <Link href="/signup" className={`${styles.button} ${pricing.trialButton}`}>Start {TRIAL_DAYS}-day trial <ArrowRight aria-hidden="true" /></Link>
+            <p className={styles.note}>No credit card required.</p>
+          </div>
+        </header>
+
+        <nav className={pricing.pageNav} aria-label="Pricing sections">
+          <Link href="#platform-plans">Platform plans</Link>
+          <Link href="#coaching-plans">1:1 coaching</Link>
+          <Link href="#comparison">Full comparison</Link>
+          <span>USD. One-time payments.</span>
+        </nav>
+
+        <div className={pricing.paymentNote}>
+          <Info aria-hidden="true" />
+          <p>
             {!PAYWALL_ENABLED
               ? "Online checkout is not available. Ask Adam about payment options for your chosen plan by WhatsApp or email. Full access currently continues beyond the seven-day trial while the paywall is off."
               : !checkoutAvailable
                 ? "Online checkout is temporarily unavailable. Ask Adam about payment options for your chosen plan by WhatsApp or email. He will confirm the details before you decide."
               : "Start with a full-access trial. Paid plans are one-time purchases; the access period begins on your purchase date. Checkout availability is shown for each plan."}
           </p>
-          <div className={styles.actions}><Link href="/signup" className={styles.button}>Start {TRIAL_DAYS}-day trial <ArrowRight aria-hidden="true" /></Link></div>
-          <p className={styles.note}>No credit card required for the trial. Listed prices are in USD.</p>
-        </header>
-
-        <p className="mb-8 text-sm leading-relaxed text-[#B9B7AE]">
-          Every plan includes {inventory.chapters} interactive chapters, {inventory.readings} supporting readings, {inventory.questions.toLocaleString("en-US")} original bank questions, practice, review, and analytics.
-        </p>
-        <div className="grid items-stretch gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {tiers.map((tier) => (
-            <PricingCard
-              key={tier.id}
-              tier={{
-                ...tier,
-                description: tier.id === "self_study" ? "The complete platform for independent preparation." : tier.id === "coaching" ? "The platform and eight 1:1 sessions with Adam." : tier.id === "intensive" ? "The platform and sixteen 1:1 sessions with Adam." : tier.description,
-                features: tier.features.slice(-3),
-              }}
-              purchasable={isOnlineCheckoutAvailable(tier.stripePriceId)}
-              reservationAvailable={!PAYWALL_ENABLED}
-              manualContactHref={manualPaymentWhatsAppUrl({ planName: tier.name, intent: "enquiry" })}
-              manualEmailHref={manualPaymentMailto({ planName: tier.name, intent: "enquiry" })}
-              contactLabel={`Ask about ${tier.id === "self_study_guaranteed" ? "Mentorship" : tier.name}`}
-            />
-          ))}
         </div>
-        <div className="my-6 flex flex-wrap gap-x-8">
-          <Link href="/sample-chapter" className={styles.textLink}>Read a sample chapter <ArrowRight aria-hidden="true" /></Link>
-          <Link href="/refund" className={styles.textLink}>Refund terms <ArrowRight aria-hidden="true" /></Link>
+        <section id="platform-plans" className={pricing.planSection} aria-labelledby="platform-plans-title">
+          <div className={pricing.sectionAside}>
+            <p className={pricing.eyebrow}>The platform</p>
+            <h2 id="platform-plans-title">Study independently.</h2>
+            <p>Work through the course on your own, or add WhatsApp Q&amp;A when you want help with a question.</p>
+            <Link href="#included" className={styles.textLink}>Included in both <ArrowRight aria-hidden="true" /></Link>
+          </div>
+          <div className={pricing.plans}>{platformPlans.map(renderPlan)}</div>
+        </section>
+      </div>
+
+      <div className={pricing.coachingBand}>
+        <div className={pricing.container}>
+          <section id="coaching-plans" className={pricing.planSection} aria-labelledby="coaching-plans-title">
+            <div className={pricing.sectionAside}>
+              <p className={pricing.eyebrow}>Working together</p>
+              <h2 id="coaching-plans-title">1:1 with Adam.</h2>
+              <p>Time to work through your reasoning, review your mocks and decide what to change in your preparation.</p>
+              <p className={pricing.sessionNote}>60-minute Zoom sessions. A written action plan after each call.</p>
+              <Link href="/about" className={styles.textLink}>About Adam <ArrowRight aria-hidden="true" /></Link>
+            </div>
+            <div className={pricing.plans}>{coachingPlans.map(renderPlan)}</div>
+          </section>
         </div>
       </div>
 
-      {!PAYWALL_ENABLED && <FoundingOffer />}
+      <div className={pricing.container}>
+        <div className={pricing.underPlans}>
+          <p>All prices in USD. One payment, no recurring subscription.</p>
+          <div>
+            <Link href="/sample-chapter" className={styles.textLink}>Read a sample chapter <ArrowRight aria-hidden="true" /></Link>
+            <Link href="/refund" className={styles.textLink}>Refund terms <ArrowRight aria-hidden="true" /></Link>
+          </div>
+        </div>
 
-      <div className={styles.container}>
-        <section className={styles.section}>
-          <h2 className="font-display">Compare the details</h2>
+        <section id="included" className={pricing.included} aria-labelledby="included-title">
+          <figure>
+            <Link href="/sample-chapter/quant" aria-label="Read the Quant sample shown here">
+              <Image src={quantLessonPreview} width={760} height={570} alt="The Zakarian GMAT lesson on linear equations and systems." sizes="(max-width: 700px) calc(100vw - 40px), 440px" />
+            </Link>
+            <figcaption>From the Quant course. <Link href="/sample-chapter/quant">Read the sample <ArrowRight size={14} aria-hidden="true" /></Link></figcaption>
+          </figure>
+          <div>
+            <p className={pricing.eyebrow}>In every plan</p>
+            <h2 id="included-title">The same complete course.</h2>
+            <p className={pricing.includedIntro}>Choosing Self-Study doesn&apos;t mean getting a smaller question bank or missing chapters.</p>
+            <dl className={pricing.inclusions}>
+              <div><dt>Lessons</dt><dd>{inventory.chapters} interactive chapters and {inventory.readings} supporting readings across Quant, Verbal and Data Insights.</dd></div>
+              <div><dt>Practice</dt><dd>{inventory.questions.toLocaleString("en-US")} original bank questions, chapter sets and a custom test builder.</dd></div>
+              <div><dt>Review</dt><dd>An error log and spaced review queue for returning to your mistakes.</dd></div>
+              <div><dt>Direction</dt><dd>Your study plan, practice history and analytics in one place.</dd></div>
+            </dl>
+          </div>
+        </section>
+      </div>
+
+      <div className={pricing.container}>
+        <section id="comparison" className={`${styles.section} ${pricing.detailSection}`}>
+          <h2>Compare the details</h2>
           {/* Contain absolutely positioned screen-reader labels within the scroll area. */}
-          <div className="relative overflow-x-auto" tabIndex={0} role="region" aria-label="Plan comparison">
+          <div className={`relative overflow-x-auto ${pricing.comparison}`} tabIndex={0} role="region" aria-label="Plan comparison">
             <table className="w-full min-w-[680px] text-sm">
               <caption className="sr-only">Platform access and support included in each plan</caption>
               <thead><tr>
@@ -109,13 +175,13 @@ export default function PricingPage() {
               </tr></thead>
               <tbody>
                 {comparisonFeatures.map((feature, index) => (
-                  <tr key={feature} className="border-t border-white/10">
-                    <th scope="row" className="p-4 text-left font-normal text-[#C0C0C0]">{feature}</th>
+                  <tr key={feature} className="border-t border-[var(--public-line,rgba(255,255,255,0.1))]">
+                    <th scope="row" className="p-4 text-left font-normal text-[color:var(--public-body,#C0C0C0)]">{feature}</th>
                     {Object.entries(comparisonData).map(([plan, values]) => {
                       const value = values[index]
-                      return <td key={plan} className="p-4 text-center text-[#C0C0C0]">
+                      return <td key={plan} className="p-4 text-center text-[color:var(--public-body,#C0C0C0)]">
                         {typeof value === "boolean" ? <>
-                          {value ? <Check aria-hidden="true" className="mx-auto h-4 w-4 text-[#3ECF8E]" /> : <X aria-hidden="true" className="mx-auto h-4 w-4 text-[#B9B7AE]" />}
+                          {value ? <Check aria-hidden="true" className="mx-auto h-4 w-4 text-[color:var(--public-success,#3ECF8E)]" /> : <X aria-hidden="true" className="mx-auto h-4 w-4 text-[color:var(--public-muted,#B9B7AE)]" />}
                           <span className="sr-only">{value ? "Included" : "Not included"}</span>
                         </> : value}
                       </td>
@@ -126,10 +192,15 @@ export default function PricingPage() {
             </table>
           </div>
         </section>
-        <section className={styles.section}><h2 className="font-display">Pricing questions</h2><FAQAccordion items={[...faqItems, { question: "What payment options are available?", answer: paymentMethodsHelp() }]} className={styles.faq} /></section>
-        <section className={styles.section}>
-          <h2 className="font-display">Questions about a plan?</h2>
-          <p className={styles.note}>Ask about access, what is included, or payment options. No call required.</p>
+      </div>
+
+      {!PAYWALL_ENABLED && <FoundingOffer className={pricing.founding} />}
+
+      <div className={pricing.container}>
+        <section className={pricing.questions}><div><p className={pricing.eyebrow}>Before you decide</p><h2>Good questions.</h2><p>Access, support and the practical details.</p></div><FAQAccordion items={[...faqItems, { question: "What payment options are available?", answer: paymentMethodsHelp() }]} className={pricing.faq} /></section>
+        <section className={pricing.contact}>
+          <div><h2>Not sure which plan fits?</h2>
+          <p>Tell Adam where you are in your preparation and what you need help with. No call required.</p></div>
           <div className={styles.actions}>
             <a href={manualPaymentWhatsAppUrl({ intent: "enquiry" })} target="_blank" rel="noreferrer" className={styles.textLink}>Ask Adam on WhatsApp <ArrowRight aria-hidden="true" /></a>
             <a href={manualPaymentMailto({ intent: "enquiry" })} className={styles.textLink}>Email Adam <ArrowRight aria-hidden="true" /></a>

@@ -23,32 +23,32 @@ function LoginFormSkeleton() {
       aria-label="Loading sign-in form"
     >
       <div className="mb-7" aria-hidden="true">
-        <div className="h-[39px] w-[82%] rounded-[3px] bg-white/[0.06]" />
-        <div className="mt-3 h-[22px] w-[68%] rounded-[3px] bg-white/[0.04]" />
+        <div className="h-[39px] w-[82%] rounded-[3px] bg-[var(--public-surface-hover,rgba(255,255,255,0.06))]" />
+        <div className="mt-3 h-[22px] w-[68%] rounded-[3px] bg-[var(--public-surface-hover,rgba(255,255,255,0.04))]" />
       </div>
 
       <div
-        className="p-7 sm:p-8 rounded-[5px] border border-white/[0.1] bg-[#0D0D0D]"
+        className="p-7 sm:p-8 rounded-[5px] border border-[var(--public-line,rgba(255,255,255,0.1))] bg-[var(--public-surface,#0D0D0D)]"
         aria-hidden="true"
       >
         <div className="space-y-5">
           <div>
-            <div className="mb-2 h-[14px] w-12 rounded-[3px] bg-white/[0.06]" />
-            <div className="h-12 rounded-[4px] border border-white/[0.08] bg-[#0A0A0A]" />
+            <div className="mb-2 h-[14px] w-12 rounded-[3px] bg-[var(--public-surface-hover,rgba(255,255,255,0.06))]" />
+            <div className="h-12 rounded-[4px] border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)]" />
           </div>
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <div className="h-[14px] w-16 rounded-[3px] bg-white/[0.06]" />
-              <div className="h-[14px] w-12 rounded-[3px] bg-white/[0.04]" />
+              <div className="h-[14px] w-16 rounded-[3px] bg-[var(--public-surface-hover,rgba(255,255,255,0.06))]" />
+              <div className="h-[14px] w-12 rounded-[3px] bg-[var(--public-surface-hover,rgba(255,255,255,0.04))]" />
             </div>
-            <div className="h-12 rounded-[4px] border border-white/[0.08] bg-[#0A0A0A]" />
+            <div className="h-12 rounded-[4px] border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)]" />
           </div>
-          <div className="h-11 rounded-[4px] bg-[#C9A84C]/25" />
+          <div className="h-11 rounded-[4px] bg-[var(--public-action,#C9A84C)]/25" />
         </div>
       </div>
 
       <div
-        className="mx-auto mt-6 h-[16px] w-40 rounded-[3px] bg-white/[0.04]"
+        className="mx-auto mt-6 h-[16px] w-40 rounded-[3px] bg-[var(--public-surface-hover,rgba(255,255,255,0.04))]"
         aria-hidden="true"
       />
     </div>
@@ -96,16 +96,16 @@ function LoginForm() {
   return (
     <div className="w-full max-w-md">
       <div className="mb-7">
-        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] leading-[1.08] mb-3">
+        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] leading-[1.08] mb-3">
           Sign in to Zakarian GMAT
         </h1>
-        <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+        <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
           Continue your preparation where you left it.
         </p>
       </div>
 
       <div
-        className="p-7 sm:p-8 rounded-[5px] border border-white/[0.1] bg-[#0D0D0D]"
+        className="p-7 sm:p-8 rounded-[5px] border border-[var(--public-line,rgba(255,255,255,0.1))] bg-[var(--public-surface,#0D0D0D)]"
       >
         <form onSubmit={handleSubmit} className="space-y-5">
           {error && (
@@ -116,7 +116,7 @@ function LoginForm() {
               className="flex items-start gap-2.5 px-4 py-3 rounded-[4px] text-[13px]"
               style={{
                 backgroundColor: "rgba(255,68,68,0.08)",
-                color: "#FF4444",
+                color: "var(--public-danger,#FF4444)",
                 border: "1px solid rgba(255,68,68,0.2)",
               }}
             >
@@ -126,7 +126,7 @@ function LoginForm() {
           )}
 
           <div>
-            <label htmlFor="login-email" className="block text-[12px] font-semibold text-[#C0C0C0] mb-2">
+            <label htmlFor="login-email" className="block text-[12px] font-semibold text-[color:var(--public-body,#C0C0C0)] mb-2">
               Email
             </label>
             <input
@@ -140,19 +140,19 @@ function LoginForm() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="w-full px-4 py-3 rounded-[4px] text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.1] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+              className="w-full px-4 py-3 rounded-[4px] text-[15px] text-[color:var(--public-ink,#F0F0F0)] placeholder-[var(--public-muted,#555555)] border border-[var(--public-line,rgba(255,255,255,0.1))] bg-[var(--public-bg,#0A0A0A)] outline-none focus:ring-2 focus:ring-[var(--public-accent,#C9A84C)]/30 focus:border-[color:var(--public-accent-line,#C9A84C)]/40 transition-all"
             />
           </div>
 
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label htmlFor="login-password" className="block text-[12px] font-semibold text-[#C0C0C0]">
+              <label htmlFor="login-password" className="block text-[12px] font-semibold text-[color:var(--public-body,#C0C0C0)]">
                 Password
               </label>
               <Link
                 href="/reset-password"
                 className="text-[12px] font-medium hover:opacity-80 transition-opacity"
-                style={{ color: "#C9A84C" }}
+                style={{ color: "var(--public-accent,#C9A84C)" }}
               >
                 Forgot?
               </Link>
@@ -169,12 +169,12 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="••••••••"
-                className="w-full px-4 py-3 pr-11 rounded-[4px] text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.1] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+                className="w-full px-4 py-3 pr-11 rounded-[4px] text-[15px] text-[color:var(--public-ink,#F0F0F0)] placeholder-[var(--public-muted,#555555)] border border-[var(--public-line,rgba(255,255,255,0.1))] bg-[var(--public-bg,#0A0A0A)] outline-none focus:ring-2 focus:ring-[var(--public-accent,#C9A84C)]/30 focus:border-[color:var(--public-accent-line,#C9A84C)]/40 transition-all"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center text-[#B9B7AE] hover:text-[#F4F1E8] transition-colors"
+                className="absolute right-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center text-[color:var(--public-muted,#B9B7AE)] hover:text-[color:var(--public-ink,#F4F1E8)] transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
@@ -190,8 +190,8 @@ function LoginForm() {
             type="submit"
             disabled={loading}
             aria-busy={loading}
-            className="w-full py-3 rounded-[4px] text-sm font-semibold transition-colors duration-150 hover:bg-[#D5B765] disabled:opacity-60 flex items-center justify-center gap-2"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            className="w-full py-3 rounded-[4px] text-sm font-semibold transition-colors duration-150 hover:bg-[var(--public-action-hover,#D5B765)] disabled:opacity-60 flex items-center justify-center gap-2"
+            style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
           >
             {loading ? (
               <>
@@ -208,12 +208,12 @@ function LoginForm() {
         </form>
       </div>
 
-      <p className="text-center text-[13px] text-[#888888] mt-6">
+      <p className="text-center text-[13px] text-[color:var(--public-muted,#888888)] mt-6">
         New here?{" "}
         <Link
           href="/signup"
           className="font-medium hover:opacity-80 transition-opacity"
-          style={{ color: "#C9A84C" }}
+          style={{ color: "var(--public-accent,#C9A84C)" }}
         >
           Create an account
         </Link>

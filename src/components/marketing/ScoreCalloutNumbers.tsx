@@ -120,15 +120,15 @@ export default function ScoreCalloutNumbers({
       ref={rootRef}
       className="relative inline-flex items-center gap-4 sm:gap-8 px-5 sm:px-10 py-6 sm:py-8 rounded-2xl border mb-12"
       style={{
-        borderColor: "rgba(201,168,76,0.18)",
-        backgroundColor: "#111111",
+        borderColor: "var(--public-accent-line,rgba(201,168,76,0.18))",
+        backgroundColor: "var(--public-surface,#111111)",
         boxShadow:
-          "0 0 80px rgba(201,168,76,0.08), inset 0 1px 0 rgba(255,255,255,0.04)",
+          "0 0 80px var(--public-tint,rgba(201,168,76,0.08)), inset 0 1px 0 var(--public-line,rgba(255,255,255,0.04))",
       }}
     >
       <div className="text-center">
         <p
-          className="font-display text-5xl sm:text-7xl font-semibold text-[#888888] tracking-[-0.03em] leading-none tabular-nums relative"
+          className="font-display text-5xl sm:text-7xl font-semibold text-[color:var(--public-muted,#888888)] tracking-[-0.03em] leading-none tabular-nums relative"
           aria-label={`${start}`}
         >
           <span aria-hidden className="invisible">
@@ -138,7 +138,7 @@ export default function ScoreCalloutNumbers({
             {startVal}
           </span>
         </p>
-        <p className="text-[10px] tracking-[0.18em] uppercase text-[#555555] mt-3 font-medium">
+        <p className="text-[10px] tracking-[0.18em] uppercase text-[color:var(--public-muted,#555555)] mt-3 font-medium">
           Start
         </p>
       </div>
@@ -147,12 +147,12 @@ export default function ScoreCalloutNumbers({
           className="h-px w-10 sm:w-20"
           style={{
             background:
-              "linear-gradient(to right, rgba(201,168,76,0.1), #C9A84C, rgba(201,168,76,0.1))",
+              "linear-gradient(to right, var(--public-tint,rgba(201,168,76,0.1)), var(--public-accent,#C9A84C), var(--public-tint,rgba(201,168,76,0.1)))",
           }}
         />
         <span
           className="text-[10px] tracking-[0.2em] uppercase font-semibold tabular-nums relative inline-block"
-          style={{ color: "#C9A84C" }}
+          style={{ color: "var(--public-accent,#C9A84C)" }}
           aria-label={`+${delta}`}
         >
           <span aria-hidden className="invisible">
@@ -168,14 +168,14 @@ export default function ScoreCalloutNumbers({
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle at 50% 50%, rgba(201,168,76,0.25) 0%, transparent 65%)",
+              "radial-gradient(circle at 50% 50%, var(--public-accent-line,rgba(201,168,76,0.25)) 0%, transparent 65%)",
             filter: "blur(20px)",
           }}
           aria-hidden
         />
         <p
           className="relative font-display text-5xl sm:text-7xl font-semibold tracking-[-0.03em] leading-none tabular-nums"
-          style={{ color: "#C9A84C" }}
+          style={{ color: "var(--public-accent,#C9A84C)" }}
           aria-label={`${end}`}
         >
           <span aria-hidden className="invisible">
@@ -187,7 +187,7 @@ export default function ScoreCalloutNumbers({
         </p>
         <p
           className="relative text-[10px] tracking-[0.18em] uppercase mt-3 font-medium"
-          style={{ color: "#C9A84C" }}
+          style={{ color: "var(--public-accent,#C9A84C)" }}
         >
           Official
         </p>

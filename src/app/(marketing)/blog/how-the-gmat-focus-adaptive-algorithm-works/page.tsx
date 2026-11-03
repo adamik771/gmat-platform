@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 
 export default function PostPage() {
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
       <JsonLd
         data={articleLd({
           path: "/blog/how-the-gmat-focus-adaptive-algorithm-works",
@@ -83,24 +83,24 @@ export default function PostPage() {
         />
 
         <header className="mb-10">
-          <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.18em] text-[#888888] mb-4">
+          <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.18em] text-[color:var(--public-muted,#888888)] mb-4">
             <span className="tabular-nums">{PUBLISHED_DATE}</span>
-            <span className="text-[#444444]">·</span>
+            <span className="text-[color:var(--public-muted,#444444)]">·</span>
             <span className="inline-flex items-center gap-1.5">
               <Clock className="w-3 h-3" />
               {READ_MINUTES} min read
             </span>
-            <span className="text-[#444444]">·</span>
+            <span className="text-[color:var(--public-muted,#444444)]">·</span>
             <span>Adam Zakarian</span>
           </div>
-          <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-4">
+          <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-4">
             The GMAT Focus adaptive algorithm:{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               how the test decides
             </span>{" "}
             your score.
           </h1>
-          <p className="text-[18px] text-[#C0C0C0] leading-[1.55]">
+          <p className="text-[18px] text-[color:var(--public-body,#C0C0C0)] leading-[1.55]">
             The GMAT Focus Edition watches how you answer and changes the
             test as it goes. Understanding what the algorithm actually
             rewards &mdash; and the myths it does not &mdash; is the
@@ -386,7 +386,7 @@ export default function PostPage() {
             <Link
               href="/sample-chapter"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               Read the free sample chapter
               <ArrowRight className="w-4 h-4" />
@@ -395,8 +395,8 @@ export default function PostPage() {
               href="/blog/gmat-focus-exam-structure"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
               style={{
-                borderColor: "rgba(255,255,255,0.10)",
-                color: "#C0C0C0",
+                borderColor: "var(--public-line,rgba(255,255,255,0.10))",
+                color: "var(--public-body,#C0C0C0)",
               }}
             >
               The full GMAT Focus exam structure
@@ -406,16 +406,16 @@ export default function PostPage() {
         <RelatedPosts currentSlug="how-the-gmat-focus-adaptive-algorithm-works" />
       </article>
       <style>{`
-        .prose-zk { color: #C0C0C0; font-size: 17px; line-height: 1.75; }
-        .prose-zk p { color: #C0C0C0; }
-        .prose-zk strong { color: #F0F0F0; font-weight: 600; }
-        .prose-zk em { color: #E8E8E8; font-style: italic; }
+        .prose-zk { color: var(--public-body,#C0C0C0); font-size: 17px; line-height: 1.75; }
+        .prose-zk p { color: var(--public-body,#C0C0C0); }
+        .prose-zk strong { color: var(--public-ink,#F0F0F0); font-weight: 600; }
+        .prose-zk em { color: var(--public-ink,#E8E8E8); font-style: italic; }
         .prose-zk ol, .prose-zk ul { padding-left: 22px; }
         .prose-zk ol > li, .prose-zk ul > li { margin-bottom: 8px; }
-        .prose-zk a { color: #C9A84C; text-decoration: underline; }
+        .prose-zk a { color: var(--public-accent,#C9A84C); text-decoration: underline; }
         .prose-zk table { width:100%; border-collapse:collapse; margin:8px 0; font-size:15px; }
-        .prose-zk th,.prose-zk td { border:1px solid rgba(255,255,255,0.08); padding:8px 10px; text-align:left; }
-        .prose-zk th { color:#F0F0F0; font-weight:600; }
+        .prose-zk th,.prose-zk td { border:1px solid var(--public-line,rgba(255,255,255,0.08)); padding:8px 10px; text-align:left; }
+        .prose-zk th { color: var(--public-ink,#F0F0F0); font-weight:600; }
       `}</style>
     </div>
   )
@@ -423,7 +423,7 @@ export default function PostPage() {
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-tight leading-tight mt-12 mb-3">
+    <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight leading-tight mt-12 mb-3">
       {children}
     </h2>
   )
@@ -431,21 +431,21 @@ function H2({ children }: { children: React.ReactNode }) {
 
 function H3({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="font-display text-xl font-semibold text-[#F0F0F0] tracking-tight leading-tight mt-8 mb-2">
+    <h3 className="font-display text-xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight leading-tight mt-8 mb-2">
       {children}
     </h3>
   )
 }
 
 function Strong({ children }: { children: React.ReactNode }) {
-  return <strong className="text-[#F0F0F0] font-semibold">{children}</strong>
+  return <strong className="text-[color:var(--public-ink,#F0F0F0)] font-semibold">{children}</strong>
 }
 
 function Pull({ children }: { children: React.ReactNode }) {
   return (
     <blockquote
       className="my-8 pl-6 border-l-2 italic font-display text-[20px] leading-[1.6]"
-      style={{ borderColor: "#C9A84C", color: "#F0F0F0" }}
+      style={{ borderColor: "var(--public-accent-line,#C9A84C)", color: "var(--public-ink,#F0F0F0)" }}
     >
       {children}
     </blockquote>

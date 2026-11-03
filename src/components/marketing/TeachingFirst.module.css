@@ -1,0 +1,177 @@
+.page.page {
+  color: var(--public-ink);
+  background: var(--public-bg);
+  padding-top: 12px;
+}
+.page :is(a,button,input,summary):focus-visible { outline-color: var(--public-accent); }
+.page .header { top: 12px; width: min(1200px, calc(100% - 48px)); margin: 0 auto; background: var(--public-surface); border: 1px solid var(--public-line); border-radius: 8px; box-shadow: 0 8px 28px #0003; }
+.header > div { width: calc(100% - 40px); min-height: 70px; }
+.header > div > a:hover { text-decoration: none; }
+.header a > span:first-child[aria-hidden] { color: var(--public-accent); border-color: var(--public-line); }
+.header [data-acquisition-action="trial"], .page .primaryAction { background: var(--public-action); color: var(--public-on-accent); }
+.header [data-acquisition-action="trial"]:hover, .page .primaryAction:hover { background: var(--public-action-hover); color: var(--public-on-accent); }
+.header details nav { background: var(--public-surface); border: 1px solid var(--public-line); border-radius: 0 0 8px 8px; }
+.container { width: min(1120px, calc(100% - 80px)); margin-inline: auto; }
+.page .eyebrow { color: var(--public-accent); font-size: 12px; font-weight: 500; line-height: 1.5; }
+.opening { max-width: 1060px; margin: auto; padding: 68px 40px 52px; text-align: center; }
+.opening h1 { margin-top: 22px; font-size: 70px; line-height: 1.08; font-weight: 500; }
+.opening .promise { margin-top: 16px; font-size: 36px; line-height: 1.25; color: var(--public-accent); font-weight: 400; text-wrap: balance; }
+.opening .intro { max-width: 570px; margin: 22px auto 0; font-size: 17px; color: var(--public-body); line-height: 1.7; }
+.actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 16px 28px; margin-top: 26px; }
+.opening .priceNote { margin-top: 18px; color: var(--public-muted); font-size: 13px; }
+.priceNote a, .small a { text-decoration: underline; text-underline-offset: 4px; }
+.practiceSection { padding: 0 0 72px; }
+.sampleHeading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px 30px; margin-bottom: 22px; }
+.sampleHeading h2 { font-size: 23px; font-weight: 500; }
+.sampleHeading p { font-size: 13px; color: var(--public-muted); }
+.sectionIntro { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: end; margin-bottom: 40px; }
+.sectionIntro h2 { margin-top: 16px; font-size: 36px; font-weight: 500; }
+.sectionIntro > p { color: var(--public-body); font-size: 15px; max-width: 440px; }
+.samples { display: block; border: 1px solid var(--public-line-strong); border-radius: 8px; background: var(--public-surface); box-shadow: 0 24px 72px #0005; }
+.workspaceBar { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 15px 28px; border-bottom: 1px solid var(--public-line); }
+.workspaceBrand { display: flex; align-items: center; gap: 14px; font-size: 14px; }
+.workspaceBrand > span { font-family: var(--font-fraunces), Georgia, serif; color: var(--public-accent); font-size: 26px; line-height: 1; }
+.workspaceLabel { color: var(--public-muted); font-size: 12px; }
+.samples .tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); width: 100%; height: auto; gap: 0; padding: 0; border-bottom: 1px solid var(--public-line); }
+.samples .tab { min-height: 54px; height: auto; padding: 14px 10px; border-radius: 0; border: 0; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--public-muted); background: transparent; white-space: normal; }
+.samples .tab::after { display: none; }
+.samples .tab[data-active] { background: var(--public-tint); color: var(--public-accent); box-shadow: inset 0 -2px var(--public-accent); }
+.samples .tab:hover { color: var(--public-ink); background: var(--public-surface-hover); }
+.samples .tab:focus-visible { outline: 3px solid var(--public-accent); outline-offset: -4px; }
+.panel { display: grid; grid-template-columns: 260px minmax(0,1fr); margin: 0; }
+.lessonContext { grid-column: 1; grid-row: 1; padding: 32px 28px; border-right: 1px solid var(--public-line); min-width: 0; }
+.lessonContext > svg { color: var(--public-accent); margin-bottom: 24px; }
+.lessonContext h3 { font-size: 21px; line-height: 1.35; font-weight: 500; margin-top: 14px; }
+.lessonContext > p:not(.eyebrow):not(.small) { font-size: 13px; color: var(--public-muted); margin-top: 30px; }
+.lessonContext a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--public-ink); font-size: 14px; }
+.lessonContext .small { margin-top: 2px; }
+.questionColumn { grid-column: 2; grid-row: 1; padding: 32px 40px 40px; min-width: 0; }
+.sampleMeta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding-bottom: 22px; color: var(--public-muted); font-size: 12px; }
+.sampleMeta span:first-child { color: var(--public-accent); font-weight: 500; }
+.question > section { padding: 0; margin: 0; border: 0; }
+.question > section > h2 { font-size: 22px; font-weight: 500; margin-bottom: 12px; }
+.question > section > p { margin-bottom: 20px; }
+.question :global(.prose-zk) { color: var(--public-ink); font: inherit; font-size: 16px; line-height: 1.8; }
+.question :global(.prose-zk) p { margin-block: 0 16px; white-space: pre-line; }
+.question :global(.prose-zk) h2 { font-size: 21px; margin-block: 18px; }
+.question fieldset { gap: 10px; }
+.question fieldset label { border-radius: 4px; min-height: 50px; background: transparent; border-color: var(--public-control-line); }
+.question fieldset label:hover { border-color: var(--public-accent); }
+.question fieldset label[data-selected="true"] { background: var(--public-tint); border-color: var(--public-accent); }
+.question fieldset label p { margin: 0 !important; }
+.question input { accent-color: var(--public-accent); }
+.question button { min-height: 48px; border-radius: 4px; }
+.question .trap { border-top: 1px solid var(--public-line); margin-top: 24px; padding-top: 20px; }
+.trap h3 { font-size: 16px; margin-bottom: 10px; }
+.sampleBridge { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; padding-top: 36px; }
+.sampleBridge h3 { font-size: 23px; font-weight: 500; max-width: 380px; }
+.sampleBridge p:not(.small) { margin-top: 14px; color: var(--public-body); font-size: 15px; }
+.page .small { font-size: 12px; color: var(--public-muted); line-height: 1.7; margin-top: 14px; }
+.courseSection, .planSection { padding-block: 84px; border-top: 1px solid var(--public-line); }
+.courseSection { background: var(--public-surface); }
+.courseGrid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+.lessonFigure { min-width: 0; }
+.lessonFigure a { display: block; }
+.lessonFigure img { display: block; width: 100%; height: auto; border: 1px solid var(--public-line); border-radius: 4px; }
+.lessonFigure figcaption { margin-top: 14px; color: var(--public-muted); font-size: 12px; }
+.lessonFigure figcaption a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+.studySteps { list-style: none; padding: 0; display: grid; gap: 26px; }
+.studySteps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; border-top: 1px solid var(--public-line); padding-top: 20px; }
+.studySteps li > span { color: var(--public-accent); font-size: 12px; }
+.studySteps h3 { font-size: 21px; font-weight: 500; }
+.studySteps p { margin-top: 12px; font-size: 14px; color: var(--public-body); }
+.inventory { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 30px; padding-top: 25px; margin-top: 32px; border-top: 1px solid var(--public-line); font-size: 14px; }
+.inventory > span { color: var(--public-muted); }
+.inventory a { margin-left: auto; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; }
+.planRows article { display: grid; grid-template-columns: 1fr 150px 180px; gap: 40px; align-items: center; padding-block: 32px; border-top: 1px solid var(--public-line); }
+.planRows h3 { font-size: 24px; font-weight: 500; }
+.planRows h3 + p { margin-top: 12px; max-width: 450px; color: var(--public-body); font-size: 14px; }
+.planPrice { font-size: 36px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.planPrice span { display: block; font-size: 13px; color: var(--public-muted); margin-top: 10px; }
+.planRows a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px; color: var(--public-accent); }
+.page .payment { font-size: 13px; color: var(--public-body); border-top: 1px solid var(--public-line); padding-top: 24px; }
+.page .support { margin-top: 22px; font-size: 14px; color: var(--public-body); }
+.support a { display: inline; text-decoration: underline; text-underline-offset: 4px; }
+.support svg { display: inline; vertical-align: middle; }
+.startSection { background: var(--public-surface); border-top: 1px solid var(--public-line); padding-block: 72px; }
+.startGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+.startGrid h2 { font-size: 38px; font-weight: 500; margin: 16px 0 26px; }
+.startGrid h3 { font-size: 17px; }
+.nextSteps p { font-size: 14px; line-height: 1.75; color: var(--public-body); margin-top: 16px; }
+.nextSteps a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; margin-top: 12px; }
+@media (max-width: 1024px) {
+  .header > div { gap: 16px; }
+  .header > div > div { margin-left: auto; }
+}
+@media (max-width: 900px) {
+  .opening h1 { font-size: 58px; }
+  .sectionIntro { gap: 40px; }
+  .sectionIntro h2 { font-size: 30px; }
+  .panel { grid-template-columns: 210px minmax(0,1fr); }
+  .lessonContext { padding: 28px 20px; }
+  .questionColumn { padding: 28px; }
+  .courseGrid, .startGrid, .sampleBridge { gap: 32px; }
+  .planRows article { grid-template-columns: 1fr 130px; gap: 20px; }
+  .planRows article > a { grid-column: 1 / -1; }
+}
+@media (max-width: 700px) {
+  .page.page { padding-top: 8px; }
+  .page .header { width: calc(100% - 24px); top: 8px; }
+  .header > div { width: calc(100% - 24px); min-height: 62px; gap: 10px; }
+  .header > div > a { font-size: 15px; gap: 8px; }
+  .header a > span:first-child[aria-hidden] { font-size: 28px; padding-right: 9px; }
+  .header [data-acquisition-action="trial"] { padding-inline: 10px; font-size: 12px; }
+  .header [data-acquisition-action="trial"] svg { display: none; }
+  .container { width: calc(100% - 40px); }
+  .opening { padding: 40px 20px 38px; }
+  .opening > .eyebrow { max-width: 290px; margin-inline: auto; font-size: 11px; }
+  .opening h1 { font-size: 42px; margin-top: 20px; }
+  .opening .promise { font-size: 27px; line-height: 1.25; margin-top: 14px; }
+  .desktopBreak { display: none; }
+  .opening .intro { font-size: 16px; margin-top: 18px; }
+  .actions { flex-direction: column; gap: 5px; margin-top: 22px; }
+  .actions > a:first-child { width: 100%; max-width: 360px; }
+  .opening .priceNote { margin-top: 10px; font-size: 12px; }
+  .practiceSection { padding-bottom: 42px; }
+  .sampleHeading { display: block; margin-bottom: 18px; }
+  .sampleHeading h2 { font-size: 23px; }
+  .sampleHeading p { margin-top: 8px; }
+  .workspaceBar { padding: 16px 18px; }
+  .workspaceBrand { font-size: 13px; gap: 10px; }
+  .workspaceLabel { font-size: 11px; }
+  .sectionIntro { display: block; margin-bottom: 28px; }
+  .sectionIntro h2 { font-size: 28px; margin-top: 10px; }
+  .sectionIntro h2 br { display: none; }
+  .sectionIntro > p { margin-top: 16px; font-size: 14px; }
+  .samples .tab { font-size: 13px; padding-inline: 6px; }
+  .panel { display: flex; flex-direction: column; }
+  .questionColumn { padding: 24px 18px; }
+  .lessonContext { order: 1; padding: 24px 18px; border-right: 0; border-top: 1px solid var(--public-line); }
+  .lessonContext > svg { margin-bottom: 14px; }
+  .lessonContext h3 { font-size: 20px; margin-top: 10px; }
+  .lessonContext > p:not(.eyebrow):not(.small) { margin-top: 18px; }
+  .sampleMeta { font-size: 11px; gap: 6px 16px; }
+  .question :global(.prose-zk) { font-size: 15px; line-height: 1.8; }
+  .sampleBridge { grid-template-columns: 1fr; gap: 24px; padding-top: 30px; }
+  .sampleBridge h3 { font-size: 22px; }
+  .sampleBridge a.primaryAction { width: 100%; }
+  .courseSection, .planSection { padding-block: 50px; }
+  .courseGrid, .startGrid { grid-template-columns: 1fr; gap: 30px; }
+  .inventory { display: grid; gap: 8px; }
+  .inventory a { margin-left: 0; }
+  .planRows article { grid-template-columns: 1fr 85px; gap: 18px; }
+  .planRows h3 { font-size: 21px; }
+  .planPrice { font-size: 29px; }
+  .planPrice span { font-size: 12px; }
+  .startSection { padding-block: 48px; }
+  .startGrid h2 { font-size: 30px; }
+}
+@media (max-width: 360px) {
+  .header > div > a { font-size: 13px; gap: 6px; }
+  .header > div { gap: 6px; }
+  .header [data-acquisition-action="trial"] { padding-inline: 8px; }
+  .opening h1 { font-size: 35px; }
+  .opening .promise { font-size: 24px; }
+  .opening .intro { font-size: 15px; }
+  .opening { padding-top: 30px; }
+}

@@ -80,11 +80,11 @@ export default function CheckoutButton({
         className={cn(
           "w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed",
           highlighted
-            ? "text-[#0A0A0A]"
-            : "border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5",
+            ? "text-[color:var(--public-on-accent,#0A0A0A)]"
+            : "border border-[var(--public-line,rgba(255,255,255,0.12))] text-[color:var(--public-ink,#F0F0F0)] hover:bg-[var(--public-surface-hover,rgba(255,255,255,0.05))]",
           className
         )}
-        style={highlighted ? { backgroundColor: "#C9A84C" } : {}}
+        style={highlighted ? { backgroundColor: "var(--public-action,#C9A84C)" } : {}}
       >
         {loading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
         {label}
@@ -92,7 +92,7 @@ export default function CheckoutButton({
       {error && (
         <p
           className="text-[11px] mt-2 leading-relaxed"
-          style={{ color: "#FF4444" }}
+          style={{ color: "var(--public-danger,#FF4444)" }}
         >
           {error}
         </p>

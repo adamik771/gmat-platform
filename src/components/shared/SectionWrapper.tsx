@@ -16,9 +16,9 @@ export default function SectionWrapper({
   noPadding = false,
 }: SectionWrapperProps) {
   const bg = {
-    dark: "bg-[#0A0A0A]",
-    darker: "bg-[#050505]",
-    card: "bg-[#111111]",
+    dark: "bg-[var(--public-bg,#0A0A0A)]",
+    darker: "bg-[var(--public-surface,#050505)]",
+    card: "bg-[var(--public-surface,#111111)]",
   }[variant]
 
   return (

@@ -1,0 +1,123 @@
+.palette, .site, .drawer {
+  --public-bg: #0a0a0a;
+  --public-surface: #111111;
+  --public-surface-hover: #202020;
+  --public-ink: #f2f0e9;
+  --public-body: #c5c3bb;
+  --public-muted: #aaa89f;
+  --public-line: #303030;
+  --public-line-strong: #565656;
+  --public-control-line: #808080;
+  --public-accent: #c9a84c;
+  --public-action: #c9a84c;
+  --public-action-hover: #dfc16d;
+  --public-on-accent: #14130e;
+  --public-tint: #1b1b1b;
+  --public-accent-line: #c9a84c;
+  --public-success: #6ed5a1;
+  --public-danger: #ff8b8b;
+  --public-warning: #e0bd69;
+  --public-info: #83b4ed;
+  --public-header-height: 86px;
+  --public-ease: cubic-bezier(.22, 1, .36, 1);
+  --public-duration: 240ms;
+  color-scheme: dark;
+}
+.site {
+  color: var(--public-ink);
+  background: var(--public-bg);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.site *, .drawer * { letter-spacing: 0; }
+.site :global(.font-display), .site :global(.font-display-italic) {
+  font-family: inherit;
+  font-style: normal;
+}
+.site :global(.marketing-editorial) {
+  --editorial-bg: var(--public-bg);
+  --editorial-surface: var(--public-surface);
+  --editorial-surface-strong: var(--public-tint);
+  --editorial-text: var(--public-ink);
+  --editorial-body: var(--public-body);
+  --editorial-muted: var(--public-muted);
+  --editorial-line: var(--public-line);
+  --editorial-line-strong: var(--public-line-strong);
+  --editorial-gold: var(--public-accent);
+  background: var(--public-bg);
+  color: var(--public-ink);
+}
+.site :is(input, select, textarea, button) { font-family: inherit; }
+.site :is(input, select, textarea) { accent-color: var(--public-accent); border-color: var(--public-control-line); }
+.site :is(input, select, textarea):focus { border-color: var(--public-accent); }
+.site :is(a, button, input, select, textarea, summary):focus-visible,
+.drawer :is(a, button):focus-visible { outline: 2px solid var(--public-accent); outline-offset: 4px; }
+.site :global(.bg-grain), .site [aria-hidden][style*="radial-gradient"] { display: none; }
+.site :is(h1, h2, h3) { text-wrap: balance; }
+.site :is(h1, h2, h3, p, li, a) { overflow-wrap: break-word; }
+.site :is([class~="text-[10px]"], [class~="text-[11px]"]) { font-size: 12px; line-height: 1.5; }
+.site [class*="uppercase"][class*="tracking-"] { text-transform: none; }
+.site :is([class~="rounded-xl"], [class~="rounded-2xl"]) { border-radius: 8px; }
+.site :global(.prose-zk) { font-family: inherit; }
+.site footer { font-size: 14px; }
+.site footer h3 { color: var(--public-ink); }
+
+.navigation { top: 12px; width: min(1200px, calc(100% - 48px)); margin-inline: auto; background: var(--public-surface); border: 1px solid var(--public-line); border-radius: 8px; box-shadow: 0 8px 28px #0003; font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif; }
+.navigation a[aria-current="page"] { color: var(--public-accent); }
+.drawer { color: var(--public-ink); background: var(--public-surface); border-color: var(--public-line); font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif; }
+.drawer[data-side="right"] { width: min(320px, calc(100% - 32px)); padding: 24px; overflow-y: auto; }
+.drawer a, .drawer a span { color: var(--public-ink); }
+.drawer a:hover { color: var(--public-accent); background: var(--public-surface-hover); }
+.drawer :global(a[href="/signup"]) { background: var(--public-action) !important; color: var(--public-on-accent) !important; }
+.drawer :global(a[href="/login"]) { border-color: var(--public-line-strong); }
+.drawer > button { color: var(--public-ink); }
+
+@media (max-width: 600px) {
+  .navigation { top: 8px; width: calc(100% - 24px); }
+  .site input:not([type="checkbox"]):not([type="radio"]), .site textarea, .site select { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The selector stops matching as soon as the visitor enters the signed-in app. */
+  :global(html):has(.site), :global(html):has(.palette) { scroll-behavior: smooth; }
+  :is(.site, .palette, .drawer) :is(a, button, input, select, textarea, summary, label) {
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: var(--public-duration);
+    transition-timing-function: var(--public-ease);
+  }
+  :is(.site, .palette) [role="tab"]::after {
+    transition: opacity var(--public-duration) var(--public-ease);
+  }
+  :is(.site, .palette) h1 { animation: public-page-arrive 240ms ease-out; }
+  .drawer { transition-duration: 280ms; transition-timing-function: var(--public-ease); }
+  :is(.site, .palette) [data-public-menu][open] nav { animation: public-menu-arrive 200ms var(--public-ease); }
+  :is(.site, .palette, .drawer) :disabled { transition: none; }
+
+  @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
+    :is(.site, .palette) details:not([data-public-menu]) { interpolate-size: allow-keywords; }
+    :is(.site, .palette) details:not([data-public-menu])::details-content {
+      block-size: 0;
+      overflow: clip;
+      transition: block-size 280ms var(--public-ease), content-visibility 280ms allow-discrete;
+    }
+    :is(.site, .palette) details:not([data-public-menu])[open]::details-content { block-size: auto; }
+  }
+}
+@keyframes public-page-arrive { from { opacity: .85; } to { opacity: 1; } }
+@keyframes public-menu-arrive { from { opacity: .6; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html):has(.site), :global(html):has(.palette) { scroll-behavior: auto !important; }
+  :is(.site, .palette, .drawer),
+  :is(.site, .palette, .drawer) *,
+  :is(.site, .palette, .drawer) *::before,
+  :is(.site, .palette, .drawer) *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  @supports selector(details::details-content) {
+    :is(.site, .palette) details::details-content { transition: none !important; }
+  }
+}

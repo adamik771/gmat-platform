@@ -34,7 +34,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
       />
       <nav
         aria-label="Breadcrumb"
-        className="text-[12px] text-[#888888] mb-6"
+        className="text-[12px] text-[color:var(--public-muted,#888888)] mb-6"
       >
         <ol className="flex items-center gap-1.5 flex-wrap">
           {items.map((item, idx) => {
@@ -43,21 +43,21 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
               <li key={item.href} className="flex items-center gap-1.5">
                 {idx > 0 && (
                   <ChevronRight
-                    className="w-3 h-3 text-[#444444]"
+                    className="w-3 h-3 text-[color:var(--public-muted,#444444)]"
                     aria-hidden
                   />
                 )}
                 {isLast ? (
                   <span
                     aria-current="page"
-                    className="text-[#C0C0C0]"
+                    className="text-[color:var(--public-body,#C0C0C0)]"
                   >
                     {item.label}
                   </span>
                 ) : (
                   <Link
                     href={item.href}
-                    className="hover:text-[#F0F0F0] transition-colors"
+                    className="hover:text-[color:var(--public-ink,#F0F0F0)] transition-colors"
                   >
                     {item.label}
                   </Link>

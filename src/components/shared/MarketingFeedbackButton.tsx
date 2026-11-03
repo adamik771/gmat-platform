@@ -17,10 +17,10 @@ export default function MarketingFeedbackButton() {
       onClick={() => trackEvent("feedback_click", { surface: "marketing" })}
       className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[12px] font-semibold tracking-tight transition-all hover:scale-[1.04]"
       style={{
-        backgroundColor: "#0D0D0D",
-        color: "#C9A84C",
-        border: "1px solid rgba(201,168,76,0.3)",
-        boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+        backgroundColor: "var(--public-surface,#0D0D0D)",
+        color: "var(--public-accent,#C9A84C)",
+        border: "1px solid var(--public-accent-line,rgba(201,168,76,0.3))",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
       }}
       aria-label="Send feedback"
     >

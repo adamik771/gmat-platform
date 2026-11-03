@@ -43,7 +43,7 @@ export function organizationLd() {
       name: FOUNDER_NAME,
     },
     description:
-      "A premium GMAT preparation platform built around the error-log + adaptive-plan loop that took the founder from 565 to 735.",
+      "A GMAT preparation platform with structured chapters, original practice questions, full explanations, study planning and review tools.",
   }
 }
 

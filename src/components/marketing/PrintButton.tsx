@@ -18,7 +18,7 @@ export default function PrintButton({
       type="button"
       onClick={() => window.print()}
       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-      style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+      style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
     >
       <Printer className="w-4 h-4" />
       {label}

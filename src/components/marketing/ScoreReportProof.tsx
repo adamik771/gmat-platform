@@ -32,8 +32,8 @@ export default function ScoreReportProof({
       className="mt-8 rounded-2xl border p-4"
       style={{
         display: status === "loaded" ? "block" : "none",
-        borderColor: "rgba(201,168,76,0.22)",
-        backgroundColor: "rgba(201,168,76,0.04)",
+        borderColor: "var(--public-accent-line,rgba(201,168,76,0.22))",
+        backgroundColor: "var(--public-tint,rgba(201,168,76,0.04))",
       }}
     >
       <Image
@@ -45,10 +45,10 @@ export default function ScoreReportProof({
         onLoad={() => setStatus("loaded")}
         onError={() => setStatus("error")}
         style={{ width: "100%", height: "auto" }}
-        className="rounded-xl border border-white/[0.06]"
+        className="rounded-xl border border-[var(--public-line,rgba(255,255,255,0.06))]"
       />
-      <figcaption className="mt-3 flex items-center gap-2 text-[12px] text-[#888888]">
-        <ShieldCheck className="w-3.5 h-3.5" style={{ color: "#3ECF8E" }} />
+      <figcaption className="mt-3 flex items-center gap-2 text-[12px] text-[color:var(--public-muted,#888888)]">
+        <ShieldCheck className="w-3.5 h-3.5" style={{ color: "var(--public-success,#3ECF8E)" }} />
         Official GMAT Focus score report. Personal identifiers redacted.
       </figcaption>
     </figure>
