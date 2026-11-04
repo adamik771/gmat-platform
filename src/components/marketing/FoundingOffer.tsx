@@ -2,6 +2,7 @@ import { Lock, Check } from "lucide-react"
 import SectionWrapper from "@/components/shared/SectionWrapper"
 import LeadCapture from "@/components/marketing/LeadCapture"
 import { TRIAL_DAYS } from "@/lib/entitlements"
+import { cn } from "@/lib/utils"
 
 /**
  * FoundingOffer — the pre-checkout reservation block. While checkout is not
@@ -14,8 +15,10 @@ import { TRIAL_DAYS } from "@/lib/entitlements"
  */
 export default function FoundingOffer({
   variant = "dark",
+  className,
 }: {
   variant?: "dark" | "darker"
+  className?: string
 }) {
   const perks = [
     `Full platform access during early release, including the ${TRIAL_DAYS}-day trial`,
@@ -24,26 +27,27 @@ export default function FoundingOffer({
   ]
 
   return (
-    <SectionWrapper variant={variant} id="founding" className="scroll-mt-24 !py-12 lg:!py-16">
+    <SectionWrapper variant={variant} id="founding" className={cn("scroll-mt-24 !py-12 lg:!py-16", className)}>
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Left: the pitch */}
           <div>
             <div
+              data-slot="founding-label"
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-[11px] font-semibold uppercase tracking-[0.18em] mb-5"
               style={{
-                borderColor: "rgba(201,168,76,0.3)",
-                backgroundColor: "rgba(201,168,76,0.06)",
-                color: "#C9A84C",
+                borderColor: "var(--public-accent-line,rgba(201,168,76,0.3))",
+                backgroundColor: "var(--public-tint,rgba(201,168,76,0.06))",
+                color: "var(--public-accent,#C9A84C)",
               }}
             >
               <Lock className="w-3 h-3" />
               Founding access
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-4">
+            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-4">
               Become a founding member.
             </h2>
-            <p className="text-[15px] text-[#888888] leading-relaxed mb-7 max-w-md">
+            <p className="text-[15px] text-[color:var(--public-muted,#888888)] leading-relaxed mb-7 max-w-md">
               Prefer to wait for online checkout? Reserve a founding discount by email,
               with no charge or obligation. This reservation is not tied to a
               plan; you choose one when checkout opens.
@@ -53,9 +57,9 @@ export default function FoundingOffer({
                 <li key={perk} className="flex items-start gap-2.5">
                   <Check
                     className="w-4 h-4 mt-0.5 flex-shrink-0"
-                    style={{ color: "#3ECF8E" }}
+                    style={{ color: "var(--public-success,#3ECF8E)" }}
                   />
-                  <span className="text-[14px] text-[#C0C0C0] leading-relaxed">
+                  <span className="text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
                     {perk}
                   </span>
                 </li>
@@ -64,7 +68,7 @@ export default function FoundingOffer({
           </div>
 
           {/* Right: the reservation form */}
-          <div>
+          <div data-slot="founding-form">
             <LeadCapture
               source="founding-member"
               leadMagnet="founding-reservation"
@@ -80,7 +84,7 @@ export default function FoundingOffer({
               secondChancePitch="Want founding-user updates? I'll email getting-started tips and early access as checkout opens. Unsubscribe in one click."
               optInCtaLabel="Email me founding updates"
             />
-            <p className="text-[11px] text-[#555555] leading-relaxed mt-4">
+            <p className="text-[11px] text-[color:var(--public-muted,#555555)] leading-relaxed mt-4">
               GMAC, GMAT, Graduate Management Admission Council, and Graduate
               Management Admission Test are trademarks of GMAC in the United
               States and other countries. Zakarian GMAT is independent and is

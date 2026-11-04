@@ -97,10 +97,10 @@ If you reserve founding access, mention my name and you'll get the founding disc
   }
 
   return (
-    <div className="p-6 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]">
+    <div className="p-6 sm:p-8 rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)]">
       <label
         htmlFor="ref-name"
-        className="block text-[12px] font-semibold text-[#C0C0C0] mb-2"
+        className="block text-[12px] font-semibold text-[color:var(--public-body,#C0C0C0)] mb-2"
       >
         Your name (so your friend knows who to mention)
       </label>
@@ -110,10 +110,10 @@ If you reserve founding access, mention my name and you'll get the founding disc
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="e.g. Adam Z."
-        className="w-full mb-5 px-3.5 py-2.5 rounded-xl text-[14px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+        className="w-full mb-5 px-3.5 py-2.5 rounded-xl text-[14px] text-[color:var(--public-ink,#F0F0F0)] placeholder-[var(--public-muted,#555555)] border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)] outline-none focus:ring-2 focus:ring-[var(--public-accent,#C9A84C)]/30 focus:border-[color:var(--public-accent-line,#C9A84C)]/40 transition-all"
       />
 
-      <p className="text-[12px] font-semibold text-[#C0C0C0] mb-2">
+      <p className="text-[12px] font-semibold text-[color:var(--public-body,#C0C0C0)] mb-2">
         Your share message
       </p>
       <textarea
@@ -121,7 +121,7 @@ If you reserve founding access, mention my name and you'll get the founding disc
         value={message}
         rows={7}
         aria-label="Referral message to copy"
-        className="w-full mb-4 p-3.5 rounded-xl text-[13px] text-[#C0C0C0] leading-relaxed border border-white/[0.08] bg-[#0A0A0A] resize-none focus:outline-none"
+        className="w-full mb-4 p-3.5 rounded-xl text-[13px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)] resize-none focus:outline-none"
       />
 
       <div className="flex flex-col sm:flex-row gap-2.5">
@@ -129,7 +129,7 @@ If you reserve founding access, mention my name and you'll get the founding disc
           type="button"
           onClick={copyMessage}
           className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold transition-all hover:opacity-90 hover:scale-[1.01]"
-          style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+          style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
         >
           {copied ? (
             <>
@@ -146,7 +146,7 @@ If you reserve founding access, mention my name and you'll get the founding disc
         <button
           type="button"
           onClick={emailIt}
-          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5 transition-all"
+          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-[var(--public-line,rgba(255,255,255,0.12))] text-[color:var(--public-ink,#F0F0F0)] hover:bg-[var(--public-surface-hover,rgba(255,255,255,0.05))] transition-all"
         >
           <Mail className="w-3.5 h-3.5" />
           Email it
@@ -156,7 +156,7 @@ If you reserve founding access, mention my name and you'll get the founding disc
         <button
           type="button"
           onClick={shareWhatsApp}
-          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5 transition-all"
+          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-[var(--public-line,rgba(255,255,255,0.12))] text-[color:var(--public-ink,#F0F0F0)] hover:bg-[var(--public-surface-hover,rgba(255,255,255,0.05))] transition-all"
         >
           <MessageCircle className="w-3.5 h-3.5" />
           WhatsApp
@@ -164,20 +164,20 @@ If you reserve founding access, mention my name and you'll get the founding disc
         <button
           type="button"
           onClick={shareX}
-          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5 transition-all"
+          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-[var(--public-line,rgba(255,255,255,0.12))] text-[color:var(--public-ink,#F0F0F0)] hover:bg-[var(--public-surface-hover,rgba(255,255,255,0.05))] transition-all"
         >
           Share on X
         </button>
         <button
           type="button"
           onClick={shareNative}
-          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5 transition-all"
+          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold border border-[var(--public-line,rgba(255,255,255,0.12))] text-[color:var(--public-ink,#F0F0F0)] hover:bg-[var(--public-surface-hover,rgba(255,255,255,0.05))] transition-all"
         >
           <Share2 className="w-3.5 h-3.5" />
           More
         </button>
       </div>
-      <p className="text-[11px] text-[#555555] mt-3 leading-relaxed">
+      <p className="text-[11px] text-[color:var(--public-muted,#555555)] mt-3 leading-relaxed">
         Keep it personal — send it to people you actually know. No spam, no mass
         messages.
       </p>

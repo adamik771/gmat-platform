@@ -53,7 +53,7 @@ export default function ScoreTimeline({ className }: ScoreTimelineProps) {
   return (
     <div className={cn("relative", className)}>
       {/* Vertical line */}
-      <div className="absolute left-4 top-2 bottom-2 w-px bg-white/[0.08]" />
+      <div className="absolute left-4 top-2 bottom-2 w-px bg-[var(--public-surface-hover,rgba(255,255,255,0.08))]" />
 
       <div className="space-y-8">
         {events.filter((event) => event.score !== undefined).map((event, index) => (
@@ -63,14 +63,14 @@ export default function ScoreTimeline({ className }: ScoreTimelineProps) {
               className={cn(
                 "absolute left-0 top-1 w-8 h-8 rounded-full flex items-center justify-center border-2",
                 event.highlight
-                  ? "border-[#C9A84C] bg-[#C9A84C]/10"
-                  : "border-white/[0.12] bg-[#111111]"
+                  ? "border-[color:var(--public-accent-line,#C9A84C)] bg-[var(--public-action,#C9A84C)]/10"
+                  : "border-[var(--public-line,rgba(255,255,255,0.12))] bg-[var(--public-surface,#111111)]"
               )}
             >
               <div
                 className={cn(
                   "w-2 h-2 rounded-full",
-                  event.highlight ? "bg-[#C9A84C]" : "bg-[#444444]"
+                  event.highlight ? "bg-[var(--public-action,#C9A84C)]" : "bg-[var(--public-muted,#444444)]"
                 )}
               />
             </div>
@@ -78,24 +78,24 @@ export default function ScoreTimeline({ className }: ScoreTimelineProps) {
             <div className="flex-1 pb-2">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-sm text-[#B9B7AE] mb-1">{event.date}</p>
+                  <p className="text-sm text-[color:var(--public-muted,#B9B7AE)] mb-1">{event.date}</p>
                   <h4
                     className={cn(
                       "text-sm font-semibold mb-1",
-                      event.highlight ? "text-[#C9A84C]" : "text-[#F0F0F0]"
+                      event.highlight ? "text-[color:var(--public-accent,#C9A84C)]" : "text-[color:var(--public-ink,#F0F0F0)]"
                     )}
                   >
                     {event.title}
                   </h4>
-                  <p className="text-sm text-[#B9B7AE]">{event.description}</p>
+                  <p className="text-sm text-[color:var(--public-muted,#B9B7AE)]">{event.description}</p>
                 </div>
                 {event.score && (
                   <div
                     className={cn(
                       "flex-shrink-0 px-3 py-1.5 rounded-lg text-sm font-bold",
                       event.highlight
-                        ? "bg-[#C9A84C]/10 text-[#C9A84C]"
-                        : "bg-white/5 text-[#888888]"
+                        ? "bg-[var(--public-action,#C9A84C)]/10 text-[color:var(--public-accent,#C9A84C)]"
+                        : "bg-[var(--public-surface-hover,rgba(255,255,255,0.05))] text-[color:var(--public-muted,#888888)]"
                     )}
                   >
                     {event.score}

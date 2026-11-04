@@ -74,7 +74,7 @@ const faqItems = [
 
 export default function ErrorLogTemplatePage() {
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
       <TrackView event="landing_view" props={{ page: "error-log-template" }} />
       {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
@@ -82,24 +82,24 @@ export default function ErrorLogTemplatePage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 90% 50% at 50% -5%, rgba(201,168,76,0.15) 0%, transparent 60%)",
+              "radial-gradient(ellipse 90% 50% at 50% -5%, var(--public-tint,rgba(201,168,76,0.15)) 0%, transparent 60%)",
           }}
           aria-hidden
         />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p
             className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: "#C9A84C" }}
+            style={{ color: "var(--public-accent,#C9A84C)" }}
           >
             Free template
           </p>
-          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-5">
+          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.02] mb-5">
             The GMAT error log{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               template.
             </span>
           </h1>
-          <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed">
+          <p className="text-[15px] sm:text-[17px] text-[color:var(--public-muted,#888888)] leading-relaxed">
             The exact six-tag system Adam used to go from 565 to 735. Log every
             mistake, tag why it happened, and let the patterns tell you what to
             fix next. Free spreadsheet — no account needed.
@@ -122,7 +122,7 @@ export default function ErrorLogTemplatePage() {
             secondChancePitch="Want the walkthrough? I'll send four short emails on getting real signal out of this log — and the rest of the system behind 565 to 735. Unsubscribe in one click."
             optInCtaLabel="Email me the walkthrough"
           />
-          <p className="text-[11px] text-[#555555] leading-relaxed mt-4">
+          <p className="text-[11px] text-[color:var(--public-muted,#555555)] leading-relaxed mt-4">
             GMAC, GMAT, Graduate Management Admission Council, and Graduate
             Management Admission Test are trademarks of GMAC in the United
             States and other countries. Zakarian GMAT is independent and is
@@ -135,10 +135,10 @@ export default function ErrorLogTemplatePage() {
       <SectionWrapper>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
+            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-3">
               The six causes behind every wrong answer
             </h2>
-            <p className="text-[14px] text-[#888888] leading-relaxed max-w-2xl mx-auto">
+            <p className="text-[14px] text-[color:var(--public-muted,#888888)] leading-relaxed max-w-2xl mx-auto">
               Every miss has a cause. Tag it with one of these, and your review
               stops being a pile of questions and starts being a short list of
               fixable habits.
@@ -148,15 +148,15 @@ export default function ErrorLogTemplatePage() {
             {TAGS.map((t) => (
               <div
                 key={t.tag}
-                className="p-5 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+                className="p-5 rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)]"
               >
                 <p
                   className="text-[10px] font-semibold uppercase tracking-[0.18em] mb-2"
-                  style={{ color: "#C9A84C" }}
+                  style={{ color: "var(--public-accent,#C9A84C)" }}
                 >
                   {t.tag}
                 </p>
-                <p className="text-[14px] text-[#C0C0C0] leading-relaxed">
+                <p className="text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
                   {t.desc}
                 </p>
               </div>
@@ -169,8 +169,8 @@ export default function ErrorLogTemplatePage() {
       <SectionWrapper variant="darker">
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center gap-2.5 mb-6">
-            <ListChecks className="w-5 h-5" style={{ color: "#C9A84C" }} />
-            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em]">
+            <ListChecks className="w-5 h-5" style={{ color: "var(--public-accent,#C9A84C)" }} />
+            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em]">
               How to use it
             </h2>
           </div>
@@ -180,13 +180,13 @@ export default function ErrorLogTemplatePage() {
                 <span
                   className="flex items-center justify-center w-6 h-6 rounded-full flex-shrink-0 text-[12px] font-semibold"
                   style={{
-                    backgroundColor: "rgba(201,168,76,0.1)",
-                    color: "#C9A84C",
+                    backgroundColor: "var(--public-tint,rgba(201,168,76,0.1))",
+                    color: "var(--public-accent,#C9A84C)",
                   }}
                 >
                   {i + 1}
                 </span>
-                <span className="text-[14px] text-[#C0C0C0] leading-relaxed pt-0.5">
+                <span className="text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed pt-0.5">
                   {step}
                 </span>
               </li>
@@ -198,10 +198,10 @@ export default function ErrorLogTemplatePage() {
       {/* Soft CTA to the platform */}
       <SectionWrapper>
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-4">
+          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.1] mb-4">
             Want the error log built in?
           </h2>
-          <p className="text-[14px] text-[#888888] leading-relaxed mb-7">
+          <p className="text-[14px] text-[color:var(--public-muted,#888888)] leading-relaxed mb-7">
             The full platform has this same six-tag log inside it, then feeds your
             tagged mistakes into a spaced review queue so you actually re-test the
             ones that hurt. Every new account starts with a free 7-day full-access trial.
@@ -210,20 +210,20 @@ export default function ErrorLogTemplatePage() {
             <Link
               href="/signup"
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               Start your free trial
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/resources"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold border border-white/[0.12] text-[#F0F0F0] hover:bg-white/5 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold border border-[var(--public-line,rgba(255,255,255,0.12))] text-[color:var(--public-ink,#F0F0F0)] hover:bg-[var(--public-surface-hover,rgba(255,255,255,0.05))] transition-all"
             >
               Browse free resources
             </Link>
           </div>
-          <p className="text-[12px] text-[#555555] mt-6">
-            <Check className="w-3.5 h-3.5 inline mr-1.5" style={{ color: "#3ECF8E" }} />
+          <p className="text-[12px] text-[color:var(--public-muted,#555555)] mt-6">
+            <Check className="w-3.5 h-3.5 inline mr-1.5" style={{ color: "var(--public-success,#3ECF8E)" }} />
             No credit card. No score promises — just a system that makes your
             review honest.
           </p>
@@ -234,7 +234,7 @@ export default function ErrorLogTemplatePage() {
       <SectionWrapper variant="darker">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
+            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05]">
               Common questions
             </h2>
           </div>

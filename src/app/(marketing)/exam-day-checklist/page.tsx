@@ -281,7 +281,7 @@ const TOTAL_ITEMS = SECTIONS.reduce((acc, s) => acc + s.items.length, 0)
 
 export default function ExamDayChecklistPage() {
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }} className="checklist-root">
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }} className="checklist-root">
       <JsonLd
         data={softwareApplicationLd({
           name: "GMAT Exam-Day Checklist",
@@ -305,24 +305,24 @@ export default function ExamDayChecklistPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,168,76,0.16) 0%, transparent 60%)",
+              "radial-gradient(ellipse 90% 55% at 50% -5%, var(--public-tint,rgba(201,168,76,0.16)) 0%, transparent 60%)",
           }}
           aria-hidden
         />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 mb-5">
-            <ClipboardList className="w-4 h-4" style={{ color: "#C9A84C" }} />
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold">
+            <ClipboardList className="w-4 h-4" style={{ color: "var(--public-accent,#C9A84C)" }} />
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--public-accent,#C9A84C)] font-semibold">
               Free checklist
             </p>
           </div>
-          <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
+          <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-5">
             GMAT exam-day{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               checklist.
             </span>
           </h1>
-          <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto mb-7">
+          <p className="text-[16px] sm:text-[17px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed max-w-2xl mx-auto mb-7">
             Everything to do in the seven days before your GMAT, the night
             before, the morning of, and inside the test center. Each item
             has a one-line reason &mdash; do it, skip it knowingly, but
@@ -333,7 +333,7 @@ export default function ExamDayChecklistPage() {
             <PrintButton />
             <Link
               href="/sample-chapter"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all duration-200"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-[var(--public-line,rgba(255,255,255,0.1))] text-[color:var(--public-body,#C0C0C0)] hover:border-[var(--public-line,rgba(255,255,255,0.18))] hover:text-[color:var(--public-ink,#F0F0F0)] transition-all duration-200"
             >
               Read a free sample chapter
             </Link>
@@ -348,19 +348,19 @@ export default function ExamDayChecklistPage() {
             <div className="flex items-baseline gap-3 mb-3 flex-wrap">
               <span
                 className="font-display text-[10px] font-semibold uppercase tracking-[0.22em]"
-                style={{ color: "#C9A84C" }}
+                style={{ color: "var(--public-accent,#C9A84C)" }}
               >
                 {section.eyebrow}
               </span>
-              <span className="text-[10px] text-[#666666] uppercase tracking-[0.18em]">
+              <span className="text-[10px] text-[color:var(--public-muted,#666666)] uppercase tracking-[0.18em]">
                 Stage {sIdx + 1} of {SECTIONS.length}
               </span>
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-tight leading-tight mb-3">
+            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight leading-tight mb-3">
               {section.title}
             </h2>
             {section.intro && (
-              <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-6 max-w-2xl">
+              <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-6 max-w-2xl">
                 {section.intro}
               </p>
             )}
@@ -368,19 +368,19 @@ export default function ExamDayChecklistPage() {
               {section.items.map((item, iIdx) => (
                 <li
                   key={iIdx}
-                  className="flex items-start gap-3 p-4 rounded-xl border border-white/[0.06] bg-[#0D0D0D] checklist-item"
+                  className="flex items-start gap-3 p-4 rounded-xl border border-[var(--public-line,rgba(255,255,255,0.06))] bg-[var(--public-surface,#0D0D0D)] checklist-item"
                 >
                   <CheckSquare
                     className="w-4 h-4 flex-shrink-0 mt-1"
-                    style={{ color: "#C9A84C" }}
+                    style={{ color: "var(--public-accent,#C9A84C)" }}
                     aria-hidden
                   />
                   <div className="flex-1">
-                    <p className="text-[15px] text-[#F0F0F0] font-semibold leading-snug">
+                    <p className="text-[15px] text-[color:var(--public-ink,#F0F0F0)] font-semibold leading-snug">
                       {item.text}
                     </p>
                     {item.detail && (
-                      <p className="text-[13px] text-[#888888] leading-relaxed mt-1.5">
+                      <p className="text-[13px] text-[color:var(--public-muted,#888888)] leading-relaxed mt-1.5">
                         {item.detail}
                       </p>
                     )}
@@ -391,11 +391,11 @@ export default function ExamDayChecklistPage() {
           </section>
         ))}
 
-        <aside className="mt-12 border-t border-white/[0.08] pt-6 no-print">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#888888] font-semibold mb-3">
+        <aside className="mt-12 border-t border-[var(--public-line,rgba(255,255,255,0.08))] pt-6 no-print">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--public-muted,#888888)] font-semibold mb-3">
             Official policy sources
           </p>
-          <p className="text-[13px] text-[#888888] leading-relaxed mb-3">
+          <p className="text-[13px] text-[color:var(--public-muted,#888888)] leading-relaxed mb-3">
             Policy details checked against GMAC on 27 August 2026. Always
             re-check your appointment email and the current official rules
             before test day.
@@ -405,7 +405,7 @@ export default function ExamDayChecklistPage() {
               href="https://www.mba.com/exams/gmat-exam/plan-for-exam-day/taking-the-exam-at-a-test-center"
               target="_blank"
               rel="noreferrer"
-              className="text-[#C9A84C] underline underline-offset-4"
+              className="text-[color:var(--public-accent,#C9A84C)] underline underline-offset-4"
             >
               Test-center rules
             </a>
@@ -413,7 +413,7 @@ export default function ExamDayChecklistPage() {
               href="https://www.mba.com/exams-and-exam-prep/gmat-exam/everything-you-need-to-know-about-gmat"
               target="_blank"
               rel="noreferrer"
-              className="text-[#C9A84C] underline underline-offset-4"
+              className="text-[color:var(--public-accent,#C9A84C)] underline underline-offset-4"
             >
               Review and edit rules
             </a>
@@ -421,7 +421,7 @@ export default function ExamDayChecklistPage() {
               href="https://www.mba.com/exams/gmat-exam/scores/official-score-reports"
               target="_blank"
               rel="noreferrer"
-              className="text-[#C9A84C] underline underline-offset-4"
+              className="text-[color:var(--public-accent,#C9A84C)] underline underline-offset-4"
             >
               Official score reports
             </a>
@@ -432,20 +432,20 @@ export default function ExamDayChecklistPage() {
         <div
           className="mt-16 p-7 sm:p-9 rounded-2xl border no-print"
           style={{
-            borderColor: "rgba(201,168,76,0.28)",
-            backgroundColor: "#111111",
+            borderColor: "var(--public-accent-line,rgba(201,168,76,0.28))",
+            backgroundColor: "var(--public-surface,#111111)",
           }}
         >
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold mb-2">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--public-accent,#C9A84C)] font-semibold mb-2">
             Before you get to exam day
           </p>
-          <h2 className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-tight leading-tight mb-4">
+          <h2 className="font-display text-2xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight leading-tight mb-4">
             Make sure you&apos;ve actually done the{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               prep work.
             </span>
           </h2>
-          <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-6 max-w-xl">
+          <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-6 max-w-xl">
             The checklist above is the easy part. The hard part &mdash; the
             structured prep that gets you to a score you&apos;d be happy to
             sit for &mdash; is what the platform was built for. Free sample
@@ -457,7 +457,7 @@ export default function ExamDayChecklistPage() {
             <Link
               href="/signup"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               Start Free
               <ArrowRight className="w-4 h-4" />
@@ -466,16 +466,16 @@ export default function ExamDayChecklistPage() {
               href="/sample-chapter"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border transition-all duration-200"
               style={{
-                borderColor: "rgba(201,168,76,0.32)",
-                color: "#C9A84C",
-                backgroundColor: "rgba(201,168,76,0.04)",
+                borderColor: "var(--public-accent-line,rgba(201,168,76,0.32))",
+                color: "var(--public-accent,#C9A84C)",
+                backgroundColor: "var(--public-tint,rgba(201,168,76,0.04))",
               }}
             >
               Read the free sample chapter
             </Link>
             <Link
               href="/resources"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all duration-200"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border border-[var(--public-line,rgba(255,255,255,0.1))] text-[color:var(--public-body,#C0C0C0)] hover:border-[var(--public-line,rgba(255,255,255,0.18))] hover:text-[color:var(--public-ink,#F0F0F0)] transition-all duration-200"
             >
               See all free resources
             </Link>
@@ -490,9 +490,9 @@ export default function ExamDayChecklistPage() {
           .no-print { display: none !important; }
           .checklist-root { background-color: white !important; color: black !important; }
           .checklist-root h1, .checklist-root h2 { color: black !important; }
-          .checklist-root p { color: #222 !important; }
+          .checklist-root p { color: var(--public-line-strong,#222) !important; }
           .checklist-root .checklist-item {
-            border: 1px solid #ccc !important;
+            border: 1px solid var(--public-body,#ccc) !important;
             background-color: white !important;
             page-break-inside: avoid;
           }

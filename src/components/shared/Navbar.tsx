@@ -2,8 +2,10 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import publicTheme from "@/components/marketing/PublicTheme.module.css"
 
 const navLinks = [
   { label: "Platform", href: "/course" },
@@ -18,25 +20,26 @@ const navigationFont = {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
 
   return (
     <nav
       aria-label="Public navigation"
-      className="public-navigation fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#0B0B0A]/95"
+      className={`public-navigation fixed top-0 left-0 right-0 z-50 border-b ${publicTheme.navigation}`}
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
           <Link href="/" className="group flex flex-col gap-0.5" aria-label="Zakarian GMAT home">
-            <span className="flex items-center gap-2 text-[#F0F0F0] font-semibold text-[15px] leading-none">
+            <span className="flex items-center gap-2 text-[color:var(--public-ink,#F0F0F0)] font-semibold text-[15px] leading-none">
               <span>ZAKARIAN</span>
               <span
                 className="w-1 h-1 rounded-full"
-                style={{ backgroundColor: "#C9A84C" }}
+                style={{ backgroundColor: "var(--public-action,#C9A84C)" }}
               />
               <span>GMAT</span>
             </span>
-            <span className="text-[11px] leading-none text-[#A5A59B] group-hover:text-[#B9B7AE] transition-colors">
+            <span className="text-[11px] leading-none text-[color:var(--public-muted,#A5A59B)] group-hover:text-[color:var(--public-muted,#B9B7AE)] transition-colors">
               Preparation system
             </span>
           </Link>
@@ -50,12 +53,13 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative py-2 text-[15px] leading-none font-medium text-[#AAA69C] hover:text-[#F0F0F0] transition-colors duration-150"
+                aria-current={pathname === link.href ? "page" : undefined}
+                className="group relative py-2 text-[15px] leading-none font-medium text-[color:var(--public-muted,#AAA69C)] hover:text-[color:var(--public-ink,#F0F0F0)] transition-colors duration-150"
               >
                 {link.label}
                 <span
                   aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-[#C9A84C] transition-transform duration-150 group-hover:scale-x-100"
+                  className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-[var(--public-action,#C9A84C)] transition-transform duration-150 group-hover:scale-x-100"
                 />
               </Link>
             ))}
@@ -68,16 +72,16 @@ export default function Navbar() {
           >
             <Link
               href="/login"
-              className="text-[14px] font-medium text-[#AAA69C] hover:text-[#F0F0F0] transition-colors"
+              className="text-[14px] font-medium text-[color:var(--public-muted,#AAA69C)] hover:text-[color:var(--public-ink,#F0F0F0)] transition-colors"
             >
               Sign in
             </Link>
             <Link
               href="/signup"
-              className="px-4 py-2.5 rounded-[4px] text-[14px] font-semibold transition-colors duration-150 hover:bg-[#D5B765]"
+              className="px-4 py-2.5 rounded-[4px] text-[14px] font-semibold transition-colors duration-150 hover:bg-[var(--public-action-hover,#D5B765)]"
               style={{
-                backgroundColor: "#C9A84C",
-                color: "#0A0A0A",
+                backgroundColor: "var(--public-action,#C9A84C)",
+                color: "var(--public-on-accent,#0A0A0A)",
               }}
             >
               Start 7-day trial
@@ -87,15 +91,14 @@ export default function Navbar() {
           {/* Mobile Hamburger */}
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
-              className="lg:hidden h-11 w-11 inline-flex items-center justify-center rounded-lg text-[#B9B7AE] hover:text-[#F0F0F0] transition-colors"
+              className="lg:hidden h-11 w-11 inline-flex items-center justify-center rounded-lg text-[color:var(--public-muted,#B9B7AE)] hover:text-[color:var(--public-ink,#F0F0F0)] transition-colors"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-72 border-white/[0.08]"
-              style={{ backgroundColor: "#111111" }}
+              className={`w-72 ${publicTheme.drawer}`}
             >
               <SheetTitle className="sr-only">Site navigation</SheetTitle>
               <div className="flex flex-col h-full pt-6">
@@ -104,15 +107,15 @@ export default function Navbar() {
                   onClick={() => setOpen(false)}
                   className="flex flex-col items-start gap-0.5 mb-8"
                 >
-                  <span className="flex items-center gap-2 text-[#F0F0F0] font-semibold text-[15px] leading-none">
+                  <span className="flex items-center gap-2 text-[color:var(--public-ink,#F0F0F0)] font-semibold text-[15px] leading-none">
                     <span>ZAKARIAN</span>
                     <span
                       className="w-1 h-1 rounded-full"
-                      style={{ backgroundColor: "#C9A84C" }}
+                      style={{ backgroundColor: "var(--public-action,#C9A84C)" }}
                     />
                     <span>GMAT</span>
                   </span>
-                  <span className="text-[10px] leading-none text-[#77746C]">
+                  <span className="text-[10px] leading-none text-[color:var(--public-muted,#77746C)]">
                     Preparation system
                   </span>
                 </Link>
@@ -122,8 +125,9 @@ export default function Navbar() {
                     <Link
                       key={link.href}
                       href={link.href}
+                      aria-current={pathname === link.href ? "page" : undefined}
                       onClick={() => setOpen(false)}
-                      className="px-3 py-3.5 rounded-[4px] text-[15px] font-medium text-[#AAA69C] hover:text-[#F0F0F0] hover:bg-white/[0.04] transition-colors"
+                      className="px-3 py-3.5 rounded-[4px] text-[15px] font-medium text-[color:var(--public-muted,#AAA69C)] hover:text-[color:var(--public-ink,#F0F0F0)] hover:bg-[var(--public-surface-hover,rgba(255,255,255,0.04))] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -137,15 +141,15 @@ export default function Navbar() {
                   <Link
                     href="/login"
                     onClick={() => setOpen(false)}
-                    className="text-center px-4 py-2.5 rounded-[4px] text-[14px] font-medium text-[#AAA69C] border border-white/[0.08] hover:text-[#F0F0F0] transition-colors"
+                    className="text-center px-4 py-2.5 rounded-[4px] text-[14px] font-medium text-[color:var(--public-muted,#AAA69C)] border border-[var(--public-line,rgba(255,255,255,0.08))] hover:text-[color:var(--public-ink,#F0F0F0)] transition-colors"
                   >
                     Sign in
                   </Link>
                   <Link
                     href="/signup"
                     onClick={() => setOpen(false)}
-                    className="text-center px-4 py-2.5 rounded-[4px] text-[14px] font-semibold hover:bg-[#D5B765] transition-colors"
-                    style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+                    className="text-center px-4 py-2.5 rounded-[4px] text-[14px] font-semibold hover:bg-[var(--public-action-hover,#D5B765)] transition-colors"
+                    style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
                   >
                     Start 7-day trial
                   </Link>

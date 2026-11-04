@@ -19,12 +19,12 @@ export default function ReserveInterceptButton({
         data-plan-id={planId}
         className={cn(
           "flex min-h-11 w-full items-center justify-center gap-2 rounded-md px-3 py-3 text-center text-sm font-medium",
-          highlighted ? "bg-[#C9A84C] text-[#171B17] hover:bg-[#DEC371]" : "border border-white/20 text-[#F0F0F0] hover:bg-white/5"
+          highlighted ? "bg-[var(--public-action,#C9A84C)] text-[color:var(--public-on-accent,#171B17)] hover:bg-[var(--public-action,#DEC371)]" : "border border-[var(--public-line,rgba(255,255,255,0.2))] text-[color:var(--public-ink,#F0F0F0)] hover:bg-[var(--public-surface-hover,rgba(255,255,255,0.05))]"
         )}
       >
         {label}<ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
       </Link>
-      <p className="mt-2 text-xs leading-relaxed text-[#B9B7AE]">No payment today. Choose a plan when checkout opens.</p>
+      <p className="mt-2 text-xs leading-relaxed text-[color:var(--public-muted,#B9B7AE)]">No payment today. Choose a plan when checkout opens.</p>
     </div>
   )
 }

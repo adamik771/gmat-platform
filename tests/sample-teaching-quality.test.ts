@@ -19,6 +19,16 @@ function reading(slug: string, sectionId: string) {
 }
 
 describe("public sample teaching corrections", () => {
+  it("uses consistent sans-serif sample typography without changing the source chapter title", () => {
+    const chapter = getChapterBySlug("quant-13-linear-equations-systems")!
+    expect(chapter.title).toBe("Algebra: Linear Equations & Systems")
+    const html = renderToStaticMarkup(createElement(QuantSample))
+    expect(html).toContain('class="public-sample-reader font-sans"')
+    expect(html).toContain("Algebra: Linear Equations and Systems</h1>")
+    expect(html).not.toContain("font-display")
+    expect(getChapterBySlug(chapter.slug)?.title).toBe(chapter.title)
+  })
+
   it("keeps the Quant example correct and explains the direction before eliminating choices", () => {
     const choices = [2, 4, 6, 8, 10]
     const gap = (x: number) => (3 * x - 4) / 5 - (x - 4)

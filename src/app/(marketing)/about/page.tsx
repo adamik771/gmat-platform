@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 function Strong({ children }: { children: React.ReactNode }) {
-  return <strong className="text-[#F0F0F0] font-semibold">{children}</strong>
+  return <strong className="text-[color:var(--public-ink,#F0F0F0)] font-semibold">{children}</strong>
 }
 
 const values = [
@@ -41,7 +41,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
       <div className="max-w-3xl mx-auto pt-24 px-4 sm:px-6">
         <Breadcrumbs
           items={[
@@ -56,7 +56,7 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,168,76,0.16) 0%, transparent 60%)",
+              "radial-gradient(ellipse 90% 55% at 50% -5%, var(--public-tint,rgba(201,168,76,0.16)) 0%, transparent 60%)",
           }}
           aria-hidden
         />
@@ -67,14 +67,14 @@ export default function AboutPage() {
         <div className="relative max-w-3xl mx-auto text-center px-4">
           <p
             className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-5"
-            style={{ color: "#C9A84C" }}
+            style={{ color: "var(--public-accent,#C9A84C)" }}
           >
             About
           </p>
-          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-6">
+          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.02] mb-6">
             Adam Zakarian
           </h1>
-          <p className="text-[17px] sm:text-[18px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[17px] sm:text-[18px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed max-w-2xl mx-auto">
             I&apos;m Adam Zakarian, now studying in the Master in Banking and
             Finance programme at the University of St.Gallen (HSG). My own GMAT
             preparation shaped this platform&apos;s focus on structured study,
@@ -87,23 +87,23 @@ export default function AboutPage() {
       <SectionWrapper variant="darker" className="!py-12 lg:!py-16">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "#C9A84C" }}>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "var(--public-accent,#C9A84C)" }}>
               The story
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-8">
+            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-8">
               From preparation to a platform
             </h2>
-            <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+            <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
               I started with a cold official practice exam in April 2025 and
               sat two official GMAT Focus exams later that year. My preparation
               included a summer pause, intensive study, and a final period of
               mistake review. This is one personal journey, not a typical student outcome.
             </p>
             <details className="mt-4">
-              <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold text-[#C9A84C]">Read the full preparation story</summary>
-            <div className="space-y-5 text-[15px] text-[#C0C0C0] leading-[1.75]">
+              <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold text-[color:var(--public-accent,#C9A84C)]">Read the full preparation story</summary>
+            <div className="space-y-5 text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-[1.75]">
               <p>
-                <span className="font-display text-5xl font-semibold float-left leading-none mt-1 mr-3" style={{ color: "#C9A84C" }}>I</span>
+                <span className="font-display text-5xl font-semibold float-left leading-none mt-1 mr-3" style={{ color: "var(--public-accent,#C9A84C)" }}>I</span>
                   started studying in April 2025. My very first practice
                 exam, taken cold before any structured prep, was a major
                 reality check: 565. Q78, V79, DI77. 56th percentile.
@@ -137,7 +137,7 @@ export default function AboutPage() {
               <p>
                 In early November I sat for my first official GMAT Focus
                 exam.{" "}
-                <span className="font-display-italic text-[#F0F0F0]">
+                <span className="font-display-italic text-[color:var(--public-ink,#F0F0F0)]">
                   675. Q86, V85, DI80. 95th percentile.
                 </span>{" "}
                 A strong improvement, but it felt underwhelming. My
@@ -159,7 +159,7 @@ export default function AboutPage() {
                 official felt very similar to my practice sets, which
                 kept me composed and helped me manage time. I was
                 genuinely shocked when the score came up:{" "}
-                <span className="font-display font-semibold" style={{ color: "#C9A84C" }}>
+                <span className="font-display font-semibold" style={{ color: "var(--public-accent,#C9A84C)" }}>
                   735.
                 </span>{" "}
                 Q88, V86, DI85 — displayed as the 100th percentile on my
@@ -189,14 +189,14 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "#C9A84C" }}>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "var(--public-accent,#C9A84C)" }}>
               Journey
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-8">
+            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-8">
               From 565 to 735
             </h2>
             <ScoreTimeline />
-            <Link href="/students" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm text-[#C9A84C] hover:underline">
+            <Link href="/students" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm text-[color:var(--public-accent,#C9A84C)] hover:underline">
               Results and evidence <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
             {/* ScoreReportProof is intentionally not rendered: there is no
@@ -212,13 +212,13 @@ export default function AboutPage() {
       {/* What I'd tell my past self */}
       <SectionWrapper>
         <div className="max-w-2xl mx-auto">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "#C9A84C" }}>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "var(--public-accent,#C9A84C)" }}>
             Hindsight
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-8">
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-8">
             What I&apos;d tell my past self
           </h2>
-          <div className="space-y-5 text-[15px] text-[#C0C0C0] leading-[1.75]">
+          <div className="space-y-5 text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-[1.75]">
             <p>
               <Strong>Consistency beats everything.</Strong> Show up
               every day. On the days when productivity feels low, follow
@@ -264,22 +264,22 @@ export default function AboutPage() {
         <div className="max-w-2xl mx-auto text-center">
           <p
             className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: "#C9A84C" }}
+            style={{ color: "var(--public-accent,#C9A84C)" }}
           >
             Mission
           </p>
-          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-8">
+          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-8">
             Why I built{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               this.
             </span>
           </h2>
-          <p className="text-[16px] text-[#C0C0C0] leading-relaxed mb-5">
+          <p className="text-[16px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-5">
             Starting with a lot of ground to cover and limited time shaped
             what I wanted from preparation: a clear sequence, useful practice,
             and an honest record of what still needed work.
           </p>
-          <p className="text-[16px] text-[#C0C0C0] leading-relaxed">
+          <p className="text-[16px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
             I built this for the student who knows they need a structured
             plan, an honest error log, and a way to compound daily effort
             into real score gains. That&apos;s the path I took. This is
@@ -291,10 +291,10 @@ export default function AboutPage() {
       {/* Values */}
       <SectionWrapper variant="darker">
         <div className="text-center mb-14">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "#C9A84C" }}>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: "var(--public-accent,#C9A84C)" }}>
             Principles
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05]">
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05]">
             What this platform stands for
           </h2>
         </div>
@@ -302,12 +302,12 @@ export default function AboutPage() {
           {values.map((value, i) => (
             <div
               key={value.title}
-              className="group relative p-6 rounded-2xl border border-white/[0.08] bg-[#111111] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-[#141414] hover:shadow-[0_10px_40px_-12px_rgba(201,168,76,0.15)]"
+              className="group relative p-6 rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#111111)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--public-line,rgba(255,255,255,0.16))] hover:bg-[var(--public-surface,#141414)] hover:shadow-[0_10px_40px_-12px_var(--public-tint,rgba(201,168,76,0.15))]"
             >
               <div className="flex items-center gap-3 mb-4">
                 <span
                   className="font-display text-[11px] font-semibold tabular-nums"
-                  style={{ color: "rgba(201,168,76,0.55)" }}
+                  style={{ color: "var(--public-accent-line,rgba(201,168,76,0.55))" }}
                   aria-hidden
                 >
                   0{i + 1}
@@ -316,27 +316,27 @@ export default function AboutPage() {
                   className="h-px flex-1"
                   style={{
                     background:
-                      "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+                      "linear-gradient(to right, var(--public-accent-line,rgba(201,168,76,0.3)), transparent)",
                   }}
                   aria-hidden
                 />
               </div>
-              <h3 className="font-display text-lg font-semibold text-[#F0F0F0] mb-2 tracking-tight">
+              <h3 className="font-display text-lg font-semibold text-[color:var(--public-ink,#F0F0F0)] mb-2 tracking-tight">
                 {value.title}
               </h3>
-              <p className="text-[13px] text-[#888888] leading-relaxed">{value.description}</p>
+              <p className="text-[13px] text-[color:var(--public-muted,#888888)] leading-relaxed">{value.description}</p>
             </div>
           ))}
         </div>
       </SectionWrapper>
 
       {/* CTA */}
-      <section className="relative py-28 overflow-hidden" style={{ backgroundColor: "#0A0A0A" }}>
+      <section className="relative py-28 overflow-hidden" style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 70% at 50% 100%, rgba(201,168,76,0.14) 0%, transparent 65%)",
+              "radial-gradient(ellipse 70% 70% at 50% 100%, var(--public-tint,rgba(201,168,76,0.14)) 0%, transparent 65%)",
           }}
           aria-hidden
         />
@@ -345,28 +345,28 @@ export default function AboutPage() {
           aria-hidden
         />
         <div className="relative max-w-3xl mx-auto text-center px-4">
-          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
+          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-5">
             Ready to try a{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               different
             </span>{" "}
             approach?
           </h2>
-          <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed mb-10">
+          <p className="text-[15px] sm:text-[17px] text-[color:var(--public-muted,#888888)] leading-relaxed mb-10">
             Free to start. No credit card required.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/signup"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/[0.12] text-[#C0C0C0] hover:border-white/[0.2] hover:text-[#F0F0F0] transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-[var(--public-line,rgba(255,255,255,0.12))] text-[color:var(--public-body,#C0C0C0)] hover:border-[var(--public-line,rgba(255,255,255,0.2))] hover:text-[color:var(--public-ink,#F0F0F0)] transition-all duration-200"
             >
               Request a free call
             </Link>

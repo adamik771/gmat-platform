@@ -75,25 +75,25 @@ export default function ScoreBySchoolClient() {
   )
 
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-28 pb-20">
         <header className="mb-10">
           <div className="inline-flex items-center gap-2 mb-5">
             <GraduationCap
               className="w-4 h-4"
-              style={{ color: "#C9A84C" }}
+              style={{ color: "var(--public-accent,#C9A84C)" }}
             />
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--public-accent,#C9A84C)] font-semibold">
               Free tool
             </p>
           </div>
-          <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
+          <h1 className="font-display text-4xl sm:text-5xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-5">
             What GMAT score do I need for{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               my target programme?
             </span>
           </h1>
-          <p className="text-[16px] text-[#C0C0C0] leading-relaxed max-w-2xl">
+          <p className="text-[16px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed max-w-2xl">
             Published class averages, medians, and admissions signals for
             leading MBA, MiM, and finance master&apos;s programmes. When a
             school reports the old GMAT scale, the current-score figure is an
@@ -104,7 +104,7 @@ export default function ScoreBySchoolClient() {
 
         {/* Programme type filter */}
         <div className="mb-5">
-          <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2">
+          <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[color:var(--public-muted,#888888)] mb-2">
             Programme type
           </p>
           <div className="flex flex-wrap gap-2">
@@ -127,13 +127,13 @@ export default function ScoreBySchoolClient() {
                 style={{
                   borderColor:
                     programType === type
-                      ? "rgba(201,168,76,0.4)"
-                      : "rgba(255,255,255,0.08)",
+                      ? "var(--public-accent-line,rgba(201,168,76,0.4))"
+                      : "var(--public-line,rgba(255,255,255,0.08))",
                   backgroundColor:
                     programType === type
-                      ? "rgba(201,168,76,0.08)"
-                      : "#0D0D0D",
-                  color: programType === type ? "#C9A84C" : "#888888",
+                      ? "var(--public-tint,rgba(201,168,76,0.08))"
+                      : "var(--public-surface,#0D0D0D)",
+                  color: programType === type ? "var(--public-accent,#C9A84C)" : "var(--public-muted,#888888)",
                 }}
               >
                 {type}
@@ -144,7 +144,7 @@ export default function ScoreBySchoolClient() {
 
         {/* Region filter */}
         <div className="mb-5">
-          <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2">
+          <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[color:var(--public-muted,#888888)] mb-2">
             Filter by region
           </p>
           <div className="flex flex-wrap gap-2">
@@ -165,13 +165,13 @@ export default function ScoreBySchoolClient() {
                 style={{
                   borderColor:
                     region === r
-                      ? "rgba(201,168,76,0.4)"
-                      : "rgba(255,255,255,0.08)",
+                      ? "var(--public-accent-line,rgba(201,168,76,0.4))"
+                      : "var(--public-line,rgba(255,255,255,0.08))",
                   backgroundColor:
                     region === r
-                      ? "rgba(201,168,76,0.08)"
-                      : "#0D0D0D",
-                  color: region === r ? "#C9A84C" : "#888888",
+                      ? "var(--public-tint,rgba(201,168,76,0.08))"
+                      : "var(--public-surface,#0D0D0D)",
+                  color: region === r ? "var(--public-accent,#C9A84C)" : "var(--public-muted,#888888)",
                   opacity: filterPrograms(programType, r).length === 0 ? 0.35 : 1,
                 }}
               >
@@ -185,7 +185,7 @@ export default function ScoreBySchoolClient() {
         <div className="mb-7">
           <label
             htmlFor="school-select"
-            className="block text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-2"
+            className="block text-[10px] uppercase tracking-[0.22em] font-semibold text-[color:var(--public-muted,#888888)] mb-2"
           >
             Pick a programme
           </label>
@@ -193,7 +193,7 @@ export default function ScoreBySchoolClient() {
             id="school-select"
             value={selectedSlug}
             onChange={(e) => setSelectedSlug(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all appearance-none"
+            className="w-full px-4 py-3 rounded-xl text-[15px] text-[color:var(--public-ink,#F0F0F0)] border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)] outline-none focus:ring-2 focus:ring-[var(--public-accent,#C9A84C)]/30 focus:border-[color:var(--public-accent-line,#C9A84C)]/40 transition-all appearance-none"
             style={{
               backgroundImage:
                 "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")",
@@ -206,7 +206,7 @@ export default function ScoreBySchoolClient() {
               <option
                 key={program.slug}
                 value={program.slug}
-                className="bg-[#0A0A0A]"
+                className="bg-[var(--public-bg,#0A0A0A)]"
               >
                 {program.schoolName} — {program.programName}
               </option>
@@ -219,37 +219,37 @@ export default function ScoreBySchoolClient() {
 
         {/* Comparison table — quick visual scan of all matching schools */}
         <div className="mt-12">
-          <h2 className="font-display text-xl font-semibold text-[#F0F0F0] tracking-tight mb-3">
+          <h2 className="font-display text-xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight mb-3">
             All {filtered.length} programmes{" "}
             {(programType !== "All" || region !== "All") && (
-              <span className="text-[#888888] text-base font-normal">
+              <span className="text-[color:var(--public-muted,#888888)] text-base font-normal">
                 ({[programType, region].filter((value) => value !== "All").join(" · ")})
               </span>
             )}
           </h2>
-          <p className="text-[14px] text-[#C0C0C0] leading-relaxed mb-5 max-w-xl">
+          <p className="text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-5 max-w-xl">
             Select any row to view its evidence and admissions context above.
             Rows are grouped by evidence type, not ranked as admissions
             targets. The ≈ symbol marks a comparison derived from GMAC&apos;s July
             2025 concordance table rather than a score published by the school.
           </p>
           <div
-            className="overflow-x-auto rounded-xl border border-white/[0.08]"
-            style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03)" }}
+            className="overflow-x-auto rounded-xl border border-[var(--public-line,rgba(255,255,255,0.08))]"
+            style={{ boxShadow: "inset 0 1px 0 var(--public-line,rgba(255,255,255,0.03))" }}
           >
             <table className="w-full text-sm">
               <thead>
-                <tr style={{ backgroundColor: "#0F0F0F" }}>
-                  <th className="py-3 px-4 text-left text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
+                <tr style={{ backgroundColor: "var(--public-surface,#0F0F0F)" }}>
+                  <th className="py-3 px-4 text-left text-[10px] uppercase tracking-[0.18em] text-[color:var(--public-muted,#888888)] font-semibold">
                     Programme
                   </th>
-                  <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
+                  <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[color:var(--public-muted,#888888)] font-semibold">
                     Current-GMAT figure
                   </th>
-                  <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold">
+                  <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[color:var(--public-muted,#888888)] font-semibold">
                     10th Edition figure
                   </th>
-                  <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[#888888] font-semibold hidden sm:table-cell">
+                  <th className="py-3 px-4 text-right text-[10px] uppercase tracking-[0.18em] text-[color:var(--public-muted,#888888)] font-semibold hidden sm:table-cell">
                     Cohort / intake
                   </th>
                 </tr>
@@ -263,12 +263,12 @@ export default function ScoreBySchoolClient() {
                       <tr
                         key={program.slug}
                         onClick={() => setSelectedSlug(program.slug)}
-                        className="border-t border-white/[0.05] cursor-pointer transition-colors hover:bg-white/[0.02]"
+                        className="border-t border-[var(--public-line,rgba(255,255,255,0.05))] cursor-pointer transition-colors hover:bg-[var(--public-surface-hover,rgba(255,255,255,0.02))]"
                         style={{
                           backgroundColor: isSelected
-                            ? "rgba(201,168,76,0.06)"
+                            ? "var(--public-tint,rgba(201,168,76,0.06))"
                             : i % 2 === 0
-                              ? "#0A0A0A"
+                              ? "var(--public-bg,#0A0A0A)"
                               : "transparent",
                         }}
                       >
@@ -276,12 +276,12 @@ export default function ScoreBySchoolClient() {
                           <span
                             className="font-semibold"
                             style={{
-                              color: isSelected ? "#C9A84C" : "#F0F0F0",
+                              color: isSelected ? "var(--public-accent,#C9A84C)" : "var(--public-ink,#F0F0F0)",
                             }}
                           >
                             {program.schoolName}
                           </span>
-                          <span className="block text-[11px] text-[#666666] mt-0.5">
+                          <span className="block text-[11px] text-[color:var(--public-muted,#666666)] mt-0.5">
                             {program.programName} · {program.location}
                           </span>
                           {program.sourceUrl != null &&
@@ -291,7 +291,7 @@ export default function ScoreBySchoolClient() {
                                 target="_blank"
                                 rel="noreferrer"
                                 onClick={(event) => event.stopPropagation()}
-                                className="inline-flex items-center gap-1 mt-1.5 text-[10px] leading-tight text-[#C9A84C] hover:text-[#E0C56A] transition-colors"
+                                className="inline-flex items-center gap-1 mt-1.5 text-[10px] leading-tight text-[color:var(--public-accent,#C9A84C)] hover:text-[color:var(--public-accent,#E0C56A)] transition-colors"
                               >
                                 {program.sourceLabel}
                                 <ExternalLink
@@ -301,13 +301,13 @@ export default function ScoreBySchoolClient() {
                               </a>
                             )}
                         </td>
-                        <td className="py-3 px-4 text-right tabular-nums text-[#C0C0C0]">
+                        <td className="py-3 px-4 text-right tabular-nums text-[color:var(--public-body,#C0C0C0)]">
                           <span className="block">
                             {program.focusEquivalent == null
                               ? "—"
                               : `${isConcordanceFigure(program) ? "≈ " : ""}${program.focusEquivalent}`}
                           </span>
-                          <span className="block mt-1 text-[10px] leading-tight text-[#666666]">
+                          <span className="block mt-1 text-[10px] leading-tight text-[color:var(--public-muted,#666666)]">
                             {program.scoreStatistic === "Not published"
                               ? "Not published / unverified"
                               : isConcordanceFigure(program)
@@ -315,15 +315,15 @@ export default function ScoreBySchoolClient() {
                                 : `${program.scoreStatistic} · school-published`}
                           </span>
                         </td>
-                        <td className="py-3 px-4 text-right tabular-nums text-[#888888]">
+                        <td className="py-3 px-4 text-right tabular-nums text-[color:var(--public-muted,#888888)]">
                           <span className="block">{program.legacyScore ?? "—"}</span>
                           {program.legacyScore != null && (
-                            <span className="block mt-1 text-[10px] leading-tight text-[#555555]">
+                            <span className="block mt-1 text-[10px] leading-tight text-[color:var(--public-muted,#555555)]">
                               {program.scoreStatistic}
                             </span>
                           )}
                         </td>
-                        <td className="py-3 px-4 text-right tabular-nums text-[#888888] hidden sm:table-cell">
+                        <td className="py-3 px-4 text-right tabular-nums text-[color:var(--public-muted,#888888)] hidden sm:table-cell">
                           {program.classSize ?? "—"}
                         </td>
                       </tr>
@@ -338,20 +338,20 @@ export default function ScoreBySchoolClient() {
         <div
           className="mt-12 p-7 sm:p-9 rounded-2xl border"
           style={{
-            borderColor: "rgba(201,168,76,0.28)",
-            backgroundColor: "#111111",
+            borderColor: "var(--public-accent-line,rgba(201,168,76,0.28))",
+            backgroundColor: "var(--public-surface,#111111)",
           }}
         >
-          <p className="text-[10px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold mb-2">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--public-accent,#C9A84C)] font-semibold mb-2">
             Knowing your target is the easy part
           </p>
-          <h2 className="font-display text-2xl font-semibold text-[#F0F0F0] tracking-tight leading-tight mb-4">
+          <h2 className="font-display text-2xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight leading-tight mb-4">
             The hard part is{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               getting there.
             </span>
           </h2>
-          <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-6 max-w-xl">
+          <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-6 max-w-xl">
             Baseline with an official mba.com practice exam, enter your
             section scores on the platform, and it builds a per-topic
             study plan around the gap to your target school. No card
@@ -361,7 +361,7 @@ export default function ScoreBySchoolClient() {
             <Link
               href="/signup"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               Start Free
               <ArrowRight className="w-4 h-4" />
@@ -370,9 +370,9 @@ export default function ScoreBySchoolClient() {
               href="/score-converter"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border transition-all duration-200"
               style={{
-                borderColor: "rgba(201,168,76,0.32)",
-                color: "#C9A84C",
-                backgroundColor: "rgba(201,168,76,0.04)",
+                borderColor: "var(--public-accent-line,rgba(201,168,76,0.32))",
+                color: "var(--public-accent,#C9A84C)",
+                backgroundColor: "var(--public-tint,rgba(201,168,76,0.04))",
               }}
             >
               Convert any score
@@ -398,17 +398,17 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
     <div
       className="p-7 sm:p-8 rounded-2xl border overflow-hidden relative"
       style={{
-        borderColor: "rgba(201,168,76,0.28)",
-        backgroundColor: "#111111",
+        borderColor: "var(--public-accent-line,rgba(201,168,76,0.28))",
+        backgroundColor: "var(--public-surface,#111111)",
         boxShadow:
-          "0 0 80px rgba(201,168,76,0.08), inset 0 1px 0 rgba(255,255,255,0.04)",
+          "0 0 80px var(--public-tint,rgba(201,168,76,0.08)), inset 0 1px 0 var(--public-line,rgba(255,255,255,0.04))",
       }}
     >
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 80% at 100% 0%, rgba(201,168,76,0.08) 0%, transparent 60%)",
+            "radial-gradient(ellipse 70% 80% at 100% 0%, var(--public-tint,rgba(201,168,76,0.08)) 0%, transparent 60%)",
         }}
         aria-hidden
       />
@@ -417,28 +417,28 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
           <span
             className="px-2 py-0.5 rounded text-[10px] uppercase tracking-[0.18em] font-semibold"
             style={{
-              backgroundColor: "rgba(201,168,76,0.12)",
-              color: "#C9A84C",
+              backgroundColor: "var(--public-tint,rgba(201,168,76,0.12))",
+              color: "var(--public-accent,#C9A84C)",
             }}
           >
             {program.programType}
           </span>
-          <span className="text-[11px] text-[#888888]">
+          <span className="text-[11px] text-[color:var(--public-muted,#888888)]">
             {program.location}
           </span>
           {program.classSize != null && (
-            <span className="text-[11px] text-[#666666]">
+            <span className="text-[11px] text-[color:var(--public-muted,#666666)]">
               · Class size {program.classSize}
             </span>
           )}
         </div>
-        <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-3">
+        <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.1] mb-3">
           {program.schoolName}
         </h2>
-        <p className="text-[12px] uppercase tracking-[0.16em] font-semibold text-[#C9A84C] mb-3">
+        <p className="text-[12px] uppercase tracking-[0.16em] font-semibold text-[color:var(--public-accent,#C9A84C)] mb-3">
           {program.programName}
         </p>
-        <p className="text-[14px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl">
+        <p className="text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-7 max-w-xl">
           {program.shortNote}
         </p>
 
@@ -462,7 +462,7 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
                 ? `≈ ${program.focusEquivalent}`
                 : program.focusEquivalent
             }
-            accent="#C9A84C"
+            accent="var(--public-accent,#C9A84C)"
           />
           <ScoreCell
             label={
@@ -476,22 +476,22 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
                 : "School-published figure"
             }
             value={program.legacyScore}
-            accent="#888888"
+            accent="var(--public-muted,#888888)"
           />
-          <div className="sm:col-span-2 px-4 py-3 rounded-xl border border-white/[0.06] bg-[#0D0D0D]">
-            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-1.5">
+          <div className="sm:col-span-2 px-4 py-3 rounded-xl border border-[var(--public-line,rgba(255,255,255,0.06))] bg-[var(--public-surface,#0D0D0D)]">
+            <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[color:var(--public-muted,#888888)] mb-1.5">
               Admissions treatment
             </p>
-            <p className="text-[13px] text-[#C0C0C0] leading-relaxed">
+            <p className="text-[13px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
               {program.testPolicy}
             </p>
           </div>
         </div>
 
-        <p className="text-[12px] text-[#666666] mt-5 leading-relaxed">
+        <p className="text-[12px] text-[color:var(--public-muted,#666666)] mt-5 leading-relaxed">
           <Sparkles
             className="inline w-3 h-3 mr-1"
-            style={{ color: "#C9A84C" }}
+            style={{ color: "var(--public-accent,#C9A84C)" }}
           />
           Averages and medians describe a cohort. Minimums, observed ranges,
           and recommended ranges have the narrower meaning stated above; none
@@ -503,7 +503,7 @@ function ProgramCard({ program }: { program: GraduateProgram }) {
             href={program.sourceUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 mt-4 text-[12px] font-semibold text-[#C9A84C] hover:text-[#E0C56A] transition-colors"
+            className="inline-flex items-center gap-1.5 mt-4 text-[12px] font-semibold text-[color:var(--public-accent,#C9A84C)] hover:text-[color:var(--public-accent,#E0C56A)] transition-colors"
           >
             {program.sourceLabel}
             <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
@@ -531,11 +531,11 @@ function ScoreCell({
     <div
       className="px-4 py-3 rounded-xl border"
       style={{
-        borderColor: "rgba(255,255,255,0.06)",
-        backgroundColor: "#0D0D0D",
+        borderColor: "var(--public-line,rgba(255,255,255,0.06))",
+        backgroundColor: "var(--public-surface,#0D0D0D)",
       }}
     >
-      <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[#888888] mb-1.5">
+      <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-[color:var(--public-muted,#888888)] mb-1.5">
         {label}
       </p>
       <div className="flex items-center gap-2">
@@ -547,7 +547,7 @@ function ScoreCell({
           {value ?? "—"}
         </span>
       </div>
-      <p className="text-[11px] text-[#555555] mt-1">{sub}</p>
+      <p className="text-[11px] text-[color:var(--public-muted,#555555)] mt-1">{sub}</p>
     </div>
   )
 }

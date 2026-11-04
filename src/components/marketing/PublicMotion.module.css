@@ -1,0 +1,9 @@
+@media (prefers-reduced-motion: no-preference) {
+  .root [data-motion-action] { transition: transform 180ms ease, background-color 180ms ease; }
+  .root [data-motion-action]:active { transform: scale(.99); }
+  .root [data-motion-arrow] { transition: transform 260ms cubic-bezier(.22, 1, .36, 1); }
+  .root a:focus-visible [data-motion-arrow] { transform: translateX(3px); }
+  @media (hover: hover) {
+    .root a:hover [data-motion-arrow] { transform: translateX(3px); }
+  }
+}

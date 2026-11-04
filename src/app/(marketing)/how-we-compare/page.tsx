@@ -125,15 +125,15 @@ function SectionHeader({
     <div className="mb-8 max-w-2xl">
       <p
         className="text-[10px] uppercase tracking-[0.22em] font-semibold mb-2"
-        style={{ color: "#C9A84C" }}
+        style={{ color: "var(--public-accent,#C9A84C)" }}
       >
         {eyebrow}
       </p>
-      <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.1] mb-3">
+      <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.1] mb-3">
         {title}
       </h2>
       {description && (
-        <p className="text-[15px] text-[#C0C0C0] leading-relaxed">{description}</p>
+        <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">{description}</p>
       )}
     </div>
   )
@@ -141,7 +141,7 @@ function SectionHeader({
 
 export default function HowWeComparePage() {
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
       <div className="max-w-3xl mx-auto pt-24 px-4 sm:px-6">
         <Breadcrumbs
           items={[
@@ -157,7 +157,7 @@ export default function HowWeComparePage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,168,76,0.16) 0%, transparent 60%)",
+              "radial-gradient(ellipse 90% 55% at 50% -5%, var(--public-tint,rgba(201,168,76,0.16)) 0%, transparent 60%)",
           }}
           aria-hidden
         />
@@ -167,18 +167,18 @@ export default function HowWeComparePage() {
         />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 mb-5">
-            <Sparkles className="w-4 h-4" style={{ color: "#C9A84C" }} />
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold">
+            <Sparkles className="w-4 h-4" style={{ color: "var(--public-accent,#C9A84C)" }} />
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--public-accent,#C9A84C)] font-semibold">
               How we compare
             </p>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-5">
+          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.02] mb-5">
             Most GMAT prep makes you build your own stack.{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               We didn&apos;t.
             </span>
           </h1>
-          <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[16px] sm:text-[17px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed max-w-2xl mx-auto">
             The usual advice is to buy one tool for quant, another for verbal,
             and a separate set of mocks &mdash; then stitch them together
             yourself. Zakarian GMAT is one platform across all three sections,
@@ -198,23 +198,23 @@ export default function HowWeComparePage() {
                 key={p.title}
                 className="p-6 rounded-2xl border"
                 style={{
-                  borderColor: "rgba(255,255,255,0.06)",
-                  backgroundColor: "#0D0D0D",
+                  borderColor: "var(--public-line,rgba(255,255,255,0.06))",
+                  backgroundColor: "var(--public-surface,#0D0D0D)",
                 }}
               >
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                  style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+                  style={{ backgroundColor: "var(--public-tint,rgba(201,168,76,0.1))" }}
                 >
-                  <Icon className="w-4 h-4" style={{ color: "#C9A84C" }} />
+                  <Icon className="w-4 h-4" style={{ color: "var(--public-accent,#C9A84C)" }} />
                 </div>
-                <p className="text-[10px] uppercase tracking-[0.18em] text-[#666666] font-semibold mb-2">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--public-muted,#666666)] font-semibold mb-2">
                   {p.eyebrow}
                 </p>
-                <h3 className="font-display text-lg font-semibold text-[#F0F0F0] tracking-tight mb-2 leading-tight">
+                <h3 className="font-display text-lg font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight mb-2 leading-tight">
                   {p.title}
                 </h3>
-                <p className="text-[14px] text-[#888888] leading-relaxed">
+                <p className="text-[14px] text-[color:var(--public-muted,#888888)] leading-relaxed">
                   {p.body}
                 </p>
               </div>
@@ -232,17 +232,17 @@ export default function HowWeComparePage() {
         />
         <div
           className="rounded-2xl border overflow-hidden"
-          style={{ borderColor: "rgba(255,255,255,0.08)" }}
+          style={{ borderColor: "var(--public-line,rgba(255,255,255,0.08))" }}
         >
           <div
             className="grid grid-cols-1 sm:grid-cols-[1fr_1.4fr_1.4fr] text-[10px] uppercase tracking-[0.18em] font-semibold"
-            style={{ backgroundColor: "#111111", color: "#888888" }}
+            style={{ backgroundColor: "var(--public-surface,#111111)", color: "var(--public-muted,#888888)" }}
           >
             <div className="px-5 py-3 hidden sm:block">&nbsp;</div>
             <div className="px-5 py-3">Typical GMAT prep</div>
             <div
               className="px-5 py-3"
-              style={{ color: "#C9A84C", backgroundColor: "rgba(201,168,76,0.06)" }}
+              style={{ color: "var(--public-accent,#C9A84C)", backgroundColor: "var(--public-tint,rgba(201,168,76,0.06))" }}
             >
               Zakarian GMAT
             </div>
@@ -252,24 +252,24 @@ export default function HowWeComparePage() {
               key={row.label}
               className="grid grid-cols-1 sm:grid-cols-[1fr_1.4fr_1.4fr] border-t"
               style={{
-                borderColor: "rgba(255,255,255,0.06)",
-                backgroundColor: i % 2 === 0 ? "#0D0D0D" : "#0A0A0A",
+                borderColor: "var(--public-line,rgba(255,255,255,0.06))",
+                backgroundColor: i % 2 === 0 ? "var(--public-surface,#0D0D0D)" : "var(--public-bg,#0A0A0A)",
               }}
             >
-              <div className="px-5 pt-4 pb-1 sm:py-4 text-[12px] uppercase tracking-[0.14em] font-semibold text-[#C0C0C0]">
+              <div className="px-5 pt-4 pb-1 sm:py-4 text-[12px] uppercase tracking-[0.14em] font-semibold text-[color:var(--public-body,#C0C0C0)]">
                 {row.label}
               </div>
-              <div className="px-5 py-2 sm:py-4 flex items-start gap-2 text-[14px] text-[#888888] leading-snug">
-                <Minus className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#555555]" />
+              <div className="px-5 py-2 sm:py-4 flex items-start gap-2 text-[14px] text-[color:var(--public-muted,#888888)] leading-snug">
+                <Minus className="w-4 h-4 mt-0.5 flex-shrink-0 text-[color:var(--public-muted,#555555)]" />
                 {row.typical}
               </div>
               <div
-                className="px-5 pt-2 pb-4 sm:py-4 flex items-start gap-2 text-[14px] text-[#E8E8E8] leading-snug"
-                style={{ backgroundColor: "rgba(201,168,76,0.04)" }}
+                className="px-5 pt-2 pb-4 sm:py-4 flex items-start gap-2 text-[14px] text-[color:var(--public-ink,#E8E8E8)] leading-snug"
+                style={{ backgroundColor: "var(--public-tint,rgba(201,168,76,0.04))" }}
               >
                 <Check
                   className="w-4 h-4 mt-0.5 flex-shrink-0"
-                  style={{ color: "#3ECF8E" }}
+                  style={{ color: "var(--public-success,#3ECF8E)" }}
                 />
                 {row.zakarian}
               </div>
@@ -291,21 +291,21 @@ export default function HowWeComparePage() {
               key={s.step}
               className="flex items-start gap-4 p-5 rounded-2xl border"
               style={{
-                borderColor: "rgba(255,255,255,0.06)",
-                backgroundColor: "#0D0D0D",
+                borderColor: "var(--public-line,rgba(255,255,255,0.06))",
+                backgroundColor: "var(--public-surface,#0D0D0D)",
               }}
             >
               <span
                 className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-[13px] font-semibold tabular-nums"
-                style={{ backgroundColor: "rgba(201,168,76,0.1)", color: "#C9A84C" }}
+                style={{ backgroundColor: "var(--public-tint,rgba(201,168,76,0.1))", color: "var(--public-accent,#C9A84C)" }}
               >
                 {i + 1}
               </span>
               <div>
-                <h3 className="font-display text-lg font-semibold text-[#F0F0F0] tracking-tight leading-tight mb-1">
+                <h3 className="font-display text-lg font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight leading-tight mb-1">
                   {s.step}
                 </h3>
-                <p className="text-[14px] text-[#888888] leading-relaxed">
+                <p className="text-[14px] text-[color:var(--public-muted,#888888)] leading-relaxed">
                   {s.detail}
                 </p>
               </div>
@@ -319,15 +319,15 @@ export default function HowWeComparePage() {
         <div
           className="p-6 sm:p-8 rounded-2xl border"
           style={{
-            borderColor: "rgba(255,255,255,0.06)",
-            backgroundColor: "#0D0D0D",
+            borderColor: "var(--public-line,rgba(255,255,255,0.06))",
+            backgroundColor: "var(--public-surface,#0D0D0D)",
           }}
         >
           <SectionHeader
             eyebrow="Straight talk"
             title="What we won&apos;t tell you."
           />
-          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4 text-[14px] text-[#C0C0C0] leading-relaxed">
+          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4 text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
             <p>
               We won&apos;t quote a guaranteed score jump or a percentage of
               students who broke 700. The platform is built by one person who
@@ -345,7 +345,7 @@ export default function HowWeComparePage() {
             <Link
               href="/sample-chapter"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-transform duration-200 hover:-translate-y-0.5"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               Read a free sample chapter
               <ArrowRight className="w-4 h-4" />
@@ -353,7 +353,7 @@ export default function HowWeComparePage() {
             <Link
               href="/course"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold border transition-colors"
-              style={{ borderColor: "rgba(255,255,255,0.10)", color: "#C0C0C0" }}
+              style={{ borderColor: "var(--public-line,rgba(255,255,255,0.10))", color: "var(--public-body,#C0C0C0)" }}
             >
               See the full curriculum
             </Link>
@@ -363,25 +363,25 @@ export default function HowWeComparePage() {
 
       {/* Final CTA */}
       <section
-        className="relative py-20 overflow-hidden border-t border-white/[0.06]"
-        style={{ backgroundColor: "#050505" }}
+        className="relative py-20 overflow-hidden border-t border-[var(--public-line,rgba(255,255,255,0.06))]"
+        style={{ backgroundColor: "var(--public-surface,#050505)" }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 70% at 50% 100%, rgba(201,168,76,0.14) 0%, transparent 65%)",
+              "radial-gradient(ellipse 70% 70% at 50% 100%, var(--public-tint,rgba(201,168,76,0.14)) 0%, transparent 65%)",
           }}
           aria-hidden
         />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-4">
             One platform.{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               All three sections.
             </span>
           </h2>
-          <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
+          <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-7 max-w-xl mx-auto">
             {CHAPTER_COUNT_CLAIM} chapters across Quant, Verbal, and Data Insights, the adaptive
             study plan, the error log and spaced-review queue, and mock exams
             with debrief tools &mdash; built for the GMAT Focus Edition.{" "}
@@ -393,14 +393,14 @@ export default function HowWeComparePage() {
             <Link
               href="/signup"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all duration-200"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-[var(--public-line,rgba(255,255,255,0.1))] text-[color:var(--public-body,#C0C0C0)] hover:border-[var(--public-line,rgba(255,255,255,0.18))] hover:text-[color:var(--public-ink,#F0F0F0)] transition-all duration-200"
             >
               See pricing
             </Link>

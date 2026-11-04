@@ -42,14 +42,14 @@ function SignupFallback() {
       <div className="text-center mb-8">
         <p
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
-          style={{ color: "#C9A84C" }}
+          style={{ color: "var(--public-accent,#C9A84C)" }}
         >
           7-day full-access trial
         </p>
-        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
+        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-3">
           Create your account
         </h1>
-        <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+        <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
           Free 7-day full-access trial. No credit card needed.
         </p>
       </div>
@@ -225,43 +225,43 @@ function SignupForm() {
         <div className="text-center mb-8">
           <p
             className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: "#C9A84C" }}
+            style={{ color: "var(--public-accent,#C9A84C)" }}
           >
             Almost there
           </p>
-          <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
+          <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-3">
             Check your{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               email.
             </span>
           </h1>
         </div>
 
         <div
-          className="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D] text-center"
-          style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)" }}
+          className="p-7 sm:p-8 rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)] text-center"
+          style={{ boxShadow: "inset 0 1px 0 var(--public-line,rgba(255,255,255,0.04))" }}
         >
           <div className="flex justify-center mb-5">
             <div
               className="w-12 h-12 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: "rgba(201,168,76,0.12)" }}
+              style={{ backgroundColor: "var(--public-tint,rgba(201,168,76,0.12))" }}
             >
-              <MailCheck className="w-6 h-6" style={{ color: "#C9A84C" }} />
+              <MailCheck className="w-6 h-6" style={{ color: "var(--public-accent,#C9A84C)" }} />
             </div>
           </div>
-          <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+          <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
             We sent a confirmation link to{" "}
-            <span className="text-[#F0F0F0] font-semibold">{pendingEmail}</span>.
+            <span className="text-[color:var(--public-ink,#F0F0F0)] font-semibold">{pendingEmail}</span>.
             Click it to activate your account, then sign in.
           </p>
-          <p className="text-[12px] text-[#555555] leading-relaxed mt-3">
+          <p className="text-[12px] text-[color:var(--public-muted,#555555)] leading-relaxed mt-3">
             Didn&apos;t get it? Check your spam folder, or resend below.
           </p>
           <button
             type="button"
             onClick={handleResend}
             disabled={resendState !== "idle"}
-            className="mt-5 w-full py-3 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all disabled:opacity-50 disabled:hover:border-white/[0.1]"
+            className="mt-5 w-full py-3 rounded-xl text-sm font-semibold border border-[var(--public-line,rgba(255,255,255,0.1))] text-[color:var(--public-body,#C0C0C0)] hover:border-[var(--public-line,rgba(255,255,255,0.18))] hover:text-[color:var(--public-ink,#F0F0F0)] transition-all disabled:opacity-50 disabled:hover:border-[var(--public-line,rgba(255,255,255,0.1))]"
           >
             {resendState === "sending"
               ? "Sending…"
@@ -271,12 +271,12 @@ function SignupForm() {
           </button>
         </div>
 
-        <p className="text-center text-[13px] text-[#888888] mt-6">
+        <p className="text-center text-[13px] text-[color:var(--public-muted,#888888)] mt-6">
           Already confirmed?{" "}
           <Link
             href="/login"
             className="font-medium hover:opacity-80 transition-opacity"
-            style={{ color: "#C9A84C" }}
+            style={{ color: "var(--public-accent,#C9A84C)" }}
           >
             Sign in
           </Link>
@@ -290,21 +290,21 @@ function SignupForm() {
       <div className="text-center mb-8">
         <p
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
-          style={{ color: "#C9A84C" }}
+          style={{ color: "var(--public-accent,#C9A84C)" }}
         >
           7-day full-access trial
         </p>
-        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
+        <h1 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-3">
           Create your account
         </h1>
-        <p className="text-[15px] text-[#C0C0C0] leading-relaxed">
+        <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
           Free 7-day full-access trial. No credit card needed.
         </p>
       </div>
 
       <div
-        className="p-7 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
-        style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)" }}
+        className="p-7 sm:p-8 rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)]"
+        style={{ boxShadow: "inset 0 1px 0 var(--public-line,rgba(255,255,255,0.04))" }}
       >
         <form onSubmit={handleSubmit} className="space-y-5">
           {error && (
@@ -314,7 +314,7 @@ function SignupForm() {
               className="flex items-start gap-2.5 px-4 py-3 rounded-xl text-[13px]"
               style={{
                 backgroundColor: "rgba(255,68,68,0.08)",
-                color: "#FF4444",
+                color: "var(--public-danger,#FF4444)",
                 border: "1px solid rgba(255,68,68,0.2)",
               }}
             >
@@ -325,11 +325,11 @@ function SignupForm() {
 
           {SIGNUP_GATED && (
             <div>
-              <label htmlFor="signup-access-code" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2">
+              <label htmlFor="signup-access-code" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[color:var(--public-body,#C0C0C0)] mb-2">
                 Access Code
               </label>
               <div className="relative">
-                <KeyRound className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#555555]" />
+                <KeyRound className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[color:var(--public-muted,#555555)]" />
                 <input
                   id="signup-access-code"
                   type="text"
@@ -339,17 +339,17 @@ function SignupForm() {
                   autoComplete="off"
                   spellCheck={false}
                   placeholder="Your invite code"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl text-[15px] text-[color:var(--public-ink,#F0F0F0)] placeholder-[var(--public-muted,#555555)] border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)] outline-none focus:ring-2 focus:ring-[var(--public-accent,#C9A84C)]/30 focus:border-[color:var(--public-accent-line,#C9A84C)]/40 transition-all"
                 />
               </div>
-              <p className="text-[11px] text-[#555555] mt-1">
+              <p className="text-[11px] text-[color:var(--public-muted,#555555)] mt-1">
                 Zakarian GMAT is invite-only. Enter the code from your invite.
               </p>
             </div>
           )}
 
           <div>
-            <label htmlFor="signup-name" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2">
+            <label htmlFor="signup-name" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[color:var(--public-body,#C0C0C0)] mb-2">
               Full Name
             </label>
             <input
@@ -361,12 +361,12 @@ function SignupForm() {
               onChange={(e) => setName(e.target.value)}
               required
               placeholder="Your full name"
-              className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+              className="w-full px-4 py-3 rounded-xl text-[15px] text-[color:var(--public-ink,#F0F0F0)] placeholder-[var(--public-muted,#555555)] border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)] outline-none focus:ring-2 focus:ring-[var(--public-accent,#C9A84C)]/30 focus:border-[color:var(--public-accent-line,#C9A84C)]/40 transition-all"
             />
           </div>
 
           <div>
-            <label htmlFor="signup-email" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2">
+            <label htmlFor="signup-email" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[color:var(--public-body,#C0C0C0)] mb-2">
               Email
             </label>
             <input
@@ -378,12 +378,12 @@ function SignupForm() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="w-full px-4 py-3 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+              className="w-full px-4 py-3 rounded-xl text-[15px] text-[color:var(--public-ink,#F0F0F0)] placeholder-[var(--public-muted,#555555)] border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)] outline-none focus:ring-2 focus:ring-[var(--public-accent,#C9A84C)]/30 focus:border-[color:var(--public-accent-line,#C9A84C)]/40 transition-all"
             />
           </div>
 
           <div>
-            <label htmlFor="signup-password" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[#C0C0C0] mb-2">
+            <label htmlFor="signup-password" className="block text-[11px] uppercase tracking-[0.18em] font-semibold text-[color:var(--public-body,#C0C0C0)] mb-2">
               Password
             </label>
             <div className="relative">
@@ -397,12 +397,12 @@ function SignupForm() {
                 required
                 minLength={8}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 pr-11 rounded-xl text-[15px] text-[#F0F0F0] placeholder-[#555555] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all"
+                className="w-full px-4 py-3 pr-11 rounded-xl text-[15px] text-[color:var(--public-ink,#F0F0F0)] placeholder-[var(--public-muted,#555555)] border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)] outline-none focus:ring-2 focus:ring-[var(--public-accent,#C9A84C)]/30 focus:border-[color:var(--public-accent-line,#C9A84C)]/40 transition-all"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center text-[#B9B7AE] hover:text-[#F4F1E8] transition-colors"
+                className="absolute right-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center text-[color:var(--public-muted,#B9B7AE)] hover:text-[color:var(--public-ink,#F4F1E8)] transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
@@ -412,7 +412,7 @@ function SignupForm() {
                 )}
               </button>
             </div>
-            <p className="text-[11px] text-[#555555] mt-1">
+            <p className="text-[11px] text-[color:var(--public-muted,#555555)] mt-1">
               Minimum 8 characters
             </p>
           </div>
@@ -422,9 +422,9 @@ function SignupForm() {
               type="checkbox"
               checked={marketingOptIn}
               onChange={(e) => setMarketingOptIn(e.target.checked)}
-              className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#C9A84C]"
+              className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[var(--public-accent,#C9A84C)]"
             />
-            <span className="text-[12px] text-[#888888] leading-relaxed">
+            <span className="text-[12px] text-[color:var(--public-muted,#888888)] leading-relaxed">
               Email me the getting-started series from Adam &mdash; how to use
               the platform, founding-user offers, and product updates. Optional;
               unsubscribe in one click. We&apos;ll always send essential account
@@ -437,7 +437,7 @@ function SignupForm() {
             disabled={loading}
             aria-busy={loading}
             className="w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
           >
             {loading ? (
               <>
@@ -453,14 +453,14 @@ function SignupForm() {
           </button>
 
           <div className="flex items-center justify-center gap-2 pt-1">
-            <ShieldCheck className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#555555" }} />
-            <p className="text-[12px] text-[#555555] text-center leading-relaxed">
+            <ShieldCheck className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "var(--public-muted,#555555)" }} />
+            <p className="text-[12px] text-[color:var(--public-muted,#555555)] text-center leading-relaxed">
               No credit card. By continuing you agree to our{" "}
-              <Link href="/terms" className="hover:text-[#888888] transition-colors underline underline-offset-2">
+              <Link href="/terms" className="hover:text-[color:var(--public-muted,#888888)] transition-colors underline underline-offset-2">
                 Terms
               </Link>{" "}
               and{" "}
-              <Link href="/privacy" className="hover:text-[#888888] transition-colors underline underline-offset-2">
+              <Link href="/privacy" className="hover:text-[color:var(--public-muted,#888888)] transition-colors underline underline-offset-2">
                 Privacy Policy
               </Link>.
             </p>
@@ -468,12 +468,12 @@ function SignupForm() {
         </form>
       </div>
 
-      <p className="text-center text-[13px] text-[#888888] mt-6">
+      <p className="text-center text-[13px] text-[color:var(--public-muted,#888888)] mt-6">
         Already have an account?{" "}
         <Link
           href="/login"
           className="font-medium hover:opacity-80 transition-opacity"
-          style={{ color: "#C9A84C" }}
+          style={{ color: "var(--public-accent,#C9A84C)" }}
         >
           Sign in
         </Link>

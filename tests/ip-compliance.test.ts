@@ -35,7 +35,7 @@ describe("IP compliance guardrails", () => {
   })
 
   it("labels the linked open resources with their actual licenses", () => {
-    const resources = read("src/app/(marketing)/resources/page.tsx")
+    const resources = read("src/components/marketing/resources-catalog.ts")
 
     expect(resources).toContain('badge: "CC BY 4.0"')
     expect(resources).toContain('badge: "CC BY-NC-SA 4.0"')

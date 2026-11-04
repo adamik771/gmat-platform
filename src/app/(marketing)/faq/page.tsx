@@ -237,7 +237,7 @@ const allItems: FAQItem[] = categories.flatMap((c) => c.items)
 
 export default function FAQPage() {
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
       <JsonLd data={faqPageLd({ questions: allItems })} />
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -245,7 +245,7 @@ export default function FAQPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,168,76,0.16) 0%, transparent 60%)",
+              "radial-gradient(ellipse 90% 55% at 50% -5%, var(--public-tint,rgba(201,168,76,0.16)) 0%, transparent 60%)",
           }}
           aria-hidden
         />
@@ -257,7 +257,7 @@ export default function FAQPage() {
           <div className="inline-flex items-center gap-3 mb-5">
             <p
               className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-              style={{ color: "#C9A84C" }}
+              style={{ color: "var(--public-accent,#C9A84C)" }}
             >
               FAQ
             </p>
@@ -265,18 +265,18 @@ export default function FAQPage() {
               className="h-px w-12"
               style={{
                 background:
-                  "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+                  "linear-gradient(to right, var(--public-accent-line,rgba(201,168,76,0.3)), transparent)",
               }}
               aria-hidden
             />
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-6">
+          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.02] mb-6">
             Questions,{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               answered.
             </span>
           </h1>
-          <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-xl mx-auto">
+          <p className="text-[16px] sm:text-[17px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed max-w-xl mx-auto">
             {allItems.length} of the questions we hear most often — about the
             curriculum, getting started, your baseline, billing,
             non-native speakers, and the AI tutor. If you don&apos;t find it
@@ -293,14 +293,14 @@ export default function FAQPage() {
               <div className="flex items-center gap-3 mb-5">
                 <span
                   className="font-display text-[11px] font-semibold tabular-nums"
-                  style={{ color: "rgba(201,168,76,0.55)" }}
+                  style={{ color: "var(--public-accent-line,rgba(201,168,76,0.55))" }}
                   aria-hidden
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p
                   className="text-[10px] font-semibold uppercase tracking-[0.22em]"
-                  style={{ color: "#C9A84C" }}
+                  style={{ color: "var(--public-accent,#C9A84C)" }}
                 >
                   {category.title}
                 </p>
@@ -308,12 +308,12 @@ export default function FAQPage() {
                   className="h-px flex-1"
                   style={{
                     background:
-                      "linear-gradient(to right, rgba(201,168,76,0.3), transparent)",
+                      "linear-gradient(to right, var(--public-accent-line,rgba(201,168,76,0.3)), transparent)",
                   }}
                   aria-hidden
                 />
               </div>
-              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-6">
+              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-6">
                 {category.title}
               </h2>
               <FAQAccordion items={category.items} />
@@ -325,13 +325,13 @@ export default function FAQPage() {
       {/* Final CTA */}
       <section
         className="relative py-28 overflow-hidden"
-        style={{ backgroundColor: "#050505" }}
+        style={{ backgroundColor: "var(--public-surface,#050505)" }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 70% at 50% 100%, rgba(201,168,76,0.14) 0%, transparent 65%)",
+              "radial-gradient(ellipse 70% 70% at 50% 100%, var(--public-tint,rgba(201,168,76,0.14)) 0%, transparent 65%)",
           }}
           aria-hidden
         />
@@ -340,20 +340,20 @@ export default function FAQPage() {
           aria-hidden
         />
         <div className="relative max-w-3xl mx-auto text-center px-4">
-          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-5">
+          <h2 className="font-display text-3xl sm:text-5xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-5">
             Still have{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               questions?
             </span>
           </h2>
-          <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed mb-10">
+          <p className="text-[15px] sm:text-[17px] text-[color:var(--public-muted,#888888)] leading-relaxed mb-10">
             Book a free 20-minute call and we&apos;ll answer anything the FAQ didn&apos;t
             cover.
           </p>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
           >
             Contact us
             <ArrowRight className="w-4 h-4" />

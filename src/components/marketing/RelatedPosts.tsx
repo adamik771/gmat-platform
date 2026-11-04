@@ -26,15 +26,15 @@ export default function RelatedPosts({
   return (
     <section
       aria-label="Related posts"
-      className="mt-16 pt-12 border-t border-white/[0.06]"
+      className="mt-16 pt-12 border-t border-[var(--public-line,rgba(255,255,255,0.06))]"
     >
       <p
         className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-2"
-        style={{ color: "#C9A84C" }}
+        style={{ color: "var(--public-accent,#C9A84C)" }}
       >
         Read next
       </p>
-      <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#F0F0F0] tracking-tight leading-tight mb-6">
+      <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight leading-tight mb-6">
         More on this topic
       </h2>
       <ul className="grid gap-3 sm:grid-cols-3">
@@ -44,23 +44,23 @@ export default function RelatedPosts({
               href={`/blog/${post.slug}`}
               className="group block h-full p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-0.5"
               style={{
-                borderColor: "rgba(255,255,255,0.06)",
-                backgroundColor: "#0D0D0D",
+                borderColor: "var(--public-line,rgba(255,255,255,0.06))",
+                backgroundColor: "var(--public-surface,#0D0D0D)",
               }}
             >
-              <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] text-[#666666] mb-3">
+              <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] text-[color:var(--public-muted,#666666)] mb-3">
                 <Clock className="w-3 h-3" />
                 {post.readMinutes} min read
               </div>
-              <h3 className="font-display text-base sm:text-lg font-semibold text-[#F0F0F0] tracking-tight leading-tight mb-2">
+              <h3 className="font-display text-base sm:text-lg font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight leading-tight mb-2">
                 {post.title}
               </h3>
-              <p className="text-[12px] text-[#888888] leading-relaxed mb-3 line-clamp-3">
+              <p className="text-[12px] text-[color:var(--public-muted,#888888)] leading-relaxed mb-3 line-clamp-3">
                 {post.description}
               </p>
               <span
                 className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.18em] font-semibold transition-transform group-hover:translate-x-0.5"
-                style={{ color: "#C9A84C" }}
+                style={{ color: "var(--public-accent,#C9A84C)" }}
               >
                 Read post
                 <ArrowRight className="w-3 h-3" />

@@ -32,7 +32,7 @@ const steps = [
 
 export default function ReferPage() {
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
       <TrackView event="landing_view" props={{ page: "refer" }} />
       {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
@@ -40,24 +40,24 @@ export default function ReferPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 90% 50% at 50% -5%, rgba(201,168,76,0.15) 0%, transparent 60%)",
+              "radial-gradient(ellipse 90% 50% at 50% -5%, var(--public-tint,rgba(201,168,76,0.15)) 0%, transparent 60%)",
           }}
           aria-hidden
         />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p
             className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: "#C9A84C" }}
+            style={{ color: "var(--public-accent,#C9A84C)" }}
           >
             Refer a friend
           </p>
-          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-5">
+          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.02] mb-5">
             Know someone prepping for the{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               GMAT?
             </span>
           </h1>
-          <p className="text-[15px] sm:text-[17px] text-[#888888] leading-relaxed">
+          <p className="text-[15px] sm:text-[17px] text-[color:var(--public-muted,#888888)] leading-relaxed">
             If the platform has helped you, the best thing you can do is pass it
             to someone it would help too. They start with the same free 7-day
             full-access trial you did — and you get a $50 reward if they later
@@ -74,23 +74,23 @@ export default function ReferPage() {
             return (
               <div
                 key={step.title}
-                className="p-6 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+                className="p-6 rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)]"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div
                     className="flex items-center justify-center w-9 h-9 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: "rgba(201,168,76,0.1)" }}
+                    style={{ backgroundColor: "var(--public-tint,rgba(201,168,76,0.1))" }}
                   >
-                    <Icon className="w-4 h-4" style={{ color: "#C9A84C" }} />
+                    <Icon className="w-4 h-4" style={{ color: "var(--public-accent,#C9A84C)" }} />
                   </div>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#555555]">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--public-muted,#555555)]">
                     Step {i + 1}
                   </span>
                 </div>
-                <h2 className="text-[16px] font-semibold text-[#F0F0F0] mb-2">
+                <h2 className="text-[16px] font-semibold text-[color:var(--public-ink,#F0F0F0)] mb-2">
                   {step.title}
                 </h2>
-                <p className="text-[13px] text-[#888888] leading-relaxed">
+                <p className="text-[13px] text-[color:var(--public-muted,#888888)] leading-relaxed">
                   {step.body}
                 </p>
               </div>
@@ -103,10 +103,10 @@ export default function ReferPage() {
       <SectionWrapper>
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-3">
+            <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-3">
               Your share message
             </h2>
-            <p className="text-[14px] text-[#888888] leading-relaxed">
+            <p className="text-[14px] text-[color:var(--public-muted,#888888)] leading-relaxed">
               Personalized and ready to send. Edit it however you like before you
               do.
             </p>
@@ -118,7 +118,7 @@ export default function ReferPage() {
       {/* Fine print + CTA */}
       <SectionWrapper variant="darker">
         <div className="max-w-2xl mx-auto text-center">
-          <p className="text-[13px] text-[#888888] leading-relaxed mb-8">
+          <p className="text-[13px] text-[color:var(--public-muted,#888888)] leading-relaxed mb-8">
             The reward is paid once your friend becomes a paying founding member,
             by a method we agree on. We track referrals manually during the
             launch, so there&apos;s nothing to install and no codes to manage —
@@ -127,12 +127,12 @@ export default function ReferPage() {
           <Link
             href="/pricing#founding"
             className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-sm font-semibold transition-all hover:opacity-90 hover:scale-[1.02]"
-            style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+            style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
           >
             Reserve your own founding rate
             <ArrowRight className="w-4 h-4" />
           </Link>
-          <p className="text-[11px] text-[#555555] leading-relaxed mt-8 max-w-xl mx-auto">
+          <p className="text-[11px] text-[color:var(--public-muted,#555555)] leading-relaxed mt-8 max-w-xl mx-auto">
             GMAC™, GMAT™, Graduate Management Admission Council™, and Graduate
             Management Admission Test™ are trademarks of GMAC in the United
             States and other countries. Zakarian GMAT is independent and is not

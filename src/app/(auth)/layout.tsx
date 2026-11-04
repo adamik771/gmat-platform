@@ -1,29 +1,30 @@
 import Link from "next/link"
 import ConsentSettingsButton from "@/components/analytics/ConsentSettingsButton"
+import publicTheme from "@/components/marketing/PublicTheme.module.css"
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="auth-workbench relative min-h-screen flex flex-col overflow-hidden"
-      style={{ backgroundColor: "#0B0B0A" }}
+      className={`${publicTheme.site} auth-workbench relative min-h-screen flex flex-col overflow-hidden`}
+      style={{ backgroundColor: "var(--public-bg,#0B0B0A)" }}
     >
       <a href="#main-content" className="skip-to-content">
         Skip to content
       </a>
       {/* Top bar */}
-      <div className="relative h-[68px] px-6 flex items-center border-b border-white/[0.08]">
+      <div className="relative h-[68px] px-6 flex items-center border-b border-[var(--public-line,rgba(255,255,255,0.08))]">
         <Link
           href="/"
           className="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
         >
-          <span className="text-[#F0F0F0] text-[13px] font-semibold">
+          <span className="text-[color:var(--public-ink,#F0F0F0)] text-[13px] font-semibold">
             ZAKARIAN
           </span>
           <span
             className="w-1 h-1 rounded-full"
-            style={{ backgroundColor: "#C9A84C" }}
+            style={{ backgroundColor: "var(--public-action,#C9A84C)" }}
           />
-          <span className="text-[#F0F0F0] text-[13px] font-semibold">
+          <span className="text-[color:var(--public-ink,#F0F0F0)] text-[13px] font-semibold">
             GMAT
           </span>
         </Link>
@@ -42,18 +43,18 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           on every public page. */}
       <footer className="relative px-6 pb-6 pt-2">
         <div className="flex items-center justify-center gap-4 mb-3">
-          <Link href="/privacy" className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors">
+          <Link href="/privacy" className="text-[11px] text-[color:var(--public-muted,#555555)] hover:text-[color:var(--public-muted,#888888)] transition-colors">
             Privacy
           </Link>
-          <Link href="/terms" className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors">
+          <Link href="/terms" className="text-[11px] text-[color:var(--public-muted,#555555)] hover:text-[color:var(--public-muted,#888888)] transition-colors">
             Terms
           </Link>
-          <Link href="/refund" className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors">
+          <Link href="/refund" className="text-[11px] text-[color:var(--public-muted,#555555)] hover:text-[color:var(--public-muted,#888888)] transition-colors">
             Refund Policy
           </Link>
-          <ConsentSettingsButton className="text-[11px] text-[#555555] hover:text-[#888888] transition-colors" />
+          <ConsentSettingsButton className="text-[11px] text-[color:var(--public-muted,#555555)] hover:text-[color:var(--public-muted,#888888)] transition-colors" />
         </div>
-        <p className="max-w-xl mx-auto text-center text-[11px] text-[#555555] leading-relaxed">
+        <p className="max-w-xl mx-auto text-center text-[11px] text-[color:var(--public-muted,#555555)] leading-relaxed">
           GMAC™, GMAT™, Graduate Management Admission Council™, and Graduate
           Management Admission Test™ are trademarks of GMAC in the United
           States and other countries. Zakarian GMAT is independent and is not

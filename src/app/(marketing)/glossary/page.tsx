@@ -32,7 +32,7 @@ export default function GlossaryPage() {
   const totalEntries = ENTRIES.length
 
   return (
-    <div style={{ backgroundColor: "#0A0A0A" }}>
+    <div style={{ backgroundColor: "var(--public-bg,#0A0A0A)" }}>
       <JsonLd
         data={definedTermSetLd({
           name: "GMAT Glossary",
@@ -60,7 +60,7 @@ export default function GlossaryPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 90% 55% at 50% -5%, rgba(201,168,76,0.16) 0%, transparent 60%)",
+              "radial-gradient(ellipse 90% 55% at 50% -5%, var(--public-tint,rgba(201,168,76,0.16)) 0%, transparent 60%)",
           }}
           aria-hidden
         />
@@ -70,18 +70,18 @@ export default function GlossaryPage() {
         />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 mb-5">
-            <BookA className="w-4 h-4" style={{ color: "#C9A84C" }} />
-            <p className="text-[10px] uppercase tracking-[0.22em] text-[#C9A84C] font-semibold">
+            <BookA className="w-4 h-4" style={{ color: "var(--public-accent,#C9A84C)" }} />
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[color:var(--public-accent,#C9A84C)] font-semibold">
               Reference
             </p>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.02] mb-5">
+          <h1 className="font-display text-4xl sm:text-6xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.02] mb-5">
             GMAT{" "}
-            <span className="font-display-italic" style={{ color: "#C9A84C" }}>
+            <span className="font-display-italic" style={{ color: "var(--public-accent,#C9A84C)" }}>
               glossary.
             </span>
           </h1>
-          <p className="text-[16px] sm:text-[17px] text-[#C0C0C0] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[16px] sm:text-[17px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed max-w-2xl mx-auto">
             Plain-English definitions for {totalEntries} terms that matter
             on the GMAT Focus Edition. Cross-linked to deeper strategy
             guides and tools where they exist.
@@ -101,9 +101,9 @@ export default function GlossaryPage() {
                 href={`#${g.letter}`}
                 className="inline-flex items-center justify-center w-9 h-9 rounded-lg text-[12px] font-display font-semibold transition-all hover:scale-105"
                 style={{
-                  backgroundColor: "rgba(201,168,76,0.06)",
-                  color: "#C9A84C",
-                  border: "1px solid rgba(201,168,76,0.2)",
+                  backgroundColor: "var(--public-tint,rgba(201,168,76,0.06))",
+                  color: "var(--public-accent,#C9A84C)",
+                  border: "1px solid var(--public-accent-line,rgba(201,168,76,0.2))",
                 }}
               >
                 {g.letter}
@@ -125,7 +125,7 @@ export default function GlossaryPage() {
             <h2
               id={`heading-${g.letter}`}
               className="font-display text-3xl sm:text-4xl font-semibold tracking-[-0.02em] mb-5"
-              style={{ color: "#C9A84C" }}
+              style={{ color: "var(--public-accent,#C9A84C)" }}
             >
               {g.letter}
             </h2>
@@ -133,24 +133,24 @@ export default function GlossaryPage() {
               {g.entries.map((entry) => (
                 <article
                   key={entry.term}
-                  className="p-5 sm:p-6 rounded-2xl border border-white/[0.06] bg-[#0D0D0D]"
+                  className="p-5 sm:p-6 rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.06))] bg-[var(--public-surface,#0D0D0D)]"
                 >
-                  <h3 className="font-display text-lg sm:text-xl font-semibold text-[#F0F0F0] tracking-tight mb-2 leading-snug">
+                  <h3 className="font-display text-lg sm:text-xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight mb-2 leading-snug">
                     {entry.term}
                   </h3>
                   {entry.aliases && entry.aliases.length > 0 && (
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-[#666666] mb-2">
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--public-muted,#666666)] mb-2">
                       Also: {entry.aliases.join(", ")}
                     </p>
                   )}
-                  <p className="text-[14px] text-[#C0C0C0] leading-relaxed">
+                  <p className="text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed">
                     {entry.definition}
                   </p>
                   {entry.link && (
                     <Link
                       href={entry.link.href}
                       className="inline-flex items-center gap-1.5 text-[12px] font-semibold mt-3 hover:underline"
-                      style={{ color: "#C9A84C" }}
+                      style={{ color: "var(--public-accent,#C9A84C)" }}
                     >
                       <Sparkles className="w-3 h-3" />
                       {entry.link.label}
@@ -166,22 +166,22 @@ export default function GlossaryPage() {
 
       {/* Final CTA */}
       <section
-        className="relative py-20 overflow-hidden border-t border-white/[0.06]"
-        style={{ backgroundColor: "#050505" }}
+        className="relative py-20 overflow-hidden border-t border-[var(--public-line,rgba(255,255,255,0.06))]"
+        style={{ backgroundColor: "var(--public-surface,#050505)" }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 70% at 50% 100%, rgba(201,168,76,0.14) 0%, transparent 65%)",
+              "radial-gradient(ellipse 70% 70% at 50% 100%, var(--public-tint,rgba(201,168,76,0.14)) 0%, transparent 65%)",
           }}
           aria-hidden
         />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#F0F0F0] tracking-[-0.02em] leading-[1.05] mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-[-0.02em] leading-[1.05] mb-4">
             Knowing the terms is the easy part.
           </h2>
-          <p className="text-[15px] text-[#C0C0C0] leading-relaxed mb-7 max-w-xl mx-auto">
+          <p className="text-[15px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-7 max-w-xl mx-auto">
             Apply them in a structured 12-week plan with the platform.
             {CHAPTER_COUNT_CLAIM} chapters + adaptive plan + error log —
             free 7-day full-access trial. No card required.
@@ -190,14 +190,14 @@ export default function GlossaryPage() {
             <Link
               href="/signup"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/resources"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-white/[0.1] text-[#C0C0C0] hover:border-white/[0.18] hover:text-[#F0F0F0] transition-all duration-200"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold border border-[var(--public-line,rgba(255,255,255,0.1))] text-[color:var(--public-body,#C0C0C0)] hover:border-[var(--public-line,rgba(255,255,255,0.18))] hover:text-[color:var(--public-ink,#F0F0F0)] transition-all duration-200"
             >
               See all free resources
             </Link>

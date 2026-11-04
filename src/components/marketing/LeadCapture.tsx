@@ -206,8 +206,8 @@ export default function LeadCapture({
       <div
         className={
           isCompact
-            ? "p-5 rounded-xl border border-white/[0.08] bg-[#0D0D0D]"
-            : "p-6 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+            ? "p-5 rounded-xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)]"
+            : "p-6 sm:p-8 rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)]"
         }
       >
         <div className="flex items-start gap-3">
@@ -215,13 +215,13 @@ export default function LeadCapture({
             className="flex items-center justify-center w-9 h-9 rounded-full flex-shrink-0"
             style={{ backgroundColor: "rgba(62,207,142,0.12)" }}
           >
-            <Check className="w-4 h-4" style={{ color: "#3ECF8E" }} />
+            <Check className="w-4 h-4" style={{ color: "var(--public-success,#3ECF8E)" }} />
           </div>
           <div className="flex-1">
-            <p className="text-[14px] font-semibold text-[#F0F0F0] mb-1">
+            <p className="text-[14px] font-semibold text-[color:var(--public-ink,#F0F0F0)] mb-1">
               {successH}
             </p>
-            <p className="text-[13px] text-[#888888] leading-relaxed">
+            <p className="text-[13px] text-[color:var(--public-muted,#888888)] leading-relaxed">
               {successD}
             </p>
             {downloadUrl && (
@@ -229,7 +229,7 @@ export default function LeadCapture({
                 href={downloadUrl}
                 download
                 className="inline-flex items-center gap-1.5 text-[12px] font-semibold mt-3 hover:underline"
-                style={{ color: "#C9A84C" }}
+                style={{ color: "var(--public-accent,#C9A84C)" }}
               >
                 <Download className="w-3.5 h-3.5" />
                 Download the template
@@ -237,13 +237,13 @@ export default function LeadCapture({
             )}
             {optInAttempted &&
               (subscribed ? (
-                <p className="text-[12px] text-[#3ECF8E] leading-relaxed mt-3">
+                <p className="text-[12px] text-[color:var(--public-success,#3ECF8E)] leading-relaxed mt-3">
                   {emailScheduled
                     ? "You're on the list — the first email is on its way. Unsubscribe anytime."
                     : "You're on the list. I'll only email you when there's something genuinely worth sending. Unsubscribe anytime."}
                 </p>
               ) : (
-                <p className="text-[12px] text-[#888888] leading-relaxed mt-3">
+                <p className="text-[12px] text-[color:var(--public-muted,#888888)] leading-relaxed mt-3">
                   {"You unsubscribed from these emails before, so I'll respect that and leave it there."}
                 </p>
               ))}
@@ -251,8 +251,8 @@ export default function LeadCapture({
         </div>
 
         {showSecondChance && (
-          <div className="mt-5 pt-5 border-t border-white/[0.08]">
-            <p className="text-[13px] text-[#C0C0C0] leading-relaxed mb-3">
+          <div className="mt-5 pt-5 border-t border-[var(--public-line,rgba(255,255,255,0.08))]">
+            <p className="text-[13px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-3">
               {secondChancePitch}
             </p>
             <button
@@ -261,7 +261,7 @@ export default function LeadCapture({
               disabled={postOptIn === "submitting"}
               aria-busy={postOptIn === "submitting"}
               className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold transition-all duration-200 hover:enabled:opacity-90 hover:enabled:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+              style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
             >
               {postOptIn === "submitting" ? (
                 <>
@@ -279,12 +279,12 @@ export default function LeadCapture({
               <p
                 role="alert"
                 className="text-[12px] mt-2"
-                style={{ color: "#FF4444" }}
+                style={{ color: "var(--public-danger,#FF4444)" }}
               >
                 Couldn&apos;t add you just now — try again in a moment.
               </p>
             )}
-            <p className="text-[11px] text-[#555555] mt-3">
+            <p className="text-[11px] text-[color:var(--public-muted,#555555)] mt-3">
               One short email at a time. Unsubscribe in one click.
             </p>
           </div>
@@ -297,14 +297,14 @@ export default function LeadCapture({
     <div
       className={
         isCompact
-          ? "p-5 rounded-xl border border-white/[0.08] bg-[#0D0D0D]"
-          : "p-6 sm:p-8 rounded-2xl border border-white/[0.08] bg-[#0D0D0D]"
+          ? "p-5 rounded-xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)]"
+          : "p-6 sm:p-8 rounded-2xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#0D0D0D)]"
       }
     >
       {eyebrow && (
         <p
           className="text-[10px] font-semibold uppercase tracking-[0.22em] mb-2"
-          style={{ color: "#C9A84C" }}
+          style={{ color: "var(--public-accent,#C9A84C)" }}
         >
           {eyebrow}
         </p>
@@ -312,8 +312,8 @@ export default function LeadCapture({
       <p
         className={
           isCompact
-            ? "text-[15px] font-semibold text-[#F0F0F0] mb-1.5"
-            : "font-display text-xl sm:text-2xl font-semibold text-[#F0F0F0] tracking-tight mb-2"
+            ? "text-[15px] font-semibold text-[color:var(--public-ink,#F0F0F0)] mb-1.5"
+            : "font-display text-xl sm:text-2xl font-semibold text-[color:var(--public-ink,#F0F0F0)] tracking-tight mb-2"
         }
       >
         {headline}
@@ -321,8 +321,8 @@ export default function LeadCapture({
       <p
         className={
           isCompact
-            ? "text-[12px] text-[#888888] leading-relaxed mb-4"
-            : "text-[14px] text-[#C0C0C0] leading-relaxed mb-5 max-w-md"
+            ? "text-[12px] text-[color:var(--public-muted,#888888)] leading-relaxed mb-4"
+            : "text-[14px] text-[color:var(--public-body,#C0C0C0)] leading-relaxed mb-5 max-w-md"
         }
       >
         {description}
@@ -356,14 +356,14 @@ export default function LeadCapture({
           placeholder="you@example.com"
           aria-label="Your email address"
           disabled={state === "submitting"}
-          className="min-w-0 flex-1 px-3.5 py-2.5 rounded-xl text-[14px] text-[#F0F0F0] placeholder-[#95978D] border border-white/[0.08] bg-[#0A0A0A] outline-none focus:ring-2 focus:ring-[#C9A84C]/30 focus:border-[#C9A84C]/40 transition-all disabled:opacity-60"
+          className="min-w-0 flex-1 px-3.5 py-2.5 rounded-xl text-[14px] text-[color:var(--public-ink,#F0F0F0)] placeholder-[var(--public-muted,#95978D)] border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-bg,#0A0A0A)] outline-none focus:ring-2 focus:ring-[var(--public-accent,#C9A84C)]/30 focus:border-[color:var(--public-accent-line,#C9A84C)]/40 transition-all disabled:opacity-60"
         />
         <button
           type="submit"
           disabled={state === "submitting" || email.trim().length === 0}
           aria-busy={state === "submitting"}
           className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold transition-all duration-200 hover:enabled:opacity-90 hover:enabled:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
-          style={{ backgroundColor: "#C9A84C", color: "#0A0A0A" }}
+          style={{ backgroundColor: "var(--public-action,#C9A84C)", color: "var(--public-on-accent,#0A0A0A)" }}
         >
           {state === "submitting" ? (
             <>
@@ -383,10 +383,10 @@ export default function LeadCapture({
           type="checkbox"
           checked={optIn}
           onChange={(e) => setOptIn(e.target.checked)}
-          className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 accent-[#C9A84C]"
+          className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 accent-[var(--public-accent,#C9A84C)]"
           aria-label="Email me GMAT study tips and updates"
         />
-        <span className="text-[11px] text-[#888888] leading-relaxed">
+        <span className="text-[11px] text-[color:var(--public-muted,#888888)] leading-relaxed">
           {optInLabel}
         </span>
       </label>
@@ -394,12 +394,12 @@ export default function LeadCapture({
         <p
           role="alert"
           className="text-[12px] mt-2"
-          style={{ color: "#FF4444" }}
+          style={{ color: "var(--public-danger,#FF4444)" }}
         >
           {error}
         </p>
       )}
-      <p className="text-[11px] text-[#555555] mt-3">{footnote}</p>
+      <p className="text-[11px] text-[color:var(--public-muted,#555555)] mt-3">{footnote}</p>
     </div>
   )
 }

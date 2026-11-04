@@ -1,8 +1,9 @@
 "use client"
 
-import { useId, useState } from "react"
+import { Accordion } from "@base-ui/react/accordion"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import styles from "./FAQAccordion.module.css"
 
 export interface FAQItem {
   question: string
@@ -16,54 +17,39 @@ interface FAQAccordionProps {
 
 function FAQItemComponent({
   item,
-  isOpen,
-  onToggle,
+  value,
 }: {
   item: FAQItem
-  isOpen: boolean
-  onToggle: () => void
+  value: number
 }) {
-  const answerId = useId()
   return (
-    <div className="border-b border-white/[0.06] last:border-0">
-      <button
-        type="button"
-        aria-expanded={isOpen}
-        aria-controls={answerId}
-        onClick={onToggle}
-        className="w-full flex items-center justify-between py-4 text-left gap-4 group"
-      >
-        <span
-          className={cn(
-            "text-sm font-medium transition-colors",
-            isOpen ? "text-[#F0F0F0]" : "text-[#C0C0C0] group-hover:text-[#F0F0F0]"
-          )}
-        >
-          {item.question}
-        </span>
-        <ChevronDown
-          aria-hidden="true"
-          className={cn(
-            "w-4 h-4 flex-shrink-0 transition-transform duration-200",
-            isOpen ? "rotate-180" : ""
-          )}
-          style={{ color: "#C9A84C" }}
-        />
-      </button>
-      <div id={answerId} hidden={!isOpen} className="pb-4">
-        <p className="text-sm text-[#B9B7AE] leading-relaxed">{item.answer}</p>
-      </div>
-    </div>
+    <Accordion.Item value={value} className="border-b border-[var(--public-line,rgba(255,255,255,0.06))] last:border-0">
+      <Accordion.Header className={styles.heading}>
+        <Accordion.Trigger className={`w-full flex items-center justify-between py-4 text-left gap-4 group ${styles.trigger}`}>
+          <span className="text-sm font-medium">
+            {item.question}
+          </span>
+          <ChevronDown
+            aria-hidden="true"
+            className={`w-4 h-4 flex-shrink-0 ${styles.chevron}`}
+            style={{ color: "var(--public-accent,#C9A84C)" }}
+          />
+        </Accordion.Trigger>
+      </Accordion.Header>
+      <Accordion.Panel className={styles.panel}>
+        <div className="pb-4"><p className="text-sm text-[color:var(--public-muted,#B9B7AE)] leading-relaxed">{item.answer}</p></div>
+      </Accordion.Panel>
+    </Accordion.Item>
   )
 }
 
 export default function FAQAccordion({ items, className }: FAQAccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
-
   return (
-    <div
+    <Accordion.Root
+      defaultValue={[0]}
+      keepMounted
       className={cn(
-        "rounded-xl border border-white/[0.08] bg-[#111111] px-6",
+        "rounded-xl border border-[var(--public-line,rgba(255,255,255,0.08))] bg-[var(--public-surface,#111111)] px-6",
         className
       )}
     >
@@ -71,10 +57,9 @@ export default function FAQAccordion({ items, className }: FAQAccordionProps) {
         <FAQItemComponent
           key={index}
           item={item}
-          isOpen={openIndex === index}
-          onToggle={() => setOpenIndex(openIndex === index ? null : index)}
+          value={index}
         />
       ))}
-    </div>
+    </Accordion.Root>
   )
 }
